@@ -36,7 +36,7 @@ Since nearly all information on a news site is written language, typography is n
 
 ### Earned Presence
 
-Every element must justify its existence. The grid is structural, not decorative. Hierarchy is achieved through type alone — size, weight, and spacing signal importance. Headlines are the entry point. Body text is the sustained reading layer. Metadata recedes. If it does not serve the reader, it does not belong.
+Every element must justify its existence. The grid is structural, not decorative. Hierarchy is achieved through type alone — size, weight, and spacing signal importance. Headlines are the entry point. Body text is the sustained reading layer. Metadata recedes. If it does not serve the reader, it does not belong. Information appears exactly once — if a fact is visible in one place, it is not repeated in another. Redundancy is clutter wearing the disguise of helpfulness.
 
 ### Serif Authority
 

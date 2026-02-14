@@ -1,36 +1,67 @@
 # zuhd.news
 
-Minimalist news site. Typography-first, no decoration, content speaks for itself.
+Minimalist typography-first news site. Read `foundation.md` for the philosophy.
+
+**Live:** https://zuhd-news.pages.dev/
 
 ## Key Documents
 
-| Document | Location | Purpose |
-|----------|----------|---------|
-| Foundation manifesto | `foundation.md` | Philosophy, design principles, editorial voice — read this first |
-| Foundation (Notion) | [Notion page](https://www.notion.so/Foundation-Manifesto-307e4123a255814cb5d5fac97ac210ac) | Same content, formatted in Notion |
-| Project tasks | [Notion database](https://www.notion.so/307e4123a25581759d59ee259ae389ac) | All tasks with status, priority, phase |
-| Notion skill | `~/.claude/commands/notion.md` | API templates and IDs for Notion operations |
-| Project memory | `~/.claude/projects/-home-yunus-Work-zuhd-news/memory/MEMORY.md` | Persistent state across sessions |
+| Document | Location |
+|----------|----------|
+| Foundation manifesto | `foundation.md` |
+| Foundation (Notion) | [Notion](https://www.notion.so/Foundation-Manifesto-307e4123a255814cb5d5fac97ac210ac) |
+| Project tasks | [Notion DB](https://www.notion.so/307e4123a25581759d59ee259ae389ac) |
+| Build retrospective | [Notion](https://www.notion.so/Build-Retrospective-307e4123a255812ebdd3e3201536be52) |
+| Notion skill | `~/.claude/commands/notion.md` |
 
 ## Architecture
 
-- **Hosting:** Cloudflare Pages (static site, rebuilt on push)
-- **Editorial engine:** Claude CLI runs every 3 hours via cron, full autopilot
-- **Flow:** Claude sources news (Al Jazeera RSS to start) → writes 3-5 Smart Brevity articles → generates static HTML → pushes to repo → Cloudflare Pages rebuilds
-- **Scope:** Global hard news only (politics, conflict, economics, climate, health)
+```
+Al Jazeera RSS → fetch-news.js → Claude CLI (editorial-prompt.md) → markdown articles
+                                      ↓
+                               build.js → dist/ → wrangler pages deploy
+```
 
-## Current State
+- **Hosting:** Cloudflare Pages, direct upload via `wrangler pages deploy dist`
+- **Cycle:** systemd timer (`zuhd-news-cycle.timer`) every 3 hours → `scripts/run-cycle.sh` → Claude CLI
+- **Content:** markdown + YAML frontmatter in `content/articles/`, built to `dist/`
+- **Design:** Source Serif 4 + Source Sans 3, 18px base, 64ch measure, no decoration
 
-Track progress in Notion Project Tasks database. Query with `/notion` or check memory file for latest status.
+## Key Files
 
-## Key Decisions
+| File | Purpose |
+|------|---------|
+| `scripts/fetch-news.js` | Fetches Al Jazeera RSS, filters, deduplicates, outputs JSON |
+| `scripts/build.js` | Markdown → HTML static site generator |
+| `scripts/editorial-prompt.md` | Claude CLI instructions for autonomous article writing |
+| `scripts/run-cycle.sh` | Cron wrapper: launches Claude CLI, logs output |
+| `templates/article.html` | Article page template |
+| `templates/index.html` | Homepage template |
+| `public/style.css` | Typography-first CSS design system |
+| `public/reader.js` | Spatial keyboard/touch navigation engine |
 
-- Serif-led typography (serif for body/headlines, sans-serif for UI)
-- No images unless they inform. No hero banners. No decoration.
-- No dark mode, no CMS, no database — just files
-- English first
-- Smart Brevity editorial format (Axios-style)
+## Decisions
+
+- Serif-led typography, no images unless informational, no dark mode
+- Smart Brevity format: lead, why it matters, details, what's next, sources
+- No CMS, no database, no framework — just files and a 145-line SSG
+- English first, global hard news only
+- Categories: politics, conflict, economics, climate, health, rights, science
+- Direct Cloudflare upload (not git-connected) for headless operation
+
+## Next Iteration (v0.2)
+
+Priority improvements identified in the [build retrospective](https://www.notion.so/Build-Retrospective-307e4123a255812ebdd3e3201536be52):
+
+1. **Harden editorial cycle** — test end-to-end autonomous run, fix env issues (mise PATH, wrangler auth, Claude CLI auth in systemd)
+2. **Homepage rolling window** — show only last 24h on homepage, add `/archive` page with date grouping
+3. **Add news sources** — Reuters and/or AP RSS alongside Al Jazeera for redundancy and breadth
+4. **Story deduplication** — detect when the same story appears across cycles and skip rather than duplicate
+5. **Health check** — simple monitoring that alerts if site hasn't updated in 6+ hours
+6. **Clean up editorial prompt** — remove stale placeholder notes, tighten instructions based on first cycle output quality
 
 ## Working With Notion
 
-The Notion MCP server has a `parent` parameter serialization bug on page/database creation. Use `curl` for those operations. MCP works for search, reading, and appending blocks. See `/notion` skill for templates and IDs.
+Use `curl` for creating pages and databases (MCP `parent` serialization bug). MCP works for search, reads, and block appends. See `/notion` skill for templates.
+
+**Always create Notion tasks** in the [Project Tasks DB](https://www.notion.so/307e4123a25581759d59ee259ae389ac) when implementing features or changes. Tasks are the system of record.

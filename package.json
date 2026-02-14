@@ -1,0 +1,16 @@
+{
+  "name": "zuhd-news",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "description": "News for all humans. Typography-first, minimalist news site.",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "fetch": "node scripts/fetch-news.js",
+    "deploy": "npx wrangler pages deploy dist --project-name zuhd-news --branch main --commit-dirty=true",
+    "publish": "node scripts/build.js && npm run deploy"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.2.0"
+  }
+}
