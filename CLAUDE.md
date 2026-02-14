@@ -17,10 +17,14 @@ Minimalist typography-first news site. Read `foundation.md` for the philosophy.
 ## Architecture
 
 ```
-Al Jazeera RSS → fetch-news.js → Claude CLI (editorial-prompt.md) → markdown articles
-                                      ↓
-                               build.js → dist/ → wrangler pages deploy
+Multi-source RSS → fetch-news.js → Claude CLI writer (write-prompt.md) → markdown articles
+                                                    ↓
+                                   Claude CLI editor (check-prompt.md) → rewrite violations
+                                                    ↓
+                                             build.js → dist/ → wrangler pages deploy
 ```
+
+**Sources (19):** Al Jazeera, BBC World, BBC Business, France 24, Deutsche Welle, CGTN, AllAfrica, Al Monitor, Hacker News, The Hindu, Yonhap, TRT World, CoinDesk, Bellingcat, Haaretz, Nature, Quanta Magazine, Moscow Times, Rest of World
 
 - **Hosting:** Cloudflare Pages, direct upload via `wrangler pages deploy dist`
 - **Cycle:** systemd timer (`zuhd-news-cycle.timer`) every 3 hours → `scripts/run-cycle.sh` → Claude CLI
@@ -31,10 +35,11 @@ Al Jazeera RSS → fetch-news.js → Claude CLI (editorial-prompt.md) → markdo
 
 | File | Purpose |
 |------|---------|
-| `scripts/fetch-news.js` | Fetches Al Jazeera RSS, filters, deduplicates, outputs JSON |
+| `scripts/fetch-news.js` | Multi-source RSS fetcher with cross-source dedup |
 | `scripts/build.js` | Markdown → HTML static site generator |
-| `scripts/editorial-prompt.md` | Claude CLI instructions for autonomous article writing |
-| `scripts/run-cycle.sh` | Cron wrapper: launches Claude CLI, logs output |
+| `scripts/write-prompt.md` | Writer prompt: fetch news, select stories, draft articles |
+| `scripts/check-prompt.md` | Editor prompt: check prose against readability rules, rewrite violations, build, deploy |
+| `scripts/run-cycle.sh` | Cycle wrapper: runs writer then editor as two Claude CLI sessions |
 | `templates/article.html` | Article page template |
 | `templates/index.html` | Homepage template |
 | `public/style.css` | Typography-first CSS design system |
@@ -46,7 +51,7 @@ Al Jazeera RSS → fetch-news.js → Claude CLI (editorial-prompt.md) → markdo
 - Smart Brevity format: lead, why it matters, details, what's next, sources
 - No CMS, no database, no framework — just files and a 145-line SSG
 - English first, global hard news only
-- Categories: politics, conflict, economics, climate, health, rights, science
+- Categories: politics, conflict, economy, climate, health, rights, science, tech
 - Direct Cloudflare upload (not git-connected) for headless operation
 
 ## Next Iteration (v0.2)
@@ -55,10 +60,10 @@ Priority improvements identified in the [build retrospective](https://www.notion
 
 1. **Harden editorial cycle** — test end-to-end autonomous run, fix env issues (mise PATH, wrangler auth, Claude CLI auth in systemd)
 2. **Homepage rolling window** — show only last 24h on homepage, add `/archive` page with date grouping
-3. **Add news sources** — Reuters and/or AP RSS alongside Al Jazeera for redundancy and breadth
-4. **Story deduplication** — detect when the same story appears across cycles and skip rather than duplicate
+3. ~~**Add news sources**~~ — Done: 9 sources (Al Jazeera, BBC World, BBC Business, France 24, DW, CGTN, AllAfrica, Al Monitor, HN)
+4. ~~**Story deduplication**~~ — Done: cross-source fingerprint dedup + existing article fuzzy matching
 5. **Health check** — simple monitoring that alerts if site hasn't updated in 6+ hours
-6. **Clean up editorial prompt** — remove stale placeholder notes, tighten instructions based on first cycle output quality
+6. ~~**Clean up editorial prompt**~~ — Done: split into writer + editor prompts with cognitive load rules
 
 ## Working With Notion
 

@@ -4,10 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{title}} — zuhd.news</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet"></noscript>
+  <style>{{inlineCSS}}</style>
 </head>
 <body>
   <header>
@@ -22,7 +24,7 @@
         <div class="meta">
           <time>{{date}}</time>
           <span class="separator">·</span>
-          <span>Source: <a href="{{sourceUrl}}">{{source}}</a></span>
+          <a href="{{sourceUrl}}">{{source}}</a>
         </div>
       </header>
 
@@ -33,7 +35,8 @@
   </main>
 
   <footer>
-    <p>zuhd.news — News for all humans.</p>
+    <span class="copyright">&copy; 1447 zuhd.news</span>
+    <a href="/about">about</a> <a href="/sources">sources</a> <a href="/navigation">navigation</a> <a href="/contact">contact</a> <a href="/privacy">privacy</a>
   </footer>
 </body>
 </html>

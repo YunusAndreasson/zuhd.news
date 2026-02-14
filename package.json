@@ -5,6 +5,7 @@
   "private": true,
   "description": "News for all humans. Typography-first, minimalist news site.",
   "scripts": {
+    "dev": "node scripts/build.js && npx wrangler pages dev dist",
     "build": "node scripts/build.js",
     "fetch": "node scripts/fetch-news.js",
     "deploy": "npx wrangler pages deploy dist --project-name zuhd-news --branch main --commit-dirty=true",

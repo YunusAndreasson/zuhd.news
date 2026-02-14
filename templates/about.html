@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>zuhd.news</title>
+  <title>zuhd.news — about</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,26 +17,14 @@
   </header>
 
   <main>
-    <nav class="category-strip" role="tablist" aria-label="News categories"></nav>
-    <section class="headline-list" role="tabpanel" aria-label="Headlines"></section>
-    <article class="article-view" aria-live="polite" hidden>
-      <div class="article-view-inner"></div>
-    </article>
+    <div class="about-body">
+      {{content}}
+    </div>
   </main>
-
-  <noscript>
-    <main>
-      {{fallbackArticleList}}
-    </main>
-  </noscript>
-  <div aria-live="polite" aria-atomic="true" class="sr-only" id="announcer"></div>
 
   <footer>
     <span class="copyright">&copy; 1447 zuhd.news</span>
     <a href="/about">about</a> <a href="/sources">sources</a> <a href="/navigation">navigation</a> <a href="/contact">contact</a> <a href="/privacy">privacy</a>
   </footer>
-
-  <script type="application/json" id="article-data">{{articleDataJson}}</script>
-  <script type="module">{{inlineJS}}</script>
 </body>
 </html>

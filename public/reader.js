@@ -27,13 +27,47 @@ function init(data) {
   const currentArticle = () => currentList()[state.artIdx];
   const wrap = (idx, len) => ((idx % len) + len) % len;
 
-  // --- Build category tabs (once) ---
+  // --- Read state (localStorage) ---
 
-  const tabEls = categories.map((cat, i) => {
+  const STORAGE_KEY = 'zuhd-read';
+  const readSlugs = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
+  const markRead = (slug) => {
+    readSlugs.add(slug);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...readSlugs]));
+  };
+
+  // --- Keyboard hint system ---
+
+  const HINT_KEY = 'zuhd-kb';
+  let keyboardAware = localStorage.getItem(HINT_KEY) === '1';
+  let hintShown = false;
+
+  if (!keyboardAware && isDesktop()) document.body.classList.add('show-key-hints');
+
+  const dismissHints = () => {
+    keyboardAware = true;
+    localStorage.setItem(HINT_KEY, '1');
+    document.body.classList.remove('show-key-hints');
+    document.querySelector('.key-hint')?.remove();
+  };
+
+  const showClickHint = () => {
+    if (hintShown || keyboardAware || !isDesktop()) return;
+    hintShown = true;
+    const hint = document.createElement('p');
+    hint.className = 'key-hint';
+    hint.textContent = 'try \u2191\u2193 arrow keys';
+    document.querySelector('header')?.append(hint);
+    hint.addEventListener('animationend', () => hint.remove());
+  };
+
+  // --- Build category tabs ---
+
+  const buildTab = (cat, i) => {
     const btn = document.createElement('button');
     btn.className = 'category-tab';
     btn.role = 'tab';
-    btn.ariaSelected = i === 0 ? 'true' : 'false';
+    btn.ariaSelected = i === state.catIdx ? 'true' : 'false';
     btn.textContent = cat;
     btn.addEventListener('click', () => {
       if (!isDesktop() && state.view === 'article') closeArticle();
@@ -41,12 +75,18 @@ function init(data) {
     });
     stripEl.append(btn);
     return btn;
-  });
+  };
+
+  const tabEls = categories.map(buildTab);
 
   // --- Render ---
 
   const updateStrip = () => {
-    tabEls.forEach((tab, i) => { tab.ariaSelected = i === state.catIdx ? 'true' : 'false'; });
+    tabEls.forEach((tab, i) => {
+      tab.ariaSelected = i === state.catIdx ? 'true' : 'false';
+      const allRead = articles[categories[i]].every(a => readSlugs.has(a.slug));
+      tab.classList.toggle('all-read', allRead);
+    });
   };
 
   const buildHeadlines = () => {
@@ -55,8 +95,11 @@ function init(data) {
       const div = document.createElement('div');
       div.className = 'headline-item';
       div.classList.toggle('selected', i === state.artIdx);
-      div.innerHTML = `<h2>${esc(a.title)}</h2><time datetime="${a.date}">${a.dateFormatted} · ${a.timeFormatted}</time>`;
+      if (readSlugs.has(a.slug)) div.classList.add('read');
+      const localTime = new Date(a.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+      div.innerHTML = `<h2>${esc(a.title)}</h2><time datetime="${a.date}">${localTime}</time>`;
       div.addEventListener('click', () => {
+        showClickHint();
         state.artIdx = i;
         updateSelection();
         openArticle();
@@ -82,7 +125,7 @@ function init(data) {
         <div class="meta">
           <time>${a.dateFormatted} · ${a.timeFormatted}</time>
           <span class="separator">&middot;</span>
-          <span>Source: <a href="${esc(a.sourceUrl)}">${esc(a.source)}</a></span>
+          <a href="${esc(a.sourceUrl)}">${esc(a.source)}</a>
         </div>
       </header>
       <div class="article-body">${a.bodyHtml}</div>`;
@@ -107,31 +150,35 @@ function init(data) {
 
   const openArticle = () => {
     if (state.artIdx < 0) return;
+    const article = currentArticle();
+    markRead(article.slug);
+    listEl.children[state.artIdx]?.classList.add('read');
+    updateStrip();
     renderArticle();
 
+    state.view = 'article';
+    viewEl.hidden = false;
+    const historyState = { catIdx: state.catIdx, artIdx: state.artIdx };
+
     if (isDesktop()) {
-      state.view = 'article';
-      viewEl.hidden = false;
-      history.replaceState({ catIdx: state.catIdx, artIdx: state.artIdx }, '', `#${currentArticle().slug}`);
-      announce(`Reading: ${currentArticle().title}`);
+      history.replaceState(historyState, '', `#${article.slug}`);
+      announce(`Reading: ${article.title}`);
       return;
     }
 
     // Mobile: modal behavior
-    state.view = 'article';
     document.body.classList.add('view-article');
-    viewEl.hidden = false;
     viewEl.style.animation = 'none';
     viewEl.offsetHeight;
     viewEl.style.animation = '';
 
-    history.pushState({ catIdx: state.catIdx, artIdx: state.artIdx }, '', `#${currentArticle().slug}`);
+    history.pushState(historyState, '', `#${article.slug}`);
 
     const h1 = viewEl.querySelector('h1');
     h1?.setAttribute('tabindex', '-1');
     h1?.focus();
 
-    announce(`Reading: ${currentArticle().title}`);
+    announce(`Reading: ${article.title}`);
   };
 
   const closeArticle = () => {
@@ -150,20 +197,22 @@ function init(data) {
 
   document.addEventListener('keydown', (e) => {
     if (e.target.matches('input, textarea')) return;
+    if (!keyboardAware && (e.key.startsWith('Arrow') || 'hjkl'.includes(e.key))) dismissHints();
 
     const desktop = isDesktop();
+    const key = e.key;
 
     if (desktop || state.view === 'headlines') {
-      switch (e.key) {
-        case 'ArrowLeft':  e.preventDefault(); switchCategory(wrap(state.catIdx - 1, categories.length)); break;
-        case 'ArrowRight': e.preventDefault(); switchCategory(wrap(state.catIdx + 1, categories.length)); break;
-        case 'ArrowUp':
+      switch (key) {
+        case 'ArrowLeft': case 'h':  e.preventDefault(); switchCategory(wrap(state.catIdx - 1, categories.length)); break;
+        case 'ArrowRight': case 'l': e.preventDefault(); switchCategory(wrap(state.catIdx + 1, categories.length)); break;
+        case 'ArrowUp': case 'k':
           e.preventDefault();
           state.artIdx = state.artIdx < 0 ? currentList().length - 1 : wrap(state.artIdx - 1, currentList().length);
           updateSelection();
           if (desktop) openArticle();
           break;
-        case 'ArrowDown':
+        case 'ArrowDown': case 'j':
           e.preventDefault();
           state.artIdx = state.artIdx < 0 ? 0 : wrap(state.artIdx + 1, currentList().length);
           updateSelection();
@@ -174,10 +223,10 @@ function init(data) {
           break;
       }
     } else if (state.view === 'article') {
-      switch (e.key) {
-        case 'Escape':     e.preventDefault(); closeArticle(); break;
-        case 'ArrowLeft':  e.preventDefault(); closeArticle(); switchCategory(wrap(state.catIdx - 1, categories.length)); break;
-        case 'ArrowRight': e.preventDefault(); closeArticle(); switchCategory(wrap(state.catIdx + 1, categories.length)); break;
+      switch (key) {
+        case 'Escape':                e.preventDefault(); closeArticle(); break;
+        case 'ArrowLeft':  case 'h':  e.preventDefault(); closeArticle(); switchCategory(wrap(state.catIdx - 1, categories.length)); break;
+        case 'ArrowRight': case 'l':  e.preventDefault(); closeArticle(); switchCategory(wrap(state.catIdx + 1, categories.length)); break;
       }
     }
   });
@@ -257,6 +306,55 @@ function init(data) {
     }
     return false;
   };
+
+  // --- Silent Refresh ---
+
+  const REFRESH_INTERVAL = 30 * 60 * 1000; // 30 minutes
+
+  const silentRefresh = async () => {
+    try {
+      const res = await fetch('/', { cache: 'no-cache' });
+      if (!res.ok) return;
+      const html = await res.text();
+      const match = html.match(/<script type="application\/json" id="article-data">([\s\S]*?)<\/script>/);
+      if (!match) return;
+
+      const newData = JSON.parse(match[1]);
+      const newSlugs = new Set();
+      for (const cat of newData.categoryOrder) {
+        for (const a of newData.articles[cat]) newSlugs.add(a.slug);
+      }
+
+      // Check if content actually changed
+      const currentSlugs = new Set();
+      for (const cat of categories) {
+        for (const a of articles[cat]) currentSlugs.add(a.slug);
+      }
+
+      if (newSlugs.size === currentSlugs.size && [...newSlugs].every(s => currentSlugs.has(s))) return;
+
+      // Swap data, preserve position
+      categories.length = 0;
+      categories.push(...newData.categoryOrder);
+      for (const key of Object.keys(articles)) delete articles[key];
+      Object.assign(articles, newData.articles);
+
+      // Rebuild UI
+      stripEl.innerHTML = '';
+      tabEls.length = 0;
+      tabEls.push(...categories.map(buildTab));
+
+      // Clamp indices
+      if (state.catIdx >= categories.length) state.catIdx = 0;
+      const list = currentList();
+      if (state.artIdx >= list.length) state.artIdx = Math.max(0, list.length - 1);
+
+      buildHeadlines();
+      if (isDesktop() && state.artIdx >= 0) openArticle();
+    } catch (e) { /* silent */ }
+  };
+
+  setInterval(silentRefresh, REFRESH_INTERVAL);
 
   // --- Init ---
 
