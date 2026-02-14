@@ -17,7 +17,9 @@ Minimalist typography-first news site. Read `foundation.md` for the philosophy.
 ## Architecture
 
 ```
-Multi-source RSS → fetch-news.js → Claude CLI writer (write-prompt.md) → markdown articles
+Multi-source RSS → fetch-news.js → Claude CLI selector (select-prompt.md) → /tmp/zuhd-selection.json
+                                                    ↓
+                                   Claude CLI writer (write-prompt.md) → markdown articles
                                                     ↓
                                    Claude CLI editor (check-prompt.md) → rewrite violations
                                                     ↓
@@ -37,9 +39,10 @@ Multi-source RSS → fetch-news.js → Claude CLI writer (write-prompt.md) → m
 |------|---------|
 | `scripts/fetch-news.js` | Multi-source RSS fetcher with cross-source dedup |
 | `scripts/build.js` | Markdown → HTML static site generator |
-| `scripts/write-prompt.md` | Writer prompt: fetch news, select stories, draft articles |
-| `scripts/check-prompt.md` | Editor prompt: check prose against readability rules, rewrite violations, build, deploy |
-| `scripts/run-cycle.sh` | Cycle wrapper: runs writer then editor as two Claude CLI sessions |
+| `scripts/select-prompt.md` | Selector prompt: fetch news, pick stories, save selection JSON |
+| `scripts/write-prompt.md` | Writer prompt: read selection, fetch full articles, draft markdown |
+| `scripts/check-prompt.md` | Editor prompt: check new articles, fix violations, build, commit, deploy |
+| `scripts/run-cycle.sh` | Cycle wrapper: selector → writer → editor as three Claude CLI sessions |
 | `templates/article.html` | Article page template |
 | `templates/index.html` | Homepage template |
 | `public/style.css` | Typography-first CSS design system |
@@ -51,7 +54,7 @@ Multi-source RSS → fetch-news.js → Claude CLI writer (write-prompt.md) → m
 - Smart Brevity format: lead, why it matters, details, what's next, sources
 - No CMS, no database, no framework — just files and a 145-line SSG
 - English first, global hard news only
-- Categories: politics, conflict, economy, climate, health, rights, science, tech
+- Categories: politics, conflict, economy, science, tech
 - Direct Cloudflare upload (not git-connected) for headless operation
 
 ## Next Iteration (v0.2)

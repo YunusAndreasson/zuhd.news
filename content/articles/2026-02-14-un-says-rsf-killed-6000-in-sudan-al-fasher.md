@@ -1,5 +1,5 @@
 ---
-title: "RSF Killed 6,000 in Al Fasher"
+title: "Sudan Militia Killed 6,000"
 date: "2026-02-14T21:17:47Z"
 source: "TRT World"
 sourceUrl: "https://www.trtworld.com/article/f9de33c3a8de"

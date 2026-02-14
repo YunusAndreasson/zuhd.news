@@ -19,7 +19,7 @@ Choose stories that a globally aware reader would expect to see today. Balance a
 
 - Geographic diversity: spread across regions, not 5 stories from one continent
 - Source diversity: no more than 3 stories from the same source
-- Topic diversity: cover different categories (politics, conflict, economy, climate, health, rights, science, tech)
+- Topic diversity: cover different categories (politics, conflict, economy, science, tech)
 - Hard news only: skip features, analysis, opinion, and liveblog entries (titles starting with "LIVE:")
 - If fewer than 3 significant stories exist, write what's available
 
@@ -42,7 +42,7 @@ Save to `/tmp/zuhd-selection.json`:
     "link": "https://source-url.com/article",
     "source": "Source Name",
     "pubDate": "ISO 8601 datetime",
-    "category": "one of: politics, conflict, economy, climate, health, rights, science, tech",
+    "category": "one of: politics, conflict, economy, science, tech",
     "angle": "1-2 sentence explanation of why this story matters and how to frame it",
     "suggestedSlug": "YYYY-MM-DD-slug-words"
   }

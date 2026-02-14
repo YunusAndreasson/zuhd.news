@@ -44,9 +44,10 @@ Include only the articles published in this cycle (the ones from `git diff`), no
 Read each article as if you have never seen the story. Check every rule in order.
 
 Structure:
-- Title is 3-5 words. Subject + verb. No articles ("a", "the"), no filler. Count the words.
+- Title is 3-5 words. Subject + verb. No articles ("a", "the"), no filler. No abbreviations in titles — spell out names. Only US, UK, EU, UN, WHO, NATO, and ISIS need no expansion. Count the words.
 - Body is one paragraph, 3-5 sentences. No line breaks within the body. Count the sentences.
-- First sentence is the shortest, under 10 words. The build system automatically italicizes it, so it must work as a standalone visual hook. It must not restate the title — the title names the story, the lead delivers the first fact.
+- First sentence is the shortest, under 10 words. It must be concrete and specific — a number, a name, a consequence. Reject vague leads ("faces condemnation," "sparks debate," "draws criticism"). It must not restate the title.
+- Last sentence should carry stakes or tension, not administrative detail. If it ends on a bureaucratic fact ("the committee will meet Tuesday"), rewrite to end on consequence.
 - No source attribution line in the body — source is in the frontmatter metadata.
 
 Sentence clarity — these rules exist because nested or dense sentences force re-reading:
@@ -60,12 +61,12 @@ Word choice — these rules exist because filler and jargon slow scanning:
 - Start with the fact. Delete "In a significant development," "It is worth noting," "This comes as."
 - No hedging words: "significant," "major," "key," "important," "notably," "increasingly," "widely," "amid growing concerns." State the fact and let the reader judge.
 - Active voice. "Fire hit the refinery" reads faster than "The refinery was hit by fire."
-- Plain language. Spell out abbreviations — "the African Union" not "the AU." Only US, UK, EU, and UN need no expansion.
+- Plain language. Use common acronyms freely after first mention: NASA, NATO, ISIS, WHO, ICC, ICJ. Spell out unfamiliar organizations on first use, then acronym if it recurs. Only US, UK, EU, and UN never need expansion.
 - Digits for numbers: "3 dead" scans faster than "three dead."
 
-Accuracy:
+Attribution:
 - Every person and organization is identified on first mention with a brief role.
-- Every claim has attribution ("according to," "officials say").
+- Every claim has attribution. Vary the verb — "said" is invisible once, dead by the third use. Use the most accurate verb: confirmed, estimated, warned, denied, dismissed, acknowledged, announced, reported. Reserve "said" for genuinely neutral statements. Never use "claimed" (implies doubt) or "admitted" (implies guilt) unless warranted.
 - No information is repeated. If a fact appears in the lead, it does not appear again.
 - Diacritics preserved in proper nouns.
 
@@ -144,6 +145,16 @@ Three protesters were killed during clashes with security forces in Khartoum. Ha
 AFTER (passes: names the actor, describes what happened, labels attributed symmetrically):
 
 Sudanese security forces killed 3 protesters in Khartoum. Hamas, designated a terrorist organization by the US and EU, launched rockets into southern Israel. Israel, whose actions in Gaza the International Court of Justice has called plausibly genocidal, struck targets across the strip.
+</example>
+
+<example>
+BEFORE (fails: vague lead, "said" x3, spelled-out name bloat, kicker fizzles):
+
+A US-funded vaccine trial faces global condemnation. The World Health Organization said the study in Guinea-Bissau is unethical. The trial, backed by the Centers for Disease Control and Prevention, planned to give half of 14,500 newborns a hepatitis B vaccine at birth. World Health Organization Director-General Tedros Adhanom Ghebreyesus said withholding the vaccine exposes newborns to chronic infection. Guinea-Bissau's government said it suspended the trial last month.
+
+AFTER (passes: concrete lead, varied attribution, acronyms after first mention, kicker carries weight):
+
+14,500 newborns were enrolled in a trial that withheld a proven vaccine. The World Health Organization called the US-funded study in Guinea-Bissau unethical — half the infants would not receive a hepatitis B shot at birth despite evidence it prevents 70-95% of mother-to-child transmission. WHO Director-General Tedros Adhanom Ghebreyesus warned that withholding it exposes newborns to cirrhosis and liver cancer. Guinea-Bissau suspended the trial after public outcry, but the US Centers for Disease Control has not withdrawn funding.
 </example>
 
 </examples>

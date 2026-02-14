@@ -23,7 +23,7 @@ title: "3-5 word headline"
 date: "ISO 8601 datetime from the RSS pubDate"
 source: "Source Name from JSON (e.g. BBC World, Al Jazeera, Hacker News)"
 sourceUrl: "full URL to the original article"
-category: "one of: politics, conflict, economy, climate, health, rights, science, tech"
+category: "one of: politics, conflict, economy, science, tech"
 ---
 
 One paragraph, 3-5 sentences. No line breaks within the body. No source attribution line — the source is in the frontmatter.
@@ -37,9 +37,9 @@ For Hacker News stories: set `source` to "Hacker News", use the original article
 
 These rules exist because the site targets readers who give each article 5-10 seconds. Cognitive load is the enemy.
 
-Titles: 3-5 words. Subject + verb. Drop articles ("a", "the") and filler. Count the words.
+Titles: 3-5 words. Subject + verb. Drop articles ("a", "the") and filler. No abbreviations in titles — spell out names ("Rapid Support Forces" not "RSF"). Only US, UK, EU, UN, WHO, NATO, and ISIS need no expansion. Count the words.
 
-Rhythm: open with the shortest sentence, under 10 words. The build system automatically italicizes this lead sentence, so it doubles as a visual hook — make it count. The lead must not restate the title; the title names the story, the lead delivers the first fact. Alternate short punches with longer detail after that.
+Rhythm: open with the shortest sentence, under 10 words. The lead must be concrete and specific — a number, a name, a consequence. Never open with vague framing ("faces condemnation," "sparks debate," "draws criticism"). The lead must not restate the title; the title names the story, the lead delivers the first fact. Alternate short punches with longer detail after that. End on stakes or tension, not administrative detail — the last sentence should make the reader think, not shrug.
 
 One idea per sentence: each sentence delivers exactly one fact. If you find a comma followed by a new subject or verb, split into two sentences. The reader processes one thing at a time.
 
@@ -55,7 +55,7 @@ Active voice: "Fire hit the refinery" reads faster than "The refinery was hit by
 
 Use digits for numbers: "3 dead" scans faster than "three dead."
 
-Plain language: write for a global audience. Spell out abbreviations — "the African Union" not "the AU." Only US, UK, EU, and UN need no expansion. No jargon, idioms, or colloquialisms.
+Plain language: write for a global audience. No jargon, idioms, or colloquialisms. Use common acronyms freely in body text after first mention: NASA, NATO, ISIS, WHO, OPCW, ICC, ICJ. Spell out unfamiliar organizations on first use ("the Rapid Support Forces"), then use the acronym ("the RSF") if it recurs. Only US, UK, EU, and UN never need expansion.
 
 Neutral tone: report facts. No adjectives that betray opinion, no hedging words like "significant," "major," "key," "important," "notably," "increasingly," "widely."
 
@@ -72,7 +72,9 @@ No geographic bias: the reader could be anywhere. Apply every rule equally regar
 
 Start with the fact: delete every filler phrase ("In a significant development," "It is worth noting that," "This comes as").
 
-Accuracy: only state what sources confirm. Use attribution ("according to," "officials say"). Preserve diacritics in proper nouns (Ñico López, not Nico Lopez).
+Accuracy: only state what sources confirm. Preserve diacritics in proper nouns (Ñico López, not Nico Lopez).
+
+Attribution: vary the verb. "Said" is invisible once — dead by the third use. Use the most accurate verb: confirmed, estimated, warned, denied, dismissed, acknowledged, announced, reported. Each carries information "said" does not. Reserve "said" for when the statement is genuinely neutral. Never use "claimed" (implies doubt) or "admitted" (implies guilt) unless that framing is warranted.
 
 Rewrite headlines: source headlines are often long, clickbaity, or biased. Write your own — shorter, clearer, more neutral.
 
@@ -86,13 +88,10 @@ Decode HTML entities in source data (&#039; → ', &amp; → &).
 
 Assign exactly one per article:
 
-- politics — elections, governance, diplomacy, legislation
+- politics — elections, governance, diplomacy, legislation, rights, justice
 - conflict — wars, military operations, peace negotiations
-- economy — trade, sanctions, markets, development, business
-- climate — environment, energy, natural disasters
-- health — public health, disease, medical advances
-- rights — human rights, justice, civil liberties
-- science — research, space, scientific breakthroughs
+- economy — trade, sanctions, markets, energy, business
+- science — research, health, climate, space, scientific breakthroughs
 - tech — technology, software, hardware, AI, startups
 
 </categories>
@@ -107,22 +106,22 @@ title: "UK Blames Russia for Navalny"
 date: "2026-02-14T15:58:00Z"
 source: "BBC World"
 sourceUrl: "https://www.bbc.com/news/articles/cwyk4lz4e3eo"
-category: "rights"
+category: "politics"
 ---
 
-Russia poisoned Alexei Navalny with a toxin derived from South American dart frogs, the UK and 4 European allies said. The substance, epibatidine, was found in samples taken from Navalny's body. British Foreign Secretary Yvette Cooper announced the findings at the Munich Security Conference, calling it proof that only Russia had the means, motive and opportunity to kill him. Navalny, Russia's most prominent opposition leader, died in a Siberian penal colony in February 2024 at age 47.
+Dart frog toxin killed Alexei Navalny, 5 European governments confirmed. Tissue samples from Navalny's body contained epibatidine, a lethal substance found only in South American frogs. British Foreign Secretary Yvette Cooper announced the findings at the Munich Security Conference, calling it proof that only Russia had the means, motive and opportunity. Navalny, Russia's most prominent opposition leader, died in an Arctic penal colony in February 2024 at age 47. The 5 nations are now reporting Russia to the Organisation for the Prohibition of Chemical Weapons.
 </example>
 
 <example>
 ---
-title: "Venezuela Amnesty Law Doubted"
+title: "Venezuela Rearrests Freed Lawmaker"
 date: "2026-02-14T13:51:00Z"
 source: "Deutsche Welle"
 sourceUrl: "https://www.dw.com/en/how-serious-is-venezuela-about-its-amnesty-law/a-75899705"
-category: "rights"
+category: "politics"
 ---
 
-Venezuela passed a draft amnesty law for political prisoners, but one freed lawmaker was rearrested within a day. Acting President Delcy Rodríguez presented the law last month, claiming 900 prisoners have been released since December. Rights group Foro Penal disputes that figure, saying only about 200 have been freed and 687 remain jailed. The law faces a second parliamentary reading on Tuesday, though analysts say the state's capacity for repression remains intact.
+Venezuela freed a political prisoner, then rearrested him within a day. Acting President Delcy Rodríguez presented a draft amnesty law last month, claiming 900 prisoners have been released since December. Rights group Foro Penal disputes that figure — only about 200 freed, 687 still jailed. The law faces a second parliamentary reading on Tuesday, but the pattern suggests amnesty as performance rather than policy.
 </example>
 
 <example>
@@ -134,7 +133,7 @@ sourceUrl: "https://www.aljazeera.com/news/2026/2/14/deadly-drone-strikes-cloud-
 category: "conflict"
 ---
 
-Drone strikes killed 2 people on both sides of the front line, days before peace talks in Geneva. Ukrainian President Volodymyr Zelenskyy told the Munich Security Conference that the US keeps asking Ukraine to make concessions but puts no equivalent pressure on Russia. US Secretary of State Marco Rubio said Washington still does not know whether Moscow is serious about ending the war, now in its fifth year. The hardest dispute remains Russia's demand that Ukraine pull out of the eastern Donetsk region — a condition Kyiv has rejected.
+Drone strikes killed 2 people on both sides of the front line, days before peace talks in Geneva. Ukrainian President Volodymyr Zelenskyy warned the Munich Security Conference that the US keeps demanding Ukrainian concessions while putting no pressure on Russia. US Secretary of State Marco Rubio acknowledged Washington still does not know whether Moscow is serious about ending the war, now in its 4th year. The core deadlock remains: Russia demands Ukraine withdraw from Donetsk, a condition Kyiv has rejected outright.
 </example>
 
 <example>
@@ -146,9 +145,9 @@ sourceUrl: "https://www.aljazeera.com/news/2026/2/14/example"
 category: "conflict"
 ---
 
-Gaza's last functioning hospitals are running out of generator fuel after Israel, whose military campaign the International Court of Justice has called plausibly genocidal, blocked aid convoys for a 3rd consecutive week. The World Health Organization said at least 4 hospitals have shut down, leaving over 1,000 patients without care. Palestinian health officials report 138 people have died in the past week from treatable injuries and chronic conditions. The Israeli military said it is reviewing humanitarian access procedures but gave no timeline.
+4 hospitals shut down in Gaza this week. Israel, whose military campaign the International Court of Justice has called plausibly genocidal, blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. Palestinian health officials report 138 people died from treatable injuries and chronic conditions. The Israeli military confirmed it is reviewing humanitarian access procedures but gave no timeline. WHO warned the health system has passed the point of collapse.
 </example>
 
-Note: in the Gaza example, the story centers Palestinian victims and the humanitarian impact. Israel's position is included but does not frame the headline or lead. The ICJ finding is attributed, just as Hamas's terrorist designation would be — symmetric treatment of legal labels.
+Note: in the Gaza example, the story opens with a concrete consequence, not a vague framing. Israel's position is included but does not frame the headline or lead. The ICJ finding is attributed, just as Hamas's terrorist designation would be — symmetric treatment of legal labels. The kicker carries weight ("passed the point of collapse") instead of trailing off.
 
 </examples>

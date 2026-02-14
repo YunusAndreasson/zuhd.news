@@ -58,10 +58,6 @@ const markdownToHtml = (md) => {
   return result.join('\n')
 }
 
-const italicizeLead = (html) => {
-  return html.replace(/^(<p>)(.*?[.!?]) /, '$1<em>$2</em> ')
-}
-
 const splitSentences = (html) => {
   return html.replace(/<p>([\s\S]*?)<\/p>/g, (match, inner) => {
     // Extract source mark before splitting
@@ -90,7 +86,7 @@ const buildArticle = (filename, articleTemplate) => {
   const raw = readFileSync(join(CONTENT_DIR, filename), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
   const sourcemark = meta.source ? ` <span class="end-source">\u00B7 ${meta.source}</span>` : ''
-  const bodyHtml = splitSentences(italicizeLead(markdownToHtml(body)).replace(/<\/p>\s*$/, `${sourcemark}</p>`))
+  const bodyHtml = splitSentences(markdownToHtml(body).replace(/<\/p>\s*$/, `${sourcemark}</p>`))
   const slug = basename(filename, '.md')
 
   const title = smartQuotes(meta.title || 'Untitled')
@@ -109,12 +105,15 @@ const buildArticle = (filename, articleTemplate) => {
   return { slug, html, meta, bodyHtml, title, dateFormatted, timeFormatted }
 }
 
+const PER_CATEGORY_LIMIT = 5
+
 const buildHomepage = (articles, homepageTemplate) => {
   const sorted = articles.sort((a, b) => new Date(b.meta.date) - new Date(a.meta.date))
 
   const grouped = {}
   for (const a of sorted) {
-    const cat = a.meta.category || 'uncategorised';
+    const cat = a.meta.category || 'uncategorised'
+    if ((grouped[cat]?.length ?? 0) >= PER_CATEGORY_LIMIT) continue;
     (grouped[cat] ??= []).push({
       slug: a.slug,
       title: a.title,
@@ -128,14 +127,16 @@ const buildHomepage = (articles, homepageTemplate) => {
     })
   }
 
-  const preferredOrder = ['politics', 'conflict', 'economy', 'climate', 'health', 'rights', 'science', 'tech']
+  const preferredOrder = ['politics', 'conflict', 'economy', 'science', 'tech']
   const categoryOrder = [
     ...preferredOrder.filter(c => c in grouped),
     ...Object.keys(grouped).filter(c => !preferredOrder.includes(c))
   ]
   const articleDataJson = JSON.stringify({ categoryOrder, articles: grouped })
 
+  const includedSlugs = new Set(Object.values(grouped).flat().map(a => a.slug))
   const fallbackArticleList = sorted
+    .filter(a => includedSlugs.has(a.slug))
     .map(a => `
       <article class="article-preview">
         <span class="category">${a.meta.category || ''}</span>
