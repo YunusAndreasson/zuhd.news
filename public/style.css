@@ -145,6 +145,17 @@ footer a:hover {
   line-height: 1.7;
 }
 
+.about-body h2 {
+  font-family: var(--font-sans);
+  font-size: var(--size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
+}
+
 .about-body ul {
   list-style: none;
   line-height: 2;
@@ -332,7 +343,7 @@ footer a:hover {
 
 .article-body .s {
   display: block;
-  margin-bottom: 0.35em;
+  margin-bottom: 0.5em;
 }
 
 .article-body .s:last-child {
@@ -412,7 +423,7 @@ body.view-article .headline-list {
   body.view-article .headline-list { display: block; }
 
   /* Constrain article reading measure */
-  .article-view { max-width: 65ch; }
+  .article-view { max-width: 65ch; margin-top: var(--space-md); }
 
   /* Hide article header on desktop (shown in headline strip) */
   .article-view .article-header { display: none; }

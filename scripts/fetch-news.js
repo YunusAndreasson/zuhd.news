@@ -130,6 +130,117 @@ const SOURCES = [
     enabled: true,
     stripParams: ['utm_source', 'utm_medium', 'utm_campaign'],
   },
+  {
+    name: 'MIT Technology Review',
+    url: 'https://www.technologyreview.com/feed/',
+    format: 'rss2',
+    defaultCategory: 'tech',
+    enabled: true,
+  },
+  {
+    name: '404 Media',
+    url: 'https://404media.co/rss/',
+    format: 'rss2',
+    defaultCategory: 'tech',
+    enabled: true,
+  },
+  {
+    name: 'Carbon Brief',
+    url: 'https://www.carbonbrief.org/feed/',
+    format: 'rss2',
+    defaultCategory: 'science',
+    enabled: true,
+  },
+  {
+    name: 'Malay Mail',
+    url: 'https://www.malaymail.com/feed/rss',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'Antara News',
+    url: 'https://en.antaranews.com/rss/news',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'Premium Times',
+    url: 'https://www.premiumtimesng.com/feed',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'Dawn',
+    url: 'https://www.dawn.com/feeds/home',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'Daily Star',
+    url: 'https://www.thedailystar.net/news/rss.xml',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'South China Morning Post',
+    url: 'https://www.scmp.com/rss/91/feed',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'Middle East Eye',
+    url: 'https://www.middleeasteye.net/rss',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'Sveriges Radio',
+    url: 'https://api.sr.se/api/rss/channel/83',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'Daily Maverick',
+    url: 'https://www.dailymaverick.co.za/rss',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'The East African',
+    url: 'https://www.theeastafrican.co.ke/rss.xml',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'Buenos Aires Times',
+    url: 'https://www.batimes.com.ar/feed',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'MercoPress',
+    url: 'https://en.mercopress.com/rss',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'CBC News',
+    url: 'https://www.cbc.ca/webfeed/rss/rss-world',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'Politico',
+    url: 'https://rss.politico.com/politics-news.xml',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'Fox News',
+    url: 'https://moxie.foxnews.com/google-publisher/world.xml',
+    format: 'rss2',
+    enabled: true,
+  },
 ]
 
 // Categories we cover (global hard news + tech)
@@ -253,8 +364,14 @@ function parseRdfItems(feed) {
   return toArray(root?.item || [])
 }
 
+function extractText(val) {
+  if (typeof val === 'string') return val
+  if (typeof val === 'object' && val !== null) return val['#text'] || val?.a?.['#text'] || ''
+  return ''
+}
+
 function normalizeItem(raw, source) {
-  const title = decodeEntities((raw.title || '').trim())
+  const title = decodeEntities(extractText(raw.title).trim())
   if (!title) return null
 
   let link = raw.link || ''

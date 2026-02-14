@@ -1,14 +1,49 @@
 {
-  "timestamp": "2026-02-14T21:45:00Z",
+  "timestamp": "2026-02-15T12:00:00Z",
   "articles": [
-    { "slug": "2026-02-14-leaked-files-expose-russia-disinformation-network", "title": "Leak Exposes Russia Disinfo Network", "category": "politics", "source": "France 24" },
-    { "slug": "2026-02-14-macron-urges-calm-after-lyon-political-killing", "title": "Lyon Activist Beaten to Death", "category": "politics", "source": "France 24" },
-    { "slug": "2026-02-14-new-crew-arrives-at-iss-after-nasa-medevac", "title": "New Crew Replaces Evacuated Astronauts", "category": "science", "source": "The Hindu" },
-    { "slug": "2026-02-14-un-says-rsf-killed-6000-in-sudan-al-fasher", "title": "RSF Killed 6,000 in Al Fasher", "category": "conflict", "source": "TRT World" },
-    { "slug": "2026-02-14-us-strikes-30-isis-targets-in-syria", "title": "US Strikes 30 ISIS Targets", "category": "conflict", "source": "The Hindu" },
-    { "slug": "2026-02-14-who-blasts-us-vaccine-trial-guinea-bissau", "title": "WHO Calls Vaccine Trial Unethical", "category": "health", "source": "BBC World" },
-    { "slug": "2026-02-14-zelenskyy-munich-putin-slave-to-war", "title": "Zelenskyy Calls Putin War's Slave", "category": "conflict", "source": "Deutsche Welle" }
+    {
+      "slug": "2026-02-15-belgian-arms-workers-halt-production-over-israel",
+      "title": "Belgian Arms Workers Walk Out",
+      "category": "economy",
+      "source": "TRT World"
+    },
+    {
+      "slug": "2026-02-15-guterres-demands-african-seats-security-council",
+      "title": "Guterres Demands African Council Seats",
+      "category": "politics",
+      "source": "AllAfrica"
+    },
+    {
+      "slug": "2026-02-15-imran-khan-hospital-transfer-amid-pakistan-sit-in",
+      "title": "Pakistan Moves Jailed Khan to Hospital",
+      "category": "politics",
+      "source": "Dawn"
+    },
+    {
+      "slug": "2026-02-15-madagascar-devastated-by-back-to-back-cyclones",
+      "title": "Twin Cyclones Devastate Madagascar",
+      "category": "science",
+      "source": "AllAfrica"
+    },
+    {
+      "slug": "2026-02-15-niger-junta-accuses-france-airport-attack",
+      "title": "Niger Blames France for Attack",
+      "category": "conflict",
+      "source": "AllAfrica"
+    },
+    {
+      "slug": "2026-02-15-storm-nils-record-floods-france-spain",
+      "title": "Storm Nils Shatters French Records",
+      "category": "science",
+      "source": "France 24"
+    },
+    {
+      "slug": "2026-02-15-us-iran-nuclear-talks-return-to-geneva",
+      "title": "Iran, US Resume Nuclear Talks",
+      "category": "politics",
+      "source": "The Hindu"
+    }
   ],
-  "categories": ["politics", "science", "conflict", "health"],
-  "sources": ["France 24", "The Hindu", "TRT World", "BBC World", "Deutsche Welle"]
+  "categories": ["economy", "politics", "science", "conflict"],
+  "sources": ["TRT World", "AllAfrica", "Dawn", "France 24", "The Hindu"]
 }

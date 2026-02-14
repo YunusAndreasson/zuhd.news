@@ -26,7 +26,7 @@ sourceUrl: "full URL to the original article"
 category: "one of: politics, conflict, economy, science, tech"
 ---
 
-One paragraph, 3-5 sentences. No line breaks within the body. No source attribution line — the source is in the frontmatter.
+One paragraph, exactly 5 sentences. No line breaks within the body. No source attribution line — the source is in the frontmatter. Every sentence must earn its place — if the article works without it, cut it.
 ```
 
 For Hacker News stories: set `source` to "Hacker News", use the original article URL (the `link` field) as `sourceUrl`, set `category` to "tech".
@@ -39,7 +39,14 @@ These rules exist because the site targets readers who give each article 5-10 se
 
 Titles: 3-5 words. Subject + verb. Drop articles ("a", "the") and filler. No abbreviations in titles — spell out names ("Rapid Support Forces" not "RSF"). Only US, UK, EU, UN, WHO, NATO, and ISIS need no expansion. Count the words.
 
-Rhythm: open with the shortest sentence, under 10 words. The lead must be concrete and specific — a number, a name, a consequence. Never open with vague framing ("faces condemnation," "sparks debate," "draws criticism"). The lead must not restate the title; the title names the story, the lead delivers the first fact. Alternate short punches with longer detail after that. End on stakes or tension, not administrative detail — the last sentence should make the reader think, not shrug.
+Rhythm — every article follows the same 5-sentence arc so the reader learns what to expect:
+1. **Hook** — the shortest sentence, under 10 words. A number, a name, a consequence. Never vague framing ("faces condemnation," "sparks debate"). Must not restate the title.
+2. **Who** — identify the actor with their role, and state the action.
+3. **Detail** — one key supporting fact that adds dimension.
+4. **Stakes** — why this matters, who is affected, what is at risk.
+5. **What's next** — forward tension, a deadline, an unanswered question, or a consequence still unfolding.
+
+This arc is not a suggestion — it is the format. The reader should feel the same rhythm in every article.
 
 One idea per sentence: each sentence delivers exactly one fact. If you find a comma followed by a new subject or verb, split into two sentences. The reader processes one thing at a time.
 
@@ -78,7 +85,11 @@ Attribution: vary the verb. "Said" is invisible once — dead by the third use. 
 
 Rewrite headlines: source headlines are often long, clickbaity, or biased. Write your own — shorter, clearer, more neutral.
 
+One story per article: every sentence must serve the headline. If a fact, person, or aside does not directly relate to the event in the title, cut it. Do not mix in secondary stories or tangential context — one bite, one flavor.
+
 No redundancy: if a fact appears in the lead, do not restate it.
+
+No obvious facts: do not state what the reader already knows. "Elon Musk, who owns X" wastes words — everyone knows. Identify people only when the reader genuinely might not know who they are. The test: would a globally aware reader need this context to understand the sentence?
 
 Decode HTML entities in source data (&#039; → ', &amp; → &).
 
@@ -109,7 +120,7 @@ sourceUrl: "https://www.bbc.com/news/articles/cwyk4lz4e3eo"
 category: "politics"
 ---
 
-Dart frog toxin killed Alexei Navalny, 5 European governments confirmed. Tissue samples from Navalny's body contained epibatidine, a lethal substance found only in South American frogs. British Foreign Secretary Yvette Cooper announced the findings at the Munich Security Conference, calling it proof that only Russia had the means, motive and opportunity. Navalny, Russia's most prominent opposition leader, died in an Arctic penal colony in February 2024 at age 47. The 5 nations are now reporting Russia to the Organisation for the Prohibition of Chemical Weapons.
+Dart frog toxin killed Alexei Navalny. Five European governments confirmed tissue samples contained epibatidine, a lethal substance found only in South American frogs. British Foreign Secretary Yvette Cooper announced the findings at the Munich Security Conference. She called it proof that only Russia had the means, motive and opportunity. The 5 nations are now reporting Russia to the Organisation for the Prohibition of Chemical Weapons, which could trigger new sanctions.
 </example>
 
 <example>
@@ -121,19 +132,7 @@ sourceUrl: "https://www.dw.com/en/how-serious-is-venezuela-about-its-amnesty-law
 category: "politics"
 ---
 
-Venezuela freed a political prisoner, then rearrested him within a day. Acting President Delcy Rodríguez presented a draft amnesty law last month, claiming 900 prisoners have been released since December. Rights group Foro Penal disputes that figure — only about 200 freed, 687 still jailed. The law faces a second parliamentary reading on Tuesday, but the pattern suggests amnesty as performance rather than policy.
-</example>
-
-<example>
----
-title: "Drone Strikes Cloud Geneva Talks"
-date: "2026-02-14T14:35:00Z"
-source: "Al Jazeera"
-sourceUrl: "https://www.aljazeera.com/news/2026/2/14/deadly-drone-strikes-cloud-us-brokered-russia-ukraine-talks-in-geneva"
-category: "conflict"
----
-
-Drone strikes killed 2 people on both sides of the front line, days before peace talks in Geneva. Ukrainian President Volodymyr Zelenskyy warned the Munich Security Conference that the US keeps demanding Ukrainian concessions while putting no pressure on Russia. US Secretary of State Marco Rubio acknowledged Washington still does not know whether Moscow is serious about ending the war, now in its 4th year. The core deadlock remains: Russia demands Ukraine withdraw from Donetsk, a condition Kyiv has rejected outright.
+Venezuela freed a political prisoner, then rearrested him. Acting President Delcy Rodríguez presented a draft amnesty law last month, claiming 900 prisoners released since December. Rights group Foro Penal disputes that figure — only about 200 freed, 687 still jailed. The pattern suggests amnesty as performance rather than policy. The law faces a second parliamentary reading on Tuesday with no international observers invited.
 </example>
 
 <example>
@@ -145,9 +144,9 @@ sourceUrl: "https://www.aljazeera.com/news/2026/2/14/example"
 category: "conflict"
 ---
 
-4 hospitals shut down in Gaza this week. Israel, whose military campaign the International Court of Justice has called plausibly genocidal, blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. Palestinian health officials report 138 people died from treatable injuries and chronic conditions. The Israeli military confirmed it is reviewing humanitarian access procedures but gave no timeline. WHO warned the health system has passed the point of collapse.
+4 hospitals shut down in Gaza this week. Israel, whose military campaign the International Court of Justice has called plausibly genocidal, blocked aid convoys for a 3rd consecutive week. The fuel cutoff left the last functioning medical facilities without generators. Palestinian health officials report 138 people died from treatable injuries and chronic conditions. WHO warned the health system has passed the point of collapse, with no resupply timeline in sight.
 </example>
 
-Note: in the Gaza example, the story opens with a concrete consequence, not a vague framing. Israel's position is included but does not frame the headline or lead. The ICJ finding is attributed, just as Hamas's terrorist designation would be — symmetric treatment of legal labels. The kicker carries weight ("passed the point of collapse") instead of trailing off.
+Note the arc: hook (short fact) → who (actor + action) → detail (one supporting fact) → stakes (human cost) → what's next (unresolved tension). Every article follows this rhythm.
 
 </examples>

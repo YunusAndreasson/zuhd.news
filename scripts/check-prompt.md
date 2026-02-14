@@ -45,9 +45,15 @@ Read each article as if you have never seen the story. Check every rule in order
 
 Structure:
 - Title is 3-5 words. Subject + verb. No articles ("a", "the"), no filler. No abbreviations in titles — spell out names. Only US, UK, EU, UN, WHO, NATO, and ISIS need no expansion. Count the words.
-- Body is one paragraph, 3-5 sentences. No line breaks within the body. Count the sentences.
-- First sentence is the shortest, under 10 words. It must be concrete and specific — a number, a name, a consequence. Reject vague leads ("faces condemnation," "sparks debate," "draws criticism"). It must not restate the title.
-- Last sentence should carry stakes or tension, not administrative detail. If it ends on a bureaucratic fact ("the committee will meet Tuesday"), rewrite to end on consequence.
+- Body is one paragraph, exactly 5 sentences. No line breaks within the body. Count the sentences. If an article has 6+ sentences, cut until 5. If it has fewer, it may be too thin — check if a stakes or what's-next sentence is missing.
+- Every article follows the same 5-sentence arc:
+  1. **Hook** — shortest sentence, under 10 words. Concrete: a number, a name, a consequence. Reject vague leads ("faces condemnation," "sparks debate," "draws criticism"). Must not restate the title.
+  2. **Who** — the actor, identified with role, and their action.
+  3. **Detail** — one key supporting fact.
+  4. **Stakes** — why this matters, who is affected, what is at risk.
+  5. **What's next** — forward tension, a deadline, an unanswered question, or a consequence still unfolding.
+- If the arc is out of order, reorder. If a sentence doesn't fit any slot, cut it.
+- Every sentence must serve the headline. If a sentence introduces a topic, person, or fact not directly related to the event in the title, cut it. One article, one story.
 - No source attribution line in the body — source is in the frontmatter metadata.
 
 Sentence clarity — these rules exist because nested or dense sentences force re-reading:
@@ -68,6 +74,7 @@ Attribution:
 - Every person and organization is identified on first mention with a brief role.
 - Every claim has attribution. Vary the verb — "said" is invisible once, dead by the third use. Use the most accurate verb: confirmed, estimated, warned, denied, dismissed, acknowledged, announced, reported. Reserve "said" for genuinely neutral statements. Never use "claimed" (implies doubt) or "admitted" (implies guilt) unless warranted.
 - No information is repeated. If a fact appears in the lead, it does not appear again.
+- No obvious facts. Do not state what a globally aware reader already knows ("Elon Musk owns X," "NATO is a military alliance"). Identify people only when genuinely needed for comprehension.
 - Diacritics preserved in proper nouns.
 
 Geographic neutrality — the reader could be anywhere in the world:
