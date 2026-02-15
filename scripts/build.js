@@ -96,7 +96,6 @@ const buildArticle = (filename, articleTemplate) => {
   const html = articleTemplate
     .replace(/{{title}}/g, title)
     .replace(/{{date}}/g, dateFormatted)
-    .replace(/{{time}}/g, timeFormatted)
     .replace(/{{category}}/g, meta.category || '')
     .replace(/{{source}}/g, meta.source || '')
     .replace(/{{sourceUrl}}/g, meta.sourceUrl || '#')

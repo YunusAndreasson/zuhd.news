@@ -8,7 +8,7 @@ function init(data) {
   const mql = matchMedia('(min-width: 768px)');
   const isDesktop = () => mql.matches;
 
-  const state = { view: 'headlines', catIdx: 0, artIdx: -1 };
+  const state = { catIdx: 0, artIdx: -1 };
 
   const stripEl = document.querySelector('.category-strip');
   const listEl = document.querySelector('.headline-list');
@@ -69,10 +69,7 @@ function init(data) {
     btn.role = 'tab';
     btn.ariaSelected = i === state.catIdx ? 'true' : 'false';
     btn.textContent = cat;
-    btn.addEventListener('click', () => {
-      if (!isDesktop() && state.view === 'article') closeArticle();
-      switchCategory(i);
-    });
+    btn.addEventListener('click', () => switchCategory(i));
     stripEl.append(btn);
     return btn;
   };
@@ -87,6 +84,7 @@ function init(data) {
       const allRead = articles[categories[i]].every(a => readSlugs.has(a.slug));
       tab.classList.toggle('all-read', allRead);
     });
+    tabEls[state.catIdx]?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
   };
 
   const buildHeadlines = () => {
@@ -100,6 +98,10 @@ function init(data) {
       div.innerHTML = `<h2>${esc(a.title)}</h2><time datetime="${a.date}">${localTime}</time>`;
       div.addEventListener('click', () => {
         showClickHint();
+        if (!isDesktop() && state.artIdx === i && div.querySelector('.article-expand')) {
+          collapseArticle();
+          return;
+        }
         state.artIdx = i;
         updateSelection();
         openArticle(true);
@@ -114,21 +116,6 @@ function init(data) {
     }
     const selected = listEl.children[state.artIdx];
     if (selected && isDesktop()) selected.scrollIntoView({ block: 'nearest' });
-  };
-
-  const renderArticle = () => {
-    const a = currentArticle();
-    viewInner.innerHTML = `
-      <header class="article-header">
-        <span class="category">${esc(a.category)}</span>
-        <h1>${esc(a.title)}</h1>
-        <div class="meta">
-          <time>${a.dateFormatted} · ${a.timeFormatted}</time>
-          <span class="separator">&middot;</span>
-          <a href="${esc(a.sourceUrl)}">${esc(a.source)}</a>
-        </div>
-      </header>
-      <div class="article-body">${a.bodyHtml}</div>`;
   };
 
   // --- Navigation ---
@@ -148,6 +135,13 @@ function init(data) {
     announce(`${categories[idx]} category`);
   };
 
+  const collapseArticle = () => {
+    const expand = listEl.querySelector('.article-expand');
+    if (expand) expand.remove();
+    state.artIdx = -1;
+    updateSelection();
+  };
+
   const openArticle = (userInitiated = false) => {
     if (state.artIdx < 0) return;
     const article = currentArticle();
@@ -156,43 +150,38 @@ function init(data) {
       listEl.children[state.artIdx]?.classList.add('read');
       updateStrip();
     }
-    renderArticle();
-
-    state.view = 'article';
-    viewEl.hidden = false;
-    const historyState = { catIdx: state.catIdx, artIdx: state.artIdx };
 
     if (isDesktop()) {
-      history.replaceState(historyState, '', `#${article.slug}`);
+      // Desktop: render in article-view pane
+      const a = article;
+      viewInner.innerHTML = `
+        <header class="article-header">
+          <h1>${esc(a.title)}</h1>
+          <div class="meta">
+            <time>${a.dateFormatted} · ${a.timeFormatted}</time>
+          </div>
+        </header>
+        <div class="article-body">${a.bodyHtml}</div>`;
+      viewEl.hidden = false;
+      history.replaceState({ catIdx: state.catIdx, artIdx: state.artIdx }, '', `#${article.slug}`);
       announce(`Reading: ${article.title}`);
       return;
     }
 
-    // Mobile: modal behavior
-    document.body.classList.add('view-article');
-    viewEl.style.animation = 'none';
-    viewEl.offsetHeight;
-    viewEl.style.animation = '';
+    // Mobile: accordion expand below headline
+    const existing = listEl.querySelector('.article-expand');
+    if (existing) existing.remove();
 
-    history.pushState(historyState, '', `#${article.slug}`);
+    const expand = document.createElement('div');
+    expand.className = 'article-expand';
+    expand.innerHTML = `
+      <div class="meta"><time>${article.dateFormatted} · ${article.timeFormatted}</time></div>
+      <div class="article-body">${article.bodyHtml}</div>`;
 
-    const h1 = viewEl.querySelector('h1');
-    h1?.setAttribute('tabindex', '-1');
-    h1?.focus();
-
+    const item = listEl.children[state.artIdx];
+    item?.append(expand);
+    item?.scrollIntoView({ block: 'start', behavior: 'smooth' });
     announce(`Reading: ${article.title}`);
-  };
-
-  const closeArticle = () => {
-    if (isDesktop()) return;
-
-    state.view = 'headlines';
-    document.body.classList.remove('view-article');
-    viewEl.hidden = true;
-    updateSelection();
-
-    if (location.hash) history.pushState(null, '', location.pathname);
-    listEl.children[state.artIdx]?.focus();
   };
 
   // --- Keyboard ---
@@ -204,32 +193,27 @@ function init(data) {
     const desktop = isDesktop();
     const key = e.key;
 
-    if (desktop || state.view === 'headlines') {
-      switch (key) {
-        case 'ArrowLeft': case 'h':  e.preventDefault(); switchCategory(wrap(state.catIdx - 1, categories.length)); break;
-        case 'ArrowRight': case 'l': e.preventDefault(); switchCategory(wrap(state.catIdx + 1, categories.length)); break;
-        case 'ArrowUp': case 'k':
-          e.preventDefault();
-          state.artIdx = state.artIdx < 0 ? currentList().length - 1 : wrap(state.artIdx - 1, currentList().length);
-          updateSelection();
-          if (desktop) openArticle(true);
-          break;
-        case 'ArrowDown': case 'j':
-          e.preventDefault();
-          state.artIdx = state.artIdx < 0 ? 0 : wrap(state.artIdx + 1, currentList().length);
-          updateSelection();
-          if (desktop) openArticle(true);
-          break;
-        case 'Enter':
-          if (!desktop) { e.preventDefault(); openArticle(true); }
-          break;
-      }
-    } else if (state.view === 'article') {
-      switch (key) {
-        case 'Escape':                e.preventDefault(); closeArticle(); break;
-        case 'ArrowLeft':  case 'h':  e.preventDefault(); closeArticle(); switchCategory(wrap(state.catIdx - 1, categories.length)); break;
-        case 'ArrowRight': case 'l':  e.preventDefault(); closeArticle(); switchCategory(wrap(state.catIdx + 1, categories.length)); break;
-      }
+    switch (key) {
+      case 'ArrowLeft': case 'h':  e.preventDefault(); switchCategory(wrap(state.catIdx - 1, categories.length)); break;
+      case 'ArrowRight': case 'l': e.preventDefault(); switchCategory(wrap(state.catIdx + 1, categories.length)); break;
+      case 'ArrowUp': case 'k':
+        e.preventDefault();
+        state.artIdx = state.artIdx < 0 ? currentList().length - 1 : wrap(state.artIdx - 1, currentList().length);
+        updateSelection();
+        if (desktop) openArticle(true);
+        break;
+      case 'ArrowDown': case 'j':
+        e.preventDefault();
+        state.artIdx = state.artIdx < 0 ? 0 : wrap(state.artIdx + 1, currentList().length);
+        updateSelection();
+        if (desktop) openArticle(true);
+        break;
+      case 'Enter':
+        if (!desktop) { e.preventDefault(); openArticle(true); }
+        break;
+      case 'Escape':
+        if (!desktop) { e.preventDefault(); collapseArticle(); }
+        break;
     }
   });
 
@@ -237,55 +221,38 @@ function init(data) {
 
   let touchStartX = 0;
   let touchStartY = 0;
+  let touchedStrip = false;
 
   document.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
+    touchedStrip = e.target.closest('.category-strip') !== null;
   }, { passive: true });
 
   document.addEventListener('touchend', (e) => {
     if (isDesktop()) return;
+    if (touchedStrip) return;
     const dx = e.changedTouches[0].clientX - touchStartX;
     const absDx = Math.abs(dx);
     if (absDx < 50 || Math.abs(e.changedTouches[0].clientY - touchStartY) > absDx * 0.6) return;
 
-    if (state.view === 'article' && touchStartX < 30 && dx > 0) {
-      closeArticle();
-    } else if (state.view === 'headlines') {
-      switchCategory(wrap(state.catIdx + (dx < 0 ? 1 : -1), categories.length));
-    }
+    switchCategory(wrap(state.catIdx + (dx < 0 ? 1 : -1), categories.length));
   }, { passive: true });
-
-  // --- History ---
-
-  addEventListener('popstate', () => {
-    if (state.view !== 'article') return;
-    state.view = 'headlines';
-    document.body.classList.remove('view-article');
-    viewEl.hidden = true;
-    updateSelection();
-  });
 
   // --- Resize ---
 
   mql.addEventListener('change', (e) => {
     if (e.matches) {
-      // Entered desktop
-      document.body.classList.remove('view-article');
-      if (state.artIdx < 0) {
-        state.artIdx = 0;
-        updateSelection();
-      }
-      openArticle(false);
+      // Entered desktop: collapse mobile expand, show desktop pane
+      collapseArticle();
+      state.artIdx = 0;
+      updateSelection();
+      buildHeadlines();
+      openArticle(true);
     } else {
-      // Entered mobile
-      if (state.view === 'article') {
-        document.body.classList.add('view-article');
-        viewEl.hidden = false;
-        history.pushState({ catIdx: state.catIdx, artIdx: state.artIdx }, '', `#${currentArticle().slug}`);
-      } else {
-        viewEl.hidden = true;
-      }
+      // Entered mobile: hide desktop pane
+      viewEl.hidden = true;
+      buildHeadlines();
     }
   });
 
@@ -364,6 +331,6 @@ function init(data) {
   if (!navigateToHash() && isDesktop()) {
     state.artIdx = 0;
     updateSelection();
-    openArticle();
+    openArticle(true);
   }
 }

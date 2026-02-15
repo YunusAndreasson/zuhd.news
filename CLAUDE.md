@@ -56,6 +56,7 @@ Multi-source RSS → fetch-news.js → Claude CLI selector (select-prompt.md) �
 - English first, global hard news only
 - Categories: politics, conflict, economy, science, tech
 - Direct Cloudflare upload (not git-connected) for headless operation
+- Pages production branch: `master` (custom domain `zuhd.news` only serves production deployments)
 
 ## Next Iteration (v0.2)
 

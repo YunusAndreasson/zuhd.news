@@ -13,6 +13,13 @@ mkdir -p "$LOG_DIR"
 TIMESTAMP=$(date +%Y-%m-%d_%H%M)
 LOG_FILE="$LOG_DIR/cycle-$TIMESTAMP.log"
 
+cleanup() {
+  echo "" | tee -a "$LOG_FILE"
+  echo "Finished: $(date)" | tee -a "$LOG_FILE"
+  find "$LOG_DIR" -name "cycle-*.log" -mtime +7 -delete 2>/dev/null || true
+}
+trap cleanup EXIT
+
 cd "$PROJECT_DIR"
 
 echo "=== zuhd.news editorial cycle ===" | tee "$LOG_FILE"
@@ -29,8 +36,6 @@ echo "Selector exit: $SELECT_EXIT" | tee -a "$LOG_FILE"
 # Skip writer+editor if selector produced no selection
 if [ ! -s /tmp/zuhd-selection.json ]; then
   echo "No selection produced — skipping writer and editor" | tee -a "$LOG_FILE"
-  echo "Finished: $(date)" | tee -a "$LOG_FILE"
-  find "$LOG_DIR" -name "cycle-*.log" -mtime +7 -delete 2>/dev/null || true
   exit 0
 fi
 
@@ -46,8 +51,6 @@ echo "Writer exit: $WRITE_EXIT" | tee -a "$LOG_FILE"
 NEW_ARTICLES=$( { git diff --name-only content/articles/ 2>/dev/null; git ls-files --others --exclude-standard content/articles/ 2>/dev/null; } | sort -u )
 if [ -z "$NEW_ARTICLES" ]; then
   echo "No new articles — skipping editor" | tee -a "$LOG_FILE"
-  echo "Finished: $(date)" | tee -a "$LOG_FILE"
-  find "$LOG_DIR" -name "cycle-*.log" -mtime +7 -delete 2>/dev/null || true
   exit 0
 fi
 
@@ -58,9 +61,3 @@ CHECK_PROMPT=$(cat scripts/check-prompt.md)
 timeout 300 claude --dangerously-skip-permissions --model sonnet -p "$CHECK_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 EDITOR_EXIT=$?
 echo "Editor exit: $EDITOR_EXIT" | tee -a "$LOG_FILE"
-
-echo "" | tee -a "$LOG_FILE"
-echo "Finished: $(date)" | tee -a "$LOG_FILE"
-
-# Keep only last 7 days of logs
-find "$LOG_DIR" -name "cycle-*.log" -mtime +7 -delete 2>/dev/null || true

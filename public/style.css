@@ -53,6 +53,9 @@ html {
   color-scheme: light dark;
   -webkit-text-size-adjust: 100%;
   hanging-punctuation: first last;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -65,10 +68,11 @@ body {
   margin: 0 auto;
   padding: var(--space-md);
   padding-top: clamp(1.5rem, 4vh, 3rem);
-  padding-bottom: 4rem;
+  padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
   font-optical-sizing: auto;
   font-kerning: normal;
   font-variant-ligatures: common-ligatures;
+  overscroll-behavior-y: contain;
 }
 
 /* --- Typography --- */
@@ -78,6 +82,7 @@ h1 {
   font-weight: 700;
   margin-bottom: var(--space-sm);
   text-wrap: balance;
+  outline: none;
 }
 
 p {
@@ -121,6 +126,7 @@ footer {
   max-width: var(--measure);
   margin: 0 auto;
   padding: var(--space-xs) var(--space-md);
+  padding-bottom: calc(var(--space-xs) + env(safe-area-inset-bottom, 0px));
   display: flex;
   gap: 1.5rem;
   background: var(--bg);
@@ -255,6 +261,13 @@ footer a:hover {
   gap: 0.5rem 2rem;
   margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
   padding-bottom: var(--space-xs);
+  padding-top: var(--space-xs);
+  user-select: none;
+  -webkit-user-select: none;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg);
 }
 
 .category-tab {
@@ -292,6 +305,13 @@ footer a:hover {
 .headline-item {
   padding: 0.75rem 0;
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.headline-item:active > h2 {
+  opacity: 0.5;
+  transition: opacity 0s;
 }
 
 .headline-item h2 {
@@ -310,7 +330,7 @@ footer a:hover {
   color: var(--text-secondary);
   font-variant-numeric: tabular-nums;
   display: block;
-  margin-top: 2px;
+  margin-top: var(--space-xs);
 }
 
 .headline-item.selected h2 {
@@ -319,18 +339,9 @@ footer a:hover {
   text-decoration-thickness: 1px;
 }
 
-.headline-item.read {
+.headline-item.read > h2,
+.headline-item.read > time {
   opacity: 0.45;
-}
-
-.headline-item.read.selected {
-  opacity: 0.45;
-}
-
-.headline-item.read.selected h2 {
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-  text-decoration-thickness: 1px;
 }
 
 /* --- Headline List Fade --- */
@@ -370,23 +381,28 @@ footer a:hover {
 }
 
 
-/* --- Article View --- */
-.article-view {
-  animation: article-in 120ms ease both;
+/* --- Article Expand (mobile accordion) --- */
+.headline-item:has(.article-expand) > h2 {
+  position: sticky;
+  top: 2.5rem;
+  background: var(--bg);
+  padding-bottom: var(--space-xs);
+  z-index: 1;
 }
 
+.article-expand {
+  padding-top: var(--space-xs);
+  animation: expand-in 200ms ease;
+}
+
+@keyframes expand-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Article View (desktop) --- */
 .article-view[hidden] {
   display: none;
-}
-
-body.view-article .category-strip,
-body.view-article .headline-list {
-  display: none;
-}
-
-@keyframes article-in {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 /* --- Screen Reader Only --- */
@@ -408,11 +424,20 @@ body.view-article .headline-list {
     font-size: 1rem;
     padding: var(--space-sm);
     padding-top: var(--space-md);
+    padding-bottom: 4rem;
   }
 
   h1 { font-size: var(--size-h1); }
 
-  .category-strip { gap: 1.25rem; }
+  .category-strip {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(to right, #000 80%, transparent);
+    mask-image: linear-gradient(to right, #000 80%, transparent);
+    padding-right: 2rem;
+    gap: 1.25rem;
+  }
 }
 
 /* --- Desktop --- */
@@ -429,9 +454,6 @@ body.view-article .headline-list {
 
   /* Article always visible below headlines */
   .article-view[hidden] { display: block; }
-  .article-view { animation: none; }
-  body.view-article .category-strip { display: flex; }
-  body.view-article .headline-list { display: block; }
 
   /* Constrain article reading measure */
   .article-view { max-width: 65ch; margin-top: var(--space-md); }
@@ -476,7 +498,7 @@ body.view-article .headline-list {
     transition: none;
   }
 
-  .article-view {
+  .article-expand, .article-view {
     animation: none;
   }
 }
