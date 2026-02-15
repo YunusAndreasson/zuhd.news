@@ -8,10 +8,13 @@
     "dev": "node scripts/build.js && npx wrangler pages dev dist",
     "build": "node scripts/build.js",
     "fetch": "node scripts/fetch-news.js",
-    "deploy": "npx wrangler pages deploy dist --project-name zuhd-news --branch main --commit-dirty=true",
-    "publish": "node scripts/build.js && npm run deploy"
+    "deploy": "npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true",
+    "publish": "node scripts/build.js && npm run deploy",
+    "briefing": "node scripts/generate-briefing.js",
+    "briefing:voice": "node scripts/test-voice.js"
   },
   "dependencies": {
+    "@google-cloud/text-to-speech": "^6.0.0",
     "fast-xml-parser": "^5.2.0"
   }
 }

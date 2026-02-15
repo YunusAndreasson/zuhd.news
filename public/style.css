@@ -494,6 +494,45 @@ footer a:hover {
   }
 }
 
+/* --- Audio Briefing --- */
+.audio-briefing {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: clamp(0.5rem, 1.5vh, 1rem);
+}
+.briefing-play {
+  font-size: var(--size-xs);
+  line-height: 1;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+.briefing-label {
+  font-family: var(--font-sans);
+  font-size: var(--size-xs);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.briefing-track {
+  flex: 1;
+  max-width: 10rem;
+  height: 2px;
+  background: var(--rule);
+  border-radius: 1px;
+  cursor: pointer;
+  position: relative;
+}
+.briefing-bar {
+  height: 100%;
+  width: 0;
+  background: var(--text-secondary);
+  border-radius: 1px;
+}
+
 /* --- Reduced Motion --- */
 @media (prefers-reduced-motion: reduce) {
   .headline-item h2, .headline-list, .category-tab {

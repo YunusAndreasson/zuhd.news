@@ -162,6 +162,16 @@ if (existsSync(join(ROOT, 'public'))) {
   cpSync(join(ROOT, 'public'), DIST_DIR, { recursive: true })
 }
 
+// Copy audio files to dist
+const audioSrc = join(ROOT, 'content', 'audio')
+if (existsSync(audioSrc)) {
+  mkdirSync(join(DIST_DIR, 'audio'), { recursive: true })
+  for (const f of readdirSync(audioSrc)) {
+    if (f.endsWith('.mp3') || f === 'briefing-meta.json')
+      cpSync(join(audioSrc, f), join(DIST_DIR, 'audio', f))
+  }
+}
+
 // Read assets for inlining
 const cssContent = readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8')
 const jsContent = readFileSync(join(ROOT, 'public', 'reader.js'), 'utf-8')
@@ -182,7 +192,25 @@ for (const file of files) {
   console.log(`  Built: ${slug}`)
 }
 
+// Generate audio briefing player HTML
+let audioBriefingHtml = ''
+const briefingMetaPath = join(ROOT, 'content', 'audio', 'briefing-meta.json')
+if (existsSync(briefingMetaPath)) {
+  const meta = JSON.parse(readFileSync(briefingMetaPath, 'utf-8'))
+  const age = Date.now() - new Date(meta.generated).getTime()
+  if (age < 36 * 60 * 60 * 1000) {
+    audioBriefingHtml = `<div class="audio-briefing">
+      <button class="briefing-play" aria-label="Play daily briefing">\u25B6</button>
+      <span class="briefing-label">Daily briefing</span>
+      <div class="briefing-track"><div class="briefing-bar"></div></div>
+      <audio preload="none" src="/audio/briefing-${meta.date}.mp3"></audio>
+    </div>
+    <script>!function(){var b=document.querySelector('.audio-briefing');if(!b)return;var a=b.querySelector('audio'),p=b.querySelector('.briefing-play'),t=b.querySelector('.briefing-track'),r=b.querySelector('.briefing-bar');p.onclick=function(){a.paused?(a.play(),p.textContent='\\u275A\\u275A'):(a.pause(),p.textContent='\\u25B6')};a.ontimeupdate=function(){r.style.width=a.duration?(a.currentTime/a.duration*100)+'%':'0'};a.onended=function(){p.textContent='\\u25B6';r.style.width='0'};t.onclick=function(e){if(a.duration){a.currentTime=e.offsetX/t.offsetWidth*a.duration}}}()</script>`
+  }
+}
+
 const homepage = buildHomepage(articles, homepageTemplate)
+  .replace(/{{audioBriefing}}/g, audioBriefingHtml)
 writeFileSync(join(DIST_DIR, 'index.html'), homepage)
 console.log(`  Built: index.html (${articles.length} articles)`)
 

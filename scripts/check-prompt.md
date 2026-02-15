@@ -14,7 +14,7 @@ You are the editor for zuhd.news. A writer has already drafted today's articles.
 5. If an article passes all rules, leave it unchanged
 6. Run `node scripts/build.js` to generate the static site
 7. Commit all changes to git with a message summarizing what was published
-8. Deploy by running `npx wrangler pages deploy dist --project-name zuhd-news --branch main --commit-dirty=true`
+8. Deploy by running `npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true`
 9. Write `content/.last-cycle.json` with this cycle's metadata (schema below)
 10. List which articles you changed and what you fixed
 

@@ -1,49 +1,14 @@
 {
-  "timestamp": "2026-02-15T13:45:00Z",
+  "timestamp": "2026-02-15T18:00:00Z",
   "articles": [
-    {
-      "slug": "2026-02-15-au-summit-demands-action-on-sudan-as-worlds-worst-crisis-deepens",
-      "title": "African Union Demands Sudan Ceasefire",
-      "category": "politics",
-      "source": "France 24"
-    },
-    {
-      "slug": "2026-02-15-bangladesh-prepares-for-bnp-government-as-tarique-rahman-takes-power",
-      "title": "Bangladesh Nationalist Party Wins Landslide",
-      "category": "politics",
-      "source": "Daily Star"
-    },
-    {
-      "slug": "2026-02-15-five-european-states-say-russia-killed-navalny-with-dart-frog-toxin",
-      "title": "Europeans Confirm Navalny Was Poisoned",
-      "category": "politics",
-      "source": "Al Jazeera"
-    },
-    {
-      "slug": "2026-02-15-hundreds-of-thousands-rally-worldwide-against-iran-regime",
-      "title": "Millions Rally Against Iran Government",
-      "category": "politics",
-      "source": "BBC World"
-    },
-    {
-      "slug": "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
-      "title": "Ukraine Strikes Russian Oil Port",
-      "category": "conflict",
-      "source": "The Hindu"
-    },
-    {
-      "slug": "2026-02-15-us-lifts-venezuela-oil-curbs-clearing-major-companies-to-operate",
-      "title": "Washington Reopens Venezuela Oil Sector",
-      "category": "economy",
-      "source": "MercoPress"
-    },
-    {
-      "slug": "2026-02-15-us-military-planes-arrive-in-nigeria-amid-security-crisis",
-      "title": "US Deploys Troops to Nigeria",
-      "category": "conflict",
-      "source": "Premium Times"
-    }
+    { "slug": "2026-02-15-eu-bans-destruction-of-unsold-clothing-and-shoes", "title": "EU Bans Destroying Unsold Clothes", "category": "economy", "source": "Hacker News" },
+    { "slug": "2026-02-15-eu-pushes-mutual-defence-pact-as-transatlantic-rift-widens", "title": "EU Pushes Mutual Defence Activation", "category": "politics", "source": "Al Monitor" },
+    { "slug": "2026-02-15-india-agrees-to-stop-buying-russian-oil-rubio-says", "title": "India Pledges Russian Oil Halt", "category": "economy", "source": "The Hindu" },
+    { "slug": "2026-02-15-indonesia-prepares-trade-agenda-for-prabowo-washington-visit", "title": "Indonesia Prepares Washington Trade Agenda", "category": "economy", "source": "Antara News" },
+    { "slug": "2026-02-15-msf-suspends-gaza-hospital-work-over-armed-groups-inside", "title": "MSF Suspends Gaza Hospital Work", "category": "conflict", "source": "Al Monitor" },
+    { "slug": "2026-02-15-pentagon-used-anthropic-ai-in-caracas-raid-report-says", "title": "Pentagon Deployed AI in Caracas", "category": "tech", "source": "France 24" },
+    { "slug": "2026-02-15-syria-takes-over-us-base-as-american-withdrawal-continues", "title": "Syria Reclaims US Military Base", "category": "conflict", "source": "Al Jazeera" }
   ],
-  "categories": ["politics", "conflict", "economy"],
-  "sources": ["France 24", "Daily Star", "Al Jazeera", "BBC World", "The Hindu", "MercoPress", "Premium Times"]
+  "categories": ["economy", "politics", "conflict", "tech"],
+  "sources": ["Hacker News", "Al Monitor", "The Hindu", "Antara News", "France 24", "Al Jazeera"]
 }
