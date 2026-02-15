@@ -92,9 +92,12 @@ const buildArticle = (filename, articleTemplate) => {
   const title = smartQuotes(meta.title || 'Untitled')
   const dateFormatted = formatDate(meta.date)
   const timeFormatted = formatTime(meta.date)
+  const description = body.split(/[.!?]/)[0]?.trim().slice(0, 200) || title
 
   const html = articleTemplate
     .replace(/{{title}}/g, title)
+    .replace(/{{slug}}/g, slug)
+    .replace(/{{description}}/g, description)
     .replace(/{{date}}/g, dateFormatted)
     .replace(/{{category}}/g, meta.category || '')
     .replace(/{{source}}/g, meta.source || '')

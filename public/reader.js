@@ -174,13 +174,10 @@ function init(data) {
 
     const expand = document.createElement('div');
     expand.className = 'article-expand';
-    expand.innerHTML = `
-      <div class="meta"><time>${article.dateFormatted} · ${article.timeFormatted}</time></div>
-      <div class="article-body">${article.bodyHtml}</div>`;
+    expand.innerHTML = `<div class="article-body">${article.bodyHtml}</div>`;
 
     const item = listEl.children[state.artIdx];
     item?.append(expand);
-    item?.scrollIntoView({ block: 'start', behavior: 'smooth' });
     announce(`Reading: ${article.title}`);
   };
 
