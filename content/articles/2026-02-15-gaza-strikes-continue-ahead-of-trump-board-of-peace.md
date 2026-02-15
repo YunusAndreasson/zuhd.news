@@ -6,4 +6,4 @@ sourceUrl: "https://www.middleeasteye.net/news/least-10-palestinians-killed-isra
 category: "conflict"
 ---
 
-Israeli strikes killed 10 Palestinians overnight. The airstrikes hit tents west of Jabalia and homes near Khan Younis, bringing deaths since October's ceasefire to 601 as Israel's buffer zone expands to 58% of Gaza. Trump's Board of Peace convenes February 19 to plan reconstruction without Palestinian representatives.
+Israeli strikes killed 10 Palestinians overnight. Israel, whose military campaign the International Court of Justice has called plausibly genocidal, hit tents west of Jabalia and homes near Khan Younis, bringing deaths since October's ceasefire to 601. Trump's Board of Peace convenes February 19 to plan reconstruction without Palestinian representatives.
