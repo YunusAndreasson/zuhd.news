@@ -41,12 +41,6 @@ const SOURCES = [
     enabled: true,
   },
   {
-    name: 'CGTN',
-    url: 'https://www.cgtn.com/subscribe/rss/section/world.xml',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
     name: 'AllAfrica',
     url: 'https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf',
     format: 'rss2', // URL says .rdf but feed is actually RSS 2.0

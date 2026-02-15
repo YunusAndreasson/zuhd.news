@@ -275,14 +275,10 @@ footer a:hover {
 }
 
 .category-tab.all-read {
-  font-weight: 400;
-  color: var(--text-secondary);
-  opacity: 0.4;
+  opacity: 0.45;
 }
 
 .category-tab.all-read[aria-selected="true"] {
-  font-weight: 500;
-  opacity: 0.7;
   text-decoration: underline;
   text-underline-offset: 0.25em;
   text-decoration-thickness: 1px;
@@ -319,13 +315,15 @@ footer a:hover {
   text-decoration-thickness: 1px;
 }
 
-.headline-item.read h2 {
-  color: var(--text-secondary);
+.headline-item.read {
+  opacity: 0.45;
+}
+
+.headline-item.read.selected {
   opacity: 0.45;
 }
 
 .headline-item.read.selected h2 {
-  opacity: 0.7;
   text-decoration: underline;
   text-underline-offset: 0.15em;
   text-decoration-thickness: 1px;

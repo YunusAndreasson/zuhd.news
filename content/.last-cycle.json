@@ -1,49 +1,14 @@
 {
-  "timestamp": "2026-02-15T12:00:00Z",
+  "timestamp": "2026-02-15T02:04:02Z",
   "articles": [
-    {
-      "slug": "2026-02-15-astronomers-find-inside-out-planetary-system",
-      "title": "Astronomers Find Inverted Solar System",
-      "category": "science",
-      "source": "Dawn"
-    },
-    {
-      "slug": "2026-02-15-bangladesh-bnp-returns-to-power-after-twenty-years",
-      "title": "Bangladesh Nationalist Party Wins Landslide",
-      "category": "politics",
-      "source": "The Hindu"
-    },
-    {
-      "slug": "2026-02-15-cuba-cancels-cigar-festival-as-us-blockade-deepens-crisis",
-      "title": "Cuba Cancels Cigar Festival",
-      "category": "economy",
-      "source": "BBC World"
-    },
-    {
-      "slug": "2026-02-15-greenland-trains-miners-amid-arctic-resource-race",
-      "title": "Greenland Trains Its Own Miners",
-      "category": "economy",
-      "source": "Malay Mail"
-    },
-    {
-      "slug": "2026-02-15-iran-fm-dismisses-munich-conference-as-circus",
-      "title": "Iran Dismisses Munich as Circus",
-      "category": "politics",
-      "source": "Middle East Eye"
-    },
-    {
-      "slug": "2026-02-15-israel-spyware-probe-collapses-amid-obstruction-claims",
-      "title": "Israel Spyware Probe Collapses",
-      "category": "politics",
-      "source": "Haaretz"
-    },
-    {
-      "slug": "2026-02-15-uae-saudi-rift-draws-arab-mediators",
-      "title": "Saudi-Emirati Rift Draws Mediators",
-      "category": "politics",
-      "source": "South China Morning Post"
-    }
+    { "slug": "2026-02-15-european-nations-say-russia-poisoned-navalny-with-frog-toxin", "title": "Europe Confirms Russia Poisoned Navalny", "category": "politics", "source": "BBC World" },
+    { "slug": "2026-02-15-gunmen-kill-32-in-coordinated-raids-in-nigeria", "title": "Gunmen Kill 32 in Nigeria Raids", "category": "conflict", "source": "The Hindu" },
+    { "slug": "2026-02-15-guterres-demands-african-seats-on-security-council", "title": "Guterres Demands African Security Council Seats", "category": "politics", "source": "AllAfrica" },
+    { "slug": "2026-02-15-un-finds-rsf-killed-6000-in-sudan-el-fasher-assault", "title": "RSF Killed 6,000 in El Fasher Assault", "category": "conflict", "source": "AllAfrica" },
+    { "slug": "2026-02-15-us-launches-operation-hawkeye-against-isil-in-syria", "title": "US Hits 100 ISIS Targets in Syria", "category": "conflict", "source": "Al Jazeera" },
+    { "slug": "2026-02-15-us-military-plans-weeks-long-iran-campaign", "title": "Pentagon Plans Sustained Iran Strikes", "category": "conflict", "source": "The Hindu" },
+    { "slug": "2026-02-15-us-military-used-ai-in-classified-maduro-operation", "title": "US Military Deployed AI in Maduro Raid", "category": "tech", "source": "TRT World" }
   ],
-  "categories": ["science", "politics", "economy"],
-  "sources": ["Dawn", "The Hindu", "BBC World", "Malay Mail", "Middle East Eye", "Haaretz", "South China Morning Post"]
+  "categories": ["politics", "conflict", "tech"],
+  "sources": ["BBC World", "The Hindu", "AllAfrica", "Al Jazeera", "TRT World"]
 }
