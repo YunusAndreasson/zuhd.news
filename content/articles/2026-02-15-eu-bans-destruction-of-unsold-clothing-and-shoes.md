@@ -6,4 +6,4 @@ sourceUrl: "https://environment.ec.europa.eu/news/new-eu-rules-stop-destruction-
 category: "economy"
 ---
 
-Companies can no longer burn unsold clothing in Europe. The European Commission banned destruction of unsold apparel, footwear, and accessories under new ecodesign rules targeting an industry that destroys 4-9% of all textiles before they reach consumers. Large companies must comply by July 19, but the regulation sets no penalties, leaving enforcement to individual member states.
+Europe destroys up to 9% of unsold textiles annually. The European Commission banned companies from discarding unsold clothing and footwear starting July 2026, with medium-sized firms covered by 2030 — the first regulation targeting the fashion industry's overproduction cycle, which generates 5.6 million tons of CO2 in waste alone. Companies must now resell, donate, or remanufacture surplus stock, a rule that will reach garment factories across South and Southeast Asia where the overproduction begins.

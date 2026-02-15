@@ -1,14 +1,49 @@
 {
-  "timestamp": "2026-02-15T18:00:00Z",
+  "timestamp": "2026-02-15T17:00:00Z",
   "articles": [
-    { "slug": "2026-02-15-eu-bans-destruction-of-unsold-clothing-and-shoes", "title": "EU Bans Destroying Unsold Clothes", "category": "economy", "source": "Hacker News" },
-    { "slug": "2026-02-15-eu-pushes-mutual-defence-pact-as-transatlantic-rift-widens", "title": "EU Pushes Mutual Defence Activation", "category": "politics", "source": "Al Monitor" },
-    { "slug": "2026-02-15-india-agrees-to-stop-buying-russian-oil-rubio-says", "title": "India Pledges Russian Oil Halt", "category": "economy", "source": "The Hindu" },
-    { "slug": "2026-02-15-indonesia-prepares-trade-agenda-for-prabowo-washington-visit", "title": "Indonesia Prepares Washington Trade Agenda", "category": "economy", "source": "Antara News" },
-    { "slug": "2026-02-15-msf-suspends-gaza-hospital-work-over-armed-groups-inside", "title": "MSF Suspends Gaza Hospital Work", "category": "conflict", "source": "Al Monitor" },
-    { "slug": "2026-02-15-pentagon-used-anthropic-ai-in-caracas-raid-report-says", "title": "Pentagon Deployed AI in Caracas", "category": "tech", "source": "France 24" },
-    { "slug": "2026-02-15-syria-takes-over-us-base-as-american-withdrawal-continues", "title": "Syria Reclaims US Military Base", "category": "conflict", "source": "Al Jazeera" }
+    {
+      "slug": "2026-02-15-australia-commits-billions-to-aukus-nuclear-submarines",
+      "title": "Australia Funds Nuclear Submarine Yard",
+      "category": "politics",
+      "source": "South China Morning Post"
+    },
+    {
+      "slug": "2026-02-15-france-halves-global-fund-aids-tb-malaria-contribution",
+      "title": "France Halves Disease Fund Contribution",
+      "category": "economy",
+      "source": "AllAfrica"
+    },
+    {
+      "slug": "2026-02-15-india-plans-massive-ai-data-city-in-andhra-pradesh",
+      "title": "India Plans 6-Gigawatt Data City",
+      "category": "tech",
+      "source": "Dawn"
+    },
+    {
+      "slug": "2026-02-15-israel-registers-west-bank-land-as-state-property",
+      "title": "Israel Registers West Bank Land",
+      "category": "politics",
+      "source": "Middle East Eye"
+    },
+    {
+      "slug": "2026-02-15-nasa-crew-12-docks-at-international-space-station",
+      "title": "Crew-12 Docks at Space Station",
+      "category": "science",
+      "source": "France 24"
+    },
+    {
+      "slug": "2026-02-15-ukraine-arrests-ex-energy-minister-fleeing-country",
+      "title": "Ukraine Arrests Fleeing Ex-Minister",
+      "category": "politics",
+      "source": "BBC World"
+    },
+    {
+      "slug": "2026-02-15-us-forces-board-oil-tanker-defying-trump-quarantine",
+      "title": "United States Boards Sanctioned Tanker",
+      "category": "conflict",
+      "source": "Fox News"
+    }
   ],
-  "categories": ["economy", "politics", "conflict", "tech"],
-  "sources": ["Hacker News", "Al Monitor", "The Hindu", "Antara News", "France 24", "Al Jazeera"]
+  "categories": ["politics", "economy", "tech", "science", "conflict"],
+  "sources": ["South China Morning Post", "AllAfrica", "Dawn", "Middle East Eye", "France 24", "BBC World", "Fox News"]
 }
