@@ -136,13 +136,13 @@ footer a {
   font-family: var(--font-sans);
   font-size: var(--size-xs);
   color: var(--text-secondary);
-  opacity: 0.4;
+  opacity: 0.55;
   text-decoration: none;
   transition: opacity 0.15s;
 }
 
 footer a:hover {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* --- About / Sources --- */

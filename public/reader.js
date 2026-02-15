@@ -325,6 +325,7 @@ function init(data) {
   // --- Init ---
 
   buildHeadlines();
+  updateStrip();
   if (!navigateToHash() && isDesktop()) {
     state.artIdx = 0;
     updateSelection();
