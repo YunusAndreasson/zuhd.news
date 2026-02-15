@@ -72,8 +72,20 @@ const SOURCES = [
     enabled: true,
   },
   {
-    name: 'TRT World',
-    url: 'https://www.trtworld.com/feed/rss.xml',
+    name: 'Mada Masr',
+    url: 'https://www.madamasr.com/en/feed/',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'Medyascope',
+    url: 'https://medyascope.tv/feed/',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'TSA',
+    url: 'https://www.tsa-algerie.com/feed/',
     format: 'rss2',
     enabled: true,
   },
@@ -232,6 +244,18 @@ const SOURCES = [
   {
     name: 'Fox News',
     url: 'https://moxie.foxnews.com/google-publisher/world.xml',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'ABC News Australia',
+    url: 'https://www.abc.net.au/news/feed/51120/rss.xml',
+    format: 'rss2',
+    enabled: true,
+  },
+  {
+    name: 'RNZ Pacific',
+    url: 'https://www.rnz.co.nz/rss/pacific.xml',
     format: 'rss2',
     enabled: true,
   },

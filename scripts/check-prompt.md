@@ -45,13 +45,11 @@ Read each article as if you have never seen the story. Check every rule in order
 
 Structure:
 - Title is 3-5 words. Subject + verb. No articles ("a", "the"), no filler. No abbreviations in titles — spell out names. Only US, UK, EU, UN, WHO, NATO, and ISIS need no expansion. Count the words.
-- Body is one paragraph, exactly 5 sentences. No line breaks within the body. Count the sentences. If an article has 6+ sentences, cut until 5. If it has fewer, it may be too thin — check if a stakes or what's-next sentence is missing.
-- Every article follows the same 5-sentence arc:
+- Body is one paragraph, exactly 3 sentences. No line breaks within the body. Count the sentences. If an article has 4+ sentences, cut until 3.
+- Every article follows the same 3-sentence arc:
   1. **Hook** — shortest sentence, under 10 words. Concrete: a number, a name, a consequence. Reject vague leads ("faces condemnation," "sparks debate," "draws criticism"). Must not restate the title.
-  2. **Who** — the actor, identified with role, and their action.
-  3. **Detail** — one key supporting fact.
-  4. **Stakes** — why this matters, who is affected, what is at risk.
-  5. **What's next** — forward tension, a deadline, an unanswered question, or a consequence still unfolding.
+  2. **Context** — who did what, identified with role. The essential fact that explains the hook. When the story needs background, embed one historical fact as a clause (*"the first since,"* *"reversing a 2019 ban"*). If the story is self-explanatory, don't force background — just report who did what.
+  3. **Future** — what happens next, what's unresolved, or why this matters going forward. End on tension, not summary.
 - If the arc is out of order, reorder. If a sentence doesn't fit any slot, cut it.
 - Every sentence must serve the headline. If a sentence introduces a topic, person, or fact not directly related to the event in the title, cut it. One article, one story.
 - No source attribution line in the body — source is in the frontmatter metadata.
@@ -155,13 +153,13 @@ Sudanese security forces killed 3 protesters in Khartoum. Hamas, designated a te
 </example>
 
 <example>
-BEFORE (fails: vague lead, "said" x3, spelled-out name bloat, kicker fizzles):
+BEFORE (fails: vague lead, "said" x3, 5 sentences instead of 3):
 
 A US-funded vaccine trial faces global condemnation. The World Health Organization said the study in Guinea-Bissau is unethical. The trial, backed by the Centers for Disease Control and Prevention, planned to give half of 14,500 newborns a hepatitis B vaccine at birth. World Health Organization Director-General Tedros Adhanom Ghebreyesus said withholding the vaccine exposes newborns to chronic infection. Guinea-Bissau's government said it suspended the trial last month.
 
-AFTER (passes: concrete lead, varied attribution, acronyms after first mention, kicker carries weight):
+AFTER (passes: concrete hook, context packs actor + detail, future carries tension):
 
-14,500 newborns were enrolled in a trial that withheld a proven vaccine. The World Health Organization called the US-funded study in Guinea-Bissau unethical — half the infants would not receive a hepatitis B shot at birth despite evidence it prevents 70-95% of mother-to-child transmission. WHO Director-General Tedros Adhanom Ghebreyesus warned that withholding it exposes newborns to cirrhosis and liver cancer. Guinea-Bissau suspended the trial after public outcry, but the US Centers for Disease Control has not withdrawn funding.
+14,500 newborns were enrolled in a trial that withheld a proven vaccine. The World Health Organization called the US-funded study in Guinea-Bissau unethical — half the infants would not receive a hepatitis B shot at birth despite evidence it prevents 70-95% of mother-to-child transmission. Guinea-Bissau suspended the trial after public outcry, but the US Centers for Disease Control has not withdrawn funding.
 </example>
 
 </examples>

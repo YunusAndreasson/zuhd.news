@@ -1,14 +1,49 @@
 {
-  "timestamp": "2026-02-15T02:04:02Z",
+  "timestamp": "2026-02-15T10:36:25Z",
   "articles": [
-    { "slug": "2026-02-15-european-nations-say-russia-poisoned-navalny-with-frog-toxin", "title": "Europe Confirms Russia Poisoned Navalny", "category": "politics", "source": "BBC World" },
-    { "slug": "2026-02-15-gunmen-kill-32-in-coordinated-raids-in-nigeria", "title": "Gunmen Kill 32 in Nigeria Raids", "category": "conflict", "source": "The Hindu" },
-    { "slug": "2026-02-15-guterres-demands-african-seats-on-security-council", "title": "Guterres Demands African Security Council Seats", "category": "politics", "source": "AllAfrica" },
-    { "slug": "2026-02-15-un-finds-rsf-killed-6000-in-sudan-el-fasher-assault", "title": "RSF Killed 6,000 in El Fasher Assault", "category": "conflict", "source": "AllAfrica" },
-    { "slug": "2026-02-15-us-launches-operation-hawkeye-against-isil-in-syria", "title": "US Hits 100 ISIS Targets in Syria", "category": "conflict", "source": "Al Jazeera" },
-    { "slug": "2026-02-15-us-military-plans-weeks-long-iran-campaign", "title": "Pentagon Plans Sustained Iran Strikes", "category": "conflict", "source": "The Hindu" },
-    { "slug": "2026-02-15-us-military-used-ai-in-classified-maduro-operation", "title": "US Military Deployed AI in Maduro Raid", "category": "tech", "source": "TRT World" }
+    {
+      "slug": "2026-02-15-china-grants-visa-free-entry-to-uk-canada-not-us",
+      "title": "China Waives Visas, Excludes US",
+      "category": "politics",
+      "source": "South China Morning Post"
+    },
+    {
+      "slug": "2026-02-15-gaza-strikes-continue-ahead-of-trump-board-of-peace",
+      "title": "Gaza Strikes Precede Peace Meeting",
+      "category": "conflict",
+      "source": "Middle East Eye"
+    },
+    {
+      "slug": "2026-02-15-iran-signals-nuclear-compromise-before-geneva-talks",
+      "title": "Iran Offers Nuclear Compromise",
+      "category": "politics",
+      "source": "BBC World"
+    },
+    {
+      "slug": "2026-02-15-macron-urges-calm-after-political-killing-in-lyon",
+      "title": "Political Killing Shakes France",
+      "category": "politics",
+      "source": "France 24"
+    },
+    {
+      "slug": "2026-02-15-new-zealand-floods-kill-one-as-north-island-braces-for-more",
+      "title": "New Zealand Floods Kill One",
+      "category": "science",
+      "source": "ABC News Australia"
+    },
+    {
+      "slug": "2026-02-15-nigeria-village-attacks-death-toll-rises-to-46",
+      "title": "Nigeria Raids Kill 46",
+      "category": "conflict",
+      "source": "Al Jazeera"
+    },
+    {
+      "slug": "2026-02-15-vietnam-licenses-starlink-satellite-internet",
+      "title": "Vietnam Licenses Starlink",
+      "category": "tech",
+      "source": "Malay Mail"
+    }
   ],
-  "categories": ["politics", "conflict", "tech"],
-  "sources": ["BBC World", "The Hindu", "AllAfrica", "Al Jazeera", "TRT World"]
+  "categories": ["politics", "conflict", "science", "tech"],
+  "sources": ["South China Morning Post", "Middle East Eye", "BBC World", "France 24", "ABC News Australia", "Al Jazeera", "Malay Mail"]
 }

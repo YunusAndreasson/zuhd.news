@@ -6,4 +6,4 @@ sourceUrl: "https://www.abc.net.au/news/2026-02-15/new-zealand-north-island-rain
 category: "science"
 ---
 
-Floodwater killed a driver on a North Island highway. Authorities declared a state of emergency in 2 districts south of Hamilton after 4 hours of rain collapsed roads, cut power to over 4,000 properties, and forced 80 people into shelters. New Zealand's national weather service warned heavier rain and severe gales would hit late Sunday before conditions ease Monday.
+A driver drowned in a submerged vehicle on Saturday. Authorities declared states of emergency in 2 Waikato districts after 4 hours of rainfall collapsed roads, cut power to over 4,000 properties, and forced evacuations in Ōtorohanga. MetService warned of heavier rain and winds up to 120 km/h hitting Wellington on Sunday before conditions ease Monday.

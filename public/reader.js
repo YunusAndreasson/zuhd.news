@@ -102,7 +102,7 @@ function init(data) {
         showClickHint();
         state.artIdx = i;
         updateSelection();
-        openArticle();
+        openArticle(true);
       });
       listEl.append(div);
     }
@@ -142,18 +142,20 @@ function init(data) {
     setTimeout(() => {
       buildHeadlines();
       listEl.classList.remove('switching');
-      if (isDesktop()) openArticle();
+      if (isDesktop()) openArticle(true);
     }, 60);
 
     announce(`${categories[idx]} category`);
   };
 
-  const openArticle = () => {
+  const openArticle = (userInitiated = false) => {
     if (state.artIdx < 0) return;
     const article = currentArticle();
-    markRead(article.slug);
-    listEl.children[state.artIdx]?.classList.add('read');
-    updateStrip();
+    if (userInitiated) {
+      markRead(article.slug);
+      listEl.children[state.artIdx]?.classList.add('read');
+      updateStrip();
+    }
     renderArticle();
 
     state.view = 'article';
@@ -210,16 +212,16 @@ function init(data) {
           e.preventDefault();
           state.artIdx = state.artIdx < 0 ? currentList().length - 1 : wrap(state.artIdx - 1, currentList().length);
           updateSelection();
-          if (desktop) openArticle();
+          if (desktop) openArticle(true);
           break;
         case 'ArrowDown': case 'j':
           e.preventDefault();
           state.artIdx = state.artIdx < 0 ? 0 : wrap(state.artIdx + 1, currentList().length);
           updateSelection();
-          if (desktop) openArticle();
+          if (desktop) openArticle(true);
           break;
         case 'Enter':
-          if (!desktop) { e.preventDefault(); openArticle(); }
+          if (!desktop) { e.preventDefault(); openArticle(true); }
           break;
       }
     } else if (state.view === 'article') {
@@ -274,7 +276,7 @@ function init(data) {
         state.artIdx = 0;
         updateSelection();
       }
-      openArticle();
+      openArticle(false);
     } else {
       // Entered mobile
       if (state.view === 'article') {
@@ -300,7 +302,7 @@ function init(data) {
         state.artIdx = idx;
         updateStrip();
         buildHeadlines();
-        openArticle();
+        openArticle(true);
         return true;
       }
     }
