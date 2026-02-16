@@ -86,3 +86,18 @@ else
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 4: Audio briefing (skipped — $HOUR_UTC:00 UTC, runs at 06:00/18:00 only) ---" | tee -a "$LOG_FILE"
 fi
+
+# Stage 5: Weekly reflection — runs Sunday 18:00 UTC only
+DAY_OF_WEEK=$(date -u +%u)
+if [ "$DAY_OF_WEEK" = "7" ] && [ "$HOUR_UTC" = "18" ]; then
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 5: Weekly reflection ---" | tee -a "$LOG_FILE"
+  REFLECT_PROMPT=$(cat scripts/reflect-prompt.md)
+  timeout 300 claude --allowedTools "$CLAUDE_TOOLS" --model sonnet -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+  REFLECT_EXIT=$?
+  echo "Reflection exit: $REFLECT_EXIT" | tee -a "$LOG_FILE"
+  # Failure here doesn't affect publishing — the cycle is already complete
+else
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 5: Weekly reflection (skipped — day $DAY_OF_WEEK $HOUR_UTC:00 UTC, runs Sunday 18:00 only) ---" | tee -a "$LOG_FILE"
+fi

@@ -10,6 +10,7 @@ import textToSpeech from '@google-cloud/text-to-speech'
 const ROOT = new URL('..', import.meta.url).pathname
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const AUDIO_DIR = join(ROOT, 'content', 'audio')
+const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'briefing-prompt.md')
 const TMP_ARTICLES = '/tmp/zuhd-briefing-articles.json'
 
@@ -57,7 +58,30 @@ if (articles.length === 0) {
 }
 
 console.log(`Found ${articles.length} articles from last 24h`)
-writeFileSync(TMP_ARTICLES, JSON.stringify(articles, null, 2))
+
+// Inject editorial context from story ledger (backwards-compatible — briefing works without it)
+let editorialContext = null
+try {
+  if (existsSync(LEDGER_PATH)) {
+    const ledger = JSON.parse(readFileSync(LEDGER_PATH, 'utf-8'))
+    if (ledger.stories && ledger.stories.length > 0) {
+      const topStories = ledger.stories
+        .filter(s => s.importance >= 6 || s.arc === 'breaking' || s.arc === 'developing')
+        .map(({ id, label, importance, arc, coverageCount, summary }) =>
+          ({ id, label, importance, arc, coverageCount, summary }))
+      if (topStories.length > 0) {
+        editorialContext = { topStories }
+        console.log(`Loaded ${topStories.length} top stories from story ledger`)
+      }
+    }
+  }
+} catch (err) {
+  console.warn('Could not read story ledger (continuing without it):', err.message)
+}
+
+const payload = { articles }
+if (editorialContext) payload.editorialContext = editorialContext
+writeFileSync(TMP_ARTICLES, JSON.stringify(payload, null, 2))
 
 // --- Stage 2: Generate SSML via Claude CLI ---
 console.log('\n=== Stage 2: Generating SSML bulletin ===')
