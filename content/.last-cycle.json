@@ -1,14 +1,49 @@
 {
-  "timestamp": "2026-02-15T18:00:00Z",
+  "timestamp": "2026-02-15T22:00:00Z",
   "articles": [
-    { "slug": "2026-02-15-eu-bans-destruction-of-unsold-clothing-and-shoes", "title": "EU Bans Destroying Unsold Clothes", "category": "economy", "source": "Hacker News" },
-    { "slug": "2026-02-15-eu-pushes-mutual-defence-pact-as-transatlantic-rift-widens", "title": "EU Pushes Mutual Defence Activation", "category": "politics", "source": "Al Monitor" },
-    { "slug": "2026-02-15-india-agrees-to-stop-buying-russian-oil-rubio-says", "title": "India Pledges Russian Oil Halt", "category": "economy", "source": "The Hindu" },
-    { "slug": "2026-02-15-indonesia-prepares-trade-agenda-for-prabowo-washington-visit", "title": "Indonesia Prepares Washington Trade Agenda", "category": "economy", "source": "Antara News" },
-    { "slug": "2026-02-15-msf-suspends-gaza-hospital-work-over-armed-groups-inside", "title": "MSF Suspends Gaza Hospital Work", "category": "conflict", "source": "Al Monitor" },
-    { "slug": "2026-02-15-pentagon-used-anthropic-ai-in-caracas-raid-report-says", "title": "Pentagon Deployed AI in Caracas", "category": "tech", "source": "France 24" },
-    { "slug": "2026-02-15-syria-takes-over-us-base-as-american-withdrawal-continues", "title": "Syria Reclaims US Military Base", "category": "conflict", "source": "Al Jazeera" }
+    {
+      "slug": "2026-02-15-board-of-peace-members-pledge-five-billion-for-gaza",
+      "title": "Gaza Reconstruction Gets $5 Billion",
+      "category": "politics",
+      "source": "Deutsche Welle"
+    },
+    {
+      "slug": "2026-02-15-cuba-fuel-crisis-deepens-after-us-blocks-venezuelan-oil",
+      "title": "Cuba Cancels Cigar Festival",
+      "category": "economy",
+      "source": "France 24"
+    },
+    {
+      "slug": "2026-02-15-eu-bans-destruction-of-unsold-clothing-and-shoes",
+      "title": "EU Bans Destroying Unsold Clothes",
+      "category": "economy",
+      "source": "Hacker News"
+    },
+    {
+      "slug": "2026-02-15-indonesia-prepares-economic-pitch-for-prabowo-us-visit",
+      "title": "Indonesia Prepares Trump Trade Deal",
+      "category": "economy",
+      "source": "Antara News"
+    },
+    {
+      "slug": "2026-02-15-syria-takes-over-us-base-as-american-withdrawal-accelerates",
+      "title": "Syria Retakes US Military Base",
+      "category": "conflict",
+      "source": "Al Jazeera"
+    },
+    {
+      "slug": "2026-02-15-tunisia-detains-opposition-figure-in-latest-crackdown",
+      "title": "Tunisia Detains Opposition Leader",
+      "category": "politics",
+      "source": "Daily Maverick"
+    },
+    {
+      "slug": "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
+      "title": "UN Documents El Fasher Atrocities",
+      "category": "conflict",
+      "source": "AllAfrica"
+    }
   ],
-  "categories": ["economy", "politics", "conflict", "tech"],
-  "sources": ["Hacker News", "Al Monitor", "The Hindu", "Antara News", "France 24", "Al Jazeera"]
+  "categories": ["politics", "economy", "conflict"],
+  "sources": ["Deutsche Welle", "France 24", "Hacker News", "Antara News", "Al Jazeera", "Daily Maverick", "AllAfrica"]
 }
