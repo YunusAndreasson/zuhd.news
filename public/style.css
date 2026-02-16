@@ -431,15 +431,26 @@ footer a:hover {
 
   h1 { font-size: var(--size-h1); }
 
+  header { margin-bottom: 0.75rem; }
+
   .category-strip {
     flex-wrap: nowrap;
     overflow-x: auto;
     scrollbar-width: none;
     -webkit-mask-image: linear-gradient(to right, #000 80%, transparent);
     mask-image: linear-gradient(to right, #000 80%, transparent);
-    padding-right: 2rem;
+    padding-right: 3.5rem;
     gap: 1.25rem;
   }
+
+  .category-tab {
+    padding: 0.5rem 0;
+  }
+
+  .headline-item.selected h2 {
+    text-decoration: none;
+  }
+
 }
 
 /* --- Desktop --- */

@@ -84,7 +84,7 @@ function init(data) {
       const allRead = articles[categories[i]].every(a => readSlugs.has(a.slug));
       tab.classList.toggle('all-read', allRead);
     });
-    tabEls[state.catIdx]?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+    tabEls[state.catIdx]?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: isDesktop() ? 'smooth' : 'instant' });
   };
 
   const buildHeadlines = () => {
@@ -125,12 +125,16 @@ function init(data) {
     state.artIdx = isDesktop() ? 0 : -1;
     updateStrip();
 
-    listEl.classList.add('switching');
-    setTimeout(() => {
+    if (isDesktop()) {
+      listEl.classList.add('switching');
+      setTimeout(() => {
+        buildHeadlines();
+        listEl.classList.remove('switching');
+        openArticle(true);
+      }, 60);
+    } else {
       buildHeadlines();
-      listEl.classList.remove('switching');
-      if (isDesktop()) openArticle(true);
-    }, 60);
+    }
 
     announce(`${categories[idx]} category`);
   };
@@ -178,6 +182,9 @@ function init(data) {
 
     const item = listEl.children[state.artIdx];
     item?.append(expand);
+    requestAnimationFrame(() => {
+      item?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    });
     announce(`Reading: ${article.title}`);
   };
 
