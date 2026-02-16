@@ -94,6 +94,11 @@ if (ssmlMatch) {
   ssml = `<speak>${plainText}</speak>`
 }
 
+// Save SSML transcript for review/debugging
+const ssmlPath = join(AUDIO_DIR, `briefing-${today}.ssml`)
+writeFileSync(ssmlPath, ssml)
+console.log(`SSML saved: ${ssmlPath}`)
+
 // --- Stage 3: Synthesize MP3 via Google TTS ---
 console.log('\n=== Stage 3: Synthesizing audio ===')
 

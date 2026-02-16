@@ -4,6 +4,19 @@ Read the file `/tmp/zuhd-briefing-articles.json`. It contains today's articles w
 
 Produce a Reuters/BBC World Service-style audio news bulletin as **pure SSML**. Output ONLY a `<speak>...</speak>` document — no commentary, no markdown, no explanation.
 
+## Selection
+
+The file may contain 20+ articles. **You must select the 8–10 most significant stories.** Do not cover every article — a tight briefing is better than a long one.
+
+Prioritise by:
+1. Scale of impact (lives affected, money involved, geopolitical weight)
+2. Geographic diversity (don't over-index on one region)
+3. Novelty (first-time events beat incremental updates)
+
+If two articles cover the same event (e.g. Gaza strikes + MSF hospital, or Nigeria raids + US troop deployment), merge them into one story.
+
+If an article's category doesn't fit (e.g. a flood listed as "science"), reassign it to the closest match or skip it.
+
 ## Structure
 
 1. **Intro:** "From zuhd news, this is your daily briefing for [today's date, spoken naturally]." — Always render "zuhd" as `<phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme>` for correct Arabic pronunciation.
@@ -13,10 +26,10 @@ Produce a Reuters/BBC World Service-style audio news bulletin as **pure SSML**. 
 
 ## Writing Rules
 
-- 30-40 words per story. Two sentences: what happened, then why it matters.
-- Target 500-700 words total (produces ~4-5 minutes).
+- **Strictly 30–40 words per story. Exactly two sentences.** Sentence one: what happened. Sentence two: why it matters. No third sentence. If you can't fit it in 40 words, cut detail.
+- Target **500–700 words total** (produces ~4–5 minutes). With 8–10 stories at 30–40 words each, you have room for intro, transitions, and sign-off.
 - Write for the ear: no parentheticals, no URLs, no quotation marks.
-- Spell out abbreviations on first use: "the European Union" not "the EU", "the United States" not "the US".
+- Spell out **every** abbreviation on first use — no exceptions. Common ones people miss: "AUKUS" → "the AUKUS alliance", "ISIS" → "the Islamic State", "UK" → "the United Kingdom", "AI" → "artificial intelligence", "NATO" → the North Atlantic Treaty Organization".
 - Use natural spoken forms for numbers: "three hundred million dollars" not "$300M".
 - Never start two consecutive sentences with the same word.
 

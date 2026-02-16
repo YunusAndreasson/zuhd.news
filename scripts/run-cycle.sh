@@ -68,3 +68,21 @@ CHECK_PROMPT=$(cat scripts/check-prompt.md)
 timeout 300 claude --allowedTools "$CLAUDE_TOOLS" --model sonnet -p "$CHECK_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 EDITOR_EXIT=$?
 echo "Editor exit: $EDITOR_EXIT" | tee -a "$LOG_FILE"
+
+# Stage 4: Audio briefing — generate at 06:00 and 18:00 UTC only
+HOUR_UTC=$(date -u +%H)
+if [ "$HOUR_UTC" = "06" ] || [ "$HOUR_UTC" = "18" ]; then
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 4: Audio briefing ---" | tee -a "$LOG_FILE"
+  timeout 300 node scripts/generate-briefing.js 2>&1 | tee -a "$LOG_FILE"
+  BRIEFING_EXIT=$?
+  echo "Briefing exit: $BRIEFING_EXIT" | tee -a "$LOG_FILE"
+  if [ "$BRIEFING_EXIT" -eq 0 ]; then
+    echo "Rebuilding and redeploying with audio..." | tee -a "$LOG_FILE"
+    node scripts/build.js 2>&1 | tee -a "$LOG_FILE"
+    npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
+  fi
+else
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 4: Audio briefing (skipped — $HOUR_UTC:00 UTC, runs at 06:00/18:00 only) ---" | tee -a "$LOG_FILE"
+fi
