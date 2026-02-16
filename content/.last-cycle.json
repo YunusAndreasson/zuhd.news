@@ -1,14 +1,49 @@
 {
-  "timestamp": "2026-02-15T18:00:00Z",
+  "timestamp": "2026-02-16T00:00:00Z",
   "articles": [
-    { "slug": "2026-02-15-eu-bans-destruction-of-unsold-clothing-and-shoes", "title": "EU Bans Destroying Unsold Clothes", "category": "economy", "source": "Hacker News" },
-    { "slug": "2026-02-15-eu-pushes-mutual-defence-pact-as-transatlantic-rift-widens", "title": "EU Pushes Mutual Defence Activation", "category": "politics", "source": "Al Monitor" },
-    { "slug": "2026-02-15-india-agrees-to-stop-buying-russian-oil-rubio-says", "title": "India Pledges Russian Oil Halt", "category": "economy", "source": "The Hindu" },
-    { "slug": "2026-02-15-indonesia-prepares-trade-agenda-for-prabowo-washington-visit", "title": "Indonesia Prepares Washington Trade Agenda", "category": "economy", "source": "Antara News" },
-    { "slug": "2026-02-15-msf-suspends-gaza-hospital-work-over-armed-groups-inside", "title": "MSF Suspends Gaza Hospital Work", "category": "conflict", "source": "Al Monitor" },
-    { "slug": "2026-02-15-pentagon-used-anthropic-ai-in-caracas-raid-report-says", "title": "Pentagon Deployed AI in Caracas", "category": "tech", "source": "France 24" },
-    { "slug": "2026-02-15-syria-takes-over-us-base-as-american-withdrawal-continues", "title": "Syria Reclaims US Military Base", "category": "conflict", "source": "Al Jazeera" }
+    {
+      "slug": "2026-02-16-ars-technica-retracts-article-with-ai-fabricated-quotes",
+      "title": "Ars Technica Retracts AI-Tainted Article",
+      "category": "tech",
+      "source": "Hacker News"
+    },
+    {
+      "slug": "2026-02-16-cuba-cancels-cigar-festival-as-fuel-crisis-deepens",
+      "title": "Cuba Cancels International Cigar Fair",
+      "category": "economy",
+      "source": "France 24"
+    },
+    {
+      "slug": "2026-02-16-egypt-releases-anti-torture-activist-after-state-security-questioning",
+      "title": "Egypt Questions Anti-Torture Activist",
+      "category": "politics",
+      "source": "Mada Masr"
+    },
+    {
+      "slug": "2026-02-16-iran-fm-heads-to-geneva-for-nuclear-talks-with-us",
+      "title": "Iran Resumes Geneva Nuclear Talks",
+      "category": "politics",
+      "source": "France 24"
+    },
+    {
+      "slug": "2026-02-16-magyar-launches-anti-orban-campaign-in-hungary",
+      "title": "Magyar Challenges Orban for Hungary",
+      "category": "politics",
+      "source": "Deutsche Welle"
+    },
+    {
+      "slug": "2026-02-16-png-apologises-for-port-moresby-evictions",
+      "title": "Papua New Guinea Apologises for Evictions",
+      "category": "politics",
+      "source": "RNZ Pacific"
+    },
+    {
+      "slug": "2026-02-16-zambia-copper-revival-draws-billions-in-geopolitical-contest",
+      "title": "Zambia Copper Boom Draws Billions",
+      "category": "economy",
+      "source": "Malay Mail"
+    }
   ],
-  "categories": ["economy", "politics", "conflict", "tech"],
-  "sources": ["Hacker News", "Al Monitor", "The Hindu", "Antara News", "France 24", "Al Jazeera"]
+  "categories": ["tech", "economy", "politics"],
+  "sources": ["Hacker News", "France 24", "Mada Masr", "Deutsche Welle", "RNZ Pacific", "Malay Mail"]
 }
