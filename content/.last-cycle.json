@@ -1,49 +1,62 @@
 {
-  "timestamp": "2026-02-17T00:00:00Z",
+  "timestamp": "2026-02-17T07:15:00Z",
   "articles": [
     {
-      "slug": "2026-02-17-india-seizes-three-iran-linked-oil-tankers-under-us-sanctions",
-      "title": "India Seizes Iran-Linked Tankers",
+      "slug": "2026-02-17-argentina-general-strike-called-against-milei-labour-reforms",
+      "title": "Argentina Unions Call General Strike",
       "category": "economy",
-      "source": "Daily Maverick"
+      "source": "Buenos Aires Times"
     },
     {
-      "slug": "2026-02-17-macron-visits-india-with-rafale-deal-and-ai-pact-on-table",
-      "title": "France Offers India Rafale Deal",
+      "slug": "2026-02-17-bangladesh-swears-in-new-parliament-as-yunus-era-ends",
+      "title": "Bangladesh Swears In Parliament",
       "category": "politics",
-      "source": "France 24"
+      "source": "Dawn"
     },
     {
-      "slug": "2026-02-17-pentagon-close-to-cutting-ties-with-anthropic-over-use-restrictions",
-      "title": "Pentagon May Drop Anthropic",
+      "slug": "2026-02-17-fourteen-killed-in-attacks-across-northwest-pakistan",
+      "title": "Pakistan Attacks Kill 14",
+      "category": "conflict",
+      "source": "Daily Star"
+    },
+    {
+      "slug": "2026-02-17-iran-us-nuclear-talks-begin-in-geneva-under-threat-of-war",
+      "title": "Iran-US Nuclear Talks Open",
+      "category": "politics",
+      "source": "Al Monitor"
+    },
+    {
+      "slug": "2026-02-17-ireland-opens-data-protection-probe-into-grok-deepfakes",
+      "title": "Ireland Probes Grok Over Deepfakes",
       "category": "tech",
-      "source": "South China Morning Post"
+      "source": "Deutsche Welle"
     },
     {
-      "slug": "2026-02-17-spain-sends-cuba-humanitarian-aid-through-un-bypassing-us-blockade",
-      "title": "Spain Routes Aid to Cuba",
-      "category": "politics",
-      "source": "South China Morning Post"
-    },
-    {
-      "slug": "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28",
-      "title": "Sudan Drone Hits Crowded Market",
-      "category": "conflict",
-      "source": "Al Jazeera"
-    },
-    {
-      "slug": "2026-02-17-ukraine-recaptures-most-territory-in-two-years-ahead-of-geneva-talks",
-      "title": "Ukraine Retakes Zaporizhzhia Ground",
-      "category": "conflict",
-      "source": "France 24"
-    },
-    {
-      "slug": "2026-02-17-us-deploys-100-soldiers-to-nigeria-as-armed-group-attacks-surge",
-      "title": "US Sends Troops to Nigeria",
+      "slug": "2026-02-17-lebanon-sets-four-month-deadline-for-hezbollah-disarmament",
+      "title": "Lebanon Sets Hezbollah Disarmament Deadline",
       "category": "politics",
       "source": "Al Jazeera"
+    },
+    {
+      "slug": "2026-02-17-sudan-drone-strikes-kill-sixty-across-darfur-and-kordofan",
+      "title": "Sudan Drone Campaign Kills 60",
+      "category": "conflict",
+      "source": "AllAfrica"
     }
   ],
-  "categories": ["economy", "politics", "tech", "conflict"],
-  "sources": ["Daily Maverick", "France 24", "South China Morning Post", "Al Jazeera"]
+  "categories": [
+    "conflict",
+    "economy",
+    "politics",
+    "tech"
+  ],
+  "sources": [
+    "Al Jazeera",
+    "Al Monitor",
+    "AllAfrica",
+    "Buenos Aires Times",
+    "Daily Star",
+    "Dawn",
+    "Deutsche Welle"
+  ]
 }
