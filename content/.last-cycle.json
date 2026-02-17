@@ -1,43 +1,14 @@
 {
-  "timestamp": "2026-02-17T12:00:09Z",
+  "timestamp": "2026-02-17T21:30:00Z",
   "articles": [
-    {
-      "slug": "2026-02-17-china-claims-breakthrough-in-post-silicon-semiconductor-wafers",
-      "title": "China Grows Post-Silicon Wafer",
-      "category": "science",
-      "source": "South China Morning Post"
-    },
-    {
-      "slug": "2026-02-17-iran-fires-missiles-and-threatens-us-warship-as-nuclear-talks-resume",
-      "title": "Iran Tests Missiles at Hormuz",
-      "category": "politics",
-      "source": "South China Morning Post"
-    },
-    {
-      "slug": "2026-02-17-jesse-jackson-civil-rights-leader-dies-at-84",
-      "title": "Jesse Jackson Dies at 84",
-      "category": "politics",
-      "source": "CBC News"
-    },
-    {
-      "slug": "2026-02-17-ocalan-announces-first-phase-of-pkk-dissolution-is-complete",
-      "title": "Ocalan Declares Armed Struggle Over",
-      "category": "politics",
-      "source": "Middle East Eye"
-    },
-    {
-      "slug": "2026-02-17-philippines-rebukes-china-over-coercive-economic-warning",
-      "title": "Philippines Rebukes China Threat",
-      "category": "politics",
-      "source": "Al Jazeera"
-    },
-    {
-      "slug": "2026-02-17-russia-ukraine-hold-third-round-of-geneva-talks-as-strikes-continue",
-      "title": "Russia-Ukraine Talks Resume Under Fire",
-      "category": "conflict",
-      "source": "BBC World"
-    }
+    { "slug": "2026-02-17-bayer-offers-seven-billion-to-settle-roundup-cancer-claims", "title": "Bayer Offers Roundup Settlement", "category": "economy", "source": "BBC Business" },
+    { "slug": "2026-02-17-canada-launches-defence-overhaul-to-reduce-reliance-on-us", "title": "Canada Overhauls Defence Spending", "category": "politics", "source": "South China Morning Post" },
+    { "slug": "2026-02-17-eu-opens-formal-investigation-into-shein-under-dsa", "title": "European Union Probes Shein", "category": "tech", "source": "France 24" },
+    { "slug": "2026-02-17-iran-closes-strait-of-hormuz-as-nuclear-talks-continue", "title": "Iran Closes Hormuz Shipping Lane", "category": "politics", "source": "ABC News Australia" },
+    { "slug": "2026-02-17-peru-congress-impeaches-president-jeri-over-chifagate-scandal", "title": "Peru Ousts President Jeri", "category": "politics", "source": "Al Jazeera" },
+    { "slug": "2026-02-17-tesla-robotaxi-crash-rate-four-times-worse-than-human-drivers", "title": "Tesla Robotaxis Crash Often", "category": "tech", "source": "Hacker News" },
+    { "slug": "2026-02-17-us-strikes-on-drug-boats-death-toll-passes-145", "title": "Drug Boat Strikes Kill 145", "category": "conflict", "source": "Al Jazeera" }
   ],
-  "categories": ["science", "politics", "conflict"],
-  "sources": ["South China Morning Post", "CBC News", "Middle East Eye", "Al Jazeera", "BBC World"]
+  "categories": ["economy", "politics", "tech", "conflict"],
+  "sources": ["BBC Business", "South China Morning Post", "France 24", "ABC News Australia", "Al Jazeera", "Hacker News"]
 }
