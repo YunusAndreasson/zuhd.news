@@ -8,12 +8,13 @@ Produce a Reuters/BBC World Service-style audio news bulletin as **pure SSML**. 
 
 ## Selection
 
-The file may contain 20+ articles. **You must select the 8–10 most significant stories.** Do not cover every article — a tight briefing is better than a long one.
+The file may contain 20+ articles. **You must select exactly 8–10 stories. Not 11, not 15, not 20. Count them.** A tight briefing is better than a long one — cutting is the hardest editorial skill.
 
 Prioritise by:
 1. Scale of impact (lives affected, money involved, geopolitical weight)
-2. Geographic diversity (don't over-index on one region)
+2. Geographic diversity — **no country more than once.** If 3 articles cover Iran, merge them into one story or pick the single most important angle. The listener should hear a world briefing, not a deep-dive on one country.
 3. Novelty (first-time events beat incremental updates)
+4. Avoid repeating the same context across stories. If "Geneva talks" matter to Iran, Ukraine, and Israel, mention them once in the most relevant story.
 
 ## Editorial Context
 
@@ -37,9 +38,9 @@ If an article's category doesn't fit (e.g. a flood listed as "science"), reassig
 
 ## Writing Rules
 
-- **Every story must open with the country or region name.** This is the geographic anchor — it tells the listener where to place the story. Always. No exceptions.
-- **Strictly 30–40 words per story. Exactly two sentences.** Sentence one: what happened (starting with the country/region). Sentence two: why it matters. No third sentence. If you can't fit it in 40 words, cut detail.
-- Target **500–700 words total** (produces ~4–5 minutes). With 8–10 stories at 30–40 words each, you have room for intro, transitions, and sign-off.
+- **Every story must open with the country or region name.** This is the geographic anchor — it tells the listener where to place the story. Always. No exceptions. **Never use "[Country] saw/heard/faced..."** as filler when the actor is not the country itself. Instead, name the actual actor after the country: "**China's** Alibaba launched..." not "China saw Alibaba launch..." / "**Israel's** Supreme Court struck down..." not "Israel saw its Supreme Court..." / "**Colombia's** Council of State suspended..." not "Colombia saw its Council of State suspend..."
+- **Strictly 30–40 words per story. Exactly two sentences.** Sentence one: what happened (starting with the country/region). Sentence two: why it matters. No third sentence. If you hit 40 words, cut — don't squeeze. Drop the least essential detail.
+- Target **500–600 words total** (produces ~4 minutes). 8–10 stories × 35 words = 280–350 words for stories, plus intro, transitions, and sign-off. **Count your stories before outputting. If you have more than 10, cut the weakest.**
 - Write for the ear: no parentheticals, no URLs, no quotation marks.
 - Spell out **every** abbreviation on first use — no exceptions. Common ones people miss: "AUKUS" → "the AUKUS alliance", "ISIS" → "the Islamic State", "UK" → "the United Kingdom", "AI" → "artificial intelligence", "NATO" → the North Atlantic Treaty Organization".
 - Use natural spoken forms for numbers: "three hundred million dollars" not "$300M".
@@ -68,7 +69,7 @@ In politics.<break time="400ms"/>
 <emphasis level="strong">India</emphasis> and Japan signed a bilateral defense agreement strengthening naval cooperation in the Indo-Pacific. Both nations seek to counterbalance growing Chinese naval presence in the region.
 <break time="900ms"/>
 On the economy.<break time="400ms"/>
-<emphasis level="strong">South Korea</emphasis> reported its fastest quarterly growth in two years, driven by a surge in semiconductor exports. The rebound signals broader recovery across East Asian manufacturing economies.
+<emphasis level="strong">South Korea's</emphasis> economy grew at its fastest quarterly pace in two years, driven by a surge in semiconductor exports. The rebound signals broader recovery across East Asian manufacturing.
 <break time="1s"/>
 That's your briefing from <phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme> news.
 </speak>

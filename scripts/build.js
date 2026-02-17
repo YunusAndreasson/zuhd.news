@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, existsSync, rmSync } from 'fs'
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, existsSync, rmSync, statSync } from 'fs'
 import { join, basename } from 'path'
 
 const ROOT = new URL('..', import.meta.url).pathname
@@ -99,6 +99,7 @@ const buildArticle = (filename, articleTemplate) => {
     .replace(/{{slug}}/g, slug)
     .replace(/{{description}}/g, description)
     .replace(/{{date}}/g, dateFormatted)
+    .replace(/{{isoDate}}/g, meta.date || '')
     .replace(/{{category}}/g, meta.category || '')
     .replace(/{{source}}/g, meta.source || '')
     .replace(/{{sourceUrl}}/g, meta.sourceUrl || '#')
@@ -110,7 +111,7 @@ const buildArticle = (filename, articleTemplate) => {
 const PER_CATEGORY_LIMIT = 5
 
 const buildHomepage = (articles, homepageTemplate) => {
-  const sorted = articles.sort((a, b) => new Date(b.meta.date) - new Date(a.meta.date))
+  const sorted = articles.sort((a, b) => b.addedAt - a.addedAt)
 
   const grouped = {}
   for (const a of sorted) {
@@ -120,6 +121,7 @@ const buildHomepage = (articles, homepageTemplate) => {
       slug: a.slug,
       title: a.title,
       date: a.meta.date,
+      addedAt: a.addedAt,
       dateFormatted: a.dateFormatted,
       timeFormatted: a.timeFormatted,
       source: a.meta.source || '',
@@ -187,8 +189,9 @@ const articles = []
 
 for (const file of files) {
   const { slug, html, meta, bodyHtml, title, dateFormatted, timeFormatted } = buildArticle(file, articleTemplate)
+  const addedAt = meta.date ? new Date(meta.date).getTime() : statSync(join(CONTENT_DIR, file)).mtimeMs
   writeFileSync(join(DIST_DIR, 'articles', `${slug}.html`), html)
-  articles.push({ slug, meta, bodyHtml, title, dateFormatted, timeFormatted })
+  articles.push({ slug, meta, bodyHtml, title, dateFormatted, timeFormatted, addedAt })
   console.log(`  Built: ${slug}`)
 }
 
@@ -199,18 +202,34 @@ if (existsSync(briefingMetaPath)) {
   const meta = JSON.parse(readFileSync(briefingMetaPath, 'utf-8'))
   const age = Date.now() - new Date(meta.generated).getTime()
   if (age < 36 * 60 * 60 * 1000) {
-    audioBriefingHtml = `<div class="audio-briefing">
-      <button class="briefing-play" aria-label="Play daily briefing">\u25B6</button>
-      <span class="briefing-label">Daily briefing</span>
+    const genHour = new Date(meta.generated).getUTCHours()
+    const cycles = [0, 6, 12, 18]
+    const cycleHour = cycles.reduce((prev, c) => c <= genHour ? c : prev, 0)
+    const cycleStr = String(cycleHour).padStart(2, '0') + ':00'
+    const briefingKey = meta.date + '-' + cycleStr.replace(':', '')
+    const playSvg = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,1 12,7 3,13"/></svg>'
+    const pauseSvg = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="2" y="1" width="3.5" height="12"/><rect x="8.5" y="1" width="3.5" height="12"/></svg>'
+    audioBriefingHtml = `<div class="audio-briefing" data-key="${briefingKey}">
+      <button class="briefing-play" aria-label="Play briefing">${playSvg}</button>
+      <span class="briefing-label">Briefing</span>
       <div class="briefing-track"><div class="briefing-bar"></div></div>
       <audio preload="none" src="/audio/briefing-${meta.date}.mp3"></audio>
     </div>
-    <script>!function(){var b=document.querySelector('.audio-briefing');if(!b)return;var a=b.querySelector('audio'),p=b.querySelector('.briefing-play'),t=b.querySelector('.briefing-track'),r=b.querySelector('.briefing-bar');p.onclick=function(){a.paused?(a.play(),p.textContent='\\u275A\\u275A'):(a.pause(),p.textContent='\\u25B6')};a.ontimeupdate=function(){r.style.width=a.duration?(a.currentTime/a.duration*100)+'%':'0'};a.onended=function(){p.textContent='\\u25B6';r.style.width='0'};t.onclick=function(e){if(a.duration){a.currentTime=e.offsetX/t.offsetWidth*a.duration}}}()</script>`
+    <script>!function(){var b=document.querySelector('.audio-briefing');if(!b)return;var h=new Date().getHours(),l=b.querySelector('.briefing-label');l.textContent=h>=5&&h<12?'Morning briefing':h<18?'Afternoon briefing':'Evening briefing';var a=b.querySelector('audio'),p=b.querySelector('.briefing-play'),t=b.querySelector('.briefing-track'),r=b.querySelector('.briefing-bar'),k='briefing-listened-'+b.dataset.key,play='${playSvg.replace(/'/g, "\\'")}',pause='${pauseSvg.replace(/'/g, "\\'")}';if(localStorage.getItem(k))b.classList.add('listened');b.style.cursor='pointer';b.onclick=function(e){if(e.target.closest('.briefing-track'))return;a.paused?(a.play(),p.innerHTML=pause):(a.pause(),p.innerHTML=play)};a.ontimeupdate=function(){r.style.width=a.duration?(a.currentTime/a.duration*100)+'%':'0';if(a.currentTime>10&&!localStorage.getItem(k)){localStorage.setItem(k,'1');b.classList.add('listened')}};a.onended=function(){p.innerHTML=play;r.style.width='0';localStorage.setItem(k,'1');b.classList.add('listened')};t.onclick=function(e){if(a.duration){a.currentTime=e.offsetX/t.offsetWidth*a.duration}}}()</script>`
   }
+}
+
+// Embed last cycle timestamp for reader.js
+let lastCycleTs = ''
+const lastCyclePath = join(ROOT, 'content', '.last-cycle.json')
+if (existsSync(lastCyclePath)) {
+  const cycle = JSON.parse(readFileSync(lastCyclePath, 'utf-8'))
+  if (cycle.timestamp) lastCycleTs = cycle.timestamp
 }
 
 const homepage = buildHomepage(articles, homepageTemplate)
   .replace(/{{audioBriefing}}/g, audioBriefingHtml)
+  .replace('</body>', lastCycleTs ? `<script>window.__lastCycle="${lastCycleTs}"</script></body>` : '</body>')
 writeFileSync(join(DIST_DIR, 'index.html'), homepage)
 console.log(`  Built: index.html (${articles.length} articles)`)
 
@@ -224,7 +243,7 @@ for (const page of ['about', 'sources', 'navigation', 'contact', 'privacy']) {
   const body = readFileSync(pagePath, 'utf-8')
   const html = pageTemplate
     .replace('{{content}}', markdownToHtml(body))
-    .replace(/zuhd\.news — about/, `zuhd.news — ${page}`)
+    .replace(/\{\{pageName\}\}/g, page)
   writeFileSync(join(DIST_DIR, `${page}.html`), html)
   console.log(`  Built: ${page}.html`)
 }

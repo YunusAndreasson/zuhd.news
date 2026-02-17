@@ -17,6 +17,19 @@ function init(data) {
   const announcer = document.getElementById('announcer');
   const escapeDiv = document.createElement('div');
 
+  // Update status in footer
+  const statusEl = document.querySelector('footer .update-status');
+  function updateStatus() {
+    const ts = window.__lastCycle;
+    if (!ts || !statusEl) return;
+    const now = Date.now(), ago = now - new Date(ts).getTime();
+    const h = Math.floor(ago / 36e5), m = Math.floor((ago % 36e5) / 6e4);
+    const agoStr = h > 0 ? h + 'h ago' : (m < 2 ? 'just now' : m + ' min ago');
+    statusEl.textContent = 'Updated ' + agoStr;
+  }
+  updateStatus();
+  setInterval(updateStatus, 60000);
+
   const announce = (msg) => {
     announcer.textContent = '';
     setTimeout(() => { announcer.textContent = msg; }, 50);
@@ -30,7 +43,9 @@ function init(data) {
   // --- Read state (localStorage) ---
 
   const STORAGE_KEY = 'zuhd-read';
-  const readSlugs = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'));
+  const allSlugs = new Set(Object.values(articles).flat().map(a => a.slug));
+  const readSlugs = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]').filter(s => allSlugs.has(s)));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify([...readSlugs]));
   const markRead = (slug) => {
     readSlugs.add(slug);
     localStorage.setItem(STORAGE_KEY, JSON.stringify([...readSlugs]));
@@ -81,8 +96,6 @@ function init(data) {
   const updateStrip = () => {
     tabEls.forEach((tab, i) => {
       tab.ariaSelected = i === state.catIdx ? 'true' : 'false';
-      const allRead = articles[categories[i]].every(a => readSlugs.has(a.slug));
-      tab.classList.toggle('all-read', allRead);
     });
     tabEls[state.catIdx]?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: isDesktop() ? 'smooth' : 'instant' });
   };
@@ -92,10 +105,16 @@ function init(data) {
     for (const [i, a] of currentList().entries()) {
       const div = document.createElement('div');
       div.className = 'headline-item';
+      div.tabIndex = 0;
+      div.role = 'button';
       div.classList.toggle('selected', i === state.artIdx);
       if (readSlugs.has(a.slug)) div.classList.add('read');
-      const localTime = new Date(a.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-      div.innerHTML = `<h2>${esc(a.title)}</h2><time datetime="${a.date}">${localTime}</time>`;
+      const displayDate = a.addedAt ? new Date(a.addedAt) : new Date(a.date);
+      const localTime = displayDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+      div.innerHTML = `<h2>${esc(a.title)}</h2><time datetime="${displayDate.toISOString()}">${localTime}</time>`;
+      div.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); div.click(); }
+      });
       div.addEventListener('click', () => {
         showClickHint();
         if (!isDesktop() && state.artIdx === i && div.querySelector('.article-expand')) {
@@ -156,7 +175,6 @@ function init(data) {
     }
 
     if (isDesktop()) {
-      // Desktop: render in article-view pane
       const a = article;
       viewInner.innerHTML = `
         <header class="article-header">
@@ -247,14 +265,12 @@ function init(data) {
 
   mql.addEventListener('change', (e) => {
     if (e.matches) {
-      // Entered desktop: collapse mobile expand, show desktop pane
       collapseArticle();
       state.artIdx = 0;
       updateSelection();
       buildHeadlines();
       openArticle(true);
     } else {
-      // Entered mobile: hide desktop pane
       viewEl.hidden = true;
       buildHeadlines();
     }
@@ -324,6 +340,10 @@ function init(data) {
 
       buildHeadlines();
       if (isDesktop() && state.artIdx >= 0) openArticle();
+
+      // Update cycle timestamp from refreshed page
+      const tsMatch = html.match(/window\.__lastCycle="([^"]+)"/);
+      if (tsMatch) { window.__lastCycle = tsMatch[1]; updateStatus(); }
     } catch (e) { /* silent */ }
   };
 

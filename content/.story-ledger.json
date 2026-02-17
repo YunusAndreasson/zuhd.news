@@ -5,13 +5,61 @@
       "id": "iran-nuclear-talks-geneva",
       "label": "Iran-US nuclear talks in Geneva",
       "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-16T18:00:00Z",
-      "coverageCount": 3,
+      "lastCovered": "2026-02-17T00:00:00Z",
+      "coverageCount": 4,
       "category": "politics",
       "importance": 9,
       "arc": "developing",
-      "articles": ["2026-02-15-iran-signals-nuclear-compromise-before-geneva-talks", "2026-02-16-netanyahu-demands-iran-nuclear-dismantlement-before-geneva-talks", "2026-02-16-iran-begins-military-drills-in-strait-of-hormuz-ahead-of-nuclear-talks"],
-      "summary": "Iran-US nuclear talks set for Feb 18 in Geneva. IRGC launched Hormuz drills as leverage signal. Netanyahu demands full dismantlement. Araghchi met IAEA chief."
+      "articles": ["2026-02-15-iran-signals-nuclear-compromise-before-geneva-talks", "2026-02-16-netanyahu-demands-iran-nuclear-dismantlement-before-geneva-talks", "2026-02-16-iran-begins-military-drills-in-strait-of-hormuz-ahead-of-nuclear-talks", "2026-02-17-india-seizes-three-iran-linked-oil-tankers-under-us-sanctions"],
+      "summary": "Iran-US nuclear talks set for Feb 18 in Geneva. India seized three Iran-linked sanctioned tankers. Graham said intervention 'within weeks.' Huckabee doubts compromise. IRGC drills in Hormuz continue."
+    },
+    {
+      "id": "ukraine-russia-geneva-talks",
+      "label": "Ukraine-Russia Geneva peace talks",
+      "firstSeen": "2026-02-15T00:00:00Z",
+      "lastCovered": "2026-02-17T00:00:00Z",
+      "coverageCount": 3,
+      "category": "conflict",
+      "importance": 10,
+      "arc": "developing",
+      "articles": ["2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks", "2026-02-16-ukraine-russia-geneva-talks-set-as-both-sides-escalate", "2026-02-17-ukraine-recaptures-most-territory-in-two-years-ahead-of-geneva-talks"],
+      "summary": "Ukraine recaptured 201 sq km in five days — biggest gain since 2023 — going into Tuesday Geneva talks with rare battlefield momentum. Russia possibly weakened by troop redeployments."
+    },
+    {
+      "id": "sudan-humanitarian-crisis",
+      "label": "Sudan compounding humanitarian crisis",
+      "firstSeen": "2026-02-15T00:00:00Z",
+      "lastCovered": "2026-02-17T00:00:00Z",
+      "coverageCount": 3,
+      "category": "conflict",
+      "importance": 8,
+      "arc": "ongoing",
+      "articles": ["2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive", "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis", "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28"],
+      "summary": "Drone strike on crowded market killed at least 28 civilians. Third consecutive cycle of coverage. AU summit declared world's worst crisis. 11M+ displaced. Covered three cycles now — rest unless new mass-casualty event."
+    },
+    {
+      "id": "european-defence-autonomy",
+      "label": "European defence autonomy push",
+      "firstSeen": "2026-02-15T00:00:00Z",
+      "lastCovered": "2026-02-17T00:00:00Z",
+      "coverageCount": 3,
+      "category": "politics",
+      "importance": 8,
+      "arc": "developing",
+      "articles": ["2026-02-15-eu-pushes-mutual-defence-pact-as-transatlantic-rift-widens", "2026-02-16-german-uk-military-chiefs-push-european-rearmament-at-munich", "2026-02-17-macron-visits-india-with-rafale-deal-and-ai-pact-on-table"],
+      "summary": "Macron visiting India with Rafale jet deal on table — European defence industry expanding beyond NATO partners. Munich Security Conference called for rearmament. EU mutual defence pact advancing."
+    },
+    {
+      "id": "ai-model-race",
+      "label": "Global AI model race and governance",
+      "firstSeen": "2026-02-16T00:00:00Z",
+      "lastCovered": "2026-02-17T00:00:00Z",
+      "coverageCount": 5,
+      "category": "tech",
+      "importance": 8,
+      "arc": "developing",
+      "articles": ["2026-02-16-alibaba-releases-qwen-35-in-escalating-ai-model-race", "2026-02-16-uk-fast-tracks-social-media-ban-for-under-16s", "2026-02-16-india-hosts-global-ai-summit-as-safety-debate-intensifies", "2026-02-17-pentagon-close-to-cutting-ties-with-anthropic-over-use-restrictions", "2026-02-17-macron-visits-india-with-rafale-deal-and-ai-pact-on-table"],
+      "summary": "Pentagon close to cutting ties with Anthropic over military use restrictions — may label it supply chain risk. India AI summit ongoing. Macron bringing AI cooperation to India. Tension between safety commitments and defence demands sharpening."
     },
     {
       "id": "iran-protest-movement",
@@ -20,22 +68,10 @@
       "lastCovered": "2026-02-16T18:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": ["2026-02-15-hundreds-of-thousands-rally-worldwide-against-iran-regime", "2026-02-16-tehran-residents-chant-against-regime-after-massive-diaspora-rallies"],
-      "summary": "Massive diaspora rallies Feb 15 followed by anti-regime chants heard inside Tehran. Movement repressed after January peak but showing signs of life."
-    },
-    {
-      "id": "ukraine-russia-geneva-talks",
-      "label": "Ukraine-Russia Geneva peace talks",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-16T12:30:00Z",
-      "coverageCount": 2,
-      "category": "conflict",
-      "importance": 9,
-      "arc": "developing",
-      "articles": ["2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks", "2026-02-16-ukraine-russia-geneva-talks-set-as-both-sides-escalate"],
-      "summary": "Both sides escalating militarily ahead of Tuesday Geneva talks. Ukraine sending negotiators. Russia downed 345 Ukrainian drones in 24h. Bryansk lost power."
+      "summary": "Massive diaspora rallies Feb 15 followed by anti-regime chants inside Tehran. Not selected this cycle but remains relevant as Geneva talks approach. Watch for Friday protests."
     },
     {
       "id": "gaza-board-of-peace",
@@ -44,10 +80,10 @@
       "lastCovered": "2026-02-15T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": ["2026-02-15-board-of-peace-members-pledge-five-billion-for-gaza"],
-      "summary": "$5B+ pledged. Inaugural meeting Feb 19. Albania, Romania attending. Indonesia preparing up to 8,000 peacekeeping troops. Trump urging Hamas disarmament."
+      "summary": "$5B+ pledged. Inaugural meeting Feb 19. Albania, Romania attending. Indonesia preparing up to 8,000 peacekeeping troops. No new developments this cycle."
     },
     {
       "id": "israel-lebanon-ceasefire",
@@ -56,10 +92,10 @@
       "lastCovered": "2026-02-16T18:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 8,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": ["2026-02-16-israel-strikes-lebanon-border-killing-four-in-first-post-truce-attack-on-islamic-jihad"],
-      "summary": "Israel struck near Lebanon-Syria border killing 4, claiming to target Islamic Jihad. First claimed strike on IJP since Nov 2024 ceasefire. Threatens truce."
+      "summary": "Israel struck near Lebanon-Syria border killing 4, claiming to target Islamic Jihad. First claimed strike on IJP since Nov 2024 ceasefire. No new developments this cycle."
     },
     {
       "id": "israel-haredi-conscription",
@@ -68,58 +104,46 @@
       "lastCovered": "2026-02-16T18:00:00Z",
       "coverageCount": 1,
       "category": "politics",
+      "importance": 6,
+      "arc": "developing",
+      "articles": ["2026-02-16-ultra-orthodox-mob-attacks-israeli-soldiers-in-conscription-standoff"],
+      "summary": "Hundreds of ultra-Orthodox men chased female IDF soldiers in Bnei Brak, flipped police car. 23 arrested. Not selected this cycle — watch for political fallout or repeat incidents."
+    },
+    {
+      "id": "us-nigeria-military-partnership",
+      "label": "US military deployment to Nigeria",
+      "firstSeen": "2026-02-17T00:00:00Z",
+      "lastCovered": "2026-02-17T00:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
       "importance": 7,
       "arc": "breaking",
-      "articles": ["2026-02-16-ultra-orthodox-mob-attacks-israeli-soldiers-in-conscription-standoff"],
-      "summary": "Hundreds of ultra-Orthodox men chased female IDF soldiers in Bnei Brak, flipped police car, injured 3 officers. 23 arrested. Supreme Court ruled Haredim can be drafted in 2024."
+      "articles": ["2026-02-17-us-deploys-100-soldiers-to-nigeria-as-armed-group-attacks-surge"],
+      "summary": "100 US military trainers landed at Bauchi Airfield for counter-insurgency partnership. Non-combat role under Nigerian command. Signals US Africa strategy pivot after Sahel withdrawals."
     },
     {
-      "id": "european-defence-autonomy",
-      "label": "European defence autonomy push",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-16T18:00:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 8,
-      "arc": "developing",
-      "articles": ["2026-02-15-eu-pushes-mutual-defence-pact-as-transatlantic-rift-widens", "2026-02-16-german-uk-military-chiefs-push-european-rearmament-at-munich"],
-      "summary": "Munich Security Conference produced joint German-UK military chiefs' call for rearmament. Von der Leyen said 'lines crossed that cannot be uncrossed.' EU mutual defence pact advancing."
-    },
-    {
-      "id": "sudan-humanitarian-crisis",
-      "label": "Sudan compounding humanitarian crisis",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-16T12:30:00Z",
-      "coverageCount": 2,
-      "category": "conflict",
-      "importance": 7,
-      "arc": "ongoing",
-      "articles": ["2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive", "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis"],
-      "summary": "AU summit declared world's worst crisis. RSF courts issuing stoning sentences. Second ferry sinking. Camp fires killing children. 11M+ displaced. Covered two consecutive cycles."
-    },
-    {
-      "id": "ai-model-race",
-      "label": "Global AI model race and governance",
-      "firstSeen": "2026-02-16T00:00:00Z",
-      "lastCovered": "2026-02-16T18:00:00Z",
-      "coverageCount": 3,
-      "category": "tech",
-      "importance": 7,
-      "arc": "developing",
-      "articles": ["2026-02-16-alibaba-releases-qwen-35-in-escalating-ai-model-race", "2026-02-16-uk-fast-tracks-social-media-ban-for-under-16s", "2026-02-16-india-hosts-global-ai-summit-as-safety-debate-intensifies"],
-      "summary": "India AI Impact Summit ongoing with Modi, world leaders. Alibaba released Qwen-3.5. UK fast-tracking child safety regulation. Three angles converging: competition, governance, safety."
-    },
-    {
-      "id": "science-brain-drain-china",
-      "label": "Scientific brain drain to China",
-      "firstSeen": "2026-02-16T18:00:00Z",
-      "lastCovered": "2026-02-16T18:00:00Z",
+      "id": "cuba-fuel-crisis",
+      "label": "Cuba fuel crisis and US blockade",
+      "firstSeen": "2026-02-17T00:00:00Z",
+      "lastCovered": "2026-02-17T00:00:00Z",
       "coverageCount": 1,
-      "category": "science",
+      "category": "politics",
       "importance": 6,
       "arc": "breaking",
-      "articles": ["2026-02-16-brain-prize-neuroscientist-leaves-germany-for-china-lab"],
-      "summary": "Brain Prize-winning neuroscientist Arthur Konnerth left Germany's Technical University of Munich for Shenzhen Bay Laboratory in China. Signals deepening talent competition."
+      "articles": ["2026-02-17-spain-sends-cuba-humanitarian-aid-through-un-bypassing-us-blockade"],
+      "summary": "Spain routing humanitarian aid through UN to bypass US fuel blockade on Cuba. European ally openly working around US sanctions policy. Cuba cancelled cigar festival, fuel crisis acute."
+    },
+    {
+      "id": "pentagon-ai-ethics",
+      "label": "Pentagon-Anthropic AI ethics clash",
+      "firstSeen": "2026-02-17T00:00:00Z",
+      "lastCovered": "2026-02-17T00:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": ["2026-02-17-pentagon-close-to-cutting-ties-with-anthropic-over-use-restrictions"],
+      "summary": "Pentagon close to cutting ties with Anthropic, may label it supply chain risk. Frustrated with restrictions on military use of AI. Follows reports of Anthropic AI use in Caracas raid."
     },
     {
       "id": "pakistan-pti-sit-in",
@@ -128,10 +152,10 @@
       "lastCovered": "2026-02-16T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": ["2026-02-16-pakistan-opposition-sit-in-over-imran-khans-health-enters-fourth-day"],
-      "summary": "PTI sit-in entering fourth day. KP cut off from rest of country. SC ordered medical exam but PTI rejected it. Roads to Parliament cleared but protest continues."
+      "summary": "PTI sit-in now in fifth day. KP cut off from rest of country. SC ordered medical exam but PTI rejected it. Not selected this cycle — watch for resolution or crackdown."
     },
     {
       "id": "myanmar-asean-war-crimes",
@@ -140,10 +164,22 @@
       "lastCovered": "2026-02-16T12:30:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": ["2026-02-16-east-timor-accuses-myanmar-of-war-crimes-in-asean-first"],
-      "summary": "East Timor became first ASEAN member to accuse Myanmar of war crimes. Junta expelled East Timor envoy. Breaks bloc's non-interference tradition."
+      "summary": "East Timor became first ASEAN member to accuse Myanmar of war crimes. Junta expelled East Timor envoy. Not selected — watch for ASEAN response."
+    },
+    {
+      "id": "science-brain-drain-china",
+      "label": "Scientific brain drain to China",
+      "firstSeen": "2026-02-16T18:00:00Z",
+      "lastCovered": "2026-02-16T18:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "developing",
+      "articles": ["2026-02-16-brain-prize-neuroscientist-leaves-germany-for-china-lab"],
+      "summary": "Brain Prize-winning neuroscientist Konnerth moved to Shenzhen Bay Lab. Not selected this cycle — one-off event unless pattern emerges."
     },
     {
       "id": "nepal-post-uprising-election",
@@ -152,10 +188,10 @@
       "lastCovered": "2026-02-16T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": ["2026-02-16-nepal-begins-campaigning-for-first-post-protest-election"],
-      "summary": "Campaigning underway for March 5 parliamentary election, first since anti-corruption protests toppled previous government. Ousted PM Oli seeking return."
+      "summary": "Campaigning underway for March 5 parliamentary election. Not selected this cycle — watch as election approaches."
     },
     {
       "id": "us-venezuela-blockade",
@@ -164,10 +200,10 @@
       "lastCovered": "2026-02-15T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": ["2026-02-15-us-forces-board-oil-tanker-defying-trump-quarantine"],
-      "summary": "US forces boarded another tanker in Indian Ocean after tracking it from Caribbean. Enforcing Trump's Venezuela blockade. Second boarding incident."
+      "summary": "US forces boarded tanker in Indian Ocean enforcing Trump's Venezuela blockade. Not selected two cycles — fading unless new incident."
     },
     {
       "id": "navalny-death-investigation",
@@ -176,10 +212,10 @@
       "lastCovered": "2026-02-15T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "developing",
+      "importance": 4,
+      "arc": "fading",
       "articles": ["2026-02-15-five-european-states-say-russia-killed-navalny-with-dart-frog-toxin"],
-      "summary": "Five European countries accused Russia of killing Navalny with dart frog toxin. Kremlin rejected accusations as 'not based on anything.'"
+      "summary": "Five European countries accused Russia of killing Navalny with dart frog toxin. No new developments — story fading."
     }
   ]
 }

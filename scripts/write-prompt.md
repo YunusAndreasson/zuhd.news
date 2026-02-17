@@ -48,9 +48,11 @@ Cognitive load is the enemy. These rules exist because the reader gives you 5 se
 
 Every article follows the same 3-sentence arc. The reader learns what to expect and processes faster.
 
-1. **Hook** — the shortest sentence, under 10 words. A number, a name, a consequence. Never vague framing ("faces condemnation," "sparks debate"). Must not restate the title.
-2. **Context** — who did what, identified with role. The essential fact that explains the hook. When the story needs background to make sense, embed one historical fact as a clause: *"the first since,"* *"reversing a 2019 ban,"* *"breaking a decade-long precedent."* If the story is self-explanatory, don't force background — just report who did what.
-3. **Future** — what happens next, what's unresolved, or why this matters going forward. End on tension, not summary.
+1. **Hook** — under 10 words. A number, a name, a consequence. Never vague framing ("faces condemnation," "sparks debate"). Must not restate the title.
+2. **Context** — under 25 words. Who did what, identified with role. One essential fact that explains the hook. If background is needed, one short clause: *"the first since,"* *"reversing a 2019 ban."* If the story is self-explanatory, don't force background.
+3. **Future** — under 20 words. What happens next or why this matters. End on tension, not summary.
+
+**Total article: under 55 words.** If you're over, cut — don't compress. Remove the least essential detail rather than cramming more into longer sentences. The 3 sentences should feel balanced in weight, not 1 short and 2 heavy.
 
 This arc is not a suggestion — it is the format.
 
@@ -126,7 +128,7 @@ sourceUrl: "https://www.bbc.com/news/articles/cwyk4lz4e3eo"
 category: "politics"
 ---
 
-Dart frog toxin killed Alexei Navalny. Five European governments confirmed tissue samples contained epibatidine, a lethal substance found only in South American frogs — the first forensic evidence linking his 2024 prison death to poisoning. The 5 nations are now reporting Russia to the Organisation for the Prohibition of Chemical Weapons, which could trigger new sanctions.
+Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. They are now reporting Russia to the chemical weapons watchdog.
 </example>
 
 <example>
@@ -138,7 +140,7 @@ sourceUrl: "https://www.dw.com/en/how-serious-is-venezuela-about-its-amnesty-law
 category: "politics"
 ---
 
-Venezuela freed a political prisoner, then rearrested him. Acting President Delcy Rodríguez presented a draft amnesty law last month claiming 900 prisoners released, but rights group Foro Penal counts only about 200 freed with 687 still jailed since the 2024 post-election crackdown. The law faces a second parliamentary reading on Tuesday with no international observers invited.
+Venezuela freed a political prisoner, then rearrested him. The government claims 900 released under a draft amnesty law, but rights group Foro Penal counts only 200 freed. A second parliamentary reading is set for Tuesday with no observers invited.
 </example>
 
 <example>
@@ -150,7 +152,7 @@ sourceUrl: "https://www.aljazeera.com/news/2026/2/14/example"
 category: "conflict"
 ---
 
-4 hospitals shut down in Gaza this week. Israel, whose military campaign the International Court of Justice has called plausibly genocidal, blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse, with no resupply timeline in sight.
+4 hospitals shut down in Gaza this week. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
 </example>
 
 <example>
@@ -162,7 +164,7 @@ sourceUrl: "https://www.malaymail.com/news/world/2026/02/15/vietnam-grants-licen
 category: "tech"
 ---
 
-600,000 satellite terminals can now operate in Vietnam. The country's Radio Frequency Management authority granted Starlink a licence for 4 gateway stations, opening satellite internet to rural areas where roughly 20 million of Vietnam's 100 million people lack coverage. Starlink will compete with state-backed carriers in a country whose government tightly controls terrestrial internet infrastructure.
+600,000 satellite terminals can now operate in Vietnam. The radio frequency authority granted Starlink a licence for 4 gateway stations, covering 20 million people who lack internet access. Starlink will compete with state-backed carriers that tightly control terrestrial infrastructure.
 </example>
 
 <example>
@@ -174,9 +176,9 @@ sourceUrl: "https://www.abc.net.au/news/2026-02-15/new-zealand-north-island-rain
 category: "science"
 ---
 
-Floodwater killed a driver on a North Island highway. Authorities declared a state of emergency in 2 districts south of Hamilton after 4 hours of rain collapsed roads, cut power to over 4,000 properties, and forced 80 people into shelters. New Zealand's national weather service warned heavier rain and severe gales would hit late Sunday before conditions ease Monday.
+Floodwater killed a driver on a North Island highway. 2 districts declared emergencies after 4 hours of rain collapsed roads and cut power to 4,000 properties. Heavier rain and severe gales are forecast before conditions ease Monday.
 </example>
 
-Note the arc in every example: hook (short, concrete fact) → context (who did what, with background when needed) → future (what comes next, ending on tension). Your articles must follow this same rhythm.
+Note the balance: each sentence carries roughly equal weight. Hook (concrete fact, under 10 words) → context (who/what, under 25 words) → future (what's next, under 20 words). Total under 55 words. Your articles must follow this rhythm.
 
 </examples>
