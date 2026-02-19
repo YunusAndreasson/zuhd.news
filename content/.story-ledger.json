@@ -3,15 +3,58 @@
   "stories": [
     {
       "id": "iran-nuclear-talks-geneva",
-      "label": "Iran-US nuclear talks in Geneva",
+      "label": "Iran-US nuclear standoff and military buildup",
       "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-17T18:00:00Z",
-      "coverageCount": 7,
-      "category": "politics",
+      "lastCovered": "2026-02-19T21:00:00Z",
+      "coverageCount": 9,
+      "category": "conflict",
       "importance": 10,
       "arc": "developing",
-      "articles": ["2026-02-15-iran-signals-nuclear-compromise-before-geneva-talks", "2026-02-16-netanyahu-demands-iran-nuclear-dismantlement-before-geneva-talks", "2026-02-16-iran-begins-military-drills-in-strait-of-hormuz-ahead-of-nuclear-talks", "2026-02-17-india-seizes-three-iran-linked-oil-tankers-under-us-sanctions", "2026-02-17-iran-us-nuclear-talks-begin-in-geneva-under-threat-of-war", "2026-02-17-iran-fires-missiles-and-threatens-us-warship-as-nuclear-talks-resume", "2026-02-17-iran-says-guiding-principles-agreed-with-us-at-nuclear-talks"],
-      "summary": "First concrete diplomatic progress: Iran FM Aragchi says 'guiding principles' agreed with US, but no deal imminent and gaps remain. Military brinksmanship continues — Russia-China-Iran joint naval drills announced for Hormuz. Khamenei maintains tough rhetoric despite diplomatic track. Highest-stakes story of the week."
+      "articles": [
+        "2026-02-15-iran-signals-nuclear-compromise-before-geneva-talks",
+        "2026-02-16-netanyahu-demands-iran-nuclear-dismantlement-before-geneva-talks",
+        "2026-02-16-iran-begins-military-drills-in-strait-of-hormuz-ahead-of-nuclear-talks",
+        "2026-02-17-india-seizes-three-iran-linked-oil-tankers-under-us-sanctions",
+        "2026-02-17-iran-us-nuclear-talks-begin-in-geneva-under-threat-of-war",
+        "2026-02-17-iran-fires-missiles-and-threatens-us-warship-as-nuclear-talks-resume",
+        "2026-02-17-iran-says-guiding-principles-agreed-with-us-at-nuclear-talks",
+        "2026-02-17-iran-closes-strait-of-hormuz-as-nuclear-talks-continue",
+        "2026-02-19-us-assembles-largest-middle-east-force-since-2003-for-iran"
+      ],
+      "summary": "Talks stalled. Pentagon assembles largest Middle East strike force since 2003 — two carriers, F-35s, F-22s, EW aircraft. Trump sets public 10-day deadline. Sweden and Poland evacuating citizens. White House source says 90% chance of attack. Iran says enrichment is its right. Hezbollah vows to defend Iran."
+    },
+    {
+      "id": "south-korea-yoon-insurrection",
+      "label": "South Korea Yoon martial law verdict",
+      "firstSeen": "2026-02-17T12:00:00Z",
+      "lastCovered": "2026-02-19T21:00:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 8,
+      "arc": "developing",
+      "articles": [
+        "2026-02-18-south-korea-yoon-faces-insurrection-verdict",
+        "2026-02-19-south-korea-yoon-sentenced-to-life-for-martial-law"
+      ],
+      "summary": "Yoon sentenced to life imprisonment for imposing martial law. Prosecutors had sought death penalty. South Korea hasn't executed since 1997. Appeal expected. President Lee now presiding over political realignment."
+    },
+    {
+      "id": "sudan-humanitarian-crisis",
+      "label": "Sudan genocide assessment and humanitarian crisis",
+      "firstSeen": "2026-02-15T00:00:00Z",
+      "lastCovered": "2026-02-19T21:00:00Z",
+      "coverageCount": 5,
+      "category": "conflict",
+      "importance": 8,
+      "arc": "developing",
+      "articles": [
+        "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
+        "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
+        "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28",
+        "2026-02-17-sudan-drone-strikes-kill-sixty-across-darfur-and-kordofan",
+        "2026-02-19-un-declares-hallmarks-of-genocide-in-sudans-el-fasher"
+      ],
+      "summary": "UN fact-finding mission crosses critical threshold: 'hallmarks of genocide' in RSF's capture of El-Fasher. Coordinated 18-month siege targeting non-Arab communities. At least 15 children killed in drone strike on displacement camp this week. International community still failing to act."
     },
     {
       "id": "ukraine-russia-geneva-talks",
@@ -20,22 +63,15 @@
       "lastCovered": "2026-02-17T12:00:00Z",
       "coverageCount": 4,
       "category": "conflict",
-      "importance": 8,
+      "importance": 5,
       "arc": "developing",
-      "articles": ["2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks", "2026-02-16-ukraine-russia-geneva-talks-set-as-both-sides-escalate", "2026-02-17-ukraine-recaptures-most-territory-in-two-years-ahead-of-geneva-talks", "2026-02-17-russia-ukraine-hold-third-round-of-geneva-talks-as-strikes-continue"],
-      "summary": "Third round held earlier today. No breakthrough reported. Russia hit power grid, Ukraine recaptured territory. FSB given internet shutdown powers same day. Importance decayed slightly — no new development beyond earlier coverage."
-    },
-    {
-      "id": "sudan-humanitarian-crisis",
-      "label": "Sudan compounding humanitarian crisis",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-17T06:00:00Z",
-      "coverageCount": 4,
-      "category": "conflict",
-      "importance": 7,
-      "arc": "ongoing",
-      "articles": ["2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive", "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis", "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28", "2026-02-17-sudan-drone-strikes-kill-sixty-across-darfur-and-kordofan"],
-      "summary": "Not selected two cycles in a row. AU intensifying diplomatic push. Aerial campaign against civilian areas continues. Rested to avoid fatigue."
+      "articles": [
+        "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
+        "2026-02-16-ukraine-russia-geneva-talks-set-as-both-sides-escalate",
+        "2026-02-17-ukraine-recaptures-most-territory-in-two-years-ahead-of-geneva-talks",
+        "2026-02-17-russia-ukraine-hold-third-round-of-geneva-talks-as-strikes-continue"
+      ],
+      "summary": "Talks stalled. Zelensky dismissed Putin's 'historical' claims as delay tactics. No new round announced. Focus has shifted to Iran crisis."
     },
     {
       "id": "israel-lebanon-ceasefire",
@@ -44,10 +80,29 @@
       "lastCovered": "2026-02-17T18:00:00Z",
       "coverageCount": 3,
       "category": "conflict",
-      "importance": 8,
+      "importance": 5,
       "arc": "developing",
-      "articles": ["2026-02-16-israel-strikes-lebanon-border-killing-four-in-first-post-truce-attack-on-islamic-jihad", "2026-02-17-lebanon-sets-four-month-deadline-for-hezbollah-disarmament", "2026-02-17-hezbollah-rejects-disarmament-plan-and-four-month-timeline"],
-      "summary": "Hezbollah formally rejected the Lebanese government's 4-month disarmament timeline, calling it a tool serving Israel. Ceasefire increasingly fragile. Watch for Israeli or US reaction and whether Lebanese army attempts enforcement."
+      "articles": [
+        "2026-02-16-israel-strikes-lebanon-border-killing-four-in-first-post-truce-attack-on-islamic-jihad",
+        "2026-02-17-lebanon-sets-four-month-deadline-for-hezbollah-disarmament",
+        "2026-02-17-hezbollah-rejects-disarmament-plan-and-four-month-timeline"
+      ],
+      "summary": "Hezbollah rejected disarmament timeline. Now vowing to defend Iran in potential US conflict. Lebanon braces for spillover from Iran-US confrontation."
+    },
+    {
+      "id": "gaza-board-of-peace",
+      "label": "Trump Board of Peace for Gaza",
+      "firstSeen": "2026-02-15T00:00:00Z",
+      "lastCovered": "2026-02-18T21:00:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-02-15-board-of-peace-members-pledge-five-billion-for-gaza",
+        "2026-02-18-board-of-peace-meets-as-hamas-warns-against-cover"
+      ],
+      "summary": "First meeting held Feb 19. $7bn pledged by member nations, US committed $10bn more. Five countries committed troops for international stabilization force. 47 participating countries. Indonesia offering troops — first Muslim-majority non-Arab nation. Trump outlined 10-year vision. Palestinians deeply skeptical. Not re-selected as standalone — Iran escalation captured today's key development."
     },
     {
       "id": "european-defence-autonomy",
@@ -56,10 +111,14 @@
       "lastCovered": "2026-02-17T00:00:00Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-02-15-eu-pushes-mutual-defence-pact-as-transatlantic-rift-widens", "2026-02-16-german-uk-military-chiefs-push-european-rearmament-at-munich", "2026-02-17-macron-visits-india-with-rafale-deal-and-ai-pact-on-table"],
-      "summary": "No new development. Macron-India visit completed. Importance decayed."
+      "importance": 2,
+      "arc": "ongoing",
+      "articles": [
+        "2026-02-15-eu-pushes-mutual-defence-pact-as-transatlantic-rift-widens",
+        "2026-02-16-german-uk-military-chiefs-push-european-rearmament-at-munich",
+        "2026-02-17-macron-visits-india-with-rafale-deal-and-ai-pact-on-table"
+      ],
+      "summary": "Faltering fighter jet deal casts doubt on EU defence plans. German chancellor signaled preference for US jets. Ongoing but no breakthrough development."
     },
     {
       "id": "ai-model-race",
@@ -68,10 +127,17 @@
       "lastCovered": "2026-02-17T06:00:00Z",
       "coverageCount": 6,
       "category": "tech",
-      "importance": 6,
-      "arc": "developing",
-      "articles": ["2026-02-16-alibaba-releases-qwen-35-in-escalating-ai-model-race", "2026-02-16-uk-fast-tracks-social-media-ban-for-under-16s", "2026-02-16-india-hosts-global-ai-summit-as-safety-debate-intensifies", "2026-02-17-pentagon-close-to-cutting-ties-with-anthropic-over-use-restrictions", "2026-02-17-macron-visits-india-with-rafale-deal-and-ai-pact-on-table", "2026-02-17-ireland-opens-data-protection-probe-into-grok-deepfakes"],
-      "summary": "EU opened probe into Shein. Nigeria investigating Temu for data privacy. No major AI model development this cycle. Importance decayed."
+      "importance": 3,
+      "arc": "ongoing",
+      "articles": [
+        "2026-02-16-alibaba-releases-qwen-35-in-escalating-ai-model-race",
+        "2026-02-16-uk-fast-tracks-social-media-ban-for-under-16s",
+        "2026-02-16-india-hosts-global-ai-summit-as-safety-debate-intensifies",
+        "2026-02-17-pentagon-close-to-cutting-ties-with-anthropic-over-use-restrictions",
+        "2026-02-17-macron-visits-india-with-rafale-deal-and-ai-pact-on-table",
+        "2026-02-17-ireland-opens-data-protection-probe-into-grok-deepfakes"
+      ],
+      "summary": "AI Impact Summit in Delhi. Altman calls for urgent global regulation. Next summit to be in Geneva. Gemini 3.1 Pro released. Macron pitches 'technology with humanity' vision. Not independently selected this cycle."
     },
     {
       "id": "iran-protest-movement",
@@ -80,22 +146,13 @@
       "lastCovered": "2026-02-16T18:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-02-15-hundreds-of-thousands-rally-worldwide-against-iran-regime", "2026-02-16-tehran-residents-chant-against-regime-after-massive-diaspora-rallies"],
-      "summary": "40-day memorial protests: Iranians chanting against Khamenei at memorials for slain protesters. Not independently selected but continuing — folded into Iran nuclear talks context."
-    },
-    {
-      "id": "gaza-board-of-peace",
-      "label": "Trump Gaza Board of Peace",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-15T12:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-02-15-board-of-peace-members-pledge-five-billion-for-gaza"],
-      "summary": "$5B+ pledged. Inaugural meeting Feb 19. Italy attending as observer, opposition slams it. Haaretz reports 'big plans, little money.' Due for coverage next cycle."
+      "importance": 2,
+      "arc": "ongoing",
+      "articles": [
+        "2026-02-15-hundreds-of-thousands-rally-worldwide-against-iran-regime",
+        "2026-02-16-tehran-residents-chant-against-regime-after-massive-diaspora-rallies"
+      ],
+      "summary": "Protest movement continuing but overshadowed by US military buildup and strike threat. Internal Iranian dynamics secondary to external confrontation."
     },
     {
       "id": "ocalan-pkk-dissolution",
@@ -104,10 +161,12 @@
       "lastCovered": "2026-02-17T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
-      "articles": ["2026-02-17-ocalan-announces-first-phase-of-pkk-dissolution-is-complete"],
-      "summary": "First phase declared complete. Still awaiting Turkish government formal response and PKK armed wing reaction. Importance decayed slightly — no new development this cycle."
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-ocalan-announces-first-phase-of-pkk-dissolution-is-complete"
+      ],
+      "summary": "Parliamentary commission report adopted. Reintegration gaining momentum. Turkish journalist arrested for social media posts — press freedom dimension. Not selected this cycle."
     },
     {
       "id": "russia-fsb-internet-power",
@@ -116,10 +175,12 @@
       "lastCovered": "2026-02-17T18:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
-      "articles": ["2026-02-17-russia-gives-fsb-power-to-shut-down-internet-and-mobile-services"],
-      "summary": "State Duma passed bill giving FSB authority to shut down internet, mobile, SMS, and postal services. Major wartime authoritarian escalation. Passed same day as Navalny death anniversary detentions."
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-russia-gives-fsb-power-to-shut-down-internet-and-mobile-services"
+      ],
+      "summary": "FSB digital control expansion. Teachers in 10 regions face payment delays amid budget strain. Russia urging restraint on Iran while pitching $14T US-Russia projects."
     },
     {
       "id": "trump-taiwan-weapons",
@@ -128,10 +189,96 @@
       "lastCovered": "2026-02-17T18:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
-      "articles": ["2026-02-17-trump-hints-at-taiwan-weapons-decision-despite-china-warning"],
-      "summary": "Trump said he'll decide 'pretty soon' on Taiwan weapons sale despite Xi Jinping's explicit warning. New flashpoint in US-China relations. Follows Philippines economic coercion story."
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-trump-hints-at-taiwan-weapons-decision-despite-china-warning"
+      ],
+      "summary": "US sending weapons to Philippines. Indo-Pacific security tensions remain elevated but attention shifted to Iran crisis."
+    },
+    {
+      "id": "us-drug-boat-strikes",
+      "label": "US strikes on alleged drug-trafficking boats",
+      "firstSeen": "2026-02-17T22:00:00Z",
+      "lastCovered": "2026-02-17T22:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-us-strikes-on-drug-boats-death-toll-passes-145"
+      ],
+      "summary": "At least 145 killed. US Southern Command leader visited Venezuela, met new interim leaders after Maduro capture. Story developing but not independently selected."
+    },
+    {
+      "id": "peru-political-instability",
+      "label": "Peru political instability (Chifagate)",
+      "firstSeen": "2026-02-17T22:00:00Z",
+      "lastCovered": "2026-02-17T22:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-peru-congress-impeaches-president-jeri-over-chifagate-scandal"
+      ],
+      "summary": "Eighth president since 2016. Jose Maria Balcazar installed as interim president. Not selected but worth watching for stability."
+    },
+    {
+      "id": "canada-defence-overhaul",
+      "label": "Canada launches defence overhaul",
+      "firstSeen": "2026-02-17T22:00:00Z",
+      "lastCovered": "2026-02-17T22:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-canada-launches-defence-overhaul-to-reduce-reliance-on-us"
+      ],
+      "summary": "Carney defence plan. No new development. Connects to broader NATO autonomy theme."
+    },
+    {
+      "id": "eu-platform-regulation",
+      "label": "EU regulatory crackdown on tech platforms",
+      "firstSeen": "2026-02-17T22:00:00Z",
+      "lastCovered": "2026-02-17T22:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-eu-opens-formal-investigation-into-shein-under-dsa"
+      ],
+      "summary": "Comesa now probing Meta for locking rival chatbots out of WhatsApp — African antitrust dimension. Grok privacy abuses continue. Not selected independently."
+    },
+    {
+      "id": "tesla-robotaxi-safety",
+      "label": "Tesla Robotaxi safety concerns",
+      "firstSeen": "2026-02-17T22:00:00Z",
+      "lastCovered": "2026-02-17T22:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-tesla-robotaxi-crash-rate-four-times-worse-than-human-drivers"
+      ],
+      "summary": "No new development."
+    },
+    {
+      "id": "bayer-roundup-settlement",
+      "label": "Bayer Roundup cancer settlement",
+      "firstSeen": "2026-02-17T22:00:00Z",
+      "lastCovered": "2026-02-17T22:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-bayer-offers-seven-billion-to-settle-roundup-cancer-claims"
+      ],
+      "summary": "No new development."
     },
     {
       "id": "uk-unemployment-high",
@@ -140,46 +287,208 @@
       "lastCovered": "2026-02-17T18:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": ["2026-02-17-uk-unemployment-hits-highest-rate-in-five-years"],
-      "summary": "UK unemployment at highest rate since Covid pandemic. Part of broader pattern of labour market strain across major economies."
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-uk-unemployment-hits-highest-rate-in-five-years"
+      ],
+      "summary": "No new development. Mandelson lobbying firm on brink of collapse — related UK economy signal."
     },
     {
-      "id": "russia-military-explosion",
-      "label": "Explosion at Russian military police HQ",
-      "firstSeen": "2026-02-17T18:00:00Z",
-      "lastCovered": "2026-02-17T18:00:00Z",
+      "id": "japan-takaichi-pm",
+      "label": "Japan's Takaichi reappointed as PM",
+      "firstSeen": "2026-02-18T21:00:00Z",
+      "lastCovered": "2026-02-18T21:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-02-18-japan-reappoints-takaichi-as-pm-after-snap-election"
+      ],
+      "summary": "Takaichi governing. Japan approved world's first iPS cell medicines (separate story). Russia-Japan island dispute still unresolved after 80 years. Not re-selected as standalone."
+    },
+    {
+      "id": "zuckerberg-addiction-trial",
+      "label": "Zuckerberg social media addiction trial",
+      "firstSeen": "2026-02-18T21:00:00Z",
+      "lastCovered": "2026-02-18T21:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-02-18-zuckerberg-testifies-in-social-media-addiction-trial"
+      ],
+      "summary": "Trial ongoing. Zuckerberg grilled on usage goals and underage users. Connects to broader platform accountability push. Not re-selected as no major new development beyond last cycle."
+    },
+    {
+      "id": "climate-coffee-study",
+      "label": "Climate change threatens coffee regions",
+      "firstSeen": "2026-02-18T21:00:00Z",
+      "lastCovered": "2026-02-18T21:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-18-climate-change-threatens-global-coffee-growing-regions"
+      ],
+      "summary": "Study on arabica growing regions becoming unsuitable. No follow-up."
+    },
+    {
+      "id": "fda-pancreatic-cancer-device",
+      "label": "FDA approves pancreatic cancer device",
+      "firstSeen": "2026-02-18T21:00:00Z",
+      "lastCovered": "2026-02-18T21:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-18-fda-approves-device-extending-pancreatic-cancer-survival"
+      ],
+      "summary": "Novocure device approved. No follow-up."
+    },
+    {
+      "id": "pakistan-police-extrajudicial-killings",
+      "label": "Pakistan Punjab police extrajudicial killings",
+      "firstSeen": "2026-02-18T21:00:00Z",
+      "lastCovered": "2026-02-18T21:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": ["2026-02-17-explosion-at-russian-military-police-hq-kills-at-least-three"],
-      "summary": "At least 3 killed in explosion at military police facility in Sertolovo near St Petersburg. Building collapsed. Authorities confirmed incident but did not mention deaths."
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-02-18-pakistan-punjab-police-kill-900-in-eight-months"
+      ],
+      "summary": "Karachi building collapse killed 15+ in separate event. Pakistan-US signed Roosevelt Hotel redevelopment pact. Punjab killings story not followed up independently."
     },
     {
-      "id": "jesse-jackson-death",
-      "label": "Jesse Jackson dies at 84",
-      "firstSeen": "2026-02-17T12:00:00Z",
-      "lastCovered": "2026-02-17T12:00:00Z",
+      "id": "rubio-cuba-backchannel",
+      "label": "Rubio-Castro grandson backchannel",
+      "firstSeen": "2026-02-18T21:00:00Z",
+      "lastCovered": "2026-02-18T21:00:00Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 5,
       "arc": "developing",
-      "articles": ["2026-02-17-jesse-jackson-civil-rights-leader-dies-at-84"],
-      "summary": "One-off obituary. No follow-up needed unless major memorial events. Importance decayed."
+      "articles": [
+        "2026-02-18-rubio-holds-secret-contacts-with-castros-grandson"
+      ],
+      "summary": "No new development. Cuba energy crisis continues."
     },
     {
-      "id": "china-semiconductor-breakthrough",
-      "label": "China 2D semiconductor wafer breakthrough",
-      "firstSeen": "2026-02-17T12:00:00Z",
-      "lastCovered": "2026-02-17T12:00:00Z",
+      "id": "nato-china-tech-decoupling",
+      "label": "NATO-China tech and military decoupling",
+      "firstSeen": "2026-02-18T21:00:00Z",
+      "lastCovered": "2026-02-18T21:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-18-poland-bans-chinese-vehicles-from-military-bases"
+      ],
+      "summary": "China's Zeekr launching EV sales in France — commercial entry while military decoupling. No follow-up."
+    },
+    {
+      "id": "north-korea-party-congress",
+      "label": "North Korea ninth Workers' Party congress",
+      "firstSeen": "2026-02-19T21:00:00Z",
+      "lastCovered": "2026-02-19T21:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 8,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-19-north-korea-opens-ninth-workers-party-congress"
+      ],
+      "summary": "Ninth congress opened Feb 19. Previous congresses in 2021 and 2016. Rare event that typically signals major policy shifts. Watch for nuclear posture, economic direction, leadership changes."
+    },
+    {
+      "id": "prince-andrew-arrest",
+      "label": "Former Prince Andrew arrested over Epstein links",
+      "firstSeen": "2026-02-19T21:00:00Z",
+      "lastCovered": "2026-02-19T21:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-19-uk-arrests-former-prince-andrew-over-epstein-links"
+      ],
+      "summary": "First British royal arrested in modern history. Detained on suspicion of misconduct in public office — passing confidential government documents to Epstein as trade envoy. Released under investigation after 11 hours. King Charles: 'law must take its course.'"
+    },
+    {
+      "id": "us-trade-deficit-record",
+      "label": "US trade deficit hits record despite tariffs",
+      "firstSeen": "2026-02-19T21:00:00Z",
+      "lastCovered": "2026-02-19T21:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-19-us-trade-deficit-hits-record-despite-trump-tariffs"
+      ],
+      "summary": "2025 trade deficit widened to record — first full year of Trump tariff campaign. Imports surged as businesses front-loaded purchases. Directly undercuts central economic rationale of trade war."
+    },
+    {
+      "id": "japan-ips-cell-therapies",
+      "label": "Japan approves first iPS cell commercial therapies",
+      "firstSeen": "2026-02-19T21:00:00Z",
+      "lastCovered": "2026-02-19T21:00:00Z",
       "coverageCount": 1,
       "category": "science",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-19-japan-approves-first-commercial-ips-cell-therapies"
+      ],
+      "summary": "World's first commercial iPS cell products approved. Two regenerative medicines including ReHeart for heart failure. Landmark for field that won Yamanaka the 2012 Nobel Prize."
+    },
+    {
+      "id": "cat-cancer-genome",
+      "label": "Cat cancer genome reveals shared human mutations",
+      "firstSeen": "2026-02-19T21:00:00Z",
+      "lastCovered": "2026-02-19T21:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-19-cat-cancer-genome-reveals-shared-mutations-with-humans"
+      ],
+      "summary": "International team mapped mutations driving aggressive cancer in both cats and humans. Shared pathways could accelerate treatment development for both species."
+    },
+    {
+      "id": "microsoft-copilot-email-leak",
+      "label": "Microsoft Copilot exposed confidential emails",
+      "firstSeen": "2026-02-19T21:00:00Z",
+      "lastCovered": "2026-02-19T21:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
       "importance": 6,
-      "arc": "developing",
-      "articles": ["2026-02-17-china-claims-breakthrough-in-post-silicon-semiconductor-wafers"],
-      "summary": "2D wafer breakthrough (MoS2). Single research announcement. Watch for peer validation. Importance decayed."
+      "arc": "breaking",
+      "articles": [
+        "2026-02-19-microsoft-copilot-exposed-confidential-emails-in-error"
+      ],
+      "summary": "Misconfiguration exposed confidential internal emails to Copilot users. Microsoft says error not design flaw. Highlights systemic risk of enterprise AI tools with broad data access."
+    },
+    {
+      "id": "irs-it-staff-gutted",
+      "label": "IRS loses 40% of IT staff in efficiency drive",
+      "firstSeen": "2026-02-19T21:00:00Z",
+      "lastCovered": "2026-02-19T21:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-19-irs-loses-forty-percent-of-it-staff-in-efficiency-purge"
+      ],
+      "summary": "40% of IT workforce and 80% of tech leadership gone. Processes hundreds of millions of tax returns, manages trillions in revenue. Raises concerns about tax season processing and cybersecurity."
     },
     {
       "id": "philippines-china-south-china-sea",
@@ -188,106 +497,26 @@
       "lastCovered": "2026-02-17T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
-      "arc": "developing",
-      "articles": ["2026-02-17-philippines-rebukes-china-over-coercive-economic-warning"],
-      "summary": "Philippines rebuked China's economic coercion. Trump Taiwan weapons hint adds to Indo-Pacific pattern. Importance decayed."
+      "importance": 2,
+      "arc": "ongoing",
+      "articles": [
+        "2026-02-17-philippines-rebukes-china-over-coercive-economic-warning"
+      ],
+      "summary": "US sending weapons to Philippines. Attention shifted to Iran. Fading as standalone."
     },
     {
-      "id": "pakistan-northwest-insurgency",
-      "label": "Pakistan northwest insurgency attacks",
-      "firstSeen": "2026-02-17T06:00:00Z",
-      "lastCovered": "2026-02-17T06:00:00Z",
+      "id": "russia-military-explosion",
+      "label": "Explosion at Russian military police HQ",
+      "firstSeen": "2026-02-17T18:00:00Z",
+      "lastCovered": "2026-02-17T18:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-02-17-fourteen-killed-in-attacks-across-northwest-pakistan"],
-      "summary": "Taliban freed 3 Pakistani soldiers via Saudi mediation. Border relations shifting. Importance decayed."
-    },
-    {
-      "id": "bangladesh-political-transition",
-      "label": "Bangladesh new parliament and government",
-      "firstSeen": "2026-02-17T06:00:00Z",
-      "lastCovered": "2026-02-17T06:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-02-17-bangladesh-swears-in-new-parliament-as-yunus-era-ends"],
-      "summary": "Tarique Rahman government in place. Awami League leaders' trial for crimes against humanity begun at ICT. Feb 12 referendum legality challenged. Importance decayed."
-    },
-    {
-      "id": "argentina-milei-labour-strike",
-      "label": "Argentina general strike vs Milei reforms",
-      "firstSeen": "2026-02-17T06:00:00Z",
-      "lastCovered": "2026-02-17T06:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-02-17-argentina-general-strike-called-against-milei-labour-reforms"],
-      "summary": "CGT general strike called. Textile sector lost 18,000+ jobs. Importance decayed."
-    },
-    {
-      "id": "grok-deepfakes-eu-probe",
-      "label": "Ireland DPC probe into Grok deepfakes",
-      "firstSeen": "2026-02-17T06:00:00Z",
-      "lastCovered": "2026-02-17T06:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": ["2026-02-17-ireland-opens-data-protection-probe-into-grok-deepfakes"],
-      "summary": "EU also opened probe into Shein. Mounting platform regulation. Importance decayed."
-    },
-    {
-      "id": "israel-haredi-conscription",
-      "label": "Israel ultra-Orthodox conscription crisis",
-      "firstSeen": "2026-02-16T18:00:00Z",
-      "lastCovered": "2026-02-16T18:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": ["2026-02-16-ultra-orthodox-mob-attacks-israeli-soldiers-in-conscription-standoff"],
-      "summary": "No new development. Importance decayed."
-    },
-    {
-      "id": "us-nigeria-military-partnership",
-      "label": "US military deployment to Nigeria",
-      "firstSeen": "2026-02-17T00:00:00Z",
-      "lastCovered": "2026-02-17T00:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": ["2026-02-17-us-deploys-100-soldiers-to-nigeria-as-armed-group-attacks-surge"],
-      "summary": "Nigerian group warned against foreign military presence. Importance decayed."
-    },
-    {
-      "id": "cuba-fuel-crisis",
-      "label": "Cuba fuel crisis and US blockade",
-      "firstSeen": "2026-02-17T00:00:00Z",
-      "lastCovered": "2026-02-17T00:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": ["2026-02-17-spain-sends-cuba-humanitarian-aid-through-un-bypassing-us-blockade"],
-      "summary": "Cuba cancelled cigar festival due to fuel crisis. No major new development. Importance decayed."
-    },
-    {
-      "id": "pentagon-ai-ethics",
-      "label": "Pentagon-Anthropic AI ethics clash",
-      "firstSeen": "2026-02-17T00:00:00Z",
-      "lastCovered": "2026-02-17T00:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": ["2026-02-17-pentagon-close-to-cutting-ties-with-anthropic-over-use-restrictions"],
-      "summary": "No formal decision yet. Importance decayed."
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-02-17-explosion-at-russian-military-police-hq-kills-at-least-three"
+      ],
+      "summary": "No follow-up. Fading."
     },
     {
       "id": "pakistan-pti-sit-in",
@@ -296,10 +525,12 @@
       "lastCovered": "2026-02-16T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
-      "articles": ["2026-02-16-pakistan-opposition-sit-in-over-imran-khans-health-enters-fourth-day"],
-      "summary": "Sit-in continues for 5th day. Imran's sisters reject Naqvi's account. Fading — no breakthrough."
+      "articles": [
+        "2026-02-16-pakistan-opposition-sit-in-over-imran-khans-health-enters-fourth-day"
+      ],
+      "summary": "No new developments. Fading."
     },
     {
       "id": "myanmar-asean-war-crimes",
@@ -308,70 +539,40 @@
       "lastCovered": "2026-02-16T12:30:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
-      "articles": ["2026-02-16-east-timor-accuses-myanmar-of-war-crimes-in-asean-first"],
-      "summary": "No new developments. Fading."
+      "articles": [
+        "2026-02-16-east-timor-accuses-myanmar-of-war-crimes-in-asean-first"
+      ],
+      "summary": "Rebel leader Bo Nagar surrendered to junta amid resistance infighting. Fading as standalone."
     },
     {
-      "id": "science-brain-drain-china",
-      "label": "Scientific brain drain to China",
-      "firstSeen": "2026-02-16T18:00:00Z",
-      "lastCovered": "2026-02-16T18:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "fading",
-      "articles": ["2026-02-16-brain-prize-neuroscientist-leaves-germany-for-china-lab"],
-      "summary": "One-off event. Fading."
-    },
-    {
-      "id": "nepal-post-uprising-election",
-      "label": "Nepal post-uprising election",
-      "firstSeen": "2026-02-16T00:00:00Z",
-      "lastCovered": "2026-02-16T12:30:00Z",
+      "id": "jesse-jackson-death",
+      "label": "Jesse Jackson dies at 84",
+      "firstSeen": "2026-02-17T12:00:00Z",
+      "lastCovered": "2026-02-17T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 1,
       "arc": "fading",
-      "articles": ["2026-02-16-nepal-begins-campaigning-for-first-post-protest-election"],
-      "summary": "March 5 election approaching. No new developments. Fading."
+      "articles": [
+        "2026-02-17-jesse-jackson-civil-rights-leader-dies-at-84"
+      ],
+      "summary": "One-off obituary. Fading."
     },
     {
-      "id": "us-venezuela-blockade",
-      "label": "US Venezuela oil blockade enforcement",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-15T12:00:00Z",
+      "id": "china-semiconductor-breakthrough",
+      "label": "China 2D semiconductor wafer breakthrough",
+      "firstSeen": "2026-02-17T12:00:00Z",
+      "lastCovered": "2026-02-17T12:00:00Z",
       "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
+      "category": "science",
+      "importance": 1,
       "arc": "fading",
-      "articles": ["2026-02-15-us-forces-board-oil-tanker-defying-trump-quarantine"],
-      "summary": "Qatari PM arrived in Venezuela — potential diplomatic development. Otherwise fading."
-    },
-    {
-      "id": "navalny-death-investigation",
-      "label": "Navalny death European investigation",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-15T12:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "fading",
-      "articles": ["2026-02-15-five-european-states-say-russia-killed-navalny-with-dart-frog-toxin"],
-      "summary": "2-year anniversary: nearly 2 dozen mourners detained in Russia. Moscow events held worldwide. Fading as standalone — absorbed into Russia context."
-    },
-    {
-      "id": "ethiopia-press-freedom",
-      "label": "Ethiopia revokes Reuters accreditation",
-      "firstSeen": "2026-02-17T06:00:00Z",
-      "lastCovered": "2026-02-17T06:00:00Z",
-      "coverageCount": 0,
-      "category": "politics",
-      "importance": 3,
-      "arc": "fading",
-      "articles": [],
-      "summary": "OLF warned of growing war risks in Ethiopia. Reuters ban context. Importance decayed. Fading."
+      "articles": [
+        "2026-02-17-china-claims-breakthrough-in-post-silicon-semiconductor-wafers"
+      ],
+      "summary": "No peer validation or follow-up. Fading."
     }
   ]
 }
