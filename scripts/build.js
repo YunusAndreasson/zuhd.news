@@ -174,14 +174,26 @@ if (existsSync(audioSrc)) {
   }
 }
 
-// Read assets for inlining
+// Shared <head> partial — DRYs charset, viewport, theme-color, favicon, fonts, inline CSS
 const cssContent = readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8')
 const jsContent = readFileSync(join(ROOT, 'public', 'reader.js'), 'utf-8')
+const FONT_URL = 'https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap'
+const headCommon = `<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#141414" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="${FONT_URL}" media="print" onload="this.media='all'">
+  <noscript><link href="${FONT_URL}" rel="stylesheet"></noscript>
+  <style>${cssContent}</style>`
 
 const articleTemplate = readFileSync(join(TEMPLATES_DIR, 'article.html'), 'utf-8')
-  .replace('{{inlineCSS}}', cssContent)
+  .replace('{{headCommon}}', headCommon)
 const homepageTemplate = readFileSync(join(TEMPLATES_DIR, 'index.html'), 'utf-8')
-  .replace('{{inlineCSS}}', cssContent)
+  .replace('{{headCommon}}', headCommon)
   .replace('{{inlineJS}}', jsContent)
 
 const files = readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md') && f !== 'example.md')
@@ -203,7 +215,7 @@ if (existsSync(briefingMetaPath)) {
   const age = Date.now() - new Date(meta.generated).getTime()
   if (age < 36 * 60 * 60 * 1000) {
     const genHour = new Date(meta.generated).getUTCHours()
-    const cycles = [0, 6, 12, 18]
+    const cycles = [3, 9, 15, 21]
     const cycleHour = cycles.reduce((prev, c) => c <= genHour ? c : prev, 0)
     const cycleStr = String(cycleHour).padStart(2, '0') + ':00'
     const briefingKey = meta.date + '-' + cycleStr.replace(':', '')
@@ -211,11 +223,11 @@ if (existsSync(briefingMetaPath)) {
     const pauseSvg = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="2" y="1" width="3.5" height="12"/><rect x="8.5" y="1" width="3.5" height="12"/></svg>'
     audioBriefingHtml = `<div class="audio-briefing" data-key="${briefingKey}">
       <button class="briefing-play" aria-label="Play briefing">${playSvg}</button>
-      <span class="briefing-label">Briefing</span>
+      <span class="briefing-label">Today's briefing</span>
       <div class="briefing-track"><div class="briefing-bar"></div></div>
       <audio preload="none" src="/audio/briefing-${meta.date}.mp3"></audio>
     </div>
-    <script>!function(){var b=document.querySelector('.audio-briefing');if(!b)return;var h=new Date().getHours(),l=b.querySelector('.briefing-label');l.textContent=h>=5&&h<12?'Morning briefing':h<18?'Afternoon briefing':'Evening briefing';var a=b.querySelector('audio'),p=b.querySelector('.briefing-play'),t=b.querySelector('.briefing-track'),r=b.querySelector('.briefing-bar'),k='briefing-listened-'+b.dataset.key,play='${playSvg.replace(/'/g, "\\'")}',pause='${pauseSvg.replace(/'/g, "\\'")}';if(localStorage.getItem(k))b.classList.add('listened');b.style.cursor='pointer';b.onclick=function(e){if(e.target.closest('.briefing-track'))return;a.paused?(a.play(),p.innerHTML=pause):(a.pause(),p.innerHTML=play)};a.ontimeupdate=function(){r.style.width=a.duration?(a.currentTime/a.duration*100)+'%':'0';if(a.currentTime>10&&!localStorage.getItem(k)){localStorage.setItem(k,'1');b.classList.add('listened')}};a.onended=function(){p.innerHTML=play;r.style.width='0';localStorage.setItem(k,'1');b.classList.add('listened')};t.onclick=function(e){if(a.duration){a.currentTime=e.offsetX/t.offsetWidth*a.duration}}}()</script>`
+    <script>!function(){var b=document.querySelector('.audio-briefing');if(!b)return;var a=b.querySelector('audio'),p=b.querySelector('.briefing-play'),t=b.querySelector('.briefing-track'),r=b.querySelector('.briefing-bar'),k='briefing-listened-'+b.dataset.key,play='${playSvg.replace(/'/g, "\\'")}',pause='${pauseSvg.replace(/'/g, "\\'")}';if(localStorage.getItem(k))b.classList.add('listened');b.style.cursor='pointer';b.onclick=function(e){if(e.target.closest('.briefing-track'))return;a.paused?(a.play(),p.innerHTML=pause):(a.pause(),p.innerHTML=play)};a.ontimeupdate=function(){r.style.width=a.duration?(a.currentTime/a.duration*100)+'%':'0';if(a.currentTime>10&&!localStorage.getItem(k)){localStorage.setItem(k,'1');b.classList.add('listened')}};a.onended=function(){p.innerHTML=play;r.style.width='0';localStorage.setItem(k,'1');b.classList.add('listened')};t.onclick=function(e){if(a.duration){a.currentTime=e.offsetX/t.offsetWidth*a.duration}}}()</script>`
   }
 }
 
@@ -235,15 +247,16 @@ console.log(`  Built: index.html (${articles.length} articles)`)
 
 // Build static pages (about, sources)
 const pageTemplate = readFileSync(join(TEMPLATES_DIR, 'about.html'), 'utf-8')
-  .replace('{{inlineCSS}}', cssContent)
+  .replace('{{headCommon}}', headCommon)
 
-for (const page of ['about', 'sources', 'navigation', 'contact', 'privacy']) {
+for (const page of ['about', 'sources', 'privacy']) {
   const pagePath = join(ROOT, 'content', `${page}.md`)
   if (!existsSync(pagePath)) continue
   const body = readFileSync(pagePath, 'utf-8')
   const html = pageTemplate
     .replace('{{content}}', markdownToHtml(body))
     .replace(/\{\{pageName\}\}/g, page)
+    .replace('</body>', lastCycleTs ? `<script>!function(){var ts="${lastCycleTs}",el=document.querySelector(".update-status");if(!el||!ts)return;var ago=Date.now()-new Date(ts).getTime(),h=Math.floor(ago/36e5),m=Math.floor(ago%36e5/6e4);el.textContent="Updated "+(h>0?h+"h ago":m<2?"just now":m+" min ago")}()</script></body>` : '</body>')
   writeFileSync(join(DIST_DIR, `${page}.html`), html)
   console.log(`  Built: ${page}.html`)
 }

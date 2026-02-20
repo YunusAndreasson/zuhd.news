@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#141414" media="(prefers-color-scheme: dark)">
+  {{headCommon}}
   <title>zuhd.news — {{pageName}}</title>
   <meta name="description" content="Global news, no noise. Concise world news from 40 sources, curated by AI.">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="canonical" href="https://zuhd.news/{{pageName}}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="zuhd.news">
@@ -19,14 +14,6 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="zuhd.news — {{pageName}}">
-  <meta name="twitter:description" content="Global news, no noise. Concise world news from 40 sources, curated by AI.">
-  <meta name="twitter:image" content="https://zuhd.news/og-image.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
-  <style>{{inlineCSS}}</style>
 </head>
 <body>
   <header>
@@ -34,14 +21,14 @@
   </header>
 
   <main>
-    <h1 class="sr-only">{{pageName}} — zuhd.news</h1>
+    <h1 class="page-title">{{pageName}}</h1>
     <div class="about-body">
       {{content}}
     </div>
   </main>
 
   <footer>
-    <span></span>
+    <span class="update-status"></span>
     <nav class="footer-links">
       <a href="/about">about</a> <a href="/sources">sources</a> <a href="/privacy">privacy</a>
     </nav>
