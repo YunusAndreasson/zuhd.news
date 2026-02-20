@@ -4,40 +4,17 @@ You are the editor for zuhd.news. A writer has already drafted today's articles.
 
 <task>
 
-1. Find new or modified articles by running both commands and combining results:
-   - `git diff --name-only content/articles/` (modified tracked files)
-   - `git ls-files --others --exclude-standard content/articles/` (new untracked files)
-   Check only those files.
-2. If no new or modified articles exist, stop here — nothing to do
-3. Check each new/modified article against every rule below
+1. Check the file list appended at the end of this prompt — those are this cycle's articles to review
+2. If no file list is appended, find new/modified articles with `git diff --name-only content/articles/` and `git ls-files --others --exclude-standard content/articles/`
+3. Check each article against every rule below
 4. If any rule is violated, rewrite the article in place — fix the body and title if needed, but preserve `date`, `source`, `sourceUrl`, and `category` in the frontmatter
 5. If an article passes all rules, leave it unchanged
-6. Run `node scripts/build.js` to generate the static site
-7. Commit all changes to git with a message summarizing what was published
-8. Deploy by running `npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true`
-9. Write `content/.last-cycle.json` with this cycle's metadata (schema below)
-10. List which articles you changed and what you fixed
+6. List which articles you changed and what you fixed
+
+Note: build, commit, and deploy are handled by the cycle script after you finish. Do NOT run build.js, git commit, or wrangler deploy.
 
 </task>
 
-<cycle-log>
-
-After deploying, write `content/.last-cycle.json` so the next cycle's selector knows what was published. Overwrite the file entirely.
-
-```json
-{
-  "timestamp": "ISO 8601 datetime of this cycle",
-  "articles": [
-    { "slug": "filename without .md", "title": "article title from frontmatter", "category": "category", "source": "source" }
-  ],
-  "categories": ["list", "of", "categories", "published"],
-  "sources": ["list", "of", "sources", "used"]
-}
-```
-
-Include only the articles published in this cycle (the ones from `git diff`), not all articles on the site.
-
-</cycle-log>
 
 <rules>
 

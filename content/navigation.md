@@ -1,2 +1,0 @@
-- **←  →** or **h  l** — categories
-- **↑  ↓** or **j  k** — headlines
