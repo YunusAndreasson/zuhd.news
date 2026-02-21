@@ -79,7 +79,18 @@ try {
   console.warn('Could not read story ledger (continuing without it):', err.message)
 }
 
-const payload = { articles }
+// Compute hours until next editorial cycle for the briefing intro
+const CYCLE_HOURS = [0, 4, 7, 12, 16, 20]
+const now = new Date()
+const currentMinutes = now.getUTCHours() * 60 + now.getUTCMinutes()
+const cycleMinutes = CYCLE_HOURS.map(h => h * 60)
+const nextCycleMin = cycleMinutes.find(m => m > currentMinutes) ?? cycleMinutes[0]
+const minutesUntilNext = nextCycleMin > currentMinutes
+  ? nextCycleMin - currentMinutes
+  : 1440 - currentMinutes + nextCycleMin
+const hoursUntilNext = Math.round(minutesUntilNext / 60)
+
+const payload = { articles, hoursUntilNext }
 if (editorialContext) payload.editorialContext = editorialContext
 writeFileSync(TMP_ARTICLES, JSON.stringify(payload, null, 2))
 
@@ -95,7 +106,7 @@ try {
     '--allowedTools', 'Read',
     '--model', 'sonnet',
     '-p', prompt
-  ], { encoding: 'utf-8', timeout: 120_000, maxBuffer: 1024 * 1024, env })
+  ], { encoding: 'utf-8', timeout: 300_000, maxBuffer: 1024 * 1024, env })
   if (result.status !== 0) {
     throw new Error(result.stderr || `Exit code ${result.status}`)
   }
@@ -105,11 +116,16 @@ try {
   process.exit(1)
 }
 
-// Extract SSML from output
+// Extract SSML from output — greedy match to capture the last </speak> in case
+// Claude wraps output in extra tags that contain inner </speak>-like sequences
 let ssml
-const ssmlMatch = claudeOutput.match(/<speak[\s\S]*?<\/speak>/)
+const ssmlMatch = claudeOutput.match(/<speak[\s\S]*<\/speak>/)
 if (ssmlMatch) {
+  // Strip any stray content outside the speak tags (e.g. Claude wrapper tags)
   ssml = ssmlMatch[0]
+    .replace(/^[\s\S]*?(<speak)/, '$1')
+    .replace(/(<\/speak>)[\s\S]*$/, '$1')
+    .trim()
   console.log(`SSML extracted (${ssml.length} characters)`)
 } else {
   // Fallback: wrap plain text output in speak tags
