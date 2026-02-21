@@ -2,104 +2,13 @@
   "version": 1,
   "stories": [
     {
-      "id": "israel-lebanon-ceasefire",
-      "label": "Israel-Lebanon ceasefire fraying — strikes widen, senior Hezbollah official killed",
-      "firstSeen": "2026-02-16T18:00:00Z",
-      "lastCovered": "2026-02-21T12:00:00Z",
-      "coverageCount": 6,
-      "category": "conflict",
-      "importance": 7,
-      "arc": "developing",
-      "articles": [
-        "2026-02-16-israel-strikes-lebanon-border-killing-four-in-first-post-truce-attack-on-islamic-jihad",
-        "2026-02-17-lebanon-sets-four-month-deadline-for-hezbollah-disarmament",
-        "2026-02-17-hezbollah-rejects-disarmament-plan-and-four-month-timeline",
-        "2026-02-20-israel-strikes-palestinian-refugee-camp-in-lebanon",
-        "2026-02-21-israeli-strikes-kill-eight-across-lebanon",
-        "2026-02-21-israeli-strike-kills-senior-hezbollah-official-in-lebanon"
-      ],
-      "summary": "Senior Hezbollah official killed in Bekaa Valley strikes that also killed 10+. Ceasefire near collapse with near-daily Israeli strikes widening across Lebanon. Hezbollah rejected disarmament."
-    },
-    {
-      "id": "india-brazil-critical-minerals",
-      "label": "India-Brazil critical minerals deal to reduce China dependence",
-      "firstSeen": "2026-02-21T12:00:00Z",
-      "lastCovered": "2026-02-21T12:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": ["2026-02-21-india-brazil-sign-critical-minerals-deal-to-curb-china-dependence"],
-      "summary": "India and Brazil signed critical minerals/rare earths cooperation agreement during Lula's Delhi visit. Part of Global South supply chain diversification away from China's ~80% monopoly."
-    },
-    {
-      "id": "venezuela-political-prisoners",
-      "label": "Venezuela grants amnesty to 379 political prisoners",
-      "firstSeen": "2026-02-21T12:00:00Z",
-      "lastCovered": "2026-02-21T12:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": ["2026-02-21-venezuela-grants-amnesty-to-379-political-prisoners"],
-      "summary": "Venezuela granted amnesty to 379 political prisoners under new law. Many detained over alleged plots against government. Thousands more remain detained."
-    },
-    {
-      "id": "albania-protests",
-      "label": "Albania clashes as protesters demand PM Rama resign",
-      "firstSeen": "2026-02-21T12:00:00Z",
-      "lastCovered": "2026-02-21T12:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": ["2026-02-21-albania-clashes-erupt-as-protesters-demand-pm-rama-resign"],
-      "summary": "Violent protests near Albania's parliament with petrol bombs and fireworks at PM's office. Demonstrators demand Rama resign over corruption investigation."
-    },
-    {
-      "id": "galapagos-tortoise-return",
-      "label": "Giant tortoises return to Galapagos island after century",
-      "firstSeen": "2026-02-21T12:00:00Z",
-      "lastCovered": "2026-02-21T12:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": ["2026-02-21-giant-tortoises-return-to-galapagos-island-after-century"],
-      "summary": "150+ giant tortoises reintroduced to Floreana Island where species disappeared over a century ago. Decades-long breeding programme success."
-    },
-    {
-      "id": "eu-china-tech-exclusion",
-      "label": "EU excludes China from critical tech research programmes",
-      "firstSeen": "2026-02-21T12:00:00Z",
-      "lastCovered": "2026-02-21T12:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 7,
-      "arc": "breaking",
-      "articles": ["2026-02-21-eu-excludes-china-from-critical-tech-research-programmes"],
-      "summary": "EU excluded Chinese researchers and institutions from advanced collaborative technology programmes in AI, semiconductors, and critical tech. Aligns with US containment strategy."
-    },
-    {
-      "id": "nigeria-lassa-fever",
-      "label": "Nigeria Lassa fever outbreak — 22% fatality rate",
-      "firstSeen": "2026-02-21T12:00:00Z",
-      "lastCovered": "2026-02-21T12:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": ["2026-02-21-lassa-fever-outbreak-kills-one-in-five-in-nigeria"],
-      "summary": "Lassa fever outbreak in Nigeria has reached 22% case fatality rate with 15 healthcare workers infected. State-level preparedness gaps exposed."
-    },
-    {
       "id": "iran-nuclear-talks-geneva",
-      "label": "Iran-US nuclear standoff, military buildup, and domestic unrest",
+      "label": "Iran-US nuclear standoff — Trump open to 'token' deal while strike plans target Khamenei",
       "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
-      "coverageCount": 13,
-      "category": "conflict",
-      "importance": 7,
+      "lastCovered": "2026-02-21T16:00:00Z",
+      "coverageCount": 14,
+      "category": "politics",
+      "importance": 9,
       "arc": "ongoing",
       "articles": [
         "2026-02-15-iran-signals-nuclear-compromise-before-geneva-talks",
@@ -114,9 +23,148 @@
         "2026-02-20-trump-gives-iran-fifteen-days-for-nuclear-deal-or-bad-things",
         "2026-02-20-trump-considers-iran-strike-as-tehran-says-draft-deal-imminent",
         "2026-02-20-uk-blocks-us-from-using-bases-for-iran-strike",
-        "2026-02-21-iran-protests-erupt-at-forty-day-memorials"
+        "2026-02-21-iran-protests-erupt-at-forty-day-memorials",
+        "2026-02-21-trump-considers-token-iran-nuclear-deal"
       ],
-      "summary": "~5 days remain on Trump's ultimatum. Iran counterproposal pending. Amnesty reports 30 facing death penalty from protests. Military buildup continues. UK blocked bases."
+      "summary": "Trump reportedly open to 'token' enrichment if all bomb paths blocked — walkback from zero enrichment. Pentagon has strike plans targeting Khamenei and son. Iran counterproposal expected in 2-3 days. ~3 days left on ultimatum."
+    },
+    {
+      "id": "israel-lebanon-ceasefire",
+      "label": "Israel-Lebanon ceasefire collapse — Hezbollah declares resistance only option",
+      "firstSeen": "2026-02-16T18:00:00Z",
+      "lastCovered": "2026-02-21T12:00:00Z",
+      "coverageCount": 6,
+      "category": "conflict",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-02-16-israel-strikes-lebanon-border-killing-four-in-first-post-truce-attack-on-islamic-jihad",
+        "2026-02-17-lebanon-sets-four-month-deadline-for-hezbollah-disarmament",
+        "2026-02-17-hezbollah-rejects-disarmament-plan-and-four-month-timeline",
+        "2026-02-20-israel-strikes-palestinian-refugee-camp-in-lebanon",
+        "2026-02-21-israeli-strikes-kill-eight-across-lebanon",
+        "2026-02-21-israeli-strike-kills-senior-hezbollah-official-in-lebanon"
+      ],
+      "summary": "Hezbollah declared 'resistance' the only option after 10+ killed in Israeli strikes. Senior official killed in Bekaa Valley. Ceasefire effectively dead with near-daily Israeli strikes."
+    },
+    {
+      "id": "us-supreme-court-tariffs",
+      "label": "US tariff upheaval — Supreme Court strikes down tariffs, Section 122 takes effect Monday",
+      "firstSeen": "2026-02-20T16:00:00Z",
+      "lastCovered": "2026-02-21T16:00:00Z",
+      "coverageCount": 4,
+      "category": "economy",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-02-20-us-supreme-court-strikes-down-trump-sweeping-tariffs",
+        "2026-02-20-trump-vows-ten-percent-global-tariff-after-court-rebuke",
+        "2026-02-21-trump-tariffs-hit-deal-partners-as-section-122-takes-effect",
+        "2026-02-21-eu-scrambles-as-trump-section-122-tariff-nears"
+      ],
+      "summary": "Supreme Court struck down emergency tariffs 6-3. Trump invoked Section 122 for 10% global tariff effective Feb 24. EU scrambling to respond. Global markets recalculating. Constitutional confrontation deepening."
+    },
+    {
+      "id": "ukraine-russia-geneva-talks",
+      "label": "Ukraine-Russia conflict — Ukraine targets Russian missile production",
+      "firstSeen": "2026-02-15T00:00:00Z",
+      "lastCovered": "2026-02-21T16:00:00Z",
+      "coverageCount": 5,
+      "category": "conflict",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
+        "2026-02-16-ukraine-russia-geneva-talks-set-as-both-sides-escalate",
+        "2026-02-17-ukraine-recaptures-most-territory-in-two-years-ahead-of-geneva-talks",
+        "2026-02-17-russia-ukraine-hold-third-round-of-geneva-talks-as-strikes-continue",
+        "2026-02-21-ukraine-strikes-missile-plant-deep-inside-russia"
+      ],
+      "summary": "Ukraine struck a missile production facility deep inside Russia. Diplomatic talks stalled since third Geneva round. Military escalation continues from both sides."
+    },
+    {
+      "id": "ethiopia-tigray-eritrea-tensions",
+      "label": "Ethiopia-Tigray-Eritrea: Troop movements raise renewed conflict fears",
+      "firstSeen": "2026-02-21T16:00:00Z",
+      "lastCovered": "2026-02-21T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": ["2026-02-21-ethiopia-tigray-eritrea-troop-movements-raise-conflict-fears"],
+      "summary": "Bloomberg reports military troop movements near Eritrea-Tigray border. 2022 Pretoria peace agreement may be unraveling. Tigray war killed 300-500K people."
+    },
+    {
+      "id": "aaas-science-trump-threat",
+      "label": "US scientists organize to protect research from political pressure",
+      "firstSeen": "2026-02-21T16:00:00Z",
+      "lastCovered": "2026-02-21T16:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": ["2026-02-21-scientists-at-aaas-confront-threats-to-us-research"],
+      "summary": "At the AAAS annual meeting — the world's largest general science gathering — the dominant theme is how to protect research, data, and institutional independence from political interference."
+    },
+    {
+      "id": "china-ai-talent-us-recruitment",
+      "label": "China's tech giants recruit AI and semiconductor talent in the US",
+      "firstSeen": "2026-02-21T16:00:00Z",
+      "lastCovered": "2026-02-21T16:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": ["2026-02-21-china-tech-giants-recruit-ai-talent-in-us"],
+      "summary": "Chinese tech companies aggressively recruiting AI and semiconductor talent in the US, even as both governments restrict technology flows. Corporate recruitment undermining containment strategies."
+    },
+    {
+      "id": "pakistan-northwest-insecurity",
+      "label": "Pakistan NW security crisis — soldiers killed in Bannu suicide attack",
+      "firstSeen": "2026-02-21T16:00:00Z",
+      "lastCovered": "2026-02-21T16:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": ["2026-02-21-pakistan-soldiers-killed-in-bannu-suicide-attack"],
+      "summary": "Lieutenant colonel and another soldier killed in suicide attack in Bannu, NW Pakistan. Militant attacks surging in the region."
+    },
+    {
+      "id": "india-brazil-critical-minerals",
+      "label": "India-Brazil critical minerals deal to reduce China dependence",
+      "firstSeen": "2026-02-21T12:00:00Z",
+      "lastCovered": "2026-02-21T12:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "developing",
+      "articles": ["2026-02-21-india-brazil-sign-critical-minerals-deal-to-curb-china-dependence"],
+      "summary": "India and Brazil signed critical minerals/rare earths cooperation agreement during Lula's Delhi visit. Part of Global South supply chain diversification away from China's ~80% monopoly."
+    },
+    {
+      "id": "venezuela-political-prisoners",
+      "label": "Venezuela grants amnesty to 379 political prisoners",
+      "firstSeen": "2026-02-21T12:00:00Z",
+      "lastCovered": "2026-02-21T12:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": ["2026-02-21-venezuela-grants-amnesty-to-379-political-prisoners"],
+      "summary": "Venezuela granted amnesty to 379 political prisoners. Fast-track protocol now in place for further releases. Thousands still detained."
+    },
+    {
+      "id": "albania-protests",
+      "label": "Albania clashes as protesters demand PM Rama resign",
+      "firstSeen": "2026-02-21T12:00:00Z",
+      "lastCovered": "2026-02-21T12:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": ["2026-02-21-albania-clashes-erupt-as-protesters-demand-pm-rama-resign"],
+      "summary": "Violent protests near Albania's parliament. Demonstrators demand Rama resign over corruption. Watch for escalation."
     },
     {
       "id": "trump-china-summit",
@@ -125,50 +173,10 @@
       "lastCovered": "2026-02-21T08:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": ["2026-02-21-trump-to-visit-china-for-summit-with-xi"],
-      "summary": "White House announces Trump will visit China March 31-April 2. First face-to-face with Xi this term. Tariffs, AI competition, gallium export controls, and Taiwan all on agenda."
-    },
-    {
-      "id": "us-supreme-court-tariffs",
-      "label": "US Supreme Court strikes down tariffs; Section 122 hits all countries",
-      "firstSeen": "2026-02-20T16:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
-      "coverageCount": 3,
-      "category": "economy",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-02-20-us-supreme-court-strikes-down-trump-sweeping-tariffs",
-        "2026-02-20-trump-vows-ten-percent-global-tariff-after-court-rebuke",
-        "2026-02-21-trump-tariffs-hit-deal-partners-as-section-122-takes-effect"
-      ],
-      "summary": "Supreme Court struck down emergency tariffs 6-3. Trump invoked Section 122 for 10% global tariff effective Feb 24. Constitutional confrontation deepening."
-    },
-    {
-      "id": "us-syria-embassy-reopening",
-      "label": "US to reopen embassy in Syria after 14 years",
-      "firstSeen": "2026-02-21T08:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "developing",
-      "articles": ["2026-02-21-us-to-reopen-embassy-in-syria-after-fourteen-years"],
-      "summary": "US State Department notified Congress of intent to reopen Damascus embassy, closed since 2012. Signals acceptance of post-Assad transition."
-    },
-    {
-      "id": "thailand-election-voided",
-      "label": "Thailand election may be voided over barcode blunder",
-      "firstSeen": "2026-02-21T08:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-02-21-thailand-election-may-be-voided-over-barcode-blunder"],
-      "summary": "Annulment threat over barcode printing error in ballots. Court ruling expected soon."
+      "summary": "White House announces Trump will visit China March 31-April 2. First face-to-face with Xi this term."
     },
     {
       "id": "sudan-humanitarian-crisis",
@@ -177,7 +185,7 @@
       "lastCovered": "2026-02-21T08:00:00Z",
       "coverageCount": 6,
       "category": "conflict",
-      "importance": 4,
+      "importance": 3,
       "arc": "ongoing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
@@ -187,7 +195,67 @@
         "2026-02-19-un-declares-hallmarks-of-genocide-in-sudans-el-fasher",
         "2026-02-21-rsf-drone-kills-three-aid-workers-in-sudan"
       ],
-      "summary": "RSF drone killed 3 aid workers. UN crossed genocide threshold. Saudi-UAE rift over RSF complicates response."
+      "summary": "RSF drone killed 3 aid workers. UN crossed genocide threshold. Museveni hosting RSF leader Dagalo for dialogue."
+    },
+    {
+      "id": "eu-china-tech-exclusion",
+      "label": "EU excludes China from critical tech research programmes",
+      "firstSeen": "2026-02-21T12:00:00Z",
+      "lastCovered": "2026-02-21T12:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": ["2026-02-21-eu-excludes-china-from-critical-tech-research-programmes"],
+      "summary": "EU excluded Chinese researchers and institutions from AI, semiconductor, and critical tech programmes. Aligns with US containment strategy."
+    },
+    {
+      "id": "nigeria-lassa-fever",
+      "label": "Nigeria Lassa fever outbreak — 22% fatality rate",
+      "firstSeen": "2026-02-21T12:00:00Z",
+      "lastCovered": "2026-02-21T12:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "developing",
+      "articles": ["2026-02-21-lassa-fever-outbreak-kills-one-in-five-in-nigeria"],
+      "summary": "Lassa fever outbreak in Nigeria at 22% case fatality rate with 15 healthcare workers infected."
+    },
+    {
+      "id": "galapagos-tortoise-return",
+      "label": "Giant tortoises return to Galapagos island after century",
+      "firstSeen": "2026-02-21T12:00:00Z",
+      "lastCovered": "2026-02-21T12:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "developing",
+      "articles": ["2026-02-21-giant-tortoises-return-to-galapagos-island-after-century"],
+      "summary": "150+ giant tortoises reintroduced to Floreana Island. Decades-long breeding programme success."
+    },
+    {
+      "id": "us-syria-embassy-reopening",
+      "label": "US to reopen embassy in Syria after 14 years",
+      "firstSeen": "2026-02-21T08:00:00Z",
+      "lastCovered": "2026-02-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": ["2026-02-21-us-to-reopen-embassy-in-syria-after-fourteen-years"],
+      "summary": "US State Department notified Congress of intent to reopen Damascus embassy."
+    },
+    {
+      "id": "thailand-election-voided",
+      "label": "Thailand election may be voided over barcode blunder",
+      "firstSeen": "2026-02-21T08:00:00Z",
+      "lastCovered": "2026-02-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": ["2026-02-21-thailand-election-may-be-voided-over-barcode-blunder"],
+      "summary": "Annulment threat over barcode printing error in ballots. Court ruling expected soon."
     },
     {
       "id": "huckabee-greater-israel",
@@ -196,10 +264,10 @@
       "lastCovered": "2026-02-21T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": ["2026-02-21-huckabee-says-israel-can-take-all-of-middle-east"],
-      "summary": "US ambassador Mike Huckabee told Tucker Carlson it would be 'fine' if Israel expanded from Nile to Euphrates."
+      "summary": "US ambassador Huckabee told Tucker Carlson it would be 'fine' if Israel expanded from Nile to Euphrates. Arab states and Muslim groups condemned."
     },
     {
       "id": "saudi-uae-rift-sudan-yemen",
@@ -208,7 +276,7 @@
       "lastCovered": "2026-02-21T00:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": ["2026-02-21-saudi-crown-prince-complains-to-uae-over-sudan-yemen"],
       "summary": "MBS sent detailed complaint to UAE over Emirati support for Sudan's RSF and Yemen's STC."
@@ -220,34 +288,10 @@
       "lastCovered": "2026-02-21T08:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-02-21-openai-flagged-school-shooter-months-before-massacre"],
-      "summary": "OpenAI's abuse detection flagged shooter's account months before Canadian school shooting but chose not to alert police."
-    },
-    {
-      "id": "grok-ai-privacy-violations",
-      "label": "Grok AI exposes user's protected identity without being asked",
-      "firstSeen": "2026-02-21T08:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-02-21-grok-exposes-performers-identity-without-being-asked"],
-      "summary": "Grok exposed a performer's protected legal name and birthdate to the public without any prompt."
-    },
-    {
-      "id": "argentina-gendarmerie-bomb",
-      "label": "Package bomb at Argentina gendarmerie school",
-      "firstSeen": "2026-02-21T08:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
       "importance": 4,
       "arc": "developing",
-      "articles": ["2026-02-21-package-bomb-injures-four-at-argentina-gendarmerie-school"],
-      "summary": "Explosive device detonated at Buenos Aires gendarmerie school, injuring four. Political tensions under Milei."
+      "articles": ["2026-02-21-openai-flagged-school-shooter-months-before-massacre"],
+      "summary": "OpenAI flagged shooter's account months before Canadian school shooting but chose not to alert police."
     },
     {
       "id": "alphafold-four-drug-discovery",
@@ -256,34 +300,22 @@
       "lastCovered": "2026-02-21T08:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
-      "arc": "developing",
-      "articles": ["2026-02-21-deepmind-spinoff-unveils-alphafold-four-for-drug-discovery"],
-      "summary": "Isomorphic Labs released new AI model for full molecular interaction modeling. Major step in AI-driven pharma."
-    },
-    {
-      "id": "alzheimers-blood-test",
-      "label": "Blood test predicts Alzheimer's symptom onset",
-      "firstSeen": "2026-02-21T08:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
       "importance": 5,
       "arc": "developing",
-      "articles": ["2026-02-21-blood-test-predicts-alzheimers-symptom-onset"],
-      "summary": "Blood test can predict when Alzheimer's symptoms will begin. Potential paradigm shift in early diagnosis."
+      "articles": ["2026-02-21-deepmind-spinoff-unveils-alphafold-four-for-drug-discovery"],
+      "summary": "Isomorphic Labs released new AI model for full molecular interaction modeling."
     },
     {
-      "id": "us-vietnam-tech-export",
-      "label": "US removes Vietnam from tech export control list",
-      "firstSeen": "2026-02-21T08:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
+      "id": "nasa-artemis-ii-moon",
+      "label": "NASA targets March for Artemis II crewed Moon mission",
+      "firstSeen": "2026-02-20T20:00:00Z",
+      "lastCovered": "2026-02-20T20:00:00Z",
       "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": ["2026-02-21-us-removes-vietnam-from-tech-export-control-list"],
-      "summary": "Trump told Vietnam's To Lam he will remove the country from restricted tech export lists. SE Asian tech supply chain realignment."
+      "category": "science",
+      "importance": 1,
+      "arc": "fading",
+      "articles": ["2026-02-20-nasa-targets-march-for-crewed-moon-mission"],
+      "summary": "NASA targeting early March for Artemis II — first crewed mission beyond Earth orbit since Apollo 17."
     },
     {
       "id": "north-korea-party-congress",
@@ -292,97 +324,13 @@
       "lastCovered": "2026-02-21T04:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-02-19-north-korea-opens-ninth-workers-party-congress",
         "2026-02-21-kim-ju-ae-absent-as-north-korea-congress-raises-succession-question"
       ],
-      "summary": "Kim Ju-ae absent from rare party congress. Succession questions. Congress formalising military doctrine."
-    },
-    {
-      "id": "nigeria-northwest-insecurity",
-      "label": "Mass killings in northwestern Nigeria",
-      "firstSeen": "2026-02-21T00:00:00Z",
-      "lastCovered": "2026-02-21T00:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 2,
-      "arc": "developing",
-      "articles": ["2026-02-21-armed-attackers-kill-fifty-in-northwestern-nigeria"],
-      "summary": "50+ killed and women/children abducted in Zamfara. NW Nigeria security crisis worsening."
-    },
-    {
-      "id": "eu-mercosur-trade-deal",
-      "label": "EU-Mercosur trade deal stalls over farming safeguards",
-      "firstSeen": "2026-02-21T04:00:00Z",
-      "lastCovered": "2026-02-21T04:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "developing",
-      "articles": ["2026-02-21-eu-mercosur-deal-stalls-as-europe-shields-farmers"],
-      "summary": "Europe legislating automatic safeguard mechanisms for agriculture while Argentina pushes to finalise the deal."
-    },
-    {
-      "id": "france-record-flooding",
-      "label": "Record 37-day rainfall devastates western France",
-      "firstSeen": "2026-02-21T04:00:00Z",
-      "lastCovered": "2026-02-21T04:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "developing",
-      "articles": ["2026-02-21-record-rain-devastates-western-france"],
-      "summary": "37 consecutive days of rain have caused disastrous flooding in western France."
-    },
-    {
-      "id": "hungary-eu-ukraine-loan-block",
-      "label": "Hungary blocks €90B EU loan to Ukraine",
-      "firstSeen": "2026-02-21T00:00:00Z",
-      "lastCovered": "2026-02-21T00:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": ["2026-02-21-hungary-blocks-eu-loan-to-ukraine-over-russian-oil-dispute"],
-      "summary": "Hungary threatening to veto €90B EU loan to Ukraine after Kyiv halted Russian oil transit."
-    },
-    {
-      "id": "trump-saudi-nuclear-deal",
-      "label": "Trump pursues Saudi nuclear deal with enrichment path",
-      "firstSeen": "2026-02-20T20:00:00Z",
-      "lastCovered": "2026-02-20T20:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": ["2026-02-20-trump-pursues-saudi-nuclear-deal-with-enrichment-path"],
-      "summary": "US negotiating nuclear deal with Saudi Arabia that would allow enrichment."
-    },
-    {
-      "id": "flock-surveillance-resistance",
-      "label": "Americans dismantling Flock surveillance cameras",
-      "firstSeen": "2026-02-21T08:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "developing",
-      "articles": ["2026-02-21-americans-dismantle-flock-surveillance-cameras"],
-      "summary": "Grassroots movement physically dismantling Flock Safety's ALPR cameras across the US."
-    },
-    {
-      "id": "yangtze-fishing-ban-recovery",
-      "label": "China's Yangtze fishing ban shows major ecological recovery",
-      "firstSeen": "2026-02-21T08:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "developing",
-      "articles": ["2026-02-21-yangtze-fishing-ban-drives-biomass-surge-and-porpoise-recovery"],
-      "summary": "Midpoint of China's 10-year Yangtze fishing ban shows fish biomass surging and finless porpoise rebounding."
+      "summary": "Kim Ju-ae absent from rare party congress. Succession questions."
     },
     {
       "id": "ai-model-race",
@@ -405,24 +353,7 @@
         "2026-02-20-ai-diffusion-models-achieve-14x-speed-gain-without-quality-loss",
         "2026-02-21-us-creates-tech-corps-to-counter-china-ai-exports"
       ],
-      "summary": "Broad AI race theme splitting into specific arcs. Delhi AI summit concluded with call for 'secure AI' but few commitments."
-    },
-    {
-      "id": "ukraine-russia-geneva-talks",
-      "label": "Ukraine-Russia Geneva peace talks",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-17T12:00:00Z",
-      "coverageCount": 4,
-      "category": "conflict",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
-        "2026-02-16-ukraine-russia-geneva-talks-set-as-both-sides-escalate",
-        "2026-02-17-ukraine-recaptures-most-territory-in-two-years-ahead-of-geneva-talks",
-        "2026-02-17-russia-ukraine-hold-third-round-of-geneva-talks-as-strikes-continue"
-      ],
-      "summary": "Talks stalled. No new round announced."
+      "summary": "Broad AI race theme. Delhi summit concluded. Individual stories tracked separately now."
     },
     {
       "id": "hamas-leadership-transition",
@@ -437,18 +368,6 @@
       "summary": "Hamas conducting internal vote for new interim leader."
     },
     {
-      "id": "china-gallium-export-controls",
-      "label": "China's gallium grip ahead of Trump Beijing visit",
-      "firstSeen": "2026-02-20T20:00:00Z",
-      "lastCovered": "2026-02-20T20:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": ["2026-02-20-chinas-gallium-grip-looms-over-trump-beijing-visit"],
-      "summary": "China controls ~80% of global gallium/germanium supply. Context for upcoming Trump-China summit."
-    },
-    {
       "id": "mrna-cancer-vaccine",
       "label": "Personalized mRNA cancer vaccine shows durable immunity",
       "firstSeen": "2026-02-20T16:00:00Z",
@@ -461,64 +380,16 @@
       "summary": "Personalized mRNA vaccines produce durable T cell immunity in triple-negative breast cancer."
     },
     {
-      "id": "nasa-artemis-ii-moon",
-      "label": "NASA targets March for Artemis II crewed Moon mission",
-      "firstSeen": "2026-02-20T20:00:00Z",
-      "lastCovered": "2026-02-20T20:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "developing",
-      "articles": ["2026-02-20-nasa-targets-march-for-crewed-moon-mission"],
-      "summary": "NASA targeting early March for Artemis II — first crewed mission beyond Earth orbit since Apollo 17."
-    },
-    {
       "id": "russian-oil-sanctions-evasion",
       "label": "FT exposes $90B Russian oil sanctions evasion network",
       "firstSeen": "2026-02-20T20:00:00Z",
       "lastCovered": "2026-02-20T20:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": ["2026-02-20-shell-firms-exported-ninety-billion-in-sanctioned-russian-oil"],
       "summary": "FT investigation reveals shell company network exporting $90B in sanctioned Russian oil."
-    },
-    {
-      "id": "china-drones-russia-thailand",
-      "label": "China routing drones to Russia via Thailand",
-      "firstSeen": "2026-02-20T20:00:00Z",
-      "lastCovered": "2026-02-20T20:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "developing",
-      "articles": ["2026-02-20-china-exports-drones-to-russia-via-thailand"],
-      "summary": "China using Thailand as transit point to ship drones to Russia, circumventing sanctions."
-    },
-    {
-      "id": "ggml-hugging-face-merger",
-      "label": "GGML/llama.cpp creator joins Hugging Face",
-      "firstSeen": "2026-02-21T04:00:00Z",
-      "lastCovered": "2026-02-21T04:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "developing",
-      "articles": ["2026-02-21-llama-cpp-creator-joins-hugging-face"],
-      "summary": "Georgi Gerganov's GGML joining Hugging Face. Consolidates open-source AI ecosystem."
-    },
-    {
-      "id": "wikipedia-archive-today-ban",
-      "label": "Wikipedia bans Archive.today over DDoS and altered captures",
-      "firstSeen": "2026-02-21T04:00:00Z",
-      "lastCovered": "2026-02-21T04:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "developing",
-      "articles": ["2026-02-21-wikipedia-bans-archive-today-over-altered-captures"],
-      "summary": "Wikipedia deprecating Archive.today and removing links after evidence of DDoS attacks and altered web captures."
     }
   ]
 }
