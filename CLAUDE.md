@@ -29,9 +29,9 @@ Multi-source RSS → fetch-news.js → Claude CLI selector (select-prompt.md) �
 **Sources (40):** Al Jazeera, BBC World, BBC Business, France 24, Deutsche Welle, AllAfrica, Al Monitor, Hacker News, The Hindu, Yonhap, CoinDesk, Bellingcat, Haaretz, Nature, Quanta Magazine, Moscow Times, Rest of World, MIT Technology Review, 404 Media, Carbon Brief, Malay Mail, Antara News, Premium Times, Dawn, Daily Star, South China Morning Post, Middle East Eye, Sveriges Radio, Daily Maverick, The East African, Buenos Aires Times, MercoPress, CBC News, Politico, Fox News, ABC News Australia, RNZ Pacific, Mada Masr, Medyascope, TSA
 
 - **Hosting:** Cloudflare Pages, direct upload via `wrangler pages deploy dist`
-- **Cycle:** systemd timer (`zuhd-news-cycle.timer`) 4x daily (00:00, 06:00, 12:00, 18:00 UTC) → `scripts/run-cycle.sh` → Claude CLI
+- **Cycle:** systemd timer (`zuhd-news-cycle.timer`) 6x daily (00:00, 04:00, 07:00, 12:00, 16:00, 20:00 UTC) → `scripts/run-cycle.sh` → Claude CLI
 - **Content:** markdown + YAML frontmatter in `content/articles/`, built to `dist/`
-- **Design:** Source Serif 4 + Source Sans 3, 18px base, 64ch measure, no decoration
+- **Design:** Source Sans 3, 20px base, 80ch measure, no decoration
 
 ## Key Files
 
@@ -50,7 +50,7 @@ Multi-source RSS → fetch-news.js → Claude CLI selector (select-prompt.md) �
 
 ## Decisions
 
-- Serif-led typography, no images unless informational, no dark mode
+- Single-family sans-serif typography, no images unless informational
 - Smart Brevity format: lead, why it matters, details, what's next, sources
 - No CMS, no database, no framework — just files and a 145-line SSG
 - English first, global hard news only

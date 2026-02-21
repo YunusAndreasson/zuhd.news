@@ -38,9 +38,9 @@ Since nearly all information on a news site is written language, typography is n
 
 Every element must justify its existence. The grid is structural, not decorative. Hierarchy is achieved through type alone — size, weight, and spacing signal importance. Headlines are the entry point. Body text is the sustained reading layer. Metadata recedes. If it does not serve the reader, it does not belong. Information appears exactly once — if a fact is visible in one place, it is not repeated in another. Redundancy is clutter wearing the disguise of helpfulness.
 
-### Serif Authority
+### Typographic Restraint
 
-The typographic voice is serif-led. A quality serif conveys literary authority, trust, and timelessness — the qualities a news publication must embody. A complementary sans-serif provides contrast for secondary elements without competing for attention. Two families, no more. The typeface is the brand.
+One typeface family, used with discipline. Weight, size, and spacing create all the hierarchy the page needs. The typeface is the brand — adding a second would be decoration, not design.
 
 ### Color Carries Meaning
 
@@ -90,7 +90,7 @@ The format is Smart Brevity — adapted from Axios, shaped by the zuhd philosoph
 **Design:**
 - International Typographic Style (Swiss Design) — Grid systems, type hierarchy, objective restraint
 - iA (Information Architects) — "Web design is 95% typography," typography as interface
-- Monocle — Strict typographic system, serif authority, density with clarity
+- Monocle — Strict typographic system, density with clarity
 - Kinfolk — Custom typeface as total brand identity, whitespace as design element
 - The New York Times — Purposeful typeface assignment, institutional typographic discipline
 

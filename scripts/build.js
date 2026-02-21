@@ -82,7 +82,7 @@ const formatDate = (dateStr) =>
 const formatTime = (dateStr) =>
   new Date(dateStr).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })
 
-const buildArticle = (filename, articleTemplate) => {
+const buildArticle = (filename) => {
   const raw = readFileSync(join(CONTENT_DIR, filename), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
   const sourcemark = meta.source ? ` <span class="end-source">${meta.source}</span>` : ''
@@ -92,20 +92,8 @@ const buildArticle = (filename, articleTemplate) => {
   const title = smartQuotes(meta.title || 'Untitled')
   const dateFormatted = formatDate(meta.date)
   const timeFormatted = formatTime(meta.date)
-  const description = body.split(/[.!?]/)[0]?.trim().slice(0, 200) || title
 
-  const html = articleTemplate
-    .replace(/{{title}}/g, title)
-    .replace(/{{slug}}/g, slug)
-    .replace(/{{description}}/g, description)
-    .replace(/{{date}}/g, dateFormatted)
-    .replace(/{{isoDate}}/g, meta.date || '')
-    .replace(/{{category}}/g, meta.category || '')
-    .replace(/{{source}}/g, meta.source || '')
-    .replace(/{{sourceUrl}}/g, meta.sourceUrl || '#')
-    .replace(/{{content}}/g, bodyHtml)
-
-  return { slug, html, meta, bodyHtml, title, dateFormatted, timeFormatted }
+  return { slug, meta, bodyHtml, title, dateFormatted, timeFormatted }
 }
 
 const PER_CATEGORY_LIMIT = 5
@@ -144,7 +132,7 @@ const buildHomepage = (articles, homepageTemplate) => {
     .map(a => `
       <article class="article-preview">
         <span class="category">${a.meta.category || ''}</span>
-        <h2><a href="/articles/${a.slug}.html">${a.title}</a></h2>
+        <h2><a href="/#${a.slug}">${a.title}</a></h2>
         <time datetime="${a.meta.date}">${a.dateFormatted}</time>
       </article>`)
     .join('\n')
@@ -158,7 +146,7 @@ const buildHomepage = (articles, homepageTemplate) => {
 console.log('Building zuhd.news...')
 
 if (existsSync(DIST_DIR)) rmSync(DIST_DIR, { recursive: true })
-mkdirSync(join(DIST_DIR, 'articles'), { recursive: true })
+mkdirSync(DIST_DIR, { recursive: true })
 
 if (existsSync(join(ROOT, 'public'))) {
   cpSync(join(ROOT, 'public'), DIST_DIR, { recursive: true })
@@ -186,8 +174,6 @@ const headCommon = `<meta charset="utf-8">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <style>${cssContent}</style>`
 
-const articleTemplate = readFileSync(join(TEMPLATES_DIR, 'article.html'), 'utf-8')
-  .replace('{{headCommon}}', headCommon)
 const homepageTemplate = readFileSync(join(TEMPLATES_DIR, 'index.html'), 'utf-8')
   .replace('{{headCommon}}', headCommon)
   .replace('{{inlineJS}}', jsContent)
@@ -196,9 +182,8 @@ const files = readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md') && f !== 'e
 const articles = []
 
 for (const file of files) {
-  const { slug, html, meta, bodyHtml, title, dateFormatted, timeFormatted } = buildArticle(file, articleTemplate)
+  const { slug, meta, bodyHtml, title, dateFormatted, timeFormatted } = buildArticle(file)
   const addedAt = meta.date ? new Date(meta.date).getTime() : statSync(join(CONTENT_DIR, file)).mtimeMs
-  writeFileSync(join(DIST_DIR, 'articles', `${slug}.html`), html)
   articles.push({ slug, meta, bodyHtml, title, dateFormatted, timeFormatted, addedAt })
   console.log(`  Built: ${slug}`)
 }
