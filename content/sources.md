@@ -1,4 +1,4 @@
-No single outlet owns the truth. We read 40 sources in multiple languages so you don't have to — then we write what happened in three sentences.
+No single outlet owns the truth. We read 40 sources in multiple languages so you don't have to — then we write what happened, concisely.
 
 A source earns its place here by being independent from those it covers, by checking its facts, and by seeing something the others miss. A government can fund a newsroom without controlling it. But when the state writes the story, that outlet is not listed here.
 
@@ -40,8 +40,7 @@ Funding and ownership are disclosed below. You should know who pays for the jour
 - [RNZ Pacific](https://www.rnz.co.nz/news/pacific) · public broadcaster, New Zealand
 
 ## Europe
-- [BBC World](https://www.bbc.com/news/world) · public broadcaster, UK
-- [BBC Business](https://www.bbc.com/news/business) · public broadcaster, UK
+- [BBC](https://www.bbc.com/news) · public broadcaster, UK
 - [Deutsche Welle](https://www.dw.com) · public broadcaster, Germany
 - [France 24](https://www.france24.com) · public broadcaster, France
 - [Moscow Times](https://www.themoscowtimes.com) · independent, exiled from Russia
@@ -52,7 +51,7 @@ Funding and ownership are disclosed below. You should know who pays for the jour
 - [Bellingcat](https://www.bellingcat.com) · nonprofit, Netherlands
 - [Carbon Brief](https://www.carbonbrief.org) · nonprofit, UK
 - [CoinDesk](https://www.coindesk.com) · corporate, US
-- [Hacker News](https://news.ycombinator.com) · corporate, US
+- [Hacker News](https://news.ycombinator.com) · community, US
 - [MIT Technology Review](https://www.technologyreview.com) · university, US
 - [Nature](https://www.nature.com) · corporate, UK
 - [Quanta Magazine](https://www.quantamagazine.org) · nonprofit, US

@@ -5,7 +5,7 @@ function init(data) {
   const { categoryOrder: categories, articles } = data;
   if (!categories.length) return;
 
-  const mql = matchMedia('(min-width: 768px)');
+  const mql = matchMedia('(min-width: 641px)');
   const isDesktop = () => mql.matches;
 
   const state = { catIdx: 0, artIdx: -1 };
@@ -101,7 +101,7 @@ function init(data) {
   };
 
   const buildHeadlines = () => {
-    listEl.innerHTML = '';
+    listEl.replaceChildren();
     for (const [i, a] of currentList().entries()) {
       const div = document.createElement('div');
       div.className = 'headline-item';
@@ -110,8 +110,12 @@ function init(data) {
       div.classList.toggle('selected', i === state.artIdx);
       if (readSlugs.has(a.slug)) div.classList.add('read');
       const displayDate = a.addedAt ? new Date(a.addedAt) : new Date(a.date);
-      const localTime = displayDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
-      div.innerHTML = `<h2>${esc(a.title)}</h2><time datetime="${displayDate.toISOString()}">${localTime}</time>`;
+      const now = new Date();
+      const isToday = displayDate.getDate() === now.getDate() && displayDate.getMonth() === now.getMonth() && displayDate.getFullYear() === now.getFullYear();
+      const timeLabel = isToday
+        ? displayDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
+        : displayDate.toLocaleDateString([], { day: 'numeric', month: 'short' });
+      div.innerHTML = `<h2>${esc(a.title)}</h2><time datetime="${displayDate.toISOString()}">${timeLabel}</time>`;
       div.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); div.click(); }
       });
@@ -144,16 +148,8 @@ function init(data) {
     state.artIdx = isDesktop() ? 0 : -1;
     updateStrip();
 
-    if (isDesktop()) {
-      listEl.classList.add('switching');
-      setTimeout(() => {
-        buildHeadlines();
-        listEl.classList.remove('switching');
-        openArticle(true);
-      }, 60);
-    } else {
-      buildHeadlines();
-    }
+    buildHeadlines();
+    if (isDesktop()) openArticle(true);
 
     announce(`${categories[idx]} category`);
   };
@@ -208,6 +204,9 @@ function init(data) {
 
   // --- Keyboard ---
 
+  const ac = new AbortController();
+  const sig = ac.signal;
+
   document.addEventListener('keydown', (e) => {
     if (e.target.matches('input, textarea')) return;
     if (!keyboardAware && (e.key.startsWith('Arrow') || 'hjkl'.includes(e.key))) dismissHints();
@@ -237,7 +236,7 @@ function init(data) {
         if (!desktop) { e.preventDefault(); collapseArticle(); }
         break;
     }
-  });
+  }, { signal: sig });
 
   // --- Touch ---
 
@@ -249,7 +248,7 @@ function init(data) {
     touchStartX = e.touches[0].clientX;
     touchStartY = e.touches[0].clientY;
     touchedStrip = e.target.closest('.category-strip') !== null;
-  }, { passive: true });
+  }, { passive: true, signal: sig });
 
   document.addEventListener('touchend', (e) => {
     if (isDesktop()) return;
@@ -259,7 +258,7 @@ function init(data) {
     if (absDx < 50 || Math.abs(e.changedTouches[0].clientY - touchStartY) > absDx * 0.6) return;
 
     switchCategory(wrap(state.catIdx + (dx < 0 ? 1 : -1), categories.length));
-  }, { passive: true });
+  }, { passive: true, signal: sig });
 
   // --- Resize ---
 
@@ -274,7 +273,7 @@ function init(data) {
       viewEl.hidden = true;
       buildHeadlines();
     }
-  });
+  }, { signal: sig });
 
   // --- Deep Link ---
 
@@ -302,7 +301,7 @@ function init(data) {
 
   const silentRefresh = async () => {
     try {
-      const res = await fetch('/', { cache: 'no-cache' });
+      const res = await fetch('/', { cache: 'no-cache', signal: AbortSignal.timeout(10000) });
       if (!res.ok) return;
       const html = await res.text();
       const match = html.match(/<script type="application\/json" id="article-data">([\s\S]*?)<\/script>/);
@@ -329,7 +328,7 @@ function init(data) {
       Object.assign(articles, newData.articles);
 
       // Rebuild UI
-      stripEl.innerHTML = '';
+      stripEl.replaceChildren();
       tabEls.length = 0;
       tabEls.push(...categories.map(buildTab));
 
@@ -356,6 +355,6 @@ function init(data) {
   if (!navigateToHash() && isDesktop()) {
     state.artIdx = 0;
     updateSelection();
-    openArticle(true);
+    openArticle(false);
   }
 }
