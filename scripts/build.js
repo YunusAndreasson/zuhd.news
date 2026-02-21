@@ -85,7 +85,7 @@ const formatTime = (dateStr) =>
 const buildArticle = (filename, articleTemplate) => {
   const raw = readFileSync(join(CONTENT_DIR, filename), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
-  const sourcemark = meta.source ? ` <span class="end-source">\u00B7 ${meta.source}</span>` : ''
+  const sourcemark = meta.source ? ` <span class="end-source">${meta.source}</span>` : ''
   const bodyHtml = splitSentences(markdownToHtml(body).replace(/<\/p>\s*$/, `${sourcemark}</p>`))
   const slug = basename(filename, '.md')
 
@@ -177,17 +177,13 @@ if (existsSync(audioSrc)) {
 // Shared <head> partial — DRYs charset, viewport, theme-color, favicon, fonts, inline CSS
 const cssContent = readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8')
 const jsContent = readFileSync(join(ROOT, 'public', 'reader.js'), 'utf-8')
-const FONT_URL = 'https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap'
 const headCommon = `<meta charset="utf-8">
+  <meta name="color-scheme" content="light dark">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#141414" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="${FONT_URL}" media="print" onload="this.media='all'">
-  <noscript><link href="${FONT_URL}" rel="stylesheet"></noscript>
   <style>${cssContent}</style>`
 
 const articleTemplate = readFileSync(join(TEMPLATES_DIR, 'article.html'), 'utf-8')
