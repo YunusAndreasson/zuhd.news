@@ -3,27 +3,28 @@
   "stories": [
     {
       "id": "us-supreme-court-tariffs",
-      "label": "US Supreme Court strikes down tariffs; Trump invokes new authority",
+      "label": "US Supreme Court strikes down tariffs; Section 122 hits all countries including deal partners",
       "firstSeen": "2026-02-20T16:00:00Z",
-      "lastCovered": "2026-02-20T20:00:00Z",
-      "coverageCount": 2,
+      "lastCovered": "2026-02-21T08:00:00Z",
+      "coverageCount": 3,
       "category": "economy",
       "importance": 8,
       "arc": "developing",
       "articles": [
         "2026-02-20-us-supreme-court-strikes-down-trump-sweeping-tariffs",
-        "2026-02-20-trump-vows-ten-percent-global-tariff-after-court-rebuke"
+        "2026-02-20-trump-vows-ten-percent-global-tariff-after-court-rebuke",
+        "2026-02-21-trump-tariffs-hit-deal-partners-as-section-122-takes-effect"
       ],
-      "summary": "Supreme Court struck down Trump's emergency tariffs 6-3. Trump invoked Section 122 for 10% global tariff and attacked justices as influenced by 'foreign interests'. Republicans privately celebrating. New legal challenges expected."
+      "summary": "Supreme Court struck down emergency tariffs 6-3. Trump invoked Section 122 for 10% global tariff that now applies to ALL countries — even those that already struck trade deals with the US. Illinois governor seeking $9B refund. Undermines the deal-making framework. Constitutional confrontation deepening."
     },
     {
       "id": "iran-nuclear-talks-geneva",
-      "label": "Iran-US nuclear standoff and military buildup",
+      "label": "Iran-US nuclear standoff, military buildup, and domestic unrest",
       "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-20T20:00:00Z",
-      "coverageCount": 12,
+      "lastCovered": "2026-02-21T08:00:00Z",
+      "coverageCount": 13,
       "category": "conflict",
-      "importance": 7,
+      "importance": 8,
       "arc": "ongoing",
       "articles": [
         "2026-02-15-iran-signals-nuclear-compromise-before-geneva-talks",
@@ -37,9 +38,10 @@
         "2026-02-19-us-assembles-largest-middle-east-force-since-2003-for-iran",
         "2026-02-20-trump-gives-iran-fifteen-days-for-nuclear-deal-or-bad-things",
         "2026-02-20-trump-considers-iran-strike-as-tehran-says-draft-deal-imminent",
-        "2026-02-20-uk-blocks-us-from-using-bases-for-iran-strike"
+        "2026-02-20-uk-blocks-us-from-using-bases-for-iran-strike",
+        "2026-02-21-iran-protests-erupt-at-forty-day-memorials"
       ],
-      "summary": "~8 days remain on Trump's ultimatum. Draft deal reportedly imminent but military buildup continues. UK blocked bases. US partners reportedly reluctant. Dual-track diplomacy and escalation. Oil above $72, Hormuz closed."
+      "summary": "~7 days remain on Trump's ultimatum. NEW: 40-day mourning memorials have turned into anti-Khamenei protests, adding domestic pressure. Draft deal reportedly imminent but military buildup continues. UK blocked bases. Dual-track crisis: external standoff plus internal political unrest."
     },
     {
       "id": "huckabee-greater-israel",
@@ -48,8 +50,8 @@
       "lastCovered": "2026-02-21T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-02-21-huckabee-says-israel-can-take-all-of-middle-east"
       ],
@@ -62,7 +64,7 @@
       "lastCovered": "2026-02-21T04:00:00Z",
       "coverageCount": 5,
       "category": "conflict",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-02-16-israel-strikes-lebanon-border-killing-four-in-first-post-truce-attack-on-islamic-jihad",
@@ -71,7 +73,7 @@
         "2026-02-20-israel-strikes-palestinian-refugee-camp-in-lebanon",
         "2026-02-21-israeli-strikes-kill-eight-across-lebanon"
       ],
-      "summary": "Israeli strikes widening across Lebanon — at least 8 killed including drone attack on Ein el-Hilweh. Ceasefire eroding with each cycle. Hezbollah rejected disarmament. Pattern of escalation accelerating."
+      "summary": "Israeli strikes continuing to widen across Lebanon — now 12+ killed, 50+ wounded in latest round. Ceasefire eroding cycle by cycle. Hezbollah rejected disarmament."
     },
     {
       "id": "eu-mercosur-trade-deal",
@@ -80,12 +82,12 @@
       "lastCovered": "2026-02-21T04:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-02-21-eu-mercosur-deal-stalls-as-europe-shields-farmers"
       ],
-      "summary": "Europe legislating automatic safeguard mechanisms for agriculture while Argentina pushes to finalise the deal. Decades-long negotiation hitting familiar protectionist barriers. Trump tariff chaos adding urgency for both sides."
+      "summary": "Europe legislating automatic safeguard mechanisms for agriculture while Argentina pushes to finalise the deal. Decades-long negotiation hitting familiar protectionist barriers."
     },
     {
       "id": "france-record-flooding",
@@ -94,8 +96,8 @@
       "lastCovered": "2026-02-21T04:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-02-21-record-rain-devastates-western-france"
       ],
@@ -108,13 +110,13 @@
       "lastCovered": "2026-02-21T04:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-02-19-north-korea-opens-ninth-workers-party-congress",
         "2026-02-21-kim-ju-ae-absent-as-north-korea-congress-raises-succession-question"
       ],
-      "summary": "Kim Ju-ae conspicuously absent from rare party congress. Raises questions about succession plans. Congress formalising military doctrine with ICBM implications. Kim touting economic achievements."
+      "summary": "Kim Ju-ae conspicuously absent from rare party congress. Raises questions about succession plans. Congress formalising military doctrine with ICBM implications."
     },
     {
       "id": "ggml-hugging-face-merger",
@@ -123,12 +125,12 @@
       "lastCovered": "2026-02-21T04:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-02-21-llama-cpp-creator-joins-hugging-face"
       ],
-      "summary": "Georgi Gerganov's GGML — creator of llama.cpp, the most used local AI inference engine — joining Hugging Face. Consolidates open-source AI ecosystem: inference engine meets model hub."
+      "summary": "Georgi Gerganov's GGML — creator of llama.cpp — joining Hugging Face. Consolidates open-source AI ecosystem."
     },
     {
       "id": "wikipedia-archive-today-ban",
@@ -137,12 +139,12 @@
       "lastCovered": "2026-02-21T04:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-02-21-wikipedia-bans-archive-today-over-altered-captures"
       ],
-      "summary": "Wikipedia deprecating Archive.today and removing links after evidence the service executed DDoS attacks and altered stored web captures. Trust in web archiving undermined."
+      "summary": "Wikipedia deprecating Archive.today and removing links after evidence the service executed DDoS attacks and altered stored web captures."
     },
     {
       "id": "saudi-uae-rift-sudan-yemen",
@@ -151,12 +153,12 @@
       "lastCovered": "2026-02-21T00:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-02-21-saudi-crown-prince-complains-to-uae-over-sudan-yemen"
       ],
-      "summary": "MBS sent detailed complaint letter to UAE national security advisor over Emirati support for Sudan's RSF and Yemen's STC. Letter shared with Washington. Gulf rift now a three-way geopolitical issue."
+      "summary": "MBS sent detailed complaint letter to UAE national security advisor over Emirati support for Sudan's RSF and Yemen's STC. Letter shared with Washington."
     },
     {
       "id": "trump-saudi-nuclear-deal",
@@ -165,7 +167,7 @@
       "lastCovered": "2026-02-20T20:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-02-20-trump-pursues-saudi-nuclear-deal-with-enrichment-path"
@@ -179,7 +181,7 @@
       "lastCovered": "2026-02-21T00:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-02-21-hungary-blocks-eu-loan-to-ukraine-over-russian-oil-dispute"
@@ -193,7 +195,7 @@
       "lastCovered": "2026-02-21T00:00:00Z",
       "coverageCount": 10,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "ongoing",
       "articles": [
         "2026-02-16-alibaba-releases-qwen-35-in-escalating-ai-model-race",
@@ -216,7 +218,7 @@
       "lastCovered": "2026-02-20T20:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-02-20-nasa-targets-march-for-crewed-moon-mission"
@@ -230,7 +232,7 @@
       "lastCovered": "2026-02-20T20:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-02-20-shell-firms-exported-ninety-billion-in-sanctioned-russian-oil"
@@ -244,7 +246,7 @@
       "lastCovered": "2026-02-21T00:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-02-21-armed-attackers-kill-fifty-in-northwestern-nigeria"
@@ -258,7 +260,7 @@
       "lastCovered": "2026-02-21T00:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-21-senegal-doubles-prison-terms-for-homosexuality"
@@ -272,7 +274,7 @@
       "lastCovered": "2026-02-20T20:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-20-ethiopia-faces-renewed-strain-with-tigray-and-eritrea"
@@ -286,7 +288,7 @@
       "lastCovered": "2026-02-20T20:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-02-20-china-exports-drones-to-russia-via-thailand"
@@ -300,7 +302,7 @@
       "lastCovered": "2026-02-20T20:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-20-chinas-gallium-grip-looms-over-trump-beijing-visit"
@@ -314,7 +316,7 @@
       "lastCovered": "2026-02-21T00:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-21-sec-reclassifies-stablecoin-holdings-for-brokers"
@@ -328,7 +330,7 @@
       "lastCovered": "2026-02-21T00:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-21-france-confirms-military-trainers-in-dr-congo"
@@ -337,21 +339,22 @@
     },
     {
       "id": "sudan-humanitarian-crisis",
-      "label": "Sudan genocide assessment and humanitarian crisis",
+      "label": "Sudan genocide and humanitarian crisis — aid workers now targeted",
       "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-19T21:00:00Z",
-      "coverageCount": 5,
+      "lastCovered": "2026-02-21T08:00:00Z",
+      "coverageCount": 6,
       "category": "conflict",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
         "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
         "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28",
         "2026-02-17-sudan-drone-strikes-kill-sixty-across-darfur-and-kordofan",
-        "2026-02-19-un-declares-hallmarks-of-genocide-in-sudans-el-fasher"
+        "2026-02-19-un-declares-hallmarks-of-genocide-in-sudans-el-fasher",
+        "2026-02-21-rsf-drone-kills-three-aid-workers-in-sudan"
       ],
-      "summary": "UN crossed 'hallmarks of genocide' threshold. RSF drone attacks and child soldier recruitment continue. Saudi-UAE rift complicates response."
+      "summary": "RSF drone attack killed 3 aid workers and wounded 4 in Kordofan — deliberate targeting of humanitarian infrastructure. UN crossed genocide threshold. Saudi-UAE rift over RSF complicates response. Child soldiers recruiting via TikTok."
     },
     {
       "id": "gaza-board-of-peace",
@@ -360,7 +363,7 @@
       "lastCovered": "2026-02-20T00:00:00Z",
       "coverageCount": 3,
       "category": "conflict",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-02-15-board-of-peace-members-pledge-five-billion-for-gaza",
@@ -408,7 +411,7 @@
       "lastCovered": "2026-02-20T16:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-20-personalized-mrna-cancer-vaccine-shows-durable-immunity"
@@ -422,12 +425,12 @@
       "lastCovered": "2026-02-20T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-20-hamas-holds-vote-for-new-interim-leader"
       ],
-      "summary": "Hamas conducting internal vote for new interim leader. Significant governance shift."
+      "summary": "Hamas conducting internal vote for new interim leader. Announcement expected during Ramadan. Hayya vs Meshal."
     },
     {
       "id": "china-germany-trade",
@@ -436,12 +439,68 @@
       "lastCovered": "2026-02-20T16:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-20-china-overtakes-us-as-germanys-top-trading-partner"
       ],
       "summary": "Germany's trade center of gravity shifted to Beijing. Driven by US tariff disruptions."
+    },
+    {
+      "id": "us-vietnam-tech-export",
+      "label": "US removes Vietnam from tech export control list",
+      "firstSeen": "2026-02-21T08:00:00Z",
+      "lastCovered": "2026-02-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-21-us-removes-vietnam-from-tech-export-control-list"
+      ],
+      "summary": "Trump told Vietnam's To Lam he will remove the country from restricted tech export lists. Significant geopolitical realignment as US courts SE Asian partners to counterbalance China in semiconductor supply chains."
+    },
+    {
+      "id": "openai-school-shooter-flag",
+      "label": "OpenAI flagged school shooter but did not alert police",
+      "firstSeen": "2026-02-21T08:00:00Z",
+      "lastCovered": "2026-02-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-21-openai-flagged-school-shooter-months-before-massacre"
+      ],
+      "summary": "OpenAI's abuse detection flagged Jesse Van Rootselaar's account months before the Canadian school shooting but chose not to alert police. Most concrete case of AI company having advance warning of mass violence."
+    },
+    {
+      "id": "yangtze-fishing-ban-recovery",
+      "label": "China's Yangtze fishing ban shows major ecological recovery",
+      "firstSeen": "2026-02-21T08:00:00Z",
+      "lastCovered": "2026-02-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-21-yangtze-fishing-ban-drives-biomass-surge-and-porpoise-recovery"
+      ],
+      "summary": "Midpoint assessment of China's unprecedented 10-year Yangtze fishing ban shows fish biomass surging and finless porpoise population rebounding. One of the largest freshwater conservation experiments ever."
+    },
+    {
+      "id": "flock-surveillance-resistance",
+      "label": "Americans dismantling Flock surveillance cameras",
+      "firstSeen": "2026-02-21T08:00:00Z",
+      "lastCovered": "2026-02-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-21-americans-dismantle-flock-surveillance-cameras"
+      ],
+      "summary": "Grassroots movement of people physically dismantling Flock Safety's automated license plate reader cameras across the US. Cameras often installed without public input. Resistance moved from legal challenges to direct action."
     }
   ]
 }
