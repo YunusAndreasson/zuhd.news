@@ -556,6 +556,7 @@ footer {
   font-size: var(--size-sm);
   color: var(--text);
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
 
 .briefing-track {
