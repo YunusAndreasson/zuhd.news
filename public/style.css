@@ -83,7 +83,6 @@
   --size-h3: 1.25rem;      /* 20px */
   --size-h2: 1.563rem;     /* 25px */
   --size-h1: 1.953rem;     /* 31.25px */
-  --size-display: 2.441rem; /* 39px */
 
   --leading-body: 1.55;
   --leading-heading: 1.2;
@@ -134,12 +133,10 @@ body {
 
 /* --- Typography --- */
 h1 {
-  font-size: var(--size-display);
+  font-size: var(--size-h1);
   line-height: var(--leading-heading);
   font-weight: 700;
   margin-bottom: var(--space-sm);
-  text-wrap: balance;
-  outline: none;
 }
 
 p { margin-bottom: var(--space-sm); }
@@ -258,26 +255,11 @@ footer {
   }
 }
 
-/* --- Article Header --- */
-.article-header {
-  margin-bottom: clamp(1rem, 3vh, 2rem);
-}
-
 .category {
   font-size: var(--size-xs);
   display: block;
   margin-bottom: var(--space-xs);
 }
-
-.meta {
-  font-size: var(--size-sm);
-  color: var(--text-secondary);
-  margin-top: var(--space-xs);
-
-  a { color: var(--text-secondary); }
-}
-
-.separator { margin: 0 0.4em; }
 
 /* --- Homepage --- */
 .article-preview {
@@ -516,7 +498,6 @@ footer {
     margin-top: var(--space-md);
 
     &[hidden] { display: block; }
-    .article-header { display: none; }
   }
 
   body.show-key-hints {

@@ -171,15 +171,7 @@ function init(data) {
     }
 
     if (isDesktop()) {
-      const a = article;
-      viewInner.innerHTML = `
-        <header class="article-header">
-          <h1>${esc(a.title)}</h1>
-          <div class="meta">
-            <time>${a.dateFormatted} · ${a.timeFormatted}</time>
-          </div>
-        </header>
-        <div class="article-body">${a.bodyHtml}</div>`;
+      viewInner.innerHTML = `<div class="article-body">${article.bodyHtml}</div>`;
       viewEl.hidden = false;
       history.replaceState({ catIdx: state.catIdx, artIdx: state.artIdx }, '', `#${article.slug}`);
       announce(`Reading: ${article.title}`);

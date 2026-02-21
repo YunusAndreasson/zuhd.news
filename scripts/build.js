@@ -79,9 +79,6 @@ const splitSentences = (html) => {
 const formatDate = (dateStr) =>
   new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
 
-const formatTime = (dateStr) =>
-  new Date(dateStr).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })
-
 const buildArticle = (filename) => {
   const raw = readFileSync(join(CONTENT_DIR, filename), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
@@ -91,9 +88,8 @@ const buildArticle = (filename) => {
 
   const title = smartQuotes(meta.title || 'Untitled')
   const dateFormatted = formatDate(meta.date)
-  const timeFormatted = formatTime(meta.date)
 
-  return { slug, meta, bodyHtml, title, dateFormatted, timeFormatted }
+  return { slug, meta, bodyHtml, title, dateFormatted }
 }
 
 const PER_CATEGORY_LIMIT = 5
@@ -110,11 +106,6 @@ const buildHomepage = (articles, homepageTemplate) => {
       title: a.title,
       date: a.meta.date,
       addedAt: a.addedAt,
-      dateFormatted: a.dateFormatted,
-      timeFormatted: a.timeFormatted,
-      source: a.meta.source || '',
-      sourceUrl: a.meta.sourceUrl || '#',
-      category: cat,
       bodyHtml: a.bodyHtml
     })
   }
@@ -182,9 +173,9 @@ const files = readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md') && f !== 'e
 const articles = []
 
 for (const file of files) {
-  const { slug, meta, bodyHtml, title, dateFormatted, timeFormatted } = buildArticle(file)
+  const { slug, meta, bodyHtml, title, dateFormatted } = buildArticle(file)
   const addedAt = meta.date ? new Date(meta.date).getTime() : statSync(join(CONTENT_DIR, file)).mtimeMs
-  articles.push({ slug, meta, bodyHtml, title, dateFormatted, timeFormatted, addedAt })
+  articles.push({ slug, meta, bodyHtml, title, dateFormatted, addedAt })
   console.log(`  Built: ${slug}`)
 }
 
