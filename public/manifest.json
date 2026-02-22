@@ -1,0 +1,37 @@
+{
+  "name": "zuhd.news",
+  "short_name": "zuhd",
+  "description": "Global news, no noise.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "dir": "ltr",
+  "lang": "en",
+  "categories": ["news"],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/briefing-artwork-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/briefing-artwork.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/briefing-artwork.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

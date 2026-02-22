@@ -45,11 +45,22 @@ timeout 900 claude $CLAUDE_COMMON --model claude-opus-4-6 --fallback-model claud
 SELECT_EXIT=$?
 echo "Selector exit: $SELECT_EXIT" | tee -a "$LOG_FILE"
 
-# Skip writer+editor if selector produced no selection
+# Abort if selector failed or produced no selection
+if [ "$SELECT_EXIT" -ne 0 ]; then
+  echo "Selector failed (exit $SELECT_EXIT) — aborting cycle" | tee -a "$LOG_FILE"
+  exit 1
+fi
 if [ ! -s /tmp/zuhd-selection.json ]; then
-  echo "No selection produced — skipping writer and editor" | tee -a "$LOG_FILE"
+  echo "No selection file produced — skipping writer and editor" | tee -a "$LOG_FILE"
   exit 0
 fi
+# Guard against empty JSON array (selector wrote [] with 0 stories)
+SELECTION_COUNT=$(node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/zuhd-selection.json','utf8'));console.log(Array.isArray(s)?s.length:0)" 2>/dev/null || echo 0)
+if [ "$SELECTION_COUNT" -eq 0 ]; then
+  echo "Selection is empty (0 stories) — skipping writer and editor" | tee -a "$LOG_FILE"
+  exit 0
+fi
+echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
 
 # Stage 2: Writer — read selection, fetch full articles, draft markdown
 echo "" | tee -a "$LOG_FILE"
@@ -58,6 +69,10 @@ WRITE_PROMPT=$(cat scripts/write-prompt.md)
 timeout 900 claude $CLAUDE_COMMON --model claude-opus-4-6 --fallback-model claude-sonnet-4-6 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 WRITE_EXIT=$?
 echo "Writer exit: $WRITE_EXIT" | tee -a "$LOG_FILE"
+
+if [ "$WRITE_EXIT" -ne 0 ]; then
+  echo "Writer failed (exit $WRITE_EXIT) — skipping editor and deploy" | tee -a "$LOG_FILE"
+fi
 
 # Capture new articles from this cycle (modified + untracked)
 NEW_ARTICLES=$( { git diff --name-only content/articles/ 2>/dev/null; git ls-files --others --exclude-standard content/articles/ 2>/dev/null; } | sort -u )
@@ -88,27 +103,6 @@ $ARTICLE_LIST"
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3b: Build & Deploy ---" | tee -a "$LOG_FILE"
 
-  # Write .last-cycle.json from the selection file
-  if [ -s /tmp/zuhd-selection.json ]; then
-    node -e "
-const fs = require('fs');
-const sel = JSON.parse(fs.readFileSync('/tmp/zuhd-selection.json', 'utf8'));
-const cycle = {
-  timestamp: new Date().toISOString(),
-  articles: sel.map(s => ({
-    slug: s.suggestedSlug,
-    title: s.title,
-    category: s.category,
-    source: s.source
-  })),
-  categories: [...new Set(sel.map(s => s.category))],
-  sources: [...new Set(sel.map(s => s.source))]
-};
-fs.writeFileSync('content/.last-cycle.json', JSON.stringify(cycle, null, 2) + '\n');
-console.log('Wrote .last-cycle.json with ' + cycle.articles.length + ' articles');
-" 2>&1 | tee -a "$LOG_FILE"
-  fi
-
   # Validate new articles — move malformed ones aside so they don't get deployed
   node -e "
 const fs = require('fs');
@@ -133,6 +127,29 @@ for (const f of files) {
   }
 }
 console.log('Validated ' + files.length + ' articles, ' + bad + ' removed');
+" 2>&1 | tee -a "$LOG_FILE"
+
+  # Write .last-cycle.json from validated articles (not raw selection)
+  # This ensures the selector next cycle only skips stories that were actually published
+  node -e "
+const fs = require('fs');
+const path = require('path');
+const sel = JSON.parse(fs.readFileSync('/tmp/zuhd-selection.json', 'utf8'));
+const articleDir = 'content/articles';
+const published = sel.filter(s => fs.existsSync(path.join(articleDir, s.suggestedSlug + '.md')));
+const cycle = {
+  timestamp: new Date().toISOString(),
+  articles: published.map(s => ({
+    slug: s.suggestedSlug,
+    title: s.title,
+    category: s.category,
+    source: s.source
+  })),
+  categories: [...new Set(published.map(s => s.category))],
+  sources: [...new Set(published.map(s => s.source))]
+};
+fs.writeFileSync('content/.last-cycle.json', JSON.stringify(cycle, null, 2) + '\n');
+console.log('Wrote .last-cycle.json with ' + published.length + '/' + sel.length + ' articles (validated)');
 " 2>&1 | tee -a "$LOG_FILE"
 
   # Build

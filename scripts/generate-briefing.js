@@ -2,7 +2,7 @@
 // zuhd.news daily audio briefing generator
 // Three stages: collect articles → Claude SSML → Google TTS MP3
 
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, unlinkSync, existsSync } from 'fs'
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, unlinkSync, existsSync, statSync } from 'fs'
 import { join, basename } from 'path'
 import { spawnSync } from 'child_process'
 import textToSpeech from '@google-cloud/text-to-speech'
@@ -42,24 +42,27 @@ for (const file of files) {
   const raw = readFileSync(join(ARTICLES_DIR, file), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
   if (!meta.date) continue
-  const articleTime = new Date(meta.date).getTime()
-  if (articleTime < cutoff) continue
+  // Use the later of source date and file mtime (articles may have older source dates)
+  const sourceTime = new Date(meta.date).getTime()
+  const fileTime = statSync(join(ARTICLES_DIR, file)).mtimeMs
+  const addedTime = Math.max(sourceTime, fileTime)
+  if (addedTime < cutoff) continue
   articles.push({
     title: meta.title || basename(file, '.md'),
     category: meta.category || 'uncategorised',
     source: meta.source || '',
-    date: meta.date,
+    addedTime,
     body: body.slice(0, 300) // trimmed to keep prompt compact
   })
 }
 
 // Keep the 20 most recent articles — enough for 8–10 story selection
-articles.sort((a, b) => new Date(b.date) - new Date(a.date))
+articles.sort((a, b) => b.addedTime - a.addedTime)
 if (articles.length > 20) {
   console.log(`Trimmed from ${articles.length} to 20 articles (most recent)`)
   articles = articles.slice(0, 20)
 }
-articles.forEach(a => delete a.date) // strip date before sending to Claude
+articles.forEach(a => delete a.addedTime) // strip internal field before sending to Claude
 
 if (articles.length === 0) {
   console.log('No articles in last 24h — skipping briefing.')
@@ -90,11 +93,11 @@ try {
   console.warn('Could not read story ledger (continuing without it):', err.message)
 }
 
-// Compute hours until next editorial cycle for the briefing intro
-const CYCLE_HOURS = [0, 4, 7, 12, 16, 20]
+// Compute hours until next briefing (briefings run at 04:00 and 16:00 UTC only)
+const BRIEFING_HOURS = [4, 16]
 const now = new Date()
 const currentMinutes = now.getUTCHours() * 60 + now.getUTCMinutes()
-const cycleMinutes = CYCLE_HOURS.map(h => h * 60)
+const cycleMinutes = BRIEFING_HOURS.map(h => h * 60)
 const nextCycleMin = cycleMinutes.find(m => m > currentMinutes) ?? cycleMinutes[0]
 const minutesUntilNext = nextCycleMin > currentMinutes
   ? nextCycleMin - currentMinutes
@@ -114,9 +117,9 @@ writeFileSync(TMP_ARTICLES, JSON.stringify(payload, null, 2))
 console.log('\n=== Stage 2: Generating SSML bulletin ===')
 
 const promptTemplate = readFileSync(PROMPT_PATH, 'utf-8')
-// Inline article data directly to avoid tool-call round-trip
+// Inline article data directly into the prompt to avoid tool-call round-trip
 const prompt = promptTemplate.replace(
-  /Read the file `\/tmp\/zuhd-briefing-articles\.json`\. It contains a JSON object with:/,
+  /The article data and editorial context are provided inline below by the system\. The JSON object contains:/,
   'Here is the article data as JSON:\n\n```json\n' + JSON.stringify(payload, null, 2) + '\n```\n\nThe JSON object contains:'
 )
 let claudeOutput
