@@ -18,7 +18,6 @@ A separate editor reviews your output, so focus on drafting — do not build or 
 4. Write each story as a markdown article following the format and rules below
 5. Save each article to `content/articles/` using the `suggestedSlug` as the filename
 6. Do not modify existing articles — only add new ones
-7. After writing all articles, re-read each one cold and check it against the rules. Fix any violations before saving the final version.
 
 </task>
 

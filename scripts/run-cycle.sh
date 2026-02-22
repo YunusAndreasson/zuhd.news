@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# zuhd.news editorial cycle — runs 6x daily via systemd timer
+# zuhd.news editorial cycle — runs 4x daily via systemd timer
 # Three-stage pipeline: selector picks stories, writer drafts articles, editor checks and deploys
 
 set -uo pipefail
@@ -70,7 +70,7 @@ echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 2: Writer ---" | tee -a "$LOG_FILE"
 WRITE_PROMPT=$(cat scripts/write-prompt.md)
-timeout 900 claude $CLAUDE_COMMON --model claude-opus-4-6 --fallback-model claude-sonnet-4-6 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+timeout 1200 claude $CLAUDE_COMMON --model claude-opus-4-6 --fallback-model claude-sonnet-4-6 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 WRITE_EXIT=$?
 echo "Writer exit: $WRITE_EXIT" | tee -a "$LOG_FILE"
 
@@ -198,7 +198,7 @@ fi
 
 # Stage 5: Weekly reflection — runs Sunday 21:00 UTC only
 DAY_OF_WEEK=$(date -u +%u)
-if [ "$DAY_OF_WEEK" = "7" ] && [ "$HOUR_UTC" = "20" ]; then
+if [ "$DAY_OF_WEEK" = "7" ] && [ "$HOUR_UTC" = "22" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 5: Weekly reflection ---" | tee -a "$LOG_FILE"
   REFLECT_PROMPT=$(cat scripts/reflect-prompt.md)
