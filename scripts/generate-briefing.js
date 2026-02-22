@@ -104,12 +104,18 @@ const minutesUntilNext = nextCycleMin > currentMinutes
   : 1440 - currentMinutes + nextCycleMin
 const hoursUntilNext = Math.round(minutesUntilNext / 60)
 
-// Makkah time (UTC+3) for the briefing timestamp
+// Makkah hour (UTC+3) for the briefing greeting
 const makkahOffset = 3 * 60 * 60 * 1000
 const makkahNow = new Date(Date.now() + makkahOffset)
-const makkahTime = makkahNow.toISOString().slice(11, 16) // "HH:MM"
+const makkahHour = parseInt(makkahNow.toISOString().slice(11, 13), 10)
 
-const payload = { articles, hoursUntilNext, makkahTime }
+// Hijri date (Umm al-Qura calendar)
+const hijriDay = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { day: 'numeric' }).format(now)
+const hijriMonth = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { month: 'long' }).format(now)
+const hijriYear = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { year: 'numeric' }).format(now).replace(' AH', '')
+const isFriday = now.getUTCDay() === 5
+
+const payload = { articles, hoursUntilNext, makkahHour, hijriDate: `${hijriDay} ${hijriMonth} ${hijriYear}`, isFriday }
 if (editorialContext) payload.editorialContext = editorialContext
 writeFileSync(TMP_ARTICLES, JSON.stringify(payload, null, 2))
 
@@ -219,11 +225,11 @@ writeFileSync(metaPath, JSON.stringify({
 }, null, 2))
 console.log(`Metadata saved: ${metaPath}`)
 
-// Clean up MP3s older than 7 days
+// Clean up MP3s and SSML transcripts older than 7 days
 const sevenDaysAgo = Date.now() - 7 * 24 * 60 * 60 * 1000
 for (const f of readdirSync(AUDIO_DIR)) {
-  if (!f.startsWith('briefing-') || !f.endsWith('.mp3')) continue
-  const dateStr = f.replace('briefing-', '').replace('.mp3', '')
+  if (!f.startsWith('briefing-') || !(f.endsWith('.mp3') || f.endsWith('.ssml'))) continue
+  const dateStr = f.replace('briefing-', '').replace(/\.(mp3|ssml)$/, '')
   if (new Date(dateStr).getTime() < sevenDaysAgo) {
     unlinkSync(join(AUDIO_DIR, f))
     console.log(`Cleaned up old briefing: ${f}`)

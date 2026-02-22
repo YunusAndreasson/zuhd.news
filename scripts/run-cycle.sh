@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# zuhd.news editorial cycle — runs 4x daily via systemd timer
+# zuhd.news editorial cycle — runs 6x daily via systemd timer
 # Three-stage pipeline: selector picks stories, writer drafts articles, editor checks and deploys
 
 set -uo pipefail
@@ -7,6 +7,10 @@ set -uo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 LOG_DIR="$PROJECT_DIR/logs"
+
+# Prevent overlapping cycles (systemd timer doesn't guarantee exclusion)
+exec 200>/tmp/zuhd-cycle.lock
+flock -n 200 || { echo "Cycle already running — exiting"; exit 0; }
 
 # Ensure mise-managed tools are on PATH (systemd doesn't source shell profiles)
 export PATH="/root/.local/share/mise/installs/node/24.13.1/bin:/root/.local/bin:$PATH"
@@ -71,7 +75,7 @@ WRITE_EXIT=$?
 echo "Writer exit: $WRITE_EXIT" | tee -a "$LOG_FILE"
 
 if [ "$WRITE_EXIT" -ne 0 ]; then
-  echo "Writer failed (exit $WRITE_EXIT) — skipping editor and deploy" | tee -a "$LOG_FILE"
+  echo "Writer failed (exit $WRITE_EXIT) — continuing with any partial output" | tee -a "$LOG_FILE"
 fi
 
 # Capture new articles from this cycle (modified + untracked)
@@ -121,7 +125,7 @@ for (const f of files) {
     console.log('SKIP (missing fields): ' + f); fs.renameSync(full, full + '.bad'); bad++; continue;
   }
   const body = raw.replace(/^---[\s\S]*?---\s*/, '').trim();
-  const sentences = body.split(/(?<=[.!?])\s+/).filter(s => s.length > 5);
+  const sentences = body.split(/(?<=[.!?][\u201D\u2019]?)\s+(?=[A-Z\u00C0-\u024F])/).filter(s => s.length > 5);
   if (sentences.length < 2 || sentences.length > 5) {
     console.log('SKIP (' + sentences.length + ' sentences): ' + f); fs.renameSync(full, full + '.bad'); bad++; continue;
   }
@@ -161,7 +165,6 @@ console.log('Wrote .last-cycle.json with ' + published.length + '/' + sel.length
     # Commit
     git add content/articles/ content/.last-cycle.json content/.editorial-notes.md content/.story-ledger.json 2>&1 | tee -a "$LOG_FILE"
     CYCLE_TIME=$(date -u +"%Y-%m-%d %H:%M UTC")
-    TITLES=$(echo "$NEW_ARTICLES" | sed 's|content/articles/[0-9-]*||;s|\.md$||;s|-| |g' | head -5 | paste -sd, -)
     git commit -m "Editorial cycle $CYCLE_TIME: $NEW_COUNT articles" 2>&1 | tee -a "$LOG_FILE"
 
     # Deploy
@@ -173,7 +176,7 @@ console.log('Wrote .last-cycle.json with ' + published.length + '/' + sel.length
   fi
 fi
 
-# Stage 4: Audio briefing — generate at 03:00 and 15:00 UTC only (morning/evening for GCC→India)
+# Stage 4: Audio briefing — generate at 04:00 and 16:00 UTC only (morning/evening for GCC→India)
 HOUR_UTC=$(date -u +%H)
 if [ "$HOUR_UTC" = "04" ] || [ "$HOUR_UTC" = "16" ]; then
   echo "" | tee -a "$LOG_FILE"
@@ -195,7 +198,7 @@ fi
 
 # Stage 5: Weekly reflection — runs Sunday 21:00 UTC only
 DAY_OF_WEEK=$(date -u +%u)
-if [ "$DAY_OF_WEEK" = "7" ] && [ "$HOUR_UTC" = "21" ]; then
+if [ "$DAY_OF_WEEK" = "7" ] && [ "$HOUR_UTC" = "20" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 5: Weekly reflection ---" | tee -a "$LOG_FILE"
   REFLECT_PROMPT=$(cat scripts/reflect-prompt.md)

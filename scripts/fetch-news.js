@@ -397,7 +397,7 @@ function normalizeItem(raw, source) {
   if (typeof link === 'object') link = link['@_href'] || link['#text'] || ''
   link = cleanUrl(link, source.stripParams || [])
 
-  const description = decodeEntities(stripHtml((raw.description || raw['dc:description'] || '').trim()))
+  const description = decodeEntities(stripHtml(extractText(raw.description || raw['dc:description'] || '').trim()))
   const pubDate = raw.pubDate || raw['dc:date'] || raw.date || ''
 
   let category = source.defaultCategory || ''
@@ -499,7 +499,8 @@ async function main() {
   })
 
   // Sort by date (most recent first) so all sources compete equally
-  fresh.sort((a, b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0))
+  const toMs = d => { const t = new Date(d).getTime(); return isNaN(t) ? 0 : t }
+  fresh.sort((a, b) => toMs(b.pubDate || 0) - toMs(a.pubDate || 0))
 
   console.error(`Fresh stories: ${fresh.length}`)
 

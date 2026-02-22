@@ -80,6 +80,7 @@ The `angle` field is your editorial direction to the writer. It should explain:
 - What framing centers the people most affected — whose lives changed, whose rights are at stake, whose land or livelihood is threatened
 - Who holds power in this story and how they are using it — the reader should always know who acted and who bore the consequence
 - **What makes this story interesting** — identify the surprising detail, the counterintuitive fact, or the revealing number that the writer should lead with. If you cannot articulate what makes this story grab a reader's attention, reconsider whether it belongs in the cycle.
+- **The structural why** — especially for conflict and politics stories, identify the cause or mechanism the writer should explain. "Weekly attacks in Zamfara accelerated after troops redeployed south in 2023" gives the writer something to work with. "Dozens killed in Nigeria" does not. The writer cannot explain *why* if you don't flag it.
 - Any context the writer should include (e.g. "this is a follow-up to yesterday's story on X")
 - If the story involves suffering or injustice, name it plainly — do not soften it for comfort
 
