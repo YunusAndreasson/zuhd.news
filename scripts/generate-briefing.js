@@ -37,7 +37,7 @@ console.log('=== Stage 1: Collecting articles ===')
 const cutoff = Date.now() - 24 * 60 * 60 * 1000
 const files = readdirSync(ARTICLES_DIR).filter(f => f.endsWith('.md') && f !== 'example.md')
 
-const articles = []
+let articles = []
 for (const file of files) {
   const raw = readFileSync(join(ARTICLES_DIR, file), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
@@ -48,9 +48,18 @@ for (const file of files) {
     title: meta.title || basename(file, '.md'),
     category: meta.category || 'uncategorised',
     source: meta.source || '',
-    body: body.slice(0, 500) // enough for summarization
+    date: meta.date,
+    body: body.slice(0, 300) // trimmed to keep prompt compact
   })
 }
+
+// Keep the 20 most recent articles — enough for 8–10 story selection
+articles.sort((a, b) => new Date(b.date) - new Date(a.date))
+if (articles.length > 20) {
+  console.log(`Trimmed from ${articles.length} to 20 articles (most recent)`)
+  articles = articles.slice(0, 20)
+}
+articles.forEach(a => delete a.date) // strip date before sending to Claude
 
 if (articles.length === 0) {
   console.log('No articles in last 24h — skipping briefing.')
@@ -67,6 +76,8 @@ try {
     if (ledger.stories && ledger.stories.length > 0) {
       const topStories = ledger.stories
         .filter(s => s.importance >= 6 || s.arc === 'breaking' || s.arc === 'developing')
+        .sort((a, b) => (b.importance || 0) - (a.importance || 0))
+        .slice(0, 15) // cap to keep prompt compact
         .map(({ id, label, importance, arc, coverageCount, summary }) =>
           ({ id, label, importance, arc, coverageCount, summary }))
       if (topStories.length > 0) {
@@ -90,23 +101,34 @@ const minutesUntilNext = nextCycleMin > currentMinutes
   : 1440 - currentMinutes + nextCycleMin
 const hoursUntilNext = Math.round(minutesUntilNext / 60)
 
-const payload = { articles, hoursUntilNext }
+// Makkah time (UTC+3) for the briefing timestamp
+const makkahOffset = 3 * 60 * 60 * 1000
+const makkahNow = new Date(Date.now() + makkahOffset)
+const makkahTime = makkahNow.toISOString().slice(11, 16) // "HH:MM"
+
+const payload = { articles, hoursUntilNext, makkahTime }
 if (editorialContext) payload.editorialContext = editorialContext
 writeFileSync(TMP_ARTICLES, JSON.stringify(payload, null, 2))
 
 // --- Stage 2: Generate SSML via Claude CLI ---
 console.log('\n=== Stage 2: Generating SSML bulletin ===')
 
-const prompt = readFileSync(PROMPT_PATH, 'utf-8')
+const promptTemplate = readFileSync(PROMPT_PATH, 'utf-8')
+// Inline article data directly to avoid tool-call round-trip
+const prompt = promptTemplate.replace(
+  /Read the file `\/tmp\/zuhd-briefing-articles\.json`\. It contains a JSON object with:/,
+  'Here is the article data as JSON:\n\n```json\n' + JSON.stringify(payload, null, 2) + '\n```\n\nThe JSON object contains:'
+)
 let claudeOutput
 try {
   const env = { ...process.env }
   delete env.CLAUDECODE
   const result = spawnSync('claude', [
-    '--allowedTools', 'Read',
     '--model', 'sonnet',
+    '--no-session-persistence',
+    '--max-turns', '1',
     '-p', prompt
-  ], { encoding: 'utf-8', timeout: 300_000, maxBuffer: 1024 * 1024, env })
+  ], { encoding: 'utf-8', timeout: 720_000, maxBuffer: 1024 * 1024, env })
   if (result.status !== 0) {
     throw new Error(result.stderr || `Exit code ${result.status}`)
   }
@@ -144,9 +166,9 @@ console.log('\n=== Stage 3: Synthesizing audio ===')
 
 mkdirSync(AUDIO_DIR, { recursive: true })
 
-// Google TTS has a 5000-byte limit per request. Split SSML at <break> tags into chunks.
-const MAX_BYTES = 4800 // leave headroom for <speak> wrapper
-const innerSsml = ssml.replace(/^<speak>\s*/, '').replace(/\s*<\/speak>$/, '')
+// Google TTS Chirp3-HD has a tighter byte limit. Split SSML at <break> tags.
+const MAX_BYTES = 2500
+const innerSsml = ssml.replace(/^<speak>\s*/, '').replace(/\s*<\/speak>\s*$/, '')
 const segments = innerSsml.split(/(?=<break\s[^>]*\/>)/)
 
 const chunks = []

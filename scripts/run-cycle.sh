@@ -161,12 +161,14 @@ HOUR_UTC=$(date -u +%H)
 if [ "$HOUR_UTC" = "04" ] || [ "$HOUR_UTC" = "16" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 4: Audio briefing ---" | tee -a "$LOG_FILE"
-  timeout 300 node scripts/generate-briefing.js 2>&1 | tee -a "$LOG_FILE"
+  timeout 900 node scripts/generate-briefing.js 2>&1 | tee -a "$LOG_FILE"
   BRIEFING_EXIT=$?
   echo "Briefing exit: $BRIEFING_EXIT" | tee -a "$LOG_FILE"
   if [ "$BRIEFING_EXIT" -eq 0 ]; then
     echo "Rebuilding and redeploying with audio..." | tee -a "$LOG_FILE"
     node scripts/build.js 2>&1 | tee -a "$LOG_FILE"
+    git add content/audio/ 2>&1 | tee -a "$LOG_FILE"
+    git commit -m "Audio briefing $(date -u +%Y-%m-%d)" 2>&1 | tee -a "$LOG_FILE"
     npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
   fi
 else
