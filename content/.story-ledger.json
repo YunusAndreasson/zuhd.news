@@ -3,12 +3,12 @@
   "stories": [
     {
       "id": "iran-nuclear-talks-geneva",
-      "label": "Iran crisis — university protests erupt as nuclear ultimatum deadline nears",
+      "label": "Iran crisis — war preparations intensify as nuclear ultimatum deadline nears",
       "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-21T20:00:00Z",
-      "coverageCount": 15,
-      "category": "politics",
-      "importance": 8,
+      "lastCovered": "2026-02-22T04:00:00Z",
+      "coverageCount": 16,
+      "category": "conflict",
+      "importance": 10,
       "arc": "ongoing",
       "articles": [
         "2026-02-15-iran-signals-nuclear-compromise-before-geneva-talks",
@@ -25,9 +25,10 @@
         "2026-02-20-uk-blocks-us-from-using-bases-for-iran-strike",
         "2026-02-21-iran-protests-erupt-at-forty-day-memorials",
         "2026-02-21-trump-considers-token-iran-nuclear-deal",
-        "2026-02-21-iran-university-protests-erupt-as-us-strike-looms"
+        "2026-02-21-iran-university-protests-erupt-as-us-strike-looms",
+        "2026-02-22-iran-prepares-for-war-as-nuclear-deadline-nears"
       ],
-      "summary": "University protests continuing as deadline approaches Feb 23-24. Pezeshkian says Iran will not 'bow' to pressure. Trump open to 'token' enrichment. Pentagon has strike plans. Not selected this cycle — heavily covered, no major new development since last cycle."
+      "summary": "Deadline ~Feb 23-24. Iran running dual-track: diplomatic envoys scrambling for deal while military prepares for all-out war. University protests creating domestic pressure. Trump open to 'token' enrichment. Pentagon has strike plans but UK blocked base use. Most critical moment in the crisis."
     },
     {
       "id": "us-supreme-court-tariffs",
@@ -36,7 +37,7 @@
       "lastCovered": "2026-02-22T00:00:00Z",
       "coverageCount": 6,
       "category": "economy",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-02-20-us-supreme-court-strikes-down-trump-sweeping-tariffs",
@@ -46,22 +47,96 @@
         "2026-02-21-trump-hikes-global-tariff-to-fifteen-percent",
         "2026-02-22-wall-street-exodus-as-investors-shift-billions-overseas"
       ],
-      "summary": "Capital flight from US markets accelerating as investors shift billions to emerging markets, Europe, and Japan. Weaker dollar and tariff chaos eroding confidence. SCOTUS struck down IEEPA tariffs 6-3. Trump at 15% via Section 122. Constitutional confrontation deepening."
+      "summary": "Capital flight from US markets accelerating. SCOTUS struck down IEEPA tariffs 6-3. Trump at 15% via Section 122. Constitutional confrontation deepening. Not selected this cycle — no major new development beyond what was covered."
     },
     {
-      "id": "pakistan-northwest-insecurity",
-      "label": "Pakistan NW security crisis — military strikes 7 camps after Bannu attack",
-      "firstSeen": "2026-02-21T16:00:00Z",
-      "lastCovered": "2026-02-22T00:00:00Z",
-      "coverageCount": 2,
+      "id": "ukraine-russia-geneva-talks",
+      "label": "Ukraine-Russia conflict — Lviv terror attack expands war's reach",
+      "firstSeen": "2026-02-15T00:00:00Z",
+      "lastCovered": "2026-02-22T04:00:00Z",
+      "coverageCount": 6,
       "category": "conflict",
-      "importance": 5,
-      "arc": "developing",
+      "importance": 6,
+      "arc": "ongoing",
       "articles": [
-        "2026-02-21-pakistan-soldiers-killed-in-bannu-suicide-attack",
-        "2026-02-22-pakistan-strikes-seven-militant-camps-along-afghan-border"
+        "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
+        "2026-02-16-ukraine-russia-geneva-talks-set-as-both-sides-escalate",
+        "2026-02-17-ukraine-recaptures-most-territory-in-two-years-ahead-of-geneva-talks",
+        "2026-02-17-russia-ukraine-hold-third-round-of-geneva-talks-as-strikes-continue",
+        "2026-02-21-ukraine-strikes-missile-plant-deep-inside-russia",
+        "2026-02-22-lviv-terror-attack-kills-policewoman-wounds-fifteen"
       ],
-      "summary": "Pakistan struck 7 TTP and IS-affiliated camps along the Afghan border in retaliation for the Bannu suicide attack that killed a lieutenant colonel. Significant military escalation in the northwest."
+      "summary": "Terror attack in Lviv (western Ukraine) killed policewoman and wounded 15 — investigated as terrorism, not missile strike. New dimension: internal sabotage reaching areas far from front lines. Diplomatic talks remain stalled."
+    },
+    {
+      "id": "samsung-dram-market",
+      "label": "Memory chip competition — Samsung reclaims DRAM lead amid Chinese challenge",
+      "firstSeen": "2026-02-22T04:00:00Z",
+      "lastCovered": "2026-02-22T04:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-22-samsung-reclaims-top-dram-spot-amid-chinese-challenge"
+      ],
+      "summary": "Samsung regained global DRAM market leadership in Q4. Comes as Chinese chipmaker CXMT undercuts DDR4 prices by ~50%. Competition intensifying on mature node memory between established giants and subsidized Chinese challengers."
+    },
+    {
+      "id": "north-korea-workers-party-congress",
+      "label": "North Korea Workers' Party Congress — Kim outlines new five-year goals",
+      "firstSeen": "2026-02-22T04:00:00Z",
+      "lastCovered": "2026-02-22T04:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-22-kim-outlines-five-year-plan-at-workers-party-congress"
+      ],
+      "summary": "Kim Jong Un used the Workers' Party Ninth Congress to outline new five-year economic and military goals, claiming an 'upsurge' in national development. Most important North Korean political event — sets regime trajectory."
+    },
+    {
+      "id": "spinal-cord-gel-repair",
+      "label": "Gel material helps mini spinal cords heal from injury",
+      "firstSeen": "2026-02-22T04:00:00Z",
+      "lastCovered": "2026-02-22T04:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-22-gel-helps-mini-spinal-cords-heal-from-injury"
+      ],
+      "summary": "Researchers developed a gel that helps spinal cord organoids recover from injury. Breakthrough in one of medicine's most intractable problems — could lead to treatments for millions with paralysis."
+    },
+    {
+      "id": "llm-consumer-gpu-nvme",
+      "label": "70B-parameter LLM runs on single consumer GPU via NVMe bypass",
+      "firstSeen": "2026-02-22T04:00:00Z",
+      "lastCovered": "2026-02-22T04:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-22-llama-70b-runs-on-single-consumer-gpu-via-nvme"
+      ],
+      "summary": "Open-source project demonstrates running Llama 3.1 70B on a single RTX 3090 by routing data directly from NVMe to GPU, bypassing CPU/RAM bottleneck. Democratizes access to powerful AI models on consumer hardware."
+    },
+    {
+      "id": "taiwan-strait-navigation",
+      "label": "Australian warship transits Taiwan Strait tracked by Chinese navy",
+      "firstSeen": "2026-02-22T04:00:00Z",
+      "lastCovered": "2026-02-22T04:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-22-australian-warship-transits-taiwan-strait"
+      ],
+      "summary": "Australian warship sailed through Taiwan Strait with PLA Navy tracking. Freedom-of-navigation signal ahead of Trump's March 31 Beijing summit. British nuclear sub also arrived in Perth. AUKUS presence strengthening."
     },
     {
       "id": "sudan-humanitarian-crisis",
@@ -70,7 +145,7 @@
       "lastCovered": "2026-02-22T00:00:00Z",
       "coverageCount": 7,
       "category": "conflict",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
@@ -81,7 +156,22 @@
         "2026-02-21-rsf-drone-kills-three-aid-workers-in-sudan",
         "2026-02-22-museveni-hosts-rsf-leader-dagalo-for-sudan-war-dialogue"
       ],
-      "summary": "Uganda's Museveni hosting RSF leader Dagalo for high-level dialogue at State House. Controversial given UN genocide finding. Diplomatic track may be only path to ending the war but legitimizes RSF leadership."
+      "summary": "Uganda's Museveni hosting RSF leader Dagalo for dialogue. UN crossed genocide threshold. Controversial legitimization of RSF leadership. Not selected this cycle."
+    },
+    {
+      "id": "pakistan-northwest-insecurity",
+      "label": "Pakistan NW security crisis — military strikes 7 camps after Bannu attack",
+      "firstSeen": "2026-02-21T16:00:00Z",
+      "lastCovered": "2026-02-22T00:00:00Z",
+      "coverageCount": 2,
+      "category": "conflict",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-21-pakistan-soldiers-killed-in-bannu-suicide-attack",
+        "2026-02-22-pakistan-strikes-seven-militant-camps-along-afghan-border"
+      ],
+      "summary": "Pakistan struck 7 TTP and IS-affiliated camps along Afghan border after Bannu suicide attack. Not selected this cycle — no major new development."
     },
     {
       "id": "islamic-state-syria-campaign",
@@ -90,139 +180,12 @@
       "lastCovered": "2026-02-22T00:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-02-22-islamic-state-declares-new-campaign-against-syrian-government"
       ],
-      "summary": "IS released first spokesperson audio in 2 years, declaring priority is overthrowing Sharaa's government. Claimed two attacks in Raqqa and Deir al-Zor. UN reports 5 failed assassination attempts on Sharaa. IS dispersing cadres from deserts into cities."
-    },
-    {
-      "id": "wall-street-capital-flight",
-      "label": "Wall Street exodus — investors shifting billions from US to overseas markets",
-      "firstSeen": "2026-02-22T00:00:00Z",
-      "lastCovered": "2026-02-22T00:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-02-22-wall-street-exodus-as-investors-shift-billions-overseas"
-      ],
-      "summary": "US investors moving billions into emerging markets, Europe, and Japan. Weaker dollar and tariff uncertainty eroding American exceptionalism. Direct consequence of SCOTUS ruling and Section 122 tariff hike."
-    },
-    {
-      "id": "cxmt-chinese-memory-chips",
-      "label": "Chinese chipmaker CXMT undercuts global DDR4 prices by half",
-      "firstSeen": "2026-02-22T00:00:00Z",
-      "lastCovered": "2026-02-22T00:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-02-22-chinese-chipmaker-cxmt-undercuts-ddr4-prices-by-half"
-      ],
-      "summary": "CXMT offering DDR4 memory chips at roughly 50% below Samsung/SK Hynix/Micron prices. Despite US export controls on advanced chips, China competing aggressively on mature node memory. Threatens established players' business models."
-    },
-    {
-      "id": "salt-cavern-energy-storage",
-      "label": "Ancient Australian salt caverns explored as massive energy storage",
-      "firstSeen": "2026-02-22T00:00:00Z",
-      "lastCovered": "2026-02-22T00:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-02-22-ancient-salt-caverns-explored-as-massive-energy-storage"
-      ],
-      "summary": "Geologists drilling into pre-dinosaur salt caverns in Queensland's Adavale Basin for compressed-air energy storage. Could power millions of homes and solve renewable intermittency at grid scale."
-    },
-    {
-      "id": "germany-child-social-media-ban",
-      "label": "Germany's CDU/CSU seeks social media ban for under-14s",
-      "firstSeen": "2026-02-22T00:00:00Z",
-      "lastCovered": "2026-02-22T00:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-02-22-germany-seeks-social-media-ban-for-children-under-fourteen"
-      ],
-      "summary": "Germany's ruling CDU/CSU passed motion to ban social media for children under 14 with mandatory digital age verification. Part of global regulatory wave following UK and Australia."
-    },
-    {
-      "id": "european-drone-defense-ukraine",
-      "label": "Five European nations pledge drone defense production using Ukrainian expertise",
-      "firstSeen": "2026-02-21T20:00:00Z",
-      "lastCovered": "2026-02-21T20:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-02-21-european-nations-pledge-drone-defense-with-ukraine"
-      ],
-      "summary": "E5 nations (France, Poland, Germany, UK, Italy) pledge to leverage Ukraine's battlefield drone expertise for low-cost air defense production. Includes 'drone wall' along Russian border."
-    },
-    {
-      "id": "nasa-artemis-ii-moon",
-      "label": "NASA Artemis II delayed past March over SLS rocket issue",
-      "firstSeen": "2026-02-20T20:00:00Z",
-      "lastCovered": "2026-02-21T20:00:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-20-nasa-targets-march-for-crewed-moon-mission",
-        "2026-02-21-nasa-delays-artemis-ii-moon-mission-past-march"
-      ],
-      "summary": "Technical issue with SLS rocket pushes Artemis II from March to at least April. First crewed mission beyond Earth orbit since Apollo 17 continues to face delays."
-    },
-    {
-      "id": "wikipedia-archive-today-ban",
-      "label": "Wikipedia bans Archive.today over DDoS attacks and altered captures",
-      "firstSeen": "2026-02-21T20:00:00Z",
-      "lastCovered": "2026-02-21T20:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-21-wikipedia-bans-archive-today-over-ddos-altered-captures"
-      ],
-      "summary": "Wikipedia deprecated Archive.today and began removing links after the archiving service conducted DDoS attacks and altered archived web captures."
-    },
-    {
-      "id": "philippines-south-china-sea",
-      "label": "Philippine senator demands SCS pushback from disputed Thitu Island",
-      "firstSeen": "2026-02-21T20:00:00Z",
-      "lastCovered": "2026-02-21T20:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-21-philippine-senator-demands-south-china-sea-pushback"
-      ],
-      "summary": "Philippine senator visited Thitu Island in the Spratlys to call for deepening defense partnerships and continuous pushback against Chinese encroachment."
-    },
-    {
-      "id": "antarctic-rock-core",
-      "label": "Deepest-ever rock core extracted from under Antarctic ice sheet",
-      "firstSeen": "2026-02-21T20:00:00Z",
-      "lastCovered": "2026-02-21T20:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-21-deepest-rock-core-extracted-from-antarctic-ice-sheet"
-      ],
-      "summary": "Scientists extracted the deepest rock core ever drilled through Antarctic ice, providing unprecedented data about ice sheet stability and sea level rise."
+      "summary": "IS released first spokesperson audio in 2 years, declaring priority is overthrowing Sharaa's government. Claimed attacks in Raqqa and Deir al-Zor. Not selected this cycle — covered last cycle, no major new development yet."
     },
     {
       "id": "israel-lebanon-ceasefire",
@@ -231,7 +194,7 @@
       "lastCovered": "2026-02-21T12:00:00Z",
       "coverageCount": 6,
       "category": "conflict",
-      "importance": 4,
+      "importance": 3,
       "arc": "ongoing",
       "articles": [
         "2026-02-16-israel-strikes-lebanon-border-killing-four-in-first-post-truce-attack-on-islamic-jihad",
@@ -241,25 +204,21 @@
         "2026-02-21-israeli-strikes-kill-eight-across-lebanon",
         "2026-02-21-israeli-strike-kills-senior-hezbollah-official-in-lebanon"
       ],
-      "summary": "Israeli strikes killing 10+ in recent days including senior Hezbollah official. Hezbollah declared 'resistance' the only option. Ceasefire effectively dead. Israel may be preemptively degrading Hezbollah ahead of possible Iran strike."
+      "summary": "Israeli strikes continue in Lebanon. Hezbollah says 'resistance' is only option. Ceasefire effectively dead. Linked to Iran crisis — Israel may be preemptively degrading Hezbollah ahead of possible Iran strike."
     },
     {
-      "id": "ukraine-russia-geneva-talks",
-      "label": "Ukraine-Russia conflict — talks stalled, military escalation continues",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-21T16:00:00Z",
-      "coverageCount": 5,
+      "id": "european-drone-defense-ukraine",
+      "label": "Five European nations pledge drone defense production using Ukrainian expertise",
+      "firstSeen": "2026-02-21T20:00:00Z",
+      "lastCovered": "2026-02-21T20:00:00Z",
+      "coverageCount": 1,
       "category": "conflict",
       "importance": 4,
-      "arc": "ongoing",
+      "arc": "developing",
       "articles": [
-        "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
-        "2026-02-16-ukraine-russia-geneva-talks-set-as-both-sides-escalate",
-        "2026-02-17-ukraine-recaptures-most-territory-in-two-years-ahead-of-geneva-talks",
-        "2026-02-17-russia-ukraine-hold-third-round-of-geneva-talks-as-strikes-continue",
-        "2026-02-21-ukraine-strikes-missile-plant-deep-inside-russia"
+        "2026-02-21-european-nations-pledge-drone-defense-with-ukraine"
       ],
-      "summary": "Military escalation continues with Ukraine striking deep inside Russia. Diplomatic talks stalled since third Geneva round. European nations leveraging Ukrainian drone expertise for defense production."
+      "summary": "E5 nations pledge to leverage Ukraine's battlefield drone expertise for low-cost air defense production."
     },
     {
       "id": "ethiopia-tigray-eritrea-tensions",
@@ -268,12 +227,12 @@
       "lastCovered": "2026-02-21T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-02-21-ethiopia-tigray-eritrea-troop-movements-raise-conflict-fears"
       ],
-      "summary": "Military troop movements near Eritrea-Tigray border. 2022 Pretoria peace agreement may be unraveling. Tigray war killed 300-500K people."
+      "summary": "Military troop movements near Eritrea-Tigray border. 2022 Pretoria peace agreement may be unraveling."
     },
     {
       "id": "trump-china-summit",
@@ -282,12 +241,69 @@
       "lastCovered": "2026-02-21T08:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-21-trump-to-visit-china-for-summit-with-xi"
       ],
-      "summary": "Trump to visit China March 31-April 2. First face-to-face with Xi this term. Now colored by tariff escalation to 15%."
+      "summary": "Trump to visit China March 31-April 2. Now colored by tariff escalation to 15% and Australian warship transit."
+    },
+    {
+      "id": "cxmt-chinese-memory-chips",
+      "label": "Chinese chipmaker CXMT undercuts global DDR4 prices by half",
+      "firstSeen": "2026-02-22T00:00:00Z",
+      "lastCovered": "2026-02-22T00:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-02-22-chinese-chipmaker-cxmt-undercuts-ddr4-prices-by-half"
+      ],
+      "summary": "CXMT offering DDR4 at ~50% below Samsung/SK Hynix/Micron. Now paired with Samsung reclaiming DRAM market lead — competition intensifying."
+    },
+    {
+      "id": "nasa-artemis-ii-moon",
+      "label": "NASA Artemis II delayed past March over SLS rocket issue",
+      "firstSeen": "2026-02-20T20:00:00Z",
+      "lastCovered": "2026-02-21T20:00:00Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-02-20-nasa-targets-march-for-crewed-moon-mission",
+        "2026-02-21-nasa-delays-artemis-ii-moon-mission-past-march"
+      ],
+      "summary": "Artemis II pushed from March to at least April. Further delays expected."
+    },
+    {
+      "id": "philippines-south-china-sea",
+      "label": "Philippine senator demands SCS pushback from disputed Thitu Island",
+      "firstSeen": "2026-02-21T20:00:00Z",
+      "lastCovered": "2026-02-21T20:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-02-21-philippine-senator-demands-south-china-sea-pushback"
+      ],
+      "summary": "Philippine senator visited Thitu Island to call for deepening defense partnerships against Chinese encroachment."
+    },
+    {
+      "id": "wikipedia-archive-today-ban",
+      "label": "Wikipedia bans Archive.today over DDoS attacks and altered captures",
+      "firstSeen": "2026-02-21T20:00:00Z",
+      "lastCovered": "2026-02-21T20:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-02-21-wikipedia-bans-archive-today-over-ddos-altered-captures"
+      ],
+      "summary": "Wikipedia deprecated Archive.today over DDoS attacks and altered captures."
     },
     {
       "id": "china-ai-talent-us-recruitment",
@@ -296,7 +312,7 @@
       "lastCovered": "2026-02-21T16:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-21-china-tech-giants-recruit-ai-talent-in-us"
@@ -310,12 +326,68 @@
       "lastCovered": "2026-02-21T12:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-21-eu-excludes-china-from-critical-tech-research-programmes"
       ],
-      "summary": "EU excluded Chinese researchers and institutions from AI, semiconductor, and critical tech programmes."
+      "summary": "EU excluded Chinese researchers from AI, semiconductor, and critical tech programmes."
+    },
+    {
+      "id": "wall-street-capital-flight",
+      "label": "Wall Street exodus — investors shifting billions from US to overseas markets",
+      "firstSeen": "2026-02-22T00:00:00Z",
+      "lastCovered": "2026-02-22T00:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-02-22-wall-street-exodus-as-investors-shift-billions-overseas"
+      ],
+      "summary": "US investors moving billions into emerging markets, Europe, Japan. Direct consequence of tariff chaos."
+    },
+    {
+      "id": "salt-cavern-energy-storage",
+      "label": "Ancient Australian salt caverns explored as massive energy storage",
+      "firstSeen": "2026-02-22T00:00:00Z",
+      "lastCovered": "2026-02-22T00:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-22-ancient-salt-caverns-explored-as-massive-energy-storage"
+      ],
+      "summary": "Queensland salt caverns explored for compressed-air energy storage at grid scale."
+    },
+    {
+      "id": "germany-child-social-media-ban",
+      "label": "Germany's CDU/CSU seeks social media ban for under-14s",
+      "firstSeen": "2026-02-22T00:00:00Z",
+      "lastCovered": "2026-02-22T00:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-22-germany-seeks-social-media-ban-for-children-under-fourteen"
+      ],
+      "summary": "Germany's ruling CDU/CSU passed motion for social media ban for under-14s with digital age verification."
+    },
+    {
+      "id": "antarctic-rock-core",
+      "label": "Deepest-ever rock core extracted from under Antarctic ice sheet",
+      "firstSeen": "2026-02-21T20:00:00Z",
+      "lastCovered": "2026-02-21T20:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "fading",
+      "articles": [
+        "2026-02-21-deepest-rock-core-extracted-from-antarctic-ice-sheet"
+      ],
+      "summary": "Deepest rock core ever drilled through Antarctic ice. Data on ice sheet stability."
     },
     {
       "id": "venezuela-political-prisoners",
@@ -324,40 +396,12 @@
       "lastCovered": "2026-02-21T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "developing",
+      "importance": 2,
+      "arc": "fading",
       "articles": [
         "2026-02-21-venezuela-grants-amnesty-to-379-political-prisoners"
       ],
-      "summary": "Venezuela granted amnesty to 379 political prisoners. 1,500+ additional requests received under fast-track protocol."
-    },
-    {
-      "id": "albania-protests",
-      "label": "Albania clashes as protesters demand PM Rama resign",
-      "firstSeen": "2026-02-21T12:00:00Z",
-      "lastCovered": "2026-02-21T12:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "fading",
-      "articles": [
-        "2026-02-21-albania-clashes-erupt-as-protesters-demand-pm-rama-resign"
-      ],
-      "summary": "Violent protests near Albania's parliament. Demonstrators demand Rama resign over corruption."
-    },
-    {
-      "id": "alphafold-four-drug-discovery",
-      "label": "DeepMind spinoff unveils 'AlphaFold 4' for drug discovery",
-      "firstSeen": "2026-02-21T08:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "fading",
-      "articles": [
-        "2026-02-21-deepmind-spinoff-unveils-alphafold-four-for-drug-discovery"
-      ],
-      "summary": "Isomorphic Labs released new AI model for full molecular interaction modeling."
+      "summary": "Venezuela granted amnesty to 379 political prisoners. 1,500+ requests under fast-track protocol."
     },
     {
       "id": "nigeria-lassa-fever",
@@ -366,110 +410,12 @@
       "lastCovered": "2026-02-21T12:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "fading",
       "articles": [
         "2026-02-21-lassa-fever-outbreak-kills-one-in-five-in-nigeria"
       ],
-      "summary": "Lassa fever outbreak in Nigeria at 22% case fatality rate with 15 healthcare workers infected."
-    },
-    {
-      "id": "india-brazil-critical-minerals",
-      "label": "India-Brazil critical minerals deal to reduce China dependence",
-      "firstSeen": "2026-02-21T12:00:00Z",
-      "lastCovered": "2026-02-21T12:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "fading",
-      "articles": [
-        "2026-02-21-india-brazil-sign-critical-minerals-deal-to-curb-china-dependence"
-      ],
-      "summary": "India and Brazil signed critical minerals/rare earths cooperation agreement during Lula's Delhi visit."
-    },
-    {
-      "id": "aaas-science-trump-threat",
-      "label": "US scientists organize to protect research from political pressure",
-      "firstSeen": "2026-02-21T16:00:00Z",
-      "lastCovered": "2026-02-21T16:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "fading",
-      "articles": [
-        "2026-02-21-scientists-at-aaas-confront-threats-to-us-research"
-      ],
-      "summary": "At AAAS annual meeting, dominant theme is protecting research and institutional independence from political interference."
-    },
-    {
-      "id": "us-syria-embassy-reopening",
-      "label": "US to reopen embassy in Syria after 14 years",
-      "firstSeen": "2026-02-21T08:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "fading",
-      "articles": [
-        "2026-02-21-us-to-reopen-embassy-in-syria-after-fourteen-years"
-      ],
-      "summary": "US State Department notified Congress of intent to reopen Damascus embassy."
-    },
-    {
-      "id": "openai-school-shooter-flag",
-      "label": "OpenAI flagged school shooter but did not alert police",
-      "firstSeen": "2026-02-21T08:00:00Z",
-      "lastCovered": "2026-02-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "fading",
-      "articles": [
-        "2026-02-21-openai-flagged-school-shooter-months-before-massacre"
-      ],
-      "summary": "OpenAI flagged shooter's account months before Canadian school shooting but chose not to alert police."
-    },
-    {
-      "id": "huckabee-greater-israel",
-      "label": "US ambassador endorses Israeli expansion across Middle East",
-      "firstSeen": "2026-02-21T04:00:00Z",
-      "lastCovered": "2026-02-21T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "fading",
-      "articles": [
-        "2026-02-21-huckabee-says-israel-can-take-all-of-middle-east"
-      ],
-      "summary": "US ambassador Huckabee told Tucker Carlson it would be 'fine' if Israel expanded from Nile to Euphrates. 11 Arab/Muslim states condemned the remarks."
-    },
-    {
-      "id": "saudi-uae-rift-sudan-yemen",
-      "label": "Saudi-UAE rift over Sudan RSF and Yemen STC",
-      "firstSeen": "2026-02-21T00:00:00Z",
-      "lastCovered": "2026-02-21T00:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-02-21-saudi-crown-prince-complains-to-uae-over-sudan-yemen"
-      ],
-      "summary": "MBS sent detailed complaint to UAE over Emirati support for Sudan's RSF and Yemen's STC."
-    },
-    {
-      "id": "galapagos-tortoise-return",
-      "label": "Giant tortoises return to Galapagos island after century",
-      "firstSeen": "2026-02-21T12:00:00Z",
-      "lastCovered": "2026-02-21T12:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "fading",
-      "articles": [
-        "2026-02-21-giant-tortoises-return-to-galapagos-island-after-century"
-      ],
-      "summary": "150+ giant tortoises reintroduced to Floreana Island. Decades-long breeding programme success."
+      "summary": "Lassa fever outbreak in Nigeria at 22% CFR."
     },
     {
       "id": "thailand-election-voided",
@@ -478,12 +424,12 @@
       "lastCovered": "2026-02-21T08:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-02-21-thailand-election-may-be-voided-over-barcode-blunder"
       ],
-      "summary": "Annulment threat over barcode printing error in ballots. Court ruling expected soon."
+      "summary": "Annulment threat over barcode printing error in ballots."
     }
   ]
 }
