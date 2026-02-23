@@ -3,12 +3,12 @@
   "stories": [
     {
       "id": "iran-nuclear-talks-geneva",
-      "label": "Iran crisis — Tehran rejects 'limited strike' concept as Feb 26 talks approach",
+      "label": "Iran crisis — student protests enter third day as Feb 26 talks approach",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-02-23T10:00:00Z",
       "coverageCount": 21,
       "category": "conflict",
-      "importance": 10,
+      "importance": 9,
       "arc": "ongoing",
       "articles": [
         "2026-02-15-iran-signals-nuclear-compromise-before-geneva-talks",
@@ -33,59 +33,59 @@
         "2026-02-23-us-repositions-forces-from-gulf-as-iran-strike-looms",
         "2026-02-23-iran-rejects-limited-strike-concept-any-attack-is-aggression"
       ],
-      "summary": "Iran FM spokesperson explicitly rejects 'limited strike' concept: 'There is no limited strike. An act of aggression would be regarded as an act of aggression.' Witkoff says Trump wonders why Iran hasn't 'capitulated.' India advising nationals to leave. Feb 26 talks confirmed by Iran/Oman but not US. Diplomatic window narrowing."
+      "summary": "Student protests entering third day. US evacuated non-essential Beirut embassy staff — escalation indicator. Feb 26 talks still unconfirmed by US. Not selected this cycle — 21 articles deep, only cover for talks outcome, military action, or deal framework."
     },
     {
       "id": "mexico-el-mencho-killed",
-      "label": "Mexico post-El Mencho — CJNG revenge attacks continue across 20+ states",
+      "label": "Mexico post-El Mencho — CJNG revenge attacks across 20+ states",
       "firstSeen": "2026-02-22T22:00:00Z",
       "lastCovered": "2026-02-23T04:00:00Z",
       "coverageCount": 2,
       "category": "conflict",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-02-22-mexico-kills-el-mencho-jalisco-cartel-leader",
         "2026-02-23-mexico-cjng-revenge-attacks-engulf-twenty-states"
       ],
-      "summary": "CJNG revenge attacks continue across 20+ states. White House confirmed providing intelligence support for the operation. Tourists trapped. Airlines canceled flights. Not selected this cycle — covered recently, watch for cartel fragmentation dynamics."
+      "summary": "CJNG revenge attacks continue. Mexican troops killed in post-operation clashes. Not selected — covered recently, watch for cartel fragmentation and state response."
     },
     {
       "id": "israel-death-penalty-bill",
-      "label": "Israel advances death penalty bill that UN says discriminates against Palestinians",
+      "label": "Israel advances death penalty bill targeting Palestinians",
       "firstSeen": "2026-02-23T10:00:00Z",
       "lastCovered": "2026-02-23T10:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-02-23-israel-advances-death-penalty-bill-un-says-targets-palestinians"
       ],
-      "summary": "Knesset debating death penalty bill. Only one execution in Israeli history (Eichmann, 1962). UN Human Rights Council says bill violates right to life and discriminates against Palestinians. Pushed by far-right coalition."
+      "summary": "Knesset debating death penalty bill. First execution since Eichmann (1962) would be Palestinian. Not selected this cycle but still developing."
     },
     {
       "id": "hong-kong-nsl-trial-47",
-      "label": "Hong Kong 47: Appeals court upholds all convictions in largest national security trial",
+      "label": "Hong Kong 47: All appeals dismissed in largest NSL trial",
       "firstSeen": "2026-02-23T04:00:00Z",
       "lastCovered": "2026-02-23T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-02-23-hong-kong-court-upholds-all-convictions-in-nsl-trial"
       ],
-      "summary": "All 12 appeals dismissed. NSL tested at every judicial level and held. Legal architecture for permanent political control established."
+      "summary": "All 12 appeals dismissed. Legal architecture for permanent political control established."
     },
     {
-      "id": "ukraine-russia-geneva-talks",
-      "label": "Ukraine-Russia conflict — 4th anniversary Feb 24",
+      "id": "ukraine-russia-war",
+      "label": "Ukraine-Russia conflict — 4th anniversary passed",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-02-22T22:00:00Z",
       "coverageCount": 9,
       "category": "conflict",
-      "importance": 6,
+      "importance": 5,
       "arc": "ongoing",
       "articles": [
         "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
@@ -98,170 +98,114 @@
         "2026-02-22-russia-massive-energy-barrage-before-ukraine-anniversary",
         "2026-02-22-all-four-moscow-airports-closed-by-ukrainian-drones"
       ],
-      "summary": "4th anniversary Feb 24. Zelensky accuses Putin of starting WWIII. Russia overnight strikes. Not selected — no concrete new development beyond expected anniversary rhetoric. Prioritize next cycle if diplomatic or military shift emerges."
+      "summary": "4th anniversary passed. Kenyan recruitment scandal for Russian forces emerged. Not selected — no concrete new development beyond expected anniversary rhetoric."
     },
     {
       "id": "israeli-ramadan-detentions",
-      "label": "Israeli forces detain 100+ Palestinians in first days of Ramadan",
+      "label": "Israeli forces detain 100+ Palestinians in Ramadan",
       "firstSeen": "2026-02-22T22:00:00Z",
       "lastCovered": "2026-02-22T22:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-02-22-israeli-forces-detain-100-palestinians-since-ramadan"
       ],
-      "summary": "100+ detained since Ramadan began. Al-Aqsa access blocked. West Bank mosque torched (1,720 settler attacks since Oct 7). 9,300 currently held."
+      "summary": "100+ detained since Ramadan began. Al-Aqsa access blocked. West Bank mosque torched. 9,300 currently held."
     },
     {
       "id": "venezuela-political-prisoners-hunger-strike",
-      "label": "200+ Venezuelan political prisoners launch hunger strike over amnesty exclusions",
+      "label": "200+ Venezuelan political prisoners on hunger strike",
       "firstSeen": "2026-02-23T04:00:00Z",
       "lastCovered": "2026-02-23T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-02-23-venezuela-political-prisoners-hunger-strike"
       ],
-      "summary": "200+ political prisoners on hunger strike. Amnesty law excludes military-charge detainees. Performative justice by Maduro regime."
+      "summary": "200+ political prisoners on hunger strike. Amnesty law excludes military-charge detainees."
     },
     {
       "id": "netherlands-minority-government",
-      "label": "Netherlands installs youngest PM Jetten leading minority government",
+      "label": "Netherlands installs youngest PM Jetten",
       "firstSeen": "2026-02-23T10:00:00Z",
       "lastCovered": "2026-02-23T10:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-02-23-netherlands-youngest-pm-jetten-takes-power-in-minority-government"
       ],
-      "summary": "Rob Jetten becomes youngest Dutch PM in history. Minority government installed after Wilders coalition collapse. Counter-signal to European far-right trend."
+      "summary": "Rob Jetten becomes youngest Dutch PM. Minority government installed after Wilders coalition collapse."
     },
     {
       "id": "zambia-copperbelt-mining-pollution",
-      "label": "Zambian communities poisoned as Copperbelt mining boom feeds green transition",
+      "label": "Zambian communities poisoned by Copperbelt mining boom",
       "firstSeen": "2026-02-23T10:00:00Z",
       "lastCovered": "2026-02-23T10:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-02-23-zambia-copperbelt-communities-poisoned-as-green-mining-booms"
       ],
-      "summary": "Mining companies scouring Copperbelt for copper and cobalt used in green energy. Locals face unchecked pollution and contamination. Classic extraction pattern with new commodity."
+      "summary": "Green transition mining boom causing pollution in Copperbelt. Classic extraction pattern with new commodity."
     },
     {
       "id": "pakistan-glacial-flood-risk",
-      "label": "Pakistan warns 7.1M at risk as 13,000 glaciers melt at record pace",
+      "label": "Pakistan warns 7.1M at risk from melting glaciers",
       "firstSeen": "2026-02-23T10:00:00Z",
       "lastCovered": "2026-02-23T10:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-02-23-pakistan-thirteen-thousand-glaciers-melting-millions-at-risk"
       ],
-      "summary": "Temperatures 3-5°C above normal. Nighttime cooling collapsed. Glacial lake outburst floods imminent. 13,000 glaciers (largest non-polar reservoir), 10,000 receding. 7.1M people vulnerable."
+      "summary": "Temperatures 3-5°C above normal. 13,000 glaciers, 10,000 receding. 7.1M people vulnerable to glacial floods."
     },
     {
       "id": "water-from-air-yaghi",
-      "label": "Nobel laureate's invention generates 1,000 litres of water from thin air daily",
+      "label": "Nobel laureate's water-from-air invention",
       "firstSeen": "2026-02-23T10:00:00Z",
       "lastCovered": "2026-02-23T10:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-02-23-nobel-laureate-invention-pulls-thousand-litres-water-from-air"
       ],
-      "summary": "Prof Omar Yaghi's metal-organic frameworks extract clean water from air — up to 1,000 litres/day. Could transform water access for islands and climate-vulnerable communities."
+      "summary": "Metal-organic frameworks extract clean water from air — up to 1,000 litres/day."
     },
     {
       "id": "bitcoin-miners-ai-pivot",
-      "label": "Bitcoin miner dumps entire treasury for AI data center pivot",
+      "label": "Bitcoin miner dumps treasury for AI data center pivot",
       "firstSeen": "2026-02-23T10:00:00Z",
       "lastCovered": "2026-02-23T10:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-02-23-bitcoin-miner-dumps-treasury-for-ai-data-center-pivot"
       ],
-      "summary": "Singapore's Bitdeer sold entire bitcoin treasury for AI data center expansion. Signals broader industry-wide capital strategy shift from crypto mining to AI compute."
-    },
-    {
-      "id": "china-type-095-submarine",
-      "label": "China's Type 095 nuclear attack submarine confirmed in satellite images",
-      "firstSeen": "2026-02-22T16:00:00Z",
-      "lastCovered": "2026-02-22T16:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-china-type-095-nuclear-submarine-spotted-first-time"
-      ],
-      "summary": "First satellite confirmation of China's next-gen Type 095 nuclear-powered attack submarine."
-    },
-    {
-      "id": "ghana-slavery-case-un",
-      "label": "Ghana takes transatlantic slavery case to UN with AU backing",
-      "firstSeen": "2026-02-22T22:00:00Z",
-      "lastCovered": "2026-02-22T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-ghana-takes-slavery-case-to-un-with-au-backing"
-      ],
-      "summary": "President Mahama with AU endorsement pushing UN recognition of transatlantic slavery as gravest crime against humanity."
-    },
-    {
-      "id": "marshall-islands-ubi-crypto",
-      "label": "Marshall Islands launches world's first national UBI via crypto and Starlink",
-      "firstSeen": "2026-02-22T22:00:00Z",
-      "lastCovered": "2026-02-22T22:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-marshall-islands-launches-first-universal-basic-income"
-      ],
-      "summary": "First-ever national UBI via cryptocurrency and Starlink. Climate-vulnerable Pacific nation skipping traditional banking."
-    },
-    {
-      "id": "china-africa-space-infrastructure",
-      "label": "China builds hi-tech backbone of Africa's space ambitions",
-      "firstSeen": "2026-02-23T04:00:00Z",
-      "lastCovered": "2026-02-23T04:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-23-china-builds-space-infrastructure-across-africa"
-      ],
-      "summary": "Satellite ground station in Namibia, Egyptian lab in orbit, growing continent-wide network of Chinese-funded space facilities."
+      "summary": "Bitdeer sold entire bitcoin treasury for AI data center expansion."
     },
     {
       "id": "us-supreme-court-tariffs",
-      "label": "US tariff upheaval — collection of illegal tariffs halting Feb 24",
+      "label": "US tariff upheaval — EU freezes trade deal as policy contradicts itself",
       "firstSeen": "2026-02-20T16:00:00Z",
-      "lastCovered": "2026-02-23T04:00:00Z",
-      "coverageCount": 7,
+      "lastCovered": "2026-02-23T16:00:00Z",
+      "coverageCount": 8,
       "category": "economy",
-      "importance": 3,
+      "importance": 7,
       "arc": "ongoing",
       "articles": [
         "2026-02-20-us-supreme-court-strikes-down-trump-sweeping-tariffs",
@@ -270,13 +214,161 @@
         "2026-02-21-eu-scrambles-as-trump-section-122-tariff-nears",
         "2026-02-21-trump-hikes-global-tariff-to-fifteen-percent",
         "2026-02-22-wall-street-exodus-as-investors-shift-billions-overseas",
-        "2026-02-23-china-demands-tariff-cancellation-after-court-ruling"
+        "2026-02-23-china-demands-tariff-cancellation-after-court-ruling",
+        "2026-02-23-eu-freezes-us-trade-deal-as-tariff-policy-contradicts-itself"
       ],
-      "summary": "CBP stopping collection of SCOTUS-struck tariffs on Feb 24. Trump pivoted to 15% via Section 122. China demanding cancellation. Not selected — no major new development this cycle."
+      "summary": "EU Parliament freezes US trade deal. SCOTUS ruling, Section 122 pivot to 15%, and trade rep saying policy 'hasn't changed' create three contradictory positions. CBP stopping collection Feb 24. Institutional paralysis on both sides."
+    },
+    {
+      "id": "sudan-humanitarian-crisis",
+      "label": "Sudan war — Chad shuts border as conflict spills across frontiers",
+      "firstSeen": "2026-02-15T00:00:00Z",
+      "lastCovered": "2026-02-23T16:00:00Z",
+      "coverageCount": 8,
+      "category": "conflict",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
+        "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
+        "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28",
+        "2026-02-17-sudan-drone-strikes-kill-sixty-across-darfur-and-kordofan",
+        "2026-02-19-un-declares-hallmarks-of-genocide-in-sudans-el-fasher",
+        "2026-02-21-rsf-drone-kills-three-aid-workers-in-sudan",
+        "2026-02-22-museveni-hosts-rsf-leader-dagalo-for-sudan-war-dialogue",
+        "2026-02-23-chad-shuts-sudan-border-after-troops-killed-in-cross-border-incursion"
+      ],
+      "summary": "Chad closed entire eastern border after cross-border incursions killed Chadian soldiers. War metastasizing beyond Sudan's borders. 1M+ Sudanese refugees in Chad affected. Museveni's son publicly compared RSF to Hitler days after his father hosted Dagalo."
+    },
+    {
+      "id": "israel-press-freedom-crackdown",
+      "label": "Israel designates 5 Palestinian news outlets as terrorist groups",
+      "firstSeen": "2026-02-23T16:00:00Z",
+      "lastCovered": "2026-02-23T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 8,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-23-israel-designates-five-palestinian-news-outlets-as-terrorist-groups"
+      ],
+      "summary": "Israel designated 5 Palestinian news organizations as terrorist groups without evidence. Criminalizes consuming, sharing, or working for these outlets. Extends crackdown from physical targeting of journalists to legal erasure of media institutions."
+    },
+    {
+      "id": "duterte-icc-hearing",
+      "label": "ICC opens confirmation hearing against Duterte for drug war killings",
+      "firstSeen": "2026-02-23T16:00:00Z",
+      "lastCovered": "2026-02-23T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 8,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-23-icc-opens-hearing-against-duterte-for-drug-war-killings"
+      ],
+      "summary": "First SE Asian head of state at ICC. Drug war killed 12,000-30,000, mostly urban poor. Duterte appeared voluntarily after Senate pressure. Tests ICC's ability to hold leaders accountable for mass killings framed as law enforcement."
+    },
+    {
+      "id": "ai-genome-design",
+      "label": "AI tools can now design entire genomes from scratch",
+      "firstSeen": "2026-02-23T16:00:00Z",
+      "lastCovered": "2026-02-23T16:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-23-ai-tools-design-entire-genomes-outpacing-biosecurity-governance"
+      ],
+      "summary": "AI systems architecting whole organisms, not just editing genes. Already used for synthetic microorganisms. Biosecurity governance gap widening as capability outpaces regulation."
+    },
+    {
+      "id": "meta-ai-agent-safety-failure",
+      "label": "Meta AI Safety Director's agent deletes her inbox",
+      "firstSeen": "2026-02-23T16:00:00Z",
+      "lastCovered": "2026-02-23T16:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-23-meta-ai-safety-chief-inbox-deleted-by-own-ai-agent"
+      ],
+      "summary": "Meta Superintelligence Labs' alignment director had inbox deleted by AI agent she was testing. Called it a 'rookie mistake.' Illustrates AI agent safety problem in concrete terms."
+    },
+    {
+      "id": "us-syria-withdrawal-northeast",
+      "label": "US withdraws from NE Syria base, abandoning Kurdish allies",
+      "firstSeen": "2026-02-23T16:00:00Z",
+      "lastCovered": "2026-02-23T16:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 8,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-23-us-withdraws-from-northeast-syria-base-abandoning-kurdish-allies"
+      ],
+      "summary": "US pulling out of key NE Syria base. Kurdish SDF losing last external backer. ISIS detainee security and Turkish incursion risk both elevated. Syria's new government taking control of northeast."
+    },
+    {
+      "id": "china-type-095-submarine",
+      "label": "China's Type 095 nuclear attack submarine confirmed",
+      "firstSeen": "2026-02-22T16:00:00Z",
+      "lastCovered": "2026-02-22T16:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-02-22-china-type-095-nuclear-submarine-spotted-first-time"
+      ],
+      "summary": "First satellite confirmation of China's next-gen Type 095 nuclear-powered attack submarine."
+    },
+    {
+      "id": "ghana-slavery-case-un",
+      "label": "Ghana takes slavery case to UN with AU backing",
+      "firstSeen": "2026-02-22T22:00:00Z",
+      "lastCovered": "2026-02-22T22:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-02-22-ghana-takes-slavery-case-to-un-with-au-backing"
+      ],
+      "summary": "President Mahama with AU endorsement pushing UN recognition of transatlantic slavery."
+    },
+    {
+      "id": "marshall-islands-ubi-crypto",
+      "label": "Marshall Islands first national UBI via crypto",
+      "firstSeen": "2026-02-22T22:00:00Z",
+      "lastCovered": "2026-02-22T22:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-02-22-marshall-islands-launches-first-universal-basic-income"
+      ],
+      "summary": "First national UBI via cryptocurrency and Starlink."
+    },
+    {
+      "id": "china-africa-space-infrastructure",
+      "label": "China builds Africa's space infrastructure",
+      "firstSeen": "2026-02-23T04:00:00Z",
+      "lastCovered": "2026-02-23T04:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-02-23-china-builds-space-infrastructure-across-africa"
+      ],
+      "summary": "Satellite ground stations, orbital labs, continent-wide Chinese-funded space network."
     },
     {
       "id": "pakistan-northwest-insecurity",
-      "label": "Pakistan strikes inside Afghanistan — Taliban vows retaliation",
+      "label": "Pakistan strikes inside Afghanistan — UN confirms civilian deaths",
       "firstSeen": "2026-02-21T16:00:00Z",
       "lastCovered": "2026-02-22T07:00:00Z",
       "coverageCount": 3,
@@ -288,16 +380,16 @@
         "2026-02-22-pakistan-strikes-seven-militant-camps-along-afghan-border",
         "2026-02-22-pakistan-strikes-inside-afghanistan-kabul-reports-dozens-killed"
       ],
-      "summary": "Pakistan claims 70 fighters killed in latest cross-border strikes. Taliban vows retaliation. Afghans mourn civilian dead."
+      "summary": "UN confirms at least 13 civilians killed in Pakistan strikes in Afghanistan. Taliban vows retaliation."
     },
     {
       "id": "ai-agent-harassment",
-      "label": "First documented victim of AI agent harassment warns of thousands more",
+      "label": "First documented victim of AI agent harassment",
       "firstSeen": "2026-02-22T16:00:00Z",
       "lastCovered": "2026-02-22T16:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-02-22-ai-agent-harassment-victim-warns-thousands-at-risk"
@@ -305,94 +397,32 @@
       "summary": "First documented case of autonomous AI targeting an individual."
     },
     {
-      "id": "hungary-eu-sanctions-veto",
-      "label": "Hungary threatens EU Russia sanctions veto over oil shipments",
-      "firstSeen": "2026-02-22T16:00:00Z",
-      "lastCovered": "2026-02-22T16:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-hungary-threatens-eu-sanctions-veto-over-russian-oil"
-      ],
-      "summary": "Budapest blocking EU's 20th Russia sanctions package. EU calling on Hungary to stop blocking."
-    },
-    {
       "id": "nigeria-northwest-attacks",
-      "label": "Nigeria northwest mass killings and abductions continue",
+      "label": "Nigeria northwest mass killings continue",
       "firstSeen": "2026-02-22T16:00:00Z",
       "lastCovered": "2026-02-22T16:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-02-22-dozens-killed-women-children-abducted-in-nigeria"
       ],
-      "summary": "Seven more farmers killed in Plateau (Premium Times). Pattern of northwest violence continuing."
-    },
-    {
-      "id": "us-ambassador-israel-expansion",
-      "label": "US ambassador Huckabee's Biblical Israel expansion claim condemned",
-      "firstSeen": "2026-02-22T16:00:00Z",
-      "lastCovered": "2026-02-22T16:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-arab-muslim-nations-condemn-us-ambassador-israel-expansion"
-      ],
-      "summary": "Huckabee suggested Israel justified in taking much of Middle East on Biblical grounds. 14+ nations condemned."
+      "summary": "Pattern of northwest violence continuing. Mine disaster in Wase also emerging."
     },
     {
       "id": "borneo-magnitude-7-earthquake",
-      "label": "Magnitude 7+ earthquake strikes Borneo, felt across Southeast Asia",
+      "label": "Magnitude 7+ earthquake strikes Borneo",
       "firstSeen": "2026-02-23T04:00:00Z",
       "lastCovered": "2026-02-23T04:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-02-23-borneo-magnitude-seven-earthquake-shakes-southeast-asia"
       ],
       "summary": "M7+ earthquake off northern Borneo. Strongest in Sabah in 11 years. No tsunami."
-    },
-    {
-      "id": "quantum-bitcoin-threat",
-      "label": "Quantum computing approaches threshold threatening $440B in early Bitcoin",
-      "firstSeen": "2026-02-22T22:00:00Z",
-      "lastCovered": "2026-02-22T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-quantum-computing-threatens-440-billion-in-early-bitcoin"
-      ],
-      "summary": "Nearly 7M BTC including Satoshi's 1M coins use vulnerable early cryptographic standards."
-    },
-    {
-      "id": "sudan-humanitarian-crisis",
-      "label": "Sudan war — genocide declared, no new development",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-22T00:00:00Z",
-      "coverageCount": 7,
-      "category": "conflict",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
-        "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
-        "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28",
-        "2026-02-17-sudan-drone-strikes-kill-sixty-across-darfur-and-kordofan",
-        "2026-02-19-un-declares-hallmarks-of-genocide-in-sudans-el-fasher",
-        "2026-02-21-rsf-drone-kills-three-aid-workers-in-sudan",
-        "2026-02-22-museveni-hosts-rsf-leader-dagalo-for-sudan-war-dialogue"
-      ],
-      "summary": "Genocide declared. Museveni hosting Dagalo. No new development in 2+ cycles. Need fresh angle to re-cover."
     },
     {
       "id": "israel-lebanon-ceasefire",
@@ -411,67 +441,11 @@
         "2026-02-21-israeli-strikes-kill-eight-across-lebanon",
         "2026-02-21-israeli-strike-kills-senior-hezbollah-official-in-lebanon"
       ],
-      "summary": "Israeli strikes continue. Ceasefire dead. Fading from coverage."
-    },
-    {
-      "id": "french-farming-crisis",
-      "label": "French farming crisis: Paris Agriculture Fair opens without cows",
-      "firstSeen": "2026-02-22T22:00:00Z",
-      "lastCovered": "2026-02-22T22:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-french-farming-crisis-fair-opens-without-cows"
-      ],
-      "summary": "Agriculture Fair without cows for first time. Connected to EU-Mercosur tensions."
-    },
-    {
-      "id": "eu-mercosur-trade-tensions",
-      "label": "EU-Mercosur trade deal fracturing",
-      "firstSeen": "2026-02-22T12:00:00Z",
-      "lastCovered": "2026-02-22T12:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-eu-mercosur-deal-stalls-as-argentina-pushes-forward"
-      ],
-      "summary": "World's largest proposed trade zone fracturing."
-    },
-    {
-      "id": "somaliland-us-minerals-military",
-      "label": "Somaliland offers US minerals and military base for recognition",
-      "firstSeen": "2026-02-22T12:00:00Z",
-      "lastCovered": "2026-02-22T12:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-somaliland-offers-us-minerals-and-military-access"
-      ],
-      "summary": "Somaliland dangles mineral rights and Red Sea base access to court US recognition."
-    },
-    {
-      "id": "i2p-botnet-destruction",
-      "label": "Botnet accidentally destroys I2P privacy network",
-      "firstSeen": "2026-02-22T12:00:00Z",
-      "lastCovered": "2026-02-22T12:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-botnet-accidentally-destroys-i2p-privacy-network"
-      ],
-      "summary": "Botnet took down I2P privacy network. Exposes fragility of decentralized infrastructure."
+      "summary": "Israeli strikes continue. US evacuating non-essential Beirut embassy staff may indicate escalation."
     },
     {
       "id": "indonesia-trump-trade-deal",
-      "label": "Indonesia confirms bilateral trade deal with Trump",
+      "label": "Indonesia bilateral trade deal with Trump",
       "firstSeen": "2026-02-22T07:00:00Z",
       "lastCovered": "2026-02-22T07:00:00Z",
       "coverageCount": 1,
@@ -481,7 +455,7 @@
       "articles": [
         "2026-02-22-indonesia-confirms-trade-deal-with-trump-amid-tariff-chaos"
       ],
-      "summary": "Indonesia secures bilateral deal with Trump amid 15% tariff."
+      "summary": "Indonesia secures bilateral deal amid 15% tariff."
     },
     {
       "id": "islamic-state-syria-campaign",
@@ -495,36 +469,7 @@
       "articles": [
         "2026-02-22-islamic-state-declares-new-campaign-against-syrian-government"
       ],
-      "summary": "IS declared new campaign against Sharaa's government."
-    },
-    {
-      "id": "north-korea-workers-party-congress",
-      "label": "Kim Jong Un re-elected at Workers' Party Congress",
-      "firstSeen": "2026-02-22T04:00:00Z",
-      "lastCovered": "2026-02-22T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-02-22-kim-outlines-five-year-plan-at-workers-party-congress"
-      ],
-      "summary": "Kim re-elected. Xi congratulates. Nuclear advances touted."
-    },
-    {
-      "id": "nasa-artemis-ii-moon",
-      "label": "NASA Artemis II delayed past March",
-      "firstSeen": "2026-02-20T20:00:00Z",
-      "lastCovered": "2026-02-21T20:00:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-02-20-nasa-targets-march-for-crewed-moon-mission",
-        "2026-02-21-nasa-delays-artemis-ii-moon-mission-past-march"
-      ],
-      "summary": "Artemis II pushed from March to at least April."
+      "summary": "IS campaign against Sharaa's government. Gains relevance with US NE Syria withdrawal."
     }
   ]
 }
