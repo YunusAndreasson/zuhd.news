@@ -2,22 +2,109 @@
   "version": 1,
   "stories": [
     {
-      "id": "afghan-allies-us-betrayal",
-      "label": "US tells Afghan allies to give up — 173-year resettlement backlog",
-      "firstSeen": "2026-02-24T22:00:00Z",
-      "lastCovered": "2026-02-24T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
+      "id": "pakistan-afghanistan-border-war",
+      "label": "Pakistan-Afghanistan forces trade fire at border amid multi-front crisis",
+      "firstSeen": "2026-02-22T22:00:00Z",
+      "lastCovered": "2026-02-25T04:00:00Z",
+      "coverageCount": 2,
+      "category": "conflict",
       "importance": 8,
+      "arc": "developing",
+      "articles": [
+        "2026-02-22-pakistan-strikes-seven-militant-camps-along-afghan-border",
+        "2026-02-25-pakistan-afghanistan-forces-trade-fire-at-border"
+      ],
+      "summary": "Pakistan and Taliban-run Afghanistan exchanged fire at their border. Follows Pakistan's Feb 22 strikes on 7 militant camps inside Afghanistan. Taliban's first significant military response. Pakistan facing simultaneous KSE crash, KP terror attacks, and border confrontation."
+    },
+    {
+      "id": "gaza-medics-massacre",
+      "label": "Israeli forces fired 900+ bullets killing 15 Gaza medics execution-style",
+      "firstSeen": "2026-02-25T04:00:00Z",
+      "lastCovered": "2026-02-25T04:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 9,
       "arc": "breaking",
       "articles": [
-        "2026-02-24-us-tells-afghan-allies-to-give-up-173-year-resettlement-backlog"
+        "2026-02-25-israeli-forces-fired-900-bullets-in-gaza-medics-massacre"
       ],
-      "summary": "DHS admits 173-year processing backlog. 180,000 Afghans in pipeline. Camp As-Sayliyah closing March 31. Advocates told 1,000 Afghans on Zoom to give up on America."
+      "summary": "Independent forensic investigation found Israeli soldiers fired 900+ bullets at aid workers, killing 15 execution-style. Satellite imagery shows bulldozers buried vehicles and earth berms constructed to hide evidence. Comes as Israel bans 37 aid organizations from Gaza and West Bank."
+    },
+    {
+      "id": "pentagon-anthropic-military-ai",
+      "label": "Pentagon threatens Anthropic with Cold War-era powers over military AI",
+      "firstSeen": "2026-02-17T00:00:00Z",
+      "lastCovered": "2026-02-25T04:00:00Z",
+      "coverageCount": 3,
+      "category": "tech",
+      "importance": 8,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-pentagon-close-to-cutting-ties-with-anthropic-over-use-restrictions",
+        "2026-02-20-us-rejects-global-ai-governance-at-india-summit",
+        "2026-02-25-pentagon-threatens-anthropic-with-cold-war-powers-over-military-ai"
+      ],
+      "summary": "Pentagon gave Anthropic Friday deadline to agree to unrestricted military AI use or face Cold War-era compulsion powers (likely Defense Production Act). Anthropic has dug in, refusing to remove safety restrictions. Escalated from 'cutting ties' threat to government coercion."
+    },
+    {
+      "id": "japan-missiles-taiwan",
+      "label": "Japan to deploy missiles on island 110km from Taiwan by 2031",
+      "firstSeen": "2026-02-25T04:00:00Z",
+      "lastCovered": "2026-02-25T04:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-25-japan-to-deploy-missiles-near-taiwan-by-2031"
+      ],
+      "summary": "Japan deploying missiles to Yonaguni island, 110km from Taiwan, by 2031. Most explicit Taiwan contingency preparation by a US ally. Part of Japan's post-2022 remilitarization doubling defense budget to 2% GDP."
+    },
+    {
+      "id": "brazil-minas-gerais-floods",
+      "label": "Brazil floods kill 28+ in Minas Gerais — mining region's structural vulnerability",
+      "firstSeen": "2026-02-25T04:00:00Z",
+      "lastCovered": "2026-02-25T04:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-25-brazil-floods-kill-28-as-landslides-sweep-minas-gerais"
+      ],
+      "summary": "28+ killed, 40+ missing in landslides across Minas Gerais after torrential rains. Same region as Brumadinho and Mariana mining disasters. La Niña-driven, compounded by mining-stripped hillsides."
+    },
+    {
+      "id": "amazon-price-inflation",
+      "label": "Amazon accused of systematic scheme to inflate prices across economy",
+      "firstSeen": "2026-02-25T04:00:00Z",
+      "lastCovered": "2026-02-25T04:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-25-amazon-accused-of-widespread-price-inflation-scheme"
+      ],
+      "summary": "Investigation reveals Amazon operating systematic scheme to inflate prices not just on its platform but across the entire economy. Fee structure and marketplace rules create upward price pressure affecting all retail."
+    },
+    {
+      "id": "mercury-2-diffusion-llm",
+      "label": "Mercury 2 diffusion-based LLM challenges autoregressive AI paradigm",
+      "firstSeen": "2026-02-25T04:00:00Z",
+      "lastCovered": "2026-02-25T04:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-02-25-mercury-2-diffusion-model-challenges-how-ai-works"
+      ],
+      "summary": "Inception Labs released Mercury 2, a reasoning LLM built on diffusion (not autoregressive) architecture. If benchmarks hold, challenges fundamental assumptions of the AI industry. Awaiting independent verification."
     },
     {
       "id": "iran-nuclear-talks-geneva",
-      "label": "Iran crisis — China missile deal ahead of Feb 26 Geneva talks",
+      "label": "Iran crisis — Geneva talks Thursday, China missile deal confirmed",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-02-24T10:00:00Z",
       "coverageCount": 22,
@@ -48,7 +135,7 @@
         "2026-02-23-iran-rejects-limited-strike-concept-any-attack-is-aggression",
         "2026-02-24-iran-nears-deal-to-buy-chinese-anti-ship-missiles"
       ],
-      "summary": "Feb 26 Geneva talks Thursday. China missile deal confirmed. White House says diplomacy is first option. Iran students protesting for third day. Importance decayed since not selected this cycle."
+      "summary": "Geneva talks set for Thursday Feb 26. Iran FM says deal 'within reach.' Second US carrier heading to Middle East. Not covered this cycle — editorial threshold requires outcome, military action, deal framework, or direct escalation."
     },
     {
       "id": "ukraine-russia-war",
@@ -57,7 +144,7 @@
       "lastCovered": "2026-02-24T22:00:00Z",
       "coverageCount": 10,
       "category": "conflict",
-      "importance": 7,
+      "importance": 6,
       "arc": "ongoing",
       "articles": [
         "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
@@ -71,7 +158,21 @@
         "2026-02-22-all-four-moscow-airports-closed-by-ukrainian-drones",
         "2026-02-24-russian-soldiers-describe-execution-of-troops-who-refuse-orders"
       ],
-      "summary": "BBC obtained firsthand testimony from Russian soldiers describing execution of troops who refuse orders. Mediazona verified 200K+ Russian dead. War entering 5th year with no diplomatic breakthrough."
+      "summary": "War entering 5th year. Petal mines endangering civilians. No diplomatic breakthrough. Importance decayed — covered extensively, need major development to justify re-selection."
+    },
+    {
+      "id": "afghan-allies-us-betrayal",
+      "label": "US tells Afghan allies to give up — 173-year resettlement backlog",
+      "firstSeen": "2026-02-24T22:00:00Z",
+      "lastCovered": "2026-02-24T22:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-02-24-us-tells-afghan-allies-to-give-up-173-year-resettlement-backlog"
+      ],
+      "summary": "DHS admits 173-year processing backlog. 180,000 Afghans in pipeline. Camp As-Sayliyah closing March 31. Watch for court challenges, congressional response."
     },
     {
       "id": "lebanon-army-israeli-fire",
@@ -80,12 +181,12 @@
       "lastCovered": "2026-02-24T16:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": [
         "2026-02-24-lebanon-army-ordered-to-respond-after-israeli-fire"
       ],
-      "summary": "Lebanese Army told to act in self-defense after Israeli forces fired on a military post. Shifts dynamic from Israel vs. Hezbollah to Israel vs. sovereign military. Could widen conflict."
+      "summary": "Lebanese Army authorized to return fire after Israeli forces fired on military post. Shifts dynamic from Israel vs. Hezbollah to Israel vs. sovereign military."
     },
     {
       "id": "thai-cambodia-border-fire",
@@ -94,12 +195,12 @@
       "lastCovered": "2026-02-24T22:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-02-24-thai-cambodian-armies-exchange-fire-at-disputed-border"
       ],
-      "summary": "Thai and Cambodian militaries exchanged live fire at their border. First significant shooting since the 2008-2011 Preah Vihear dispute era. ASEAN response pending."
+      "summary": "Thai and Cambodian militaries exchanged live fire at their border. Situation appears quiet this cycle but unresolved."
     },
     {
       "id": "stripe-paypal-acquisition",
@@ -108,12 +209,12 @@
       "lastCovered": "2026-02-24T22:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-02-24-stripe-reportedly-in-talks-to-acquire-paypal"
       ],
-      "summary": "Bloomberg reports Stripe exploring PayPal acquisition. Would be one of largest fintech deals ever. Stripe has growing stablecoin/blockchain ambitions."
+      "summary": "Bloomberg report only, not confirmed. Would be one of largest fintech deals ever."
     },
     {
       "id": "china-japan-export-curbs",
@@ -122,13 +223,13 @@
       "lastCovered": "2026-02-24T10:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-02-24-china-hits-forty-japanese-firms-with-export-curbs",
         "2026-02-24-deepseek-trained-ai-on-nvidia-blackwell-despite-export-ban"
       ],
-      "summary": "Two-front story: China sanctioned 40 Japanese entities and DeepSeek circumvented Nvidia Blackwell ban. Export control regime being simultaneously retaliated against and evaded."
+      "summary": "China sanctioned 40 Japanese entities and DeepSeek circumvented Nvidia Blackwell ban. Export control regime simultaneously retaliated against and evaded."
     },
     {
       "id": "drc-m23-coltan-conflict",
@@ -137,68 +238,24 @@
       "lastCovered": "2026-02-24T16:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-02-24-m23-spokesperson-killed-in-drone-strike-in-congo"
       ],
-      "summary": "M23 military spokesperson Lt. Col Willy Ngoma killed by drone in eastern DRC. M23 controls Rubaya coltan mine supplying 15% of world's tantalum. 7M+ displaced."
+      "summary": "M23 spokesperson killed by drone in eastern DRC. DRC-Burundi border reopened for trade and aid to South Kivu. Watch for Rwanda response."
     },
     {
-      "id": "chinese-ferroelectric-transistor",
-      "label": "Chinese scientists build world's smallest transistor for AI chips",
-      "firstSeen": "2026-02-24T22:00:00Z",
-      "lastCovered": "2026-02-24T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-02-24-chinese-scientists-build-worlds-smallest-transistor-for-ai"
-      ],
-      "summary": "World's smallest, most efficient ferroelectric transistor. Integrates memory and processing in single unit. Alternative architecture path may circumvent Western export controls."
-    },
-    {
-      "id": "russia-durov-telegram-case",
-      "label": "Russia opens criminal case against Telegram founder Durov",
-      "firstSeen": "2026-02-24T22:00:00Z",
-      "lastCovered": "2026-02-24T22:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-02-24-russia-opens-criminal-case-against-telegram-founder-durov"
-      ],
-      "summary": "Both France and Russia now pursuing criminal cases against Durov. Democratic and authoritarian states targeting same encrypted platform for opposite reasons. 900M+ users affected."
-    },
-    {
-      "id": "moscow-bomb-war-anniversary",
-      "label": "Moscow bomb kills police officer on Ukraine war anniversary",
-      "firstSeen": "2026-02-24T22:00:00Z",
-      "lastCovered": "2026-02-24T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-02-24-moscow-bomb-kills-police-officer-on-ukraine-war-anniversary"
-      ],
-      "summary": "Bomb detonated in Moscow killed police officer on 4th anniversary of Ukraine invasion. Separate from rail hub suicide bombing same day. Internal security under strain."
-    },
-    {
-      "id": "sahel-jihadist-expansion",
-      "label": "Sahel jihadist groups probing coastal West Africa",
-      "firstSeen": "2026-02-24T10:00:00Z",
-      "lastCovered": "2026-02-24T10:00:00Z",
-      "coverageCount": 1,
+      "id": "gaza-aid-ban",
+      "label": "Israel orders 37 aid organizations to halt operations in Gaza and West Bank",
+      "firstSeen": "2026-02-25T04:00:00Z",
+      "lastCovered": "2026-02-25T04:00:00Z",
+      "coverageCount": 0,
       "category": "conflict",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-02-24-jihadist-threat-reaches-eastern-senegal"
-      ],
-      "summary": "Jihadist groups expanding from Mali, Burkina Faso, Niger into Senegal's east. Watch for Côte d'Ivoire, Ghana, Togo — coastal belt is the next front."
+      "importance": 8,
+      "arc": "breaking",
+      "articles": [],
+      "summary": "Israel ordered 37 aid groups to halt all operations in Gaza, West Bank, and East Jerusalem. Aid groups petitioning Israeli Supreme Court. Connected to medics massacre — systematic dismantling of humanitarian access. Not selected as standalone but integral to Gaza medics story."
     },
     {
       "id": "duterte-icc-hearing",
@@ -207,27 +264,13 @@
       "lastCovered": "2026-02-24T16:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-02-23-icc-opens-hearing-against-duterte-for-drug-war-killings",
         "2026-02-24-duterte-drew-up-death-lists-icc-prosecutor"
       ],
-      "summary": "ICC prosecutors revealed Duterte personally drew up 'death lists' and boasted about killings. First SE Asian head of state at ICC. Drug war killed 12,000-30,000. Hearing ongoing."
-    },
-    {
-      "id": "netanyahu-india-hexagon",
-      "label": "Netanyahu announces Israel-India 'hexagon' alliance against 'radical axes'",
-      "firstSeen": "2026-02-24T16:00:00Z",
-      "lastCovered": "2026-02-24T16:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-02-24-netanyahu-india-hexagon-alliance-against-radical-axes"
-      ],
-      "summary": "Netanyahu framed 6-nation alliance (Israel, India, UAE, Saudi Arabia, Greece, Cyprus) against 'radical axes.' Israeli opposition boycotting Modi's Knesset address. Formalizes anti-Iran coalition with Hindu-nationalist India."
+      "summary": "ICC prosecutors revealed Duterte personally drew up 'death lists.' First SE Asian head of state at ICC. Hearing ongoing."
     },
     {
       "id": "us-supreme-court-tariffs",
@@ -236,7 +279,7 @@
       "lastCovered": "2026-02-24T10:00:00Z",
       "coverageCount": 10,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "ongoing",
       "articles": [
         "2026-02-20-us-supreme-court-strikes-down-trump-sweeping-tariffs",
@@ -250,95 +293,11 @@
         "2026-02-24-fedex-sues-us-government-for-tariff-refunds",
         "2026-02-24-german-car-exports-to-china-plunge-by-a-third"
       ],
-      "summary": "Section 122 tariffs took effect at lower-than-expected rate. Dollar under pressure. China weighing response. Importance decayed — no major new development this cycle."
-    },
-    {
-      "id": "usfk-china-air-standoff",
-      "label": "USFK chief apologizes to South Korea after China air standoff",
-      "firstSeen": "2026-02-24T10:00:00Z",
-      "lastCovered": "2026-02-24T10:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-24-usfk-chief-apologizes-to-south-korea-after-china-standoff"
-      ],
-      "summary": "USFK commander apologized after Feb 20 Yellow Sea air standoff with China. Alliance strain visible."
-    },
-    {
-      "id": "settler-violence-mukhmas",
-      "label": "Settlers kill Palestinian teen while Israeli soldiers watched",
-      "firstSeen": "2026-02-24T04:00:00Z",
-      "lastCovered": "2026-02-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-24-settlers-kill-palestinian-teen-as-soldiers-watched"
-      ],
-      "summary": "Settlers attacked Mukhmas, shot three, killed teenager. Soldiers stood by. Military complicity pattern accelerating."
-    },
-    {
-      "id": "nigeria-cbn-rate-cut",
-      "label": "Nigeria central bank cuts rate to 26.5% amid economic crisis",
-      "firstSeen": "2026-02-24T16:00:00Z",
-      "lastCovered": "2026-02-24T16:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-24-nigeria-central-bank-cuts-rate-to-26-percent"
-      ],
-      "summary": "Nigeria's central bank cut benchmark rate to 26.5% — crisis-level by global standards but an easing in Nigeria. Inflation above 30%, naira collapsed, 133M in poverty."
-    },
-    {
-      "id": "human-exodus-africa-discovery",
-      "label": "Discovery rewrites humanity's first exodus from Africa",
-      "firstSeen": "2026-02-24T16:00:00Z",
-      "lastCovered": "2026-02-24T16:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-24-discovery-rewrites-humanitys-first-exodus-from-africa"
-      ],
-      "summary": "Archaeological discovery in Israel upends established timeline of humanity's first migration out of Africa through the Levant corridor."
-    },
-    {
-      "id": "humanoid-robots-hidden-labor",
-      "label": "Hidden human labor behind 'autonomous' humanoid robots exposed",
-      "firstSeen": "2026-02-24T10:00:00Z",
-      "lastCovered": "2026-02-24T10:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-24-hidden-human-work-behind-humanoid-robots"
-      ],
-      "summary": "MIT Tech Review reveals humanoid robot companies hiding human operators. Pattern mirrors safety drivers and AI content editors."
-    },
-    {
-      "id": "iron-age-mass-grave",
-      "label": "Iron Age mass grave reveals targeted violence against women and children",
-      "firstSeen": "2026-02-24T10:00:00Z",
-      "lastCovered": "2026-02-24T10:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-24-iron-age-mass-grave-reveals-violence-against-women-and-children"
-      ],
-      "summary": "Nature study documents unprecedented evidence of targeted violence against women and children in Iron Age."
+      "summary": "Trump warned countries against backing away from trade deals in State of the Union. No major new development. Importance continues to decay."
     },
     {
       "id": "mexico-el-mencho-killed",
-      "label": "Mexico CJNG crisis — 10,000 troops deployed after El Mencho death",
+      "label": "Mexico CJNG crisis — aftermath of El Mencho death",
       "firstSeen": "2026-02-22T22:00:00Z",
       "lastCovered": "2026-02-23T22:00:00Z",
       "coverageCount": 3,
@@ -350,143 +309,17 @@
         "2026-02-23-mexico-cjng-revenge-attacks-engulf-twenty-states",
         "2026-02-23-mexico-twenty-five-soldiers-killed-in-cartel-retaliation-after-el-mencho-raid"
       ],
-      "summary": "70+ killed. 10,000 troops deployed. 23 inmates sprung from jail during violence. Subsiding but cartel fragmentation risk remains."
-    },
-    {
-      "id": "israel-press-freedom-crackdown",
-      "label": "Israel designates and shuts down Palestinian news outlets",
-      "firstSeen": "2026-02-23T16:00:00Z",
-      "lastCovered": "2026-02-23T16:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-23-israel-designates-five-palestinian-news-outlets-as-terrorist-groups"
-      ],
-      "summary": "5 Palestinian news orgs designated terrorist groups. Physical shutdowns now being enforced in Jerusalem. Criminalizes consuming or working for outlets."
-    },
-    {
-      "id": "us-syria-withdrawal-northeast",
-      "label": "US withdraws from NE Syria, abandoning Kurdish allies",
-      "firstSeen": "2026-02-23T16:00:00Z",
-      "lastCovered": "2026-02-23T16:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-23-us-withdraws-from-northeast-syria-base-abandoning-kurdish-allies"
-      ],
-      "summary": "US pulling out of NE Syria. Full withdrawal within a month. Turkey repatriating ISIS fighters."
-    },
-    {
-      "id": "panama-canal-ports-takeover",
-      "label": "Panama takes control of canal ports from Hong Kong firm",
-      "firstSeen": "2026-02-23T22:00:00Z",
-      "lastCovered": "2026-02-23T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-23-panama-takes-control-of-canal-ports-from-hong-kong-firm"
-      ],
-      "summary": "Supreme Court declared CK Hutchison concession unconstitutional. Hong Kong lodged 'strong protest' after takeover."
-    },
-    {
-      "id": "binance-iran-sanctions-evasion",
-      "label": "Binance fired employees who found $1.7B sent to Iran",
-      "firstSeen": "2026-02-23T22:00:00Z",
-      "lastCovered": "2026-02-23T22:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-23-binance-fired-employees-who-found-billions-routed-to-iran"
-      ],
-      "summary": "NYT reports compliance employees discovered $1.7B in crypto routed to Iran and were fired."
-    },
-    {
-      "id": "ibm-cobol-ai-disruption",
-      "label": "IBM posts worst day in 25 years after AI threatens COBOL moat",
-      "firstSeen": "2026-02-24T04:00:00Z",
-      "lastCovered": "2026-02-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-24-ibm-steepest-drop-in-25-years-after-ai-threatens-cobol"
-      ],
-      "summary": "IBM steepest stock drop since 2000 after Anthropic showed AI can modernize COBOL."
-    },
-    {
-      "id": "peru-floods-emergency",
-      "label": "Deadly floods sweep Peru — 700+ districts in emergency",
-      "firstSeen": "2026-02-24T04:00:00Z",
-      "lastCovered": "2026-02-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-24-peru-floods-sweep-south-as-700-districts-declare-emergency"
-      ],
-      "summary": "700+ districts declared emergency. Torrential rains trigger mudslides. La Niña-driven climate event."
-    },
-    {
-      "id": "smart-glasses-counter-surveillance",
-      "label": "App detects smart glasses wearers nearby — counter-surveillance tool",
-      "firstSeen": "2026-02-24T16:00:00Z",
-      "lastCovered": "2026-02-24T16:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-24-app-detects-smart-glasses-wearers-nearby"
-      ],
-      "summary": "New app detects Meta Ray-Bans and similar smart glasses via Bluetooth scanning. Inverts surveillance dynamic — users warned when being recorded."
-    },
-    {
-      "id": "brazil-amazon-port-indigenous",
-      "label": "Brazil reverses Amazon port expansion after Indigenous protests",
-      "firstSeen": "2026-02-24T04:00:00Z",
-      "lastCovered": "2026-02-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-02-24-brazil-reverses-amazon-port-expansion-after-indigenous-protests"
-      ],
-      "summary": "Government revoked Amazon port expansion. Soy industry abandoned deforestation moratorium — pressure continues."
-    },
-    {
-      "id": "kim-yojong-party-promotion",
-      "label": "Kim Yo-jong promoted at rare North Korea party congress",
-      "firstSeen": "2026-02-24T04:00:00Z",
-      "lastCovered": "2026-02-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "fading",
-      "articles": [
-        "2026-02-24-kim-yo-jong-promoted-at-north-korea-party-congress"
-      ],
-      "summary": "Kim Yo-jong promoted to full department director. Formalizes extensive informal power. Succession signal."
+      "summary": "Mexico says Jalisco situation stabilized, flights resuming. 70+ killed in aftermath. BBC reports threat of further violence looms. Cartel fragmentation risk remains."
     },
     {
       "id": "sudan-humanitarian-crisis",
-      "label": "Sudan war — humanitarian crisis deepening",
+      "label": "Sudan war — MSF closes hospital on Chad border",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-02-23T16:00:00Z",
       "coverageCount": 8,
       "category": "conflict",
-      "importance": 2,
-      "arc": "fading",
+      "importance": 3,
+      "arc": "ongoing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
         "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
@@ -497,77 +330,189 @@
         "2026-02-22-museveni-hosts-rsf-leader-dagalo-for-sudan-war-dialogue",
         "2026-02-23-chad-shuts-sudan-border-after-troops-killed-in-cross-border-incursion"
       ],
-      "summary": "Chad border still closed. Quad ceasefire proposal on table. Needs dedicated internal humanitarian angle when fresh data emerges."
+      "summary": "MSF closed El Tina hospital on Chad border after renewed fighting displaced 400 families. Quad ceasefire proposal still on table. Fresh humanitarian data available — prioritize next cycle."
     },
     {
-      "id": "france-restricts-us-ambassador",
-      "label": "France restricts US Ambassador Kushner after he ignores summons",
-      "firstSeen": "2026-02-23T22:00:00Z",
-      "lastCovered": "2026-02-23T22:00:00Z",
+      "id": "sahel-jihadist-expansion",
+      "label": "Sahel jihadist groups probing coastal West Africa",
+      "firstSeen": "2026-02-24T10:00:00Z",
+      "lastCovered": "2026-02-24T10:00:00Z",
       "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "fading",
+      "category": "conflict",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
-        "2026-02-23-france-restricts-us-ambassador-kushner-after-ignoring-summons"
+        "2026-02-24-jihadist-threat-reaches-eastern-senegal"
       ],
-      "summary": "France stripped Ambassador Kushner of direct ministerial access. NATO ally downgrading US ambassador."
+      "summary": "Jihadist groups expanding from Sahel into coastal West Africa. Watch for Côte d'Ivoire, Ghana, Togo incidents."
     },
     {
-      "id": "israel-death-penalty-bill",
-      "label": "Israel advances death penalty bill targeting Palestinians",
-      "firstSeen": "2026-02-23T10:00:00Z",
-      "lastCovered": "2026-02-23T10:00:00Z",
+      "id": "chinese-ferroelectric-transistor",
+      "label": "Chinese scientists build world's smallest transistor for AI chips",
+      "firstSeen": "2026-02-24T22:00:00Z",
+      "lastCovered": "2026-02-24T22:00:00Z",
       "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "fading",
+      "category": "science",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
-        "2026-02-23-israel-advances-death-penalty-bill-un-says-targets-palestinians"
+        "2026-02-24-chinese-scientists-build-worlds-smallest-transistor-for-ai"
       ],
-      "summary": "Knesset debating death penalty bill. First execution since Eichmann (1962) would be Palestinian."
+      "summary": "World's smallest ferroelectric transistor integrating memory and processing. Alternative architecture path that may circumvent export controls."
     },
     {
-      "id": "african-gig-workers-us-military",
-      "label": "African gig workers unknowingly trained US military AI",
-      "firstSeen": "2026-02-23T22:00:00Z",
-      "lastCovered": "2026-02-23T22:00:00Z",
+      "id": "russia-durov-telegram-case",
+      "label": "Russia opens criminal case against Telegram founder Durov",
+      "firstSeen": "2026-02-24T22:00:00Z",
+      "lastCovered": "2026-02-24T22:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "fading",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
-        "2026-02-23-african-gig-workers-unknowingly-trained-us-military-ai"
+        "2026-02-24-russia-opens-criminal-case-against-telegram-founder-durov"
       ],
-      "summary": "Rest of World investigation. Data labelers in Africa unknowingly worked on US military contracts."
+      "summary": "Both France and Russia pursuing criminal cases against Durov. Democratic and authoritarian states targeting same encrypted platform."
     },
     {
-      "id": "ai-genome-design",
-      "label": "AI tools can now design entire genomes from scratch",
-      "firstSeen": "2026-02-23T16:00:00Z",
-      "lastCovered": "2026-02-23T16:00:00Z",
+      "id": "netanyahu-india-hexagon",
+      "label": "Netanyahu announces Israel-India 'hexagon' alliance",
+      "firstSeen": "2026-02-24T16:00:00Z",
+      "lastCovered": "2026-02-24T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-24-netanyahu-india-hexagon-alliance-against-radical-axes"
+      ],
+      "summary": "Netanyahu framed 6-nation alliance against 'radical axes.' Modi addressing Knesset with Israeli opposition boycotting."
+    },
+    {
+      "id": "settler-violence-mukhmas",
+      "label": "Settlers kill Palestinian teen while Israeli soldiers watched",
+      "firstSeen": "2026-02-24T04:00:00Z",
+      "lastCovered": "2026-02-24T04:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-02-24-settlers-kill-palestinian-teen-as-soldiers-watched"
+      ],
+      "summary": "Settlers attacked Mukhmas, killed teenager while soldiers stood by. Military complicity pattern."
+    },
+    {
+      "id": "moscow-bomb-war-anniversary",
+      "label": "Moscow bomb kills police officer on Ukraine war anniversary",
+      "firstSeen": "2026-02-24T22:00:00Z",
+      "lastCovered": "2026-02-24T22:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-24-moscow-bomb-kills-police-officer-on-ukraine-war-anniversary"
+      ],
+      "summary": "Bomb in Moscow killed police officer on 4th anniversary of Ukraine invasion. Internal security strain."
+    },
+    {
+      "id": "peru-floods-emergency",
+      "label": "Deadly floods sweep Peru — 700+ districts in emergency",
+      "firstSeen": "2026-02-24T04:00:00Z",
+      "lastCovered": "2026-02-24T04:00:00Z",
       "coverageCount": 1,
       "category": "science",
       "importance": 2,
-      "arc": "fading",
+      "arc": "developing",
       "articles": [
-        "2026-02-23-ai-tools-design-entire-genomes-outpacing-biosecurity-governance"
+        "2026-02-24-peru-floods-sweep-south-as-700-districts-declare-emergency"
       ],
-      "summary": "AI systems architecting whole organisms. Biosecurity governance gap widening."
+      "summary": "700+ districts declared emergency. La Niña-driven. Brazil floods in same weather pattern are now the more acute disaster."
     },
     {
-      "id": "asml-euv-breakthrough",
-      "label": "ASML EUV breakthrough could yield 50% more chips by 2030",
+      "id": "israel-press-freedom-crackdown",
+      "label": "Israel designates Palestinian news outlets as terrorist groups",
+      "firstSeen": "2026-02-23T16:00:00Z",
+      "lastCovered": "2026-02-23T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "fading",
+      "articles": [
+        "2026-02-23-israel-designates-five-palestinian-news-outlets-as-terrorist-groups"
+      ],
+      "summary": "5 Palestinian news orgs designated terrorist groups. Physical shutdowns enforced in Jerusalem."
+    },
+    {
+      "id": "us-syria-withdrawal-northeast",
+      "label": "US withdraws from NE Syria, abandoning Kurdish allies",
+      "firstSeen": "2026-02-23T16:00:00Z",
+      "lastCovered": "2026-02-23T16:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 2,
+      "arc": "fading",
+      "articles": [
+        "2026-02-23-us-withdraws-from-northeast-syria-base-abandoning-kurdish-allies"
+      ],
+      "summary": "US pulling out of NE Syria. Full withdrawal within a month."
+    },
+    {
+      "id": "panama-canal-ports-takeover",
+      "label": "Panama takes control of canal ports from Hong Kong firm",
       "firstSeen": "2026-02-23T22:00:00Z",
       "lastCovered": "2026-02-23T22:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "fading",
+      "articles": [
+        "2026-02-23-panama-takes-control-of-canal-ports-from-hong-kong-firm"
+      ],
+      "summary": "Supreme Court declared CK Hutchison concession unconstitutional."
+    },
+    {
+      "id": "ibm-cobol-ai-disruption",
+      "label": "IBM posts worst day in 25 years after AI threatens COBOL moat",
+      "firstSeen": "2026-02-24T04:00:00Z",
+      "lastCovered": "2026-02-24T04:00:00Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 2,
       "arc": "fading",
       "articles": [
-        "2026-02-23-asml-euv-breakthrough-could-yield-fifty-percent-more-chips"
+        "2026-02-24-ibm-steepest-drop-in-25-years-after-ai-threatens-cobol"
       ],
-      "summary": "ASML unveils new EUV light source technology. 50% more chips from same equipment by 2030."
+      "summary": "IBM steepest stock drop since 2000 after AI showed it can modernize COBOL."
+    },
+    {
+      "id": "humanoid-robots-hidden-labor",
+      "label": "Hidden human labor behind 'autonomous' humanoid robots exposed",
+      "firstSeen": "2026-02-24T10:00:00Z",
+      "lastCovered": "2026-02-24T10:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "fading",
+      "articles": [
+        "2026-02-24-hidden-human-work-behind-humanoid-robots"
+      ],
+      "summary": "MIT Tech Review reveals humanoid robot companies hiding human operators."
+    },
+    {
+      "id": "nigeria-cbn-rate-cut",
+      "label": "Nigeria central bank cuts rate to 26.5%",
+      "firstSeen": "2026-02-24T16:00:00Z",
+      "lastCovered": "2026-02-24T16:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-02-24-nigeria-central-bank-cuts-rate-to-26-percent"
+      ],
+      "summary": "Nigeria cut benchmark rate to 26.5%. Inflation above 30%, 133M in poverty."
     }
   ]
 }
