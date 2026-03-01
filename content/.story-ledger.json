@@ -3,31 +3,62 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran-US-Israel war begins: Khamenei killed, regional war erupts",
+      "label": "Iran-US-Israel war: regional conflict spreading, school death toll 148",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-01T11:00:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-01T13:00:00Z",
+      "coverageCount": 2,
       "category": "conflict",
       "importance": 10,
       "arc": "breaking",
       "articles": [
-        "2026-03-01-us-israel-attacks-iran-retaliation-regional-war"
+        "2026-03-01-us-israel-attacks-iran-retaliation-regional-war",
+        "2026-03-01-iran-school-strike-death-toll-climbs-to-148"
       ],
-      "summary": "US and Israel launched strikes on Iran Saturday morning. Iran retaliated with missiles and drones against Israel and four Gulf states hosting US military bases (Saudi Arabia, Bahrain, Kuwait, Qatar). An elementary school was struck; at least one child killed. The nuclear talks that started in Geneva have ended in open regional war."
+      "summary": "US-Israel strikes on Iran continue into Day 2. School strike death toll rose to 148; Israel denies awareness. IRGC launching fresh waves of attacks on Israel and Gulf states. Strait of Hormuz disrupted. Explosions reported in Tehran, Riyadh, Dubai, Doha, Manama."
     },
     {
       "id": "khamenei-assassination",
-      "label": "Khamenei killed: Iran in power vacuum after US-Israel joint strike",
+      "label": "Khamenei killed: interim council formed, Larijani emerges as power broker",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-01T11:00:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-01T13:00:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 10,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-01-khamenei-killed-iran-polarised-celebrations-grief",
+        "2026-03-01-iran-forms-interim-council-after-khamenei-killing"
+      ],
+      "summary": "Supreme Leader Khamenei confirmed dead. Iran formed interim leadership council: Ayatollah Arafi, president, chief justice. Assembly of Experts has not convened. Pragmatist Ali Larijani emerging as key power broker. Street reaction split between mourning and celebration."
+    },
+    {
+      "id": "iran-civilian-casualties",
+      "label": "Iran school strike: death toll climbs from 1 to 148, war crimes accused",
+      "firstSeen": "2026-03-01T11:00:00Z",
+      "lastCovered": "2026-03-01T13:00:00Z",
+      "coverageCount": 2,
       "category": "conflict",
       "importance": 10,
       "arc": "breaking",
       "articles": [
-        "2026-03-01-khamenei-killed-iran-polarised-celebrations-grief"
+        "2026-03-01-girl-killed-iran-elementary-school-strike-war-crimes",
+        "2026-03-01-iran-school-strike-death-toll-climbs-to-148"
       ],
-      "summary": "Supreme Leader Ali Khamenei killed Saturday in joint US-Israel strike, enabled by US real-time intelligence on his Tehran location. He was 86, led Iran since 1989. Reaction inside Iran split between celebration and grief. Assembly of Experts must convene to appoint successor. IRGC command and nuclear program status unclear."
+      "summary": "Death toll from strike on Iranian school rose from 1 confirmed (last cycle) to 148 (this cycle). Israel says 'not aware' of operations in the area. US 'looking into reports.' Schools are protected under international humanitarian law."
+    },
+    {
+      "id": "pakistan-iran-war-fallout",
+      "label": "Pakistan erupts: 9 killed in protests, curfew imposed, consulates stormed",
+      "firstSeen": "2026-03-01T13:00:00Z",
+      "lastCovered": "2026-03-01T13:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 9,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-01-pakistan-nine-killed-protests-erupt-us-consulate-karachi"
+      ],
+      "summary": "Nine killed by gunfire at US Consulate in Karachi. UN offices burned in Skardu and Gilgit. Curfew imposed, army called in. Section 144 across Punjab. PM cancelled Russia visit. 10 million Pakistani workers in Gulf states at risk."
     },
     {
       "id": "us-intel-iran-assassination",
@@ -36,40 +67,71 @@
       "lastCovered": "2026-03-01T11:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 9,
+      "importance": 8,
       "arc": "breaking",
       "articles": [
         "2026-03-01-us-intelligence-khamenei-location-enabled-israel-strike"
       ],
-      "summary": "US officials disclosed Khamenei's location in Tehran to Israel, enabling the strike. This may violate Executive Order 12333 prohibiting assassination of foreign leaders. Strike appears to have been improvised around a fleeting intelligence window. Accountability for who authorised the disclosure remains unresolved."
+      "summary": "US officials disclosed Khamenei's location in Tehran to Israel. May violate Executive Order 12333. Accountability for who authorised the disclosure remains unresolved."
     },
     {
-      "id": "iran-civilian-casualties",
-      "label": "Elementary school struck in Iran: girl killed, war crimes accused",
-      "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-01T11:00:00Z",
+      "id": "iran-war-oil-impact",
+      "label": "OPEC+ boosts output 206K bpd as Hormuz disrupted — inadequate vs 20M bpd transit",
+      "firstSeen": "2026-03-01T13:00:00Z",
+      "lastCovered": "2026-03-01T13:00:00Z",
       "coverageCount": 1,
-      "category": "conflict",
+      "category": "economy",
       "importance": 9,
       "arc": "breaking",
       "articles": [
-        "2026-03-01-girl-killed-iran-elementary-school-strike-war-crimes"
+        "2026-03-01-opec-boosts-oil-output-amid-iran-war"
       ],
-      "summary": "A strike on an elementary school in Iran killed at least one girl. An Iranian man was filmed cradling her remains, accusing Israel of war crimes. Schools are protected under international humanitarian law; striking them constitutes a potential war crime."
+      "summary": "OPEC+ agreed 206,000 bpd output increase starting April. Russia agreed. Strait of Hormuz normally carries ~20M bpd. The increase is symbolic — 1% of disrupted transit. Oil prices spiking. Fuel-importing nations in Africa and South Asia hardest hit."
     },
     {
-      "id": "pakistan-iran-war-response",
-      "label": "Pakistan at UNSC: condemning both sides, 10 million nationals caught in Gulf",
-      "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-01T11:00:00Z",
+      "id": "pentagon-anthropic-military-ai",
+      "label": "Anthropic rejects Pentagon demand — CEO says no to dropping AI safeguards",
+      "firstSeen": "2026-02-17T00:00:00Z",
+      "lastCovered": "2026-03-01T13:00:00Z",
+      "coverageCount": 4,
+      "category": "tech",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-pentagon-close-to-cutting-ties-with-anthropic-over-use-restrictions",
+        "2026-02-20-us-rejects-global-ai-governance-at-india-summit",
+        "2026-02-25-pentagon-threatens-anthropic-with-cold-war-powers-over-military-ai",
+        "2026-03-01-anthropic-rejects-pentagon-demand-drop-ai-safeguards"
+      ],
+      "summary": "Anthropic's CEO rejected Pentagon's Feb 27 deadline to drop military use restrictions. Defense Secretary Hegseth had threatened 'supply chain risk' designation. Outcome of that threat still unclear. Story has advanced from threat to refusal."
+    },
+    {
+      "id": "spina-bifida-stem-cell-therapy",
+      "label": "World-first: stem cells treat spina bifida in the womb",
+      "firstSeen": "2026-03-01T13:00:00Z",
+      "lastCovered": "2026-03-01T13:00:00Z",
       "coverageCount": 1,
-      "category": "politics",
-      "importance": 8,
+      "category": "science",
+      "importance": 7,
       "arc": "breaking",
       "articles": [
-        "2026-03-01-pakistan-unsc-iran-global-south-balancing-act"
+        "2026-03-01-stem-cell-therapy-spina-bifida-womb-world-first"
       ],
-      "summary": "Pakistan condemned both US-Israel strikes on Iran and Iranian attacks on Gulf states at emergency UNSC session. Mentioned school children killed in Iran and a Pakistani national killed in UAE in the same statement. 10 million Pakistani workers in Gulf states face danger. UNSC ended without resolution."
+      "summary": "First-in-human fetal stem cell therapy for spina bifida shows promise. Published in Nature. Intervenes before birth to prevent damage rather than repair it after. Affects ~1 in 1,000 pregnancies globally."
+    },
+    {
+      "id": "fungicide-transgenerational-effects",
+      "label": "Fungicide health effects persist 20 generations in rats — epigenetic inheritance",
+      "firstSeen": "2026-03-01T13:00:00Z",
+      "lastCovered": "2026-03-01T13:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-01-fungicide-health-effects-linger-twenty-generations"
+      ],
+      "summary": "Nature study: single exposure to common agricultural fungicide caused health effects persisting 20 generations in rats via epigenetic inheritance. In human terms, ~500 years. Raises fundamental questions about chemical safety testing that only evaluates single-generation toxicity."
     },
     {
       "id": "north-korea-iran-solidarity",
@@ -78,12 +140,218 @@
       "lastCovered": "2026-03-01T11:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-03-01-north-korea-condemns-iran-strikes-illegal-aggression"
       ],
-      "summary": "North Korea called both the US military operation and Israel's attacks on Iran 'illegal aggression.' Signals alignment of Russia-North Korea-Iran bloc against US-led order. North Korea views killing of Khamenei as precedent for what could happen to Kim Jong-un — driving further nuclear entrenchment."
+      "summary": "North Korea called attacks 'illegal aggression.' Signals alignment of Russia-North Korea-Iran bloc. Kim views Khamenei killing as precedent for what could happen to him."
+    },
+    {
+      "id": "syria-post-revolution-instability",
+      "label": "Syria three-front crisis — al-Hol mass escape adds to Assad remnant and IS threats",
+      "firstSeen": "2026-02-22T00:00:00Z",
+      "lastCovered": "2026-02-25T16:00:00Z",
+      "coverageCount": 3,
+      "category": "conflict",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-02-22-islamic-state-declares-new-campaign-against-syrian-government",
+        "2026-02-25-syria-battles-assad-loyalists-and-isil-on-two-fronts",
+        "2026-02-25-thousands-escape-is-detention-camp-in-syria"
+      ],
+      "summary": "Syria fighting on three fronts. Iran war may divert attention and resources — watch for IS exploitation of vacuum."
+    },
+    {
+      "id": "myanmar-civil-war",
+      "label": "Myanmar junta bombs Rakhine — war continues with minimal attention",
+      "firstSeen": "2026-02-25T16:00:00Z",
+      "lastCovered": "2026-02-25T16:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-02-25-myanmar-junta-bombs-rakhine-village-market-killing-17"
+      ],
+      "summary": "Military air strikes killed 17 at village market in Rakhine. Further obscured by Iran war."
+    },
+    {
+      "id": "zimbabwe-mineral-export-ban",
+      "label": "Zimbabwe bans all raw mineral and lithium exports",
+      "firstSeen": "2026-02-25T16:00:00Z",
+      "lastCovered": "2026-02-25T16:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-02-25-zimbabwe-bans-all-raw-mineral-exports"
+      ],
+      "summary": "Zimbabwe imposed ban on export of all raw minerals and lithium concentrate. Africa's largest lithium reserves. Chinese firms primary buyers."
+    },
+    {
+      "id": "gaza-aid-ban",
+      "label": "Israel orders 37 aid organizations to halt operations in Gaza",
+      "firstSeen": "2026-02-25T04:00:00Z",
+      "lastCovered": "2026-02-25T04:00:00Z",
+      "coverageCount": 0,
+      "category": "conflict",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [],
+      "summary": "37 aid groups ordered to halt. Rafah crossing now closed amid Iran strikes. Humanitarian access deteriorating. Uncovered for two cycles."
+    },
+    {
+      "id": "gaza-medics-massacre",
+      "label": "Israeli forces fired 900+ bullets killing 15 Gaza medics execution-style",
+      "firstSeen": "2026-02-25T04:00:00Z",
+      "lastCovered": "2026-02-25T04:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-02-25-israeli-forces-fired-900-bullets-in-gaza-medics-massacre"
+      ],
+      "summary": "Forensic investigation found 900+ bullets fired at aid workers. Gaza operations may intensify as IDF resources pivot to Iran front."
+    },
+    {
+      "id": "sudan-humanitarian-crisis",
+      "label": "Sudan war — UNSC sanctions, Hemedti Dubai property, fading from attention",
+      "firstSeen": "2026-02-15T00:00:00Z",
+      "lastCovered": "2026-02-25T10:00:00Z",
+      "coverageCount": 9,
+      "category": "conflict",
+      "importance": 4,
+      "arc": "ongoing",
+      "articles": [
+        "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
+        "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
+        "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28",
+        "2026-02-17-sudan-drone-strikes-kill-sixty-across-darfur-and-kordofan",
+        "2026-02-19-un-declares-hallmarks-of-genocide-in-sudans-el-fasher",
+        "2026-02-21-rsf-drone-kills-three-aid-workers-in-sudan",
+        "2026-02-22-museveni-hosts-rsf-leader-dagalo-for-sudan-war-dialogue",
+        "2026-02-23-chad-shuts-sudan-border-after-troops-killed-in-cross-border-incursion",
+        "2026-02-25-un-security-council-condemns-rsf-attacks-in-sudan"
+      ],
+      "summary": "Not covered this cycle. Iran war dominating UNSC bandwidth. Crisis continues."
+    },
+    {
+      "id": "pakistan-afghanistan-border-war",
+      "label": "Pakistan multi-front crisis — border war, now also Iran war fallout",
+      "firstSeen": "2026-02-22T22:00:00Z",
+      "lastCovered": "2026-03-01T13:00:00Z",
+      "coverageCount": 3,
+      "category": "conflict",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-02-22-pakistan-strikes-seven-militant-camps-along-afghan-border",
+        "2026-02-25-pakistan-afghanistan-forces-trade-fire-at-border",
+        "2026-03-01-pakistan-nine-killed-protests-erupt-us-consulate-karachi"
+      ],
+      "summary": "Pakistan now dealing with Iran war fallout domestically (9 dead in protests, curfews) while border clashes with Afghanistan continue. PM cancelled Russia visit. Multi-front crisis deepening."
+    },
+    {
+      "id": "sickle-cell-gene-therapy-africa",
+      "label": "Sickle cell gene therapy — $2.2M cure inaccessible where disease kills most",
+      "firstSeen": "2026-02-25T16:00:00Z",
+      "lastCovered": "2026-02-25T16:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-02-25-sickle-cell-gene-therapy-out-of-reach-in-africa"
+      ],
+      "summary": "Casgevy costs $2.2M. 80% of cases in sub-Saharan Africa. Watch for access advocacy."
+    },
+    {
+      "id": "fbi-grok-deepfake-subpoena",
+      "label": "FBI subpoenas X for Grok prompts used to create deepfake harassment videos",
+      "firstSeen": "2026-02-25T16:00:00Z",
+      "lastCovered": "2026-02-25T16:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-02-25-fbi-subpoenas-grok-prompts-in-deepfake-harassment-case"
+      ],
+      "summary": "First known case of law enforcement using legal process to get AI prompts as evidence."
+    },
+    {
+      "id": "us-data-sovereignty-fight",
+      "label": "US orders diplomats to fight data sovereignty initiatives worldwide",
+      "firstSeen": "2026-02-25T16:00:00Z",
+      "lastCovered": "2026-02-25T16:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-02-25-us-orders-diplomats-to-fight-data-sovereignty"
+      ],
+      "summary": "State Department ordered diplomats to oppose data localization laws worldwide."
+    },
+    {
+      "id": "philippines-edsa-protests",
+      "label": "Philippines EDSA 40th anniversary protests",
+      "firstSeen": "2026-02-25T16:00:00Z",
+      "lastCovered": "2026-02-25T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-25-philippines-edsa-anniversary-protests-hit-manila"
+      ],
+      "summary": "Thousands protested on 40th EDSA anniversary. Marcos Jr. faces democratic anger."
+    },
+    {
+      "id": "sri-lanka-easter-bombings-arrest",
+      "label": "Sri Lanka arrests ex-intelligence chief over 2019 Easter bombings",
+      "firstSeen": "2026-02-25T10:00:00Z",
+      "lastCovered": "2026-02-25T10:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-02-25-sri-lanka-arrests-ex-intelligence-chief-over-easter-bombings"
+      ],
+      "summary": "Former intelligence chief arrested over 2019 Easter bombings. Seven years of impunity broken."
+    },
+    {
+      "id": "somalia-drought-hunger",
+      "label": "6.5 million in Somalia face severe hunger as drought deepens",
+      "firstSeen": "2026-02-25T10:00:00Z",
+      "lastCovered": "2026-02-25T10:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-25-millions-in-somalia-face-severe-hunger-as-drought-deepens"
+      ],
+      "summary": "6.5 million Somalis face severe hunger. Al-Shabaab blocking aid. US funding freezes."
+    },
+    {
+      "id": "wisetech-ai-layoffs",
+      "label": "WiseTech cuts 2,000 jobs as AI replaces software engineers",
+      "firstSeen": "2026-02-25T10:00:00Z",
+      "lastCovered": "2026-02-25T10:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-02-25-wisetech-cuts-2000-jobs-as-ai-replaces-manual-coding"
+      ],
+      "summary": "WiseTech cutting one-third of workforce attributing layoffs to AI."
     },
     {
       "id": "iran-nuclear-talks-geneva",
@@ -92,7 +360,7 @@
       "lastCovered": "2026-02-24T10:00:00Z",
       "coverageCount": 22,
       "category": "conflict",
-      "importance": 3,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-02-15-iran-signals-nuclear-compromise-before-geneva-talks",
@@ -118,226 +386,11 @@
         "2026-02-23-iran-rejects-limited-strike-concept-any-attack-is-aggression",
         "2026-02-24-iran-nears-deal-to-buy-chinese-anti-ship-missiles"
       ],
-      "summary": "The Geneva nuclear talks framework is closed. US shared Khamenei's location with Israel while talks were active; he was killed March 1. The arc is now superseded by iran-us-israel-war."
-    },
-    {
-      "id": "syria-post-revolution-instability",
-      "label": "Syria three-front crisis — al-Hol mass escape adds to Assad remnant and IS threats",
-      "firstSeen": "2026-02-22T00:00:00Z",
-      "lastCovered": "2026-02-25T16:00:00Z",
-      "coverageCount": 3,
-      "category": "conflict",
-      "importance": 7,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-islamic-state-declares-new-campaign-against-syrian-government",
-        "2026-02-25-syria-battles-assad-loyalists-and-isil-on-two-fronts",
-        "2026-02-25-thousands-escape-is-detention-camp-in-syria"
-      ],
-      "summary": "Syria fighting on three fronts: regime remnants in Latakia, IS insurgents in the east, and thousands of IS-linked families escaped from al-Hol. Iran war may now divert attention and resources from Syria — watch for IS to exploit the vacuum."
-    },
-    {
-      "id": "myanmar-civil-war",
-      "label": "Myanmar junta bombs Rakhine — war continues with minimal attention",
-      "firstSeen": "2026-02-25T16:00:00Z",
-      "lastCovered": "2026-02-25T16:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-02-25-myanmar-junta-bombs-rakhine-village-market-killing-17"
-      ],
-      "summary": "Military air strikes killed 17 at a village market in Rakhine state. War continues under international radar, further obscured by Iran war."
-    },
-    {
-      "id": "zimbabwe-mineral-export-ban",
-      "label": "Zimbabwe bans all raw mineral and lithium exports",
-      "firstSeen": "2026-02-25T16:00:00Z",
-      "lastCovered": "2026-02-25T16:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 7,
-      "arc": "developing",
-      "articles": [
-        "2026-02-25-zimbabwe-bans-all-raw-mineral-exports"
-      ],
-      "summary": "Zimbabwe imposed immediate ban on export of all raw minerals and lithium concentrate. Africa's largest lithium reserves. Chinese firms are primary buyers. Watch for industry response and implementation enforcement."
-    },
-    {
-      "id": "philippines-edsa-protests",
-      "label": "Philippines EDSA 40th anniversary protests — Marcos Jr. faces democratic anger",
-      "firstSeen": "2026-02-25T16:00:00Z",
-      "lastCovered": "2026-02-25T16:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-02-25-philippines-edsa-anniversary-protests-hit-manila"
-      ],
-      "summary": "Thousands protested corruption on 40th EDSA anniversary. Marcos Jr. faces same democratic anger as his father. Not covered this cycle."
-    },
-    {
-      "id": "sickle-cell-gene-therapy-africa",
-      "label": "Sickle cell gene therapy — $2.2M cure inaccessible where disease kills most",
-      "firstSeen": "2026-02-25T16:00:00Z",
-      "lastCovered": "2026-02-25T16:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-02-25-sickle-cell-gene-therapy-out-of-reach-in-africa"
-      ],
-      "summary": "Casgevy gene therapy cures sickle cell but costs $2.2M per patient. 80% of cases in sub-Saharan Africa. Pharmaceutical inequality story — watch for access advocacy developments."
-    },
-    {
-      "id": "fbi-grok-deepfake-subpoena",
-      "label": "FBI subpoenas X for Grok prompts used to create deepfake harassment videos",
-      "firstSeen": "2026-02-25T16:00:00Z",
-      "lastCovered": "2026-02-25T16:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-02-25-fbi-subpoenas-grok-prompts-in-deepfake-harassment-case"
-      ],
-      "summary": "FBI obtained Grok AI prompts via subpoena to X. First known case of law enforcement using legal process to get AI prompts as evidence. Watch for court proceedings and broader precedent."
-    },
-    {
-      "id": "us-data-sovereignty-fight",
-      "label": "US orders diplomats to fight data sovereignty initiatives worldwide",
-      "firstSeen": "2026-02-25T16:00:00Z",
-      "lastCovered": "2026-02-25T16:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-02-25-us-orders-diplomats-to-fight-data-sovereignty"
-      ],
-      "summary": "State Department ordered diplomats to oppose data localization laws worldwide. Affects India, Indonesia, Nigeria, Brazil. Watch for country responses — especially India."
-    },
-    {
-      "id": "sudan-humanitarian-crisis",
-      "label": "Sudan war — Hemedti linked to Dubai property portfolio, UNSC sanctions commanders",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-02-25T10:00:00Z",
-      "coverageCount": 9,
-      "category": "conflict",
-      "importance": 5,
-      "arc": "ongoing",
-      "articles": [
-        "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
-        "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
-        "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28",
-        "2026-02-17-sudan-drone-strikes-kill-sixty-across-darfur-and-kordofan",
-        "2026-02-19-un-declares-hallmarks-of-genocide-in-sudans-el-fasher",
-        "2026-02-21-rsf-drone-kills-three-aid-workers-in-sudan",
-        "2026-02-22-museveni-hosts-rsf-leader-dagalo-for-sudan-war-dialogue",
-        "2026-02-23-chad-shuts-sudan-border-after-troops-killed-in-cross-border-incursion",
-        "2026-02-25-un-security-council-condemns-rsf-attacks-in-sudan"
-      ],
-      "summary": "Not covered this cycle. UNSC sanctions follow-up, Hemedti Dubai property investigation still open. Iran war now dominates UNSC bandwidth."
-    },
-    {
-      "id": "pentagon-anthropic-military-ai",
-      "label": "Pentagon vs Anthropic military AI — Feb 27 deadline outcome unknown",
-      "firstSeen": "2026-02-17T00:00:00Z",
-      "lastCovered": "2026-02-25T04:00:00Z",
-      "coverageCount": 3,
-      "category": "tech",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-02-17-pentagon-close-to-cutting-ties-with-anthropic-over-use-restrictions",
-        "2026-02-20-us-rejects-global-ai-governance-at-india-summit",
-        "2026-02-25-pentagon-threatens-anthropic-with-cold-war-powers-over-military-ai"
-      ],
-      "summary": "Feb 27 deadline has passed; no fresh story in the feed about outcome. May have been overtaken by Iran war coverage. Check next cycle for resolution."
-    },
-    {
-      "id": "pakistan-afghanistan-border-war",
-      "label": "Pakistan multi-front crisis — border war, economic crash, terrorism",
-      "firstSeen": "2026-02-22T22:00:00Z",
-      "lastCovered": "2026-02-25T04:00:00Z",
-      "coverageCount": 2,
-      "category": "conflict",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-pakistan-strikes-seven-militant-camps-along-afghan-border",
-        "2026-02-25-pakistan-afghanistan-forces-trade-fire-at-border"
-      ],
-      "summary": "Not covered this cycle. Pakistan now also dealing with Iran war fallout — nationals killed in UAE, UNSC position. Economic and security crisis continues in background."
-    },
-    {
-      "id": "gaza-medics-massacre",
-      "label": "Israeli forces fired 900+ bullets killing 15 Gaza medics execution-style",
-      "firstSeen": "2026-02-25T04:00:00Z",
-      "lastCovered": "2026-02-25T04:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-02-25-israeli-forces-fired-900-bullets-in-gaza-medics-massacre"
-      ],
-      "summary": "Forensic investigation found 900+ bullets fired at aid workers, 15 killed execution-style. CPJ: Israel killed 86 journalists in 2025. Now Iran war opens new front — Gaza operations may intensify."
-    },
-    {
-      "id": "gaza-aid-ban",
-      "label": "Israel orders 37 aid organizations to halt operations in Gaza",
-      "firstSeen": "2026-02-25T04:00:00Z",
-      "lastCovered": "2026-02-25T04:00:00Z",
-      "coverageCount": 0,
-      "category": "conflict",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [],
-      "summary": "37 aid groups ordered to halt operations. Aid groups petitioning Israeli court. Still uncovered — Iran war dominating bandwidth."
-    },
-    {
-      "id": "sri-lanka-easter-bombings-arrest",
-      "label": "Sri Lanka arrests ex-intelligence chief over 2019 Easter bombings",
-      "firstSeen": "2026-02-25T10:00:00Z",
-      "lastCovered": "2026-02-25T10:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "developing",
-      "articles": ["2026-02-25-sri-lanka-arrests-ex-intelligence-chief-over-easter-bombings"],
-      "summary": "Former intelligence chief arrested over 2019 Easter Sunday bombings that killed 279. Seven years of impunity broken. Watch for trial proceedings."
-    },
-    {
-      "id": "somalia-drought-hunger",
-      "label": "6.5 million in Somalia face severe hunger as drought deepens",
-      "firstSeen": "2026-02-25T10:00:00Z",
-      "lastCovered": "2026-02-25T10:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-02-25-millions-in-somalia-face-severe-hunger-as-drought-deepens"],
-      "summary": "6.5 million Somalis face severe hunger. Drought compounded by Al-Shabaab blocking aid and US funding freezes. Not covered this cycle."
-    },
-    {
-      "id": "wisetech-ai-layoffs",
-      "label": "WiseTech cuts 2,000 jobs as AI replaces software engineers",
-      "firstSeen": "2026-02-25T10:00:00Z",
-      "lastCovered": "2026-02-25T10:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-02-25-wisetech-cuts-2000-jobs-as-ai-replaces-manual-coding"],
-      "summary": "WiseTech cutting one-third of workforce attributing layoffs to AI replacing coding. Watch for industry-wide response and regulatory attention."
+      "summary": "Superseded by iran-us-israel-war. Talks collapsed into open war."
     },
     {
       "id": "ukraine-russia-war",
-      "label": "Ukraine-Russia war — year 5 grinds on",
+      "label": "Ukraine-Russia war — Russian missile strikes hit 3-year peak in February",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-02-24T22:00:00Z",
       "coverageCount": 10,
@@ -356,7 +409,7 @@
         "2026-02-22-all-four-moscow-airports-closed-by-ukrainian-drones",
         "2026-02-24-russian-soldiers-describe-execution-of-troops-who-refuse-orders"
       ],
-      "summary": "No major development in this cycle. Iran war now dominates Russian foreign policy attention. Watch for Russia to exploit reduced US focus on Ukraine."
+      "summary": "AFP analysis: Russian overnight missile strikes on Ukraine reached 3-year peak in February. Russia's attention split between Ukraine and Iran. Belgium/France seized suspected Russian shadow fleet tanker."
     },
     {
       "id": "us-supreme-court-tariffs",
@@ -379,7 +432,7 @@
         "2026-02-24-fedex-sues-us-government-for-tariff-refunds",
         "2026-02-24-german-car-exports-to-china-plunge-by-a-third"
       ],
-      "summary": "Fading. Iran war will now reshape tariff dynamics — oil price spike, Gulf trade disruption, global recession risk. Watch for economic fallout of the war rather than tariff mechanics."
+      "summary": "Fading. Iran war reshaping trade dynamics. Oil price spike and Gulf disruption more significant than tariff mechanics now."
     },
     {
       "id": "duterte-icc-hearing",
@@ -394,7 +447,7 @@
         "2026-02-23-icc-opens-hearing-against-duterte-for-drug-war-killings",
         "2026-02-24-duterte-drew-up-death-lists-icc-prosecutor"
       ],
-      "summary": "Fading. ICC hearing moving into procedural phase."
+      "summary": "Fading. ICC hearing in procedural phase."
     },
     {
       "id": "mexico-el-mencho-killed",
