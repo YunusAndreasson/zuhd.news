@@ -1,69 +1,70 @@
 {
-  "timestamp": "2026-03-02T16:39:23.865Z",
+  "timestamp": "2026-03-02T22:33:00.136Z",
   "articles": [
     {
-      "slug": "2026-03-02-south-sudan-170-killed-ruweng-massacre",
-      "title": "Nearly 170 people killed in attack in South Sudan's Ruweng, officials say",
+      "slug": "2026-03-02-spain-blocks-us-bases-europe-drawn-into-iran-war",
+      "title": "Spain refuses to let US use bases for Iran attacks",
       "category": "conflict",
       "source": "Al Jazeera"
     },
     {
-      "slug": "2026-03-02-lebanon-bans-hezbollah-military-activities",
-      "title": "Lebanese state bans Hezbollah military activities: PM",
+      "slug": "2026-03-02-us-sanctions-rwanda-military-drc-conflict",
+      "title": "US sanctions top Rwandan military officials",
       "category": "politics",
+      "source": "The East African"
+    },
+    {
+      "slug": "2026-03-02-nepal-first-post-protest-election-march-5",
+      "title": "Old parties dig in, new ones offer change as Nepal heads to the polls",
+      "category": "politics",
+      "source": "The Hindu"
+    },
+    {
+      "slug": "2026-03-02-iran-closes-hormuz-10-percent-global-fleet-trapped",
+      "title": "Iran vows to attack any ship trying to pass through Strait of Hormuz",
+      "category": "economy",
       "source": "Al Monitor"
     },
     {
-      "slug": "2026-03-02-macron-france-nuclear-arsenal-expansion",
-      "title": "'To be free, we have to be feared,' Macron says in keynote nuclear speech",
-      "category": "politics",
-      "source": "France 24"
+      "slug": "2026-03-02-india-canada-nuclear-energy-deal-diplomatic-reset",
+      "title": "India and Canada reset ties with 'landmark' nuclear energy deal",
+      "category": "economy",
+      "source": "BBC World"
     },
     {
-      "slug": "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan",
-      "title": "Israel shuts Al-Aqsa Mosque and bans Ramadan prayer for third consecutive day",
-      "category": "conflict",
-      "source": "Middle East Eye"
-    },
-    {
-      "slug": "2026-03-02-el-nino-may-return-2026-planet-hotter",
-      "title": "El Nino may return in 2026, making the planet even hotter",
+      "slug": "2026-03-02-fiji-severe-flooding-100-roads-closed",
+      "title": "Fiji grappling with flooding, schools in Western Division closed for second day",
       "category": "science",
-      "source": "South China Morning Post"
+      "source": "RNZ Pacific"
     },
     {
-      "slug": "2026-03-02-amazon-data-centers-fire-iran-strikes-dubai",
-      "title": "Amazon Data Centers on Fire After Iranian Missile Strikes on Dubai",
+      "slug": "2026-03-02-openai-pentagon-deal-anthropic-pays-price",
+      "title": "OpenAI's \"compromise\" with the Pentagon is what Anthropic feared",
+      "category": "tech",
+      "source": "MIT Technology Review"
+    },
+    {
+      "slug": "2026-03-02-prediction-markets-war-betting-depravity-economy",
+      "title": "With Iran War, Kalshi and Polymarket Bet That the Depravity Economy Has No Bottom",
       "category": "tech",
       "source": "404 Media"
-    },
-    {
-      "slug": "2026-03-02-gas-prices-soar-qatar-halts-lng-production",
-      "title": "Gas prices soar as QatarEnergy halts LNG production after Iran attacks",
-      "category": "economy",
-      "source": "Al Jazeera"
-    },
-    {
-      "slug": "2026-03-02-presolar-crystals-reveal-solar-system-origins",
-      "title": "What Crystals Older Than the Sun Reveal About the Start of the Solar System",
-      "category": "science",
-      "source": "Quanta Magazine"
     }
   ],
   "categories": [
     "conflict",
     "politics",
+    "economy",
     "science",
-    "tech",
-    "economy"
+    "tech"
   ],
   "sources": [
     "Al Jazeera",
+    "The East African",
+    "The Hindu",
     "Al Monitor",
-    "France 24",
-    "Middle East Eye",
-    "South China Morning Post",
-    "404 Media",
-    "Quanta Magazine"
+    "BBC World",
+    "RNZ Pacific",
+    "MIT Technology Review",
+    "404 Media"
   ]
 }

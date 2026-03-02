@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 6+: Multi-front regional conflict — Lebanon, Gulf, energy crisis",
+      "label": "Iran war Day 7+: Hormuz closed, Europe drawn in, Trump says 4-5 weeks",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-02T16:00:00Z",
-      "coverageCount": 5,
+      "lastCovered": "2026-03-02T22:00:00Z",
+      "coverageCount": 6,
       "category": "conflict",
       "importance": 10,
       "arc": "developing",
@@ -15,9 +15,28 @@
         "2026-03-01-iran-school-strike-death-toll-climbs-to-148",
         "2026-03-01-iran-war-spreads-across-gulf-migrant-workers-among-dead",
         "2026-03-02-hezbollah-opens-new-front-iran-war-widens-to-lebanon",
-        "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan"
+        "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan",
+        "2026-03-02-spain-blocks-us-bases-europe-drawn-into-iran-war"
       ],
-      "summary": "Day 6: War continues across multiple fronts. Israel shuts Al-Aqsa for 3rd day of Ramadan. Fourth US service member dead. Iran death toll 555+. Hegseth won't rule out ground troops. Qatar LNG halted, Hormuz closed, AWS data centers destroyed in Dubai."
+      "summary": "Day 7: Hormuz officially closed by IRGC, 750 ships backed up. Spain blocks US bases — first NATO ally to break ranks. UK Cyprus base hit by Iranian missiles. Trump says 4-5 weeks, ground troops not ruled out. Congress to vote on war powers. Iran death toll 555+. Fourth US service member dead."
+    },
+    {
+      "id": "iran-war-hormuz-economic-impact",
+      "label": "Hormuz closed, global fleet trapped, oil and gas prices surging",
+      "firstSeen": "2026-03-01T13:00:00Z",
+      "lastCovered": "2026-03-02T22:00:00Z",
+      "coverageCount": 5,
+      "category": "economy",
+      "importance": 10,
+      "arc": "developing",
+      "articles": [
+        "2026-03-01-opec-boosts-oil-output-amid-iran-war",
+        "2026-03-01-hormuz-shipping-standstill-two-tankers-hit-oil-spike",
+        "2026-03-02-gas-prices-soar-qatar-halts-lng-production",
+        "2026-03-02-amazon-data-centers-fire-iran-strikes-dubai",
+        "2026-03-02-iran-closes-hormuz-10-percent-global-fleet-trapped"
+      ],
+      "summary": "IRGC declares Hormuz 'closed,' threatens to fire on any vessel. 750 ships backed up (100 container ships = 10% of global fleet). Fuel tanker ablaze from drone strike. Qatar LNG still halted. European gas doubled. AWS Dubai still down. 21% of daily global oil transits Hormuz."
     },
     {
       "id": "khamenei-assassination",
@@ -26,13 +45,13 @@
       "lastCovered": "2026-03-01T13:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": [
         "2026-03-01-khamenei-killed-iran-polarised-celebrations-grief",
         "2026-03-01-iran-forms-interim-council-after-khamenei-killing"
       ],
-      "summary": "Interim council (Arafi, president, chief justice) leading Iran. Khamenei's wife also died from injuries. Assembly of Experts hasn't convened. Succession crisis ongoing amid active war."
+      "summary": "Interim council (Arafi, president, chief justice) leading Iran. Assembly of Experts hasn't convened. Succession crisis ongoing amid active war. Hundreds of Iranians crossing into Turkey."
     },
     {
       "id": "iran-civilian-casualties",
@@ -41,58 +60,41 @@
       "lastCovered": "2026-03-01T13:00:00Z",
       "coverageCount": 2,
       "category": "conflict",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-03-01-girl-killed-iran-elementary-school-strike-war-crimes",
         "2026-03-01-iran-school-strike-death-toll-climbs-to-148"
       ],
-      "summary": "Total Iran civilian death toll 555+ (Red Crescent). School strike toll 180+. 131 cities affected. War crimes evidence mounting."
-    },
-    {
-      "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz shut, Qatar LNG halted, European gas doubled, AWS data centers destroyed",
-      "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-02T16:00:00Z",
-      "coverageCount": 4,
-      "category": "economy",
-      "importance": 10,
-      "arc": "developing",
-      "articles": [
-        "2026-03-01-opec-boosts-oil-output-amid-iran-war",
-        "2026-03-01-hormuz-shipping-standstill-two-tankers-hit-oil-spike",
-        "2026-03-02-gas-prices-soar-qatar-halts-lng-production",
-        "2026-03-02-amazon-data-centers-fire-iran-strikes-dubai"
-      ],
-      "summary": "Qatar halted LNG production after Iranian attacks. European gas nearly doubled. Hormuz still shut. AWS Dubai data centers on fire — first major cloud outage from warfare. Oil surging. Europe's switch from Russian gas to Gulf LNG now stress-tested."
+      "summary": "Total Iran civilian death toll 555+ (Red Crescent). School strike toll 180+. 131 cities affected. CBC reports 153 dead at girls school. War crimes evidence mounting."
     },
     {
       "id": "iran-war-us-domestic-opposition",
-      "label": "Most Americans oppose Iran war — Democrats fracturing over Israel",
+      "label": "Most Americans oppose Iran war — Congress to debate war powers",
       "firstSeen": "2026-03-02T04:00:00Z",
       "lastCovered": "2026-03-02T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-03-02-trump-voters-opposed-iran-war-polls-show"
       ],
-      "summary": "Only 25% of Americans approve strikes. Democrats fracturing — AIPAC money vs peace wing dominating primaries. War launched without congressional authorization."
+      "summary": "Only 25% of Americans approve strikes. Congress scheduled to vote on war powers motions this week. Republican majority expected to block. Democrats fracturing — anti-war candidates emerging."
     },
     {
       "id": "lebanon-hezbollah-ban",
-      "label": "Lebanon bans Hezbollah military activities — historic but enforcement uncertain",
+      "label": "Lebanon bans Hezbollah military activities — Hezbollah rejects it",
       "firstSeen": "2026-03-02T16:00:00Z",
       "lastCovered": "2026-03-02T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 9,
-      "arc": "breaking",
+      "importance": 8,
+      "arc": "developing",
       "articles": [
         "2026-03-02-lebanon-bans-hezbollah-military-activities"
       ],
-      "summary": "Lebanon's PM banned Hezbollah military activities — unprecedented. Driven by Israel's escalation (18+ village evacuation orders) and Hezbollah breaking Nov 2024 ceasefire. Enforcement mechanism unclear."
+      "summary": "Lebanon's PM banned Hezbollah military activities. Hezbollah rejected it, says 'no justification.' Israel striking Lebanon after Hezbollah rocket fire. EU backs Lebanon's decision."
     },
     {
       "id": "macron-nuclear-expansion",
@@ -101,26 +103,26 @@
       "lastCovered": "2026-03-02T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 9,
-      "arc": "breaking",
+      "importance": 8,
+      "arc": "developing",
       "articles": [
         "2026-03-02-macron-france-nuclear-arsenal-expansion"
       ],
-      "summary": "Macron: 'To be free, we have to be feared.' France expanding nuclear arsenal and offering nuclear-armed aircraft deployment to allies. Biggest shift in European nuclear posture since Cold War. Driven by US distraction with Iran and wavering NATO credibility."
+      "summary": "France expanding nuclear arsenal and offering nuclear-armed aircraft to allies. Europe divided on Macron's offer. Driven by US distraction with Iran and wavering NATO credibility."
     },
     {
       "id": "al-aqsa-ramadan-closure",
-      "label": "Israel shuts Al-Aqsa for 3+ days during Ramadan under Iran war cover",
+      "label": "Israel shuts Al-Aqsa during Ramadan under Iran war cover",
       "firstSeen": "2026-03-02T16:00:00Z",
       "lastCovered": "2026-03-02T16:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 8,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan"
       ],
-      "summary": "Al-Aqsa Mosque closed for 3 consecutive days during Ramadan. Collective punishment of Palestinian worshippers. Combined with sealed Gaza crossings, settler violence (2 brothers killed in Nablus). Iran war providing cover."
+      "summary": "Al-Aqsa Mosque closed during Ramadan. Combined with sealed Gaza crossings, settler violence. Iran war providing cover for intensified repression."
     },
     {
       "id": "el-nino-2026-return",
@@ -129,40 +131,26 @@
       "lastCovered": "2026-03-02T16:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 8,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-03-02-el-nino-may-return-2026-planet-hotter"
       ],
-      "summary": "Forecasters warn El Niño may return in 2026 after last event helped push temperatures past 1.5°C. Would mean hottest period ever gets hotter. Consequences heaviest for Global South."
+      "summary": "Forecasters warn El Niño may return in 2026. Would mean hottest period ever gets hotter. Consequences heaviest for Global South and Pacific islands."
     },
     {
       "id": "aws-dubai-data-centers-destroyed",
-      "label": "AWS data centers in Dubai destroyed by Iranian missiles — first cloud outage from warfare",
+      "label": "AWS data centers in Dubai destroyed by Iranian missiles",
       "firstSeen": "2026-03-02T16:00:00Z",
       "lastCovered": "2026-03-02T16:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 8,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-03-02-amazon-data-centers-fire-iran-strikes-dubai"
       ],
-      "summary": "Iranian missiles set AWS Dubai data centers on fire. First time major cloud infrastructure physically destroyed by warfare. Services down across Middle East. Exposes fragility of digital infrastructure in geopolitically unstable regions."
-    },
-    {
-      "id": "presolar-crystals-solar-system",
-      "label": "Pre-solar crystals in meteorites reveal solar system's violent birth",
-      "firstSeen": "2026-03-02T16:00:00Z",
-      "lastCovered": "2026-03-02T16:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-02-presolar-crystals-reveal-solar-system-origins"
-      ],
-      "summary": "Crystals in meteorites predate the Sun itself — forged in dying stars. Chemical signatures rewriting understanding of the solar system's earliest moments."
+      "summary": "Iranian missiles set AWS Dubai data centers on fire. First time major cloud infrastructure physically destroyed by warfare. Services down across Middle East."
     },
     {
       "id": "south-sudan-ruweng-massacre",
@@ -171,26 +159,102 @@
       "lastCovered": "2026-03-02T16:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 8,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-03-02-south-sudan-170-killed-ruweng-massacre"
       ],
-      "summary": "~170 killed in single attack in Ruweng, South Sudan. MSF staff missing. One of deadliest incidents in ongoing conflict. Ethnic territorial disputes in oil-rich region. Global attention consumed by Iran."
+      "summary": "~170 killed in single attack in Ruweng, South Sudan. MSF staff missing. One of deadliest incidents in ongoing conflict."
+    },
+    {
+      "id": "pentagon-anthropic-military-ai",
+      "label": "OpenAI takes Pentagon deal Anthropic rejected — Anthropic pays the price",
+      "firstSeen": "2026-02-17T00:00:00Z",
+      "lastCovered": "2026-03-02T22:00:00Z",
+      "coverageCount": 5,
+      "category": "tech",
+      "importance": 8,
+      "arc": "developing",
+      "articles": [
+        "2026-02-17-pentagon-close-to-cutting-ties-with-anthropic-over-use-restrictions",
+        "2026-02-20-us-rejects-global-ai-governance-at-india-summit",
+        "2026-02-25-pentagon-threatens-anthropic-with-cold-war-powers-over-military-ai",
+        "2026-03-01-anthropic-rejects-pentagon-demand-drop-ai-safeguards",
+        "2026-03-02-openai-pentagon-deal-anthropic-pays-price"
+      ],
+      "summary": "OpenAI struck Pentagon deal Feb 28 for classified military AI. Anthropic rejected same demand — US Treasury now dropping Claude. AI reportedly used in Iran strikes regardless. The company that said no faces government retaliation."
     },
     {
       "id": "polymarket-iran-insider-trading",
-      "label": "Suspected insiders made $1.2M betting on Iran strikes via prediction markets",
+      "label": "Prediction markets create 'depravity economy' betting on war deaths",
       "firstSeen": "2026-03-02T04:00:00Z",
-      "lastCovered": "2026-03-02T04:00:00Z",
+      "lastCovered": "2026-03-02T22:00:00Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-03-02-polymarket-insiders-profited-before-iran-strikes",
+        "2026-03-02-prediction-markets-war-betting-depravity-economy"
+      ],
+      "summary": "Kalshi and Polymarket hosting active bets on Iran casualty counts, Hormuz closure, ground troops. Legal, CFTC-approved. Previous $1.2M insider trading suspected. War as tradeable commodity."
+    },
+    {
+      "id": "drc-m23-mass-graves",
+      "label": "Mass graves in eastern DRC — US now sanctions Rwanda's military",
+      "firstSeen": "2026-03-01T16:00:00Z",
+      "lastCovered": "2026-03-02T22:00:00Z",
+      "coverageCount": 2,
+      "category": "conflict",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-03-01-mass-graves-found-eastern-drc-after-m23-retreat",
+        "2026-03-02-us-sanctions-rwanda-military-drc-conflict"
+      ],
+      "summary": "US sanctions Rwanda's army chief, defense chief, and two others — first significant Western military sanctions over DRC role. Follows mass graves found near Uvira. Rwanda hasn't responded."
+    },
+    {
+      "id": "nepal-post-protest-election",
+      "label": "Nepal's first post-protest election March 5 — youth vs. old guard",
+      "firstSeen": "2026-03-02T22:00:00Z",
+      "lastCovered": "2026-03-02T22:00:00Z",
       "coverageCount": 1,
-      "category": "economy",
+      "category": "politics",
       "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-03-02-polymarket-insiders-profited-before-iran-strikes"
+        "2026-03-02-nepal-first-post-protest-election-march-5"
       ],
-      "summary": "Suspected insiders made $1.2M on Polymarket betting on Iran strikes. Israeli police investigating. Total war-related bets hit $529M."
+      "summary": "Nepal votes March 5 after youth-led protests toppled K.P. Sharma Oli. New protest-born parties challenge CPN-UML and Nepali Congress. Tests whether street movements can convert to electoral power."
+    },
+    {
+      "id": "india-canada-nuclear-deal",
+      "label": "India-Canada landmark nuclear energy deal resets frosty ties",
+      "firstSeen": "2026-03-02T22:00:00Z",
+      "lastCovered": "2026-03-02T22:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-02-india-canada-nuclear-energy-deal-diplomatic-reset"
+      ],
+      "summary": "Canada's PM Carney signs nuclear energy deal with India including uranium supply — dramatic reversal after Nijjar assassination fallout. Strategic amid Hormuz closure and energy market chaos."
+    },
+    {
+      "id": "fiji-flooding-2026",
+      "label": "Fiji severe flooding — 100 roads closed, schools shut",
+      "firstSeen": "2026-03-02T22:00:00Z",
+      "lastCovered": "2026-03-02T22:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-02-fiji-severe-flooding-100-roads-closed"
+      ],
+      "summary": "Nearly 100 roads closed, schools shut for second day in Fiji's Western Division. Pacific island flooding amid El Niño warnings. Children playing in floodwaters."
     },
     {
       "id": "india-pakistan-water-conflict",
@@ -199,8 +263,8 @@
       "lastCovered": "2026-03-02T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-02-india-60bn-river-storage-plan-threatens-pakistan-water"
       ],
@@ -213,83 +277,36 @@
       "lastCovered": "2026-03-02T16:00:00Z",
       "coverageCount": 2,
       "category": "conflict",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-03-01-israel-seals-west-bank-gaza-crossings-under-iran-war-cover",
         "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan"
       ],
-      "summary": "All crossings sealed. 37 aid orgs halted. Al-Aqsa shut for 3 days during Ramadan. Settler violence continuing. Total siege under Iran war cover."
+      "summary": "All crossings sealed. 37 aid orgs halted. Al-Aqsa shut during Ramadan. UN chief calling for reopening. Total siege under Iran war cover."
     },
     {
       "id": "pakistan-iran-war-fallout",
-      "label": "Pakistan triple crisis: Iran protests, Afghan border war, domestic unrest",
+      "label": "Pakistan triple crisis: Iran protests, Afghan border war, IMF talks virtual",
       "firstSeen": "2026-03-01T13:00:00Z",
       "lastCovered": "2026-03-01T13:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-01-pakistan-nine-killed-protests-erupt-us-consulate-karachi"
       ],
-      "summary": "24+ dead in pro-Iran protests. Troops deployed, 3-day curfew imposed. Afghanistan border war continuing. Three-way crisis."
-    },
-    {
-      "id": "drc-m23-mass-graves",
-      "label": "Mass graves in eastern DRC after M23 withdrawal",
-      "firstSeen": "2026-03-01T16:00:00Z",
-      "lastCovered": "2026-03-01T16:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-03-01-mass-graves-found-eastern-drc-after-m23-retreat"
-      ],
-      "summary": "Mass graves found near Uvira after M23 withdrawal. Rwanda hasn't responded."
-    },
-    {
-      "id": "pentagon-anthropic-military-ai",
-      "label": "Anthropic rejects Pentagon — AI reportedly used in Iran strikes anyway",
-      "firstSeen": "2026-02-17T00:00:00Z",
-      "lastCovered": "2026-03-01T13:00:00Z",
-      "coverageCount": 4,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-17-pentagon-close-to-cutting-ties-with-anthropic-over-use-restrictions",
-        "2026-02-20-us-rejects-global-ai-governance-at-india-summit",
-        "2026-02-25-pentagon-threatens-anthropic-with-cold-war-powers-over-military-ai",
-        "2026-03-01-anthropic-rejects-pentagon-demand-drop-ai-safeguards"
-      ],
-      "summary": "Anthropic rejected Pentagon demand. SCMP reports AI used in Iran strikes regardless. Story dormant amid active war coverage."
-    },
-    {
-      "id": "pakistan-afghanistan-border-war",
-      "label": "Pakistan-Afghanistan border war — fighting enters fifth day",
-      "firstSeen": "2026-02-22T22:00:00Z",
-      "lastCovered": "2026-03-01T13:00:00Z",
-      "coverageCount": 3,
-      "category": "conflict",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-22-pakistan-strikes-seven-militant-camps-along-afghan-border",
-        "2026-02-25-pakistan-afghanistan-forces-trade-fire-at-border",
-        "2026-03-01-pakistan-nine-killed-protests-erupt-us-consulate-karachi"
-      ],
-      "summary": "Fighting entering fifth day. No signs of de-escalation per Al Monitor."
+      "summary": "23+ dead in pro-Iran protests. IMF talks gone virtual amid regional volatility. Afghanistan border war continuing. Three-way crisis."
     },
     {
       "id": "ukraine-russia-war",
-      "label": "Ukraine-Russia war — peace talks expected this week, attention diverted",
+      "label": "Ukraine-Russia war — peace talks status unclear, attention diverted",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-02-24T22:00:00Z",
       "coverageCount": 10,
       "category": "conflict",
-      "importance": 3,
+      "importance": 2,
       "arc": "ongoing",
       "articles": [
         "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
@@ -303,7 +320,7 @@
         "2026-02-22-all-four-moscow-airports-closed-by-ukrainian-drones",
         "2026-02-24-russian-soldiers-describe-execution-of-troops-who-refuse-orders"
       ],
-      "summary": "Zelensky says peace talks still expected this week despite Iran war consuming attention. Russian strikes at 3-year peak. Urgently needs return to coverage."
+      "summary": "Urgently needs return to coverage. Peace talks status unclear. Russian strikes at 3-year peak. Iran war consuming all global attention and US military bandwidth."
     },
     {
       "id": "sudan-humanitarian-crisis",
@@ -312,8 +329,8 @@
       "lastCovered": "2026-02-25T10:00:00Z",
       "coverageCount": 9,
       "category": "conflict",
-      "importance": 2,
-      "arc": "ongoing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
         "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
@@ -325,7 +342,21 @@
         "2026-02-23-chad-shuts-sudan-border-after-troops-killed-in-cross-border-incursion",
         "2026-02-25-un-security-council-condemns-rsf-attacks-in-sudan"
       ],
-      "summary": "Crisis continues. Iran war consuming all bandwidth. South Sudan massacre (170 killed) is separate but related regional instability."
+      "summary": "Crisis continues. Iran war consuming all bandwidth. South Sudan massacre (170 killed, separate) adding to regional instability."
+    },
+    {
+      "id": "presolar-crystals-solar-system",
+      "label": "Pre-solar crystals in meteorites reveal solar system's violent birth",
+      "firstSeen": "2026-03-02T16:00:00Z",
+      "lastCovered": "2026-03-02T16:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "fading",
+      "articles": [
+        "2026-03-02-presolar-crystals-reveal-solar-system-origins"
+      ],
+      "summary": "One-off research finding. Crystals in meteorites predate the Sun. No follow-up expected."
     },
     {
       "id": "neanderthal-human-interbreeding",
@@ -334,26 +365,26 @@
       "lastCovered": "2026-03-02T04:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "fading",
       "articles": [
         "2026-03-02-neanderthal-human-interbreeding-one-directional-pattern"
       ],
-      "summary": "Interbreeding was one-directional: Neanderthal fathers, human mothers. One-off research finding."
+      "summary": "One-off research finding. No follow-up expected."
     },
     {
       "id": "selfish-gene-sex-ratio",
-      "label": "Selfish gene may bias sex ratio — Utah family has 2x boys",
+      "label": "Selfish gene may bias sex ratio",
       "firstSeen": "2026-03-02T04:00:00Z",
       "lastCovered": "2026-03-02T04:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "fading",
       "articles": [
         "2026-03-02-selfish-gene-utah-family-sex-ratio-bias"
       ],
-      "summary": "Utah family produces 2x boys. Suspected selfish Y-chromosome gene. One-off."
+      "summary": "One-off research finding. No follow-up expected."
     },
     {
       "id": "orbital-data-centers",
@@ -362,12 +393,12 @@
       "lastCovered": "2026-03-02T04:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-02-orbital-data-centers-space-regulation-gap"
       ],
-      "summary": "Companies launching data centers into orbit, beyond regulation. Connected to AWS Dubai destruction story."
+      "summary": "Companies launching data centers into orbit, beyond regulation. Connected to AWS Dubai destruction — physical vulnerability driving move to space."
     },
     {
       "id": "us-intel-iran-assassination",
@@ -376,7 +407,7 @@
       "lastCovered": "2026-03-01T11:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-01-us-intelligence-khamenei-location-enabled-israel-strike"
@@ -385,12 +416,12 @@
     },
     {
       "id": "argentina-milei-reform",
-      "label": "Argentina: Milei passes reform, pushing US 'strategic alliance'",
+      "label": "Argentina: Milei pushes US 'strategic alliance' after labor reform",
       "firstSeen": "2026-03-01T16:00:00Z",
       "lastCovered": "2026-03-01T16:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-01-argentina-milei-labor-reform-biggest-overhaul-decades"
@@ -404,7 +435,7 @@
       "lastCovered": "2026-03-01T16:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-01-kenya-free-hiv-prevention-injection-lenacapavir"
@@ -418,7 +449,7 @@
       "lastCovered": "2026-02-25T16:00:00Z",
       "coverageCount": 3,
       "category": "conflict",
-      "importance": 3,
+      "importance": 2,
       "arc": "ongoing",
       "articles": [
         "2026-02-22-islamic-state-declares-new-campaign-against-syrian-government",
@@ -434,8 +465,8 @@
       "lastCovered": "2026-02-25T16:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
-      "arc": "developing",
+      "importance": 2,
+      "arc": "fading",
       "articles": [
         "2026-02-25-zimbabwe-bans-all-raw-mineral-exports"
       ],
@@ -448,12 +479,28 @@
       "lastCovered": "2026-03-01T16:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-01-islamic-state-ai-resurrects-dead-leaders-platforms-fail"
       ],
       "summary": "IS using generative AI for synthetic media of dead leaders."
+    },
+    {
+      "id": "pakistan-afghanistan-border-war",
+      "label": "Pakistan-Afghanistan border war",
+      "firstSeen": "2026-02-22T22:00:00Z",
+      "lastCovered": "2026-03-01T13:00:00Z",
+      "coverageCount": 3,
+      "category": "conflict",
+      "importance": 3,
+      "arc": "ongoing",
+      "articles": [
+        "2026-02-22-pakistan-strikes-seven-militant-camps-along-afghan-border",
+        "2026-02-25-pakistan-afghanistan-forces-trade-fire-at-border",
+        "2026-03-01-pakistan-nine-killed-protests-erupt-us-consulate-karachi"
+      ],
+      "summary": "Fighting continuing. No signs of de-escalation. Pakistan also dealing with pro-Iran protests and IMF pressure."
     }
   ]
 }
