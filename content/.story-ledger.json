@@ -3,12 +3,12 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 8+: 742+ killed, US Embassy in Riyadh hit, Trump says 4-5 weeks",
+      "label": "Iran war Day 9+: 787+ killed, 6 US soldiers dead at Kuwait base, ground assault on Lebanon",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-02T22:00:00Z",
-      "coverageCount": 6,
+      "lastCovered": "2026-03-03T10:00:00Z",
+      "coverageCount": 7,
       "category": "conflict",
-      "importance": 9,
+      "importance": 10,
       "arc": "developing",
       "articles": [
         "2026-03-01-us-israel-attacks-iran-retaliation-regional-war",
@@ -16,16 +16,17 @@
         "2026-03-01-iran-war-spreads-across-gulf-migrant-workers-among-dead",
         "2026-03-02-hezbollah-opens-new-front-iran-war-widens-to-lebanon",
         "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan",
-        "2026-03-02-spain-blocks-us-bases-europe-drawn-into-iran-war"
+        "2026-03-02-spain-blocks-us-bases-europe-drawn-into-iran-war",
+        "2026-03-03-six-us-soldiers-killed-iran-missile-kuwait-base"
       ],
-      "summary": "Day 8: Death toll 742+ (up from 555). US Embassy in Riyadh hit by drones. Trump says 4-5 weeks, ground troops not ruled out. Congress war powers vote pending. Spain blocking US bases. Kuwait friendly fire incident reported. Not selected this cycle — covered extensively over 6 articles."
+      "summary": "Day 9: Death toll 787+ (Red Crescent). 6 US soldiers killed at Camp Arifjan — first US military casualties. US fighter jet downed by Kuwaiti friendly fire. IAEA confirms fresh damage at Natanz. Trump says 4-5 weeks. Congress war powers vote still pending."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz closed, insurers pull war cover, oil spikes 13%",
+      "label": "Hormuz closed: 400,000 tons of Indian rice stranded, oil spiked 13%",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-02T22:00:00Z",
-      "coverageCount": 5,
+      "lastCovered": "2026-03-03T10:00:00Z",
+      "coverageCount": 6,
       "category": "economy",
       "importance": 9,
       "arc": "developing",
@@ -34,9 +35,25 @@
         "2026-03-01-hormuz-shipping-standstill-two-tankers-hit-oil-spike",
         "2026-03-02-gas-prices-soar-qatar-halts-lng-production",
         "2026-03-02-amazon-data-centers-fire-iran-strikes-dubai",
-        "2026-03-02-iran-closes-hormuz-10-percent-global-fleet-trapped"
+        "2026-03-02-iran-closes-hormuz-10-percent-global-fleet-trapped",
+        "2026-03-03-india-basmati-rice-stranded-hormuz-food-crisis"
       ],
-      "summary": "Hormuz still 'closed' by IRGC. 750+ ships backed up. Insurers pulling war cover. Oil spiked 13%. Korean KOSPI triggered circuit breaker. European gas doubled. Qatar LNG halted. AWS Dubai still down. Not selected — covered extensively already."
+      "summary": "Hormuz still closed. 750+ ships backed up. 400,000 tons Indian basmati rice stranded at ports — Gulf states import 85-90% of calories. Oil spiked 13%. European gas doubled. Qatar LNG halted. South Korea securing alternative oil supply routes."
+    },
+    {
+      "id": "lebanon-hezbollah-israel-ground-war",
+      "label": "Israel launches ground assault in Lebanon — 52 killed, Hezbollah retaliates",
+      "firstSeen": "2026-03-02T16:00:00Z",
+      "lastCovered": "2026-03-03T10:00:00Z",
+      "coverageCount": 2,
+      "category": "conflict",
+      "importance": 9,
+      "arc": "developing",
+      "articles": [
+        "2026-03-02-lebanon-bans-hezbollah-military-activities",
+        "2026-03-03-israel-ground-assault-southern-lebanon-52-killed"
+      ],
+      "summary": "Israel deployed ground troops 'deeper into southern Lebanon' beyond 5-point border zone. 52 killed across Lebanon on Monday. Hezbollah hit 3 Israeli bases with drones. Lebanon president declared Hezbollah ban 'irreversible.' Full ground occupation developing."
     },
     {
       "id": "pakistan-iran-war-fallout",
@@ -45,7 +62,7 @@
       "lastCovered": "2026-03-03T04:00:00Z",
       "coverageCount": 2,
       "category": "conflict",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-03-01-pakistan-nine-killed-protests-erupt-us-consulate-karachi",
@@ -60,7 +77,7 @@
       "lastCovered": "2026-03-03T04:00:00Z",
       "coverageCount": 11,
       "category": "conflict",
-      "importance": 8,
+      "importance": 7,
       "arc": "ongoing",
       "articles": [
         "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
@@ -75,7 +92,7 @@
         "2026-02-24-russian-soldiers-describe-execution-of-troops-who-refuse-orders",
         "2026-03-03-russian-strikes-ukraine-3-year-peak-iran-war-diverts-attention"
       ],
-      "summary": "288 overnight missiles in February — highest in 3 years. Passenger train hit, 8 killed. Russia escalating while Iran war consumes global attention and US military bandwidth. Peace talks expected in March. Ukraine hit key Russian oil terminal."
+      "summary": "288 overnight missiles in February — highest in 3 years. Russia escalating while Iran war consumes global attention. Peace talks expected March. Not covered this cycle."
     },
     {
       "id": "argentina-milei-reform",
@@ -84,13 +101,13 @@
       "lastCovered": "2026-03-03T04:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": [
         "2026-03-01-argentina-milei-labor-reform-biggest-overhaul-decades",
         "2026-03-03-argentina-lowers-criminal-age-to-14-milei-legislative-blitz"
       ],
-      "summary": "Milei rammed through labour reform, lowered criminal age to 14, and weakened glacier protections — all in one week. Unions filed constitutional challenge. Opposition fractured. Most rapid legislative transformation Argentina has seen in decades."
+      "summary": "Labour reform passed, criminal age lowered to 14, glacier protections weakened — all in one week. Unions filed constitutional challenge. Not covered this cycle."
     },
     {
       "id": "vietnam-chip-supply-chain",
@@ -99,12 +116,12 @@
       "lastCovered": "2026-03-03T04:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-03-vietnam-chip-door-opens-trump-locks-china-out"
       ],
-      "summary": "Washington lifts export controls on Vietnam, transforming it from chip assembly hub to potential manufacturing partner. Strategic alternative to China in global semiconductor supply chain."
+      "summary": "Washington lifts export controls on Vietnam. Strategic chip supply chain shift to Southeast Asia. Not covered this cycle."
     },
     {
       "id": "car-t-cell-breakthrough",
@@ -113,12 +130,12 @@
       "lastCovered": "2026-03-03T04:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-03-ultra-sensitive-car-t-cells-find-hidden-tumours"
       ],
-      "summary": "Engineered immune cells with dramatically heightened sensitivity detect and destroy tumours that evade conventional immunotherapy. Demonstrated in mice. Potential to treat currently untreatable cancers."
+      "summary": "Engineered immune cells detect and destroy tumours that evade conventional immunotherapy. Mouse study. Not covered this cycle."
     },
     {
       "id": "super-ager-neurogenesis",
@@ -127,12 +144,12 @@
       "lastCovered": "2026-03-03T04:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-03-super-agers-brains-keep-producing-new-neurons"
       ],
-      "summary": "People over 80 who remain mentally sharp actively generate new hippocampal neurons at rates comparable to people decades younger. Challenges assumption that neurogenesis stops with age."
+      "summary": "People over 80 who remain mentally sharp generate new hippocampal neurons at rates comparable to younger people. Not covered this cycle."
     },
     {
       "id": "meta-smart-glasses-surveillance",
@@ -141,12 +158,12 @@
       "lastCovered": "2026-03-03T04:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-03-meta-smart-glasses-workers-see-everything-privacy"
       ],
-      "summary": "Swedish investigation reveals workers processing Meta smart glasses data can see everything wearers see — homes, conversations, children's faces. Human surveillance infrastructure behind 'AI' features. Millions of units sold."
+      "summary": "Workers processing Meta smart glasses data can see everything wearers see. Human surveillance behind 'AI' features. Not covered this cycle."
     },
     {
       "id": "russia-telegram-block",
@@ -155,12 +172,82 @@
       "lastCovered": "2026-03-03T04:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-03-russia-blocking-telegram-april-100-million-users"
       ],
-      "summary": "Two Kremlin sources say decision is 'final.' Telegram is Russia's primary messaging platform. Last major channel for anti-war organizing and independent news. Follows Durov arrest in France."
+      "summary": "Kremlin says decision is 'final.' Last major channel for anti-war organizing and independent news. Not covered this cycle."
+    },
+    {
+      "id": "sudan-accountability-uk-courts",
+      "label": "British lawyers to sue UAE and RSF leaders in UK courts for Sudan war crimes",
+      "firstSeen": "2026-03-03T10:00:00Z",
+      "lastCovered": "2026-03-03T10:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-03-british-lawyers-sue-uae-rsf-leaders-sudan-uk-courts"
+      ],
+      "summary": "Sudanese Bar Association announced UK lawyers will file lawsuits in British courts against UAE and RSF leaders for war crimes. First legal accountability attempt for Sudan in Western courts."
+    },
+    {
+      "id": "plate-tectonics-early-start",
+      "label": "Earth's oldest crystals suggest plate tectonics started 4.4 billion years ago",
+      "firstSeen": "2026-03-03T10:00:00Z",
+      "lastCovered": "2026-03-03T10:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-03-earths-oldest-crystals-plate-tectonics-early-start"
+      ],
+      "summary": "Analysis of 4.4-billion-year-old zircon crystals from Western Australia suggests plate tectonics began far earlier than the accepted 3-billion-year timeline. Rewrites Earth's geological history."
+    },
+    {
+      "id": "biodiversity-reporting-deadline",
+      "label": "Half of nations meet UN biodiversity reporting deadline",
+      "firstSeen": "2026-03-03T10:00:00Z",
+      "lastCovered": "2026-03-03T10:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-03-half-nations-meet-un-biodiversity-deadline-nature-loss"
+      ],
+      "summary": "First major test of 2022 Kunming-Montreal Global Biodiversity Framework. Half of nations submitted plans by deadline. Many plans more ambitious than expected, but major biodiversity-rich nations missing."
+    },
+    {
+      "id": "motorola-grapheneos-privacy",
+      "label": "Motorola partners with GrapheneOS for privacy-first enterprise phones",
+      "firstSeen": "2026-03-03T10:00:00Z",
+      "lastCovered": "2026-03-03T10:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-03-motorola-grapheneos-partnership-privacy-phones"
+      ],
+      "summary": "First mainstream phone manufacturer to ship GrapheneOS. Announced at MWC 2026. Legitimizes privacy OS movement — previously required manual installation on Pixel devices."
+    },
+    {
+      "id": "nepal-election-ai-disinformation",
+      "label": "AI disinformation floods Nepal's first post-protest election",
+      "firstSeen": "2026-03-03T10:00:00Z",
+      "lastCovered": "2026-03-03T10:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-03-nepal-election-ai-disinformation-digital-battleground"
+      ],
+      "summary": "Nepal's March 5 election being flooded with deepfakes and AI-generated disinformation. Parties targeting young voters who drove last year's uprising. Shows AI disinformation is now a Global South problem."
     },
     {
       "id": "khamenei-assassination",
@@ -169,28 +256,28 @@
       "lastCovered": "2026-03-01T13:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-01-khamenei-killed-iran-polarised-celebrations-grief",
         "2026-03-01-iran-forms-interim-council-after-khamenei-killing"
       ],
-      "summary": "Interim council (Arafi, president, chief justice) leading Iran. Assembly of Experts hasn't convened. Succession crisis ongoing amid active war."
+      "summary": "Interim council leading Iran. Succession crisis ongoing amid active war. Not covered this cycle."
     },
     {
       "id": "iran-civilian-casualties",
-      "label": "Iran civilian death toll 742+, school strike 180+ killed",
+      "label": "Iran civilian death toll 787+, school strike 180+ killed",
       "firstSeen": "2026-03-01T11:00:00Z",
       "lastCovered": "2026-03-01T13:00:00Z",
       "coverageCount": 2,
       "category": "conflict",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-01-girl-killed-iran-elementary-school-strike-war-crimes",
         "2026-03-01-iran-school-strike-death-toll-climbs-to-148"
       ],
-      "summary": "Death toll now 742+ (rights group count). School strike toll 180+. 131 cities affected. War crimes evidence mounting."
+      "summary": "Death toll now 787+ (Red Crescent count). School strike toll 180+. 153 cities affected. War crimes evidence mounting."
     },
     {
       "id": "iran-war-us-domestic-opposition",
@@ -204,21 +291,7 @@
       "articles": [
         "2026-03-02-trump-voters-opposed-iran-war-polls-show"
       ],
-      "summary": "Only 25% of Americans approve strikes. Congress war powers vote still pending."
-    },
-    {
-      "id": "lebanon-hezbollah-ban",
-      "label": "Lebanon bans Hezbollah military activities — Israel strikes kill 52",
-      "firstSeen": "2026-03-02T16:00:00Z",
-      "lastCovered": "2026-03-02T16:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 7,
-      "arc": "developing",
-      "articles": [
-        "2026-03-02-lebanon-bans-hezbollah-military-activities"
-      ],
-      "summary": "Lebanon PM banned Hezbollah military activities. Hezbollah rejected it. Israel ordered evacuation of 50 locations, then struck — 52 killed. War expanding into Lebanon."
+      "summary": "Only 25% of Americans approve strikes. Congress war powers vote still pending. US soldier deaths may shift this further."
     },
     {
       "id": "macron-nuclear-expansion",
@@ -227,12 +300,12 @@
       "lastCovered": "2026-03-02T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": [
         "2026-03-02-macron-france-nuclear-arsenal-expansion"
       ],
-      "summary": "France expanding nuclear arsenal and offering nuclear-armed aircraft to allies. Europe divided. Driven by US distraction with Iran and wavering NATO credibility."
+      "summary": "France expanding nuclear arsenal and offering nuclear-armed aircraft to allies. France deploying fighter jets over UAE. Not covered this cycle."
     },
     {
       "id": "gaza-aid-ban",
@@ -241,13 +314,13 @@
       "lastCovered": "2026-03-02T16:00:00Z",
       "coverageCount": 2,
       "category": "conflict",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": [
         "2026-03-01-israel-seals-west-bank-gaza-crossings-under-iran-war-cover",
         "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan"
       ],
-      "summary": "Total siege continues. All crossings sealed. 37 aid orgs halted. Al-Aqsa shut during Ramadan. Only days of fuel left. Iran war providing cover."
+      "summary": "Total siege continues. All crossings sealed. 37 aid orgs halted. Al-Aqsa shut during Ramadan. Iran war providing cover. Not covered this cycle."
     },
     {
       "id": "pentagon-anthropic-military-ai",
@@ -256,7 +329,7 @@
       "lastCovered": "2026-03-02T22:00:00Z",
       "coverageCount": 5,
       "category": "tech",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": [
         "2026-02-17-pentagon-close-to-cutting-ties-with-anthropic-over-use-restrictions",
@@ -265,7 +338,7 @@
         "2026-03-01-anthropic-rejects-pentagon-demand-drop-ai-safeguards",
         "2026-03-02-openai-pentagon-deal-anthropic-pays-price"
       ],
-      "summary": "US Treasury ended all Anthropic/Claude use. Government retaliation after Anthropic refused Pentagon demand to drop AI safeguards. OpenAI took the deal. AI used in Iran strikes regardless."
+      "summary": "US Treasury ended all Anthropic/Claude use. OpenAI took the deal. AI used in Iran strikes. Not covered this cycle."
     },
     {
       "id": "drc-m23-mass-graves",
@@ -274,27 +347,28 @@
       "lastCovered": "2026-03-02T22:00:00Z",
       "coverageCount": 2,
       "category": "conflict",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-01-mass-graves-found-eastern-drc-after-m23-retreat",
         "2026-03-02-us-sanctions-rwanda-military-drc-conflict"
       ],
-      "summary": "US sanctioned Rwanda's army chief and others. Mass graves near Uvira. Rwanda hasn't responded. EU follow-up unclear."
+      "summary": "US sanctioned Rwanda's army chief. Mass graves near Uvira. Not covered this cycle."
     },
     {
       "id": "nepal-post-protest-election",
-      "label": "Nepal's first post-protest election March 5",
+      "label": "Nepal's first post-protest election March 5 — AI disinformation surge",
       "firstSeen": "2026-03-02T22:00:00Z",
-      "lastCovered": "2026-03-02T22:00:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-03T10:00:00Z",
+      "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 6,
       "arc": "developing",
       "articles": [
-        "2026-03-02-nepal-first-post-protest-election-march-5"
+        "2026-03-02-nepal-first-post-protest-election-march-5",
+        "2026-03-03-nepal-election-ai-disinformation-digital-battleground"
       ],
-      "summary": "Nepal votes March 5. New protest-born parties vs. old guard. Results expected within days."
+      "summary": "Nepal votes March 5. New protest-born parties vs old guard. 3,400+ candidates, 30% under 40. AI deepfakes flooding social media targeting young voters."
     },
     {
       "id": "india-canada-nuclear-deal",
@@ -303,12 +377,12 @@
       "lastCovered": "2026-03-02T22:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-02-india-canada-nuclear-energy-deal-diplomatic-reset"
       ],
-      "summary": "Canada-India nuclear energy deal including uranium supply. Dramatic reversal after Nijjar assassination fallout."
+      "summary": "Canada-India nuclear energy deal including uranium supply. Dramatic reversal after Nijjar assassination fallout. Not covered this cycle."
     },
     {
       "id": "south-sudan-ruweng-massacre",
@@ -317,69 +391,12 @@
       "lastCovered": "2026-03-02T16:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-02-south-sudan-170-killed-ruweng-massacre"
       ],
-      "summary": "~170 killed in single attack. MSF staff missing. UN peacekeepers sheltering 1,000 civilians. UN warns of return to civil war."
-    },
-    {
-      "id": "al-aqsa-ramadan-closure",
-      "label": "Israel shuts Al-Aqsa during Ramadan under Iran war cover",
-      "firstSeen": "2026-03-02T16:00:00Z",
-      "lastCovered": "2026-03-02T16:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan"
-      ],
-      "summary": "Al-Aqsa shut during Ramadan. Combined with sealed crossings, settler violence. Iran war cover for intensified repression."
-    },
-    {
-      "id": "polymarket-iran-insider-trading",
-      "label": "Prediction markets: war death bets, suspected insider trading",
-      "firstSeen": "2026-03-02T04:00:00Z",
-      "lastCovered": "2026-03-02T22:00:00Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-02-polymarket-insiders-profited-before-iran-strikes",
-        "2026-03-02-prediction-markets-war-betting-depravity-economy"
-      ],
-      "summary": "Kalshi and Polymarket hosting war death bets. Nasdaq now joining binary bets market. $1.2M insider trading suspected."
-    },
-    {
-      "id": "india-pakistan-water-conflict",
-      "label": "India's $60bn river storage plan threatens Pakistan's water",
-      "firstSeen": "2026-03-02T04:00:00Z",
-      "lastCovered": "2026-03-02T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-02-india-60bn-river-storage-plan-threatens-pakistan-water"
-      ],
-      "summary": "India investing $60bn in storage on rivers flowing into Pakistan. Indus Waters Treaty under strain."
-    },
-    {
-      "id": "el-nino-2026-return",
-      "label": "El Niño may return in 2026, stacking warming on record temperatures",
-      "firstSeen": "2026-03-02T16:00:00Z",
-      "lastCovered": "2026-03-02T16:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-03-02-el-nino-may-return-2026-planet-hotter"
-      ],
-      "summary": "El Niño forecast. Would make hottest period ever get hotter. Global South and Pacific islands most affected."
+      "summary": "~170 killed in single attack. MSF staff missing. UN warns of return to civil war. Not covered this cycle."
     },
     {
       "id": "sudan-humanitarian-crisis",
@@ -401,7 +418,7 @@
         "2026-02-23-chad-shuts-sudan-border-after-troops-killed-in-cross-border-incursion",
         "2026-02-25-un-security-council-condemns-rsf-attacks-in-sudan"
       ],
-      "summary": "Crisis continues. Iran war consuming all bandwidth."
+      "summary": "Crisis continues. UK court lawsuits may revive attention. Iran war consuming all bandwidth."
     },
     {
       "id": "syria-post-revolution-instability",
@@ -426,8 +443,8 @@
       "lastCovered": "2026-03-01T13:00:00Z",
       "coverageCount": 3,
       "category": "conflict",
-      "importance": 2,
-      "arc": "ongoing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-02-22-pakistan-strikes-seven-militant-camps-along-afghan-border",
         "2026-02-25-pakistan-afghanistan-forces-trade-fire-at-border",
@@ -436,32 +453,33 @@
       "summary": "Fighting continuing. No signs of de-escalation. Part of broader Pakistan destabilization."
     },
     {
-      "id": "orbital-data-centers",
-      "label": "Data centers racing to space — beyond regulation",
+      "id": "polymarket-iran-insider-trading",
+      "label": "Prediction markets: war death bets, suspected insider trading",
       "firstSeen": "2026-03-02T04:00:00Z",
-      "lastCovered": "2026-03-02T04:00:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-02T22:00:00Z",
+      "coverageCount": 2,
       "category": "tech",
-      "importance": 3,
-      "arc": "fading",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
-        "2026-03-02-orbital-data-centers-space-regulation-gap"
+        "2026-03-02-polymarket-insiders-profited-before-iran-strikes",
+        "2026-03-02-prediction-markets-war-betting-depravity-economy"
       ],
-      "summary": "Companies launching data centers into orbit, beyond regulation. Connected to AWS Dubai destruction."
+      "summary": "Kalshi and Polymarket hosting war death bets. Nasdaq joining binary bets market. $1.2M insider trading suspected. Not covered this cycle."
     },
     {
-      "id": "fiji-flooding-2026",
-      "label": "Fiji severe flooding",
-      "firstSeen": "2026-03-02T22:00:00Z",
-      "lastCovered": "2026-03-02T22:00:00Z",
+      "id": "el-nino-2026-return",
+      "label": "El Niño may return in 2026",
+      "firstSeen": "2026-03-02T16:00:00Z",
+      "lastCovered": "2026-03-02T16:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "fading",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
-        "2026-03-02-fiji-severe-flooding-100-roads-closed"
+        "2026-03-02-el-nino-may-return-2026-planet-hotter"
       ],
-      "summary": "Flooding in Western Division. Schools closed."
+      "summary": "El Niño forecast. Would make hottest period ever hotter. Not covered this cycle."
     },
     {
       "id": "aws-dubai-data-centers-destroyed",
@@ -470,26 +488,12 @@
       "lastCovered": "2026-03-02T16:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-02-amazon-data-centers-fire-iran-strikes-dubai"
       ],
-      "summary": "Amazon confirms drones damaged three facilities in UAE and Bahrain. First time major cloud infrastructure physically destroyed by warfare."
-    },
-    {
-      "id": "us-intel-iran-assassination",
-      "label": "US intelligence shared Khamenei location with Israel",
-      "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-01T11:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "fading",
-      "articles": [
-        "2026-03-01-us-intelligence-khamenei-location-enabled-israel-strike"
-      ],
-      "summary": "US disclosed Khamenei's location to Israel. May violate Executive Order 12333."
+      "summary": "Amazon confirms drones damaged three facilities in UAE and Bahrain. First time major cloud infrastructure physically destroyed by warfare. Not covered this cycle."
     }
   ]
 }
