@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 8: Azerbaijan hit, Bahrain protests, war metastasizing beyond combatants",
+      "label": "Iran war Day 8: Ukraine recruited for anti-drone expertise, two wars converging",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-05T16:00:00Z",
-      "coverageCount": 18,
+      "lastCovered": "2026-03-05T22:00:00Z",
+      "coverageCount": 19,
       "category": "conflict",
       "importance": 9,
       "arc": "ongoing",
@@ -28,16 +28,17 @@
         "2026-03-05-qatar-shoots-down-iranian-jets-first-gulf-combat",
         "2026-03-05-iran-strikes-kurds-iraq-us-arms-guerrillas-ground-war",
         "2026-03-05-azerbaijan-drone-strike-iran-war-spills-to-neighbor",
-        "2026-03-05-bahrain-rare-protests-erupt-iran-war"
+        "2026-03-05-bahrain-rare-protests-erupt-iran-war",
+        "2026-03-05-ukraine-drone-expertise-recruited-against-iran"
       ],
-      "summary": "Day 8: War metastasizing. Drones hit Azerbaijan (non-combatant neighbor). Rare protests in Bahrain (Shia majority, US 5th Fleet host). Iran political prisoners denied shelter. Italian defense minister says strikes breach international law. Pentagon planning through September."
+      "summary": "Day 8: Two wars converging. US asked Ukraine for anti-Shahed drone expertise; Qatar negotiating to buy Ukrainian interceptor drones. Iran's interim leadership council granted expanded powers after Khamenei killing. Trump declared he should choose Iran's next leader. Lebanon death toll hits 123. Bahrain arrests protesters. Azerbaijan on high alert."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz Day 8: China halts fuel exports, Greek seafarers strike, $130B tariff refund compounds chaos",
+      "label": "Hormuz Day 8: Bangladesh can't find LNG sellers, Global South energy crisis deepening",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-05T16:00:00Z",
-      "coverageCount": 14,
+      "lastCovered": "2026-03-05T22:00:00Z",
+      "coverageCount": 15,
       "category": "economy",
       "importance": 8,
       "arc": "ongoing",
@@ -55,18 +56,19 @@
         "2026-03-04-pakistan-fuel-emergency-hormuz-shutdown-hits-global-south",
         "2026-03-05-cuba-massive-blackout-sanctions-hormuz-grid-collapse",
         "2026-03-05-pacific-islands-fuel-crisis-hormuz-conflict",
-        "2026-03-05-judge-orders-us-refund-130-billion-tariffs"
+        "2026-03-05-judge-orders-us-refund-130-billion-tariffs",
+        "2026-03-05-bangladesh-lng-costs-double-hormuz-crisis"
       ],
-      "summary": "Hormuz sealed Day 8. China halted fuel exports. Greek seafarers striking over stranded crews. More tankers attacked. Meanwhile $130B tariff refund ordered by US court — compounding trade chaos. Economic blast radius still widening."
+      "summary": "Hormuz sealed Day 8. Bangladesh couldn't find LNG sellers for two days, then paid double. Cape route becoming shipping lifeline. UK energy firms pulling fixed deals. Dangote refinery hiked Nigerian petrol prices N100. Global South bearing the brunt: Pakistan, Bangladesh, Pacific islands, Cuba all in crisis."
     },
     {
-      "id": "lebanon-hezbollah-israel-ground-war",
-      "label": "Lebanon: Israel orders Dahiyeh evacuation — 'will look like Khan Younis'",
+      "id": "lebanon-hezbollah-israel",
+      "label": "Lebanon: Death toll hits 123, Beirut suburbs under airstrikes",
       "firstSeen": "2026-03-02T16:00:00Z",
       "lastCovered": "2026-03-05T16:00:00Z",
       "coverageCount": 6,
       "category": "conflict",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-03-02-lebanon-bans-hezbollah-military-activities",
@@ -76,35 +78,105 @@
         "2026-03-04-israel-orders-all-southern-lebanon-evacuated-north-of-litani",
         "2026-03-05-israel-orders-dahiyeh-evacuation-will-look-like-khan-younis"
       ],
-      "summary": "Major escalation: Israel ordered mass evacuation of Dahiyeh (south Beirut). Official said it 'will look like Khan Younis.' Death toll from Monday's strikes hit 102. 83,000+ displaced. Hezbollah Radwan elite fighters redeployed to south."
+      "summary": "Death toll from Israeli strikes since Monday reached 123. Airstrikes hit Beirut southern suburbs. Up to 700,000 may need to evacuate. France sending armoured vehicles to Lebanese army. UNRWA opening shelters."
+    },
+    {
+      "id": "drc-coltan-mine-collapse",
+      "label": "DRC: 200+ killed in coltan mine collapse in eastern Congo",
+      "firstSeen": "2026-03-05T22:00:00Z",
+      "lastCovered": "2026-03-05T22:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-05-drc-coltan-mine-collapse-kills-200"
+      ],
+      "summary": "At least 200 killed in coltan mine collapse in eastern DRC. Coltan is critical for global electronics. Artisanal miners work unregulated shafts in conflict zone. M23 advance has pushed more civilians into dangerous mining."
     },
     {
       "id": "tariff-refund-ruling",
-      "label": "US court orders $130B tariff refund — largest court-ordered repayment in history",
+      "label": "US court orders $130B tariff refund; 24 states sue to block replacement tariffs",
       "firstSeen": "2026-03-05T16:00:00Z",
       "lastCovered": "2026-03-05T16:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-03-05-judge-orders-us-refund-130-billion-tariffs"
       ],
-      "summary": "Federal judge ordered US government to begin refunding $130B+ in tariffs collected under Trump's Section 122 emergency order, ruled unconstitutional by Supreme Court. One of largest court-ordered repayments ever."
+      "summary": "Federal judge ordered $130B+ tariff refund. Trump immediately imposed replacement 10% tariffs. 24 states now suing to block the new tariffs."
     },
     {
       "id": "bahrain-protests-iran-war",
-      "label": "Bahrain: Rare protests erupt as Iran war cracks open Gulf's most controlled state",
+      "label": "Bahrain: Regime arresting protesters and social media users after Khamenei killing",
       "firstSeen": "2026-03-05T16:00:00Z",
       "lastCovered": "2026-03-05T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-03-05-bahrain-rare-protests-erupt-iran-war"
       ],
-      "summary": "First significant protests in Bahrain since 2011 crackdown. Shia majority population angry over war on Iran. Kingdom hosts US 5th Fleet. Regime spent 15 years sealing these fissures — war cracked them open."
+      "summary": "First significant protests since 2011. Bahraini authorities now arresting people over social media posts and protests. Shia majority, Sunni monarchy, US 5th Fleet base."
+    },
+    {
+      "id": "wikipedia-admin-compromise",
+      "label": "Wikipedia forced into read-only mode after mass admin account compromise",
+      "firstSeen": "2026-03-05T22:00:00Z",
+      "lastCovered": "2026-03-05T22:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-05-wikipedia-read-only-mass-admin-compromise"
+      ],
+      "summary": "Wikipedia forced into read-only mode after coordinated compromise of administrator accounts. Admin access allows page deletion, user blocking, site-wide settings changes. Restoration timeline unclear."
+    },
+    {
+      "id": "pentagon-latin-america-cartels",
+      "label": "Pentagon orders Latin America to militarize against cartels at inaugural conference",
+      "firstSeen": "2026-03-05T22:00:00Z",
+      "lastCovered": "2026-03-05T22:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-05-pentagon-orders-latin-america-militarize-cartels"
+      ],
+      "summary": "Pentagon chief Hegseth told Latin American defense officials 'business as usual will not stand' at first 'Americas Counter Cartel Conference.' Pledged US military support. Frames sovereign nations as subordinate partners."
+    },
+    {
+      "id": "alzheimers-brain-cells",
+      "label": "Brain cells that clear Alzheimer's proteins discovered — new therapeutic avenue",
+      "firstSeen": "2026-03-05T22:00:00Z",
+      "lastCovered": "2026-03-05T22:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-05-brain-cells-clear-alzheimers-proteins"
+      ],
+      "summary": "Nature: astrocyte subclass identified that actively clears amyloid-beta proteins. These cells decline with age. Opens new approach — boosting clearance rather than targeting plaques. 55M people live with dementia, projected to triple by 2050."
+    },
+    {
+      "id": "proton-mail-fbi",
+      "label": "Proton Mail helped FBI unmask anonymous 'Stop Cop City' protester",
+      "firstSeen": "2026-03-05T22:00:00Z",
+      "lastCovered": "2026-03-05T22:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-05-proton-mail-fbi-unmasked-stop-cop-city-protester"
+      ],
+      "summary": "Court records show Proton Mail handed payment data to Swiss government, which gave it to FBI to identify anonymous protester. Second known case after 2021 French activist incident. Erodes trust in privacy infrastructure."
     },
     {
       "id": "ai-harassment-agents",
@@ -113,12 +185,12 @@
       "lastCovered": "2026-03-05T16:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-05-ai-agent-harassment-open-source-maintainer"
       ],
-      "summary": "First documented case of autonomous AI agent creating defamatory content about a person who rejected its contribution. Matplotlib maintainer Scott Shambaugh targeted. Threatens volunteer infrastructure behind most of the internet."
+      "summary": "First documented case of autonomous AI agent creating defamatory content about a person who rejected its contribution. Matplotlib maintainer Scott Shambaugh targeted."
     },
     {
       "id": "magnetic-fluid-heart-strokes",
@@ -127,26 +199,26 @@
       "lastCovered": "2026-03-05T16:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-05-magnetic-fluid-heart-surgery-prevents-strokes"
       ],
-      "summary": "Nature: quick-setting magnetic gel seals left atrial appendage — source of 90% of stroke-causing clots in atrial fibrillation patients. Minimally invasive. Successful in animal trials. Could transform stroke prevention for 60M+ people."
+      "summary": "Nature: quick-setting magnetic gel seals left atrial appendage — source of 90% of stroke-causing clots in atrial fibrillation patients. Successful in animal trials."
     },
     {
       "id": "tropical-insects-thermal-limits",
-      "label": "Tropical insects most vulnerable to warming — no thermal buffer, food systems at risk",
+      "label": "Tropical insects most vulnerable to warming — no thermal buffer",
       "firstSeen": "2026-03-05T16:00:00Z",
       "lastCovered": "2026-03-05T16:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-05-tropical-insects-thermal-tolerance-climate-threat"
       ],
-      "summary": "Nature study: tropical insects evolved in narrow temperature bands with almost no thermal buffer. Even 1-2°C warming is lethal. Genomic evidence shows heat tolerance genes absent. Threatens pollination and food security across Global South."
+      "summary": "Nature: tropical insects evolved in narrow temperature bands with almost no thermal buffer. Even 1-2°C warming is lethal. Threatens pollination and food security across Global South."
     },
     {
       "id": "evo-2-genome-ai",
@@ -155,21 +227,21 @@
       "lastCovered": "2026-03-05T10:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-05-evo-2-ai-writes-genomes-synthetic-life"
       ],
-      "summary": "Nature paper: Evo 2 AI model trained on 128,000 genomes (9.3T nucleotides) can design functional genomes across all domains of life. Already generating working synthetic gene regulatory elements. Biosecurity governance not keeping pace with capability."
+      "summary": "Nature: Evo 2 AI model can design functional genomes across all domains of life. Biosecurity governance not keeping pace."
     },
     {
       "id": "nepal-post-protest-election",
-      "label": "Nepal votes: ~40% turnout, results expected within days",
+      "label": "Nepal votes: ~60% turnout, results expected within days",
       "firstSeen": "2026-03-02T22:00:00Z",
       "lastCovered": "2026-03-05T04:00:00Z",
       "coverageCount": 5,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-02-nepal-first-post-protest-election-march-5",
@@ -178,7 +250,7 @@
         "2026-03-04-nepal-votes-first-election-gen-z-protests",
         "2026-03-05-nepal-votes-first-election-gen-z-protests"
       ],
-      "summary": "Voting completed March 5 with ~40% turnout. Results expected within days. Balen Shah frontrunner for PM. Over 120 parties running, a third created post-September 2025 uprising."
+      "summary": "Voting completed March 5 with ~60% turnout (revised upward from initial 40% estimate). Results expected within days. Balen Shah frontrunner for PM."
     },
     {
       "id": "china-build-asml",
@@ -187,12 +259,12 @@
       "lastCovered": "2026-03-05T10:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-05-china-chip-leaders-build-domestic-asml-us-curbs"
       ],
-      "summary": "NPC sessions: top semiconductor executives call industry 'small, fragmented and weak,' urge 'abandon illusions and prepare for struggle.' Without EUV lithography, China can't make chips below 7nm for AI. ASML machines cost $380M each."
+      "summary": "NPC: top semiconductor executives call industry 'small, fragmented and weak,' urge national effort. Without EUV lithography, China can't make sub-7nm AI chips."
     },
     {
       "id": "sea-levels-underestimated",
@@ -201,12 +273,12 @@
       "lastCovered": "2026-03-05T10:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-05-sea-levels-30cm-higher-flood-risk-underestimated"
       ],
-      "summary": "Nature study: 90% of coastal flood assessments underestimate baseline sea levels by average 30cm. Flood maps, insurance calculations, and climate adaptation plans worldwide built on wrong numbers."
+      "summary": "Nature: 90% of coastal flood assessments underestimate baseline sea levels by average 30cm. Flood maps and climate adaptation plans worldwide built on wrong numbers."
     },
     {
       "id": "somalia-constitution",
@@ -215,12 +287,12 @@
       "lastCovered": "2026-03-05T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-05-somalia-approves-constitution-after-thirty-years"
       ],
-      "summary": "Parliament approved all 13 chapters. First official constitution since 1991. Watch for implementation, Puntland response (lawmakers initially blocked from leaving), al-Shabaab reaction."
+      "summary": "Parliament approved all 13 chapters. First official constitution since 1991. Watch for Puntland response and al-Shabaab reaction."
     },
     {
       "id": "gaza-aid-ban",
@@ -229,57 +301,14 @@
       "lastCovered": "2026-03-04T22:00:00Z",
       "coverageCount": 3,
       "category": "conflict",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-01-israel-seals-west-bank-gaza-crossings-under-iran-war-cover",
         "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan",
         "2026-03-04-gaza-aid-collapses-under-iran-war-cover"
       ],
-      "summary": "Aid entirely cut off. Crossings sealed. Siege tightening while world watches Iran. Continuation is the story."
-    },
-    {
-      "id": "cuba-blackout-grid-collapse",
-      "label": "Cuba blackout: Grid collapses again as sanctions and Hormuz compound crisis",
-      "firstSeen": "2026-03-04T22:00:00Z",
-      "lastCovered": "2026-03-05T10:00:00Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-04-cuba-blackout-millions-without-power-72-hours",
-        "2026-03-05-cuba-massive-blackout-sanctions-hormuz-grid-collapse"
-      ],
-      "summary": "Massive blackout continues. Grid collapsing under compound pressures: crumbling Soviet-era infrastructure, US sanctions halting Venezuelan oil, Hormuz cutting alternative fuel."
-    },
-    {
-      "id": "china-npc-growth-target",
-      "label": "China sets lowest growth target since 1991, boosts military spending 7%",
-      "firstSeen": "2026-03-05T04:00:00Z",
-      "lastCovered": "2026-03-05T04:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-05-china-lowest-growth-target-since-1991"
-      ],
-      "summary": "NPC: 4.5-5% growth target, 7% military spending increase, 10% science budget boost. Xi urged provinces to lead on tech. China halted fuel exports due to war."
-    },
-    {
-      "id": "uk-visa-ban-war-countries",
-      "label": "UK stops student visas for nationals from four war-torn countries",
-      "firstSeen": "2026-03-05T10:00:00Z",
-      "lastCovered": "2026-03-05T10:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-05-uk-stops-student-visas-four-war-torn-countries"
-      ],
-      "summary": "UK Home Office stops student visas for Afghanistan, Cameroon, Myanmar, Sudan nationals. Also stops work visas for Afghans."
+      "summary": "Aid entirely cut off. Crossings sealed. Siege tightening while world watches Iran."
     },
     {
       "id": "iran-war-us-congress-war-powers",
@@ -288,12 +317,67 @@
       "lastCovered": "2026-03-05T16:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-04-us-congress-war-powers-iran-senators-fear-ground-war"
       ],
-      "summary": "Both Senate and House have now rejected war powers resolutions. Congress has effectively greenlit open-ended war with Iran."
+      "summary": "Both Senate and House rejected war powers resolutions. House vote 212-219. Congress has effectively greenlit open-ended war with Iran."
+    },
+    {
+      "id": "cuba-blackout-grid-collapse",
+      "label": "Cuba blackout: Grid collapses again as sanctions and Hormuz compound crisis",
+      "firstSeen": "2026-03-04T22:00:00Z",
+      "lastCovered": "2026-03-05T10:00:00Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-04-cuba-blackout-millions-without-power-72-hours",
+        "2026-03-05-cuba-massive-blackout-sanctions-hormuz-grid-collapse"
+      ],
+      "summary": "Massive blackout continues. Grid collapsing under compound pressures: Soviet-era infrastructure, US sanctions, Hormuz cutting alternative fuel."
+    },
+    {
+      "id": "china-npc-growth-target",
+      "label": "China sets lowest growth target since 1991, boosts military spending 7%",
+      "firstSeen": "2026-03-05T04:00:00Z",
+      "lastCovered": "2026-03-05T04:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-05-china-lowest-growth-target-since-1991"
+      ],
+      "summary": "NPC: 4.5-5% growth target, 7% military spending increase, 10% science budget boost. Also revealed new five-year climate goals."
+    },
+    {
+      "id": "uk-visa-ban-war-countries",
+      "label": "UK stops student visas for nationals from four war-torn countries",
+      "firstSeen": "2026-03-05T10:00:00Z",
+      "lastCovered": "2026-03-05T10:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-05-uk-stops-student-visas-four-war-torn-countries"
+      ],
+      "summary": "UK Home Office stops student visas for Afghanistan, Cameroon, Myanmar, Sudan nationals."
+    },
+    {
+      "id": "russia-ukraine-pow-exchange",
+      "label": "Russia and Ukraine exchange 200 POWs each; Ukraine's drone skills now strategic commodity",
+      "firstSeen": "2026-03-05T16:00:00Z",
+      "lastCovered": "2026-03-05T16:00:00Z",
+      "coverageCount": 0,
+      "category": "conflict",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [],
+      "summary": "200 POWs exchanged each side (US/UAE mediated). First major exchange in months. Meanwhile Ukraine's drone expertise being recruited by US and Gulf states for Iran war — connecting the two conflicts."
     },
     {
       "id": "ukraine-tanker-mediterranean",
@@ -302,24 +386,12 @@
       "lastCovered": "2026-03-04T22:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-04-ukrainian-drones-sink-russian-tanker-mediterranean"
       ],
       "summary": "Arctic Metagaz LNG tanker sunk between Libya and Malta. Farthest-reaching Ukrainian maritime strike."
-    },
-    {
-      "id": "russia-ukraine-pow-exchange",
-      "label": "Russia and Ukraine exchange 200 POWs each, mediated by US and UAE",
-      "firstSeen": "2026-03-05T16:00:00Z",
-      "lastCovered": "2026-03-05T16:00:00Z",
-      "coverageCount": 0,
-      "category": "conflict",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [],
-      "summary": "200 POWs exchanged each side, mediated by US and UAE. First major exchange in months. More expected Friday."
     },
     {
       "id": "google-gemini-wrongful-death",
@@ -328,7 +400,7 @@
       "lastCovered": "2026-03-04T22:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-04-google-gemini-first-wrongful-death-lawsuit"
@@ -342,12 +414,12 @@
       "lastCovered": "2026-03-05T04:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-05-glp1-drugs-may-halve-addiction-risk-study"
       ],
-      "summary": "BMJ study: GLP-1 agonists could halve substance abuse deaths. Nature follow-up article also covering this."
+      "summary": "BMJ study: GLP-1 agonists could halve substance abuse deaths. Nature follow-up also covering this."
     },
     {
       "id": "gulf-data-chokepoints",
@@ -356,12 +428,12 @@
       "lastCovered": "2026-03-05T04:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-05-big-tech-gulf-data-trapped-war-chokepoints"
       ],
-      "summary": "Only two data routes in/out of Gulf both in conflict zones. Digital economy's physical geography vulnerability exposed."
+      "summary": "Only two data routes in/out of Gulf both in conflict zones."
     },
     {
       "id": "sa-durban-data-centre",
@@ -370,52 +442,12 @@
       "lastCovered": "2026-03-05T04:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-05-durban-ai-data-centre-25-percent-city-electricity"
       ],
       "summary": "400MW AI data centre planned. Would consume 25% of Durban's electricity in a city with load-shedding."
-    },
-    {
-      "id": "nestle-baby-cereal-africa",
-      "label": "Nestlé sells baby cereal with 15% sugar in Africa, zero in Europe",
-      "firstSeen": "2026-03-04T16:00:00Z",
-      "lastCovered": "2026-03-04T16:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-04-nestle-baby-cereal-15-percent-sugar-africa-zero-europe"
-      ],
-      "summary": "Public Eye investigation: Nestlé's Cerelac contains up to 15% added sugar in Africa, zero in Europe."
-    },
-    {
-      "id": "ethiopia-eritrea-tensions",
-      "label": "PM Abiy warns Eritrea; 41 countries warn press freedom shrinking before election",
-      "firstSeen": "2026-03-04T16:00:00Z",
-      "lastCovered": "2026-03-04T16:00:00Z",
-      "coverageCount": 0,
-      "category": "conflict",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [],
-      "summary": "PM Abiy warned Eritrea. Ethiopia-Kenya joint military ops. 41 countries caution shrinking civic space undermines election. Still uncovered."
-    },
-    {
-      "id": "uk-china-espionage-arrests",
-      "label": "UK arrests Labour MP's husband and two others for China espionage",
-      "firstSeen": "2026-03-04T22:00:00Z",
-      "lastCovered": "2026-03-04T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-04-uk-arrests-labour-mps-husband-china-espionage"
-      ],
-      "summary": "Three arrested, then released. Including husband of Labour MP."
     },
     {
       "id": "sudan-humanitarian-crisis",
@@ -438,11 +470,11 @@
         "2026-02-25-un-security-council-condemns-rsf-attacks-in-sudan",
         "2026-03-03-sudan-rsf-drone-strike-el-obeid-blackout"
       ],
-      "summary": "War continues. UK stopped student visas for Sudanese nationals. Need anchoring development to re-enter coverage."
+      "summary": "War continues. UK stopped student visas for Sudanese nationals. Need anchoring development to re-enter."
     },
     {
       "id": "ukraine-russia-war",
-      "label": "Ukraine-Russia: POW exchange signals potential thaw amid diverted attention",
+      "label": "Ukraine-Russia: Drone expertise now strategic commodity as two wars converge",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-03-05T16:00:00Z",
       "coverageCount": 11,
@@ -462,105 +494,47 @@
         "2026-02-24-russian-soldiers-describe-execution-of-troops-who-refuse-orders",
         "2026-03-03-russian-strikes-ukraine-3-year-peak-iran-war-diverts-attention"
       ],
-      "summary": "200 POWs exchanged each side (US/UAE mediated). First major exchange in months. Iran war still diverting weapons and attention. NATO chief says alliance 'vigilant.'"
+      "summary": "200 POWs exchanged (US/UAE mediated). Ukraine's anti-drone expertise now being recruited by US and Gulf states for Iran war. Iran war still diverting weapons and attention from Ukraine front."
     },
     {
-      "id": "google-app-store-fee-ends",
-      "label": "Google ends 30% app store fee, opens to third-party stores",
-      "firstSeen": "2026-03-04T22:00:00Z",
-      "lastCovered": "2026-03-04T22:00:00Z",
+      "id": "nestle-baby-cereal-africa",
+      "label": "Nestlé sells baby cereal with 15% sugar in Africa, zero in Europe",
+      "firstSeen": "2026-03-04T16:00:00Z",
+      "lastCovered": "2026-03-04T16:00:00Z",
       "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-04-google-ends-30-percent-app-store-fee"
-      ],
-      "summary": "Google drops 30% Play Store commission. Forced by antitrust and EU DMA."
-    },
-    {
-      "id": "children-moles-halved-study",
-      "label": "Children's mole count halved in 25 years — sun campaigns changing bodies",
-      "firstSeen": "2026-03-04T22:00:00Z",
-      "lastCovered": "2026-03-04T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
+      "category": "economy",
       "importance": 1,
       "arc": "fading",
       "articles": [
-        "2026-03-04-children-moles-halved-25-years-sun-protection"
+        "2026-03-04-nestle-baby-cereal-15-percent-sugar-africa-zero-europe"
       ],
-      "summary": "25-year study: mole count dropped from 87 to 46. Sun protection campaigns changing children's skin."
+      "summary": "Public Eye investigation: Nestlé's Cerelac contains up to 15% added sugar in Africa, zero in Europe."
     },
     {
-      "id": "philippines-ofw-middle-east-crisis",
-      "label": "1.1 million Filipino overseas workers at risk across Middle East",
-      "firstSeen": "2026-03-03T16:00:00Z",
-      "lastCovered": "2026-03-03T16:00:00Z",
+      "id": "ethiopia-eritrea-tensions",
+      "label": "PM Abiy warns Eritrea; 41 countries warn press freedom shrinking before election",
+      "firstSeen": "2026-03-04T16:00:00Z",
+      "lastCovered": "2026-03-04T16:00:00Z",
+      "coverageCount": 0,
+      "category": "conflict",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [],
+      "summary": "PM Abiy warned Eritrea. 41 countries caution shrinking civic space undermines election. Still uncovered."
+    },
+    {
+      "id": "uk-china-espionage-arrests",
+      "label": "UK arrests Labour MP's husband and two others for China espionage",
+      "firstSeen": "2026-03-04T22:00:00Z",
+      "lastCovered": "2026-03-04T22:00:00Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 1,
       "arc": "fading",
       "articles": [
-        "2026-03-03-million-filipino-workers-trapped-middle-east-war"
+        "2026-03-04-uk-arrests-labour-mps-husband-china-espionage"
       ],
-      "summary": "1.1M Filipino OFWs trapped. Evacuation flights underway."
-    },
-    {
-      "id": "cbp-ad-tech-surveillance",
-      "label": "CBP used ad-tech data to track phones without warrants",
-      "firstSeen": "2026-03-03T16:00:00Z",
-      "lastCovered": "2026-03-03T16:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-03-cbp-ad-tech-tracking-surveillance-dhs"
-      ],
-      "summary": "Internal DHS document confirms CBP used ad ecosystem location data to track phones without warrants."
-    },
-    {
-      "id": "china-space-laser-communication",
-      "label": "China sustains hours-long laser link with satellite 40,000km up",
-      "firstSeen": "2026-03-04T16:00:00Z",
-      "lastCovered": "2026-03-04T16:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-04-china-space-laser-hours-long-link-geostationary-orbit"
-      ],
-      "summary": "Chinese Academy of Sciences sustained high-speed laser communication with geostationary satellite."
-    },
-    {
-      "id": "ai-wikipedia-hallucinations",
-      "label": "AI translations injecting fabricated information into Wikipedia",
-      "firstSeen": "2026-03-04T16:00:00Z",
-      "lastCovered": "2026-03-04T16:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-04-ai-hallucinations-corrupting-wikipedia-translations"
-      ],
-      "summary": "AI-translated Wikipedia articles swapping sources, adding unsourced sentences."
-    },
-    {
-      "id": "ai-avatar-indigenous-colombia",
-      "label": "AI avatar 'Gaitana' running to represent Indigenous voters in Colombia",
-      "firstSeen": "2026-03-04T16:00:00Z",
-      "lastCovered": "2026-03-04T16:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-04-ai-avatar-gaitana-indigenous-voters-colombia"
-      ],
-      "summary": "Digital AI avatar is public stand-in for two real Indigenous candidates in Colombia."
+      "summary": "Three arrested, then released. Including husband of Labour MP."
     }
   ]
 }
