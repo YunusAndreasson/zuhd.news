@@ -3,12 +3,12 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 10: US probe finds likely US responsibility for school strike killing children",
+      "label": "Iran war Day 11: Russia providing targeting intel to Iran; Israel strikes Tehran airport",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-06T22:00:00Z",
-      "coverageCount": 21,
+      "lastCovered": "2026-03-07T04:00:00Z",
+      "coverageCount": 23,
       "category": "conflict",
-      "importance": 8,
+      "importance": 9,
       "arc": "ongoing",
       "articles": [
         "2026-03-01-us-israel-attacks-iran-retaliation-regional-war",
@@ -31,18 +31,20 @@
         "2026-03-05-bahrain-rare-protests-erupt-iran-war",
         "2026-03-05-ukraine-drone-expertise-recruited-against-iran",
         "2026-03-06-us-military-likely-killed-168-children-iran-school-strike",
-        "2026-03-06-us-probe-points-to-likely-us-responsibility-iran-school-strike"
+        "2026-03-06-us-probe-points-to-likely-us-responsibility-iran-school-strike",
+        "2026-03-07-russia-aids-iran-targeting-us-forces-gulf",
+        "2026-03-07-us-bypasses-congress-151m-israel-arms-sale"
       ],
-      "summary": "Day 10: US military investigators believe US forces likely struck Iranian girls' school killing scores of children. Iran's UN envoy confirms 1,332 civilian deaths. Trump 'fine' with religious leader ruling Iran. War costing US ~$900m/day. Iran's proxies in Iraq reluctant to join."
+      "summary": "Day 11: Russia confirmed providing Iran with targeting intelligence on US forces; Iran's strike precision has improved. Israel launched broad-scale strikes on Tehran including Mehrabad domestic airport. Trump demands unconditional surrender. White House says operations could take 4-6 weeks. US bypassed Congress to approve 12,000 bombs to Israel. Oil at $92.69/barrel."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz Day 10: Pakistan hikes fuel 21% as blockade chokes supply",
+      "label": "Hormuz crisis: Oil surges 30% in one week, approaching $100/barrel",
       "firstSeen": "2026-03-01T13:00:00Z",
       "lastCovered": "2026-03-06T22:00:00Z",
       "coverageCount": 18,
       "category": "economy",
-      "importance": 7,
+      "importance": 6,
       "arc": "ongoing",
       "articles": [
         "2026-03-01-opec-boosts-oil-output-amid-iran-war",
@@ -64,16 +66,16 @@
         "2026-03-06-iran-war-chokes-global-aid-corridors-shipping-disrupted",
         "2026-03-06-pakistan-fuel-prices-surge-21-percent-hormuz-crisis"
       ],
-      "summary": "Pakistan hiked petrol Rs55/litre (21%) in one week as Hormuz blockade chokes supply. IEA warns of global LNG price surge. Qatar partially resuming flights. Oil at two-year high. Pakistan under compound stress: fuel, border war, market crash."
+      "summary": "Oil at $92.69/barrel, up 30% in one week, approaching $100. Pakistan hiked fuel 21%. US waived Russia oil sanctions for India. Global South bearing heaviest impact."
     },
     {
       "id": "nepal-post-protest-election",
-      "label": "Nepal: RSP leads 101 of 165 seats — supermajority imminent",
+      "label": "Nepal: RSP wins 18 seats, leads in 99 — Balen Shah set for PM",
       "firstSeen": "2026-03-02T22:00:00Z",
       "lastCovered": "2026-03-06T16:00:00Z",
       "coverageCount": 7,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-02-nepal-first-post-protest-election-march-5",
@@ -84,7 +86,7 @@
         "2026-03-06-nepal-rsp-surges-to-70-seats-gen-z-party-reshapes-democracy",
         "2026-03-06-nepal-rsp-101-seats-gen-z-party-nears-supermajority"
       ],
-      "summary": "RSP surged to leading in 101 of 165 constituencies — supermajority territory. Balen Shah on track to become PM. Final results imminent."
+      "summary": "RSP won 18 seats and leads in 99 more. Balen Shah on track for PM with supermajority. Final results imminent."
     },
     {
       "id": "nigeria-boko-haram-ngoshe",
@@ -93,26 +95,26 @@
       "lastCovered": "2026-03-06T16:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-06-boko-haram-claims-ngoshe-attack-hundreds-abducted-nigeria"
       ],
-      "summary": "Boko Haram claimed Ngoshe attack, threatens more. BBC reports 'massive' new attack — militants seized village for two days before troops and air strikes forced them out."
+      "summary": "Boko Haram claimed Ngoshe attack, threatens more. Militants seized village for two days."
     },
     {
       "id": "us-economy-job-loss-feb-2026",
-      "label": "US economy unexpectedly sheds 92,000 jobs — first payroll contraction in years",
+      "label": "US economy sheds 92,000 jobs — first payroll contraction in years",
       "firstSeen": "2026-03-06T16:00:00Z",
       "lastCovered": "2026-03-06T16:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-06-us-economy-sheds-92000-jobs-surprise-contraction"
       ],
-      "summary": "US lost 92,000 jobs in February. Unemployment at 4.4%. Tech employment worse than 2008 or 2020 recessions."
+      "summary": "US lost 92,000 jobs in February. Unemployment at 4.4%."
     },
     {
       "id": "anthropic-pentagon-confrontation",
@@ -121,7 +123,7 @@
       "lastCovered": "2026-03-06T22:00:00Z",
       "coverageCount": 4,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-02-25-pentagon-threatens-anthropic-with-cold-war-powers-over-military-ai",
@@ -129,21 +131,97 @@
         "2026-03-06-anthropic-sues-pentagon-supply-chain-risk-designation",
         "2026-03-06-pentagon-ai-surveillance-americans-legal-question"
       ],
-      "summary": "MIT Technology Review: the Anthropic-Pentagon confrontation exposes unanswered legal question — does US law actually allow mass AI surveillance of Americans? Post-Snowden frameworks don't address AI-powered surveillance."
+      "summary": "Anthropic sued Pentagon over supply chain risk designation. MIT Tech Review: the confrontation exposes unanswered legal question about AI surveillance of Americans."
+    },
+    {
+      "id": "ai-in-warfare-iran",
+      "label": "AI guides Iran strikes at unprecedented scale — accuracy questioned after school strike",
+      "firstSeen": "2026-03-07T04:00:00Z",
+      "lastCovered": "2026-03-07T04:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-07-ai-guides-iran-strikes-capability-questioned"
+      ],
+      "summary": "AI deployed at industrial scale in Iran war for intelligence sifting and target selection. Accuracy questioned after school strike killed 168 children."
+    },
+    {
+      "id": "armed-robots-ukraine",
+      "label": "Armed ground robots deployed in actual combat for first time in Ukraine",
+      "firstSeen": "2026-03-07T04:00:00Z",
+      "lastCovered": "2026-03-07T04:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-07-armed-robots-deployed-ukraine-battlefield"
+      ],
+      "summary": "Ukraine deploying armed unmanned ground vehicles against Russian forces — first sustained use of armed robots in combat."
+    },
+    {
+      "id": "lebanon-hezbollah-israel",
+      "label": "Lebanon: 217+ killed, Ghana UNIFIL peacekeepers wounded by missile",
+      "firstSeen": "2026-03-02T16:00:00Z",
+      "lastCovered": "2026-03-07T04:00:00Z",
+      "coverageCount": 7,
+      "category": "conflict",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-02-lebanon-bans-hezbollah-military-activities",
+        "2026-03-03-israel-ground-assault-southern-lebanon-52-killed",
+        "2026-03-03-syria-deploys-troops-lebanon-border-war-spillover",
+        "2026-03-04-israel-ground-invasion-lebanon-baalbek-hezbollah-open-war",
+        "2026-03-04-israel-orders-all-southern-lebanon-evacuated-north-of-litani",
+        "2026-03-05-israel-orders-dahiyeh-evacuation-will-look-like-khan-younis",
+        "2026-03-07-ghana-peacekeepers-wounded-missile-lebanon"
+      ],
+      "summary": "Death toll 217+. Ghana UNIFIL peacekeepers hit by missile — two critically injured, facility burned. Israeli invasion expanding."
+    },
+    {
+      "id": "venezuela-economic-collapse",
+      "label": "Venezuela inflation 475% in 2025 — world's highest despite diplomatic reset",
+      "firstSeen": "2026-03-07T04:00:00Z",
+      "lastCovered": "2026-03-07T04:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-07-venezuela-inflation-475-percent-2025"
+      ],
+      "summary": "Venezuela ended 2025 with 475% inflation, world's highest. Driven by US sanctions before Maduro's ouster. US now needs Venezuelan oil post-Hormuz."
+    },
+    {
+      "id": "dart-asteroid-orbit",
+      "label": "NASA DART impact changed asteroid's orbit around the sun — new study",
+      "firstSeen": "2026-03-07T04:00:00Z",
+      "lastCovered": "2026-03-07T04:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-07-dart-impact-changed-asteroid-orbit-around-sun"
+      ],
+      "summary": "New study reveals NASA's 2022 DART impact changed Dimorphos's orbit around the sun, not just around parent asteroid Didymos. Implications for planetary defence."
     },
     {
       "id": "compound-drought-heat-extremes",
-      "label": "Compound drought-heat extremes surging worldwide — heatwaves driving the increase",
+      "label": "Compound drought-heat extremes surging worldwide",
       "firstSeen": "2026-03-06T22:00:00Z",
       "lastCovered": "2026-03-06T22:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-06-compound-drought-heat-extremes-surging-worldwide"
       ],
-      "summary": "Carbon Brief: simultaneous heatwaves and droughts surging. The heatwave component, not drought, is driving the increase. Feedback loop: heat intensifies drought via evaporation; drought removes cooling from soil moisture."
+      "summary": "Simultaneous heatwaves and droughts surging. Heatwave component driving the increase via feedback loop."
     },
     {
       "id": "peru-forced-sterilisation-reparations",
@@ -152,12 +230,12 @@
       "lastCovered": "2026-03-06T22:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-06-peru-forced-sterilisation-reparations-court-ruling"
       ],
-      "summary": "Inter-American Court of Human Rights ordered Peru to pay reparations for woman who died from forced sterilisation. One case representing ~300,000 Indigenous and poor women sterilised under Fujimori program in 1990s."
+      "summary": "Inter-American Court ordered Peru to pay reparations for forced sterilisation. One case representing ~300,000 victims."
     },
     {
       "id": "planet-labs-gulf-imagery-delay",
@@ -166,113 +244,35 @@
       "lastCovered": "2026-03-06T22:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-06-planet-labs-withholds-gulf-satellite-imagery-war"
       ],
-      "summary": "Planet Labs imposing 96-hour delay on new satellite imagery over Gulf states. Independent verification of strikes, damage, and civilian impact effectively impossible in real time."
+      "summary": "96-hour delay on satellite imagery over Gulf states. Independent verification effectively impossible."
     },
     {
       "id": "global-warming-acceleration",
-      "label": "Global warming rate nearly doubled since 2015 — 1.5°C breach timeline moves up",
+      "label": "Global warming rate nearly doubled since 2015",
       "firstSeen": "2026-03-06T16:00:00Z",
       "lastCovered": "2026-03-06T16:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-06-global-warming-rate-nearly-doubled-since-2015"
       ],
-      "summary": "Study reveals warming rate nearly doubled since 2015. Acceleration driven by continued emissions, reduced aerosol cooling, natural variability."
-    },
-    {
-      "id": "pakistan-afghanistan-border-conflict",
-      "label": "Pakistan-Afghanistan border clash displaces 100,000 in one week",
-      "firstSeen": "2026-03-06T10:00:00Z",
-      "lastCovered": "2026-03-06T10:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-06-pakistan-afghanistan-border-clash-100000-displaced"
-      ],
-      "summary": "Pakistani and Afghan troops exchanging fire along the Durand Line. 100,000 displaced. Pakistan under compound stress."
-    },
-    {
-      "id": "gaza-aid-ban",
-      "label": "Gaza: Medical supplies exhausted as siege tightens under Iran war cover",
-      "firstSeen": "2026-02-25T04:00:00Z",
-      "lastCovered": "2026-03-06T16:00:00Z",
-      "coverageCount": 4,
-      "category": "conflict",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-01-israel-seals-west-bank-gaza-crossings-under-iran-war-cover",
-        "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan",
-        "2026-03-04-gaza-aid-collapses-under-iran-war-cover",
-        "2026-03-06-gaza-medical-supplies-exhausted-who-warns-crisis"
-      ],
-      "summary": "WHO warns medical supplies critically low. Siege tightening while world watches Iran."
-    },
-    {
-      "id": "lebanon-hezbollah-israel",
-      "label": "Lebanon: 217 killed, hundreds of thousands displaced as Israeli strikes intensify",
-      "firstSeen": "2026-03-02T16:00:00Z",
-      "lastCovered": "2026-03-05T16:00:00Z",
-      "coverageCount": 6,
-      "category": "conflict",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-02-lebanon-bans-hezbollah-military-activities",
-        "2026-03-03-israel-ground-assault-southern-lebanon-52-killed",
-        "2026-03-03-syria-deploys-troops-lebanon-border-war-spillover",
-        "2026-03-04-israel-ground-invasion-lebanon-baalbek-hezbollah-open-war",
-        "2026-03-04-israel-orders-all-southern-lebanon-evacuated-north-of-litani",
-        "2026-03-05-israel-orders-dahiyeh-evacuation-will-look-like-khan-younis"
-      ],
-      "summary": "Death toll 217. Hundreds of thousands displaced. Israeli ground invasion expanded. Hezbollah rearming despite losses."
-    },
-    {
-      "id": "indonesia-social-media-ban-children",
-      "label": "Indonesia bans social media for under-16s — first in Southeast Asia",
-      "firstSeen": "2026-03-06T16:00:00Z",
-      "lastCovered": "2026-03-06T16:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-06-indonesia-bans-social-media-under-16-first-southeast-asia"
-      ],
-      "summary": "Indonesia banning social media for under-16s. 70 million children affected."
-    },
-    {
-      "id": "argentina-milei-labor-reform",
-      "label": "Milei signs Argentina's most sweeping labour reform in decades",
-      "firstSeen": "2026-03-06T16:00:00Z",
-      "lastCovered": "2026-03-06T16:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-06-argentina-milei-signs-sweeping-labour-reform"
-      ],
-      "summary": "Milei signed sweeping labour reform reshaping contracts, severance, strikes for 21 million workers."
+      "summary": "Warming rate nearly doubled since 2015. Driven by emissions, reduced aerosol cooling, natural variability."
     },
     {
       "id": "sudan-humanitarian-crisis",
-      "label": "Sudan: 51 killed in 24 hours in Kordofan, war spreading",
+      "label": "Sudan: War spreading in Kordofan, hospitals hit",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-03-06T10:00:00Z",
       "coverageCount": 11,
       "category": "conflict",
-      "importance": 4,
+      "importance": 3,
       "arc": "ongoing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
@@ -287,7 +287,66 @@
         "2026-03-03-sudan-rsf-drone-strike-el-obeid-blackout",
         "2026-03-06-sudan-war-spreads-kordofan-hospitals-hit-supply-routes-cut"
       ],
-      "summary": "51 killed in 24 hours in Kordofan. War spreading, hospitals hit, supply routes cut. New UN envoy appointed for DRC."
+      "summary": "War spreading in Kordofan. Hospitals hit, supply routes cut. New UN envoy appointed."
+    },
+    {
+      "id": "gaza-aid-ban",
+      "label": "Gaza: Siege tightens under Iran war cover",
+      "firstSeen": "2026-02-25T04:00:00Z",
+      "lastCovered": "2026-03-06T16:00:00Z",
+      "coverageCount": 4,
+      "category": "conflict",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-01-israel-seals-west-bank-gaza-crossings-under-iran-war-cover",
+        "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan",
+        "2026-03-04-gaza-aid-collapses-under-iran-war-cover",
+        "2026-03-06-gaza-medical-supplies-exhausted-who-warns-crisis"
+      ],
+      "summary": "WHO warns medical supplies critically low. Siege tightening while world watches Iran."
+    },
+    {
+      "id": "pakistan-afghanistan-border-conflict",
+      "label": "Pakistan-Afghanistan border clash displaces 100,000",
+      "firstSeen": "2026-03-06T10:00:00Z",
+      "lastCovered": "2026-03-06T10:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-06-pakistan-afghanistan-border-clash-100000-displaced"
+      ],
+      "summary": "Pakistani and Afghan troops exchanging fire along the Durand Line. 100,000 displaced."
+    },
+    {
+      "id": "indonesia-social-media-ban-children",
+      "label": "Indonesia bans social media for under-16s",
+      "firstSeen": "2026-03-06T16:00:00Z",
+      "lastCovered": "2026-03-06T16:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-06-indonesia-bans-social-media-under-16-first-southeast-asia"
+      ],
+      "summary": "Indonesia banning social media for under-16s. 70 million children affected."
+    },
+    {
+      "id": "argentina-milei-labor-reform",
+      "label": "Milei signs Argentina's most sweeping labour reform in decades",
+      "firstSeen": "2026-03-06T16:00:00Z",
+      "lastCovered": "2026-03-06T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-06-argentina-milei-signs-sweeping-labour-reform"
+      ],
+      "summary": "Milei signed sweeping labour reform reshaping contracts, severance, strikes for 21 million workers."
     },
     {
       "id": "ethiopia-oromia-atrocities",
@@ -296,7 +355,7 @@
       "lastCovered": "2026-03-06T10:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-06-amnesty-documents-executions-rape-ethiopia-oromia-rebels"
@@ -305,17 +364,17 @@
     },
     {
       "id": "ai-agent-supply-chain-attack",
-      "label": "GitHub issue title exploited AI coding assistant to compromise 4,000 developer machines",
+      "label": "GitHub issue title exploited AI coding assistant to compromise 4,000 machines",
       "firstSeen": "2026-03-06T10:00:00Z",
       "lastCovered": "2026-03-06T10:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-06-github-issue-title-compromised-4000-machines-ai-agent-injection"
       ],
-      "summary": "First major 'AI agent supply chain attack' — attackers compromise the AI that reads code, not the code itself."
+      "summary": "First major 'AI agent supply chain attack' — attackers compromise the AI that reads code."
     },
     {
       "id": "chickpeas-lunar-soil",
@@ -324,35 +383,21 @@
       "lastCovered": "2026-03-06T22:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-06-chickpeas-grown-in-simulated-lunar-soil"
       ],
-      "summary": "Chickpeas — nitrogen-fixing legumes — successfully grown in mostly simulated lunar regolith. Step toward food production for long-term moon missions."
-    },
-    {
-      "id": "uk-coal-400-year-low",
-      "label": "UK coal use hits 400-year low as emissions fall 2.4%",
-      "firstSeen": "2026-03-06T10:00:00Z",
-      "lastCovered": "2026-03-06T10:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-06-uk-coal-400-year-low-emissions-fall-industrial-revolution-reversal"
-      ],
-      "summary": "UK coal use at lowest since the 1620s. Emissions fell 2.4% in 2025."
+      "summary": "Chickpeas grown in simulated lunar regolith. Step toward food production for moon missions."
     },
     {
       "id": "drc-coltan-mine-collapse",
-      "label": "DRC: 200+ killed in coltan mine collapse in eastern Congo",
+      "label": "DRC: 200+ killed in coltan mine collapse",
       "firstSeen": "2026-03-05T22:00:00Z",
       "lastCovered": "2026-03-05T22:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-05-drc-coltan-mine-collapse-kills-200"
@@ -366,100 +411,30 @@
       "lastCovered": "2026-03-06T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-06-us-venezuela-restore-diplomatic-relations-oil-crisis"
       ],
-      "summary": "US and Venezuela restored diplomatic ties. Venezuela oil strategically important amid Hormuz closure."
+      "summary": "US and Venezuela restored diplomatic ties. Venezuelan oil strategically important amid Hormuz closure."
     },
     {
-      "id": "jimmy-lai-hong-kong",
-      "label": "Jimmy Lai accepts 20-year sentence, won't appeal",
-      "firstSeen": "2026-03-06T04:00:00Z",
-      "lastCovered": "2026-03-06T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-06-jimmy-lai-accepts-20-year-sentence-hong-kong-press-freedom"
-      ],
-      "summary": "Jimmy Lai, 78, decided not to appeal. Longest sentence under Hong Kong's national security law."
-    },
-    {
-      "id": "indonesia-pakistan-tehran-mediation",
-      "label": "Indonesia and Pakistan leaders plan joint Tehran mediation visit",
-      "firstSeen": "2026-03-06T04:00:00Z",
-      "lastCovered": "2026-03-06T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-06-indonesia-pakistan-leaders-plan-tehran-mediation-visit"
-      ],
-      "summary": "Prabowo and Sharif planning joint Tehran visit. 500 million Muslims represented."
-    },
-    {
-      "id": "china-ads-nuclear-reactor",
-      "label": "China plans world-first ADS nuclear reactor that burns radioactive waste",
-      "firstSeen": "2026-03-06T04:00:00Z",
-      "lastCovered": "2026-03-06T04:00:00Z",
+      "id": "uk-coal-400-year-low",
+      "label": "UK coal use hits 400-year low",
+      "firstSeen": "2026-03-06T10:00:00Z",
+      "lastCovered": "2026-03-06T10:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-06-china-world-first-nuclear-reactor-burns-radioactive-waste"
-      ],
-      "summary": "China about to fire up world-first ADS reactor. Burns spent nuclear fuel while generating energy."
-    },
-    {
-      "id": "tariff-refund-ruling",
-      "label": "US court orders tariff refund; refund system in 45 days",
-      "firstSeen": "2026-03-05T16:00:00Z",
-      "lastCovered": "2026-03-05T16:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
       "importance": 2,
       "arc": "developing",
       "articles": [
-        "2026-03-05-judge-orders-us-refund-130-billion-tariffs"
+        "2026-03-06-uk-coal-400-year-low-emissions-fall-industrial-revolution-reversal"
       ],
-      "summary": "Tariff refund system to be ready in 45 days. Processing $166bn to 330,000 importers."
-    },
-    {
-      "id": "bahrain-protests-iran-war",
-      "label": "Bahrain: Rare protests amid Iran war, regime arrests continue",
-      "firstSeen": "2026-03-05T16:00:00Z",
-      "lastCovered": "2026-03-05T16:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-05-bahrain-rare-protests-erupt-iran-war"
-      ],
-      "summary": "First significant protests since 2011. Authorities arresting people over social media posts."
-    },
-    {
-      "id": "wikipedia-admin-compromise",
-      "label": "Wikipedia forced into read-only mode after admin account compromise",
-      "firstSeen": "2026-03-05T22:00:00Z",
-      "lastCovered": "2026-03-05T22:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-05-wikipedia-read-only-mass-admin-compromise"
-      ],
-      "summary": "Wikipedia forced into read-only mode after coordinated admin account compromise."
+      "summary": "UK coal use at lowest since the 1620s. Emissions fell 2.4% in 2025."
     },
     {
       "id": "iran-war-us-congress-war-powers",
-      "label": "Congress rejected war powers resolutions — greenlights open-ended Iran war",
+      "label": "Congress rejected war powers resolutions",
       "firstSeen": "2026-03-04T04:00:00Z",
       "lastCovered": "2026-03-05T16:00:00Z",
       "coverageCount": 2,
@@ -469,17 +444,17 @@
       "articles": [
         "2026-03-04-us-congress-war-powers-iran-senators-fear-ground-war"
       ],
-      "summary": "Both Senate and House rejected war powers resolutions. House vote 219-212."
+      "summary": "Both chambers rejected war powers resolutions. House vote 219-212."
     },
     {
       "id": "ukraine-russia-war",
-      "label": "Ukraine-Russia war: attention diverted to Iran",
+      "label": "Ukraine-Russia war: armed robots deployed, attention still on Iran",
       "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-03-05T16:00:00Z",
-      "coverageCount": 11,
+      "lastCovered": "2026-03-07T04:00:00Z",
+      "coverageCount": 12,
       "category": "conflict",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 3,
+      "arc": "ongoing",
       "articles": [
         "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
         "2026-02-16-ukraine-russia-geneva-talks-set-as-both-sides-escalate",
@@ -491,13 +466,14 @@
         "2026-02-22-russia-massive-energy-barrage-before-ukraine-anniversary",
         "2026-02-22-all-four-moscow-airports-closed-by-ukrainian-drones",
         "2026-02-24-russian-soldiers-describe-execution-of-troops-who-refuse-orders",
-        "2026-03-03-russian-strikes-ukraine-3-year-peak-iran-war-diverts-attention"
+        "2026-03-03-russian-strikes-ukraine-3-year-peak-iran-war-diverts-attention",
+        "2026-03-07-armed-robots-deployed-ukraine-battlefield"
       ],
-      "summary": "War continues but global attention focused on Iran. Russia providing Iran with intelligence to target US forces."
+      "summary": "Ukraine deploying armed ground robots — first in combat history. War continues but global attention on Iran. Russia providing intelligence to Iran."
     },
     {
       "id": "cuba-blackout-grid-collapse",
-      "label": "Cuba blackout: Grid collapses under sanctions and Hormuz compound crisis",
+      "label": "Cuba: Grid collapsing, Ecuador expels diplomats",
       "firstSeen": "2026-03-04T22:00:00Z",
       "lastCovered": "2026-03-05T10:00:00Z",
       "coverageCount": 2,
@@ -508,7 +484,63 @@
         "2026-03-04-cuba-blackout-millions-without-power-72-hours",
         "2026-03-05-cuba-massive-blackout-sanctions-hormuz-grid-collapse"
       ],
-      "summary": "Grid still collapsing. Trump says Cuba will 'fall pretty soon.' Compound pressures of sanctions and Hormuz blockade."
+      "summary": "Grid still collapsing. Ecuador expelled Cuban diplomats. Trump says Cuba will 'fall pretty soon.'"
+    },
+    {
+      "id": "jimmy-lai-hong-kong",
+      "label": "Jimmy Lai accepts 20-year sentence",
+      "firstSeen": "2026-03-06T04:00:00Z",
+      "lastCovered": "2026-03-06T04:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-03-06-jimmy-lai-accepts-20-year-sentence-hong-kong-press-freedom"
+      ],
+      "summary": "Jimmy Lai, 78, decided not to appeal. Longest sentence under Hong Kong's national security law."
+    },
+    {
+      "id": "tariff-refund-ruling",
+      "label": "US court orders tariff refund system",
+      "firstSeen": "2026-03-05T16:00:00Z",
+      "lastCovered": "2026-03-05T16:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-05-judge-orders-us-refund-130-billion-tariffs"
+      ],
+      "summary": "Refund system to be ready in 45 days. Processing $166bn to 330,000 importers."
+    },
+    {
+      "id": "bahrain-protests-iran-war",
+      "label": "Bahrain: Rare protests, regime arrests continue",
+      "firstSeen": "2026-03-05T16:00:00Z",
+      "lastCovered": "2026-03-05T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-05-bahrain-rare-protests-erupt-iran-war"
+      ],
+      "summary": "First significant protests since 2011. Authorities arresting people over social media posts."
+    },
+    {
+      "id": "wikipedia-admin-compromise",
+      "label": "Wikipedia admin account compromise",
+      "firstSeen": "2026-03-05T22:00:00Z",
+      "lastCovered": "2026-03-05T22:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-05-wikipedia-read-only-mass-admin-compromise"
+      ],
+      "summary": "Wikipedia forced into read-only mode after coordinated admin account compromise."
     }
   ]
 }
