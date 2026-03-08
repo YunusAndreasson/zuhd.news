@@ -3,11 +3,11 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war: ICC probe requested, Europe questions legality",
+      "label": "Iran war: Mojtaba Khamenei named supreme leader, defying Trump",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-08T16:00:00Z",
-      "coverageCount": 32,
-      "category": "conflict",
+      "lastCovered": "2026-03-08T22:00:00Z",
+      "coverageCount": 33,
+      "category": "politics",
       "importance": 10,
       "arc": "ongoing",
       "articles": [
@@ -42,18 +42,19 @@
         "2026-03-08-second-pakistani-killed-uae-interception-debris-war",
         "2026-03-08-iran-fewer-rockets-israel-economic-toll-rivals-june-war",
         "2026-03-08-iran-assembly-experts-consensus-khamenei-successor-wartime",
-        "2026-03-08-iran-icc-war-crimes-probe-europe-questions-legality"
+        "2026-03-08-iran-icc-war-crimes-probe-europe-questions-legality",
+        "2026-03-08-iran-mojtaba-khamenei-supreme-leader-defying-trump"
       ],
-      "summary": "Iran's Red Crescent asks ICC to investigate US-Israeli strikes on civilian infrastructure as war crimes. Switzerland, Germany, and Spain publicly question legality. Tehran under toxic smoke from burning oil depots. Successor still not named. 1,300+ killed, 100,000+ displaced."
+      "summary": "Assembly of Experts named Mojtaba Khamenei as supreme leader, first hereditary succession in Islamic Republic history. Direct rebuke to Trump who declared the son 'unacceptable.' Iran Health Ministry: 1,200+ killed including 200 women, 200 children. 7th US service member killed. Israel expanding strikes on Tehran infrastructure. ICC war crimes probe requested."
     },
     {
       "id": "lebanon-hezbollah-israel",
-      "label": "Lebanon: 394 killed in one week, 83 children, 454,000 displaced",
+      "label": "Lebanon: 394+ killed, 500,000+ displaced, ground invasion ongoing",
       "firstSeen": "2026-03-02T16:00:00Z",
       "lastCovered": "2026-03-08T16:00:00Z",
       "coverageCount": 10,
       "category": "conflict",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-03-02-lebanon-bans-hezbollah-military-activities",
@@ -67,16 +68,16 @@
         "2026-03-07-israel-raids-lebanese-village-dozens-killed-40-year",
         "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive"
       ],
-      "summary": "Lebanon's health minister confirms 394 killed in one week including 83 children. 454,000 displaced, shelters overwhelmed. Israeli ground forces push into southern Lebanon. Christian villages defying evacuation orders. Two Israeli soldiers killed. Campaign drowned out by Iran coverage."
+      "summary": "394+ killed including 83 children in one week. 500,000+ displaced. Israeli ground forces in southern Lebanon. Israeli strike on central Beirut hotel. IDF struggling to intercept Hezbollah drones. Story drowned out by Iran coverage."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz crisis: Desalination plants targeted, Apple pulls products",
+      "label": "Hormuz crisis: Iraq oil collapses 70%, Saudi drones, Gulf water vulnerability",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-08T16:00:00Z",
-      "coverageCount": 25,
+      "lastCovered": "2026-03-08T22:00:00Z",
+      "coverageCount": 28,
       "category": "economy",
-      "importance": 7,
+      "importance": 8,
       "arc": "ongoing",
       "articles": [
         "2026-03-01-opec-boosts-oil-output-amid-iran-war",
@@ -103,9 +104,67 @@
         "2026-03-08-hong-kong-firms-pivot-middle-east-war-supply-chains",
         "2026-03-08-mwc-memory-crunch-war-dim-ai-smartphone-revolution",
         "2026-03-08-gulf-desalination-plants-iran-strikes-water-crisis",
-        "2026-03-08-apple-mac-studio-removed-ram-shortage-hormuz-samsung"
+        "2026-03-08-apple-mac-studio-removed-ram-shortage-hormuz-samsung",
+        "2026-03-08-saudi-two-killed-drones-riyadh-oil-field-iran-war",
+        "2026-03-08-iraq-oil-production-collapses-70-percent-hormuz-blockade"
       ],
-      "summary": "Crisis deepening on two fronts: (1) Iranian drone damages Bahrain desalination facility — Gulf states get 90%+ of drinking water from vulnerable coastal plants. Water now more urgent than oil. (2) Apple silently removes 512GB Mac Studio from sale as memory chip shortage bites consumer products. Samsung strike vote pending."
+      "summary": "Iraq's southern oil production collapsed 70% to 1.3M bpd — cannot export through blocked Hormuz. Saudi Arabia under direct drone attack: two foreign workers killed by projectile, drones targeted Riyadh, Prince Sultan Air Base, and oil fields. Iran warns it will target regional oil infrastructure. 10+ vessels attacked in strait. Desalination plants remain vulnerable."
+    },
+    {
+      "id": "west-bank-settler-violence",
+      "label": "West Bank: Settler attacks surge 25% under Iran war cover",
+      "firstSeen": "2026-03-08T22:00:00Z",
+      "lastCovered": "2026-03-08T22:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-08-west-bank-settler-attack-kills-palestinians-abu-falah"
+      ],
+      "summary": "Armed Israeli settlers attacked village of Abu Falah, killing Palestinians. Settler violence surged 25% since Iran war began. Military redeployed to other fronts, settlers emboldened. Haaretz editorial board called it 'Jewish terrorism.'"
+    },
+    {
+      "id": "south-sudan-akobo-offensive",
+      "label": "South Sudan: Army expels aid workers, forces thousands to flee Akobo",
+      "firstSeen": "2026-03-08T22:00:00Z",
+      "lastCovered": "2026-03-08T22:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-08-south-sudan-army-forces-thousands-flee-akobo"
+      ],
+      "summary": "South Sudan army ordered UN and aid workers out of Akobo, last opposition stronghold in Jonglei state, before closing in. Thousands of civilians fleeing. Pattern of clearing witnesses before military operation."
+    },
+    {
+      "id": "vietnam-ai-regulation",
+      "label": "Vietnam passes Southeast Asia's first binding AI law",
+      "firstSeen": "2026-03-08T22:00:00Z",
+      "lastCovered": "2026-03-08T22:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-08-vietnam-first-binding-ai-law-southeast-asia"
+      ],
+      "summary": "Vietnam passed enforceable AI regulation, first in Southeast Asia to move from voluntary guidelines to binding law. Challenges assumption that AI governance is a Western project."
+    },
+    {
+      "id": "nairobi-floods-2026",
+      "label": "Nairobi floods kill 23, shut airport",
+      "firstSeen": "2026-03-08T22:00:00Z",
+      "lastCovered": "2026-03-08T22:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-07-nairobi-floods-kill-23-airport-shut-climate-rainfall"
+      ],
+      "summary": "At least 23 killed in Nairobi flooding, Jomo Kenyatta Airport shut. City doubled in population in 20 years without matching drainage investment. Climate-intensified East African rainfall patterns."
     },
     {
       "id": "iran-war-intelligence-futility",
@@ -114,12 +173,12 @@
       "lastCovered": "2026-03-07T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-07-us-intelligence-iran-war-cannot-topple-regime"
       ],
-      "summary": "Classified US NIC assessment says war unlikely to topple regime. Vindicated by Assembly of Experts proceeding with orderly succession."
+      "summary": "Classified US NIC assessment says war unlikely to topple regime. Vindicated by orderly succession to Mojtaba Khamenei."
     },
     {
       "id": "trump-shield-americas",
@@ -128,7 +187,7 @@
       "lastCovered": "2026-03-07T22:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-07-trump-shield-americas-coalition-missile-offer"
@@ -142,7 +201,7 @@
       "lastCovered": "2026-03-07T22:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-07-india-docks-iran-warship-day-us-sank-another"
@@ -156,8 +215,8 @@
       "lastCovered": "2026-03-07T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-07-guinea-junta-dissolves-40-parties-opposition-crushed"
       ],
@@ -170,12 +229,12 @@
       "lastCovered": "2026-03-07T22:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-07-prediction-markets-war-national-security-threat"
       ],
-      "summary": "Polymarket and Kalshi running real-money bets on war outcomes. Both now seeking $20B valuations."
+      "summary": "Polymarket and Kalshi running real-money bets on war outcomes."
     },
     {
       "id": "sa-prasa-rail-capture",
@@ -184,8 +243,8 @@
       "lastCovered": "2026-03-08T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-08-sa-gang-boss-captured-cape-town-rail-project"
       ],
@@ -198,7 +257,7 @@
       "lastCovered": "2026-03-08T10:00:00Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-07-ai-guides-iran-strikes-capability-questioned",
@@ -232,7 +291,7 @@
       "articles": [
         "2026-03-07-openai-fundraising-stalls-no-profit-plan"
       ],
-      "summary": "OpenAI fundraising momentum stalled. Robotics chief resignation adds to instability."
+      "summary": "OpenAI fundraising momentum stalled."
     },
     {
       "id": "nepal-post-protest-election",
@@ -262,12 +321,12 @@
       "lastCovered": "2026-03-08T10:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-08-trump-africa-health-strategy-ties-aid-minerals-extraction"
       ],
-      "summary": "US 'America First Global Health Strategy' bypasses NGOs, ties health funding to data access and critical minerals. Multiple African countries call deals exploitative."
+      "summary": "US 'America First Global Health Strategy' bypasses NGOs, ties health funding to data access and critical minerals."
     },
     {
       "id": "china-quantum-photon-breakthrough",
@@ -276,8 +335,8 @@
       "lastCovered": "2026-03-08T10:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
         "2026-03-08-china-quantum-double-photon-device-breaks-efficiency-ceiling"
       ],
@@ -290,12 +349,12 @@
       "lastCovered": "2026-03-08T10:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
         "2026-03-08-spacex-million-satellites-atmosphere-night-sky-scientists-warn"
       ],
-      "summary": "SpaceX proposes launching 1 million satellites. Scientists warn of atmospheric metallic pollution from reentry and permanent loss of dark skies."
+      "summary": "SpaceX proposes launching 1 million satellites. Scientists warn of atmospheric metallic pollution and permanent loss of dark skies."
     },
     {
       "id": "samsung-strike-vote",
@@ -304,21 +363,21 @@
       "lastCovered": "2026-03-08T10:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-08-samsung-workers-vote-strike-chip-maker-labor-reckoning"
       ],
-      "summary": "Unionized Samsung Electronics workers voting on strike. Company supplies 40% of global DRAM/NAND. Apple already removing products due to chip shortage."
+      "summary": "Unionized Samsung Electronics workers voting on strike. Company supplies 40% of global DRAM/NAND."
     },
     {
       "id": "sudan-humanitarian-crisis",
-      "label": "Sudan: War spreading in Kordofan, drone strikes on markets",
+      "label": "Sudan: War spreading, drone strikes on markets",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-03-08T10:00:00Z",
       "coverageCount": 12,
       "category": "conflict",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
@@ -334,7 +393,7 @@
         "2026-03-06-sudan-war-spreads-kordofan-hospitals-hit-supply-routes-cut",
         "2026-03-08-sudan-drone-strikes-kill-33-west-kordofan-markets"
       ],
-      "summary": "Drone strikes hit two markets in RSF-controlled West Kordofan towns, killing 33. War actively expanding in Kordofan. Drone warfare now used by both sides against civilian targets."
+      "summary": "Drone strikes hit two markets in RSF-controlled West Kordofan, killing 33. War actively expanding in Kordofan. Not covered this cycle but remains urgent."
     },
     {
       "id": "gaza-aid-ban",
@@ -351,7 +410,7 @@
         "2026-03-04-gaza-aid-collapses-under-iran-war-cover",
         "2026-03-06-gaza-medical-supplies-exhausted-who-warns-crisis"
       ],
-      "summary": "WHO warns medical supplies exhausted. Rafah crossing closed. Israeli strike killed 2 in Gaza this cycle. Being eclipsed by Iran war. Overdue for dedicated coverage."
+      "summary": "WHO warns medical supplies exhausted. Rafah crossing closed. Being eclipsed by Iran war. Overdue for dedicated coverage — identified as gap."
     },
     {
       "id": "ukraine-russia-war",
@@ -376,35 +435,75 @@
         "2026-03-03-russian-strikes-ukraine-3-year-peak-iran-war-diverts-attention",
         "2026-03-07-armed-robots-deployed-ukraine-battlefield"
       ],
-      "summary": "Russian strikes killed 10+ in Kharkiv apartment block. World attention fully diverted to Iran. Hungary blocking fuel deliveries."
+      "summary": "Russian strikes at 3-year peak. World attention fully diverted to Iran. Overdue for coverage."
     },
     {
-      "id": "glp1-drugs-addiction",
-      "label": "GLP-1 obesity drugs may treat addiction",
-      "firstSeen": "2026-03-07T22:00:00Z",
-      "lastCovered": "2026-03-07T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-07-obesity-drugs-addiction-glp1-huge-study"
-      ],
-      "summary": "Large study suggests GLP-1 drugs may treat addiction."
-    },
-    {
-      "id": "iran-war-sri-lanka-sailors",
-      "label": "Sri Lanka releases Iranian sailors rescued from torpedoed warship",
-      "firstSeen": "2026-03-07T10:00:00Z",
-      "lastCovered": "2026-03-07T10:00:00Z",
+      "id": "pakistan-aurat-march-crackdown",
+      "label": "Pakistan detains Aurat March activists on International Women's Day",
+      "firstSeen": "2026-03-08T16:00:00Z",
+      "lastCovered": "2026-03-08T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
-        "2026-03-07-sri-lanka-defies-us-iranian-sailors-sovereignty"
+        "2026-03-08-pakistan-aurat-march-activists-detained-womens-day"
       ],
-      "summary": "Sri Lanka discharged 22 Iranian sailors from hospital. Had defied US pressure not to repatriate."
+      "summary": "25+ activists detained under Section 144 before International Women's Day march. Third consecutive year of crackdown."
+    },
+    {
+      "id": "colombia-congressional-election",
+      "label": "Colombia congressional election: Petro's midterm test",
+      "firstSeen": "2026-03-08T16:00:00Z",
+      "lastCovered": "2026-03-08T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-08-colombia-congressional-election-petro-midterm-test"
+      ],
+      "summary": "Colombians voting for new Senate and House. Results available next cycle."
+    },
+    {
+      "id": "mobius-carbon-chain",
+      "label": "First half-Möbius carbon chain created",
+      "firstSeen": "2026-03-08T16:00:00Z",
+      "lastCovered": "2026-03-08T16:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-08-half-mobius-carbon-chain-chemistry-breakthrough"
+      ],
+      "summary": "Chemists created a carbon chain with half-Möbius topology."
+    },
+    {
+      "id": "ram-shortage-consumer-impact",
+      "label": "Apple removes Mac Studio as memory chip crisis hits consumers",
+      "firstSeen": "2026-03-08T16:00:00Z",
+      "lastCovered": "2026-03-08T16:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-08-apple-mac-studio-removed-ram-shortage-hormuz-samsung"
+      ],
+      "summary": "Apple silently removed 512GB Mac Studio from sale. Memory chip shortage from Hormuz disruption and Samsung labor unrest."
+    },
+    {
+      "id": "oslo-embassy-explosion",
+      "label": "Explosion at US embassy in Oslo, possible terrorism",
+      "firstSeen": "2026-03-08T22:00:00Z",
+      "lastCovered": "2026-03-08T22:00:00Z",
+      "coverageCount": 0,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [],
+      "summary": "Explosion at US embassy in Oslo. Norway police investigating possible terrorism. Security bolstered at Jewish sites and Iranian diaspora locations. No injuries but minor damage. US embassy in Sweden issued low-profile warning."
     },
     {
       "id": "anthropic-pentagon-confrontation",
@@ -421,63 +520,7 @@
         "2026-03-06-anthropic-sues-pentagon-supply-chain-risk-designation",
         "2026-03-06-pentagon-ai-surveillance-americans-legal-question"
       ],
-      "summary": "Anthropic sued Pentagon over supply chain risk designation."
-    },
-    {
-      "id": "pakistan-afghanistan-border-conflict",
-      "label": "Pakistan-Afghanistan border clash",
-      "firstSeen": "2026-03-06T10:00:00Z",
-      "lastCovered": "2026-03-06T10:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-06-pakistan-afghanistan-border-clash-100000-displaced"
-      ],
-      "summary": "Pakistani and Afghan troops exchanging fire. 100,000 displaced."
-    },
-    {
-      "id": "nigeria-boko-haram-ngoshe",
-      "label": "Boko Haram claims Ngoshe attack",
-      "firstSeen": "2026-03-06T16:00:00Z",
-      "lastCovered": "2026-03-06T16:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-06-boko-haram-claims-ngoshe-attack-hundreds-abducted-nigeria"
-      ],
-      "summary": "Boko Haram claimed Ngoshe attack, threatens more."
-    },
-    {
-      "id": "pakistan-aurat-march-crackdown",
-      "label": "Pakistan detains Aurat March activists on International Women's Day",
-      "firstSeen": "2026-03-08T16:00:00Z",
-      "lastCovered": "2026-03-08T16:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-08-pakistan-aurat-march-activists-detained-womens-day"
-      ],
-      "summary": "25+ activists including Dr Farzana Bari and Tahira Abdullah detained under Section 144 before International Women's Day march. Police arrested marchers instead of protecting them from Lal Masjid threats. Third consecutive year of crackdown."
-    },
-    {
-      "id": "colombia-congressional-election",
-      "label": "Colombia congressional election: Petro's midterm test",
-      "firstSeen": "2026-03-08T16:00:00Z",
-      "lastCovered": "2026-03-08T16:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-08-colombia-congressional-election-petro-midterm-test"
-      ],
-      "summary": "Colombians voting for new Senate and House. Key test for Petro's left-wing coalition. Crime and economy dominate voter concerns."
+      "summary": "Anthropic sued Pentagon over supply chain risk designation. France 24 reports on 'Trump's Claude ban.' Arc linked to AI-in-warfare story."
     },
     {
       "id": "gulf-desalination-vulnerability",
@@ -486,40 +529,12 @@
       "lastCovered": "2026-03-08T16:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-03-08-gulf-desalination-plants-iran-strikes-water-crisis"
       ],
-      "summary": "Iranian drone struck Bahrain desalination facility. Gulf states get 90%+ of drinking water from hundreds of coastal desalination plants, all within missile range. Water may be more vulnerable than oil."
-    },
-    {
-      "id": "mobius-carbon-chain",
-      "label": "First half-Möbius carbon chain created",
-      "firstSeen": "2026-03-08T16:00:00Z",
-      "lastCovered": "2026-03-08T16:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-08-half-mobius-carbon-chain-chemistry-breakthrough"
-      ],
-      "summary": "Chemists created a carbon chain with half-Möbius topology — the twist exists in the molecule's electronic structure. Implications for molecular electronics and materials science."
-    },
-    {
-      "id": "ram-shortage-consumer-impact",
-      "label": "Apple removes Mac Studio as memory chip crisis hits consumers",
-      "firstSeen": "2026-03-08T16:00:00Z",
-      "lastCovered": "2026-03-08T16:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-08-apple-mac-studio-removed-ram-shortage-hormuz-samsung"
-      ],
-      "summary": "Apple silently removed 512GB Mac Studio from sale. First major consumer product casualty of memory chip shortage caused by Hormuz shipping disruption and Samsung labor unrest."
+      "summary": "Iranian drone struck Bahrain desalination facility. Gulf states get 90%+ of drinking water from coastal plants within missile range."
     }
   ]
 }
