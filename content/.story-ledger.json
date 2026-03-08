@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 12: 1,300+ killed, 100,000 displaced; China condemns war",
+      "label": "Iran war: Wartime succession as Assembly picks new supreme leader",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-08T04:00:00Z",
-      "coverageCount": 30,
+      "lastCovered": "2026-03-08T10:00:00Z",
+      "coverageCount": 31,
       "category": "conflict",
       "importance": 10,
       "arc": "ongoing",
@@ -40,18 +40,19 @@
         "2026-03-08-iran-war-day-12-1300-killed-100000-displaced",
         "2026-03-08-china-condemns-iran-war-should-never-have-happened",
         "2026-03-08-second-pakistani-killed-uae-interception-debris-war",
-        "2026-03-08-iran-fewer-rockets-israel-economic-toll-rivals-june-war"
+        "2026-03-08-iran-fewer-rockets-israel-economic-toll-rivals-june-war",
+        "2026-03-08-iran-assembly-experts-consensus-khamenei-successor-wartime"
       ],
-      "summary": "Day 12: 1,300+ killed, 100,000+ displaced in Iran. China's Wang Yi issues sharpest condemnation yet: 'should never have happened.' Second Pakistani migrant worker killed in UAE by interception debris. Israeli economic disruption rivals June war despite sparse Iranian fire. IRGC claims it can fight for 6 months."
+      "summary": "Wartime succession: Assembly of Experts reaches consensus on new supreme leader, reportedly chosen to be 'hated by the enemy.' Israel threatens to target whoever is named. Tehran fuel depots burning, Red Crescent warns of toxic rain. 1,300+ killed, 100,000+ displaced."
     },
     {
       "id": "lebanon-hezbollah-israel",
-      "label": "Lebanon: 500,000+ displaced, Israeli raids continue",
+      "label": "Lebanon: Mass evacuation ordered, Beirut hotel struck",
       "firstSeen": "2026-03-02T16:00:00Z",
       "lastCovered": "2026-03-07T22:00:00Z",
       "coverageCount": 9,
       "category": "conflict",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": [
         "2026-03-02-lebanon-bans-hezbollah-military-activities",
@@ -64,16 +65,16 @@
         "2026-03-07-lebanon-500000-displaced-dahiyeh-41-killed-nabi-chit",
         "2026-03-07-israel-raids-lebanese-village-dozens-killed-40-year"
       ],
-      "summary": "500,000+ displaced. Israeli helicopter raid on village killed dozens searching for 1986 pilot remains. Dahiyeh evacuation ordered. Not covered this cycle — no new developments in overnight feed."
+      "summary": "IDF ordered mass southern Lebanon evacuation, 32+ killed Sunday. Israeli strike on Beirut hotel killed 4, targeting Quds Force commanders. Ghana calls for UN probe after peacekeepers wounded. Not covered this cycle."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz crisis: Global supply chains fracturing, HK firms pivoting",
+      "label": "Hormuz crisis: Supply chains fracturing, memory chip crunch",
       "firstSeen": "2026-03-01T13:00:00Z",
       "lastCovered": "2026-03-08T04:00:00Z",
       "coverageCount": 23,
       "category": "economy",
-      "importance": 7,
+      "importance": 6,
       "arc": "ongoing",
       "articles": [
         "2026-03-01-opec-boosts-oil-output-amid-iran-war",
@@ -100,7 +101,7 @@
         "2026-03-08-hong-kong-firms-pivot-middle-east-war-supply-chains",
         "2026-03-08-mwc-memory-crunch-war-dim-ai-smartphone-revolution"
       ],
-      "summary": "HK firms pivoting from Middle East to Europe/SE Asia. Global DRAM memory crunch compounding supply chain disruption at MWC. Economic toll in Israel rivals June war despite fewer rockets. Gulf commercial hub status under long-term threat."
+      "summary": "China's sulphur imports hit by Iran war. German economy damaged by energy bottleneck. Samsung strike vote adds pressure to already-strained memory chip supply. Not directly covered this cycle."
     },
     {
       "id": "iran-war-intelligence-futility",
@@ -109,12 +110,12 @@
       "lastCovered": "2026-03-07T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-07-us-intelligence-iran-war-cannot-topple-regime"
       ],
-      "summary": "Classified US NIC assessment says war unlikely to topple regime. Cracks emerging in Iranian leadership."
+      "summary": "Classified US NIC assessment says war unlikely to topple regime. Vindicated by Assembly of Experts proceeding with orderly succession."
     },
     {
       "id": "trump-shield-americas",
@@ -123,8 +124,8 @@
       "lastCovered": "2026-03-07T22:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-07-trump-shield-americas-coalition-missile-offer"
       ],
@@ -137,8 +138,8 @@
       "lastCovered": "2026-03-07T22:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-07-india-docks-iran-warship-day-us-sank-another"
       ],
@@ -151,7 +152,7 @@
       "lastCovered": "2026-03-07T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-07-guinea-junta-dissolves-40-parties-opposition-crushed"
@@ -165,12 +166,12 @@
       "lastCovered": "2026-03-07T22:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
         "2026-03-07-prediction-markets-war-national-security-threat"
       ],
-      "summary": "Polymarket and Kalshi running real-money bets on war outcomes."
+      "summary": "Polymarket and Kalshi running real-money bets on war outcomes. Both now seeking $20B valuations."
     },
     {
       "id": "sa-prasa-rail-capture",
@@ -179,26 +180,27 @@
       "lastCovered": "2026-03-08T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-08-sa-gang-boss-captured-cape-town-rail-project"
       ],
-      "summary": "Alleged 28s gang boss Ralph Stanfield captured key aspects of multibillion-rand Cape Town Central Line reconstruction with help from Prasa's security head. Communities who need the railway most are paying for gang enrichment."
+      "summary": "Alleged 28s gang boss Ralph Stanfield captured key aspects of multibillion-rand Cape Town Central Line reconstruction with Prasa's help."
     },
     {
       "id": "ai-in-warfare-iran",
-      "label": "AI guides Iran strikes at unprecedented scale",
+      "label": "AI in warfare: OpenAI robotics chief quits over Pentagon deal",
       "firstSeen": "2026-03-07T04:00:00Z",
-      "lastCovered": "2026-03-07T04:00:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-08T10:00:00Z",
+      "coverageCount": 2,
       "category": "tech",
-      "importance": 3,
+      "importance": 5,
       "arc": "developing",
       "articles": [
-        "2026-03-07-ai-guides-iran-strikes-capability-questioned"
+        "2026-03-07-ai-guides-iran-strikes-capability-questioned",
+        "2026-03-08-openai-robotics-chief-quits-ai-war-surveillance-pentagon"
       ],
-      "summary": "AI deployed at industrial scale for target selection. Accuracy questioned after school strike killed 168 children."
+      "summary": "OpenAI robotics chief resigned over Pentagon deal allowing AI for war and surveillance. Follows AI-guided strikes that killed 168 children in Iranian school. Pattern of AI companies drawn into military use."
     },
     {
       "id": "pentagon-doge-ai-chief",
@@ -207,7 +209,7 @@
       "lastCovered": "2026-03-07T10:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-07-pentagon-doge-official-white-supremacist-ai"
@@ -221,12 +223,12 @@
       "lastCovered": "2026-03-07T16:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-07-openai-fundraising-stalls-no-profit-plan"
       ],
-      "summary": "OpenAI fundraising momentum stalled. No path to profitability."
+      "summary": "OpenAI fundraising momentum stalled. Robotics chief resignation adds to instability."
     },
     {
       "id": "nepal-post-protest-election",
@@ -235,7 +237,7 @@
       "lastCovered": "2026-03-07T10:00:00Z",
       "coverageCount": 8,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "ongoing",
       "articles": [
         "2026-03-02-nepal-first-post-protest-election-march-5",
@@ -247,160 +249,73 @@
         "2026-03-06-nepal-rsp-101-seats-gen-z-party-nears-supermajority",
         "2026-03-07-nepal-balen-shah-rapper-pm-landslide"
       ],
-      "summary": "Balen Shah will be Nepal's youngest PM. RSP heading for supermajority."
+      "summary": "Balen Shah will be Nepal's youngest PM. RSP heading for supermajority. Story arc complete."
     },
     {
-      "id": "glp1-drugs-addiction",
-      "label": "GLP-1 obesity drugs may treat addiction",
-      "firstSeen": "2026-03-07T22:00:00Z",
-      "lastCovered": "2026-03-07T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-07-obesity-drugs-addiction-glp1-huge-study"
-      ],
-      "summary": "Large study suggests GLP-1 drugs may treat addiction."
-    },
-    {
-      "id": "iran-war-sri-lanka-sailors",
-      "label": "Sri Lanka defies US over rescued Iranian sailors",
-      "firstSeen": "2026-03-07T10:00:00Z",
-      "lastCovered": "2026-03-07T10:00:00Z",
+      "id": "trump-africa-health-extraction",
+      "label": "Trump's Africa health strategy ties aid to mineral extraction",
+      "firstSeen": "2026-03-08T10:00:00Z",
+      "lastCovered": "2026-03-08T10:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 6,
+      "arc": "breaking",
       "articles": [
-        "2026-03-07-sri-lanka-defies-us-iranian-sailors-sovereignty"
+        "2026-03-08-trump-africa-health-strategy-ties-aid-minerals-extraction"
       ],
-      "summary": "Sri Lanka rescued 32 Iranian frigate survivors. US pressuring Colombo not to repatriate."
+      "summary": "US 'America First Global Health Strategy' bypasses NGOs, ties health funding to data access and critical minerals. Multiple African countries call deals exploitative."
     },
     {
-      "id": "moon-far-side-ai-mapping",
-      "label": "First chemical map of moon's far side",
-      "firstSeen": "2026-03-07T16:00:00Z",
-      "lastCovered": "2026-03-07T16:00:00Z",
+      "id": "china-quantum-photon-breakthrough",
+      "label": "China quantum double-photon device breaks efficiency ceiling",
+      "firstSeen": "2026-03-08T10:00:00Z",
+      "lastCovered": "2026-03-08T10:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 5,
+      "arc": "breaking",
       "articles": [
-        "2026-03-07-ai-maps-moon-far-side-chemistry-first-time"
+        "2026-03-08-china-quantum-double-photon-device-breaks-efficiency-ceiling"
       ],
-      "summary": "First-ever chemical map of moon's far side using AI analysis of Chang'e samples."
+      "summary": "Chinese scientists created device producing photon pairs on demand with unprecedented purity and efficiency. Potential to make quantum networks practical."
     },
     {
-      "id": "pig-liver-xenotransplant",
-      "label": "Pig liver bridge to human transplant",
-      "firstSeen": "2026-03-07T10:00:00Z",
-      "lastCovered": "2026-03-07T10:00:00Z",
+      "id": "spacex-million-satellites",
+      "label": "SpaceX million-satellite proposal alarms scientists",
+      "firstSeen": "2026-03-08T10:00:00Z",
+      "lastCovered": "2026-03-08T10:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 5,
+      "arc": "breaking",
       "articles": [
-        "2026-03-07-pig-liver-xenotransplant-bridge-human"
+        "2026-03-08-spacex-million-satellites-atmosphere-night-sky-scientists-warn"
       ],
-      "summary": "First successful use of genetically modified pig liver as bridge to human transplant."
+      "summary": "SpaceX proposes launching 1 million satellites. Scientists warn of atmospheric metallic pollution from reentry and permanent loss of dark skies."
     },
     {
-      "id": "armed-robots-ukraine",
-      "label": "Armed ground robots in Ukraine combat",
-      "firstSeen": "2026-03-07T04:00:00Z",
-      "lastCovered": "2026-03-07T04:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-07-armed-robots-deployed-ukraine-battlefield"
-      ],
-      "summary": "Ukraine deploying armed unmanned ground vehicles — first sustained use."
-    },
-    {
-      "id": "anthropic-pentagon-confrontation",
-      "label": "Anthropic vs Pentagon over military AI",
-      "firstSeen": "2026-02-25T04:00:00Z",
-      "lastCovered": "2026-03-06T22:00:00Z",
-      "coverageCount": 4,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-02-25-pentagon-threatens-anthropic-with-cold-war-powers-over-military-ai",
-        "2026-03-02-openai-pentagon-deal-anthropic-pays-price",
-        "2026-03-06-anthropic-sues-pentagon-supply-chain-risk-designation",
-        "2026-03-06-pentagon-ai-surveillance-americans-legal-question"
-      ],
-      "summary": "Anthropic sued Pentagon over supply chain risk designation."
-    },
-    {
-      "id": "nigeria-boko-haram-ngoshe",
-      "label": "Boko Haram claims Ngoshe attack",
-      "firstSeen": "2026-03-06T16:00:00Z",
-      "lastCovered": "2026-03-06T16:00:00Z",
-      "coverageCount": 1,
-      "category": "conflict",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-06-boko-haram-claims-ngoshe-attack-hundreds-abducted-nigeria"
-      ],
-      "summary": "Boko Haram claimed Ngoshe attack, threatens more."
-    },
-    {
-      "id": "peanut-allergy-microbes",
-      "label": "Gut microbes prevent peanut allergy",
-      "firstSeen": "2026-03-07T10:00:00Z",
-      "lastCovered": "2026-03-07T10:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-07-peanut-microbes-prevent-allergic-shock"
-      ],
-      "summary": "Specific gut microbes break down peanut proteins and prevent anaphylaxis."
-    },
-    {
-      "id": "us-economy-job-loss-feb-2026",
-      "label": "US economy sheds 92,000 jobs",
-      "firstSeen": "2026-03-06T16:00:00Z",
-      "lastCovered": "2026-03-06T16:00:00Z",
+      "id": "samsung-strike-vote",
+      "label": "Samsung Electronics workers vote on strike",
+      "firstSeen": "2026-03-08T10:00:00Z",
+      "lastCovered": "2026-03-08T10:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 5,
+      "arc": "breaking",
       "articles": [
-        "2026-03-06-us-economy-sheds-92000-jobs-surprise-contraction"
+        "2026-03-08-samsung-workers-vote-strike-chip-maker-labor-reckoning"
       ],
-      "summary": "US lost 92,000 jobs in February."
-    },
-    {
-      "id": "venezuela-economic-collapse",
-      "label": "Venezuela inflation 475% in 2025",
-      "firstSeen": "2026-03-07T04:00:00Z",
-      "lastCovered": "2026-03-07T04:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-07-venezuela-inflation-475-percent-2025"
-      ],
-      "summary": "Venezuela ended 2025 with 475% inflation."
+      "summary": "Unionized Samsung Electronics workers voting on strike. Company supplies 40% of global DRAM/NAND. Strike would compound Hormuz-driven memory chip shortage."
     },
     {
       "id": "sudan-humanitarian-crisis",
-      "label": "Sudan: War spreading, hospitals hit",
+      "label": "Sudan: Drone strikes kill 33 in West Kordofan markets",
       "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-03-06T10:00:00Z",
-      "coverageCount": 11,
+      "lastCovered": "2026-03-08T10:00:00Z",
+      "coverageCount": 12,
       "category": "conflict",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
         "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
@@ -412,9 +327,10 @@
         "2026-02-23-chad-shuts-sudan-border-after-troops-killed-in-cross-border-incursion",
         "2026-02-25-un-security-council-condemns-rsf-attacks-in-sudan",
         "2026-03-03-sudan-rsf-drone-strike-el-obeid-blackout",
-        "2026-03-06-sudan-war-spreads-kordofan-hospitals-hit-supply-routes-cut"
+        "2026-03-06-sudan-war-spreads-kordofan-hospitals-hit-supply-routes-cut",
+        "2026-03-08-sudan-drone-strikes-kill-33-west-kordofan-markets"
       ],
-      "summary": "War spreading in Kordofan. 4+ cycles without coverage. Crisis worsening while world focuses on Iran."
+      "summary": "Drone strikes hit two markets in RSF-controlled West Kordofan towns, killing 33. War actively expanding in Kordofan. Drone warfare now used by both sides against civilian targets."
     },
     {
       "id": "gaza-aid-ban",
@@ -431,11 +347,11 @@
         "2026-03-04-gaza-aid-collapses-under-iran-war-cover",
         "2026-03-06-gaza-medical-supplies-exhausted-who-warns-crisis"
       ],
-      "summary": "WHO warns medical supplies exhausted. Rafah crossing closed. Being eclipsed by Iran war coverage."
+      "summary": "WHO warns medical supplies exhausted. Rafah crossing closed. Palestinians risking death to fish in Israeli-controlled waters. Being eclipsed by Iran war."
     },
     {
       "id": "ukraine-russia-war",
-      "label": "Ukraine-Russia: Global attention fully diverted",
+      "label": "Ukraine-Russia: Kharkiv apartment strikes kill 10+",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-03-07T04:00:00Z",
       "coverageCount": 12,
@@ -456,7 +372,52 @@
         "2026-03-03-russian-strikes-ukraine-3-year-peak-iran-war-diverts-attention",
         "2026-03-07-armed-robots-deployed-ukraine-battlefield"
       ],
-      "summary": "World attention fully diverted to Iran. New missile types killing civilians in Kharkiv."
+      "summary": "Russian strikes killed 10+ in Kharkiv apartment block. World attention fully diverted to Iran. Hungary blocking fuel deliveries."
+    },
+    {
+      "id": "glp1-drugs-addiction",
+      "label": "GLP-1 obesity drugs may treat addiction",
+      "firstSeen": "2026-03-07T22:00:00Z",
+      "lastCovered": "2026-03-07T22:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-03-07-obesity-drugs-addiction-glp1-huge-study"
+      ],
+      "summary": "Large study suggests GLP-1 drugs may treat addiction."
+    },
+    {
+      "id": "iran-war-sri-lanka-sailors",
+      "label": "Sri Lanka releases Iranian sailors rescued from torpedoed warship",
+      "firstSeen": "2026-03-07T10:00:00Z",
+      "lastCovered": "2026-03-07T10:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-07-sri-lanka-defies-us-iranian-sailors-sovereignty"
+      ],
+      "summary": "Sri Lanka discharged 22 Iranian sailors from hospital. Had defied US pressure not to repatriate."
+    },
+    {
+      "id": "anthropic-pentagon-confrontation",
+      "label": "Anthropic vs Pentagon over military AI",
+      "firstSeen": "2026-02-25T04:00:00Z",
+      "lastCovered": "2026-03-06T22:00:00Z",
+      "coverageCount": 4,
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-02-25-pentagon-threatens-anthropic-with-cold-war-powers-over-military-ai",
+        "2026-03-02-openai-pentagon-deal-anthropic-pays-price",
+        "2026-03-06-anthropic-sues-pentagon-supply-chain-risk-designation",
+        "2026-03-06-pentagon-ai-surveillance-americans-legal-question"
+      ],
+      "summary": "Anthropic sued Pentagon over supply chain risk designation."
     },
     {
       "id": "pakistan-afghanistan-border-conflict",
@@ -473,74 +434,18 @@
       "summary": "Pakistani and Afghan troops exchanging fire. 100,000 displaced."
     },
     {
-      "id": "compound-drought-heat-extremes",
-      "label": "Compound drought-heat extremes surging",
-      "firstSeen": "2026-03-06T22:00:00Z",
-      "lastCovered": "2026-03-06T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-06-compound-drought-heat-extremes-surging-worldwide"
-      ],
-      "summary": "Simultaneous heatwaves and droughts surging."
-    },
-    {
-      "id": "dart-asteroid-orbit",
-      "label": "DART impact changed asteroid orbit",
-      "firstSeen": "2026-03-07T04:00:00Z",
-      "lastCovered": "2026-03-07T04:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-07-dart-impact-changed-asteroid-orbit-around-sun"
-      ],
-      "summary": "DART impact changed Dimorphos's orbit around the sun."
-    },
-    {
-      "id": "global-warming-acceleration",
-      "label": "Global warming rate nearly doubled since 2015",
+      "id": "nigeria-boko-haram-ngoshe",
+      "label": "Boko Haram claims Ngoshe attack",
       "firstSeen": "2026-03-06T16:00:00Z",
       "lastCovered": "2026-03-06T16:00:00Z",
       "coverageCount": 1,
-      "category": "science",
+      "category": "conflict",
       "importance": 1,
       "arc": "fading",
       "articles": [
-        "2026-03-06-global-warming-rate-nearly-doubled-since-2015"
+        "2026-03-06-boko-haram-claims-ngoshe-attack-hundreds-abducted-nigeria"
       ],
-      "summary": "Warming rate nearly doubled since 2015."
-    },
-    {
-      "id": "peru-forced-sterilisation-reparations",
-      "label": "Peru forced sterilisation reparations",
-      "firstSeen": "2026-03-06T22:00:00Z",
-      "lastCovered": "2026-03-06T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-06-peru-forced-sterilisation-reparations-court-ruling"
-      ],
-      "summary": "Inter-American Court ordered Peru to pay reparations."
-    },
-    {
-      "id": "planet-labs-gulf-imagery-delay",
-      "label": "Planet Labs withholds Gulf satellite imagery",
-      "firstSeen": "2026-03-06T22:00:00Z",
-      "lastCovered": "2026-03-06T22:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-06-planet-labs-withholds-gulf-satellite-imagery-war"
-      ],
-      "summary": "96-hour delay on satellite imagery over Gulf states."
+      "summary": "Boko Haram claimed Ngoshe attack, threatens more."
     }
   ]
 }
