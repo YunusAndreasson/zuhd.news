@@ -16,16 +16,20 @@ flock -n 200 || { echo "Cycle already running — exiting"; exit 0; }
 export PATH="/root/.local/share/mise/installs/node/24.13.1/bin:/root/.local/bin:$PATH"
 export HOME="/root"
 
-# Models for Claude CLI invocations
+# Models — use aliases so CLI auto-resolves to latest version
 # Selector needs Opus for multi-constraint editorial judgment; other phases use Sonnet
-CLAUDE_MODEL="${ZUHD_MODEL:-claude-sonnet-4-6}"
-CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-claude-opus-4-6}"
+CLAUDE_MODEL="${ZUHD_MODEL:-sonnet}"
+CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-opus}"
 export ZUHD_MODEL="$CLAUDE_MODEL"
 
 # Tool whitelist for Claude CLI (--dangerously-skip-permissions is blocked as root)
-CLAUDE_TOOLS="Bash,Read,Write,Edit,Glob,Grep,WebFetch"
+# Stage-specific tool sets: narrower access = fewer wrong turns
+TOOLS_SELECTOR="Bash,Read,Write,Edit,Glob,Grep"
+TOOLS_WRITER="Read,Write,WebFetch"
+TOOLS_EDITOR="Read,Edit,Glob,Grep"
+TOOLS_REFLECT="Read,Write,Glob,Grep"
 # Common flags for all headless Claude CLI invocations
-CLAUDE_COMMON="--allowedTools $CLAUDE_TOOLS --no-session-persistence --max-turns 60 --model $CLAUDE_MODEL"
+CLAUDE_BASE="--no-session-persistence --model $CLAUDE_MODEL"
 
 mkdir -p "$LOG_DIR"
 
@@ -51,7 +55,7 @@ rm -f /tmp/zuhd-selection.json /tmp/zuhd-new-articles.txt
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 1: Selector ---" | tee -a "$LOG_FILE"
 SELECT_PROMPT=$(cat scripts/select-prompt.md)
-timeout 900 claude $CLAUDE_COMMON --model $CLAUDE_SELECTOR_MODEL -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+timeout 900 claude $CLAUDE_BASE --model $CLAUDE_SELECTOR_MODEL --fallback-model $CLAUDE_MODEL --allowedTools $TOOLS_SELECTOR --max-turns 30 -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 SELECT_EXIT=$?
 echo "Selector exit: $SELECT_EXIT" | tee -a "$LOG_FILE"
 
@@ -76,7 +80,7 @@ echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 2: Writer ---" | tee -a "$LOG_FILE"
 WRITE_PROMPT=$(cat scripts/write-prompt.md)
-timeout 1200 claude $CLAUDE_COMMON -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+timeout 1200 claude $CLAUDE_BASE --allowedTools $TOOLS_WRITER --max-turns 40 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 WRITE_EXIT=$?
 echo "Writer exit: $WRITE_EXIT" | tee -a "$LOG_FILE"
 
@@ -104,7 +108,7 @@ else
 
 IMPORTANT: Only check these specific files (this cycle's batch). Do NOT scan for other untracked files:
 $ARTICLE_LIST"
-  timeout 900 claude $CLAUDE_COMMON -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
+  timeout 900 claude $CLAUDE_BASE --effort medium --allowedTools $TOOLS_EDITOR --max-turns 25 -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT" | tee -a "$LOG_FILE"
 
@@ -208,7 +212,7 @@ if [ "$DAY_OF_WEEK" = "7" ] && [ "$HOUR_UTC" = "22" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 5: Weekly reflection ---" | tee -a "$LOG_FILE"
   REFLECT_PROMPT=$(cat scripts/reflect-prompt.md)
-  timeout 300 claude $CLAUDE_COMMON -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+  timeout 300 claude $CLAUDE_BASE --effort medium --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
   REFLECT_EXIT=$?
   echo "Reflection exit: $REFLECT_EXIT" | tee -a "$LOG_FILE"
   # Failure here doesn't affect publishing — the cycle is already complete

@@ -12,260 +12,60 @@ const SOURCES = [
     name: 'Al Jazeera',
     url: 'https://www.aljazeera.com/xml/rss/all.xml',
     format: 'rss2',
-    enabled: true,
     stripParams: ['traffic_source'],
   },
-  {
-    name: 'BBC World',
-    url: 'https://feeds.bbci.co.uk/news/world/rss.xml',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'BBC Business',
-    url: 'https://feeds.bbci.co.uk/news/business/rss.xml',
-    format: 'rss2',
-    defaultCategory: 'economy',
-    enabled: true,
-  },
-  {
-    name: 'France 24',
-    url: 'https://www.france24.com/en/rss',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Deutsche Welle',
-    url: 'https://rss.dw.com/rdf/rss-en-all',
-    format: 'rdf',
-    enabled: true,
-  },
+  { name: 'BBC World', url: 'https://feeds.bbci.co.uk/news/world/rss.xml', format: 'rss2' },
+  { name: 'BBC Business', url: 'https://feeds.bbci.co.uk/news/business/rss.xml', format: 'rss2', defaultCategory: 'economy' },
+  { name: 'France 24', url: 'https://www.france24.com/en/rss', format: 'rss2' },
+  { name: 'Deutsche Welle', url: 'https://rss.dw.com/rdf/rss-en-all', format: 'rdf' },
   {
     name: 'AllAfrica',
     url: 'https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf',
     format: 'rss2', // URL says .rdf but feed is actually RSS 2.0
-    enabled: true,
   },
-  {
-    name: 'Al Monitor',
-    url: 'https://www.al-monitor.com/rss',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Hacker News',
-    url: 'https://hnrss.org/frontpage?points=100',
-    format: 'rss2',
-    defaultCategory: 'tech',
-    enabled: true,
-  },
-  {
-    name: 'The Hindu',
-    url: 'https://www.thehindu.com/news/international/feeder/default.rss',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Yonhap',
-    url: 'https://en.yna.co.kr/RSS/news.xml',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Mada Masr',
-    url: 'https://www.madamasr.com/en/feed/',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Medyascope',
-    url: 'https://medyascope.tv/feed/',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'TSA',
-    url: 'https://www.tsa-algerie.com/feed/',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Nature',
-    url: 'https://www.nature.com/nature.rss',
-    format: 'rdf',
-    defaultCategory: 'science',
-    enabled: true,
-  },
-  {
-    name: 'Quanta Magazine',
-    url: 'https://api.quantamagazine.org/feed/',
-    format: 'rss2',
-    defaultCategory: 'science',
-    enabled: true,
-  },
-  {
-    name: 'CoinDesk',
-    url: 'https://www.coindesk.com/arc/outboundfeeds/rss/',
-    format: 'rss2',
-    defaultCategory: 'economy',
-    enabled: true,
-  },
-  {
-    name: 'Bellingcat',
-    url: 'https://www.bellingcat.com/feed/',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Haaretz',
-    url: 'https://www.haaretz.com/srv/haaretz-latest-headlines',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Moscow Times',
-    url: 'https://www.themoscowtimes.com/rss/news',
-    format: 'rss2',
-    enabled: true,
-  },
+  { name: 'Al Monitor', url: 'https://www.al-monitor.com/rss', format: 'rss2' },
+  { name: 'Hacker News', url: 'https://hnrss.org/frontpage?points=100', format: 'rss2', defaultCategory: 'tech' },
+  { name: 'The Hindu', url: 'https://www.thehindu.com/news/international/feeder/default.rss', format: 'rss2' },
+  { name: 'Yonhap', url: 'https://en.yna.co.kr/RSS/news.xml', format: 'rss2' },
+  { name: 'Mada Masr', url: 'https://www.madamasr.com/en/feed/', format: 'rss2' },
+  { name: 'Medyascope', url: 'https://medyascope.tv/feed/', format: 'rss2' },
+  { name: 'TSA', url: 'https://www.tsa-algerie.com/feed/', format: 'rss2' },
+  { name: 'Nature', url: 'https://www.nature.com/nature.rss', format: 'rdf', defaultCategory: 'science' },
+  { name: 'Quanta Magazine', url: 'https://api.quantamagazine.org/feed/', format: 'rss2', defaultCategory: 'science' },
+  { name: 'CoinDesk', url: 'https://www.coindesk.com/arc/outboundfeeds/rss/', format: 'rss2', defaultCategory: 'economy' },
+  { name: 'Bellingcat', url: 'https://www.bellingcat.com/feed/', format: 'rss2' },
+  { name: 'Haaretz', url: 'https://www.haaretz.com/srv/haaretz-latest-headlines', format: 'rss2' },
+  { name: 'Moscow Times', url: 'https://www.themoscowtimes.com/rss/news', format: 'rss2' },
   {
     name: 'Rest of World',
     url: 'https://restofworld.org/feed/',
     format: 'rss2',
     defaultCategory: 'tech',
-    enabled: true,
     stripParams: ['utm_source', 'utm_medium', 'utm_campaign'],
   },
-  {
-    name: 'MIT Technology Review',
-    url: 'https://www.technologyreview.com/feed/',
-    format: 'rss2',
-    defaultCategory: 'tech',
-    enabled: true,
-  },
-  {
-    name: '404 Media',
-    url: 'https://404media.co/rss/',
-    format: 'rss2',
-    defaultCategory: 'tech',
-    enabled: true,
-  },
-  {
-    name: 'Carbon Brief',
-    url: 'https://www.carbonbrief.org/feed/',
-    format: 'rss2',
-    defaultCategory: 'science',
-    enabled: true,
-  },
-  {
-    name: 'Malay Mail',
-    url: 'https://www.malaymail.com/feed/rss',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Antara News',
-    url: 'https://en.antaranews.com/rss/news',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Premium Times',
-    url: 'https://www.premiumtimesng.com/feed',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Dawn',
-    url: 'https://www.dawn.com/feeds/home',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Daily Star',
-    url: 'https://www.thedailystar.net/news/rss.xml',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'South China Morning Post',
-    url: 'https://www.scmp.com/rss/91/feed',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Middle East Eye',
-    url: 'https://www.middleeasteye.net/rss',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Sveriges Radio',
-    url: 'https://api.sr.se/api/rss/channel/83',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Daily Maverick',
-    url: 'https://www.dailymaverick.co.za/rss',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'The East African',
-    url: 'https://www.theeastafrican.co.ke/rss.xml',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Buenos Aires Times',
-    url: 'https://www.batimes.com.ar/feed',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'MercoPress',
-    url: 'https://en.mercopress.com/rss',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'CBC News',
-    url: 'https://www.cbc.ca/webfeed/rss/rss-world',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Politico',
-    url: 'https://rss.politico.com/politics-news.xml',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'Fox News',
-    url: 'https://moxie.foxnews.com/google-publisher/world.xml',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'ABC News Australia',
-    url: 'https://www.abc.net.au/news/feed/51120/rss.xml',
-    format: 'rss2',
-    enabled: true,
-  },
-  {
-    name: 'RNZ Pacific',
-    url: 'https://www.rnz.co.nz/rss/pacific.xml',
-    format: 'rss2',
-    enabled: true,
-  },
+  { name: 'MIT Technology Review', url: 'https://www.technologyreview.com/feed/', format: 'rss2', defaultCategory: 'tech' },
+  { name: '404 Media', url: 'https://404media.co/rss/', format: 'rss2', defaultCategory: 'tech' },
+  { name: 'Carbon Brief', url: 'https://www.carbonbrief.org/feed/', format: 'rss2', defaultCategory: 'science' },
+  { name: 'Malay Mail', url: 'https://www.malaymail.com/feed/rss', format: 'rss2' },
+  { name: 'Antara News', url: 'https://en.antaranews.com/rss/news', format: 'rss2' },
+  { name: 'Premium Times', url: 'https://www.premiumtimesng.com/feed', format: 'rss2' },
+  { name: 'Dawn', url: 'https://www.dawn.com/feeds/home', format: 'rss2' },
+  { name: 'Daily Star', url: 'https://www.thedailystar.net/news/rss.xml', format: 'rss2' },
+  { name: 'South China Morning Post', url: 'https://www.scmp.com/rss/91/feed', format: 'rss2' },
+  { name: 'Middle East Eye', url: 'https://www.middleeasteye.net/rss', format: 'rss2' },
+  { name: 'Sveriges Radio', url: 'https://api.sr.se/api/rss/channel/83', format: 'rss2' },
+  { name: 'Daily Maverick', url: 'https://www.dailymaverick.co.za/rss', format: 'rss2' },
+  { name: 'The East African', url: 'https://www.theeastafrican.co.ke/rss.xml', format: 'rss2' },
+  { name: 'Buenos Aires Times', url: 'https://www.batimes.com.ar/feed', format: 'rss2' },
+  { name: 'MercoPress', url: 'https://en.mercopress.com/rss', format: 'rss2' },
+  { name: 'CBC News', url: 'https://www.cbc.ca/webfeed/rss/rss-world', format: 'rss2' },
+  { name: 'Politico', url: 'https://rss.politico.com/politics-news.xml', format: 'rss2' },
+  { name: 'Fox News', url: 'https://moxie.foxnews.com/google-publisher/world.xml', format: 'rss2' },
+  { name: 'ABC News Australia', url: 'https://www.abc.net.au/news/feed/51120/rss.xml', format: 'rss2' },
+  { name: 'RNZ Pacific', url: 'https://www.rnz.co.nz/rss/pacific.xml', format: 'rss2' },
 ]
 
-// Categories we cover (global hard news + tech)
-const EXCLUDE_TERMS = [
-  'opinion', 'features', 'gallery', 'photos', 'video', 'sport',
-  'entertainment', 'culture', 'food', 'travel', 'lifestyle', 'podcast'
-]
+const EXCLUDE_RE = /\b(opinion|features|gallery|photos|video|sport|entertainment|culture|food|travel|lifestyle|podcast)\b/i
 
 // ── Helpers ───────────────────────────────────────────────────────────
 
@@ -481,22 +281,16 @@ function normalizeItem(raw, source) {
 }
 
 function isRelevant(item) {
-  const cat = (item.category || '').toLowerCase()
-  const title = (item.title || '').toLowerCase()
-  for (const e of EXCLUDE_TERMS) {
-    if (cat.includes(e) || title.includes(e)) return false
-  }
+  const text = (item.category || '') + ' ' + (item.title || '')
+  if (EXCLUDE_RE.test(text)) return false
   // Skip liveblog entries
-  if (title.startsWith('live:')) return false
+  if (/^live:/i.test(item.title || '')) return false
   return true
 }
 
 async function fetchSource(source) {
-  const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), 10000)
-
   try {
-    const res = await fetch(source.url, { signal: controller.signal })
+    const res = await fetch(source.url, { signal: AbortSignal.timeout(10000) })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const xml = await res.text()
 
@@ -520,23 +314,18 @@ async function fetchSource(source) {
   } catch (err) {
     console.error(`  ✗ ${source.name}: ${err.message}`)
     return []
-  } finally {
-    clearTimeout(timeout)
   }
 }
 
 async function fetchAllSources() {
-  const enabled = SOURCES.filter(s => s.enabled)
-  console.error(`Fetching from ${enabled.length} sources...`)
+  console.error(`Fetching from ${SOURCES.length} sources...`)
 
-  const results = await Promise.allSettled(enabled.map(fetchSource))
+  const results = await Promise.allSettled(SOURCES.map(fetchSource))
 
   // Flatten, preserving source priority order
-  const allStories = []
-  for (const result of results) {
-    if (result.status === 'fulfilled') allStories.push(...result.value)
-  }
-  return allStories
+  return results
+    .filter(r => r.status === 'fulfilled')
+    .flatMap(r => r.value)
 }
 
 // ── Main ──────────────────────────────────────────────────────────────
@@ -621,7 +410,7 @@ async function main() {
 
   const output = {
     fetchedAt: new Date().toISOString(),
-    sources: SOURCES.filter(s => s.enabled).map(s => s.name),
+    sources: SOURCES.map(s => s.name),
     totalItems: allStories.length,
     dedupedItems: deduped.length,
     freshItems: fresh.length,

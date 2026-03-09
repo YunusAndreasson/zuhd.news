@@ -6,30 +6,18 @@ import { readFileSync, writeFileSync, readdirSync, mkdirSync, unlinkSync, exists
 import { join, basename } from 'path'
 import { spawnSync } from 'child_process'
 import textToSpeech from '@google-cloud/text-to-speech'
+import { parseFrontmatter } from './lib/frontmatter.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const ARTICLES_DIR = join(ROOT, 'content', 'articles')
 const AUDIO_DIR = join(ROOT, 'content', 'audio')
 const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'briefing-prompt.md')
-const TMP_ARTICLES = '/tmp/zuhd-briefing-articles.json'
 
 // Voice config — easy to swap after testing
 const VOICE_NAME = 'en-US-Chirp3-HD-Charon'
 
 const today = new Date().toISOString().slice(0, 10)
-
-const parseFrontmatter = (content) => {
-  const match = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
-  if (!match) return { meta: {}, body: content }
-  const meta = {}
-  for (const line of match[1].split('\n')) {
-    const idx = line.indexOf(':')
-    if (idx === -1) continue
-    meta[line.slice(0, idx).trim()] = line.slice(idx + 1).trim().replace(/^["']|["']$/g, '')
-  }
-  return { meta, body: match[2].trim() }
-}
 
 // --- Stage 1: Collect articles from last 24h ---
 console.log('=== Stage 1: Collecting articles ===')
@@ -105,9 +93,7 @@ const minutesUntilNext = nextCycleMin > currentMinutes
 const hoursUntilNext = Math.round(minutesUntilNext / 60)
 
 // Makkah hour (UTC+3) for the briefing greeting
-const makkahOffset = 3 * 60 * 60 * 1000
-const makkahNow = new Date(Date.now() + makkahOffset)
-const makkahHour = parseInt(makkahNow.toISOString().slice(11, 13), 10)
+const makkahHour = Number(new Date().toLocaleString('en', { hour: 'numeric', hour12: false, timeZone: 'Asia/Riyadh' }))
 
 // Hijri date (Umm al-Qura calendar)
 const hijriDay = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { day: 'numeric' }).format(now)
@@ -117,7 +103,6 @@ const isFriday = now.getUTCDay() === 5
 
 const payload = { articles, hoursUntilNext, makkahHour, hijriDate: `${hijriDay} ${hijriMonth} ${hijriYear}`, isFriday }
 if (editorialContext) payload.editorialContext = editorialContext
-writeFileSync(TMP_ARTICLES, JSON.stringify(payload, null, 2))
 
 // --- Stage 2: Generate SSML via Claude CLI ---
 console.log('\n=== Stage 2: Generating SSML bulletin ===')
@@ -133,7 +118,8 @@ try {
   const env = { ...process.env }
   delete env.CLAUDECODE
   const result = spawnSync('claude', [
-    '--model', process.env.ZUHD_MODEL || 'claude-sonnet-4-6',
+    '--model', process.env.ZUHD_MODEL || 'sonnet',
+    '--effort', 'medium',
     '--no-session-persistence',
     '--max-turns', '1',
     '-p', prompt
