@@ -352,32 +352,43 @@ function similarity(fpA, fpB) {
 
 const SIMILARITY_THRESHOLD = 0.55
 
-// Map stories to zuhd's 5 categories using source defaultCategory + keyword heuristics
+// Map stories to zuhd's 5 categories using source defaults, RSS tags, and keyword heuristics
 // This is a rough classifier for feed balancing — the selector Claude does final assignment
 function zuhdCategory(item) {
   const cat = (item.category || '').toLowerCase()
   if (['science', 'tech', 'economy'].includes(cat)) return cat
 
-  // Source-based hints (sources with defaultCategory already set it in item.category)
-  const src = (item.source || '').toLowerCase()
+  // Use all RSS category tags for signal (Carbon Brief has 8, CoinDesk 5, etc.)
+  const tagText = (item.tags || []).join(' ').toLowerCase()
+
   const title = (item.title || '').toLowerCase()
   const desc = (item.description || '').toLowerCase()
-  const text = title + ' ' + desc
+  const text = title + ' ' + desc + ' ' + tagText
 
   // Science signals
-  if (/\b(study finds|researchers|breakthrough|clinical trial|species|fossil|genome|telescope|exoplanet|neutrino|quantum|crispr|vaccine|pandemic|epidemic)\b/.test(text)) return 'science'
+  if (/\b(study finds|researchers|breakthrough|clinical trial|species|fossil|genome|telescope|exoplanet|neutrino|quantum|crispr|vaccine|pandemic|epidemic|biodiversity|ecology|neuroscience|astrophysics)\b/.test(text)) return 'science'
 
   // Tech signals
-  if (/\b(ai model|artificial intelligence|machine learning|cybersecurity|data breach|hack|startup|app|platform|crypto|bitcoin|blockchain|open.?source|software|chip|semiconductor|surveillance)\b/.test(text)) return 'tech'
+  if (/\b(ai model|artificial intelligence|machine learning|cybersecurity|data breach|hack|startup|app|platform|crypto|bitcoin|blockchain|open.?source|software|chip|semiconductor|surveillance|algorithm|llm|chatbot|autonomous)\b/.test(text)) return 'tech'
 
   // Economy signals
-  if (/\b(gdp|inflation|interest rate|central bank|stock|market|trade deal|tariff|recession|unemployment|imf|world bank|oil price|energy price|debt|bond|fiscal)\b/.test(text)) return 'economy'
+  if (/\b(gdp|inflation|interest rate|central bank|stock|market|trade deal|tariff|recession|unemployment|imf|world bank|oil price|energy price|debt|bond|fiscal|austerity|subsid|remittance|currency)\b/.test(text)) return 'economy'
 
   // Conflict signals
-  if (/\b(killed|dead|troops|airstrike|missile|bomb|attack|war|ceasefire|displaced|refugees|humanitarian|famine|flood|earthquake|cyclone|casualt)\b/.test(text)) return 'conflict'
+  if (/\b(killed|dead|troops|airstrike|missile|bomb|attack|war|ceasefire|displaced|refugees|humanitarian|famine|flood|earthquake|cyclone|casualt|siege|shelling|militia|insurgent)\b/.test(text)) return 'conflict'
 
   // Default: politics (elections, diplomacy, governance are the most common general news)
   return 'politics'
+}
+
+// Combined fingerprint using title + description for cross-source dedup
+// "Oil surges past $110" (BBC) and "Crude prices hit record" (CoinDesk) have
+// different titles but similar descriptions — combining catches these
+function storyFingerprint(story) {
+  const titleFp = fingerprint(story.title)
+  const descFp = story.description ? fingerprint(story.description).slice(0, 8) : []
+  // Title keywords dominate; description adds signal without overwhelming
+  return [...new Set([...titleFp, ...descFp])]
 }
 
 function deduplicateStories(stories) {
@@ -387,7 +398,7 @@ function deduplicateStories(stories) {
   for (const story of stories) {
     // URL-based dedup: reject stories whose link matches a previously kept story
     if (story.link && seenUrls.has(story.link)) continue
-    const fp = fingerprint(story.title)
+    const fp = storyFingerprint(story)
     const isDupe = fingerprints.some(kfp => similarity(fp, kfp) >= SIMILARITY_THRESHOLD)
     if (!isDupe) {
       kept.push(story)
@@ -433,13 +444,27 @@ function normalizeItem(raw, source) {
   const pubDate = raw.pubDate || raw['dc:date'] || raw.date || ''
 
   let category = source.defaultCategory || ''
+  // Extract all category tags for richer classification
+  const allTags = []
   if (!category) {
-    const rawCat = Array.isArray(raw.category) ? raw.category[0] : (raw.category || '')
-    category = typeof rawCat === 'object' ? (rawCat['#text'] || '') : rawCat
+    const rawCats = Array.isArray(raw.category) ? raw.category : (raw.category ? [raw.category] : [])
+    for (const rc of rawCats) {
+      const tag = typeof rc === 'object' ? (rc['#text'] || '') : rc
+      if (tag) allTags.push(tag)
+    }
+    category = allTags[0] || ''
   }
+
+  // Extract content:encoded — full article HTML available in some feeds
+  // (Carbon Brief, MIT Tech Review, Bellingcat, 404 Media, Quanta, etc.)
+  const rawContent = extractText(raw['content:encoded'] || '')
+  const contentText = rawContent ? decodeEntities(stripHtml(rawContent)).trim() : ''
 
   // HN: extract comments URL
   const comments = raw.comments || ''
+
+  // Author from dc:creator or author field
+  const author = extractText(raw['dc:creator'] || raw.author || '').trim() || undefined
 
   return {
     title,
@@ -447,6 +472,9 @@ function normalizeItem(raw, source) {
     link,
     pubDate,
     category,
+    tags: allTags.length > 0 ? allTags : undefined,
+    contentText: contentText || undefined,
+    author,
     source: source.name,
     comments: comments || undefined,
   }
@@ -542,19 +570,36 @@ async function main() {
   const MIN_PER_CAT = 3
   const MAX_STORIES = 25
 
+  // Score stories by information density — descriptions with specific facts
+  // (numbers, names, places) signal hard news over vague summaries
+  function infoScore(item) {
+    const text = (item.title || '') + ' ' + (item.description || '')
+    let score = 0
+    // Specific numbers signal hard facts ("42 killed", "$110 billion", "3rd quarter")
+    score += (text.match(/\d[\d,.]*/g) || []).length * 2
+    // Quoted speech signals primary sources
+    if (/["'\u201C\u201D]/.test(text)) score += 1
+    // Proper nouns (capitalized words mid-sentence) signal named actors
+    score += (text.match(/(?<=\s)[A-Z][a-z]{2,}/g) || []).length * 0.5
+    // Has content:encoded = writer can skip HTTP fetch (reliability bonus)
+    if (item.contentText) score += 3
+    return score
+  }
+
+  // Pre-score and sort within each time bucket
+  const scored = fresh.map((item, i) => ({ item, i, score: infoScore(item) }))
+
   const selected = []
   const usedIdx = new Set()
 
-  // First pass: fill each category to its minimum
+  // First pass: fill each category to its minimum, picking highest-scored per category
   for (const cat of ZUHD_CATS) {
-    let count = 0
-    for (let i = 0; i < fresh.length && count < MIN_PER_CAT; i++) {
-      if (usedIdx.has(i)) continue
-      if (zuhdCategory(fresh[i]) === cat) {
-        selected.push(fresh[i])
-        usedIdx.add(i)
-        count++
-      }
+    const candidates = scored
+      .filter(s => !usedIdx.has(s.i) && zuhdCategory(s.item) === cat)
+      .sort((a, b) => b.score - a.score)
+    for (let j = 0; j < Math.min(MIN_PER_CAT, candidates.length); j++) {
+      selected.push(candidates[j].item)
+      usedIdx.add(candidates[j].i)
     }
   }
 
@@ -581,16 +626,24 @@ async function main() {
     dedupedItems: deduped.length,
     freshItems: fresh.length,
     existingArticles: [...existingSlugs],
-    stories: selected.map(item => ({
-      title: item.title,
-      description: item.description,
-      link: item.link,
-      pubDate: item.pubDate,
-      category: item.category,
-      source: item.source,
-      comments: item.comments,
-      suggestedSlug: slugify(item.title, item.pubDate || new Date().toISOString()),
-    })),
+    stories: selected.map(item => {
+      const story = {
+        title: item.title,
+        description: item.description,
+        link: item.link,
+        pubDate: item.pubDate,
+        category: item.category,
+        source: item.source,
+        suggestedSlug: slugify(item.title, item.pubDate || new Date().toISOString()),
+      }
+      // Pass through content:encoded text (truncated to 2000 chars) so the writer
+      // can use it directly instead of fetching the full article via HTTP
+      if (item.contentText) story.contentText = item.contentText.slice(0, 2000)
+      if (item.author) story.author = item.author
+      if (item.comments) story.comments = item.comments
+      if (item.tags && item.tags.length > 0) story.tags = item.tags
+      return story
+    }),
   }
 
   console.log(JSON.stringify(output, null, 2))

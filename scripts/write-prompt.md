@@ -13,7 +13,10 @@ A separate editor reviews your output, so focus on drafting — do not build or 
 <task>
 
 1. Read `/tmp/zuhd-selection.json` for today's selected stories (a selector has already chosen them)
-2. For each selected story, fetch the full article from the source URL (`link` field) for complete context
+2. For each selected story, get full context:
+   - If the story has a `contentText` field, use it — this is article text extracted from the RSS feed, no fetch needed
+   - Otherwise, fetch the full article from the source URL (`link` field)
+   - If the fetch fails (paywall, timeout, 403), use `description` + `contentText` as fallback — do not skip the story
 3. Use the `angle` field from the selection to guide your framing
 4. Write each story as a markdown article following the format and rules below
 5. Save each article to `content/articles/` using the `suggestedSlug` as the filename
