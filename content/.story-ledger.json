@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 14: Mojtaba consolidating, G7 intervening, strikes continue",
+      "label": "Iran war Day 14: NATO intercepts missile over Turkey, war threatens NATO territory",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-09T04:00:00Z",
-      "coverageCount": 36,
+      "lastCovered": "2026-03-09T16:00:00Z",
+      "coverageCount": 37,
       "category": "conflict",
       "importance": 9,
       "arc": "ongoing",
@@ -46,16 +46,17 @@
         "2026-03-08-iran-mojtaba-khamenei-supreme-leader-defying-trump",
         "2026-03-09-iran-drones-wound-32-bahrain-explosions-doha-gulf",
         "2026-03-09-oil-rain-tehran-refinery-strikes-civilian-toll",
-        "2026-03-09-israeli-forces-east-lebanon-hezbollah-war-expands"
+        "2026-03-09-israeli-forces-east-lebanon-hezbollah-war-expands",
+        "2026-03-09-iran-missile-enters-turkish-airspace-nato-intercepts"
       ],
-      "summary": "War entering Day 14. Mojtaba Khamenei named supreme leader — first hereditary succession in Islamic Republic history. US-Israeli strikes on Tehran refineries caused toxic 'oil rain.' Iran retaliating across the Gulf. Trump says deploying ground forces 'on the table.' Not directly covered this cycle but remains the dominant global story."
+      "summary": "War entering Day 14. Iranian ballistic missile entered Turkish airspace — second incident in a week — with NATO air defenses shooting it down. Fragments fell between US/NATO installations near Gaziantep. Erdogan warned Iran but language remains measured. Mojtaba Khamenei consolidating as supreme leader. Tehran shrouded in toxic cloud from refinery strikes. War now directly threatening NATO member territory."
     },
     {
       "id": "lebanon-hezbollah-israel",
-      "label": "Lebanon: HRW documents white phosphorus use, 400+ killed",
+      "label": "Lebanon: 700,000 displaced, elections postponed 2 years, democracy suspended",
       "firstSeen": "2026-03-02T16:00:00Z",
-      "lastCovered": "2026-03-09T10:00:00Z",
-      "coverageCount": 12,
+      "lastCovered": "2026-03-09T16:00:00Z",
+      "coverageCount": 13,
       "category": "conflict",
       "importance": 8,
       "arc": "developing",
@@ -71,16 +72,17 @@
         "2026-03-07-israel-raids-lebanese-village-dozens-killed-40-year",
         "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
         "2026-03-09-israeli-forces-east-lebanon-hezbollah-war-expands",
-        "2026-03-09-hrw-israel-white-phosphorus-lebanon-populated-areas"
+        "2026-03-09-hrw-israel-white-phosphorus-lebanon-populated-areas",
+        "2026-03-09-lebanon-delays-elections-two-years-war"
       ],
-      "summary": "Human Rights Watch verified images of Israel firing white phosphorus in populated southern Lebanon areas. 400+ killed, 83 children among dead, 500,000+ displaced. Israeli military reportedly planning month-long war. Being eclipsed by Iran coverage."
+      "summary": "Lebanon's parliament voted to postpone elections scheduled for May by two years, extending its own term. UNICEF reports 700,000 displaced. 400+ killed including 83 children. Israeli priest killed by shelling. Parliament using war as pretext to avoid electoral accountability — echoing prior delays in 2013 and 2018."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz crisis: G7 emergency meeting on oil reserves, markets crashing globally",
+      "label": "Hormuz crisis: Pakistan announces austerity, Global South energy emergency deepens",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-09T10:00:00Z",
-      "coverageCount": 31,
+      "lastCovered": "2026-03-09T16:00:00Z",
+      "coverageCount": 32,
       "category": "economy",
       "importance": 9,
       "arc": "ongoing",
@@ -115,9 +117,66 @@
         "2026-03-09-oil-surges-past-110-asian-markets-crash-hormuz-war",
         "2026-03-09-bangladesh-shuts-universities-energy-crisis-hormuz",
         "2026-03-09-colombia-senate-election-petro-historic-pact-uribe",
-        "2026-03-09-g7-emergency-oil-reserves-markets-crash"
+        "2026-03-09-g7-emergency-oil-reserves-markets-crash",
+        "2026-03-09-pakistan-austerity-plan-triple-crisis-iran-war"
       ],
-      "summary": "G7 called emergency meeting to discuss releasing strategic oil reserves. Brent crude past $110 (hit $114 intraday). Pakistan KSE-100 crashed 11,000 points. South Korea capping fuel prices for first time in 30 years. Bangladesh shut universities. Southeast Asia heatwave approaching with energy crisis. Global South bearing heaviest cost while G7 discusses reserves the Global South doesn't have."
+      "summary": "Pakistan PM Shehbaz announced national austerity plan. KSE-100 down 11,000 points, fuel up 21%, schools closing. G7 discussed strategic reserve release but no decision yet. Brent hit $119 before easing to $105. Bangladesh shut universities. Global South bearing heaviest cost — countries without strategic reserves have no buffer."
+    },
+    {
+      "id": "qatar-wartime-crackdown",
+      "label": "Qatar arrests 313 for sharing footage of war attacks",
+      "firstSeen": "2026-03-09T16:00:00Z",
+      "lastCovered": "2026-03-09T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-09-qatar-arrests-313-sharing-war-footage-crackdown"
+      ],
+      "summary": "Qatar arrested 313 people for sharing footage and 'misleading information' during Iranian attacks on Qatari infrastructure. Gulf states criminalizing war documentation under national security pretext. Pattern spreading across Gulf monarchies."
+    },
+    {
+      "id": "nigeria-boko-haram-resurgence",
+      "label": "Nigeria: Boko Haram overruns army bases, commanding officer killed",
+      "firstSeen": "2026-03-09T16:00:00Z",
+      "lastCovered": "2026-03-09T16:00:00Z",
+      "coverageCount": 1,
+      "category": "conflict",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-09-boko-haram-overruns-nigerian-army-base-commanding-officer-killed"
+      ],
+      "summary": "Boko Haram overran military camp in Borno State, killing commanding officer. Second base attacked same night. Follows Ngoshe attack with hundreds abducted. Nigeria's northeast conflict escalating under shadow of Iran war."
+    },
+    {
+      "id": "nuclear-pore-complexes",
+      "label": "Nuclear pore complexes: Disorder drives cell's most precise sorting machine",
+      "firstSeen": "2026-03-09T16:00:00Z",
+      "lastCovered": "2026-03-09T16:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-09-nuclear-pore-complexes-disorder-drives-cell-machinery"
+      ],
+      "summary": "Scientists produced highest-resolution view of nuclear pore complexes, revealing they work through organized disorder rather than precision. Overturns decades of assumptions about cellular transport. Implications for drug delivery, cancer, virology."
+    },
+    {
+      "id": "ai-psychosis",
+      "label": "AI psychosis: Mental health experts warn of new clinical phenomenon",
+      "firstSeen": "2026-03-09T16:00:00Z",
+      "lastCovered": "2026-03-09T16:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-09-ai-psychosis-mental-health-crisis-chatbots"
+      ],
+      "summary": "Mental health professionals treating patients with delusional or psychotic symptoms from prolonged AI interaction. Phenomenon didn't exist two years ago. No diagnostic framework or reporting mechanism from AI companies."
     },
     {
       "id": "west-bank-settler-violence",
@@ -126,7 +185,7 @@
       "lastCovered": "2026-03-08T22:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-08-west-bank-settler-attack-kills-palestinians-abu-falah"
@@ -140,7 +199,7 @@
       "lastCovered": "2026-03-08T22:00:00Z",
       "coverageCount": 1,
       "category": "conflict",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-08-south-sudan-army-forces-thousands-flee-akobo"
@@ -154,7 +213,7 @@
       "lastCovered": "2026-03-08T22:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-08-vietnam-first-binding-ai-law-southeast-asia"
@@ -168,13 +227,183 @@
       "lastCovered": "2026-03-09T10:00:00Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-07-nairobi-floods-kill-23-airport-shut-climate-rainfall",
         "2026-03-09-kenya-floods-42-killed-nairobi-climate-rainfall"
       ],
-      "summary": "Death toll nearly doubled from 23 to 42 across Kenya. 26 killed in Nairobi alone. Informal settlements in flood-prone river valleys hit hardest. East African rainy season intensifying, El Niño possible."
+      "summary": "Death toll nearly doubled from 23 to 42 across Kenya. Informal settlements in flood-prone river valleys hit hardest. East African rainy season intensifying."
+    },
+    {
+      "id": "sudan-humanitarian-crisis",
+      "label": "Sudan: War spreading, drone strikes on markets",
+      "firstSeen": "2026-02-15T00:00:00Z",
+      "lastCovered": "2026-03-08T10:00:00Z",
+      "coverageCount": 12,
+      "category": "conflict",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
+        "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
+        "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28",
+        "2026-02-17-sudan-drone-strikes-kill-sixty-across-darfur-and-kordofan",
+        "2026-02-19-un-declares-hallmarks-of-genocide-in-sudans-el-fasher",
+        "2026-02-21-rsf-drone-kills-three-aid-workers-in-sudan",
+        "2026-02-22-museveni-hosts-rsf-leader-dagalo-for-sudan-war-dialogue",
+        "2026-02-23-chad-shuts-sudan-border-after-troops-killed-in-cross-border-incursion",
+        "2026-02-25-un-security-council-condemns-rsf-attacks-in-sudan",
+        "2026-03-03-sudan-rsf-drone-strike-el-obeid-blackout",
+        "2026-03-06-sudan-war-spreads-kordofan-hospitals-hit-supply-routes-cut",
+        "2026-03-08-sudan-drone-strikes-kill-33-west-kordofan-markets"
+      ],
+      "summary": "Drone strikes hit markets in RSF-controlled West Kordofan, killing 33. War expanding in Kordofan. Not covered in multiple cycles. Coverage gap remains critical."
+    },
+    {
+      "id": "gaza-aid-ban",
+      "label": "Gaza: Siege tightens under Iran war cover",
+      "firstSeen": "2026-02-25T04:00:00Z",
+      "lastCovered": "2026-03-06T16:00:00Z",
+      "coverageCount": 4,
+      "category": "conflict",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-01-israel-seals-west-bank-gaza-crossings-under-iran-war-cover",
+        "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan",
+        "2026-03-04-gaza-aid-collapses-under-iran-war-cover",
+        "2026-03-06-gaza-medical-supplies-exhausted-who-warns-crisis"
+      ],
+      "summary": "WHO warns medical supplies exhausted. Rafah closed. Eclipsed by Iran war. Identified as most critical coverage gap but no strong dedicated feed item to support a standalone article."
+    },
+    {
+      "id": "ukraine-russia-war",
+      "label": "Ukraine: Russian strikes at 3-year peak, peace stalled",
+      "firstSeen": "2026-02-15T00:00:00Z",
+      "lastCovered": "2026-03-09T10:00:00Z",
+      "coverageCount": 13,
+      "category": "conflict",
+      "importance": 6,
+      "arc": "ongoing",
+      "articles": [
+        "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
+        "2026-02-16-ukraine-russia-geneva-talks-set-as-both-sides-escalate",
+        "2026-02-17-ukraine-recaptures-most-territory-in-two-years-ahead-of-geneva-talks",
+        "2026-02-17-russia-ukraine-hold-third-round-of-geneva-talks-as-strikes-continue",
+        "2026-02-21-ukraine-strikes-missile-plant-deep-inside-russia",
+        "2026-02-22-lviv-terror-attack-kills-policewoman-wounds-fifteen",
+        "2026-02-22-russia-strikes-kyiv-ahead-of-invasion-anniversary",
+        "2026-02-22-russia-massive-energy-barrage-before-ukraine-anniversary",
+        "2026-02-22-all-four-moscow-airports-closed-by-ukrainian-drones",
+        "2026-02-24-russian-soldiers-describe-execution-of-troops-who-refuse-orders",
+        "2026-03-03-russian-strikes-ukraine-3-year-peak-iran-war-diverts-attention",
+        "2026-03-07-armed-robots-deployed-ukraine-battlefield",
+        "2026-03-09-russia-strikes-kharkiv-apartment-ukraine-peace-stalls"
+      ],
+      "summary": "Covered last cycle: Kharkiv apartment block hit, 12 killed. Strikes at 3-year peak. Peace negotiations stalled. Ukraine's drone expertise now sought by 11 countries to counter Iranian drones."
+    },
+    {
+      "id": "pakistan-aurat-march-crackdown",
+      "label": "Pakistan detains Aurat March activists on International Women's Day",
+      "firstSeen": "2026-03-08T16:00:00Z",
+      "lastCovered": "2026-03-08T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-03-08-pakistan-aurat-march-activists-detained-womens-day"
+      ],
+      "summary": "25+ activists detained under Section 144 before International Women's Day march."
+    },
+    {
+      "id": "colombia-congressional-election",
+      "label": "Colombia election: Historic Pact and Democratic Center lead Senate",
+      "firstSeen": "2026-03-08T16:00:00Z",
+      "lastCovered": "2026-03-09T04:00:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-08-colombia-congressional-election-petro-midterm-test",
+        "2026-03-09-colombia-senate-election-petro-historic-pact-uribe"
+      ],
+      "summary": "Leftist bloc dominates Colombia's divided congress. Petro's Historic Pact and Uribe's Democratic Center leading — centrist parties squeezed."
+    },
+    {
+      "id": "hexagonal-diamond",
+      "label": "Bulk hexagonal diamond created — harder than regular diamond",
+      "firstSeen": "2026-03-09T04:00:00Z",
+      "lastCovered": "2026-03-09T04:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-09-hexagonal-diamond-harder-than-regular-diamond-created"
+      ],
+      "summary": "Scientists report creating bulk hexagonal diamond (lonsdaleite), theoretically 58% harder than cubic diamond."
+    },
+    {
+      "id": "gulf-desalination-vulnerability",
+      "label": "Gulf water crisis: Desalination plants targeted in Iran war",
+      "firstSeen": "2026-03-08T16:00:00Z",
+      "lastCovered": "2026-03-08T16:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-08-gulf-desalination-plants-iran-strikes-water-crisis"
+      ],
+      "summary": "Iranian drone struck Bahrain desalination facility. Gulf states get 90%+ of drinking water from coastal plants within missile range."
+    },
+    {
+      "id": "ai-in-warfare-iran",
+      "label": "AI in warfare: Fake satellite imagery, paid disinformation, autonomous strikes",
+      "firstSeen": "2026-03-07T04:00:00Z",
+      "lastCovered": "2026-03-09T10:00:00Z",
+      "coverageCount": 4,
+      "category": "tech",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-07-ai-guides-iran-strikes-capability-questioned",
+        "2026-03-08-openai-robotics-chief-quits-ai-war-surveillance-pentagon",
+        "2026-03-09-x-paid-unlabeled-ai-war-footage-disinformation",
+        "2026-03-09-fake-ai-satellite-imagery-iran-war-disinformation"
+      ],
+      "summary": "AI-generated fake satellite imagery of 'devastated US base in Qatar' circulated by Iranian media. Pattern: X paid for unlabeled AI footage, AI-guided strikes killed 168 children, OpenAI robotics chief resigned over Pentagon deal."
+    },
+    {
+      "id": "ozdemir-german-state-premier",
+      "label": "Cem Özdemir becomes Germany's first state premier with Turkish roots",
+      "firstSeen": "2026-03-09T10:00:00Z",
+      "lastCovered": "2026-03-09T10:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-09-ozdemir-first-turkish-german-state-premier-greens-win"
+      ],
+      "summary": "Greens won Baden-Württemberg. Özdemir becomes first person with Turkish roots to lead a German state. SPD facing existential crisis — Germany's oldest party."
+    },
+    {
+      "id": "hiv-monthly-injections",
+      "label": "Monthly HIV injections offer alternative to daily tablets",
+      "firstSeen": "2026-03-09T10:00:00Z",
+      "lastCovered": "2026-03-09T10:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-09-monthly-hiv-injections-alternative-daily-tablets"
+      ],
+      "summary": "Monthly cabotegravir injections work for both HIV prevention and treatment, removing the daily adherence barrier."
     },
     {
       "id": "iran-war-intelligence-futility",
@@ -202,38 +431,7 @@
       "articles": [
         "2026-03-07-guinea-junta-dissolves-40-parties-opposition-crushed"
       ],
-      "summary": "Military junta dissolved 40 political parties overnight."
-    },
-    {
-      "id": "ai-in-warfare-iran",
-      "label": "AI in warfare: Fake satellite imagery, paid disinformation, autonomous strikes",
-      "firstSeen": "2026-03-07T04:00:00Z",
-      "lastCovered": "2026-03-09T10:00:00Z",
-      "coverageCount": 4,
-      "category": "tech",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-03-07-ai-guides-iran-strikes-capability-questioned",
-        "2026-03-08-openai-robotics-chief-quits-ai-war-surveillance-pentagon",
-        "2026-03-09-x-paid-unlabeled-ai-war-footage-disinformation",
-        "2026-03-09-fake-ai-satellite-imagery-iran-war-disinformation"
-      ],
-      "summary": "AI-generated fake satellite imagery of a 'devastated US base in Qatar' circulated by Iranian media — required expert analysis to debunk. Builds on pattern: X paid creators for unlabeled AI war footage (last cycle), AI-guided strikes killed 168 children, OpenAI robotics chief resigned over Pentagon deal. Synthetic evidence in wartime is accelerating."
-    },
-    {
-      "id": "trump-africa-health-extraction",
-      "label": "Trump's Africa health strategy ties aid to mineral extraction",
-      "firstSeen": "2026-03-08T10:00:00Z",
-      "lastCovered": "2026-03-08T10:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-08-trump-africa-health-strategy-ties-aid-minerals-extraction"
-      ],
-      "summary": "US 'America First Global Health Strategy' bypasses NGOs, ties health funding to data access and critical minerals."
+      "summary": "Military junta dissolved 40 political parties overnight. Opposition leader now calling for 'direct resistance.'"
     },
     {
       "id": "china-quantum-photon-breakthrough",
@@ -262,171 +460,6 @@
         "2026-03-08-spacex-million-satellites-atmosphere-night-sky-scientists-warn"
       ],
       "summary": "SpaceX proposes 1 million satellites. Scientists warn of metallic pollution and loss of dark skies."
-    },
-    {
-      "id": "samsung-strike-vote",
-      "label": "Samsung Electronics workers vote on strike",
-      "firstSeen": "2026-03-08T10:00:00Z",
-      "lastCovered": "2026-03-08T10:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-08-samsung-workers-vote-strike-chip-maker-labor-reckoning"
-      ],
-      "summary": "Samsung workers voting on strike amid controversy. Company supplies 40% of global DRAM/NAND. Result still pending."
-    },
-    {
-      "id": "sudan-humanitarian-crisis",
-      "label": "Sudan: War spreading, drone strikes on markets",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-03-08T10:00:00Z",
-      "coverageCount": 12,
-      "category": "conflict",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
-        "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
-        "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28",
-        "2026-02-17-sudan-drone-strikes-kill-sixty-across-darfur-and-kordofan",
-        "2026-02-19-un-declares-hallmarks-of-genocide-in-sudans-el-fasher",
-        "2026-02-21-rsf-drone-kills-three-aid-workers-in-sudan",
-        "2026-02-22-museveni-hosts-rsf-leader-dagalo-for-sudan-war-dialogue",
-        "2026-02-23-chad-shuts-sudan-border-after-troops-killed-in-cross-border-incursion",
-        "2026-02-25-un-security-council-condemns-rsf-attacks-in-sudan",
-        "2026-03-03-sudan-rsf-drone-strike-el-obeid-blackout",
-        "2026-03-06-sudan-war-spreads-kordofan-hospitals-hit-supply-routes-cut",
-        "2026-03-08-sudan-drone-strikes-kill-33-west-kordofan-markets"
-      ],
-      "summary": "Drone strikes hit markets in RSF-controlled West Kordofan, killing 33. War expanding in Kordofan. Not covered recently. Coverage gap identified."
-    },
-    {
-      "id": "gaza-aid-ban",
-      "label": "Gaza: Siege tightens under Iran war cover",
-      "firstSeen": "2026-02-25T04:00:00Z",
-      "lastCovered": "2026-03-06T16:00:00Z",
-      "coverageCount": 4,
-      "category": "conflict",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-01-israel-seals-west-bank-gaza-crossings-under-iran-war-cover",
-        "2026-03-02-israel-shuts-al-aqsa-third-day-ramadan",
-        "2026-03-04-gaza-aid-collapses-under-iran-war-cover",
-        "2026-03-06-gaza-medical-supplies-exhausted-who-warns-crisis"
-      ],
-      "summary": "WHO warns medical supplies exhausted. Rafah closed. Eclipsed by Iran war. Identified as coverage gap needing dedicated story but no fresh feed item."
-    },
-    {
-      "id": "ukraine-russia-war",
-      "label": "Ukraine: Russian strikes at 3-year peak, Kharkiv apartment block hit",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-03-09T10:00:00Z",
-      "coverageCount": 13,
-      "category": "conflict",
-      "importance": 7,
-      "arc": "ongoing",
-      "articles": [
-        "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
-        "2026-02-16-ukraine-russia-geneva-talks-set-as-both-sides-escalate",
-        "2026-02-17-ukraine-recaptures-most-territory-in-two-years-ahead-of-geneva-talks",
-        "2026-02-17-russia-ukraine-hold-third-round-of-geneva-talks-as-strikes-continue",
-        "2026-02-21-ukraine-strikes-missile-plant-deep-inside-russia",
-        "2026-02-22-lviv-terror-attack-kills-policewoman-wounds-fifteen",
-        "2026-02-22-russia-strikes-kyiv-ahead-of-invasion-anniversary",
-        "2026-02-22-russia-massive-energy-barrage-before-ukraine-anniversary",
-        "2026-02-22-all-four-moscow-airports-closed-by-ukrainian-drones",
-        "2026-02-24-russian-soldiers-describe-execution-of-troops-who-refuse-orders",
-        "2026-03-03-russian-strikes-ukraine-3-year-peak-iran-war-diverts-attention",
-        "2026-03-07-armed-robots-deployed-ukraine-battlefield",
-        "2026-03-09-russia-strikes-kharkiv-apartment-ukraine-peace-stalls"
-      ],
-      "summary": "Russia launched 29 missiles and 480 drones, hitting a Kharkiv apartment block. At least 12 killed, children wounded. Strikes at 3-year peak while world attention fixed on Iran. Peace negotiations stalled. Covered this cycle after multi-cycle gap."
-    },
-    {
-      "id": "pakistan-aurat-march-crackdown",
-      "label": "Pakistan detains Aurat March activists on International Women's Day",
-      "firstSeen": "2026-03-08T16:00:00Z",
-      "lastCovered": "2026-03-08T16:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-08-pakistan-aurat-march-activists-detained-womens-day"
-      ],
-      "summary": "25+ activists detained under Section 144 before International Women's Day march."
-    },
-    {
-      "id": "colombia-congressional-election",
-      "label": "Colombia election: Historic Pact and Democratic Center lead Senate",
-      "firstSeen": "2026-03-08T16:00:00Z",
-      "lastCovered": "2026-03-09T04:00:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-08-colombia-congressional-election-petro-midterm-test",
-        "2026-03-09-colombia-senate-election-petro-historic-pact-uribe"
-      ],
-      "summary": "Leftist bloc dominates Colombia's divided congress. Petro's Historic Pact and Uribe's Democratic Center leading — centrist parties squeezed."
-    },
-    {
-      "id": "hexagonal-diamond",
-      "label": "Bulk hexagonal diamond created — harder than regular diamond",
-      "firstSeen": "2026-03-09T04:00:00Z",
-      "lastCovered": "2026-03-09T04:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-09-hexagonal-diamond-harder-than-regular-diamond-created"
-      ],
-      "summary": "Scientists report creating bulk hexagonal diamond (lonsdaleite), theoretically 58% harder than cubic diamond."
-    },
-    {
-      "id": "oslo-embassy-explosion",
-      "label": "Explosion at US embassy in Oslo, possible terrorism",
-      "firstSeen": "2026-03-08T22:00:00Z",
-      "lastCovered": "2026-03-08T22:00:00Z",
-      "coverageCount": 0,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [],
-      "summary": "Explosion at US embassy in Oslo. Norway police investigating possible terrorism. No injuries reported."
-    },
-    {
-      "id": "gulf-desalination-vulnerability",
-      "label": "Gulf water crisis: Desalination plants targeted in Iran war",
-      "firstSeen": "2026-03-08T16:00:00Z",
-      "lastCovered": "2026-03-08T16:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-08-gulf-desalination-plants-iran-strikes-water-crisis"
-      ],
-      "summary": "Iranian drone struck Bahrain desalination facility. Gulf states get 90%+ of drinking water from coastal plants within missile range."
-    },
-    {
-      "id": "ram-shortage-consumer-impact",
-      "label": "Apple removes Mac Studio as memory chip crisis hits consumers",
-      "firstSeen": "2026-03-08T16:00:00Z",
-      "lastCovered": "2026-03-08T16:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-08-apple-mac-studio-removed-ram-shortage-hormuz-samsung"
-      ],
-      "summary": "Apple silently removed 512GB Mac Studio from sale. Memory chip shortage from Hormuz disruption and Samsung production issues."
     },
     {
       "id": "nepal-post-protest-election",
@@ -481,32 +514,58 @@
       "summary": "Anthropic sued Pentagon over supply chain risk designation. Arc linked to AI-in-warfare story."
     },
     {
-      "id": "ozdemir-german-state-premier",
-      "label": "Cem Özdemir becomes Germany's first state premier with Turkish roots",
-      "firstSeen": "2026-03-09T10:00:00Z",
-      "lastCovered": "2026-03-09T10:00:00Z",
+      "id": "samsung-strike-vote",
+      "label": "Samsung Electronics workers vote on strike",
+      "firstSeen": "2026-03-08T10:00:00Z",
+      "lastCovered": "2026-03-08T10:00:00Z",
       "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
+      "category": "economy",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
-        "2026-03-09-ozdemir-first-turkish-german-state-premier-greens-win"
+        "2026-03-08-samsung-workers-vote-strike-chip-maker-labor-reckoning"
       ],
-      "summary": "Greens won Baden-Württemberg state election. Cem Özdemir becomes first person with Turkish roots to lead a German federal state. His father was a Gastarbeiter in a Stuttgart factory. Historic in an era of rising European nativism."
+      "summary": "Samsung workers voting on strike. Result still pending. If they strike, global memory chip shortage deepens."
     },
     {
-      "id": "hiv-monthly-injections",
-      "label": "Monthly HIV injections offer alternative to daily tablets",
-      "firstSeen": "2026-03-09T10:00:00Z",
-      "lastCovered": "2026-03-09T10:00:00Z",
+      "id": "oslo-embassy-explosion",
+      "label": "Oslo US embassy explosion: Police release suspect images",
+      "firstSeen": "2026-03-08T22:00:00Z",
+      "lastCovered": "2026-03-08T22:00:00Z",
+      "coverageCount": 0,
+      "category": "politics",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [],
+      "summary": "Explosion at US embassy in Oslo caused by improvised device. Police released images of suspect. Investigating possible terrorism."
+    },
+    {
+      "id": "ram-shortage-consumer-impact",
+      "label": "Apple removes Mac Studio as memory chip crisis hits consumers",
+      "firstSeen": "2026-03-08T16:00:00Z",
+      "lastCovered": "2026-03-08T16:00:00Z",
       "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
-        "2026-03-09-monthly-hiv-injections-alternative-daily-tablets"
+        "2026-03-08-apple-mac-studio-removed-ram-shortage-hormuz-samsung"
       ],
-      "summary": "Monthly cabotegravir injections work for both HIV prevention and treatment, removing the daily adherence barrier that has been the biggest challenge in HIV care for 20 years. Significant for sub-Saharan Africa's 25.6 million HIV-positive people."
+      "summary": "Apple silently removed 512GB Mac Studio from sale. Memory chip shortage from Hormuz disruption."
+    },
+    {
+      "id": "trump-africa-health-extraction",
+      "label": "Trump's Africa health strategy ties aid to mineral extraction",
+      "firstSeen": "2026-03-08T10:00:00Z",
+      "lastCovered": "2026-03-08T10:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-08-trump-africa-health-strategy-ties-aid-minerals-extraction"
+      ],
+      "summary": "US 'America First Global Health Strategy' bypasses NGOs, ties health funding to data access and critical minerals."
     }
   ]
 }
