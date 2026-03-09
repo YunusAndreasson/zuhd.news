@@ -352,6 +352,34 @@ function similarity(fpA, fpB) {
 
 const SIMILARITY_THRESHOLD = 0.55
 
+// Map stories to zuhd's 5 categories using source defaultCategory + keyword heuristics
+// This is a rough classifier for feed balancing — the selector Claude does final assignment
+function zuhdCategory(item) {
+  const cat = (item.category || '').toLowerCase()
+  if (['science', 'tech', 'economy'].includes(cat)) return cat
+
+  // Source-based hints (sources with defaultCategory already set it in item.category)
+  const src = (item.source || '').toLowerCase()
+  const title = (item.title || '').toLowerCase()
+  const desc = (item.description || '').toLowerCase()
+  const text = title + ' ' + desc
+
+  // Science signals
+  if (/\b(study finds|researchers|breakthrough|clinical trial|species|fossil|genome|telescope|exoplanet|neutrino|quantum|crispr|vaccine|pandemic|epidemic)\b/.test(text)) return 'science'
+
+  // Tech signals
+  if (/\b(ai model|artificial intelligence|machine learning|cybersecurity|data breach|hack|startup|app|platform|crypto|bitcoin|blockchain|open.?source|software|chip|semiconductor|surveillance)\b/.test(text)) return 'tech'
+
+  // Economy signals
+  if (/\b(gdp|inflation|interest rate|central bank|stock|market|trade deal|tariff|recession|unemployment|imf|world bank|oil price|energy price|debt|bond|fiscal)\b/.test(text)) return 'economy'
+
+  // Conflict signals
+  if (/\b(killed|dead|troops|airstrike|missile|bomb|attack|war|ceasefire|displaced|refugees|humanitarian|famine|flood|earthquake|cyclone|casualt)\b/.test(text)) return 'conflict'
+
+  // Default: politics (elections, diplomacy, governance are the most common general news)
+  return 'politics'
+}
+
 function deduplicateStories(stories) {
   const kept = []
   const fingerprints = []
@@ -508,6 +536,44 @@ async function main() {
 
   console.error(`Fresh stories: ${fresh.length}`)
 
+  // Category-aware selection: guarantee at least MIN_PER_CAT stories per zuhd category
+  // so the selector always has real choices, not just whatever is most recent
+  const ZUHD_CATS = ['politics', 'conflict', 'economy', 'science', 'tech']
+  const MIN_PER_CAT = 3
+  const MAX_STORIES = 25
+
+  const selected = []
+  const usedIdx = new Set()
+
+  // First pass: fill each category to its minimum
+  for (const cat of ZUHD_CATS) {
+    let count = 0
+    for (let i = 0; i < fresh.length && count < MIN_PER_CAT; i++) {
+      if (usedIdx.has(i)) continue
+      if (zuhdCategory(fresh[i]) === cat) {
+        selected.push(fresh[i])
+        usedIdx.add(i)
+        count++
+      }
+    }
+  }
+
+  // Second pass: fill remaining slots by recency (any category)
+  for (let i = 0; i < fresh.length && selected.length < MAX_STORIES; i++) {
+    if (!usedIdx.has(i)) {
+      selected.push(fresh[i])
+      usedIdx.add(i)
+    }
+  }
+
+  // Log category distribution
+  const catCounts = {}
+  for (const s of selected) {
+    const c = zuhdCategory(s)
+    catCounts[c] = (catCounts[c] || 0) + 1
+  }
+  console.error(`Selected ${selected.length} stories for selector: ${JSON.stringify(catCounts)}`)
+
   const output = {
     fetchedAt: new Date().toISOString(),
     sources: SOURCES.filter(s => s.enabled).map(s => s.name),
@@ -515,7 +581,7 @@ async function main() {
     dedupedItems: deduped.length,
     freshItems: fresh.length,
     existingArticles: [...existingSlugs],
-    stories: fresh.slice(0, 15).map(item => ({
+    stories: selected.map(item => ({
       title: item.title,
       description: item.description,
       link: item.link,
