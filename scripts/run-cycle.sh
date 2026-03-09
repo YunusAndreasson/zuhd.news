@@ -16,10 +16,16 @@ flock -n 200 || { echo "Cycle already running — exiting"; exit 0; }
 export PATH="/root/.local/share/mise/installs/node/24.13.1/bin:/root/.local/bin:$PATH"
 export HOME="/root"
 
+# Models for Claude CLI invocations
+# Selector needs Opus for multi-constraint editorial judgment; other phases use Sonnet
+CLAUDE_MODEL="${ZUHD_MODEL:-claude-sonnet-4-6}"
+CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-claude-opus-4-6}"
+export ZUHD_MODEL="$CLAUDE_MODEL"
+
 # Tool whitelist for Claude CLI (--dangerously-skip-permissions is blocked as root)
 CLAUDE_TOOLS="Bash,Read,Write,Edit,Glob,Grep,WebFetch"
 # Common flags for all headless Claude CLI invocations
-CLAUDE_COMMON="--allowedTools $CLAUDE_TOOLS --no-session-persistence --max-turns 60"
+CLAUDE_COMMON="--allowedTools $CLAUDE_TOOLS --no-session-persistence --max-turns 60 --model $CLAUDE_MODEL"
 
 mkdir -p "$LOG_DIR"
 
@@ -45,7 +51,7 @@ rm -f /tmp/zuhd-selection.json /tmp/zuhd-new-articles.txt
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 1: Selector ---" | tee -a "$LOG_FILE"
 SELECT_PROMPT=$(cat scripts/select-prompt.md)
-timeout 900 claude $CLAUDE_COMMON --model claude-opus-4-6 --fallback-model claude-sonnet-4-6 --effort high -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+timeout 900 claude $CLAUDE_COMMON --model $CLAUDE_SELECTOR_MODEL -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 SELECT_EXIT=$?
 echo "Selector exit: $SELECT_EXIT" | tee -a "$LOG_FILE"
 
@@ -70,7 +76,7 @@ echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 2: Writer ---" | tee -a "$LOG_FILE"
 WRITE_PROMPT=$(cat scripts/write-prompt.md)
-timeout 1200 claude $CLAUDE_COMMON --model claude-opus-4-6 --fallback-model claude-sonnet-4-6 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+timeout 1200 claude $CLAUDE_COMMON -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 WRITE_EXIT=$?
 echo "Writer exit: $WRITE_EXIT" | tee -a "$LOG_FILE"
 
@@ -98,7 +104,7 @@ else
 
 IMPORTANT: Only check these specific files (this cycle's batch). Do NOT scan for other untracked files:
 $ARTICLE_LIST"
-  timeout 900 claude $CLAUDE_COMMON --model sonnet -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
+  timeout 900 claude $CLAUDE_COMMON -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT" | tee -a "$LOG_FILE"
 
@@ -176,9 +182,9 @@ console.log('Wrote .last-cycle.json with ' + published.length + '/' + sel.length
   fi
 fi
 
-# Stage 4: Audio briefing — generate at 04:00 and 16:00 UTC only (morning/evening for GCC→India)
+# Stage 4: Audio briefing — generate at 04:00 UTC only (morning for GCC→India)
 HOUR_UTC=$(date -u +%H)
-if [ "$HOUR_UTC" = "04" ] || [ "$HOUR_UTC" = "16" ]; then
+if [ "$HOUR_UTC" = "04" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 4: Audio briefing ---" | tee -a "$LOG_FILE"
   timeout 900 node scripts/generate-briefing.js 2>&1 | tee -a "$LOG_FILE"
@@ -193,7 +199,7 @@ if [ "$HOUR_UTC" = "04" ] || [ "$HOUR_UTC" = "16" ]; then
   fi
 else
   echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 4: Audio briefing (skipped — $HOUR_UTC:00 UTC, runs at 04:00/16:00 only) ---" | tee -a "$LOG_FILE"
+  echo "--- Stage 4: Audio briefing (skipped — $HOUR_UTC:00 UTC, runs at 04:00 only) ---" | tee -a "$LOG_FILE"
 fi
 
 # Stage 5: Weekly reflection — runs Sunday 21:00 UTC only
@@ -202,7 +208,7 @@ if [ "$DAY_OF_WEEK" = "7" ] && [ "$HOUR_UTC" = "22" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 5: Weekly reflection ---" | tee -a "$LOG_FILE"
   REFLECT_PROMPT=$(cat scripts/reflect-prompt.md)
-  timeout 300 claude $CLAUDE_COMMON --model sonnet -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+  timeout 300 claude $CLAUDE_COMMON -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
   REFLECT_EXIT=$?
   echo "Reflection exit: $REFLECT_EXIT" | tee -a "$LOG_FILE"
   # Failure here doesn't affect publishing — the cycle is already complete

@@ -133,7 +133,7 @@ try {
   const env = { ...process.env }
   delete env.CLAUDECODE
   const result = spawnSync('claude', [
-    '--model', 'sonnet',
+    '--model', process.env.ZUHD_MODEL || 'claude-sonnet-4-6',
     '--no-session-persistence',
     '--max-turns', '1',
     '-p', prompt

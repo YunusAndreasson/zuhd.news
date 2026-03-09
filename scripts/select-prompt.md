@@ -38,6 +38,15 @@ Choose stories that matter — not stories that trend. But "matters" does not me
   - Science: 1–2 stories
   - Tech: 1–2 stories
 
+  Category definitions:
+  - **politics** — elections, legislation, diplomacy, governance, sanctions, political crises
+  - **conflict** — wars, armed violence, terrorism, natural disasters, humanitarian crises, displacement
+  - **economy** — markets, trade, labor, energy prices, development, poverty, financial policy
+  - **science** — research breakthroughs, studies, space, health/medicine, climate science findings
+  - **tech** — AI, platforms, cybersecurity, hardware, digital rights, surveillance, crypto
+
+  Natural disasters and their human toll go under "conflict" (humanitarian crisis), not "science."
+
   These minimums define the site's identity as a full-spectrum briefing, not a politics wire. If no blockbuster science/tech/economy story exists, pick the most interesting available — a mid-tier story is better than a missing category. Scan the full feed including Nature, Quanta, Carbon Brief, MIT Tech Review, 404 Media, Hacker News, and CoinDesk before concluding nothing qualifies.
 - **Interestingness is mandatory.** If a story is important but dull — a routine policy statement, a meeting with no outcome, a forecast with no surprise — skip it unless no better option exists. Prefer stories where the facts themselves are compelling: an unexpected finding, a dramatic escalation, a hidden connection revealed. The reader should learn something from every article.
 - Hard news and significant developments only: skip opinion, features, listicles, and liveblog entries (titles starting with "LIVE:"). For science and tech, research breakthroughs, major studies, and industry shifts all qualify — don't apply a narrow "breaking news" filter to these categories.

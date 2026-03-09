@@ -355,12 +355,16 @@ const SIMILARITY_THRESHOLD = 0.55
 function deduplicateStories(stories) {
   const kept = []
   const fingerprints = []
+  const seenUrls = new Set()
   for (const story of stories) {
+    // URL-based dedup: reject stories whose link matches a previously kept story
+    if (story.link && seenUrls.has(story.link)) continue
     const fp = fingerprint(story.title)
     const isDupe = fingerprints.some(kfp => similarity(fp, kfp) >= SIMILARITY_THRESHOLD)
     if (!isDupe) {
       kept.push(story)
       fingerprints.push(fp)
+      if (story.link) seenUrls.add(story.link)
     }
   }
   return kept
