@@ -80,7 +80,7 @@ echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 2: Writer ---" | tee -a "$LOG_FILE"
 WRITE_PROMPT=$(cat scripts/write-prompt.md)
-timeout 1200 claude $CLAUDE_BASE --allowedTools $TOOLS_WRITER --max-turns 40 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+timeout 1800 claude $CLAUDE_BASE --allowedTools $TOOLS_WRITER --max-turns 60 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 WRITE_EXIT=$?
 echo "Writer exit: $WRITE_EXIT" | tee -a "$LOG_FILE"
 
@@ -108,7 +108,7 @@ else
 
 IMPORTANT: Only check these specific files (this cycle's batch). Do NOT scan for other untracked files:
 $ARTICLE_LIST"
-  timeout 900 claude $CLAUDE_BASE --effort medium --allowedTools $TOOLS_EDITOR --max-turns 25 -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
+  timeout 900 claude $CLAUDE_BASE --effort medium --allowedTools $TOOLS_EDITOR --max-turns 40 -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT" | tee -a "$LOG_FILE"
 

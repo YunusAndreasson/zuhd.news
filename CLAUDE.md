@@ -54,7 +54,7 @@ Multi-source RSS → fetch-news.js → Claude CLI selector (select-prompt.md) �
 - Smart Brevity format: lead, why it matters, details, what's next, sources
 - No CMS, no database, no framework — just files and a 145-line SSG
 - English first, global hard news only
-- Categories: politics, conflict, economy, science, tech
+- Categories: politics, economy, science, tech
 - Direct Cloudflare upload (not git-connected) for headless operation
 - Pages production branch: `master` (custom domain `zuhd.news` only serves production deployments)
 

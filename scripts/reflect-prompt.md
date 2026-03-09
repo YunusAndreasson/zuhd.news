@@ -33,7 +33,7 @@ Write `content/.weekly-reflection.md` — a human-readable audit of the week's e
 
 ## Coverage Summary
 - Total articles: [count]
-- By category: politics [n], conflict [n], economy [n], science [n], tech [n]
+- By category: politics [n], economy [n], science [n], tech [n]
 - By region: [top 5 regions with counts]
 
 ## Top Stories This Week

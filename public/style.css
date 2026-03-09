@@ -1,69 +1,19 @@
 /* zuhd.news — Typography is the design. */
 
-/* --- Self-hosted Source Sans 3 --- */
+/* --- Self-hosted Source Sans 3 (variable, full OpenType features) --- */
 @font-face {
   font-family: 'Source Sans 3';
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/source-sans-3-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/source-sans-3-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-weight: 200 900;
+  font-display: optional;
+  src: url('/fonts/source-sans-3-var.woff2') format('woff2');
 }
 @font-face {
   font-family: 'Source Sans 3';
   font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/source-sans-3-latin-ext-italic.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Source Sans 3';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url('/fonts/source-sans-3-latin-italic.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/fonts/source-sans-3-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('/fonts/source-sans-3-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/source-sans-3-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Source Sans 3';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('/fonts/source-sans-3-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  font-weight: 200 900;
+  font-display: optional;
+  src: url('/fonts/source-sans-3-var-italic.woff2') format('woff2');
 }
 
 /* --- Reset --- */
@@ -124,7 +74,8 @@ body {
   padding-bottom: var(--space-md);
   font-optical-sizing: auto;
   font-kerning: normal;
-  font-variant-ligatures: common-ligatures;
+  font-variant-ligatures: common-ligatures contextual;
+  font-variant-numeric: oldstyle-nums proportional-nums;
   overscroll-behavior-y: contain;
   min-height: 100vh;
   display: flex;
@@ -137,11 +88,14 @@ h1 {
   line-height: var(--leading-heading);
   font-weight: 700;
   margin-bottom: var(--space-sm);
+  text-wrap: balance;
 }
 
 p { margin-bottom: var(--space-sm); }
 strong { font-weight: 700; }
 em { font-style: italic; }
+sup, sub { font-size: 0.75em; font-variant-position: super; }
+sub { font-variant-position: sub; }
 
 a {
   color: var(--text);
@@ -155,9 +109,12 @@ a {
 }
 
 /* --- Shared label pattern --- */
+/* Small caps with case-sensitive punctuation for labels */
 .page-title, .category, .category-tab, .about-body h2 {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-variant-caps: all-small-caps;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "case" 1;
+  letter-spacing: 0.05em;
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -175,10 +132,11 @@ header {
   font-weight: 700;
   text-decoration: none;
   letter-spacing: -0.02em;
+  font-variant-numeric: lining-nums;
 }
 
 .wordmark-tld {
-  font-weight: 400;
+  font-weight: 300;
   color: var(--text-secondary);
 }
 
@@ -215,6 +173,9 @@ footer {
   display: flex;
   gap: 1.5rem;
   margin-left: auto;
+  font-variant-caps: all-small-caps;
+  font-feature-settings: "case" 1;
+  letter-spacing: 0.05em;
 }
 
 /* --- Page Title --- */
@@ -272,6 +233,7 @@ footer {
     font-size: var(--size-h2);
     margin-top: var(--space-xs);
     margin-bottom: var(--space-xs);
+    text-wrap: balance;
 
     a { text-decoration: none; }
   }
@@ -279,6 +241,7 @@ footer {
   time {
     font-size: var(--size-sm);
     color: var(--text-secondary);
+    font-variant-numeric: lining-nums tabular-nums;
   }
 }
 
@@ -310,6 +273,10 @@ footer {
   top: 0;
   z-index: 1;
   background: var(--bg);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+
+  &.scrolled { border-bottom-color: var(--rule); }
 }
 
 .category-tab {
@@ -341,6 +308,7 @@ footer {
   gap: 0 0.5rem;
   content-visibility: auto;
   contain-intrinsic-size: auto 2.5rem;
+  position: relative;
 
   &:active > h2 {
     opacity: 0.5;
@@ -362,7 +330,7 @@ footer {
     font-size: var(--size-sm);
     line-height: var(--leading-heading);
     color: var(--text-secondary);
-    font-variant-numeric: tabular-nums;
+    font-variant-numeric: lining-nums tabular-nums;
     white-space: nowrap;
     flex-shrink: 0;
     order: -1;
@@ -385,12 +353,11 @@ footer {
   text-wrap: pretty;
   content-visibility: auto;
   contain-intrinsic-size: auto 500px;
-  font-variant-numeric: oldstyle-nums proportional-nums;
   font-variant-ligatures: common-ligatures contextual;
 
   .s {
     display: block;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.35em;
 
     &:last-child { margin-bottom: 0; }
   }
@@ -400,6 +367,9 @@ footer {
   font-size: var(--size-sm);
   color: var(--text-secondary);
   white-space: nowrap;
+  font-variant-caps: all-small-caps;
+  font-feature-settings: "case" 1;
+  letter-spacing: 0.05em;
 }
 
 /* --- Article Expand (mobile accordion) --- */
@@ -407,6 +377,7 @@ footer {
   padding-top: var(--space-xs);
   animation: expand-in 200ms ease;
   flex-basis: 100%;
+  will-change: opacity, transform;
 }
 
 @keyframes expand-in {
@@ -465,7 +436,16 @@ footer {
     }
 
     h2 { display: inline; }
-    &.selected h2 { text-decoration: none; font-weight: 600; }
+    &.selected h2 {
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 0.2em;
+    }
+  }
+
+  .article-body .s {
+    display: block;
+    margin-bottom: 0.3em;
   }
 
   .briefing-track { display: none; }
@@ -496,14 +476,14 @@ footer {
   .article-view {
     max-width: 65ch;
     margin-top: var(--space-md);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--rule);
 
     &[hidden] { display: block; }
   }
 
   body.show-key-hints {
     .headline-item {
-      position: relative;
-
       &:hover::after {
         content: '\2191\2193';
         font-size: var(--size-xs);
@@ -556,7 +536,7 @@ footer {
   font-size: var(--size-sm);
   color: var(--text);
   white-space: nowrap;
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .briefing-track {

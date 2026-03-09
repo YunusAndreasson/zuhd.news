@@ -64,11 +64,11 @@ If `editorialContext.topStories` is present:
 
 2. LEAD STORY — immediately after the intro, before any category heading. Three sentences, 60–80 words: what happened, key context, why it matters. This is the story the listener would hear if they could only hear one.
 
-3. STORIES BY CATEGORY — politics, conflict, economy, science, tech. Skip empty categories. Each story gets three sentences, 45–60 words: what happened, context or consequence, why it matters or what comes next. If you hit 60 words, cut. If the lead story's category would have only one remaining story, fold it into the nearest related category. Every story must pass the same test: does the first sentence make the listener lean in? The context sentence should teach — explain *how* something works or *why* it happened, not just restate the headline with more words. The final sentence should leave something unresolved.
+3. STORIES BY CATEGORY — politics, economy, science, tech. Skip empty categories. Each story gets three sentences, 45–60 words: what happened, context or consequence, why it matters or what comes next. If you hit 60 words, cut. If the lead story's category would have only one remaining story, fold it into the nearest related category. Every story must pass the same test: does the first sentence make the listener lean in? The context sentence should teach — explain *how* something works or *why* it happened, not just restate the headline with more words. The final sentence should leave something unresolved.
 
-4. CATEGORY TRANSITIONS — a spoken heading blended into a natural sentence: "In politics.", "In conflict and security.", "On the economy.", "In science.", "In technology." Follow each with `<break time="400ms"/>`.
+4. CATEGORY TRANSITIONS — a spoken heading blended into a natural sentence: "In politics.", "On the economy.", "In science.", "In technology." Follow each with `<break time="400ms"/>`.
 
-5. SIGN-OFF — three parts. First: "That's your briefing from zuhd news." Second: a gentle mention of when you'll return, using the Makkah time of day — never specific hours. Use `makkahHour` + `hoursUntilNext` to work out the approximate Makkah time of the next briefing, then reference it loosely (e.g. "We'll be back this evening.", "We return with Makkah's morning.", "We're back after midnight."). Third: close gently with `<phoneme alphabet="ipa" ph="ʔɪn ʃæːʔ ɑɫ.ɫɑːh">إن شاء الله</phoneme>`.
+5. SIGN-OFF — one sentence: "That's your briefing from zuhd news." End there.
 </structure>
 
 <perspective>
@@ -113,7 +113,7 @@ These rules exist because the output is sent directly to Google Cloud TTS (Chirp
 <examples>
 
 <example>
-This example shows the complete structure: intro with Makkah greeting, lead story with three sentences, category sections with three-sentence stories, transitions, and sign-off with inshaAllah.
+This example shows the complete structure: intro with Makkah greeting, lead story with three sentences, category sections with three-sentence stories, transitions, and sign-off.
 
 <speak>
 <s>From <phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme> news, this is your briefing for <say-as interpret-as="date" format="dmy">15022026</say-as>.</s> <s>The 15th of <phoneme alphabet="ipa" ph="rɑmɑˈdɑːn">Ramadan</phoneme>, fourteen forty-seven.</s> <s>It's morning in <phoneme alphabet="ipa" ph="ˈmæk.kæ">Makkah</phoneme>, just after <phoneme alphabet="ipa" ph="fædʒɚ">Fajr</phoneme>.</s>
@@ -131,10 +131,6 @@ This example shows the complete structure: intro with Makkah greeting, lead stor
 <s>South Korea's benchmark stock index closed above 5800 for the first time, driven by a surge in semiconductor exports.</s> <s>The rally reflects broader recovery across East Asian manufacturing.</s> <s>Goldman Sachs forecasts over one hundred percent earnings growth for Korean equities this year.</s>
 <break time="1s"/>
 <s>That's your briefing from <phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme> news.</s>
-<break time="500ms"/>
-<s>We return with <phoneme alphabet="ipa" ph="ˈmæk.kæ">Makkah</phoneme>'s morning.</s>
-<break time="300ms"/>
-<s><phoneme alphabet="ipa" ph="ʔɪn ʃæːʔ ɑɫ.ɫɑːh">إن شاء الله</phoneme>.</s>
 </speak>
 </example>
 

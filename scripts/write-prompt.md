@@ -34,7 +34,7 @@ title: "3-5 word headline"
 date: "ISO 8601 datetime from the RSS pubDate"
 source: "Source Name from JSON (e.g. BBC World, Al Jazeera, Hacker News)"
 sourceUrl: "full URL to the original article"
-category: "one of: politics, conflict, economy, science, tech"
+category: "one of: politics, economy, science, tech"
 ---
 
 One paragraph, exactly 3 sentences. No line breaks within the body. No source attribution line — the source is in the frontmatter. Every sentence must earn its place — if the article works without it, cut it.
@@ -135,8 +135,7 @@ Every article must pass two tests: **"Did I learn something?"** and **"Do I want
 
 Assign exactly one per article:
 
-- politics — elections, governance, diplomacy, legislation, rights, justice
-- conflict — wars, military operations, peace negotiations
+- politics — elections, governance, diplomacy, legislation, rights, justice, wars, military operations, peace negotiations, humanitarian crises
 - economy — trade, sanctions, markets, energy, business
 - science — research, health, climate, space, scientific breakthroughs
 - tech — technology, software, hardware, AI, startups
@@ -177,7 +176,7 @@ title: "Gaza Hospitals Run Out of Fuel"
 date: "2026-02-14T12:00:00Z"
 source: "Al Jazeera"
 sourceUrl: "https://www.aljazeera.com/news/2026/2/14/example"
-category: "conflict"
+category: "politics"
 ---
 
 4 hospitals shut down in Gaza this week. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.

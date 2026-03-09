@@ -152,7 +152,7 @@ function similarity(fpA, fpB) {
 
 const SIMILARITY_THRESHOLD = 0.55
 
-// Map stories to zuhd's 5 categories using source defaults, RSS tags, and keyword heuristics
+// Map stories to zuhd's 4 categories using source defaults, RSS tags, and keyword heuristics
 // This is a rough classifier for feed balancing — the selector Claude does final assignment
 function zuhdCategory(item) {
   const cat = (item.category || '').toLowerCase()
@@ -174,10 +174,10 @@ function zuhdCategory(item) {
   // Economy signals
   if (/\b(gdp|inflation|interest rate|central bank|stock|market|trade deal|tariff|recession|unemployment|imf|world bank|oil price|energy price|debt|bond|fiscal|austerity|subsid|remittance|currency)\b/.test(text)) return 'economy'
 
-  // Conflict signals
-  if (/\b(killed|dead|troops|airstrike|missile|bomb|attack|war|ceasefire|displaced|refugees|humanitarian|famine|flood|earthquake|cyclone|casualt|siege|shelling|militia|insurgent)\b/.test(text)) return 'conflict'
+  // Conflict/violence signals — also politics
+  if (/\b(killed|dead|troops|airstrike|missile|bomb|attack|war|ceasefire|displaced|refugees|humanitarian|famine|flood|earthquake|cyclone|casualt|siege|shelling|militia|insurgent)\b/.test(text)) return 'politics'
 
-  // Default: politics (elections, diplomacy, governance are the most common general news)
+  // Default: politics (elections, diplomacy, governance, conflict are the most common general news)
   return 'politics'
 }
 
@@ -355,9 +355,9 @@ async function main() {
 
   // Category-aware selection: guarantee at least MIN_PER_CAT stories per zuhd category
   // so the selector always has real choices, not just whatever is most recent
-  const ZUHD_CATS = ['politics', 'conflict', 'economy', 'science', 'tech']
-  const MIN_PER_CAT = 3
-  const MAX_STORIES = 25
+  const ZUHD_CATS = ['politics', 'economy', 'science', 'tech']
+  const MIN_PER_CAT = 5
+  const MAX_STORIES = 40
 
   // Score stories by information density — descriptions with specific facts
   // (numbers, names, places) signal hard news over vague summaries

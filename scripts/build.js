@@ -60,7 +60,7 @@ const splitSentences = (html) => {
     const spans = sentences.map(s => `<span class="s">${s}</span>`)
     // Attach source to last sentence
     spans[spans.length - 1] = `<span class="s">${sentences[sentences.length - 1]}${source}</span>`
-    return '<p>' + spans.join('') + '</p>'
+    return '<p>' + spans.join(' ') + '</p>'
   })
 }
 
@@ -98,7 +98,7 @@ const buildHomepage = (articles, homepageTemplate) => {
     })
   }
 
-  const preferredOrder = ['politics', 'conflict', 'economy', 'science', 'tech']
+  const preferredOrder = ['politics', 'economy', 'science', 'tech']
   const categoryOrder = [
     ...preferredOrder.filter(c => c in grouped),
     ...Object.keys(grouped).filter(c => !preferredOrder.includes(c))
@@ -152,6 +152,7 @@ const headCommon = `<meta charset="utf-8">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="zuhd.news">
+  <link rel="preload" href="/fonts/source-sans-3-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">

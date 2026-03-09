@@ -1,15 +1,15 @@
-No single outlet owns the truth. We read 40 sources in multiple languages so you don't have to — then we write what happened, concisely.
+No single outlet owns the truth. This site reads 40 sources in multiple languages, then distills what happened, concisely.
 
-A source earns its place here by being independent from those it covers, by checking its facts, and by seeing something the others miss. A government can fund a newsroom without controlling it. But when the state writes the story, that outlet is not listed here.
+A source earns its place by being editorially independent from those it covers, by checking its facts, and by seeing something the others miss. State funding does not disqualify a source — editorial interference does. Where government money is involved, it is noted below.
 
-Funding and ownership are disclosed below. You should know who pays for the journalism you read.
+Funding and ownership are disclosed for every source. You should know who pays for the journalism you read.
 
 ## Middle East
 - [Al Jazeera](https://www.aljazeera.com) · state-funded, Qatar
-- [Al Monitor](https://www.al-monitor.com) · independent, US
+- [Al Monitor](https://www.al-monitor.com) · independent, US-based
 - [Haaretz](https://www.haaretz.com) · independent, Israel
 - [Medyascope](https://medyascope.tv) · independent, Turkey
-- [Middle East Eye](https://www.middleeasteye.net) · independent, UK
+- [Middle East Eye](https://www.middleeasteye.net) · independent, UK-based
 
 ## Asia
 - [Antara News](https://en.antaranews.com) · state news agency, Indonesia
@@ -21,7 +21,7 @@ Funding and ownership are disclosed below. You should know who pays for the jour
 - [Yonhap](https://en.yna.co.kr) · news agency, South Korea
 
 ## Africa
-- [AllAfrica](https://allafrica.com) · nonprofit aggregator
+- [AllAfrica](https://allafrica.com) · nonprofit aggregator, US-based
 - [Daily Maverick](https://www.dailymaverick.co.za) · nonprofit, South Africa
 - [Mada Masr](https://www.madamasr.com) · independent, Egypt
 - [Premium Times](https://www.premiumtimesng.com) · nonprofit, Nigeria
@@ -31,7 +31,7 @@ Funding and ownership are disclosed below. You should know who pays for the jour
 ## Americas
 - [Buenos Aires Times](https://www.batimes.com.ar) · independent, Argentina
 - [CBC News](https://www.cbc.ca/news) · public broadcaster, Canada
-- [Fox News](https://www.foxnews.com) · corporate, US
+- [Fox News](https://www.foxnews.com) · corporate, US — included for US conservative perspective
 - [MercoPress](https://en.mercopress.com) · independent, Uruguay
 - [Politico](https://www.politico.com) · corporate, US
 
@@ -51,8 +51,8 @@ Funding and ownership are disclosed below. You should know who pays for the jour
 - [Bellingcat](https://www.bellingcat.com) · nonprofit, Netherlands
 - [Carbon Brief](https://www.carbonbrief.org) · nonprofit, UK
 - [CoinDesk](https://www.coindesk.com) · corporate, US
-- [Hacker News](https://news.ycombinator.com) · community, US
-- [MIT Technology Review](https://www.technologyreview.com) · university, US
+- [Hacker News](https://news.ycombinator.com) · community link aggregator, US
+- [MIT Technology Review](https://www.technologyreview.com) · university-owned, US
 - [Nature](https://www.nature.com) · corporate, UK
 - [Quanta Magazine](https://www.quantamagazine.org) · nonprofit, US
 - [Rest of World](https://restofworld.org) · nonprofit, US

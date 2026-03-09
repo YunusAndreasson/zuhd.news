@@ -340,6 +340,17 @@ function init(data) {
 
   setInterval(silentRefresh, REFRESH_INTERVAL);
 
+  // --- Sticky strip scroll indicator ---
+
+  const scrollObserver = new IntersectionObserver(
+    ([e]) => stripEl.classList.toggle('scrolled', !e.isIntersecting),
+    { threshold: 1 }
+  );
+  const sentinel = document.createElement('div');
+  sentinel.style.height = '1px';
+  stripEl.before(sentinel);
+  scrollObserver.observe(sentinel);
+
   // --- Init ---
 
   buildHeadlines();
