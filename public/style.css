@@ -449,6 +449,8 @@ footer {
 @media (min-width: 641px) {
   body {
     max-width: none;
+    height: 100dvh;
+    overflow: hidden;
     padding-inline: clamp(2rem, 5vw, 6rem);
   }
 
