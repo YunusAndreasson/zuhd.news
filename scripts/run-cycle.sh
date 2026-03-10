@@ -19,7 +19,8 @@ export HOME="/root"
 # Models — use aliases so CLI auto-resolves to latest version
 # Selector needs Opus for multi-constraint editorial judgment; other phases use Sonnet
 CLAUDE_MODEL="${ZUHD_MODEL:-sonnet}"
-CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-opus}"
+CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-sonnet}"
+# Note: opus was default but hangs as of 2026-03-10. Switch back when stable.
 export ZUHD_MODEL="$CLAUDE_MODEL"
 
 # Tool whitelist for Claude CLI (--dangerously-skip-permissions is blocked as root)
@@ -55,7 +56,9 @@ rm -f /tmp/zuhd-selection.json /tmp/zuhd-new-articles.txt
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 1: Selector ---" | tee -a "$LOG_FILE"
 SELECT_PROMPT=$(cat scripts/select-prompt.md)
-timeout 900 claude $CLAUDE_BASE --model $CLAUDE_SELECTOR_MODEL --fallback-model $CLAUDE_MODEL --allowedTools $TOOLS_SELECTOR --max-turns 30 -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+FALLBACK_FLAG=""
+[ "$CLAUDE_SELECTOR_MODEL" != "$CLAUDE_MODEL" ] && FALLBACK_FLAG="--fallback-model $CLAUDE_MODEL"
+timeout 1200 claude $CLAUDE_BASE --model $CLAUDE_SELECTOR_MODEL $FALLBACK_FLAG --allowedTools $TOOLS_SELECTOR --max-turns 50 -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 SELECT_EXIT=$?
 echo "Selector exit: $SELECT_EXIT" | tee -a "$LOG_FILE"
 
