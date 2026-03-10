@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war: Day 15 — Hegseth escalates while Trump says 'over soon'",
+      "label": "Iran war Day 15: Mojtaba as Supreme Leader, US troops deployment signal, Hormuz mining",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-10T16:00:00Z",
-      "coverageCount": 41,
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 46,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -51,18 +51,149 @@
         "2026-03-09-trump-says-iran-war-almost-over",
         "2026-03-09-us-israel-double-tap-desalination-war-crimes",
         "2026-03-09-us-israel-diverge-iran-war-goals",
-        "2026-03-10-hegseth-most-intense-strikes-iran-day-15"
+        "2026-03-10-hegseth-most-intense-strikes-iran-day-15",
+        "2026-03-10-mojtaba-khamenei-supreme-leader-oil-spike",
+        "2026-03-10-us-soldiers-wounded-iran-war-140-pentagon",
+        "2026-03-10-trump-us-troops-deployment-iran-senator-warning",
+        "2026-03-10-iran-hormuz-mining-intelligence-us-warning",
+        "2026-03-10-iran-war-biblical-prophecy-military-orders"
       ],
-      "summary": "Day 15. Hegseth announced 'most intense day yet' of US strikes while Trump simultaneously declared war 'pretty much over' — a public fracture between White House and Pentagon. Iran vows to 'fight as long as needed.' Iranian missiles analysis (MEE/Soylu) suggests deliberate mapping of NATO Kürecik radar coverage, raising Article 5 stakes. Mojtaba Khamenei consolidating as Supreme Leader. 1,300+ killed, 100,000+ displaced."
+      "summary": "Day 15. Mojtaba Khamenei confirmed as Supreme Leader — hardliner, forecloses near-term negotiated exit. US senator says Trump is on path to ground troops deployment (post-classified briefing). 140 US service members wounded, 8 critical. Intelligence detected Iranian Hormuz mining preparations; 10 mine-laying vessels reportedly destroyed. Military briefings framing the war as biblical prophecy under Congressional investigation. Trump verbal de-escalation contradicted by all military signals."
+    },
+    {
+      "id": "trump-kharg-island-seizure",
+      "label": "Trump reportedly plans to seize Iran's Kharg Island oil terminal",
+      "firstSeen": "2026-03-10T21:38:00Z",
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 9,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-10-trump-kharg-island-seizure-iran"
+      ],
+      "summary": "Trump reportedly reviving his 1986 Kharg Island seizure plan as a way to defund Iran's war effort. Kharg handles ~90% of Iran's oil exports. No State Dept or NSC confirmation yet. If operationalized, would constitute seizure of sovereign territory and collapse of global oil markets."
+    },
+    {
+      "id": "iran-war-biblical-prophecy",
+      "label": "US commanders told troops Trump 'anointed by Jesus'; Democrats demand investigation",
+      "firstSeen": "2026-03-10T21:38:00Z",
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 8,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-10-iran-war-biblical-prophecy-military-orders"
+      ],
+      "summary": "US military commanders reportedly told troops the Iran war fulfilled biblical prophecy and Trump was anointed by Jesus. Democrats demanding formal investigation. First Amendment and chain-of-command crisis. Investigation scope and who gave the briefings unknown."
+    },
+    {
+      "id": "iran-hormuz-mining",
+      "label": "Iran preparing to mine Strait of Hormuz; US intelligence detects, warns",
+      "firstSeen": "2026-03-10T21:38:00Z",
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 9,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-10-iran-hormuz-mining-intelligence-us-warning"
+      ],
+      "summary": "US detected Iranian preparations for Hormuz mining via satellite and signals intelligence. Trump destroyed 10 mine-laying vessels and issued public warning. Mining Hormuz would shut 20% of global oil trade. Public disclosure is a deterrence tactic; unclear if it has worked."
+    },
+    {
+      "id": "north-korea-missile-test",
+      "label": "North Korea sea-launches cruise missile from destroyer under Iran war cover",
+      "firstSeen": "2026-03-10T21:38:00Z",
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-10-north-korea-cruise-missile-destroyer-test"
+      ],
+      "summary": "North Korea tested a strategic cruise missile from destroyer Choe Hyon — first documented sea-launched strategic missile test from surface vessel. Extends NK strike range and concealment options. Tested while world attention is on Iran war; zero US diplomatic bandwidth to respond."
+    },
+    {
+      "id": "boeing-israel-arms-deal",
+      "label": "Boeing $289M contract: 5,000 smart bombs for Israel during active war",
+      "firstSeen": "2026-03-10T21:38:00Z",
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-10-boeing-289-million-israel-5000-smart-bombs"
+      ],
+      "summary": "Boeing signed $289M contract for 5,000 air-launched smart bombs to Israel during active bombardment of Iran and Lebanon. Second major arms deal in four days ($151M bypassed Congress on March 7). Smart bombs of the same category killed 168 children in the school strike earlier this cycle."
+    },
+    {
+      "id": "amazon-ai-code-oversight",
+      "label": "Amazon mandates human sign-off on AI-assisted code after infrastructure outages",
+      "firstSeen": "2026-03-10T21:38:00Z",
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-10-amazon-ai-code-human-oversight-outages"
+      ],
+      "summary": "Amazon requiring senior engineers to sign off on all AI-assisted code changes after cloud outages affected AWS infrastructure. First documented major institutional rollback of AI autonomy in critical infrastructure at scale. Will ripple through industry."
+    },
+    {
+      "id": "mauerberger-thailand-cybercrime",
+      "label": "South African at centre of Thailand state capture, Chinese-rooted scam networks",
+      "firstSeen": "2026-03-10T21:38:00Z",
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-10-mauerberger-south-africa-thailand-cybercrime-state-capture"
+      ],
+      "summary": "South African national Benjamin Mauerberger accused of infiltrating Thai government circles, money laundering, human trafficking, and Chinese-rooted organised crime. Thailand arrest warrant issued. Connects South African capital to Chinese cybercrime-adjacent networks operating across Southeast Asia."
+    },
+    {
+      "id": "nigeria-trade-surplus-oil",
+      "label": "Nigeria Q4 2025: Trade surplus despite falling crude exports",
+      "firstSeen": "2026-03-10T21:38:00Z",
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-10-nigeria-trade-surplus-crude-exports-fall-q4"
+      ],
+      "summary": "Nigeria posted ₦1.71 trillion trade surplus in Q4 2025 while crude oil exports fell. Non-oil export composition driving surplus. Africa's largest economy navigating Iran war supply disruption while maintaining positive trade balance."
+    },
+    {
+      "id": "solar-system-crystal-origins",
+      "label": "Quanta: Pre-solar crystals in meteorites could settle solar system origin debate",
+      "firstSeen": "2026-03-10T21:38:00Z",
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-10-crystals-older-than-sun-solar-system-origin"
+      ],
+      "summary": "Microscopic crystals in meteorites predate the Sun — formed in pre-solar nebula. Isotopic ratios could settle debate about conditions at the birth of our solar system. Quanta Magazine feature."
     },
     {
       "id": "lebanon-hezbollah-israel",
-      "label": "Lebanon: France brings offensive to UN Security Council",
+      "label": "Lebanon: UN Security Council emergency meeting — French resolution vs US veto",
       "firstSeen": "2026-03-02T16:00:00Z",
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 14,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-03-02-lebanon-bans-hezbollah-military-activities",
@@ -80,14 +211,14 @@
         "2026-03-09-lebanon-delays-elections-two-years-war",
         "2026-03-10-france-unsc-emergency-lebanon-offensive"
       ],
-      "summary": "France requested emergency UN Security Council meeting — first formal multilateral diplomatic intervention. 700,000 displaced, 400+ killed including 83 children. White phosphorus documented. Elections postponed two years. Diplomatic escalation matches military escalation; US veto threat looms."
+      "summary": "France requested emergency UNSC meeting — first formal multilateral intervention. 700,000 displaced, 400+ killed including 83 children. White phosphorus documented by HRW. Elections postponed two years. UNSC meeting outcome unknown — US veto remains likely. Not covered this cycle."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz crisis: Egypt fuel jumps, Russia wins, Pakistan probes war profiteers",
+      "label": "Hormuz crisis: Oil $119 peak, airlines surcharging, Hormuz mining preparations",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-10T16:00:00Z",
-      "coverageCount": 41,
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 44,
       "category": "economy",
       "importance": 9,
       "arc": "ongoing",
@@ -131,19 +262,22 @@
         "2026-03-10-russia-iran-war-energy-winner-oil-prices",
         "2026-03-10-pakistan-senate-fuel-price-beneficiaries-probe",
         "2026-03-10-bitcoin-71000-oil-fears-ease-iran-war-sentiment",
-        "2026-03-10-pakistan-5g-spectrum-507-million-austerity-war",
-        "2026-03-10-algeria-helium-iran-war-science-supply-crisis"
+        "2026-03-10-algeria-helium-iran-war-science-supply-crisis",
+        "2026-03-10-mojtaba-khamenei-supreme-leader-oil-spike",
+        "2026-03-10-oil-sinks-trump-de-escalation-iran-market",
+        "2026-03-10-airlines-fuel-surcharges-middle-east-war",
+        "2026-03-10-nigeria-trade-surplus-crude-exports-fall-q4"
       ],
-      "summary": "Egypt 105M people hit by fuel price jumps. Russia emerges as major economic war winner — oil revenue up, Western pressure paused. Pakistan Senate probing war profiteers while citizens on 4-day week. Bitcoin $71K as Trump signals de-escalation. Algeria emerging as helium alternative to Iran supply disruption."
+      "summary": "Oil peaked at $119 then fell 7% on Trump de-escalation signal — but mining preparations near Hormuz detected. Airlines surcharging across Asia and Europe. G7 holding off reserve release. Nigeria posting trade surplus despite falling crude exports. Economic pain distributed unevenly: Russia winning, Egypt/Pakistan/Bangladesh absorbing shocks."
     },
     {
       "id": "ukraine-russia-war",
-      "label": "Ukraine: Peace diplomacy shifts to Turkey for trilateral talks",
+      "label": "Ukraine: Turkey trilateral — Erdogan position and Russia leverage",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 14,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "ongoing",
       "articles": [
         "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
@@ -161,321 +295,105 @@
         "2026-03-09-russia-strikes-kharkiv-apartment-ukraine-peace-stalls",
         "2026-03-10-ukraine-turkey-trilateral-peace-zelenskiy"
       ],
-      "summary": "Peace diplomacy shifts from Geneva to Turkey. Zelenskiy confirms trilateral format (Ukraine-Russia-US) with Erdoğan as host. US attention consumed by Iran war gives Erdoğan leverage to shape agenda. Frontline grinding continues."
+      "summary": "Turkey confirmed as trilateral host. Zelenskiy agreed. Russia's response unknown. Iran war gives Russia leverage to frame peace terms. Frontline grinding continues. Not covered this cycle — decayed from 5."
     },
     {
       "id": "iran-missiles-nato-kurecik",
-      "label": "Iranian missiles mapping NATO's Kürecik early-warning radar",
+      "label": "Iranian missiles mapping NATO's Kürecik radar — Article 5 stakes",
       "firstSeen": "2026-03-10T12:45:59Z",
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "breaking",
       "articles": [
         "2026-03-10-iran-missiles-nato-kurecik-radar-turkey"
       ],
-      "summary": "MEE/Soylu analysis: Iranian missiles may be deliberately mapping coverage gaps in Kürecik NATO radar. NATO rushed advanced Patriots to guard Kürecik. If struck, NATO loses 15-minute ballistic missile warning for Europe and Israel. Article 5 implications if Turkey base is targeted."
+      "summary": "MEE/Soylu analysis: Iranian missiles deliberately mapping Kürecik NATO radar gaps. NATO rushed Patriots to defend base. If struck, Europe and Israel lose 15-minute ballistic missile warning. Not covered this cycle — decayed from 8."
     },
     {
       "id": "russia-iran-war-winner",
-      "label": "Russia as major economic winner of Middle East war",
+      "label": "Russia as economic war winner: oil revenues, Western pressure paused",
       "firstSeen": "2026-03-10T15:57:14Z",
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-10-russia-iran-war-energy-winner-oil-prices"
       ],
-      "summary": "Russia collecting economic dividends from Iran war: oil above $100, buyers rerouting from Gulf to Russian exports, Western pressure paused. War in Gulf is structurally a subsidy to Russian state revenue."
+      "summary": "Russia collecting oil revenue windfall from Iran war. Buyers rerouting from Gulf to Russian exports. Western pressure paused. Not covered this cycle — decayed from 7."
     },
     {
       "id": "egypt-hormuz-fuel-crisis",
-      "label": "Egypt: 105M people absorbing Iran war fuel shockwave",
+      "label": "Egypt: 105M people absorbing Iran war fuel shockwave under IMF austerity",
       "firstSeen": "2026-03-10T16:00:32Z",
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-10-egypt-iran-war-fuel-prices-shockwave"
       ],
-      "summary": "Egypt, already under IMF austerity, facing fuel price jumps from Hormuz crisis. 105M people with no mechanism to absorb war costs. Cooking gas, transport, bread subsidies all under pressure."
-    },
-    {
-      "id": "uk-muslims-media-bias",
-      "label": "Landmark study: 50% of UK news coverage of Muslims is biased",
-      "firstSeen": "2026-03-10T14:03:49Z",
-      "lastCovered": "2026-03-10T16:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-10-uk-news-muslims-biased-fifty-percent-landmark-study"
-      ],
-      "summary": "Landmark empirical study finds 50% of UK news articles about Muslims are biased. Drops during Iran war as anti-Muslim hate spikes on social media. Mainstream media bias study connects to last cycle's X hate spike study."
-    },
-    {
-      "id": "algeria-helium-supply",
-      "label": "Algeria emerges as helium alternative as Iran war disrupts supply",
-      "firstSeen": "2026-03-10T15:49:51Z",
-      "lastCovered": "2026-03-10T16:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-10-algeria-helium-iran-war-science-supply-crisis"
-      ],
-      "summary": "Iran war disrupts helium supply chains critical for MRI, semiconductors, and space systems. Algeria emerging as alternative source. Helium is non-renewable and essential to science infrastructure."
-    },
-    {
-      "id": "cftc-defi-prediction-markets",
-      "label": "CFTC moves to regulate DeFi and war prediction markets",
-      "firstSeen": "2026-03-10T15:45:24Z",
-      "lastCovered": "2026-03-10T16:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-10-cftc-defi-prediction-markets-crypto-regulation"
-      ],
-      "summary": "CFTC chair signals regulatory action on DeFi and prediction markets. Connects to wartime prediction markets being used as intelligence extraction tools. Watch for specific rulemaking timeline."
-    },
-    {
-      "id": "ai-in-warfare-iran",
-      "label": "AI warfare: Enhanced real images harder to debunk than synthetic fakes",
-      "firstSeen": "2026-03-07T04:00:00Z",
-      "lastCovered": "2026-03-10T16:00:00Z",
-      "coverageCount": 5,
-      "category": "tech",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-07-ai-guides-iran-strikes-capability-questioned",
-        "2026-03-08-openai-robotics-chief-quits-ai-war-surveillance-pentagon",
-        "2026-03-09-x-paid-unlabeled-ai-war-footage-disinformation",
-        "2026-03-09-fake-ai-satellite-imagery-iran-war-disinformation",
-        "2026-03-10-ai-enhanced-real-images-iran-war-disinformation"
-      ],
-      "summary": "New layer: AI enhancement of real war images (not full fabrication) documented. Enhanced-real is harder to debunk than synthetic because the underlying event is genuine. Joins fake satellite imagery and unlabeled war footage as documented AI disinformation vectors in Iran war."
-    },
-    {
-      "id": "us-military-dissent-iran",
-      "label": "US soldiers oppose Iran war — conscientious objector groups report dissent",
-      "firstSeen": "2026-03-09T22:00:00Z",
-      "lastCovered": "2026-03-09T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-09-us-soldiers-oppose-iran-war"
-      ],
-      "summary": "Conscientious objector advocacy group reports significant opposition among serving US troops to Iran war. First organized military dissent since Iraq. Not followed up this cycle."
-    },
-    {
-      "id": "anthropic-pentagon-confrontation",
-      "label": "Anthropic sues Pentagon — now in mainstream media (BBC)",
-      "firstSeen": "2026-02-25T04:00:00Z",
-      "lastCovered": "2026-03-09T22:00:00Z",
-      "coverageCount": 5,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-25-pentagon-threatens-anthropic-with-cold-war-powers-over-military-ai",
-        "2026-03-02-openai-pentagon-deal-anthropic-pays-price",
-        "2026-03-06-anthropic-sues-pentagon-supply-chain-risk-designation",
-        "2026-03-06-pentagon-ai-surveillance-americans-legal-question",
-        "2026-03-09-anthropic-sues-us-government-risk"
-      ],
-      "summary": "Lawsuit in mainstream media. AI company designated 'supply chain risk' for refusing to drop safety restrictions. Not followed up this cycle."
+      "summary": "Egypt's 105M people hit by fuel price jumps on top of IMF austerity. Cooking gas, transport, bread subsidies all under pressure. Not covered this cycle — decayed from 6."
     },
     {
       "id": "anti-muslim-hate-x-study",
-      "label": "Anti-Muslim hate spike: X study → mainstream media bias study pipeline",
+      "label": "Anti-Muslim hate pipeline: X spike → UK media bias → CAIR annual report",
       "firstSeen": "2026-03-09T22:00:00Z",
-      "lastCovered": "2026-03-10T16:00:00Z",
-      "coverageCount": 2,
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 3,
       "category": "science",
-      "importance": 6,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-03-09-anti-muslim-posts-spike-x-iran-war-study",
-        "2026-03-10-uk-news-muslims-biased-fifty-percent-landmark-study"
+        "2026-03-10-uk-news-muslims-biased-fifty-percent-landmark-study",
+        "2026-03-10-cair-report-broad-attack-muslim-life-us"
       ],
-      "summary": "Two consecutive cycles of empirical studies: (1) sharp spike in anti-Muslim posts on X since Iran war; (2) 50% of UK mainstream news about Muslims is biased. Together these document a media-to-social-media pipeline during wartime."
+      "summary": "Three consecutive cycles of empirical data: (1) sharp spike in anti-Muslim posts on X since Iran war; (2) 50% of UK mainstream news about Muslims is biased; (3) CAIR annual report documents 'broad attack on Muslim life' across all institutions in 2025, pre-war baseline already high. A systematic data arc now. Watch for advertiser, regulator, legislative responses."
     },
     {
       "id": "iran-women-athletes-dissent",
-      "label": "Iran women's football team called 'wartime traitors' in Australia",
+      "label": "Iranian women's football/soccer team: 7 now seeking asylum in Australia",
       "firstSeen": "2026-03-09T22:00:00Z",
-      "lastCovered": "2026-03-09T22:00:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 6,
       "arc": "developing",
       "articles": [
-        "2026-03-09-iran-womens-football-team-wartime-persecution"
+        "2026-03-09-iran-womens-football-team-wartime-persecution",
+        "2026-03-10-iran-women-soccer-seven-asylum-australia"
       ],
-      "summary": "Iran women's football team in Australia facing threats for not saluting during anthem. Not followed up this cycle."
-    },
-    {
-      "id": "iranian-sailors-stranded",
-      "label": "434 Iranian sailors stranded in Sri Lanka/India after ships targeted",
-      "firstSeen": "2026-03-09T22:00:00Z",
-      "lastCovered": "2026-03-09T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-09-stranded-iranian-sailors-diplomatic-crisis"
-      ],
-      "summary": "434 sailors from 3 Iranian vessels given sanctuary by Sri Lanka and India. Both countries caught between US pressure and humanitarian obligations. Not followed up this cycle."
-    },
-    {
-      "id": "qatar-wartime-crackdown",
-      "label": "Qatar arrests 313 for sharing footage of war attacks",
-      "firstSeen": "2026-03-09T16:00:00Z",
-      "lastCovered": "2026-03-09T16:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-09-qatar-arrests-313-sharing-war-footage-crackdown"
-      ],
-      "summary": "Qatar arrested 313 for sharing footage during Iranian attacks. Gulf states criminalizing war documentation. Not covered this cycle."
-    },
-    {
-      "id": "nigeria-boko-haram-resurgence",
-      "label": "Nigeria: Boko Haram overruns army bases, commanding officer killed",
-      "firstSeen": "2026-03-09T16:00:00Z",
-      "lastCovered": "2026-03-09T16:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-09-boko-haram-overruns-nigerian-army-base-commanding-officer-killed"
-      ],
-      "summary": "Boko Haram overran military camp in Borno State, killing commanding officer. Not covered this cycle."
-    },
-    {
-      "id": "china-climate-five-year-plan",
-      "label": "China reveals five-year climate goals at Two Sessions",
-      "firstSeen": "2026-03-09T22:00:00Z",
-      "lastCovered": "2026-03-09T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-09-china-five-year-climate-goals"
-      ],
-      "summary": "China set new five-year climate targets at Two Sessions. World's largest emitter with potentially peaked CO2. Not followed up this cycle."
-    },
-    {
-      "id": "us-tos-consent-ruling",
-      "label": "US court: Companies can change TOS by email, use implies consent",
-      "firstSeen": "2026-03-09T22:00:00Z",
-      "lastCovered": "2026-03-09T22:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-09-us-court-tos-email-consent-ruling"
-      ],
-      "summary": "Ninth Circuit: companies can update TOS by email, continued use implies consent. Effectively allows unilateral contract changes. Not followed up this cycle."
-    },
-    {
-      "id": "china-rare-earths-supply-chains",
-      "label": "China orders all officials to study rare earths and supply chains",
-      "firstSeen": "2026-03-09T22:00:00Z",
-      "lastCovered": "2026-03-09T22:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-09-china-rare-earths-supply-chain-security"
-      ],
-      "summary": "Chinese officials across all ministries required to study rare earth elements and supply chains. China controls 60% rare earths, 80% gallium. Economic warfare capability being embedded. Not followed up this cycle."
+      "summary": "Seven total Iranian women soccer players now seeking asylum in Australia for not singing national anthem. Five already granted humanitarian visas; two more in process. One reportedly refused to board return flight. Watch for reports of players who returned and faced consequences."
     },
     {
       "id": "uk-emissions-decline",
-      "label": "UK emissions fall 2.4%, coal at 400-year low",
+      "label": "UK emissions fall 2.4%, coal at 400-year low — threatened by Hormuz crisis",
       "firstSeen": "2026-03-09T22:00:00Z",
-      "lastCovered": "2026-03-09T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-09-uk-emissions-fall-coal-400-year-low"
-      ],
-      "summary": "UK coal use at lowest since early 1600s. Emissions fell 2.4% in 2025. Gains threatened by Hormuz energy crisis driving UK back toward oil. Not followed up this cycle."
-    },
-    {
-      "id": "west-bank-settler-violence",
-      "label": "West Bank: Settler attacks surge under Iran war cover",
-      "firstSeen": "2026-03-08T22:00:00Z",
-      "lastCovered": "2026-03-08T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-08-west-bank-settler-attack-kills-palestinians-abu-falah"
-      ],
-      "summary": "Settler violence surged 25% since Iran war. Military redeployed to other fronts. Not covered this cycle."
-    },
-    {
-      "id": "ai-psychosis",
-      "label": "AI psychosis: Mental health experts warn of new clinical phenomenon",
-      "firstSeen": "2026-03-09T16:00:00Z",
-      "lastCovered": "2026-03-09T16:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-09-ai-psychosis-mental-health-crisis-chatbots"
-      ],
-      "summary": "Mental health professionals treating delusional symptoms from AI interaction. No diagnostic framework exists. Not covered this cycle."
-    },
-    {
-      "id": "nairobi-floods-2026",
-      "label": "Kenya floods: 42 killed as climate-intensified rains escalate",
-      "firstSeen": "2026-03-08T22:00:00Z",
-      "lastCovered": "2026-03-09T10:00:00Z",
+      "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 2,
+      "importance": 5,
       "arc": "developing",
       "articles": [
-        "2026-03-07-nairobi-floods-kill-23-airport-shut-climate-rainfall",
-        "2026-03-09-kenya-floods-42-killed-nairobi-climate-rainfall"
+        "2026-03-09-uk-emissions-fall-coal-400-year-low",
+        "2026-03-10-uk-emissions-coal-400-year-low-climate"
       ],
-      "summary": "Death toll 42 across Kenya. Informal settlements hit hardest. Not covered this cycle."
+      "summary": "UK coal at lowest since early 1600s. Emissions fell 2.4% in 2025. Gains structurally threatened by Hormuz energy crisis pushing UK toward oil imports. Renewable transition and war-driven fossil regression happening simultaneously."
     },
     {
       "id": "sudan-humanitarian-crisis",
-      "label": "Sudan: War spreading — possible Sverige Radio humanitarian story this cycle",
+      "label": "Darfur: RSF destroys farms before mass killings — starvation crimes evidence",
       "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-03-10T16:00:00Z",
-      "coverageCount": 13,
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 14,
       "category": "politics",
-      "importance": 3,
-      "arc": "fading",
+      "importance": 8,
+      "arc": "developing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
         "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
@@ -489,13 +407,164 @@
         "2026-03-03-sudan-rsf-drone-strike-el-obeid-blackout",
         "2026-03-06-sudan-war-spreads-kordofan-hospitals-hit-supply-routes-cut",
         "2026-03-08-sudan-drone-strikes-kill-33-west-kordofan-markets",
-        "2026-03-10-malnourished-pregnant-women-birth-no-medicine-siege"
+        "2026-03-10-malnourished-pregnant-women-birth-no-medicine-siege",
+        "2026-03-10-darfur-starvation-crimes-rsf-new-evidence"
       ],
-      "summary": "Sverige Radio story this cycle about malnourished pregnant women giving birth without medicine — writer to verify if this is Sudan. If confirmed: coverage gap broken after multiple cycles of silence. RSF starvation campaign continuing. Kordofan hospitals hit, supply routes cut."
+      "summary": "New forensic evidence: RSF deliberately destroyed farms around El Fasher before alleged mass killings in October 2025. This is legal-grade evidence for starvation as a war crime. El Fasher is last major SAF-held city in Darfur. Upgraded from fading — new evidence demands sustained coverage."
+    },
+    {
+      "id": "ai-in-warfare-iran",
+      "label": "AI in warfare: Enhanced images, autonomous code failures, institutional rollback",
+      "firstSeen": "2026-03-07T04:00:00Z",
+      "lastCovered": "2026-03-10T21:38:00Z",
+      "coverageCount": 6,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-03-07-ai-guides-iran-strikes-capability-questioned",
+        "2026-03-08-openai-robotics-chief-quits-ai-war-surveillance-pentagon",
+        "2026-03-09-x-paid-unlabeled-ai-war-footage-disinformation",
+        "2026-03-09-fake-ai-satellite-imagery-iran-war-disinformation",
+        "2026-03-10-ai-enhanced-real-images-iran-war-disinformation",
+        "2026-03-10-amazon-ai-code-human-oversight-outages"
+      ],
+      "summary": "Amazon outages caused by AI-assisted code changes prompted industry-first human oversight mandate. Simultaneously: AI-enhanced real war images documented, fake satellite imagery circulating, X monetizing unlabeled AI war footage. AI's role in warfare spans targeting, disinformation, and infrastructure reliability failures."
+    },
+    {
+      "id": "us-military-dissent-iran",
+      "label": "US soldiers oppose Iran war — dissent and biblical prophecy briefings",
+      "firstSeen": "2026-03-09T22:00:00Z",
+      "lastCovered": "2026-03-09T22:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-09-us-soldiers-oppose-iran-war",
+        "2026-03-10-iran-war-biblical-prophecy-military-orders"
+      ],
+      "summary": "Two threads converging: conscientious objector reports of organized military dissent, and commanders framing the war as biblical prophecy. Together they point to a chain-of-command crisis under investigation. Watch for any service member public statement or Congressional hearing."
+    },
+    {
+      "id": "anthropic-pentagon-confrontation",
+      "label": "Anthropic sues Pentagon over supply chain risk designation",
+      "firstSeen": "2026-02-25T04:00:00Z",
+      "lastCovered": "2026-03-09T22:00:00Z",
+      "coverageCount": 5,
+      "category": "tech",
+      "importance": 3,
+      "arc": "fading",
+      "articles": [
+        "2026-02-25-pentagon-threatens-anthropic-with-cold-war-powers-over-military-ai",
+        "2026-03-02-openai-pentagon-deal-anthropic-pays-price",
+        "2026-03-06-anthropic-sues-pentagon-supply-chain-risk-designation",
+        "2026-03-06-pentagon-ai-surveillance-americans-legal-question",
+        "2026-03-09-anthropic-sues-us-government-risk"
+      ],
+      "summary": "Lawsuit in mainstream media. No new developments. Fading."
+    },
+    {
+      "id": "iranian-sailors-stranded",
+      "label": "434 Iranian sailors stranded in Sri Lanka/India after ships targeted",
+      "firstSeen": "2026-03-09T22:00:00Z",
+      "lastCovered": "2026-03-09T22:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-09-stranded-iranian-sailors-diplomatic-crisis"
+      ],
+      "summary": "434 sailors from 3 Iranian vessels given sanctuary by Sri Lanka and India. Both caught between US pressure and humanitarian obligations. Not covered this cycle — decayed from 5."
+    },
+    {
+      "id": "qatar-wartime-crackdown",
+      "label": "Qatar arrests 313 for sharing footage of war attacks",
+      "firstSeen": "2026-03-09T16:00:00Z",
+      "lastCovered": "2026-03-09T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-09-qatar-arrests-313-sharing-war-footage-crackdown"
+      ],
+      "summary": "Qatar arrested 313 for sharing footage during Iranian attacks. Gulf states criminalizing war documentation. Not covered this cycle — decayed from 5."
+    },
+    {
+      "id": "china-climate-five-year-plan",
+      "label": "China reveals five-year climate goals at Two Sessions",
+      "firstSeen": "2026-03-09T22:00:00Z",
+      "lastCovered": "2026-03-09T22:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-09-china-five-year-climate-goals"
+      ],
+      "summary": "China set new five-year climate targets. World's largest emitter with potentially peaked CO2. Not covered this cycle — decayed from 5."
+    },
+    {
+      "id": "us-tos-consent-ruling",
+      "label": "US court: Companies can change TOS by email, use implies consent",
+      "firstSeen": "2026-03-09T22:00:00Z",
+      "lastCovered": "2026-03-09T22:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-09-us-court-tos-email-consent-ruling"
+      ],
+      "summary": "Ninth Circuit: companies can update TOS by email, continued use implies consent. Allows unilateral contract changes. Not covered this cycle — decayed from 5."
+    },
+    {
+      "id": "china-rare-earths-supply-chains",
+      "label": "China orders all officials to study rare earths and supply chains",
+      "firstSeen": "2026-03-09T22:00:00Z",
+      "lastCovered": "2026-03-09T22:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-09-china-rare-earths-supply-chain-security"
+      ],
+      "summary": "All Chinese ministries required to study rare earth supply chains. China controls 60% rare earths, 80% gallium. Economic warfare capability embedded. Not covered this cycle — decayed from 5."
+    },
+    {
+      "id": "uk-muslims-media-bias",
+      "label": "Landmark study: 50% of UK news coverage of Muslims is biased",
+      "firstSeen": "2026-03-10T14:03:49Z",
+      "lastCovered": "2026-03-10T16:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-10-uk-news-muslims-biased-fifty-percent-landmark-study"
+      ],
+      "summary": "50% of UK mainstream news about Muslims is biased — landmark empirical study. Now part of the three-cycle data arc (X, UK media, CAIR). Folded into anti-muslim-hate-x-study arc for tracking."
+    },
+    {
+      "id": "nigeria-boko-haram-resurgence",
+      "label": "Nigeria: Boko Haram overruns army bases, commanding officer killed",
+      "firstSeen": "2026-03-09T16:00:00Z",
+      "lastCovered": "2026-03-09T16:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "fading",
+      "articles": [
+        "2026-03-09-boko-haram-overruns-nigerian-army-base-commanding-officer-killed"
+      ],
+      "summary": "Boko Haram overran military camp in Borno State, killing commanding officer. Two cycles uncovered. Fading."
     },
     {
       "id": "gaza-aid-ban",
-      "label": "Gaza: Siege continues under total media blackout",
+      "label": "Gaza: Siege continues — total media blackout now 5+ cycles",
       "firstSeen": "2026-02-25T04:00:00Z",
       "lastCovered": "2026-03-06T16:00:00Z",
       "coverageCount": 4,
@@ -508,35 +577,35 @@
         "2026-03-04-gaza-aid-collapses-under-iran-war-cover",
         "2026-03-06-gaza-medical-supplies-exhausted-who-warns-crisis"
       ],
-      "summary": "WHO warned medical supplies exhausted. Rafah closed. No feed items for 4+ cycles. Most critical coverage gap. Sverige Radio story may alternatively be about Gaza."
+      "summary": "WHO warned medical supplies exhausted. No feed items for 5+ cycles. Total blackout continues. Critical gap — kept in ledger as a reminder of what is not being reported."
     },
     {
-      "id": "germany-discrimination-study",
-      "label": "Study: Discrimination widespread across Germany",
-      "firstSeen": "2026-03-10T15:48:00Z",
+      "id": "algeria-helium-supply",
+      "label": "Algeria emerges as helium alternative as Iran war disrupts supply",
+      "firstSeen": "2026-03-10T15:49:51Z",
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "fading",
       "articles": [
-        "2026-03-10-discrimination-widespread-germany-study-survey"
+        "2026-03-10-algeria-helium-iran-war-science-supply-crisis"
       ],
-      "summary": "DW reports study/survey on widespread discrimination in Germany — dropping same day as Özdemir milestone. Writer to verify study methodology and commissioning body."
+      "summary": "Algeria emerging as helium alternative. Iran war disrupts supply critical for MRI, semiconductors, space. Not covered this cycle — decayed from 5. Fading."
     },
     {
-      "id": "pakistan-5g-austerity",
-      "label": "Pakistan: $507M 5G auction during 4-day work week austerity",
-      "firstSeen": "2026-03-10T14:35:54Z",
+      "id": "cftc-defi-prediction-markets",
+      "label": "CFTC moves to regulate DeFi and war prediction markets",
+      "firstSeen": "2026-03-10T15:45:24Z",
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "fading",
       "articles": [
-        "2026-03-10-pakistan-5g-spectrum-507-million-austerity-war"
+        "2026-03-10-cftc-defi-prediction-markets-crypto-regulation"
       ],
-      "summary": "Pakistan completed 5G spectrum auction for $507M while implementing 4-day work week and school closures. Telecoms investing while citizens face austerity. Selective austerity pattern."
+      "summary": "CFTC signals regulatory action on DeFi and prediction markets. Not covered this cycle — decayed from 5. Fading."
     }
   ]
 }
