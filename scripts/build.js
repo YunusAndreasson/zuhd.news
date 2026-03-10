@@ -48,18 +48,10 @@ const markdownToHtml = (md) => {
 
 const splitSentences = (html) => {
   return html.replace(/<p>([\s\S]*?)<\/p>/g, (match, inner) => {
-    // Extract source mark before splitting
-    const sourceRe = /(\s*<span class="end-source">[\s\S]*?<\/span>)$/
-    const sourceMatch = inner.match(sourceRe)
-    const content = sourceMatch ? inner.replace(sourceRe, '') : inner
-    const source = sourceMatch ? sourceMatch[1] : ''
-
-    const sentences = content.split(/(?<=[.!?][\u201D\u2019]?(?:<\/em>)?)\s+(?=[A-Z\u00C0-\u024F])/)
-    if (sentences.length <= 1) return '<p>' + content + source + '</p>'
+    const sentences = inner.split(/(?<=[.!?][\u201D\u2019]?(?:<\/em>)?)\s+(?=[A-Z\u00C0-\u024F])/)
+    if (sentences.length <= 1) return match
 
     const spans = sentences.map(s => `<span class="s">${s}</span>`)
-    // Attach source to last sentence
-    spans[spans.length - 1] = `<span class="s">${sentences[sentences.length - 1]}${source}</span>`
     return '<p>' + spans.join(' ') + '</p>'
   })
 }
@@ -70,8 +62,8 @@ const formatDate = (dateStr) =>
 const buildArticle = (filename) => {
   const raw = readFileSync(join(CONTENT_DIR, filename), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
-  const sourcemark = meta.source ? ` <span class="end-source">${meta.source}</span>` : ''
-  const bodyHtml = splitSentences(markdownToHtml(body).replace(/<\/p>\s*$/, `${sourcemark}</p>`))
+  const sourcemark = meta.source ? `<p class="end-source">${meta.source}</p>` : ''
+  const bodyHtml = splitSentences(markdownToHtml(body)) + sourcemark
   const slug = basename(filename, '.md')
 
   const title = smartQuotes(meta.title || 'Untitled')
@@ -80,22 +72,27 @@ const buildArticle = (filename) => {
   return { slug, meta, bodyHtml, title, dateFormatted }
 }
 
-const PER_CATEGORY_LIMIT = 5
+const WINDOW_MS = 24 * 60 * 60 * 1000  // 24 hours
+const MIN_PER_CATEGORY = 10             // always show at least 10 even if older
 
 const buildHomepage = (articles, homepageTemplate) => {
   const sorted = articles.sort((a, b) => b.addedAt - a.addedAt)
+  const cutoff = Date.now() - WINDOW_MS
 
   const grouped = {}
   for (const a of sorted) {
     const cat = a.meta.category || 'uncategorised'
-    if ((grouped[cat]?.length ?? 0) >= PER_CATEGORY_LIMIT) continue;
-    (grouped[cat] ??= []).push({
-      slug: a.slug,
-      title: a.title,
-      date: a.meta.date,
-      addedAt: a.addedAt,
-      bodyHtml: a.bodyHtml
-    })
+    const list = grouped[cat] ??= []
+    if (a.addedAt >= cutoff || list.length < MIN_PER_CATEGORY) {
+      list.push({
+        slug: a.slug,
+        title: a.title,
+        date: a.meta.date,
+        addedAt: a.addedAt,
+        bodyHtml: a.bodyHtml,
+        sourceUrl: a.meta.sourceUrl || ''
+      })
+    }
   }
 
   const preferredOrder = ['politics', 'economy', 'science', 'tech']

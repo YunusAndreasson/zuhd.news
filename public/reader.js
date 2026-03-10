@@ -51,31 +51,6 @@ function init(data) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify([...readSlugs]));
   };
 
-  // --- Keyboard hint system ---
-
-  const HINT_KEY = 'zuhd-kb';
-  let keyboardAware = localStorage.getItem(HINT_KEY) === '1';
-  let hintShown = false;
-
-  if (!keyboardAware && isDesktop()) document.body.classList.add('show-key-hints');
-
-  const dismissHints = () => {
-    keyboardAware = true;
-    localStorage.setItem(HINT_KEY, '1');
-    document.body.classList.remove('show-key-hints');
-    document.querySelector('.key-hint')?.remove();
-  };
-
-  const showClickHint = () => {
-    if (hintShown || keyboardAware || !isDesktop()) return;
-    hintShown = true;
-    const hint = document.createElement('p');
-    hint.className = 'key-hint';
-    hint.textContent = 'try \u2191\u2193 arrow keys';
-    document.querySelector('header')?.append(hint);
-    hint.addEventListener('animationend', () => hint.remove());
-  };
-
   // --- Build category tabs ---
 
   const buildTab = (cat, i) => {
@@ -120,7 +95,6 @@ function init(data) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); div.click(); }
       });
       div.addEventListener('click', () => {
-        showClickHint();
         if (!isDesktop() && state.artIdx === i && div.querySelector('.article-expand')) {
           collapseArticle();
           return;
@@ -171,8 +145,9 @@ function init(data) {
     }
 
     if (isDesktop()) {
-      viewInner.innerHTML = `<div class="article-body">${article.bodyHtml}</div>`;
+      viewInner.innerHTML = `<div class="article-view-header"><h2>${esc(article.title)}</h2></div><div class="article-body">${article.bodyHtml}</div>`;
       viewEl.hidden = false;
+      viewEl.scrollTop = 0;
       history.replaceState({ catIdx: state.catIdx, artIdx: state.artIdx }, '', `#${article.slug}`);
       announce(`Reading: ${article.title}`);
       return;
@@ -199,12 +174,31 @@ function init(data) {
   const ac = new AbortController();
   const sig = ac.signal;
 
+  let lastKey = '';
+  let lastKeyTime = 0;
+
   document.addEventListener('keydown', (e) => {
     if (e.target.matches('input, textarea')) return;
-    if (!keyboardAware && (e.key.startsWith('Arrow') || 'hjkl'.includes(e.key))) dismissHints();
 
     const desktop = isDesktop();
     const key = e.key;
+    const now = Date.now();
+
+    // gg — go to first article (within 500ms)
+    if (key === 'g') {
+      if (lastKey === 'g' && now - lastKeyTime < 500) {
+        e.preventDefault();
+        state.artIdx = 0;
+        updateSelection();
+        if (desktop) openArticle(true);
+        lastKey = '';
+        return;
+      }
+      lastKey = 'g';
+      lastKeyTime = now;
+      return;
+    }
+    lastKey = '';
 
     switch (key) {
       case 'ArrowLeft': case 'h':  e.preventDefault(); switchCategory(wrap(state.catIdx - 1, categories.length)); break;
@@ -220,6 +214,18 @@ function init(data) {
         state.artIdx = state.artIdx < 0 ? 0 : wrap(state.artIdx + 1, currentList().length);
         updateSelection();
         if (desktop) openArticle(true);
+        break;
+      case 'G':
+        e.preventDefault();
+        state.artIdx = currentList().length - 1;
+        updateSelection();
+        if (desktop) openArticle(true);
+        break;
+      case 'o':
+        if (state.artIdx >= 0) {
+          const a = currentArticle();
+          if (a.sourceUrl) window.open(a.sourceUrl, '_blank', 'noopener');
+        }
         break;
       case 'Enter':
         if (!desktop) { e.preventDefault(); openArticle(true); }
