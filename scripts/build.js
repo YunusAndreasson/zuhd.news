@@ -229,18 +229,20 @@ const homepage = buildHomepage(articles, homepageTemplate)
 writeFileSync(join(DIST_DIR, 'index.html'), homepage)
 console.log(`  Built: index.html (${articles.length} articles)`)
 
-// Build static pages (about, sources)
-const pageTemplate = readFileSync(join(TEMPLATES_DIR, 'about.html'), 'utf-8')
-  .replace('{{headCommon}}', headCommon)
-
+// Build static pages (about, sources, privacy) — reuse homepage split-pane layout
 for (const page of ['about', 'sources', 'privacy']) {
   const pagePath = join(ROOT, 'content', `${page}.md`)
   if (!existsSync(pagePath)) continue
   const body = readFileSync(pagePath, 'utf-8')
-  const html = pageTemplate
-    .replace('{{content}}', markdownToHtml(body))
-    .replace(/\{\{pageName\}\}/g, page)
-    .replace('</body>', lastCycleTs ? `<script>!function(){var ts="${lastCycleTs}",el=document.querySelector(".update-status");if(!el||!ts)return;var ago=Date.now()-new Date(ts).getTime(),h=Math.floor(ago/36e5),m=Math.floor(ago%36e5/6e4);el.textContent="Updated "+(h>0?h+"h ago":m<2?"just now":m+" min ago")}()</script></body>` : '</body>')
+  const pageContent = `<h1 class="page-title">${page}</h1><div class="about-body">${markdownToHtml(body)}</div>`
+  const html = homepage
+    .replace('<div class="article-view-inner"></div>', `<div class="article-view-inner">${pageContent}</div>`)
+    .replace('article-view" aria-live="polite" hidden', `article-view" aria-live="polite" data-page="${page}"`)
+    .replace('<title>zuhd.news</title>', `<title>zuhd.news — ${page}</title>`)
+    .replace('<link rel="canonical" href="https://zuhd.news/">', `<link rel="canonical" href="https://zuhd.news/${page}">`)
+    .replace('<meta property="og:title" content="zuhd.news">', `<meta property="og:title" content="zuhd.news — ${page}">`)
+    .replace('<meta property="og:url" content="https://zuhd.news/">', `<meta property="og:url" content="https://zuhd.news/${page}">`)
+    .replace(`href="/${page}"`, `href="/${page}" aria-current="page"`)
   writeFileSync(join(DIST_DIR, `${page}.html`), html)
   console.log(`  Built: ${page}.html`)
 }

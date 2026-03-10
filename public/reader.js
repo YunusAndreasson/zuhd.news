@@ -16,6 +16,7 @@ function init(data) {
   const viewInner = viewEl.querySelector('.article-view-inner');
   const announcer = document.getElementById('announcer');
   const escapeDiv = document.createElement('div');
+  const isStaticPage = viewEl.hasAttribute('data-page');
 
   // Update status in footer
   const statusEl = document.querySelector('footer .update-status');
@@ -38,7 +39,6 @@ function init(data) {
   const esc = (s) => { escapeDiv.textContent = s; return escapeDiv.innerHTML; };
   const currentList = () => articles[categories[state.catIdx]];
   const currentArticle = () => currentList()[state.artIdx];
-  const wrap = (idx, len) => ((idx % len) + len) % len;
 
   // --- Read state (localStorage) ---
 
@@ -95,6 +95,7 @@ function init(data) {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); div.click(); }
       });
       div.addEventListener('click', () => {
+        if (isStaticPage) { location.href = '/#' + a.slug; return; }
         if (!isDesktop() && state.artIdx === i && div.querySelector('.article-expand')) {
           collapseArticle();
           return;
@@ -141,14 +142,13 @@ function init(data) {
     if (userInitiated) {
       markRead(article.slug);
       listEl.children[state.artIdx]?.classList.add('read');
-      updateStrip();
     }
 
     if (isDesktop()) {
       viewInner.innerHTML = `<div class="article-view-header"><h2>${esc(article.title)}</h2></div><div class="article-body">${article.bodyHtml}</div>`;
       viewEl.hidden = false;
       viewEl.scrollTop = 0;
-      history.replaceState({ catIdx: state.catIdx, artIdx: state.artIdx }, '', `#${article.slug}`);
+      history.pushState({ catIdx: state.catIdx, artIdx: state.artIdx }, '', `#${article.slug}`);
       announce(`Reading: ${article.title}`);
       return;
     }
@@ -201,17 +201,21 @@ function init(data) {
     lastKey = '';
 
     switch (key) {
-      case 'ArrowLeft': case 'h':  e.preventDefault(); switchCategory(wrap(state.catIdx - 1, categories.length)); break;
-      case 'ArrowRight': case 'l': e.preventDefault(); switchCategory(wrap(state.catIdx + 1, categories.length)); break;
+      case 'ArrowLeft': case 'h':  e.preventDefault(); if (state.catIdx > 0) switchCategory(state.catIdx - 1); break;
+      case 'ArrowRight': case 'l': e.preventDefault(); if (state.catIdx < categories.length - 1) switchCategory(state.catIdx + 1); break;
       case 'ArrowUp': case 'k':
         e.preventDefault();
-        state.artIdx = state.artIdx < 0 ? currentList().length - 1 : wrap(state.artIdx - 1, currentList().length);
+        if (state.artIdx < 0) state.artIdx = currentList().length - 1;
+        else if (state.artIdx > 0) state.artIdx--;
+        else break;
         updateSelection();
         if (desktop) openArticle(true);
         break;
       case 'ArrowDown': case 'j':
         e.preventDefault();
-        state.artIdx = state.artIdx < 0 ? 0 : wrap(state.artIdx + 1, currentList().length);
+        if (state.artIdx < 0) state.artIdx = 0;
+        else if (state.artIdx < currentList().length - 1) state.artIdx++;
+        else break;
         updateSelection();
         if (desktop) openArticle(true);
         break;
@@ -255,7 +259,8 @@ function init(data) {
     const absDx = Math.abs(dx);
     if (absDx < 50 || Math.abs(e.changedTouches[0].clientY - touchStartY) > absDx * 0.6) return;
 
-    switchCategory(wrap(state.catIdx + (dx < 0 ? 1 : -1), categories.length));
+    const next = state.catIdx + (dx < 0 ? 1 : -1);
+    if (next >= 0 && next < categories.length) switchCategory(next);
   }, { passive: true, signal: sig });
 
   // --- Resize ---
@@ -292,6 +297,8 @@ function init(data) {
     }
     return false;
   };
+
+  window.addEventListener('popstate', () => { navigateToHash(); }, { signal: sig });
 
   // --- Silent Refresh ---
 
@@ -346,22 +353,28 @@ function init(data) {
 
   setInterval(silentRefresh, REFRESH_INTERVAL);
 
-  // --- Sticky strip scroll indicator ---
+  // --- Sticky strip scroll indicator (mobile only) ---
 
-  const scrollObserver = new IntersectionObserver(
-    ([e]) => stripEl.classList.toggle('scrolled', !e.isIntersecting),
-    { threshold: 1 }
-  );
-  const sentinel = document.createElement('div');
-  sentinel.style.height = '1px';
-  stripEl.before(sentinel);
-  scrollObserver.observe(sentinel);
+  if (!isDesktop()) {
+    const scrollObserver = new IntersectionObserver(
+      ([e]) => stripEl.classList.toggle('scrolled', !e.isIntersecting),
+      { threshold: 1 }
+    );
+    const sentinel = document.createElement('div');
+    sentinel.style.height = '1px';
+    stripEl.before(sentinel);
+    scrollObserver.observe(sentinel);
+  }
 
   // --- Init ---
 
   buildHeadlines();
   updateStrip();
-  if (!navigateToHash() && isDesktop()) {
+  if (isStaticPage) {
+    // Static pages (about, sources, privacy): show page content, don't auto-select
+    viewEl.hidden = false;
+    if (!isDesktop()) { stripEl.hidden = true; listEl.hidden = true; }
+  } else if (!navigateToHash() && isDesktop()) {
     state.artIdx = 0;
     updateSelection();
     openArticle(false);

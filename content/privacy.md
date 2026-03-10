@@ -1,5 +1,5 @@
-zuhd.news does not track you. No cookies, no analytics, no fingerprinting, no third-party scripts.
+No cookies, no analytics, no fingerprinting, no third-party scripts.
 
-The site stores two items in your browser's local storage: which articles you have read and whether you have used keyboard navigation. This data never leaves your device.
+Your browser remembers which articles you have read. That data stays on your device. Nothing is sent anywhere.
 
-Fonts are loaded from Google Fonts, which may log your IP address under Google's privacy policy. No other external requests are made.
+Fonts are self-hosted. No external requests are made.

@@ -29,7 +29,7 @@ Multi-source RSS → fetch-news.js → Claude CLI selector (select-prompt.md) �
 **Sources (40):** Al Jazeera, BBC World, BBC Business, France 24, Deutsche Welle, AllAfrica, Al Monitor, Hacker News, The Hindu, Yonhap, CoinDesk, Bellingcat, Haaretz, Nature, Quanta Magazine, Moscow Times, Rest of World, MIT Technology Review, 404 Media, Carbon Brief, Malay Mail, Antara News, Premium Times, Dawn, Daily Star, South China Morning Post, Middle East Eye, Sveriges Radio, Daily Maverick, The East African, Buenos Aires Times, MercoPress, CBC News, Politico, Fox News, ABC News Australia, RNZ Pacific, Mada Masr, Medyascope, TSA
 
 - **Hosting:** Cloudflare Pages, direct upload via `wrangler pages deploy dist`
-- **Cycle:** systemd timer (`zuhd-news-cycle.timer`) 6x daily (00:00, 04:00, 07:00, 12:00, 16:00, 20:00 UTC) → `scripts/run-cycle.sh` → Claude CLI
+- **Cycle:** systemd timer (`zuhd-news-cycle.timer`) 5x daily (04:00, 08:00, 12:00, 17:00, 22:00 UTC) → `scripts/run-cycle.sh` → Claude CLI
 - **Content:** markdown + YAML frontmatter in `content/articles/`, built to `dist/`
 - **Design:** Source Sans 3, 20px base, 80ch measure, no decoration
 

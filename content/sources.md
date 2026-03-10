@@ -1,8 +1,6 @@
-No single outlet owns the truth. This site reads 40 sources in multiple languages, then distills what happened, concisely.
+No single outlet owns the truth. These 40 sources span six continents and a dozen languages so the selection doesn't have to.
 
-A source earns its place by being editorially independent from those it covers, by checking its facts, and by seeing something the others miss. State funding does not disqualify a source — editorial interference does. Where government money is involved, it is noted below.
-
-Funding and ownership are disclosed for every source. You should know who pays for the journalism you read.
+A source earns its place by being editorially independent from those it covers, by checking its facts, and by seeing something the others miss. State funding does not disqualify — editorial interference does. Funding and ownership are noted for each.
 
 ## Middle East
 - [Al Jazeera](https://www.aljazeera.com) · state-funded, Qatar
