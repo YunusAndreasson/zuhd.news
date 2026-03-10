@@ -126,6 +126,7 @@ function init(data) {
     buildHeadlines();
     if (isDesktop()) openArticle(true);
 
+    document.title = 'zuhd.news';
     announce(`${categories[idx]} category`);
   };
 
@@ -148,6 +149,7 @@ function init(data) {
       viewInner.innerHTML = `<div class="article-view-header"><h2>${esc(article.title)}</h2></div><div class="article-body">${article.bodyHtml}</div>`;
       viewEl.hidden = false;
       viewEl.scrollTop = 0;
+      document.title = article.title + ' — zuhd.news';
       history.pushState({ catIdx: state.catIdx, artIdx: state.artIdx }, '', `#${article.slug}`);
       announce(`Reading: ${article.title}`);
       return;
@@ -298,7 +300,9 @@ function init(data) {
     return false;
   };
 
-  window.addEventListener('popstate', () => { navigateToHash(); }, { signal: sig });
+  window.addEventListener('popstate', () => {
+    if (!navigateToHash()) document.title = 'zuhd.news';
+  }, { signal: sig });
 
   // --- Silent Refresh ---
 
