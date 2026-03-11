@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 18: Trump denies school bombing; UNSC passes Bahrain resolution; Oslo embassy attack",
+      "label": "Iran war Day 18: Trump 'we won'; Qatar struck; Iran 9 missiles at Al Udeid; Oslo attack aftermath",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-11T21:20:00Z",
-      "coverageCount": 61,
+      "lastCovered": "2026-03-11T22:26:00Z",
+      "coverageCount": 64,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -71,16 +71,19 @@
         "2026-03-12-trump-unaware-evidence-us-bombed-iranian-school",
         "2026-03-12-unsc-bahrain-resolution-iran-gulf-ceasefire",
         "2026-03-12-oslo-us-embassy-bombing-iraqi-brothers-arrested",
-        "2026-03-12-gulf-migrant-workers-kafala-trapped-war-zone"
+        "2026-03-12-gulf-migrant-workers-kafala-trapped-war-zone",
+        "2026-03-12-trump-we-won-iran-war-wont-leave-early-day-18",
+        "2026-03-12-qatar-iran-nine-missiles-udeid-centcom-escalation",
+        "2026-03-12-bellingcat-satellite-imagery-iran-police-stations-strikes"
       ],
-      "summary": "Day 18. Trump claims to be 'unaware of evidence' the US bombed the Resalat girls' school (148 children killed). UNSC passed a Bahrain-drafted resolution demanding Iran halt Gulf attacks — first formal UN action, though silent on original US-Israel strikes. The Oslo US Embassy was bombed by three brothers of Iraqi origin in the first Iran-war-linked terror attack on Western soil. Gulf migrant workers remain trapped by the kafala system with no evacuation rights. The war has now crossed into European domestic security."
+      "summary": "Day 18. Trump declared 'we won' while saying the US does not want to leave early — a domestic face-saving claim contradicted by ongoing strikes. Iran fired 9 missiles at Qatar — home of Al Udeid Air Base, CENTCOM's forward HQ — eliminating the last diplomatic neutral in the region. Hezbollah simultaneously fired rockets at 5 Israeli bases. 58 Iranian mine-laying ships destroyed per Pentagon. The war is now explicitly targeting Gulf civilian and diplomatic infrastructure."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz economic fallout: IEA mobilises one-third reserves; India/US oil pivot; Sweden growth cut",
+      "label": "Hormuz economic fallout: SPR tapped; South Korea chips surge 55%; IEA reserves activated",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-11T21:20:00Z",
-      "coverageCount": 59,
+      "lastCovered": "2026-03-11T22:28:00Z",
+      "coverageCount": 62,
       "category": "economy",
       "importance": 10,
       "arc": "ongoing",
@@ -137,9 +140,110 @@
         "2026-03-12-iea-one-third-reserves-hormuz-oil-emergency",
         "2026-03-12-trump-india-reliance-oil-refinery-deal-hormuz-pivot",
         "2026-03-12-sweden-cuts-growth-forecast-iran-war-impact",
-        "2026-03-12-outsurance-war-climate-risk-dual-crisis-insurance"
+        "2026-03-12-outsurance-war-climate-risk-dual-crisis-insurance",
+        "2026-03-12-trump-strategic-petroleum-reserve-gas-prices-iran-war",
+        "2026-03-12-south-korea-exports-surge-chips-hormuz-economy"
       ],
-      "summary": "IEA activated one-third of all member-state strategic reserves — near-total mobilisation of the emergency system. Trump announced Reliance Industries (India's largest refiner) backing a new US oil refinery, signalling a US-India post-Hormuz energy architecture. Sweden became the first European government to formally cut its GDP forecast (to 2.8%) due to the war. South African insurer OUTsurance disclosed simultaneous war risk and climate risk on their balance sheet — two crises converging."
+      "summary": "Trump announced a unilateral US SPR drawdown for domestic fuel price relief, coming within hours of the IEA activating one-third of all strategic reserves — dual mobilisation of the entire Western emergency energy system. South Korea's chip exports surged 55.6% in the first 10 days of March: the semiconductor economy, bypassing Hormuz via Pacific routes, is booming while the energy economy collapses. The two-speed global economy is now visible."
+    },
+    {
+      "id": "sudan-humanitarian-crisis",
+      "label": "Sudan/South Sudan: RSF drones expand to Kordofan + Blue Nile; RSF proxies kill 169 in South Sudan",
+      "firstSeen": "2026-02-15T00:00:00Z",
+      "lastCovered": "2026-03-11T22:31:00Z",
+      "coverageCount": 15,
+      "category": "politics",
+      "importance": 8,
+      "arc": "developing",
+      "articles": [
+        "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
+        "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
+        "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28",
+        "2026-02-17-sudan-drone-strikes-kill-sixty-across-darfur-and-kordofan",
+        "2026-02-19-un-declares-hallmarks-of-genocide-in-sudans-el-fasher",
+        "2026-02-21-rsf-drone-kills-three-aid-workers-in-sudan",
+        "2026-02-22-museveni-hosts-rsf-leader-dagalo-for-sudan-war-dialogue",
+        "2026-02-23-chad-shuts-sudan-border-after-troops-killed-in-cross-border-incursion",
+        "2026-02-25-un-security-council-condemns-rsf-attacks-in-sudan",
+        "2026-03-03-sudan-rsf-drone-strike-el-obeid-blackout",
+        "2026-03-06-sudan-war-spreads-kordofan-hospitals-hit-supply-routes-cut",
+        "2026-03-08-sudan-drone-strikes-kill-33-west-kordofan-markets",
+        "2026-03-10-malnourished-pregnant-women-birth-no-medicine-siege",
+        "2026-03-10-darfur-starvation-crimes-rsf-new-evidence",
+        "2026-03-12-rsf-drones-kordofan-south-sudan-169-killed-war-spreads"
+      ],
+      "summary": "RSF has expanded its drone campaign to Kordofan and Blue Nile (new fronts) and its proxy militias have killed at least 169 in South Sudan — the war has crossed international borders. Hemedti is using the Iran war media blackout to regionalise his control. The crisis now threatens South Sudan's fragile stability. AU/IGAD response unknown."
+    },
+    {
+      "id": "ecuador-trump-security-partnership",
+      "label": "Ecuador targets 'criminal economy' with Trump backing — Latin America US security architecture",
+      "firstSeen": "2026-03-11T22:31:00Z",
+      "lastCovered": "2026-03-11T22:31:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-ecuador-trump-criminal-economy-crackdown-latin-america"
+      ],
+      "summary": "Ecuador preparing sweeping crackdown on criminal economy (port logistics, money laundering, fuel theft) with explicit Trump administration backing. A new US security partnership in Latin America distinct from the Milei economic model. Unclear what the US gets in return — watch for basing rights, intelligence sharing, or mining concessions."
+    },
+    {
+      "id": "africa-fungal-diseases",
+      "label": "Africa fungal diseases summit: 1.5M annual deaths finally elevated to public health priority",
+      "firstSeen": "2026-03-11T22:31:00Z",
+      "lastCovered": "2026-03-11T22:31:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-africa-fungal-diseases-summit-hiv-silent-pandemic"
+      ],
+      "summary": "Landmark summit in Africa formally elevated fungal diseases to public health priority. 1.5M annual deaths — more than malaria — primarily driven by HIV immunosuppression. Nearly invisible in global health coverage. WHO added fungi to priority pathogen list in 2022 but funding has not followed."
+    },
+    {
+      "id": "south-africa-eskom-bitcoin",
+      "label": "Eskom sells surplus solar power to Bitcoin miners — African energy grid intersects crypto",
+      "firstSeen": "2026-03-11T22:31:00Z",
+      "lastCovered": "2026-03-11T22:31:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-eskom-bitcoin-miners-south-africa-solar-surplus"
+      ],
+      "summary": "Eskom — after years of rolling blackouts — now has surplus midday solar power and plans to sell it to Bitcoin miners. Reveals the structural consequence of rapid solar deployment: surpluses and shortages at different times of day, with Bitcoin mining as buyer of last resort for stranded electricity. South Africa becoming a node in global crypto mining infrastructure."
+    },
+    {
+      "id": "kidney-algorithm-race",
+      "label": "eGFR race adjustment removed — more Black Americans accessing kidney transplants",
+      "firstSeen": "2026-03-11T22:31:00Z",
+      "lastCovered": "2026-03-11T22:31:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-kidney-algorithm-race-removal-black-transplant-access"
+      ],
+      "summary": "The eGFR racial coefficient systematically overestimated kidney function in Black patients, keeping them off transplant waitlists for longer than white patients with identical actual kidney function. Removing the race adjustment directly increased the number of Black Americans qualifying for transplants. A named mechanism, named harm, named remedy — algorithmic medicine's bias made concrete."
+    },
+    {
+      "id": "bellingcat-iran-osint",
+      "label": "Bellingcat satellite imagery verifies strikes on Iranian civilian infrastructure",
+      "firstSeen": "2026-03-04T12:35:00Z",
+      "lastCovered": "2026-03-11T22:31:00Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-bellingcat-turnstone-flight-tracking-osint-tool",
+        "2026-03-12-bellingcat-satellite-imagery-iran-police-stations-strikes"
+      ],
+      "summary": "Bellingcat has now published two tools/methodologies for Iran war accountability: Turnstone (open-source flight tracking) and satellite imagery analysis showing strikes on Iranian police stations. Together they form an open-source accountability infrastructure for a war where military press offices control information. The satellite methodology is now applicable to the Resalat school strike (168 children)."
     },
     {
       "id": "brics-iran-uae-fracture",
@@ -148,12 +252,12 @@
       "lastCovered": "2026-03-11T21:20:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-03-12-brics-divided-iran-uae-war-global-south"
       ],
-      "summary": "Iran (founding member) and UAE (joined Jan 2024) are now at war within BRICS. The bloc cannot take a unified position. China and Russia protecting Iran diplomatically; Gulf states aligned with US. Saudi Arabia's pending BRICS membership application is now the live geopolitical tripwire within the bloc."
+      "summary": "Iran (founding member) and UAE (joined Jan 2024) are now at war within BRICS. Saudi Arabia's pending BRICS membership application is the live geopolitical tripwire. China and Russia protecting Iran diplomatically; Gulf states aligned with US. Not covered this cycle."
     },
     {
       "id": "oslo-embassy-attack-war-spillover",
@@ -162,26 +266,12 @@
       "lastCovered": "2026-03-11T21:20:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-03-12-oslo-us-embassy-bombing-iraqi-brothers-arrested"
       ],
-      "summary": "Three brothers of Iraqi origin arrested for 'terrorist bombing' of the US Embassy compound in Oslo — the first confirmed Iran-war-linked terror attack on Western soil. War has crossed into European domestic security. Day 18 of conflict. Norwegian police investigating ideological motive."
-    },
-    {
-      "id": "unsc-bahrain-iran-resolution",
-      "label": "UNSC adopts Bahrain resolution demanding Iran halt Gulf attacks — first UN action",
-      "firstSeen": "2026-03-12T02:15:00Z",
-      "lastCovered": "2026-03-11T21:20:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-unsc-bahrain-resolution-iran-gulf-ceasefire"
-      ],
-      "summary": "UNSC passed Bahrain-drafted resolution condemning Iran's attacks on Gulf states and demanding immediate cessation. First formal UN action after 18 days of war. Resolution is silent on original US-Israel strikes that triggered the conflict. Vote alignment (Russia/China abstain vs. veto?) reveals diplomatic architecture."
+      "summary": "Three brothers of Iraqi origin arrested for US Embassy bombing in Oslo. Watch for: Norwegian court proceedings, ideological motive confirmation, other European security alerts, Italian/Swedish/German diaspora response. Not covered this cycle."
     },
     {
       "id": "google-wiz-acquisition",
@@ -190,78 +280,21 @@
       "lastCovered": "2026-03-11T21:20:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-03-12-google-wiz-acquisition-32-billion-cloud-security"
       ],
-      "summary": "Google closed acquisition of Wiz, cloud security firm founded by Unit 8200 (Israeli military intelligence) alumni, for ~$32B — Google's largest acquisition. Wiz secures cloud workloads for most Fortune 500 companies. Closed during active US-Israel-Iran war in which cybersecurity has been a central battlefield. Congressional and EU scrutiny expected."
-    },
-    {
-      "id": "seabed-mining-treaty",
-      "label": "ISA seabed-mining treaty negotiations — environmental governance for deep-ocean cobalt extraction",
-      "firstSeen": "2026-03-11T16:31:00Z",
-      "lastCovered": "2026-03-11T21:20:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 7,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-seabed-mining-treaty-isa-cobalt-deep-ocean"
-      ],
-      "summary": "ISA negotiating whether to permit industrial mining of deep-sea polymetallic nodules (cobalt, nickel, manganese for EV batteries) at cost of permanently destroying ancient ocean-floor ecosystems. Proponents: The Metals Company, Norway, China. Moratorium advocates: France, Chile, most marine scientists. The energy transition's ethical contradiction: 'green' minerals from permanent destruction."
-    },
-    {
-      "id": "southern-hemisphere-climate-extremes",
-      "label": "Australia record hot summers + Cape Town 40°C+ heatwave — Southern Hemisphere climate signal",
-      "firstSeen": "2026-03-11T21:04:00Z",
-      "lastCovered": "2026-03-11T21:20:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-australia-hotter-summers-data-climate-change",
-        "2026-03-12-cape-town-heatwave-autumn-climate-southern-africa"
-      ],
-      "summary": "Two simultaneous climate stories: Australian temperature station data shows measurably hotter summers across generations; Cape Town in day 3 of severe heatwave exceeding 40°C in early March (when autumn should be arriving). Both are consistent with climate model projections for the Southern Hemisphere. Covered with two articles this cycle."
-    },
-    {
-      "id": "singapore-fertility-tech-failure",
-      "label": "Singapore lowest fertility rate despite maximum state intervention — limits of technocratic governance",
-      "firstSeen": "2026-03-11T21:02:00Z",
-      "lastCovered": "2026-03-11T21:20:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-singapore-fertility-tech-social-engineering-failure"
-      ],
-      "summary": "Singapore recorded its lowest-ever fertility rate despite deploying AI dating apps, subsidised fertility clinics, $10,000+ baby bonuses, and mandatory parenting courses. The experiment reveals the limit of technocratic social engineering: structural forces (housing costs, workplace gender inequality, economic logic of DINK households) resist algorithmic intervention. Japan, South Korea, China watching and failing similarly."
-    },
-    {
-      "id": "bellingcat-turnstone-osint",
-      "label": "Bellingcat Turnstone: open-source flight tracking tool launched during Gulf airspace war",
-      "firstSeen": "2026-03-05T14:29:00Z",
-      "lastCovered": "2026-03-11T21:20:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-bellingcat-turnstone-flight-tracking-osint-tool"
-      ],
-      "summary": "Bellingcat released Turnstone, an open-source historical and spatial flight data tool, as airspace over the Gulf has been contested daily. Previously required expensive commercial subscriptions. Enables public verification of military flight paths, airspace violations, and ADS-B data. Immediately relevant to B-2 intercept claims, F-35 sorties over Lebanon, and P-8 reconnaissance."
+      "summary": "Google closed acquisition of Wiz for ~$32B. Closed during active US-Israel-Iran war. Congressional scrutiny, EU data sovereignty objections expected. Not covered this cycle."
     },
     {
       "id": "lebanon-hezbollah-israel",
-      "label": "Lebanon: 700K+ displaced; France UNSC resolution outcome unknown",
+      "label": "Lebanon: 700K+ displaced; Hezbollah fires rockets at 5 Israeli bases — war continues",
       "firstSeen": "2026-03-02T16:00:00Z",
       "lastCovered": "2026-03-11T08:03:02Z",
       "coverageCount": 16,
       "category": "politics",
-      "importance": 7,
+      "importance": 6,
       "arc": "ongoing",
       "articles": [
         "2026-03-02-lebanon-bans-hezbollah-military-activities",
@@ -281,7 +314,7 @@
         "2026-03-11-lebanon-100000-displaced-single-day-un-israeli-strikes",
         "2026-03-11-israel-strikes-beirut-apartment-lebanon-offensive"
       ],
-      "summary": "700K+ displaced; 394 killed in one week including 83 children; white phosphorus in populated areas (HRW confirmed). Lebanon delayed elections two years. France's UNSC emergency session outcome unknown — now potentially superseded by the Bahrain-led resolution passed today. Not selected this cycle."
+      "summary": "700K+ displaced, 394 killed in one week (83 children), white phosphorus confirmed. Hezbollah fired rockets at 5 Israeli bases this cycle. France UNSC emergency session outcome still unknown. Not selected this cycle — importance decayed from 7 to 6."
     },
     {
       "id": "israel-regime-change-uncertainty",
@@ -290,12 +323,12 @@
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": [
         "2026-03-11-israel-privately-admits-no-certainty-iran-regime-collapse"
       ],
-      "summary": "Reuters obtained internal Israeli acknowledgment that there is 'no certainty' the war will produce regime change in Iran. Mojtaba Khamenei consolidating rather than fracturing. War's stated justification privately conceded as potentially failing — while thousands die."
+      "summary": "Reuters obtained internal Israeli acknowledgment that there is 'no certainty' the war will produce regime change in Iran. Not covered this cycle — importance stable at 6 (war's stated justification remains the issue)."
     },
     {
       "id": "eu-diplomatic-isolation-israel",
@@ -304,12 +337,12 @@
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-11-spain-removes-ambassador-israel-eu-nato-diplomatic-escalation"
       ],
-      "summary": "Spain formally removed its ambassador to Israel, published in official state gazette. First EU/NATO state to downgrade diplomatic relations. Watch for Belgium, Ireland, or France following — any second EU state becomes a coalition fracture story."
+      "summary": "Spain formally removed its ambassador to Israel. First EU/NATO state to downgrade diplomatic relations. Not covered this cycle. Watch for Belgium, Ireland, France following."
     },
     {
       "id": "anti-muslim-hate-x-study",
@@ -318,7 +351,7 @@
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 5,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-09-anti-muslim-posts-spike-x-iran-war-study",
@@ -327,16 +360,16 @@
         "2026-03-11-us-lawmaker-islamophobic-posts-wartime-platforms",
         "2026-03-11-uk-mahmood-bans-al-quds-day-march-wartime-civil-liberties"
       ],
-      "summary": "Five-part arc from algorithmic amplification to state suppression. Al-Quds Day march banned by UK Home Secretary. Watch for legal challenge to ban, advertiser pressure on platforms, Congressional discipline for US lawmaker. Not selected this cycle."
+      "summary": "Five-part arc. Al-Quds Day march banned by UK Home Secretary. Not covered this cycle. Watch for legal challenge. Importance decayed from 6 to 5."
     },
     {
       "id": "ai-in-warfare-iran",
-      "label": "AI in warfare: China names 'Terminator' risk; disinformation; autonomous failures",
+      "label": "AI in warfare: autonomous weapons, disinformation, China 'Terminator' warning",
       "firstSeen": "2026-03-07T04:00:00Z",
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 9,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-07-ai-guides-iran-strikes-capability-questioned",
@@ -349,7 +382,7 @@
         "2026-03-10-runanywhere-edge-ai-inference-apple-silicon-energy-cost",
         "2026-03-11-china-warns-us-ai-military-terminator-autonomous-weapons-risk"
       ],
-      "summary": "China's 'Terminator' warning was the last addition. Google acquiring Wiz (Unit 8200 founders) adds a new dimension: civilian tech infrastructure now integrated with military intelligence lineage. Watch for UN response to autonomous weapons risk, and EU AI Act enforcement during wartime."
+      "summary": "China's 'Terminator' warning was last addition. Not covered this cycle. Watch for UN response to autonomous weapons risk. Importance decayed from 6 to 5."
     },
     {
       "id": "defense-industry-war-profiteering",
@@ -358,12 +391,12 @@
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-11-rheinmetall-profits-mideast-war-defense-business-boom"
       ],
-      "summary": "Rheinmetall publicly called the war a 'business opportunity.' Watch for other contractors (BAE Systems, Leonardo, Thales) making similar declarations and for EU parliamentary scrutiny."
+      "summary": "Rheinmetall publicly called the war a 'business opportunity.' Not covered this cycle. Importance decayed from 5 to 4."
     },
     {
       "id": "russia-oligarchs-sanctions-failure",
@@ -372,12 +405,12 @@
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-11-record-155-russian-billionaires-sanctions-wealth-unchanged"
       ],
-      "summary": "155 Russian billionaires on Forbes list — record, fourth consecutive growth year. Sanctions-as-pressure-on-elites theory has empirically failed. Wealth held in UAE, Turkey, China — beyond Western reach."
+      "summary": "155 Russian billionaires on Forbes list — record, fourth consecutive growth year. Not covered this cycle. Importance decayed from 5 to 4."
     },
     {
       "id": "china-climate-five-year-plan",
@@ -386,14 +419,14 @@
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-05-china-five-year-climate-goals-two-sessions-2026-paris",
         "2026-03-09-china-five-year-climate-goals",
         "2026-03-11-china-five-year-climate-targets-paris-compatibility-analysis"
       ],
-      "summary": "Carbon Brief verified China's five-year plan targets against Paris goals. Arc: announcement → scientific verification → policy consequences. Watch for next step: other nations' official responses."
+      "summary": "Carbon Brief verified China's five-year plan targets against Paris goals. Not covered this cycle. Importance decayed from 5 to 4."
     },
     {
       "id": "china-b2-signals-intelligence",
@@ -402,82 +435,55 @@
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-11-china-pla-firm-intercepts-b2-bomber-signal-iran-strike-stealth"
       ],
-      "summary": "Jingan Technology (PLA intelligence contractor) claims B-2 Spirit signal intercepted March 1. If genuine, changes Taiwan Strait and Korean peninsula calculations. Bellingcat's Turnstone tool (selected this cycle) is now potentially applicable to retrospective verification. Watch for US DoD response."
+      "summary": "Jingan Technology claims B-2 Spirit signal intercepted March 1. If genuine, changes Taiwan Strait and Korean peninsula calculations. Not covered this cycle. Watch for US DoD response."
     },
     {
-      "id": "sudan-humanitarian-crisis",
-      "label": "Darfur: RSF destroys farms before mass killings — starvation crimes evidence",
-      "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-03-10T21:38:00Z",
-      "coverageCount": 14,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
-        "2026-02-16-sudan-stoning-sentences-ferry-sinkings-deepen-crisis",
-        "2026-02-17-sudan-drone-strike-on-crowded-market-kills-at-least-28",
-        "2026-02-17-sudan-drone-strikes-kill-sixty-across-darfur-and-kordofan",
-        "2026-02-19-un-declares-hallmarks-of-genocide-in-sudans-el-fasher",
-        "2026-02-21-rsf-drone-kills-three-aid-workers-in-sudan",
-        "2026-02-22-museveni-hosts-rsf-leader-dagalo-for-sudan-war-dialogue",
-        "2026-02-23-chad-shuts-sudan-border-after-troops-killed-in-cross-border-incursion",
-        "2026-02-25-un-security-council-condemns-rsf-attacks-in-sudan",
-        "2026-03-03-sudan-rsf-drone-strike-el-obeid-blackout",
-        "2026-03-06-sudan-war-spreads-kordofan-hospitals-hit-supply-routes-cut",
-        "2026-03-08-sudan-drone-strikes-kill-33-west-kordofan-markets",
-        "2026-03-10-malnourished-pregnant-women-birth-no-medicine-siege",
-        "2026-03-10-darfur-starvation-crimes-rsf-new-evidence"
-      ],
-      "summary": "Forensic evidence of RSF destroying farms before mass killings. Not in feed for two consecutive cycles. AllAfrica and Premium Times not surfacing hard news. The crisis continues regardless of our feed gaps."
-    },
-    {
-      "id": "chile-latin-america-right-turn",
-      "label": "Chile: Kast inaugurated; Lula boycott; Machado-Milei-Kast right bloc",
-      "firstSeen": "2026-03-11T04:01:25Z",
-      "lastCovered": "2026-03-11T04:01:25Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-11-chile-kast-inauguration-emergency-government-90-day-plan",
-        "2026-03-11-lula-boycotts-kast-bolsonaro-latin-america-right-bloc"
-      ],
-      "summary": "Kast inaugurated. Kast-Milei-Machado axis forming. Decayed from 5. Watch for first migration crackdowns and trade positions."
-    },
-    {
-      "id": "hajj-2026-war-disruption",
-      "label": "Hajj 2026: War continues as pilgrimage season (late May) approaches",
-      "firstSeen": "2026-03-11T04:01:25Z",
-      "lastCovered": "2026-03-11T04:01:25Z",
+      "id": "seabed-mining-treaty",
+      "label": "ISA seabed-mining treaty negotiations — environmental governance for deep-ocean cobalt extraction",
+      "firstSeen": "2026-03-11T16:31:00Z",
+      "lastCovered": "2026-03-11T21:20:00Z",
       "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
+      "category": "science",
+      "importance": 6,
       "arc": "developing",
       "articles": [
-        "2026-03-11-indonesia-hajj-contingencies-iran-war-pilgrimage-disruption"
+        "2026-03-12-seabed-mining-treaty-isa-cobalt-deep-ocean"
       ],
-      "summary": "Indonesia (world's largest Hajj delegation) formally preparing contingencies. 1.8 billion Muslims' sacred obligation is now a logistics question. Hajj begins late May — window narrowing. Next key signal: Saudi Arabia's own public statement."
+      "summary": "ISA negotiating industrial mining of deep-sea polymetallic nodules. Energy transition's ethical contradiction. Not covered this cycle. Watch for any ISA member state changing vote position."
     },
     {
-      "id": "uk-climate-coal-milestone",
-      "label": "UK coal at 400-year low; emissions fall 2.4% — pre-industrial energy milestone",
-      "firstSeen": "2026-03-11T12:05:06Z",
-      "lastCovered": "2026-03-11T12:05:06Z",
+      "id": "southern-hemisphere-climate-extremes",
+      "label": "Australia record hot summers + Cape Town 40°C+ heatwave — Southern Hemisphere climate signal",
+      "firstSeen": "2026-03-11T21:04:00Z",
+      "lastCovered": "2026-03-11T21:20:00Z",
       "coverageCount": 1,
       "category": "science",
       "importance": 5,
       "arc": "developing",
       "articles": [
-        "2026-03-11-uk-emissions-2025-coal-400-year-low-climate-milestone"
+        "2026-03-12-australia-hotter-summers-data-climate-change",
+        "2026-03-12-cape-town-heatwave-autumn-climate-southern-africa"
       ],
-      "summary": "UK coal consumption at lowest level in 400 years. Covered last cycle. Watch for similar milestones from Germany and France as the clean energy transition continues under war media blackout."
+      "summary": "Australian measurably hotter summers; Cape Town 40°C+ in early March (autumn). Not covered this cycle. Importance stable — covered last cycle with two articles."
+    },
+    {
+      "id": "singapore-fertility-tech-failure",
+      "label": "Singapore lowest fertility rate despite maximum state intervention — limits of technocratic governance",
+      "firstSeen": "2026-03-11T21:02:00Z",
+      "lastCovered": "2026-03-11T21:20:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-singapore-fertility-tech-social-engineering-failure"
+      ],
+      "summary": "Singapore's lowest-ever fertility rate despite AI dating apps, $10K+ baby bonuses, mandatory parenting courses. Structural forces (housing, gender inequality, DINK logic) resist algorithmic intervention. Not covered this cycle."
     },
     {
       "id": "mastercard-blockchain-payments",
@@ -486,16 +492,16 @@
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-11-mastercard-blockchain-payments-binance-paypal-ripple"
       ],
-      "summary": "Mastercard assembled 85+ partners connecting on-chain payments with banking infrastructure. Who loses: correspondent banks, SWIFT. Watch for regulatory response and adoption metrics."
+      "summary": "Mastercard assembled 85+ partners. Not covered this cycle. Importance decayed from 5 to 4."
     },
     {
       "id": "lecun-world-model-ai",
-      "label": "Yann LeCun raises $1B to build world-model AI — scientific challenge to LLM paradigm",
+      "label": "Yann LeCun raises $1B for AMI — world-model AI challenge to LLM paradigm",
       "firstSeen": "2026-03-10T08:46:53Z",
       "lastCovered": "2026-03-11T08:03:02Z",
       "coverageCount": 1,
@@ -505,7 +511,35 @@
       "articles": [
         "2026-03-10-lecun-billion-world-model-ai-physical-intelligence"
       ],
-      "summary": "LeCun raising $1B for AI that learns physical world models, arguing LLMs cannot achieve general intelligence. Watch for funding confirmation and first technical publications."
+      "summary": "LeCun's AMI raising $1B for world-model AI arguing LLMs cannot achieve general intelligence. STAT News reported a health AI startup (Nabla) also benefits from the AMI funding round. Not selected this cycle. Watch for funding confirmation and first technical publications."
+    },
+    {
+      "id": "uk-climate-coal-milestone",
+      "label": "UK coal at 400-year low; emissions fall 2.4% — pre-industrial energy milestone",
+      "firstSeen": "2026-03-11T12:05:06Z",
+      "lastCovered": "2026-03-11T12:05:06Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-11-uk-emissions-2025-coal-400-year-low-climate-milestone"
+      ],
+      "summary": "UK coal at lowest in 400 years. Not covered this cycle. Importance decayed from 5 to 4."
+    },
+    {
+      "id": "hajj-2026-war-disruption",
+      "label": "Hajj 2026: War continues as pilgrimage season (late May) approaches",
+      "firstSeen": "2026-03-11T04:01:25Z",
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-11-indonesia-hajj-contingencies-iran-war-pilgrimage-disruption"
+      ],
+      "summary": "Indonesia preparing contingencies. 1.8 billion Muslims' Hajj obligation now a logistics question. Not covered this cycle. Importance decayed from 5 to 4. Window narrowing — Hajj begins late May."
     },
     {
       "id": "wartime-civil-liberties-uk",
@@ -514,12 +548,27 @@
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
-      "arc": "developing",
+      "importance": 3,
+      "arc": "fading",
       "articles": [
         "2026-03-11-uk-mahmood-bans-al-quds-day-march-wartime-civil-liberties"
       ],
-      "summary": "Shabana Mahmood approved ban on 40-year-old pro-Palestine march. Watch for legal challenge and whether other European states follow. Part of anti-Muslim-hate arc."
+      "summary": "Shabana Mahmood approved ban on 40-year-old pro-Palestine march. Not covered two cycles — fading. Importance decayed from 4 to 3."
+    },
+    {
+      "id": "chile-latin-america-right-turn",
+      "label": "Chile: Kast inaugurated; Lula boycott; Machado-Milei-Kast right bloc",
+      "firstSeen": "2026-03-11T04:01:25Z",
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 3,
+      "arc": "fading",
+      "articles": [
+        "2026-03-11-chile-kast-inauguration-emergency-government-90-day-plan",
+        "2026-03-11-lula-boycotts-kast-bolsonaro-latin-america-right-bloc"
+      ],
+      "summary": "Kast inaugurated. Not covered this cycle. Importance decayed from 4 to 3 — fading."
     },
     {
       "id": "trump-kharg-island-seizure",
@@ -528,12 +577,12 @@
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-10-trump-kharg-island-seizure-iran"
       ],
-      "summary": "No State Dept or NSC confirmation. Not covered two consecutive cycles — fading."
+      "summary": "No confirmation. Three consecutive cycles uncovered — fading."
     },
     {
       "id": "iran-war-biblical-prophecy",
@@ -542,12 +591,12 @@
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-10-iran-war-biblical-prophecy-military-orders"
       ],
-      "summary": "Investigation demanded. Not covered two cycles — fading."
+      "summary": "Investigation demanded. Three consecutive cycles uncovered — fading."
     },
     {
       "id": "ukraine-russia-war",
@@ -574,11 +623,11 @@
         "2026-03-09-russia-strikes-kharkiv-apartment-ukraine-peace-stalls",
         "2026-03-10-ukraine-turkey-trilateral-peace-zelenskiy"
       ],
-      "summary": "Five consecutive cycles uncovered. Iran war has completely dominated coverage. Keeping as reminder — the frontline continues regardless."
+      "summary": "Six consecutive cycles uncovered. Iran war has completely dominated coverage. The frontline continues regardless."
     },
     {
       "id": "gaza-aid-ban",
-      "label": "Gaza: Siege continues — total media blackout now 10+ cycles",
+      "label": "Gaza: Siege continues — total media blackout now 11+ cycles",
       "firstSeen": "2026-02-25T04:00:00Z",
       "lastCovered": "2026-03-06T16:00:00Z",
       "coverageCount": 4,
@@ -591,7 +640,7 @@
         "2026-03-04-gaza-aid-collapses-under-iran-war-cover",
         "2026-03-06-gaza-medical-supplies-exhausted-who-warns-crisis"
       ],
-      "summary": "WHO warned medical supplies exhausted. No feed items 10+ cycles. Total blackout under Iran war coverage. Cannot be pruned — the silence is the story."
+      "summary": "WHO warned medical supplies exhausted. No feed items 11+ cycles. Total blackout under Iran war coverage. Cannot be pruned — the silence is the story."
     }
   ]
 }
