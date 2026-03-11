@@ -199,9 +199,10 @@ console.log('Wrote .last-cycle.json with ' + published.length + '/' + sel.length
   fi
 fi
 
-# Stage 4: Audio briefing — generate at 04:00 UTC only (morning for GCC→India)
+# Stage 4: Audio briefing — generate at 05:00 UTC only (morning for GCC→India)
+# (cycle schedule: 00:00, 02:30, 05:00, 07:30... — 05:00 is the first morning cycle)
 HOUR_UTC=$(date -u +%H)
-if [ "$HOUR_UTC" = "04" ]; then
+if [ "$HOUR_UTC" = "05" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 4: Audio briefing ---" | tee -a "$LOG_FILE"
   timeout 900 node scripts/generate-briefing.js 2>&1 | tee -a "$LOG_FILE"
@@ -216,10 +217,10 @@ if [ "$HOUR_UTC" = "04" ]; then
   fi
 else
   echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 4: Audio briefing (skipped — $HOUR_UTC:00 UTC, runs at 04:00 only) ---" | tee -a "$LOG_FILE"
+  echo "--- Stage 4: Audio briefing (skipped — $HOUR_UTC:xx UTC, runs at 05:00 only) ---" | tee -a "$LOG_FILE"
 fi
 
-# Stage 5: Weekly reflection — runs Sunday 21:00 UTC only
+# Stage 5: Weekly reflection — runs Sunday 22:30 UTC only (last cycle of the week)
 DAY_OF_WEEK=$(date -u +%u)
 if [ "$DAY_OF_WEEK" = "7" ] && [ "$HOUR_UTC" = "22" ]; then
   echo "" | tee -a "$LOG_FILE"
