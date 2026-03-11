@@ -39,7 +39,7 @@ LOG_FILE="$LOG_DIR/cycle-$TIMESTAMP.log"
 
 cleanup() {
   echo "" | tee -a "$LOG_FILE"
-  echo "Finished: $(date)" | tee -a "$LOG_FILE"
+  echo "Finished: $(date) — total ${SECONDS}s" | tee -a "$LOG_FILE"
   find "$LOG_DIR" -name "cycle-*.log" -mtime +7 -delete 2>/dev/null || true
 }
 trap cleanup EXIT
@@ -55,12 +55,13 @@ rm -f /tmp/zuhd-selection.json /tmp/zuhd-new-articles.txt
 # Stage 1: Selector — fetch news, pick stories, save selection
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 1: Selector ---" | tee -a "$LOG_FILE"
+T1=$SECONDS
 SELECT_PROMPT=$(cat scripts/select-prompt.md)
 FALLBACK_FLAG=""
 [ "$CLAUDE_SELECTOR_MODEL" != "$CLAUDE_MODEL" ] && FALLBACK_FLAG="--fallback-model $CLAUDE_MODEL"
 timeout 1200 claude $CLAUDE_BASE --model $CLAUDE_SELECTOR_MODEL $FALLBACK_FLAG --allowedTools $TOOLS_SELECTOR --max-turns 50 -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 SELECT_EXIT=$?
-echo "Selector exit: $SELECT_EXIT" | tee -a "$LOG_FILE"
+echo "Selector exit: $SELECT_EXIT — $((SECONDS - T1))s" | tee -a "$LOG_FILE"
 
 # Abort if selector failed or produced no selection
 if [ "$SELECT_EXIT" -ne 0 ]; then
@@ -82,15 +83,18 @@ echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
 # Stage 1.5: Pre-fetch article content — eliminates writer's WebFetch tool calls
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 1.5: Pre-fetch article content ---" | tee -a "$LOG_FILE"
+T15=$SECONDS
 timeout 60 node scripts/prefetch-articles.js 2>&1 | tee -a "$LOG_FILE"
+echo "Pre-fetch done — $((SECONDS - T15))s" | tee -a "$LOG_FILE"
 
 # Stage 2: Writer — read selection, fetch full articles, draft markdown
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 2: Writer ---" | tee -a "$LOG_FILE"
+T2=$SECONDS
 WRITE_PROMPT=$(cat scripts/write-prompt.md)
 timeout 1800 claude $CLAUDE_BASE --allowedTools $TOOLS_WRITER --max-turns 60 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 WRITE_EXIT=$?
-echo "Writer exit: $WRITE_EXIT" | tee -a "$LOG_FILE"
+echo "Writer exit: $WRITE_EXIT — $((SECONDS - T2))s" | tee -a "$LOG_FILE"
 
 if [ "$WRITE_EXIT" -ne 0 ]; then
   echo "Writer failed (exit $WRITE_EXIT) — continuing with any partial output" | tee -a "$LOG_FILE"
@@ -110,6 +114,7 @@ else
   # Stage 3: Editor — check only this cycle's articles against style rules
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3: Editor ---" | tee -a "$LOG_FILE"
+  T3=$SECONDS
   CHECK_PROMPT=$(cat scripts/check-prompt.md)
   ARTICLE_LIST=$(cat /tmp/zuhd-new-articles.txt)
   EDITOR_ADDENDUM="
@@ -118,7 +123,7 @@ IMPORTANT: Only check these specific files (this cycle's batch). Do NOT scan for
 $ARTICLE_LIST"
   timeout 900 claude $CLAUDE_BASE --effort medium --allowedTools $TOOLS_EDITOR --max-turns 40 -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
   EDITOR_EXIT=$?
-  echo "Editor exit: $EDITOR_EXIT" | tee -a "$LOG_FILE"
+  echo "Editor exit: $EDITOR_EXIT — $((SECONDS - T3))s" | tee -a "$LOG_FILE"
 
   # Stage 3b: Build and deploy — always runs, even if editor timed out
   # This ensures articles get published regardless of editor success

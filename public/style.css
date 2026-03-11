@@ -54,7 +54,7 @@ html {
   font-size: 100%;
   color-scheme: light dark;
   -webkit-text-size-adjust: 100%;
-  hanging-punctuation: first last;
+  hanging-punctuation: first;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -137,10 +137,13 @@ header {
   &:hover { font-weight: 800; }
 }
 
+.wordmark-dot,
+.wordmark-tld {
+  color: var(--text-secondary);
+}
+
 .wordmark-tld {
   font-weight: 300;
-  color: var(--text-secondary);
-  vertical-align: baseline;
 }
 
 /* --- Footer --- */
@@ -358,8 +361,8 @@ footer {
   text-wrap: pretty;
   content-visibility: auto;
   contain-intrinsic-size: auto 500px;
-  font-variant-ligatures: common-ligatures contextual discretionary;
-  font-variant-numeric: oldstyle-nums proportional-nums diagonal-fractions;
+  font-variant-ligatures: common-ligatures contextual;
+  font-variant-numeric: oldstyle-nums proportional-nums;
 
   .s {
     display: block;
