@@ -96,10 +96,11 @@ function init(data) {
       if (readSlugs.has(a.slug)) div.classList.add('read');
       const displayDate = a.addedAt ? new Date(a.addedAt) : new Date(a.date);
       const now = new Date();
-      const isToday = displayDate.getDate() === now.getDate() && displayDate.getMonth() === now.getMonth() && displayDate.getFullYear() === now.getFullYear();
+      // Compare in UTC so "today" means the same calendar day regardless of browser timezone
+      const isToday = displayDate.getUTCFullYear() === now.getUTCFullYear() && displayDate.getUTCMonth() === now.getUTCMonth() && displayDate.getUTCDate() === now.getUTCDate();
       const timeLabel = isToday
-        ? displayDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
-        : displayDate.toLocaleDateString([], { day: 'numeric', month: 'short' });
+        ? displayDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC' })
+        : displayDate.toLocaleDateString([], { day: 'numeric', month: 'short', timeZone: 'UTC' });
       div.innerHTML = `<h2>${esc(a.title)}</h2><time datetime="${displayDate.toISOString()}">${timeLabel}</time>`;
       div.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); div.click(); }
