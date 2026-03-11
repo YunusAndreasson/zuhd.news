@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 15: Mojtaba as Supreme Leader, US troops deployment signal, Hormuz mining",
+      "label": "Iran war Day 16: Iran declares Hormuz indefinite, Israel switches to regime targets",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-10T21:38:00Z",
-      "coverageCount": 46,
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 51,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -56,9 +56,14 @@
         "2026-03-10-us-soldiers-wounded-iran-war-140-pentagon",
         "2026-03-10-trump-us-troops-deployment-iran-senator-warning",
         "2026-03-10-iran-hormuz-mining-intelligence-us-warning",
-        "2026-03-10-iran-war-biblical-prophecy-military-orders"
+        "2026-03-10-iran-war-biblical-prophecy-military-orders",
+        "2026-03-11-iran-hormuz-blockade-indefinite-wartime-declaration",
+        "2026-03-11-iran-dissent-crackdown-airstrikes-day-16-war",
+        "2026-03-11-israel-switches-regime-targets-iran-war-haaretz",
+        "2026-03-11-lebanon-100000-displaced-single-day-un-israeli-strikes",
+        "2026-03-11-china-yj12-supersonic-missiles-iran-war-us-navy-implications"
       ],
-      "summary": "Day 15. Mojtaba Khamenei confirmed as Supreme Leader — hardliner, forecloses near-term negotiated exit. US senator says Trump is on path to ground troops deployment (post-classified briefing). 140 US service members wounded, 8 critical. Intelligence detected Iranian Hormuz mining preparations; 10 mine-laying vessels reportedly destroyed. Military briefings framing the war as biblical prophecy under Congressional investigation. Trump verbal de-escalation contradicted by all military signals."
+      "summary": "Day 16. Iran formally declares Hormuz blockade will last 'as long as war continues' — permanent wartime condition, not a pressure tactic. Israel shifts to regime targets (leadership, IRGC political structures) — war aim is now regime pressure, not just military degradation. Lebanon: 100,000 displaced in a single day; total surpasses 700,000. Iran cracking down on internal dissent. 140 US service members wounded. Mojtaba Khamenei as Supreme Leader forecloses near-term negotiation."
     },
     {
       "id": "trump-kharg-island-seizure",
@@ -67,12 +72,12 @@
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 9,
-      "arc": "breaking",
+      "importance": 8,
+      "arc": "developing",
       "articles": [
         "2026-03-10-trump-kharg-island-seizure-iran"
       ],
-      "summary": "Trump reportedly reviving his 1986 Kharg Island seizure plan as a way to defund Iran's war effort. Kharg handles ~90% of Iran's oil exports. No State Dept or NSC confirmation yet. If operationalized, would constitute seizure of sovereign territory and collapse of global oil markets."
+      "summary": "Trump reportedly reviving his 1986 Kharg Island seizure plan. No State Dept or NSC confirmation. Importance maintained — escalation signals from both sides (Hormuz declaration + regime targets) make territorial seizure more plausible."
     },
     {
       "id": "iran-war-biblical-prophecy",
@@ -81,26 +86,26 @@
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-03-10-iran-war-biblical-prophecy-military-orders"
       ],
-      "summary": "US military commanders reportedly told troops the Iran war fulfilled biblical prophecy and Trump was anointed by Jesus. Democrats demanding formal investigation. First Amendment and chain-of-command crisis. Investigation scope and who gave the briefings unknown."
+      "summary": "Democrats demanding formal investigation into commanders framing war as biblical prophecy. Not covered this cycle — decayed from 8."
     },
     {
       "id": "iran-hormuz-mining",
-      "label": "Iran preparing to mine Strait of Hormuz; US intelligence detects, warns",
+      "label": "Iran prepared to mine Hormuz; US destroyed 10 mine-laying vessels",
       "firstSeen": "2026-03-10T21:38:00Z",
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 9,
-      "arc": "breaking",
+      "importance": 8,
+      "arc": "developing",
       "articles": [
         "2026-03-10-iran-hormuz-mining-intelligence-us-warning"
       ],
-      "summary": "US detected Iranian preparations for Hormuz mining via satellite and signals intelligence. Trump destroyed 10 mine-laying vessels and issued public warning. Mining Hormuz would shut 20% of global oil trade. Public disclosure is a deterrence tactic; unclear if it has worked."
+      "summary": "Absorbed into the Hormuz blockade story: Iran's blockade declaration this cycle supersedes the mining preparations — the blockade is now the declared strategy. Mining remains a potential escalation layer."
     },
     {
       "id": "north-korea-missile-test",
@@ -109,12 +114,12 @@
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-03-10-north-korea-cruise-missile-destroyer-test"
       ],
-      "summary": "North Korea tested a strategic cruise missile from destroyer Choe Hyon — first documented sea-launched strategic missile test from surface vessel. Extends NK strike range and concealment options. Tested while world attention is on Iran war; zero US diplomatic bandwidth to respond."
+      "summary": "First sea-launched strategic cruise missile test from surface vessel. Not covered this cycle — decayed from 7."
     },
     {
       "id": "boeing-israel-arms-deal",
@@ -123,12 +128,12 @@
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-03-10-boeing-289-million-israel-5000-smart-bombs"
       ],
-      "summary": "Boeing signed $289M contract for 5,000 air-launched smart bombs to Israel during active bombardment of Iran and Lebanon. Second major arms deal in four days ($151M bypassed Congress on March 7). Smart bombs of the same category killed 168 children in the school strike earlier this cycle."
+      "summary": "Boeing signed $289M contract for 5,000 smart bombs to Israel. Second major arms deal in four days. Not covered this cycle — decayed from 7."
     },
     {
       "id": "amazon-ai-code-oversight",
@@ -137,12 +142,12 @@
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-03-10-amazon-ai-code-human-oversight-outages"
       ],
-      "summary": "Amazon requiring senior engineers to sign off on all AI-assisted code changes after cloud outages affected AWS infrastructure. First documented major institutional rollback of AI autonomy in critical infrastructure at scale. Will ripple through industry."
+      "summary": "Amazon requiring senior engineers to sign off on AI-assisted code changes after outages. First institutional rollback of AI autonomy in critical infrastructure. Not covered this cycle — decayed from 7."
     },
     {
       "id": "mauerberger-thailand-cybercrime",
@@ -151,76 +156,21 @@
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "fading",
       "articles": [
         "2026-03-10-mauerberger-south-africa-thailand-cybercrime-state-capture"
       ],
-      "summary": "South African national Benjamin Mauerberger accused of infiltrating Thai government circles, money laundering, human trafficking, and Chinese-rooted organised crime. Thailand arrest warrant issued. Connects South African capital to Chinese cybercrime-adjacent networks operating across Southeast Asia."
-    },
-    {
-      "id": "nigeria-trade-surplus-oil",
-      "label": "Nigeria Q4 2025: Trade surplus despite falling crude exports",
-      "firstSeen": "2026-03-10T21:38:00Z",
-      "lastCovered": "2026-03-10T21:38:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-10-nigeria-trade-surplus-crude-exports-fall-q4"
-      ],
-      "summary": "Nigeria posted ₦1.71 trillion trade surplus in Q4 2025 while crude oil exports fell. Non-oil export composition driving surplus. Africa's largest economy navigating Iran war supply disruption while maintaining positive trade balance."
-    },
-    {
-      "id": "solar-system-crystal-origins",
-      "label": "Quanta: Pre-solar crystals in meteorites could settle solar system origin debate",
-      "firstSeen": "2026-03-10T21:38:00Z",
-      "lastCovered": "2026-03-10T21:38:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-10-crystals-older-than-sun-solar-system-origin"
-      ],
-      "summary": "Microscopic crystals in meteorites predate the Sun — formed in pre-solar nebula. Isotopic ratios could settle debate about conditions at the birth of our solar system. Quanta Magazine feature."
-    },
-    {
-      "id": "lebanon-hezbollah-israel",
-      "label": "Lebanon: UN Security Council emergency meeting — French resolution vs US veto",
-      "firstSeen": "2026-03-02T16:00:00Z",
-      "lastCovered": "2026-03-10T16:00:00Z",
-      "coverageCount": 14,
-      "category": "politics",
-      "importance": 7,
-      "arc": "developing",
-      "articles": [
-        "2026-03-02-lebanon-bans-hezbollah-military-activities",
-        "2026-03-03-israel-ground-assault-southern-lebanon-52-killed",
-        "2026-03-03-syria-deploys-troops-lebanon-border-war-spillover",
-        "2026-03-04-israel-ground-invasion-lebanon-baalbek-hezbollah-open-war",
-        "2026-03-04-israel-orders-all-southern-lebanon-evacuated-north-of-litani",
-        "2026-03-05-israel-orders-dahiyeh-evacuation-will-look-like-khan-younis",
-        "2026-03-07-ghana-peacekeepers-wounded-missile-lebanon",
-        "2026-03-07-lebanon-500000-displaced-dahiyeh-41-killed-nabi-chit",
-        "2026-03-07-israel-raids-lebanese-village-dozens-killed-40-year",
-        "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
-        "2026-03-09-israeli-forces-east-lebanon-hezbollah-war-expands",
-        "2026-03-09-hrw-israel-white-phosphorus-lebanon-populated-areas",
-        "2026-03-09-lebanon-delays-elections-two-years-war",
-        "2026-03-10-france-unsc-emergency-lebanon-offensive"
-      ],
-      "summary": "France requested emergency UNSC meeting — first formal multilateral intervention. 700,000 displaced, 400+ killed including 83 children. White phosphorus documented by HRW. Elections postponed two years. UNSC meeting outcome unknown — US veto remains likely. Not covered this cycle."
+      "summary": "Thailand arrest warrant, South African national. Not covered this cycle — decayed from 6. Fading."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz crisis: Oil $119 peak, airlines surcharging, Hormuz mining preparations",
+      "label": "Hormuz crisis: Blockade declared permanent; stagflation feared; Saudi bypass pipeline mobilises",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-10T21:38:00Z",
-      "coverageCount": 44,
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 47,
       "category": "economy",
-      "importance": 9,
+      "importance": 10,
       "arc": "ongoing",
       "articles": [
         "2026-03-01-opec-boosts-oil-output-amid-iran-war",
@@ -252,23 +202,19 @@
         "2026-03-08-iraq-oil-production-collapses-70-percent-hormuz-blockade",
         "2026-03-09-oil-surges-past-110-asian-markets-crash-hormuz-war",
         "2026-03-09-bangladesh-shuts-universities-energy-crisis-hormuz",
-        "2026-03-09-colombia-senate-election-petro-historic-pact-uribe",
         "2026-03-09-g7-emergency-oil-reserves-markets-crash",
         "2026-03-09-pakistan-austerity-plan-triple-crisis-iran-war",
         "2026-03-09-pakistan-four-day-work-week-schools-shut-austerity",
-        "2026-03-09-g7-considers-oil-supply-iran-war",
         "2026-03-09-uk-heating-oil-crisis-hormuz-war",
-        "2026-03-10-egypt-iran-war-fuel-prices-shockwave",
-        "2026-03-10-russia-iran-war-energy-winner-oil-prices",
-        "2026-03-10-pakistan-senate-fuel-price-beneficiaries-probe",
-        "2026-03-10-bitcoin-71000-oil-fears-ease-iran-war-sentiment",
-        "2026-03-10-algeria-helium-iran-war-science-supply-crisis",
         "2026-03-10-mojtaba-khamenei-supreme-leader-oil-spike",
         "2026-03-10-oil-sinks-trump-de-escalation-iran-market",
         "2026-03-10-airlines-fuel-surcharges-middle-east-war",
-        "2026-03-10-nigeria-trade-surplus-crude-exports-fall-q4"
+        "2026-03-10-nigeria-trade-surplus-crude-exports-fall-q4",
+        "2026-03-11-stagflation-risk-iran-war-1970s-oil-shock-economy",
+        "2026-03-10-saudi-petroline-bypass-hormuz-pipeline-capacity-gulf",
+        "2026-03-11-nigeria-evacuates-iran-diaspora-remittances-war-displacement"
       ],
-      "summary": "Oil peaked at $119 then fell 7% on Trump de-escalation signal — but mining preparations near Hormuz detected. Airlines surcharging across Asia and Europe. G7 holding off reserve release. Nigeria posting trade surplus despite falling crude exports. Economic pain distributed unevenly: Russia winning, Egypt/Pakistan/Bangladesh absorbing shocks."
+      "summary": "Iran formally declared Hormuz blockade indefinite — it is now a stated wartime condition. Saudi Petroline 'swinging into action' to bypass the strait (4.8 mb/d capacity), but Iraq, Kuwait, UAE have limited or no bypass capability. Institutional investors drawing 1973 stagflation parallels explicitly. Global diaspora displacement from Iran/Middle East disrupting remittance flows to Nigeria, Pakistan, Philippines, Singapore."
     },
     {
       "id": "ukraine-russia-war",
@@ -277,8 +223,8 @@
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 14,
       "category": "politics",
-      "importance": 4,
-      "arc": "ongoing",
+      "importance": 3,
+      "arc": "fading",
       "articles": [
         "2026-02-15-ukraine-hits-russian-oil-port-as-both-sides-escalate-before-talks",
         "2026-02-16-ukraine-russia-geneva-talks-set-as-both-sides-escalate",
@@ -295,7 +241,7 @@
         "2026-03-09-russia-strikes-kharkiv-apartment-ukraine-peace-stalls",
         "2026-03-10-ukraine-turkey-trilateral-peace-zelenskiy"
       ],
-      "summary": "Turkey confirmed as trilateral host. Zelenskiy agreed. Russia's response unknown. Iran war gives Russia leverage to frame peace terms. Frontline grinding continues. Not covered this cycle — decayed from 5."
+      "summary": "Turkey as trilateral host confirmed. Frontline grinding continues. Not covered two consecutive cycles — fading."
     },
     {
       "id": "iran-missiles-nato-kurecik",
@@ -304,12 +250,12 @@
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-03-10-iran-missiles-nato-kurecik-radar-turkey"
       ],
-      "summary": "MEE/Soylu analysis: Iranian missiles deliberately mapping Kürecik NATO radar gaps. NATO rushed Patriots to defend base. If struck, Europe and Israel lose 15-minute ballistic missile warning. Not covered this cycle — decayed from 8."
+      "summary": "Iranian missiles mapping Kürecik NATO radar gaps. NATO rushed Patriots to defend. Not covered this cycle — decayed from 7."
     },
     {
       "id": "russia-iran-war-winner",
@@ -318,12 +264,12 @@
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
-      "arc": "developing",
+      "importance": 4,
+      "arc": "fading",
       "articles": [
         "2026-03-10-russia-iran-war-energy-winner-oil-prices"
       ],
-      "summary": "Russia collecting oil revenue windfall from Iran war. Buyers rerouting from Gulf to Russian exports. Western pressure paused. Not covered this cycle — decayed from 7."
+      "summary": "Russia collecting oil revenue windfall. Not covered two consecutive cycles — fading."
     },
     {
       "id": "egypt-hormuz-fuel-crisis",
@@ -332,12 +278,12 @@
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
-      "arc": "developing",
+      "importance": 3,
+      "arc": "fading",
       "articles": [
         "2026-03-10-egypt-iran-war-fuel-prices-shockwave"
       ],
-      "summary": "Egypt's 105M people hit by fuel price jumps on top of IMF austerity. Cooking gas, transport, bread subsidies all under pressure. Not covered this cycle — decayed from 6."
+      "summary": "Egypt absorbing fuel price jumps under IMF austerity. Not covered two consecutive cycles — fading."
     },
     {
       "id": "anti-muslim-hate-x-study",
@@ -346,14 +292,14 @@
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": [
         "2026-03-09-anti-muslim-posts-spike-x-iran-war-study",
         "2026-03-10-uk-news-muslims-biased-fifty-percent-landmark-study",
         "2026-03-10-cair-report-broad-attack-muslim-life-us"
       ],
-      "summary": "Three consecutive cycles of empirical data: (1) sharp spike in anti-Muslim posts on X since Iran war; (2) 50% of UK mainstream news about Muslims is biased; (3) CAIR annual report documents 'broad attack on Muslim life' across all institutions in 2025, pre-war baseline already high. A systematic data arc now. Watch for advertiser, regulator, legislative responses."
+      "summary": "Three-cycle empirical data arc: X spike + UK media bias (50%) + CAIR annual report. Not covered this cycle — decayed from 7. Watch for advertiser, regulator, legislative responses."
     },
     {
       "id": "iran-women-athletes-dissent",
@@ -362,28 +308,28 @@
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-09-iran-womens-football-team-wartime-persecution",
         "2026-03-10-iran-women-soccer-seven-asylum-australia"
       ],
-      "summary": "Seven total Iranian women soccer players now seeking asylum in Australia for not singing national anthem. Five already granted humanitarian visas; two more in process. One reportedly refused to board return flight. Watch for reports of players who returned and faced consequences."
+      "summary": "Seven total players seeking asylum. This cycle's Iran dissent crackdown story is related — watch for reports of athletes or dissidents who returned to Iran and faced consequences."
     },
     {
       "id": "uk-emissions-decline",
-      "label": "UK emissions fall 2.4%, coal at 400-year low — threatened by Hormuz crisis",
+      "label": "UK emissions fall 2.4%, coal at 400-year low",
       "firstSeen": "2026-03-09T22:00:00Z",
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 5,
-      "arc": "developing",
+      "importance": 4,
+      "arc": "fading",
       "articles": [
         "2026-03-09-uk-emissions-fall-coal-400-year-low",
         "2026-03-10-uk-emissions-coal-400-year-low-climate"
       ],
-      "summary": "UK coal at lowest since early 1600s. Emissions fell 2.4% in 2025. Gains structurally threatened by Hormuz energy crisis pushing UK toward oil imports. Renewable transition and war-driven fossil regression happening simultaneously."
+      "summary": "Covered twice; fading. The clean energy transition story has been upgraded to the Bristol floating wind turbine and Iran energy crisis framing this cycle."
     },
     {
       "id": "sudan-humanitarian-crisis",
@@ -392,7 +338,7 @@
       "lastCovered": "2026-03-10T21:38:00Z",
       "coverageCount": 14,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
@@ -410,16 +356,16 @@
         "2026-03-10-malnourished-pregnant-women-birth-no-medicine-siege",
         "2026-03-10-darfur-starvation-crimes-rsf-new-evidence"
       ],
-      "summary": "New forensic evidence: RSF deliberately destroyed farms around El Fasher before alleged mass killings in October 2025. This is legal-grade evidence for starvation as a war crime. El Fasher is last major SAF-held city in Darfur. Upgraded from fading — new evidence demands sustained coverage."
+      "summary": "Forensic evidence of RSF deliberately destroying farms before mass killings. Not in this feed cycle — decayed from 8. Watch AllAfrica, France 24, Premium Times for follow-up."
     },
     {
       "id": "ai-in-warfare-iran",
-      "label": "AI in warfare: Enhanced images, autonomous code failures, institutional rollback",
+      "label": "AI in warfare: Enhanced images, autonomous code failures, layer duplication benchmark",
       "firstSeen": "2026-03-07T04:00:00Z",
-      "lastCovered": "2026-03-10T21:38:00Z",
-      "coverageCount": 6,
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 8,
       "category": "tech",
-      "importance": 6,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-03-07-ai-guides-iran-strikes-capability-questioned",
@@ -427,9 +373,11 @@
         "2026-03-09-x-paid-unlabeled-ai-war-footage-disinformation",
         "2026-03-09-fake-ai-satellite-imagery-iran-war-disinformation",
         "2026-03-10-ai-enhanced-real-images-iran-war-disinformation",
-        "2026-03-10-amazon-ai-code-human-oversight-outages"
+        "2026-03-10-amazon-ai-code-human-oversight-outages",
+        "2026-03-10-huggingface-leaderboard-layer-duplication-llm-two-gpus",
+        "2026-03-10-runanywhere-edge-ai-inference-apple-silicon-energy-cost"
       ],
-      "summary": "Amazon outages caused by AI-assisted code changes prompted industry-first human oversight mandate. Simultaneously: AI-enhanced real war images documented, fake satellite imagery circulating, X monetizing unlabeled AI war footage. AI's role in warfare spans targeting, disinformation, and infrastructure reliability failures."
+      "summary": "Layer duplication trick tops HuggingFace leaderboard without training — challenges how transformer capability is measured. Edge AI inference on Apple Silicon reaching cloud parity (RunAnywhere). Amazon's human oversight mandate remains the institutional anchor. AI capability benchmarks and AI infrastructure questions are evolving simultaneously."
     },
     {
       "id": "us-military-dissent-iran",
@@ -438,13 +386,13 @@
       "lastCovered": "2026-03-09T22:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "developing",
+      "importance": 4,
+      "arc": "fading",
       "articles": [
         "2026-03-09-us-soldiers-oppose-iran-war",
         "2026-03-10-iran-war-biblical-prophecy-military-orders"
       ],
-      "summary": "Two threads converging: conscientious objector reports of organized military dissent, and commanders framing the war as biblical prophecy. Together they point to a chain-of-command crisis under investigation. Watch for any service member public statement or Congressional hearing."
+      "summary": "Biblical prophecy investigation + conscientious objector reports. Not covered two consecutive cycles — fading."
     },
     {
       "id": "anthropic-pentagon-confrontation",
@@ -453,7 +401,7 @@
       "lastCovered": "2026-03-09T22:00:00Z",
       "coverageCount": 5,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "fading",
       "articles": [
         "2026-02-25-pentagon-threatens-anthropic-with-cold-war-powers-over-military-ai",
@@ -462,7 +410,35 @@
         "2026-03-06-pentagon-ai-surveillance-americans-legal-question",
         "2026-03-09-anthropic-sues-us-government-risk"
       ],
-      "summary": "Lawsuit in mainstream media. No new developments. Fading."
+      "summary": "Lawsuit in mainstream media. No new developments. Fading — prune next cycle if still no update."
+    },
+    {
+      "id": "lebanon-hezbollah-israel",
+      "label": "Lebanon: 100,000 displaced single day; UNSC France resolution pending; Israel in east Lebanon",
+      "firstSeen": "2026-03-02T16:00:00Z",
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 15,
+      "category": "politics",
+      "importance": 9,
+      "arc": "developing",
+      "articles": [
+        "2026-03-02-lebanon-bans-hezbollah-military-activities",
+        "2026-03-03-israel-ground-assault-southern-lebanon-52-killed",
+        "2026-03-03-syria-deploys-troops-lebanon-border-war-spillover",
+        "2026-03-04-israel-ground-invasion-lebanon-baalbek-hezbollah-open-war",
+        "2026-03-04-israel-orders-all-southern-lebanon-evacuated-north-of-litani",
+        "2026-03-05-israel-orders-dahiyeh-evacuation-will-look-like-khan-younis",
+        "2026-03-07-ghana-peacekeepers-wounded-missile-lebanon",
+        "2026-03-07-lebanon-500000-displaced-dahiyeh-41-killed-nabi-chit",
+        "2026-03-07-israel-raids-lebanese-village-dozens-killed-40-year",
+        "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
+        "2026-03-09-israeli-forces-east-lebanon-hezbollah-war-expands",
+        "2026-03-09-hrw-israel-white-phosphorus-lebanon-populated-areas",
+        "2026-03-09-lebanon-delays-elections-two-years-war",
+        "2026-03-10-france-unsc-emergency-lebanon-offensive",
+        "2026-03-11-lebanon-100000-displaced-single-day-un-israeli-strikes"
+      ],
+      "summary": "100,000 displaced in a single day — fastest single-day displacement of the conflict. Total now surpasses 700,000. Israel switched to regime targets in Iran simultaneously, suggesting the Lebanon offensive is intensifying alongside the Iran campaign. France requested emergency UNSC meeting — outcome unknown. US veto likely."
     },
     {
       "id": "iranian-sailors-stranded",
@@ -471,12 +447,12 @@
       "lastCovered": "2026-03-09T22:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
-      "arc": "developing",
+      "importance": 3,
+      "arc": "fading",
       "articles": [
         "2026-03-09-stranded-iranian-sailors-diplomatic-crisis"
       ],
-      "summary": "434 sailors from 3 Iranian vessels given sanctuary by Sri Lanka and India. Both caught between US pressure and humanitarian obligations. Not covered this cycle — decayed from 5."
+      "summary": "434 sailors with sanctuary in Sri Lanka/India. Not covered two cycles — fading."
     },
     {
       "id": "qatar-wartime-crackdown",
@@ -485,26 +461,27 @@
       "lastCovered": "2026-03-09T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
-      "arc": "developing",
+      "importance": 3,
+      "arc": "fading",
       "articles": [
         "2026-03-09-qatar-arrests-313-sharing-war-footage-crackdown"
       ],
-      "summary": "Qatar arrested 313 for sharing footage during Iranian attacks. Gulf states criminalizing war documentation. Not covered this cycle — decayed from 5."
+      "summary": "Qatar criminalising war documentation. Not covered two cycles — fading."
     },
     {
       "id": "china-climate-five-year-plan",
-      "label": "China reveals five-year climate goals at Two Sessions",
+      "label": "China five-year climate goals at Two Sessions — world's largest emitter commits",
       "firstSeen": "2026-03-09T22:00:00Z",
-      "lastCovered": "2026-03-09T22:00:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 2,
       "category": "science",
-      "importance": 4,
+      "importance": 6,
       "arc": "developing",
       "articles": [
-        "2026-03-09-china-five-year-climate-goals"
+        "2026-03-09-china-five-year-climate-goals",
+        "2026-03-05-china-five-year-climate-goals-two-sessions-2026-paris"
       ],
-      "summary": "China set new five-year climate targets. World's largest emitter with potentially peaked CO2. Not covered this cycle — decayed from 5."
+      "summary": "China revealed new five-year climate targets at Two Sessions while world attention was on Iran. Carbon Brief analysis selected this cycle. World's largest emitter — most consequential single climate commitment globally. May have already peaked CO2 but continuing coal expansion simultaneously."
     },
     {
       "id": "us-tos-consent-ruling",
@@ -513,12 +490,12 @@
       "lastCovered": "2026-03-09T22:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
-      "arc": "developing",
+      "importance": 3,
+      "arc": "fading",
       "articles": [
         "2026-03-09-us-court-tos-email-consent-ruling"
       ],
-      "summary": "Ninth Circuit: companies can update TOS by email, continued use implies consent. Allows unilateral contract changes. Not covered this cycle — decayed from 5."
+      "summary": "Ninth Circuit TOS ruling. Not covered two cycles — fading."
     },
     {
       "id": "china-rare-earths-supply-chains",
@@ -527,26 +504,12 @@
       "lastCovered": "2026-03-09T22:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
-      "arc": "developing",
+      "importance": 3,
+      "arc": "fading",
       "articles": [
         "2026-03-09-china-rare-earths-supply-chain-security"
       ],
-      "summary": "All Chinese ministries required to study rare earth supply chains. China controls 60% rare earths, 80% gallium. Economic warfare capability embedded. Not covered this cycle — decayed from 5."
-    },
-    {
-      "id": "uk-muslims-media-bias",
-      "label": "Landmark study: 50% of UK news coverage of Muslims is biased",
-      "firstSeen": "2026-03-10T14:03:49Z",
-      "lastCovered": "2026-03-10T16:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-10-uk-news-muslims-biased-fifty-percent-landmark-study"
-      ],
-      "summary": "50% of UK mainstream news about Muslims is biased — landmark empirical study. Now part of the three-cycle data arc (X, UK media, CAIR). Folded into anti-muslim-hate-x-study arc for tracking."
+      "summary": "China rare earths study mandate. Not covered two cycles — fading."
     },
     {
       "id": "nigeria-boko-haram-resurgence",
@@ -555,16 +518,16 @@
       "lastCovered": "2026-03-09T16:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "fading",
       "articles": [
         "2026-03-09-boko-haram-overruns-nigerian-army-base-commanding-officer-killed"
       ],
-      "summary": "Boko Haram overran military camp in Borno State, killing commanding officer. Two cycles uncovered. Fading."
+      "summary": "Boko Haram military camp attack. Three cycles uncovered — fading. Prune next cycle."
     },
     {
       "id": "gaza-aid-ban",
-      "label": "Gaza: Siege continues — total media blackout now 5+ cycles",
+      "label": "Gaza: Siege continues — total media blackout now 6+ cycles",
       "firstSeen": "2026-02-25T04:00:00Z",
       "lastCovered": "2026-03-06T16:00:00Z",
       "coverageCount": 4,
@@ -577,35 +540,134 @@
         "2026-03-04-gaza-aid-collapses-under-iran-war-cover",
         "2026-03-06-gaza-medical-supplies-exhausted-who-warns-crisis"
       ],
-      "summary": "WHO warned medical supplies exhausted. No feed items for 5+ cycles. Total blackout continues. Critical gap — kept in ledger as a reminder of what is not being reported."
+      "summary": "WHO warned medical supplies exhausted. No feed items for 6+ cycles. Total blackout continues under Iran war coverage. Critical gap — kept as reminder of what is not being reported."
     },
     {
-      "id": "algeria-helium-supply",
-      "label": "Algeria emerges as helium alternative as Iran war disrupts supply",
-      "firstSeen": "2026-03-10T15:49:51Z",
-      "lastCovered": "2026-03-10T16:00:00Z",
+      "id": "chile-latin-america-right-turn",
+      "label": "Chile: Kast inaugurated; Lula boycott; Machado-Milei-Kast right bloc forming",
+      "firstSeen": "2026-03-11T04:01:25Z",
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-11-chile-kast-inauguration-emergency-government-90-day-plan",
+        "2026-03-11-lula-boycotts-kast-bolsonaro-latin-america-right-bloc"
+      ],
+      "summary": "Far-right Kast inaugurated in Chile with 90-day emergency plan (security, fiscal cuts, migration). Lula boycotted over Bolsonaro family's presence. María Corina Machado and Milei attended. A Kast-Milei-Machado political axis is taking visible shape — coordinated Latin American right. Chile's swing from Boric's social uprising-era election (2021) to Kast in 5 years is the deeper story."
+    },
+    {
+      "id": "hajj-2026-war-disruption",
+      "label": "Hajj 2026: Indonesia formalises contingency planning as war continues toward pilgrimage season",
+      "firstSeen": "2026-03-11T04:01:25Z",
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 8,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-11-indonesia-hajj-contingencies-iran-war-pilgrimage-disruption"
+      ],
+      "summary": "Indonesia — world's largest Hajj delegation (220,000+ pilgrims) — formally preparing 'anticipatory scenarios' for if the war continues through Hajj season (begins late May 2026). 1.8 billion Muslims' most sacred obligation is now a logistics question. Saudi Arabia's ability to safely receive two million pilgrims while defending oil infrastructure is genuinely uncertain. First time Hajj contingency planning has been triggered by active war since 1979."
+    },
+    {
+      "id": "rubio-afghanistan-wrongful-detention",
+      "label": "Rubio designates Taliban's Afghanistan as state sponsor of wrongful detention",
+      "firstSeen": "2026-03-11T04:01:25Z",
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-11-rubio-afghanistan-state-sponsor-wrongful-detention-taliban"
+      ],
+      "summary": "US designates Taliban Afghanistan as state sponsor of wrongful detention — unlocks new pressure tools (visa restrictions, financial sanctions). Taliban holding Americans as bargaining chips. US is managing Iran war + Afghanistan detainee crisis simultaneously with limited diplomatic bandwidth."
+    },
+    {
+      "id": "saudi-hormuz-bypass-pipeline",
+      "label": "Saudi Petroline East-West pipeline: can it replace Hormuz for Gulf oil?",
+      "firstSeen": "2026-03-11T04:01:25Z",
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 8,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-10-saudi-petroline-bypass-hormuz-pipeline-capacity-gulf"
+      ],
+      "summary": "Saudi Petroline (1,200km, 4.8 mb/d capacity) mobilised to bypass the Hormuz blockade. Key finding: Saudi Arabia has bypass capacity, Iraq and Kuwait do not. UAE has Abu Dhabi pipeline (~1.5 mb/d, insufficient). The war distributes energy resilience unequally — Riyadh gains structural leverage over Gulf neighbours and global oil supply."
+    },
+    {
+      "id": "iran-war-clean-energy-transition",
+      "label": "Bristol floating wind turbine and Europe's clean energy urgency under Iran war",
+      "firstSeen": "2026-03-11T04:01:25Z",
+      "lastCovered": "2026-03-11T04:01:25Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "fading",
+      "importance": 6,
+      "arc": "breaking",
       "articles": [
-        "2026-03-10-algeria-helium-iran-war-science-supply-crisis"
+        "2026-03-06-bristol-floating-wind-turbine-iran-energy-crisis-clean"
       ],
-      "summary": "Algeria emerging as helium alternative. Iran war disrupts supply critical for MRI, semiconductors, space. Not covered this cycle — decayed from 5. Fading."
+      "summary": "Bristol floating offshore wind turbine — capable of deep-water deployment (60m+) where conventional turbines can't operate — becoming newly urgent as Iran war raises the cost of Gulf oil dependency. Floating offshore wind could unlock vast new North Atlantic capacity. Energy security and clean energy transition are the same question."
     },
     {
-      "id": "cftc-defi-prediction-markets",
-      "label": "CFTC moves to regulate DeFi and war prediction markets",
-      "firstSeen": "2026-03-10T15:45:24Z",
-      "lastCovered": "2026-03-10T16:00:00Z",
+      "id": "applied-category-theory",
+      "label": "Applied category theory: mathematicians model complex adaptive systems",
+      "firstSeen": "2026-03-11T04:01:25Z",
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-04-applied-category-theory-complex-systems-quanta-math"
+      ],
+      "summary": "Applied category theory (most abstract branch of math) being used to model supply chains, ecosystems, and social systems — the kinds of interconnected, cascading-failure-prone systems that the Iran war is currently breaking. Quanta Magazine feature. New field, emerging real-world relevance."
+    },
+    {
+      "id": "china-yj12-iran-missiles",
+      "label": "China's YJ-12 supersonic anti-ship missiles: what if Iran acquired them?",
+      "firstSeen": "2026-03-11T04:01:25Z",
+      "lastCovered": "2026-03-11T04:01:25Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
-      "arc": "fading",
+      "importance": 8,
+      "arc": "breaking",
       "articles": [
-        "2026-03-10-cftc-defi-prediction-markets-crypto-regulation"
+        "2026-03-11-china-yj12-supersonic-missiles-iran-war-us-navy-implications"
       ],
-      "summary": "CFTC signals regulatory action on DeFi and prediction markets. Not covered this cycle — decayed from 5. Fading."
+      "summary": "Supersonic YJ-12 (Mach 2-3) anti-ship missiles reportedly close to export sale to Iran before US-Israeli strikes. If acquired, changes the threat calculus for every US warship in the Persian Gulf — Aegis interception window halves against supersonic vs subsonic missiles. China benefits from Iran having better deterrence. SCMP military analysis."
+    },
+    {
+      "id": "llm-layer-duplication-benchmark",
+      "label": "HuggingFace leaderboard #1 achieved by duplicating neural net layers on gaming GPUs",
+      "firstSeen": "2026-03-11T04:01:25Z",
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-10-huggingface-leaderboard-layer-duplication-llm-two-gpus"
+      ],
+      "summary": "Researcher duplicated specific middle layers of Qwen2-72B without changing weights and topped the HuggingFace Open LLM Leaderboard on two consumer GPUs. Challenges assumptions about optimal neural network architecture. Also reveals leaderboard gamability. Published on HN frontpage."
+    },
+    {
+      "id": "edge-ai-inference-apple-silicon",
+      "label": "RunAnywhere: edge AI inference on Apple Silicon beats cloud-targeting frameworks",
+      "firstSeen": "2026-03-11T04:01:25Z",
+      "lastCovered": "2026-03-11T04:01:25Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-10-runanywhere-edge-ai-inference-apple-silicon-energy-cost"
+      ],
+      "summary": "YC W26 startup beats llama.cpp, Apple MLX, Ollama, sherpa-onnx on Apple Silicon benchmarks. Edge AI inference reaching parity with cloud for growing workload class. War-driven energy costs creating structural economic incentive for on-device AI."
     }
   ]
 }
