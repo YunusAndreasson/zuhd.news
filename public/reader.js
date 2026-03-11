@@ -96,9 +96,9 @@ function init(data) {
       if (readSlugs.has(a.slug)) div.classList.add('read');
       const displayDate = a.addedAt ? new Date(a.addedAt) : new Date(a.date);
       const now = new Date();
-      // Compare in UTC so "today" means the same calendar day regardless of browser timezone
-      const isToday = displayDate.getUTCFullYear() === now.getUTCFullYear() && displayDate.getUTCMonth() === now.getUTCMonth() && displayDate.getUTCDate() === now.getUTCDate();
-      const timeLabel = isToday
+      // Show HH:MM (UTC) for articles within last 24h, date otherwise
+      const isRecent = (now - displayDate) < 24 * 60 * 60 * 1000;
+      const timeLabel = isRecent
         ? displayDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC' })
         : displayDate.toLocaleDateString([], { day: 'numeric', month: 'short', timeZone: 'UTC' });
       div.innerHTML = `<h2>${esc(a.title)}</h2><time datetime="${displayDate.toISOString()}">${timeLabel}</time>`;
