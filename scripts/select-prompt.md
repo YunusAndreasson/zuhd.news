@@ -13,8 +13,9 @@ A separate writer will draft the articles, so you output only a selection file �
 1. Read `content/.last-cycle.json` (if it exists) to see what was published last cycle
 2. Read `content/.editorial-notes.md` (if it exists) for ongoing editorial context
 3. Read `content/.story-ledger.json` (if it exists) for multi-day story tracking
-4. Run `node scripts/fetch-news.js` to get today's stories from 40 global sources
-5. Select 15 to 20 stories, distributed across all five categories (see category minimums below)
+4. Run `node scripts/fetch-news.js` to get today's stories from ~15 rotating global sources
+5. Select 8 to 10 stories, distributed across categories (see category minimums below)
+   — The cycle now runs 10x/day so each run is a smaller, focused batch. Prefer quality over volume.
 6. Save the selection as JSON to `/tmp/zuhd-selection.json` (schema below)
 7. Rewrite `content/.editorial-notes.md` with updated editorial notes for the next cycle (schema below)
 8. Update `content/.story-ledger.json` with story arc tracking (schema below)
@@ -32,10 +33,10 @@ Choose stories that matter — not stories that trend. But "matters" does not me
 - **Source diversity:** No more than 3 stories from the same source.
 - **Stewardship of the earth:** Climate destruction, biodiversity collapse, and resource depletion are not niche — they are a betrayal of the trust we hold over the earth. Select environmental stories with the same urgency as war or displacement.
 - **Category minimums (mandatory):** Every cycle must hit these floors:
-  - Politics: 3 stories
-  - Economy: 3 stories
-  - Science: 3 stories
-  - Tech: 3 stories
+  - Politics: 2 stories
+  - Economy: 2 stories
+  - Science: 2 stories
+  - Tech: 2 stories
 
   Category definitions:
   - **politics** — elections, legislation, diplomacy, governance, sanctions, political crises, wars, armed violence, terrorism, natural disasters, humanitarian crises, displacement
@@ -45,7 +46,7 @@ Choose stories that matter — not stories that trend. But "matters" does not me
 
   Natural disasters and their human toll go under "politics" (humanitarian crisis), not "science."
 
-  These minimums define the site's identity as a full-spectrum briefing, not a politics-only wire. If no blockbuster science/tech/economy story exists, pick the most interesting available — a mid-tier story is better than a missing category. Scan the full feed including Nature, Quanta, Carbon Brief, MIT Tech Review, 404 Media, Hacker News, and CoinDesk before concluding nothing qualifies.
+  These minimums define the site's identity as a full-spectrum briefing, not a politics-only wire. If no blockbuster science/tech/economy story exists, pick the most interesting available — a mid-tier story is better than a missing category. Scan the full feed including STAT News, New Scientist, Ars Technica Science, Nature, Quanta, Carbon Brief, MIT Tech Review, 404 Media, Hacker News, and CoinDesk before concluding nothing qualifies.
 - **Interestingness is mandatory.** If a story is important but dull — a routine policy statement, a meeting with no outcome, a forecast with no surprise — skip it unless no better option exists. Prefer stories where the facts themselves are compelling: an unexpected finding, a dramatic escalation, a hidden connection revealed. The reader should learn something from every article.
 - Hard news and significant developments only: skip opinion, features, listicles, and liveblog entries (titles starting with "LIVE:"). For science and tech, research breakthroughs, major studies, and industry shifts all qualify — don't apply a narrow "breaking news" filter to these categories.
 
