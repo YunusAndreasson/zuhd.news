@@ -49,6 +49,15 @@ function init(data) {
   const markRead = (slug) => {
     readSlugs.add(slug);
     localStorage.setItem(STORAGE_KEY, JSON.stringify([...readSlugs]));
+    updateTabDots();
+  };
+
+  const updateTabDots = () => {
+    categories.forEach((cat, i) => {
+      const allRead = articles[cat].every(a => readSlugs.has(a.slug));
+      if (allRead) tabEls[i].dataset.allRead = '';
+      else delete tabEls[i].dataset.allRead;
+    });
   };
 
   // --- Build category tabs ---
@@ -67,6 +76,7 @@ function init(data) {
   const tabEls = categories.map(buildTab);
 
   // --- Render ---
+
 
   const updateStrip = () => {
     tabEls.forEach((tab, i) => {
@@ -147,6 +157,9 @@ function init(data) {
 
     if (isDesktop()) {
       viewInner.innerHTML = `<div class="article-view-header"><h2>${esc(article.title)}</h2></div><div class="article-body">${article.bodyHtml}</div>`;
+      viewInner.classList.remove('fade-in');
+      void viewInner.offsetWidth;
+      viewInner.classList.add('fade-in');
       viewEl.hidden = false;
       viewEl.scrollTop = 0;
       document.title = article.title + ' — zuhd.news';
@@ -207,17 +220,29 @@ function init(data) {
       case 'ArrowRight': case 'l': e.preventDefault(); if (state.catIdx < categories.length - 1) switchCategory(state.catIdx + 1); break;
       case 'ArrowUp': case 'k':
         e.preventDefault();
-        if (state.artIdx < 0) state.artIdx = currentList().length - 1;
-        else if (state.artIdx > 0) state.artIdx--;
-        else break;
+        if (state.artIdx < 0) { state.artIdx = currentList().length - 1; }
+        else if (state.artIdx > 0) { state.artIdx--; }
+        else if (state.catIdx > 0) {
+          state.catIdx--;
+          updateStrip();
+          buildHeadlines();
+          state.artIdx = currentList().length - 1;
+          updateSelection();
+          if (desktop) openArticle(true);
+          announce(`${categories[state.catIdx]} category`);
+          break;
+        } else break;
         updateSelection();
         if (desktop) openArticle(true);
         break;
       case 'ArrowDown': case 'j':
         e.preventDefault();
-        if (state.artIdx < 0) state.artIdx = 0;
-        else if (state.artIdx < currentList().length - 1) state.artIdx++;
-        else break;
+        if (state.artIdx < 0) { state.artIdx = 0; }
+        else if (state.artIdx < currentList().length - 1) { state.artIdx++; }
+        else if (state.catIdx < categories.length - 1) {
+          switchCategory(state.catIdx + 1);
+          break;
+        } else break;
         updateSelection();
         if (desktop) openArticle(true);
         break;
@@ -374,6 +399,7 @@ function init(data) {
 
   buildHeadlines();
   updateStrip();
+  updateTabDots();
   if (isStaticPage) {
     // Static pages (about, sources, privacy): show page content, don't auto-select
     viewEl.hidden = false;

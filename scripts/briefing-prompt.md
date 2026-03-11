@@ -8,8 +8,6 @@ Your output will be sent directly to Google Cloud Text-to-Speech (Chirp3-HD voic
 The article data and editorial context are provided inline below by the system. The JSON object contains:
 - `articles`: today's articles with title, category, source, and body text
 - `hoursUntilNext`: hours until the next briefing (integer)
-- `makkahHour`: current hour in Makkah (UTC+3) as an integer (e.g. 7, 19)
-- `hijriDate`: Islamic calendar date as a string (e.g. "5 Ramadan 1447")
 - `isFriday`: boolean — true when it is Jumu'ah
 - `editorialContext` (optional): story tracking data with importance scores and arc status
 </data>
@@ -34,33 +32,10 @@ If `editorialContext.topStories` is present:
 </selection>
 
 <structure>
-1. INTRO — three beats.
-   - First: "From zuhd news, this is your briefing for [Gregorian date, spoken naturally]." If `isFriday` is true, say "this is your <phoneme alphabet="ipa" ph="ˈdʒu.mu.ɑ">Jumu'ah</phoneme> briefing" instead.
-   - Second: the Hijri date from the `hijriDate` field — e.g. "the 5th of Ramadan, fourteen forty-seven." Pronounce the month name correctly using the IPA table below.
-   - Third: a Makkah time-of-day greeting using `makkahHour` — reference the nearest prayer time when it fits naturally. Use approximate language ("morning," "evening"), never minute precision. Examples by hour:
-     - 7 → "It's morning in Makkah, just after <phoneme alphabet="ipa" ph="fædʒɚ">Fajr</phoneme>."
-     - 10 → "It's mid-morning in Makkah."
-     - 15 → "It's afternoon in Makkah, around <phoneme alphabet="ipa" ph="ɑːsɚ">Asr</phoneme>."
-     - 19 → "It's evening in Makkah, between <phoneme alphabet="ipa" ph="mɑːɡɹɪb">Maghrib</phoneme> and <phoneme alphabet="ipa" ph="ɪʃɑː">Isha</phoneme>."
-     - 23 → "It's late night in Makkah."
-     - 3 → "It's the small hours in Makkah, before <phoneme alphabet="ipa" ph="fædʒɚ">Fajr</phoneme>."
-   Prayer time references are optional — use them when the hour is close, skip them when it would feel forced.
+1. INTRO — one beat.
+   - "From zuhd news, this is your briefing for [Gregorian date, spoken naturally]." If `isFriday` is true, say "this is your <phoneme alphabet="ipa" ph="ˈdʒu.mu.ɑ">Jumu'ah</phoneme> briefing" instead.
 
-   Hijri month pronunciation (use `<phoneme>` tags):
-   - Muharram → `<phoneme alphabet="ipa" ph="muˈhɑr.rɑm">Muharram</phoneme>`
-   - Safar → `<phoneme alphabet="ipa" ph="sɑˈfɑr">Safar</phoneme>`
-   - Rabi al-Awwal → `<phoneme alphabet="ipa" ph="rɑˈbiː ɑl ˈɑw.wɑl">Rabi al-Awwal</phoneme>`
-   - Rabi ath-Thani → `<phoneme alphabet="ipa" ph="rɑˈbiː ɑθ ˈθɑː.niː">Rabi ath-Thani</phoneme>`
-   - Jumada al-Ula → `<phoneme alphabet="ipa" ph="dʒuˈmɑː.dɑː ɑl ˈuː.lɑː">Jumada al-Ula</phoneme>`
-   - Jumada ath-Thaniyah → `<phoneme alphabet="ipa" ph="dʒuˈmɑː.dɑː ɑθ ˈθɑː.ni.jɑ">Jumada ath-Thaniyah</phoneme>`
-   - Rajab → `<phoneme alphabet="ipa" ph="rɑˈdʒɑb">Rajab</phoneme>`
-   - Shaban → `<phoneme alphabet="ipa" ph="ʃɑˈbɑːn">Shaban</phoneme>`
-   - Ramadan → `<phoneme alphabet="ipa" ph="rɑmɑˈdɑːn">Ramadan</phoneme>`
-   - Shawwal → `<phoneme alphabet="ipa" ph="ʃɑwˈwɑːl">Shawwal</phoneme>`
-   - Dhul-Qadah → `<phoneme alphabet="ipa" ph="ðuːl ˈkɑː.dɑ">Dhul-Qadah</phoneme>`
-   - Dhul-Hijjah → `<phoneme alphabet="ipa" ph="ðuːl ˈhɪdʒ.dʒɑ">Dhul-Hijjah</phoneme>`
-
-   Always render "zuhd" as `<phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme>` and "Makkah" as `<phoneme alphabet="ipa" ph="ˈmæk.kæ">Makkah</phoneme>`.
+   Always render "zuhd" as `<phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme>`.
 
 2. LEAD STORY — immediately after the intro, before any category heading. Three sentences, 60–80 words: what happened, key context, why it matters. This is the story the listener would hear if they could only hear one.
 
@@ -113,10 +88,10 @@ These rules exist because the output is sent directly to Google Cloud TTS (Chirp
 <examples>
 
 <example>
-This example shows the complete structure: intro with Makkah greeting, lead story with three sentences, category sections with three-sentence stories, transitions, and sign-off.
+This example shows the complete structure: intro, lead story with three sentences, category sections with three-sentence stories, transitions, and sign-off.
 
 <speak>
-<s>From <phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme> news, this is your briefing for <say-as interpret-as="date" format="dmy">15022026</say-as>.</s> <s>The 15th of <phoneme alphabet="ipa" ph="rɑmɑˈdɑːn">Ramadan</phoneme>, fourteen forty-seven.</s> <s>It's morning in <phoneme alphabet="ipa" ph="ˈmæk.kæ">Makkah</phoneme>, just after <phoneme alphabet="ipa" ph="fædʒɚ">Fajr</phoneme>.</s>
+<s>From <phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme> news, this is your briefing for <say-as interpret-as="date" format="dmy">15022026</say-as>.</s>
 <break time="1s"/>
 <s>Iran closed the Strait of Hormuz to commercial shipping as indirect nuclear talks with the United States entered a second day in Geneva.</s> <s>The waterway carries twenty percent of the world's oil, and the closure sent crude prices to their highest level in three years.</s> <s>Whether Tehran reopens the strait may now depend on what emerges from the talks.</s>
 <break time="900ms"/>

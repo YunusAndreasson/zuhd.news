@@ -92,16 +92,9 @@ const minutesUntilNext = nextCycleMin > currentMinutes
   : 1440 - currentMinutes + nextCycleMin
 const hoursUntilNext = Math.round(minutesUntilNext / 60)
 
-// Makkah hour (UTC+3) for the briefing greeting
-const makkahHour = Number(new Date().toLocaleString('en', { hour: 'numeric', hour12: false, timeZone: 'Asia/Riyadh' }))
-
-// Hijri date (Umm al-Qura calendar)
-const hijriDay = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { day: 'numeric' }).format(now)
-const hijriMonth = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { month: 'long' }).format(now)
-const hijriYear = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { year: 'numeric' }).format(now).replace(' AH', '')
 const isFriday = now.getUTCDay() === 5
 
-const payload = { articles, hoursUntilNext, makkahHour, hijriDate: `${hijriDay} ${hijriMonth} ${hijriYear}`, isFriday }
+const payload = { articles, hoursUntilNext, isFriday }
 if (editorialContext) payload.editorialContext = editorialContext
 
 // --- Stage 2: Generate SSML via Claude CLI ---

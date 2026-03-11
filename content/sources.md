@@ -1,4 +1,4 @@
-No single outlet owns the truth. These 40 sources span six continents and a dozen languages so the selection doesn't have to.
+No single outlet owns the truth. These 41 sources span six continents and a dozen languages so the selection doesn't have to.
 
 A source earns its place by being editorially independent from those it covers, by checking its facts, and by seeing something the others miss. State funding does not disqualify — editorial interference does. Funding and ownership are noted for each.
 
@@ -23,7 +23,6 @@ A source earns its place by being editorially independent from those it covers, 
 - [Daily Maverick](https://www.dailymaverick.co.za) · nonprofit, South Africa
 - [Mada Masr](https://www.madamasr.com) · independent, Egypt
 - [Premium Times](https://www.premiumtimesng.com) · nonprofit, Nigeria
-- [The East African](https://www.theeastafrican.co.ke) · independent, Kenya
 - [TSA](https://www.tsa-algerie.com) · independent, Algeria
 
 ## Americas
@@ -31,7 +30,6 @@ A source earns its place by being editorially independent from those it covers, 
 - [CBC News](https://www.cbc.ca/news) · public broadcaster, Canada
 - [Fox News](https://www.foxnews.com) · corporate, US — included for US conservative perspective
 - [MercoPress](https://en.mercopress.com) · independent, Uruguay
-- [Politico](https://www.politico.com) · corporate, US
 
 ## Oceania
 - [ABC News Australia](https://www.abc.net.au/news) · public broadcaster, Australia
@@ -51,6 +49,9 @@ A source earns its place by being editorially independent from those it covers, 
 - [CoinDesk](https://www.coindesk.com) · corporate, US
 - [Hacker News](https://news.ycombinator.com) · community link aggregator, US
 - [MIT Technology Review](https://www.technologyreview.com) · university-owned, US
+- [Ars Technica](https://arstechnica.com) · corporate, US
 - [Nature](https://www.nature.com) · corporate, UK
+- [New Scientist](https://www.newscientist.com) · corporate, UK
 - [Quanta Magazine](https://www.quantamagazine.org) · nonprofit, US
 - [Rest of World](https://restofworld.org) · nonprofit, US
+- [STAT News](https://www.statnews.com) · independent, US

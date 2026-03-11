@@ -79,6 +79,11 @@ if [ "$SELECTION_COUNT" -eq 0 ]; then
 fi
 echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
 
+# Stage 1.5: Pre-fetch article content — eliminates writer's WebFetch tool calls
+echo "" | tee -a "$LOG_FILE"
+echo "--- Stage 1.5: Pre-fetch article content ---" | tee -a "$LOG_FILE"
+timeout 60 node scripts/prefetch-articles.js 2>&1 | tee -a "$LOG_FILE"
+
 # Stage 2: Writer — read selection, fetch full articles, draft markdown
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 2: Writer ---" | tee -a "$LOG_FILE"

@@ -64,6 +64,16 @@ Use the story ledger for multi-day arc awareness:
 
 </selection>
 
+<pre-output-check>
+Before writing `/tmp/zuhd-selection.json`, state your category counts in a scratchpad line, e.g.: `politics:6 economy:4 science:3 tech:4`.
+
+If any category is below 3: go back and scan the full feed again — specifically Nature, Quanta, Carbon Brief, MIT Tech Review, 404 Media, HN for science; CoinDesk, FT feeds for economy. A mid-tier story beats a missing category.
+
+If after a second pass a category still has fewer than 3 genuinely good stories, proceed with what you have and note the shortfall in `.editorial-notes.md`. Do not force weak stories in just to hit the number.
+
+Science sources in the feed: Nature, Quanta Magazine, New Scientist, STAT News, Ars Technica Science, Carbon Brief. These publish daily — if science is missing, the selector did not look hard enough.
+</pre-output-check>
+
 <output-schema>
 
 Save to `/tmp/zuhd-selection.json`:

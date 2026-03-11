@@ -74,6 +74,7 @@ const buildArticle = (filename) => {
 
 const WINDOW_MS = 24 * 60 * 60 * 1000  // 24 hours
 const MIN_PER_CATEGORY = 10             // always show at least 10 even if older
+const MAX_PER_CATEGORY = 13             // never show more than 13 per category
 
 const buildHomepage = (articles, homepageTemplate) => {
   const sorted = articles.sort((a, b) => b.addedAt - a.addedAt)
@@ -83,6 +84,7 @@ const buildHomepage = (articles, homepageTemplate) => {
   for (const a of sorted) {
     const cat = a.meta.category || 'uncategorised'
     const list = grouped[cat] ??= []
+    if (list.length >= MAX_PER_CATEGORY) continue
     if (a.addedAt >= cutoff || list.length < MIN_PER_CATEGORY) {
       list.push({
         slug: a.slug,

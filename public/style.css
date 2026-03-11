@@ -69,8 +69,6 @@ body {
   max-width: var(--measure);
   margin: 0 auto;
   padding: var(--space-md);
-  padding-top: clamp(1.5rem, 4vh, 3rem);
-  padding-bottom: var(--space-md);
   font-optical-sizing: auto;
   font-kerning: normal;
   font-variant-ligatures: common-ligatures contextual;
@@ -88,13 +86,15 @@ h1 {
   font-weight: 700;
   margin-bottom: var(--space-sm);
   text-wrap: balance;
+  font-feature-settings: "titl" 1;
 }
 
 p { margin-bottom: var(--space-sm); }
 strong { font-weight: 700; }
 em { font-style: italic; }
-sup, sub { font-size: 0.75em; font-variant-position: super; }
-sub { font-variant-position: sub; }
+time { font-feature-settings: "zero" 1; }
+sup { font-size: 0.75em; font-variant-position: super; font-feature-settings: "sups" 1; }
+sub { font-size: 0.75em; font-variant-position: sub; font-feature-settings: "subs" 1; }
 
 a {
   color: var(--text);
@@ -132,11 +132,15 @@ header {
   text-decoration: none;
   letter-spacing: -0.02em;
   font-variant-numeric: lining-nums;
+  transition: font-weight 0.2s ease;
+
+  &:hover { font-weight: 800; }
 }
 
 .wordmark-tld {
   font-weight: 300;
   color: var(--text-secondary);
+  vertical-align: baseline;
 }
 
 /* --- Footer --- */
@@ -289,13 +293,17 @@ footer {
   padding: 0;
   cursor: pointer;
   white-space: nowrap;
-  transition: color 80ms ease, opacity 0.3s ease;
+  transition: color 80ms ease, opacity 0.4s ease-out;
 
   &[aria-selected="true"] {
     color: var(--text);
     text-decoration: underline;
     text-underline-offset: 0.25em;
     text-decoration-thickness: 1px;
+  }
+
+  &[data-all-read] {
+    opacity: 0.7;
   }
 }
 
@@ -350,7 +358,8 @@ footer {
   text-wrap: pretty;
   content-visibility: auto;
   contain-intrinsic-size: auto 500px;
-  font-variant-ligatures: common-ligatures contextual;
+  font-variant-ligatures: common-ligatures contextual discretionary;
+  font-variant-numeric: oldstyle-nums proportional-nums diagonal-fractions;
 
   .s {
     display: block;
@@ -381,6 +390,15 @@ footer {
 @keyframes expand-in {
   from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes article-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.article-view-inner.fade-in {
+  animation: article-fade-in 250ms ease;
 }
 
 /* --- Article View (desktop) --- */
@@ -456,6 +474,7 @@ footer {
     height: 100dvh;
     overflow: hidden;
     padding-inline: clamp(2rem, 5vw, 6rem);
+    padding-block: clamp(2rem, 5vh, 6rem);
   }
 
   header {
@@ -548,6 +567,7 @@ footer {
       line-height: var(--leading-heading);
       text-wrap: balance;
       margin: 0;
+      font-feature-settings: "titl" 1;
     }
   }
 
