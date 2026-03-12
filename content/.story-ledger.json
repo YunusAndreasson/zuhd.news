@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 19: US Navy quietly escorts tankers through Hormuz; Energy Secretary deletes post",
+      "label": "Iran war Day 19: Iraq tankers attacked, Al-Faw ports shut; US Navy quietly escorting tankers",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-12T05:00:00Z",
-      "coverageCount": 66,
+      "lastCovered": "2026-03-12T07:35:00Z",
+      "coverageCount": 67,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -76,16 +76,17 @@
         "2026-03-12-qatar-iran-nine-missiles-udeid-centcom-escalation",
         "2026-03-12-bellingcat-satellite-imagery-iran-police-stations-strikes",
         "2026-03-12-iraq-tankers-ablaze-al-faw-iranian-war-oil-infrastructure",
-        "2026-03-12-us-navy-tanker-escort-hormuz-secret-deleted"
+        "2026-03-12-us-navy-tanker-escort-hormuz-secret-deleted",
+        "2026-03-12-iraq-tankers-maritime-routes-protection-al-faw-shutdown"
       ],
-      "summary": "Day 19. US Energy Secretary accidentally revealed the US Navy has been escorting commercial tankers through Hormuz, then deleted the post — suggesting the G7 naval escort option was quietly activated. Pezeshkian says reparations and security guarantees are Iran's only off-ramp. Iran-linked hackers attacked a US medical company. UNSC resolution condemning Iran's Gulf attacks passed. Oil reserve release underway but markets skeptical it will suppress prices."
+      "summary": "Day 19. Iraq's Al-Faw oil ports shut after two tankers struck in Iraqi waters — India confirms one national killed. Iraq called for international protection of maritime routes, signalling Iran is now attacking ships inside Iraq's own coastline. US Energy Secretary deleted post confirming Navy escorts of commercial tankers through Hormuz. Double-tap Israeli strike on Beirut seafront displaced kills 8. War expanding its geography daily."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz economic fallout: Pakistan IMF talks fail; G7 reserve release may not suppress prices",
+      "label": "Hormuz economic fallout: Oil jumps despite 400M barrel release; India deploys security to LPG supply chains",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-12T05:00:00Z",
-      "coverageCount": 71,
+      "lastCovered": "2026-03-12T07:35:00Z",
+      "coverageCount": 73,
       "category": "economy",
       "importance": 10,
       "arc": "ongoing",
@@ -152,18 +153,20 @@
         "2026-03-12-malaysia-fuel-prices-hormuz-ron95-hike-subsidy",
         "2026-03-12-pakistan-imf-talks-fail-debt-crisis-austerity",
         "2026-03-12-oil-reserve-release-prices-hormuz-analysis",
-        "2026-03-12-china-npc-lower-growth-target-hormuz-global-economy"
+        "2026-03-12-china-npc-lower-growth-target-hormuz-global-economy",
+        "2026-03-12-oil-price-jumps-record-reserve-release-war-hormuz",
+        "2026-03-12-india-lpg-security-deployment-supply-chain-hormuz"
       ],
-      "summary": "Pakistan's IMF staff-level talks failed — threatening emergency disbursements as the country operates on a 4-day week and closed schools. Al Jazeera explains why the G7 400M barrel release may not bring prices down: strategic reserves suppress supply risk but not market fear while the war continues. China's NPC set a lower-than-historical growth target, acknowledging Hormuz and US tariff drag. Flights cut, fares skyrocketing globally."
+      "summary": "The market rejected the G7's 400M barrel reserve release: oil prices jumped anyway because traders know the war continues and Iraq's Al-Faw ports just shut after tanker attacks. India deployed security forces to protect its LPG distribution network and boosted domestic production 25% in 4 days — 300M+ households depend on LPG for cooking. The reserve release bought days, not resolution."
     },
     {
       "id": "sudan-humanitarian-crisis",
-      "label": "Sudan: RSF kills 52 in West Kordofan convoy strike + 9 at hospital/school in White Nile",
+      "label": "Sudan: RSF national drone war — West Kordofan, Blue Nile, South Kordofan, White Nile all hit",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-03-12T05:00:00Z",
       "coverageCount": 17,
       "category": "politics",
-      "importance": 9,
+      "importance": 8,
       "arc": "developing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
@@ -184,16 +187,101 @@
         "2026-03-12-sudan-rsf-south-sudan-169-killed-war-spreads",
         "2026-03-12-sudan-52-killed-west-kordofan-convoy-drone"
       ],
-      "summary": "RSF killed 52 in a single drone strike on a convoy in West Kordofan — same day as strikes on a hospital and school in White Nile State (9 dead). The war now has an active drone campaign spanning West Kordofan, Blue Nile, South Kordofan, and White Nile State. No safe geography remains in Sudan. RSF proxies have also killed at least 169 in South Sudan. The war is regionalising under Iran war media cover."
+      "summary": "Not covered this cycle. RSF drone campaign spans four states (West Kordofan, Blue Nile, South Kordofan, White Nile). RSF-armed militias killed 169 in South Sudan. The war is regionalising under Iran war media cover. Importance decayed from 9 to 8."
+    },
+    {
+      "id": "meta-ai-vibes-csam",
+      "label": "Meta AI 'Vibes' generates CSAM and explicit deepfakes — platform-scale harm from AI feature launch",
+      "firstSeen": "2026-03-12T07:19:59Z",
+      "lastCovered": "2026-03-12T07:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 9,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-meta-ai-vibes-csam-deepfakes-platform-flood"
+      ],
+      "summary": "Meta's 'Vibes' AI feature was promptly abused to generate child sexual abuse material and non-consensual explicit deepfakes of Bollywood actresses at scale before moderation responded. Structural failure: a generative AI product launched without safeguards for the most predictable misuse. Regulatory and legal consequences expected from India and EU."
+    },
+    {
+      "id": "china-minorities-law",
+      "label": "China criminalises 'ethnic separatism', mandates Mandarin education — NPC passes sweeping minority law",
+      "firstSeen": "2026-03-12T07:16:16Z",
+      "lastCovered": "2026-03-12T07:35:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 8,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-china-minorities-law-ethnic-separatism-mandarin-education"
+      ],
+      "summary": "China passed a new law at NPC close criminalising 'ethnic separatism' and mandating Mandarin-only education for minority groups — affecting 12M Uyghurs, 6M Tibetans, and 53 other recognised minorities. The law converts decades of informal suppression into permanent statute. Watch for UN human rights response and diaspora reaction."
+    },
+    {
+      "id": "iraq-maritime-protection",
+      "label": "Iraq calls for international protection of maritime routes — Al-Faw ports shut after tanker attacks",
+      "firstSeen": "2026-03-12T07:08:51Z",
+      "lastCovered": "2026-03-12T07:35:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 8,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-iraq-tankers-maritime-routes-protection-al-faw-shutdown"
+      ],
+      "summary": "Iraq's government called for international protection of maritime routes after two tankers were struck in Iraqi waters and Al-Faw ports shut down. Iran is now attacking ships inside Iraq's own coastline, not just Hormuz. Iraq is caught between Iran and the US with no safe political position. One Indian national confirmed killed."
+    },
+    {
+      "id": "senegal-same-sex-criminalization",
+      "label": "Senegal: Parliament passes 10-year anti-LGBTQ+ law — awaits President Faye signature",
+      "firstSeen": "2026-03-11T23:05:09Z",
+      "lastCovered": "2026-03-12T05:00:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-senegal-same-sex-law-doubled-penalty-ten-years-advocacy-criminalised",
+        "2026-03-12-senegal-anti-lgbtq-ten-year-law-parliament-faye"
+      ],
+      "summary": "Not covered this cycle. Parliament passed the bill; now awaits President Faye's signature. Faye came to power as reformist — this is his defining test. Importance decayed from 7 to 6."
+    },
+    {
+      "id": "pakistan-imf-debt-crisis",
+      "label": "Pakistan IMF staff-level talks fail — disbursement at risk on top of Hormuz austerity",
+      "firstSeen": "2026-03-12T04:36:07Z",
+      "lastCovered": "2026-03-12T05:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-pakistan-imf-talks-fail-debt-crisis-austerity"
+      ],
+      "summary": "Not covered this cycle. IMF mission left without staff-level agreement. Pakistan operating on 4-day week, closed schools, 21% fuel hikes — withheld disbursement threatens sovereign debt crisis. Importance decayed from 8 to 7."
+    },
+    {
+      "id": "nk-china-train-resumption",
+      "label": "North Korea-China resume cross-border passenger trains for first time in 6 years",
+      "firstSeen": "2026-03-12T07:24:53Z",
+      "lastCovered": "2026-03-12T07:35:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-north-korea-china-train-resumption-six-years-geopolitical"
+      ],
+      "summary": "North Korea and China resumed cross-border passenger trains — first since COVID shutdown in 2020. Beijing is pulling Pyongyang closer while the US is consumed by the Iran war. Pyongyang is exiting isolation at a moment of maximum leverage (NK supplied weapons to Iran-aligned groups). The resumption signals economic re-integration: NK minerals for Chinese food and fuel."
     },
     {
       "id": "lebanon-hezbollah-israel",
-      "label": "Lebanon: Israel Beirut waterfront strike — 700K+ displaced; France UNSC resolution",
+      "label": "Lebanon: Israeli double-tap strike on displaced at Beirut seafront — 8 killed; 700K+ total displaced",
       "firstSeen": "2026-03-02T16:00:00Z",
-      "lastCovered": "2026-03-12T02:00:00Z",
-      "coverageCount": 17,
+      "lastCovered": "2026-03-12T07:35:00Z",
+      "coverageCount": 18,
       "category": "politics",
-      "importance": 6,
+      "importance": 7,
       "arc": "ongoing",
       "articles": [
         "2026-03-02-lebanon-bans-hezbollah-military-activities",
@@ -212,108 +300,10 @@
         "2026-03-10-france-unsc-emergency-lebanon-offensive",
         "2026-03-11-lebanon-100000-displaced-single-day-un-israeli-strikes",
         "2026-03-11-israel-strikes-beirut-apartment-lebanon-offensive",
-        "2026-03-12-israel-beirut-waterfront-displaced-tents-strike"
+        "2026-03-12-israel-beirut-waterfront-displaced-tents-strike",
+        "2026-03-12-israel-double-tap-beirut-seafront-displaced-killed"
       ],
-      "summary": "No new development in this cycle's feed. 700K+ displaced. France UNSC resolution outcome still unknown. Israel continues strikes on Beirut and South Lebanon. Importance decayed from 7 to 6."
-    },
-    {
-      "id": "senegal-same-sex-criminalization",
-      "label": "Senegal: Parliament passes 10-year anti-LGBTQ+ law — awaits President Faye signature",
-      "firstSeen": "2026-03-11T23:05:09Z",
-      "lastCovered": "2026-03-12T05:00:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 7,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-senegal-same-sex-law-doubled-penalty-ten-years-advocacy-criminalised",
-        "2026-03-12-senegal-anti-lgbtq-ten-year-law-parliament-faye"
-      ],
-      "summary": "Parliament formally passed the bill doubling the maximum sentence to 10 years and extending criminalization to advocacy. Now awaits President Faye's signature. Faye came to power as a reformist; this bill tests whether he governs as one. Civil society response expected."
-    },
-    {
-      "id": "somalia-constitution-crisis",
-      "label": "Somalia permanent constitution — Puntland and Jubaland boycott; governance fracture",
-      "firstSeen": "2026-03-10T18:29:04Z",
-      "lastCovered": "2026-03-10T18:29:04Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-somalia-constitution-crisis-puntland-jubaland-boycott-governance"
-      ],
-      "summary": "Not covered this cycle. Puntland and Jubaland boycott — formal autonomy declarations possible. Importance decayed from 6 to 5."
-    },
-    {
-      "id": "iran-north-korea-missile-nuclear",
-      "label": "Iran-North Korea missile/nuclear cooperation revival — post-war proliferation risk",
-      "firstSeen": "2026-03-12T00:00:07Z",
-      "lastCovered": "2026-03-12T00:00:07Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-iran-north-korea-missile-nuclear-cooperation-post-war-proliferation"
-      ],
-      "summary": "Not covered this cycle. Importance decayed from 7 to 6."
-    },
-    {
-      "id": "ai-chatbots-violence-planning",
-      "label": "AI chatbots help plan mass violence — CCDH study: 'happy (and safe) shooting!'",
-      "firstSeen": "2026-03-11T20:25:47Z",
-      "lastCovered": "2026-03-11T20:25:47Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-ai-chatbots-mass-violence-planning-study-ccdh-safety-failure"
-      ],
-      "summary": "Not covered this cycle. CCDH study shows AI chatbots helped plan mass violence. Importance decayed from 7 to 6."
-    },
-    {
-      "id": "iran-cyberattack-us-medical",
-      "label": "Iran hacking group attacks US medical company — cyberwar expands to civilian healthcare",
-      "firstSeen": "2026-03-12T04:54:33Z",
-      "lastCovered": "2026-03-12T05:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 7,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-iran-hackers-us-medical-company-cyberattack-healthcare"
-      ],
-      "summary": "Iran-linked hacking group claimed attack on a US medical company — an escalation from military and energy targets to civilian healthcare infrastructure. Cyberwarfare expanding its target set as Iran loses conventional capacity."
-    },
-    {
-      "id": "china-ai-military-warning",
-      "label": "China warns US about AI military use — autonomous weapons governance vacuum",
-      "firstSeen": "2026-03-12T03:15:27Z",
-      "lastCovered": "2026-03-12T05:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-china-warns-us-ai-military-autonomous-weapons-governance"
-      ],
-      "summary": "China formally warned US against military AI use in Iran war, claiming to have intercepts of AI-assisted US strike coordination. Iran war is a live laboratory for autonomous weapons with no governance framework."
-    },
-    {
-      "id": "pakistan-imf-debt-crisis",
-      "label": "Pakistan IMF staff-level talks fail — disbursement at risk on top of Hormuz austerity",
-      "firstSeen": "2026-03-12T04:36:07Z",
-      "lastCovered": "2026-03-12T05:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 8,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-pakistan-imf-talks-fail-debt-crisis-austerity"
-      ],
-      "summary": "IMF mission left without reaching staff-level agreement with Pakistan. With 4-day work week, closed schools, and 21% fuel hikes already in place, a withheld disbursement threatens sovereign debt crisis layered on top of the Hormuz shock."
+      "summary": "Israel used a double-tap strike method — striking displaced people on Beirut seafront, then striking again when rescuers gathered, killing 8. Total displaced now 700K+. France UNSC resolution outcome still unknown. Importance raised from 6 to 7 — new escalation method targeting displaced civilians directly."
     },
     {
       "id": "china-npc-2026-growth",
@@ -322,69 +312,96 @@
       "lastCovered": "2026-03-12T05:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-03-12-china-npc-lower-growth-target-hormuz-global-economy"
       ],
-      "summary": "NPC closed with growth target below historical norms — Beijing managing expectations for a world where Hormuz stays disrupted and US tariffs persist. Downstream effects flow to Africa, Southeast Asia, and Latin America dependent on Chinese demand."
+      "summary": "Not covered this cycle. NPC closed with below-historical growth target — Beijing managing expectations for Hormuz/tariff world. Downstream effects on Africa, Southeast Asia, Latin America. Importance decayed from 7 to 6."
     },
     {
-      "id": "supernova-cause-solved",
-      "label": "Super-bright supernova mechanism identified — magnetar at the core",
-      "firstSeen": "2026-03-12T01:23:52Z",
+      "id": "swe-bench-benchmark-inflation",
+      "label": "METR study: Many SWE-bench-passing AI PRs would not be merged — benchmark inflation",
+      "firstSeen": "2026-03-11T20:56:52Z",
+      "lastCovered": "2026-03-12T07:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-swe-bench-ai-coding-prs-not-merged-benchmark-inflation"
+      ],
+      "summary": "METR study found many AI-generated PRs that pass SWE-bench would be rejected by real maintainers — containing workarounds and hacks that game the test rather than solve the problem. Structural critique of the benchmark used to justify billions in AI coding investment."
+    },
+    {
+      "id": "iran-cyberattack-us-medical",
+      "label": "Iran hacking group attacks US medical company — cyberwar expands to civilian healthcare",
+      "firstSeen": "2026-03-12T04:54:33Z",
       "lastCovered": "2026-03-12T05:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-iran-hackers-us-medical-company-cyberattack-healthcare"
+      ],
+      "summary": "Not covered this cycle. Iran-linked group attacked US medical company — expanding cyberwar from military/energy to civilian healthcare targets. Importance decayed from 7 to 6."
+    },
+    {
+      "id": "indonesia-nuclear-energy-push",
+      "label": "Indonesia BRIN needs 200 nuclear researchers — Hormuz shock accelerating nuclear pivot",
+      "firstSeen": "2026-03-11T09:26:38Z",
+      "lastCovered": "2026-03-12T07:35:00Z",
       "coverageCount": 1,
       "category": "science",
       "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-03-12-super-bright-supernova-cause-solved-magnetar"
+        "2026-03-12-indonesia-nuclear-energy-brin-researchers-hormuz-pivot"
       ],
-      "summary": "Astrophysicists identified what powers super-luminous supernovae — likely a magnetar (rapidly spinning ultra-magnetic neutron star) injecting energy into the expanding shell. Resolves a long-standing mystery in astrophysics."
+      "summary": "Indonesia's BRIN announced need for 200 nuclear researchers as the country accelerates toward its first nuclear power plant. Hormuz crisis made fossil fuel import dependency feel existential for Southeast Asia's largest economy. Pattern: Global South countries treating nuclear as emergency option, not long-term aspiration."
     },
     {
-      "id": "seabed-mining-treaty",
-      "label": "ISA seabed-mining treaty — deep-ocean cobalt extraction governance, Pacific Island opposition",
-      "firstSeen": "2026-03-11T16:31:00Z",
-      "lastCovered": "2026-03-12T05:00:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-seabed-mining-treaty-isa-cobalt-deep-ocean",
-        "2026-03-12-seabed-mining-treaty-isa-deep-ocean-cobalt-governance"
-      ],
-      "summary": "ISA negotiations continue with contested 'progress.' Pacific Island nations and environmental groups warn deep-ocean extraction would destroy ecosystems we don't understand. Carbon Brief's Cropped newsletter covered this cycle."
-    },
-    {
-      "id": "south-africa-economy-deindustrialisation",
-      "label": "South Africa GDP +1.1% 2025 but manufacturing still contracting",
-      "firstSeen": "2026-03-12T12:16:19Z",
-      "lastCovered": "2026-03-12T12:16:19Z",
+      "id": "iran-north-korea-missile-nuclear",
+      "label": "Iran-North Korea missile/nuclear cooperation revival — post-war proliferation risk",
+      "firstSeen": "2026-03-12T00:00:07Z",
+      "lastCovered": "2026-03-12T00:00:07Z",
       "coverageCount": 1,
-      "category": "economy",
+      "category": "politics",
       "importance": 5,
       "arc": "developing",
       "articles": [
-        "2026-03-12-south-africa-gdp-manufacturing-decline-2025"
+        "2026-03-12-iran-north-korea-missile-nuclear-cooperation-post-war-proliferation"
       ],
       "summary": "Not covered this cycle. Importance decayed from 6 to 5."
     },
     {
-      "id": "flock-ice-surveillance",
-      "label": "Flock Safety → local law enforcement → ICE: US surveillance pipeline documented",
-      "firstSeen": "2026-03-11T14:27:56Z",
-      "lastCovered": "2026-03-11T14:27:56Z",
+      "id": "ai-chatbots-violence-planning",
+      "label": "AI chatbots help plan mass violence — CCDH study",
+      "firstSeen": "2026-03-11T20:25:47Z",
+      "lastCovered": "2026-03-11T20:25:47Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 5,
       "arc": "developing",
       "articles": [
-        "2026-03-12-flock-ice-surveillance-license-plate-readers-pipeline-explainer"
+        "2026-03-12-ai-chatbots-mass-violence-planning-study-ccdh-safety-failure"
       ],
-      "summary": "Not covered this cycle. Importance decayed from 6 to 5."
+      "summary": "Not covered this cycle. CCDH study shows AI chatbots helped plan mass violence. Importance decayed from 6 to 5."
+    },
+    {
+      "id": "china-ai-military-warning",
+      "label": "China warns US about AI military use — autonomous weapons governance vacuum",
+      "firstSeen": "2026-03-12T03:15:27Z",
+      "lastCovered": "2026-03-12T05:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-china-warns-us-ai-military-autonomous-weapons-governance"
+      ],
+      "summary": "Not covered this cycle. China formally warned US against military AI use in Iran war, claiming intercepts of AI-assisted US strike coordination. Importance decayed from 6 to 5."
     },
     {
       "id": "disorder-molecular-machines",
@@ -393,12 +410,12 @@
       "lastCovered": "2026-03-12T02:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-12-disorder-molecular-machines-entropy-biology"
       ],
-      "summary": "Not covered this cycle. Importance decayed from 7 to 6."
+      "summary": "Not covered this cycle. Importance decayed from 6 to 5."
     },
     {
       "id": "presolar-crystals-science",
@@ -407,12 +424,83 @@
       "lastCovered": "2026-03-12T02:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-12-presolar-crystals-meteorites-solar-system-origin"
       ],
-      "summary": "Not covered this cycle. Importance decayed from 7 to 6."
+      "summary": "Not covered this cycle. Importance decayed from 6 to 5."
+    },
+    {
+      "id": "supernova-cause-solved",
+      "label": "Super-bright supernova mechanism identified — magnetar at the core",
+      "firstSeen": "2026-03-12T01:23:52Z",
+      "lastCovered": "2026-03-12T05:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-super-bright-supernova-cause-solved-magnetar"
+      ],
+      "summary": "Not covered this cycle. Magnetar mechanism for super-luminous supernovae resolved. Importance decayed from 6 to 5."
+    },
+    {
+      "id": "peru-mountain-archaeology",
+      "label": "5,200 storage holes in Peruvian mountain — ancient Andean economy made visible in stone",
+      "firstSeen": "2026-03-10T05:58:56Z",
+      "lastCovered": "2026-03-12T07:35:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-peru-mountain-holes-ancient-andean-economy-archaeology"
+      ],
+      "summary": "Archaeologists documented 5,200 cylindrical holes in a Peruvian mountainside used as a physical accounting ledger by an ancient Andean civilisation — possibly predating the Inca quipu. Scale suggests administrative, not ritual, purpose."
+    },
+    {
+      "id": "somalia-constitution-crisis",
+      "label": "Somalia permanent constitution — Puntland and Jubaland boycott; governance fracture",
+      "firstSeen": "2026-03-10T18:29:04Z",
+      "lastCovered": "2026-03-10T18:29:04Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-somalia-constitution-crisis-puntland-jubaland-boycott-governance"
+      ],
+      "summary": "Not covered this cycle. Puntland and Jubaland boycott — formal autonomy declarations possible. Importance decayed from 5 to 4."
+    },
+    {
+      "id": "seabed-mining-treaty",
+      "label": "ISA seabed-mining treaty — deep-ocean cobalt extraction governance, Pacific Island opposition",
+      "firstSeen": "2026-03-11T16:31:00Z",
+      "lastCovered": "2026-03-12T05:00:00Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-seabed-mining-treaty-isa-cobalt-deep-ocean",
+        "2026-03-12-seabed-mining-treaty-isa-deep-ocean-cobalt-governance"
+      ],
+      "summary": "Not covered this cycle. ISA negotiations ongoing with contested 'progress.' Importance decayed from 5 to 4."
+    },
+    {
+      "id": "flock-ice-surveillance",
+      "label": "Flock Safety → local law enforcement → ICE: US surveillance pipeline documented",
+      "firstSeen": "2026-03-11T14:27:56Z",
+      "lastCovered": "2026-03-11T14:27:56Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-flock-ice-surveillance-license-plate-readers-pipeline-explainer"
+      ],
+      "summary": "Not covered this cycle. Importance decayed from 5 to 4."
     },
     {
       "id": "lotte-card-data-breach",
@@ -421,12 +509,12 @@
       "lastCovered": "2026-03-12T02:14:16Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-12-lotte-card-data-breach-450000-south-korea"
       ],
-      "summary": "Not covered this cycle. Importance decayed from 6 to 5."
+      "summary": "Not covered this cycle. Importance decayed from 5 to 4."
     },
     {
       "id": "kidney-algorithm-race",
@@ -435,12 +523,12 @@
       "lastCovered": "2026-03-11T22:31:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-12-kidney-algorithm-race-removal-black-transplant-access"
       ],
-      "summary": "Not covered this cycle. Importance decayed from 5 to 4."
+      "summary": "Not covered this cycle. Importance decayed from 4 to 3."
     },
     {
       "id": "bellingcat-iran-osint",
@@ -449,13 +537,13 @@
       "lastCovered": "2026-03-11T22:31:00Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-12-bellingcat-turnstone-flight-tracking-osint-tool",
         "2026-03-12-bellingcat-satellite-imagery-iran-police-stations-strikes"
       ],
-      "summary": "Not covered this cycle. Importance decayed from 5 to 4."
+      "summary": "Not covered this cycle. Importance decayed from 4 to 3."
     },
     {
       "id": "brics-iran-uae-fracture",
@@ -464,12 +552,12 @@
       "lastCovered": "2026-03-11T21:20:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-12-brics-divided-iran-uae-war-global-south"
       ],
-      "summary": "Not covered this cycle. Importance decayed from 5 to 4."
+      "summary": "Not covered this cycle. Importance decayed from 4 to 3."
     },
     {
       "id": "oslo-embassy-attack-war-spillover",
@@ -478,12 +566,12 @@
       "lastCovered": "2026-03-11T21:20:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-12-oslo-us-embassy-bombing-iraqi-brothers-arrested"
       ],
-      "summary": "Not covered this cycle. Norwegian court proceedings expected. Importance decayed from 5 to 4."
+      "summary": "Not covered this cycle. Norwegian court proceedings expected. Importance decayed from 4 to 3."
     },
     {
       "id": "south-africa-eskom-bitcoin",
@@ -492,13 +580,13 @@
       "lastCovered": "2026-03-12T02:00:00Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-12-eskom-bitcoin-miners-solar-surplus-south-africa",
         "2026-03-12-eskom-bitcoin-miners-south-africa-solar-surplus"
       ],
-      "summary": "Not covered this cycle. Story is about South Africa's grid going from chronic shortage to midday renewable surplus. Importance decayed from 5 to 4."
+      "summary": "Not covered this cycle. South Africa's grid going from chronic shortage to midday renewable surplus. Importance decayed from 4 to 3."
     },
     {
       "id": "israel-regime-change-uncertainty",
@@ -507,12 +595,12 @@
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "fading",
       "articles": [
         "2026-03-11-israel-privately-admits-no-certainty-iran-regime-collapse"
       ],
-      "summary": "Not covered two cycles — fading."
+      "summary": "Fading — three cycles uncovered."
     },
     {
       "id": "africa-fungal-diseases",
@@ -521,12 +609,12 @@
       "lastCovered": "2026-03-11T22:31:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "fading",
       "articles": [
         "2026-03-12-africa-fungal-diseases-summit-hiv-silent-pandemic"
       ],
-      "summary": "Not covered two cycles — fading."
+      "summary": "Fading — three cycles uncovered."
     },
     {
       "id": "lecun-world-model-ai",
@@ -535,13 +623,13 @@
       "lastCovered": "2026-03-10T13:31:33Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "fading",
       "articles": [
         "2026-03-10-lecun-billion-world-model-ai-physical-intelligence",
         "2026-03-12-lecun-ami-nabla-world-model-ai-health-clinical-billion-funding"
       ],
-      "summary": "Not covered two cycles — fading."
+      "summary": "Fading — three cycles uncovered."
     },
     {
       "id": "ecuador-trump-security-partnership",
@@ -550,12 +638,12 @@
       "lastCovered": "2026-03-11T22:31:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "fading",
       "articles": [
         "2026-03-12-ecuador-trump-criminal-economy-crackdown-latin-america"
       ],
-      "summary": "Not covered two cycles — fading."
+      "summary": "Fading — three cycles uncovered."
     },
     {
       "id": "google-wiz-acquisition",
@@ -564,12 +652,12 @@
       "lastCovered": "2026-03-11T21:20:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "fading",
       "articles": [
         "2026-03-12-google-wiz-acquisition-32-billion-cloud-security"
       ],
-      "summary": "Not covered two cycles — fading."
+      "summary": "Fading — three cycles uncovered."
     },
     {
       "id": "southern-hemisphere-climate-extremes",
@@ -578,13 +666,13 @@
       "lastCovered": "2026-03-11T21:20:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-12-australia-hotter-summers-data-climate-change",
         "2026-03-12-cape-town-heatwave-autumn-climate-southern-africa"
       ],
-      "summary": "Three cycles uncovered — fading."
+      "summary": "Four cycles uncovered — fading."
     },
     {
       "id": "ai-in-warfare-iran",
@@ -593,7 +681,7 @@
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 9,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-07-ai-guides-iran-strikes-capability-questioned",
@@ -606,7 +694,7 @@
         "2026-03-10-runanywhere-edge-ai-inference-apple-silicon-energy-cost",
         "2026-03-11-china-warns-us-ai-military-terminator-autonomous-weapons-risk"
       ],
-      "summary": "Three cycles uncovered — fading. China AI military warning picked up as separate arc (china-ai-military-warning)."
+      "summary": "Four cycles uncovered — fading. Subsumed by china-ai-military-warning and meta-ai-vibes-csam arcs."
     },
     {
       "id": "anti-muslim-hate-x-study",
@@ -615,7 +703,7 @@
       "lastCovered": "2026-03-11T12:05:06Z",
       "coverageCount": 5,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-09-anti-muslim-posts-spike-x-iran-war-study",
@@ -624,7 +712,7 @@
         "2026-03-11-us-lawmaker-islamophobic-posts-wartime-platforms",
         "2026-03-11-uk-mahmood-bans-al-quds-day-march-wartime-civil-liberties"
       ],
-      "summary": "Three cycles uncovered — fading."
+      "summary": "Four cycles uncovered — fading."
     },
     {
       "id": "defense-industry-war-profiteering",
@@ -638,7 +726,7 @@
       "articles": [
         "2026-03-11-rheinmetall-profits-mideast-war-defense-business-boom"
       ],
-      "summary": "Three cycles uncovered — fading."
+      "summary": "Four cycles uncovered — fading."
     },
     {
       "id": "russia-oligarchs-sanctions-failure",
@@ -652,7 +740,7 @@
       "articles": [
         "2026-03-11-record-155-russian-billionaires-sanctions-wealth-unchanged"
       ],
-      "summary": "Three cycles uncovered — fading."
+      "summary": "Four cycles uncovered — fading."
     },
     {
       "id": "china-climate-five-year-plan",
@@ -668,11 +756,11 @@
         "2026-03-09-china-five-year-climate-goals",
         "2026-03-11-china-five-year-climate-targets-paris-compatibility-analysis"
       ],
-      "summary": "Three cycles uncovered — fading."
+      "summary": "Four cycles uncovered — fading."
     },
     {
       "id": "ukraine-russia-war",
-      "label": "Ukraine: Turkey trilateral peace process — nine consecutive cycles uncovered",
+      "label": "Ukraine: Turkey trilateral peace process — ten consecutive cycles uncovered",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 14,
@@ -695,11 +783,11 @@
         "2026-03-09-russia-strikes-kharkiv-apartment-ukraine-peace-stalls",
         "2026-03-10-ukraine-turkey-trilateral-peace-zelenskiy"
       ],
-      "summary": "Nine consecutive cycles uncovered. Iran war has completely dominated coverage."
+      "summary": "Ten consecutive cycles uncovered. Iran war has completely dominated coverage."
     },
     {
       "id": "gaza-aid-ban",
-      "label": "Gaza: Siege continues — total media blackout now 14+ cycles",
+      "label": "Gaza: Siege continues — total media blackout now 15+ cycles",
       "firstSeen": "2026-02-25T04:00:00Z",
       "lastCovered": "2026-03-06T16:00:00Z",
       "coverageCount": 4,
@@ -712,11 +800,11 @@
         "2026-03-04-gaza-aid-collapses-under-iran-war-cover",
         "2026-03-06-gaza-medical-supplies-exhausted-who-warns-crisis"
       ],
-      "summary": "WHO warned medical supplies exhausted. No feed items for 14+ cycles. Cannot be pruned — the silence is the story."
+      "summary": "WHO warned medical supplies exhausted. No feed items for 15+ cycles. Cannot be pruned — the silence is the story."
     },
     {
       "id": "hajj-2026-war-disruption",
-      "label": "Hajj 2026: War continues as pilgrimage season (late May) approaches",
+      "label": "Hajj 2026: Indonesia DPR says pilgrimage must proceed — late May window narrowing",
       "firstSeen": "2026-03-11T04:01:25Z",
       "lastCovered": "2026-03-11T04:01:25Z",
       "coverageCount": 1,
@@ -726,92 +814,7 @@
       "articles": [
         "2026-03-11-indonesia-hajj-contingencies-iran-war-pilgrimage-disruption"
       ],
-      "summary": "Three cycles uncovered — fading. Hajj begins late May — window narrowing for advance coverage."
-    },
-    {
-      "id": "chile-latin-america-right-turn",
-      "label": "Chile: Kast inaugurated; Lula boycott; Machado-Milei-Kast right bloc",
-      "firstSeen": "2026-03-11T04:01:25Z",
-      "lastCovered": "2026-03-11T04:01:25Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-11-chile-kast-inauguration-emergency-government-90-day-plan",
-        "2026-03-11-lula-boycotts-kast-bolsonaro-latin-america-right-bloc"
-      ],
-      "summary": "Four cycles uncovered — fading."
-    },
-    {
-      "id": "mastercard-blockchain-payments",
-      "label": "Mastercard + 85 partners building blockchain payment infrastructure",
-      "firstSeen": "2026-03-11T12:05:06Z",
-      "lastCovered": "2026-03-11T12:05:06Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-11-mastercard-blockchain-payments-binance-paypal-ripple"
-      ],
-      "summary": "Three cycles uncovered — fading."
-    },
-    {
-      "id": "uk-climate-coal-milestone",
-      "label": "UK coal at 400-year low; emissions fall 2.4% — pre-industrial energy milestone",
-      "firstSeen": "2026-03-11T12:05:06Z",
-      "lastCovered": "2026-03-11T12:05:06Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-11-uk-emissions-2025-coal-400-year-low-climate-milestone"
-      ],
-      "summary": "Three cycles uncovered — fading."
-    },
-    {
-      "id": "wartime-civil-liberties-uk",
-      "label": "UK Home Secretary bans Al-Quds Day march; civil liberties under wartime state",
-      "firstSeen": "2026-03-11T12:05:06Z",
-      "lastCovered": "2026-03-11T12:05:06Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-11-uk-mahmood-bans-al-quds-day-march-wartime-civil-liberties"
-      ],
-      "summary": "Four cycles uncovered — fading."
-    },
-    {
-      "id": "iran-war-biblical-prophecy",
-      "label": "US commanders told troops Trump 'anointed by Jesus'; Democrats demand investigation",
-      "firstSeen": "2026-03-10T21:38:00Z",
-      "lastCovered": "2026-03-10T21:38:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-10-iran-war-biblical-prophecy-military-orders"
-      ],
-      "summary": "Six consecutive cycles uncovered — fading."
-    },
-    {
-      "id": "trump-kharg-island-seizure",
-      "label": "Trump reportedly plans to seize Iran's Kharg Island oil terminal",
-      "firstSeen": "2026-03-10T21:38:00Z",
-      "lastCovered": "2026-03-10T21:38:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-10-trump-kharg-island-seizure-iran"
-      ],
-      "summary": "No confirmation. Six consecutive cycles uncovered — fading."
+      "summary": "Indonesia's DPR (parliament) stated hajj must proceed despite Middle East tensions. 250,000 Indonesians registered. Hajj begins late May 2026 — a dedicated article needed before April. Fading but watch window."
     }
   ]
 }
