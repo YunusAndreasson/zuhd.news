@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 19: UK/US base in Iraq struck; Khamenei ultimatum on Gulf bases; 3.2M displaced",
+      "label": "Iran war Day 19: Kuwait struck; Israel hits central Beirut; Khamenei ultimatum on Gulf bases",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-12T17:33:00Z",
-      "coverageCount": 76,
+      "lastCovered": "2026-03-12T18:38:00Z",
+      "coverageCount": 78,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -83,16 +83,18 @@
         "2026-03-12-iran-32-million-displaced-us-israeli-attacks-un",
         "2026-03-12-bunker-busting-bombs-us-planes-uk-airbase-iran",
         "2026-03-12-uk-troops-iraq-base-iranian-drones-nato",
-        "2026-03-12-khamenei-ultimatum-us-gulf-bases-close-or-attacked"
+        "2026-03-12-khamenei-ultimatum-us-gulf-bases-close-or-attacked",
+        "2026-03-12-kuwait-intercepts-missiles-drones-iran-war-gulf-escalation",
+        "2026-03-12-trump-threatens-iran-world-cup-safety-warning"
       ],
-      "summary": "Day 19: Iranian drones struck a base in Iraq hosting both UK and US troops — the first confirmed direct hit on British forces, making the UK a direct casualty state. Mojtaba Khamenei issued his first concrete military ultimatum: US bases across the Gulf (Bahrain, Qatar, Kuwait, UAE) must close or be attacked. Iran simultaneously signalled ships can pass Hormuz 'if they coordinate with its navy' — sovereignty assertion, not complete closure. 3.2 million displaced internally per UN."
+      "summary": "Day 19: Kuwait became the fourth Gulf state struck by Iranian missiles and drones (after Bahrain, Qatar, Iraq) — Kuwaiti air defenses intercepted. Israel escalated Lebanon operations into central Beirut. Trump publicly threatened Iranian athletes and officials not to attend the 2026 World Cup in the US. Iran's new Supreme Leader Mojtaba Khamenei continues threatening US Gulf bases. 3.2M displaced internally per UN. Trump claims 'we won' but refuses early departure from Day 18."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz/energy compound shock: Qatar 50% LNG cut; Total 15% output shutdown; tanker armada to Red Sea",
+      "label": "Hormuz/energy compound shock: Iran domestic economy collapsing; crude tokenization emerges",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-12T17:33:00Z",
-      "coverageCount": 82,
+      "lastCovered": "2026-03-12T18:38:00Z",
+      "coverageCount": 84,
       "category": "economy",
       "importance": 10,
       "arc": "ongoing",
@@ -161,97 +163,212 @@
         "2026-03-12-oil-reserve-release-prices-hormuz-analysis",
         "2026-03-12-china-npc-lower-growth-target-hormuz-global-economy",
         "2026-03-12-oil-price-jumps-record-reserve-release-war-hormuz",
-        "2026-03-12-india-lpg-security-deployment-supply-chain-hormuz",
         "2026-03-12-iran-war-cost-eleven-billion-six-days-pentagon",
         "2026-03-12-southeast-asia-small-firms-oil-shock-hormuz",
-        "2026-03-12-iea-largest-oil-disruption-history-iran-war",
-        "2026-03-12-trump-strategic-reserve-172-million-barrels",
-        "2026-03-12-oil-price-jumps-despite-iea-record-reserve-release",
         "2026-03-12-kse100-tumbles-1400-points-iran-war-oil-shock",
         "2026-03-12-qatar-lng-workforce-halved-iran-war-europe-gas-crisis",
         "2026-03-12-totalenergies-15-percent-output-cut-iran-war-market",
-        "2026-03-12-oil-tanker-armada-red-sea-both-chokepoints-blocked"
+        "2026-03-12-oil-tanker-armada-red-sea-both-chokepoints-blocked",
+        "2026-03-12-iran-economy-shut-shops-joblessness-cash-collapse",
+        "2026-03-12-petronas-crude-oil-blockchain-tokenization-litro",
+        "2026-03-12-south-korea-pm-vance-us-investment-bill-tariff-diplomacy"
       ],
-      "summary": "Energy compound crisis: Qatar halved the workforce at a major LNG project — directly threatening Europe's gas supply. TotalEnergies shut 15% of global output (~360,000 bpd). Oil tanker armada rerouted to Red Sea as alternative to Hormuz — but Red Sea is itself under Houthi attack, activating both critical chokepoints simultaneously. Cape of Good Hope is now the only safe route, adding 10-14 days per voyage. Iran is allowing ships through Hormuz only if they coordinate with its navy — sovereignty assertion rather than kinetic closure."
+      "summary": "Day 19 economy: Al Monitor ground report shows Iran's internal economy collapsing — shut shops, joblessness, people hoarding dollars as rial falls. Former Petronas trading chief launching crude oil blockchain tokenization (Litro), targeting 2027 — a direct response to SWIFT/dollar system breakdown under Hormuz conditions. South Korea's PM flew to Washington with a parliament-passed US investment pledge to buy relief from Trump tariffs while absorbing the Hormuz oil shock simultaneously. Iran continues allowing ships through with Iranian naval coordination — sovereignty assertion, not full closure."
+    },
+    {
+      "id": "icj-south-africa-israel-genocide",
+      "label": "ICJ genocide case: Iceland and Netherlands formally intervene — European standing added",
+      "firstSeen": "2026-03-12T18:38:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 8,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-iceland-netherlands-icj-genocide-intervention-south-africa-israel"
+      ],
+      "summary": "Iceland and Netherlands formally filed declarations of intervention in South Africa's ICJ genocide case against Israel. Two NATO member states, EU member (Netherlands) and EEA member (Iceland) have added European legal standing to what had been a Global South-led case. Watch for more European interventions, Israel's legal counter-response, and next ICJ hearing date. Separate from ICC individual liability — this is state responsibility under the Genocide Convention."
+    },
+    {
+      "id": "lebanon-hezbollah-israel",
+      "label": "Lebanon: Israel strikes central Beirut — third time in modern history; 700K+ displaced",
+      "firstSeen": "2026-03-02T16:00:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
+      "coverageCount": 19,
+      "category": "politics",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-03-02-lebanon-bans-hezbollah-military-activities",
+        "2026-03-03-israel-ground-assault-southern-lebanon-52-killed",
+        "2026-03-03-syria-deploys-troops-lebanon-border-war-spillover",
+        "2026-03-04-israel-ground-invasion-lebanon-baalbek-hezbollah-open-war",
+        "2026-03-04-israel-orders-all-southern-lebanon-evacuated-north-of-litani",
+        "2026-03-05-israel-orders-dahiyeh-evacuation-will-look-like-khan-younis",
+        "2026-03-07-ghana-peacekeepers-wounded-missile-lebanon",
+        "2026-03-07-lebanon-500000-displaced-dahiyeh-41-killed-nabi-chit",
+        "2026-03-07-israel-raids-lebanese-village-dozens-killed-40-year",
+        "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
+        "2026-03-09-israeli-forces-east-lebanon-hezbollah-war-expands",
+        "2026-03-09-hrw-israel-white-phosphorus-lebanon-populated-areas",
+        "2026-03-09-lebanon-delays-elections-two-years-war",
+        "2026-03-10-france-unsc-emergency-lebanon-offensive",
+        "2026-03-11-lebanon-100000-displaced-single-day-un-israeli-strikes",
+        "2026-03-11-israel-strikes-beirut-apartment-lebanon-offensive",
+        "2026-03-12-israel-beirut-waterfront-displaced-tents-strike",
+        "2026-03-12-israel-double-tap-beirut-seafront-displaced-killed",
+        "2026-03-12-israel-attacks-central-beirut-lebanon-escalation"
+      ],
+      "summary": "Major escalation: Israel struck central Beirut — the commercial and residential core of the capital — for the first time this offensive. 700K+ displaced from south and suburbs. Those who stayed in central Beirut believing they were safe are now in the target zone. Third time Israel has struck central Beirut in modern history (1982, 2006, 2026). France UNSC resolution outcome still pending. Elections delayed two years."
     },
     {
       "id": "idf-rape-charges-dropped",
-      "label": "Israeli military drops rape charges against soldiers — accountability failure, ICC context",
+      "label": "IDF drops rape charges — ICC impunity arc, West Bank occupation",
       "firstSeen": "2026-03-12T17:33:00Z",
       "lastCovered": "2026-03-12T17:33:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-03-12-idf-rape-charges-dropped-icc-impunity-palestine"
       ],
-      "summary": "Israeli military withdrew charges against soldiers accused of raping a Palestinian detainee without the case reaching trial. No reason given publicly. Comes while ICC has active investigation into Israeli conduct in occupied territories. Thousands of Palestinians held in administrative detention during the Iran war."
+      "summary": "Israeli military withdrew charges against soldiers accused of raping a Palestinian detainee. No reason given publicly. Watch for ICC response, Palestinian human rights documentation, and whether European governments respond."
     },
     {
       "id": "al-aqsa-ramadan-closure",
-      "label": "Al-Aqsa Mosque closed during Ramadan — Muslim nations condemn, first closure since 1969",
+      "label": "Al-Aqsa closed during Ramadan — Muslim nations condemn, first closure since 1969",
       "firstSeen": "2026-03-12T17:33:00Z",
       "lastCovered": "2026-03-12T17:33:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
         "2026-03-12-al-aqsa-closed-ramadan-muslim-countries-condemn-israel"
       ],
-      "summary": "Israel closed Al-Aqsa Mosque during Ramadan, blocking Palestinian Muslims from Friday prayer at Islam's third holiest site. Muslim-majority governments issued coordinated condemnation. During an active war in which Iran's new Supreme Leader invokes Al-Aqsa, the closure validates the war's religious framing to 1.8 billion Muslims."
+      "summary": "Israel closed Al-Aqsa during Ramadan, blocking Palestinian Muslims from Friday prayer. Muslim governments issued coordinated condemnation. Watch for whether Israel reopens for remaining Ramadan Fridays, OIC emergency session, and protests within occupied Jerusalem."
     },
     {
-      "id": "flock-ice-surveillance",
-      "label": "Flock Safety license plates → ICE deportation pipeline mapped by 404 Media",
-      "firstSeen": "2026-03-12T17:33:00Z",
-      "lastCovered": "2026-03-12T17:33:00Z",
+      "id": "detroit-synagogue-shooting",
+      "label": "Detroit-area synagogue active shooter — FBI confirmed, Iran war religious tension context",
+      "firstSeen": "2026-03-12T18:38:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-detroit-synagogue-shooting-active-shooter-fbi"
+      ],
+      "summary": "FBI-confirmed active shooter at Detroit-area synagogue. Breaking at end of cycle. Watch for casualty count, attacker identity, motive, and community response. Detroit has a large Arab-American community and significant Jewish community — both under pressure during the Iran war. Context: Al-Aqsa closure during Ramadan same week, global religious tension elevated."
+    },
+    {
+      "id": "iran-domestic-economy-collapse",
+      "label": "Iran internal economy: shut shops, joblessness, dollar hoarding — war toll on civilians",
+      "firstSeen": "2026-03-12T18:38:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-iran-economy-shut-shops-joblessness-cash-collapse"
+      ],
+      "summary": "Al Monitor ground report: Iran's internal economy collapsing — shuttered businesses, mass unemployment, currency flight to dollars and gold. Iranians experiencing dual violence: airstrikes and economic annihilation. The rial was already devastated by sanctions; war has accelerated collapse. Watch for currency exchange rate data, food security indicators, and any humanitarian corridor openings."
+    },
+    {
+      "id": "moscow-crocus-verdict",
+      "label": "Moscow Crocus City Hall: 19 convicted, one year after attack",
+      "firstSeen": "2026-03-12T18:38:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-moscow-crocus-hall-nineteen-convicted-verdict"
+      ],
+      "summary": "19 convicted in Crocus City Hall attack (March 2024, 145+ killed). Russia initially blamed Ukraine before ISIS-K claimed responsibility. Attackers were Tajik nationals. One year on, verdict reached. Watch for sentencing details and whether broader network accountability continues."
+    },
+    {
+      "id": "south-korea-us-tariff-diplomacy",
+      "label": "South Korea PM meets Vance — US investment bill, tariff negotiations",
+      "firstSeen": "2026-03-12T18:38:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-south-korea-pm-vance-us-investment-bill-tariff-diplomacy"
+      ],
+      "summary": "South Korea parliament passed a US investment commitment bill; PM flew to Washington to present it to Vance. Korea is buying tariff relief with investment pledges while absorbing the Hormuz oil shock. Samsung, Hyundai, LG affected. Watch for what specific tariff relief Korea receives in return."
+    },
+    {
+      "id": "doge-congressional-accountability",
+      "label": "DOGE employees testify before Congress — first accountability hearing on federal data access",
+      "firstSeen": "2026-03-12T18:38:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-03-12-flock-safety-ice-license-plate-surveillance-deportation"
+        "2026-03-12-doge-testimony-congress-federal-data-accountability"
       ],
-      "summary": "404 Media mapped how Flock Safety license plate readers — installed in cities and suburbs as public safety infrastructure — are being used by ICE for immigration enforcement. 5,000+ law enforcement clients. Data retained 30 days. No consent required from residents. Public surveillance infrastructure repurposed into deportation tool."
+      "summary": "DOGE employees (unelected tech operatives) testified before Congress for the first time. Subject: their access to IRS, Treasury, SSA, and other federal data systems. First forced public accounting of operations run without traditional oversight. Watch for any specific data disclosures, AI tool revelations, or commitments made to Congress."
     },
     {
-      "id": "north-korea-it-workers-crypto",
-      "label": "North Korea IT worker crypto scheme: US sanctions 6 individuals — developers fund missile program",
-      "firstSeen": "2026-03-12T17:33:00Z",
-      "lastCovered": "2026-03-12T17:33:00Z",
+      "id": "quittr-privacy-breach",
+      "label": "Quittr app exposes 100K+ users' intimate behavioral data — health app privacy failure",
+      "firstSeen": "2026-03-12T18:38:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-03-12-north-korea-it-workers-crypto-scheme-sanctions-weapons"
+        "2026-03-12-quittr-app-data-breach-private-health-privacy"
       ],
-      "summary": "US Treasury sanctioned 6 individuals and 2 entities for running NK IT workers posing as freelance developers at Western tech companies. Earnings flow through crypto to NK weapons program. Not hackers — legitimate developers hired unknowingly by legitimate companies. Fintech, AI, and gaming sectors most targeted."
+      "summary": "Quittr porn addiction app exposed intimate behavioral data of hundreds of thousands of users. Follows pattern of health app privacy failures (period tracking, mental health, HIV status). Health apps face no HIPAA obligation. Users twice-stigmatized: exposed for the behavior and for seeking help. Watch for regulatory response."
     },
     {
-      "id": "us-senate-cbdc-ban",
-      "label": "US Senate votes to ban CBDCs — buried in housing bill, may not pass House",
-      "firstSeen": "2026-03-12T17:33:00Z",
-      "lastCovered": "2026-03-12T17:33:00Z",
+      "id": "cancer-protein-immunotherapy",
+      "label": "Cancer cells externalize oncoproteins — new immunotherapy target class identified",
+      "firstSeen": "2026-03-12T18:38:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
       "coverageCount": 1,
-      "category": "tech",
+      "category": "science",
       "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-03-12-us-senate-cbdc-ban-digital-dollar-housing-bill"
+        "2026-03-12-cancer-cells-oncoprotein-surface-immunotherapy-target"
       ],
-      "summary": "US Senate voted to prohibit Central Bank Digital Currencies inside a housing bill. If enacted, the world's reserve currency would remain analogue while China, EU, and 130 other countries develop digital equivalents. Privacy advocates and Republicans oppose on surveillance grounds. House passage uncertain."
+      "summary": "Research finding: src-family oncoproteins (cancer drivers) are pushed to cell surface by cancer cells, making them potentially targetable by immunotherapies. Counterintuitive — cancer growth proteins also mark cells for immune attack. Could expand immunotherapy to patients who currently lack targetable surface markers. Early-stage research, not yet a treatment."
+    },
+    {
+      "id": "crude-oil-tokenization",
+      "label": "Litro: former Petronas chief tokenizing $6T crude market on blockchain",
+      "firstSeen": "2026-03-12T18:38:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-petronas-crude-oil-blockchain-tokenization-litro"
+      ],
+      "summary": "Former Petronas oil trading head launching Litro — tokenized crude oil platform targeting 2027 debut. Directly responds to SWIFT/dollar breakdown under Hormuz/sanctions conditions. Non-Western provenance (Malaysia state oil company). Could enable oil trade outside US sanctions architecture. Watch for pilot test outcomes and which producing/importing nations sign on."
     },
     {
       "id": "sudan-humanitarian-crisis",
-      "label": "Sudan: RSF systematic targeting of civilian infrastructure — markets, students, convoys",
+      "label": "Sudan: RSF systematic targeting of civilians — world distracted by Iran war",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-03-12T10:01:07Z",
       "coverageCount": 18,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
@@ -273,124 +390,36 @@
         "2026-03-12-sudan-52-killed-west-kordofan-convoy-drone",
         "2026-03-12-sudan-rsf-white-nile-students-seventeen-killed"
       ],
-      "summary": "Not covered this cycle. RSF campaign spans five states, targeting civilians. 30,000+ killed, 10M displaced. No peace process, no international pressure (world distracted by Iran war). Seek next cycle."
+      "summary": "Not covered this cycle (missing from feed). RSF war spans five states. 30,000+ killed, 10M displaced. No peace process, no international pressure. Seek every cycle regardless of feed presence — absence from Western feeds does not mean absence of suffering."
     },
     {
       "id": "west-bank-settler-escalation",
-      "label": "West Bank settler violence surges — IDF drops rape charges same cycle",
+      "label": "West Bank settler violence — IDF impunity arc parallel",
       "firstSeen": "2026-03-12T12:30:00Z",
       "lastCovered": "2026-03-12T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-12-west-bank-settlers-murders-iran-war-cover"
       ],
-      "summary": "Not covered this cycle. 6+ Palestinians killed in one week as settlers use Iran war as cover. IDF impunity arc now runs alongside (charges dropped against soldiers accused of rape — separate article this cycle). Occupation forces deployed toward Iran front, leaving West Bank to settlers."
+      "summary": "Not covered this cycle. 6+ Palestinians killed in one week as settlers use Iran war as cover. IDF impunity arc (charges dropped for rape — same cycle). Occupation forces deployed toward Iran front, leaving West Bank to settlers. Seek next cycle."
     },
     {
-      "id": "senegal-same-sex-criminalization",
-      "label": "Senegal: Parliament approved 10-year anti-LGBTQ law — President Faye must sign or reject",
-      "firstSeen": "2026-03-11T23:05:09Z",
-      "lastCovered": "2026-03-12T05:00:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-senegal-same-sex-law-doubled-penalty-ten-years-advocacy-criminalised",
-        "2026-03-12-senegal-anti-lgbtq-ten-year-law-parliament-faye"
-      ],
-      "summary": "BBC confirmed Parliament approved 10-year anti-LGBTQ law on 2026-03-12 — not selected this cycle due to space. President Faye signature window closing. This IS a hard news development and should be prioritised next cycle: is Faye's reformist identity real?"
-    },
-    {
-      "id": "google-wiz-acquisition",
-      "label": "Google closes $32B Wiz acquisition — largest cybersecurity deal in history",
-      "firstSeen": "2026-03-11T14:58:00Z",
-      "lastCovered": "2026-03-12T12:30:00Z",
-      "coverageCount": 2,
+      "id": "flock-ice-surveillance",
+      "label": "Flock Safety license plates → ICE deportation pipeline",
+      "firstSeen": "2026-03-12T17:33:00Z",
+      "lastCovered": "2026-03-12T17:33:00Z",
+      "coverageCount": 1,
       "category": "tech",
       "importance": 5,
       "arc": "developing",
       "articles": [
-        "2026-03-12-google-wiz-acquisition-32-billion-cloud-security",
-        "2026-03-12-google-wiz-acquisition-closes-cloud-security"
+        "2026-03-12-flock-safety-ice-license-plate-surveillance-deportation",
+        "2026-03-12-flock-ice-surveillance-license-plate-readers-pipeline-explainer"
       ],
-      "summary": "Not covered this cycle. Google now owns the security layer for its own cloud and both main competitors. Regulatory clearance in early 2026. Watch for antitrust follow-up."
-    },
-    {
-      "id": "lebanon-hezbollah-israel",
-      "label": "Lebanon: 700K+ displaced; double-tap Beirut seafront covered last cycle",
-      "firstSeen": "2026-03-02T16:00:00Z",
-      "lastCovered": "2026-03-12T07:35:00Z",
-      "coverageCount": 18,
-      "category": "politics",
-      "importance": 3,
-      "arc": "ongoing",
-      "articles": [
-        "2026-03-02-lebanon-bans-hezbollah-military-activities",
-        "2026-03-03-israel-ground-assault-southern-lebanon-52-killed",
-        "2026-03-03-syria-deploys-troops-lebanon-border-war-spillover",
-        "2026-03-04-israel-ground-invasion-lebanon-baalbek-hezbollah-open-war",
-        "2026-03-04-israel-orders-all-southern-lebanon-evacuated-north-of-litani",
-        "2026-03-05-israel-orders-dahiyeh-evacuation-will-look-like-khan-younis",
-        "2026-03-07-ghana-peacekeepers-wounded-missile-lebanon",
-        "2026-03-07-lebanon-500000-displaced-dahiyeh-41-killed-nabi-chit",
-        "2026-03-07-israel-raids-lebanese-village-dozens-killed-40-year",
-        "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
-        "2026-03-09-israeli-forces-east-lebanon-hezbollah-war-expands",
-        "2026-03-09-hrw-israel-white-phosphorus-lebanon-populated-areas",
-        "2026-03-09-lebanon-delays-elections-two-years-war",
-        "2026-03-10-france-unsc-emergency-lebanon-offensive",
-        "2026-03-11-lebanon-100000-displaced-single-day-un-israeli-strikes",
-        "2026-03-11-israel-strikes-beirut-apartment-lebanon-offensive",
-        "2026-03-12-israel-beirut-waterfront-displaced-tents-strike",
-        "2026-03-12-israel-double-tap-beirut-seafront-displaced-killed"
-      ],
-      "summary": "Not covered this cycle. 700K+ displaced. France UNSC resolution outcome still unknown. Importance at 3 — Iran war dominates coverage."
-    },
-    {
-      "id": "bangladesh-post-uprising-parliament",
-      "label": "Bangladesh: New parliament convenes after student uprising",
-      "firstSeen": "2026-03-12T09:34:06Z",
-      "lastCovered": "2026-03-12T10:01:07Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-bangladesh-new-parliament-post-uprising-democracy"
-      ],
-      "summary": "Not covered this cycle. First genuinely open parliament for Bangladesh's 170M people after Hasina's 15-year rule. Watch whether new government can govern or Hasina's institutional machine reasserts."
-    },
-    {
-      "id": "chile-kast-presidency",
-      "label": "Chile Kast sworn in — sharpest right turn since 1990 democratic restoration",
-      "firstSeen": "2026-03-12T12:30:00Z",
-      "lastCovered": "2026-03-12T12:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-chile-kast-president-sharpest-right-shift"
-      ],
-      "summary": "Not covered this cycle. Kast reversing Boric-era pension reform and constitutional rewrite. Watch first legislative actions — reversals are the story."
-    },
-    {
-      "id": "kse100-pakistan-war-economy",
-      "label": "Pakistan KSE-100 crash — war-driven oil shock hits debt-crisis economy during Ramadan",
-      "firstSeen": "2026-03-12T15:10:00Z",
-      "lastCovered": "2026-03-12T15:10:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-kse100-tumbles-1400-points-iran-war-oil-shock"
-      ],
-      "summary": "Not covered this cycle. KSE-100 lost 1,400+ points. IMF talks failed same day. RLNG prices up. 4-day work week, schools closed, Ramadan austerity. Sovereign default risk real without IMF disbursement."
+      "summary": "Public license plate surveillance repurposed as deportation infrastructure. 5,000+ law enforcement clients. 30-day retention. No resident consent."
     },
     {
       "id": "ethiopia-floods-2026",
@@ -399,12 +428,26 @@
       "lastCovered": "2026-03-12T15:10:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-12-ethiopia-floods-landslides-hundred-dead-rising"
       ],
-      "summary": "Not covered this cycle. 100+ dead from floods and landslides. Rural highland communities. Post-Tigray reconstruction fragility + climate stress. Watch toll rise."
+      "summary": "Not covered this cycle. 100+ dead from floods and landslides. Post-Tigray fragility + climate stress. Watch toll rise."
+    },
+    {
+      "id": "chile-kast-presidency",
+      "label": "Chile Kast sworn in — sharpest right turn since 1990",
+      "firstSeen": "2026-03-12T12:30:00Z",
+      "lastCovered": "2026-03-12T12:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-chile-kast-president-sharpest-right-shift"
+      ],
+      "summary": "Not covered this cycle. Kast reversing Boric-era pension reform and constitutional rewrite. Watch first legislative actions."
     },
     {
       "id": "epstein-network-accountability",
@@ -413,13 +456,13 @@
       "lastCovered": "2026-03-12T15:10:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-12-biotech-vc-epstein-great-friend-comeback-science",
         "2026-03-12-foreign-hacker-compromised-fbi-epstein-files-2023"
       ],
-      "summary": "Not covered this cycle. Two angles: VC rehabilitating Epstein associate; foreign state breached FBI files in 2023. Network active, accountability incomplete. Watch for attribution on the hack."
+      "summary": "Not covered this cycle. Two angles: VC rehabilitating Epstein associate; foreign state breached FBI files in 2023. Watch for attribution on the hack."
     },
     {
       "id": "fda-glp1-telehealth-crackdown",
@@ -428,83 +471,55 @@
       "lastCovered": "2026-03-12T15:10:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-12-fda-targets-telehealth-glp1-drug-marketing"
       ],
-      "summary": "Not covered this cycle. FDA cracking down on telehealth semaglutide/tirzepatide marketing without in-person evaluation. Watch for named companies targeted and whether access for lower-income patients is affected."
+      "summary": "Not covered this cycle. FDA cracking down on telehealth semaglutide/tirzepatide marketing without in-person evaluation. Watch for named companies targeted."
     },
     {
       "id": "us-science-research-integrity",
-      "label": "NIH whistleblower — US biomedical research infrastructure under political pressure",
+      "label": "NIH whistleblower — US biomedical research under political pressure",
       "firstSeen": "2026-03-12T12:30:00Z",
       "lastCovered": "2026-03-12T12:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-12-nih-whistleblower-warning-research-integrity"
       ],
-      "summary": "Not covered this cycle. NIH insider warning on threats to biomedical infrastructure. DOGE cuts disrupting NIH grant administration. Watch for specific programs cut and international collaboration impacts."
-    },
-    {
-      "id": "nigeria-child-marriage-rct",
-      "label": "Nigeria RCT: cash + school + mentoring cuts child marriage 80% — Nature study",
-      "firstSeen": "2026-03-12T10:01:07Z",
-      "lastCovered": "2026-03-12T10:01:07Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-nigeria-child-marriage-80-percent-rct-nature-study"
-      ],
-      "summary": "Not covered this cycle. Nature RCT: simultaneous intervention (cash + school + mentoring) reduced child marriage 80% in northern Nigeria. No single intervention worked alone. Major development policy implications."
-    },
-    {
-      "id": "marburgvirus-glycoprotein-treatment",
-      "label": "Marburgvirus entry mechanism solved — treatment development path opened",
-      "firstSeen": "2026-03-12T10:01:07Z",
-      "lastCovered": "2026-03-12T10:01:07Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-marburgvirus-glycoprotein-npc1-structure-treatment"
-      ],
-      "summary": "Not covered this cycle. Glycoprotein-NPC1 structure solved. Marburg kills 50-90% of infected, no approved treatment. Structural similarity with Ebola suggests shared antiviral path."
+      "summary": "Not covered this cycle. NIH insider warning on threats to biomedical infrastructure. DOGE cuts disrupting grant administration. Watch for specific programs cut."
     },
     {
       "id": "meta-ai-vibes-csam",
-      "label": "Meta AI 'Vibes' generates CSAM and explicit deepfakes — platform-scale harm",
+      "label": "Meta AI 'Vibes' generates CSAM and explicit deepfakes",
       "firstSeen": "2026-03-12T07:19:59Z",
       "lastCovered": "2026-03-12T07:35:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-12-meta-ai-vibes-csam-deepfakes-platform-flood"
       ],
-      "summary": "Not covered this cycle. Meta Vibes generated CSAM and non-consensual deepfakes at scale. Regulatory response from India and EU still pending. Watch for enforcement action."
+      "summary": "Not covered this cycle. Meta Vibes generated CSAM and non-consensual deepfakes at scale. Watch for EU/India regulatory enforcement action."
     },
     {
       "id": "ai-chatbots-violence-planning",
-      "label": "AI chatbots provide tactical mass violence planning — study documents safety failure",
+      "label": "AI chatbots provide tactical mass violence planning — safety failure documented",
       "firstSeen": "2026-03-11T20:25:47Z",
       "lastCovered": "2026-03-12T10:01:07Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-12-ai-chatbots-mass-violence-planning-study-ccdh-safety-failure",
         "2026-03-12-ai-chatbots-attack-planning-study-safety-gap"
       ],
-      "summary": "Not covered this cycle. Study documented chatbots providing specific tactical attack planning advice. Third consecutive AI safety failure week. Guardrails failing for most predictable misuse cases."
+      "summary": "Not covered this cycle. Study documented chatbots providing specific tactical attack planning. Third consecutive AI safety failure week."
     },
     {
       "id": "china-minorities-law",
@@ -513,82 +528,40 @@
       "lastCovered": "2026-03-12T07:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-12-china-minorities-law-ethnic-separatism-mandarin-education"
       ],
-      "summary": "Not covered this cycle. Affects 12M Uyghurs, 6M Tibetans, 53 other minorities. UN human rights response pending. Watch for implementation reports."
+      "summary": "Not covered this cycle. Affects 12M Uyghurs, 6M Tibetans, 53 minorities. Watch for implementation reports."
     },
     {
-      "id": "blackrock-institutional-crypto",
-      "label": "BlackRock staked ether ETF — institutional crypto yield enters regulated finance",
-      "firstSeen": "2026-03-12T12:30:00Z",
-      "lastCovered": "2026-03-12T12:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-blackrock-staked-ether-etf-institutional-crypto"
-      ],
-      "summary": "Not covered this cycle. First institutional staked ETH ETF. Combines price exposure with proof-of-stake yield in regulated wrapper."
-    },
-    {
-      "id": "radial-science-ai-modernization",
-      "label": "Radial nonprofit — $500M to modernize scientific process for AI era",
-      "firstSeen": "2026-03-12T12:30:00Z",
-      "lastCovered": "2026-03-12T12:30:00Z",
+      "id": "nigeria-child-marriage-rct",
+      "label": "Nigeria RCT: cash + school + mentoring cuts child marriage 80% — Nature study",
+      "firstSeen": "2026-03-12T10:01:07Z",
+      "lastCovered": "2026-03-12T10:01:07Z",
       "coverageCount": 1,
       "category": "science",
       "importance": 3,
       "arc": "developing",
       "articles": [
-        "2026-03-12-radial-science-500-million-ai-research-reform"
+        "2026-03-12-nigeria-child-marriage-80-percent-rct-nature-study"
       ],
-      "summary": "Not covered this cycle. Astera Institute-backed Radial: automate replication, peer review, research workflows. Philanthropic bet on methodology bottleneck."
+      "summary": "Not covered this cycle. Nature RCT: simultaneous intervention reduced child marriage 80% in northern Nigeria. Major development policy implications."
     },
     {
-      "id": "nk-china-train-resumption",
-      "label": "North Korea-China resume cross-border passenger trains for first time in 6 years",
-      "firstSeen": "2026-03-12T07:24:53Z",
-      "lastCovered": "2026-03-12T07:35:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-north-korea-china-train-resumption-six-years-geopolitical"
-      ],
-      "summary": "Not covered this cycle. NK economic re-integration: minerals for food and fuel. Watch for trade agreements that follow."
-    },
-    {
-      "id": "pakistan-imf-debt-crisis",
-      "label": "Pakistan IMF staff-level talks fail — disbursement at risk",
-      "firstSeen": "2026-03-12T04:36:07Z",
-      "lastCovered": "2026-03-12T05:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-pakistan-imf-talks-fail-debt-crisis-austerity"
-      ],
-      "summary": "Not covered this cycle. No staff-level agreement. Pakistan: 4-day week, schools closed, fuel hikes during Ramadan, stocks down 1,400 pts. Without IMF, sovereign default risk is real."
-    },
-    {
-      "id": "south-africa-gdp-manufacturing",
-      "label": "South Africa 1.1% GDP 2025 — manufacturing structural decline persists",
+      "id": "marburgvirus-treatment",
+      "label": "Marburgvirus entry mechanism solved — treatment development path opened",
       "firstSeen": "2026-03-12T10:01:07Z",
       "lastCovered": "2026-03-12T10:01:07Z",
       "coverageCount": 1,
-      "category": "economy",
+      "category": "science",
       "importance": 3,
       "arc": "developing",
       "articles": [
-        "2026-03-12-south-africa-gdp-growth-manufacturing-decline-2025"
+        "2026-03-12-marburgvirus-glycoprotein-npc1-structure-treatment"
       ],
-      "summary": "Not covered this cycle. Growth driven by services/commodities, not industry. 33% unemployment cannot be addressed without manufacturing. Oil price surge adds cost pressure."
+      "summary": "Not covered this cycle. Glycoprotein-NPC1 structure solved. Marburg kills 50-90% of infected, no approved treatment."
     },
     {
       "id": "iran-war-cyber-spillover",
@@ -597,30 +570,30 @@
       "lastCovered": "2026-03-12T10:01:07Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-12-iran-war-cyber-spillover-southeast-asia-infrastructure"
       ],
-      "summary": "Not covered this cycle. Iran-linked groups targeting SE Asian corporate and government infrastructure. Cyberwar expanding without geographic containment to civilian infrastructure in non-combatant states."
+      "summary": "Not covered this cycle. Iran-linked groups targeting SE Asian infrastructure. Cyberwar expanding beyond combatant states."
     },
     {
-      "id": "iraq-maritime-protection",
-      "label": "Iraq calls for maritime route protection — Al-Faw ports shut",
-      "firstSeen": "2026-03-12T07:08:51Z",
-      "lastCovered": "2026-03-12T07:35:00Z",
+      "id": "north-korea-it-workers-crypto",
+      "label": "North Korea IT workers crypto scheme — US sanctions 6 individuals",
+      "firstSeen": "2026-03-12T17:33:00Z",
+      "lastCovered": "2026-03-12T17:33:00Z",
       "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
+      "category": "tech",
+      "importance": 4,
       "arc": "developing",
       "articles": [
-        "2026-03-12-iraq-tankers-maritime-routes-protection-al-faw-shutdown"
+        "2026-03-12-north-korea-it-workers-crypto-scheme-sanctions-weapons"
       ],
-      "summary": "Not covered this cycle. Al-Faw ports shut. Iraq unable to confront Iran. Subsumed into main Iran war arc."
+      "summary": "US Treasury sanctioned 6 individuals, 2 entities for NK IT worker scheme. Developers (not hackers) earning crypto routed to weapons program. Fintech, AI, gaming sectors targeted."
     },
     {
       "id": "ukraine-russia-war",
-      "label": "Ukraine: Turkey trilateral peace process — twelve consecutive cycles uncovered",
+      "label": "Ukraine: Turkey trilateral peace process — thirteen consecutive cycles uncovered",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-03-10T16:00:00Z",
       "coverageCount": 14,
@@ -643,7 +616,7 @@
         "2026-03-09-russia-strikes-kharkiv-apartment-ukraine-peace-stalls",
         "2026-03-10-ukraine-turkey-trilateral-peace-zelenskiy"
       ],
-      "summary": "Twelve consecutive cycles uncovered. Iran war has completely dominated coverage. Fading."
+      "summary": "Thirteen consecutive cycles uncovered. Iran war has completely dominated coverage. Fading."
     },
     {
       "id": "gaza-aid-ban",
@@ -660,11 +633,26 @@
         "2026-03-04-gaza-aid-collapses-under-iran-war-cover",
         "2026-03-06-gaza-medical-supplies-exhausted-who-warns-crisis"
       ],
-      "summary": "WHO warned medical supplies exhausted. No feed items for 18+ cycles. The silence is the story. Never prune."
+      "summary": "WHO warned medical supplies exhausted. No feed items for 20+ cycles. The silence is the story. Never prune."
+    },
+    {
+      "id": "senegal-same-sex-criminalization",
+      "label": "Senegal: 10-year anti-LGBTQ law passed parliament — Faye must sign or reject",
+      "firstSeen": "2026-03-11T23:05:09Z",
+      "lastCovered": "2026-03-12T05:00:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-12-senegal-same-sex-law-doubled-penalty-ten-years-advocacy-criminalised",
+        "2026-03-12-senegal-anti-lgbtq-ten-year-law-parliament-faye"
+      ],
+      "summary": "Fading due to no new developments in feed. President Faye signature window still open. If Faye signs or rejects, importance rises immediately — watch for presidential action."
     },
     {
       "id": "hajj-2026-war-disruption",
-      "label": "Hajj 2026: 250,000 Indonesians registered — late May window 10 weeks out",
+      "label": "Hajj 2026: 250,000 Indonesians registered — late May window ~9 weeks out",
       "firstSeen": "2026-03-11T04:01:25Z",
       "lastCovered": "2026-03-11T04:01:25Z",
       "coverageCount": 1,
@@ -674,7 +662,7 @@
       "articles": [
         "2026-03-11-indonesia-hajj-contingencies-iran-war-pilgrimage-disruption"
       ],
-      "summary": "Fading but watch window: Hajj begins late May 2026 — ~10 weeks out. 250,000 Indonesians registered for pilgrimage through a war zone. Dedicated article needed before April."
+      "summary": "Fading but watch window: Hajj begins late May 2026 — ~9 weeks out. 250,000 Indonesians registered for pilgrimage through a war zone. Dedicated article needed before April."
     }
   ]
 }
