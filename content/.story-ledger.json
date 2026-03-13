@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 21: IRGC coordinates attacks with Hezbollah; Iranians communicating through blackout; shipowners running blockade",
+      "label": "Iran war Day 21: Deadly blast during Quds Day rallies",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-13T17:30:00Z",
-      "coverageCount": 115,
+      "lastCovered": "2026-03-13T20:30:00Z",
+      "coverageCount": 116,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -121,16 +121,17 @@
         "2026-03-13-hegseth-claims-khamenei-injured-leadership-targeting",
         "2026-03-13-pakistan-shehbaz-saudi-mbs-restricted-meeting-wartime-solidarity",
         "2026-03-13-michigan-synagogue-attack-hate-crime-iran-war-spillover",
-        "2026-03-13-iranians-communicate-internet-blackout-war-resilience"
+        "2026-03-13-iranians-communicate-internet-blackout-war-resilience",
+        "2026-03-13-iran-blast-quds-day-rally-defiance"
       ],
-      "summary": "Day 21: IRGC coordinating attacks with Hezbollah. Iranians finding ways to communicate through internet blackout. Synagogue attacked in Michigan as war-driven hate crimes spike. Turkey's economy buckling under oil shock and capital flight."
+      "summary": "Day 21: Deadly explosion during Quds Day rallies. Population caught between foreign bombs and domestic attacks. 3.2M displaced."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
       "label": "Hormuz economic cascade: Turkey investors flee, shipowners run blockade for profit, oil above $100",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-13T17:30:00Z",
-      "coverageCount": 113,
+      "lastCovered": "2026-03-13T20:30:00Z",
+      "coverageCount": 115,
       "category": "economy",
       "importance": 9,
       "arc": "ongoing",
@@ -236,9 +237,11 @@
         "2026-03-13-us-forced-labor-probe-60-countries-section-301-tariff-tool",
         "2026-03-13-turkey-economy-iran-war-investors-flee-lira-crisis",
         "2026-03-13-shipowners-brave-hormuz-mines-oil-profit-risk",
-        "2026-03-13-cameroon-bauxite-minim-martap-resource-transformation"
+        "2026-03-13-cameroon-bauxite-minim-martap-resource-transformation",
+        "2026-03-13-pakistani-workers-dubai-dreams-ended-iran-strikes",
+        "2026-03-13-australian-exports-war-risk-costs-surge"
       ],
-      "summary": "Turkey first NATO economy to buckle — capital flight and lira crash from oil shock. Shipowners running Hormuz blockade for extreme premiums, calculating crew deaths against profit. Cameroon bauxite story shows how resource economics shifts during energy crisis."
+      "summary": "War risk insurance disrupting Australian exports 12,000km from Hormuz. Pakistani workers in Dubai losing livelihoods."
     },
     {
       "id": "pakistan-economic-crisis",
@@ -247,7 +250,7 @@
       "lastCovered": "2026-03-13T15:30:00Z",
       "coverageCount": 8,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-12-pakistan-holds-petroleum-prices-debt-trap-iran-war",
@@ -268,7 +271,7 @@
       "lastCovered": "2026-03-13T12:30:00Z",
       "coverageCount": 22,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "ongoing",
       "articles": [
         "2026-03-02-lebanon-bans-hezbollah-military-activities",
@@ -303,7 +306,7 @@
       "lastCovered": "2026-03-13T15:30:00Z",
       "coverageCount": 22,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
@@ -338,7 +341,7 @@
       "lastCovered": "2026-03-13T15:30:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-13-zelensky-macron-paris-russia-oil-waiver-undermines-ukraine",
@@ -353,7 +356,7 @@
       "lastCovered": "2026-03-13T15:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-france-returns-sacred-talking-drum-ivory-coast-colonial-restitution"
@@ -367,7 +370,7 @@
       "lastCovered": "2026-03-13T15:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-13-bahrain-arrests-pakistani-workers-iran-war-videos-digital-censorship"
@@ -381,195 +384,12 @@
       "lastCovered": "2026-03-13T15:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-13-ukraine-drone-company-uk-factory-defense-tech-export"
       ],
       "summary": "Ukrspecsystems opening first UK plant. Battlefield drone innovation being commercialized."
-    },
-    {
-      "id": "global-warming-acceleration",
-      "label": "Global warming pace nearly doubled since Paris 2015",
-      "firstSeen": "2026-03-13T04:00:00Z",
-      "lastCovered": "2026-03-13T04:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-global-warming-pace-doubled-since-paris-2015"
-      ],
-      "summary": "Rate of warming nearly doubled since 2015 Paris Agreement."
-    },
-    {
-      "id": "china-five-year-plan-climate",
-      "label": "China's 15th five-year plan: climate implications",
-      "firstSeen": "2026-03-13T04:00:00Z",
-      "lastCovered": "2026-03-13T04:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-13-china-five-year-plan-climate-change-analysis"
-      ],
-      "summary": "China's 15th five-year plan direction for emissions."
-    },
-    {
-      "id": "us-trade-war-expansion",
-      "label": "US Section 301 probes against dozens of nations",
-      "firstSeen": "2026-03-13T04:00:00Z",
-      "lastCovered": "2026-03-13T15:30:00Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-13-us-sweeping-trade-probe-dozens-nations",
-        "2026-03-13-us-forced-labor-probe-60-countries-section-301-tariff-tool"
-      ],
-      "summary": "US USTR launched Section 301 probes against 60 economies. Hearings April 28."
-    },
-    {
-      "id": "trump-military-attacks-data",
-      "label": "Trump's second term: highest US external attacks in decade",
-      "firstSeen": "2026-03-13T04:00:00Z",
-      "lastCovered": "2026-03-13T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-13-trump-highest-us-external-attacks-decade"
-      ],
-      "summary": "US interventions caused 1,000+ fatalities in 2025."
-    },
-    {
-      "id": "pakistan-afghanistan-escalation",
-      "label": "Pakistan bombs Kabul and Afghan border provinces",
-      "firstSeen": "2026-03-13T04:00:00Z",
-      "lastCovered": "2026-03-13T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-pakistan-bombs-kabul-afghan-border-provinces"
-      ],
-      "summary": "Pakistan air force struck Kabul and border provinces. China mediating."
-    },
-    {
-      "id": "china-t1200-carbon-fibre",
-      "label": "China builds world first T1200 carbon fibre factory",
-      "firstSeen": "2026-03-13T05:00:00Z",
-      "lastCovered": "2026-03-13T05:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-13-china-t1200-carbon-fibre-factory-first"
-      ],
-      "summary": "China built first commercial T1200-grade carbon fibre factory."
-    },
-    {
-      "id": "china-ethnic-minority-law",
-      "label": "China passes ethnic minority law prioritizing Mandarin",
-      "firstSeen": "2026-03-13T07:34:00Z",
-      "lastCovered": "2026-03-13T07:34:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-china-ethnic-minority-law-mandarin-priority"
-      ],
-      "summary": "China codified Mandarin-first policy into law."
-    },
-    {
-      "id": "taiwan-us-arms",
-      "label": "Taiwan parliament authorizes stalled US arms deals",
-      "firstSeen": "2026-03-13T07:34:00Z",
-      "lastCovered": "2026-03-13T07:34:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-taiwan-authorizes-stalled-us-arms-deals"
-      ],
-      "summary": "Taiwan broke domestic logjam on US weapons purchases."
-    },
-    {
-      "id": "japan-sterilization-rights",
-      "label": "Japan women challenge restrictive sterilization law",
-      "firstSeen": "2026-03-13T07:34:00Z",
-      "lastCovered": "2026-03-13T07:34:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-13-japan-women-sterilization-rights-challenge"
-      ],
-      "summary": "Women challenging constitutionality of sterilization law."
-    },
-    {
-      "id": "argentina-inflation-milei",
-      "label": "Argentina inflation 2.9% February",
-      "firstSeen": "2026-03-13T07:34:00Z",
-      "lastCovered": "2026-03-13T07:34:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-13-argentina-inflation-29-february-milei-utilities"
-      ],
-      "summary": "Monthly inflation 2.9%, annual 33.1%."
-    },
-    {
-      "id": "bitcoin-stock-lead-indicator",
-      "label": "Bitcoin crash preceded stock selloff",
-      "firstSeen": "2026-03-13T07:34:00Z",
-      "lastCovered": "2026-03-13T07:34:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-13-bitcoin-crash-60k-stocks-follow-lead-indicator"
-      ],
-      "summary": "Bitcoin crashed to $60K before stocks followed."
-    },
-    {
-      "id": "rag-document-poisoning",
-      "label": "RAG document poisoning: trivial attack on enterprise AI",
-      "firstSeen": "2026-03-13T07:34:00Z",
-      "lastCovered": "2026-03-13T07:34:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-13-rag-document-poisoning-ai-security-vulnerability"
-      ],
-      "summary": "Trivially reproducible attack on RAG systems demonstrated."
-    },
-    {
-      "id": "indonesia-social-media-ban",
-      "label": "Indonesia restricts social media for children under 16",
-      "firstSeen": "2026-03-13T07:34:00Z",
-      "lastCovered": "2026-03-13T07:34:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-13-indonesia-social-media-ban-children-under-16"
-      ],
-      "summary": "Indonesia joins Australia in restricting child social media access."
     },
     {
       "id": "nepal-gen-z-election",
@@ -578,26 +398,12 @@
       "lastCovered": "2026-03-13T10:03:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-nepal-gen-z-ex-rapper-landslide-victory"
       ],
       "summary": "Balendra Shah set to become Nepal PM with rare majority."
-    },
-    {
-      "id": "west-africa-mano-river-tensions",
-      "label": "ECOWAS warns of Guinea-Liberia-Sierra Leone border tensions",
-      "firstSeen": "2026-03-13T10:03:00Z",
-      "lastCovered": "2026-03-13T10:03:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-west-africa-border-tensions-ecowas-guinea-liberia"
-      ],
-      "summary": "Rising tensions along Mano River border triangle."
     },
     {
       "id": "venezuela-machado-opposition",
@@ -606,7 +412,7 @@
       "lastCovered": "2026-03-13T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-13-venezuela-machado-diaspora-rally-santiago-chile"
@@ -620,7 +426,7 @@
       "lastCovered": "2026-03-13T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-13-india-supreme-court-rejects-menstrual-leave-discrimination"
@@ -634,7 +440,7 @@
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-13-israel-palestinian-muslim-identity-erasure-report",
@@ -649,7 +455,7 @@
       "lastCovered": "2026-03-13T12:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-13-2-billion-lobbying-age-verification-surveillance-infrastructure"
@@ -663,7 +469,7 @@
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "breaking",
       "articles": [
         "2026-03-13-us-defends-israel-icj-genocide-case-intervention"
@@ -677,7 +483,7 @@
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-13-kenya-floods-62-dead-12000-homes-climate-infrastructure"
@@ -691,7 +497,7 @@
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-13-ethiopia-court-lifts-election-board-injunction-democratic-path"
@@ -705,7 +511,7 @@
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-13-turkey-economy-iran-war-investors-flee-lira-crisis"
@@ -719,7 +525,7 @@
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-13-instagram-kills-e2e-encryption-meta-privacy-reversal"
@@ -733,7 +539,7 @@
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-13-iranians-communicate-internet-blackout-war-resilience"
@@ -747,7 +553,7 @@
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-13-mozambique-internet-restriction-denial-digital-rights"
@@ -761,7 +567,7 @@
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-13-indonesia-water-crisis-climate-deforestation-el-nino"
@@ -775,7 +581,7 @@
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-13-michigan-synagogue-attack-hate-crime-iran-war-spillover"
@@ -789,12 +595,138 @@
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-13-cameroon-bauxite-minim-martap-resource-transformation"
       ],
       "summary": "Cameroon's Minim-Martap bauxite deposit tests whether African nations can move beyond raw extraction. Guinea's experience (25% of global bauxite, little benefit) is the cautionary tale."
+    },
+    {
+      "id": "epstein-elite-accountability",
+      "label": "UK Andrew/Mandelson Epstein photos surface",
+      "firstSeen": "2026-03-13T20:30:00Z",
+      "lastCovered": "2026-03-13T20:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-uk-andrew-mandelson-epstein-bathrobes-photos"
+      ],
+      "summary": "Newly surfaced photos show Prince Andrew and Peter Mandelson in bathrobes with Epstein."
+    },
+    {
+      "id": "south-africa-military-deployment",
+      "label": "South Africa deploys 2,200 soldiers to five provinces",
+      "firstSeen": "2026-03-13T20:30:00Z",
+      "lastCovered": "2026-03-13T20:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-south-africa-2200-soldiers-deployed-provinces"
+      ],
+      "summary": "SANDF deploys 2,200 troops across five provinces."
+    },
+    {
+      "id": "bolivia-cartel-capture",
+      "label": "US most-wanted cartel boss captured in Bolivia",
+      "firstSeen": "2026-03-13T20:30:00Z",
+      "lastCovered": "2026-03-13T20:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-cartel-boss-most-wanted-captured-bolivia"
+      ],
+      "summary": "Top US most-wanted cartel figure captured in Bolivia raid."
+    },
+    {
+      "id": "iranian-refugee-deportation",
+      "label": "Iranian refugee who survived Bondi attack faces deportation",
+      "firstSeen": "2026-03-13T20:30:00Z",
+      "lastCovered": "2026-03-13T20:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-iranian-refugee-bondi-survivor-deportation-australia"
+      ],
+      "summary": "Man who fled Iran and survived Bondi stabbing faces deportation to war zone."
+    },
+    {
+      "id": "tokenized-treasuries-growth",
+      "label": "Tokenized US Treasuries hit $11B, Circle overtakes BlackRock",
+      "firstSeen": "2026-03-13T20:30:00Z",
+      "lastCovered": "2026-03-13T20:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-circle-blackrock-tokenized-treasuries-11-billion"
+      ],
+      "summary": "Circle overtakes BlackRock in tokenized Treasury market as total hits $11B."
+    },
+    {
+      "id": "biontech-founders-pivot",
+      "label": "BioNTech founders leave to start new venture",
+      "firstSeen": "2026-03-13T20:30:00Z",
+      "lastCovered": "2026-03-13T20:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-biontech-founders-step-down-new-venture"
+      ],
+      "summary": "COVID vaccine pioneers leaving BioNTech for new scientific venture."
+    },
+    {
+      "id": "algeria-climate-adaptation",
+      "label": "Algeria-EU water and food security research",
+      "firstSeen": "2026-03-13T20:30:00Z",
+      "lastCovered": "2026-03-13T20:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-algeria-eu-water-food-security-research"
+      ],
+      "summary": "Algeria invests €6M with EU in water and food security research."
+    },
+    {
+      "id": "nsa-section-702-expansion",
+      "label": "Wyden warns NSA Section 702 will stun public",
+      "firstSeen": "2026-03-13T20:30:00Z",
+      "lastCovered": "2026-03-13T20:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-wyden-nsa-section-702-surveillance-stunned"
+      ],
+      "summary": "Senator Wyden warns undisclosed NSA activities under Section 702 will shock Americans."
+    },
+    {
+      "id": "openclaw-china-ai",
+      "label": "OpenClaw AI drives Mac Mini sellouts in China",
+      "firstSeen": "2026-03-13T20:30:00Z",
+      "lastCovered": "2026-03-13T20:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-apple-mac-mini-china-openclaw-ai-sellout"
+      ],
+      "summary": "Chinese open-source AI project drives Mac Mini shortages across China."
     }
   ]
 }
