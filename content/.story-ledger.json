@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 21: Likud gains nothing from war; 14% of Lebanon under evacuation; 56 drones intercepted in Saudi Arabia",
+      "label": "Iran war Day 21: Hegseth claims Khamenei injured; highest volume strikes Friday; bread rationed in Iranian cities",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-13T12:30:00Z",
-      "coverageCount": 111,
+      "lastCovered": "2026-03-13T15:30:00Z",
+      "coverageCount": 113,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -117,16 +117,18 @@
         "2026-03-13-india-gulf-remittances-50bn-iran-war-risk",
         "2026-03-13-japan-oil-reserves-china-leverage-hormuz",
         "2026-03-13-netanyahu-likud-no-gains-iran-war-polls",
-        "2026-03-13-saudi-arabia-56-drones-intercepted-air-defense-scale"
+        "2026-03-13-saudi-arabia-56-drones-intercepted-air-defense-scale",
+        "2026-03-13-hegseth-claims-khamenei-injured-leadership-targeting",
+        "2026-03-13-pakistan-shehbaz-saudi-mbs-restricted-meeting-wartime-solidarity"
       ],
-      "summary": "Day 21: Domestically, Netanyahu gets no poll bump. 14% of Lebanon under Israeli evacuation orders. Saudi Arabia intercepting 56 drones/day reveals unsustainable economics of drone warfare."
+      "summary": "Day 21: Hegseth claims Mojtaba Khamenei injured. US promises highest volume strikes Friday. Bread rationed in Iranian cities, 3.2M displaced. Pakistan PM holds restricted meeting with Saudi crown prince pledging solidarity as Saudi intercepts 56+ drones daily."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz economic cascade: African economies absorb $100/barrel shock with no reserves",
+      "label": "Hormuz economic cascade: US GDP at 0.7%, East Asia pivoting to Russian oil, sanctions architecture collapsing",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-13T12:30:00Z",
-      "coverageCount": 106,
+      "lastCovered": "2026-03-13T15:30:00Z",
+      "coverageCount": 110,
       "category": "economy",
       "importance": 9,
       "arc": "ongoing",
@@ -225,16 +227,20 @@
         "2026-03-13-india-gulf-remittances-50bn-iran-war-risk",
         "2026-03-13-japan-oil-reserves-china-leverage-hormuz",
         "2026-03-13-nigeria-power-outage-gas-supply-crisis",
-        "2026-03-13-africa-oil-100-barrel-war-anxiety-economies"
+        "2026-03-13-africa-oil-100-barrel-war-anxiety-economies",
+        "2026-03-13-us-gdp-revised-down-07-percent-q4-pre-war-weakness",
+        "2026-03-13-us-china-trade-talks-paris-xi-trump-summit-rare-earths",
+        "2026-03-13-east-asia-eyes-russian-oil-hormuz-sanctions-collapse",
+        "2026-03-13-us-forced-labor-probe-60-countries-section-301-tariff-tool"
       ],
-      "summary": "Oil at $100/barrel hitting African oil importers hardest — no strategic reserves, no hedging, full price shock. Kenya, Senegal, Tanzania facing cascading fuel-food-transport crises."
+      "summary": "US GDP revised down to 0.7% — economy was already stalling before the war. East Asian nations pivoting to Russian oil as Hormuz blockade destroys Western sanctions architecture. US-China trade talks in Paris amid mutual dependency. Section 301 probes against 60 countries as tariff replacement tool."
     },
     {
       "id": "pakistan-economic-crisis",
-      "label": "Pakistan compound crisis: RLNG +19-22%, IMF failure, Kabul bombing",
+      "label": "Pakistan compound crisis: PM meets Saudi crown prince, IMF failure, forced labor probe",
       "firstSeen": "2026-03-12T21:11:00Z",
-      "lastCovered": "2026-03-13T10:03:00Z",
-      "coverageCount": 6,
+      "lastCovered": "2026-03-13T15:30:00Z",
+      "coverageCount": 8,
       "category": "economy",
       "importance": 5,
       "arc": "developing",
@@ -245,18 +251,19 @@
         "2026-03-13-pakistan-speed-limits-cut-austerity-fuel-crisis-hormuz",
         "2026-03-13-pakistan-bombs-kabul-afghan-border-provinces",
         "2026-03-13-pakistan-rlng-price-surge-19-percent-hormuz",
-        "2026-03-13-pakistan-5g-pilot-launch-cities"
+        "2026-03-13-pakistan-5g-pilot-launch-cities",
+        "2026-03-13-pakistan-shehbaz-saudi-mbs-restricted-meeting-wartime-solidarity"
       ],
-      "summary": "Pakistan launching 5G pilots while facing IMF failure, RLNG +19 percent, Kabul bombing, and fuel austerity."
+      "summary": "PM Shehbaz in restricted meeting with MBS pledging solidarity while facing IMF failure, RLNG +19%, US forced labor probe, and Afghan military operations. Nuclear-armed state pulled in every direction simultaneously."
     },
     {
       "id": "lebanon-hezbollah-israel",
-      "label": "Lebanon: 14% of territory under Israeli evacuation orders, infrastructure being razed",
+      "label": "Lebanon: 14% of territory under Israeli evacuation orders, 700K+ displaced",
       "firstSeen": "2026-03-02T16:00:00Z",
       "lastCovered": "2026-03-13T12:30:00Z",
       "coverageCount": 22,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "ongoing",
       "articles": [
         "2026-03-02-lebanon-bans-hezbollah-military-activities",
@@ -282,16 +289,16 @@
         "2026-03-13-beirut-strike-kills-12-israel-land-grab-threat",
         "2026-03-13-lebanon-14-percent-territory-israeli-evacuation-orders"
       ],
-      "summary": "Israeli evacuation orders now cover 14% of Lebanon sovereign territory. Infrastructure systematically destroyed. 700K+ displaced."
+      "summary": "700K+ displaced, 14% of Lebanon under Israeli evacuation orders. Infrastructure systematically destroyed. No new coverage this cycle — ongoing."
     },
     {
       "id": "sudan-humanitarian-crisis",
-      "label": "Sudan: 1,200 dengue cases in one week as war destroys health infrastructure",
+      "label": "Sudan: Military retakes Bara, signals forced integration of armed movements",
       "firstSeen": "2026-02-15T00:00:00Z",
-      "lastCovered": "2026-03-13T07:34:00Z",
-      "coverageCount": 21,
+      "lastCovered": "2026-03-13T15:30:00Z",
+      "coverageCount": 22,
       "category": "politics",
-      "importance": 4,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
@@ -314,9 +321,67 @@
         "2026-03-12-sudan-rsf-white-nile-students-seventeen-killed",
         "2026-03-12-sudan-rsf-rizeigat-tribal-split-hemedti-drone-kordofan",
         "2026-03-13-sudan-rsf-drone-campaigns-kordofan-displacement",
-        "2026-03-13-sudan-dengue-fever-1200-cases-week-war-health-crisis"
+        "2026-03-13-sudan-dengue-fever-1200-cases-week-war-health-crisis",
+        "2026-03-13-sudan-military-retakes-bara-forced-integration-armed-movements"
       ],
-      "summary": "1,200 dengue fever cases in a single week — disease outbreak manufactured by conflict. Destroyed hospitals, displaced populations in overcrowded camps, no vector control possible."
+      "summary": "SAF retakes Bara in North Kordofan and signals forced integration of all armed movements into state security. Juba Peace Agreement signatories fear loss of political leverage. RSF continues drone campaigns in Kosti and Dalang. Rizeigat tribal head Madibo left for Juba amid tensions with Hemedti."
+    },
+    {
+      "id": "ukraine-russia-war",
+      "label": "Ukraine: Zelensky-Macron talks as US oil waiver benefits Russia",
+      "firstSeen": "2026-03-13T15:30:00Z",
+      "lastCovered": "2026-03-13T15:30:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-zelensky-macron-paris-russia-oil-waiver-undermines-ukraine",
+        "2026-03-13-russia-summons-uk-france-envoys-storm-shadow-bryansk"
+      ],
+      "summary": "Zelensky met Macron as allies fear US Russia oil sanctions waiver benefits Putin. Same day Russia summoned UK/French envoys over Storm Shadow strike on Bryansk factory. Ukraine escalating while world's attention is on Iran."
+    },
+    {
+      "id": "colonial-restitution",
+      "label": "France returns sacred talking drum to Ivory Coast — colonial restitution continues",
+      "firstSeen": "2026-03-13T15:30:00Z",
+      "lastCovered": "2026-03-13T15:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-france-returns-sacred-talking-drum-ivory-coast-colonial-restitution"
+      ],
+      "summary": "France returned a sacred djembe drum looted during colonial rule to Ivory Coast, part of restitution process begun in 2017. Each return is an admission of systematic cultural extraction."
+    },
+    {
+      "id": "gulf-wartime-censorship",
+      "label": "Bahrain arrests migrant workers for posting Iran war videos",
+      "firstSeen": "2026-03-13T15:30:00Z",
+      "lastCovered": "2026-03-13T15:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-bahrain-arrests-pakistani-workers-iran-war-videos-digital-censorship"
+      ],
+      "summary": "Bahrain arrested 5 Pakistani migrant workers for filming and posting Iran war damage videos. Kafala system traps workers physically; wartime laws now criminalize their speech. 23,000 Pakistanis imprisoned abroad without adequate legal aid."
+    },
+    {
+      "id": "ukraine-drone-industry-export",
+      "label": "Ukrainian drone company opens first UK factory — battlefield tech goes global",
+      "firstSeen": "2026-03-13T15:30:00Z",
+      "lastCovered": "2026-03-13T15:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-ukraine-drone-company-uk-factory-defense-tech-export"
+      ],
+      "summary": "Ukrspecsystems opening first UK plant under 2025 partnership agreement. Scheme replicating across Europe. Four years of battlefield drone innovation being commercialized as global demand surges."
     },
     {
       "id": "global-warming-acceleration",
@@ -325,12 +390,12 @@
       "lastCovered": "2026-03-13T04:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-global-warming-pace-doubled-since-paris-2015"
       ],
-      "summary": "Rate of human-caused warming nearly doubled since 2015 Paris Agreement. 1.5°C limit may be breached sooner than projected. Acceleration during the very period the world committed to slowing it."
+      "summary": "Rate of human-caused warming nearly doubled since 2015 Paris Agreement. 1.5°C limit may be breached sooner than projected."
     },
     {
       "id": "china-five-year-plan-climate",
@@ -339,26 +404,27 @@
       "lastCovered": "2026-03-13T04:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-china-five-year-plan-climate-change-analysis"
       ],
-      "summary": "China's 15th five-year plan sets direction for world's largest emitter through 2030. CO2 may have peaked but plan's ambition determines if peak holds."
+      "summary": "China's 15th five-year plan sets direction for world's largest emitter through 2030."
     },
     {
       "id": "us-trade-war-expansion",
       "label": "US launches Section 301 probes against dozens of nations",
       "firstSeen": "2026-03-13T04:00:00Z",
-      "lastCovered": "2026-03-13T04:00:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-13T15:30:00Z",
+      "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
-        "2026-03-13-us-sweeping-trade-probe-dozens-nations"
+        "2026-03-13-us-sweeping-trade-probe-dozens-nations",
+        "2026-03-13-us-forced-labor-probe-60-countries-section-301-tariff-tool"
       ],
-      "summary": "US opened investigations into EU, China, India, others for 'unfair trade practices.' Beijing calls it 'political manipulation.' Contradicts simultaneous Italian tariff cuts and Russian oil waivers."
+      "summary": "US USTR launched Section 301 forced labor probes against 60 economies as tariff replacement after Supreme Court struck down earlier duties. Hearings April 28. Pakistan faces devastating 29% tariff on its largest export market."
     },
     {
       "id": "trump-military-attacks-data",
@@ -367,12 +433,12 @@
       "lastCovered": "2026-03-13T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-trump-highest-us-external-attacks-decade"
       ],
-      "summary": "US interventions caused 1,000+ fatalities in 2025 — deadliest year since 2011. Data quantifies gap between isolationist rhetoric and interventionist reality."
+      "summary": "US interventions caused 1,000+ fatalities in 2025 — deadliest year since 2011."
     },
     {
       "id": "pakistan-afghanistan-escalation",
@@ -381,12 +447,12 @@
       "lastCovered": "2026-03-13T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-13-pakistan-bombs-kabul-afghan-border-provinces"
       ],
-      "summary": "Pakistan air force struck Kabul itself and border provinces overnight. Dramatic escalation — hitting the capital crosses a line even previous cross-border operations avoided. China mediating."
+      "summary": "Pakistan air force struck Kabul and border provinces. China mediating."
     },
     {
       "id": "china-t1200-carbon-fibre",
@@ -395,12 +461,12 @@
       "lastCovered": "2026-03-13T05:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-china-t1200-carbon-fibre-factory-first"
       ],
-      "summary": "China built first commercial T1200-grade carbon fibre factory, beating US and Japan. Highest-grade carbon fibre now produced at scale domestically."
+      "summary": "China built first commercial T1200-grade carbon fibre factory, beating US and Japan."
     },
     {
       "id": "china-ethnic-minority-law",
@@ -409,12 +475,12 @@
       "lastCovered": "2026-03-13T07:34:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-china-ethnic-minority-law-mandarin-priority"
       ],
-      "summary": "China codified Mandarin-first policy into law under 'Promoting Ethnic Unity and Progress.' Affects Uyghurs, Tibetans, Mongolians — cultural assimilation given legislative force."
+      "summary": "China codified Mandarin-first policy into law. Affects Uyghurs, Tibetans, Mongolians."
     },
     {
       "id": "taiwan-us-arms",
@@ -423,12 +489,12 @@
       "lastCovered": "2026-03-13T07:34:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-taiwan-authorizes-stalled-us-arms-deals"
       ],
-      "summary": "Taiwan broke domestic logjam on US weapons purchases. Iran war demonstrating consequences of being unprepared against hostile neighbour with missiles."
+      "summary": "Taiwan broke domestic logjam on US weapons purchases."
     },
     {
       "id": "japan-sterilization-rights",
@@ -437,40 +503,40 @@
       "lastCovered": "2026-03-13T07:34:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-japan-women-sterilization-rights-challenge"
       ],
-      "summary": "Women challenging constitutionality of 'maternity protection' law — one of world's most restrictive barriers to voluntary sterilization."
+      "summary": "Women challenging constitutionality of sterilization law."
     },
     {
       "id": "argentina-inflation-milei",
-      "label": "Argentina inflation 2.9% in February, utilities driving",
+      "label": "Argentina inflation 2.9% in February",
       "firstSeen": "2026-03-13T07:34:00Z",
       "lastCovered": "2026-03-13T07:34:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-argentina-inflation-29-february-milei-utilities"
       ],
-      "summary": "Monthly inflation 2.9%, annual 33.1% — down from 200%+ but pain concentrated in utilities, housing, food from Milei subsidy cuts."
+      "summary": "Monthly inflation 2.9%, annual 33.1%."
     },
     {
       "id": "bitcoin-stock-lead-indicator",
-      "label": "Bitcoin crash to $60K preceded stock market selloff",
+      "label": "Bitcoin crash preceded stock selloff",
       "firstSeen": "2026-03-13T07:34:00Z",
       "lastCovered": "2026-03-13T07:34:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-bitcoin-crash-60k-stocks-follow-lead-indicator"
       ],
-      "summary": "Bitcoin crashed to $60K before stocks followed — 24/7 crypto markets pricing in Iran war shocks faster than equity markets."
+      "summary": "Bitcoin crashed to $60K before stocks followed."
     },
     {
       "id": "rag-document-poisoning",
@@ -479,12 +545,12 @@
       "lastCovered": "2026-03-13T07:34:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-rag-document-poisoning-ai-security-vulnerability"
       ],
-      "summary": "Researcher demonstrated trivially reproducible attack on RAG systems — runs on laptop, no GPU. Most enterprise AI deployments vulnerable."
+      "summary": "Trivially reproducible attack on RAG systems demonstrated."
     },
     {
       "id": "indonesia-social-media-ban",
@@ -493,12 +559,12 @@
       "lastCovered": "2026-03-13T07:34:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-indonesia-social-media-ban-children-under-16"
       ],
-      "summary": "World's 4th largest country joins Australia in restricting child social media access. Test case for enforcement in Global South."
+      "summary": "Indonesia joins Australia in restricting child social media access."
     },
     {
       "id": "nepal-gen-z-election",
@@ -507,12 +573,12 @@
       "lastCovered": "2026-03-13T10:03:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-13-nepal-gen-z-ex-rapper-landslide-victory"
       ],
-      "summary": "Balendra Shah set to become Nepal PM with rare majority, powered by Gen Z rejection of oligarchic parties."
+      "summary": "Balendra Shah set to become Nepal PM with rare majority."
     },
     {
       "id": "west-africa-mano-river-tensions",
@@ -521,138 +587,12 @@
       "lastCovered": "2026-03-13T10:03:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-13-west-africa-border-tensions-ecowas-guinea-liberia"
       ],
-      "summary": "Rising tensions along Mano River border triangle. Guinea junta increasingly aggressive toward neighbours."
-    },
-    {
-      "id": "liberia-press-freedom",
-      "label": "Liberia: Amendment threatens landmark press freedom act",
-      "firstSeen": "2026-03-13T10:03:00Z",
-      "lastCovered": "2026-03-13T10:03:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-liberia-press-freedom-reversal-kamara-act"
-      ],
-      "summary": "Proposed amendment to Kamara Abdullah Kamara Act could roll back press freedom under guise of online harassment regulation."
-    },
-    {
-      "id": "india-gulf-remittances-war",
-      "label": "India: $50bn Gulf remittances at risk from Iran war",
-      "firstSeen": "2026-03-13T10:03:00Z",
-      "lastCovered": "2026-03-13T10:03:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-india-gulf-remittances-50bn-iran-war-risk"
-      ],
-      "summary": "9M Indian workers in Gulf, $50bn annual remittances threatened by war-driven gas shortages and business closures."
-    },
-    {
-      "id": "sweden-russian-tanker-seizure",
-      "label": "Sweden seizes false-flagged tanker from Russia shadow fleet",
-      "firstSeen": "2026-03-13T10:03:00Z",
-      "lastCovered": "2026-03-13T10:03:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-sweden-seizes-russian-oil-tanker-false-flag-sanctions"
-      ],
-      "summary": "Sea Owl I seized in Baltic. EU-sanctioned vessel shuttling oil between Brazil and Russia using false flags."
-    },
-    {
-      "id": "nigeria-power-gas-crisis",
-      "label": "Nigeria power outage worsening as gas supply drops",
-      "firstSeen": "2026-03-13T10:03:00Z",
-      "lastCovered": "2026-03-13T10:03:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-nigeria-power-outage-gas-supply-crisis"
-      ],
-      "summary": "Gas suppliers cutting volumes to thermal plants. Africa largest oil producer cannot keep its own lights on."
-    },
-    {
-      "id": "nigeria-child-marriage-breakthrough",
-      "label": "Nature: Nigerian child marriage cut 80% by intervention",
-      "firstSeen": "2026-03-13T10:03:00Z",
-      "lastCovered": "2026-03-13T10:03:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-nigeria-child-marriage-80-percent-reduction-nature"
-      ],
-      "summary": "Combined intervention (cash + education + community) cut child marriage 80 percent. Single interventions showed modest results."
-    },
-    {
-      "id": "marburg-virus-structure",
-      "label": "Marburg virus glycoprotein structure mapped (Nature)",
-      "firstSeen": "2026-03-13T10:03:00Z",
-      "lastCovered": "2026-03-13T10:03:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-marburg-virus-glycoprotein-structure-nature"
-      ],
-      "summary": "Molecular structure of Marburg glycoprotein-NPC1 complex mapped. Opens precise drug and vaccine targets for 88 percent fatality pathogen."
-    },
-    {
-      "id": "bali-coastal-erosion",
-      "label": "Bali Kuta Beach disappearing to coastal erosion",
-      "firstSeen": "2026-03-13T10:03:00Z",
-      "lastCovered": "2026-03-13T10:03:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-bali-kuta-beach-erosion-climate-crisis"
-      ],
-      "summary": "Powerful waves carving away iconic Kuta Beach. Sea-level rise plus lost natural barriers accelerating Southeast Asian coastal erosion."
-    },
-    {
-      "id": "nigeria-hiv-children",
-      "label": "Nigeria: Rising HIV cases among children, diagnosis gaps",
-      "firstSeen": "2026-03-13T10:03:00Z",
-      "lastCovered": "2026-03-13T10:03:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-nigeria-hiv-children-diagnosis-gap"
-      ],
-      "summary": "IMPAACT4HIV report reveals alarming gaps in paediatric HIV care in Nigeria. Adult treatment improved but children left behind."
-    },
-    {
-      "id": "china-bci-neuracle",
-      "label": "China approves first implantable brain-computer interface",
-      "firstSeen": "2026-03-13T10:03:00Z",
-      "lastCovered": "2026-03-13T10:03:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-china-neuracle-brain-computer-interface-first-approval"
-      ],
-      "summary": "Neuracle BCI for motor function restoration approved. China becomes second country to approve implantable neural device."
+      "summary": "Rising tensions along Mano River border triangle."
     },
     {
       "id": "venezuela-machado-opposition",
@@ -661,26 +601,26 @@
       "lastCovered": "2026-03-13T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-13-venezuela-machado-diaspora-rally-santiago-chile"
       ],
-      "summary": "Thousands of Venezuelan exiles rally in Santiago for Machado, the strongest diaspora opposition mobilization under Maduro consolidation."
+      "summary": "Thousands of Venezuelan exiles rally in Santiago for Machado."
     },
     {
       "id": "india-menstrual-leave-ruling",
-      "label": "India Supreme Court rejects menstrual leave, citing employer discrimination risk",
+      "label": "India Supreme Court rejects menstrual leave",
       "firstSeen": "2026-03-13T12:30:00Z",
       "lastCovered": "2026-03-13T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-13-india-supreme-court-rejects-menstrual-leave-discrimination"
       ],
-      "summary": "India top court rejected menstrual leave petition, ruling employers would discriminate against women if granted the right."
+      "summary": "India top court rejected menstrual leave petition."
     },
     {
       "id": "palestine-identity-erasure",
@@ -689,82 +629,26 @@
       "lastCovered": "2026-03-13T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-13-israel-palestinian-muslim-identity-erasure-report"
       ],
-      "summary": "Report documents systematic Israeli efforts to erase Palestinian Muslim identity markers — mosques, cemeteries, historic names — under cover of regional war."
-    },
-    {
-      "id": "us-private-credit-crisis",
-      "label": "US private credit defaults hit record 9.2% (Fitch)",
-      "firstSeen": "2026-03-13T12:30:00Z",
-      "lastCovered": "2026-03-13T12:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 7,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-us-private-credit-defaults-record-9-percent-fitch"
-      ],
-      "summary": "Fitch reports US private credit defaults at record 9.2% in 2025, raising shadow banking stability concerns in $1.7T market."
-    },
-    {
-      "id": "nigeria-banking-reform",
-      "label": "Nigeria CBN bars big NPL borrowers from new credit",
-      "firstSeen": "2026-03-13T12:30:00Z",
-      "lastCovered": "2026-03-13T12:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-nigeria-cbn-bars-npl-borrowers-credit-access"
-      ],
-      "summary": "Central Bank of Nigeria cuts off politically connected borrowers with non-performing loans from accessing new credit."
-    },
-    {
-      "id": "indonesia-measles-immunization",
-      "label": "Indonesia measles cases fall sharply after immunization campaign",
-      "firstSeen": "2026-03-13T12:30:00Z",
-      "lastCovered": "2026-03-13T12:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-indonesia-measles-cases-fall-immunization-campaign"
-      ],
-      "summary": "Indonesia measles cases dropped to 511 in week 9 after aggressive community immunization campaign."
-    },
-    {
-      "id": "fda-vaccine-infrastructure",
-      "label": "FDA flu vaccine committee acts amid institutional erosion",
-      "firstSeen": "2026-03-13T12:30:00Z",
-      "lastCovered": "2026-03-13T12:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-fda-flu-vaccine-committee-amid-skepticism-erosion"
-      ],
-      "summary": "FDA advisory committee votes on next season flu shot composition as political vaccine skepticism and staff cuts threaten public health infrastructure."
+      "summary": "Report documents systematic Israeli efforts to erase Palestinian Muslim identity markers."
     },
     {
       "id": "age-verification-surveillance",
-      "label": "$2B lobbying behind US age-verification bills: digital ID backdoor",
+      "label": "$2B lobbying behind US age-verification bills",
       "firstSeen": "2026-03-13T12:30:00Z",
       "lastCovered": "2026-03-13T12:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-13-2-billion-lobbying-age-verification-surveillance-infrastructure"
       ],
-      "summary": "Investigation traces $2B in grants and lobbying across 45 US states behind age-verification bills, revealing coordinated push for internet identity infrastructure."
+      "summary": "$2B in grants and lobbying across 45 US states behind age-verification bills."
     }
   ]
 }
