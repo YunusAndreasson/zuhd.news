@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 19: French soldiers wounded Erbil; Netanyahu 'stronger than ever'; UK expands Gulf deployments; dissidents say bombing won't overthrow clerics",
+      "label": "Iran war Day 20: US KC-135 crash in Iraq; Qatar-US LNG tension; Pakistan austerity deepens",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-12T22:05:00Z",
-      "coverageCount": 92,
+      "lastCovered": "2026-03-13T00:02:00Z",
+      "coverageCount": 95,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -98,16 +98,20 @@
         "2026-03-12-australia-missiles-uae-surveillance-gulf-coalition-expands",
         "2026-03-12-netanyahu-khamenei-threat-iran-succession-crisis-vulnerability",
         "2026-03-12-uk-gulf-deployments-expand-minehunter-withdrawal-paradox",
-        "2026-03-12-iran-dissidents-bombing-wont-overthrow-clerics-regime-survival"
+        "2026-03-12-iran-dissidents-bombing-wont-overthrow-clerics-regime-survival",
+        "2026-03-13-us-refueling-aircraft-crash-iraq-iran-war-kc135",
+        "2026-03-13-fbi-terrorism-virginia-university-shooting-rotc",
+        "2026-03-13-germany-secretly-funded-israel-nuclear-program-dimona",
+        "2026-03-13-qatar-rejects-us-wedge-gas-pause-lng-iran-war"
       ],
-      "summary": "Day 19: War coalition expanding — Australia sending missiles/surveillance to UAE, UK expanding deployments despite minehunter withdrawal, France taking first casualties (6 soldiers wounded Erbil). Netanyahu's first speech declared Israel 'stronger than ever,' issued veiled threat to Mojtaba Khamenei, signaled long campaign with no exit timeline. Iranian dissidents (the opposition itself) warned bombing won't overthrow clerics — consolidates rather than undermines regime. Trump administration in domestic political crisis: press secretary said Iran is 'no threat' while at war; Trump reversed campaign promise by claiming high oil benefits US. 3.2M internally displaced in Iran per UN."
+      "summary": "Day 20: US KC-135 refueling aircraft crashed in western Iraq (4th aircraft loss, not hostile fire — aging fleet strain). Qatar rejected 'wedge' accusations after halting LNG production post-Iranian strikes. FBI opened terrorism investigation at Virginia university — suspect with prior terrorism conviction targeted ROTC. Pakistan imposed speed limit cuts and 50% WFH as Hormuz-driven fuel crisis deepens. Germany's secret nuclear funding of Israel exposed by Haaretz — directly relevant to war's nuclear dimension."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz sovereignty regime: Iran formalizes navy coordination requirement; selective access continues",
+      "label": "Hormuz economic crisis: Pakistan IMF failure; Pakistan austerity speed limits; Qatar LNG politics",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-12T22:05:00Z",
-      "coverageCount": 91,
+      "lastCovered": "2026-03-13T00:02:00Z",
+      "coverageCount": 95,
       "category": "economy",
       "importance": 10,
       "arc": "ongoing",
@@ -192,38 +196,169 @@
         "2026-03-12-pakistan-holds-petroleum-prices-debt-trap-iran-war",
         "2026-03-12-iran-hormuz-navy-coordination-sovereignty-shipping-regime",
         "2026-03-12-world-bank-137m-digital-jobs-liberia-sierra-leone-benin",
-        "2026-03-12-nigeria-hosts-african-trade-fair-2027-afcfta-continental-trade"
+        "2026-03-12-nigeria-hosts-african-trade-fair-2027-afcfta-continental-trade",
+        "2026-03-13-pakistan-imf-talks-fail-triple-crisis-hormuz",
+        "2026-03-13-pakistan-speed-limits-cut-austerity-fuel-crisis-hormuz",
+        "2026-03-13-qatar-rejects-us-wedge-gas-pause-lng-iran-war"
       ],
-      "summary": "Iran formalizing Hormuz as sovereignty-controlled waterway: foreign ministry now requires all ships to coordinate with Iranian navy for passage. This transforms the wartime blockade into a permanent access regime — the maritime equivalent of border control. India exempted (bilateral deal); others must negotiate. Brent above $100 despite historic 400M barrel reserve release. Gas at $3.57 in US (up from $2.94). Trump reversed campaign promise, now claims high oil prices benefit US as net exporter."
+      "summary": "Pakistan's crisis deepening: IMF failed to reach staff-level agreement while KSE-100 crashed 1,400 points. Government cutting highway speed limits (120→100 km/h) and mandating 50% WFH to save fuel. RLNG prices surged 19-22% in one month. Qatar rejected accusations of political motives for LNG production halt after Iranian strikes — framing as 'wedge' reveals US pressure on Gulf allies. Brent still above $100 despite 400M barrel reserve release."
     },
     {
-      "id": "hind-rajab-act-gaza-accountability",
-      "label": "Justice for Hind Rajab Act: Democrats introduce Gaza accountability legislation; Oscar-nominated film",
+      "id": "pakistan-economic-crisis",
+      "label": "Pakistan economic crisis: IMF talks failed; speed limits cut; RLNG prices surged 19-22%",
       "firstSeen": "2026-03-12T21:11:00Z",
-      "lastCovered": "2026-03-12T21:11:00Z",
+      "lastCovered": "2026-03-13T00:02:00Z",
+      "coverageCount": 3,
+      "category": "economy",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-pakistan-holds-petroleum-prices-debt-trap-iran-war",
+        "2026-03-12-pakistan-saudi-meeting-solidarity-iran-war-debt",
+        "2026-03-13-pakistan-imf-talks-fail-triple-crisis-hormuz",
+        "2026-03-13-pakistan-speed-limits-cut-austerity-fuel-crisis-hormuz"
+      ],
+      "summary": "IMF mission failed to reach staff-level agreement. KSE-100 crashed 1,400 points. RLNG prices surged 19-22%. Government imposed austerity: speed limits cut on highways (120→100 km/h), 50% WFH, fuel allowances halved. PM Shehbaz sought Saudi solidarity. Watch for IMF resumption and potential Saudi aid package."
+    },
+    {
+      "id": "serbia-chinese-missiles",
+      "label": "Serbia confirms Chinese CM-400AKG supersonic missiles on MiG-29s",
+      "firstSeen": "2026-03-13T00:02:00Z",
+      "lastCovered": "2026-03-13T00:02:00Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-03-12-hind-rajab-act-democrats-gaza-oscar-film"
+        "2026-03-13-serbia-chinese-supersonic-missiles-cm400akg-vucic"
       ],
-      "summary": "Democrats introduced legislation named after Hind Rajab. Watch for Senate version and Republican response."
+      "summary": "Vucic confirmed Chinese CM-400AKG supersonic cruise missiles on Serbian MiG-29s after photo leak. Chinese offensive weapons on Russian airframes in a European state surrounded by NATO. Watch for NATO response and further Chinese arms proliferation revelations."
     },
     {
-      "id": "pakistan-economic-crisis",
-      "label": "Pakistan economic crisis: IMF talks failed; KSE crashed; petroleum prices held; Saudi solidarity sought",
-      "firstSeen": "2026-03-12T21:11:00Z",
-      "lastCovered": "2026-03-12T21:11:00Z",
+      "id": "virginia-university-terrorism",
+      "label": "FBI terrorism investigation: Virginia university shooting targeting ROTC",
+      "firstSeen": "2026-03-13T00:02:00Z",
+      "lastCovered": "2026-03-13T00:02:00Z",
       "coverageCount": 1,
-      "category": "economy",
+      "category": "politics",
       "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-03-12-pakistan-holds-petroleum-prices-debt-trap-iran-war",
-        "2026-03-12-pakistan-saudi-meeting-solidarity-iran-war-debt"
+        "2026-03-13-fbi-terrorism-virginia-university-shooting-rotc"
       ],
-      "summary": "Pakistan's full economic crisis: IMF talks failed, KSE-100 crashed, petroleum prices held at political cost. PM Shehbaz sought Saudi solidarity. Watch for IMF resumption and SBP reserve figures."
+      "summary": "Gunman with prior terrorism conviction targeted ROTC class at Old Dominion University, killed one, wounded two Army personnel. Subdued by ROTC students. FBI opened terrorism investigation. Watch for suspect identity and connection to Iran war context."
+    },
+    {
+      "id": "germany-israel-nuclear-funding",
+      "label": "Germany secretly funded Israel's Dimona nuclear program — Haaretz investigation",
+      "firstSeen": "2026-03-13T00:02:00Z",
+      "lastCovered": "2026-03-13T00:02:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-germany-secretly-funded-israel-nuclear-program-dimona"
+      ],
+      "summary": "Haaretz: German chancellor secretly funneled equivalent of 20 billion shekels to fund Dimona reactor over 12 years. Directly relevant to Iran war's nuclear asymmetry. Watch for German government response."
+    },
+    {
+      "id": "philippines-unsc-bid",
+      "label": "Philippines UNSC bid: Marcos sidesteps South China Sea dispute",
+      "firstSeen": "2026-03-13T00:02:00Z",
+      "lastCovered": "2026-03-13T00:02:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-philippines-un-security-council-bid-south-china-sea-silence"
+      ],
+      "summary": "Marcos pitched Philippines as bridge between developing/middle-income economies at UN without mentioning South China Sea or China. Watch for UNSC vote outcome."
+    },
+    {
+      "id": "china-rural-pensions",
+      "label": "China rural pensions: 163 yuan ($24/month) minimum, NPC deputies push back",
+      "firstSeen": "2026-03-13T00:02:00Z",
+      "lastCovered": "2026-03-13T00:02:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-china-rural-pensions-163-yuan-farmers-income-gap"
+      ],
+      "summary": "National minimum pension for rural elderly: 163 yuan/month ($24) after 20 yuan increase. NPC deputies publicly challenging adequacy. Watch for policy response and urban-rural pension gap data."
+    },
+    {
+      "id": "artemis-2-moon-mission",
+      "label": "NASA Artemis 2 cleared for April launch — first crewed moon mission in 53 years",
+      "firstSeen": "2026-03-13T00:02:00Z",
+      "lastCovered": "2026-03-13T00:02:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-nasa-artemis-2-moon-launch-april-cleared"
+      ],
+      "summary": "NASA cleared Artemis 2 for April launch after previous delay. First crewed lunar mission since 1972. Crew includes first woman and first person of color assigned to lunar flight. Watch for launch date confirmation."
+    },
+    {
+      "id": "radial-ai-science-infrastructure",
+      "label": "Radial nonprofit: $500M to fix science infrastructure for AI era",
+      "firstSeen": "2026-03-13T00:02:00Z",
+      "lastCovered": "2026-03-13T00:02:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-radial-500-million-nonprofit-science-ai-infrastructure"
+      ],
+      "summary": "Radial (within Astera Institute) launching with $500M+ to modernize 'unglamorous' data infrastructure for science. Watch for specific projects and partnerships."
+    },
+    {
+      "id": "fda-glp1-telehealth",
+      "label": "FDA cracking down on telehealth GLP-1 drug marketing",
+      "firstSeen": "2026-03-13T00:02:00Z",
+      "lastCovered": "2026-03-13T00:02:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-fda-glp1-telehealth-marketing-crackdown-prescribers"
+      ],
+      "summary": "FDA targeting telehealth companies marketing GLP-1 drugs with warning letters. Prescribers under scrutiny. Watch for enforcement actions and telehealth company responses."
+    },
+    {
+      "id": "ai-job-displacement",
+      "label": "AI job displacement: Hong Kong youth can't find entry-level work",
+      "firstSeen": "2026-03-13T00:02:00Z",
+      "lastCovered": "2026-03-13T00:02:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-hong-kong-youth-ai-job-displacement-graduates"
+      ],
+      "summary": "23-year-old Hong Kong graduate sent 50 applications, got 6 callbacks. AI blamed for eliminating entry-level positions. Watch for labor market data and policy responses across Asia."
+    },
+    {
+      "id": "hind-rajab-act-gaza-accountability",
+      "label": "Justice for Hind Rajab Act: Democrats introduce Gaza accountability legislation",
+      "firstSeen": "2026-03-12T21:11:00Z",
+      "lastCovered": "2026-03-12T21:11:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-hind-rajab-act-democrats-gaza-oscar-film"
+      ],
+      "summary": "Democrats introduced legislation named after Hind Rajab. Watch for Senate version and Republican response."
     },
     {
       "id": "west-africa-shipping-disruption",
@@ -232,8 +367,8 @@
       "lastCovered": "2026-03-12T21:11:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-12-west-africa-nigeria-shipping-lines-europe-hormuz-lost"
       ],
@@ -246,68 +381,12 @@
       "lastCovered": "2026-03-12T21:11:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-12-ukraine-anti-drone-tech-gulf-nato-defense-exports"
       ],
       "summary": "Ukraine exporting battlefield-developed counter-drone tech. Watch for contracts and revenue figures."
-    },
-    {
-      "id": "south-korea-ai-chip-boom",
-      "label": "South Korea ICT exports double: AI chip demand boom",
-      "firstSeen": "2026-03-12T21:11:00Z",
-      "lastCovered": "2026-03-12T21:11:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-south-korea-ict-exports-double-ai-chip-demand-feb"
-      ],
-      "summary": "ICT exports doubled in Feb on AI semiconductor demand. Watch for March data."
-    },
-    {
-      "id": "vanuatu-climate-icj",
-      "label": "Vanuatu ICJ climate advisory opinion: powerful states blocking",
-      "firstSeen": "2026-03-12T21:11:00Z",
-      "lastCovered": "2026-03-12T21:11:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-vanuatu-climate-icj-resolution-blocked-pacific-un"
-      ],
-      "summary": "UN experts alarmed by blocking of Vanuatu's ICJ climate advisory opinion request."
-    },
-    {
-      "id": "medicare-advantage-overpayment",
-      "label": "Medicare Advantage overpayment: MedPAC estimates $76B annually",
-      "firstSeen": "2026-03-12T21:11:00Z",
-      "lastCovered": "2026-03-12T21:11:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-medicare-advantage-overpayment-medpac-76-billion-congress"
-      ],
-      "summary": "MedPAC recommending $76B/year in cuts. Watch for Congressional response."
-    },
-    {
-      "id": "shadow-fleet-interdiction",
-      "label": "Shadow fleet interdiction: Sweden coast guard boarding tankers",
-      "firstSeen": "2026-03-12T21:11:00Z",
-      "lastCovered": "2026-03-12T21:11:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-sweden-coast-guard-shadow-fleet-vessel-boarded"
-      ],
-      "summary": "Sweden boarding shadow fleet vessels. Watch for EU interdiction protocol."
     },
     {
       "id": "iranian-kurdish-uprising",
@@ -316,12 +395,12 @@
       "lastCovered": "2026-03-12T20:10:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-12-iranian-kurds-peshmerga-iraq-border-uprising-47-years"
       ],
-      "summary": "KDPI/Komala fighters gathering on Iraq-Iran border. French troops now in Erbil area (same region). Watch for KRG position."
+      "summary": "KDPI/Komala fighters gathering on Iraq-Iran border. French troops now in Erbil area. Watch for KRG position."
     },
     {
       "id": "icj-south-africa-israel-genocide",
@@ -330,8 +409,8 @@
       "lastCovered": "2026-03-12T18:38:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-12-iceland-netherlands-icj-genocide-intervention-south-africa-israel"
       ],
@@ -370,126 +449,13 @@
       "summary": "Not covered this cycle. 700K+ displaced. Central Beirut struck repeatedly. Watch for French UNSC resolution and Hezbollah response."
     },
     {
-      "id": "imran-khan-detention",
-      "label": "Imran Khan: IHC orders medical board",
-      "firstSeen": "2026-03-12T20:10:00Z",
-      "lastCovered": "2026-03-12T20:10:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-imran-khan-ihc-medical-board-detention-health"
-      ],
-      "summary": "Watch for government compliance or refusal."
-    },
-    {
-      "id": "idf-rape-charges-dropped",
-      "label": "IDF drops rape charges — ICC impunity arc",
-      "firstSeen": "2026-03-12T17:33:00Z",
-      "lastCovered": "2026-03-12T17:33:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-idf-rape-charges-dropped-icc-impunity-palestine"
-      ],
-      "summary": "IDF withdrew charges against soldiers accused of raping Palestinian detainee."
-    },
-    {
-      "id": "al-aqsa-ramadan-closure",
-      "label": "Al-Aqsa closed during Ramadan",
-      "firstSeen": "2026-03-12T17:33:00Z",
-      "lastCovered": "2026-03-12T17:33:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-al-aqsa-closed-ramadan-muslim-countries-condemn-israel"
-      ],
-      "summary": "Watch for whether Israel reopens for remaining Ramadan Fridays."
-    },
-    {
-      "id": "post-ukraine-european-security",
-      "label": "Post-Ukraine European security: Estonia Russian veterans warning",
-      "firstSeen": "2026-03-12T20:10:00Z",
-      "lastCovered": "2026-03-12T20:10:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-estonia-russian-veterans-ukraine-war-europe-security"
-      ],
-      "summary": "Watch for NATO policy response."
-    },
-    {
-      "id": "iran-domestic-economy-collapse",
-      "label": "Iran internal economy collapse: shut shops, joblessness, rial",
-      "firstSeen": "2026-03-12T18:38:00Z",
-      "lastCovered": "2026-03-12T18:38:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-iran-economy-shut-shops-joblessness-cash-collapse"
-      ],
-      "summary": "Al Monitor ground report: collapsing rial, shuttered businesses."
-    },
-    {
-      "id": "doge-congressional-accountability",
-      "label": "DOGE testifies before Congress",
-      "firstSeen": "2026-03-12T18:38:00Z",
-      "lastCovered": "2026-03-12T18:38:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-doge-testimony-congress-federal-data-accountability"
-      ],
-      "summary": "Watch for data access commitments."
-    },
-    {
-      "id": "west-bank-settler-escalation",
-      "label": "West Bank settler violence under Iran war cover",
-      "firstSeen": "2026-03-12T12:30:00Z",
-      "lastCovered": "2026-03-12T12:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-west-bank-settlers-murders-iran-war-cover"
-      ],
-      "summary": "Settlers accelerating under war cover. Must prioritize when DW/BBC in rotation."
-    },
-    {
-      "id": "flock-ice-surveillance",
-      "label": "Flock Safety license plates → ICE deportation pipeline",
-      "firstSeen": "2026-03-12T17:33:00Z",
-      "lastCovered": "2026-03-12T17:33:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-12-flock-safety-ice-license-plate-surveillance-deportation",
-        "2026-03-12-flock-ice-surveillance-license-plate-readers-pipeline-explainer"
-      ],
-      "summary": "Not covered this cycle."
-    },
-    {
       "id": "sudan-humanitarian-crisis",
-      "label": "Sudan: RSF Rizeigat tribal split + drone terror campaigns in Kordofan/Blue Nile",
+      "label": "Sudan: RSF Rizeigat tribal split + drone terror campaigns",
       "firstSeen": "2026-02-15T00:00:00Z",
       "lastCovered": "2026-03-12T22:05:00Z",
       "coverageCount": 19,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
@@ -512,49 +478,119 @@
         "2026-03-12-sudan-rsf-white-nile-students-seventeen-killed",
         "2026-03-12-sudan-rsf-rizeigat-tribal-split-hemedti-drone-kordofan"
       ],
-      "summary": "Critical new development: Rizeigat tribal leader Musa Madibo broke with Hemedti, departed for Juba amid tensions. The Rizeigat are the RSF's core tribal base in Darfur — a fracture could reshape war dynamics. RSF drone campaigns in Kordofan and Blue Nile targeting markets and infrastructure to force displacement (psychological attrition). SPLM-N alliance dynamics shifting in South Kordofan."
+      "summary": "Rizeigat tribal leader Musa Madibo broke with Hemedti, departed for Juba. RSF drone campaigns continue in Kordofan and Blue Nile. Not covered this cycle — importance decayed."
     },
     {
-      "id": "cancer-protein-immunotherapy",
-      "label": "Cancer cells externalize oncoproteins — new immunotherapy target",
-      "firstSeen": "2026-03-12T18:38:00Z",
-      "lastCovered": "2026-03-12T18:38:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "fading",
-      "articles": [
-        "2026-03-12-cancer-cells-oncoprotein-surface-immunotherapy-target"
-      ],
-      "summary": "Not covered this cycle."
-    },
-    {
-      "id": "north-korea-it-workers-crypto",
-      "label": "North Korea IT workers crypto scheme",
-      "firstSeen": "2026-03-12T17:33:00Z",
-      "lastCovered": "2026-03-12T17:33:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-12-north-korea-it-workers-crypto-scheme-sanctions-weapons"
-      ],
-      "summary": "Fading."
-    },
-    {
-      "id": "china-property-crisis",
-      "label": "China property crisis: Sunshine 100 opposes HK winding-up",
+      "id": "imran-khan-detention",
+      "label": "Imran Khan: IHC orders medical board",
       "firstSeen": "2026-03-12T20:10:00Z",
       "lastCovered": "2026-03-12T20:10:00Z",
       "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
-        "2026-03-12-china-sunshine-100-property-debt-hk-winding-up-crisis"
+        "2026-03-12-imran-khan-ihc-medical-board-detention-health"
       ],
-      "summary": "Fading."
+      "summary": "Watch for government compliance or refusal."
+    },
+    {
+      "id": "shadow-fleet-interdiction",
+      "label": "Shadow fleet interdiction: Sweden coast guard boarding tankers",
+      "firstSeen": "2026-03-12T21:11:00Z",
+      "lastCovered": "2026-03-12T21:11:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-sweden-coast-guard-shadow-fleet-vessel-boarded"
+      ],
+      "summary": "Sweden boarding shadow fleet vessels. Watch for EU interdiction protocol."
+    },
+    {
+      "id": "vanuatu-climate-icj",
+      "label": "Vanuatu ICJ climate advisory opinion: powerful states blocking",
+      "firstSeen": "2026-03-12T21:11:00Z",
+      "lastCovered": "2026-03-12T21:11:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-vanuatu-climate-icj-resolution-blocked-pacific-un"
+      ],
+      "summary": "UN experts alarmed by blocking of Vanuatu's ICJ climate advisory opinion request."
+    },
+    {
+      "id": "idf-rape-charges-dropped",
+      "label": "IDF drops rape charges — ICC impunity arc",
+      "firstSeen": "2026-03-12T17:33:00Z",
+      "lastCovered": "2026-03-12T17:33:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-idf-rape-charges-dropped-icc-impunity-palestine"
+      ],
+      "summary": "IDF withdrew charges against soldiers accused of raping Palestinian detainee."
+    },
+    {
+      "id": "al-aqsa-ramadan-closure",
+      "label": "Al-Aqsa closed during Ramadan",
+      "firstSeen": "2026-03-12T17:33:00Z",
+      "lastCovered": "2026-03-12T17:33:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-al-aqsa-closed-ramadan-muslim-countries-condemn-israel"
+      ],
+      "summary": "Watch for whether Israel reopens for remaining Ramadan Fridays."
+    },
+    {
+      "id": "west-bank-settler-escalation",
+      "label": "West Bank settler violence under Iran war cover",
+      "firstSeen": "2026-03-12T12:30:00Z",
+      "lastCovered": "2026-03-12T12:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-west-bank-settlers-murders-iran-war-cover"
+      ],
+      "summary": "Settlers accelerating under war cover. Must prioritize when DW/BBC in rotation."
+    },
+    {
+      "id": "iran-domestic-economy-collapse",
+      "label": "Iran internal economy collapse: shut shops, joblessness, rial",
+      "firstSeen": "2026-03-12T18:38:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-iran-economy-shut-shops-joblessness-cash-collapse"
+      ],
+      "summary": "Al Monitor ground report: collapsing rial, shuttered businesses."
+    },
+    {
+      "id": "post-ukraine-european-security",
+      "label": "Post-Ukraine European security: Estonia Russian veterans warning",
+      "firstSeen": "2026-03-12T20:10:00Z",
+      "lastCovered": "2026-03-12T20:10:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-03-12-estonia-russian-veterans-ukraine-war-europe-security"
+      ],
+      "summary": "Watch for NATO policy response."
     },
     {
       "id": "gaza-aid-ban",
@@ -599,6 +635,105 @@
         "2026-03-10-ukraine-turkey-trilateral-peace-zelenskiy"
       ],
       "summary": "Fading. Iran war dominates. Ukraine defense tech exports to Gulf is a related active arc."
+    },
+    {
+      "id": "south-korea-ai-chip-boom",
+      "label": "South Korea ICT exports double: AI chip demand boom",
+      "firstSeen": "2026-03-12T21:11:00Z",
+      "lastCovered": "2026-03-12T21:11:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "fading",
+      "articles": [
+        "2026-03-12-south-korea-ict-exports-double-ai-chip-demand-feb"
+      ],
+      "summary": "ICT exports doubled in Feb on AI semiconductor demand."
+    },
+    {
+      "id": "medicare-advantage-overpayment",
+      "label": "Medicare Advantage overpayment: MedPAC estimates $76B annually",
+      "firstSeen": "2026-03-12T21:11:00Z",
+      "lastCovered": "2026-03-12T21:11:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "fading",
+      "articles": [
+        "2026-03-12-medicare-advantage-overpayment-medpac-76-billion-congress"
+      ],
+      "summary": "MedPAC recommending $76B/year in cuts."
+    },
+    {
+      "id": "doge-congressional-accountability",
+      "label": "DOGE testifies before Congress",
+      "firstSeen": "2026-03-12T18:38:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "fading",
+      "articles": [
+        "2026-03-12-doge-testimony-congress-federal-data-accountability"
+      ],
+      "summary": "Fading."
+    },
+    {
+      "id": "flock-ice-surveillance",
+      "label": "Flock Safety license plates → ICE deportation pipeline",
+      "firstSeen": "2026-03-12T17:33:00Z",
+      "lastCovered": "2026-03-12T17:33:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-12-flock-safety-ice-license-plate-surveillance-deportation",
+        "2026-03-12-flock-ice-surveillance-license-plate-readers-pipeline-explainer"
+      ],
+      "summary": "Fading."
+    },
+    {
+      "id": "cancer-protein-immunotherapy",
+      "label": "Cancer cells externalize oncoproteins — new immunotherapy target",
+      "firstSeen": "2026-03-12T18:38:00Z",
+      "lastCovered": "2026-03-12T18:38:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-12-cancer-cells-oncoprotein-surface-immunotherapy-target"
+      ],
+      "summary": "Fading."
+    },
+    {
+      "id": "north-korea-it-workers-crypto",
+      "label": "North Korea IT workers crypto scheme",
+      "firstSeen": "2026-03-12T17:33:00Z",
+      "lastCovered": "2026-03-12T17:33:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-12-north-korea-it-workers-crypto-scheme-sanctions-weapons"
+      ],
+      "summary": "Fading."
+    },
+    {
+      "id": "china-property-crisis",
+      "label": "China property crisis: Sunshine 100 opposes HK winding-up",
+      "firstSeen": "2026-03-12T20:10:00Z",
+      "lastCovered": "2026-03-12T20:10:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-12-china-sunshine-100-property-debt-hk-winding-up-crisis"
+      ],
+      "summary": "Fading."
     }
   ]
 }
