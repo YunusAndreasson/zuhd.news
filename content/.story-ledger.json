@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 22: US strikes Kharg Island, threatens oil infrastructure",
+      "label": "Iran war Day 22: 3.2m displaced, Baghdad strikes, Marines from Pacific",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-14T00:30:00Z",
-      "coverageCount": 121,
+      "lastCovered": "2026-03-14T05:10:00Z",
+      "coverageCount": 128,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -127,18 +127,24 @@
         "2026-03-13-us-5000-marines-dispatched-middle-east-escalation",
         "2026-03-13-pentagon-limits-press-information-iran-war",
         "2026-03-14-us-strikes-kharg-island-iran-oil-threat",
-        "2026-03-14-us-10-million-bounty-iranian-leaders-quds-day"
+        "2026-03-14-us-10-million-bounty-iranian-leaders-quds-day",
+        "2026-03-14-doha-explosions-evacuations-qatar-iran-war",
+        "2026-03-14-iranian-sailors-84-bodies-repatriated-torpedo-strike",
+        "2026-03-14-unhcr-3-million-iranians-displaced-war",
+        "2026-03-14-us-marines-japan-middle-east-iran-escalation",
+        "2026-03-14-baghdad-strikes-kataeb-hezbollah-iraq-war-expands",
+        "2026-03-14-us-embassy-baghdad-smoke-attack-iran-war"
       ],
-      "summary": "Day 22: US struck military targets on Kharg Island. $10M bounties on Iranian leaders on Quds Day."
+      "summary": "Day 22: UNHCR reports 3.2m Iranians internally displaced. US strikes Kataeb Hezbollah in central Baghdad; smoke rising from US embassy. 2,000 Marines redeploying from Japan to Middle East, weakening Pacific posture."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz: oil at $101 despite Russia waiver",
+      "label": "Hormuz: Yemen ports absorbing war surcharges, Chinese firms doubling down",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-14T00:30:00Z",
-      "coverageCount": 117,
+      "lastCovered": "2026-03-14T05:10:00Z",
+      "coverageCount": 120,
       "category": "economy",
-      "importance": 9,
+      "importance": 10,
       "arc": "ongoing",
       "articles": [
         "2026-03-01-opec-boosts-oil-output-amid-iran-war",
@@ -246,18 +252,21 @@
         "2026-03-13-pakistani-workers-dubai-dreams-ended-iran-strikes",
         "2026-03-13-australian-exports-war-risk-costs-surge",
         "2026-03-13-cuba-us-negotiations-oil-blockade-hormuz",
-        "2026-03-14-oil-weekly-gains-despite-russia-waiver-hormuz"
+        "2026-03-14-oil-weekly-gains-despite-russia-waiver-hormuz",
+        "2026-03-14-iran-hormuz-tankers-yuan-only-de-dollarization",
+        "2026-03-14-yemen-ports-shipping-surcharges-iran-war-hunger",
+        "2026-03-14-chinese-entrepreneurs-middle-east-expansion-iran-war"
       ],
-      "summary": "Oil at $101 rising despite US 30-day Russian oil waiver."
+      "summary": "Yemen ports absorbing war surcharges, threatening famine. Chinese entrepreneurs doubling down on ME investment while Western firms flee. Oil ~$101."
     },
     {
       "id": "lebanon-hezbollah-israel",
-      "label": "Lebanon: synagogue attacker family killed in Israeli airstrike",
+      "label": "Lebanon: 700k+ displaced, 14% territory under evacuation orders",
       "firstSeen": "2026-03-02T16:00:00Z",
-      "lastCovered": "2026-03-14T00:30:00Z",
-      "coverageCount": 24,
+      "lastCovered": "2026-03-14T02:45:00Z",
+      "coverageCount": 25,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "ongoing",
       "articles": [
         "2026-03-02-lebanon-bans-hezbollah-military-activities",
@@ -283,9 +292,10 @@
         "2026-03-13-beirut-strike-kills-12-israel-land-grab-threat",
         "2026-03-13-lebanon-14-percent-territory-israeli-evacuation-orders",
         "2026-03-13-israel-strikes-lebanon-health-centre-12-medics-killed",
-        "2026-03-14-michigan-synagogue-attacker-family-killed-lebanon-airstrike"
+        "2026-03-14-michigan-synagogue-attacker-family-killed-lebanon-airstrike",
+        "2026-03-14-malaysian-peacekeepers-idf-airstrike-lebanon-unifil"
       ],
-      "summary": "Michigan synagogue attacker had family killed in Lebanese airstrike."
+      "summary": "700k+ displaced, 14% of territory under Israeli evacuation orders. Health centre strike killed 12 medics."
     },
     {
       "id": "sudan-humanitarian-crisis",
@@ -294,7 +304,7 @@
       "lastCovered": "2026-03-13T22:30:00Z",
       "coverageCount": 23,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-02-15-un-finds-rsf-committed-war-crimes-in-el-fasher-offensive",
@@ -321,7 +331,7 @@
         "2026-03-13-sudan-military-retakes-bara-forced-integration-armed-movements",
         "2026-03-13-sudan-drone-market-attack-11-killed-air-war"
       ],
-      "summary": "Drone attack on market kills 11. Civilian market targeting continues."
+      "summary": "Drone attack on market kills 11. Civilian market targeting continues. Not in this cycle's feed."
     },
     {
       "id": "ukraine-russia-war",
@@ -330,13 +340,13 @@
       "lastCovered": "2026-03-13T15:30:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "developing",
       "articles": [
         "2026-03-13-zelensky-macron-paris-russia-oil-waiver-undermines-ukraine",
         "2026-03-13-russia-summons-uk-france-envoys-storm-shadow-bryansk"
       ],
-      "summary": "Zelensky met Macron as allies fear US Russia oil sanctions waiver benefits Putin. Russia summoned UK/French envoys over Storm Shadow strike."
+      "summary": "Zelensky met Macron. Russia summoned UK/French envoys over Storm Shadow strike."
     },
     {
       "id": "gulf-wartime-censorship",
@@ -345,13 +355,13 @@
       "lastCovered": "2026-03-14T00:30:00Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-13-bahrain-arrests-pakistani-workers-iran-war-videos-digital-censorship",
         "2026-03-14-abu-dhabi-arrests-45-filming-iran-war-damage-censorship"
       ],
-      "summary": "Bahrain 5, now Abu Dhabi 45 arrested for filming. Pattern spreading."
+      "summary": "Bahrain 5, Abu Dhabi 45 arrested for filming. Pattern spreading."
     },
     {
       "id": "palestine-identity-erasure",
@@ -360,7 +370,7 @@
       "lastCovered": "2026-03-14T00:30:00Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-13-israel-palestinian-muslim-identity-erasure-report",
@@ -370,153 +380,83 @@
       "summary": "Ben-Gvir staged televised arrest for flag graffiti. Court: negligible suspicion."
     },
     {
-      "id": "age-verification-surveillance",
-      "label": "$2B lobbying behind US age-verification bills",
-      "firstSeen": "2026-03-13T12:30:00Z",
-      "lastCovered": "2026-03-13T12:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-2-billion-lobbying-age-verification-surveillance-infrastructure"
-      ],
-      "summary": "$2B in grants and lobbying across 45 US states behind age-verification bills."
-    },
-    {
       "id": "icj-genocide-case-us-intervention",
       "label": "US defends Israel at ICJ in South Africa genocide case",
       "firstSeen": "2026-03-13T17:30:00Z",
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-13-us-defends-israel-icj-genocide-case-intervention"
       ],
-      "summary": "US formally intervenes as third party at ICJ to defend Israel against South Africa's genocide case. First time Washington has inserted itself into these proceedings."
-    },
-    {
-      "id": "kenya-floods-2026",
-      "label": "Kenya floods: 62 dead, 12,000 homes destroyed",
-      "firstSeen": "2026-03-13T17:30:00Z",
-      "lastCovered": "2026-03-13T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-kenya-floods-62-dead-12000-homes-climate-infrastructure"
-      ],
-      "summary": "62 dead, 12,000 homes destroyed in Kenya flooding. Structural causes: wetland drainage, informal settlement planning, heavier rains from climate change."
-    },
-    {
-      "id": "ethiopia-election-path",
-      "label": "Ethiopia: High Court clears election board, democratic path",
-      "firstSeen": "2026-03-13T17:30:00Z",
-      "lastCovered": "2026-03-13T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-ethiopia-court-lifts-election-board-injunction-democratic-path"
-      ],
-      "summary": "Ethiopia's High Court removed legal block on election board. Path cleared for elections after civil war and contested governance."
+      "summary": "US formally intervenes at ICJ to defend Israel against South Africa's genocide case."
     },
     {
       "id": "turkey-iran-war-economic-fallout",
-      "label": "Turkey economy buckles under Iran war: investors flee, lira crashes",
+      "label": "Turkey economy buckles under Iran war",
       "firstSeen": "2026-03-13T17:30:00Z",
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-turkey-economy-iran-war-investors-flee-lira-crisis"
       ],
-      "summary": "First NATO economy to buckle under Iran war pressure. Capital flight, lira crash, and inflation surge as Turkey absorbs oil shock, refugee flows, and investor panic simultaneously."
+      "summary": "First NATO economy to buckle under Iran war. Capital flight, lira crash."
     },
     {
       "id": "instagram-e2e-encryption-removal",
-      "label": "Meta kills E2E encryption on Instagram DMs, effective May 8",
+      "label": "Meta kills E2E encryption on Instagram DMs",
       "firstSeen": "2026-03-13T17:30:00Z",
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-instagram-kills-e2e-encryption-meta-privacy-reversal"
       ],
-      "summary": "Meta ending E2E encryption on Instagram DMs for 2B+ users via a quiet help page update. Reverses its own 2023 encryption push. Timing coincides with government backdoor demands and Iran blackout."
+      "summary": "Meta ending E2E encryption on Instagram DMs for 2B+ users."
     },
     {
       "id": "iran-internet-blackout-resilience",
-      "label": "Iranians communicate through 3-week internet blackout using mesh networks, Bluetooth",
+      "label": "Iranians communicate through internet blackout",
       "firstSeen": "2026-03-13T17:30:00Z",
       "lastCovered": "2026-03-13T17:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-iranians-communicate-internet-blackout-war-resilience"
       ],
-      "summary": "88 million people finding ways to communicate through war-imposed internet blackout. Mesh networks, Bluetooth, satellite links, repurposed old tech. Both survival and witness."
-    },
-    {
-      "id": "indonesia-water-crisis",
-      "label": "Indonesia warns of looming water crisis across multiple regions",
-      "firstSeen": "2026-03-13T17:30:00Z",
-      "lastCovered": "2026-03-13T17:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-indonesia-water-crisis-climate-deforestation-el-nino"
-      ],
-      "summary": "Indonesia's ministry warns of water crisis across regions. El Niño, deforestation, and palm oil expansion destroying watersheds for 270M+ people."
-    },
-    {
-      "id": "michigan-hate-crime-war-spillover",
-      "label": "Michigan synagogue attack as hate crimes spike during Iran war",
-      "firstSeen": "2026-03-13T17:30:00Z",
-      "lastCovered": "2026-03-13T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-michigan-synagogue-attack-hate-crime-iran-war-spillover"
-      ],
-      "summary": "Synagogue attacked in Michigan. Governor calls it 'hate, plain and simple.' Part of spike in hate crimes since Iran war began — war abroad generating violence at home."
+      "summary": "88M people using mesh networks, Bluetooth, satellite during blackout."
     },
     {
       "id": "epstein-elite-accountability",
-      "label": "UK Andrew/Mandelson Epstein photos surface",
+      "label": "UK Andrew/Mandelson Epstein photos",
       "firstSeen": "2026-03-13T20:30:00Z",
       "lastCovered": "2026-03-13T20:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-uk-andrew-mandelson-epstein-bathrobes-photos"
       ],
-      "summary": "Newly surfaced photos show Prince Andrew and Peter Mandelson in bathrobes with Epstein."
+      "summary": "Photos show Prince Andrew and Peter Mandelson in bathrobes with Epstein."
     },
     {
       "id": "south-africa-military-deployment",
-      "label": "South Africa deploys 2,200 soldiers to five provinces",
+      "label": "South Africa deploys 2,200 soldiers",
       "firstSeen": "2026-03-13T20:30:00Z",
       "lastCovered": "2026-03-13T20:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-south-africa-2200-soldiers-deployed-provinces"
@@ -524,27 +464,13 @@
       "summary": "SANDF deploys 2,200 troops across five provinces."
     },
     {
-      "id": "bolivia-cartel-capture",
-      "label": "US most-wanted cartel boss captured in Bolivia",
-      "firstSeen": "2026-03-13T20:30:00Z",
-      "lastCovered": "2026-03-13T20:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-cartel-boss-most-wanted-captured-bolivia"
-      ],
-      "summary": "Top US most-wanted cartel figure captured in Bolivia raid."
-    },
-    {
       "id": "iranian-refugee-deportation",
-      "label": "Iranian refugee who survived Bondi attack faces deportation",
+      "label": "Iranian refugee Bondi survivor faces deportation",
       "firstSeen": "2026-03-13T20:30:00Z",
       "lastCovered": "2026-03-13T20:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-iranian-refugee-bondi-survivor-deportation-australia"
@@ -553,31 +479,31 @@
     },
     {
       "id": "tokenized-treasuries-growth",
-      "label": "Tokenized US Treasuries hit $11B, Circle overtakes BlackRock",
+      "label": "Tokenized US Treasuries hit $11B",
       "firstSeen": "2026-03-13T20:30:00Z",
       "lastCovered": "2026-03-13T20:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-circle-blackrock-tokenized-treasuries-11-billion"
       ],
-      "summary": "Circle overtakes BlackRock in tokenized Treasury market as total hits $11B."
+      "summary": "Circle overtakes BlackRock in tokenized Treasury market."
     },
     {
       "id": "biontech-founders-pivot",
-      "label": "BioNTech founders leave to start new venture",
+      "label": "BioNTech founders leave for new venture",
       "firstSeen": "2026-03-13T20:30:00Z",
       "lastCovered": "2026-03-13T20:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-13-biontech-founders-step-down-new-venture"
       ],
-      "summary": "COVID vaccine pioneers leaving BioNTech for new scientific venture."
+      "summary": "COVID vaccine pioneers leaving BioNTech."
     },
     {
       "id": "nsa-section-702-expansion",
@@ -586,77 +512,64 @@
       "lastCovered": "2026-03-13T20:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-wyden-nsa-section-702-surveillance-stunned"
       ],
-      "summary": "Senator Wyden warns undisclosed NSA activities under Section 702 will shock Americans."
-    },
-    {
-      "id": "openclaw-china-ai",
-      "label": "OpenClaw AI drives Mac Mini sellouts in China",
-      "firstSeen": "2026-03-13T20:30:00Z",
-      "lastCovered": "2026-03-13T20:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-13-apple-mac-mini-china-openclaw-ai-sellout"
-      ],
-      "summary": "Chinese open-source AI project drives Mac Mini shortages across China."
+      "summary": "Senator Wyden warns undisclosed NSA activities will shock Americans."
     },
     {
       "id": "trump-kim-dialogue-probe",
-      "label": "Trump probes Kim through South Korean PM about dialogue",
+      "label": "Trump probes Kim through South Korean PM",
       "firstSeen": "2026-03-13T22:30:00Z",
-      "lastCovered": "2026-03-13T22:30:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-14T02:45:00Z",
+      "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
-        "2026-03-13-trump-asks-south-korea-kim-dialogue-iran-war"
+        "2026-03-13-trump-asks-south-korea-kim-dialogue-iran-war",
+        "2026-03-14-trump-positive-north-korea-dialogue-iran-war-stretched"
       ],
-      "summary": "Trump asked S. Korean PM whether Kim wants dialogue with US."
+      "summary": "Trump positive on NK dialogue. Iran war stretching US military may drive diplomacy."
     },
     {
       "id": "custodia-fed-reserve-crypto-banking",
-      "label": "Custodia vs Fed Reserve closes as master-account door opens",
+      "label": "Custodia vs Fed closes as master-account door opens",
       "firstSeen": "2026-03-13T22:30:00Z",
       "lastCovered": "2026-03-13T22:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-custodia-fed-reserve-master-account-crypto-banking"
       ],
-      "summary": "Court closes Custodia fight on same day Fed opens master-account access."
+      "summary": "Court closes Custodia fight same day Fed opens master-account access."
     },
     {
       "id": "cardiovascular-statin-guidelines",
-      "label": "Cardiovascular guidelines: statins as young as 30",
+      "label": "Statins recommended from age 30",
       "firstSeen": "2026-03-13T22:30:00Z",
       "lastCovered": "2026-03-13T22:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-13-cardiovascular-guidelines-statins-age-30"
       ],
-      "summary": "Major guideline shift recommends considering statins from age 30."
+      "summary": "Major guideline shift recommends statins from age 30."
     },
     {
       "id": "grail-cancer-screening-setback",
-      "label": "Grail CEO exits after cancer screening trial setback",
+      "label": "Grail CEO exits after cancer screening setback",
       "firstSeen": "2026-03-13T22:30:00Z",
       "lastCovered": "2026-03-13T22:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-grail-ceo-steps-down-cancer-screening-trial-setback"
@@ -665,26 +578,26 @@
     },
     {
       "id": "nk-crypto-laundering-sanctions",
-      "label": "US sanctions 800M North Korea crypto laundering network",
+      "label": "US sanctions $800M NK crypto laundering network",
       "firstSeen": "2026-03-13T22:30:00Z",
       "lastCovered": "2026-03-13T22:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-13-us-sanctions-800m-crypto-laundering-north-korea"
       ],
-      "summary": "800M laundered through 6 people and 2 companies for NK weapons programs."
+      "summary": "$800M laundered for NK weapons programs."
     },
     {
       "id": "stablecoin-usdc-tether-flip",
-      "label": "Circle USDC volumes surpass Tether for first time since 2019",
+      "label": "USDC volumes surpass Tether",
       "firstSeen": "2026-03-13T22:30:00Z",
       "lastCovered": "2026-03-13T22:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-circle-usdc-tops-tether-stablecoin-shift"
@@ -693,45 +606,46 @@
     },
     {
       "id": "pentagon-press-restrictions-iran",
-      "label": "Pentagon restricts press access to Iran war information",
+      "label": "Pentagon restricts press on Iran war",
       "firstSeen": "2026-03-13T22:30:00Z",
       "lastCovered": "2026-03-13T22:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-pentagon-limits-press-information-iran-war"
       ],
-      "summary": "Pentagon limiting info and clashing with press as Iran war enters fourth week."
+      "summary": "Pentagon limiting info as Iran war enters fourth week."
     },
     {
       "id": "cuba-us-negotiations-blockade",
-      "label": "Cuba-US negotiations as Hormuz oil blockade reaches Caribbean",
+      "label": "Cuba-US negotiations as Hormuz reaches Caribbean",
       "firstSeen": "2026-03-13T22:30:00Z",
       "lastCovered": "2026-03-13T22:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-13-cuba-us-negotiations-oil-blockade-hormuz"
       ],
-      "summary": "Cuba confirms negotiations with US as Hormuz blockade compounds existing sanctions."
+      "summary": "Cuba confirms negotiations with US as Hormuz compounds sanctions."
     },
     {
       "id": "pakistan-afghanistan-strikes",
-      "label": "Pakistan strikes Taliban 313 Corps HQ in Kabul",
+      "label": "Pakistan-Afghanistan: Taliban retaliates with drones",
       "firstSeen": "2026-03-14T00:30:00Z",
-      "lastCovered": "2026-03-14T00:30:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-14T05:10:00Z",
+      "coverageCount": 2,
       "category": "politics",
-      "importance": 7,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
-        "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul"
+        "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul",
+        "2026-03-14-afghan-taliban-retaliatory-drones-pakistan"
       ],
-      "summary": "Pakistan struck Taliban 313 Corps HQ in Kabul, camps in Kandahar/Paktia."
+      "summary": "Pakistan struck Taliban 313 Corps HQ in Kabul. Taliban retaliated with drone attacks injuring 4 including 2 children. Drone exchange is new phase."
     },
     {
       "id": "xi-anti-corruption-purges",
@@ -740,7 +654,7 @@
       "lastCovered": "2026-03-14T00:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-14-xi-anti-corruption-14-years-purges-continue"
@@ -754,12 +668,12 @@
       "lastCovered": "2026-03-14T00:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-14-rare-earth-autonomy-japan-france-canada-pax-silica"
       ],
-      "summary": "US allies building independent rare earth chains. Pax Silica fragmenting."
+      "summary": "US allies building independent rare earth chains."
     },
     {
       "id": "trump-fed-independence",
@@ -768,7 +682,7 @@
       "lastCovered": "2026-03-14T00:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-14-judge-blocks-trump-federal-reserve-subpoenas"
@@ -782,40 +696,180 @@
       "lastCovered": "2026-03-14T00:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-14-nasa-artemis-2-cleared-april-moon-launch"
       ],
-      "summary": "Artemis 2 cleared for April. First crewed lunar mission since Apollo."
+      "summary": "First crewed lunar mission since Apollo cleared for April."
     },
     {
-      "id": "pre-inca-trade-archaeology",
-      "label": "Pre-Inca parrot trade networks revealed",
-      "firstSeen": "2026-03-14T00:30:00Z",
-      "lastCovered": "2026-03-14T00:30:00Z",
+      "id": "hrw-haiti-drone-war",
+      "label": "HRW: US drone strikes in Haiti killed 1,250",
+      "firstSeen": "2026-03-14T02:45:00Z",
+      "lastCovered": "2026-03-14T02:45:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-hrw-us-drone-strikes-haiti-1250-killed-children"
+      ],
+      "summary": "HRW documents US drone strikes killing nearly 1,250 in Haiti including children."
+    },
+    {
+      "id": "china-ethnic-unity-law",
+      "label": "UN flags China ethnic unity law targeting minorities",
+      "firstSeen": "2026-03-14T02:45:00Z",
+      "lastCovered": "2026-03-14T02:45:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-un-rights-chief-china-ethnic-unity-law-uyghurs-tibetans"
+      ],
+      "summary": "China passed ethnic unity law codifying assimilation of Uyghurs, Tibetans, Mongolians."
+    },
+    {
+      "id": "meta-ai-layoffs",
+      "label": "Meta cuts 20%+ workforce for AI",
+      "firstSeen": "2026-03-14T02:45:00Z",
+      "lastCovered": "2026-03-14T02:45:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-meta-layoffs-20-percent-ai-superintelligence-zuckerberg"
+      ],
+      "summary": "Meta planning 20%+ layoffs (13,000+ jobs) to fund AI superintelligence."
+    },
+    {
+      "id": "iran-cyber-retaliation",
+      "label": "Iran hackers hit US medical firm Stryker",
+      "firstSeen": "2026-03-14T02:45:00Z",
+      "lastCovered": "2026-03-14T02:45:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-iran-hackers-cyberattack-stryker-medical-retaliation"
+      ],
+      "summary": "Iran-linked group claims cyberattack on Stryker medical devices. First corporate target."
+    },
+    {
+      "id": "fractal-spacetime-physics",
+      "label": "Fractal space-time challenges string theory",
+      "firstSeen": "2026-03-14T02:45:00Z",
+      "lastCovered": "2026-03-14T02:45:00Z",
       "coverageCount": 1,
       "category": "science",
       "importance": 3,
       "arc": "breaking",
       "articles": [
-        "2026-03-14-pre-inca-peru-parrot-trade-networks-archaeology"
+        "2026-03-14-fractal-spacetime-astrid-eichhorn-asymptotic-safety"
       ],
-      "summary": "Pre-Inca elites imported parrots hundreds of miles. Inca roads built on older routes."
+      "summary": "Astrid Eichhorn proposes fractal space-time via asymptotic safety."
     },
     {
-      "id": "macbook-neo-windows",
-      "label": "MacBook Neo runs Windows via Parallels",
-      "firstSeen": "2026-03-14T00:30:00Z",
-      "lastCovered": "2026-03-14T00:30:00Z",
+      "id": "nuclear-pore-disorder",
+      "label": "Nuclear pore complexes work through disorder",
+      "firstSeen": "2026-03-14T02:45:00Z",
+      "lastCovered": "2026-03-14T02:45:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-nuclear-pore-complex-disorder-drives-cell-machinery"
+      ],
+      "summary": "New imaging reveals nuclear pore complexes work through disorder."
+    },
+    {
+      "id": "humanoid-robots-dexterity",
+      "label": "Humanoid robots still fail at fine motor tasks",
+      "firstSeen": "2026-03-14T02:45:00Z",
+      "lastCovered": "2026-03-14T02:45:00Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 3,
       "arc": "breaking",
       "articles": [
-        "2026-03-14-macbook-neo-windows-vm-parallels-apple"
+        "2026-03-14-humanoid-robots-fine-motor-dexterity-gap"
       ],
-      "summary": "Apple MacBook Neo confirmed to run Windows 11 via Parallels."
+      "summary": "Despite billions invested, humanoid robots cannot handle fine motor tasks."
+    },
+    {
+      "id": "myanmar-junta-election",
+      "label": "Myanmar junta holds sham election, parliament convenes next week",
+      "firstSeen": "2026-03-14T05:10:00Z",
+      "lastCovered": "2026-03-14T05:10:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-myanmar-junta-election-sham-democracy"
+      ],
+      "summary": "Myanmar held first election since 2021 coup. USDP won commanding majority. Parliament convenes next week."
+    },
+    {
+      "id": "pakistan-polio-conflict",
+      "label": "Pakistan polio spike as military conflict disrupts vaccination",
+      "firstSeen": "2026-03-14T05:10:00Z",
+      "lastCovered": "2026-03-14T05:10:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-pakistan-polio-spike-afghan-hostilities-vaccination"
+      ],
+      "summary": "Polio cases spiking despite virus declining in environment. Military conflict disrupting vaccination campaigns."
+    },
+    {
+      "id": "china-15th-five-year-plan-climate",
+      "label": "China's 15th five-year plan: climate targets under scrutiny",
+      "firstSeen": "2026-03-14T05:10:00Z",
+      "lastCovered": "2026-03-14T05:10:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-china-five-year-plan-climate-targets-analysis"
+      ],
+      "summary": "China's 15th five-year plan passed during Two Sessions. Carbon Brief analysis of climate commitments vs Paris targets."
+    },
+    {
+      "id": "anthropic-1m-context",
+      "label": "Anthropic makes 1M-token context GA for Claude models",
+      "firstSeen": "2026-03-14T05:10:00Z",
+      "lastCovered": "2026-03-14T05:10:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-anthropic-1m-context-claude-ai-milestone"
+      ],
+      "summary": "1M-token context windows now GA for Claude Opus 4.6 and Sonnet 4.6. 460 HN points."
+    },
+    {
+      "id": "bitcoin-infrastructure-resilience",
+      "label": "Cambridge: Bitcoin survives cable cuts but 5 hosts could cripple it",
+      "firstSeen": "2026-03-14T05:10:00Z",
+      "lastCovered": "2026-03-14T05:10:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-bitcoin-submarine-cables-hosting-vulnerability-cambridge"
+      ],
+      "summary": "11-year Cambridge study: Bitcoin survives 72% cable cuts but centralized hosting is Achilles heel."
     }
   ]
 }
