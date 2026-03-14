@@ -11,8 +11,8 @@ const CACHE_PATH = join(ROOT, 'content', '.source-cache.json')
 //   Tier A  — every cycle   (10 sources, core diverse voices)
 //   Tier B0 — even cycles 0,2,4,6,8  (5 sources)
 //   Tier B1 — odd cycles  1,3,5,7,9  (5 sources)
-//   Tier C  — 2x/day, when cycleIndex % 5 === offset  (11 sources)
-//   Tier D  — 1x/day, when cycleIndex === slot  (10 sources)
+//   Tier C  — 2x/day, when cycleIndex % 5 === offset  (14 sources)
+//   Tier D  — 1x/day, when cycleIndex === slot  (7 sources)
 //
 // Perspective balance in Tier A: Al Jazeera (Middle East) + BBC (West)
 // — not BBC + France24 (two Western outlets covering same beats).
@@ -28,10 +28,10 @@ const SOURCES = [
     name: 'Al Jazeera',
     url: 'https://www.aljazeera.com/xml/rss/all.xml',
     format: 'rss2',
-    tier: 'A', region: 'ME',
+    tier: 'A', region: 'ME', core: true,
     stripParams: ['traffic_source'],
   },
-  { name: 'BBC World',      url: 'https://feeds.bbci.co.uk/news/world/rss.xml',                          format: 'rss2', tier: 'A', region: 'EU' },
+  { name: 'BBC World',      url: 'https://feeds.bbci.co.uk/news/world/rss.xml',                          format: 'rss2', tier: 'A', region: 'EU', core: true },
   { name: 'The Hindu',      url: 'https://www.thehindu.com/news/international/feeder/default.rss',       format: 'rss2', tier: 'A', region: 'AS' },
   { name: 'AllAfrica',      url: 'https://allafrica.com/tools/headlines/rdf/latest/headlines.rdf',       format: 'rss2', tier: 'A', region: 'AF' },
   { name: 'Hacker News',    url: 'https://hnrss.org/frontpage?points=100',                               format: 'rss2', tier: 'A', region: 'GL', defaultCategory: 'tech' },
@@ -73,10 +73,10 @@ const SOURCES = [
 
   // ── Tier D — 1x/day, when cycleIndex === slot ─────────────────────
   { name: 'Daily Maverick',      url: 'https://www.dailymaverick.co.za/rss',                     format: 'rss2', tier: 'D', slot: 0, region: 'AF' },
-  { name: 'Quanta Magazine',     url: 'https://api.quantamagazine.org/feed/',                    format: 'rss2', tier: 'D', slot: 1, region: 'GL', defaultCategory: 'science' },
-  { name: 'Carbon Brief',        url: 'https://www.carbonbrief.org/feed/',                       format: 'rss2', tier: 'D', slot: 2, region: 'GL', defaultCategory: 'science' },
+  { name: 'Quanta Magazine',     url: 'https://api.quantamagazine.org/feed/',                    format: 'rss2', tier: 'C', offset: 1, region: 'GL', defaultCategory: 'science' },
+  { name: 'Carbon Brief',        url: 'https://www.carbonbrief.org/feed/',                       format: 'rss2', tier: 'C', offset: 2, region: 'GL', defaultCategory: 'science' },
   { name: 'Buenos Aires Times',  url: 'https://www.batimes.com.ar/feed',                         format: 'rss2', tier: 'D', slot: 3, region: 'AM' },
-  { name: 'Nature',              url: 'https://www.nature.com/nature.rss',                       format: 'rdf',  tier: 'D', slot: 4, region: 'GL', defaultCategory: 'science' },
+  { name: 'Nature',              url: 'https://www.nature.com/nature.rss',                       format: 'rdf',  tier: 'C', offset: 4, region: 'GL', defaultCategory: 'science' },
   { name: 'MercoPress',          url: 'https://en.mercopress.com/rss',                           format: 'rss2', tier: 'D', slot: 5, region: 'AM' },
   { name: 'CBC News',            url: 'https://www.cbc.ca/webfeed/rss/rss-world',                format: 'rss2', tier: 'D', slot: 6, region: 'AM' },
   { name: 'Fox News',            url: 'https://moxie.foxnews.com/google-publisher/world.xml',    format: 'rss2', tier: 'D', slot: 7, region: 'AM' },
@@ -127,12 +127,8 @@ function updateCache(cache, sourceName, itemCount) {
 
 // ── Source Selection ──────────────────────────────────────────────────
 
-// Tier A "core" sources: always included regardless of cycleIndex
-const TIER_A_CORE = new Set(['Al Jazeera', 'BBC World'])
-
-// Tier A "pool": 8 sources, 5 included per cycle via rotating window
-// Each source appears in 6-7 of every 8 consecutive cycles (~75%)
-const TIER_A_POOL = SOURCES.filter(s => s.tier === 'A' && !TIER_A_CORE.has(s.name))
+// Tier A sources with core: true are always included; the rest rotate via a sliding window
+const TIER_A_POOL = SOURCES.filter(s => s.tier === 'A' && !s.core)
 
 function selectSources(cycleIndex, cache) {
   const active = []
@@ -142,7 +138,7 @@ function selectSources(cycleIndex, cache) {
     const isQuiet = consecutiveEmpty >= 5  // demote if 5+ consecutive empty fetches
 
     if (tier === 'A') {
-      if (TIER_A_CORE.has(name)) {
+      if (source.core) {
         // Always include core sources
         active.push(source)
       } else {
@@ -150,7 +146,7 @@ function selectSources(cycleIndex, cache) {
         // Window shifts by 1 each cycle, wrapping around. This ensures
         // each source appears in ~5 out of every 8 cycles (~62% coverage).
         const poolIdx = TIER_A_POOL.indexOf(source)
-        if ((poolIdx - cycleIndex + 100) % TIER_A_POOL.length < 5) {
+        if (((poolIdx - cycleIndex) % TIER_A_POOL.length + TIER_A_POOL.length) % TIER_A_POOL.length < 5) {
           active.push(source)
         }
       }
@@ -308,6 +304,25 @@ function deduplicateStories(stories) {
   return kept
 }
 
+// ── Helpers (module-level) ────────────────────────────────────────────
+
+function tally(items, keyFn) {
+  const counts = {}
+  for (const item of items) { const k = keyFn(item); counts[k] = (counts[k] || 0) + 1 }
+  return counts
+}
+
+// Score stories by information density (used in main() to rank candidates)
+function infoScore(item) {
+  const text = (item.title || '') + ' ' + (item.description || '')
+  let score = 0
+  score += (text.match(/\d[\d,.]*/g) || []).length * 2
+  if (/["'\u201C\u201D]/.test(text)) score += 1
+  score += (text.match(/(?<=\s)[A-Z][a-z]{2,}/g) || []).length * 0.5
+  if (item.contentText) score += 3
+  return score
+}
+
 // ── Source Fetching ───────────────────────────────────────────────────
 
 function toArray(items) {
@@ -423,7 +438,7 @@ async function main() {
   const cache = loadCache()
 
   const activeSources = selectSources(cycleIndex, cache)
-  const tierCounts = activeSources.reduce((acc, s) => { acc[s.tier] = (acc[s.tier] || 0) + 1; return acc }, {})
+  const tierCounts = tally(activeSources, s => s.tier)
   console.error(`Cycle ${cycleIndex}/9 — fetching ${activeSources.length} sources: ${JSON.stringify(tierCounts)}`)
 
   const { slugs: existingSlugs, titles: existingTitles } = getExistingArticles()
@@ -441,11 +456,12 @@ async function main() {
   console.error(`After cross-source dedup: ${deduped.length} (from ${allStories.length})`)
 
   // Deduplicate against existing articles (slug + fuzzy title)
+  const existingFingerprints = existingTitles.map(fingerprint)
   const fresh = deduped.filter(item => {
     const slug = slugify(item.title, item.pubDate || new Date().toISOString())
     if (existingSlugs.has(slug)) return false
     const fp = fingerprint(item.title)
-    return !existingTitles.some(t => similarity(fp, fingerprint(t)) >= SIMILARITY_THRESHOLD)
+    return !existingFingerprints.some(efp => similarity(fp, efp) >= SIMILARITY_THRESHOLD)
   })
 
   // Sort by date (most recent first)
@@ -453,17 +469,6 @@ async function main() {
   fresh.sort((a, b) => toMs(b.pubDate || 0) - toMs(a.pubDate || 0))
 
   console.error(`Fresh stories: ${fresh.length}`)
-
-  // Score stories by information density
-  function infoScore(item) {
-    const text = (item.title || '') + ' ' + (item.description || '')
-    let score = 0
-    score += (text.match(/\d[\d,.]*/g) || []).length * 2
-    if (/["'\u201C\u201D]/.test(text)) score += 1
-    score += (text.match(/(?<=\s)[A-Z][a-z]{2,}/g) || []).length * 0.5
-    if (item.contentText) score += 3
-    return score
-  }
 
   const scored = fresh.map((item, i) => ({ item, i, score: infoScore(item) }))
 
@@ -516,13 +521,8 @@ async function main() {
   }
 
   // Log distributions
-  const catCounts = {}
-  const regionCounts = {}
-  for (const s of selected) {
-    const c = zuhdCategory(s)
-    catCounts[c] = (catCounts[c] || 0) + 1
-    regionCounts[s.region || '?'] = (regionCounts[s.region || '?'] || 0) + 1
-  }
+  const catCounts = tally(selected, s => zuhdCategory(s))
+  const regionCounts = tally(selected, s => s.region || '?')
   console.error(`Selected ${selected.length} stories — categories: ${JSON.stringify(catCounts)}`)
   console.error(`Region distribution: ${JSON.stringify(regionCounts)}`)
 
