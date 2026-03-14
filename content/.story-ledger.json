@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 22: THAAD redeployed, Kharg struck, Gulf states under fire",
+      "label": "Iran war Day 22: Trump blocks ceasefire, Isfahan factory bombed, Turkey invokes genocide",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-14T15:00:00Z",
-      "coverageCount": 140,
+      "lastCovered": "2026-03-14T17:30:00Z",
+      "coverageCount": 146,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -141,16 +141,22 @@
         "2026-03-14-iran-museums-historic-sites-damaged-war-heritage",
         "2026-03-14-iranians-trapped-between-airstrikes-loyalist-paramilitaries",
         "2026-03-14-israeli-strikes-kill-12-medical-workers-lebanon-health-center",
-        "2026-03-14-us-thaad-south-korea-mideast-defense-gap"
+        "2026-03-14-us-thaad-south-korea-mideast-defense-gap",
+        "2026-03-14-trump-rejects-iran-ceasefire-talks-allies-rebuffed",
+        "2026-03-14-turkey-warns-israel-new-genocide-lebanon-nato-first",
+        "2026-03-14-isfahan-factory-strike-kills-15-heater-refrigerator-workers",
+        "2026-03-14-turkey-iran-missile-denial-radar-data-nato-flashpoint",
+        "2026-03-14-israel-drones-basij-checkpoints-tehran-regime-capacity",
+        "2026-03-14-anti-government-iranians-fear-quds-day-state-rallies"
       ],
-      "summary": "Day 22: US redeploying THAAD from South Korea to Mideast, creating Pacific defense gap. Kharg struck, Gulf states under fire, 3M+ displaced."
+      "summary": "Day 22: Trump rejected three ceasefire efforts by Gulf allies. Israel bombing Basij checkpoints in Tehran. Isfahan civilian factory struck, 15 killed. Turkey warns of new genocide in Lebanon. Missiles hitting Turkish territory, Iran denying launches."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz: Thai rice exports halted, Pakistan salary cuts, 12M bpd offline",
+      "label": "Hormuz: Iran weaponizes blockade as diplomatic tool, threatens US companies",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-14T15:00:00Z",
-      "coverageCount": 129,
+      "lastCovered": "2026-03-14T17:30:00Z",
+      "coverageCount": 131,
       "category": "economy",
       "importance": 9,
       "arc": "ongoing",
@@ -270,9 +276,11 @@
         "2026-03-14-bitcoin-71k-kharg-strikes-fed-meeting",
         "2026-03-14-pakistan-holds-petroleum-prices-hormuz-crisis",
         "2026-03-14-thai-rice-exports-halted-iran-war-farmers",
-        "2026-03-14-pakistan-salary-cuts-30-percent-austerity-hormuz"
+        "2026-03-14-pakistan-salary-cuts-30-percent-austerity-hormuz",
+        "2026-03-14-iran-threatens-us-companies-middle-east-energy-retaliation",
+        "2026-03-14-iran-india-shipping-hormuz-selective-blockade-diplomacy"
       ],
-      "summary": "Thai rice exports halted — 80,000 tonnes sitting at Bangkok port. Pakistan cutting government salaries 5-30%. 12M bpd still offline."
+      "summary": "Iran allowing selective Indian shipping through Hormuz while blocking others. Yuan-only policy for tankers. Threatens to attack US corporate infrastructure if energy facilities struck. Citi/Deloitte/PwC already evacuated Dubai."
     },
     {
       "id": "pakistan-afghanistan-strikes",
@@ -281,7 +289,7 @@
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 4,
       "category": "politics",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": [
         "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul",
@@ -298,7 +306,7 @@
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-14-cuba-protesters-attack-communist-party-office-blackout"
@@ -312,7 +320,7 @@
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-14-russia-crocus-city-hall-19-sentenced-149-killed"
@@ -326,7 +334,7 @@
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-14-south-africa-2200-soldiers-deployed-five-provinces"
@@ -340,7 +348,7 @@
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-14-kolesnikova-charlemagne-prize-belarus-freedom"
@@ -354,7 +362,7 @@
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-14-habermas-dies-96-philosopher-public-sphere"
@@ -368,7 +376,7 @@
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-14-meta-layoffs-20-percent-ai-superintelligence-zuckerberg",
@@ -383,7 +391,7 @@
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-14-tesla-terafab-ai-chip-factory-launch"
@@ -427,7 +435,7 @@
       "lastCovered": "2026-03-14T02:45:00Z",
       "coverageCount": 4,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-13-trump-asks-south-korea-kim-dialogue-iran-war",
@@ -443,7 +451,7 @@
       "lastCovered": "2026-03-14T02:45:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-14-hrw-us-drone-strikes-haiti-1250-killed-children"
@@ -457,8 +465,8 @@
       "lastCovered": "2026-03-14T02:45:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-un-rights-chief-china-ethnic-unity-law-uyghurs-tibetans"
       ],
@@ -471,8 +479,8 @@
       "lastCovered": "2026-03-14T02:45:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-iran-hackers-cyberattack-stryker-medical-retaliation"
       ],
@@ -513,8 +521,8 @@
       "lastCovered": "2026-03-14T07:34:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-doge-testimony-300000-deaths-data-breaches"
       ],
@@ -583,7 +591,7 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-14-sudan-rsf-drone-campaign-169-killed-south-sudan"
@@ -597,7 +605,7 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-14-amsterdam-jewish-school-explosion-deliberate-attack"
@@ -611,7 +619,7 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-14-trump-xi-meeting-iran-war-uncertain-goals"
@@ -625,8 +633,8 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-russia-strikes-kyiv-missiles-drones-war-continues"
       ],
@@ -639,8 +647,8 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-china-security-africa-drc-somalia-assets"
       ],
@@ -667,8 +675,8 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-paediatric-tb-medicine-shortage-pakistan"
       ],
@@ -709,7 +717,7 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-14-venezuelans-rally-machado-santiago-exile-opposition",
@@ -724,7 +732,7 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-14-nigeria-five-engineers-disappeared-wives-petition-tinubu"
@@ -738,7 +746,7 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-14-us-auto-lobby-block-chinese-carmakers-protectionism"
@@ -752,7 +760,7 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-14-indonesia-danantara-chinese-waste-energy-prabowo-investment"
@@ -766,7 +774,7 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-14-mozambique-cholera-7000-cases-political-violence-health-crisis"
@@ -780,8 +788,8 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-nigeria-glaucoma-6000-cases-africa-blindness-crisis"
       ],
@@ -794,7 +802,7 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-14-google-32-billion-wiz-acquisition-israeli-cybersecurity"
@@ -808,7 +816,7 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-14-ukraine-battlefield-data-allied-ai-models-military"
@@ -822,12 +830,68 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-14-huawei-ai-data-platform-enterprise-global-south-alternative"
       ],
       "summary": "Enterprise AI platform at MWC for adoption outside US tech ecosystem."
+    },
+    {
+      "id": "beijing-pyongyang-rail",
+      "label": "Beijing-Pyongyang train revived after 6 years",
+      "firstSeen": "2026-03-14T17:30:00Z",
+      "lastCovered": "2026-03-14T17:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-beijing-pyongyang-train-revived-six-years-china-north-korea"
+      ],
+      "summary": "First train from Beijing to Pyongyang in six years. COVID-era suspension lifted as US stretched thin in Middle East and THAAD redeployed from Korea."
+    },
+    {
+      "id": "korea-finland-quantum-6g",
+      "label": "S. Korea-Finland quantum/6G research partnership",
+      "firstSeen": "2026-03-14T17:30:00Z",
+      "lastCovered": "2026-03-14T17:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-south-korea-finland-quantum-6g-research-partnership"
+      ],
+      "summary": "South Korea and Finland deepening cooperation in quantum computing and 6G. Middle-power tech axis forming outside US-China duopoly."
+    },
+    {
+      "id": "montana-right-to-compute",
+      "label": "Montana Right to Compute act gains national attention",
+      "firstSeen": "2026-03-14T17:30:00Z",
+      "lastCovered": "2026-03-14T17:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-montana-right-to-compute-act-digital-rights-first"
+      ],
+      "summary": "First US state to enshrine right to run code on own hardware. Passed 2025, now gaining momentum as other states consider similar laws."
+    },
+    {
+      "id": "vitalik-fli-ai-policy",
+      "label": "Vitalik: meme coins became $1B authoritarian AI policy fund",
+      "firstSeen": "2026-03-14T17:30:00Z",
+      "lastCovered": "2026-03-14T17:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-vitalik-buterin-shiba-inu-1-billion-ai-policy-war-chest"
+      ],
+      "summary": "Future of Life Institute liquidated $500M from Shiba Inu donation and pivoted to political AI lobbying. Buterin warns of authoritarian outcomes."
     }
   ]
 }
