@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# zuhd.news editorial cycle — runs 4x daily via systemd timer
+# zuhd.news editorial cycle — runs 10x daily via systemd timer
 # Three-stage pipeline: selector picks stories, writer drafts articles, editor checks and deploys
 
 set -uo pipefail
@@ -16,21 +16,24 @@ flock -n 200 || { echo "Cycle already running — exiting"; exit 0; }
 export PATH="/root/.local/share/mise/installs/node/24.13.1/bin:/root/.local/bin:$PATH"
 export HOME="/root"
 
-# Models — use aliases so CLI auto-resolves to latest version
-# Selector needs Opus for multi-constraint editorial judgment; other phases use Sonnet
+# Models and effort levels — chosen per task type:
+#   Selector: Opus+medium — best editorial reasoning; medium effort sufficient for comparison/filtering
+#   Writer:   Sonnet+high — quality creative writing; arc + detail selection needs max effort
+#   Editor:   Sonnet+medium — mechanical style checks + editorial judgment; medium is right balance
+#   Reflect:  Sonnet+medium — reflective audit, low frequency
 CLAUDE_MODEL="${ZUHD_MODEL:-sonnet}"
-CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-sonnet}"
-# Note: opus was default but hangs as of 2026-03-10. Switch back when stable.
+CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-opus}"
 export ZUHD_MODEL="$CLAUDE_MODEL"
 
 # Tool whitelist for Claude CLI (--dangerously-skip-permissions is blocked as root)
 # Stage-specific tool sets: narrower access = fewer wrong turns
-TOOLS_SELECTOR="Bash,Read,Write,Edit,Glob,Grep"
+# Selector no longer needs Bash — RSS feed is pre-fetched to /tmp/zuhd-feed.json before session starts
+TOOLS_SELECTOR="Read,Write,Edit,Glob,Grep"
 TOOLS_WRITER="Read,Write,WebFetch"
 TOOLS_EDITOR="Read,Edit,Glob,Grep"
 TOOLS_REFLECT="Read,Write,Glob,Grep"
-# Common flags for all headless Claude CLI invocations
-CLAUDE_BASE="--no-session-persistence --model $CLAUDE_MODEL"
+# Common flags for all headless Claude CLI invocations (no --model: passed per stage)
+CLAUDE_FLAGS="--no-session-persistence"
 
 mkdir -p "$LOG_DIR"
 
@@ -50,16 +53,34 @@ echo "=== zuhd.news editorial cycle ===" | tee "$LOG_FILE"
 echo "Started: $(date)" | tee -a "$LOG_FILE"
 
 # Clear stale selection from previous cycle — prevents writer from using yesterday's picks if selector fails
-rm -f /tmp/zuhd-selection.json /tmp/zuhd-new-articles.txt
+rm -f /tmp/zuhd-selection.json /tmp/zuhd-new-articles.txt /tmp/zuhd-feed.json
 
-# Stage 1: Selector — fetch news, pick stories, save selection
+# Stage 0: Pre-fetch RSS feeds — run outside Claude so selector just reads a file
+echo "" | tee -a "$LOG_FILE"
+echo "--- Stage 0: RSS feed fetch ---" | tee -a "$LOG_FILE"
+T0=$SECONDS
+node scripts/fetch-news.js > /tmp/zuhd-feed.json 2>>"$LOG_FILE"
+FEED_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed.json'));console.log('cycle '+d.cycleIndex+'/9, '+d.freshItems+' fresh from '+d.sources.length+' sources')}catch{console.log('failed')}" 2>/dev/null)
+echo "Feed fetch done — $((SECONDS - T0))s ($FEED_STATS)" | tee -a "$LOG_FILE"
+
+# Stage 1: Selector — read pre-fetched feed, pick stories, save selection
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 1: Selector ---" | tee -a "$LOG_FILE"
 T1=$SECONDS
 SELECT_PROMPT=$(cat scripts/select-prompt.md)
+# Inject compact coverage map so selector understands today's topic landscape at a glance
+TODAY_COVERAGE=$(node scripts/coverage-map.js 2>/dev/null)
+if [ -n "$TODAY_COVERAGE" ]; then
+  COVERAGE_GROUPS=$(echo "$TODAY_COVERAGE" | wc -l)
+  SELECT_PROMPT="${SELECT_PROMPT}
+
+CRITICAL: Do NOT re-select stories already covered in the last 24 hours. Here is recent coverage grouped by topic — avoid duplicating any of these angles:
+${TODAY_COVERAGE}"
+  echo "Injecting coverage map (${COVERAGE_GROUPS} topic groups) into selector prompt" | tee -a "$LOG_FILE"
+fi
 FALLBACK_FLAG=""
 [ "$CLAUDE_SELECTOR_MODEL" != "$CLAUDE_MODEL" ] && FALLBACK_FLAG="--fallback-model $CLAUDE_MODEL"
-timeout 1200 claude $CLAUDE_BASE --model $CLAUDE_SELECTOR_MODEL $FALLBACK_FLAG --allowedTools $TOOLS_SELECTOR --max-turns 50 -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+timeout 1200 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_SELECTOR_MODEL $FALLBACK_FLAG --allowedTools $TOOLS_SELECTOR --max-turns 35 -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 SELECT_EXIT=$?
 echo "Selector exit: $SELECT_EXIT — $((SECONDS - T1))s" | tee -a "$LOG_FILE"
 
@@ -92,7 +113,7 @@ echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 2: Writer ---" | tee -a "$LOG_FILE"
 T2=$SECONDS
 WRITE_PROMPT=$(cat scripts/write-prompt.md)
-timeout 1800 claude $CLAUDE_BASE --allowedTools $TOOLS_WRITER --max-turns 60 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+timeout 1800 claude $CLAUDE_FLAGS --effort high --model $CLAUDE_MODEL --allowedTools $TOOLS_WRITER --max-turns 60 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 WRITE_EXIT=$?
 echo "Writer exit: $WRITE_EXIT — $((SECONDS - T2))s" | tee -a "$LOG_FILE"
 
@@ -121,7 +142,7 @@ else
 
 IMPORTANT: Only check these specific files (this cycle's batch). Do NOT scan for other untracked files:
 $ARTICLE_LIST"
-  timeout 900 claude $CLAUDE_BASE --effort medium --allowedTools $TOOLS_EDITOR --max-turns 40 -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
+  timeout 1200 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_EDITOR --max-turns 50 -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT — $((SECONDS - T3))s" | tee -a "$LOG_FILE"
 
@@ -131,53 +152,11 @@ $ARTICLE_LIST"
   echo "--- Stage 3b: Build & Deploy ---" | tee -a "$LOG_FILE"
 
   # Validate new articles — move malformed ones aside so they don't get deployed
-  node -e "
-const fs = require('fs');
-const path = require('path');
-const files = fs.readFileSync('/tmp/zuhd-new-articles.txt', 'utf8').trim().split('\n').filter(Boolean);
-let bad = 0;
-for (const f of files) {
-  const full = path.resolve(f);
-  if (!fs.existsSync(full)) continue;
-  const raw = fs.readFileSync(full, 'utf8');
-  const fm = raw.match(/^---\n([\s\S]*?)\n---/);
-  if (!fm) { console.log('SKIP (no frontmatter): ' + f); fs.renameSync(full, full + '.bad'); bad++; continue; }
-  const yaml = fm[1];
-  const has = (k) => yaml.includes(k + ':');
-  if (!has('title') || !has('date') || !has('category') || !has('source')) {
-    console.log('SKIP (missing fields): ' + f); fs.renameSync(full, full + '.bad'); bad++; continue;
-  }
-  const body = raw.replace(/^---[\s\S]*?---\s*/, '').trim();
-  const sentences = body.split(/(?<=[.!?][\u201D\u2019]?)\s+(?=[A-Z\u00C0-\u024F])/).filter(s => s.length > 5);
-  if (sentences.length < 2 || sentences.length > 5) {
-    console.log('SKIP (' + sentences.length + ' sentences): ' + f); fs.renameSync(full, full + '.bad'); bad++; continue;
-  }
-}
-console.log('Validated ' + files.length + ' articles, ' + bad + ' removed');
-" 2>&1 | tee -a "$LOG_FILE"
+  node scripts/validate-articles.js 2>&1 | tee -a "$LOG_FILE"
 
   # Write .last-cycle.json from validated articles (not raw selection)
   # This ensures the selector next cycle only skips stories that were actually published
-  node -e "
-const fs = require('fs');
-const path = require('path');
-const sel = JSON.parse(fs.readFileSync('/tmp/zuhd-selection.json', 'utf8'));
-const articleDir = 'content/articles';
-const published = sel.filter(s => fs.existsSync(path.join(articleDir, s.suggestedSlug + '.md')));
-const cycle = {
-  timestamp: new Date().toISOString(),
-  articles: published.map(s => ({
-    slug: s.suggestedSlug,
-    title: s.title,
-    category: s.category,
-    source: s.source
-  })),
-  categories: [...new Set(published.map(s => s.category))],
-  sources: [...new Set(published.map(s => s.source))]
-};
-fs.writeFileSync('content/.last-cycle.json', JSON.stringify(cycle, null, 2) + '\n');
-console.log('Wrote .last-cycle.json with ' + published.length + '/' + sel.length + ' articles (validated)');
-" 2>&1 | tee -a "$LOG_FILE"
+  node scripts/write-last-cycle.js 2>&1 | tee -a "$LOG_FILE"
 
   # Build
   node scripts/build.js 2>&1 | tee -a "$LOG_FILE"
@@ -226,11 +205,11 @@ if [ "$DAY_OF_WEEK" = "7" ] && [ "$HOUR_UTC" = "22" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 5: Weekly reflection ---" | tee -a "$LOG_FILE"
   REFLECT_PROMPT=$(cat scripts/reflect-prompt.md)
-  timeout 300 claude $CLAUDE_BASE --effort medium --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+  timeout 300 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
   REFLECT_EXIT=$?
   echo "Reflection exit: $REFLECT_EXIT" | tee -a "$LOG_FILE"
   # Failure here doesn't affect publishing — the cycle is already complete
 else
   echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 5: Weekly reflection (skipped — day $DAY_OF_WEEK $HOUR_UTC:00 UTC, runs Sunday 21:00 only) ---" | tee -a "$LOG_FILE"
+  echo "--- Stage 5: Weekly reflection (skipped — day $DAY_OF_WEEK $HOUR_UTC:00 UTC, runs Sunday 22:00 only) ---" | tee -a "$LOG_FILE"
 fi
