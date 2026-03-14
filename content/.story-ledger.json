@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 22: Kurdistan 110+ killed, Lebanon 1M displaced, heritage destroyed",
+      "label": "Iran war Day 22: THAAD redeployed, Kharg struck, Gulf states under fire",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-14T12:34:00Z",
-      "coverageCount": 139,
+      "lastCovered": "2026-03-14T15:00:00Z",
+      "coverageCount": 140,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -136,22 +136,21 @@
         "2026-03-14-us-embassy-baghdad-smoke-attack-iran-war",
         "2026-03-14-fujairah-port-oil-tanks-fire-attack-uae",
         "2026-03-14-hamas-urges-iran-stop-targeting-neighbors",
-        "2026-03-14-doha-explosions-evacuations-qatar-iran-war",
-        "2026-03-14-iranian-sailors-84-bodies-repatriated-torpedo-strike",
         "2026-03-14-iran-kurdistan-110-killed-war-civilian-toll",
         "2026-03-14-lebanon-million-displaced-tyre-defies-evacuation",
         "2026-03-14-iran-museums-historic-sites-damaged-war-heritage",
         "2026-03-14-iranians-trapped-between-airstrikes-loyalist-paramilitaries",
-        "2026-03-14-israeli-strikes-kill-12-medical-workers-lebanon-health-center"
+        "2026-03-14-israeli-strikes-kill-12-medical-workers-lebanon-health-center",
+        "2026-03-14-us-thaad-south-korea-mideast-defense-gap"
       ],
-      "summary": "Day 22: Loyalist paramilitaries terrorizing Iranian civilians. 12 medical workers killed in single Israeli strike on Lebanon health center."
+      "summary": "Day 22: US redeploying THAAD from South Korea to Mideast, creating Pacific defense gap. Kharg struck, Gulf states under fire, 3M+ displaced."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz: 12M bpd offline, 70% output collapse possible, Egypt pound sliding",
+      "label": "Hormuz: Thai rice exports halted, Pakistan salary cuts, 12M bpd offline",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-14T10:02:00Z",
-      "coverageCount": 127,
+      "lastCovered": "2026-03-14T15:00:00Z",
+      "coverageCount": 129,
       "category": "economy",
       "importance": 9,
       "arc": "ongoing",
@@ -269,10 +268,127 @@
         "2026-03-14-saudi-aramco-denies-ukrainian-drones-oilfield-defense",
         "2026-03-14-egypt-inflation-foreign-currency-crisis-iran-war",
         "2026-03-14-bitcoin-71k-kharg-strikes-fed-meeting",
-        "2026-03-14-iran-hormuz-tankers-yuan-only-de-dollarization",
-        "2026-03-14-pakistan-holds-petroleum-prices-hormuz-crisis"
+        "2026-03-14-pakistan-holds-petroleum-prices-hormuz-crisis",
+        "2026-03-14-thai-rice-exports-halted-iran-war-farmers",
+        "2026-03-14-pakistan-salary-cuts-30-percent-austerity-hormuz"
       ],
-      "summary": "Pakistan holding petroleum prices despite global surge while IMF talks failed. 12M bpd still offline."
+      "summary": "Thai rice exports halted — 80,000 tonnes sitting at Bangkok port. Pakistan cutting government salaries 5-30%. 12M bpd still offline."
+    },
+    {
+      "id": "pakistan-afghanistan-strikes",
+      "label": "Pakistan-Afghanistan: Taliban 'crossed red line', China mediating",
+      "firstSeen": "2026-03-14T00:30:00Z",
+      "lastCovered": "2026-03-14T15:00:00Z",
+      "coverageCount": 4,
+      "category": "politics",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul",
+        "2026-03-14-afghan-taliban-retaliatory-drones-pakistan",
+        "2026-03-14-pakistan-taliban-drone-attacks-crossed-red-line",
+        "2026-03-14-china-mediates-pakistan-afghanistan-tensions"
+      ],
+      "summary": "Pakistan president declares Taliban 'crossed red line' with civilian drone attacks. China's Wang Yi mediating. Deadliest fighting ever between the two neighbors."
+    },
+    {
+      "id": "cuba-blackout-crisis",
+      "label": "Cuba: Protesters attack Communist party office amid blackout fury",
+      "firstSeen": "2026-03-14T15:00:00Z",
+      "lastCovered": "2026-03-14T15:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-cuba-protesters-attack-communist-party-office-blackout"
+      ],
+      "summary": "Anti-government protesters attacked Communist party office in Morón. Blackouts worsened by US oil blockade. Rare direct attack on party infrastructure."
+    },
+    {
+      "id": "russia-crocus-sentencing",
+      "label": "Russia sentences 19 for Crocus City Hall attack that killed 149",
+      "firstSeen": "2026-03-14T15:00:00Z",
+      "lastCovered": "2026-03-14T15:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-russia-crocus-city-hall-19-sentenced-149-killed"
+      ],
+      "summary": "Moscow court convicted 19 people for 2024 Crocus City Hall massacre. 149 killed, 600+ wounded."
+    },
+    {
+      "id": "south-africa-military-deployment",
+      "label": "South Africa deploys 2,200 soldiers to five provinces",
+      "firstSeen": "2026-03-14T15:00:00Z",
+      "lastCovered": "2026-03-14T15:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-south-africa-2200-soldiers-deployed-five-provinces"
+      ],
+      "summary": "Ramaphosa deploys SANDF to assist police across five provinces. Signals civilian law enforcement overwhelmed."
+    },
+    {
+      "id": "kolesnikova-charlemagne",
+      "label": "Kolesnikova collects Charlemagne Prize after Belarus prison release",
+      "firstSeen": "2026-03-14T15:00:00Z",
+      "lastCovered": "2026-03-14T15:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-kolesnikova-charlemagne-prize-belarus-freedom"
+      ],
+      "summary": "Maria Kolesnikova finally collects 2022 Charlemagne Prize in person after December prison release. Spent years in solitary."
+    },
+    {
+      "id": "habermas-death",
+      "label": "Jürgen Habermas dies at 96",
+      "firstSeen": "2026-03-14T15:00:00Z",
+      "lastCovered": "2026-03-14T15:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-habermas-dies-96-philosopher-public-sphere"
+      ],
+      "summary": "The philosopher who gave the world the concept of the public sphere. Argued for inclusive democracy and communicative rationality."
+    },
+    {
+      "id": "meta-ai-layoffs",
+      "label": "Meta cuts 20%+ workforce to fund AI superintelligence pursuit",
+      "firstSeen": "2026-03-14T02:45:00Z",
+      "lastCovered": "2026-03-14T15:00:00Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-03-14-meta-layoffs-20-percent-ai-superintelligence-zuckerberg",
+        "2026-03-14-meta-layoffs-20-percent-ai-superintelligence"
+      ],
+      "summary": "Meta planning 20%+ layoffs (potentially 13,000+ jobs) to fund AI infrastructure. Execs discussed headcount assuming AI-assisted workers."
+    },
+    {
+      "id": "tesla-terafab-chips",
+      "label": "Tesla launching Terafab AI chip factory in 7 days",
+      "firstSeen": "2026-03-14T15:00:00Z",
+      "lastCovered": "2026-03-14T15:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-14-tesla-terafab-ai-chip-factory-launch"
+      ],
+      "summary": "Musk announces Tesla's Terafab chip fabrication facility launching in 7 days. Fifth-gen AI chip for autonomous driving."
     },
     {
       "id": "gulf-wartime-censorship",
@@ -302,7 +418,7 @@
         "2026-03-13-uk-andrew-mandelson-epstein-bathrobes-photos",
         "2026-03-14-la28-olympics-chief-epstein-investigation"
       ],
-      "summary": "LA city council unanimously votes to investigate LA28 Olympics chief Casey Wasserman over Epstein ties. Follows UK Andrew/Mandelson photos, Modi embarrassment."
+      "summary": "LA city council unanimously votes to investigate LA28 Olympics chief Casey Wasserman over Epstein ties."
     },
     {
       "id": "trump-kim-dialogue-probe",
@@ -316,25 +432,9 @@
       "articles": [
         "2026-03-13-trump-asks-south-korea-kim-dialogue-iran-war",
         "2026-03-14-trump-positive-north-korea-dialogue-iran-war-stretched",
-        "2026-03-14-north-korea-fires-10-ballistic-missiles-us-south-korea-drills",
-        "2026-03-14-trump-positive-north-korea-dialogue-iran-war-stretched"
+        "2026-03-14-north-korea-fires-10-ballistic-missiles-us-south-korea-drills"
       ],
-      "summary": "S. Korean PM confirms Trump positive on NK dialogue but left timing open. Iran war stretching US military may drive diplomacy."
-    },
-    {
-      "id": "pakistan-afghanistan-strikes",
-      "label": "Pakistan-Afghanistan: Taliban retaliates with drones",
-      "firstSeen": "2026-03-14T00:30:00Z",
-      "lastCovered": "2026-03-14T05:10:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul",
-        "2026-03-14-afghan-taliban-retaliatory-drones-pakistan"
-      ],
-      "summary": "Pakistan struck Taliban 313 Corps HQ in Kabul. Taliban retaliated with drone attacks injuring 4 including 2 children. Drone exchange is new phase."
+      "summary": "S. Korean PM confirms Trump positive on NK dialogue. Iran war stretching US military may drive diplomacy."
     },
     {
       "id": "hrw-haiti-drone-war",
@@ -343,8 +443,8 @@
       "lastCovered": "2026-03-14T02:45:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-14-hrw-us-drone-strikes-haiti-1250-killed-children"
       ],
@@ -357,26 +457,12 @@
       "lastCovered": "2026-03-14T02:45:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-14-un-rights-chief-china-ethnic-unity-law-uyghurs-tibetans"
       ],
-      "summary": "China passed ethnic unity law during Two Sessions. UN rights chief flags codified assimilation of Uyghurs, Tibetans, Mongolians."
-    },
-    {
-      "id": "meta-ai-layoffs",
-      "label": "Meta cuts 20%+ workforce to fund AI superintelligence pursuit",
-      "firstSeen": "2026-03-14T02:45:00Z",
-      "lastCovered": "2026-03-14T02:45:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-14-meta-layoffs-20-percent-ai-superintelligence-zuckerberg"
-      ],
-      "summary": "Meta planning 20%+ layoffs (potentially 13,000+ jobs) to fund AI superintelligence."
+      "summary": "China passed ethnic unity law during Two Sessions. UN rights chief flags codified assimilation."
     },
     {
       "id": "iran-cyber-retaliation",
@@ -385,16 +471,16 @@
       "lastCovered": "2026-03-14T02:45:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-14-iran-hackers-cyberattack-stryker-medical-retaliation"
       ],
-      "summary": "Iran-linked group claims cyberattack on Stryker medical devices as war retaliation. First corporate target."
+      "summary": "Iran-linked group claims cyberattack on Stryker medical devices as war retaliation."
     },
     {
       "id": "myanmar-junta-election",
-      "label": "Myanmar junta holds sham election, parliament convenes next week",
+      "label": "Myanmar junta holds sham election",
       "firstSeen": "2026-03-14T05:10:00Z",
       "lastCovered": "2026-03-14T05:10:00Z",
       "coverageCount": 1,
@@ -404,7 +490,7 @@
       "articles": [
         "2026-03-14-myanmar-junta-election-sham-democracy"
       ],
-      "summary": "Myanmar held first election since 2021 coup. USDP won commanding majority. Parliament convenes next week."
+      "summary": "Myanmar held first election since 2021 coup. USDP won commanding majority."
     },
     {
       "id": "indonesia-resource-nationalism",
@@ -418,7 +504,7 @@
       "articles": [
         "2026-03-14-indonesia-tightens-coal-palm-oil-exports-prabowo"
       ],
-      "summary": "Prabowo orders tighter coal and palm oil exports. World's largest exporter leveraging war-driven energy insecurity for resource nationalism."
+      "summary": "Prabowo orders tighter coal and palm oil exports."
     },
     {
       "id": "doge-accountability",
@@ -427,12 +513,12 @@
       "lastCovered": "2026-03-14T07:34:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-14-doge-testimony-300000-deaths-data-breaches"
       ],
-      "summary": "Deposition reveals DOGE operative used ChatGPT to scan grants for racial terms. DOGE linked to 300K deaths and multiple data breaches."
+      "summary": "DOGE operative used ChatGPT to scan grants for racial terms. Linked to 300K deaths and data breaches."
     },
     {
       "id": "us-surveillance-infrastructure",
@@ -446,11 +532,11 @@
       "articles": [
         "2026-03-14-flock-ice-surveillance-landscape-america"
       ],
-      "summary": "Comprehensive mapping of US surveillance infrastructure from neighborhood Ring cameras to Palantir ELITE tool powering ICE raids."
+      "summary": "Comprehensive mapping of US surveillance infrastructure."
     },
     {
       "id": "fractal-spacetime-physics",
-      "label": "Asymptotic safety: space-time may be fractal, challenging string theory",
+      "label": "Asymptotic safety: space-time may be fractal",
       "firstSeen": "2026-03-14T02:45:00Z",
       "lastCovered": "2026-03-14T02:45:00Z",
       "coverageCount": 1,
@@ -460,11 +546,11 @@
       "articles": [
         "2026-03-14-fractal-spacetime-astrid-eichhorn-asymptotic-safety"
       ],
-      "summary": "Astrid Eichhorn proposes fractal space-time as alternative to string theory via asymptotic safety."
+      "summary": "Astrid Eichhorn proposes fractal space-time as alternative to string theory."
     },
     {
       "id": "nuclear-pore-disorder",
-      "label": "Nuclear pore complexes work through disorder, not precision",
+      "label": "Nuclear pore complexes work through disorder",
       "firstSeen": "2026-03-14T02:45:00Z",
       "lastCovered": "2026-03-14T02:45:00Z",
       "coverageCount": 1,
@@ -474,11 +560,11 @@
       "articles": [
         "2026-03-14-nuclear-pore-complex-disorder-drives-cell-machinery"
       ],
-      "summary": "New imaging reveals nuclear pore complexes work through disorder. Overturns assumptions about biological machines."
+      "summary": "New imaging reveals nuclear pore complexes work through disorder."
     },
     {
       "id": "humanoid-robots-dexterity",
-      "label": "Humanoid robots still fail at fine motor tasks despite billions invested",
+      "label": "Humanoid robots still fail at fine motor tasks",
       "firstSeen": "2026-03-14T02:45:00Z",
       "lastCovered": "2026-03-14T02:45:00Z",
       "coverageCount": 1,
@@ -488,7 +574,7 @@
       "articles": [
         "2026-03-14-humanoid-robots-fine-motor-dexterity-gap"
       ],
-      "summary": "Despite vast improvements, humanoid robots cannot reliably handle fine motor tasks. Contact problem unsolved."
+      "summary": "Despite vast improvements, humanoid robots cannot reliably handle fine motor tasks."
     },
     {
       "id": "sudan-rsf-drone-campaign",
@@ -497,8 +583,8 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-14-sudan-rsf-drone-campaign-169-killed-south-sudan"
       ],
@@ -511,8 +597,8 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
         "2026-03-14-amsterdam-jewish-school-explosion-deliberate-attack"
       ],
@@ -525,8 +611,8 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-14-trump-xi-meeting-iran-war-uncertain-goals"
       ],
@@ -539,12 +625,12 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-14-russia-strikes-kyiv-missiles-drones-war-continues"
       ],
-      "summary": "Russia struck Kyiv with missiles/drones. Strikes at 3-year peak as US stretched."
+      "summary": "Russia struck Kyiv with missiles/drones. Strikes at 3-year peak."
     },
     {
       "id": "china-security-africa",
@@ -553,8 +639,8 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-14-china-security-africa-drc-somalia-assets"
       ],
@@ -567,8 +653,8 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-shark-nets-club-med-south-africa-endangered-species"
       ],
@@ -581,12 +667,12 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-14-paediatric-tb-medicine-shortage-pakistan"
       ],
-      "summary": "Pakistan running out of child-sized TB medicines. Hormuz compounds supply disruption."
+      "summary": "Pakistan running out of child-sized TB medicines."
     },
     {
       "id": "apple-openclaw-china",
@@ -595,8 +681,8 @@
       "lastCovered": "2026-03-14T10:02:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-apple-mac-mini-openclaw-ai-china-sellout"
       ],
@@ -623,13 +709,13 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-14-venezuelans-rally-machado-santiago-exile-opposition",
         "2026-03-14-colombia-venezuela-petro-maduro-diplomatic-downgrade"
       ],
-      "summary": "Machado drew thousands in Santiago. Petro-Maduro meeting downgraded. Opposition gaining while regime isolates."
+      "summary": "Machado drew thousands in Santiago. Petro-Maduro meeting downgraded."
     },
     {
       "id": "nigeria-disappearances-impunity",
@@ -638,12 +724,12 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
         "2026-03-14-nigeria-five-engineers-disappeared-wives-petition-tinubu"
       ],
-      "summary": "Five engineers abducted in 2021 from federally-funded project. Wives petitioning 5 years later."
+      "summary": "Five engineers abducted in 2021 from federally-funded project."
     },
     {
       "id": "us-china-auto-protectionism",
@@ -652,8 +738,8 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-14-us-auto-lobby-block-chinese-carmakers-protectionism"
       ],
@@ -666,8 +752,8 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
         "2026-03-14-indonesia-danantara-chinese-waste-energy-prabowo-investment"
       ],
@@ -680,8 +766,8 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-14-mozambique-cholera-7000-cases-political-violence-health-crisis"
       ],
@@ -689,17 +775,17 @@
     },
     {
       "id": "africa-glaucoma-blindness",
-      "label": "Nigeria: 6,000+ glaucoma cases, Africa highest burden",
+      "label": "Nigeria: 6,000+ glaucoma cases",
       "firstSeen": "2026-03-14T12:34:00Z",
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-14-nigeria-glaucoma-6000-cases-africa-blindness-crisis"
       ],
-      "summary": "Single state: 6,381 cases in 18 months. Africa highest glaucoma burden, least treatment."
+      "summary": "Single state: 6,381 cases in 18 months."
     },
     {
       "id": "google-wiz-acquisition",
@@ -708,8 +794,8 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-14-google-32-billion-wiz-acquisition-israeli-cybersecurity"
       ],
@@ -722,12 +808,12 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-14-ukraine-battlefield-data-allied-ai-models-military"
       ],
-      "summary": "Platform for allies to train AI on battlefield data without exposing sensitive info."
+      "summary": "Platform for allies to train AI on battlefield data."
     },
     {
       "id": "huawei-ai-infrastructure",
@@ -736,8 +822,8 @@
       "lastCovered": "2026-03-14T12:34:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
         "2026-03-14-huawei-ai-data-platform-enterprise-global-south-alternative"
       ],
