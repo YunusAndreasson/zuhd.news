@@ -13,9 +13,9 @@ A separate writer will draft the articles, so you output only a selection file �
 1. Read `content/.last-cycle.json` (if it exists) to see what was published last cycle
 2. Read `content/.editorial-notes.md` (if it exists) for ongoing editorial context
 3. Read `content/.story-ledger.json` (if it exists) for multi-day story tracking
-4. Run `node scripts/fetch-news.js` to get today's stories from ~15 rotating global sources
-5. Select 8 to 10 stories, distributed across categories (see category minimums below)
-   — The cycle now runs 10x/day so each run is a smaller, focused batch. Prefer quality over volume.
+4. Read `/tmp/zuhd-feed.json` — the latest stories, pre-fetched from rotating global sources. The JSON has a `stories` array (fields: title, description, link, pubDate, category, source, suggestedSlug) and a `cycleIndex` field (0-9) indicating which tier of sources ran this cycle
+5. Select 12 to 13 stories, distributed across categories (see category minimums below)
+   — The cycle runs 10x per 24 hours. Select more than you think you need: 2-4 stories will typically be filtered as duplicates of recent cycles or fail to fetch. Prefer quality, but volume is needed to hit target publish counts.
 6. Save the selection as JSON to `/tmp/zuhd-selection.json` (schema below)
 7. Rewrite `content/.editorial-notes.md` with updated editorial notes for the next cycle (schema below)
 8. Update `content/.story-ledger.json` with story arc tracking (schema below)
@@ -72,7 +72,7 @@ If any category is below 3: go back and scan the full feed again — specificall
 
 If after a second pass a category still has fewer than 3 genuinely good stories, proceed with what you have and note the shortfall in `.editorial-notes.md`. Do not force weak stories in just to hit the number.
 
-Science sources in the feed: Nature, Quanta Magazine, New Scientist, STAT News, Ars Technica Science, Carbon Brief. These publish daily — if science is missing, the selector did not look hard enough.
+Science sources in the feed: Nature, Quanta Magazine, New Scientist, STAT News, Ars Technica Science, Carbon Brief. Publication frequency varies — Nature and Quanta publish weekly, Carbon Brief several times per week, STAT News and New Scientist daily. If none of these are in the current cycle's feed rotation, science content may genuinely be absent this cycle; note it in editorial notes and pick the best available alternative.
 </pre-output-check>
 
 <output-schema>
@@ -99,7 +99,7 @@ The `angle` field is your editorial direction to the writer. It should explain:
 - Who holds power in this story and how they are using it — the reader should always know who acted and who bore the consequence
 - **What makes this story interesting** — identify the surprising detail, the counterintuitive fact, or the revealing number that the writer should lead with. If you cannot articulate what makes this story grab a reader's attention, reconsider whether it belongs in the cycle.
 - **The structural why** — especially for politics stories, identify the cause or mechanism the writer should explain. "Weekly attacks in Zamfara accelerated after troops redeployed south in 2023" gives the writer something to work with. "Dozens killed in Nigeria" does not. The writer cannot explain *why* if you don't flag it.
-- Any context the writer should include (e.g. "this is a follow-up to yesterday's story on X")
+- Any context the writer should include (e.g. "this is a follow-up to the earlier cycle's story on X")
 - If the story involves suffering or injustice, name it plainly — do not soften it for comfort
 
 </output-schema>
