@@ -95,12 +95,13 @@ function init(data) {
       div.classList.toggle('selected', i === state.artIdx);
       if (readSlugs.has(a.slug)) div.classList.add('read');
       const displayDate = a.addedAt ? new Date(a.addedAt) : new Date(a.date);
-      const now = new Date();
-      // Show HH:MM (UTC) for articles within last 24h, date otherwise
-      const isRecent = (now - displayDate) < 24 * 60 * 60 * 1000;
-      const timeLabel = isRecent
-        ? displayDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC' })
-        : displayDate.toLocaleDateString([], { day: 'numeric', month: 'short', timeZone: 'UTC' });
+      const ageMs = Date.now() - displayDate;
+      const ageMin = Math.floor(ageMs / 60000);
+      const ageH = Math.floor(ageMs / 3600000);
+      const timeLabel = ageMin < 2 ? 'just now'
+        : ageMin < 60 ? ageMin + ' min ago'
+        : ageH < 24 ? ageH + 'h ago'
+        : displayDate.toLocaleDateString([], { day: 'numeric', month: 'short' });
       div.innerHTML = `<h2>${esc(a.title)}</h2><time datetime="${displayDate.toISOString()}">${timeLabel}</time>`;
       div.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); div.click(); }
