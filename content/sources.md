@@ -1,6 +1,4 @@
-No single outlet owns the truth. These 41 sources span six continents and a dozen languages so the selection doesn't have to.
-
-A source earns its place by being editorially independent from those it covers, by checking its facts, and by seeing something the others miss. State funding does not disqualify — editorial interference does. Funding and ownership are noted for each.
+A source earns its place by being editorially independent from those it covers. State funding does not disqualify — editorial interference does.
 
 ## Middle East
 - [Al Jazeera](https://www.aljazeera.com) · state-funded, Qatar
@@ -28,7 +26,7 @@ A source earns its place by being editorially independent from those it covers, 
 ## Americas
 - [Buenos Aires Times](https://www.batimes.com.ar) · independent, Argentina
 - [CBC News](https://www.cbc.ca/news) · public broadcaster, Canada
-- [Fox News](https://www.foxnews.com) · corporate, US — included for US conservative perspective
+- [Fox News](https://www.foxnews.com) · corporate, US
 - [MercoPress](https://en.mercopress.com) · independent, Uruguay
 
 ## Oceania
@@ -44,12 +42,12 @@ A source earns its place by being editorially independent from those it covers, 
 
 ## Specialist
 - [404 Media](https://404media.co) · worker-owned, US
+- [Ars Technica](https://arstechnica.com) · corporate, US
 - [Bellingcat](https://www.bellingcat.com) · nonprofit, Netherlands
 - [Carbon Brief](https://www.carbonbrief.org) · nonprofit, UK
 - [CoinDesk](https://www.coindesk.com) · corporate, US
-- [Hacker News](https://news.ycombinator.com) · community link aggregator, US
+- [Hacker News](https://news.ycombinator.com) · community aggregator, US
 - [MIT Technology Review](https://www.technologyreview.com) · university-owned, US
-- [Ars Technica](https://arstechnica.com) · corporate, US
 - [Nature](https://www.nature.com) · corporate, UK
 - [New Scientist](https://www.newscientist.com) · corporate, UK
 - [Quanta Magazine](https://www.quantamagazine.org) · nonprofit, US
