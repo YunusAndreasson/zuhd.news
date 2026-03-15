@@ -96,10 +96,8 @@ function init(data) {
       if (readSlugs.has(a.slug)) div.classList.add('read');
       const displayDate = a.addedAt ? new Date(a.addedAt) : new Date(a.date);
       const ageMs = Date.now() - displayDate;
-      const ageMin = Math.floor(ageMs / 60000);
       const ageH = Math.floor(ageMs / 3600000);
-      const timeLabel = ageMin < 2 ? 'just now'
-        : ageMin < 60 ? ageMin + ' min ago'
+      const timeLabel = ageH < 1 ? 'just now'
         : ageH < 24 ? ageH + 'h ago'
         : displayDate.toLocaleDateString([], { day: 'numeric', month: 'short' });
       div.innerHTML = `<h2>${esc(a.title)}</h2><time datetime="${displayDate.toISOString()}">${timeLabel}</time>`;
