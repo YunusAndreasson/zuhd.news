@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 22: Israel low on interceptors, Swiss deny overflights, 826 killed in Lebanon",
+      "label": "Iran war Day 23: UAE implicated in Kharg strikes, Saudi capital under drone fire, Russia arms reversal",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-15T00:30:00Z",
-      "coverageCount": 161,
+      "lastCovered": "2026-03-15T02:35:00Z",
+      "coverageCount": 166,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -162,16 +162,21 @@
         "2026-03-15-israel-kills-two-iran-intelligence-chiefs-tehran",
         "2026-03-15-iran-missiles-us-forces-saudi-base-war-expands",
         "2026-03-15-sri-lanka-repatriates-84-iranian-sailors-remains-war",
-        "2026-03-15-israel-evacuation-orders-13-percent-lebanon-territory"
+        "2026-03-15-israel-evacuation-orders-13-percent-lebanon-territory",
+        "2026-03-15-iran-accuses-uae-hosting-kharg-island-strikes",
+        "2026-03-15-us-senator-trump-lost-control-iran-war",
+        "2026-03-15-saudi-drones-intercepted-riyadh-capital-under-fire",
+        "2026-03-15-russia-supplying-shahed-drones-iran-arms-reversal",
+        "2026-03-15-us-soldiers-killed-iraq-plane-crash-iran-war"
       ],
-      "summary": "Day 23: Israel assassinating intelligence chiefs inside Tehran. IRGC expanding strikes to US forces at Saudi bases. 13% of Lebanon under evacuation orders. Sri Lanka repatriating 84 dead sailors from torpedoed warship."
+      "summary": "Day 23: Iran accuses US of launching Kharg strikes from UAE, dragging Gulf neutral into war. 7 drones intercepted over Riyadh capital. Russia supplying Shahed drones to Iran (reversing 2023 flow). US senator declares Trump lost control. 6 more US soldiers killed in Iraq crash."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz: Iran weaponizes blockade as diplomatic tool, threatens US companies",
+      "label": "Hormuz: Oil hits $100, Africa hardest hit, tech supply chains disrupted",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-15T00:30:00Z",
-      "coverageCount": 136,
+      "lastCovered": "2026-03-15T02:35:00Z",
+      "coverageCount": 139,
       "category": "economy",
       "importance": 8,
       "arc": "ongoing",
@@ -298,9 +303,12 @@
         "2026-03-14-iran-warns-uae-ports-american-hideouts-targets",
         "2026-03-14-australia-low-unemployment-experiment-war-inflation",
         "2026-03-15-pakistan-salary-cuts-austerity-hormuz-war-economy",
-        "2026-03-15-us-energy-supply-asia-pacific-hormuz-crisis"
+        "2026-03-15-us-energy-supply-asia-pacific-hormuz-crisis",
+        "2026-03-15-africa-oil-100-barrel-global-south-crisis",
+        "2026-03-15-us-china-economic-chiefs-paris-tariffs-war",
+        "2026-03-15-tech-supply-chain-costs-surge-iran-war"
       ],
-      "summary": "Pakistan imposing 5-30% salary cuts on state employees due to Hormuz closure fuel crisis. US positioning itself as alternative energy supplier to Asia-Pacific nations cut off by the blockade it caused."
+      "summary": "Oil at $100/barrel devastating African net importers with no strategic reserves. Tech supply chains (Samsung, SK Hynix) facing cost surges from Hormuz closure. US-China economic chiefs meeting in Paris while China arms Iran."
     },
     {
       "id": "pakistan-afghanistan-strikes",
@@ -309,7 +317,7 @@
       "lastCovered": "2026-03-15T00:30:00Z",
       "coverageCount": 6,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul",
@@ -328,12 +336,12 @@
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-14-cuba-protesters-attack-communist-party-office-blackout"
       ],
-      "summary": "Anti-government protesters attacked Communist party office in Mor\u00f3n. Blackouts worsened by US oil blockade. Rare direct attack on party infrastructure."
+      "summary": "Anti-government protesters attacked Communist party office in Morón. Blackouts worsened by US oil blockade. Rare direct attack on party infrastructure."
     },
     {
       "id": "meta-ai-layoffs",
@@ -342,8 +350,8 @@
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-meta-layoffs-20-percent-ai-superintelligence-zuckerberg",
         "2026-03-14-meta-layoffs-20-percent-ai-superintelligence"
@@ -357,8 +365,8 @@
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-tesla-terafab-ai-chip-factory-launch"
       ],
@@ -371,8 +379,8 @@
       "lastCovered": "2026-03-14T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-beijing-pyongyang-train-revived-six-years-china-north-korea"
       ],
@@ -385,8 +393,8 @@
       "lastCovered": "2026-03-14T17:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-vitalik-buterin-shiba-inu-1-billion-ai-policy-war-chest"
       ],
@@ -399,7 +407,7 @@
       "lastCovered": "2026-03-14T20:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-14-trump-threatens-news-outlets-iran-war-press-freedom"
@@ -413,7 +421,7 @@
       "lastCovered": "2026-03-14T20:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-14-israeli-settlers-shoot-palestinians-west-bank-qusra"
@@ -427,7 +435,7 @@
       "lastCovered": "2026-03-14T20:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-14-eu-extends-russia-sanctions-slams-us-lifting-oil"
@@ -441,7 +449,7 @@
       "lastCovered": "2026-03-14T22:31:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-14-trump-drops-charges-veteran-flag-burning-free-speech"
@@ -455,7 +463,7 @@
       "lastCovered": "2026-03-14T22:31:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-14-nih-whistleblower-research-capacity-gutted",
@@ -465,12 +473,12 @@
     },
     {
       "id": "bitcoin-corporate-concentration",
-      "label": "Strategy pursues 1M bitcoin \u2014 5% of total supply",
+      "label": "Strategy pursues 1M bitcoin — 5% of total supply",
       "firstSeen": "2026-03-14T22:31:00Z",
       "lastCovered": "2026-03-14T22:31:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-14-strategy-1-million-bitcoin-corporate-concentration"
@@ -479,13 +487,13 @@
     },
     {
       "id": "gimp-3-release",
-      "label": "GIMP 3.2 released \u2014 open source creative tools milestone",
+      "label": "GIMP 3.2 released — open source creative tools milestone",
       "firstSeen": "2026-03-14T22:31:00Z",
       "lastCovered": "2026-03-14T22:31:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-gimp-3-2-released-open-source-image-editor"
       ],
@@ -498,7 +506,7 @@
       "lastCovered": "2026-03-15T00:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-15-bolsonaro-hospitalised-lung-infection-jail-brazil"
@@ -512,7 +520,7 @@
       "lastCovered": "2026-03-15T00:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-15-trinidad-tobago-state-emergency-14-months-civil-liberties"
@@ -526,7 +534,7 @@
       "lastCovered": "2026-03-15T00:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-15-israel-channel-13-sold-anti-government-press-freedom"
@@ -540,7 +548,7 @@
       "lastCovered": "2026-03-15T00:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-15-southeast-asia-scam-compounds-survivors-cyber-slavery"
@@ -554,7 +562,7 @@
       "lastCovered": "2026-03-15T00:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-15-ageless-linux-refuses-age-verification-digital-rights"
@@ -605,7 +613,7 @@
     },
     {
       "id": "habermas-death",
-      "label": "J\u00fcrgen Habermas dies at 96",
+      "label": "Jürgen Habermas dies at 96",
       "firstSeen": "2026-03-14T15:00:00Z",
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
@@ -618,174 +626,32 @@
       "summary": "The philosopher who gave the world the concept of the public sphere. Argued for inclusive democracy and communicative rationality."
     },
     {
-      "id": "gulf-wartime-censorship",
-      "label": "Gulf censorship: Abu Dhabi arrests 45 for filming war damage",
-      "firstSeen": "2026-03-13T15:30:00Z",
-      "lastCovered": "2026-03-14T00:30:00Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-13-bahrain-arrests-pakistani-workers-iran-war-videos-digital-censorship",
-        "2026-03-14-abu-dhabi-arrests-45-filming-iran-war-damage-censorship"
-      ],
-      "summary": "Bahrain 5, Abu Dhabi 45 arrested for filming. Pattern spreading."
-    },
-    {
-      "id": "epstein-elite-accountability",
-      "label": "Epstein cascade: LA28 Olympics chief investigated",
-      "firstSeen": "2026-03-13T20:30:00Z",
-      "lastCovered": "2026-03-14T07:34:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-13-uk-andrew-mandelson-epstein-bathrobes-photos",
-        "2026-03-14-la28-olympics-chief-epstein-investigation"
-      ],
-      "summary": "LA city council unanimously votes to investigate LA28 Olympics chief Casey Wasserman over Epstein ties."
-    },
-    {
-      "id": "trump-kim-dialogue-probe",
-      "label": "N. Korea fires ~10 missiles while US stretched in Middle East",
-      "firstSeen": "2026-03-13T22:30:00Z",
-      "lastCovered": "2026-03-14T02:45:00Z",
-      "coverageCount": 4,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-13-trump-asks-south-korea-kim-dialogue-iran-war",
-        "2026-03-14-trump-positive-north-korea-dialogue-iran-war-stretched",
-        "2026-03-14-north-korea-fires-10-ballistic-missiles-us-south-korea-drills"
-      ],
-      "summary": "S. Korean PM confirms Trump positive on NK dialogue. Iran war stretching US military may drive diplomacy."
-    },
-    {
-      "id": "hrw-haiti-drone-war",
-      "label": "HRW: US drone strikes in Haiti killed nearly 1,250 including children",
-      "firstSeen": "2026-03-14T02:45:00Z",
-      "lastCovered": "2026-03-14T02:45:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-hrw-us-drone-strikes-haiti-1250-killed-children"
-      ],
-      "summary": "Human Rights Watch documents US drone strikes killing nearly 1,250 people in Haiti, including children."
-    },
-    {
-      "id": "china-ethnic-unity-law",
-      "label": "UN rights chief flags China ethnic unity law targeting minorities",
-      "firstSeen": "2026-03-14T02:45:00Z",
-      "lastCovered": "2026-03-14T02:45:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-un-rights-chief-china-ethnic-unity-law-uyghurs-tibetans"
-      ],
-      "summary": "China passed ethnic unity law during Two Sessions. UN rights chief flags codified assimilation."
-    },
-    {
-      "id": "iran-cyber-retaliation",
-      "label": "Iran-linked hackers hit US medical tech firm Stryker",
-      "firstSeen": "2026-03-14T02:45:00Z",
-      "lastCovered": "2026-03-14T02:45:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-iran-hackers-cyberattack-stryker-medical-retaliation"
-      ],
-      "summary": "Iran-linked group claims cyberattack on Stryker medical devices as war retaliation."
-    },
-    {
-      "id": "myanmar-junta-election",
-      "label": "Myanmar junta holds sham election",
-      "firstSeen": "2026-03-14T05:10:00Z",
-      "lastCovered": "2026-03-14T05:10:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-myanmar-junta-election-sham-democracy"
-      ],
-      "summary": "Myanmar held first election since 2021 coup. USDP won commanding majority."
-    },
-    {
-      "id": "indonesia-resource-nationalism",
-      "label": "Indonesia tightens coal/palm oil exports under Prabowo",
-      "firstSeen": "2026-03-14T07:34:00Z",
-      "lastCovered": "2026-03-14T07:34:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-indonesia-tightens-coal-palm-oil-exports-prabowo"
-      ],
-      "summary": "Prabowo orders tighter coal and palm oil exports."
-    },
-    {
-      "id": "doge-accountability",
-      "label": "DOGE linked to 300,000 deaths, testimony reveals recklessness",
-      "firstSeen": "2026-03-14T07:34:00Z",
-      "lastCovered": "2026-03-14T07:34:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-doge-testimony-300000-deaths-data-breaches"
-      ],
-      "summary": "DOGE operative used ChatGPT to scan grants for racial terms. Linked to 300K deaths and data breaches."
-    },
-    {
-      "id": "us-surveillance-infrastructure",
-      "label": "Ring to Flock to ICE: US surveillance stack mapped",
-      "firstSeen": "2026-03-14T07:34:00Z",
-      "lastCovered": "2026-03-14T07:34:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-flock-ice-surveillance-landscape-america"
-      ],
-      "summary": "Comprehensive mapping of US surveillance infrastructure."
-    },
-    {
       "id": "fractal-spacetime-physics",
       "label": "Asymptotic safety: space-time may be fractal",
       "firstSeen": "2026-03-14T02:45:00Z",
-      "lastCovered": "2026-03-14T02:45:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-15T02:35:00Z",
+      "coverageCount": 2,
       "category": "science",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
-        "2026-03-14-fractal-spacetime-astrid-eichhorn-asymptotic-safety"
+        "2026-03-14-fractal-spacetime-astrid-eichhorn-asymptotic-safety",
+        "2026-03-15-fractal-spacetime-alternative-string-theory"
       ],
       "summary": "Astrid Eichhorn proposes fractal space-time as alternative to string theory."
     },
     {
       "id": "nuclear-pore-disorder",
-      "label": "Nuclear pore complexes work through disorder",
+      "label": "Disorder drives ribosome: controlled chaos in biology",
       "firstSeen": "2026-03-14T02:45:00Z",
-      "lastCovered": "2026-03-14T02:45:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-15T02:35:00Z",
+      "coverageCount": 2,
       "category": "science",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
-        "2026-03-14-nuclear-pore-complex-disorder-drives-cell-machinery"
+        "2026-03-14-nuclear-pore-complex-disorder-drives-cell-machinery",
+        "2026-03-15-ribosome-disorder-drives-biology-machines"
       ],
       "summary": "New imaging reveals nuclear pore complexes work through disorder."
     },
@@ -793,212 +659,16 @@
       "id": "humanoid-robots-dexterity",
       "label": "Humanoid robots still fail at fine motor tasks",
       "firstSeen": "2026-03-14T02:45:00Z",
-      "lastCovered": "2026-03-14T02:45:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-15T02:35:00Z",
+      "coverageCount": 2,
       "category": "tech",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
-        "2026-03-14-humanoid-robots-fine-motor-dexterity-gap"
+        "2026-03-14-humanoid-robots-fine-motor-dexterity-gap",
+        "2026-03-15-humanoid-robots-fine-motor-dexterity-gap"
       ],
       "summary": "Despite vast improvements, humanoid robots cannot reliably handle fine motor tasks."
-    },
-    {
-      "id": "sudan-rsf-drone-campaign",
-      "label": "Sudan: RSF drone campaign, 169 killed in South Sudan",
-      "firstSeen": "2026-03-14T10:02:00Z",
-      "lastCovered": "2026-03-14T10:02:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-sudan-rsf-drone-campaign-169-killed-south-sudan"
-      ],
-      "summary": "RSF launches drone campaign across Kordofan/Blue Nile. RSF-armed militias killed 169 in South Sudan."
-    },
-    {
-      "id": "amsterdam-jewish-school-attack",
-      "label": "Amsterdam Jewish school explosion deliberate",
-      "firstSeen": "2026-03-14T10:02:00Z",
-      "lastCovered": "2026-03-14T10:02:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-amsterdam-jewish-school-explosion-deliberate-attack"
-      ],
-      "summary": "Mayor declares explosion at Jewish school deliberate during Iran war."
-    },
-    {
-      "id": "trump-xi-iran-war-meeting",
-      "label": "Trump-Xi prepare to meet amid Iran war",
-      "firstSeen": "2026-03-14T10:02:00Z",
-      "lastCovered": "2026-03-14T10:02:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-trump-xi-meeting-iran-war-uncertain-goals"
-      ],
-      "summary": "Trump and Xi preparing to meet with uncertain goals amid Iran war."
-    },
-    {
-      "id": "russia-ukraine-strikes-ongoing",
-      "label": "Russia strikes Kyiv while world watches Iran",
-      "firstSeen": "2026-03-14T10:02:00Z",
-      "lastCovered": "2026-03-14T10:02:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-russia-strikes-kyiv-missiles-drones-war-continues"
-      ],
-      "summary": "Russia struck Kyiv with missiles/drones. Strikes at 3-year peak."
-    },
-    {
-      "id": "china-security-africa",
-      "label": "China deploys security apparatus across Africa",
-      "firstSeen": "2026-03-14T10:02:00Z",
-      "lastCovered": "2026-03-14T10:02:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-china-security-africa-drc-somalia-assets"
-      ],
-      "summary": "China shifting from economic to security presence in Africa."
-    },
-    {
-      "id": "shark-nets-south-africa",
-      "label": "Club Med shark nets threaten SA species",
-      "firstSeen": "2026-03-14T10:02:00Z",
-      "lastCovered": "2026-03-14T10:02:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-shark-nets-club-med-south-africa-endangered-species"
-      ],
-      "summary": "100M euro resort shark nets threatening endangered species on Wild Coast."
-    },
-    {
-      "id": "paediatric-tb-shortage",
-      "label": "Pakistan paediatric TB medicine shortage",
-      "firstSeen": "2026-03-14T10:02:00Z",
-      "lastCovered": "2026-03-14T10:02:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-paediatric-tb-medicine-shortage-pakistan"
-      ],
-      "summary": "Pakistan running out of child-sized TB medicines."
-    },
-    {
-      "id": "apple-openclaw-china",
-      "label": "Apple Mac Mini sells out on OpenClaw AI",
-      "firstSeen": "2026-03-14T10:02:00Z",
-      "lastCovered": "2026-03-14T10:02:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-apple-mac-mini-openclaw-ai-china-sellout"
-      ],
-      "summary": "Open-source AI app OpenClaw driving Mac Mini sellouts in China."
-    },
-    {
-      "id": "xpeng-evtol-funding",
-      "label": "Xpeng eVTOL affiliate raises 200M",
-      "firstSeen": "2026-03-14T10:02:00Z",
-      "lastCovered": "2026-03-14T10:02:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-xpeng-aridge-flying-car-200m-evtol"
-      ],
-      "summary": "Xpeng affiliate Aridge raises 200M for flying car."
-    },
-    {
-      "id": "venezuela-opposition-exile",
-      "label": "Machado rallies diaspora, Maduro isolates",
-      "firstSeen": "2026-03-14T12:34:00Z",
-      "lastCovered": "2026-03-14T12:34:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-venezuelans-rally-machado-santiago-exile-opposition",
-        "2026-03-14-colombia-venezuela-petro-maduro-diplomatic-downgrade"
-      ],
-      "summary": "Machado drew thousands in Santiago. Petro-Maduro meeting downgraded."
-    },
-    {
-      "id": "nigeria-disappearances-impunity",
-      "label": "5 engineers missing since 2021, wives petition Tinubu",
-      "firstSeen": "2026-03-14T12:34:00Z",
-      "lastCovered": "2026-03-14T12:34:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-nigeria-five-engineers-disappeared-wives-petition-tinubu"
-      ],
-      "summary": "Five engineers abducted in 2021 from federally-funded project."
-    },
-    {
-      "id": "us-china-auto-protectionism",
-      "label": "US auto lobby pushes to block Chinese carmakers",
-      "firstSeen": "2026-03-14T12:34:00Z",
-      "lastCovered": "2026-03-14T12:34:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-us-auto-lobby-block-chinese-carmakers-protectionism"
-      ],
-      "summary": "Major US auto groups urging Commerce to permanently exclude Chinese carmakers."
-    },
-    {
-      "id": "indonesia-prabowo-dual-strategy",
-      "label": "Indonesia: resource nationalism + Chinese investment",
-      "firstSeen": "2026-03-14T12:34:00Z",
-      "lastCovered": "2026-03-14T12:34:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-indonesia-danantara-chinese-waste-energy-prabowo-investment"
-      ],
-      "summary": "Danantara partnering with Chinese firms while tightening resource exports."
-    },
-    {
-      "id": "mozambique-cholera-epidemic",
-      "label": "Mozambique cholera passes 7,000 cases",
-      "firstSeen": "2026-03-14T12:34:00Z",
-      "lastCovered": "2026-03-14T12:34:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-mozambique-cholera-7000-cases-political-violence-health-crisis"
-      ],
-      "summary": "Cholera surpasses 7,000 cases amid post-election political violence."
     },
     {
       "id": "africa-glaucoma-blindness",
@@ -1083,6 +753,34 @@
         "2026-03-14-montana-right-to-compute-act-digital-rights-first"
       ],
       "summary": "First US state to enshrine right to run code on own hardware. Passed 2025, now gaining momentum as other states consider similar laws."
+    },
+    {
+      "id": "ai-war-disinformation",
+      "label": "AI-generated war fakes flooding X despite crackdown",
+      "firstSeen": "2026-03-15T02:35:00Z",
+      "lastCovered": "2026-03-15T02:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-ai-fakes-iran-war-x-platform-failing"
+      ],
+      "summary": "AI-generated disinformation about Iran war flooding X platform despite claimed policy crackdown. First major war where generative AI is a frontline information weapon."
+    },
+    {
+      "id": "lonely-runner-conjecture",
+      "label": "New progress on 60-year-old Lonely Runner math problem",
+      "firstSeen": "2026-03-15T02:35:00Z",
+      "lastCovered": "2026-03-15T02:35:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-lonely-runner-conjecture-math-progress"
+      ],
+      "summary": "New mathematical progress on the Lonely Runner Conjecture, a 60-year-old problem connecting number theory and Diophantine approximation."
     }
   ]
 }
