@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 23: Trump threatens Kharg again 'for fun', French spies inside Iran",
+      "label": "Iran war Day 23: Hypersonic missiles deployed, mass informant arrests, refugee crisis",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-15T10:01:00Z",
-      "coverageCount": 178,
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 181,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -14,39 +14,74 @@
         "2026-03-01-us-israel-attacks-iran-retaliation-regional-war",
         "2026-03-15-trump-kharg-island-just-for-fun",
         "2026-03-15-french-spies-undercover-iran",
-        "2026-03-15-zelenskyy-ukraine-us-backing-iran-war"
+        "2026-03-15-zelenskyy-ukraine-us-backing-iran-war",
+        "2026-03-15-iran-arrests-informants-israel-intelligence-war",
+        "2026-03-15-iran-hypersonic-missiles-technology"
       ],
-      "summary": "Day 23: Trump says may hit Kharg Island again 'just for fun' — rhetoric shifting from military to economic strangulation. France running intelligence ops inside Iran while first French soldier killed in Kurdistan. Zelenskyy publicly worried Iran war consuming US attention/resources, leaving Ukraine exposed."
+      "summary": "Day 23: Iran deploys hypersonic missiles (joining exclusive tech club), regime arrests dozens of alleged Israeli informants, UN reports Iranians fleeing to neighbouring countries. Trump rejected deal terms. War generating refugee crisis, intelligence war, and new weapons deployment simultaneously."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz economic fallout: Karachi gas cuts disrupt Ramadan, Ukraine sells drone expertise",
+      "label": "Hormuz economic fallout: Egypt crisis, Malaysia black markets, pipeline disputes",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-15T10:01:00Z",
-      "coverageCount": 146,
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 149,
       "category": "economy",
-      "importance": 8,
+      "importance": 9,
       "arc": "ongoing",
       "articles": [
         "2026-03-15-karachi-gas-cuts-ramadan-sehri-iftar",
-        "2026-03-15-ukraine-drone-expertise-middle-east-exports"
+        "2026-03-15-ukraine-drone-expertise-middle-east-exports",
+        "2026-03-15-egypt-inflation-currency-crisis-suez",
+        "2026-03-15-malaysia-fuel-black-market-hormuz-crisis",
+        "2026-03-15-zelensky-eu-blackmail-oil-pipeline-dispute"
       ],
-      "summary": "Hormuz crisis now disrupting Ramadan in Karachi — unannounced gas cuts prevent families from cooking Sehri and Iftar. Ukraine pivoting from arms recipient to drone expertise exporter, monetizing combat experience for Gulf states under Iranian attack. New wartime economy emerging."
+      "summary": "Hormuz crisis now generating second-order effects: Egypt's economy under dual pressure (inflation + Suez revenue collapse), black-market fuel networks emerging in Southeast Asia (Malaysia bust), Ukraine-EU pipeline revenue dispute. Energy crisis reshaping alliances and creating criminal economies."
+    },
+    {
+      "id": "israel-west-bank-occupation",
+      "label": "Israeli troops kill family in West Bank, soldiers say 'we killed dogs'",
+      "firstSeen": "2026-03-14T20:30:00Z",
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 8,
+      "arc": "developing",
+      "articles": [
+        "2026-03-14-israeli-settlers-shoot-palestinians-west-bank-qusra",
+        "2026-03-15-israeli-troops-kill-family-west-bank-we-killed-dogs"
+      ],
+      "summary": "Escalating pattern: settlers shooting Palestinians in Qusra, now IDF troops killing entire family including children and dehumanising victims ('we killed dogs'). Occupation violence accelerating under Iran war cover."
+    },
+    {
+      "id": "sudan-civil-war",
+      "label": "Sudan: RSF drone campaign + 169 killed in South Sudan by RSF-armed militias",
+      "firstSeen": "2026-03-15T07:34:00Z",
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 8,
+      "arc": "developing",
+      "articles": [
+        "2026-03-15-sudan-military-retakes-bara-integration-plan",
+        "2026-03-15-sudan-rsf-drones-169-killed-south-sudan"
+      ],
+      "summary": "Sudan war metastasising: SAF retook Bara but RSF launching drone campaign in Kordofan/Blue Nile. RSF-armed militias crossed into South Sudan, killing at least 169. Hemedti facing internal tensions with Rizeigat leadership."
     },
     {
       "id": "pakistan-afghanistan-strikes",
-      "label": "Pakistan-Afghanistan: India inserts itself, FO rejects 'absurd' Indian criticism",
+      "label": "Pakistan-Afghanistan tensions",
       "firstSeen": "2026-03-14T00:30:00Z",
       "lastCovered": "2026-03-15T00:30:00Z",
       "coverageCount": 6,
       "category": "politics",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul",
         "2026-03-15-pakistan-strikes-kandahar-base-afghan-war-escalates"
       ],
-      "summary": "Pakistan struck deep inside Afghanistan (Kandahar). India's MEA criticized Pakistan's cross-border operations — Pakistan FO rejected statement as 'absurd and shamefully hypocritical.'"
+      "summary": "Pakistan struck deep inside Afghanistan (Kandahar). India criticized Pakistan's operations."
     },
     {
       "id": "japan-type-12-china",
@@ -55,44 +90,142 @@
       "lastCovered": "2026-03-15T05:03:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-15-japan-type-12-missiles-east-china-sea"
       ],
-      "summary": "Japan deployed domestically produced long-range missiles near East China Sea — first independent strike capability against Chinese naval assets while US forces consumed by Iran war."
+      "summary": "Japan deployed domestically produced long-range missiles near East China Sea."
     },
     {
       "id": "coconut-cartel-thai-farmers",
-      "label": "Chinese-financed cartel squeezes Thai coconut farmers to 6 cents per coconut",
+      "label": "Chinese-financed cartel squeezes Thai coconut farmers",
       "firstSeen": "2026-03-15T05:03:00Z",
       "lastCovered": "2026-03-15T05:03:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-15-coconut-cartel-chinese-money-thai-farmers"
       ],
-      "summary": "Thai coconut farmers getting 2 baht (6 US cents) per coconut — record low — as Chinese-financed middlemen control supply chain."
+      "summary": "Thai coconut farmers getting 2 baht (6 US cents) per coconut — record low."
+    },
+    {
+      "id": "western-alliance-fractures",
+      "label": "Western alliance fractures: Canada-Nordics middle power bloc, Zelensky vs EU",
+      "firstSeen": "2026-03-15T12:32:00Z",
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-canada-nordics-middle-power-bloc"
+      ],
+      "summary": "Canada and Nordic countries forming 'middle power' cooperation bloc — NATO allies hedging against US unilateralism. Combined with Zelensky accusing EU of 'blackmail' over pipelines, the Western alliance system is fragmenting."
+    },
+    {
+      "id": "algeria-morocco-iran-war",
+      "label": "North Africa: Algeria and Morocco repositioning amid Iran war",
+      "firstSeen": "2026-03-15T12:32:00Z",
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-algeria-morocco-iran-war-north-africa"
+      ],
+      "summary": "Algeria (Russian/Iranian weapons buyer) and Morocco (Abraham Accords signatory) both recalibrating positions as Iran war forces strategic choices."
+    },
+    {
+      "id": "uganda-opposition-exile",
+      "label": "Uganda: Opposition leader forced into exile after 2 months hiding",
+      "firstSeen": "2026-03-15T12:32:00Z",
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-uganda-opposition-leader-exile-museveni"
+      ],
+      "summary": "Major Ugandan opposition figure forced abroad after two months in hiding. Museveni has ruled 40 years."
+    },
+    {
+      "id": "egypt-economic-crisis",
+      "label": "Egypt: Inflation surge + foreign currency drain + Suez revenue collapse",
+      "firstSeen": "2026-03-15T12:32:00Z",
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-egypt-inflation-currency-crisis-suez"
+      ],
+      "summary": "Egypt's economy under triple pressure: rising inflation, shrinking foreign currency reserves, and Suez Canal revenue collapsing due to Iran war shipping disruptions."
+    },
+    {
+      "id": "argentina-ypf-us",
+      "label": "US backs Argentina in YPF nationalisation case against own investors",
+      "firstSeen": "2026-03-15T12:32:00Z",
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-us-backs-argentina-ypf-nationalisation"
+      ],
+      "summary": "US government backs Argentina against US-based investors in YPF nationalisation case — likely motivated by need for Argentine lithium and Vaca Muerta energy during Hormuz crisis."
+    },
+    {
+      "id": "india-eu-alignment",
+      "label": "India-EU: Jaishankar in Brussels as India plays all sides",
+      "firstSeen": "2026-03-15T12:32:00Z",
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-india-eu-jaishankar-brussels-alignment"
+      ],
+      "summary": "India's FM Jaishankar visiting Brussels. India buying Iranian oil while deepening EU ties — the quintessential swing power."
+    },
+    {
+      "id": "indonesia-semiconductor-sovereignty",
+      "label": "Indonesia: Danantara sovereign wealth fund builds semiconductor ecosystem",
+      "firstSeen": "2026-03-15T12:32:00Z",
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-indonesia-danantara-semiconductor-sovereignty"
+      ],
+      "summary": "Indonesia's Danantara partnering with education ministry to build domestic semiconductor capabilities. Global South chip sovereignty play during US-China tech war."
     },
     {
       "id": "gitagent-ai-standard",
-      "label": "GitAgent: open standard for portable AI agents across frameworks",
+      "label": "GitAgent: open standard for portable AI agents",
       "firstSeen": "2026-03-15T05:03:00Z",
       "lastCovered": "2026-03-15T05:03:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-15-gitagent-open-standard-portable-ai-agents"
       ],
-      "summary": "Open standard defining AI agents as git repo files. Addresses vendor lock-in in fragmenting AI agent ecosystem."
+      "summary": "Open standard defining AI agents as git repo files."
     },
     {
       "id": "cuba-blackout-crisis",
-      "label": "Cuba: Protesters attack Communist party office amid blackout fury",
+      "label": "Cuba: Protesters attack Communist party office amid blackout",
       "firstSeen": "2026-03-14T15:00:00Z",
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
@@ -102,11 +235,11 @@
       "articles": [
         "2026-03-14-cuba-protesters-attack-communist-party-office-blackout"
       ],
-      "summary": "Anti-government protesters attacked Communist party office in Morón. Blackouts worsened by US oil blockade."
+      "summary": "Anti-government protesters attacked Communist party office. Blackouts worsened by US oil blockade."
     },
     {
       "id": "meta-ai-layoffs",
-      "label": "Meta cuts 20%+ workforce to fund AI superintelligence pursuit",
+      "label": "Meta cuts 20%+ workforce for AI",
       "firstSeen": "2026-03-14T02:45:00Z",
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 2,
@@ -120,7 +253,7 @@
     },
     {
       "id": "tesla-terafab-chips",
-      "label": "Tesla launching Terafab AI chip factory",
+      "label": "Tesla Terafab AI chip factory",
       "firstSeen": "2026-03-14T15:00:00Z",
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
@@ -134,7 +267,7 @@
     },
     {
       "id": "trump-wartime-press-freedom",
-      "label": "Trump FCC threatens news outlets over Iran war coverage",
+      "label": "Trump FCC threatens news outlets",
       "firstSeen": "2026-03-14T20:30:00Z",
       "lastCovered": "2026-03-14T20:30:00Z",
       "coverageCount": 1,
@@ -147,410 +280,102 @@
       "summary": "FCC threatens license revocation for outlets sharing distortions about US war."
     },
     {
-      "id": "israeli-settler-violence-west-bank",
-      "label": "Israeli settler violence surges in West Bank during Iran war",
-      "firstSeen": "2026-03-14T20:30:00Z",
-      "lastCovered": "2026-03-14T20:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-israeli-settlers-shoot-palestinians-west-bank-qusra"
-      ],
-      "summary": "One killed in Qusra, livestock stolen. Settler violence escalating as attention diverted."
-    },
-    {
-      "id": "eu-us-russia-sanctions-rift",
-      "label": "EU extends Russia sanctions while US lifts them for oil",
-      "firstSeen": "2026-03-14T20:30:00Z",
-      "lastCovered": "2026-03-14T20:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-eu-extends-russia-sanctions-slams-us-lifting-oil"
-      ],
-      "summary": "EU maintains Russia sanctions, slams US for lifting them during Hormuz crisis."
-    },
-    {
-      "id": "trump-civil-liberties-wartime",
-      "label": "Trump selective free speech: drops flag-burning charges while threatening broadcasters",
-      "firstSeen": "2026-03-14T22:31:00Z",
-      "lastCovered": "2026-03-14T22:31:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-trump-drops-charges-veteran-flag-burning-free-speech"
-      ],
-      "summary": "Selective application of free speech principles."
-    },
-    {
       "id": "us-science-infrastructure-gutted",
-      "label": "US science infrastructure under attack: NIH whistleblower, Prasad exits FDA",
+      "label": "US science infrastructure under attack",
       "firstSeen": "2026-03-14T22:31:00Z",
       "lastCovered": "2026-03-14T22:31:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-nih-whistleblower-research-capacity-gutted"
       ],
-      "summary": "NIH whistleblower warns research capacity being gutted. Prasad exits FDA."
-    },
-    {
-      "id": "bitcoin-corporate-concentration",
-      "label": "Strategy pursues 1M bitcoin — 5% of total supply",
-      "firstSeen": "2026-03-14T22:31:00Z",
-      "lastCovered": "2026-03-14T22:31:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-strategy-1-million-bitcoin-corporate-concentration"
-      ],
-      "summary": "Strategy pursuing 1 million bitcoin by end of 2026."
-    },
-    {
-      "id": "bolsonaro-prison-health",
-      "label": "Bolsonaro hospitalised with lung infection while jailed",
-      "firstSeen": "2026-03-15T00:30:00Z",
-      "lastCovered": "2026-03-15T00:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-bolsonaro-hospitalised-lung-infection-jail-brazil"
-      ],
-      "summary": "Jailed ex-president hospitalised. Has endorsed son Eduardo for 2026 race."
-    },
-    {
-      "id": "trinidad-tobago-emergency-rule",
-      "label": "Trinidad and Tobago: 10 of 14 months under emergency rule",
-      "firstSeen": "2026-03-15T00:30:00Z",
-      "lastCovered": "2026-03-15T00:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-trinidad-tobago-state-emergency-14-months-civil-liberties"
-      ],
-      "summary": "Caribbean nation extends emergency rule for another 3 months."
-    },
-    {
-      "id": "southeast-asia-scam-compounds",
-      "label": "Southeast Asia scam compound survivors face stigma",
-      "firstSeen": "2026-03-15T00:30:00Z",
-      "lastCovered": "2026-03-15T00:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-southeast-asia-scam-compounds-survivors-cyber-slavery"
-      ],
-      "summary": "Hundreds of thousands trafficked into cyber-slavery compounds."
+      "summary": "NIH whistleblower warns research capacity being gutted."
     },
     {
       "id": "ai-war-disinformation",
-      "label": "AI-generated war fakes flooding X despite crackdown",
+      "label": "AI war fakes flooding X",
       "firstSeen": "2026-03-15T02:35:00Z",
       "lastCovered": "2026-03-15T02:35:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-15-ai-fakes-iran-war-x-platform-failing"
       ],
-      "summary": "AI disinformation about Iran war flooding X. First major war with generative AI as information weapon."
-    },
-    {
-      "id": "fractal-spacetime-physics",
-      "label": "Asymptotic safety: space-time may be fractal",
-      "firstSeen": "2026-03-14T02:45:00Z",
-      "lastCovered": "2026-03-15T02:35:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-fractal-spacetime-astrid-eichhorn-asymptotic-safety"
-      ],
-      "summary": "Astrid Eichhorn proposes fractal space-time as alternative to string theory."
-    },
-    {
-      "id": "nuclear-pore-disorder",
-      "label": "Disorder drives ribosome: controlled chaos in biology",
-      "firstSeen": "2026-03-14T02:45:00Z",
-      "lastCovered": "2026-03-15T02:35:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-nuclear-pore-complex-disorder-drives-cell-machinery"
-      ],
-      "summary": "New imaging reveals nuclear pore complexes work through disorder."
-    },
-    {
-      "id": "lonely-runner-conjecture",
-      "label": "New progress on 60-year-old Lonely Runner math problem",
-      "firstSeen": "2026-03-15T02:35:00Z",
-      "lastCovered": "2026-03-15T02:35:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-lonely-runner-conjecture-math-progress"
-      ],
-      "summary": "New mathematical progress on the Lonely Runner Conjecture."
-    },
-    {
-      "id": "iran-space-centre-destroyed",
-      "label": "Iran Space Research Centre severely damaged in strikes",
-      "firstSeen": "2026-03-15T05:03:00Z",
-      "lastCovered": "2026-03-15T05:03:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-15-iran-space-research-centre-destroyed-strikes"
-      ],
-      "summary": "Video reveals significant damage to Iranian Space Research Centre in Tehran."
-    },
-    {
-      "id": "gas-electricity-price-mechanism",
-      "label": "Gas marginal pricing transmits Hormuz crisis to global electricity bills",
-      "firstSeen": "2026-03-15T05:03:00Z",
-      "lastCovered": "2026-03-15T05:03:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-15-gas-drives-electricity-prices-war-mechanism"
-      ],
-      "summary": "Carbon Brief analysis of how gas marginal pricing mechanism transmits Hormuz war to electricity bills globally."
-    },
-    {
-      "id": "vietnam-election-2026",
-      "label": "Vietnam general election: 93% Communist Party candidates",
-      "firstSeen": "2026-03-15T07:34:00Z",
-      "lastCovered": "2026-03-15T07:34:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-vietnam-election-93-percent-communist-party"
-      ],
-      "summary": "Vietnam holds general election with 93% of candidates from ruling Communist Party."
-    },
-    {
-      "id": "sudan-military-gains-integration",
-      "label": "Sudan: Military retakes Bara, announces integration of all armed groups",
-      "firstSeen": "2026-03-15T07:34:00Z",
-      "lastCovered": "2026-03-15T07:34:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-sudan-military-retakes-bara-integration-plan"
-      ],
-      "summary": "SAF retakes strategic Bara in North Kordofan, announces plan to integrate all irregular armed forces."
-    },
-    {
-      "id": "statins-guidelines-age-30",
-      "label": "Cardiovascular guidelines: statins recommended from age 30",
-      "firstSeen": "2026-03-15T07:34:00Z",
-      "lastCovered": "2026-03-15T07:34:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-15-statins-age-30-cardiovascular-guidelines-change"
-      ],
-      "summary": "Major cardiology groups recommend cholesterol risk assessment starting at 30."
+      "summary": "AI disinformation about Iran war flooding X."
     },
     {
       "id": "ai-african-labor-rights",
-      "label": "Kenyan AI data labelers form union, fight exploitation",
+      "label": "Kenyan AI data labelers form union",
       "firstSeen": "2026-03-15T07:34:00Z",
       "lastCovered": "2026-03-15T07:34:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-15-ai-african-intelligence-workers-fighting-back"
       ],
-      "summary": "Data Labelers Association formed in Kenya. Workers earning $1-2/hour doing AI training."
+      "summary": "Data Labelers Association formed in Kenya."
     },
     {
-      "id": "china-ev-robotics-retail-shift",
-      "label": "China malls: robotics brands replace retreating EV showrooms",
+      "id": "vietnam-election-2026",
+      "label": "Vietnam general election: 93% Communist Party",
       "firstSeen": "2026-03-15T07:34:00Z",
       "lastCovered": "2026-03-15T07:34:00Z",
       "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
+      "category": "politics",
+      "importance": 4,
       "arc": "developing",
       "articles": [
-        "2026-03-15-china-malls-robotics-ev-showrooms-retreat"
+        "2026-03-15-vietnam-election-93-percent-communist-party"
       ],
-      "summary": "EV showrooms retreating from Chinese mall ground floors. Robotics companies taking their place."
+      "summary": "Vietnam holds general election with 93% ruling party candidates."
     },
     {
       "id": "congo-election-sassou-nguesso",
-      "label": "Congo-Brazzaville: Sassou Nguesso seeks re-election after 40 years",
+      "label": "Congo-Brazzaville: Sassou Nguesso 40-year rule",
       "firstSeen": "2026-03-15T10:01:00Z",
       "lastCovered": "2026-03-15T10:01:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-15-congo-presidential-election-sassou-nguesso"
       ],
-      "summary": "Denis Sassou Nguesso (82) running for re-election after ruling 40 of 45 years. Oil-rich country, 40% poverty. No credible opposition."
+      "summary": "Denis Sassou Nguesso (82) running for re-election after 40 years."
     },
     {
       "id": "pakistan-ramadan-energy-crisis",
-      "label": "Karachi gas cuts disrupt Ramadan cooking amid triple crisis",
+      "label": "Karachi gas cuts disrupt Ramadan",
       "firstSeen": "2026-03-15T10:01:00Z",
       "lastCovered": "2026-03-15T10:01:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-15-karachi-gas-cuts-ramadan-sehri-iftar"
       ],
-      "summary": "Unannounced gas cuts prevent Karachi families from cooking Sehri and Iftar during Ramadan. Pakistan's LNG imports disrupted by Hormuz blockade."
+      "summary": "Gas cuts prevent Karachi families from cooking during Ramadan."
     },
     {
       "id": "greenland-winter-heat-record",
-      "label": "Greenland records warmest winter ever — 'exceptional'",
+      "label": "Greenland warmest winter on record",
       "firstSeen": "2026-03-15T10:01:00Z",
       "lastCovered": "2026-03-15T10:01:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-15-greenland-record-winter-heat-exceptional"
       ],
-      "summary": "Greenland recorded warmest winter on record. Scientists call it 'exceptional.' Ice sheet holds enough water to raise sea levels 7 metres."
-    },
-    {
-      "id": "ai-mrna-vaccine-cancer",
-      "label": "AI-designed mRNA cancer vaccine created by individual, not pharma",
-      "firstSeen": "2026-03-15T10:01:00Z",
-      "lastCovered": "2026-03-15T10:01:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-ai-mrna-vaccine-dog-cancer"
-      ],
-      "summary": "Tech entrepreneur used AI to design personalized mRNA cancer vaccine for a dog — successfully. Implications for human oncology and democratization of medicine."
-    },
-    {
-      "id": "china-moonshot-ai-funding",
-      "label": "Chinese AI startup Moonshot valued at $18B amid Western supply disruption",
-      "firstSeen": "2026-03-15T10:01:00Z",
-      "lastCovered": "2026-03-15T10:01:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-china-moonshot-ai-18-billion-valuation"
-      ],
-      "summary": "Chinese AI startup raises funds at $18B valuation while Western AI companies face Hormuz-driven chip supply disruptions. Two AI ecosystems diverging."
-    },
-    {
-      "id": "china-cyborg-military-tech",
-      "label": "China develops non-invasive cyborg tech for military 'centaur' soldiers",
-      "firstSeen": "2026-03-15T10:01:00Z",
-      "lastCovered": "2026-03-15T10:01:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-china-cyborg-tech-non-invasive-army"
-      ],
-      "summary": "Chinese researchers develop non-invasive brain-computer interface for military exoskeletons. Unlike Neuralink's invasive approach, uses external sensors. Explicit military applications."
-    },
-    {
-      "id": "france-municipal-2027-test",
-      "label": "French municipal elections as 2027 presidential dry run",
-      "firstSeen": "2026-03-15T10:01:00Z",
-      "lastCovered": "2026-03-15T10:01:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-france-municipal-elections-2027-test"
-      ],
-      "summary": "French municipal elections functioning as dry run for 2027 presidential race. National Rally testing whether support translates to local power."
-    },
-    {
-      "id": "pakistan-women-un-rights",
-      "label": "Pakistani women advocate at UN amid country's triple crisis",
-      "firstSeen": "2026-03-15T10:01:00Z",
-      "lastCovered": "2026-03-15T10:01:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-pakistani-women-un-rights-forum"
-      ],
-      "summary": "Pakistani women at UN Human Rights Council while state imposes 30% salary cuts and Ramadan gas cuts back home."
-    },
-    {
-      "id": "ufc-sanctions-evasion-dubai",
-      "label": "Bellingcat: UFC fighter in Dubai linked to Iran sanctions network",
-      "firstSeen": "2026-03-15T10:01:00Z",
-      "lastCovered": "2026-03-15T10:01:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-ufc-fighter-kinahan-iran-sanctions-evasion"
-      ],
-      "summary": "Bellingcat reveals ex-UFC fighter with Kinahan cartel ties connected to Iran sanctions evasion entities in Dubai. Sporting celebrity as cover for financial networks."
-    },
-    {
-      "id": "ukraine-drone-arms-exports",
-      "label": "Ukraine monetizes wartime drone expertise as Middle East arms exports",
-      "firstSeen": "2026-03-15T10:01:00Z",
-      "lastCovered": "2026-03-15T10:01:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-ukraine-drone-expertise-middle-east-exports"
-      ],
-      "summary": "Ukraine marketing its Russian Shahed counter-drone techniques to Gulf states under Iranian attack. Combat experience itself becomes the export commodity."
+      "summary": "Greenland recorded warmest winter ever."
     }
   ]
 }
