@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 23: US bounties on Iranian leaders, Iraq warned on Kurdish involvement",
+      "label": "Iran war Day 23: Migrant workers as hidden casualties, OIC silence",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-15T17:30:00Z",
-      "coverageCount": 185,
+      "lastCovered": "2026-03-15T20:00:00Z",
+      "coverageCount": 187,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -20,16 +20,18 @@
         "2026-03-15-pope-leo-xiv-demands-ceasefire-middle-east-war",
         "2026-03-15-israel-bombing-expands-western-iran-third-week",
         "2026-03-15-us-10m-reward-iran-supreme-leader-irgc",
-        "2026-03-15-iraq-warns-kurds-iran-war"
+        "2026-03-15-iraq-warns-kurds-iran-war",
+        "2026-03-15-nepali-guard-killed-abu-dhabi-migrant-workers-iran-war",
+        "2026-03-15-pti-oic-emergency-session-iran-war-muslim-silence"
       ],
-      "summary": "Day 23: US puts $10M bounties on Iran's new supreme leader and IRGC officials — unprecedented targeting of sitting government. Iraq warns Kurdish authorities not to be drawn in as US seeks staging ground. War widening through financial, intelligence, and proxy channels alongside continued bombing."
+      "summary": "Day 23: War's invisible toll extends to millions of Gulf migrant workers with no evacuation — Nepali guard killed in Abu Dhabi. Muslim world's institutional silence exposed as Pakistan's PTI demands OIC emergency session. War continues across military, economic, diplomatic, and human dimensions."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz economic crisis: IEA activates emergency oil reserves for fourth time in history",
+      "label": "Hormuz crisis: Australia considering fuel rationing, EU reverses on nuclear",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-15T17:30:00Z",
-      "coverageCount": 154,
+      "lastCovered": "2026-03-15T20:00:00Z",
+      "coverageCount": 156,
       "category": "economy",
       "importance": 10,
       "arc": "ongoing",
@@ -42,9 +44,11 @@
         "2026-03-15-uk-hormuz-minesweeping-drones-energy-security",
         "2026-03-15-pakistan-kerosene-hike-rs40-ramadan-poorest",
         "2026-03-15-iran-selective-hormuz-blockade-india-diplomacy",
-        "2026-03-15-iea-emergency-oil-reserves-middle-east-war"
+        "2026-03-15-iea-emergency-oil-reserves-middle-east-war",
+        "2026-03-15-australia-fuel-rationing-iran-war-oil-supply",
+        "2026-03-15-eu-nuclear-power-strategic-mistake-energy-reversal"
       ],
-      "summary": "IEA activates strategic petroleum reserves — only the 4th time in history (Gulf War, Libya, Russia-Ukraine, now). War has broken global oil supply enough to trigger crisis-level intervention. Rich countries draw down reserves while Global South gets no relief."
+      "summary": "Economic fallout reaching allied consumer nations: Australia discussing fuel rationing (holds only ~20 days reserves), EU chief calls nuclear phase-out a 'strategic mistake.' IEA reserves activated but Global South still unprotected."
     },
     {
       "id": "lebanon-israel-war",
@@ -53,7 +57,7 @@
       "lastCovered": "2026-03-15T15:00:00Z",
       "coverageCount": 4,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-03-14-israeli-settlers-shoot-palestinians-west-bank-qusra",
@@ -61,7 +65,7 @@
         "2026-03-15-lebanon-850000-displaced-10-days-one-in-seven",
         "2026-03-15-israeli-strike-kills-12-lebanon-medics"
       ],
-      "summary": "Lebanon humanitarian catastrophe accelerating: 850,000 displaced in 10 days. 38+ medics killed this month. Not covered this cycle but remains critical."
+      "summary": "Lebanon humanitarian catastrophe: 850,000 displaced in 10 days, 38+ medics killed. Not covered this cycle — watch for UN session on humanitarian corridors."
     },
     {
       "id": "sudan-civil-war",
@@ -70,13 +74,125 @@
       "lastCovered": "2026-03-15T12:32:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-15-sudan-military-retakes-bara-integration-plan",
         "2026-03-15-sudan-rsf-drones-169-killed-south-sudan"
       ],
-      "summary": "Sudan war metastasising: RSF launching drone campaign in Kordofan/Blue Nile. RSF-armed militias crossed into South Sudan, killing at least 169."
+      "summary": "Sudan war metastasising: RSF launching drone campaign, armed militias crossed into South Sudan killing 169."
+    },
+    {
+      "id": "hungary-election-2026",
+      "label": "Hungary: Orbán faces first serious challenger in Peter Magyar",
+      "firstSeen": "2026-03-15T20:00:00Z",
+      "lastCovered": "2026-03-15T20:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-hungary-orban-magyar-rival-rallies-election"
+      ],
+      "summary": "Orbán and Magyar held parallel rallies on March 15 national day. Most competitive Hungarian election in 14 years."
+    },
+    {
+      "id": "uk-civil-liberties-wartime",
+      "label": "UK bans pro-Palestinian march — civil liberties crackdown during war",
+      "firstSeen": "2026-03-15T20:00:00Z",
+      "lastCovered": "2026-03-15T20:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-london-pro-palestinian-march-banned-arrests"
+      ],
+      "summary": "UK government preemptively banned pro-Palestinian march in London; hundreds defied ban, 12 arrested. Wartime civil liberties erosion in allied democracies."
+    },
+    {
+      "id": "liberia-elections-commission",
+      "label": "Liberia elections chair exits early amid corruption allegations",
+      "firstSeen": "2026-03-15T20:00:00Z",
+      "lastCovered": "2026-03-15T20:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-liberia-elections-commission-chair-exits-early"
+      ],
+      "summary": "Elections commission chair stepping down a year early amid corruption allegations. Fragile post-conflict democracy."
+    },
+    {
+      "id": "french-far-right-municipal",
+      "label": "French far right strong in municipal elections — 2027 preview",
+      "firstSeen": "2026-03-15T20:00:00Z",
+      "lastCovered": "2026-03-15T20:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-french-far-right-municipal-elections-2027-preview"
+      ],
+      "summary": "RN performs strongly in first round of French municipal elections. Building local government base historically absent."
+    },
+    {
+      "id": "sec-cftc-crypto-regulation",
+      "label": "SEC and CFTC joint crypto regulatory MOU",
+      "firstSeen": "2026-03-15T20:00:00Z",
+      "lastCovered": "2026-03-15T20:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-sec-cftc-joint-crypto-regulation-mou"
+      ],
+      "summary": "SEC and CFTC sign MOU ending years of regulatory turf war over digital assets."
+    },
+    {
+      "id": "us-surveillance-apparatus",
+      "label": "404 Media maps full US surveillance stack: Flock to ICE",
+      "firstSeen": "2026-03-15T20:00:00Z",
+      "lastCovered": "2026-03-15T20:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-surveillance-flock-ice-how-americans-watched"
+      ],
+      "summary": "Comprehensive mapping of US surveillance infrastructure — local police license plate readers networked into national grid with no legislative authorization."
+    },
+    {
+      "id": "biontech-founders-new-venture",
+      "label": "BioNTech founders Şahin and Türeci leave to start new venture",
+      "firstSeen": "2026-03-15T20:00:00Z",
+      "lastCovered": "2026-03-15T20:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-biontech-founders-sahin-tureci-step-down-new-venture"
+      ],
+      "summary": "COVID vaccine pioneers leaving BioNTech to start fresh. Signals mRNA medicine entering new phase beyond current pipeline."
+    },
+    {
+      "id": "ulcerative-colitis-gene",
+      "label": "Gene mutation linked to ulcerative colitis identified via family genomics",
+      "firstSeen": "2026-03-15T20:00:00Z",
+      "lastCovered": "2026-03-15T20:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-ulcerative-colitis-gene-mutation-brisbane-research"
+      ],
+      "summary": "Brisbane researchers found UC-linked gene mutation using family sequencing — approach found what large population studies missed."
     },
     {
       "id": "western-alliance-fractures",
@@ -85,40 +201,26 @@
       "lastCovered": "2026-03-15T12:32:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-15-canada-nordics-middle-power-bloc"
       ],
-      "summary": "NATO allies hedging against US unilateralism. Western alliance fragmenting under pressure of Iran war."
+      "summary": "NATO allies hedging against US unilateralism."
     },
     {
       "id": "brics-iran-war-test",
-      "label": "BRICS silence tested: Iran pushes India to activate bloc against war",
+      "label": "BRICS silence tested: Iran pushes India to activate bloc",
       "firstSeen": "2026-03-15T15:00:00Z",
       "lastCovered": "2026-03-15T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-15-iran-brics-india-chairmanship-silence-war"
       ],
-      "summary": "Iran publicly pressuring India (BRICS chair) to use the expanded bloc against the US-led war."
-    },
-    {
-      "id": "bangladesh-post-revolution",
-      "label": "Bangladesh: Jamaat threatens protests over Reform Council",
-      "firstSeen": "2026-03-15T15:00:00Z",
-      "lastCovered": "2026-03-15T15:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-15-bangladesh-jamaat-protests-reform-council"
-      ],
-      "summary": "Bangladesh's largest Islamist party threatening street protests if post-revolution Reform Council issue isn't resolved."
+      "summary": "Iran publicly pressuring India (BRICS chair) to use expanded bloc against US-led war."
     },
     {
       "id": "russia-ukraine-iran-shadow",
@@ -127,126 +229,12 @@
       "lastCovered": "2026-03-15T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-15-russia-strikes-kyiv-energy-iran-war-shadow"
       ],
-      "summary": "Russia hitting Kyiv energy infrastructure while global attention and air defence diverted to Iran war."
-    },
-    {
-      "id": "pla-naval-autonomous-drones",
-      "label": "China: PLA autonomous drone on Type 075 for South China Sea",
-      "firstSeen": "2026-03-15T15:00:00Z",
-      "lastCovered": "2026-03-15T15:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-15-pla-autonomous-drone-type-075-south-china-sea"
-      ],
-      "summary": "New autonomous helicopter drone on China's Type 075 amphibious assault ship."
-    },
-    {
-      "id": "israel-west-bank-occupation",
-      "label": "Israeli troops kill family in West Bank, dehumanising victims",
-      "firstSeen": "2026-03-14T20:30:00Z",
-      "lastCovered": "2026-03-15T12:32:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-03-14-israeli-settlers-shoot-palestinians-west-bank-qusra",
-        "2026-03-15-israeli-troops-kill-family-west-bank-we-killed-dogs"
-      ],
-      "summary": "Escalating pattern: settlers and IDF killing Palestinian civilians including children. Occupation violence accelerating under Iran war cover."
-    },
-    {
-      "id": "egypt-economic-crisis",
-      "label": "Egypt: Inflation + currency drain + Suez collapse",
-      "firstSeen": "2026-03-15T12:32:00Z",
-      "lastCovered": "2026-03-15T12:32:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-15-egypt-inflation-currency-crisis-suez"
-      ],
-      "summary": "Egypt under triple economic pressure: inflation, shrinking reserves, Suez revenue collapse."
-    },
-    {
-      "id": "algeria-morocco-iran-war",
-      "label": "North Africa: Algeria and Morocco repositioning amid Iran war",
-      "firstSeen": "2026-03-15T12:32:00Z",
-      "lastCovered": "2026-03-15T12:32:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-15-algeria-morocco-iran-war-north-africa"
-      ],
-      "summary": "Algeria and Morocco recalibrating as Iran war forces strategic choices."
-    },
-    {
-      "id": "greenland-winter-heat-record",
-      "label": "Greenland warmest winter on record",
-      "firstSeen": "2026-03-15T10:01:00Z",
-      "lastCovered": "2026-03-15T10:01:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-15-greenland-record-winter-heat-exceptional"
-      ],
-      "summary": "Greenland recorded warmest winter ever."
-    },
-    {
-      "id": "pakistan-ramadan-energy-crisis",
-      "label": "Pakistan: Gas cuts + kerosene hike squeeze poorest during Ramadan",
-      "firstSeen": "2026-03-15T10:01:00Z",
-      "lastCovered": "2026-03-15T15:00:00Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-15-karachi-gas-cuts-ramadan-sehri-iftar",
-        "2026-03-15-pakistan-kerosene-hike-rs40-ramadan-poorest"
-      ],
-      "summary": "Pakistan's poorest hit twice: gas cut off, kerosene hiked Rs40/litre during Ramadan."
-    },
-    {
-      "id": "uganda-opposition-exile",
-      "label": "Uganda: Opposition leader forced into exile",
-      "firstSeen": "2026-03-15T12:32:00Z",
-      "lastCovered": "2026-03-15T12:32:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-15-uganda-opposition-leader-exile-museveni"
-      ],
-      "summary": "Major opposition figure forced abroad. Museveni has ruled 40 years."
-    },
-    {
-      "id": "india-eu-alignment",
-      "label": "India-EU: Jaishankar in Brussels",
-      "firstSeen": "2026-03-15T12:32:00Z",
-      "lastCovered": "2026-03-15T12:32:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-15-india-eu-jaishankar-brussels-alignment"
-      ],
-      "summary": "India's FM visiting Brussels while buying Iranian oil — quintessential swing power."
+      "summary": "Russia hitting Kyiv energy infrastructure while global attention diverted to Iran war."
     },
     {
       "id": "china-taiwan-military-flights",
@@ -255,12 +243,41 @@
       "lastCovered": "2026-03-15T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-03-15-china-military-flights-taiwan-return"
       ],
-      "summary": "PLA resumes large-scale flights near Taiwan after months-long reduction, timed with US assets committed to Gulf. Stress-testing US alliance commitments in Pacific."
+      "summary": "PLA resumes large-scale flights near Taiwan after months-long reduction, timed with US assets committed to Gulf."
+    },
+    {
+      "id": "israel-west-bank-occupation",
+      "label": "Israeli troops kill family in West Bank",
+      "firstSeen": "2026-03-14T20:30:00Z",
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-14-israeli-settlers-shoot-palestinians-west-bank-qusra",
+        "2026-03-15-israeli-troops-kill-family-west-bank-we-killed-dogs"
+      ],
+      "summary": "Occupation violence accelerating under Iran war cover."
+    },
+    {
+      "id": "egypt-economic-crisis",
+      "label": "Egypt: Inflation + currency drain + Suez collapse",
+      "firstSeen": "2026-03-15T12:32:00Z",
+      "lastCovered": "2026-03-15T12:32:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-15-egypt-inflation-currency-crisis-suez"
+      ],
+      "summary": "Egypt under triple economic pressure."
     },
     {
       "id": "kenya-flooding-2026",
@@ -269,82 +286,12 @@
       "lastCovered": "2026-03-15T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-15-kenya-flooding-kills-66-heavy-rains"
       ],
-      "summary": "66 dead in severe flooding outside normal rainy season. Follows 2024 floods that killed 300+. Urbanisation into flood plains + climate shift."
-    },
-    {
-      "id": "south-africa-military-deployment",
-      "label": "South Africa deploys 2,200 soldiers to 5 provinces",
-      "firstSeen": "2026-03-15T17:30:00Z",
-      "lastCovered": "2026-03-15T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-south-africa-2200-soldiers-five-provinces"
-      ],
-      "summary": "Unusual scale of domestic military deployment suggests internal security deterioration beyond police capacity."
-    },
-    {
-      "id": "nyse-nasdaq-blockchain",
-      "label": "NYSE and Nasdaq moving $126T equity market to blockchain",
-      "firstSeen": "2026-03-15T17:30:00Z",
-      "lastCovered": "2026-03-15T17:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-nasdaq-nyse-126-trillion-blockchain"
-      ],
-      "summary": "Both major US exchange operators moving toward blockchain settlement for the entire equity market. Largest financial technology migration in history."
-    },
-    {
-      "id": "pentagon-press-freedom",
-      "label": "Pentagon expands control over Stars and Stripes during wartime",
-      "firstSeen": "2026-03-15T17:30:00Z",
-      "lastCovered": "2026-03-15T17:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-pentagon-stars-stripes-content-limits"
-      ],
-      "summary": "Pentagon expanding oversight and limiting content of Stars and Stripes — editorially independent military newspaper since WWII — during active Iran war."
-    },
-    {
-      "id": "seabed-mining-regulation",
-      "label": "Seabed mining treaty: deep ocean vs green transition minerals",
-      "firstSeen": "2026-03-15T17:30:00Z",
-      "lastCovered": "2026-03-15T17:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-seabed-mining-treaty-deep-ocean"
-      ],
-      "summary": "ISA treaty progressing on deep-sea mining regulations. Norway approved mining while scientists warn of irreversible damage to abyssal ecosystems."
-    },
-    {
-      "id": "asean-trade-war-insurance",
-      "label": "Indonesia-Singapore-Malaysia deepen trade as Hormuz insurance",
-      "firstSeen": "2026-03-15T17:30:00Z",
-      "lastCovered": "2026-03-15T17:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-indonesia-singapore-malaysia-trade-partnership"
-      ],
-      "summary": "Southeast Asia's three largest economies strengthening intra-ASEAN trade to reduce dependence on disrupted global supply chains."
+      "summary": "66 dead in severe flooding outside normal rainy season."
     },
     {
       "id": "pakistan-afghanistan-strikes",
@@ -362,200 +309,75 @@
       "summary": "Pakistan struck deep inside Afghanistan. Tensions remain but overshadowed by Iran war."
     },
     {
-      "id": "coconut-cartel-thai-farmers",
-      "label": "Chinese-financed cartel squeezes Thai coconut farmers",
-      "firstSeen": "2026-03-15T05:03:00Z",
-      "lastCovered": "2026-03-15T05:03:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-coconut-cartel-chinese-money-thai-farmers"
-      ],
-      "summary": "Thai coconut farmers getting 2 baht per coconut — record low."
-    },
-    {
-      "id": "ai-war-disinformation",
-      "label": "AI war fakes flooding X",
-      "firstSeen": "2026-03-15T02:35:00Z",
-      "lastCovered": "2026-03-15T02:35:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-ai-fakes-iran-war-x-platform-failing"
-      ],
-      "summary": "AI disinformation about Iran war flooding X."
-    },
-    {
-      "id": "gitagent-ai-standard",
-      "label": "GitAgent: open standard for portable AI agents",
-      "firstSeen": "2026-03-15T05:03:00Z",
-      "lastCovered": "2026-03-15T05:03:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-gitagent-open-standard-portable-ai-agents"
-      ],
-      "summary": "Open standard defining AI agents as git repo files."
-    },
-    {
-      "id": "cuba-blackout-crisis",
-      "label": "Cuba blackout crisis",
-      "firstSeen": "2026-03-14T15:00:00Z",
-      "lastCovered": "2026-03-14T15:00:00Z",
+      "id": "bangladesh-post-revolution",
+      "label": "Bangladesh: Jamaat threatens protests over Reform Council",
+      "firstSeen": "2026-03-15T15:00:00Z",
+      "lastCovered": "2026-03-15T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
-        "2026-03-14-cuba-protesters-attack-communist-party-office-blackout"
+        "2026-03-15-bangladesh-jamaat-protests-reform-council"
       ],
-      "summary": "Anti-government protesters attacked Communist party office amid blackouts."
+      "summary": "Bangladesh's largest Islamist party threatening street protests."
     },
     {
-      "id": "meta-ai-layoffs",
-      "label": "Meta cuts 20%+ workforce for AI",
-      "firstSeen": "2026-03-14T02:45:00Z",
-      "lastCovered": "2026-03-14T15:00:00Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-meta-layoffs-20-percent-ai-superintelligence-zuckerberg"
-      ],
-      "summary": "Meta planning 20%+ layoffs to fund AI infrastructure."
-    },
-    {
-      "id": "tesla-terafab-chips",
-      "label": "Tesla Terafab AI chip factory",
-      "firstSeen": "2026-03-14T15:00:00Z",
-      "lastCovered": "2026-03-14T15:00:00Z",
+      "id": "nyse-nasdaq-blockchain",
+      "label": "NYSE and Nasdaq moving equity market to blockchain",
+      "firstSeen": "2026-03-15T17:30:00Z",
+      "lastCovered": "2026-03-15T17:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
-        "2026-03-14-tesla-terafab-ai-chip-factory-launch"
+        "2026-03-15-nasdaq-nyse-126-trillion-blockchain"
       ],
-      "summary": "Musk announces Tesla Terafab chip fabrication facility."
+      "summary": "Both major US exchange operators moving toward blockchain settlement."
     },
     {
-      "id": "trump-wartime-press-freedom",
-      "label": "Trump FCC threatens news outlets",
-      "firstSeen": "2026-03-14T20:30:00Z",
-      "lastCovered": "2026-03-14T20:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-trump-threatens-news-outlets-iran-war-press-freedom"
-      ],
-      "summary": "FCC threatens license revocation for outlets sharing distortions."
-    },
-    {
-      "id": "us-science-infrastructure-gutted",
-      "label": "US science infrastructure under attack",
-      "firstSeen": "2026-03-14T22:31:00Z",
-      "lastCovered": "2026-03-14T22:31:00Z",
+      "id": "seabed-mining-regulation",
+      "label": "Seabed mining treaty progress",
+      "firstSeen": "2026-03-15T17:30:00Z",
+      "lastCovered": "2026-03-15T17:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
-        "2026-03-14-nih-whistleblower-research-capacity-gutted"
+        "2026-03-15-seabed-mining-treaty-deep-ocean"
       ],
-      "summary": "NIH whistleblower warns research capacity being gutted."
+      "summary": "ISA treaty progressing while Norway approves mining."
     },
     {
-      "id": "vietnam-election-2026",
-      "label": "Vietnam general election: 93% Communist Party",
-      "firstSeen": "2026-03-15T07:34:00Z",
-      "lastCovered": "2026-03-15T07:34:00Z",
+      "id": "south-africa-military-deployment",
+      "label": "South Africa deploys 2,200 soldiers to 5 provinces",
+      "firstSeen": "2026-03-15T17:30:00Z",
+      "lastCovered": "2026-03-15T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
-      "arc": "fading",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
-        "2026-03-15-vietnam-election-93-percent-communist-party"
+        "2026-03-15-south-africa-2200-soldiers-five-provinces"
       ],
-      "summary": "Vietnam holds general election with 93% ruling party candidates."
+      "summary": "Unusual scale of domestic military deployment."
     },
     {
-      "id": "congo-election-sassou-nguesso",
-      "label": "Congo-Brazzaville: Sassou Nguesso 40-year rule",
+      "id": "pakistan-ramadan-energy-crisis",
+      "label": "Pakistan: Gas cuts + kerosene hike during Ramadan",
       "firstSeen": "2026-03-15T10:01:00Z",
-      "lastCovered": "2026-03-15T10:01:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-congo-presidential-election-sassou-nguesso"
-      ],
-      "summary": "Denis Sassou Nguesso running for re-election after 40 years."
-    },
-    {
-      "id": "ai-african-labor-rights",
-      "label": "Kenyan AI data labelers form union",
-      "firstSeen": "2026-03-15T07:34:00Z",
-      "lastCovered": "2026-03-15T07:34:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-ai-african-intelligence-workers-fighting-back"
-      ],
-      "summary": "Data Labelers Association formed in Kenya."
-    },
-    {
-      "id": "japan-type-12-china",
-      "label": "Japan deploys Type-12 missiles near East China Sea",
-      "firstSeen": "2026-03-15T05:03:00Z",
-      "lastCovered": "2026-03-15T05:03:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-japan-type-12-missiles-east-china-sea"
-      ],
-      "summary": "Japan deployed domestically produced long-range missiles near East China Sea."
-    },
-    {
-      "id": "argentina-ypf-us",
-      "label": "US backs Argentina in YPF case",
-      "firstSeen": "2026-03-15T12:32:00Z",
-      "lastCovered": "2026-03-15T12:32:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-15T15:00:00Z",
+      "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
-      "arc": "fading",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
-        "2026-03-15-us-backs-argentina-ypf-nationalisation"
+        "2026-03-15-karachi-gas-cuts-ramadan-sehri-iftar",
+        "2026-03-15-pakistan-kerosene-hike-rs40-ramadan-poorest"
       ],
-      "summary": "US backs Argentina against US investors in YPF case."
-    },
-    {
-      "id": "indonesia-semiconductor-sovereignty",
-      "label": "Indonesia semiconductor ecosystem via Danantara",
-      "firstSeen": "2026-03-15T12:32:00Z",
-      "lastCovered": "2026-03-15T12:32:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-indonesia-danantara-semiconductor-sovereignty"
-      ],
-      "summary": "Indonesia building domestic semiconductor capabilities via sovereign wealth fund."
+      "summary": "Pakistan's poorest hit by gas cuts and kerosene price hike during Ramadan."
     }
   ]
 }
