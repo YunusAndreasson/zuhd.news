@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran war Day 23: UAE implicated in Kharg strikes, Saudi capital under drone fire, Russia arms reversal",
+      "label": "Iran war Day 23: CIA chief admits US attacked for Israel, ambulance threats, Space Centre destroyed",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-15T02:35:00Z",
-      "coverageCount": 166,
+      "lastCovered": "2026-03-15T05:03:00Z",
+      "coverageCount": 172,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -167,16 +167,22 @@
         "2026-03-15-us-senator-trump-lost-control-iran-war",
         "2026-03-15-saudi-drones-intercepted-riyadh-capital-under-fire",
         "2026-03-15-russia-supplying-shahed-drones-iran-arms-reversal",
-        "2026-03-15-us-soldiers-killed-iraq-plane-crash-iran-war"
+        "2026-03-15-us-soldiers-killed-iraq-plane-crash-iran-war",
+        "2026-03-15-cia-chief-us-attacked-iran-for-israel",
+        "2026-03-15-israel-threatens-ambulance-strikes-lebanon",
+        "2026-03-15-iran-urges-india-activate-brics-war",
+        "2026-03-15-turkey-iran-betrayed-us-nuclear-talks",
+        "2026-03-15-trump-peace-deal-not-good-enough-war",
+        "2026-03-15-iran-space-research-centre-destroyed-strikes"
       ],
-      "summary": "Day 23: Iran accuses US of launching Kharg strikes from UAE, dragging Gulf neutral into war. 7 drones intercepted over Riyadh capital. Russia supplying Shahed drones to Iran (reversing 2023 flow). US senator declares Trump lost control. 6 more US soldiers killed in Iraq crash."
+      "summary": "Day 23: Former CIA chief Petraeus admits US attacked Iran to scuttle its defense against Israel. Israel explicitly threatens ambulance strikes in Lebanon (26 medics killed since Mar 2). Iran Space Research Centre destroyed. Turkey's FM says Iran feels betrayed — US attacked during nuclear talks. Trump says peace terms not 'good enough' without stating objectives. Iran urges India to activate BRICS."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz: Oil hits $100, Africa hardest hit, tech supply chains disrupted",
+      "label": "Hormuz: Pakistan trade suspended on freight/insurance costs, kerosene hike hits poorest",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-15T02:35:00Z",
-      "coverageCount": 139,
+      "lastCovered": "2026-03-15T05:03:00Z",
+      "coverageCount": 141,
       "category": "economy",
       "importance": 8,
       "arc": "ongoing",
@@ -306,18 +312,21 @@
         "2026-03-15-us-energy-supply-asia-pacific-hormuz-crisis",
         "2026-03-15-africa-oil-100-barrel-global-south-crisis",
         "2026-03-15-us-china-economic-chiefs-paris-tariffs-war",
-        "2026-03-15-tech-supply-chain-costs-surge-iran-war"
+        "2026-03-15-tech-supply-chain-costs-surge-iran-war",
+        "2026-03-15-pakistan-freight-war-risk-trade-suspended",
+        "2026-03-15-pakistan-kerosene-hike-poorest-bear-cost",
+        "2026-03-15-gas-drives-electricity-prices-war-mechanism"
       ],
-      "summary": "Oil at $100/barrel devastating African net importers with no strategic reserves. Tech supply chains (Samsung, SK Hynix) facing cost surges from Hormuz closure. US-China economic chiefs meeting in Paris while China arms Iran."
+      "summary": "Pakistani importers suspending trade as freight/war-risk insurance makes shipping unaffordable. Kerosene hiked Rs40/litre while petrol held stable — poorest households bear cost. Gas-electricity price mechanism transmitting Hormuz crisis to global electricity bills."
     },
     {
       "id": "pakistan-afghanistan-strikes",
-      "label": "Pakistan-Afghanistan: Taliban 'crossed red line', China mediating",
+      "label": "Pakistan-Afghanistan: India inserts itself, FO rejects 'absurd' Indian criticism",
       "firstSeen": "2026-03-14T00:30:00Z",
       "lastCovered": "2026-03-15T00:30:00Z",
       "coverageCount": 6,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul",
@@ -327,7 +336,49 @@
         "2026-03-14-pakistan-denies-afghan-taliban-military-post-captured",
         "2026-03-15-pakistan-strikes-kandahar-base-afghan-war-escalates"
       ],
-      "summary": "Pakistan struck deep inside Afghanistan (Kandahar), escalating beyond border skirmishes. President Zardari declared red line crossed after Taliban drones hit civilian areas."
+      "summary": "Pakistan struck deep inside Afghanistan (Kandahar). India's MEA criticized Pakistan's cross-border operations — Pakistan FO rejected statement as 'absurd and shamefully hypocritical.' Regional conflict drawing in more actors."
+    },
+    {
+      "id": "japan-type-12-china",
+      "label": "Japan deploys Type-12 long-range missiles near East China Sea",
+      "firstSeen": "2026-03-15T05:03:00Z",
+      "lastCovered": "2026-03-15T05:03:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-japan-type-12-missiles-east-china-sea"
+      ],
+      "summary": "Japan deployed domestically produced long-range missiles near East China Sea — analysts say this crosses a 'strategic threshold' for Beijing. First independent strike capability against Chinese naval assets. Happening while US forces consumed by Iran war."
+    },
+    {
+      "id": "coconut-cartel-thai-farmers",
+      "label": "Chinese-financed cartel squeezes Thai coconut farmers to 6 cents per coconut",
+      "firstSeen": "2026-03-15T05:03:00Z",
+      "lastCovered": "2026-03-15T05:03:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-coconut-cartel-chinese-money-thai-farmers"
+      ],
+      "summary": "Thai coconut farmers getting 2 baht (6 US cents) per coconut — record low — as Chinese-financed middlemen control supply chain. Elderly farmers cannot retire."
+    },
+    {
+      "id": "gitagent-ai-standard",
+      "label": "GitAgent: open standard for portable AI agents across frameworks",
+      "firstSeen": "2026-03-15T05:03:00Z",
+      "lastCovered": "2026-03-15T05:03:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-gitagent-open-standard-portable-ai-agents"
+      ],
+      "summary": "Open standard defining AI agents as git repo files (agent.yaml, SOUL.md, SKILL.md). Exports to Claude Code, OpenAI, CrewAI, Google ADK, LangChain. Addresses vendor lock-in in fragmenting AI agent ecosystem."
     },
     {
       "id": "cuba-blackout-crisis",
@@ -336,12 +387,12 @@
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-14-cuba-protesters-attack-communist-party-office-blackout"
       ],
-      "summary": "Anti-government protesters attacked Communist party office in Morón. Blackouts worsened by US oil blockade. Rare direct attack on party infrastructure."
+      "summary": "Anti-government protesters attacked Communist party office in Morón. Blackouts worsened by US oil blockade."
     },
     {
       "id": "meta-ai-layoffs",
@@ -356,11 +407,11 @@
         "2026-03-14-meta-layoffs-20-percent-ai-superintelligence-zuckerberg",
         "2026-03-14-meta-layoffs-20-percent-ai-superintelligence"
       ],
-      "summary": "Meta planning 20%+ layoffs (potentially 13,000+ jobs) to fund AI infrastructure. Execs discussed headcount assuming AI-assisted workers."
+      "summary": "Meta planning 20%+ layoffs to fund AI infrastructure."
     },
     {
       "id": "tesla-terafab-chips",
-      "label": "Tesla launching Terafab AI chip factory in 7 days",
+      "label": "Tesla launching Terafab AI chip factory",
       "firstSeen": "2026-03-14T15:00:00Z",
       "lastCovered": "2026-03-14T15:00:00Z",
       "coverageCount": 1,
@@ -370,49 +421,21 @@
       "articles": [
         "2026-03-14-tesla-terafab-ai-chip-factory-launch"
       ],
-      "summary": "Musk announces Tesla's Terafab chip fabrication facility launching in 7 days. Fifth-gen AI chip for autonomous driving."
-    },
-    {
-      "id": "beijing-pyongyang-rail",
-      "label": "Beijing-Pyongyang train revived after 6 years",
-      "firstSeen": "2026-03-14T17:30:00Z",
-      "lastCovered": "2026-03-14T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-beijing-pyongyang-train-revived-six-years-china-north-korea"
-      ],
-      "summary": "First train from Beijing to Pyongyang in six years. COVID-era suspension lifted as US stretched thin in Middle East and THAAD redeployed from Korea."
-    },
-    {
-      "id": "vitalik-fli-ai-policy",
-      "label": "Vitalik: meme coins became $1B authoritarian AI policy fund",
-      "firstSeen": "2026-03-14T17:30:00Z",
-      "lastCovered": "2026-03-14T17:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-vitalik-buterin-shiba-inu-1-billion-ai-policy-war-chest"
-      ],
-      "summary": "Future of Life Institute liquidated $500M from Shiba Inu donation and pivoted to political AI lobbying. Buterin warns of authoritarian outcomes."
+      "summary": "Musk announces Tesla Terafab chip fabrication facility."
     },
     {
       "id": "trump-wartime-press-freedom",
-      "label": "Trump FCC threatens news outlets over Iran war coverage",
+      "label": "Trump FCC threatens news outlets, admin slams CNN over Iran coverage",
       "firstSeen": "2026-03-14T20:30:00Z",
       "lastCovered": "2026-03-14T20:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
         "2026-03-14-trump-threatens-news-outlets-iran-war-press-freedom"
       ],
-      "summary": "FCC chair threatens license revocation for outlets sharing distortions about US war with Iran."
+      "summary": "FCC threatens license revocation for outlets sharing distortions about US war. Admin also slams CNN specifically."
     },
     {
       "id": "israeli-settler-violence-west-bank",
@@ -421,8 +444,8 @@
       "lastCovered": "2026-03-14T20:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-14-israeli-settlers-shoot-palestinians-west-bank-qusra"
       ],
@@ -435,8 +458,8 @@
       "lastCovered": "2026-03-14T20:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
         "2026-03-14-eu-extends-russia-sanctions-slams-us-lifting-oil"
       ],
@@ -449,12 +472,12 @@
       "lastCovered": "2026-03-14T22:31:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
         "2026-03-14-trump-drops-charges-veteran-flag-burning-free-speech"
       ],
-      "summary": "Trump administration drops charges against veteran who burned flag (constitutionally protected since 1989) while simultaneously threatening broadcasters over Iran war coverage. Reveals selective application of free speech principles."
+      "summary": "Selective application of free speech principles."
     },
     {
       "id": "us-science-infrastructure-gutted",
@@ -463,13 +486,13 @@
       "lastCovered": "2026-03-14T22:31:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-14-nih-whistleblower-research-capacity-gutted",
         "2026-03-14-epstein-associate-biotech-prasad-exits-fda"
       ],
-      "summary": "NIH whistleblower warns research capacity being gutted. Vinay Prasad exits FDA. Epstein associate attempts biotech comeback. US biomedical research infrastructure under severe strain from DOGE cuts and political appointments."
+      "summary": "NIH whistleblower warns research capacity being gutted. Prasad exits FDA."
     },
     {
       "id": "bitcoin-corporate-concentration",
@@ -478,152 +501,68 @@
       "lastCovered": "2026-03-14T22:31:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-14-strategy-1-million-bitcoin-corporate-concentration"
       ],
-      "summary": "Strategy (ex-MicroStrategy) pursuing plan to hold 1 million bitcoin by end of 2026, roughly 5% of total supply. Uses convertible notes and equity to fund purchases."
-    },
-    {
-      "id": "gimp-3-release",
-      "label": "GIMP 3.2 released — open source creative tools milestone",
-      "firstSeen": "2026-03-14T22:31:00Z",
-      "lastCovered": "2026-03-14T22:31:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-gimp-3-2-released-open-source-image-editor"
-      ],
-      "summary": "GIMP 3.2 released, second major release in 3.x series after nearly two decades on 2.x. Open source image editor competing with AI-powered commercial alternatives."
+      "summary": "Strategy pursuing 1 million bitcoin by end of 2026."
     },
     {
       "id": "bolsonaro-prison-health",
-      "label": "Bolsonaro hospitalised with lung infection while jailed for coup attempt",
+      "label": "Bolsonaro hospitalised with lung infection while jailed",
       "firstSeen": "2026-03-15T00:30:00Z",
       "lastCovered": "2026-03-15T00:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
         "2026-03-15-bolsonaro-hospitalised-lung-infection-jail-brazil"
       ],
-      "summary": "Jailed ex-president Bolsonaro hospitalised with lung infection linked to 2018 stabbing. Has endorsed son Eduardo for 2026 presidential race."
+      "summary": "Jailed ex-president hospitalised. Has endorsed son Eduardo for 2026 race."
     },
     {
       "id": "trinidad-tobago-emergency-rule",
-      "label": "Trinidad and Tobago extends state of emergency, 10 of 14 months under emergency",
+      "label": "Trinidad and Tobago: 10 of 14 months under emergency rule",
       "firstSeen": "2026-03-15T00:30:00Z",
       "lastCovered": "2026-03-15T00:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-15-trinidad-tobago-state-emergency-14-months-civil-liberties"
       ],
-      "summary": "Caribbean nation extends emergency rule for another 3 months. Has spent 10 of last 14 months under emergency status curtailing civil liberties to address gang violence."
-    },
-    {
-      "id": "israel-channel-13-media-independence",
-      "label": "Israel Channel 13 sold to anti-government entrepreneurs, rejecting Netanyahu ally",
-      "firstSeen": "2026-03-15T00:30:00Z",
-      "lastCovered": "2026-03-15T00:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-israel-channel-13-sold-anti-government-press-freedom"
-      ],
-      "summary": "Channel 13 owner rejected Netanyahu ally Patrick Drahi, sold to anti-government tech entrepreneurs. Potential new independent critical news channel during wartime."
+      "summary": "Caribbean nation extends emergency rule for another 3 months."
     },
     {
       "id": "southeast-asia-scam-compounds",
-      "label": "Southeast Asia scam compound survivors face stigma and silence",
+      "label": "Southeast Asia scam compound survivors face stigma",
       "firstSeen": "2026-03-15T00:30:00Z",
       "lastCovered": "2026-03-15T00:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 3,
+      "arc": "developing",
       "articles": [
         "2026-03-15-southeast-asia-scam-compounds-survivors-cyber-slavery"
       ],
-      "summary": "Hundreds of thousands trafficked into cyber-slavery compounds across Myanmar, Cambodia, Laos, Philippines. Survivors face stigma upon return."
+      "summary": "Hundreds of thousands trafficked into cyber-slavery compounds."
     },
     {
-      "id": "age-verification-open-source",
-      "label": "Ageless Linux refuses age verification mandates",
-      "firstSeen": "2026-03-15T00:30:00Z",
-      "lastCovered": "2026-03-15T00:30:00Z",
+      "id": "ai-war-disinformation",
+      "label": "AI-generated war fakes flooding X despite crackdown",
+      "firstSeen": "2026-03-15T02:35:00Z",
+      "lastCovered": "2026-03-15T02:35:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
-        "2026-03-15-ageless-linux-refuses-age-verification-digital-rights"
+        "2026-03-15-ai-fakes-iran-war-x-platform-failing"
       ],
-      "summary": "Linux project openly refusing age verification compliance, arguing mandates incompatible with open source principles."
-    },
-    {
-      "id": "russia-crocus-sentencing",
-      "label": "Russia sentences 19 for Crocus City Hall attack that killed 149",
-      "firstSeen": "2026-03-14T15:00:00Z",
-      "lastCovered": "2026-03-14T15:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-russia-crocus-city-hall-19-sentenced-149-killed"
-      ],
-      "summary": "Moscow court convicted 19 people for 2024 Crocus City Hall massacre. 149 killed, 600+ wounded."
-    },
-    {
-      "id": "south-africa-military-deployment",
-      "label": "South Africa deploys 2,200 soldiers to five provinces",
-      "firstSeen": "2026-03-14T15:00:00Z",
-      "lastCovered": "2026-03-14T15:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-south-africa-2200-soldiers-deployed-five-provinces"
-      ],
-      "summary": "Ramaphosa deploys SANDF to assist police across five provinces. Signals civilian law enforcement overwhelmed."
-    },
-    {
-      "id": "kolesnikova-charlemagne",
-      "label": "Kolesnikova collects Charlemagne Prize after Belarus prison release",
-      "firstSeen": "2026-03-14T15:00:00Z",
-      "lastCovered": "2026-03-14T15:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-kolesnikova-charlemagne-prize-belarus-freedom"
-      ],
-      "summary": "Maria Kolesnikova finally collects 2022 Charlemagne Prize in person after December prison release. Spent years in solitary."
-    },
-    {
-      "id": "habermas-death",
-      "label": "Jürgen Habermas dies at 96",
-      "firstSeen": "2026-03-14T15:00:00Z",
-      "lastCovered": "2026-03-14T15:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-habermas-dies-96-philosopher-public-sphere"
-      ],
-      "summary": "The philosopher who gave the world the concept of the public sphere. Argued for inclusive democracy and communicative rationality."
+      "summary": "AI disinformation about Iran war flooding X. First major war with generative AI as information weapon."
     },
     {
       "id": "fractal-spacetime-physics",
@@ -632,7 +571,7 @@
       "lastCovered": "2026-03-15T02:35:00Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-14-fractal-spacetime-astrid-eichhorn-asymptotic-safety",
@@ -647,7 +586,7 @@
       "lastCovered": "2026-03-15T02:35:00Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-14-nuclear-pore-complex-disorder-drives-cell-machinery",
@@ -656,131 +595,46 @@
       "summary": "New imaging reveals nuclear pore complexes work through disorder."
     },
     {
-      "id": "humanoid-robots-dexterity",
-      "label": "Humanoid robots still fail at fine motor tasks",
-      "firstSeen": "2026-03-14T02:45:00Z",
-      "lastCovered": "2026-03-15T02:35:00Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-14-humanoid-robots-fine-motor-dexterity-gap",
-        "2026-03-15-humanoid-robots-fine-motor-dexterity-gap"
-      ],
-      "summary": "Despite vast improvements, humanoid robots cannot reliably handle fine motor tasks."
-    },
-    {
-      "id": "africa-glaucoma-blindness",
-      "label": "Nigeria: 6,000+ glaucoma cases",
-      "firstSeen": "2026-03-14T12:34:00Z",
-      "lastCovered": "2026-03-14T12:34:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-nigeria-glaucoma-6000-cases-africa-blindness-crisis"
-      ],
-      "summary": "Single state: 6,381 cases in 18 months."
-    },
-    {
-      "id": "google-wiz-acquisition",
-      "label": "Google completes $32B Wiz acquisition",
-      "firstSeen": "2026-03-14T12:34:00Z",
-      "lastCovered": "2026-03-14T12:34:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-google-32-billion-wiz-acquisition-israeli-cybersecurity"
-      ],
-      "summary": "Largest Israeli-founded company acquisition: $32B for cloud security firm Wiz."
-    },
-    {
-      "id": "ukraine-battlefield-ai-data",
-      "label": "Ukraine sharing battlefield data with allied AI",
-      "firstSeen": "2026-03-14T12:34:00Z",
-      "lastCovered": "2026-03-14T12:34:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-ukraine-battlefield-data-allied-ai-models-military"
-      ],
-      "summary": "Platform for allies to train AI on battlefield data."
-    },
-    {
-      "id": "huawei-ai-infrastructure",
-      "label": "Huawei builds non-Western AI infrastructure",
-      "firstSeen": "2026-03-14T12:34:00Z",
-      "lastCovered": "2026-03-14T12:34:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-huawei-ai-data-platform-enterprise-global-south-alternative"
-      ],
-      "summary": "Enterprise AI platform at MWC for adoption outside US tech ecosystem."
-    },
-    {
-      "id": "korea-finland-quantum-6g",
-      "label": "S. Korea-Finland quantum/6G research partnership",
-      "firstSeen": "2026-03-14T17:30:00Z",
-      "lastCovered": "2026-03-14T17:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-south-korea-finland-quantum-6g-research-partnership"
-      ],
-      "summary": "South Korea and Finland deepening cooperation in quantum computing and 6G. Middle-power tech axis forming outside US-China duopoly."
-    },
-    {
-      "id": "montana-right-to-compute",
-      "label": "Montana Right to Compute act gains national attention",
-      "firstSeen": "2026-03-14T17:30:00Z",
-      "lastCovered": "2026-03-14T17:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-14-montana-right-to-compute-act-digital-rights-first"
-      ],
-      "summary": "First US state to enshrine right to run code on own hardware. Passed 2025, now gaining momentum as other states consider similar laws."
-    },
-    {
-      "id": "ai-war-disinformation",
-      "label": "AI-generated war fakes flooding X despite crackdown",
-      "firstSeen": "2026-03-15T02:35:00Z",
-      "lastCovered": "2026-03-15T02:35:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-15-ai-fakes-iran-war-x-platform-failing"
-      ],
-      "summary": "AI-generated disinformation about Iran war flooding X platform despite claimed policy crackdown. First major war where generative AI is a frontline information weapon."
-    },
-    {
       "id": "lonely-runner-conjecture",
       "label": "New progress on 60-year-old Lonely Runner math problem",
       "firstSeen": "2026-03-15T02:35:00Z",
       "lastCovered": "2026-03-15T02:35:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-15-lonely-runner-conjecture-math-progress"
       ],
-      "summary": "New mathematical progress on the Lonely Runner Conjecture, a 60-year-old problem connecting number theory and Diophantine approximation."
+      "summary": "New mathematical progress on the Lonely Runner Conjecture."
+    },
+    {
+      "id": "iran-space-centre-destroyed",
+      "label": "Iran Space Research Centre severely damaged in strikes",
+      "firstSeen": "2026-03-15T05:03:00Z",
+      "lastCovered": "2026-03-15T05:03:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-iran-space-research-centre-destroyed-strikes"
+      ],
+      "summary": "Video reveals significant damage to Iranian Space Research Centre in Tehran. Satellite launch and space science programs set back years."
+    },
+    {
+      "id": "gas-electricity-price-mechanism",
+      "label": "Gas marginal pricing transmits Hormuz crisis to global electricity bills",
+      "firstSeen": "2026-03-15T05:03:00Z",
+      "lastCovered": "2026-03-15T05:03:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-15-gas-drives-electricity-prices-war-mechanism"
+      ],
+      "summary": "Carbon Brief analysis of how gas marginal pricing mechanism in electricity markets transmits Hormuz war to electricity bills globally, even in countries with abundant renewables. Japan as case study of post-Fukushima gas dependence."
     }
   ]
 }
