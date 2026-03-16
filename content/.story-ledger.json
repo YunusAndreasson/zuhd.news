@@ -5,8 +5,8 @@
       "id": "iran-us-israel-war",
       "label": "Iran-US-Israel war: Netanyahu struck oil depots against US warning, allies refuse coalition",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-16T12:30:00Z",
-      "coverageCount": 212,
+      "lastCovered": "2026-03-16T18:00:00Z",
+      "coverageCount": 213,
       "category": "politics",
       "importance": 9,
       "arc": "ongoing",
@@ -53,16 +53,19 @@
         "2026-03-16-us-strikes-chabahar-india-port-iran",
         "2026-03-16-netanyahu-ignored-trump-warning-oil-depots-strike",
         "2026-03-16-uk-starmer-rules-out-iran-war-hormuz-coalition-fails",
-        "2026-03-16-hamas-trump-board-talks-iran-war-gaza"
+        "2026-03-16-hamas-trump-board-talks-iran-war-gaza",
+        "2026-03-16-amnesty-us-tomahawk-minab-school-170-children-killed",
+        "2026-03-16-iran-heritage-sites-devastated-us-israeli-strikes",
+        "2026-03-16-reza-pahlavi-supporters-iran-turning-against"
       ],
-      "summary": "Day 17+ of war. Netanyahu struck Iranian oil infrastructure against explicit US objection. UK, Germany, Japan, Australia all refuse Hormuz coalition. Trump FCC now threatening domestic media over negative war coverage. Not directly covered this cycle — focus shifted to downstream consequences."
+      "summary": "Day 24 of war. Amnesty identifies Tomahawk cruise missile in Minab school strike (170+ killed, mostly children). Heritage sites including Golestan Palace damaged. Exile opposition under Reza Pahlavi losing domestic support as wartime nationalism overrides regime change sentiment."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
       "label": "Hormuz crisis: Sri Lanka/Thailand rationing fuel, Asian economies buckling",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-16T15:00:00Z",
-      "coverageCount": 186,
+      "lastCovered": "2026-03-16T18:00:00Z",
+      "coverageCount": 187,
       "category": "economy",
       "importance": 9,
       "arc": "ongoing",
@@ -109,9 +112,10 @@
         "2026-03-16-japan-energy-vulnerability-hormuz-gas-electricity-prices",
         "2026-03-16-japan-oil-reserves-release-iran-crisis",
         "2026-03-16-gold-below-5000-war-signal",
-        "2026-03-16-sri-lanka-thailand-fuel-rationing-hormuz-war"
+        "2026-03-16-sri-lanka-thailand-fuel-rationing-hormuz-war",
+        "2026-03-16-indonesia-fuel-supply-eid-28-days-hormuz"
       ],
-      "summary": "Economic contagion deepening: Sri Lanka and Thailand now formally rationing fuel. India negotiated tanker passage through Hormuz. Middle East oil benchmarks broken — Dubai premium at $56/barrel vs 90 cents in February. Pakistan exporters facing ad hoc cargo surcharges. Crisis spreading from markets to households."
+      "summary": "Economic contagion deepening: Sri Lanka and Thailand now formally rationing fuel. India negotiated tanker passage through Hormuz. Middle East oil benchmarks broken — Dubai premium at $56/barrel vs 90 cents in February. Pakistan exporters facing ad hoc cargo surcharges. Crisis spreading from markets to households. Indonesia now publicly reassuring 280M citizens fuel will last through Eid — 28 days of reserves. Zero ships crossed Hormuz on Saturday for first time."
     },
     {
       "id": "lebanon-israel-war",
@@ -120,7 +124,7 @@
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 18,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
@@ -153,8 +157,8 @@
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 10,
       "category": "economy",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-09-pakistan-four-day-work-week-schools-shut-austerity",
         "2026-03-09-pakistan-austerity-plan-triple-crisis-iran-war",
@@ -175,7 +179,7 @@
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-16-myanmar-junta-parliament-post-coup-allies"
@@ -189,8 +193,8 @@
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-16-korean-won-1500-dollar-17-year-low-hormuz"
       ],
@@ -203,26 +207,12 @@
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-16-canada-c22-mass-metadata-surveillance"
       ],
       "summary": "Canada mandating telecom metadata retention. Not covered this cycle."
-    },
-    {
-      "id": "coupang-worker-death",
-      "label": "Coupang worker death cover-up investigation",
-      "firstSeen": "2026-03-16T02:30:00Z",
-      "lastCovered": "2026-03-16T02:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-16-coupang-worker-death-cover-up-inspection"
-      ],
-      "summary": "Korean labor ministry investigating Coupang. Not in feed, not covered."
     },
     {
       "id": "us-china-trade-tensions",
@@ -231,7 +221,7 @@
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-16-china-us-erroneous-ways-trade-probes-paris-summit",
@@ -246,8 +236,8 @@
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-16-guess-closes-china-stores-retail-retreat"
       ],
@@ -260,8 +250,8 @@
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-16-malaysia-anwar-silencing-critics-authoritarian-law"
       ],
@@ -274,58 +264,12 @@
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-16-fields-medalist-ngo-bao-chau-quits-us-hong-kong"
       ],
       "summary": "Highest-profile US academic brain drain case. Not covered this cycle."
-    },
-    {
-      "id": "crypto-institutional-failures",
-      "label": "Blockfills crypto bankruptcy",
-      "firstSeen": "2026-03-16T05:30:00Z",
-      "lastCovered": "2026-03-16T05:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-16-blockfills-crypto-bankruptcy-75-million-customer-funds"
-      ],
-      "summary": "Institutional crypto lender bankrupt. Not covered."
-    },
-    {
-      "id": "uk-civil-liberties-wartime",
-      "label": "UK protest bans defied in London",
-      "firstSeen": "2026-03-11T00:00:00Z",
-      "lastCovered": "2026-03-16T05:30:00Z",
-      "coverageCount": 3,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-11-uk-mahmood-bans-al-quds-day-march-wartime-civil-liberties",
-        "2026-03-15-london-pro-palestinian-march-banned-arrests",
-        "2026-03-16-london-thousands-protest-war-iran-despite-bans"
-      ],
-      "summary": "UK banned antiwar marches, thousands defied ban. Not covered this cycle."
-    },
-    {
-      "id": "us-surveillance-apparatus",
-      "label": "Western surveillance: Flock/ICE, Canada C-22",
-      "firstSeen": "2026-03-12T00:00:00Z",
-      "lastCovered": "2026-03-16T02:30:00Z",
-      "coverageCount": 3,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-12-flock-ice-surveillance-license-plate-readers-pipeline-explainer",
-        "2026-03-15-surveillance-flock-ice-how-americans-watched",
-        "2026-03-16-canada-c22-mass-metadata-surveillance"
-      ],
-      "summary": "US Flock-to-ICE pipeline and Canada metadata retention. Not covered this cycle."
     },
     {
       "id": "egypt-economic-crisis",
@@ -334,7 +278,7 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-15-egypt-inflation-currency-crisis-suez",
@@ -349,8 +293,8 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-16-madagascar-anticorruption-chief-pm"
       ],
@@ -363,7 +307,7 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-french-jihadist-yazidi-genocide-trial"
@@ -377,7 +321,7 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-pharma-air-routes-cancer-drugs-war"
@@ -391,8 +335,8 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-16-un-climate-chief-fossil-fuel-war-lesson"
       ],
@@ -405,8 +349,8 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-16-quittr-app-exposes-users-data"
       ],
@@ -419,100 +363,28 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-16-doge-testimony-six-hours-accountability"
       ],
       "summary": "DOGE operatives testified for 6 hours. Not covered this cycle."
     },
     {
-      "id": "biontech-founders-new-venture",
-      "label": "BioNTech founders leave",
-      "firstSeen": "2026-03-15T20:00:00Z",
-      "lastCovered": "2026-03-15T20:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-biontech-founders-sahin-tureci-step-down-new-venture"
-      ],
-      "summary": "COVID mRNA vaccine pioneers leaving BioNTech."
-    },
-    {
-      "id": "kenya-flooding-2026",
-      "label": "Kenya flooding",
-      "firstSeen": "2026-03-09T00:00:00Z",
-      "lastCovered": "2026-03-15T17:30:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-09-kenya-floods-42-killed-nairobi-climate-rainfall",
-        "2026-03-15-kenya-flooding-kills-66-heavy-rains"
-      ],
-      "summary": "66+ dead. Nairobi City Hall now mandating 48-hour flood response action plan."
-    },
-    {
       "id": "pakistan-afghanistan-strikes",
       "label": "Pakistan-Afghanistan cross-border strikes",
       "firstSeen": "2026-03-14T00:30:00Z",
-      "lastCovered": "2026-03-15T00:30:00Z",
-      "coverageCount": 6,
+      "lastCovered": "2026-03-16T18:00:00Z",
+      "coverageCount": 7,
       "category": "politics",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul",
-        "2026-03-15-pakistan-strikes-kandahar-base-afghan-war-escalates"
+        "2026-03-15-pakistan-strikes-kandahar-base-afghan-war-escalates",
+        "2026-03-16-afghanistan-children-killed-pakistan-khost-strikes"
       ],
-      "summary": "Pakistan struck deep inside Afghanistan."
-    },
-    {
-      "id": "south-africa-military-deployment",
-      "label": "South Africa domestic military deployment",
-      "firstSeen": "2026-03-15T17:30:00Z",
-      "lastCovered": "2026-03-15T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-south-africa-2200-soldiers-five-provinces"
-      ],
-      "summary": "Unusual domestic military deployment."
-    },
-    {
-      "id": "chile-latin-america-right",
-      "label": "Latin America right-bloc",
-      "firstSeen": "2026-03-11T00:00:00Z",
-      "lastCovered": "2026-03-12T00:00:00Z",
-      "coverageCount": 3,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-11-chile-kast-inauguration-emergency-government-90-day-plan",
-        "2026-03-11-lula-boycotts-kast-bolsonaro-latin-america-right-bloc",
-        "2026-03-12-ecuador-trump-criminal-economy-crackdown-latin-america"
-      ],
-      "summary": "Chile Kast inaugurated, Lula boycotted."
-    },
-    {
-      "id": "malaysia-trump-tariffs",
-      "label": "Malaysia challenges Trump tariffs",
-      "firstSeen": "2026-03-16T02:30:00Z",
-      "lastCovered": "2026-03-16T02:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-16-malaysia-trump-tariffs-543-billion-challenge"
-      ],
-      "summary": "Malaysia asserting legal challenge to US trade coercion."
+      "summary": "Three children and a woman killed in Khost province strike. Pakistan exploiting Iran war attention vacuum for cross-border operations. China mediating but no enforcement mechanism."
     },
     {
       "id": "ecuador-drug-war-2026",
@@ -521,7 +393,7 @@
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-ecuador-75000-troops-drug-gangs-security-operation"
@@ -535,7 +407,7 @@
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-south-africa-whistleblower-murder-elite-officer-suspect"
@@ -549,7 +421,7 @@
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-namibia-oil-discovery-resource-curse-oversight"
@@ -563,8 +435,8 @@
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-16-ghana-utility-price-cuts-april-consumer-relief"
       ],
@@ -577,7 +449,7 @@
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-glp1-pill-structure-therapeutics-weight-loss-trial"
@@ -591,7 +463,7 @@
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-tiktok-meta-algorithm-safety-whistleblowers"
@@ -605,7 +477,7 @@
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-16-russia-fines-telegram-censorship-crackdown"
@@ -619,7 +491,7 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "breaking",
       "articles": [
         "2026-03-16-sudan-rsf-drone-terror-military-integration-push"
@@ -633,7 +505,7 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-nepal-first-transgender-woman-lawmaker-shrestha"
@@ -647,7 +519,7 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-india-odisha-hospital-fire-kills-10-icu"
@@ -661,7 +533,7 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-kenya-russia-stops-recruiting-kenyans-ukraine-war"
@@ -675,7 +547,7 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-sarkozy-appeals-libya-funding-conviction"
@@ -689,7 +561,7 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-uganda-public-debt-35-billion-per-capita-crisis"
@@ -703,7 +575,7 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-16-trump-fcc-threatens-broadcasters-war-coverage"
@@ -717,7 +589,7 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-humanoid-robots-fine-motor-struggle"
@@ -731,7 +603,7 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-bangladesh-digital-scams-1-8-billion-lost"
@@ -745,7 +617,7 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-germany-climate-target-barely-met-rift"
@@ -759,8 +631,8 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-16-bell-curves-central-limit-theorem-explained"
       ],
@@ -773,12 +645,124 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "developing",
       "articles": [
         "2026-03-16-fractal-spacetime-eichhorn-asymptotic-safety"
       ],
       "summary": "Asymptotic safety proposes space-time becomes fractal at smallest scales — a rival to string theory that doesn't require extra dimensions."
+    },
+    {
+      "id": "icc-karim-khan-misconduct",
+      "label": "ICC governing body rules on Karim Khan misconduct",
+      "firstSeen": "2026-03-16T18:00:00Z",
+      "lastCovered": "2026-03-16T18:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-icc-karim-khan-misconduct-ruling-assembly"
+      ],
+      "summary": "21-member Bureau of Assembly of States Parties to rule on misconduct claims against ICC Prosecutor who issued warrants for Israeli/Hamas leaders and was building Iran war cases."
+    },
+    {
+      "id": "circle-stablecoin-war-demand",
+      "label": "Circle/USDC surges as war-era parallel banking system",
+      "firstSeen": "2026-03-16T18:00:00Z",
+      "lastCovered": "2026-03-16T18:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-circle-stablecoin-doubles-usdc-war-demand"
+      ],
+      "summary": "Circle stock doubles in one month as USDC demand surges amid Hormuz disruptions and sanctions. Stablecoins becoming parallel financial infrastructure."
+    },
+    {
+      "id": "biodiversity-150-countries-warning",
+      "label": "150 countries warn growth obsession destroying nature",
+      "firstSeen": "2026-03-16T18:00:00Z",
+      "lastCovered": "2026-03-16T18:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-150-countries-warn-growth-destroying-nature"
+      ],
+      "summary": "Strongest collective governmental admission that economic growth model is incompatible with biodiversity survival. 150 countries issued joint warning."
+    },
+    {
+      "id": "china-15th-five-year-plan-climate",
+      "label": "China's 15th five-year plan: climate implications",
+      "firstSeen": "2026-03-16T18:00:00Z",
+      "lastCovered": "2026-03-16T18:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-china-15th-five-year-plan-climate-change"
+      ],
+      "summary": "Carbon Brief analysis of whether China's strategic plan matches Paris Agreement pace. World's largest emitter at critical juncture."
+    },
+    {
+      "id": "gas-electricity-pricing-mechanism",
+      "label": "Why gas prices set electricity costs even in non-gas countries",
+      "firstSeen": "2026-03-16T18:00:00Z",
+      "lastCovered": "2026-03-16T18:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-gas-drives-electricity-prices-hormuz-energy"
+      ],
+      "summary": "Merit-order pricing mechanism means gas prices set marginal electricity costs even in countries barely using gas. Hormuz disruption spiking bills globally."
+    },
+    {
+      "id": "openai-pentagon-iran-deployment",
+      "label": "OpenAI tech deployed in Iran war via Pentagon",
+      "firstSeen": "2026-03-16T18:00:00Z",
+      "lastCovered": "2026-03-16T18:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-openai-technology-iran-pentagon-warzone-ai"
+      ],
+      "summary": "MIT Tech Review examines where OpenAI tech is being used in Iran war, two weeks after Pentagon classified access agreement. Accountability gap for AI-assisted targeting."
+    },
+    {
+      "id": "ethereum-foundation-governance",
+      "label": "Ethereum Foundation mandate debate: decentralization vs retreat",
+      "firstSeen": "2026-03-16T18:00:00Z",
+      "lastCovered": "2026-03-16T18:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-ethereum-foundation-mandate-debate-decentralization"
+      ],
+      "summary": "Foundation published mandate reinforcing decentralization principles. Community split: principled step back or abdication as institutional interest grows."
+    },
+    {
+      "id": "us-indo-pacific-deterrence-vacuum",
+      "label": "US vacating Indo-Pacific deterrence for Iran war",
+      "firstSeen": "2026-03-16T18:00:00Z",
+      "lastCovered": "2026-03-16T18:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-us-vacating-indo-pacific-deterrence-iran-war"
+      ],
+      "summary": "Former senior US officials warn carrier strike groups meant for Taiwan deterrence are now in Persian Gulf. South Korea, Japan, Taiwan exposed."
     }
   ]
 }
