@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran-US-Israel war: environmental damage quantified, London mass protests defy bans",
+      "label": "Iran-US-Israel war: school struck again, Abu Dhabi civilian killed, Chabahar strikes near India port",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-16T05:30:00Z",
-      "coverageCount": 206,
+      "lastCovered": "2026-03-16T07:33:00Z",
+      "coverageCount": 209,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -47,16 +47,19 @@
         "2026-03-16-iran-israel-environmental-crimes-tehran-war",
         "2026-03-16-trump-us-israel-shared-war-objectives",
         "2026-03-16-london-thousands-protest-war-iran-despite-bans",
-        "2026-03-16-war-environmental-damage-carbon-toxins-middle-east"
+        "2026-03-16-war-environmental-damage-carbon-toxins-middle-east",
+        "2026-03-16-abu-dhabi-missile-civilian-car-killed",
+        "2026-03-16-us-israeli-strike-school-iran-day-24",
+        "2026-03-16-us-strikes-chabahar-india-port-iran"
       ],
-      "summary": "Day 24+: London mass protests defy UK ban on antiwar marches. Environmental damage from strikes quantified — military carbon footprint rivals national emissions, toxins contaminating air/water/soil. War continues with no ceasefire mechanism. Iran warned other nations to stay away as US seeks to expand coalition."
+      "summary": "Day 24+: War geographic spread escalating — first confirmed civilian killed by missile in Abu Dhabi, another school struck in Iran, US strikes near India's Chabahar port investment. No ceasefire mechanism. Civilian infrastructure targeting now a clear pattern."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz crisis: Japan most vulnerable, gas-electricity price mechanism exposed, oil $106+",
+      "label": "Hormuz crisis: Japan taps oil reserves, gold retreats below $5K, pharma supply chains breaking",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-16T05:30:00Z",
-      "coverageCount": 182,
+      "lastCovered": "2026-03-16T07:33:00Z",
+      "coverageCount": 185,
       "category": "economy",
       "importance": 10,
       "arc": "ongoing",
@@ -100,18 +103,20 @@
         "2026-03-16-australia-refuses-hormuz-naval-deployment",
         "2026-03-16-oil-106-brent-hormuz-coalition-failure",
         "2026-03-16-korean-won-1500-dollar-17-year-low-hormuz",
-        "2026-03-16-japan-energy-vulnerability-hormuz-gas-electricity-prices"
+        "2026-03-16-japan-energy-vulnerability-hormuz-gas-electricity-prices",
+        "2026-03-16-japan-oil-reserves-release-iran-crisis",
+        "2026-03-16-gold-below-5000-war-signal"
       ],
-      "summary": "Carbon Brief analysis reveals Japan is the most exposed major economy to Hormuz blockade — 80%+ oil via Strait. Gas marginal pricing means even countries with high renewable penetration are fully exposed to price spikes. Oil at $106+, coalition still collapsing. Pakistan hit by ADB infrastructure deadline on top of fuel costs."
+      "summary": "Japan first country to begin drawing down strategic petroleum reserves. Gold dipped below $5,000 for first time since war began — potential de-escalation pricing or liquidity stress. Pharma air routes disrupted, cancer drug supply at risk. Oil still $106+. Economic contagion deepening across Asia."
     },
     {
       "id": "lebanon-israel-war",
-      "label": "Lebanon-Israel-Palestine: 850K+ displaced, 16 more killed in Gaza/WB",
+      "label": "Lebanon-Israel-Palestine: 850K+ displaced, daily killings in Gaza/WB",
       "firstSeen": "2026-03-08T00:00:00Z",
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 17,
       "category": "politics",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": [
         "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
@@ -134,16 +139,16 @@
         "2026-03-16-israeli-forces-kill-16-gaza-west-bank-invisible-war",
         "2026-03-16-lebanon-850000-displaced-crisis-worsens"
       ],
-      "summary": "850,000+ displaced in Lebanon, crisis worsening per France 24. Gaza/West Bank: 16 more killed March 16 in what Dawn calls a 'killing spree' — daily killings accelerating under cover of Iran war. Same population in Lebanon displaced twice in barely a year."
+      "summary": "Not selected this cycle — last cycle covered extensively. 850,000+ displaced in Lebanon, daily killings in Gaza/West Bank continuing under Iran war cover."
     },
     {
       "id": "sudan-civil-war",
-      "label": "Sudan: RSF drone campaign, cross-border into South Sudan, military recapture",
+      "label": "Sudan: RSF drone campaign, military recapture attempts",
       "firstSeen": "2026-03-08T00:00:00Z",
       "lastCovered": "2026-03-15T12:32:00Z",
       "coverageCount": 8,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "ongoing",
       "articles": [
         "2026-03-08-sudan-drone-strikes-kill-33-west-kordofan-markets",
@@ -154,16 +159,16 @@
         "2026-03-15-sudan-military-retakes-bara-integration-plan",
         "2026-03-15-sudan-rsf-drones-169-killed-south-sudan"
       ],
-      "summary": "Sudan war metastasising but absent from feed two cycles running. RSF drone campaign, Bara recapture, 169 killed in South Sudan cross-border violence."
+      "summary": "Not covered this cycle. RSF drone campaign continues, Bara recaptured by military. Absent from feed three cycles running."
     },
     {
       "id": "pakistan-systemic-crisis",
-      "label": "Pakistan: ADB $360m deadline adds to austerity spiral, air cargo costs surge",
+      "label": "Pakistan: multiple simultaneous crises — ADB deadline, fuel, Ramadan",
       "firstSeen": "2026-03-09T00:00:00Z",
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 10,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-09-pakistan-four-day-work-week-schools-shut-austerity",
@@ -176,194 +181,179 @@
         "2026-03-15-pakistan-kerosene-hike-rs40-ramadan-poorest",
         "2026-03-16-adb-360m-pakistan-corridor-final-chance"
       ],
-      "summary": "ADB gives final one-month extension on $360M infrastructure loan — use it or lose it. Pakistan simultaneously hit by war fuel costs, Ramadan energy cuts, IMF conditionality, and now development financing deadline. Institutional capacity buckling under overlapping crises."
+      "summary": "Not covered this cycle. ADB deadline, fuel costs, Ramadan energy cuts all continuing."
     },
     {
       "id": "myanmar-junta-parliament",
-      "label": "Myanmar: Junta-packed parliament convenes for first time since 2021 coup",
+      "label": "Myanmar: Junta-packed parliament convenes post-coup",
       "firstSeen": "2026-03-16T02:30:00Z",
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-16-myanmar-junta-parliament-post-coup-allies"
       ],
-      "summary": "Myanmar's military junta convenes first parliament since 2021 coup, packed with allies. Not in this cycle's feed."
+      "summary": "Junta convenes first parliament since 2021 coup. Not in feed this cycle."
     },
     {
       "id": "korean-currency-crisis",
-      "label": "Korean won breaches 1,500/dollar — 17-year low as Hormuz contagion hits Asia",
+      "label": "Korean won at 17-year low — Hormuz contagion hits Asia",
       "firstSeen": "2026-03-16T02:30:00Z",
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-16-korean-won-1500-dollar-17-year-low-hormuz"
       ],
-      "summary": "Won breaks 1,500/dollar for first time since 2009. Not in this cycle's feed — watch for intervention or contagion."
+      "summary": "Won past 1,500/dollar. Not selected this cycle — covered last cycle."
     },
     {
       "id": "canada-mass-surveillance",
-      "label": "Canada Bill C-22: mass metadata surveillance mandate on all Canadians",
+      "label": "Canada Bill C-22: mass metadata surveillance",
       "firstSeen": "2026-03-16T02:30:00Z",
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-16-canada-c22-mass-metadata-surveillance"
       ],
-      "summary": "Canada mandating telecom metadata retention. Not in this cycle's feed."
+      "summary": "Canada mandating telecom metadata retention. Not in feed this cycle."
     },
     {
       "id": "coupang-worker-death",
-      "label": "Coupang worker death cover-up: Korean labor ministry investigation",
+      "label": "Coupang worker death cover-up investigation",
       "firstSeen": "2026-03-16T02:30:00Z",
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-16-coupang-worker-death-cover-up-inspection"
       ],
-      "summary": "Korean labor ministry investigating Coupang for allegedly covering up worker death. Not in this cycle's feed."
+      "summary": "Korean labor ministry investigating Coupang. Not in feed this cycle."
     },
     {
       "id": "us-china-trade-tensions",
-      "label": "US-China trade confrontation: Paris talks, trade probes, Trump-Xi summit prep",
+      "label": "US-China trade confrontation: Paris talks",
       "firstSeen": "2026-03-16T05:30:00Z",
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-16-china-us-erroneous-ways-trade-probes-paris-summit"
       ],
-      "summary": "China lodged representations with US demanding correction of 'erroneous ways' on trade probes. Economic chiefs meeting in Paris to prep Trump-Xi summit. Contradiction: escalating trade confrontation while seeking cooperation on Hormuz/Iran."
+      "summary": "China-US trade tensions amid Paris summit prep. Not selected this cycle."
     },
     {
       "id": "china-consumer-economy-retreat",
-      "label": "International retail retreating from China: Guess closes all mainland stores",
+      "label": "International retail retreating from China",
       "firstSeen": "2026-03-16T05:30:00Z",
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-guess-closes-china-stores-retail-retreat"
       ],
-      "summary": "Guess closing ALL mainland China stores by end of March. Growing number of international fashion retailers making same calculation. Signals consumer spending weakness beyond official GDP data."
+      "summary": "Guess closing all mainland China stores. Not selected this cycle."
     },
     {
       "id": "malaysia-democratic-backsliding",
-      "label": "Malaysia: Anwar government silencing critics with authoritarian law provisions",
+      "label": "Malaysia: Anwar using authoritarian laws against critics",
       "firstSeen": "2026-03-16T05:30:00Z",
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-16-malaysia-anwar-silencing-critics-authoritarian-law"
       ],
-      "summary": "Former prisoner of conscience PM Anwar Ibrahim now accused of using harsh criminal law to silence activists, academics, and students. Ironic democratic backsliding."
+      "summary": "Former prisoner of conscience PM now silencing critics. Not selected this cycle."
     },
     {
       "id": "us-academic-brain-drain",
-      "label": "Fields Medalist Ngo Bao Chau quits University of Chicago for Hong Kong",
+      "label": "Fields Medalist quits US for Hong Kong",
       "firstSeen": "2026-03-16T05:30:00Z",
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-fields-medalist-ngo-bao-chau-quits-us-hong-kong"
       ],
-      "summary": "Vietnamese Fields Medalist leaving University of Chicago for Hong Kong, citing 'things I do not like' about the US. Highest-profile case of Trump-era academic brain drain."
+      "summary": "Highest-profile US academic brain drain case. Not selected this cycle."
     },
     {
       "id": "crypto-institutional-failures",
-      "label": "Blockfills crypto bankruptcy: $75M losses, customer fund misuse allegations",
+      "label": "Blockfills crypto bankruptcy",
       "firstSeen": "2026-03-16T05:30:00Z",
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-blockfills-crypto-bankruptcy-75-million-customer-funds"
       ],
-      "summary": "Institutional crypto lender Blockfills bankrupt after $75M losses. Lawsuit alleges customer fund misuse — same failure pattern as FTX/Celsius."
+      "summary": "Institutional crypto lender bankrupt. Not selected this cycle."
     },
     {
       "id": "uk-civil-liberties-wartime",
-      "label": "UK civil liberties crackdown — protest bans defied in London",
+      "label": "UK protest bans defied in London",
       "firstSeen": "2026-03-11T00:00:00Z",
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-11-uk-mahmood-bans-al-quds-day-march-wartime-civil-liberties",
         "2026-03-15-london-pro-palestinian-march-banned-arrests",
         "2026-03-16-london-thousands-protest-war-iran-despite-bans"
       ],
-      "summary": "UK banned pro-Palestinian marches and arrested organizers, but thousands marched in London anyway against the US-Israeli war. Civil liberties vs. popular opposition to war."
+      "summary": "UK banned antiwar marches, thousands defied ban. Not selected this cycle."
     },
     {
       "id": "ev-battery-supply-chain",
-      "label": "POSCO 1 trillion won battery deal: EV supply chain resilience",
+      "label": "POSCO battery deal",
       "firstSeen": "2026-03-16T02:30:00Z",
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-16-posco-trillion-won-battery-deal-ev-supply"
       ],
-      "summary": "POSCO Future M secures $670M battery deal despite Korea's crisis. Not in this cycle's feed."
+      "summary": "POSCO secures $670M battery deal despite crisis. Not in feed."
     },
     {
       "id": "us-surveillance-apparatus",
-      "label": "Western surveillance infrastructure: Flock/ICE pipeline, Canada C-22",
+      "label": "Western surveillance: Flock/ICE, Canada C-22",
       "firstSeen": "2026-03-12T00:00:00Z",
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 3,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-12-flock-ice-surveillance-license-plate-readers-pipeline-explainer",
         "2026-03-15-surveillance-flock-ice-how-americans-watched",
         "2026-03-16-canada-c22-mass-metadata-surveillance"
       ],
-      "summary": "US Flock-to-ICE surveillance pipeline and Canada mass metadata retention. Pattern of Western democracies building surveillance infrastructure. Not in this cycle's feed."
-    },
-    {
-      "id": "hungary-election-2026",
-      "label": "Hungary: Orbán faces first serious challenger in Peter Magyar",
-      "firstSeen": "2026-03-15T20:00:00Z",
-      "lastCovered": "2026-03-15T20:00:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-02-16-magyar-launches-anti-orban-campaign-in-hungary",
-        "2026-03-15-hungary-orban-magyar-rival-rallies-election"
-      ],
-      "summary": "Most competitive Hungarian election in 14 years. Not in this cycle's feed."
+      "summary": "US Flock-to-ICE pipeline and Canada metadata retention. Not selected this cycle."
     },
     {
       "id": "ai-disinformation-wartime",
@@ -372,7 +362,7 @@
       "lastCovered": "2026-03-12T00:00:00Z",
       "coverageCount": 5,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "ongoing",
       "articles": [
         "2026-03-09-fake-ai-satellite-imagery-iran-war-disinformation",
@@ -381,53 +371,153 @@
         "2026-03-12-ai-chatbots-mass-violence-planning-study-ccdh-safety-failure",
         "2026-03-12-meta-ai-vibes-csam-deepfakes-platform-flood"
       ],
-      "summary": "AI disinformation industrialised during wartime. Not covered in 4+ cycles."
+      "summary": "AI disinformation industrialised during wartime. Trump now accusing Iran of using AI disinfo — both sides weaponizing the narrative."
+    },
+    {
+      "id": "egypt-economic-crisis",
+      "label": "Egypt: inflation, currency collapse, Suez revenue loss — state response examined",
+      "firstSeen": "2026-03-15T17:30:00Z",
+      "lastCovered": "2026-03-16T07:33:00Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-03-15-egypt-inflation-currency-crisis-suez",
+        "2026-03-16-egypt-inflation-state-response-suez"
+      ],
+      "summary": "Mada Masr deep analysis of Egyptian state response to inflation/currency crisis under Suez disruption. State capacity failing against scale of overlapping crises."
+    },
+    {
+      "id": "madagascar-governance",
+      "label": "Madagascar: anticorruption chief appointed PM after cabinet dissolved",
+      "firstSeen": "2026-03-16T07:33:00Z",
+      "lastCovered": "2026-03-16T07:33:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-madagascar-anticorruption-chief-pm"
+      ],
+      "summary": "Rajoelina dissolved cabinet and installed anticorruption bureau chief as PM. Reform or co-optation of watchdog — unclear."
+    },
+    {
+      "id": "yazidi-genocide-accountability",
+      "label": "French jihadist to be tried for Yazidi genocide — rare use of genocide charge for ISIS",
+      "firstSeen": "2026-03-16T07:33:00Z",
+      "lastCovered": "2026-03-16T07:33:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-french-jihadist-yazidi-genocide-trial"
+      ],
+      "summary": "French national tried in absentia for Yazidi genocide. One of few proceedings worldwide to use 'genocide' for ISIS crimes against Yazidis."
+    },
+    {
+      "id": "war-pharma-supply",
+      "label": "Middle East war disrupts pharma air routes — cancer drug supply at risk",
+      "firstSeen": "2026-03-16T07:33:00Z",
+      "lastCovered": "2026-03-16T07:33:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-pharma-air-routes-cancer-drugs-war"
+      ],
+      "summary": "War has disrupted pharmaceutical air freight through Middle East, putting time-sensitive cancer drug deliveries at risk globally."
+    },
+    {
+      "id": "climate-fossil-fuel-war-lesson",
+      "label": "UN climate chief: Iran war proves fossil fuel dependence is security vulnerability",
+      "firstSeen": "2026-03-16T07:33:00Z",
+      "lastCovered": "2026-03-16T07:33:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-un-climate-chief-fossil-fuel-war-lesson"
+      ],
+      "summary": "UN climate chief calls war 'abject lesson' on fossil fuel dependence — framing energy transition as security imperative, not just environmental."
+    },
+    {
+      "id": "quittr-privacy-breach",
+      "label": "Quittr app exposes intimate data of hundreds of thousands of users",
+      "firstSeen": "2026-03-16T07:33:00Z",
+      "lastCovered": "2026-03-16T07:33:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-quittr-app-exposes-users-data"
+      ],
+      "summary": "Porn addiction recovery app exposed the most intimate behavioral data of its users — vulnerability exploited by the tool meant to help."
+    },
+    {
+      "id": "doge-congressional-testimony",
+      "label": "DOGE operatives face six hours of congressional testimony",
+      "firstSeen": "2026-03-16T07:33:00Z",
+      "lastCovered": "2026-03-16T07:33:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-doge-testimony-six-hours-accountability"
+      ],
+      "summary": "404 Media watched all 6 hours of DOGE operative congressional testimony. Unaccountable technologists wielding government power without clearances or experience."
+    },
+    {
+      "id": "hungary-election-2026",
+      "label": "Hungary: Orbán faces Magyar challenger",
+      "firstSeen": "2026-03-15T20:00:00Z",
+      "lastCovered": "2026-03-15T20:00:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-02-16-magyar-launches-anti-orban-campaign-in-hungary",
+        "2026-03-15-hungary-orban-magyar-rival-rallies-election"
+      ],
+      "summary": "Most competitive Hungarian election in 14 years."
     },
     {
       "id": "china-taiwan-military-flights",
-      "label": "China resumes large-scale military flights near Taiwan",
+      "label": "China military flights near Taiwan",
       "firstSeen": "2026-03-15T17:30:00Z",
       "lastCovered": "2026-03-15T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-15-china-military-flights-taiwan-return"
       ],
-      "summary": "PLA resumes flights near Taiwan with US assets in Gulf. Not in this cycle's feed."
+      "summary": "PLA resumes flights near Taiwan. Not in feed."
     },
     {
       "id": "china-photoresist-sovereignty",
-      "label": "China building domestic photoresist to break US-Japan semiconductor chokepoint",
+      "label": "China domestic photoresist for chip sovereignty",
       "firstSeen": "2026-03-16T00:30:00Z",
       "lastCovered": "2026-03-16T00:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-16-china-photoresist-supply-chain-chip-sovereignty"
       ],
-      "summary": "China targeting photoresist — last Western chokepoint in chip supply chain. Not in this cycle's feed."
-    },
-    {
-      "id": "malaysia-trump-tariffs",
-      "label": "Malaysia challenges Trump tariffs — RM543B restitution demand",
-      "firstSeen": "2026-03-16T02:30:00Z",
-      "lastCovered": "2026-03-16T02:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-16-malaysia-trump-tariffs-543-billion-challenge"
-      ],
-      "summary": "Malaysia asserting legal challenge to US trade coercion. Not in this cycle's feed."
+      "summary": "China targeting photoresist — last Western chokepoint."
     },
     {
       "id": "french-far-right-municipal",
-      "label": "French far right in municipal elections — 2027 preview",
+      "label": "French far right municipal elections",
       "firstSeen": "2026-03-15T20:00:00Z",
       "lastCovered": "2026-03-15T20:00:00Z",
       "coverageCount": 1,
@@ -437,11 +527,11 @@
       "articles": [
         "2026-03-15-french-far-right-municipal-elections-2027-preview"
       ],
-      "summary": "RN performs strongly in round 1 of French municipal elections."
+      "summary": "RN strong in round 1 of French municipal elections."
     },
     {
       "id": "sec-cftc-crypto-regulation",
-      "label": "SEC-CFTC crypto regulatory MOU",
+      "label": "SEC-CFTC crypto MOU",
       "firstSeen": "2026-03-15T20:00:00Z",
       "lastCovered": "2026-03-15T20:00:00Z",
       "coverageCount": 1,
@@ -469,7 +559,7 @@
     },
     {
       "id": "biontech-founders-new-venture",
-      "label": "BioNTech founders leave for new venture",
+      "label": "BioNTech founders leave",
       "firstSeen": "2026-03-15T20:00:00Z",
       "lastCovered": "2026-03-15T20:00:00Z",
       "coverageCount": 1,
@@ -483,7 +573,7 @@
     },
     {
       "id": "kenya-flooding-2026",
-      "label": "Kenya flooding kills 66+",
+      "label": "Kenya flooding",
       "firstSeen": "2026-03-09T00:00:00Z",
       "lastCovered": "2026-03-15T17:30:00Z",
       "coverageCount": 2,
@@ -509,11 +599,11 @@
         "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul",
         "2026-03-15-pakistan-strikes-kandahar-base-afghan-war-escalates"
       ],
-      "summary": "Pakistan struck deep inside Afghanistan. Overshadowed by Iran war."
+      "summary": "Pakistan struck deep inside Afghanistan."
     },
     {
       "id": "south-africa-military-deployment",
-      "label": "South Africa deploys 2,200 soldiers domestically",
+      "label": "South Africa domestic military deployment",
       "firstSeen": "2026-03-15T17:30:00Z",
       "lastCovered": "2026-03-15T17:30:00Z",
       "coverageCount": 1,
@@ -523,23 +613,37 @@
       "articles": [
         "2026-03-15-south-africa-2200-soldiers-five-provinces"
       ],
-      "summary": "Unusual domestic military deployment scale."
+      "summary": "Unusual domestic military deployment."
     },
     {
       "id": "chile-latin-america-right",
-      "label": "Latin America right-bloc forming",
+      "label": "Latin America right-bloc",
       "firstSeen": "2026-03-11T00:00:00Z",
       "lastCovered": "2026-03-12T00:00:00Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-11-chile-kast-inauguration-emergency-government-90-day-plan",
         "2026-03-11-lula-boycotts-kast-bolsonaro-latin-america-right-bloc",
         "2026-03-12-ecuador-trump-criminal-economy-crackdown-latin-america"
       ],
-      "summary": "Chile Kast inaugurated, Lula boycotted, Ecuador Trump-style crackdown."
+      "summary": "Chile Kast inaugurated, Lula boycotted."
+    },
+    {
+      "id": "malaysia-trump-tariffs",
+      "label": "Malaysia challenges Trump tariffs",
+      "firstSeen": "2026-03-16T02:30:00Z",
+      "lastCovered": "2026-03-16T02:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-03-16-malaysia-trump-tariffs-543-billion-challenge"
+      ],
+      "summary": "Malaysia asserting legal challenge to US trade coercion."
     }
   ]
 }
