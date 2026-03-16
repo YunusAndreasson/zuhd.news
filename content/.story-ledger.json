@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran-US-Israel-Gulf war: UAE under attack, war now regional",
+      "label": "Iran-US-Israel-Gulf war: 7,000 targets struck, war spreads to Iraq",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-16T20:30:00Z",
-      "coverageCount": 215,
+      "lastCovered": "2026-03-16T22:35:00Z",
+      "coverageCount": 217,
       "category": "politics",
       "importance": 9,
       "arc": "ongoing",
@@ -58,18 +58,20 @@
         "2026-03-16-iran-heritage-sites-devastated-us-israeli-strikes",
         "2026-03-16-reza-pahlavi-supporters-iran-turning-against",
         "2026-03-16-uae-missiles-drones-iran-gulf-campaign",
-        "2026-03-16-iranian-families-bury-war-dead-tehran"
+        "2026-03-16-iranian-families-bury-war-dead-tehran",
+        "2026-03-16-us-centcom-7000-targets-struck-iran-24-days",
+        "2026-03-16-baghdad-green-zone-drone-rockets-war-spreads-iraq"
       ],
-      "summary": "Day 24. War expands to UAE — missiles and drones hitting Emirati territory for first time. Iranian families burying war dead in Tehran as wartime nationalism overrides regime opposition. Gulf regional conflagration now reality."
+      "summary": "Day 24. CENTCOM confirms 7,000 targets struck in Iran. War spreading to Iraq — drone and rockets hit Baghdad Green Zone near US embassy. UAE under direct attack. 32M displaced. Industrial-scale destruction at ~290 targets/day."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz crisis: Sri Lanka/Thailand rationing fuel, Asian economies buckling",
+      "label": "Hormuz crisis: fuel rationing spreading, zero ships crossing",
       "firstSeen": "2026-03-01T13:00:00Z",
       "lastCovered": "2026-03-16T18:00:00Z",
       "coverageCount": 187,
       "category": "economy",
-      "importance": 8,
+      "importance": 7,
       "arc": "ongoing",
       "articles": [
         "2026-03-08-iraq-oil-production-collapses-70-percent-hormuz-blockade",
@@ -117,14 +119,14 @@
         "2026-03-16-sri-lanka-thailand-fuel-rationing-hormuz-war",
         "2026-03-16-indonesia-fuel-supply-eid-28-days-hormuz"
       ],
-      "summary": "Economic contagion deepening: Sri Lanka and Thailand now formally rationing fuel. India negotiated tanker passage through Hormuz. Middle East oil benchmarks broken — Dubai premium at $56/barrel vs 90 cents in February. Pakistan exporters facing ad hoc cargo surcharges. Crisis spreading from markets to households. Indonesia now publicly reassuring 280M citizens fuel will last through Eid — 28 days of reserves. Zero ships crossed Hormuz on Saturday for first time."
+      "summary": "Hormuz still shut — zero ships crossing. Sri Lanka, Thailand rationing fuel. Korean won at 17-year low. Indonesia reassuring 280M on Eid fuel supply. Not directly covered this cycle."
     },
     {
       "id": "lebanon-israel-war",
-      "label": "Lebanon-Israel-Palestine: Al-Aqsa closed indefinitely, 850K+ displaced",
+      "label": "Lebanon-Israel-Palestine: 5 Western nations warn against ground incursion",
       "firstSeen": "2026-03-08T00:00:00Z",
-      "lastCovered": "2026-03-16T20:30:00Z",
-      "coverageCount": 19,
+      "lastCovered": "2026-03-16T22:35:00Z",
+      "coverageCount": 20,
       "category": "politics",
       "importance": 5,
       "arc": "developing",
@@ -149,24 +151,43 @@
         "2026-03-16-israeli-forces-kill-16-gaza-west-bank-invisible-war",
         "2026-03-16-lebanon-850000-displaced-crisis-worsens",
         "2026-03-16-israel-al-aqsa-closed-through-eid-indefinite",
-        "2026-03-16-palestinian-boy-family-killed-car-gaza"
+        "2026-03-16-palestinian-boy-family-killed-car-gaza",
+        "2026-03-16-five-western-nations-warn-israel-lebanon-incursion"
       ],
-      "summary": "IDF ground operations in southern Lebanon. 850K+ displaced. Gaza invisible war continues — BBC documents 12-year-old boy testimony of family killed in car. Al-Aqsa closed through Eid."
+      "summary": "Five Western nations (Canada, France, Germany, Italy, UK) publicly warn Israel against ground incursion into Lebanon. 850K+ displaced. Al-Aqsa closed indefinitely. Gaza invisible war continues."
+    },
+    {
+      "id": "pakistan-afghanistan-strikes",
+      "label": "Pakistan-Afghanistan: 200 dead in Kabul hospital strike reported",
+      "firstSeen": "2026-03-14T00:30:00Z",
+      "lastCovered": "2026-03-16T22:35:00Z",
+      "coverageCount": 9,
+      "category": "politics",
+      "importance": 9,
+      "arc": "developing",
+      "articles": [
+        "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul",
+        "2026-03-15-pakistan-strikes-kandahar-base-afghan-war-escalates",
+        "2026-03-16-afghanistan-children-killed-pakistan-khost-strikes",
+        "2026-03-16-pakistan-strikes-kabul-nangarhar-taliban",
+        "2026-03-16-pakistan-strikes-kabul-hospital-200-dead"
+      ],
+      "summary": "Catastrophic escalation: Taliban authorities say Pakistan struck a drug rehabilitation hospital in Kabul killing ~200 (Sveriges Radio). Pakistan denies, claims only military targets. Death toll makes this potentially the deadliest single strike in the conflict."
     },
     {
       "id": "us-china-trade-tensions",
-      "label": "US-China: Xi-Trump summit planned end of March, Paris talks underway",
+      "label": "US-China: Trump delays Xi summit amid Iran war",
       "firstSeen": "2026-03-16T05:30:00Z",
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-16-china-us-erroneous-ways-trade-probes-paris-summit",
         "2026-03-16-xi-trump-summit-march-trade-tensions"
       ],
-      "summary": "Bessent-He Lifeng talks in Paris ahead of end-of-March summit. Trump now tying summit to China helping break Hormuz blockade. Not directly covered this cycle."
+      "summary": "Trump says he asked to delay Xi summit by 'a month or so' — Iran war consuming US diplomatic bandwidth. Not covered this cycle."
     },
     {
       "id": "egypt-economic-crisis",
@@ -175,30 +196,13 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-03-15-egypt-inflation-currency-crisis-suez",
         "2026-03-16-egypt-inflation-state-response-suez"
       ],
-      "summary": "Mada Masr analysis of Egyptian state response to overlapping crises. Not covered this cycle."
-    },
-    {
-      "id": "pakistan-afghanistan-strikes",
-      "label": "Pakistan-Afghanistan cross-border strikes",
-      "firstSeen": "2026-03-14T00:30:00Z",
-      "lastCovered": "2026-03-16T20:30:00Z",
-      "coverageCount": 8,
-      "category": "politics",
-      "importance": 7,
-      "arc": "developing",
-      "articles": [
-        "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul",
-        "2026-03-15-pakistan-strikes-kandahar-base-afghan-war-escalates",
-        "2026-03-16-afghanistan-children-killed-pakistan-khost-strikes",
-        "2026-03-16-pakistan-strikes-kabul-nangarhar-taliban"
-      ],
-      "summary": "Major escalation: Pakistan strikes Afghan Taliban military installations in Kabul and Nangarhar — hitting the capital itself, far beyond border area operations in Khost. Exploiting Iran war attention vacuum."
+      "summary": "Egyptian state response to overlapping crises. Not covered this cycle."
     },
     {
       "id": "ecuador-drug-war-2026",
@@ -207,7 +211,7 @@
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-16-ecuador-75000-troops-drug-gangs-security-operation"
@@ -221,12 +225,12 @@
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-16-glp1-pill-structure-therapeutics-weight-loss-trial"
       ],
-      "summary": "Structure Therapeutics oral GLP-1 reports significant weight loss. Not covered this cycle."
+      "summary": "Structure Therapeutics oral GLP-1 reports significant weight loss."
     },
     {
       "id": "platform-algorithm-safety",
@@ -235,12 +239,12 @@
       "lastCovered": "2026-03-16T12:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-16-tiktok-meta-algorithm-safety-whistleblowers"
       ],
-      "summary": "Multiple whistleblowers say TikTok and Meta deliberately weakened safety for engagement. Not covered this cycle."
+      "summary": "Multiple whistleblowers say TikTok and Meta deliberately weakened safety for engagement."
     },
     {
       "id": "sudan-war-2026",
@@ -249,12 +253,12 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-16-sudan-rsf-drone-terror-military-integration-push"
       ],
-      "summary": "RSF losing territory (Bara retaken) but escalating with drone terror targeting homes, markets, hospitals in Kordofan/Blue Nile. Military moving to integrate all armed groups — Juba Peace Agreement signatories fear loss of leverage. War shifting from ground combat to aerial psychological attrition."
+      "summary": "RSF escalating with drone terror in Kordofan/Blue Nile. Military integrating armed groups. Not covered this cycle."
     },
     {
       "id": "nepal-transgender-lawmaker",
@@ -263,12 +267,12 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "fading",
       "articles": [
         "2026-03-16-nepal-first-transgender-woman-lawmaker-shrestha"
       ],
-      "summary": "Bhumika Shrestha, 37, becomes Nepal's first transgender woman MP via proportional representation from the RSP majority party (182 seats). Nepal has one of South Asia's most progressive LGBTQ frameworks."
+      "summary": "Bhumika Shrestha becomes Nepal's first transgender woman MP."
     },
     {
       "id": "india-hospital-fire-safety",
@@ -277,12 +281,12 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "fading",
       "articles": [
         "2026-03-16-india-odisha-hospital-fire-kills-10-icu"
       ],
-      "summary": "10 killed in ICU fire in Cuttack, Odisha from electrical short circuit. Short circuits are leading cause of building fires in India — systemic safety enforcement failure."
+      "summary": "10 killed in ICU fire in Cuttack, Odisha."
     },
     {
       "id": "kenya-russia-recruitment",
@@ -291,12 +295,12 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "fading",
       "articles": [
         "2026-03-16-kenya-russia-stops-recruiting-kenyans-ukraine-war"
       ],
-      "summary": "1,000+ Kenyans recruited to fight for Russia in Ukraine. FM Mudavadi says Moscow agreed to stop. Enforceability unclear — recruitment operated through informal brokers."
+      "summary": "1,000+ Kenyans recruited for Russia. Moscow agreed to stop."
     },
     {
       "id": "sarkozy-libya-accountability",
@@ -305,12 +309,12 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "fading",
       "articles": [
         "2026-03-16-sarkozy-appeals-libya-funding-conviction"
       ],
-      "summary": "Sarkozy appealing conviction for Gaddafi-funded 2007 campaign. Served 20 days in prison in 2025. Took Libyan money, then helped destroy the Libyan state in 2011."
+      "summary": "Sarkozy appealing conviction for Gaddafi-funded 2007 campaign."
     },
     {
       "id": "uganda-debt-crisis",
@@ -319,12 +323,12 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-16-uganda-public-debt-35-billion-per-capita-crisis"
       ],
-      "summary": "Uganda debt at $35bn — roughly $800 per citizen in a country with ~$960 GDP per capita. Infrastructure borrowing while Hormuz crisis complicates nascent oil sector."
+      "summary": "Uganda debt at $35bn — roughly $800 per citizen."
     },
     {
       "id": "trump-fcc-press-freedom",
@@ -333,12 +337,12 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-trump-fcc-threatens-broadcasters-war-coverage"
       ],
-      "summary": "FCC chair threatened to cancel spectrum permits of broadcasters over 'negative' Iran war coverage. Weaponizing telecom regulation for political censorship during wartime."
+      "summary": "FCC chair threatened broadcaster spectrum permits over Iran war coverage."
     },
     {
       "id": "humanoid-robots-limitations",
@@ -347,12 +351,12 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-16-humanoid-robots-fine-motor-struggle"
       ],
-      "summary": "Despite vast improvements in locomotion, humanoid robots still can't reliably perform fine motor tasks a toddler masters by age 2. May require fundamentals rethink."
+      "summary": "Humanoid robots can't reliably do fine motor tasks."
     },
     {
       "id": "bangladesh-digital-scams",
@@ -361,12 +365,12 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-16-bangladesh-digital-scams-1-8-billion-lost"
       ],
-      "summary": "Home minister disclosed $1.8B lost to digital scams 2006-2021. Mobile banking adoption outpaced fraud prevention, hitting low-income users hardest."
+      "summary": "Bangladesh lost $1.8B to digital scams 2006-2021."
     },
     {
       "id": "germany-climate-target",
@@ -375,12 +379,12 @@
       "lastCovered": "2026-03-16T15:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-16-germany-climate-target-barely-met-rift"
       ],
-      "summary": "Germany scraped its 2025 climate target but progress came partly from deindustrialization. Coalition rift over next steps as Hormuz crisis gives climate skeptics new ammunition."
+      "summary": "Germany scraped 2025 climate target partly via deindustrialization."
     },
     {
       "id": "icc-karim-khan-misconduct",
@@ -389,12 +393,12 @@
       "lastCovered": "2026-03-16T18:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-16-icc-karim-khan-misconduct-ruling-assembly"
       ],
-      "summary": "21-member Bureau of Assembly of States Parties to rule on misconduct claims against ICC Prosecutor who issued warrants for Israeli/Hamas leaders and was building Iran war cases."
+      "summary": "Bureau decision on ICC Prosecutor misconduct claims still pending."
     },
     {
       "id": "circle-stablecoin-war-demand",
@@ -403,12 +407,12 @@
       "lastCovered": "2026-03-16T18:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-circle-stablecoin-doubles-usdc-war-demand"
       ],
-      "summary": "Circle stock doubles in one month as USDC demand surges amid Hormuz disruptions and sanctions. Stablecoins becoming parallel financial infrastructure."
+      "summary": "Circle stock doubles as USDC demand surges amid Hormuz disruptions."
     },
     {
       "id": "biodiversity-150-countries-warning",
@@ -417,12 +421,12 @@
       "lastCovered": "2026-03-16T18:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-150-countries-warn-growth-destroying-nature"
       ],
-      "summary": "Strongest collective governmental admission that economic growth model is incompatible with biodiversity survival. 150 countries issued joint warning."
+      "summary": "150 countries issued joint warning that growth model is incompatible with biodiversity."
     },
     {
       "id": "china-15th-five-year-plan-climate",
@@ -431,12 +435,12 @@
       "lastCovered": "2026-03-16T18:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-china-15th-five-year-plan-climate-change"
       ],
-      "summary": "Carbon Brief analysis of whether China's strategic plan matches Paris Agreement pace. World's largest emitter at critical juncture."
+      "summary": "Carbon Brief analysis of China's strategic plan vs Paris Agreement pace."
     },
     {
       "id": "gas-electricity-pricing-mechanism",
@@ -445,12 +449,12 @@
       "lastCovered": "2026-03-16T18:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "fading",
       "articles": [
         "2026-03-16-gas-drives-electricity-prices-hormuz-energy"
       ],
-      "summary": "Merit-order pricing mechanism means gas prices set marginal electricity costs even in countries barely using gas. Hormuz disruption spiking bills globally."
+      "summary": "Merit-order pricing means gas prices set marginal electricity costs globally."
     },
     {
       "id": "openai-pentagon-iran-deployment",
@@ -459,12 +463,12 @@
       "lastCovered": "2026-03-16T18:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-16-openai-technology-iran-pentagon-warzone-ai"
       ],
-      "summary": "MIT Tech Review examines where OpenAI tech is being used in Iran war, two weeks after Pentagon classified access agreement. Accountability gap for AI-assisted targeting."
+      "summary": "MIT Tech Review examines OpenAI tech use in Iran war via Pentagon."
     },
     {
       "id": "ethereum-foundation-governance",
@@ -473,12 +477,12 @@
       "lastCovered": "2026-03-16T18:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "fading",
       "articles": [
         "2026-03-16-ethereum-foundation-mandate-debate-decentralization"
       ],
-      "summary": "Foundation published mandate reinforcing decentralization principles. Community split: principled step back or abdication as institutional interest grows."
+      "summary": "Foundation published mandate reinforcing decentralization principles."
     },
     {
       "id": "us-indo-pacific-deterrence-vacuum",
@@ -487,12 +491,12 @@
       "lastCovered": "2026-03-16T18:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-16-us-vacating-indo-pacific-deterrence-iran-war"
       ],
-      "summary": "Former senior US officials warn carrier strike groups meant for Taiwan deterrence are now in Persian Gulf. South Korea, Japan, Taiwan exposed."
+      "summary": "Carrier groups for Taiwan deterrence now in Persian Gulf."
     },
     {
       "id": "cuba-blackout-2026",
@@ -501,12 +505,12 @@
       "lastCovered": "2026-03-16T20:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-16-cuba-blackout-trump-oil-blockade"
       ],
-      "summary": "Cuba plunged into island-wide blackout after Trump tightened oil blockade cutting Venezuelan fuel shipments. 11 million people affected."
+      "summary": "Cuba island-wide blackout after Trump cut Venezuelan fuel. 11M affected."
     },
     {
       "id": "france-municipal-2026",
@@ -515,12 +519,12 @@
       "lastCovered": "2026-03-16T20:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-france-municipal-elections-first-round"
       ],
-      "summary": "First round of French municipal elections — bellwether for 2027 presidential. Far right National Rally performance in new territory."
+      "summary": "First round of French municipal elections."
     },
     {
       "id": "trump-deportation-regime",
@@ -529,12 +533,12 @@
       "lastCovered": "2026-03-16T20:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-trump-third-country-deportations-appeal-court"
       ],
-      "summary": "Appeal court rules Trump can resume deporting people to countries they have no connection to. Legal architecture for outsourcing deportees."
+      "summary": "Appeal court rules Trump can deport people to countries they have no connection to."
     },
     {
       "id": "us-china-brazil-port",
@@ -543,12 +547,12 @@
       "lastCovered": "2026-03-16T20:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-us-china-brazil-port-auction"
       ],
-      "summary": "US pressuring Brazil to exclude Chinese companies from its largest port auction. Great Power competition in Latin American infrastructure."
+      "summary": "US pressuring Brazil to exclude Chinese companies from port auction."
     },
     {
       "id": "agoa-africa-trade",
@@ -557,12 +561,12 @@
       "lastCovered": "2026-03-16T20:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-agoa-30-years-africa-trade"
       ],
-      "summary": "US African Growth and Opportunity Act approaching 30 years — economies more dependent than ever as expiration/transformation looms."
+      "summary": "AGOA approaching 30 years — African economies more dependent than ever."
     },
     {
       "id": "pakistan-surplus-paradox",
@@ -571,12 +575,12 @@
       "lastCovered": "2026-03-16T20:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-pakistan-current-account-surplus-crisis"
       ],
-      "summary": "Pakistan posts $479M surplus in February — driven by import collapse, not prosperity. Remittances held steady as diaspora sends crisis money."
+      "summary": "Pakistan posts $479M surplus driven by import collapse, not prosperity."
     },
     {
       "id": "trowe-memecoin-etf",
@@ -585,12 +589,12 @@
       "lastCovered": "2026-03-16T20:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-t-rowe-price-memecoin-etf-dogecoin"
       ],
-      "summary": "$1.8T asset manager packaging dogecoin and shiba inu in regulated ETF. Memecoins entering institutional investment products."
+      "summary": "$1.8T asset manager packaging memecoins in regulated ETF."
     },
     {
       "id": "crypto-war-rebound",
@@ -599,12 +603,124 @@
       "lastCovered": "2026-03-16T20:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 2,
+      "arc": "fading",
       "articles": [
         "2026-03-16-ether-surges-crypto-rebound-etf"
       ],
-      "summary": "Ether surges 10% leading crypto rebound. Institutional ETF demand driving recovery while traditional markets stay volatile from Hormuz."
+      "summary": "Ether surges 10% on institutional ETF demand."
+    },
+    {
+      "id": "nigeria-maiduguri-bombings",
+      "label": "Nigeria: Suicide bombings in Maiduguri, Boko Haram/ISWAP rivalry",
+      "firstSeen": "2026-03-16T22:35:00Z",
+      "lastCovered": "2026-03-16T22:35:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-nigeria-maiduguri-suicide-bombings-boko-haram"
+      ],
+      "summary": "Multiple suicide bombings hit Maiduguri in NE Nigeria. Boko Haram-ISWAP rivalry driving terror escalation in a region the world has stopped watching."
+    },
+    {
+      "id": "solomon-islands-political-crisis",
+      "label": "Solomon Islands: Opposition threatens to oust PM Manele",
+      "firstSeen": "2026-03-16T22:35:00Z",
+      "lastCovered": "2026-03-16T22:35:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-solomon-islands-opposition-threatens-oust-pm-manele"
+      ],
+      "summary": "Opposition claims numbers to oust PM Manele. Potential shift in Pacific geopolitics — Solomon Islands switched recognition from Taiwan to China in 2019."
+    },
+    {
+      "id": "us-voters-israel-shift",
+      "label": "US voter opinion on Israel flips negative, independents collapse",
+      "firstSeen": "2026-03-16T22:35:00Z",
+      "lastCovered": "2026-03-16T22:35:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-us-voters-israel-negative-poll-independents-collapse"
+      ],
+      "summary": "NBC poll: 39% negative vs 32% positive on Israel. Among independents, favorable views collapsed from 40% to 21% since 2023. The political foundation of unconditional US support is eroding."
+    },
+    {
+      "id": "statin-guidelines-age-30",
+      "label": "Cardiovascular guidelines: statins recommended from age 30",
+      "firstSeen": "2026-03-16T22:35:00Z",
+      "lastCovered": "2026-03-16T22:35:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-statin-guidelines-age-30-cardiovascular-prevention"
+      ],
+      "summary": "Major cardiology guideline change: cholesterol risk assessment and statin consideration now recommended from age 30, a decade earlier than previous guidance."
+    },
+    {
+      "id": "nvidia-agentic-ai-trillion",
+      "label": "Nvidia predicts $1T chip demand, agentic AI surge",
+      "firstSeen": "2026-03-16T22:35:00Z",
+      "lastCovered": "2026-03-16T22:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-nvidia-trillion-dollar-chip-demand-agentic-ai-crypto"
+      ],
+      "summary": "Jensen Huang predicts $1T in chip demand through 2027. Agentic AI — autonomous systems — now the industry's dominant narrative, same week OpenAI tech deploys in Iran war."
+    },
+    {
+      "id": "bitcoin-hardware-wallet-vulnerability",
+      "label": "$172M bitcoin stolen via CCTV surveillance of hardware wallet",
+      "firstSeen": "2026-03-16T22:35:00Z",
+      "lastCovered": "2026-03-16T22:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-bitcoin-172-million-stolen-cctv-hardware-wallet-vulnerability"
+      ],
+      "summary": "Man alleges wife used home CCTV to capture hardware wallet seed phrase, stealing $172M in bitcoin. Exposes physical surveillance vulnerability in self-custody crypto as wartime migration to hardware wallets accelerates."
+    },
+    {
+      "id": "north-korea-assembly-2026",
+      "label": "North Korea convenes new Supreme People's Assembly",
+      "firstSeen": "2026-03-16T22:35:00Z",
+      "lastCovered": "2026-03-16T22:35:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-17-north-korea-supreme-peoples-assembly-first-session"
+      ],
+      "summary": "First session of newly elected SPA. Watch for economic priorities, military spending signals, and leadership changes under Kim Jong Un."
+    },
+    {
+      "id": "namibia-energy-crisis",
+      "label": "Namibia NamPower $700M unpaid bills threatening utility",
+      "firstSeen": "2026-03-16T22:35:00Z",
+      "lastCovered": "2026-03-16T22:35:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-namibia-nampower-700-million-unpaid-bills-energy-crisis"
+      ],
+      "summary": "Namibia's state power utility drowning in unpaid bills while the country is about to become an oil producer. Hormuz crisis worsening energy economics across Africa."
     }
   ]
 }
