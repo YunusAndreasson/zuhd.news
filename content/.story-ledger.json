@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran-US-Israel war: school struck again, Abu Dhabi civilian killed, Chabahar strikes near India port",
+      "label": "Iran-US-Israel war: Netanyahu struck oil depots against US warning, allies refuse coalition",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-16T07:33:00Z",
-      "coverageCount": 209,
+      "lastCovered": "2026-03-16T12:30:00Z",
+      "coverageCount": 212,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -50,9 +50,12 @@
         "2026-03-16-war-environmental-damage-carbon-toxins-middle-east",
         "2026-03-16-abu-dhabi-missile-civilian-car-killed",
         "2026-03-16-us-israeli-strike-school-iran-day-24",
-        "2026-03-16-us-strikes-chabahar-india-port-iran"
+        "2026-03-16-us-strikes-chabahar-india-port-iran",
+        "2026-03-16-netanyahu-ignored-trump-warning-oil-depots-strike",
+        "2026-03-16-uk-starmer-rules-out-iran-war-hormuz-coalition-fails",
+        "2026-03-16-hamas-trump-board-talks-iran-war-gaza"
       ],
-      "summary": "Day 24+: War geographic spread escalating — first confirmed civilian killed by missile in Abu Dhabi, another school struck in Iran, US strikes near India's Chabahar port investment. No ceasefire mechanism. Civilian infrastructure targeting now a clear pattern."
+      "summary": "Netanyahu struck Iranian oil infrastructure against explicit US objection — directly causing global oil crisis. UK, Germany, Japan, Australia all refuse Hormuz coalition. Hamas engaging Trump Board of Peace. US diplomatically isolated."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
@@ -61,7 +64,7 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 185,
       "category": "economy",
-      "importance": 10,
+      "importance": 9,
       "arc": "ongoing",
       "articles": [
         "2026-03-08-iraq-oil-production-collapses-70-percent-hormuz-blockade",
@@ -111,12 +114,12 @@
     },
     {
       "id": "lebanon-israel-war",
-      "label": "Lebanon-Israel-Palestine: 850K+ displaced, daily killings in Gaza/WB",
+      "label": "Lebanon-Israel-Palestine: Al-Aqsa closed indefinitely, 850K+ displaced",
       "firstSeen": "2026-03-08T00:00:00Z",
-      "lastCovered": "2026-03-16T05:30:00Z",
-      "coverageCount": 17,
+      "lastCovered": "2026-03-16T12:30:00Z",
+      "coverageCount": 18,
       "category": "politics",
-      "importance": 6,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
@@ -137,29 +140,10 @@
         "2026-03-16-israel-settler-soldier-impunity-odeh-family",
         "2026-03-16-gaza-13-killed-invisible-war-continues",
         "2026-03-16-israeli-forces-kill-16-gaza-west-bank-invisible-war",
-        "2026-03-16-lebanon-850000-displaced-crisis-worsens"
+        "2026-03-16-lebanon-850000-displaced-crisis-worsens",
+        "2026-03-16-israel-al-aqsa-closed-through-eid-indefinite"
       ],
-      "summary": "Not selected this cycle — last cycle covered extensively. 850,000+ displaced in Lebanon, daily killings in Gaza/West Bank continuing under Iran war cover."
-    },
-    {
-      "id": "sudan-civil-war",
-      "label": "Sudan: RSF drone campaign, military recapture attempts",
-      "firstSeen": "2026-03-08T00:00:00Z",
-      "lastCovered": "2026-03-15T12:32:00Z",
-      "coverageCount": 8,
-      "category": "politics",
-      "importance": 2,
-      "arc": "ongoing",
-      "articles": [
-        "2026-03-08-sudan-drone-strikes-kill-33-west-kordofan-markets",
-        "2026-03-10-darfur-starvation-crimes-rsf-new-evidence",
-        "2026-03-12-rsf-drones-kordofan-south-sudan-169-killed-war-spreads",
-        "2026-03-12-sudan-52-killed-west-kordofan-convoy-drone",
-        "2026-03-12-sudan-rsf-white-nile-students-seventeen-killed",
-        "2026-03-15-sudan-military-retakes-bara-integration-plan",
-        "2026-03-15-sudan-rsf-drones-169-killed-south-sudan"
-      ],
-      "summary": "Not covered this cycle. RSF drone campaign continues, Bara recaptured by military. Absent from feed three cycles running."
+      "summary": "Israel extends Al-Aqsa closure through Eid al-Fitr and beyond — open-ended denial of access to Islam's third holiest site. 850,000+ displaced in Lebanon, daily killings in Gaza/WB continue."
     },
     {
       "id": "pakistan-systemic-crisis",
@@ -168,7 +152,7 @@
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 10,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-09-pakistan-four-day-work-week-schools-shut-austerity",
@@ -190,7 +174,7 @@
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-16-myanmar-junta-parliament-post-coup-allies"
@@ -204,7 +188,7 @@
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-16-korean-won-1500-dollar-17-year-low-hormuz"
@@ -218,7 +202,7 @@
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-16-canada-c22-mass-metadata-surveillance"
@@ -232,7 +216,7 @@
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-16-coupang-worker-death-cover-up-inspection"
@@ -241,17 +225,18 @@
     },
     {
       "id": "us-china-trade-tensions",
-      "label": "US-China trade confrontation: Paris talks",
+      "label": "US-China: Xi-Trump summit planned end of March",
       "firstSeen": "2026-03-16T05:30:00Z",
-      "lastCovered": "2026-03-16T05:30:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-16T12:30:00Z",
+      "coverageCount": 2,
       "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
-        "2026-03-16-china-us-erroneous-ways-trade-probes-paris-summit"
+        "2026-03-16-china-us-erroneous-ways-trade-probes-paris-summit",
+        "2026-03-16-xi-trump-summit-march-trade-tensions"
       ],
-      "summary": "China-US trade tensions amid Paris summit prep. Not selected this cycle."
+      "summary": "Face-to-face Xi-Trump summit planned for end of March with trade as centerpiece — escalation from Paris-level talks."
     },
     {
       "id": "china-consumer-economy-retreat",
@@ -260,7 +245,7 @@
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-guess-closes-china-stores-retail-retreat"
@@ -274,7 +259,7 @@
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-malaysia-anwar-silencing-critics-authoritarian-law"
@@ -288,7 +273,7 @@
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-16-fields-medalist-ngo-bao-chau-quits-us-hong-kong"
@@ -302,7 +287,7 @@
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-16-blockfills-crypto-bankruptcy-75-million-customer-funds"
@@ -316,7 +301,7 @@
       "lastCovered": "2026-03-16T05:30:00Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-11-uk-mahmood-bans-al-quds-day-march-wartime-civil-liberties",
@@ -326,27 +311,13 @@
       "summary": "UK banned antiwar marches, thousands defied ban. Not selected this cycle."
     },
     {
-      "id": "ev-battery-supply-chain",
-      "label": "POSCO battery deal",
-      "firstSeen": "2026-03-16T02:30:00Z",
-      "lastCovered": "2026-03-16T02:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-16-posco-trillion-won-battery-deal-ev-supply"
-      ],
-      "summary": "POSCO secures $670M battery deal despite crisis. Not in feed."
-    },
-    {
       "id": "us-surveillance-apparatus",
       "label": "Western surveillance: Flock/ICE, Canada C-22",
       "firstSeen": "2026-03-12T00:00:00Z",
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 3,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-12-flock-ice-surveillance-license-plate-readers-pipeline-explainer",
@@ -356,31 +327,13 @@
       "summary": "US Flock-to-ICE pipeline and Canada metadata retention. Not selected this cycle."
     },
     {
-      "id": "ai-disinformation-wartime",
-      "label": "AI-generated war disinformation",
-      "firstSeen": "2026-03-09T00:00:00Z",
-      "lastCovered": "2026-03-12T00:00:00Z",
-      "coverageCount": 5,
-      "category": "tech",
-      "importance": 2,
-      "arc": "ongoing",
-      "articles": [
-        "2026-03-09-fake-ai-satellite-imagery-iran-war-disinformation",
-        "2026-03-09-x-paid-unlabeled-ai-war-footage-disinformation",
-        "2026-03-10-ai-enhanced-real-images-iran-war-disinformation",
-        "2026-03-12-ai-chatbots-mass-violence-planning-study-ccdh-safety-failure",
-        "2026-03-12-meta-ai-vibes-csam-deepfakes-platform-flood"
-      ],
-      "summary": "AI disinformation industrialised during wartime. Trump now accusing Iran of using AI disinfo — both sides weaponizing the narrative."
-    },
-    {
       "id": "egypt-economic-crisis",
       "label": "Egypt: inflation, currency collapse, Suez revenue loss — state response examined",
       "firstSeen": "2026-03-15T17:30:00Z",
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-15-egypt-inflation-currency-crisis-suez",
@@ -395,7 +348,7 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-madagascar-anticorruption-chief-pm"
@@ -409,7 +362,7 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-16-french-jihadist-yazidi-genocide-trial"
@@ -423,7 +376,7 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-16-pharma-air-routes-cancer-drugs-war"
@@ -437,7 +390,7 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-un-climate-chief-fossil-fuel-war-lesson"
@@ -451,7 +404,7 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-quittr-app-exposes-users-data"
@@ -465,97 +418,12 @@
       "lastCovered": "2026-03-16T07:33:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-16-doge-testimony-six-hours-accountability"
       ],
       "summary": "404 Media watched all 6 hours of DOGE operative congressional testimony. Unaccountable technologists wielding government power without clearances or experience."
-    },
-    {
-      "id": "hungary-election-2026",
-      "label": "Hungary: Orbán faces Magyar challenger",
-      "firstSeen": "2026-03-15T20:00:00Z",
-      "lastCovered": "2026-03-15T20:00:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-02-16-magyar-launches-anti-orban-campaign-in-hungary",
-        "2026-03-15-hungary-orban-magyar-rival-rallies-election"
-      ],
-      "summary": "Most competitive Hungarian election in 14 years."
-    },
-    {
-      "id": "china-taiwan-military-flights",
-      "label": "China military flights near Taiwan",
-      "firstSeen": "2026-03-15T17:30:00Z",
-      "lastCovered": "2026-03-15T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-15-china-military-flights-taiwan-return"
-      ],
-      "summary": "PLA resumes flights near Taiwan. Not in feed."
-    },
-    {
-      "id": "china-photoresist-sovereignty",
-      "label": "China domestic photoresist for chip sovereignty",
-      "firstSeen": "2026-03-16T00:30:00Z",
-      "lastCovered": "2026-03-16T00:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-16-china-photoresist-supply-chain-chip-sovereignty"
-      ],
-      "summary": "China targeting photoresist — last Western chokepoint."
-    },
-    {
-      "id": "french-far-right-municipal",
-      "label": "French far right municipal elections",
-      "firstSeen": "2026-03-15T20:00:00Z",
-      "lastCovered": "2026-03-15T20:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-french-far-right-municipal-elections-2027-preview"
-      ],
-      "summary": "RN strong in round 1 of French municipal elections."
-    },
-    {
-      "id": "sec-cftc-crypto-regulation",
-      "label": "SEC-CFTC crypto MOU",
-      "firstSeen": "2026-03-15T20:00:00Z",
-      "lastCovered": "2026-03-15T20:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-sec-cftc-joint-crypto-regulation-mou"
-      ],
-      "summary": "SEC and CFTC signed MOU on crypto regulation."
-    },
-    {
-      "id": "nyse-nasdaq-blockchain",
-      "label": "NYSE/Nasdaq blockchain settlement",
-      "firstSeen": "2026-03-15T17:30:00Z",
-      "lastCovered": "2026-03-15T17:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-15-nasdaq-nyse-126-trillion-blockchain"
-      ],
-      "summary": "Major exchanges moving toward blockchain settlement."
     },
     {
       "id": "biontech-founders-new-venture",
@@ -638,12 +506,110 @@
       "lastCovered": "2026-03-16T02:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-16-malaysia-trump-tariffs-543-billion-challenge"
       ],
       "summary": "Malaysia asserting legal challenge to US trade coercion."
+    },
+    {
+      "id": "ecuador-drug-war-2026",
+      "label": "Ecuador deploys 75,000 in largest anti-gang operation",
+      "firstSeen": "2026-03-16T12:30:00Z",
+      "lastCovered": "2026-03-16T12:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-ecuador-75000-troops-drug-gangs-security-operation"
+      ],
+      "summary": "Ecuador deploys 75,000 troops and police against drug gangs — one of the largest internal security operations in Latin American history."
+    },
+    {
+      "id": "south-africa-whistleblower-killings",
+      "label": "SA whistleblower murdered by former elite officer",
+      "firstSeen": "2026-03-16T12:30:00Z",
+      "lastCovered": "2026-03-16T12:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-south-africa-whistleblower-murder-elite-officer-suspect"
+      ],
+      "summary": "Whistleblower murder suspect identified as former elite police officer. Pattern of state apparatus targeting accountability."
+    },
+    {
+      "id": "namibia-oil-discovery",
+      "label": "Namibia oil discovery: resource curse or governance test",
+      "firstSeen": "2026-03-16T12:30:00Z",
+      "lastCovered": "2026-03-16T12:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-namibia-oil-discovery-resource-curse-oversight"
+      ],
+      "summary": "Namibia at inflection point with offshore oil discovery — IPPR calls for oversight to avoid resource curse."
+    },
+    {
+      "id": "ghana-economic-recovery",
+      "label": "Ghana utility price cuts amid global energy crisis",
+      "firstSeen": "2026-03-16T12:30:00Z",
+      "lastCovered": "2026-03-16T12:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-ghana-utility-price-cuts-april-consumer-relief"
+      ],
+      "summary": "Ghana cutting power and water bills from April — counter-trend to global energy price spike."
+    },
+    {
+      "id": "glp1-oral-drugs",
+      "label": "Oral GLP-1 pill shows significant weight loss",
+      "firstSeen": "2026-03-16T12:30:00Z",
+      "lastCovered": "2026-03-16T12:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-glp1-pill-structure-therapeutics-weight-loss-trial"
+      ],
+      "summary": "Structure Therapeutics oral GLP-1 drug reports significant weight loss in mid-stage trial — could democratize obesity treatment."
+    },
+    {
+      "id": "platform-algorithm-safety",
+      "label": "TikTok and Meta whistleblowers: algorithm arms race sacrificed safety",
+      "firstSeen": "2026-03-16T12:30:00Z",
+      "lastCovered": "2026-03-16T12:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-tiktok-meta-algorithm-safety-whistleblowers"
+      ],
+      "summary": "Multiple whistleblowers from both TikTok and Meta say companies deliberately weakened safety for engagement."
+    },
+    {
+      "id": "russia-telegram-crackdown",
+      "label": "Russia escalates Telegram crackdown with fines",
+      "firstSeen": "2026-03-16T12:30:00Z",
+      "lastCovered": "2026-03-16T12:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-16-russia-fines-telegram-censorship-crackdown"
+      ],
+      "summary": "Russia fines Telegram for not removing banned content — building legal pretext before planned April block of 100M users."
     }
   ]
 }
