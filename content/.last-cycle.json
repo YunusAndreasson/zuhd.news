@@ -1,90 +1,99 @@
 {
-  "timestamp": "2026-03-17T18:01:00.054Z",
+  "timestamp": "2026-03-18T00:43:28.388Z",
   "articles": [
     {
-      "slug": "2026-03-17-belgian-diplomat-trial-lumumba-murder-congo",
-      "title": "Ex-Belgian diplomat ordered to stand trial over murder of Congo's Lumumba",
+      "slug": "2026-03-18-iran-basij-commander-killed-israel-targets-supreme-leader",
+      "title": "Iran's national security chief Larijani, Basij commander Soleimani assassinated in US-Israeli strikes",
+      "category": "politics",
+      "source": "Dawn"
+    },
+    {
+      "slug": "2026-03-18-bushehr-nuclear-plant-projectile-iran-war",
+      "title": "Projectile hits area near Iran's Bushehr nuclear power plant",
+      "category": "politics",
+      "source": "The Hindu"
+    },
+    {
+      "slug": "2026-03-18-chile-kast-environmental-protections-rollback",
+      "title": "Chile's President Kast tosses out dozens of environmental protections",
       "category": "politics",
       "source": "Al Jazeera"
     },
     {
-      "slug": "2026-03-17-israel-mass-expulsion-palestinians-west-bank-un",
-      "title": "Israel carrying out 'mass expulsion of Palestinians' in West Bank, UN warns",
+      "slug": "2026-03-18-peru-prime-minister-resigns-crisis",
+      "title": "Peru's Prime Minister resigns ahead of congressional confirmation vote",
       "category": "politics",
-      "source": "Al Jazeera"
+      "source": "The Hindu"
     },
     {
-      "slug": "2026-03-17-al-aqsa-fatwa-eid-prayers-outside-mosque",
-      "title": "Palestinian Islamic leader issues fatwa calling for Eid prayers outside Al-Aqsa Mosque",
+      "slug": "2026-03-18-nigeria-tinubu-2027-appointees-resign",
+      "title": "2027 Polls: Tinubu directs political appointees to resign",
       "category": "politics",
-      "source": "Middle East Eye"
+      "source": "Premium Times"
     },
     {
-      "slug": "2026-03-17-israel-assessed-iranians-slaughtered-uprising",
-      "title": "Israel 'assessed Iranians would be slaughtered' if they rise up against Islamic Republic",
+      "slug": "2026-03-18-allies-refuse-hormuz-operation-misguided",
+      "title": "'Misguided' military operation: Trump's appeal for Hormuz support draws no commitments from allies",
       "category": "politics",
-      "source": "Middle East Eye"
+      "source": "France 24"
     },
     {
-      "slug": "2026-03-17-uk-official-iran-no-nuclear-threat-war",
-      "title": "Top UK official judged Iran 'posed no nuclear threat' just before war began",
+      "slug": "2026-03-18-israeli-media-arab-voices-half-percent-war",
+      "title": "'No coincidence': Under 0.5 percent of voices in major Israeli news during Iran war were Arab",
       "category": "politics",
-      "source": "Middle East Eye"
+      "source": "Haaretz"
     },
     {
-      "slug": "2026-03-17-eu-face-saving-exit-iran-war",
-      "title": "EU pushes for end of Iran war in a manner where 'everybody saves face'",
+      "slug": "2026-03-18-palestinians-displaced-settlements-36000",
+      "title": "U.N. says more than 36,000 Palestinians displaced by Israeli settlement drive",
       "category": "politics",
-      "source": "Fox News"
+      "source": "The Hindu"
     },
     {
-      "slug": "2026-03-17-egypt-inflation-foreign-currency-crisis-war",
-      "title": "Between rising inflation and shrinking foreign currency: What is the state doing?",
+      "slug": "2026-03-18-pakistan-pti-prisoners-economic-policy-gulf",
+      "title": "Jailed PTI leaders criticise lack of economic restructuring measures amid Gulf conflict",
       "category": "economy",
-      "source": "Mada Masr"
+      "source": "Dawn"
     },
     {
-      "slug": "2026-03-17-ships-gulf-shortages-crew-hormuz",
-      "title": "Ships in Gulf risk shortages on board, industry warns",
+      "slug": "2026-03-18-chinese-banks-dominate-hong-kong-wealth",
+      "title": "Chinese banks outpace rivals in Hong Kong wealth growth on IPO boom, capital flows",
       "category": "economy",
-      "source": "Al Monitor"
+      "source": "South China Morning Post"
     },
     {
-      "slug": "2026-03-17-trump-postpones-beijing-iran-war-china",
-      "title": "Trump postpones trip to Beijing as Iran war delays China reset",
-      "category": "economy",
-      "source": "Al Monitor"
+      "slug": "2026-03-18-tb-vaccine-african-research-closing-in",
+      "title": "Africa: The Hunt for a New TB Vaccine - Why We Are Now So Close, and Why It Matters",
+      "category": "science",
+      "source": "AllAfrica"
     },
     {
-      "slug": "2026-03-17-world-coinbase-personhood-verification-ai",
-      "title": "Sam Altman's World teams up with Coinbase to prove there is a real person behind every AI transaction",
+      "slug": "2026-03-18-scotland-assisted-dying-bill-rejected",
+      "title": "Scottish lawmakers reject bill to let terminally ill people end their lives",
+      "category": "science",
+      "source": "South China Morning Post"
+    },
+    {
+      "slug": "2026-03-18-japan-social-media-ban-children-considered",
+      "title": "Will Japan follow Australia's lead and ban children from social media?",
       "category": "tech",
-      "source": "CoinDesk"
-    },
-    {
-      "slug": "2026-03-17-crypto-double-digit-gains-bitcoin-75k-fed",
-      "title": "Crypto majors post double-digit weekly gains as bitcoin tests $75,000 ahead of Fed decision",
-      "category": "tech",
-      "source": "CoinDesk"
-    },
-    {
-      "slug": "2026-03-17-xrp-flips-bnb-crypto-market-recovery",
-      "title": "XRP flips BNB as open interest builds back toward pre-crash levels",
-      "category": "tech",
-      "source": "CoinDesk"
+      "source": "South China Morning Post"
     }
   ],
   "categories": [
     "politics",
     "economy",
+    "science",
     "tech"
   ],
   "sources": [
+    "Dawn",
+    "The Hindu",
     "Al Jazeera",
-    "Middle East Eye",
-    "Fox News",
-    "Mada Masr",
-    "Al Monitor",
-    "CoinDesk"
+    "Premium Times",
+    "France 24",
+    "Haaretz",
+    "South China Morning Post",
+    "AllAfrica"
   ]
 }
