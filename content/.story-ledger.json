@@ -3,10 +3,10 @@
   "stories": [
     {
       "id": "iran-us-israel-war",
-      "label": "Iran-US-Israel war: Basij commander killed, Israel targets next Supreme Leader",
+      "label": "Iran-US-Israel war: Russian consulate closes Isfahan, Trump threatens NATO over Hormuz",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-18T00:02:00Z",
-      "coverageCount": 233,
+      "lastCovered": "2026-03-18T02:35:00Z",
+      "coverageCount": 238,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -78,18 +78,23 @@
         "2026-03-17-uk-official-iran-no-nuclear-threat-war",
         "2026-03-17-eu-face-saving-exit-iran-war",
         "2026-03-18-iran-basij-commander-killed-israel-targets-supreme-leader",
-        "2026-03-18-bushehr-nuclear-plant-projectile-iran-war"
+        "2026-03-18-bushehr-nuclear-plant-projectile-iran-war",
+        "2026-03-16-russian-consulate-isfahan-closes-war",
+        "2026-03-16-trump-hormuz-nato-threat-global-backing",
+        "2026-03-18-ukraine-drone-experts-gulf-iran-war",
+        "2026-03-18-irgc-tel-aviv-missiles-revenge-larijani",
+        "2026-03-18-larijani-son-aide-killed-israeli-strike-tehran"
       ],
-      "summary": "Day 27. Basij commander Soleimani killed alongside Larijani. Israel vows to target next Supreme Leader. Projectile near Bushehr nuclear plant. Alliance structure collapsing."
+      "summary": "Day 27. IRGC strikes Tel Aviv in named revenge for Larijani killing. Son Morteza also killed. 200+ Ukrainian drone experts deployed to Gulf."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz crisis: Gulf recession risk, EU rejects escort coalition",
+      "label": "Hormuz crisis: zero commercial transits for first time, full blockade",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-18T00:02:00Z",
-      "coverageCount": 203,
+      "lastCovered": "2026-03-16T10:00:00Z",
+      "coverageCount": 204,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "ongoing",
       "articles": [
         "2026-03-08-iraq-oil-production-collapses-70-percent-hormuz-blockade",
@@ -153,19 +158,20 @@
         "2026-03-17-eu-rejects-trump-hormuz-escort-demands",
         "2026-03-17-asia-coal-pivot-lng-hormuz-choke",
         "2026-03-17-ships-gulf-shortages-crew-hormuz",
-        "2026-03-18-allies-refuse-hormuz-operation-misguided"
+        "2026-03-18-allies-refuse-hormuz-operation-misguided",
+        "2026-03-16-hormuz-zero-ships-first-complete-shutdown"
       ],
-      "summary": "Alliance collapse complete: no country committed forces for Hormuz escort. France offered conditional help only if bombing stops. Operation characterised as misguided by allies."
+      "summary": "Zero ships crossed Hormuz on March 15 -- first complete shutdown since war began. Previous 7-day average was 2.57 transits. 400 ships stacking in Gulf of Oman. Oil at $106+ Brent."
     },
     {
       "id": "lebanon-israel-war",
-      "label": "Lebanon-Israel: UN warns of mass expulsion in West Bank",
+      "label": "Lebanon-Israel: ground operations launched, Al-Aqsa closed on Ramadan holy night",
       "firstSeen": "2026-03-08T00:00:00Z",
-      "lastCovered": "2026-03-18T00:02:00Z",
-      "coverageCount": 26,
+      "lastCovered": "2026-03-18T02:35:00Z",
+      "coverageCount": 29,
       "category": "politics",
       "importance": 8,
-      "arc": "developing",
+      "arc": "ongoing",
       "articles": [
         "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
         "2026-03-09-hrw-israel-white-phosphorus-lebanon-populated-areas",
@@ -194,188 +200,12 @@
         "2026-03-17-ultra-orthodox-settlers-break-into-west-bank-tomb",
         "2026-03-17-bekaa-christian-village-shelters-displaced-shiites",
         "2026-03-17-israel-mass-expulsion-palestinians-west-bank-un",
-        "2026-03-18-palestinians-displaced-settlements-36000"
+        "2026-03-18-palestinians-displaced-settlements-36000",
+        "2026-03-16-israel-ground-operations-southern-lebanon",
+        "2026-03-16-al-aqsa-closed-ramadan-holiest-night-prayer",
+        "2026-03-18-israel-strikes-central-beirut-six-killed"
       ],
-      "summary": "UN documents 36,000 Palestinians displaced specifically by settlement expansion. Displacement continues in shadow of Iran war."
-    },
-    {
-      "id": "pakistan-afghanistan-strikes",
-      "label": "Pakistan-Afghanistan: Kabul hospital death toll 400",
-      "firstSeen": "2026-03-14T00:30:00Z",
-      "lastCovered": "2026-03-17T02:35:00Z",
-      "coverageCount": 10,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-14-pakistan-strikes-afghanistan-taliban-313-corps-kabul",
-        "2026-03-15-pakistan-strikes-kandahar-base-afghan-war-escalates",
-        "2026-03-16-afghanistan-children-killed-pakistan-khost-strikes",
-        "2026-03-16-pakistan-strikes-kabul-nangarhar-taliban",
-        "2026-03-16-pakistan-strikes-kabul-hospital-200-dead",
-        "2026-03-17-pakistan-kabul-hospital-strike-death-toll-doubles-400"
-      ],
-      "summary": "Taliban says 400 killed and 250 injured in Kabul hospital strike (doubled from 200). Pakistan maintains it hit military installations. Red Cross/WHO verification pending."
-    },
-    {
-      "id": "cuba-blackout-trump",
-      "label": "Cuba: earthquake compounds blackout, Trump threats",
-      "firstSeen": "2026-03-16T20:30:00Z",
-      "lastCovered": "2026-03-17T10:10:00Z",
-      "coverageCount": 4,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-16-cuba-blackout-trump-oil-blockade",
-        "2026-03-17-trump-threatens-take-cuba-weakened-nation",
-        "2026-03-17-cuba-exiles-invest-unprecedented-opening-blackout",
-        "2026-03-17-cuba-earthquake-blackout-compounding-crisis"
-      ],
-      "summary": "5.8 earthquake off eastern Cuba while island in total blackout. Emergency response systems non-functional without grid power."
-    },
-    {
-      "id": "al-aqsa-closure-eid",
-      "label": "Al-Aqsa sealed through Eid, Grand Mufti issues fatwa for outside prayers",
-      "firstSeen": "2026-03-17T07:30:00Z",
-      "lastCovered": "2026-03-17T17:35:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-malaysia-demands-al-aqsa-reopening-eid",
-        "2026-03-17-al-aqsa-fatwa-eid-prayers-outside-mosque"
-      ],
-      "summary": "Al-Aqsa sealed for entirety of Ramadan and through Eid. Grand Mufti issues fatwa calling Palestinians to pray at the gates. Longest closure in modern history."
-    },
-    {
-      "id": "sudan-military-integration",
-      "label": "Sudan: SAF retakes Bara, signals militia integration",
-      "firstSeen": "2026-03-17T10:10:00Z",
-      "lastCovered": "2026-03-17T10:10:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-sudan-military-retakes-bara-integration-push"
-      ],
-      "summary": "SAF retook Bara (North Kordofan). Gen. al-Atta signals integration of allied irregular armed movements."
-    },
-    {
-      "id": "nigeria-maiduguri-bombings",
-      "label": "Nigeria: Maiduguri suicide bombings",
-      "firstSeen": "2026-03-16T22:35:00Z",
-      "lastCovered": "2026-03-17T15:05:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-16-nigeria-maiduguri-suicide-bombings-boko-haram",
-        "2026-03-17-maiduguri-triple-bombing-23-killed-boko-haram"
-      ],
-      "summary": "Updated toll: 23 killed, 100+ wounded in triple suicide bombing in Maiduguri. Deadliest Boko Haram attack in months. Linked to troop redeployment south."
-    },
-    {
-      "id": "syria-hts-social-legislation",
-      "label": "Syria: HTS imposing Islamic social restrictions in Damascus",
-      "firstSeen": "2026-03-17T12:31:00Z",
-      "lastCovered": "2026-03-17T12:31:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-damascus-bans-alcohol-outside-christian-quarters"
-      ],
-      "summary": "Damascus bans alcohol outside 3 Christian neighbourhoods. Third social restriction after makeup ban and swimsuit mandate."
-    },
-    {
-      "id": "senegal-debt-crisis",
-      "label": "Senegal: debt at 132% GDP, restructuring looms",
-      "firstSeen": "2026-03-17T12:31:00Z",
-      "lastCovered": "2026-03-17T12:31:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-senegal-debt-crisis-132-percent-gdp-restructuring"
-      ],
-      "summary": "Senegal debt at 132% GDP, $9.1B servicing this year. New government inherited fiscal trap."
-    },
-    {
-      "id": "fed-ecb-oil-shock",
-      "label": "Fed and ECB meet as oil shock revives inflation",
-      "firstSeen": "2026-03-17T12:31:00Z",
-      "lastCovered": "2026-03-17T12:31:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-fed-ecb-pivotal-week-oil-shock-inflation"
-      ],
-      "summary": "Both central banks meeting Mar 17-19 with oil above $100. No rate changes expected but stagflation risk rising."
-    },
-    {
-      "id": "interstellar-comet-3i-atlas",
-      "label": "3I/ATLAS: interstellar comet with alien water",
-      "firstSeen": "2026-03-17T12:31:00Z",
-      "lastCovered": "2026-03-17T12:31:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-interstellar-comet-3i-atlas-alien-water"
-      ],
-      "summary": "Third interstellar object ever detected. Water deuterium levels 30-40x higher than Earth oceans."
-    },
-    {
-      "id": "tb-vaccine-breakthrough",
-      "label": "TB vaccine: three candidates in Phase III after 100 years",
-      "firstSeen": "2026-03-17T12:31:00Z",
-      "lastCovered": "2026-03-18T00:02:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-17-tb-vaccine-breakthrough-century-old-replacement",
-        "2026-03-18-tb-vaccine-african-research-closing-in"
-      ],
-      "summary": "Three TB vaccine candidates in Phase III. South African-led research. Focus shifting to why it took 105 years and who leads the science."
-    },
-    {
-      "id": "iranian-kurds-reject-proxy",
-      "label": "Iranian Kurds reject proxy role, seek democratic Iran",
-      "firstSeen": "2026-03-17T15:05:00Z",
-      "lastCovered": "2026-03-17T15:05:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-iranian-kurds-reject-proxy-role-democratic-iran"
-      ],
-      "summary": "PJAK co-chair explicitly distances Kurdish movement from US-Israeli war, insisting Kurds seek democratic Iran on own terms."
-    },
-    {
-      "id": "un-islamophobia-day-war",
-      "label": "UN Islamophobia day amid war, Al-Aqsa closure, hate spike",
-      "firstSeen": "2026-03-17T15:05:00Z",
-      "lastCovered": "2026-03-17T15:05:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-un-islamophobia-day-war-hate-surge"
-      ],
-      "summary": "International Day to Combat Islamophobia coincides with war on Iran, Al-Aqsa sealed through Eid, documented spike in anti-Muslim hate."
+      "summary": "Israel striking central Beirut, killing at least 6. Geographic escalation beyond southern suburbs. 1M+ displaced."
     },
     {
       "id": "asia-coal-pivot-hormuz",
@@ -384,82 +214,12 @@
       "lastCovered": "2026-03-17T15:05:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-17-asia-coal-pivot-lng-hormuz-choke"
       ],
       "summary": "Asian utilities boosting coal generation as LNG spot prices double. Years of decarbonization progress reversing in weeks."
-    },
-    {
-      "id": "south-africa-eskom-tariffs",
-      "label": "South Africa: Eskom tariffs up 8.76%, municipalities 9%",
-      "firstSeen": "2026-03-17T15:05:00Z",
-      "lastCovered": "2026-03-17T15:05:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-south-africa-eskom-tariff-hike-876-percent"
-      ],
-      "summary": "Eskom tariffs rise 8.76% from April, municipalities add 9% from July. Hits prepaid meter households hardest."
-    },
-    {
-      "id": "pakistan-austerity-national-day",
-      "label": "Pakistan cancels National Day parade amid Hormuz austerity",
-      "firstSeen": "2026-03-17T15:05:00Z",
-      "lastCovered": "2026-03-17T15:05:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-pakistan-cancels-national-day-parade-austerity"
-      ],
-      "summary": "March 23 Pakistan Day parade and events cancelled due to Gulf oil crisis austerity. First cancellation for economic reasons."
-    },
-    {
-      "id": "britain-meningitis-outbreak",
-      "label": "Britain: unprecedented meningitis outbreak, Canterbury nightclub",
-      "firstSeen": "2026-03-17T15:05:00Z",
-      "lastCovered": "2026-03-17T15:05:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-britain-meningitis-outbreak-unprecedented-canterbury"
-      ],
-      "summary": "15 cases, 2 students dead from rare bacterial meningitis strain linked to Canterbury nightclub. Health minister calls it unprecedented."
-    },
-    {
-      "id": "gulf-marine-ecosystem-war",
-      "label": "Gulf marine ecosystems: dugongs, turtles threatened by war",
-      "firstSeen": "2026-03-17T15:05:00Z",
-      "lastCovered": "2026-03-17T15:05:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-gulf-marine-life-dugongs-turtles-war-threat"
-      ],
-      "summary": "Persian Gulf dugong population (<3,000), sea turtles, migratory birds threatened by bombing, oil spills, naval operations."
-    },
-    {
-      "id": "uk-quantum-ai-investment",
-      "label": "UK commits £2.5bn to quantum computing and AI",
-      "firstSeen": "2026-03-17T15:05:00Z",
-      "lastCovered": "2026-03-17T15:05:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-uk-25-billion-quantum-ai-investment"
-      ],
-      "summary": "Chancellor Reeves pledges £2.5bn to stop UK tech talent drifting abroad. Implicit admission of post-Brexit brain drain."
     },
     {
       "id": "lumumba-trial-belgium",
@@ -468,7 +228,7 @@
       "lastCovered": "2026-03-17T17:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-17-belgian-diplomat-trial-lumumba-murder-congo"
@@ -482,7 +242,7 @@
       "lastCovered": "2026-03-17T17:35:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-17-egypt-inflation-foreign-currency-crisis-war"
@@ -496,7 +256,7 @@
       "lastCovered": "2026-03-17T17:35:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-17-trump-postpones-beijing-iran-war-china"
@@ -510,27 +270,12 @@
       "lastCovered": "2026-03-17T17:35:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-17-world-coinbase-personhood-verification-ai"
       ],
       "summary": "Sam Altman World partners with Coinbase to build biometric identity verification into AI agent transactions."
-    },
-    {
-      "id": "crypto-wartime-rally",
-      "label": "Crypto rallies as wartime hedge ahead of Fed",
-      "firstSeen": "2026-03-17T17:35:00Z",
-      "lastCovered": "2026-03-17T17:35:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-17-crypto-double-digit-gains-bitcoin-75k-fed",
-        "2026-03-17-xrp-flips-bnb-crypto-market-recovery"
-      ],
-      "summary": "Bitcoin tests 75k with double-digit weekly gains. XRP overtakes BNB in open interest. Market rotating toward legally settled assets during wartime."
     },
     {
       "id": "chile-kast-environmental-rollback",
@@ -539,7 +284,7 @@
       "lastCovered": "2026-03-18T00:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-18-chile-kast-environmental-protections-rollback"
@@ -553,7 +298,7 @@
       "lastCovered": "2026-03-18T00:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-18-peru-prime-minister-resigns-crisis"
@@ -567,7 +312,7 @@
       "lastCovered": "2026-03-18T00:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-18-nigeria-tinubu-2027-appointees-resign"
@@ -581,7 +326,7 @@
       "lastCovered": "2026-03-18T00:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-18-israeli-media-arab-voices-half-percent-war"
@@ -595,7 +340,7 @@
       "lastCovered": "2026-03-18T00:02:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-18-pakistan-pti-prisoners-economic-policy-gulf"
@@ -603,46 +348,214 @@
       "summary": "Jailed PTI leaders criticising lack of economic restructuring during Gulf oil crisis. Opposition locked out of debate during national emergency."
     },
     {
-      "id": "chinese-banks-hong-kong",
-      "label": "Chinese banks overtake Western rivals in Hong Kong wealth",
-      "firstSeen": "2026-03-18T00:02:00Z",
-      "lastCovered": "2026-03-18T00:02:00Z",
+      "id": "pakistan-bisp-infrastructure",
+      "label": "Pakistan: five women killed in welfare disbursement building collapse",
+      "firstSeen": "2026-03-16T10:00:00Z",
+      "lastCovered": "2026-03-16T10:00:00Z",
       "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
+      "category": "politics",
+      "importance": 4,
       "arc": "breaking",
       "articles": [
-        "2026-03-18-chinese-banks-dominate-hong-kong-wealth"
+        "2026-03-16-pakistan-bisp-roof-collapse-five-women-killed"
       ],
-      "summary": "Chinese banks outpacing Western banks in HK wealth management. Financial version of Hong Kong political transition."
+      "summary": "Five women killed when shop roof collapsed during BISP welfare payments in Rahim Yar Khan. Over 200 women crammed into commercial space. State infrastructure failure."
     },
     {
-      "id": "scotland-assisted-dying",
-      "label": "Scotland rejects assisted dying bill",
-      "firstSeen": "2026-03-18T00:02:00Z",
-      "lastCovered": "2026-03-18T00:02:00Z",
+      "id": "china-south-asia-mediation",
+      "label": "China mediates Pak-Afghan tensions while refusing Hormuz role",
+      "firstSeen": "2026-03-16T10:00:00Z",
+      "lastCovered": "2026-03-16T10:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-china-mediates-pakistan-afghanistan-tensions"
+      ],
+      "summary": "China positioning as South/Central Asia security broker, offering Pak-Afghan mediation while refusing US Hormuz coalition. CPEC investment gives unique leverage."
+    },
+    {
+      "id": "malaysia-mah-meri-megaport",
+      "label": "Malaysia: $6B megaport displaces Mah Meri indigenous community",
+      "firstSeen": "2026-03-16T10:00:00Z",
+      "lastCovered": "2026-03-16T10:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-malaysia-megaport-mah-meri-indigenous-displacement"
+      ],
+      "summary": "Selangor megaport destroying Mah Meri fishing grounds. Daily catch worth $7 after 3 hours. No meaningful consent for indigenous Orang Asli."
+    },
+    {
+      "id": "organ-transplant-freeze",
+      "label": "Chinese scientists extend organ viability from hours to days",
+      "firstSeen": "2026-03-16T10:00:00Z",
+      "lastCovered": "2026-03-16T10:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-chinese-organ-freeze-transplant-breakthrough"
+      ],
+      "summary": "Freeze-and-revive method extends organ transplant viability from 6 hours to days. Published in Journal of Medical Devices. Experimental stage."
+    },
+    {
+      "id": "uae-civilian-war-impact",
+      "label": "UAE civilian infrastructure hit: Dubai airport drone, Abu Dhabi missile",
+      "firstSeen": "2026-03-16T10:00:00Z",
+      "lastCovered": "2026-03-16T10:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-dubai-airport-drone-attack-flights-disrupted"
+      ],
+      "summary": "Drone attack near Dubai International Airport disrupted flights. War reaching UAE civilian infrastructure."
+    },
+    {
+      "id": "planet-labs-war-blackout",
+      "label": "Planet Labs delays satellite imagery during Iran war",
+      "firstSeen": "2026-03-16T10:00:00Z",
+      "lastCovered": "2026-03-16T10:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-planet-labs-satellite-imagery-war-blackout"
+      ],
+      "summary": "Planet Labs delaying publication of satellite imagery during active war. Key source for Bellingcat and open-source investigators going dark."
+    },
+    {
+      "id": "xi-military-purge",
+      "label": "Xi Jinping purges senior Chinese military chiefs",
+      "firstSeen": "2026-03-18T02:35:00Z",
+      "lastCovered": "2026-03-18T02:35:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-18-xi-jinping-anticorruption-chinese-military-chiefs"
+      ],
+      "summary": "Xi anticorruption drive sweeping up senior PLA commanders."
+    },
+    {
+      "id": "south-korea-labor-market",
+      "label": "South Korea: jobs grow but youth unemployment at 5-yr high",
+      "firstSeen": "2026-03-18T02:35:00Z",
+      "lastCovered": "2026-03-18T02:35:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-18-south-korea-jobs-youth-unemployment-five-year-high"
+      ],
+      "summary": "234K jobs added but youth unemployment at 5-year high."
+    },
+    {
+      "id": "uk-steel-subsidy",
+      "label": "UK steelworks costing 1.3M/day in public subsidy",
+      "firstSeen": "2026-03-18T02:35:00Z",
+      "lastCovered": "2026-03-18T02:35:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-18-uk-steelworks-costing-1-3-million-day"
+      ],
+      "summary": "British Steel Scunthorpe costs 1.3M/day. Government spent 377M total."
+    },
+    {
+      "id": "asymptotic-safety-fractals",
+      "label": "Asymptotic safety: space-time as fractals",
+      "firstSeen": "2026-03-18T02:35:00Z",
+      "lastCovered": "2026-03-18T02:35:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-18-space-time-fractals-asymptotic-safety"
+      ],
+      "summary": "Eichhorn asymptotic safety gaining traction as string theory alternative."
+    },
+    {
+      "id": "humanoid-robots-manipulation",
+      "label": "Humanoid robots: fine manipulation remains unsolved",
+      "firstSeen": "2026-03-18T02:35:00Z",
+      "lastCovered": "2026-03-18T02:35:00Z",
       "coverageCount": 1,
       "category": "science",
       "importance": 3,
       "arc": "breaking",
       "articles": [
-        "2026-03-18-scotland-assisted-dying-bill-rejected"
+        "2026-03-18-humanoid-robots-struggle-fine-manipulation"
       ],
-      "summary": "Scottish parliament voted down assisted dying legislation. Significant health policy decision affecting end-of-life autonomy."
+      "summary": "Fine motor control unsolved despite gross motor advances."
     },
     {
-      "id": "japan-social-media-ban",
-      "label": "Japan considers banning children from social media",
-      "firstSeen": "2026-03-18T00:02:00Z",
-      "lastCovered": "2026-03-18T00:02:00Z",
+      "id": "us-banks-tokenized-deposits",
+      "label": "US regional banks building tokenized deposit network",
+      "firstSeen": "2026-03-18T02:35:00Z",
+      "lastCovered": "2026-03-18T02:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-18-us-banks-tokenized-deposits-zksync"
+      ],
+      "summary": "Five major US banks building blockchain deposit network to rival stablecoins."
+    },
+    {
+      "id": "ceo-chatgpt-legal-loss",
+      "label": "Krafton CEO loses 250M case after using ChatGPT over lawyers",
+      "firstSeen": "2026-03-18T02:35:00Z",
+      "lastCovered": "2026-03-18T02:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-18-ceo-chatgpt-void-contract-court-loss"
+      ],
+      "summary": "Krafton CEO used ChatGPT to void 250M contract, lost in court."
+    },
+    {
+      "id": "south-korea-ai-hub",
+      "label": "South Korea secures 6 UN agencies for global AI hub",
+      "firstSeen": "2026-03-18T02:35:00Z",
+      "lastCovered": "2026-03-18T02:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-18-south-korea-global-ai-hub-un-agencies"
+      ],
+      "summary": "Seoul positioning as global AI governance node."
+    },
+    {
+      "id": "java-26-release",
+      "label": "Java 26 released",
+      "firstSeen": "2026-03-18T02:35:00Z",
+      "lastCovered": "2026-03-18T02:35:00Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 3,
       "arc": "breaking",
       "articles": [
-        "2026-03-18-japan-social-media-ban-children-considered"
+        "2026-03-18-java-26-released"
       ],
-      "summary": "Japan weighing Australia-style social media ban for under-16s. Global momentum toward platform age restrictions."
+      "summary": "Java 26 ships with value types, structured concurrency, pattern matching."
     }
   ]
 }
