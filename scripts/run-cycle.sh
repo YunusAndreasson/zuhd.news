@@ -18,7 +18,7 @@ export HOME="/root"
 
 # Models and effort levels — chosen per task type:
 #   Selector: Opus+medium — best editorial reasoning; medium effort sufficient for comparison/filtering
-#   Writer:   Sonnet+high — quality creative writing; arc + detail selection needs max effort
+#   Writer:   Sonnet+medium — format-constrained task; medium effort sufficient for templated writing
 #   Editor:   Sonnet+medium — mechanical style checks + editorial judgment; medium is right balance
 #   Reflect:  Sonnet+medium — reflective audit, low frequency
 CLAUDE_MODEL="${ZUHD_MODEL:-sonnet}"
@@ -74,8 +74,10 @@ if [ -n "$TODAY_COVERAGE" ]; then
   COVERAGE_GROUPS=$(echo "$TODAY_COVERAGE" | wc -l)
   SELECT_PROMPT="${SELECT_PROMPT}
 
-CRITICAL: Do NOT re-select stories already covered in the last 24 hours. Here is recent coverage grouped by topic — avoid duplicating any of these angles:
-${TODAY_COVERAGE}"
+Do not re-select stories already covered in the last 24 hours. Here is recent coverage grouped by topic — avoid duplicating any of these angles:
+<recent-coverage>
+${TODAY_COVERAGE}
+</recent-coverage>"
   echo "Injecting coverage map (${COVERAGE_GROUPS} topic groups) into selector prompt" | tee -a "$LOG_FILE"
 fi
 FALLBACK_FLAG=""
@@ -113,7 +115,7 @@ echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 2: Writer ---" | tee -a "$LOG_FILE"
 T2=$SECONDS
 WRITE_PROMPT=$(cat scripts/write-prompt.md)
-timeout 1800 claude $CLAUDE_FLAGS --effort high --model $CLAUDE_MODEL --allowedTools $TOOLS_WRITER --max-turns 60 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+timeout 1800 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_WRITER --max-turns 60 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 WRITE_EXIT=$?
 echo "Writer exit: $WRITE_EXIT — $((SECONDS - T2))s" | tee -a "$LOG_FILE"
 
@@ -140,8 +142,11 @@ else
   ARTICLE_LIST=$(cat /tmp/zuhd-new-articles.txt)
   EDITOR_ADDENDUM="
 
-IMPORTANT: Only check these specific files (this cycle's batch). Do NOT scan for other untracked files:
-$ARTICLE_LIST"
+IMPORTANT: Only check the files listed in <files> below (this cycle's batch). Do NOT scan for other untracked files.
+
+<files>
+$ARTICLE_LIST
+</files>"
   timeout 1200 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_EDITOR --max-turns 50 -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT — $((SECONDS - T3))s" | tee -a "$LOG_FILE"

@@ -166,8 +166,7 @@ const articles = []
 
 for (const file of files) {
   const { slug, meta, bodyHtml, title, dateFormatted } = buildArticle(file)
-  const parsed = meta.date ? new Date(meta.date).getTime() : NaN
-  const addedAt = isNaN(parsed) ? statSync(join(CONTENT_DIR, file)).mtimeMs : parsed
+  const addedAt = statSync(join(CONTENT_DIR, file)).mtimeMs
   articles.push({ slug, meta, bodyHtml, title, dateFormatted, addedAt })
   console.log(`  Built: ${slug}`)
 }

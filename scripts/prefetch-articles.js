@@ -45,9 +45,16 @@ function extractMainText(html) {
 
 const PAYWALL_RE = /subscribe to (read|continue)|sign.{0,10}in to (read|access)|this article is (for|available to) (subscribers|members)|create.{0,20}(free )?account to (read|continue)|paywall/i
 
+// Sources where the title prefix reliably indicates paywalled content — skip fetch entirely
+const PAYWALL_TITLE_PREFIXES = ['STAT+:']
+
 async function fetchArticle(story) {
   const url = story.link || story.sourceUrl
   if (!url) return null
+
+  // Pre-detect known paywall patterns from title (saves a fetch round-trip)
+  const title = story.title || ''
+  if (PAYWALL_TITLE_PREFIXES.some(p => title.startsWith(p))) return { status: 'paywall' }
 
   try {
     const res = await fetch(url, {
@@ -65,7 +72,7 @@ async function fetchArticle(story) {
     if (PAYWALL_RE.test(html.slice(0, 8000))) return { status: 'paywall' }
 
     const text = extractMainText(html)
-    if (text.length < 80) return { status: 'too-short' }
+    if (text.length < 150) return { status: 'too-short' }
 
     return { status: 'ok', text: text.slice(0, MAX_CONTENT_CHARS) }
   } catch (e) {
@@ -104,17 +111,18 @@ const fetchResults = await Promise.all(
 
 let fetched = 0, paywalled = 0, failed = 0
 for (const { story, result } of fetchResults) {
-  if (!result) { failed++; console.log(`  ❌ no-url  — ${story.source}: ${(story.title||'').slice(0, 50)}`); continue }
+  const label = `${story.source}: ${(story.title || '').slice(0, 50)}`
+  if (!result) { failed++; console.log(`  ❌ no-url  — ${label}`); continue }
   if (result.status === 'ok') {
     story.contentText = result.text
     fetched++
-    console.log(`  ✅ ${result.text.length}c  — ${story.source}: ${(story.title||'').slice(0, 50)}`)
+    console.log(`  ✅ ${result.text.length}c  — ${label}`)
   } else if (result.status === 'paywall') {
     paywalled++
-    console.log(`  🔒 paywall — ${story.source}: ${(story.title||'').slice(0, 50)}`)
+    console.log(`  🔒 paywall — ${label}`)
   } else {
     failed++
-    console.log(`  ❌ ${result.status.padEnd(8)} — ${story.source}: ${(story.title||'').slice(0, 50)}`)
+    console.log(`  ❌ ${result.status.padEnd(8)} — ${label}`)
   }
 }
 

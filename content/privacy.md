@@ -1,5 +1,5 @@
-No cookies, no analytics, no fingerprinting, no third-party scripts.
+No cookies. No analytics. No tracking. No third-party scripts.
 
-Your browser remembers which articles you have read. That data stays on your device. Nothing is sent anywhere.
+Your browser remembers which articles you have read. That stays on your device.
 
-Fonts are self-hosted. No external requests are made.
+Fonts are self-hosted. Nothing loads from outside.

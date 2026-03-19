@@ -535,11 +535,14 @@ async function main() {
     freshItems: fresh.length,
     existingArticles: [...existingSlugs],
     stories: selected.map(item => {
+      const pubMs = toMs(item.pubDate)
+      const daysOld = pubMs ? Math.round((Date.now() - pubMs) / 86400000) : null
       const story = {
         title: item.title,
         description: item.description,
         link: item.link,
         pubDate: item.pubDate,
+        daysOld,
         category: item.category,
         source: item.source,
         suggestedSlug: slugify(item.title, item.pubDate || new Date().toISOString()),
