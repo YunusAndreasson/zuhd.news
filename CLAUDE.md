@@ -1,3 +1,7 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 # zuhd.news
 
 Minimalist typography-first news site. Read `foundation.md` for the philosophy.
@@ -17,36 +21,49 @@ Minimalist typography-first news site. Read `foundation.md` for the philosophy.
 ## Architecture
 
 ```
-Multi-source RSS → fetch-news.js → Claude CLI selector (select-prompt.md) → /tmp/zuhd-selection.json
-                                                    ↓
-                                   Claude CLI writer (write-prompt.md) → markdown articles
-                                                    ↓
-                                   Claude CLI editor (check-prompt.md) → rewrite violations
-                                                    ↓
-                                             build.js → dist/ → wrangler pages deploy
+Stage 0: node fetch-news.js → /tmp/zuhd-feed.json
+Stage 1: Claude CLI selector (select-prompt.md) → /tmp/zuhd-selection.json
+Stage 1.5: node prefetch-articles.js → enriches selection with fetched content
+Stage 2: Claude CLI writer (write-prompt.md) → content/articles/*.md
+Stage 3: Claude CLI editor (check-prompt.md) → style fixes
+Stage 3b: validate-articles.js → build.js → git commit → wrangler deploy
+Stage 4: node generate-briefing.js (05:00 UTC only) → content/audio/ → redeploy
+Stage 5: Claude CLI reflect (reflect-prompt.md) (Sunday 22:00 UTC only)
 ```
 
 **Sources (40):** Al Jazeera, BBC World, BBC Business, France 24, Deutsche Welle, AllAfrica, Al Monitor, Hacker News, The Hindu, Yonhap, CoinDesk, Bellingcat, Haaretz, Nature, Quanta Magazine, New Scientist, STAT News, Ars Technica Science, Moscow Times, Rest of World, MIT Technology Review, 404 Media, Carbon Brief, Malay Mail, Antara News, Premium Times, Dawn, Daily Star, South China Morning Post, Middle East Eye, Sveriges Radio, Daily Maverick, Buenos Aires Times, MercoPress, CBC News, Fox News, ABC News Australia, RNZ Pacific, Mada Masr, Medyascope, TSA
 
-- **Hosting:** Cloudflare Pages, direct upload via `wrangler pages deploy dist`
+- **Hosting:** Cloudflare Pages, direct upload via `wrangler pages deploy dist --branch master`
 - **Cycle:** systemd timer (`zuhd-news-cycle.timer`) 5x daily (04:00, 08:00, 12:00, 17:00, 22:00 UTC) → `scripts/run-cycle.sh` → Claude CLI
+- **Manual run:** `env -u CLAUDECODE bash scripts/run-cycle.sh`
 - **Content:** markdown + YAML frontmatter in `content/articles/`, built to `dist/`
 - **Design:** Source Sans 3, 20px base, 80ch measure, no decoration
+- **Logs:** `logs/cycle-YYYY-MM-DD_HHMM.log` (kept 7 days)
 
 ## Key Files
 
 | File | Purpose |
 |------|---------|
 | `scripts/fetch-news.js` | Multi-source RSS fetcher with cross-source dedup |
-| `scripts/build.js` | Markdown → HTML static site generator |
-| `scripts/select-prompt.md` | Selector prompt: fetch news, pick stories, save selection JSON |
-| `scripts/write-prompt.md` | Writer prompt: read selection, fetch full articles, draft markdown |
-| `scripts/check-prompt.md` | Editor prompt: check new articles, fix violations, build, commit, deploy |
-| `scripts/run-cycle.sh` | Cycle wrapper: selector → writer → editor as three Claude CLI sessions |
+| `scripts/prefetch-articles.js` | Pre-fetches article content for writer (eliminates WebFetch tool calls) |
+| `scripts/build.js` | Markdown → HTML static site generator (custom, ~145 lines) |
+| `scripts/validate-articles.js` | Validates frontmatter/structure before deploy; moves malformed articles aside |
+| `scripts/write-last-cycle.js` | Writes `content/.last-cycle.json` from validated articles (selector dedup signal) |
+| `scripts/coverage-map.js` | Generates compact topic-group coverage map injected into selector prompt |
+| `scripts/generate-briefing.js` | Google TTS audio briefing, output to `content/audio/` |
+| `scripts/select-prompt.md` | Selector prompt: read pre-fetched feed, pick stories, save selection JSON |
+| `scripts/write-prompt.md` | Writer prompt: read selection + prefetched content, draft markdown |
+| `scripts/check-prompt.md` | Editor prompt: check new articles for style violations only |
+| `scripts/reflect-prompt.md` | Weekly reflection prompt: audit editorial quality, write notes |
+| `scripts/run-cycle.sh` | Cycle orchestrator: all stages including build, commit, deploy |
+| `scripts/lib/frontmatter.js` | Shared YAML frontmatter parser |
 | `templates/article.html` | Article page template |
 | `templates/index.html` | Homepage template |
 | `public/style.css` | Typography-first CSS design system |
 | `public/reader.js` | Spatial keyboard/touch navigation engine |
+| `content/.last-cycle.json` | Published articles from last cycle (selector dedup signal) |
+| `content/.story-ledger.json` | Cross-cycle story deduplication ledger |
+| `content/.editorial-notes.md` | Weekly reflection output |
 
 ## Decisions
 

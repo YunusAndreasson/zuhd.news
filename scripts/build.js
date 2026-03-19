@@ -7,6 +7,11 @@ const CONTENT_DIR = join(ROOT, 'content', 'articles')
 const DIST_DIR = join(ROOT, 'dist')
 const TEMPLATES_DIR = join(ROOT, 'templates')
 
+const CATEGORY_ORDER = ['politics', 'economy', 'science', 'tech']
+const WINDOW_MS = 24 * 60 * 60 * 1000
+const MIN_PER_CATEGORY = 10
+const MAX_PER_CATEGORY = 13
+
 const smartQuotes = (text) => text
   .replace(/(^|[\s(\[{])"(\S)/gm, '$1\u201C$2')
   .replace(/"/g, '\u201D')
@@ -26,7 +31,6 @@ const markdownToHtml = (md) => {
 
   const result = []
   let inList = false
-
   for (const line of html.split('\n')) {
     if (line.startsWith('- ')) {
       if (!inList) { result.push('<ul>'); inList = true }
@@ -34,27 +38,22 @@ const markdownToHtml = (md) => {
     } else {
       if (inList) { result.push('</ul>'); inList = false }
       if (line.trim() === '') continue
-      if (!line.startsWith('<h') && !line.startsWith('<hr') && !line.startsWith('<ul') && !line.startsWith('<li')) {
+      if (!line.startsWith('<h') && !line.startsWith('<hr') && !line.startsWith('<ul') && !line.startsWith('<li'))
         result.push(`<p>${line}</p>`)
-      } else {
+      else
         result.push(line)
-      }
     }
   }
   if (inList) result.push('</ul>')
-
   return result.join('\n')
 }
 
-const splitSentences = (html) => {
-  return html.replace(/<p>([\s\S]*?)<\/p>/g, (match, inner) => {
+const splitSentences = (html) =>
+  html.replace(/<p>([\s\S]*?)<\/p>/g, (match, inner) => {
     const sentences = inner.split(/(?<=[.!?][\u201D\u2019]?(?:<\/em>)?)\s+(?=[A-Z\u00C0-\u024F])/)
     if (sentences.length <= 1) return match
-
-    const spans = sentences.map(s => `<span class="s">${s}</span>`)
-    return '<p>' + spans.join(' ') + '</p>'
+    return '<p>' + sentences.map(s => `<span class="s">${s}</span>`).join(' ') + '</p>'
   })
-}
 
 const formatDate = (dateStr) =>
   new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -63,60 +62,61 @@ const buildArticle = (filename) => {
   const raw = readFileSync(join(CONTENT_DIR, filename), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
   const sourcemark = meta.source ? `<p class="end-source">${meta.source}</p>` : ''
-  const bodyHtml = splitSentences(markdownToHtml(body)) + sourcemark
   const slug = basename(filename, '.md')
-
-  const title = smartQuotes(meta.title || 'Untitled')
-  const dateFormatted = formatDate(meta.date)
-
-  return { slug, meta, bodyHtml, title, dateFormatted }
+  return {
+    slug, meta, body,
+    bodyHtml: splitSentences(markdownToHtml(body)) + sourcemark,
+    title: smartQuotes(meta.title || 'Untitled'),
+    dateFormatted: formatDate(meta.date)
+  }
 }
 
-const WINDOW_MS = 24 * 60 * 60 * 1000  // 24 hours
-const MIN_PER_CATEGORY = 10             // always show at least 10 even if older
-const MAX_PER_CATEGORY = 13             // never show more than 13 per category
-
-const buildHomepage = (articles, homepageTemplate) => {
-  const sorted = articles.sort((a, b) => b.addedAt - a.addedAt)
-  const cutoff = Date.now() - WINDOW_MS
-
+// Applies rolling window per category; returns raw article objects grouped by category.
+// Shared by homepage and API — each consumer maps to its own shape.
+const groupByWindow = (sorted, cutoff) => {
   const grouped = {}
   for (const a of sorted) {
     const cat = a.meta.category || 'uncategorised'
     const list = grouped[cat] ??= []
     if (list.length >= MAX_PER_CATEGORY) continue
-    if (a.addedAt >= cutoff || list.length < MIN_PER_CATEGORY) {
-      list.push({
-        slug: a.slug,
-        title: a.title,
-        date: a.meta.date,
-        addedAt: a.addedAt,
-        bodyHtml: a.bodyHtml,
-        sourceUrl: a.meta.sourceUrl || ''
-      })
-    }
+    if (a.addedAt >= cutoff || list.length < MIN_PER_CATEGORY) list.push(a)
   }
+  return grouped
+}
 
-  const preferredOrder = ['politics', 'economy', 'science', 'tech']
+const buildHomepage = (sorted, cutoff, homepageTemplate) => {
+  const rawGrouped = groupByWindow(sorted, cutoff)
+
+  const grouped = Object.fromEntries(
+    Object.entries(rawGrouped).map(([cat, articles]) => [
+      cat,
+      articles.map(({ slug, title, meta, addedAt, bodyHtml }) => ({
+        slug, title, addedAt,
+        date: meta.date,
+        bodyHtml,
+        sourceUrl: meta.sourceUrl || ''
+      }))
+    ])
+  )
+
   const categoryOrder = [
-    ...preferredOrder.filter(c => c in grouped),
-    ...Object.keys(grouped).filter(c => !preferredOrder.includes(c))
+    ...CATEGORY_ORDER.filter(c => c in grouped),
+    ...Object.keys(grouped).filter(c => !CATEGORY_ORDER.includes(c))
   ]
-  const articleDataJson = JSON.stringify({ categoryOrder, articles: grouped })
 
   const includedSlugs = new Set(Object.values(grouped).flat().map(a => a.slug))
   const fallbackArticleList = sorted
     .filter(a => includedSlugs.has(a.slug))
-    .map(a => `
+    .map(({ slug, title, meta, dateFormatted }) => `
       <article class="article-preview">
-        <span class="category">${a.meta.category || ''}</span>
-        <h2><a href="/#${a.slug}">${a.title}</a></h2>
-        <time datetime="${a.meta.date}">${a.dateFormatted}</time>
+        <span class="category">${meta.category || ''}</span>
+        <h2><a href="/#${slug}">${title}</a></h2>
+        <time datetime="${meta.date}">${dateFormatted}</time>
       </article>`)
     .join('\n')
 
   return homepageTemplate
-    .replace(/{{articleDataJson}}/g, articleDataJson)
+    .replace(/{{articleDataJson}}/g, JSON.stringify({ categoryOrder, articles: grouped }))
     .replace(/{{fallbackArticleList}}/g, fallbackArticleList)
 }
 
@@ -126,21 +126,16 @@ console.log('Building zuhd.news...')
 if (existsSync(DIST_DIR)) rmSync(DIST_DIR, { recursive: true })
 mkdirSync(DIST_DIR, { recursive: true })
 
-if (existsSync(join(ROOT, 'public'))) {
+if (existsSync(join(ROOT, 'public')))
   cpSync(join(ROOT, 'public'), DIST_DIR, { recursive: true })
-}
 
-// Copy audio files to dist
 const audioSrc = join(ROOT, 'content', 'audio')
 if (existsSync(audioSrc)) {
   mkdirSync(join(DIST_DIR, 'audio'), { recursive: true })
-  for (const f of readdirSync(audioSrc)) {
-    if (f.endsWith('.mp3') || f === 'briefing-meta.json')
-      cpSync(join(audioSrc, f), join(DIST_DIR, 'audio', f))
-  }
+  for (const f of readdirSync(audioSrc).filter(f => f.endsWith('.mp3') || f === 'briefing-meta.json'))
+    cpSync(join(audioSrc, f), join(DIST_DIR, 'audio', f))
 }
 
-// Shared <head> partial — DRYs charset, viewport, theme-color, favicon, fonts, inline CSS
 const cssContent = readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8')
 const jsContent = readFileSync(join(ROOT, 'public', 'reader.js'), 'utf-8')
 const headCommon = `<meta charset="utf-8">
@@ -161,15 +156,17 @@ const homepageTemplate = readFileSync(join(TEMPLATES_DIR, 'index.html'), 'utf-8'
   .replace('{{headCommon}}', headCommon)
   .replace('{{inlineJS}}', jsContent)
 
-const files = readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md') && f !== 'example.md')
-const articles = []
+const articles = readdirSync(CONTENT_DIR)
+  .filter(f => f.endsWith('.md') && f !== 'example.md')
+  .map(file => {
+    const article = buildArticle(file)
+    console.log(`  Built: ${article.slug}`)
+    return { ...article, addedAt: statSync(join(CONTENT_DIR, file)).mtimeMs }
+  })
 
-for (const file of files) {
-  const { slug, meta, bodyHtml, title, dateFormatted } = buildArticle(file)
-  const addedAt = statSync(join(CONTENT_DIR, file)).mtimeMs
-  articles.push({ slug, meta, bodyHtml, title, dateFormatted, addedAt })
-  console.log(`  Built: ${slug}`)
-}
+// Sort once, compute cutoff once — shared by homepage and API
+const sorted = articles.sort((a, b) => b.addedAt - a.addedAt)
+const cutoff = Date.now() - WINDOW_MS
 
 // Generate audio briefing player HTML
 let audioBriefingHtml = ''
@@ -181,8 +178,7 @@ if (existsSync(briefingMetaPath)) {
     const genHour = new Date(meta.generated).getUTCHours()
     const cycles = [3, 9, 15, 21]
     const cycleHour = cycles.reduce((prev, c) => c <= genHour ? c : prev, 0)
-    const cycleStr = String(cycleHour).padStart(2, '0') + ':00'
-    const briefingKey = meta.date + '-' + cycleStr.replace(':', '')
+    const briefingKey = meta.date + '-' + String(cycleHour).padStart(2, '0') + '00'
     const playSvg = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,1 12,7 3,13"/></svg>'
     const pauseSvg = '<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="2" y="1" width="3.5" height="12"/><rect x="8.5" y="1" width="3.5" height="12"/></svg>'
     audioBriefingHtml = `<div class="audio-briefing" data-key="${briefingKey}">
@@ -217,26 +213,61 @@ ms.setActionHandler('seekforward',function(d){a.currentTime=Math.min(a.duration|
 }
 
 // Embed last cycle timestamp for reader.js
-let lastCycleTs = ''
 const lastCyclePath = join(ROOT, 'content', '.last-cycle.json')
-if (existsSync(lastCyclePath)) {
-  const cycle = JSON.parse(readFileSync(lastCyclePath, 'utf-8'))
-  if (cycle.timestamp) lastCycleTs = cycle.timestamp
+const lastCycleTs = existsSync(lastCyclePath)
+  ? (JSON.parse(readFileSync(lastCyclePath, 'utf-8')).timestamp ?? '')
+  : ''
+
+// API feeds — body is raw markdown for native rendering; same rolling window as homepage
+const generated = new Date().toISOString()
+const apiGrouped = groupByWindow(sorted, cutoff)
+const apiCategories = Object.fromEntries(
+  Object.entries(apiGrouped).map(([cat, articles]) => [
+    cat,
+    articles.map(({ slug, meta, addedAt, body }) => ({
+      slug,
+      title: meta.title || 'Untitled',
+      date: meta.date,
+      addedAt,
+      category: cat,
+      source: meta.source || null,
+      sourceUrl: meta.sourceUrl || null,
+      body: body.trim()
+    }))
+  ])
+)
+const apiArticles = Object.values(apiCategories).flat().sort((a, b) => b.addedAt - a.addedAt)
+
+mkdirSync(join(DIST_DIR, 'api', 'articles'), { recursive: true })
+
+writeFileSync(join(DIST_DIR, 'api', 'articles.json'), JSON.stringify({ generated, articles: apiArticles }))
+console.log(`  Built: api/articles.json (${apiArticles.length} articles)`)
+
+for (const [cat, catArticles] of Object.entries(apiCategories)) {
+  writeFileSync(join(DIST_DIR, 'api', 'articles', `${cat}.json`), JSON.stringify({ generated, category: cat, articles: catArticles }))
+  console.log(`  Built: api/articles/${cat}.json (${catArticles.length} articles)`)
 }
 
-const homepage = buildHomepage(articles, homepageTemplate)
+writeFileSync(join(DIST_DIR, 'api', 'meta.json'), JSON.stringify({
+  generated,
+  total: apiArticles.length,
+  categories: Object.fromEntries(CATEGORY_ORDER.filter(c => c in apiCategories).map(c => [c, apiCategories[c].length]))
+}))
+console.log('  Built: api/meta.json')
+
+// Homepage and static pages
+const homepage = buildHomepage(sorted, cutoff, homepageTemplate)
   .replace(/{{audioBriefing}}/g, audioBriefingHtml)
   .replace('</body>', lastCycleTs ? `<script>window.__lastCycle="${lastCycleTs}"</script></body>` : '</body>')
 writeFileSync(join(DIST_DIR, 'index.html'), homepage)
 console.log(`  Built: index.html (${articles.length} articles)`)
 
-// Build static pages (about, sources, privacy) — reuse homepage split-pane layout
 for (const page of ['about', 'sources', 'privacy']) {
   const pagePath = join(ROOT, 'content', `${page}.md`)
   if (!existsSync(pagePath)) continue
   const body = readFileSync(pagePath, 'utf-8')
   const pageContent = `<h1 class="page-title">${page}</h1><div class="about-body">${markdownToHtml(body)}</div>`
-  const html = homepage
+  writeFileSync(join(DIST_DIR, `${page}.html`), homepage
     .replace('<div class="article-view-inner"></div>', `<div class="article-view-inner">${pageContent}</div>`)
     .replace('article-view" aria-live="polite" hidden', `article-view" aria-live="polite" data-page="${page}"`)
     .replace('<title>zuhd.news</title>', `<title>zuhd.news — ${page}</title>`)
@@ -244,7 +275,7 @@ for (const page of ['about', 'sources', 'privacy']) {
     .replace('<meta property="og:title" content="zuhd.news">', `<meta property="og:title" content="zuhd.news — ${page}">`)
     .replace('<meta property="og:url" content="https://zuhd.news/">', `<meta property="og:url" content="https://zuhd.news/${page}">`)
     .replace(`href="/${page}"`, `href="/${page}" aria-current="page"`)
-  writeFileSync(join(DIST_DIR, `${page}.html`), html)
+  )
   console.log(`  Built: ${page}.html`)
 }
 
