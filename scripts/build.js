@@ -218,7 +218,10 @@ const lastCycleTs = existsSync(lastCyclePath)
   ? (JSON.parse(readFileSync(lastCyclePath, 'utf-8')).timestamp ?? '')
   : ''
 
-// API feeds — body is raw markdown for native rendering; same rolling window as homepage
+// Split body into sentences — same logic as web's .s { display: block }
+const splitSentences = (text) => text.trim().split(/(?<=[.!?])\s+(?=[A-Z])/).filter(Boolean)
+
+// API feeds — pre-grouped, pre-split sentences for native rendering
 const generated = new Date().toISOString()
 const apiGrouped = groupByWindow(sorted, cutoff)
 const apiCategories = Object.fromEntries(
@@ -229,10 +232,9 @@ const apiCategories = Object.fromEntries(
       title: meta.title || 'Untitled',
       date: meta.date,
       addedAt,
-      category: cat,
       source: meta.source || null,
       sourceUrl: meta.sourceUrl || null,
-      body: body.trim()
+      sentences: splitSentences(body)
     }))
   ])
 )
@@ -240,18 +242,40 @@ const apiArticles = Object.values(apiCategories).flat().sort((a, b) => b.addedAt
 
 mkdirSync(join(DIST_DIR, 'api', 'articles'), { recursive: true })
 
-writeFileSync(join(DIST_DIR, 'api', 'articles.json'), JSON.stringify({ generated, articles: apiArticles }))
+// Legacy flat endpoint (backwards compatible)
+writeFileSync(join(DIST_DIR, 'api', 'articles.json'), JSON.stringify({ generated, articles: apiArticles.map(a => ({ ...a, category: CATEGORY_ORDER.find(c => apiCategories[c]?.includes(a)) ?? 'politics', body: a.sentences.join(' ') })) }))
 console.log(`  Built: api/articles.json (${apiArticles.length} articles)`)
 
+// Per-category endpoints
 for (const [cat, catArticles] of Object.entries(apiCategories)) {
   writeFileSync(join(DIST_DIR, 'api', 'articles', `${cat}.json`), JSON.stringify({ generated, category: cat, articles: catArticles }))
   console.log(`  Built: api/articles/${cat}.json (${catArticles.length} articles)`)
 }
 
+// Briefing availability for meta
+const apiBriefingMetaPath = join(ROOT, 'content', 'audio', 'briefing-meta.json')
+let briefingInfo = null
+if (existsSync(apiBriefingMetaPath)) {
+  const bm = JSON.parse(readFileSync(apiBriefingMetaPath, 'utf-8'))
+  const age = Date.now() - new Date(bm.generated).getTime()
+  if (age < 36 * 60 * 60 * 1000) {
+    briefingInfo = { date: bm.date, available: true }
+  }
+}
+
+// Pre-grouped endpoint for mobile
+writeFileSync(join(DIST_DIR, 'api', 'feed.json'), JSON.stringify({
+  generated,
+  categories: apiCategories,
+  briefing: briefingInfo
+}))
+console.log(`  Built: api/feed.json (${apiArticles.length} articles, pre-grouped)`)
+
 writeFileSync(join(DIST_DIR, 'api', 'meta.json'), JSON.stringify({
   generated,
   total: apiArticles.length,
-  categories: Object.fromEntries(CATEGORY_ORDER.filter(c => c in apiCategories).map(c => [c, apiCategories[c].length]))
+  categories: Object.fromEntries(CATEGORY_ORDER.filter(c => c in apiCategories).map(c => [c, apiCategories[c].length])),
+  briefing: briefingInfo
 }))
 console.log('  Built: api/meta.json')
 
