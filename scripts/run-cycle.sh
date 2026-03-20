@@ -13,8 +13,13 @@ exec 200>/tmp/zuhd-cycle.lock
 flock -n 200 || { echo "Cycle already running — exiting"; exit 0; }
 
 # Ensure mise-managed tools are on PATH (systemd doesn't source shell profiles)
-export PATH="/root/.local/share/mise/installs/node/24.13.1/bin:/root/.local/bin:$PATH"
-export HOME="/root"
+export HOME="${HOME:-/root}"
+MISE_BIN="${MISE_BIN:-$HOME/.local/bin/mise}"
+if [ -x "$MISE_BIN" ]; then
+  eval "$($MISE_BIN env --shell bash 2>/dev/null)"
+else
+  echo "WARNING: mise not found at $MISE_BIN — relying on existing PATH" >&2
+fi
 
 # Models and effort levels — chosen per task type:
 #   Selector: Opus+medium — best editorial reasoning; medium effort sufficient for comparison/filtering

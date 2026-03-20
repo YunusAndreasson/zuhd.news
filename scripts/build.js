@@ -271,6 +271,33 @@ writeFileSync(join(DIST_DIR, 'api', 'feed.json'), JSON.stringify({
 }))
 console.log(`  Built: api/feed.json (${apiArticles.length} articles, pre-grouped)`)
 
+// Atom feed for RSS readers
+const escXml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+const feedArticles = sorted.filter(a => a.addedAt >= cutoff).slice(0, 30)
+const atomEntries = feedArticles.map(a => `  <entry>
+    <title>${escXml(a.meta.title || 'Untitled')}</title>
+    <link href="https://zuhd.news/#${a.slug}" rel="alternate"/>
+    <id>tag:zuhd.news,${a.meta.date?.slice(0, 10) || '2026'}:${a.slug}</id>
+    <updated>${new Date(a.meta.date || a.addedAt).toISOString()}</updated>
+    <category term="${escXml(a.meta.category || 'politics')}"/>
+    <summary>${escXml(a.body.trim())}</summary>${a.meta.source ? `\n    <source><title>${escXml(a.meta.source)}</title></source>` : ''}
+  </entry>`).join('\n')
+
+const atomFeed = `<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>zuhd.news</title>
+  <subtitle>Global news, no noise.</subtitle>
+  <link href="https://zuhd.news/" rel="alternate"/>
+  <link href="https://zuhd.news/feed.xml" rel="self"/>
+  <id>tag:zuhd.news,2025:feed</id>
+  <updated>${generated}</updated>
+  <icon>https://zuhd.news/favicon.svg</icon>
+${atomEntries}
+</feed>
+`
+writeFileSync(join(DIST_DIR, 'feed.xml'), atomFeed)
+console.log(`  Built: feed.xml (${feedArticles.length} entries)`)
+
 writeFileSync(join(DIST_DIR, 'api', 'meta.json'), JSON.stringify({
   generated,
   total: apiArticles.length,
