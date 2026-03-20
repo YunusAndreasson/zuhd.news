@@ -5,8 +5,8 @@
       "id": "iran-us-israel-war",
       "label": "Iran-US-Israel war: Pentagon $200bn request, Saudi threatens action",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-20T05:15:00Z",
-      "coverageCount": 260,
+      "lastCovered": "2026-03-20T08:15:00Z",
+      "coverageCount": 261,
       "category": "politics",
       "importance": 10,
       "arc": "ongoing",
@@ -106,16 +106,19 @@
         "2026-03-20-netanyahu-israel-acted-alone-iran-gas-field",
         "2026-03-20-idf-90-percent-iran-missiles-intercepted",
         "2026-03-20-uae-saudi-kuwait-air-defense-alerts-iran-war-gulf",
-        "2026-03-20-us-16bn-arms-gulf-iran-zero-restraint"
+        "2026-03-20-us-16bn-arms-gulf-iran-zero-restraint",
+        "2026-03-20-gulf-eid-prayers-restricted-iran-war",
+        "2026-03-20-kuwait-refinery-fire-bahrain-blaze-gulf-infrastructure",
+        "2026-03-20-cyberattack-mossad-official-documents-leaked"
       ],
-      "summary": "Day 29. US rushes $16bn arms to Gulf but rules out troops. Iran warns zero restraint. Congress asked for $200bn more."
+      "summary": "Day 29. Gulf states restrict outdoor Eid prayers due to war. Kuwait refinery fire amid infrastructure strain."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
       "label": "Hormuz crisis: Ras Laffan LNG attack, allies refuse escort, Pacific hit",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-20T05:15:00Z",
-      "coverageCount": 225,
+      "lastCovered": "2026-03-20T08:15:00Z",
+      "coverageCount": 226,
       "category": "economy",
       "importance": 5,
       "arc": "ongoing",
@@ -204,16 +207,17 @@
         "2026-03-20-south-korea-export-restrictions-crude-oil-emergency",
         "2026-03-20-samsung-heavy-lng-ship-order-oceania-hormuz",
         "2026-03-20-gold-loses-safe-haven-shine-war",
-        "2026-03-20-japan-lng-carriers-iran-energy-crisis"
+        "2026-03-20-japan-lng-carriers-iran-energy-crisis",
+        "2026-03-20-saudi-warns-oil-180-hormuz-disruptions"
       ],
-      "summary": "Gold down $511/oz since war began. Japan reviving domestic LNG carrier production. Structural shifts beyond price spikes."
+      "summary": "Saudi officials warn oil could hit 180/bbl. Economic escalation signal."
     },
     {
       "id": "lebanon-israel-war",
       "label": "Lebanon-Israel-Gaza: Hezbollah rebuilds, Gaza invisible war continues",
       "firstSeen": "2026-03-08T00:00:00Z",
-      "lastCovered": "2026-03-20T00:02:00Z",
-      "coverageCount": 38,
+      "lastCovered": "2026-03-20T08:15:00Z",
+      "coverageCount": 39,
       "category": "politics",
       "importance": 6,
       "arc": "ongoing",
@@ -257,9 +261,10 @@
         "2026-03-19-hezbollah-rebuilt-enemies-declared-dead",
         "2026-03-19-israel-gaza-attacks-rafah-reopens-invisible-war",
         "2026-03-20-israel-strikes-litani-bridges-lebanon-20-killed",
-        "2026-03-20-fifa-rejects-palestine-suspend-israel"
+        "2026-03-20-fifa-rejects-palestine-suspend-israel",
+        "2026-03-20-israel-strikes-syria-druze-pretext"
       ],
-      "summary": "IDF destroys Litani River bridge crossings, killing 20. Isolating southern Lebanon while 1M+ displaced. FIFA rejects Palestinian request to suspend Israel."
+      "summary": "Israel strikes Syria claiming Druze protection. Expanding operations beyond Lebanon."
     },
     {
       "id": "pakistan-afghanistan-airstrike",
@@ -268,7 +273,7 @@
       "lastCovered": "2026-03-20T00:02:00Z",
       "coverageCount": 5,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "ongoing",
       "articles": [
         "2026-03-18-afghanistan-rehab-center-143-killed-pakistan-airstrike",
@@ -280,29 +285,13 @@
       "summary": "Eid ceasefire brokered by Saudi Arabia, Qatar, Turkey (March 18-24). Pakistan claims 707 militants killed. Both sides claim good faith pause while defending prior strikes."
     },
     {
-      "id": "south-pars-gasfield-strike",
-      "label": "Israeli strike on South Pars gasfield oil 110 UAE condemns",
-      "firstSeen": "2026-03-18T17:30:00Z",
-      "lastCovered": "2026-03-18T20:00:00Z",
-      "coverageCount": 3,
-      "category": "economy",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-18-oil-110-south-pars-gasfield-strike-uae-condemns",
-        "2026-03-18-qatarenergy-ras-laffan-missile-damage-iran-retaliation",
-        "2026-03-18-iran-retaliates-gulf-energy-sites-south-pars"
-      ],
-      "summary": "Iran retaliates: missiles hit Qatar Ras Laffan LNG hub (extensive damage) and multiple Gulf energy sites. Energy infrastructure war escalation."
-    },
-    {
       "id": "who-nuclear-bushehr-planning",
       "label": "WHO prepares for worst-case nuclear incident at Bushehr",
       "firstSeen": "2026-03-18T22:35:00Z",
       "lastCovered": "2026-03-18T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-18-who-worst-case-nuclear-incident-iran-war"
@@ -316,26 +305,12 @@
       "lastCovered": "2026-03-16T10:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "fading",
       "articles": [
         "2026-03-16-dubai-airport-drone-attack-flights-disrupted"
       ],
       "summary": "Drone attack near Dubai International Airport disrupted flights. War reaching UAE civilian infrastructure."
-    },
-    {
-      "id": "planet-labs-war-blackout",
-      "label": "Planet Labs delays satellite imagery during Iran war",
-      "firstSeen": "2026-03-16T10:00:00Z",
-      "lastCovered": "2026-03-16T10:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "fading",
-      "articles": [
-        "2026-03-16-planet-labs-satellite-imagery-war-blackout"
-      ],
-      "summary": "Planet Labs delaying publication of satellite imagery during active war. Key source for Bellingcat and open-source investigators going dark."
     },
     {
       "id": "iran-protest-executions",
@@ -344,7 +319,7 @@
       "lastCovered": "2026-03-19T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-19-iran-teenager-executed-protests-wrestling"
@@ -358,55 +333,12 @@
       "lastCovered": "2026-03-19T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-19-denmark-greenland-runways-blow-up-us-invasion"
       ],
       "summary": "Danish military drew up plans to destroy Greenland runways after Venezuela operation sparked fears Trump would act against Greenland."
-    },
-    {
-      "id": "south-africa-debt-crisis",
-      "label": "South Africa: working poor owe 28x monthly salary",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-19-south-africa-debt-28-times-salary-crisis"
-      ],
-      "summary": "NDA study of 70,000+ debt review cases: average income R9,536/month, average debt 28x that."
-    },
-    {
-      "id": "facebook-wildlife-trafficking",
-      "label": "Bellingcat: 70k+ Facebook group members in coded wildlife trafficking",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-19-wildlife-traffickers-facebook-coded-language"
-      ],
-      "summary": "Nine Facebook groups with 70,000+ members use coded language to sell protected animals, evading Meta AI moderation."
-    },
-    {
-      "id": "cyclone-narelle-queensland",
-      "label": "Cyclone Narelle approaches Queensland amid fuel crisis",
-      "firstSeen": "2026-03-18T20:00:00Z",
-      "lastCovered": "2026-03-20T02:45:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-18-cyclone-narelle-queensland-coast-australia",
-        "2026-03-20-cyclone-narelle-queensland-rare-ferocity"
-      ],
-      "summary": "Severe Cyclone Narelle hits Queensland coast with rare ferocity, threatening remote and Indigenous communities."
     },
     {
       "id": "mexico-sinaloa-raid-2026",
@@ -415,7 +347,7 @@
       "lastCovered": "2026-03-20T00:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-20-mexico-military-raid-sinaloa-cartel-11-killed"
@@ -429,26 +361,12 @@
       "lastCovered": "2026-03-20T00:02:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-20-trump-climate-center-shutdown-university-lawsuit"
       ],
       "summary": "University consortium sues to block shutdown of federal climate research center that underpins severe weather forecasting."
-    },
-    {
-      "id": "space-combat-satellites",
-      "label": "Defense company builds satellites for orbital combat",
-      "firstSeen": "2026-03-20T00:02:00Z",
-      "lastCovered": "2026-03-20T00:02:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-20-space-combat-satellites-orbital-warfare"
-      ],
-      "summary": "Company building maneuverable satellites for proximity operations, jamming, and disabling adversary spacecraft. Space militarization moves from doctrine to hardware."
     },
     {
       "id": "fifa-palestine-suspension",
@@ -457,7 +375,7 @@
       "lastCovered": "2026-03-20T00:02:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-20-fifa-rejects-palestine-suspend-israel"
@@ -471,26 +389,12 @@
       "lastCovered": "2026-03-20T02:45:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-20-kim-jong-un-new-battle-tank-north-korea-drill"
       ],
       "summary": "Kim Jong Un oversaw large-scale drill showcasing new battle tank. Timing exploits US distraction with Iran war."
-    },
-    {
-      "id": "namibia-budget-social-protection",
-      "label": "Namibia: Opposition calls budget treasonous",
-      "firstSeen": "2026-03-20T02:45:00Z",
-      "lastCovered": "2026-03-20T02:45:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-20-namibia-opposition-swapo-treasonous-budget"
-      ],
-      "summary": "Namibian opposition accuses Swapo of failing to raise social grants amid inflation."
     },
     {
       "id": "turing-award-quantum-crypto",
@@ -499,40 +403,12 @@
       "lastCovered": "2026-03-20T02:45:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-20-quantum-cryptography-turing-award-bennett-brassard"
       ],
       "summary": "Bennett and Brassard win 2025 Turing Award for quantum information science (BB84 protocol)."
-    },
-    {
-      "id": "spacetime-fractals-asymptotic-safety",
-      "label": "Asymptotic safety: fractal space-time",
-      "firstSeen": "2026-03-20T02:45:00Z",
-      "lastCovered": "2026-03-20T02:45:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-20-spacetime-fractals-asymptotic-safety-eichhorn"
-      ],
-      "summary": "Eichhorn leads asymptotic safety as quantum gravity alternative to string theory."
-    },
-    {
-      "id": "humanoid-robots-dexterity",
-      "label": "Humanoid robots: dexterity still unsolved",
-      "firstSeen": "2026-03-20T02:45:00Z",
-      "lastCovered": "2026-03-20T02:45:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-20-humanoid-robots-dexterity-manipulation-gap"
-      ],
-      "summary": "Humanoid robots still cannot manipulate small objects. Problem is neuroscience, not engineering."
     },
     {
       "id": "chatgpt-contract-court-loss",
@@ -541,7 +417,7 @@
       "lastCovered": "2026-03-20T02:45:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-20-ceo-chatgpt-void-contract-250m-court-loss"
@@ -555,7 +431,7 @@
       "lastCovered": "2026-03-20T02:45:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-20-nanogpt-10x-data-efficiency-infinite-compute"
@@ -569,7 +445,7 @@
       "lastCovered": "2026-03-20T05:15:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-20-belarus-frees-250-political-prisoners-sanctions-thaw"
@@ -583,7 +459,7 @@
       "lastCovered": "2026-03-20T05:15:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-20-venezuela-interim-president-replaces-military-commanders"
@@ -597,7 +473,7 @@
       "lastCovered": "2026-03-20T05:15:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-20-japan-takaichi-trump-north-korea-kim-meeting"
@@ -611,7 +487,7 @@
       "lastCovered": "2026-03-20T05:15:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-20-trump-commemorative-gold-coin-approved"
@@ -625,7 +501,7 @@
       "lastCovered": "2026-03-20T05:15:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-17-interstellar-comet-water-unlike-solar-system"
@@ -639,7 +515,7 @@
       "lastCovered": "2026-03-20T05:15:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-19-china-coal-mining-methane-emissions"
@@ -653,7 +529,7 @@
       "lastCovered": "2026-03-20T05:15:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-19-china-nuclear-pledge-energy-ecological-code"
@@ -667,7 +543,7 @@
       "lastCovered": "2026-03-20T05:15:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-19-pakistan-social-media-regulatory-authority"
@@ -681,12 +557,124 @@
       "lastCovered": "2026-03-20T05:15:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-19-turkey-sarachane-opposition-protesters-detained"
       ],
       "summary": "35 detained at Istanbul opposition rally, 31 released, 4 sent to prosecutors."
+    },
+    {
+      "id": "sudan-civil-war-2026",
+      "label": "Sudan: SAF retakes Bara, RSF counterattacks",
+      "firstSeen": "2026-03-20T08:15:00Z",
+      "lastCovered": "2026-03-20T08:15:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-13-sudan-military-retakes-bara-rsf-strikes-villages"
+      ],
+      "summary": "SAF retakes Bara but RSF attacks surrounding villages. 15M displaced."
+    },
+    {
+      "id": "mexico-ice-custody-death",
+      "label": "19yo migrant dies in US ICE custody",
+      "firstSeen": "2026-03-20T08:15:00Z",
+      "lastCovered": "2026-03-20T08:15:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-20-mexico-condemns-19-year-old-death-ice-custody"
+      ],
+      "summary": "Mexico condemns death of 19yo in ICE custody."
+    },
+    {
+      "id": "argentina-milei-unemployment",
+      "label": "Argentina Q4 unemployment worst since pandemic",
+      "firstSeen": "2026-03-20T08:15:00Z",
+      "lastCovered": "2026-03-20T08:15:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-19-argentina-unemployment-highest-since-pandemic"
+      ],
+      "summary": "Argentina Q4 unemployment worst since pandemic under Milei."
+    },
+    {
+      "id": "panama-sinolam-arbitration",
+      "label": "Panama gas plant World Bank arbitration",
+      "firstSeen": "2026-03-20T08:15:00Z",
+      "lastCovered": "2026-03-20T08:15:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-20-sinolam-panama-gas-plant-world-bank-arbitration"
+      ],
+      "summary": "Sinolam seeks ICSID arbitration after Panama revokes gas plant license."
+    },
+    {
+      "id": "abel-prize-2026",
+      "label": "2026 Abel Prize: 60-year mystery solved",
+      "firstSeen": "2026-03-20T08:15:00Z",
+      "lastCovered": "2026-03-20T08:15:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-19-abel-prize-2026-60-year-old-mystery-solved"
+      ],
+      "summary": "2026 Abel Prize for solving 60-year mathematical problem."
+    },
+    {
+      "id": "somaliland-cheetah-trafficking",
+      "label": "Somaliland cheetah rescue from Gulf trafficking",
+      "firstSeen": "2026-03-20T08:15:00Z",
+      "lastCovered": "2026-03-20T08:15:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-20-somaliland-cheetah-rescue-gulf-trafficking"
+      ],
+      "summary": "Somaliland center saves cheetahs from Gulf palace trafficking. Under 7000 in wild."
+    },
+    {
+      "id": "xiaomi-ai-investment",
+      "label": "Xiaomi billions into AI beyond smartphones",
+      "firstSeen": "2026-03-20T08:15:00Z",
+      "lastCovered": "2026-03-20T08:15:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-20-xiaomi-billions-ai-expansion-beyond-smartphones"
+      ],
+      "summary": "Xiaomi pivots to AI with multi-billion investment."
+    },
+    {
+      "id": "africa-40-smartphone",
+      "label": "GSMA $40 smartphone push for Africa",
+      "firstSeen": "2026-03-20T08:15:00Z",
+      "lastCovered": "2026-03-20T08:15:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-africa-40-smartphone-digital-divide"
+      ],
+      "summary": "GSMA effort for $40 smartphones in Africa. 600M+ without access."
     }
   ]
 }
