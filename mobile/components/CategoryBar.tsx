@@ -59,28 +59,25 @@ export function CategoryBar({ pagerOffset, categoryProgresses, onCategoryPress }
     [],
   );
 
-  const trackStyle = useAnimatedStyle(() => {
-    if (!allMeasured) return { opacity: 0 };
+  // Track: interpolated (smooth slide). Fill: snapped (both left + width from same index).
+  const trackPos = useAnimatedStyle(() => {
+    if (!allMeasured) return { width: 0 };
     const indices = TAB_LABELS.map((_, i) => i);
     const x = interpolate(pagerOffset.value, indices, tabLayouts.map((l) => l.x), 'clamp');
     const w = interpolate(pagerOffset.value, indices, tabLayouts.map((l) => l.width), 'clamp');
-    return { opacity: 1, left: x, width: w };
+    return { left: x, width: w };
   });
 
-  const fillStyle = useAnimatedStyle(() => {
+  const fillPos = useAnimatedStyle(() => {
     if (!allMeasured) return { width: 0 };
-    const indices = TAB_LABELS.map((_, i) => i);
-    const tabWidth = interpolate(pagerOffset.value, indices, tabLayouts.map((l) => l.width), 'clamp');
 
-    // Blend progress between adjacent categories during horizontal swipe
-    const idx = Math.floor(Math.max(0, pagerOffset.value));
-    const frac = pagerOffset.value - idx;
-    const nextIdx = Math.min(idx + 1, TAB_LABELS.length - 1);
-    const progressA = idx < CATEGORIES.length ? (categoryProgresses.value[idx] ?? 0) : 1;
-    const progressB = nextIdx < CATEGORIES.length ? (categoryProgresses.value[nextIdx] ?? 0) : 1;
-    const progress = progressA + (progressB - progressA) * frac;
+    const currentIdx = Math.min(Math.round(Math.max(0, pagerOffset.value)), tabLayouts.length - 1);
+    const tab = tabLayouts[currentIdx];
+    const progress = currentIdx < CATEGORIES.length
+      ? (categoryProgresses.value[currentIdx] ?? 0)
+      : 1;
 
-    return { width: tabWidth * progress };
+    return { left: tab.x, width: tab.width * progress };
   });
 
   return (
@@ -107,10 +104,8 @@ export function CategoryBar({ pagerOffset, categoryProgresses, onCategoryPress }
           />
         ))}
 
-        <Animated.View style={[styles.track, trackStyle]} />
-        <Animated.View style={[styles.fill, trackStyle]}>
-          <Animated.View style={[styles.fillInner, fillStyle]} />
-        </Animated.View>
+        <Animated.View style={[styles.track, trackPos]} />
+        <Animated.View style={[styles.fill, fillPos]} />
       </View>
     </View>
   );
@@ -154,20 +149,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     height: LAYOUT.progressBarHeight,
+    borderRadius: LAYOUT.progressBarHeight,
     backgroundColor: COLORS.white,
     opacity: 0.15,
-    borderRadius: LAYOUT.progressBarHeight,
   },
   fill: {
     position: 'absolute',
     bottom: 0,
     height: LAYOUT.progressBarHeight,
-    overflow: 'hidden',
     borderRadius: LAYOUT.progressBarHeight,
-  },
-  fillInner: {
-    height: LAYOUT.progressBarHeight,
     backgroundColor: COLORS.white,
-    borderRadius: 1,
   },
 });

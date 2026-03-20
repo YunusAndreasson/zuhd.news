@@ -32,7 +32,8 @@ export function useArticles() {
     try {
       // Try new pre-grouped endpoint first, fall back to legacy
       let res = await fetch(`${API_BASE}/api/feed.json`, { signal: controller.signal });
-      if (res.ok) {
+      const isFeedJson = res.ok && (res.headers.get('content-type') ?? '').includes('json');
+      if (isFeedJson) {
         clearTimeout(timeout);
         const data: FeedResponse = await res.json();
         lastGeneratedRef.current = data.generated;

@@ -76,9 +76,11 @@ export const ArticleList = memo(forwardRef<ArticleListRef, ArticleListProps>(fun
       scrollY.value = event.contentOffset.y;
       const total = Math.max((articleCount - 1) * itemHeight, 1);
       const progress = Math.max(0, Math.min(event.contentOffset.y / total, 1));
-      const arr = [...progressesSV.value];
-      arr[catIndex] = progress;
-      progressesSV.value = arr;
+      progressesSV.modify((arr) => {
+        'worklet';
+        arr[catIndex] = progress;
+        return arr;
+      });
     },
   });
 

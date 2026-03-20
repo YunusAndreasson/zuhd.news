@@ -65,11 +65,8 @@ export const ArticlePage = memo(function ArticlePage({
 
   const handleLongPress = useCallback(() => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {});
-    const url = `https://zuhd.news/#${article.slug}`;
     Share.share({
-      title: article.title,
-      message: article.title,
-      url,
+      message: `${article.title}\n\nhttps://zuhd.news/a/${article.slug}`,
     }).catch(() => {});
   }, [article.title, article.slug]);
 
