@@ -1,12 +1,9 @@
 // Cloudflare Worker: per-article share preview
-// Intercepts /a/{slug} → injects article-specific og:tags for rich link previews
-// Bots (iMessage, WhatsApp, Slack, Twitter) see og:tags; browsers redirect to /#slug
+// Serves HTML with article-specific og:tags to ALL requests at /a/{slug}
+// Client-side JS redirects browsers to /#slug; bots (iMessage, WhatsApp etc) don't execute JS
 
 const API_BASE = 'https://zuhd-news.pages.dev'
 const SITE = 'https://zuhd.news'
-
-// User agents that fetch link previews (bots, not browsers)
-const BOT_UA = /facebookexternalhit|Facebot|Twitterbot|LinkedInBot|WhatsApp|Slackbot|Discordbot|TelegramBot|Applebot|iMessageLinkPreview|GoogleOther|Bingbot/i
 
 export default {
   async fetch(request) {
@@ -17,15 +14,6 @@ export default {
       return Response.redirect(`${SITE}/`, 302)
     }
 
-    const ua = request.headers.get('user-agent') || ''
-    const isBot = BOT_UA.test(ua)
-
-    // Browsers: redirect to the hash URL (SPA handles it)
-    if (!isBot) {
-      return Response.redirect(`${SITE}/#${slug}`, 302)
-    }
-
-    // Bots: fetch article data, return HTML with og:tags
     try {
       const res = await fetch(`${API_BASE}/api/articles.json`, {
         cf: { cacheTtl: 300 },
@@ -63,6 +51,7 @@ export default {
   <meta name="twitter:description" content="${body}">
   <meta name="description" content="${body}">
   <meta name="author" content="${source}">
+  <script>location.replace("${SITE}/#${slug}")</script>
 </head>
 <body>
   <h1>${title}</h1>
