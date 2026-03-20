@@ -219,7 +219,7 @@ const lastCycleTs = existsSync(lastCyclePath)
   : ''
 
 // Split body into sentences — same logic as web's .s { display: block }
-const splitSentences = (text) => text.trim().split(/(?<=[.!?])\s+(?=[A-Z])/).filter(Boolean)
+const splitBodySentences = (text) => text.trim().split(/(?<=[.!?])\s+(?=[A-Z])/).filter(Boolean)
 
 // API feeds — pre-grouped, pre-split sentences for native rendering
 const generated = new Date().toISOString()
@@ -234,7 +234,7 @@ const apiCategories = Object.fromEntries(
       addedAt,
       source: meta.source || null,
       sourceUrl: meta.sourceUrl || null,
-      sentences: splitSentences(body)
+      sentences: splitBodySentences(body)
     }))
   ])
 )
