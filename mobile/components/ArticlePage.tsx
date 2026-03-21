@@ -19,6 +19,7 @@ interface ArticlePageProps {
   index: number;
   scrollY: SharedValue<number>;
   isNew: boolean;
+  onThreadPress?: (article: Article) => void;
 }
 
 function formatTimeAgo(addedAt: number): string {
@@ -36,6 +37,7 @@ export const ArticlePage = memo(function ArticlePage({
   index,
   scrollY,
   isNew,
+  onThreadPress,
 }: ArticlePageProps) {
   const { impact } = useHaptic();
   const timeAgo = formatTimeAgo(article.addedAt);
@@ -108,6 +110,17 @@ export const ArticlePage = memo(function ArticlePage({
           {article.source ? `${article.source.toUpperCase()} · ` : ''}
           {timeAgo}
         </Text>
+        {article.threadLabel && (
+          <Pressable
+            onPress={() => onThreadPress?.(article)}
+            hitSlop={8}
+            style={({ pressed }) => pressed && { opacity: 0.5 }}
+          >
+            <Text style={styles.thread} numberOfLines={1}>
+              {article.threadLabel} · day {article.threadDay}
+            </Text>
+          </Pressable>
+        )}
       </Animated.View>
     </Pressable>
   );
@@ -133,5 +146,11 @@ const styles = StyleSheet.create({
     color: COLORS.textSecondary,
     letterSpacing: TYPOGRAPHY.trackingCaps,
     marginTop: SPACING.lg,
+  },
+  thread: {
+    fontFamily: FONT.regular,
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.accent,
+    marginTop: SPACING.xs,
   },
 });

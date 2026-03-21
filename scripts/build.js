@@ -221,24 +221,57 @@ const lastCycleTs = existsSync(lastCyclePath)
 // Split body into sentences — same logic as web's .s { display: block }
 const splitBodySentences = (text) => text.trim().split(/(?<=[.!?])\s+(?=[A-Z])/).filter(Boolean)
 
+// Story thread lookup — maps article slugs to their thread info from the ledger
+const ledgerPath = join(ROOT, 'content', '.story-ledger.json')
+const threadLookup = new Map()
+if (existsSync(ledgerPath)) {
+  const ledger = JSON.parse(readFileSync(ledgerPath, 'utf8'))
+  for (const story of ledger.stories) {
+    if (story.arc === 'fading' || story.importance < 2) continue
+    const firstDate = new Date(story.firstSeen)
+    for (const slug of story.articles || []) {
+      threadLookup.set(slug, {
+        threadId: story.id,
+        threadLabel: story.label,
+        threadArc: story.arc,
+        threadSummary: story.summary || null,
+        threadDay: Math.max(1, Math.ceil((Date.now() - firstDate.getTime()) / 86400000)),
+        threadArticleCount: story.articles.length,
+      })
+    }
+  }
+  console.log(`  Ledger: ${threadLookup.size} articles mapped to ${ledger.stories.filter(s => s.arc !== 'fading' && s.importance >= 2).length} threads`)
+}
+
 // API feeds — pre-grouped, pre-split sentences for native rendering
 const generated = new Date().toISOString()
 const apiGrouped = groupByWindow(sorted, cutoff)
 const apiCategories = Object.fromEntries(
   Object.entries(apiGrouped).map(([cat, articles]) => [
     cat,
-    articles.map(({ slug, meta, addedAt, body }) => ({
-      slug,
-      title: meta.title || 'Untitled',
-      date: meta.date,
-      addedAt,
-      source: meta.source || null,
-      sourceUrl: meta.sourceUrl || null,
-      location: meta.location || null,
-      lat: meta.lat != null ? Number(meta.lat) : null,
-      lng: meta.lng != null ? Number(meta.lng) : null,
-      sentences: splitBodySentences(body)
-    }))
+    articles.map(({ slug, meta, addedAt, body }) => {
+      const thread = threadLookup.get(slug)
+      return {
+        slug,
+        title: meta.title || 'Untitled',
+        date: meta.date,
+        addedAt,
+        source: meta.source || null,
+        sourceUrl: meta.sourceUrl || null,
+        location: meta.location || null,
+        lat: meta.lat != null ? Number(meta.lat) : null,
+        lng: meta.lng != null ? Number(meta.lng) : null,
+        ...(thread && {
+          threadId: thread.threadId,
+          threadLabel: thread.threadLabel,
+          threadArc: thread.threadArc,
+          threadSummary: thread.threadSummary,
+          threadDay: thread.threadDay,
+          threadArticleCount: thread.threadArticleCount,
+        }),
+        sentences: splitBodySentences(body)
+      }
+    })
   ])
 )
 const apiArticles = Object.values(apiCategories).flat().sort((a, b) => b.addedAt - a.addedAt)

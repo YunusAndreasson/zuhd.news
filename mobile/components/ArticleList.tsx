@@ -28,6 +28,7 @@ interface ArticleListProps {
   catIndex: number;
   lastSeenAt: number;
   onRefresh: () => Promise<void>;
+  onThreadPress?: (article: Article) => void;
   pagerIdle: React.RefObject<boolean>;
   progressesSV: SharedValue<number[]>;
   ref?: React.Ref<ArticleListRef>;
@@ -37,6 +38,7 @@ export const ArticleList = memo(function ArticleList({
   articles,
   viewportHeight,
   catIndex,
+  onThreadPress,
   lastSeenAt,
   onRefresh,
   pagerIdle,
@@ -144,9 +146,10 @@ export const ArticleList = memo(function ArticleList({
         index={index}
         scrollY={scrollY}
         isNew={lastSeenAt > 0 && item.addedAt > lastSeenAt}
+        onThreadPress={onThreadPress}
       />
     ),
-    [itemHeight, scrollY, lastSeenAt],
+    [itemHeight, scrollY, lastSeenAt, onThreadPress],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);

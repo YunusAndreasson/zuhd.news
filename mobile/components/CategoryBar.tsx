@@ -5,7 +5,9 @@ import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATEGORIES, COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
 
-const TAB_LABELS = [...CATEGORIES.map((c) => c.toUpperCase()), ''];
+const GLOBE_INDEX = CATEGORIES.length;
+const INFO_INDEX = CATEGORIES.length + 1;
+const TAB_LABELS = [...CATEGORIES.map((c) => c.toUpperCase()), 'globe', 'info'];
 
 interface TabLayout {
   x: number;
@@ -31,14 +33,13 @@ function TabLabel({
   onPress: () => void;
   onLayout: (e: LayoutChangeEvent) => void;
 }) {
-  const isGlobe = index === TAB_LABELS.length - 1;
+  const isIcon = index >= GLOBE_INDEX;
   const animatedStyle = useAnimatedStyle(() => {
     'worklet';
     const distance = Math.abs(pagerOffset.value - index);
     const active = distance < 0.5;
-    if (isGlobe) {
-      // Use opacity for icon — can't animate Ionicons color prop
-      return { opacity: active ? 1 : 0.5 };
+    if (isIcon) {
+      return { opacity: active ? 1 : 0.4 };
     }
     return { color: active ? COLORS.text : COLORS.textSecondary };
   });
@@ -50,9 +51,13 @@ function TabLabel({
       hitSlop={SPACING.sm}
       style={({ pressed }) => pressed && { opacity: 0.5 }}
     >
-      {isGlobe ? (
-        <Animated.View style={animatedStyle}>
-          <Ionicons name="globe-outline" size={TYPOGRAPHY.sizeSm} color={COLORS.dome} />
+      {index === GLOBE_INDEX ? (
+        <Animated.View style={[styles.tabIcon, animatedStyle]}>
+          <Ionicons name="globe-outline" size={TYPOGRAPHY.sizeSm} color={COLORS.white} />
+        </Animated.View>
+      ) : index === INFO_INDEX ? (
+        <Animated.View style={[styles.tabIcon, animatedStyle]}>
+          <Ionicons name="compass-outline" size={TYPOGRAPHY.sizeSm} color={COLORS.white} />
         </Animated.View>
       ) : (
         <Animated.Text style={[styles.tabLabel, animatedStyle]}>{label}</Animated.Text>
@@ -100,8 +105,8 @@ export function CategoryBar({
       tabLayouts.map((l) => l.width),
       'clamp',
     );
-    // Hide underline on globe tab (track base opacity is 0.15)
-    const isGlobeTab = Math.round(pagerOffset.value) >= TAB_LABELS.length - 1;
+    // Hide underline on icon tabs
+    const isGlobeTab = Math.round(pagerOffset.value) >= GLOBE_INDEX;
     return { left: x, width: w, opacity: isGlobeTab ? 0 : 0.15 };
   });
 
@@ -113,8 +118,7 @@ export function CategoryBar({
     const progress =
       currentIdx < CATEGORIES.length ? (categoryProgresses.value[currentIdx] ?? 0) : 1;
 
-    // Hide on globe tab
-    const isGlobeTab = currentIdx >= TAB_LABELS.length - 1;
+    const isGlobeTab = currentIdx >= GLOBE_INDEX;
     return { left: tab?.x ?? 0, width: (tab?.width ?? 0) * progress, opacity: isGlobeTab ? 0 : 1 };
   });
 
@@ -182,6 +186,10 @@ const styles = StyleSheet.create({
     fontFamily: FONT.semiBold,
     fontSize: TYPOGRAPHY.sizeTab,
     letterSpacing: TYPOGRAPHY.trackingCaps,
+  },
+  tabIcon: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   track: {
     position: 'absolute',

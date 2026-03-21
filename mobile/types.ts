@@ -10,6 +10,12 @@ export interface Article {
   location: string | null;
   lat: number | null;
   lng: number | null;
+  threadId?: string;
+  threadLabel?: string;
+  threadArc?: 'breaking' | 'developing' | 'ongoing';
+  threadSummary?: string;
+  threadDay?: number;
+  threadArticleCount?: number;
   sentences: string[];
 }
 

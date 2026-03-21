@@ -1,22 +1,53 @@
-import { Ionicons } from '@expo/vector-icons';
-import Constants from 'expo-constants';
+import { Canvas, Circle, Path, Skia } from '@shopify/react-native-skia';
 import { useCallback, useMemo, useRef, useState } from 'react';
-import { Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import type { Article, Category } from '../types';
-import { BrandLogo } from './BrandLogo';
 import { Globe } from './globe/Globe';
 import { type DotLocation, extractDotLocations } from './globe/storyDots';
 
-const VERSION = Constants.expoConfig?.version ?? '1.0.0';
 const TOOLTIP_MS = 3000;
 
+const HIJRI_DATE = new Intl.DateTimeFormat('en-u-ca-islamic', {
+  day: 'numeric',
+  month: 'long',
+})
+  .format(new Date())
+  .replace(' AH', '');
+
+// Moon phase: 0 = new, 0.5 = full, 1 = new again
+const MOON_EPOCH = 1738151760000; // Jan 29, 2025 12:36 UTC (known new moon)
+const SYNODIC = 29.53058770576;
+const MOON_PHASE = (((Date.now() - MOON_EPOCH) / 86400000) % SYNODIC + SYNODIC) % SYNODIC / SYNODIC;
+
+function MoonPhase({ size = 10 }: { size?: number }) {
+  const r = size / 2;
+  const sweep = Math.cos(MOON_PHASE * 2 * Math.PI);
+  const tW = Math.abs(sweep) * r;
+
+  const p = Skia.Path.Make();
+  p.addArc({ x: 0, y: 0, width: size, height: size }, -90, 180);
+  p.addArc(
+    { x: r - tW, y: 0, width: tW * 2, height: size },
+    90,
+    sweep > 0 ? 180 : -180,
+  );
+  p.close();
+
+  return (
+    <Canvas style={{ width: size, height: size }}>
+      <Circle cx={r} cy={r} r={r} color={COLORS.accent} opacity={0.3} />
+      <Path path={p} color={COLORS.accent} opacity={0.8} />
+    </Canvas>
+  );
+}
+
 const HOLY_SITE_INFO = [
-  { name: 'Mecca', desc: 'The Kaaba — direction of prayer for 1.8 billion Muslims' },
-  { name: 'Medina', desc: 'Al-Masjid an-Nabawi — the Prophet\u2019s mosque' },
-  { name: 'Jerusalem', desc: 'Al-Aqsa — the farthest mosque, site of the Night Journey' },
+  { name: 'Mecca', desc: 'The Kaaba \u2014 direction of prayer for 1.8 billion Muslims' },
+  { name: 'Medina', desc: 'Al-Masjid an-Nabawi \u2014 the Prophet\u2019s mosque' },
+  { name: 'Jerusalem', desc: 'Al-Aqsa \u2014 the farthest mosque, site of the Night Journey' },
 ] as const;
 
 interface TooltipData {
@@ -32,13 +63,9 @@ interface GlobePageProps {
 
 export function GlobePage({ grouped, visible }: GlobePageProps) {
   const insets = useSafeAreaInsets();
-  const [infoVisible, setInfoVisible] = useState(false);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const dismissTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const dots = useMemo(() => extractDotLocations(grouped), [grouped]);
-
-  const openInfo = useCallback(() => setInfoVisible(true), []);
-  const closeInfo = useCallback(() => setInfoVisible(false), []);
 
   const showTooltip = useCallback((data: TooltipData) => {
     setTooltip(data);
@@ -86,7 +113,7 @@ export function GlobePage({ grouped, visible }: GlobePageProps) {
         onCountryTap={handleCountryTap}
       />
 
-      {/* Tooltip — appears on dot or holy site tap */}
+      {/* Tooltip */}
       {tooltip && (
         <Animated.View
           entering={FadeIn.duration(200)}
@@ -112,48 +139,11 @@ export function GlobePage({ grouped, visible }: GlobePageProps) {
         </Animated.View>
       )}
 
-      {/* Info button */}
-      <Pressable
-        style={[styles.infoButton, { bottom: insets.bottom + SPACING.lg }]}
-        onPress={openInfo}
-        hitSlop={12}
-      >
-        <Ionicons name="information-circle-outline" size={16} color={COLORS.accent} />
-      </Pressable>
-
-      {/* Info sheet */}
-      <Modal transparent visible={infoVisible} animationType="slide">
-        <Pressable style={styles.backdrop} onPress={closeInfo} />
-        <View style={[styles.sheet, { paddingBottom: insets.bottom + SPACING.lg }]}>
-          <View style={styles.handle} />
-          <Text style={styles.body}>
-            Zuhd — the discipline of doing without what you do not need.
-          </Text>
-          <Text style={styles.body}>
-            Each article says what happened, why it matters, and what comes next. Then it stops.
-          </Text>
-          <Text style={styles.body}>
-            Forty sources across six continents, because where a story is told from determines who
-            is a person and who is a number.
-          </Text>
-          <View style={styles.meta}>
-            <Text style={styles.dim}>No tracking. No accounts. No ads. No data collected.</Text>
-            <Pressable
-              onPress={() => Linking.openURL('mailto:yunus@edenmind.com')}
-              hitSlop={SPACING.sm}
-              style={({ pressed }) => pressed && { opacity: 0.5 }}
-            >
-              <Text style={styles.dim}>
-                Feedback: <Text style={styles.link}>yunus@edenmind.com</Text>
-              </Text>
-            </Pressable>
-          </View>
-          <View style={styles.signature}>
-            <BrandLogo />
-            <Text style={styles.version}>v{VERSION}</Text>
-          </View>
-        </View>
-      </Modal>
+      {/* Today's date with moon phase */}
+      <View style={[styles.footer, { paddingBottom: insets.bottom + SPACING.sm }]}>
+        <MoonPhase size={10} />
+        <Text style={styles.todayLabel}>{HIJRI_DATE} · today's news</Text>
+      </View>
     </View>
   );
 }
@@ -192,55 +182,14 @@ const styles = StyleSheet.create({
     marginTop: SPACING.xs,
     color: COLORS.textSecondary,
   },
-  infoButton: {
-    position: 'absolute',
-    right: SPACING.screenPadding,
-  },
-  backdrop: {
-    flex: 1,
-  },
-  sheet: {
-    backgroundColor: '#1c1c1c',
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-    padding: SPACING.screenPadding,
-    paddingTop: SPACING.md,
-  },
-  handle: {
-    width: 36,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: COLORS.rule,
-    alignSelf: 'center',
-    marginBottom: SPACING.lg,
-  },
-  body: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeBase,
-    lineHeight: TYPOGRAPHY.sizeBase * TYPOGRAPHY.leadingBody,
-    color: COLORS.text,
-    marginBottom: SPACING.md,
-  },
-  meta: {
-    marginTop: SPACING.lg,
-    gap: SPACING.sm,
-  },
-  dim: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeSm,
-    lineHeight: TYPOGRAPHY.sizeSm * TYPOGRAPHY.leadingBody,
-    color: COLORS.accent,
-  },
-  link: {
-    color: COLORS.textSecondary,
-    textDecorationLine: 'underline',
-  },
-  signature: {
+  footer: {
+    flexDirection: 'row',
     alignItems: 'center',
-    marginTop: SPACING.xxl,
-    gap: SPACING.sm,
+    justifyContent: 'center',
+    gap: SPACING.xs,
+    paddingTop: SPACING.sm,
   },
-  version: {
+  todayLabel: {
     fontFamily: FONT.regular,
     fontSize: TYPOGRAPHY.sizeXs,
     color: COLORS.accent,

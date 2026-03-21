@@ -3,6 +3,7 @@ import {
   Canvas,
   Circle,
   Group,
+  Oval,
   Path,
   RadialGradient,
   Skia,
@@ -93,6 +94,44 @@ const skiaCtx = {
     this._path!.close();
   },
 };
+
+// ── Moon phase (cached per day) ──
+// Returns 0-1 where 0 = new moon, 0.5 = full moon, 1 = next new moon.
+// Based on synodic period of 29.53 days from a known new moon epoch.
+
+let cachedMoonPhase = 0;
+let moonPhaseDay = -1;
+
+function getMoonPhase(): number {
+  const now = new Date();
+  const today = now.getUTCDate();
+  if (today === moonPhaseDay) return cachedMoonPhase;
+  moonPhaseDay = today;
+
+  // Known new moon: Jan 29, 2025 12:36 UTC
+  const epoch = 1738151760000;
+  const synodicPeriod = 29.53058770576;
+  const daysSinceEpoch = (now.getTime() - epoch) / 86400000;
+  cachedMoonPhase = ((daysSinceEpoch % synodicPeriod) + synodicPeriod) % synodicPeriod / synodicPeriod;
+  return cachedMoonPhase;
+}
+
+// Hijri date — cached per day, zero dependencies
+let cachedHijriDate = '';
+let hijriDateDay = -1;
+
+function getHijriDate(): string {
+  const now = new Date();
+  const today = now.getUTCDate();
+  if (today === hijriDateDay) return cachedHijriDate;
+  hijriDateDay = today;
+
+  cachedHijriDate = new Intl.DateTimeFormat('en-u-ca-islamic', {
+    day: 'numeric',
+    month: 'long',
+  }).format(now).replace(' AH', '');
+  return cachedHijriDate;
+}
 
 // ── Sun position (cached 60s) ──
 
@@ -596,6 +635,7 @@ export function Globe({ dots, visible, onDotTap, onSiteTap, onCountryTap }: Glob
               <Circle cx={site.x} cy={site.y} r={site.coreR} color={COLORS.dome} />
             </Group>
           ))}
+
         </Canvas>
       </GestureDetector>
     </View>
