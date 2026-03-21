@@ -7,6 +7,9 @@ export interface Article {
   addedAt: number;
   source: string | null;
   sourceUrl: string | null;
+  location: string | null;
+  lat: number | null;
+  lng: number | null;
   sentences: string[];
 }
 

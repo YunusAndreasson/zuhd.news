@@ -171,7 +171,7 @@ export default function HomeScreen() {
           </View>
         ))}
         <View key="globe" collapsable={false}>
-          <GlobePage grouped={grouped} />
+          <GlobePage grouped={grouped} visible={currentCategory === CATEGORIES.length} />
         </View>
       </PagerView>
 

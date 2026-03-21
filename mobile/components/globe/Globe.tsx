@@ -22,6 +22,7 @@ import { startTransition, useCallback, useEffect, useMemo, useRef, useState } fr
 import { type LayoutChangeEvent, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
+  Easing,
   runOnJS,
   useAnimatedReaction,
   useSharedValue,
@@ -30,7 +31,9 @@ import {
 } from 'react-native-reanimated';
 import { feature } from 'topojson-client';
 import type { Topology } from 'topojson-specification';
+import { COLORS } from '../../constants/theme';
 import worldTopo from '../../data/world-110m.json';
+import { useHaptic } from '../../hooks/useHaptic';
 import type { DotLocation } from './storyDots';
 
 // ── Module-level constants (allocated once) ──
@@ -41,10 +44,11 @@ const DEG = 180 / Math.PI;
 const HALF_PI = Math.PI / 2;
 
 const TO_RAD = Math.PI / 180;
+const AL_AQSA: [number, number] = [35.2354, 31.7761]; // [lng, lat] — Dome of the Rock
 
 const NIGHT_LAYERS = [
-  { radius: 85, opacity: 0.1 },
-  { radius: 72, opacity: 0.15 },
+  { radius: 85, opacity: 0.15 },
+  { radius: 72, opacity: 0.25 },
 ] as const;
 
 // ── Reusable Skia path context ──
@@ -97,6 +101,8 @@ function getSunPosition(): [number, number] {
 
 interface GlobeProps {
   dots: DotLocation[];
+  visible: boolean;
+  onDotTap?: (dot: DotLocation) => void;
 }
 
 interface NightLayer {
@@ -108,11 +114,15 @@ interface ProjectedDot {
   x: number;
   y: number;
   brightness: number;
+  radius: number;
+  dotIndex: number; // index into the dots[] prop for tap lookup
 }
 
 interface ProjectionState {
   landPath: SkPath;
   dots: ProjectedDot[];
+  alAqsa: { x: number; y: number } | null;
+  alAqsaCentered: boolean;
   nightLayers: NightLayer[];
   sunScreenX: number;
   sunScreenY: number;
@@ -121,7 +131,8 @@ interface ProjectionState {
 
 // ── Component ──
 
-export function Globe({ dots }: GlobeProps) {
+export function Globe({ dots, visible, onDotTap }: GlobeProps) {
+  const { notification } = useHaptic();
   const [size, setSize] = useState({ width: 0, height: 0 });
   const onLayout = useCallback((e: LayoutChangeEvent) => {
     const { width, height } = e.nativeEvent.layout;
@@ -133,9 +144,11 @@ export function Globe({ dots }: GlobeProps) {
   const cy = height / 2;
   const baseRadius = Math.min(width, height) / 2.3;
 
-  // Gesture shared values
-  const rotX = useSharedValue(30);
-  const rotY = useSharedValue(-20);
+  // Gesture shared values — start offset so the intro rotation lands on Al-Aqsa
+  const rotX = useSharedValue(35.2 - 120); // will animate +120° to center on Al-Aqsa
+  const rotY = useSharedValue(-31.8);
+  const hasRevealed = useRef(false);
+  const wasCentered = useRef(false);
   const scale = useSharedValue(1);
   const savedScale = useSharedValue(1);
 
@@ -180,9 +193,40 @@ export function Globe({ dots }: GlobeProps) {
     [scale, savedScale],
   );
 
+  const handleTap = useCallback(
+    (x: number, y: number) => {
+      if (!onDotTap) return;
+      const projected = stateRef.current.dots;
+      let bestDist = 30; // max tap radius in points
+      let bestIdx = -1;
+      for (const dot of projected) {
+        const dx = dot.x - x;
+        const dy = dot.y - y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestIdx = dot.dotIndex;
+        }
+      }
+      if (bestIdx >= 0) {
+        onDotTap(dots[bestIdx]!);
+      }
+    },
+    [onDotTap, dots],
+  );
+
+  const tapGesture = useMemo(
+    () =>
+      Gesture.Tap().onEnd((e) => {
+        'worklet';
+        runOnJS(handleTap)(e.x, e.y);
+      }),
+    [handleTap],
+  );
+
   const gesture = useMemo(
-    () => Gesture.Simultaneous(panGesture, pinchGesture),
-    [panGesture, pinchGesture],
+    () => Gesture.Race(Gesture.Simultaneous(panGesture, pinchGesture), tapGesture),
+    [panGesture, pinchGesture, tapGesture],
   );
 
   // Cached projection + path generator — mutated in place, never re-created
@@ -194,20 +238,30 @@ export function Globe({ dots }: GlobeProps) {
     () => dots.map((d) => [d.coords[1], d.coords[0]] as [number, number]),
     [dots],
   );
-  const dotBrightness = useMemo(() => {
+  const dotMeta = useMemo(() => {
     const now = Date.now();
-    return dots.map((d) => Math.max(0.3, 1 - (now - d.addedAt) / (48 * 3600000)));
+    return dots.map((d) => ({
+      brightness: Math.max(0.3, 1 - (now - d.newestAt) / (48 * 3600000)),
+      // Scale radius: 1 article = 1x, 5+ articles = 2x (sqrt for gentle scaling)
+      radius: Math.min(2, Math.sqrt(d.count)),
+    }));
   }, [dots]);
 
   // Single batched projection state
   const [state, setState] = useState<ProjectionState>({
     landPath: Skia.Path.Make(),
     dots: [],
+    alAqsa: null,
+    alAqsaCentered: false,
     nightLayers: [],
     sunScreenX: 0,
     sunScreenY: 0,
     globeScale: 1,
   });
+
+  // Ref to access current state from tap handler without stale closures
+  const stateRef = useRef(state);
+  stateRef.current = state;
 
   // Stable callback ref pattern
   const reprojectRef = useRef<(rx: number, ry: number, s: number) => void>(() => {});
@@ -238,19 +292,34 @@ export function Globe({ dots }: GlobeProps) {
     skiaCtx.setPath(landSkPath);
     pg.context(skiaCtx as any)(land);
 
-    // Dots
+    // Dots — sized by article count (heatmap-like)
     const rot = proj.rotate();
-    const centerLng = -rot[0];
-    const centerLat = -rot[1];
+    const center: [number, number] = [-rot[0], -rot[1]];
     const projected: ProjectedDot[] = [];
     for (let i = 0; i < dotCoords.length; i++) {
       const coord = dotCoords[i]!;
-      if (geoDistance(coord, [centerLng, centerLat]) > HALF_PI) continue;
+      const angDist = geoDistance(coord, center);
+      if (angDist > HALF_PI) continue;
       const pt = proj(coord);
       if (pt) {
-        projected.push({ x: pt[0], y: pt[1], brightness: dotBrightness[i]! });
+        const meta = dotMeta[i]!;
+        // Fade dots near the limb — simulates foreshortening at steep viewing angles
+        const limbFade = Math.cos(angDist);
+        projected.push({
+          x: pt[0],
+          y: pt[1],
+          brightness: meta.brightness * limbFade,
+          radius: meta.radius,
+          dotIndex: i,
+        });
       }
     }
+
+    // Al-Aqsa marker — only visible on near side
+    const aqsaDist = geoDistance(AL_AQSA, center);
+    const aqsaVisible = aqsaDist <= HALF_PI;
+    const aqsaPt = aqsaVisible ? proj(AL_AQSA) : null;
+    const aqsaCentered = aqsaDist < 0.08; // ~5° from center
 
     // Night layers
     const [sunLng, sunLat] = getSunPosition();
@@ -280,6 +349,8 @@ export function Globe({ dots }: GlobeProps) {
       setState({
         landPath: landSkPath,
         dots: projected,
+        alAqsa: aqsaPt ? { x: aqsaPt[0], y: aqsaPt[1] } : null,
+        alAqsaCentered: aqsaCentered,
         nightLayers: layers,
         sunScreenX: cx + r * cosLat * Math.sin(dLng),
         sunScreenY: cy - r * (sinLat * Math.cos(viewRy) - cosLat * cosDLng * Math.sin(viewRy)),
@@ -297,6 +368,22 @@ export function Globe({ dots }: GlobeProps) {
     pathGenRef.current = null;
     callReproject(rotX.value, rotY.value, scale.value);
   }, [width, baseRadius, dotCoords]); // eslint-disable-line
+
+  // Haptic feedback when Al-Aqsa comes to center
+  useEffect(() => {
+    if (state.alAqsaCentered && !wasCentered.current) {
+      notification();
+    }
+    wasCentered.current = state.alAqsaCentered;
+  }, [state.alAqsaCentered, notification]);
+
+  // Intro reveal: one slow rotation to Al-Aqsa when the globe tab becomes visible
+  useEffect(() => {
+    if (visible && !hasRevealed.current && width > 0) {
+      hasRevealed.current = true;
+      rotX.value = withTiming(35.2, { duration: 3000, easing: Easing.out(Easing.cubic) });
+    }
+  }, [visible, width]); // eslint-disable-line
 
   const lastProjectionTime = useSharedValue(0);
   useAnimatedReaction(
@@ -348,8 +435,9 @@ export function Globe({ dots }: GlobeProps) {
           {/* Ocean */}
           <Circle cx={cx} cy={cy} r={globeRadius} color="#1a1a1a" />
 
-          {/* Land */}
+          {/* Land fill + coastline stroke */}
           <Path path={state.landPath} color="#2a2a2a" />
+          <Path path={state.landPath} color="#333333" style="stroke" strokeWidth={0.5} />
 
           {/* Limb darkening */}
           <Circle cx={cx} cy={cy} r={globeRadius}>
@@ -366,15 +454,50 @@ export function Globe({ dots }: GlobeProps) {
             <Path key={i} path={layer.path} color="black" opacity={layer.opacity} />
           ))}
 
-          {/* Story dots — blur glow + bright core (2 elements vs 5 before) */}
+          {/* Story dots — glow layer (shared blur) then core layer */}
+          <Group>
+            <BlurMask blur={4} style="solid" />
+            {state.dots.map((dot, i) => (
+              <Circle
+                key={dots[i]?.key ?? i}
+                cx={dot.x}
+                cy={dot.y}
+                r={3 * dot.radius}
+                color="#e8e8e8"
+                opacity={dot.brightness}
+              />
+            ))}
+          </Group>
           {state.dots.map((dot, i) => (
-            <Group key={dots[i]?.slug ?? i} opacity={dot.brightness}>
-              <Circle cx={dot.x} cy={dot.y} r={3} color="#e8e8e8">
-                <BlurMask blur={4} style="solid" />
-              </Circle>
-              <Circle cx={dot.x} cy={dot.y} r={1.5} color="#e8e8e8" />
-            </Group>
+            <Circle
+              key={dots[i]?.key ?? i}
+              cx={dot.x}
+              cy={dot.y}
+              r={1.5 * dot.radius}
+              color="#e8e8e8"
+              opacity={dot.brightness}
+            />
           ))}
+
+          {/* Al-Aqsa — golden dome marker, the only color in the app */}
+          {state.alAqsa && (
+            <Group>
+              <Circle
+                cx={state.alAqsa.x}
+                cy={state.alAqsa.y}
+                r={state.alAqsaCentered ? 5 : 3}
+                color={COLORS.dome}
+              >
+                <BlurMask blur={state.alAqsaCentered ? 6 : 3} style="solid" />
+              </Circle>
+              <Circle
+                cx={state.alAqsa.x}
+                cy={state.alAqsa.y}
+                r={state.alAqsaCentered ? 2 : 1.2}
+                color={COLORS.dome}
+              />
+            </Group>
+          )}
         </Canvas>
       </GestureDetector>
     </View>

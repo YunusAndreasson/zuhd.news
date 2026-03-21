@@ -1,30 +1,72 @@
 import Constants from 'expo-constants';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import type { Article, Category } from '../types';
 import { BrandLogo } from './BrandLogo';
 import { Globe } from './globe/Globe';
-import { extractDotLocations } from './globe/storyDots';
+import { type DotLocation, extractDotLocations } from './globe/storyDots';
 
 const VERSION = Constants.expoConfig?.version ?? '1.0.0';
+const TOOLTIP_MS = 4000;
 
 interface GlobePageProps {
   grouped: Record<Category, Article[]>;
+  visible: boolean;
 }
 
-export function GlobePage({ grouped }: GlobePageProps) {
+export function GlobePage({ grouped, visible }: GlobePageProps) {
   const insets = useSafeAreaInsets();
   const [infoVisible, setInfoVisible] = useState(false);
+  const [selectedDot, setSelectedDot] = useState<DotLocation | null>(null);
+  const dismissTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const dots = useMemo(() => extractDotLocations(grouped), [grouped]);
 
   const openInfo = useCallback(() => setInfoVisible(true), []);
   const closeInfo = useCallback(() => setInfoVisible(false), []);
 
+  const handleDotTap = useCallback((dot: DotLocation) => {
+    setSelectedDot(dot);
+    if (dismissTimer.current) clearTimeout(dismissTimer.current);
+    dismissTimer.current = setTimeout(() => setSelectedDot(null), TOOLTIP_MS);
+  }, []);
+
+  const dismissTooltip = useCallback(() => {
+    setSelectedDot(null);
+    if (dismissTimer.current) clearTimeout(dismissTimer.current);
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Globe dots={dots} />
+      <Globe dots={dots} visible={visible} onDotTap={handleDotTap} />
+
+      {/* Article titles tooltip — appears on dot tap */}
+      {selectedDot && (
+        <Animated.View
+          entering={FadeIn.duration(200)}
+          exiting={FadeOut.duration(200)}
+          style={[styles.tooltip, { bottom: insets.bottom + SPACING.xxl }]}
+        >
+          <Pressable onPress={dismissTooltip}>
+            {selectedDot.titles.map((title, i) => (
+              <Text
+                key={selectedDot.slugs[i]}
+                style={[styles.tooltipTitle, i > 0 && styles.tooltipTitleExtra]}
+                numberOfLines={1}
+              >
+                {title}
+              </Text>
+            ))}
+            {selectedDot.count > 1 && (
+              <Text style={styles.tooltipCount}>
+                {selectedDot.count} stories from this location
+              </Text>
+            )}
+          </Pressable>
+        </Animated.View>
+      )}
 
       {/* Info button */}
       <Pressable
@@ -76,6 +118,31 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.bg,
+  },
+  tooltip: {
+    position: 'absolute',
+    left: SPACING.screenPadding,
+    right: SPACING.screenPadding,
+    backgroundColor: '#1c1c1c',
+    borderRadius: 10,
+    paddingHorizontal: SPACING.md,
+    paddingVertical: SPACING.sm,
+  },
+  tooltipTitle: {
+    fontFamily: FONT.semiBold,
+    fontSize: TYPOGRAPHY.sizeSm,
+    lineHeight: TYPOGRAPHY.sizeSm * 1.4,
+    color: COLORS.text,
+  },
+  tooltipTitleExtra: {
+    marginTop: SPACING.xs,
+    color: COLORS.textSecondary,
+  },
+  tooltipCount: {
+    fontFamily: FONT.regular,
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.accent,
+    marginTop: SPACING.xs,
   },
   infoButton: {
     position: 'absolute',

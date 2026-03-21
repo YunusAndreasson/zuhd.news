@@ -14,6 +14,7 @@ export const COLORS = {
   accent: '#999',
   rule: '#2a2a2a',
   white: '#ffffff',
+  dome: '#c9a84c', // Dome of the Rock gold — the only color in the app
 } as const;
 
 export const FONT = {

@@ -33,6 +33,9 @@ date: "ISO 8601 datetime from the RSS pubDate"
 source: "Source Name from JSON (e.g. BBC World, Al Jazeera, Hacker News)"
 sourceUrl: "full URL to the original article"
 category: "one of: politics, economy, science, tech"
+location: "City or country where the news originates (matches the dateline)"
+lat: decimal latitude (e.g. 35.69)
+lng: decimal longitude (e.g. 51.39)
 ---
 
 One paragraph, exactly 3 sentences. No line breaks within the body. No source attribution line — the source is in the frontmatter. Every sentence must earn its place — if the article works without it, cut it.
@@ -151,6 +154,9 @@ date: "2026-02-14T15:58:00Z"
 source: "BBC World"
 sourceUrl: "https://www.bbc.com/news/articles/cwyk4lz4e3eo"
 category: "politics"
+location: "London"
+lat: 51.51
+lng: -0.13
 ---
 
 London — Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. They are now reporting Russia to the chemical weapons watchdog.
@@ -163,6 +169,9 @@ date: "2026-02-14T13:51:00Z"
 source: "Deutsche Welle"
 sourceUrl: "https://www.dw.com/en/how-serious-is-venezuela-about-its-amnesty-law/a-75899705"
 category: "politics"
+location: "Caracas"
+lat: 10.48
+lng: -66.90
 ---
 
 Caracas — Venezuela freed a political prisoner, then rearrested him. The government claims 900 released under a draft amnesty law, but rights group Foro Penal counts only 200 freed. A second parliamentary reading is set for Tuesday with no observers invited.
@@ -175,6 +184,9 @@ date: "2026-02-14T12:00:00Z"
 source: "Al Jazeera"
 sourceUrl: "https://www.aljazeera.com/news/2026/2/14/example"
 category: "politics"
+location: "Gaza"
+lat: 31.50
+lng: 34.47
 ---
 
 Gaza — 4 hospitals shut down this week. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
@@ -187,6 +199,9 @@ date: "2026-02-15T10:31:31Z"
 source: "Malay Mail"
 sourceUrl: "https://www.malaymail.com/news/world/2026/02/15/vietnam-grants-licence-to-musks-starlink/209325"
 category: "tech"
+location: "Hanoi"
+lat: 21.03
+lng: 105.85
 ---
 
 Hanoi — 600,000 satellite terminals can now operate in Vietnam. The radio frequency authority granted Starlink a licence for 4 gateway stations, covering 20 million people who lack internet access. Starlink will compete with state-backed carriers that tightly control terrestrial infrastructure.
@@ -199,6 +214,9 @@ date: "2026-02-15T10:19:27Z"
 source: "ABC News Australia"
 sourceUrl: "https://www.abc.net.au/news/2026-02-15/new-zealand-north-island-rain-flooding/106347264"
 category: "science"
+location: "Wellington"
+lat: -41.29
+lng: 174.78
 ---
 
 Wellington — Floodwater killed a driver on a North Island highway. 2 districts declared emergencies after 4 hours of rain collapsed roads and cut power to 4,000 properties. Heavier rain and severe gales are forecast before conditions ease Monday.

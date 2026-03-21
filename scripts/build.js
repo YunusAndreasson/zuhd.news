@@ -234,6 +234,9 @@ const apiCategories = Object.fromEntries(
       addedAt,
       source: meta.source || null,
       sourceUrl: meta.sourceUrl || null,
+      location: meta.location || null,
+      lat: meta.lat != null ? Number(meta.lat) : null,
+      lng: meta.lng != null ? Number(meta.lng) : null,
       sentences: splitBodySentences(body)
     }))
   ])
