@@ -5,10 +5,10 @@
       "id": "iran-us-israel-war",
       "label": "Iran-US-Israel war: Pentagon $200bn request, Saudi threatens action",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-21T00:04:00Z",
-      "coverageCount": 279,
+      "lastCovered": "2026-03-21T02:34:00Z",
+      "coverageCount": 283,
       "category": "politics",
-      "importance": 8,
+      "importance": 9,
       "arc": "ongoing",
       "articles": [
         "2026-03-01-us-israel-attacks-iran-retaliation-regional-war",
@@ -120,9 +120,13 @@
         "2026-03-20-trump-no-iranian-leaders-left-war-diplomacy-closed",
         "2026-03-20-khamenei-nowruz-audio-enemy-defeated-iran-war",
         "2026-03-20-trump-winding-down-iran-demands-asian-allies-hormuz",
-        "2026-03-21-us-judge-pentagon-press-access-unconstitutional"
+        "2026-03-21-us-judge-pentagon-press-access-unconstitutional",
+        "2026-03-21-iran-fires-missiles-at-diego-garcia-us-uk-base",
+        "2026-03-21-uk-reverses-allows-us-bases-iran-strikes",
+        "2026-03-21-saudi-uae-inch-closer-us-war-iran-base-access",
+        "2026-03-21-trump-pearl-harbor-remark-japan-pm-meeting"
       ],
-      "summary": "Day 30. Federal judge rules Pentagon press restrictions unconstitutional. US issues oil sanctions waiver while bombing continues."
+      "summary": "Day 30. Iran fires IRBMs at Diego Garcia (missed). UK reverses base access refusal. Saudi opens Taif base. UAE prepared for 9-month war. Trump compares Iran strikes to Pearl Harbor with Japan PM."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
@@ -131,7 +135,7 @@
       "lastCovered": "2026-03-21T00:04:00Z",
       "coverageCount": 245,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "ongoing",
       "articles": [
         "2026-03-08-iraq-oil-production-collapses-70-percent-hormuz-blockade",
@@ -242,7 +246,7 @@
       "lastCovered": "2026-03-21T00:04:00Z",
       "coverageCount": 46,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "ongoing",
       "articles": [
         "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
@@ -302,7 +306,7 @@
       "lastCovered": "2026-03-21T00:04:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-20-pakistan-india-water-weaponisation-indus-treaty-un",
@@ -317,8 +321,8 @@
       "lastCovered": "2026-03-20T20:06:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-20-trump-ai-framework-preempt-states-china-race"
       ],
@@ -331,7 +335,7 @@
       "lastCovered": "2026-03-20T22:33:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-20-opencode-open-source-ai-coding-agent"
@@ -345,7 +349,7 @@
       "lastCovered": "2026-03-21T00:04:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-21-musk-misled-twitter-shareholders-jury-verdict"
@@ -359,7 +363,7 @@
       "lastCovered": "2026-03-21T00:04:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-21-pentagon-palantir-ai-core-military-system"
@@ -373,7 +377,7 @@
       "lastCovered": "2026-03-21T00:04:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-21-colombia-petro-us-investigation-drug-ties"
@@ -387,7 +391,7 @@
       "lastCovered": "2026-03-21T00:04:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-21-us-china-un-manipulation-accusation"
@@ -401,12 +405,82 @@
       "lastCovered": "2026-03-21T00:04:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-21-australia-islamophobia-rises-muslims-eid"
       ],
       "summary": "Anti-Muslim hate crimes and discrimination surge in Australia during Eid, directly linked to Iran war."
+    },
+    {
+      "id": "pakistan-afghanistan-ceasefire",
+      "label": "Pakistan-Afghanistan temporary ceasefire brokered via Malaysia",
+      "firstSeen": "2026-03-21T02:34:00Z",
+      "lastCovered": "2026-03-21T02:34:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-21-pakistan-afghanistan-ceasefire-malaysia-brokers"
+      ],
+      "summary": "Temporary ceasefire between Pakistan and Afghanistan, welcomed by Malaysian PM Anwar during bilateral talks."
+    },
+    {
+      "id": "france-municipal-elections-2026",
+      "label": "French municipal elections: socialists defend Paris",
+      "firstSeen": "2026-03-21T02:34:00Z",
+      "lastCovered": "2026-03-21T02:34:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-21-paris-mayoral-election-socialists-defend"
+      ],
+      "summary": "Socialists defending Paris mayorship against Rachida Dati in first major French vote since Iran war began."
+    },
+    {
+      "id": "jellyfish-circadian-clock",
+      "label": "Jellyfish with independently evolved circadian clock",
+      "firstSeen": "2026-03-21T02:34:00Z",
+      "lastCovered": "2026-03-21T02:34:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-21-jellyfish-circadian-clock-independent-evolution"
+      ],
+      "summary": "Pea-sized jellyfish off Japan has circadian clock unlike any other known animal, suggesting independent evolution."
+    },
+    {
+      "id": "social-smolnet-movement",
+      "label": "Smolnet: small internet communities gain traction",
+      "firstSeen": "2026-03-21T02:34:00Z",
+      "lastCovered": "2026-03-21T02:34:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-21-social-smolnet-small-internet-movement"
+      ],
+      "summary": "Low-bandwidth internet communities using Gemini/Gopher protocols growing as alternative to commercial web."
+    },
+    {
+      "id": "parallel-perl-jit",
+      "label": "Parallel Perl: autoparallelizing interpreter with JIT",
+      "firstSeen": "2026-03-21T02:34:00Z",
+      "lastCovered": "2026-03-21T02:34:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-21-parallel-perl-autoparallelizing-interpreter-jit"
+      ],
+      "summary": "New Perl interpreter automatically parallelizes single-threaded code with JIT compilation."
     }
   ]
 }
