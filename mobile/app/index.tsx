@@ -27,7 +27,7 @@ function formatTimeAgo(addedAt: number): string {
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
-  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry } = useArticles();
+  const { grouped, briefing, loading, error, refresh, retry } = useArticles();
   const { impact, notification } = useHaptic();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
@@ -208,8 +208,8 @@ export default function HomeScreen() {
                 articles={grouped[cat]}
                 viewportHeight={pagerHeight}
                 catIndex={catIndex}
-                lastSeenAt={lastSeenAt}
                 onRefresh={handleRefresh}
+                onEndReached={() => toastRef.current?.show('Then it stops.')}
                 onThreadPress={handleThreadPress}
                 onSourcePress={handleSourcePress}
                 pagerIdle={pagerIdle}

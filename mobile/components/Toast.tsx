@@ -14,7 +14,7 @@ export interface ToastRef {
 }
 
 const TOAST_VISIBLE_MS = 2500;
-const TOAST_SLIDE_OFFSET = -SPACING.xxl;
+const TOAST_SLIDE_OFFSET = SPACING.xxl;
 
 export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
   const insets = useSafeAreaInsets();
@@ -46,7 +46,7 @@ export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
 
   return (
     <Animated.View
-      style={[styles.container, { top: insets.top + SPACING.sm }, animatedStyle]}
+      style={[styles.container, { bottom: insets.bottom + SPACING.xl }, animatedStyle]}
       pointerEvents="none"
     >
       <Text style={styles.text}>{message}</Text>

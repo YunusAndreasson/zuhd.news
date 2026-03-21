@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react';
 import { RefreshControl, StyleSheet, View } from 'react-native';
 import Animated, {
   runOnJS,
@@ -11,7 +11,7 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CATEGORIES, COLORS, LAYOUT } from '../constants/theme';
+import { CATEGORIES, COLORS, LAYOUT, SPACING } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { getReadingPositions, saveReadingPosition } from '../lib/storage';
 import type { Article } from '../types';
@@ -26,8 +26,8 @@ interface ArticleListProps {
   articles: Article[];
   viewportHeight: number;
   catIndex: number;
-  lastSeenAt: number;
   onRefresh: () => Promise<void>;
+  onEndReached?: () => void;
   onThreadPress?: (article: Article) => void;
   onSourcePress?: (sourceName: string) => void;
   pagerIdle: React.RefObject<boolean>;
@@ -41,8 +41,8 @@ export const ArticleList = memo(function ArticleList({
   catIndex,
   onThreadPress,
   onSourcePress,
-  lastSeenAt,
   onRefresh,
+  onEndReached,
   pagerIdle,
   progressesSV,
   ref,
@@ -56,6 +56,12 @@ export const ArticleList = memo(function ArticleList({
   const [atEnd, setAtEnd] = useState(false);
   const atEndSV = useSharedValue(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const overscrollFired = useSharedValue(false);
+  const resetOverscroll = useCallback(() => {
+    setTimeout(() => {
+      overscrollFired.value = false;
+    }, 800);
+  }, [overscrollFired]);
   const [localRefreshing, setLocalRefreshing] = useState(false);
 
   // Restore saved reading position on mount
@@ -110,6 +116,16 @@ export const ArticleList = memo(function ArticleList({
         arr[catIndex] = progress;
         return arr;
       });
+
+      // Detect overscroll past the last article
+      const maxScroll = (articleCount - 1) * itemHeight;
+      if (event.contentOffset.y > maxScroll + 15 && !overscrollFired.value) {
+        overscrollFired.value = true;
+        runOnJS(hapticComplete)();
+        if (onEndReached) runOnJS(onEndReached)();
+        // Reset after bounce-back settles
+        runOnJS(resetOverscroll)();
+      }
     },
   });
 
@@ -147,12 +163,11 @@ export const ArticleList = memo(function ArticleList({
         itemHeight={itemHeight}
         index={index}
         scrollY={scrollY}
-        isNew={lastSeenAt > 0 && item.addedAt > lastSeenAt}
         onThreadPress={onThreadPress}
         onSourcePress={onSourcePress}
       />
     ),
-    [itemHeight, scrollY, lastSeenAt, onThreadPress, onSourcePress],
+    [itemHeight, scrollY, onThreadPress, onSourcePress],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);
@@ -167,6 +182,7 @@ export const ArticleList = memo(function ArticleList({
       keyExtractor={keyExtractor}
       getItemLayout={getItemLayout}
       snapToInterval={itemHeight}
+      snapToAlignment="start"
       decelerationRate="fast"
       showsVerticalScrollIndicator={false}
       onScroll={scrollHandler}
@@ -174,7 +190,6 @@ export const ArticleList = memo(function ArticleList({
       initialNumToRender={2}
       windowSize={5}
       contentContainerStyle={{ paddingBottom: LAYOUT.peekHeight + insets.bottom }}
-      ListFooterComponent={<CaughtUp visible={atEnd} />}
       refreshControl={
         <RefreshControl
           refreshing={localRefreshing}

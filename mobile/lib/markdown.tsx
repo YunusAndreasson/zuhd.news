@@ -89,7 +89,7 @@ export function renderSentences(sentences: string[], fontSize?: number): ReactNo
         return (
           <Text key={i} style={[styles.sentence, sizeStyle]} selectable>
             <Text style={styles.dateline}>{dateline}</Text>
-            {' \u2014 '}
+            {'  '}
             {renderSegments(parseInline(rest))}
           </Text>
         );

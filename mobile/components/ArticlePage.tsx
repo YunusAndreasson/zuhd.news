@@ -1,5 +1,5 @@
 import { memo, useCallback, useMemo } from 'react';
-import { Pressable, Share, StyleSheet, Text } from 'react-native';
+import { Share, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -8,6 +8,7 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
+import { Ionicons } from '@expo/vector-icons';
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { renderSentences } from '../lib/markdown';
@@ -18,7 +19,6 @@ interface ArticlePageProps {
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
-  isNew: boolean;
   onThreadPress?: (article: Article) => void;
   onSourcePress?: (sourceName: string) => void;
 }
@@ -37,7 +37,6 @@ export const ArticlePage = memo(function ArticlePage({
   itemHeight,
   index,
   scrollY,
-  isNew,
   onThreadPress,
   onSourcePress,
 }: ArticlePageProps) {
@@ -91,7 +90,7 @@ export const ArticlePage = memo(function ArticlePage({
     [article.sentences, bodyFontSize],
   );
 
-  const handleLongPress = useCallback(() => {
+  const handleShare = useCallback(() => {
     impact();
     Share.share({
       message: `${article.title}\n\nhttps://zuhd.news/a/${article.slug}`,
@@ -99,7 +98,7 @@ export const ArticlePage = memo(function ArticlePage({
   }, [impact, article.title, article.slug]);
 
   return (
-    <Pressable style={[styles.container, { height: itemHeight }]} onLongPress={handleLongPress}>
+    <View style={[styles.container, { height: itemHeight }]}>
       <Animated.View style={titleStyle}>
         <Text style={[styles.title, titleSizeStyle]} numberOfLines={3}>
           {article.title}
@@ -107,23 +106,34 @@ export const ArticlePage = memo(function ArticlePage({
       </Animated.View>
       <Animated.View style={bodyStyle}>
         {body}
-        <Text style={styles.source}>
-          {isNew ? 'NEW · ' : ''}
-          {article.source ? (
-            <Text onPress={() => onSourcePress?.(article.source!)} style={styles.sourceTap}>
-              {article.source.toUpperCase()}
+        <View style={styles.meta}>
+          {/* Attribution cluster: source + time */}
+          <View style={styles.metaGroup}>
+            {article.source ? (
+              <Text onPress={() => onSourcePress?.(article.source!)} style={styles.metaTap}>
+                {article.source.toLowerCase()}{' '}
+                <Ionicons name="chevron-down" size={8} color={COLORS.accent} />
+              </Text>
+            ) : null}
+            <Text style={styles.metaDim}>{timeAgo}</Text>
+          </View>
+
+          {/* Action cluster: story + share */}
+          <View style={styles.metaGroup}>
+            {article.threadLabel && (article.threadArticleCount ?? 0) >= 3 ? (
+              <Text onPress={() => onThreadPress?.(article)} style={styles.metaTap}>
+                story{' '}
+                <Ionicons name="chevron-down" size={8} color={COLORS.accent} />
+              </Text>
+            ) : null}
+            <Text onPress={handleShare} style={styles.metaTap}>
+              share{' '}
+              <Ionicons name="arrow-up-outline" size={8} color={COLORS.accent} />
             </Text>
-          ) : null}
-          {article.source ? ' · ' : ''}
-          {timeAgo}
-          {article.threadLabel && (article.threadArticleCount ?? 0) >= 3 && (
-            <Text onPress={() => onThreadPress?.(article)} style={styles.contextTap}>
-              {' · context \u203A'}
-            </Text>
-          )}
-        </Text>
+          </View>
+        </View>
       </Animated.View>
-    </Pressable>
+    </View>
   );
 });
 
@@ -141,18 +151,27 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.lg,
     fontVariant: ['oldstyle-nums'],
   },
-  source: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeXs,
-    color: COLORS.textSecondary,
+  meta: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: SPACING.xl,
+  },
+  metaGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.sm,
+  },
+  metaTap: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeSm,
     letterSpacing: TYPOGRAPHY.trackingCaps,
-    marginTop: SPACING.lg,
-  },
-  sourceTap: {
-    textDecorationLine: 'underline',
-    textDecorationColor: COLORS.rule,
-  },
-  contextTap: {
     color: COLORS.accent,
+  },
+  metaDim: {
+    fontFamily: FONT.regular,
+    fontSize: TYPOGRAPHY.sizeSm,
+    color: COLORS.accent,
+    top: 1,
   },
 });

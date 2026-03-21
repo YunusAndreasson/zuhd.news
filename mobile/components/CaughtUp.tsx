@@ -1,6 +1,5 @@
 import { StyleSheet, View } from 'react-native';
-import Animated, { FadeIn } from 'react-native-reanimated';
-import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { SPACING } from '../constants/theme';
 import { BrandLogo } from './BrandLogo';
 
 interface CaughtUpProps {
@@ -13,9 +12,6 @@ export function CaughtUp({ visible }: CaughtUpProps) {
   return (
     <View style={styles.container}>
       <BrandLogo autoPlay />
-      <Animated.Text entering={FadeIn.delay(2000)} style={styles.label}>
-        UP TO DATE
-      </Animated.Text>
     </View>
   );
 }
@@ -23,13 +19,6 @@ export function CaughtUp({ visible }: CaughtUpProps) {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    paddingVertical: SPACING.xxl,
-    gap: SPACING.lg,
-  },
-  label: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeXs,
-    color: COLORS.accent,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
+    paddingVertical: SPACING.lg,
   },
 });

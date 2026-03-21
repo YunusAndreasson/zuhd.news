@@ -9,7 +9,6 @@ import type { Article, Category } from '../types';
 import { Globe, type GlobeRef } from './globe/Globe';
 import { type DotLocation, extractDotLocations } from './globe/storyDots';
 
-const TOOLTIP_MS = 3000;
 
 const HIJRI_DATE = new Intl.DateTimeFormat('en-u-ca-islamic', {
   day: 'numeric',
@@ -68,7 +67,6 @@ export function GlobePage({ grouped, visible, onRefresh, onToast }: GlobePagePro
   const insets = useSafeAreaInsets();
   const globeRef = useRef<GlobeRef>(null);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
-  const dismissTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const dots = useMemo(() => extractDotLocations(grouped), [grouped]);
 
   const handleRefresh = useCallback(async () => {
@@ -83,8 +81,6 @@ export function GlobePage({ grouped, visible, onRefresh, onToast }: GlobePagePro
 
   const showTooltip = useCallback((data: TooltipData) => {
     setTooltip(data);
-    if (dismissTimer.current) clearTimeout(dismissTimer.current);
-    dismissTimer.current = setTimeout(() => setTooltip(null), TOOLTIP_MS);
   }, []);
 
   const handleDotTap = useCallback(
@@ -126,6 +122,7 @@ export function GlobePage({ grouped, visible, onRefresh, onToast }: GlobePagePro
         onDotTap={handleDotTap}
         onSiteTap={handleSiteTap}
         onCountryTap={handleCountryTap}
+        onEmptyTap={dismissTooltip}
       />
 
       {/* Tooltip */}

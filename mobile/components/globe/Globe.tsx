@@ -163,6 +163,7 @@ interface GlobeProps {
   onDotTap?: (dot: DotLocation, country: string | null) => void;
   onSiteTap?: (index: number) => void;
   onCountryTap?: (name: string) => void;
+  onEmptyTap?: () => void;
   ref?: React.Ref<GlobeRef>;
 }
 
@@ -201,7 +202,7 @@ interface ProjectionState {
 
 // ── Component ──
 
-export function Globe({ dots, visible, onDotTap, onSiteTap, onCountryTap, ref }: GlobeProps) {
+export function Globe({ dots, visible, onDotTap, onSiteTap, onCountryTap, onEmptyTap, ref }: GlobeProps) {
   const { impact, notification } = useHaptic();
 
   useImperativeHandle(ref, () => ({
@@ -326,6 +327,8 @@ export function Globe({ dots, visible, onDotTap, onSiteTap, onCountryTap, ref }:
       } else if (countryName) {
         impact();
         onCountryTap?.(countryName);
+      } else {
+        onEmptyTap?.();
       }
     },
     [onDotTap, onSiteTap, onCountryTap, dots, rotX, rotY, scale, impact],
