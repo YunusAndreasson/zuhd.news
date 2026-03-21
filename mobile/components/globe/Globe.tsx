@@ -462,12 +462,12 @@ export function Globe({ dots, visible, onDotTap, onSiteTap, onCountryTap }: Glob
     callReproject(rotX.value, rotY.value, scale.value);
   }, [width, baseRadius, dotCoords]); // eslint-disable-line
 
-  // Haptic feedback when Mecca comes to center
+  // Haptic feedback when Mecca comes to center — once per session
   useEffect(() => {
     if (state.meccaCentered && !wasCentered.current) {
+      wasCentered.current = true;
       notification();
     }
-    wasCentered.current = state.meccaCentered;
   }, [state.meccaCentered, notification]);
 
   // Intro reveal: one slow rotation to Al-Aqsa when the globe tab becomes visible

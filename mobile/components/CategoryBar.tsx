@@ -1,10 +1,11 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATEGORIES, COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
 
-const TAB_LABELS = [...CATEGORIES.map((c) => c.toUpperCase()), '\u25CF'];
+const TAB_LABELS = [...CATEGORIES.map((c) => c.toUpperCase()), ''];
 
 interface TabLayout {
   x: number;
@@ -36,7 +37,8 @@ function TabLabel({
     const distance = Math.abs(pagerOffset.value - index);
     const active = distance < 0.5;
     if (isGlobe) {
-      return { color: active ? COLORS.dome : COLORS.textSecondary };
+      // Use opacity for icon — can't animate Ionicons color prop
+      return { opacity: active ? 1 : 0.5 };
     }
     return { color: active ? COLORS.text : COLORS.textSecondary };
   });
@@ -48,9 +50,13 @@ function TabLabel({
       hitSlop={SPACING.sm}
       style={({ pressed }) => pressed && { opacity: 0.5 }}
     >
-      <Animated.Text style={[styles.tabLabel, isGlobe && styles.tabGlobe, animatedStyle]}>
-        {label}
-      </Animated.Text>
+      {isGlobe ? (
+        <Animated.View style={animatedStyle}>
+          <Ionicons name="globe-outline" size={TYPOGRAPHY.sizeSm} color={COLORS.dome} />
+        </Animated.View>
+      ) : (
+        <Animated.Text style={[styles.tabLabel, animatedStyle]}>{label}</Animated.Text>
+      )}
     </Pressable>
   );
 }
@@ -176,10 +182,6 @@ const styles = StyleSheet.create({
     fontFamily: FONT.semiBold,
     fontSize: TYPOGRAPHY.sizeTab,
     letterSpacing: TYPOGRAPHY.trackingCaps,
-  },
-  tabGlobe: {
-    fontSize: TYPOGRAPHY.sizeSm,
-    letterSpacing: 0,
   },
   track: {
     position: 'absolute',

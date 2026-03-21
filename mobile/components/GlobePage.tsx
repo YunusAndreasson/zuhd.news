@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -117,7 +118,7 @@ export function GlobePage({ grouped, visible }: GlobePageProps) {
         onPress={openInfo}
         hitSlop={12}
       >
-        <Text style={styles.infoLabel}>about</Text>
+        <Ionicons name="information-circle-outline" size={16} color={COLORS.accent} />
       </Pressable>
 
       {/* Info sheet */}
@@ -194,12 +195,6 @@ const styles = StyleSheet.create({
   infoButton: {
     position: 'absolute',
     right: SPACING.screenPadding,
-  },
-  infoLabel: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeXs,
-    color: COLORS.textSecondary,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
   },
   backdrop: {
     flex: 1,

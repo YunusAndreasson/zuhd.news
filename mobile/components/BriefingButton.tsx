@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useCallback, useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -64,7 +65,11 @@ export function BriefingButton({ date }: BriefingButtonProps) {
       hitSlop={12}
     >
       <View style={styles.row}>
-        <Text style={styles.play}>{playing ? '⏸' : '▸'}</Text>
+        <Ionicons
+          name={playing ? 'pause' : 'play'}
+          size={TYPOGRAPHY.sizeSm}
+          color={COLORS.textSecondary}
+        />
         <Text style={styles.label}>BRIEFING</Text>
       </View>
     </Pressable>
@@ -87,10 +92,5 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizeTab,
     color: COLORS.textSecondary,
     letterSpacing: TYPOGRAPHY.trackingCaps,
-  },
-  play: {
-    fontSize: TYPOGRAPHY.sizeBase,
-    color: COLORS.textSecondary,
-    lineHeight: TYPOGRAPHY.sizeBase,
   },
 });
