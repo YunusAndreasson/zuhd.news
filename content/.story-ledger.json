@@ -5,8 +5,8 @@
       "id": "iran-us-israel-war",
       "label": "Iran-US-Israel war: Pentagon $200bn request, Saudi threatens action",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-21T08:00:00Z",
-      "coverageCount": 289,
+      "lastCovered": "2026-03-21T10:30:00Z",
+      "coverageCount": 290,
       "category": "politics",
       "importance": 9,
       "arc": "ongoing",
@@ -127,16 +127,17 @@
         "2026-03-21-nowruz-300-million-celebrate-under-war",
         "2026-03-19-pentagon-200bn-iran-war-congress-bad-guys",
         "2026-03-21-arab-nations-turkey-condemn-israeli-strikes-syria",
-        "2026-03-21-trump-iran-war-midterm-independents-swing"
+        "2026-03-21-trump-iran-war-midterm-independents-swing",
+        "2026-03-21-us-israel-strike-natanz-nuclear-facility-iran"
       ],
-      "summary": "Day 30+. Israel expands strikes to Syrian army camps; 6 Arab states + Turkey condemn. 60 pct of US independents oppose war ahead of midterms."
+      "summary": "Day 30+. US-Israel strike Natanz nuclear enrichment facility. Escalation from leadership targeting to nuclear infrastructure."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
       "label": "Hormuz crisis: Ras Laffan LNG attack, allies refuse escort, Pacific hit",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-21T08:00:00Z",
-      "coverageCount": 251,
+      "lastCovered": "2026-03-21T10:30:00Z",
+      "coverageCount": 253,
       "category": "economy",
       "importance": 8,
       "arc": "ongoing",
@@ -243,9 +244,10 @@
         "2026-03-19-trump-japan-hormuz-step-up-allies-refuse",
         "2026-03-19-marshall-islands-income-tax-cut-living-costs",
         "2026-03-21-south-korea-iran-hormuz-ship-passage-talks",
-        "2026-03-13-egypt-pound-slides-inflation-war-forex-crisis"
+        "2026-03-13-egypt-pound-slides-inflation-war-forex-crisis",
+        "2026-03-21-iran-allows-japanese-ships-hormuz-selective-opening"
       ],
-      "summary": "South Korea negotiating directly with Iran for Hormuz ship passage. Egyptian pound at LE52.42 per dollar with massive daily outflows."
+      "summary": "Iran selectively reopening Hormuz: Japan granted passage after refusing US naval escort. Coalition-splitting strategy."
     },
     {
       "id": "lebanon-israel-war",
@@ -254,7 +256,7 @@
       "lastCovered": "2026-03-19T22:35:00Z",
       "coverageCount": 49,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "ongoing",
       "articles": [
         "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
@@ -309,6 +311,287 @@
       "summary": "Hezbollah rebuilding while Israel focused on Iran. Gaza attacks continue invisibly; Rafah reopens for limited medical evacuations."
     },
     {
+      "id": "pentagon-palantir-ai",
+      "label": "Pentagon adopts Palantir AI as core military system",
+      "firstSeen": "2026-03-21T00:04:00Z",
+      "lastCovered": "2026-03-21T00:04:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-21-pentagon-palantir-ai-core-military-system"
+      ],
+      "summary": "Pentagon memo directs adoption of Palantir platform for military decision-making across targeting, logistics, and intelligence."
+    },
+    {
+      "id": "cuba-aid-flotilla",
+      "label": "Aid flotilla for Cuba sails from Mexico",
+      "firstSeen": "2026-03-21T05:03:00Z",
+      "lastCovered": "2026-03-21T05:03:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-21-aid-flotilla-cuba-sails-mexico-humanitarian"
+      ],
+      "summary": "Mexican-organized aid flotilla sails for Cuba amid deepening fuel and food crisis caused by US embargo and blocked Venezuelan oil."
+    },
+    {
+      "id": "georgia-abortion-pill-murder-charge",
+      "label": "First murder charge for abortion pill use in US",
+      "firstSeen": "2026-03-21T05:03:00Z",
+      "lastCovered": "2026-03-21T05:03:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-21-us-woman-murder-charge-abortion-pill-georgia"
+      ],
+      "summary": "First murder prosecution in US for taking an abortion pill, using Georgia's fetal personhood statute. Could set precedent for 14 states with similar laws."
+    },
+    {
+      "id": "japan-china-economic-decoupling",
+      "label": "Japanese executives boycott China Development Forum",
+      "firstSeen": "2026-03-21T05:03:00Z",
+      "lastCovered": "2026-03-21T05:03:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-21-japanese-executives-absent-china-summit-decoupling"
+      ],
+      "summary": "Japanese business leaders absent from China's key annual economic summit, signaling deepening economic decoupling amid Hormuz energy panic and diplomatic tensions."
+    },
+    {
+      "id": "energy-crisis-climate-transition",
+      "label": "Hormuz energy crisis reshaping global climate transition",
+      "firstSeen": "2026-03-21T05:03:00Z",
+      "lastCovered": "2026-03-21T05:03:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-21-energy-crisis-deepens-climate-transition-hormuz"
+      ],
+      "summary": "Carbon Brief analysis of how Hormuz energy crisis is reshaping global energy transition: countries choosing between accelerating renewables and reverting to coal."
+    },
+    {
+      "id": "south-korea-patriot-defense-tech",
+      "label": "South Korea's L-SAM outperforms US Patriot in combat debut",
+      "firstSeen": "2026-03-21T05:03:00Z",
+      "lastCovered": "2026-03-21T05:03:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-21-south-korea-patriot-outshines-us-interceptors-iran-war"
+      ],
+      "summary": "South Korea's domestically developed missile defense systems outperform US Patriot in Iran war combat debut, at a fraction of the cost."
+    },
+    {
+      "id": "iran-protest-executions",
+      "label": "Iran executes teenager from 2022 Woman Life Freedom protests during wartime",
+      "firstSeen": "2026-03-19T22:35:00Z",
+      "lastCovered": "2026-03-21T10:30:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-03-19-iran-teenager-executed-protests-wrestling",
+        "2026-03-21-iran-executes-three-young-men-wartime-crackdown"
+      ],
+      "summary": "Iran hangs 3 more young men during wartime; rights groups warn of mass execution campaign targeting 2022 protest detainees."
+    },
+    {
+      "id": "denmark-greenland-contingency",
+      "label": "Denmark planned runway destruction to prevent US Greenland invasion",
+      "firstSeen": "2026-03-19T22:35:00Z",
+      "lastCovered": "2026-03-19T22:35:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-19-denmark-greenland-runways-blow-up-us-invasion"
+      ],
+      "summary": "Danish military drew up plans to destroy Greenland runways after Venezuela operation sparked fears Trump would act against Greenland."
+    },
+    {
+      "id": "south-africa-debt-crisis",
+      "label": "South Africa: working poor owe 28x monthly salary",
+      "firstSeen": "2026-03-19T22:35:00Z",
+      "lastCovered": "2026-03-19T22:35:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-19-south-africa-debt-28-times-salary-crisis"
+      ],
+      "summary": "NDA study of 70,000+ debt review cases: average income R9,536/month, average debt 28x that."
+    },
+    {
+      "id": "crypto-clarity-act",
+      "label": "Crypto Clarity Act moves toward Senate hearing",
+      "firstSeen": "2026-03-19T22:35:00Z",
+      "lastCovered": "2026-03-19T22:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-19-crypto-clarity-act-senate-hearing-regulation"
+      ],
+      "summary": "White House reviewing legislative text. Lawmakers trading crypto regulation support for unrelated banking provisions."
+    },
+    {
+      "id": "apple-watch-clinical-trials",
+      "label": "Consumer wearables enter clinical trials as measurement tools",
+      "firstSeen": "2026-03-19T22:35:00Z",
+      "lastCovered": "2026-03-19T22:35:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-19-apple-watch-parkinsons-drug-clinical-trial"
+      ],
+      "summary": "Biotech using Apple Watch tremor/movement data as clinical endpoint in Parkinson drug trial."
+    },
+    {
+      "id": "facebook-wildlife-trafficking",
+      "label": "Bellingcat: 70k+ Facebook group members in coded wildlife trafficking",
+      "firstSeen": "2026-03-19T22:35:00Z",
+      "lastCovered": "2026-03-19T22:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-19-wildlife-traffickers-facebook-coded-language"
+      ],
+      "summary": "Nine Facebook groups with 70,000+ members use coded language to sell protected animals, evading Meta AI moderation."
+    },
+    {
+      "id": "prabowo-aceh-floods-eid",
+      "label": "Prabowo visits Aceh flood survivors on Eid",
+      "firstSeen": "2026-03-21T08:00:00Z",
+      "lastCovered": "2026-03-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-21-prabowo-eid-flood-survivors-aceh-tamiang"
+      ],
+      "summary": "Indonesian president spends Eid distributing aid to flood-displaced families in Aceh Tamiang."
+    },
+    {
+      "id": "indonesia-q1-growth-2026",
+      "label": "Indonesia targets 5.5 pct Q1 growth on Ramadan spending",
+      "firstSeen": "2026-03-21T08:00:00Z",
+      "lastCovered": "2026-03-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-21-indonesia-55-percent-growth-ramadan-eid-spending"
+      ],
+      "summary": "Indonesia eyes 5.5 pct Q1 growth driven by Ramadan and Eid consumer spending surge despite Hormuz disruptions."
+    },
+    {
+      "id": "argentina-milei-inflation",
+      "label": "Argentina inflation 2.9 pct monthly under Milei utility deregulation",
+      "firstSeen": "2026-03-12T20:06:40Z",
+      "lastCovered": "2026-03-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-12-argentina-inflation-milei-utility-surge"
+      ],
+      "summary": "Milei utility deregulation drives 2.9 pct monthly inflation (33.1 pct annual)."
+    },
+    {
+      "id": "interstellar-comet-3i-atlas",
+      "label": "Interstellar comet 3I/ATLAS has alien water chemistry",
+      "firstSeen": "2026-03-17T07:00:42Z",
+      "lastCovered": "2026-03-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-17-interstellar-comet-3i-atlas-alien-water"
+      ],
+      "summary": "Third known interstellar object has deuterium levels 30-40x higher than Earth oceans."
+    },
+    {
+      "id": "abel-prize-faltings-2026",
+      "label": "Gerd Faltings wins 2026 Abel Prize for Mordell conjecture",
+      "firstSeen": "2026-03-19T11:00:15Z",
+      "lastCovered": "2026-03-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-19-gerd-faltings-abel-prize-mordell-conjecture"
+      ],
+      "summary": "Mathematics highest honor for 1983 proof bridging number theory and algebraic geometry."
+    },
+    {
+      "id": "malaysia-forest-logging-reduction",
+      "label": "Malaysia cuts logging limit 24 pct under 13th Malaysia Plan",
+      "firstSeen": "2026-03-21T08:00:00Z",
+      "lastCovered": "2026-03-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-21-malaysia-cuts-logging-limit-forest-protection"
+      ],
+      "summary": "Annual Allowable Cut reduced from 1.17M to 890K hectares. Shifting to ecotourism."
+    },
+    {
+      "id": "krafton-chatgpt-contract-court",
+      "label": "Krafton CEO used ChatGPT to void 250M contract loses in court",
+      "firstSeen": "2026-03-16T22:40:53Z",
+      "lastCovered": "2026-03-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-16-krafton-ceo-chatgpt-250m-contract-court-loss"
+      ],
+      "summary": "Judge orders Subnautica 2 developer reinstated after CEO used ChatGPT to scheme around bonus."
+    },
+    {
+      "id": "ypsilanti-nuclear-datacenter",
+      "label": "Michigan township fights nuclear weapons datacenter",
+      "firstSeen": "2026-03-20T13:50:54Z",
+      "lastCovered": "2026-03-21T08:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-20-ypsilanti-nuclear-datacenter-drone-strike-fears"
+      ],
+      "summary": "Ypsilanti Township fights 1.25B Los Alamos datacenter citing Iran war drone strike risk."
+    },
+    {
       "id": "pakistan-india-indus-water-treaty",
       "label": "Pakistan-India clash over Indus Waters Treaty suspension at UN",
       "firstSeen": "2026-03-20T15:15:00Z",
@@ -321,7 +604,7 @@
         "2026-03-20-pakistan-india-water-weaponisation-indus-treaty-un",
         "2026-03-21-pakistan-india-water-weaponisation-un"
       ],
-      "summary": "Pakistan escalates at UN, accusing India of weaponisation of water. India ignoring 2025 Hague ruling confirming treaty in force."
+      "summary": "Pakistan escalates at UN, accusing India of weaponisation of water."
     },
     {
       "id": "trump-ai-framework-2026",
@@ -335,11 +618,11 @@
       "articles": [
         "2026-03-20-trump-ai-framework-preempt-states-china-race"
       ],
-      "summary": "Federal AI framework to pre-empt state laws and maintain edge over China"
+      "summary": "Federal AI framework to pre-empt state laws."
     },
     {
       "id": "opencode-ai-coding-agent",
-      "label": "OpenCode: open-source AI coding agent gains traction",
+      "label": "OpenCode: open-source AI coding agent",
       "firstSeen": "2026-03-20T22:33:00Z",
       "lastCovered": "2026-03-20T22:33:00Z",
       "coverageCount": 1,
@@ -353,45 +636,31 @@
     },
     {
       "id": "musk-twitter-securities-fraud",
-      "label": "Jury finds Musk misled Twitter shareholders during acquisition",
+      "label": "Jury finds Musk misled Twitter shareholders",
       "firstSeen": "2026-03-21T00:04:00Z",
       "lastCovered": "2026-03-21T00:04:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-21-musk-misled-twitter-shareholders-jury-verdict"
       ],
-      "summary": "First jury verdict holding Musk liable for securities fraud in Twitter acquisition. Damages phase pending."
-    },
-    {
-      "id": "pentagon-palantir-ai",
-      "label": "Pentagon adopts Palantir AI as core military system",
-      "firstSeen": "2026-03-21T00:04:00Z",
-      "lastCovered": "2026-03-21T00:04:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-21-pentagon-palantir-ai-core-military-system"
-      ],
-      "summary": "Pentagon memo directs adoption of Palantir platform for military decision-making across targeting, logistics, and intelligence."
+      "summary": "First jury verdict holding Musk liable for securities fraud in Twitter acquisition."
     },
     {
       "id": "colombia-petro-us-investigation",
-      "label": "Colombia Petro under US investigation for drug ties",
+      "label": "Colombia Petro under US investigation",
       "firstSeen": "2026-03-21T00:04:00Z",
       "lastCovered": "2026-03-21T00:04:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-21-colombia-petro-us-investigation-drug-ties"
       ],
-      "summary": "US investigating sitting Colombian president for alleged drug trafficking ties."
+      "summary": "US investigating Colombian president for drug trafficking ties."
     },
     {
       "id": "us-china-un-competition",
@@ -405,7 +674,7 @@
       "articles": [
         "2026-03-21-us-china-un-manipulation-accusation"
       ],
-      "summary": "US accuses China of using UN position to undermine American interests as Iran war reshapes great power dynamics."
+      "summary": "US accuses China of using UN position to undermine American interests."
     },
     {
       "id": "australia-islamophobia-war",
@@ -419,25 +688,11 @@
       "articles": [
         "2026-03-21-australia-islamophobia-rises-muslims-eid"
       ],
-      "summary": "Anti-Muslim hate crimes and discrimination surge in Australia during Eid."
-    },
-    {
-      "id": "pakistan-afghanistan-ceasefire",
-      "label": "Pakistan-Afghanistan temporary ceasefire brokered via Malaysia",
-      "firstSeen": "2026-03-21T02:34:00Z",
-      "lastCovered": "2026-03-21T02:34:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-21-pakistan-afghanistan-ceasefire-malaysia-brokers"
-      ],
-      "summary": "Temporary ceasefire between Pakistan and Afghanistan, welcomed by Malaysian PM Anwar."
+      "summary": "Anti-Muslim hate crimes surge in Australia during Eid."
     },
     {
       "id": "france-municipal-elections-2026",
-      "label": "French municipal elections: socialists defend Paris",
+      "label": "French municipal elections",
       "firstSeen": "2026-03-21T02:34:00Z",
       "lastCovered": "2026-03-21T02:34:00Z",
       "coverageCount": 1,
@@ -447,7 +702,7 @@
       "articles": [
         "2026-03-21-paris-mayoral-election-socialists-defend"
       ],
-      "summary": "Socialists defending Paris mayorship against Rachida Dati."
+      "summary": "Socialists defending Paris mayorship."
     },
     {
       "id": "jellyfish-circadian-clock",
@@ -465,7 +720,7 @@
     },
     {
       "id": "social-smolnet-movement",
-      "label": "Smolnet: small internet communities gain traction",
+      "label": "Smolnet: small internet communities",
       "firstSeen": "2026-03-21T02:34:00Z",
       "lastCovered": "2026-03-21T02:34:00Z",
       "coverageCount": 1,
@@ -479,7 +734,7 @@
     },
     {
       "id": "parallel-perl-jit",
-      "label": "Parallel Perl: autoparallelizing interpreter with JIT",
+      "label": "Parallel Perl: autoparallelizing interpreter",
       "firstSeen": "2026-03-21T02:34:00Z",
       "lastCovered": "2026-03-21T02:34:00Z",
       "coverageCount": 1,
@@ -489,35 +744,21 @@
       "articles": [
         "2026-03-21-parallel-perl-autoparallelizing-interpreter-jit"
       ],
-      "summary": "New Perl interpreter automatically parallelizes single-threaded code with JIT compilation."
+      "summary": "New Perl interpreter automatically parallelizes single-threaded code."
     },
     {
-      "id": "cuba-aid-flotilla",
-      "label": "Aid flotilla for Cuba sails from Mexico",
-      "firstSeen": "2026-03-21T05:03:00Z",
-      "lastCovered": "2026-03-21T05:03:00Z",
+      "id": "kitten-tts-on-device",
+      "label": "KittenTTS: 25MB on-device speech synthesis",
+      "firstSeen": "2026-03-19T22:35:00Z",
+      "lastCovered": "2026-03-19T22:35:00Z",
       "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
-        "2026-03-21-aid-flotilla-cuba-sails-mexico-humanitarian"
+        "2026-03-19-kitten-tts-open-source-25mb-on-device"
       ],
-      "summary": "Mexican-organized aid flotilla sails for Cuba amid deepening fuel and food crisis caused by US embargo and blocked Venezuelan oil."
-    },
-    {
-      "id": "georgia-abortion-pill-murder-charge",
-      "label": "First murder charge for abortion pill use in US",
-      "firstSeen": "2026-03-21T05:03:00Z",
-      "lastCovered": "2026-03-21T05:03:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-21-us-woman-murder-charge-abortion-pill-georgia"
-      ],
-      "summary": "First murder prosecution in US for taking an abortion pill, using Georgia's fetal personhood statute. Could set precedent for 14 states with similar laws."
+      "summary": "Expressive TTS models as small as 25MB for on-device synthesis."
     },
     {
       "id": "india-afghanistan-medical-aid",
@@ -526,264 +767,152 @@
       "lastCovered": "2026-03-21T05:03:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-21-india-medical-aid-afghanistan-taliban-engagement"
       ],
-      "summary": "India builds humanitarian corridor to Taliban-governed Afghanistan, bypassing Pakistan amid regional competition for influence."
+      "summary": "India builds humanitarian corridor to Afghanistan, bypassing Pakistan."
     },
     {
-      "id": "japan-china-economic-decoupling",
-      "label": "Japanese executives boycott China Development Forum",
-      "firstSeen": "2026-03-21T05:03:00Z",
-      "lastCovered": "2026-03-21T05:03:00Z",
+      "id": "pakistan-afghanistan-ceasefire",
+      "label": "Pakistan-Afghanistan ceasefire via Malaysia",
+      "firstSeen": "2026-03-21T02:34:00Z",
+      "lastCovered": "2026-03-21T02:34:00Z",
       "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
+      "category": "politics",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-21-pakistan-afghanistan-ceasefire-malaysia-brokers"
+      ],
+      "summary": "Temporary ceasefire between Pakistan and Afghanistan."
+    },
+    {
+      "id": "czech-foreign-agent-law",
+      "label": "Czech Republic considers foreign agent law amid mass protests",
+      "firstSeen": "2026-03-21T10:30:00Z",
+      "lastCovered": "2026-03-21T10:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-03-21-japanese-executives-absent-china-summit-decoupling"
+        "2026-03-21-czechs-rally-foreign-agent-law-democratic-backsliding"
       ],
-      "summary": "Japanese business leaders absent from China's key annual economic summit, signaling deepening economic decoupling amid Hormuz energy panic and diplomatic tensions."
+      "summary": "Czech MPs mulling Russia-style foreign agent law; major rally planned as EU member risks democratic backsliding."
     },
     {
-      "id": "energy-crisis-climate-transition",
-      "label": "Hormuz energy crisis reshaping global climate transition",
-      "firstSeen": "2026-03-21T05:03:00Z",
-      "lastCovered": "2026-03-21T05:03:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-21-energy-crisis-deepens-climate-transition-hormuz"
-      ],
-      "summary": "Carbon Brief analysis of how Hormuz energy crisis is reshaping global energy transition: countries choosing between accelerating renewables and reverting to coal."
-    },
-    {
-      "id": "south-korea-patriot-defense-tech",
-      "label": "South Korea's L-SAM outperforms US Patriot in combat debut",
-      "firstSeen": "2026-03-21T05:03:00Z",
-      "lastCovered": "2026-03-21T05:03:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-21-south-korea-patriot-outshines-us-interceptors-iran-war"
-      ],
-      "summary": "South Korea's domestically developed missile defense systems outperform US Patriot in Iran war combat debut, at a fraction of the cost."
-    },
-    {
-      "id": "iran-protest-executions",
-      "label": "Iran executes teenager from 2022 Woman Life Freedom protests during wartime",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
+      "id": "ukraine-drone-escalation",
+      "label": "Ukraine launches record 280+ drone strike on Russia",
+      "firstSeen": "2026-03-21T10:30:00Z",
+      "lastCovered": "2026-03-21T10:30:00Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-03-19-iran-teenager-executed-protests-wrestling"
+        "2026-03-21-ukraine-280-drones-russia-largest-strike"
       ],
-      "summary": "Saleh Mohammadi, national wrestling team member, executed for killing police officers during 2022 protests while country is under bombardment."
+      "summary": "Ukraine largest single drone attack on Russian territory, timed ahead of US-brokered peace talks."
     },
     {
-      "id": "denmark-greenland-contingency",
-      "label": "Denmark planned runway destruction to prevent US Greenland invasion",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
+      "id": "syria-post-revolution-governance",
+      "label": "New Syria shows signs of Islamist authoritarianism",
+      "firstSeen": "2026-03-21T10:30:00Z",
+      "lastCovered": "2026-03-21T10:30:00Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-03-19-denmark-greenland-runways-blow-up-us-invasion"
+        "2026-03-21-syria-beer-bans-burkinis-authoritarianism-signs"
       ],
-      "summary": "Danish military drew up plans to destroy Greenland runways after Venezuela operation sparked fears Trump would act against Greenland."
+      "summary": "Post-Assad authorities imposing alcohol bans and dress codes, raising fears of Islamist consolidation."
     },
     {
-      "id": "south-africa-debt-crisis",
-      "label": "South Africa: working poor owe 28x monthly salary",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
+      "id": "dubai-property-war-impact",
+      "label": "Dubai property market weakens under Iran war pressure",
+      "firstSeen": "2026-03-21T10:30:00Z",
+      "lastCovered": "2026-03-21T10:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-19-south-africa-debt-28-times-salary-crisis"
-      ],
-      "summary": "NDA study of 70,000+ debt review cases: average income R9,536/month, average debt 28x that."
-    },
-    {
-      "id": "crypto-clarity-act",
-      "label": "Crypto Clarity Act moves toward Senate hearing",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-19-crypto-clarity-act-senate-hearing-regulation"
-      ],
-      "summary": "White House reviewing legislative text. Lawmakers trading crypto regulation support for unrelated banking provisions."
-    },
-    {
-      "id": "apple-watch-clinical-trials",
-      "label": "Consumer wearables enter clinical trials as measurement tools",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-19-apple-watch-parkinsons-drug-clinical-trial"
-      ],
-      "summary": "Biotech using Apple Watch tremor/movement data as clinical endpoint in Parkinson drug trial."
-    },
-    {
-      "id": "facebook-wildlife-trafficking",
-      "label": "Bellingcat: 70k+ Facebook group members in coded wildlife trafficking",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-19-wildlife-traffickers-facebook-coded-language"
-      ],
-      "summary": "Nine Facebook groups with 70,000+ members use coded language to sell protected animals, evading Meta AI moderation."
-    },
-    {
-      "id": "kitten-tts-on-device",
-      "label": "Open-source TTS models small enough for any phone (25MB)",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-19-kitten-tts-open-source-25mb-on-device"
-      ],
-      "summary": "KittenTTS releases expressive text-to-speech models as small as 25MB for on-device synthesis."
-    },
-    {
-      "id": "prabowo-aceh-floods-eid",
-      "label": "Prabowo visits Aceh flood survivors on Eid",
-      "firstSeen": "2026-03-21T08:00:00Z",
-      "lastCovered": "2026-03-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-21-prabowo-eid-flood-survivors-aceh-tamiang"
-      ],
-      "summary": "Indonesian president spends Eid distributing aid to flood-displaced families in Aceh Tamiang."
-    },
-    {
-      "id": "indonesia-q1-growth-2026",
-      "label": "Indonesia targets 5.5 pct Q1 growth on Ramadan spending",
-      "firstSeen": "2026-03-21T08:00:00Z",
-      "lastCovered": "2026-03-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-21-indonesia-55-percent-growth-ramadan-eid-spending"
-      ],
-      "summary": "Indonesia eyes 5.5 pct Q1 growth driven by Ramadan and Eid consumer spending surge despite Hormuz disruptions."
-    },
-    {
-      "id": "argentina-milei-inflation",
-      "label": "Argentina inflation 2.9 pct monthly under Milei utility deregulation",
-      "firstSeen": "2026-03-12T20:06:40Z",
-      "lastCovered": "2026-03-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-12-argentina-inflation-milei-utility-surge"
-      ],
-      "summary": "Milei utility deregulation drives 2.9 pct monthly inflation (33.1 pct annual)."
-    },
-    {
-      "id": "interstellar-comet-3i-atlas",
-      "label": "Interstellar comet 3I/ATLAS has alien water chemistry",
-      "firstSeen": "2026-03-17T07:00:42Z",
-      "lastCovered": "2026-03-21T08:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
       "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-03-17-interstellar-comet-3i-atlas-alien-water"
+        "2026-03-21-dubai-property-weakness-war-economic-fallout"
       ],
-      "summary": "Third known interstellar object has deuterium levels 30-40x higher than Earth oceans."
+      "summary": "First cracks in Dubai property sector as war destabilizes Gulf safe-haven narrative."
     },
     {
-      "id": "abel-prize-faltings-2026",
-      "label": "Gerd Faltings wins 2026 Abel Prize for Mordell conjecture",
-      "firstSeen": "2026-03-19T11:00:15Z",
-      "lastCovered": "2026-03-21T08:00:00Z",
+      "id": "water-recycling-drought",
+      "label": "US drought states turn to potable water reuse",
+      "firstSeen": "2026-03-21T10:30:00Z",
+      "lastCovered": "2026-03-21T10:30:00Z",
       "coverageCount": 1,
       "category": "science",
       "importance": 4,
       "arc": "breaking",
       "articles": [
-        "2026-03-19-gerd-faltings-abel-prize-mordell-conjecture"
+        "2026-03-21-water-recycling-drought-solution-potable-reuse"
       ],
-      "summary": "Mathematics highest honor for 1983 proof bridging number theory and algebraic geometry."
+      "summary": "Direct potable reuse technology moving from taboo to policy as US drought worsens."
     },
     {
-      "id": "malaysia-forest-logging-reduction",
-      "label": "Malaysia cuts logging limit 24 pct under 13th Malaysia Plan",
-      "firstSeen": "2026-03-21T08:00:00Z",
-      "lastCovered": "2026-03-21T08:00:00Z",
+      "id": "physician-astronauts-study",
+      "label": "Study quantifies value of physician-astronauts",
+      "firstSeen": "2026-03-21T10:30:00Z",
+      "lastCovered": "2026-03-21T10:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
-        "2026-03-21-malaysia-cuts-logging-limit-forest-protection"
+        "2026-03-21-physician-astronauts-space-exploration-study"
       ],
-      "summary": "Annual Allowable Cut reduced from 1.17M to 890K hectares. Shifting to ecotourism."
+      "summary": "New study highlights medical expertise as mission-critical for deep space missions."
     },
     {
-      "id": "krafton-chatgpt-contract-court",
-      "label": "Krafton CEO used ChatGPT to void 250M contract loses in court",
-      "firstSeen": "2026-03-16T22:40:53Z",
-      "lastCovered": "2026-03-21T08:00:00Z",
+      "id": "china-low-altitude-economy",
+      "label": "Hong Kong 100 drone projects in low-altitude economy push",
+      "firstSeen": "2026-03-21T10:30:00Z",
+      "lastCovered": "2026-03-21T10:30:00Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-03-16-krafton-ceo-chatgpt-250m-contract-court-loss"
+        "2026-03-21-hong-kong-100-drone-projects-low-altitude-economy"
       ],
-      "summary": "Judge orders Subnautica 2 developer reinstated after CEO used ChatGPT to scheme around bonus."
+      "summary": "100 drone delivery and transport proposals as China builds national low-altitude economic layer."
     },
     {
-      "id": "ypsilanti-nuclear-datacenter",
-      "label": "Michigan township fights nuclear weapons datacenter",
-      "firstSeen": "2026-03-20T13:50:54Z",
-      "lastCovered": "2026-03-21T08:00:00Z",
+      "id": "china-netherlands-chip-war",
+      "label": "China-Netherlands Nexperia chip dispute",
+      "firstSeen": "2026-03-21T10:30:00Z",
+      "lastCovered": "2026-03-21T10:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-21-china-netherlands-nexperia-chip-dispute-reset"
+      ],
+      "summary": "Netherlands seeks diplomatic reset with China while restricting Chinese-owned chipmaker Nexperia."
+    },
+    {
+      "id": "pakistan-digital-payments",
+      "label": "Pakistan retail payments 92 percent digital",
+      "firstSeen": "2026-03-21T10:30:00Z",
+      "lastCovered": "2026-03-21T10:30:00Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 4,
       "arc": "breaking",
       "articles": [
-        "2026-03-20-ypsilanti-nuclear-datacenter-drone-strike-fears"
+        "2026-03-21-pakistan-92-percent-digital-retail-payments"
       ],
-      "summary": "Ypsilanti Township fights 1.25B Los Alamos datacenter citing Iran war drone strike risk."
+      "summary": "Pakistan achieves 92 percent digital retail payments, surpassing many wealthy nations."
     }
   ]
 }
