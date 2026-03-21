@@ -1,6 +1,8 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { AppState } from 'react-native';
 import { API_BASE } from '../constants/theme';
-import type { Article, FeedResponse, Category } from '../types';
+import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
+import type { Article, Category, FeedResponse } from '../types';
 
 type GroupedArticles = Record<Category, Article[]>;
 
@@ -11,7 +13,7 @@ const emptyGrouped: GroupedArticles = {
   tech: [],
 };
 
-export interface BriefingInfo {
+interface BriefingInfo {
   date: string;
   available: boolean;
 }
@@ -21,73 +23,61 @@ export function useArticles() {
   const [briefing, setBriefing] = useState<BriefingInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [lastSeenAt, setLastSeenAt] = useState(0);
   const prevSlugsRef = useRef<Set<string>>(new Set());
   const lastGeneratedRef = useRef<string | null>(null);
   const refreshingRef = useRef(false);
+
+  // Load lastSeenAt from storage on mount
+  useEffect(() => {
+    getLastSeenAt().then(setLastSeenAt);
+  }, []);
+
+  // Save current time as lastSeenAt when app goes to background
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'background') saveLastSeenAt(Date.now());
+    });
+    return () => sub.remove();
+  }, []);
 
   const fetchFeed = useCallback(async (): Promise<number> => {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 10000);
 
-    try {
-      // Try new pre-grouped endpoint first, fall back to legacy
-      let res = await fetch(`${API_BASE}/api/feed.json`, { signal: controller.signal });
-      const isFeedJson = res.ok && (res.headers.get('content-type') ?? '').includes('json');
-      if (isFeedJson) {
-        clearTimeout(timeout);
-        const data: FeedResponse = await res.json();
-        lastGeneratedRef.current = data.generated;
-        setBriefing(data.briefing);
-        const newGrouped = data.categories as GroupedArticles;
-        const allSlugs = Object.values(newGrouped).flat().map((a) => a.slug);
-        const newSlugs = new Set(allSlugs);
-        const addedCount = [...newSlugs].filter((s) => !prevSlugsRef.current.has(s)).length;
-        prevSlugsRef.current = newSlugs;
-        setGrouped(newGrouped);
-        setError(null);
-        return addedCount;
-      }
+    const res = await fetch(`${API_BASE}/api/feed.json`, {
+      signal: controller.signal,
+    });
+    clearTimeout(timeout);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-      // Fallback: legacy articles.json (pre-grouped endpoint not deployed yet)
-      res = await fetch(`${API_BASE}/api/articles.json`, { signal: controller.signal });
-      clearTimeout(timeout);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const legacy = await res.json();
-      lastGeneratedRef.current = legacy.generated;
+    const data: FeedResponse = await res.json();
+    lastGeneratedRef.current = data.generated;
+    setBriefing(data.briefing);
 
-      const newGrouped: GroupedArticles = { politics: [], economy: [], science: [], tech: [] };
-      for (const article of legacy.articles) {
-        const cat = article.category as Category;
-        if (cat in newGrouped) {
-          // Convert legacy body to sentences if needed
-          if (!article.sentences) {
-            article.sentences = article.body.trim().split(/(?<=[.!?])\s+(?=[A-Z])/).filter(Boolean);
-          }
-          newGrouped[cat].push(article);
-        }
-      }
-
-      const allSlugs: string[] = legacy.articles.map((a: any) => a.slug);
-      const newSlugs = new Set(allSlugs);
-      const addedCount = allSlugs.filter((s) => !prevSlugsRef.current.has(s)).length;
-      prevSlugsRef.current = newSlugs;
-      setGrouped(newGrouped);
-      setError(null);
-      return addedCount;
-    } catch (e: unknown) {
-      clearTimeout(timeout);
-      throw e;
-    }
+    const newGrouped = data.categories as GroupedArticles;
+    const allSlugs = Object.values(newGrouped)
+      .flat()
+      .map((a) => a.slug);
+    const newSlugs = new Set(allSlugs);
+    const addedCount = [...newSlugs].filter((s) => !prevSlugsRef.current.has(s)).length;
+    prevSlugsRef.current = newSlugs;
+    setGrouped(newGrouped);
+    setError(null);
+    return addedCount;
   }, []);
 
   // Check meta.json first — if content hasn't changed, skip the full fetch
   const hasNewContent = useCallback(async (): Promise<boolean> => {
     if (!lastGeneratedRef.current) return true;
     try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 5000);
       const res = await fetch(`${API_BASE}/api/meta.json`, {
-        signal: AbortSignal.timeout(5000),
+        signal: controller.signal,
         cache: 'no-store',
       });
+      clearTimeout(timeout);
       if (!res.ok) return true;
       const meta = await res.json();
       return meta.generated !== lastGeneratedRef.current;
@@ -114,5 +104,17 @@ export function useArticles() {
     }
   }, [fetchFeed, hasNewContent]);
 
-  return { grouped, briefing, loading, error, refresh };
+  const retry = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      await fetchFeed();
+    } catch (e: unknown) {
+      setError((e as Error)?.message ?? 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
+  }, [fetchFeed]);
+
+  return { grouped, briefing, loading, error, lastSeenAt, refresh, retry };
 }

@@ -1,4 +1,11 @@
+import { Dimensions } from 'react-native';
 import type { Category } from '../types';
+
+// Scale fonts relative to iPhone SE/8 width (375pt).
+// Clamp so text never shrinks below 90% or grows above 110%.
+const BASE_WIDTH = 375;
+const scale = Math.min(1.1, Math.max(0.9, Dimensions.get('window').width / BASE_WIDTH));
+const fs = (size: number) => Math.round(size * scale);
 
 export const COLORS = {
   bg: '#141414',
@@ -13,15 +20,16 @@ export const FONT = {
   regular: 'SourceSans3-Regular',
   semiBold: 'SourceSans3-SemiBold',
   bold: 'SourceSans3-Bold',
+  smallCaps: 'SourceSans3SC-SemiBold',
 } as const;
 
 export const TYPOGRAPHY = {
-  sizeBase: 18,
-  sizeSm: 14,
-  sizeXs: 12,
-  sizeH1: 30,
-  sizeWordmark: 14,
-  sizeTab: 11,
+  sizeBase: fs(17),
+  sizeSm: fs(13),
+  sizeXs: fs(11),
+  sizeH1: fs(28),
+  sizeWordmark: fs(14),
+  sizeTab: fs(11),
   leadingBody: 1.55,
   leadingHeading: 1.2,
   trackingCaps: 1.2,

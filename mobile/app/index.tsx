@@ -1,23 +1,21 @@
-import { useCallback, useRef, useState, useEffect, createRef } from 'react';
-import { View, Text, AppState, StyleSheet, type LayoutChangeEvent } from 'react-native';
-import { useSharedValue } from 'react-native-reanimated';
+import { useNetworkState } from 'expo-network';
+import { createRef, useCallback, useEffect, useRef, useState } from 'react';
+import { AppState, type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
-
-import { CategoryBar } from '../components/CategoryBar';
+import { useSharedValue } from 'react-native-reanimated';
+import { AboutPage } from '../components/AboutPage';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
 import { BriefingButton } from '../components/BriefingButton';
+import { CategoryBar } from '../components/CategoryBar';
 import { Toast, type ToastRef } from '../components/Toast';
-import { AboutPage } from '../components/AboutPage';
-
-import { useNetworkState } from 'expo-network';
+import { CATEGORIES, COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useHaptic } from '../hooks/useHaptic';
-import { COLORS, FONT, TYPOGRAPHY, SPACING, CATEGORIES } from '../constants/theme';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
-  const { grouped, briefing, loading, error, refresh } = useArticles();
+  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry } = useArticles();
   const { impact, notification } = useHaptic();
   const network = useNetworkState();
 
@@ -45,10 +43,24 @@ export default function HomeScreen() {
     [impact, pagerOffset],
   );
 
+  const onPageScroll = useCallback(
+    (e: { nativeEvent: { position: number; offset: number } }) => {
+      pagerOffset.value = e.nativeEvent.position + e.nativeEvent.offset;
+    },
+    [pagerOffset],
+  );
+
+  const onPageScrollStateChanged = useCallback(
+    (e: { nativeEvent: { pageScrollState: string } }) => {
+      pagerIdle.current = e.nativeEvent.pageScrollState === 'idle';
+    },
+    [],
+  );
+
   const onCategoryPress = useCallback(
     (index: number) => {
       if (index === currentCategory && index < CATEGORIES.length) {
-        listRefs[index].current?.scrollToTop();
+        listRefs[index]?.current?.scrollToTop();
       } else {
         pagerRef.current?.setPage(index);
       }
@@ -57,12 +69,23 @@ export default function HomeScreen() {
     [impact, currentCategory],
   );
 
+  const silentRefresh = useCallback(() => {
+    refresh()
+      .then((n) => {
+        if (n > 0) {
+          toastRef.current?.show(`${n} new article${n > 1 ? 's' : ''}`);
+          notification();
+        }
+      })
+      .catch(() => {});
+  }, [refresh, notification]);
+
   const handleRefresh = useCallback(async () => {
     impact();
     try {
-      const newCount = await refresh();
-      if (newCount > 0) {
-        toastRef.current?.show(`${newCount} new article${newCount > 1 ? 's' : ''}`);
+      const n = await refresh();
+      if (n > 0) {
+        toastRef.current?.show(`${n} new article${n > 1 ? 's' : ''}`);
         notification();
       } else {
         toastRef.current?.show('Already up to date');
@@ -72,20 +95,17 @@ export default function HomeScreen() {
     }
   }, [impact, refresh, notification]);
 
-  // Silent refresh when app returns to foreground
+  // Silent refresh: on foreground + every 30 min
   useEffect(() => {
     const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') {
-        refresh().then((n) => {
-          if (n > 0) {
-            toastRef.current?.show(`${n} new article${n > 1 ? 's' : ''}`);
-            notification();
-          }
-        }).catch(() => {});
-      }
+      if (state === 'active') silentRefresh();
     });
-    return () => sub.remove();
-  }, [refresh, notification]);
+    const id = setInterval(silentRefresh, 30 * 60 * 1000);
+    return () => {
+      sub.remove();
+      clearInterval(id);
+    };
+  }, [silentRefresh]);
 
   if (loading) {
     return (
@@ -105,6 +125,13 @@ export default function HomeScreen() {
         <Text style={styles.errorHint}>
           {offline ? 'Connect to the internet and reopen.' : error}
         </Text>
+        <Pressable
+          onPress={retry}
+          style={({ pressed }) => pressed && { opacity: 0.5 }}
+          hitSlop={12}
+        >
+          <Text style={styles.retryText}>Try again</Text>
+        </Pressable>
       </View>
     );
   }
@@ -122,12 +149,8 @@ export default function HomeScreen() {
         style={styles.pager}
         initialPage={0}
         onPageSelected={onPageSelected}
-        onPageScroll={(e) => {
-          pagerOffset.value = e.nativeEvent.position + e.nativeEvent.offset;
-        }}
-        onPageScrollStateChanged={(e) => {
-          pagerIdle.current = e.nativeEvent.pageScrollState === 'idle';
-        }}
+        onPageScroll={onPageScroll}
+        onPageScrollStateChanged={onPageScrollStateChanged}
         onLayout={onPagerLayout}
         overdrag
       >
@@ -139,6 +162,7 @@ export default function HomeScreen() {
                 articles={grouped[cat]}
                 viewportHeight={pagerHeight}
                 catIndex={catIndex}
+                lastSeenAt={lastSeenAt}
                 onRefresh={handleRefresh}
                 pagerIdle={pagerIdle}
                 progressesSV={categoryProgresses}
@@ -151,7 +175,9 @@ export default function HomeScreen() {
         </View>
       </PagerView>
 
-      {currentCategory < CATEGORIES.length && <BriefingButton />}
+      {currentCategory < CATEGORIES.length && briefing?.available && (
+        <BriefingButton date={briefing.date} />
+      )}
       <Toast ref={toastRef} />
     </View>
   );
@@ -189,5 +215,11 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizeSm,
     color: COLORS.textSecondary,
     textAlign: 'center',
+  },
+  retryText: {
+    fontFamily: FONT.semiBold,
+    fontSize: TYPOGRAPHY.sizeSm,
+    color: COLORS.text,
+    marginTop: SPACING.lg,
   },
 });

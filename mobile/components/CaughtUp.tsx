@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import { COLORS, FONT, TYPOGRAPHY, SPACING } from '../constants/theme';
+import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { BrandLogo } from './BrandLogo';
 
 interface CaughtUpProps {

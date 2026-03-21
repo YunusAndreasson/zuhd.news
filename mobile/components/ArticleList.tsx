@@ -1,20 +1,22 @@
-import { memo, useCallback, forwardRef, useImperativeHandle, useState } from 'react';
-import { View, RefreshControl, StyleSheet } from 'react-native';
+import { memo, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { RefreshControl, StyleSheet, View } from 'react-native';
 import Animated, {
-  useAnimatedScrollHandler,
-  useAnimatedReaction,
-  useSharedValue,
-  useAnimatedRef,
-  scrollTo,
   runOnJS,
   runOnUI,
   type SharedValue,
+  scrollTo,
+  useAnimatedReaction,
+  useAnimatedRef,
+  useAnimatedScrollHandler,
+  useSharedValue,
 } from 'react-native-reanimated';
-import * as Haptics from 'expo-haptics';
-import { COLORS, LAYOUT } from '../constants/theme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { CATEGORIES, COLORS, LAYOUT } from '../constants/theme';
+import { useHaptic } from '../hooks/useHaptic';
+import { getReadingPositions, saveReadingPosition } from '../lib/storage';
+import type { Article } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { CaughtUp } from './CaughtUp';
-import type { Article } from '../types';
 
 export interface ArticleListRef {
   scrollToTop: () => void;
@@ -24,23 +26,25 @@ interface ArticleListProps {
   articles: Article[];
   viewportHeight: number;
   catIndex: number;
+  lastSeenAt: number;
   onRefresh: () => Promise<void>;
   pagerIdle: React.RefObject<boolean>;
   progressesSV: SharedValue<number[]>;
+  ref?: React.Ref<ArticleListRef>;
 }
 
-const MAX_ARTICLES = 13;
-const hapticSnap = () => Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
-const hapticComplete = () => Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(() => {});
-
-export const ArticleList = memo(forwardRef<ArticleListRef, ArticleListProps>(function ArticleList({
+export const ArticleList = memo(function ArticleList({
   articles,
   viewportHeight,
   catIndex,
+  lastSeenAt,
   onRefresh,
   pagerIdle,
   progressesSV,
-}, ref) {
+  ref,
+}: ArticleListProps) {
+  const insets = useSafeAreaInsets();
+  const { impact: hapticSnap, notification: hapticComplete } = useHaptic();
   const articleCount = articles.length;
   const itemHeight = viewportHeight - LAYOUT.peekHeight;
   const scrollY = useSharedValue(0);
@@ -49,6 +53,27 @@ export const ArticleList = memo(forwardRef<ArticleListRef, ArticleListProps>(fun
   const atEndSV = useSharedValue(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [localRefreshing, setLocalRefreshing] = useState(false);
+
+  // Restore saved reading position on mount
+  useEffect(() => {
+    const cat = CATEGORIES[catIndex];
+    if (!cat) return;
+    getReadingPositions().then((positions) => {
+      const idx = positions[cat];
+      if (idx != null && idx > 0 && idx < articles.length) {
+        runOnUI(() => {
+          'worklet';
+          scrollTo(listRef, 0, idx * itemHeight, false);
+        })();
+      }
+    });
+  }, [articles.length, catIndex, itemHeight, listRef]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Persist reading position on scroll
+  useEffect(() => {
+    const cat = CATEGORIES[catIndex];
+    if (cat && currentIndex > 0) saveReadingPosition(cat, currentIndex);
+  }, [currentIndex, catIndex]);
 
   const handleRefresh = useCallback(async () => {
     setLocalRefreshing(true);
@@ -118,9 +143,10 @@ export const ArticleList = memo(forwardRef<ArticleListRef, ArticleListProps>(fun
         itemHeight={itemHeight}
         index={index}
         scrollY={scrollY}
+        isNew={lastSeenAt > 0 && item.addedAt > lastSeenAt}
       />
     ),
-    [itemHeight, scrollY],
+    [itemHeight, scrollY, lastSeenAt],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);
@@ -139,9 +165,9 @@ export const ArticleList = memo(forwardRef<ArticleListRef, ArticleListProps>(fun
       showsVerticalScrollIndicator={false}
       onScroll={scrollHandler}
       scrollEventThrottle={16}
-      initialNumToRender={MAX_ARTICLES}
-      windowSize={MAX_ARTICLES * 2 + 1}
-      contentContainerStyle={styles.content}
+      initialNumToRender={2}
+      windowSize={5}
+      contentContainerStyle={{ paddingBottom: LAYOUT.peekHeight + insets.bottom }}
       ListFooterComponent={<CaughtUp visible={atEnd} />}
       refreshControl={
         <RefreshControl
@@ -155,9 +181,8 @@ export const ArticleList = memo(forwardRef<ArticleListRef, ArticleListProps>(fun
       }
     />
   );
-}));
+});
 
 const styles = StyleSheet.create({
   empty: { flex: 1 },
-  content: { paddingBottom: LAYOUT.peekHeight },
 });

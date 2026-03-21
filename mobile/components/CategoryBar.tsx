@@ -1,8 +1,8 @@
-import { useCallback, useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, type LayoutChangeEvent } from 'react-native';
-import Animated, { useAnimatedStyle, interpolate, type SharedValue } from 'react-native-reanimated';
+import { useCallback, useMemo, useRef, useState } from 'react';
+import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
+import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { COLORS, FONT, TYPOGRAPHY, SPACING, LAYOUT, CATEGORIES } from '../constants/theme';
+import { CATEGORIES, COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
 
 const TAB_LABELS = [...CATEGORIES.map((c) => c.toUpperCase()), 'ABOUT'];
 
@@ -17,7 +17,13 @@ interface CategoryBarProps {
   onCategoryPress: (index: number) => void;
 }
 
-function TabLabel({ label, index, pagerOffset, onPress, onLayout }: {
+function TabLabel({
+  label,
+  index,
+  pagerOffset,
+  onPress,
+  onLayout,
+}: {
   label: string;
   index: number;
   pagerOffset: SharedValue<number>;
@@ -42,29 +48,45 @@ function TabLabel({ label, index, pagerOffset, onPress, onLayout }: {
   );
 }
 
-export function CategoryBar({ pagerOffset, categoryProgresses, onCategoryPress }: CategoryBarProps) {
+export function CategoryBar({
+  pagerOffset,
+  categoryProgresses,
+  onCategoryPress,
+}: CategoryBarProps) {
   const insets = useSafeAreaInsets();
   const [tabLayouts, setTabLayouts] = useState<TabLayout[]>([]);
   const layoutsRef = useRef<(TabLayout | null)[]>(new Array(TAB_LABELS.length).fill(null));
   const allMeasured = tabLayouts.length === TAB_LABELS.length;
 
-  const onTabLayout = useCallback(
-    (index: number) => (e: LayoutChangeEvent) => {
-      const { x, width } = e.nativeEvent.layout;
-      layoutsRef.current[index] = { x, width };
-      if (layoutsRef.current.every((l) => l !== null)) {
-        setTabLayouts([...layoutsRef.current] as TabLayout[]);
-      }
-    },
-    [],
+  const handleTabLayout = useCallback((index: number, e: LayoutChangeEvent) => {
+    const { x, width } = e.nativeEvent.layout;
+    layoutsRef.current[index] = { x, width };
+    if (layoutsRef.current.every((l) => l !== null)) {
+      setTabLayouts([...layoutsRef.current] as TabLayout[]);
+    }
+  }, []);
+
+  const tabLayoutHandlers = useMemo(
+    () => TAB_LABELS.map((_, i) => (e: LayoutChangeEvent) => handleTabLayout(i, e)),
+    [handleTabLayout],
   );
 
   // Track: interpolated (smooth slide). Fill: snapped (both left + width from same index).
   const trackPos = useAnimatedStyle(() => {
     if (!allMeasured) return { width: 0 };
     const indices = TAB_LABELS.map((_, i) => i);
-    const x = interpolate(pagerOffset.value, indices, tabLayouts.map((l) => l.x), 'clamp');
-    const w = interpolate(pagerOffset.value, indices, tabLayouts.map((l) => l.width), 'clamp');
+    const x = interpolate(
+      pagerOffset.value,
+      indices,
+      tabLayouts.map((l) => l.x),
+      'clamp',
+    );
+    const w = interpolate(
+      pagerOffset.value,
+      indices,
+      tabLayouts.map((l) => l.width),
+      'clamp',
+    );
     return { left: x, width: w };
   });
 
@@ -73,11 +95,10 @@ export function CategoryBar({ pagerOffset, categoryProgresses, onCategoryPress }
 
     const currentIdx = Math.min(Math.round(Math.max(0, pagerOffset.value)), tabLayouts.length - 1);
     const tab = tabLayouts[currentIdx];
-    const progress = currentIdx < CATEGORIES.length
-      ? (categoryProgresses.value[currentIdx] ?? 0)
-      : 1;
+    const progress =
+      currentIdx < CATEGORIES.length ? (categoryProgresses.value[currentIdx] ?? 0) : 1;
 
-    return { left: tab.x, width: tab.width * progress };
+    return { left: tab?.x ?? 0, width: (tab?.width ?? 0) * progress };
   });
 
   return (
@@ -100,7 +121,7 @@ export function CategoryBar({ pagerOffset, categoryProgresses, onCategoryPress }
             index={i}
             pagerOffset={pagerOffset}
             onPress={() => onCategoryPress(i)}
-            onLayout={onTabLayout(i)}
+            onLayout={tabLayoutHandlers[i]!}
           />
         ))}
 

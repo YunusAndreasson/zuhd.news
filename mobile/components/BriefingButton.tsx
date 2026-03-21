@@ -1,14 +1,28 @@
-import { useState, useCallback } from 'react';
-import { View, Pressable, Text, StyleSheet } from 'react-native';
+import { useCallback, useEffect, useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { COLORS, FONT, TYPOGRAPHY, SPACING, LAYOUT } from '../constants/theme';
+import { API_BASE, COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 
-export function BriefingButton() {
+interface BriefingButtonProps {
+  date: string;
+}
+
+export function BriefingButton({ date }: BriefingButtonProps) {
   const insets = useSafeAreaInsets();
   const { impact } = useHaptic();
   const [playing, setPlaying] = useState(false);
-  const [playerRef, setPlayerRef] = useState<any>(null);
+  const [playerRef, setPlayerRef] = useState<{
+    play(): void;
+    pause(): void;
+    remove(): void;
+  } | null>(null);
+
+  useEffect(() => {
+    return () => {
+      playerRef?.remove();
+    };
+  }, [playerRef]);
 
   const handlePress = useCallback(async () => {
     impact();
@@ -28,8 +42,7 @@ export function BriefingButton() {
       } else {
         await setAudioModeAsync({ playsInSilentMode: true });
         const player = createAudioPlayer({
-          uri: 'https://zuhd-news.pages.dev/audio/briefing-' +
-            new Date().toISOString().slice(0, 10) + '.mp3',
+          uri: `${API_BASE}/audio/briefing-${date}.mp3`,
         });
         setPlayerRef(player);
         player.play();
@@ -38,7 +51,7 @@ export function BriefingButton() {
     } catch {
       // expo-audio unavailable in this Expo Go build — button stays visible, tap is a no-op
     }
-  }, [impact, playerRef, playing]);
+  }, [impact, playerRef, playing, date]);
 
   return (
     <Pressable

@@ -15,10 +15,3 @@ export interface FeedResponse {
   categories: Record<Category, Article[]>;
   briefing: { date: string; available: boolean } | null;
 }
-
-export interface MetaResponse {
-  generated: string;
-  total: number;
-  categories: Record<Category, number>;
-  briefing: { date: string; available: boolean } | null;
-}

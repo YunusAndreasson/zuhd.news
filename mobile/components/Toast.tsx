@@ -1,13 +1,13 @@
-import { forwardRef, useImperativeHandle, useState, useCallback } from 'react';
+import { useCallback, useImperativeHandle, useRef, useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import Animated, {
-  useSharedValue,
   useAnimatedStyle,
-  withTiming,
+  useSharedValue,
   withSpring,
+  withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { COLORS, FONT, TYPOGRAPHY, SPACING } from '../constants/theme';
+import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 
 export interface ToastRef {
   show: (message: string) => void;
@@ -16,7 +16,7 @@ export interface ToastRef {
 const TOAST_VISIBLE_MS = 2500;
 const TOAST_SLIDE_OFFSET = -SPACING.xxl;
 
-export const Toast = forwardRef<ToastRef>((_, ref) => {
+export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
   const insets = useSafeAreaInsets();
   const [message, setMessage] = useState('');
   const opacity = useSharedValue(0);
@@ -27,12 +27,15 @@ export const Toast = forwardRef<ToastRef>((_, ref) => {
     translateY.value = withTiming(TOAST_SLIDE_OFFSET);
   }, [opacity, translateY]);
 
+  const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
   useImperativeHandle(ref, () => ({
     show: (msg: string) => {
+      if (timerRef.current) clearTimeout(timerRef.current);
       setMessage(msg);
       opacity.value = withTiming(1);
       translateY.value = withSpring(0);
-      setTimeout(dismiss, TOAST_VISIBLE_MS);
+      timerRef.current = setTimeout(dismiss, TOAST_VISIBLE_MS);
     },
   }));
 
@@ -49,7 +52,7 @@ export const Toast = forwardRef<ToastRef>((_, ref) => {
       <Text style={styles.text}>{message}</Text>
     </Animated.View>
   );
-});
+}
 
 const styles = StyleSheet.create({
   container: {

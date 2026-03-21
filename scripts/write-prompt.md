@@ -48,6 +48,12 @@ For Hacker News stories: set `source` to "Hacker News", use the original article
 
 3-5 words. Subject + verb. Drop articles ("a", "the") and filler. No abbreviations — spell out names ("Rapid Support Forces" not "RSF"). Only US, UK, EU, UN, WHO, NATO, and ISIS need no expansion. Count the words.
 
+## Dateline
+
+Every article opens with a dateline — the city or country where the news originates, followed by an em dash. Use the most specific meaningful location: a city for local events, a country for national policy. Use short, recognizable forms: "Tehran" not "Tehran, Iran"; "Gaza" not "Gaza Strip, Palestinian Territories." The dateline is not counted in the word limit.
+
+Examples: `Tehran — `, `Washington — `, `Nairobi — `, `Gaza — `, `Stockholm — `, `Beijing — `, `Brussels — `
+
 ## Rhythm
 
 Every article follows the same 3-sentence arc:
@@ -147,7 +153,7 @@ sourceUrl: "https://www.bbc.com/news/articles/cwyk4lz4e3eo"
 category: "politics"
 ---
 
-Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. They are now reporting Russia to the chemical weapons watchdog.
+London — Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. They are now reporting Russia to the chemical weapons watchdog.
 </example>
 
 <example>
@@ -159,7 +165,7 @@ sourceUrl: "https://www.dw.com/en/how-serious-is-venezuela-about-its-amnesty-law
 category: "politics"
 ---
 
-Venezuela freed a political prisoner, then rearrested him. The government claims 900 released under a draft amnesty law, but rights group Foro Penal counts only 200 freed. A second parliamentary reading is set for Tuesday with no observers invited.
+Caracas — Venezuela freed a political prisoner, then rearrested him. The government claims 900 released under a draft amnesty law, but rights group Foro Penal counts only 200 freed. A second parliamentary reading is set for Tuesday with no observers invited.
 </example>
 
 <example>
@@ -171,7 +177,7 @@ sourceUrl: "https://www.aljazeera.com/news/2026/2/14/example"
 category: "politics"
 ---
 
-4 hospitals shut down in Gaza this week. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
+Gaza — 4 hospitals shut down this week. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
 </example>
 
 <example>
@@ -183,7 +189,7 @@ sourceUrl: "https://www.malaymail.com/news/world/2026/02/15/vietnam-grants-licen
 category: "tech"
 ---
 
-600,000 satellite terminals can now operate in Vietnam. The radio frequency authority granted Starlink a licence for 4 gateway stations, covering 20 million people who lack internet access. Starlink will compete with state-backed carriers that tightly control terrestrial infrastructure.
+Hanoi — 600,000 satellite terminals can now operate in Vietnam. The radio frequency authority granted Starlink a licence for 4 gateway stations, covering 20 million people who lack internet access. Starlink will compete with state-backed carriers that tightly control terrestrial infrastructure.
 </example>
 
 <example>
@@ -195,7 +201,7 @@ sourceUrl: "https://www.abc.net.au/news/2026-02-15/new-zealand-north-island-rain
 category: "science"
 ---
 
-Floodwater killed a driver on a North Island highway. 2 districts declared emergencies after 4 hours of rain collapsed roads and cut power to 4,000 properties. Heavier rain and severe gales are forecast before conditions ease Monday.
+Wellington — Floodwater killed a driver on a North Island highway. 2 districts declared emergencies after 4 hours of rain collapsed roads and cut power to 4,000 properties. Heavier rain and severe gales are forecast before conditions ease Monday.
 </example>
 
 Each sentence carries roughly equal weight: Hook (concrete fact, ≤9 words) → Context (≤25 words) → Future (≤20 words). Total ≤55 words.

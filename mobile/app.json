@@ -2,26 +2,40 @@
   "expo": {
     "name": "zuhd.news",
     "slug": "zuhd-news",
-    "version": "1.0.0",
+    "version": "1447.10.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "scheme": "zuhd-news",
+    "owner": "edenmind",
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": false,
+      "bundleIdentifier": "news.zuhd.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
+      "package": "news.zuhd.app",
       "adaptiveIcon": {
         "backgroundColor": "#141414",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
-      }
+      },
+      "versionCode": 1,
+      "permissions": []
     },
     "plugins": [
       "expo-router",
       "expo-font",
-      "expo-audio",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false
+        }
+      ],
       [
         "expo-splash-screen",
         {
@@ -30,6 +44,12 @@
           "backgroundColor": "#141414"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "14c4589a-a039-41ad-b3f6-23cff746c7a8"
+      }
+    }
   }
 }

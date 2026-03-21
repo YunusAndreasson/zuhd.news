@@ -1,17 +1,23 @@
-import { View, Text, ScrollView, Pressable, Linking, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
-import { COLORS, FONT, TYPOGRAPHY, SPACING } from '../constants/theme';
+import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { BrandLogo } from './BrandLogo';
 
 const VERSION = Constants.expoConfig?.version ?? '1.0.0';
 
 export function AboutPage() {
+  const insets = useSafeAreaInsets();
   return (
-    <ScrollView style={styles.scroll} contentContainerStyle={styles.container}>
+    <ScrollView
+      style={styles.scroll}
+      contentContainerStyle={[
+        styles.container,
+        { paddingBottom: insets.bottom + SPACING.screenPadding },
+      ]}
+    >
       {/* Philosophy */}
-      <Text style={styles.body}>
-        Zuhd — the discipline of doing without what you do not need.
-      </Text>
+      <Text style={styles.body}>Zuhd — the discipline of doing without what you do not need.</Text>
       <Text style={styles.body}>
         Each article says what happened, why it matters, and what comes next. Then it stops.
       </Text>
@@ -23,9 +29,7 @@ export function AboutPage() {
 
       {/* Commitment + contact */}
       <View style={styles.meta}>
-        <Text style={styles.dim}>
-          No tracking. No accounts. No ads. No data collected.
-        </Text>
+        <Text style={styles.dim}>No tracking. No accounts. No ads. No data collected.</Text>
         <Pressable
           onPress={() => Linking.openURL('mailto:yunus@edenmind.com')}
           hitSlop={SPACING.sm}
@@ -73,7 +77,7 @@ const styles = StyleSheet.create({
   },
   link: {
     color: COLORS.textSecondary,
-    textDecorationLine: 'underline' as const,
+    textDecorationLine: 'underline',
   },
   signature: {
     alignItems: 'center',
