@@ -20,7 +20,6 @@ import {
   geoPath,
 } from 'd3-geo';
 import {
-  startTransition,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -102,47 +101,6 @@ const skiaCtx = {
   },
 };
 
-// ── Moon phase (cached per day) ──
-// Returns 0-1 where 0 = new moon, 0.5 = full moon, 1 = next new moon.
-// Based on synodic period of 29.53 days from a known new moon epoch.
-
-let cachedMoonPhase = 0;
-let moonPhaseDay = -1;
-
-function _getMoonPhase(): number {
-  const now = new Date();
-  const today = now.getUTCDate();
-  if (today === moonPhaseDay) return cachedMoonPhase;
-  moonPhaseDay = today;
-
-  // Known new moon: Jan 29, 2025 12:36 UTC
-  const epoch = 1738151760000;
-  const synodicPeriod = 29.53058770576;
-  const daysSinceEpoch = (now.getTime() - epoch) / 86400000;
-  cachedMoonPhase =
-    (((daysSinceEpoch % synodicPeriod) + synodicPeriod) % synodicPeriod) / synodicPeriod;
-  return cachedMoonPhase;
-}
-
-// Hijri date — cached per day, zero dependencies
-let cachedHijriDate = '';
-let hijriDateDay = -1;
-
-function _getHijriDate(): string {
-  const now = new Date();
-  const today = now.getUTCDate();
-  if (today === hijriDateDay) return cachedHijriDate;
-  hijriDateDay = today;
-
-  cachedHijriDate = new Intl.DateTimeFormat('en-u-ca-islamic', {
-    day: 'numeric',
-    month: 'long',
-  })
-    .format(now)
-    .replace(' AH', '');
-  return cachedHijriDate;
-}
-
 // ── Sun position (cached 60s) ──
 
 let cachedSunPos: [number, number] = [0, 0];
@@ -165,6 +123,7 @@ function getSunPosition(): [number, number] {
 
 export interface GlobeRef {
   recenter: () => void;
+  clearHighlight: () => void;
 }
 
 interface GlobeProps {
@@ -228,6 +187,12 @@ export function Globe({
       rotX.value = withTiming(MECCA[0], { duration: 2000, easing: Easing.out(Easing.cubic) });
       rotY.value = withTiming(-MECCA[1], { duration: 2000, easing: Easing.out(Easing.cubic) });
       scale.value = withTiming(1, { duration: 500 });
+    },
+    clearHighlight: () => {
+      if (highlightedCountry.current) {
+        highlightedCountry.current = null;
+        reprojectRef.current(rotX.value, rotY.value, scale.value);
+      }
     },
   }));
 
@@ -295,19 +260,7 @@ export function Globe({
     (x: number, y: number) => {
       const cur = stateRef.current;
 
-      // Check holy sites first (smaller targets, need priority)
-      for (let i = 0; i < cur.holySites.length; i++) {
-        const site = cur.holySites[i]!;
-        const dx = site.x - x;
-        const dy = site.y - y;
-        if (Math.sqrt(dx * dx + dy * dy) < 25) {
-          impact();
-          onSiteTap?.(i);
-          return;
-        }
-      }
-
-      // Check news dots
+      // 1. Check news dots first (timely info takes priority)
       let bestDist = 30;
       let bestIdx = -1;
       for (const dot of cur.dots) {
@@ -319,7 +272,22 @@ export function Globe({
           bestIdx = dot.dotIndex;
         }
       }
-      // Find country under tap — reverse-project to lat/lng, then geoContains
+
+      // 2. Check holy sites (only if no dot was hit)
+      if (bestIdx < 0) {
+        for (let i = 0; i < cur.holySites.length; i++) {
+          const site = cur.holySites[i]!;
+          const dx = site.x - x;
+          const dy = site.y - y;
+          if (Math.sqrt(dx * dx + dy * dy) < 25) {
+            impact();
+            onSiteTap?.(i);
+            return;
+          }
+        }
+      }
+
+      // 3. Find country under tap
       const proj = projectionRef.current;
       if (!proj) return;
       const geo = proj.invert?.([x, y]);
@@ -328,17 +296,14 @@ export function Globe({
       const found = countries.features.find((f) => geoContains(f, geo));
       const countryName = (found?.properties as any)?.name ?? null;
 
+      // Highlight country — stays until tooltip is dismissed
       if (found) {
         highlightedCountry.current = found;
         reprojectRef.current(rotX.value, rotY.value, scale.value);
         if (highlightTimer.current) clearTimeout(highlightTimer.current);
-        highlightTimer.current = setTimeout(() => {
-          highlightedCountry.current = null;
-          reprojectRef.current(rotX.value, rotY.value, scale.value);
-        }, 3000);
       }
 
-      // Fire the appropriate callback with country info
+      // 4. Fire the appropriate callback
       if (bestIdx >= 0) {
         impact();
         onDotTap?.(dots[bestIdx]!, countryName);
@@ -346,6 +311,9 @@ export function Globe({
         impact();
         onCountryTap?.(countryName);
       } else {
+        // Tapped ocean — clear highlight + dismiss
+        highlightedCountry.current = null;
+        reprojectRef.current(rotX.value, rotY.value, scale.value);
         onEmptyTap?.();
       }
     },
@@ -509,20 +477,16 @@ export function Globe({
     const cosDLng = Math.cos(dLng);
     const r = baseRadius * s;
 
-    // React 19 concurrent: mark globe re-renders as non-urgent so user
-    // interactions (swiping to article tabs) are never blocked
-    startTransition(() => {
-      setState({
-        landPath: landSkPath,
-        dots: projected,
-        holySites: sites,
-        meccaCentered: meccaNear,
-        highlightPath: highlight,
-        nightLayers: layers,
-        sunScreenX: cx + r * cosLat * Math.sin(dLng),
-        sunScreenY: cy - r * (sinLat * Math.cos(viewRy) - cosLat * cosDLng * Math.sin(viewRy)),
-        globeScale: s,
-      });
+    setState({
+      landPath: landSkPath,
+      dots: projected,
+      holySites: sites,
+      meccaCentered: meccaNear,
+      highlightPath: highlight,
+      nightLayers: layers,
+      sunScreenX: cx + r * cosLat * Math.sin(dLng),
+      sunScreenY: cy - r * (sinLat * Math.cos(viewRy) - cosLat * cosDLng * Math.sin(viewRy)),
+      globeScale: s,
     });
   };
 
@@ -559,7 +523,7 @@ export function Globe({
     ([rx, ry, s]) => {
       'worklet';
       const now = Date.now();
-      if (now - lastProjectionTime.value > 40) {
+      if (now - lastProjectionTime.value > 30) {
         lastProjectionTime.value = now;
         runOnJS(callReproject)(rx, ry, s);
       }

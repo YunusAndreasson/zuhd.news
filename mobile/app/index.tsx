@@ -1,7 +1,7 @@
-import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
+import { BottomSheetBackdrop, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
-import { createRef, useCallback, useEffect, useRef, useState } from 'react';
-import { AppState, type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
+import { createRef, useCallback, useRef, useState } from 'react';
+import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -27,7 +27,7 @@ function formatTimeAgo(addedAt: number): string {
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
-  const { grouped, briefing, loading, error, refresh, retry } = useArticles();
+  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry } = useArticles();
   const { impact } = useHaptic();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
@@ -38,6 +38,14 @@ export default function HomeScreen() {
   const [threadSheet, setThreadSheet] = useState<Article | null>(null);
   const [threadArticles, setThreadArticles] = useState<Article[]>([]);
   const [sourceSheet, setSourceSheet] = useState<string | null>(null);
+  const [sheetOpen, setSheetOpen] = useState(false);
+
+  const renderBackdrop = useCallback(
+    (props: any) => (
+      <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} pressBehavior="close" />
+    ),
+    [],
+  );
 
   const getThreadArticles = useCallback(
     (threadId: string): Article[] => {
@@ -55,6 +63,7 @@ export default function HomeScreen() {
       impact();
       setThreadSheet(article);
       setThreadArticles(getThreadArticles(article.threadId));
+      setSheetOpen(true);
       threadSheetRef.current?.present();
     },
     [impact, getThreadArticles],
@@ -64,6 +73,7 @@ export default function HomeScreen() {
     (sourceName: string) => {
       impact();
       setSourceSheet(sourceName);
+      setSheetOpen(true);
       sourceSheetRef.current?.present();
     },
     [impact],
@@ -119,16 +129,6 @@ export default function HomeScreen() {
     [impact, currentCategory],
   );
 
-  const silentRefresh = useCallback(() => {
-    refresh()
-      .then((n) => {
-        if (n > 0) {
-          toastRef.current?.show(`${n} new article${n > 1 ? 's' : ''}`);
-        }
-      })
-      .catch(() => {});
-  }, [refresh]);
-
   const handleRefresh = useCallback(async () => {
     impact();
     try {
@@ -142,18 +142,6 @@ export default function HomeScreen() {
       toastRef.current?.show('Could not refresh');
     }
   }, [impact, refresh]);
-
-  // Silent refresh: on foreground + every 30 min
-  useEffect(() => {
-    const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') silentRefresh();
-    });
-    const id = setInterval(silentRefresh, 30 * 60 * 1000);
-    return () => {
-      sub.remove();
-      clearInterval(id);
-    };
-  }, [silentRefresh]);
 
   if (loading) {
     return (
@@ -212,6 +200,7 @@ export default function HomeScreen() {
                 articles={grouped[cat]}
                 viewportHeight={pagerHeight}
                 catIndex={catIndex}
+                lastSeenAt={lastSeenAt}
                 onRefresh={handleRefresh}
                 onEndReached={() =>
                   toastRef.current?.show(
@@ -240,7 +229,7 @@ export default function HomeScreen() {
         </View>
       </PagerView>
 
-      {currentCategory < CATEGORIES.length && briefing?.available && (
+      {currentCategory < CATEGORIES.length && briefing?.available && !sheetOpen && (
         <BriefingButton date={briefing.date} />
       )}
       <Toast ref={toastRef} />
@@ -250,8 +239,10 @@ export default function HomeScreen() {
         ref={threadSheetRef}
         enableDynamicSizing
         enablePanDownToClose
+        backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
         handleIndicatorStyle={styles.sheetHandle}
+        onDismiss={() => { setThreadSheet(null); setSheetOpen(false); }}
       >
         <BottomSheetView
           style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
@@ -306,8 +297,10 @@ export default function HomeScreen() {
         ref={sourceSheetRef}
         enableDynamicSizing
         enablePanDownToClose
+        backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
         handleIndicatorStyle={styles.sheetHandle}
+        onDismiss={() => { setSourceSheet(null); setSheetOpen(false); }}
       >
         <BottomSheetView
           style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}

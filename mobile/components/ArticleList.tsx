@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useImperativeHandle, useState } from 'react';
+import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react';
 import { RefreshControl, StyleSheet, View } from 'react-native';
 import Animated, {
   runOnJS,
@@ -25,6 +25,7 @@ interface ArticleListProps {
   articles: Article[];
   viewportHeight: number;
   catIndex: number;
+  lastSeenAt: number;
   onRefresh: () => Promise<void>;
   onEndReached?: () => void;
   onThreadPress?: (article: Article) => void;
@@ -38,6 +39,7 @@ export const ArticleList = memo(function ArticleList({
   articles,
   viewportHeight,
   catIndex,
+  lastSeenAt,
   onThreadPress,
   onSourcePress,
   onRefresh,
@@ -52,7 +54,6 @@ export const ArticleList = memo(function ArticleList({
   const itemHeight = viewportHeight - LAYOUT.peekHeight;
   const scrollY = useSharedValue(0);
   const listRef = useAnimatedRef<Animated.FlatList<Article>>();
-  const [_atEnd, setAtEnd] = useState(false);
   const atEndSV = useSharedValue(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const overscrollFired = useSharedValue(false);
@@ -96,7 +97,6 @@ export const ArticleList = memo(function ArticleList({
   useImperativeHandle(ref, () => ({
     scrollToTop: () => {
       atEndSV.value = false;
-      setAtEnd(false);
       runOnUI(() => {
         'worklet';
         scrollTo(listRef, 0, 0, true);
@@ -136,11 +136,9 @@ export const ArticleList = memo(function ArticleList({
         runOnJS(setCurrentIndex)(idx);
         if (idx === articleCount - 1 && !atEndSV.value) {
           atEndSV.value = true;
-          runOnJS(setAtEnd)(true);
           runOnJS(hapticComplete)();
         } else if (idx < articleCount - 1 && atEndSV.value) {
           atEndSV.value = false;
-          runOnJS(setAtEnd)(false);
         }
       }
     },
@@ -155,6 +153,14 @@ export const ArticleList = memo(function ArticleList({
     [itemHeight],
   );
 
+  // Find the boundary between new and previously seen articles
+  const earlierIndex = useMemo(() => {
+    if (lastSeenAt <= 0) return -1; // first visit — everything is new, no divider
+    const idx = articles.findIndex((a) => a.addedAt <= lastSeenAt);
+    // No divider if all articles are new or all are old
+    return idx > 0 ? idx : -1;
+  }, [articles, lastSeenAt]);
+
   const renderItem = useCallback(
     ({ item, index }: { item: Article; index: number }) => (
       <ArticlePage
@@ -164,9 +170,10 @@ export const ArticleList = memo(function ArticleList({
         scrollY={scrollY}
         onThreadPress={onThreadPress}
         onSourcePress={onSourcePress}
+        showEarlierDivider={index === earlierIndex}
       />
     ),
-    [itemHeight, scrollY, onThreadPress, onSourcePress],
+    [itemHeight, scrollY, onThreadPress, onSourcePress, earlierIndex],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);

@@ -106,6 +106,7 @@ export function GlobePage({ grouped, visible, onRefresh, onToast }: GlobePagePro
 
   const dismissTooltip = useCallback(() => {
     setTooltip(null);
+    globeRef.current?.clearHighlight();
   }, []);
 
   return (

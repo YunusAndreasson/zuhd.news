@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { memo, useCallback, useMemo } from 'react';
-import { Share, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Share, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -21,6 +21,7 @@ interface ArticlePageProps {
   scrollY: SharedValue<number>;
   onThreadPress?: (article: Article) => void;
   onSourcePress?: (sourceName: string) => void;
+  showEarlierDivider?: boolean;
 }
 
 function formatTimeAgo(addedAt: number): string {
@@ -39,6 +40,7 @@ export const ArticlePage = memo(function ArticlePage({
   scrollY,
   onThreadPress,
   onSourcePress,
+  showEarlierDivider,
 }: ArticlePageProps) {
   const { impact } = useHaptic();
   const timeAgo = formatTimeAgo(article.addedAt);
@@ -99,6 +101,7 @@ export const ArticlePage = memo(function ArticlePage({
 
   return (
     <View style={[styles.container, { height: itemHeight }]}>
+      {showEarlierDivider && <Text style={styles.earlierDivider}>earlier</Text>}
       <Animated.View style={titleStyle}>
         <Text style={[styles.title, titleSizeStyle]} numberOfLines={3}>
           {article.title}
@@ -110,10 +113,16 @@ export const ArticlePage = memo(function ArticlePage({
           {/* Attribution cluster: source + time */}
           <View style={styles.metaGroup}>
             {article.source ? (
-              <Text onPress={() => onSourcePress?.(article.source!)} style={styles.metaTap}>
-                {article.source.toLowerCase()}{' '}
-                <Ionicons name="chevron-down" size={8} color={COLORS.accent} />
-              </Text>
+              <Pressable
+                onPress={() => onSourcePress?.(article.source!)}
+                hitSlop={12}
+                style={({ pressed }) => pressed && { opacity: 0.5 }}
+              >
+                <Text style={styles.metaTap}>
+                  {article.source.toLowerCase()}{' '}
+                  <Ionicons name="chevron-down" size={8} color={COLORS.accent} />
+                </Text>
+              </Pressable>
             ) : null}
             <Text style={styles.metaDim}>{timeAgo}</Text>
           </View>
@@ -121,13 +130,25 @@ export const ArticlePage = memo(function ArticlePage({
           {/* Action cluster: story + share */}
           <View style={styles.metaGroup}>
             {article.threadLabel && (article.threadArticleCount ?? 0) >= 3 ? (
-              <Text onPress={() => onThreadPress?.(article)} style={styles.metaTap}>
-                story <Ionicons name="chevron-down" size={8} color={COLORS.accent} />
-              </Text>
+              <Pressable
+                onPress={() => onThreadPress?.(article)}
+                hitSlop={12}
+                style={({ pressed }) => pressed && { opacity: 0.5 }}
+              >
+                <Text style={styles.metaTap}>
+                  story <Ionicons name="chevron-down" size={8} color={COLORS.accent} />
+                </Text>
+              </Pressable>
             ) : null}
-            <Text onPress={handleShare} style={styles.metaTap}>
-              share <Ionicons name="arrow-up-outline" size={8} color={COLORS.accent} />
-            </Text>
+            <Pressable
+              onPress={handleShare}
+              hitSlop={12}
+              style={({ pressed }) => pressed && { opacity: 0.5 }}
+            >
+              <Text style={styles.metaTap}>
+                share <Ionicons name="arrow-up-outline" size={8} color={COLORS.accent} />
+              </Text>
+            </Pressable>
           </View>
         </View>
       </Animated.View>
@@ -140,6 +161,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.screenPadding,
     paddingTop: SPACING.xxl,
     overflow: 'hidden',
+  },
+  earlierDivider: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.accent,
+    textAlign: 'center',
+    marginBottom: SPACING.sm,
   },
   title: {
     fontFamily: FONT.bold,
