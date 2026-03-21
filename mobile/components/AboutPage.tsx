@@ -16,32 +16,76 @@ export function AboutPage() {
         { paddingBottom: insets.bottom + SPACING.screenPadding },
       ]}
     >
-      {/* Philosophy */}
-      <Text style={styles.body}>Zuhd — the discipline of doing without what you do not need.</Text>
+      <Text style={styles.heading}>Zuhd</Text>
+
       <Text style={styles.body}>
-        Each article says what happened, why it matters, and what comes next. Then it stops.
-      </Text>
-      <Text style={styles.body}>
-        Forty sources across six continents, because where a story is told from determines who is a
-        person and who is a number. People who bear power's consequences are the subject, not the
-        scenery.
+        Detachment from what you do not need. The Prophet ﷺ said, be in this world as if you were a
+        stranger, or a traveler.
       </Text>
 
-      {/* Commitment + contact */}
-      <View style={styles.meta}>
-        <Text style={styles.dim}>No tracking. No accounts. No ads. No data collected.</Text>
-        <Pressable
-          onPress={() => Linking.openURL('mailto:yunus@edenmind.com')}
-          hitSlop={SPACING.sm}
-          style={({ pressed }) => pressed && { opacity: 0.5 }}
-        >
-          <Text style={styles.dim}>
-            Feedback: <Text style={styles.link}>yunus@edenmind.com</Text>
-          </Text>
-        </Pressable>
-      </View>
+      <Text style={styles.body}>
+        The best of speech is the speech of Allah. Yet looking away from the world has consequences.
+        Zuhd means seeing clearly — not consuming more, but understanding what you see.
+      </Text>
 
-      {/* Brand signature */}
+      <Text style={styles.heading}>Why this exists</Text>
+
+      <Text style={styles.body}>
+        While Muslims were not watching, the caliphate was abolished after one world war and
+        Palestine was lost after the next. The New York Times did not print the word Nakba until
+        1998 — fifty years after it happened.
+      </Text>
+
+      <Text style={styles.heading}>How we write</Text>
+
+      <Text style={styles.body}>
+        Every article says what happened, why it matters, and what comes next. Then it stops. No
+        speculation, no outrage, no engagement tricks.
+      </Text>
+
+      <Text style={styles.body}>
+        When people are killed, we say who killed them — not "clashes erupted." Fourteen centuries
+        ago, the Quran set the standard: if news reaches you, verify it, lest you harm a people out
+        of ignorance.
+      </Text>
+
+      <Text style={styles.heading}>What we believe</Text>
+
+      <Text style={styles.body}>
+        Every human life carries equal dignity. The Quran grants karamah to all children of Adam —
+        not only Muslims. A Palestinian death and an Israeli death carry the same weight. Truth is
+        what happened. Not both sides. Not balance. What happened.
+      </Text>
+
+      <Text style={styles.heading}>What we cover</Text>
+
+      <Text style={styles.body}>
+        Forty sources across six continents. The Associated Press sends 90,000 words daily from New
+        York but takes in only 19,000 from all of Asia. We chose a different center.
+      </Text>
+
+      <Text style={styles.body}>
+        The globe starts in Washington and turns to Mecca — the point toward which two billion
+        people orient themselves, five times a day.
+      </Text>
+
+      <Text style={styles.heading}>Your privacy</Text>
+
+      <Text style={styles.body}>
+        Your data is an amanah — a trust. We hold nothing. No tracking, no accounts, no ads. Nothing
+        collected, nothing sold.
+      </Text>
+
+      <Pressable
+        onPress={() => Linking.openURL('mailto:yunus@edenmind.com')}
+        hitSlop={SPACING.sm}
+        style={({ pressed }) => pressed && { opacity: 0.5 }}
+      >
+        <Text style={styles.dim}>
+          Feedback: <Text style={styles.link}>yunus@edenmind.com</Text>
+        </Text>
+      </Pressable>
+
       <View style={styles.signature}>
         <BrandLogo />
         <Text style={styles.version}>v{VERSION}</Text>
@@ -56,7 +100,16 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: SPACING.screenPadding,
-    paddingTop: SPACING.lg,
+    paddingTop: 0,
+  },
+  heading: {
+    fontFamily: FONT.semiBold,
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.textSecondary,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    textTransform: 'uppercase',
+    marginTop: SPACING.lg,
+    marginBottom: SPACING.sm,
   },
   body: {
     fontFamily: FONT.regular,
@@ -64,10 +117,6 @@ const styles = StyleSheet.create({
     lineHeight: TYPOGRAPHY.sizeBase * TYPOGRAPHY.leadingBody,
     color: COLORS.text,
     marginBottom: SPACING.md,
-  },
-  meta: {
-    marginTop: SPACING.xl,
-    gap: SPACING.sm,
   },
   dim: {
     fontFamily: FONT.regular,

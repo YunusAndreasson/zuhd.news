@@ -20,6 +20,7 @@ interface ArticlePageProps {
   scrollY: SharedValue<number>;
   isNew: boolean;
   onThreadPress?: (article: Article) => void;
+  onSourcePress?: (sourceName: string) => void;
 }
 
 function formatTimeAgo(addedAt: number): string {
@@ -38,6 +39,7 @@ export const ArticlePage = memo(function ArticlePage({
   scrollY,
   isNew,
   onThreadPress,
+  onSourcePress,
 }: ArticlePageProps) {
   const { impact } = useHaptic();
   const timeAgo = formatTimeAgo(article.addedAt);
@@ -107,7 +109,12 @@ export const ArticlePage = memo(function ArticlePage({
         {body}
         <Text style={styles.source}>
           {isNew ? 'NEW · ' : ''}
-          {article.source ? `${article.source.toUpperCase()} · ` : ''}
+          {article.source ? (
+            <Text onPress={() => onSourcePress?.(article.source!)} style={styles.sourceTap}>
+              {article.source.toUpperCase()}
+            </Text>
+          ) : null}
+          {article.source ? ' · ' : ''}
           {timeAgo}
         </Text>
         {article.threadLabel && (
@@ -146,6 +153,10 @@ const styles = StyleSheet.create({
     color: COLORS.textSecondary,
     letterSpacing: TYPOGRAPHY.trackingCaps,
     marginTop: SPACING.lg,
+  },
+  sourceTap: {
+    textDecorationLine: 'underline',
+    textDecorationColor: COLORS.rule,
   },
   thread: {
     fontFamily: FONT.regular,

@@ -20,7 +20,7 @@ import {
   geoOrthographic,
   geoPath,
 } from 'd3-geo';
-import { startTransition, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { startTransition, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
@@ -153,12 +153,17 @@ function getSunPosition(): [number, number] {
 
 // ── Types ──
 
+export interface GlobeRef {
+  recenter: () => void;
+}
+
 interface GlobeProps {
   dots: DotLocation[];
   visible: boolean;
   onDotTap?: (dot: DotLocation, country: string | null) => void;
   onSiteTap?: (index: number) => void;
   onCountryTap?: (name: string) => void;
+  ref?: React.Ref<GlobeRef>;
 }
 
 interface NightLayer {
@@ -196,8 +201,17 @@ interface ProjectionState {
 
 // ── Component ──
 
-export function Globe({ dots, visible, onDotTap, onSiteTap, onCountryTap }: GlobeProps) {
+export function Globe({ dots, visible, onDotTap, onSiteTap, onCountryTap, ref }: GlobeProps) {
   const { impact, notification } = useHaptic();
+
+  useImperativeHandle(ref, () => ({
+    recenter: () => {
+      rotX.value = withTiming(MECCA[0], { duration: 2000, easing: Easing.out(Easing.cubic) });
+      rotY.value = withTiming(-MECCA[1], { duration: 2000, easing: Easing.out(Easing.cubic) });
+      scale.value = withTiming(1, { duration: 500 });
+    },
+  }));
+
   const [size, setSize] = useState({ width: 0, height: 0 });
   const onLayout = useCallback((e: LayoutChangeEvent) => {
     const { width, height } = e.nativeEvent.layout;

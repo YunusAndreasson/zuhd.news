@@ -11,6 +11,7 @@ import { BriefingButton } from '../components/BriefingButton';
 import { CategoryBar } from '../components/CategoryBar';
 import { GlobePage } from '../components/GlobePage';
 import { Toast, type ToastRef } from '../components/Toast';
+import { SOURCES } from '../constants/sources';
 import { CATEGORIES, COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useHaptic } from '../hooks/useHaptic';
@@ -24,6 +25,7 @@ export default function HomeScreen() {
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
   const [threadSheet, setThreadSheet] = useState<Article | null>(null);
+  const [sourceSheet, setSourceSheet] = useState<string | null>(null);
 
   const handleThreadPress = useCallback((article: Article) => {
     impact();
@@ -31,6 +33,12 @@ export default function HomeScreen() {
   }, [impact]);
 
   const dismissThread = useCallback(() => setThreadSheet(null), []);
+
+  const handleSourcePress = useCallback((sourceName: string) => {
+    impact();
+    setSourceSheet(sourceName);
+  }, [impact]);
+  const dismissSource = useCallback(() => setSourceSheet(null), []);
 
   const pagerRef = useRef<PagerView>(null);
   const toastRef = useRef<ToastRef>(null);
@@ -178,6 +186,7 @@ export default function HomeScreen() {
                 lastSeenAt={lastSeenAt}
                 onRefresh={handleRefresh}
                 onThreadPress={handleThreadPress}
+                onSourcePress={handleSourcePress}
                 pagerIdle={pagerIdle}
                 progressesSV={categoryProgresses}
               />
@@ -185,7 +194,12 @@ export default function HomeScreen() {
           </View>
         ))}
         <View key="globe" collapsable={false}>
-          <GlobePage grouped={grouped} visible={currentCategory === CATEGORIES.length} />
+          <GlobePage
+            grouped={grouped}
+            visible={currentCategory === CATEGORIES.length}
+            onRefresh={refresh}
+            onToast={(msg) => toastRef.current?.show(msg)}
+          />
         </View>
         <View key="about" collapsable={false}>
           <AboutPage />
@@ -217,6 +231,27 @@ export default function HomeScreen() {
         </View>
       </Modal>
 
+      {/* Source sheet — shows source info when source name is tapped */}
+      <Modal transparent visible={sourceSheet !== null} animationType="slide">
+        <Pressable style={styles.backdrop} onPress={dismissSource} />
+        <View style={[styles.threadSheet, { paddingBottom: insets.bottom + SPACING.lg }]}>
+          <View style={styles.handle} />
+          {sourceSheet && (() => {
+            const info = SOURCES[sourceSheet];
+            return (
+              <>
+                <Text style={styles.threadArc}>
+                  {info?.type?.toUpperCase() ?? 'NEWS SOURCE'} · {info?.location?.toUpperCase() ?? ''}
+                </Text>
+                <Text style={styles.threadLabel}>{sourceSheet}</Text>
+                {info?.description && (
+                  <Text style={styles.threadSummary}>{info.description}</Text>
+                )}
+              </>
+            );
+          })()}
+        </View>
+      </Modal>
     </View>
   );
 }

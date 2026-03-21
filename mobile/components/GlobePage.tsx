@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Canvas, Circle, Path, Skia } from '@shopify/react-native-skia';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -5,7 +6,7 @@ import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import type { Article, Category } from '../types';
-import { Globe } from './globe/Globe';
+import { Globe, type GlobeRef } from './globe/Globe';
 import { type DotLocation, extractDotLocations } from './globe/storyDots';
 
 const TOOLTIP_MS = 3000;
@@ -59,13 +60,26 @@ interface TooltipData {
 interface GlobePageProps {
   grouped: Record<Category, Article[]>;
   visible: boolean;
+  onRefresh?: () => Promise<number>;
+  onToast?: (msg: string) => void;
 }
 
-export function GlobePage({ grouped, visible }: GlobePageProps) {
+export function GlobePage({ grouped, visible, onRefresh, onToast }: GlobePageProps) {
   const insets = useSafeAreaInsets();
+  const globeRef = useRef<GlobeRef>(null);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const dismissTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const dots = useMemo(() => extractDotLocations(grouped), [grouped]);
+
+  const handleRefresh = useCallback(async () => {
+    globeRef.current?.recenter();
+    try {
+      const n = await onRefresh?.();
+      onToast?.(n && n > 0 ? `${n} new article${n > 1 ? 's' : ''}` : 'Up to date');
+    } catch {
+      onToast?.('Could not refresh');
+    }
+  }, [onRefresh, onToast]);
 
   const showTooltip = useCallback((data: TooltipData) => {
     setTooltip(data);
@@ -106,6 +120,7 @@ export function GlobePage({ grouped, visible }: GlobePageProps) {
   return (
     <View style={styles.container}>
       <Globe
+        ref={globeRef}
         dots={dots}
         visible={visible}
         onDotTap={handleDotTap}
@@ -139,10 +154,17 @@ export function GlobePage({ grouped, visible }: GlobePageProps) {
         </Animated.View>
       )}
 
-      {/* Today's date with moon phase */}
+      {/* Footer: moon phase, date, refresh */}
       <View style={[styles.footer, { paddingBottom: insets.bottom + SPACING.sm }]}>
         <MoonPhase size={10} />
         <Text style={styles.todayLabel}>{HIJRI_DATE} · today's news</Text>
+        <Pressable
+          onPress={handleRefresh}
+          hitSlop={12}
+          style={({ pressed }) => pressed && { opacity: 0.5 }}
+        >
+          <Ionicons name="refresh-outline" size={12} color={COLORS.accent} />
+        </Pressable>
       </View>
     </View>
   );
