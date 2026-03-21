@@ -14,6 +14,7 @@ import {
   type GeoPermissibleObjects,
   type GeoProjection,
   geoCircle,
+  geoContains,
   geoDistance,
   geoOrthographic,
   geoPath,
@@ -32,6 +33,7 @@ import {
 import { feature } from 'topojson-client';
 import type { Topology } from 'topojson-specification';
 import { COLORS } from '../../constants/theme';
+import countriesTopo from '../../data/countries-110m.json';
 import worldTopo from '../../data/world-110m.json';
 import { useHaptic } from '../../hooks/useHaptic';
 import type { DotLocation } from './storyDots';
@@ -39,12 +41,25 @@ import type { DotLocation } from './storyDots';
 // ── Module-level constants (allocated once) ──
 
 const land = feature(worldTopo as unknown as Topology, (worldTopo as any).objects.land);
+const countries = feature(
+  countriesTopo as unknown as Topology,
+  (countriesTopo as any).objects.countries,
+) as unknown as GeoJSON.FeatureCollection;
 const nightCircleGen = geoCircle();
 const DEG = 180 / Math.PI;
 const HALF_PI = Math.PI / 2;
 
 const TO_RAD = Math.PI / 180;
-const AL_AQSA: [number, number] = [35.2354, 31.7761]; // [lng, lat] — Dome of the Rock
+
+// The three holy sites — [lng, lat] for d3-geo
+const MECCA: [number, number] = [39.8262, 21.4225]; // Kaaba
+const MEDINA: [number, number] = [39.6112, 24.4686]; // Al-Masjid an-Nabawi
+const AL_AQSA: [number, number] = [35.2354, 31.7761]; // Dome of the Rock
+const HOLY_SITES = [
+  { coords: MECCA, r: 4, blur: 5, coreR: 1.8 }, // largest — the center
+  { coords: MEDINA, r: 2.5, blur: 3, coreR: 1 },
+  { coords: AL_AQSA, r: 2.5, blur: 3, coreR: 1 },
+] as const;
 
 const NIGHT_LAYERS = [
   { radius: 85, opacity: 0.15 },
@@ -102,7 +117,9 @@ function getSunPosition(): [number, number] {
 interface GlobeProps {
   dots: DotLocation[];
   visible: boolean;
-  onDotTap?: (dot: DotLocation) => void;
+  onDotTap?: (dot: DotLocation, country: string | null) => void;
+  onSiteTap?: (index: number) => void;
+  onCountryTap?: (name: string) => void;
 }
 
 interface NightLayer {
@@ -118,11 +135,20 @@ interface ProjectedDot {
   dotIndex: number; // index into the dots[] prop for tap lookup
 }
 
+interface ProjectedSite {
+  x: number;
+  y: number;
+  r: number;
+  blur: number;
+  coreR: number;
+}
+
 interface ProjectionState {
   landPath: SkPath;
   dots: ProjectedDot[];
-  alAqsa: { x: number; y: number } | null;
-  alAqsaCentered: boolean;
+  holySites: ProjectedSite[];
+  meccaCentered: boolean;
+  highlightPath: SkPath | null;
   nightLayers: NightLayer[];
   sunScreenX: number;
   sunScreenY: number;
@@ -131,8 +157,8 @@ interface ProjectionState {
 
 // ── Component ──
 
-export function Globe({ dots, visible, onDotTap }: GlobeProps) {
-  const { notification } = useHaptic();
+export function Globe({ dots, visible, onDotTap, onSiteTap, onCountryTap }: GlobeProps) {
+  const { impact, notification } = useHaptic();
   const [size, setSize] = useState({ width: 0, height: 0 });
   const onLayout = useCallback((e: LayoutChangeEvent) => {
     const { width, height } = e.nativeEvent.layout;
@@ -144,9 +170,9 @@ export function Globe({ dots, visible, onDotTap }: GlobeProps) {
   const cy = height / 2;
   const baseRadius = Math.min(width, height) / 2.3;
 
-  // Gesture shared values — start offset so the intro rotation lands on Al-Aqsa
-  const rotX = useSharedValue(35.2 - 120); // will animate +120° to center on Al-Aqsa
-  const rotY = useSharedValue(-31.8);
+  // Gesture shared values — start at Washington, animate to Mecca on reveal
+  const rotX = useSharedValue(-77); // Washington DC longitude
+  const rotY = useSharedValue(-38); // Washington DC latitude
   const hasRevealed = useRef(false);
   const wasCentered = useRef(false);
   const scale = useSharedValue(1);
@@ -195,11 +221,24 @@ export function Globe({ dots, visible, onDotTap }: GlobeProps) {
 
   const handleTap = useCallback(
     (x: number, y: number) => {
-      if (!onDotTap) return;
-      const projected = stateRef.current.dots;
-      let bestDist = 30; // max tap radius in points
+      const cur = stateRef.current;
+
+      // Check holy sites first (smaller targets, need priority)
+      for (let i = 0; i < cur.holySites.length; i++) {
+        const site = cur.holySites[i]!;
+        const dx = site.x - x;
+        const dy = site.y - y;
+        if (Math.sqrt(dx * dx + dy * dy) < 25) {
+          impact();
+          onSiteTap?.(i);
+          return;
+        }
+      }
+
+      // Check news dots
+      let bestDist = 30;
       let bestIdx = -1;
-      for (const dot of projected) {
+      for (const dot of cur.dots) {
         const dx = dot.x - x;
         const dy = dot.y - y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -208,11 +247,35 @@ export function Globe({ dots, visible, onDotTap }: GlobeProps) {
           bestIdx = dot.dotIndex;
         }
       }
+      // Find country under tap — reverse-project to lat/lng, then geoContains
+      const proj = projectionRef.current;
+      if (!proj) return;
+      const geo = proj.invert?.([x, y]);
+      if (!geo) return;
+
+      const found = countries.features.find((f) => geoContains(f, geo));
+      const countryName = (found?.properties as any)?.name ?? null;
+
+      if (found) {
+        highlightedCountry.current = found;
+        reprojectRef.current(rotX.value, rotY.value, scale.value);
+        if (highlightTimer.current) clearTimeout(highlightTimer.current);
+        highlightTimer.current = setTimeout(() => {
+          highlightedCountry.current = null;
+          reprojectRef.current(rotX.value, rotY.value, scale.value);
+        }, 3000);
+      }
+
+      // Fire the appropriate callback with country info
       if (bestIdx >= 0) {
-        onDotTap(dots[bestIdx]!);
+        impact();
+        onDotTap?.(dots[bestIdx]!, countryName);
+      } else if (countryName) {
+        impact();
+        onCountryTap?.(countryName);
       }
     },
-    [onDotTap, dots],
+    [onDotTap, onSiteTap, onCountryTap, dots, rotX, rotY, scale, impact],
   );
 
   const tapGesture = useMemo(
@@ -228,6 +291,10 @@ export function Globe({ dots, visible, onDotTap }: GlobeProps) {
     () => Gesture.Race(Gesture.Simultaneous(panGesture, pinchGesture), tapGesture),
     [panGesture, pinchGesture, tapGesture],
   );
+
+  // Currently highlighted country feature — re-projected each frame while active
+  const highlightedCountry = useRef<GeoJSON.Feature | null>(null);
+  const highlightTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   // Cached projection + path generator — mutated in place, never re-created
   const projectionRef = useRef<GeoProjection | null>(null);
@@ -251,8 +318,9 @@ export function Globe({ dots, visible, onDotTap }: GlobeProps) {
   const [state, setState] = useState<ProjectionState>({
     landPath: Skia.Path.Make(),
     dots: [],
-    alAqsa: null,
-    alAqsaCentered: false,
+    holySites: [],
+    meccaCentered: false,
+    highlightPath: null,
     nightLayers: [],
     sunScreenX: 0,
     sunScreenY: 0,
@@ -315,11 +383,35 @@ export function Globe({ dots, visible, onDotTap }: GlobeProps) {
       }
     }
 
-    // Al-Aqsa marker — only visible on near side
-    const aqsaDist = geoDistance(AL_AQSA, center);
-    const aqsaVisible = aqsaDist <= HALF_PI;
-    const aqsaPt = aqsaVisible ? proj(AL_AQSA) : null;
-    const aqsaCentered = aqsaDist < 0.08; // ~5° from center
+    // Holy sites — project visible ones, check if Mecca is centered
+    const sites: ProjectedSite[] = [];
+    let meccaNear = false;
+    for (const site of HOLY_SITES) {
+      const dist = geoDistance(site.coords, center);
+      if (dist > HALF_PI) continue;
+      const pt = proj(site.coords);
+      if (pt) {
+        const isMecca = site.coords === MECCA;
+        const centered = isMecca && dist < 0.08;
+        if (centered) meccaNear = true;
+        sites.push({
+          x: pt[0],
+          y: pt[1],
+          r: centered ? site.r * 1.5 : site.r,
+          blur: centered ? site.blur * 1.5 : site.blur,
+          coreR: centered ? site.coreR * 1.5 : site.coreR,
+        });
+      }
+    }
+
+    // Highlighted country border — only 1 country at a time, ~100 points
+    let highlight: SkPath | null = null;
+    if (highlightedCountry.current) {
+      const hPath = Skia.Path.Make();
+      skiaCtx.setPath(hPath);
+      pg.context(skiaCtx as any)(highlightedCountry.current);
+      highlight = hPath;
+    }
 
     // Night layers
     const [sunLng, sunLat] = getSunPosition();
@@ -349,8 +441,9 @@ export function Globe({ dots, visible, onDotTap }: GlobeProps) {
       setState({
         landPath: landSkPath,
         dots: projected,
-        alAqsa: aqsaPt ? { x: aqsaPt[0], y: aqsaPt[1] } : null,
-        alAqsaCentered: aqsaCentered,
+        holySites: sites,
+        meccaCentered: meccaNear,
+        highlightPath: highlight,
         nightLayers: layers,
         sunScreenX: cx + r * cosLat * Math.sin(dLng),
         sunScreenY: cy - r * (sinLat * Math.cos(viewRy) - cosLat * cosDLng * Math.sin(viewRy)),
@@ -369,19 +462,20 @@ export function Globe({ dots, visible, onDotTap }: GlobeProps) {
     callReproject(rotX.value, rotY.value, scale.value);
   }, [width, baseRadius, dotCoords]); // eslint-disable-line
 
-  // Haptic feedback when Al-Aqsa comes to center
+  // Haptic feedback when Mecca comes to center
   useEffect(() => {
-    if (state.alAqsaCentered && !wasCentered.current) {
+    if (state.meccaCentered && !wasCentered.current) {
       notification();
     }
-    wasCentered.current = state.alAqsaCentered;
-  }, [state.alAqsaCentered, notification]);
+    wasCentered.current = state.meccaCentered;
+  }, [state.meccaCentered, notification]);
 
   // Intro reveal: one slow rotation to Al-Aqsa when the globe tab becomes visible
   useEffect(() => {
     if (visible && !hasRevealed.current && width > 0) {
       hasRevealed.current = true;
-      rotX.value = withTiming(35.2, { duration: 3000, easing: Easing.out(Easing.cubic) });
+      rotX.value = withTiming(MECCA[0], { duration: 3500, easing: Easing.out(Easing.cubic) });
+      rotY.value = withTiming(-MECCA[1], { duration: 3500, easing: Easing.out(Easing.cubic) });
     }
   }, [visible, width]); // eslint-disable-line
 
@@ -439,6 +533,20 @@ export function Globe({ dots, visible, onDotTap }: GlobeProps) {
           <Path path={state.landPath} color="#2a2a2a" />
           <Path path={state.landPath} color="#333333" style="stroke" strokeWidth={0.5} />
 
+          {/* Highlighted country border — flashes on tap, fades after 3s */}
+          {state.highlightPath && (
+            <>
+              <Path path={state.highlightPath} color="#3a3a3a" />
+              <Path
+                path={state.highlightPath}
+                color={COLORS.textSecondary}
+                style="stroke"
+                strokeWidth={1}
+                opacity={0.6}
+              />
+            </>
+          )}
+
           {/* Limb darkening */}
           <Circle cx={cx} cy={cy} r={globeRadius}>
             <RadialGradient
@@ -479,25 +587,15 @@ export function Globe({ dots, visible, onDotTap }: GlobeProps) {
             />
           ))}
 
-          {/* Al-Aqsa — golden dome marker, the only color in the app */}
-          {state.alAqsa && (
-            <Group>
-              <Circle
-                cx={state.alAqsa.x}
-                cy={state.alAqsa.y}
-                r={state.alAqsaCentered ? 5 : 3}
-                color={COLORS.dome}
-              >
-                <BlurMask blur={state.alAqsaCentered ? 6 : 3} style="solid" />
+          {/* Holy sites — Mecca (large), Medina + Al-Aqsa (small) */}
+          {state.holySites.map((site, i) => (
+            <Group key={i}>
+              <Circle cx={site.x} cy={site.y} r={site.r} color={COLORS.dome}>
+                <BlurMask blur={site.blur} style="solid" />
               </Circle>
-              <Circle
-                cx={state.alAqsa.x}
-                cy={state.alAqsa.y}
-                r={state.alAqsaCentered ? 2 : 1.2}
-                color={COLORS.dome}
-              />
+              <Circle cx={site.x} cy={site.y} r={site.coreR} color={COLORS.dome} />
             </Group>
-          )}
+          ))}
         </Canvas>
       </GestureDetector>
     </View>

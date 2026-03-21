@@ -4,7 +4,7 @@ import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATEGORIES, COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
 
-const TAB_LABELS = [...CATEGORIES.map((c) => c.toUpperCase()), 'GLOBE'];
+const TAB_LABELS = [...CATEGORIES.map((c) => c.toUpperCase()), '\u25CF'];
 
 interface TabLayout {
   x: number;
@@ -30,10 +30,15 @@ function TabLabel({
   onPress: () => void;
   onLayout: (e: LayoutChangeEvent) => void;
 }) {
+  const isGlobe = index === TAB_LABELS.length - 1;
   const animatedStyle = useAnimatedStyle(() => {
     'worklet';
     const distance = Math.abs(pagerOffset.value - index);
-    return { color: distance < 0.5 ? COLORS.text : COLORS.textSecondary };
+    const active = distance < 0.5;
+    if (isGlobe) {
+      return { color: active ? COLORS.dome : COLORS.textSecondary };
+    }
+    return { color: active ? COLORS.text : COLORS.textSecondary };
   });
 
   return (
@@ -43,7 +48,9 @@ function TabLabel({
       hitSlop={SPACING.sm}
       style={({ pressed }) => pressed && { opacity: 0.5 }}
     >
-      <Animated.Text style={[styles.tabLabel, animatedStyle]}>{label}</Animated.Text>
+      <Animated.Text style={[styles.tabLabel, isGlobe && styles.tabGlobe, animatedStyle]}>
+        {label}
+      </Animated.Text>
     </Pressable>
   );
 }
@@ -87,7 +94,9 @@ export function CategoryBar({
       tabLayouts.map((l) => l.width),
       'clamp',
     );
-    return { left: x, width: w };
+    // Hide underline on globe tab (track base opacity is 0.15)
+    const isGlobeTab = Math.round(pagerOffset.value) >= TAB_LABELS.length - 1;
+    return { left: x, width: w, opacity: isGlobeTab ? 0 : 0.15 };
   });
 
   const fillPos = useAnimatedStyle(() => {
@@ -98,7 +107,9 @@ export function CategoryBar({
     const progress =
       currentIdx < CATEGORIES.length ? (categoryProgresses.value[currentIdx] ?? 0) : 1;
 
-    return { left: tab?.x ?? 0, width: (tab?.width ?? 0) * progress };
+    // Hide on globe tab
+    const isGlobeTab = currentIdx >= TAB_LABELS.length - 1;
+    return { left: tab?.x ?? 0, width: (tab?.width ?? 0) * progress, opacity: isGlobeTab ? 0 : 1 };
   });
 
   return (
@@ -166,13 +177,16 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizeTab,
     letterSpacing: TYPOGRAPHY.trackingCaps,
   },
+  tabGlobe: {
+    fontSize: TYPOGRAPHY.sizeSm,
+    letterSpacing: 0,
+  },
   track: {
     position: 'absolute',
     bottom: 0,
     height: LAYOUT.progressBarHeight,
     borderRadius: LAYOUT.progressBarHeight,
     backgroundColor: COLORS.white,
-    opacity: 0.15,
   },
   fill: {
     position: 'absolute',

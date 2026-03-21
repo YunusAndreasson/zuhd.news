@@ -10,7 +10,19 @@ import { Globe } from './globe/Globe';
 import { type DotLocation, extractDotLocations } from './globe/storyDots';
 
 const VERSION = Constants.expoConfig?.version ?? '1.0.0';
-const TOOLTIP_MS = 4000;
+const TOOLTIP_MS = 3000;
+
+const HOLY_SITE_INFO = [
+  { name: 'Mecca', desc: 'The Kaaba — direction of prayer for 1.8 billion Muslims' },
+  { name: 'Medina', desc: 'Al-Masjid an-Nabawi — the Prophet\u2019s mosque' },
+  { name: 'Jerusalem', desc: 'Al-Aqsa — the farthest mosque, site of the Night Journey' },
+] as const;
+
+interface TooltipData {
+  titles: string[];
+  subtitle?: string;
+  golden?: boolean;
+}
 
 interface GlobePageProps {
   grouped: Record<Category, Article[]>;
@@ -20,50 +32,81 @@ interface GlobePageProps {
 export function GlobePage({ grouped, visible }: GlobePageProps) {
   const insets = useSafeAreaInsets();
   const [infoVisible, setInfoVisible] = useState(false);
-  const [selectedDot, setSelectedDot] = useState<DotLocation | null>(null);
+  const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const dismissTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const dots = useMemo(() => extractDotLocations(grouped), [grouped]);
 
   const openInfo = useCallback(() => setInfoVisible(true), []);
   const closeInfo = useCallback(() => setInfoVisible(false), []);
 
-  const handleDotTap = useCallback((dot: DotLocation) => {
-    setSelectedDot(dot);
+  const showTooltip = useCallback((data: TooltipData) => {
+    setTooltip(data);
     if (dismissTimer.current) clearTimeout(dismissTimer.current);
-    dismissTimer.current = setTimeout(() => setSelectedDot(null), TOOLTIP_MS);
+    dismissTimer.current = setTimeout(() => setTooltip(null), TOOLTIP_MS);
   }, []);
 
+  const handleDotTap = useCallback(
+    (dot: DotLocation, country: string | null) => {
+      showTooltip({
+        titles: dot.titles,
+        subtitle: country ?? undefined,
+      });
+    },
+    [showTooltip],
+  );
+
+  const handleSiteTap = useCallback(
+    (index: number) => {
+      const site = HOLY_SITE_INFO[index];
+      if (site) showTooltip({ titles: [site.desc], subtitle: site.name, golden: true });
+    },
+    [showTooltip],
+  );
+
+  const handleCountryTap = useCallback(
+    (name: string) => {
+      showTooltip({ titles: [], subtitle: name });
+    },
+    [showTooltip],
+  );
+
   const dismissTooltip = useCallback(() => {
-    setSelectedDot(null);
+    setTooltip(null);
     if (dismissTimer.current) clearTimeout(dismissTimer.current);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Globe dots={dots} visible={visible} onDotTap={handleDotTap} />
+      <Globe
+        dots={dots}
+        visible={visible}
+        onDotTap={handleDotTap}
+        onSiteTap={handleSiteTap}
+        onCountryTap={handleCountryTap}
+      />
 
-      {/* Article titles tooltip — appears on dot tap */}
-      {selectedDot && (
+      {/* Tooltip — appears on dot or holy site tap */}
+      {tooltip && (
         <Animated.View
           entering={FadeIn.duration(200)}
           exiting={FadeOut.duration(200)}
           style={[styles.tooltip, { bottom: insets.bottom + SPACING.xxl }]}
         >
           <Pressable onPress={dismissTooltip}>
-            {selectedDot.titles.map((title, i) => (
+            {tooltip.subtitle && (
+              <Text style={[styles.tooltipCountry, tooltip.golden && styles.tooltipGolden]}>
+                {tooltip.subtitle.toUpperCase()}
+              </Text>
+            )}
+            {tooltip.titles.map((title, i) => (
               <Text
-                key={selectedDot.slugs[i]}
+                key={title}
                 style={[styles.tooltipTitle, i > 0 && styles.tooltipTitleExtra]}
                 numberOfLines={1}
               >
                 {title}
               </Text>
             ))}
-            {selectedDot.count > 1 && (
-              <Text style={styles.tooltipCount}>
-                {selectedDot.count} stories from this location
-              </Text>
-            )}
           </Pressable>
         </Animated.View>
       )}
@@ -128,6 +171,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.md,
     paddingVertical: SPACING.sm,
   },
+  tooltipCountry: {
+    fontFamily: FONT.semiBold,
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.textSecondary,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    marginBottom: SPACING.xs,
+  },
+  tooltipGolden: {
+    color: COLORS.dome,
+  },
   tooltipTitle: {
     fontFamily: FONT.semiBold,
     fontSize: TYPOGRAPHY.sizeSm,
@@ -137,12 +190,6 @@ const styles = StyleSheet.create({
   tooltipTitleExtra: {
     marginTop: SPACING.xs,
     color: COLORS.textSecondary,
-  },
-  tooltipCount: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeXs,
-    color: COLORS.accent,
-    marginTop: SPACING.xs,
   },
   infoButton: {
     position: 'absolute',
