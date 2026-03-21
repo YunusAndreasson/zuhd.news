@@ -116,18 +116,12 @@ export const ArticlePage = memo(function ArticlePage({
           ) : null}
           {article.source ? ' · ' : ''}
           {timeAgo}
-        </Text>
-        {article.threadLabel && (
-          <Pressable
-            onPress={() => onThreadPress?.(article)}
-            hitSlop={8}
-            style={({ pressed }) => pressed && { opacity: 0.5 }}
-          >
-            <Text style={styles.thread} numberOfLines={1}>
-              {article.threadLabel} · day {article.threadDay}
+          {article.threadLabel && (article.threadArticleCount ?? 0) >= 3 && (
+            <Text onPress={() => onThreadPress?.(article)} style={styles.contextTap}>
+              {' · context \u203A'}
             </Text>
-          </Pressable>
-        )}
+          )}
+        </Text>
       </Animated.View>
     </Pressable>
   );
@@ -158,10 +152,7 @@ const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     textDecorationColor: COLORS.rule,
   },
-  thread: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeXs,
+  contextTap: {
     color: COLORS.accent,
-    marginTop: SPACING.xs,
   },
 });

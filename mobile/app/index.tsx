@@ -17,6 +17,13 @@ import { useArticles } from '../hooks/useArticles';
 import { useHaptic } from '../hooks/useHaptic';
 import type { Article } from '../types';
 
+function formatTimeAgo(addedAt: number): string {
+  const hours = Math.floor((Date.now() - addedAt) / 3600000);
+  if (hours < 1) return 'just now';
+  if (hours < 24) return `${hours}h ago`;
+  return new Date(addedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
+}
+
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
@@ -27,10 +34,28 @@ export default function HomeScreen() {
   const [threadSheet, setThreadSheet] = useState<Article | null>(null);
   const [sourceSheet, setSourceSheet] = useState<string | null>(null);
 
-  const handleThreadPress = useCallback((article: Article) => {
-    impact();
-    setThreadSheet(article);
-  }, [impact]);
+  // Collect all articles sharing the same threadId from current feed
+  const getThreadArticles = useCallback(
+    (threadId: string): Article[] => {
+      return Object.values(grouped)
+        .flat()
+        .filter((a) => a.threadId === threadId)
+        .sort((a, b) => b.addedAt - a.addedAt);
+    },
+    [grouped],
+  );
+
+  const [threadArticles, setThreadArticles] = useState<Article[]>([]);
+
+  const handleThreadPress = useCallback(
+    (article: Article) => {
+      if (!article.threadId) return;
+      impact();
+      setThreadArticles(getThreadArticles(article.threadId));
+      setThreadSheet(article);
+    },
+    [impact, getThreadArticles],
+  );
 
   const dismissThread = useCallback(() => setThreadSheet(null), []);
 
@@ -219,12 +244,42 @@ export default function HomeScreen() {
           {threadSheet && (
             <>
               <Text style={styles.threadArc}>
-                {threadSheet.threadArc?.toUpperCase()} · DAY {threadSheet.threadDay} ·{' '}
-                {threadSheet.threadArticleCount} ARTICLES
+                {threadSheet.threadArc?.toUpperCase()} · DAY {threadSheet.threadDay}
               </Text>
               <Text style={styles.threadLabel}>{threadSheet.threadLabel}</Text>
               {threadSheet.threadSummary && (
                 <Text style={styles.threadSummary}>{threadSheet.threadSummary}</Text>
+              )}
+              {threadArticles.length > 1 && (
+                <View style={styles.threadTimeline}>
+                  <Text style={styles.threadTimelineHeader}>
+                    {threadArticles.length} IN YOUR FEED · {threadSheet.threadArticleCount} TOTAL
+                  </Text>
+                  {threadArticles.map((a) => (
+                    <View key={a.slug} style={styles.threadTimelineItem}>
+                      <View
+                        style={[
+                          styles.threadDot,
+                          a.slug === threadSheet.slug && styles.threadDotActive,
+                        ]}
+                      />
+                      <View style={styles.threadTimelineText}>
+                        <Text
+                          style={[
+                            styles.threadTimelineTitle,
+                            a.slug === threadSheet.slug && styles.threadTimelineTitleActive,
+                          ]}
+                          numberOfLines={1}
+                        >
+                          {a.title}
+                        </Text>
+                        <Text style={styles.threadTimelineSource}>
+                          {a.source?.toUpperCase()} · {formatTimeAgo(a.addedAt)}
+                        </Text>
+                      </View>
+                    </View>
+                  ))}
+                </View>
               )}
             </>
           )}
@@ -331,5 +386,52 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizeSm,
     lineHeight: TYPOGRAPHY.sizeSm * TYPOGRAPHY.leadingBody,
     color: COLORS.textSecondary,
+  },
+  threadTimeline: {
+    marginTop: SPACING.lg,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: COLORS.rule,
+    paddingTop: SPACING.md,
+  },
+  threadTimelineHeader: {
+    fontFamily: FONT.semiBold,
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.accent,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    marginBottom: SPACING.md,
+  },
+  threadTimelineItem: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: SPACING.sm,
+    gap: SPACING.sm,
+  },
+  threadDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: COLORS.rule,
+    marginTop: 5,
+  },
+  threadDotActive: {
+    backgroundColor: COLORS.text,
+  },
+  threadTimelineText: {
+    flex: 1,
+  },
+  threadTimelineTitle: {
+    fontFamily: FONT.regular,
+    fontSize: TYPOGRAPHY.sizeSm,
+    color: COLORS.textSecondary,
+  },
+  threadTimelineTitleActive: {
+    fontFamily: FONT.semiBold,
+    color: COLORS.text,
+  },
+  threadTimelineSource: {
+    fontFamily: FONT.regular,
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.accent,
+    marginTop: 2,
   },
 });
