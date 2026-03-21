@@ -3,7 +3,6 @@ import {
   Canvas,
   Circle,
   Group,
-  Oval,
   Path,
   RadialGradient,
   Skia,
@@ -20,7 +19,15 @@ import {
   geoOrthographic,
   geoPath,
 } from 'd3-geo';
-import { startTransition, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import {
+  startTransition,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { type LayoutChangeEvent, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
@@ -102,7 +109,7 @@ const skiaCtx = {
 let cachedMoonPhase = 0;
 let moonPhaseDay = -1;
 
-function getMoonPhase(): number {
+function _getMoonPhase(): number {
   const now = new Date();
   const today = now.getUTCDate();
   if (today === moonPhaseDay) return cachedMoonPhase;
@@ -112,7 +119,8 @@ function getMoonPhase(): number {
   const epoch = 1738151760000;
   const synodicPeriod = 29.53058770576;
   const daysSinceEpoch = (now.getTime() - epoch) / 86400000;
-  cachedMoonPhase = ((daysSinceEpoch % synodicPeriod) + synodicPeriod) % synodicPeriod / synodicPeriod;
+  cachedMoonPhase =
+    (((daysSinceEpoch % synodicPeriod) + synodicPeriod) % synodicPeriod) / synodicPeriod;
   return cachedMoonPhase;
 }
 
@@ -120,7 +128,7 @@ function getMoonPhase(): number {
 let cachedHijriDate = '';
 let hijriDateDay = -1;
 
-function getHijriDate(): string {
+function _getHijriDate(): string {
   const now = new Date();
   const today = now.getUTCDate();
   if (today === hijriDateDay) return cachedHijriDate;
@@ -129,7 +137,9 @@ function getHijriDate(): string {
   cachedHijriDate = new Intl.DateTimeFormat('en-u-ca-islamic', {
     day: 'numeric',
     month: 'long',
-  }).format(now).replace(' AH', '');
+  })
+    .format(now)
+    .replace(' AH', '');
   return cachedHijriDate;
 }
 
@@ -202,7 +212,15 @@ interface ProjectionState {
 
 // ── Component ──
 
-export function Globe({ dots, visible, onDotTap, onSiteTap, onCountryTap, onEmptyTap, ref }: GlobeProps) {
+export function Globe({
+  dots,
+  visible,
+  onDotTap,
+  onSiteTap,
+  onCountryTap,
+  onEmptyTap,
+  ref,
+}: GlobeProps) {
   const { impact, notification } = useHaptic();
 
   useImperativeHandle(ref, () => ({
@@ -331,7 +349,7 @@ export function Globe({ dots, visible, onDotTap, onSiteTap, onCountryTap, onEmpt
         onEmptyTap?.();
       }
     },
-    [onDotTap, onSiteTap, onCountryTap, dots, rotX, rotY, scale, impact],
+    [onDotTap, onSiteTap, onCountryTap, dots, rotX, rotY, scale, impact, onEmptyTap],
   );
 
   const tapGesture = useMemo(
@@ -652,7 +670,6 @@ export function Globe({ dots, visible, onDotTap, onSiteTap, onCountryTap, onEmpt
               <Circle cx={site.x} cy={site.y} r={site.coreR} color={COLORS.dome} />
             </Group>
           ))}
-
         </Canvas>
       </GestureDetector>
     </View>

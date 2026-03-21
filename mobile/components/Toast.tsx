@@ -1,5 +1,5 @@
 import { useCallback, useImperativeHandle, useRef, useState } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -10,17 +10,18 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 
 export interface ToastRef {
-  show: (message: string) => void;
+  show: (message: string, onPress?: () => void) => void;
 }
 
-const TOAST_VISIBLE_MS = 2500;
+const TOAST_VISIBLE_MS = 4000;
 const TOAST_SLIDE_OFFSET = SPACING.xxl;
 
 export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
   const insets = useSafeAreaInsets();
   const [message, setMessage] = useState('');
+  const onPressRef = useRef<(() => void) | undefined>(undefined);
   const opacity = useSharedValue(0);
-  const translateY = useSharedValue(TOAST_SLIDE_OFFSET);
+  const translateY = useSharedValue<number>(TOAST_SLIDE_OFFSET);
 
   const dismiss = useCallback(() => {
     opacity.value = withTiming(0);
@@ -30,14 +31,20 @@ export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
   const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useImperativeHandle(ref, () => ({
-    show: (msg: string) => {
+    show: (msg: string, onPress?: () => void) => {
       if (timerRef.current) clearTimeout(timerRef.current);
       setMessage(msg);
+      onPressRef.current = onPress;
       opacity.value = withTiming(1);
       translateY.value = withSpring(0);
       timerRef.current = setTimeout(dismiss, TOAST_VISIBLE_MS);
     },
   }));
+
+  const handlePress = useCallback(() => {
+    onPressRef.current?.();
+    dismiss();
+  }, [dismiss]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     opacity: opacity.value,
@@ -47,9 +54,11 @@ export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
   return (
     <Animated.View
       style={[styles.container, { bottom: insets.bottom + SPACING.xl }, animatedStyle]}
-      pointerEvents="none"
+      pointerEvents="auto"
     >
-      <Text style={styles.text}>{message}</Text>
+      <Pressable onPress={handlePress} style={({ pressed }) => pressed && { opacity: 0.5 }}>
+        <Text style={styles.text}>{message}</Text>
+      </Pressable>
     </Animated.View>
   );
 }

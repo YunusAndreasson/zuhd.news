@@ -1,7 +1,7 @@
-import Constants from 'expo-constants';
+import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
 import { createRef, useCallback, useEffect, useRef, useState } from 'react';
-import { AppState, type LayoutChangeEvent, Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { AppState, type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -28,13 +28,17 @@ const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
   const { grouped, briefing, loading, error, refresh, retry } = useArticles();
-  const { impact, notification } = useHaptic();
+  const { impact } = useHaptic();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
+
+  // Sheet refs
+  const threadSheetRef = useRef<BottomSheetModal>(null);
+  const sourceSheetRef = useRef<BottomSheetModal>(null);
   const [threadSheet, setThreadSheet] = useState<Article | null>(null);
+  const [threadArticles, setThreadArticles] = useState<Article[]>([]);
   const [sourceSheet, setSourceSheet] = useState<string | null>(null);
 
-  // Collect all articles sharing the same threadId from current feed
   const getThreadArticles = useCallback(
     (threadId: string): Article[] => {
       return Object.values(grouped)
@@ -45,25 +49,25 @@ export default function HomeScreen() {
     [grouped],
   );
 
-  const [threadArticles, setThreadArticles] = useState<Article[]>([]);
-
   const handleThreadPress = useCallback(
     (article: Article) => {
       if (!article.threadId) return;
       impact();
-      setThreadArticles(getThreadArticles(article.threadId));
       setThreadSheet(article);
+      setThreadArticles(getThreadArticles(article.threadId));
+      threadSheetRef.current?.present();
     },
     [impact, getThreadArticles],
   );
 
-  const dismissThread = useCallback(() => setThreadSheet(null), []);
-
-  const handleSourcePress = useCallback((sourceName: string) => {
-    impact();
-    setSourceSheet(sourceName);
-  }, [impact]);
-  const dismissSource = useCallback(() => setSourceSheet(null), []);
+  const handleSourcePress = useCallback(
+    (sourceName: string) => {
+      impact();
+      setSourceSheet(sourceName);
+      sourceSheetRef.current?.present();
+    },
+    [impact],
+  );
 
   const pagerRef = useRef<PagerView>(null);
   const toastRef = useRef<ToastRef>(null);
@@ -120,11 +124,10 @@ export default function HomeScreen() {
       .then((n) => {
         if (n > 0) {
           toastRef.current?.show(`${n} new article${n > 1 ? 's' : ''}`);
-          notification();
         }
       })
       .catch(() => {});
-  }, [refresh, notification]);
+  }, [refresh]);
 
   const handleRefresh = useCallback(async () => {
     impact();
@@ -132,14 +135,13 @@ export default function HomeScreen() {
       const n = await refresh();
       if (n > 0) {
         toastRef.current?.show(`${n} new article${n > 1 ? 's' : ''}`);
-        notification();
       } else {
         toastRef.current?.show('Already up to date');
       }
     } catch {
       toastRef.current?.show('Could not refresh');
     }
-  }, [impact, refresh, notification]);
+  }, [impact, refresh]);
 
   // Silent refresh: on foreground + every 30 min
   useEffect(() => {
@@ -182,6 +184,8 @@ export default function HomeScreen() {
     );
   }
 
+  const sourceInfo = sourceSheet ? SOURCES[sourceSheet] : null;
+
   return (
     <View style={styles.screen}>
       <CategoryBar
@@ -209,7 +213,12 @@ export default function HomeScreen() {
                 viewportHeight={pagerHeight}
                 catIndex={catIndex}
                 onRefresh={handleRefresh}
-                onEndReached={() => toastRef.current?.show('Then it stops.')}
+                onEndReached={() =>
+                  toastRef.current?.show(
+                    `All ${grouped[cat].length} articles \u00B7 tap to scroll up`,
+                    () => listRefs[catIndex]?.current?.scrollToTop(),
+                  )
+                }
                 onThreadPress={handleThreadPress}
                 onSourcePress={handleSourcePress}
                 pagerIdle={pagerIdle}
@@ -236,44 +245,50 @@ export default function HomeScreen() {
       )}
       <Toast ref={toastRef} />
 
-      {/* Thread sheet — shows story context when thread label is tapped */}
-      <Modal transparent visible={threadSheet !== null} animationType="slide">
-        <Pressable style={styles.backdrop} onPress={dismissThread} />
-        <View style={[styles.threadSheet, { paddingBottom: insets.bottom + SPACING.lg }]}>
-          <View style={styles.handle} />
+      {/* Thread sheet */}
+      <BottomSheetModal
+        ref={threadSheetRef}
+        enableDynamicSizing
+        enablePanDownToClose
+        backgroundStyle={styles.sheetBg}
+        handleIndicatorStyle={styles.sheetHandle}
+      >
+        <BottomSheetView
+          style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
+        >
           {threadSheet && (
             <>
-              <Text style={styles.threadArc}>
+              <Text style={styles.sheetLabel}>
                 {threadSheet.threadArc?.toUpperCase()} · DAY {threadSheet.threadDay}
               </Text>
-              <Text style={styles.threadLabel}>{threadSheet.threadLabel}</Text>
+              <Text style={styles.sheetTitle}>{threadSheet.threadLabel}</Text>
               {threadSheet.threadSummary && (
-                <Text style={styles.threadSummary}>{threadSheet.threadSummary}</Text>
+                <Text style={styles.sheetBody}>{threadSheet.threadSummary}</Text>
               )}
               {threadArticles.length > 1 && (
-                <View style={styles.threadTimeline}>
-                  <Text style={styles.threadTimelineHeader}>
+                <View style={styles.timeline}>
+                  <Text style={styles.timelineHeader}>
                     {threadArticles.length} IN YOUR FEED · {threadSheet.threadArticleCount} TOTAL
                   </Text>
                   {threadArticles.map((a) => (
-                    <View key={a.slug} style={styles.threadTimelineItem}>
+                    <View key={a.slug} style={styles.timelineItem}>
                       <View
                         style={[
-                          styles.threadDot,
-                          a.slug === threadSheet.slug && styles.threadDotActive,
+                          styles.timelineDot,
+                          a.slug === threadSheet.slug && styles.timelineDotActive,
                         ]}
                       />
-                      <View style={styles.threadTimelineText}>
+                      <View style={styles.timelineText}>
                         <Text
                           style={[
-                            styles.threadTimelineTitle,
-                            a.slug === threadSheet.slug && styles.threadTimelineTitleActive,
+                            styles.timelineTitle,
+                            a.slug === threadSheet.slug && styles.timelineTitleActive,
                           ]}
                           numberOfLines={1}
                         >
                           {a.title}
                         </Text>
-                        <Text style={styles.threadTimelineSource}>
+                        <Text style={styles.timelineSource}>
                           {a.source?.toUpperCase()} · {formatTimeAgo(a.addedAt)}
                         </Text>
                       </View>
@@ -283,30 +298,31 @@ export default function HomeScreen() {
               )}
             </>
           )}
-        </View>
-      </Modal>
+        </BottomSheetView>
+      </BottomSheetModal>
 
-      {/* Source sheet — shows source info when source name is tapped */}
-      <Modal transparent visible={sourceSheet !== null} animationType="slide">
-        <Pressable style={styles.backdrop} onPress={dismissSource} />
-        <View style={[styles.threadSheet, { paddingBottom: insets.bottom + SPACING.lg }]}>
-          <View style={styles.handle} />
-          {sourceSheet && (() => {
-            const info = SOURCES[sourceSheet];
-            return (
-              <>
-                <Text style={styles.threadArc}>
-                  {info?.type?.toUpperCase() ?? 'NEWS SOURCE'} · {info?.location?.toUpperCase() ?? ''}
-                </Text>
-                <Text style={styles.threadLabel}>{sourceSheet}</Text>
-                {info?.description && (
-                  <Text style={styles.threadSummary}>{info.description}</Text>
-                )}
-              </>
-            );
-          })()}
-        </View>
-      </Modal>
+      {/* Source sheet */}
+      <BottomSheetModal
+        ref={sourceSheetRef}
+        enableDynamicSizing
+        enablePanDownToClose
+        backgroundStyle={styles.sheetBg}
+        handleIndicatorStyle={styles.sheetHandle}
+      >
+        <BottomSheetView
+          style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
+        >
+          {sourceInfo && (
+            <>
+              <Text style={styles.sheetLabel}>
+                {sourceInfo.type.toUpperCase()} · {sourceInfo.location.toUpperCase()}
+              </Text>
+              <Text style={styles.sheetTitle}>{sourceSheet}</Text>
+              <Text style={styles.sheetBody}>{sourceInfo.description}</Text>
+            </>
+          )}
+        </BottomSheetView>
+      </BottomSheetModal>
     </View>
   );
 }
@@ -350,85 +366,78 @@ const styles = StyleSheet.create({
     color: COLORS.text,
     marginTop: SPACING.lg,
   },
-  backdrop: {
-    flex: 1,
-  },
-  handle: {
-    width: 36,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: COLORS.rule,
-    alignSelf: 'center',
-    marginBottom: SPACING.lg,
-  },
-  threadSheet: {
+  // Bottom sheets
+  sheetBg: {
     backgroundColor: '#1c1c1c',
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-    padding: SPACING.screenPadding,
-    paddingTop: SPACING.md,
   },
-  threadArc: {
+  sheetHandle: {
+    backgroundColor: COLORS.rule,
+    width: 36,
+  },
+  sheetContent: {
+    padding: SPACING.screenPadding,
+  },
+  sheetLabel: {
     fontFamily: FONT.semiBold,
     fontSize: TYPOGRAPHY.sizeXs,
     color: COLORS.textSecondary,
     letterSpacing: TYPOGRAPHY.trackingCaps,
     marginBottom: SPACING.sm,
   },
-  threadLabel: {
+  sheetTitle: {
     fontFamily: FONT.bold,
     fontSize: TYPOGRAPHY.sizeBase,
     color: COLORS.text,
     marginBottom: SPACING.sm,
   },
-  threadSummary: {
+  sheetBody: {
     fontFamily: FONT.regular,
     fontSize: TYPOGRAPHY.sizeSm,
     lineHeight: TYPOGRAPHY.sizeSm * TYPOGRAPHY.leadingBody,
     color: COLORS.textSecondary,
   },
-  threadTimeline: {
+  timeline: {
     marginTop: SPACING.lg,
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: COLORS.rule,
     paddingTop: SPACING.md,
   },
-  threadTimelineHeader: {
+  timelineHeader: {
     fontFamily: FONT.semiBold,
     fontSize: TYPOGRAPHY.sizeXs,
     color: COLORS.accent,
     letterSpacing: TYPOGRAPHY.trackingCaps,
     marginBottom: SPACING.md,
   },
-  threadTimelineItem: {
+  timelineItem: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     marginBottom: SPACING.sm,
     gap: SPACING.sm,
   },
-  threadDot: {
+  timelineDot: {
     width: 6,
     height: 6,
     borderRadius: 3,
     backgroundColor: COLORS.rule,
     marginTop: 5,
   },
-  threadDotActive: {
+  timelineDotActive: {
     backgroundColor: COLORS.text,
   },
-  threadTimelineText: {
+  timelineText: {
     flex: 1,
   },
-  threadTimelineTitle: {
+  timelineTitle: {
     fontFamily: FONT.regular,
     fontSize: TYPOGRAPHY.sizeSm,
     color: COLORS.textSecondary,
   },
-  threadTimelineTitleActive: {
+  timelineTitleActive: {
     fontFamily: FONT.semiBold,
     color: COLORS.text,
   },
-  threadTimelineSource: {
+  timelineSource: {
     fontFamily: FONT.regular,
     fontSize: TYPOGRAPHY.sizeXs,
     color: COLORS.accent,

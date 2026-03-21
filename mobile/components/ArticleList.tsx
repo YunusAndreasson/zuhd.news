@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useImperativeHandle, useState } from 'react';
 import { RefreshControl, StyleSheet, View } from 'react-native';
 import Animated, {
   runOnJS,
@@ -11,12 +11,11 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CATEGORIES, COLORS, LAYOUT, SPACING } from '../constants/theme';
+import { CATEGORIES, COLORS, LAYOUT } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { getReadingPositions, saveReadingPosition } from '../lib/storage';
 import type { Article } from '../types';
 import { ArticlePage } from './ArticlePage';
-import { CaughtUp } from './CaughtUp';
 
 export interface ArticleListRef {
   scrollToTop: () => void;
@@ -53,7 +52,7 @@ export const ArticleList = memo(function ArticleList({
   const itemHeight = viewportHeight - LAYOUT.peekHeight;
   const scrollY = useSharedValue(0);
   const listRef = useAnimatedRef<Animated.FlatList<Article>>();
-  const [atEnd, setAtEnd] = useState(false);
+  const [_atEnd, setAtEnd] = useState(false);
   const atEndSV = useSharedValue(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const overscrollFired = useSharedValue(false);

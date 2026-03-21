@@ -9,7 +9,6 @@ import type { Article, Category } from '../types';
 import { Globe, type GlobeRef } from './globe/Globe';
 import { type DotLocation, extractDotLocations } from './globe/storyDots';
 
-
 const HIJRI_DATE = new Intl.DateTimeFormat('en-u-ca-islamic', {
   day: 'numeric',
   month: 'long',
@@ -20,7 +19,8 @@ const HIJRI_DATE = new Intl.DateTimeFormat('en-u-ca-islamic', {
 // Moon phase: 0 = new, 0.5 = full, 1 = new again
 const MOON_EPOCH = 1738151760000; // Jan 29, 2025 12:36 UTC (known new moon)
 const SYNODIC = 29.53058770576;
-const MOON_PHASE = (((Date.now() - MOON_EPOCH) / 86400000) % SYNODIC + SYNODIC) % SYNODIC / SYNODIC;
+const MOON_PHASE =
+  (((((Date.now() - MOON_EPOCH) / 86400000) % SYNODIC) + SYNODIC) % SYNODIC) / SYNODIC;
 
 function MoonPhase({ size = 10 }: { size?: number }) {
   const r = size / 2;
@@ -29,11 +29,7 @@ function MoonPhase({ size = 10 }: { size?: number }) {
 
   const p = Skia.Path.Make();
   p.addArc({ x: 0, y: 0, width: size, height: size }, -90, 180);
-  p.addArc(
-    { x: r - tW, y: 0, width: tW * 2, height: size },
-    90,
-    sweep > 0 ? 180 : -180,
-  );
+  p.addArc({ x: r - tW, y: 0, width: tW * 2, height: size }, 90, sweep > 0 ? 180 : -180);
   p.close();
 
   return (
@@ -110,7 +106,6 @@ export function GlobePage({ grouped, visible, onRefresh, onToast }: GlobePagePro
 
   const dismissTooltip = useCallback(() => {
     setTooltip(null);
-    if (dismissTimer.current) clearTimeout(dismissTimer.current);
   }, []);
 
   return (

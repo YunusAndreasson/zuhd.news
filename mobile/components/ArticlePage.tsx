@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { memo, useCallback, useMemo } from 'react';
 import { Share, StyleSheet, Text, View } from 'react-native';
 import Animated, {
@@ -8,7 +9,6 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { Ionicons } from '@expo/vector-icons';
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { renderSentences } from '../lib/markdown';
@@ -122,13 +122,11 @@ export const ArticlePage = memo(function ArticlePage({
           <View style={styles.metaGroup}>
             {article.threadLabel && (article.threadArticleCount ?? 0) >= 3 ? (
               <Text onPress={() => onThreadPress?.(article)} style={styles.metaTap}>
-                story{' '}
-                <Ionicons name="chevron-down" size={8} color={COLORS.accent} />
+                story <Ionicons name="chevron-down" size={8} color={COLORS.accent} />
               </Text>
             ) : null}
             <Text onPress={handleShare} style={styles.metaTap}>
-              share{' '}
-              <Ionicons name="arrow-up-outline" size={8} color={COLORS.accent} />
+              share <Ionicons name="arrow-up-outline" size={8} color={COLORS.accent} />
             </Text>
           </View>
         </View>
@@ -140,7 +138,7 @@ export const ArticlePage = memo(function ArticlePage({
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: SPACING.screenPadding,
-    paddingTop: SPACING.lg,
+    paddingTop: SPACING.xxl,
     overflow: 'hidden',
   },
   title: {
@@ -169,9 +167,8 @@ const styles = StyleSheet.create({
     color: COLORS.accent,
   },
   metaDim: {
-    fontFamily: FONT.regular,
+    fontFamily: FONT.smallCaps,
     fontSize: TYPOGRAPHY.sizeSm,
     color: COLORS.accent,
-    top: 1,
   },
 });
