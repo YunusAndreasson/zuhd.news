@@ -4,7 +4,7 @@ import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATEGORIES, COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
 
-const TAB_LABELS = [...CATEGORIES.map((c) => c.toUpperCase()), 'ABOUT'];
+const TAB_LABELS = [...CATEGORIES.map((c) => c.toUpperCase()), 'GLOBE'];
 
 interface TabLayout {
   x: number;

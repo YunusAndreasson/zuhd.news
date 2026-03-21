@@ -3,10 +3,10 @@ import { createRef, useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
-import { AboutPage } from '../components/AboutPage';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
 import { BriefingButton } from '../components/BriefingButton';
 import { CategoryBar } from '../components/CategoryBar';
+import { GlobePage } from '../components/GlobePage';
 import { Toast, type ToastRef } from '../components/Toast';
 import { CATEGORIES, COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
@@ -170,8 +170,8 @@ export default function HomeScreen() {
             )}
           </View>
         ))}
-        <View key="about" collapsable={false}>
-          <AboutPage />
+        <View key="globe" collapsable={false}>
+          <GlobePage grouped={grouped} />
         </View>
       </PagerView>
 

@@ -23,6 +23,17 @@
       }
     }
   },
+  "files": {
+    "includes": [
+      "app/**",
+      "components/**",
+      "constants/**",
+      "hooks/**",
+      "lib/**",
+      "scripts/**",
+      "types.ts"
+    ]
+  },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
