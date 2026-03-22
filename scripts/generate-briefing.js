@@ -160,12 +160,31 @@ const MAX_BYTES = 4800
 const innerSsml = ssml.replace(/^<speak>\s*/, '').replace(/\s*<\/speak>\s*$/, '')
 const segments = innerSsml.split(/(?=<break\s[^>]*\/>)/)
 
+// Track open wrapper tags (<p>, <prosody>) so we can close/reopen at chunk boundaries
+function getOpenTags(ssmlFragment) {
+  const opens = [...ssmlFragment.matchAll(/<(p|prosody)(\s[^>]*)?>/g)].map(m => m[0])
+  const closes = [...ssmlFragment.matchAll(/<\/(p|prosody)>/g)]
+  // For each close, remove the last matching open
+  const stack = [...opens]
+  for (const c of closes) {
+    const tag = c[0].match(/<\/(\w+)>/)[1]
+    for (let i = stack.length - 1; i >= 0; i--) {
+      if (stack[i].startsWith(`<${tag}`)) { stack.splice(i, 1); break }
+    }
+  }
+  return stack
+}
+
 const chunks = []
 let current = ''
 for (const seg of segments) {
   if (Buffer.byteLength(`<speak>${current}${seg}</speak>`, 'utf-8') > MAX_BYTES && current) {
-    chunks.push(`<speak>${current}</speak>`)
-    current = seg
+    // Close any open wrapper tags before ending this chunk
+    const openTags = getOpenTags(current)
+    const closeTags = openTags.reverse().map(t => `</${t.match(/<(\w+)/)[1]}>`)
+    chunks.push(`<speak>${current}${closeTags.join('')}</speak>`)
+    // Reopen the same tags at the start of the next chunk
+    current = openTags.reverse().join('') + seg
   } else {
     current += seg
   }
