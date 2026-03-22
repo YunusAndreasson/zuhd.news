@@ -7,10 +7,17 @@ import { useHaptic } from '../hooks/useHaptic';
 
 interface BriefingButtonProps {
   playing: boolean;
+  remaining: number;
   onPress: () => void;
 }
 
-export const BriefingButton = memo(function BriefingButton({ playing, onPress }: BriefingButtonProps) {
+function formatRemaining(s: number): string {
+  const m = Math.floor(s / 60);
+  const sec = s % 60;
+  return `${m}:${sec.toString().padStart(2, '0')}`;
+}
+
+export const BriefingButton = memo(function BriefingButton({ playing, remaining, onPress }: BriefingButtonProps) {
   const insets = useSafeAreaInsets();
   const { impact } = useHaptic();
 
@@ -31,7 +38,7 @@ export const BriefingButton = memo(function BriefingButton({ playing, onPress }:
           color={COLORS.accent}
           style={{ marginTop: 2 }}
         />
-        <Text style={styles.label}>briefing</Text>
+        <Text style={styles.label}>{playing && remaining > 0 ? formatRemaining(remaining) : 'briefing'}</Text>
       </View>
     </Pressable>
   );

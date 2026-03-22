@@ -1,20 +1,33 @@
+import { Asset } from 'expo-asset';
+import {
+  createAudioPlayer,
+  setAudioModeAsync,
+  setIsAudioActiveAsync,
+  type AudioPlayer,
+} from 'expo-audio';
+import { getItemAsync, setItemAsync } from 'expo-secure-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { API_BASE } from '../constants/theme';
-import { getItemAsync, setItemAsync } from 'expo-secure-store';
 
 const POSITION_KEY = 'zuhd_briefing_pos';
 const DATE_KEY = 'zuhd_briefing_date';
+const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
+
+const icon = require('../assets/icon.png');
 
 interface BriefingPlayer {
   playing: boolean;
+  remaining: number; // seconds remaining, 0 if unknown
   toggle: () => void;
 }
 
 export function useBriefingPlayer(date: string | undefined): BriefingPlayer {
   const [playing, setPlaying] = useState(false);
-  const playerRef = useRef<any>(null);
+  const [remaining, setRemaining] = useState(0);
+  const playerRef = useRef<AudioPlayer | null>(null);
   const subRef = useRef<any>(null);
   const savedDate = useRef<string | null>(null);
+  const lockScreenActive = useRef(false);
 
   // Clean up on unmount
   useEffect(() => {
@@ -36,12 +49,24 @@ export function useBriefingPlayer(date: string | undefined): BriefingPlayer {
     } catch {}
   }, []);
 
+  const activateLockScreen = useCallback(async (player: AudioPlayer) => {
+    if (lockScreenActive.current) return;
+    try {
+      const assets = await Asset.loadAsync(icon);
+      const artworkUrl = assets[0]?.localUri ?? assets[0]?.uri;
+      player.setActiveForLockScreen(true, {
+        title: 'Daily Briefing',
+        artist: 'zuhd.news',
+        ...(artworkUrl ? { artworkUrl } : {}),
+      });
+      lockScreenActive.current = true;
+    } catch {}
+  }, []);
+
   const toggle = useCallback(async () => {
     if (!date) return;
 
     try {
-      const { createAudioPlayer, setAudioModeAsync } = require('expo-audio');
-
       if (playerRef.current) {
         if (playing) {
           savePosition();
@@ -54,31 +79,33 @@ export function useBriefingPlayer(date: string | undefined): BriefingPlayer {
         return;
       }
 
-      // First play — create player
-      await setAudioModeAsync({ playsInSilentMode: true });
-      const player = createAudioPlayer({
-        uri: `${API_BASE}/audio/briefing-${date}.mp3`,
+      // Configure audio session
+      await setAudioModeAsync({
+        playsInSilentMode: true,
+        shouldPlayInBackground: true,
+      });
+      await setIsAudioActiveAsync(true);
+
+      // Create player with periodic status updates for countdown
+      const player = createAudioPlayer(`${API_BASE}/audio/briefing-${date}.mp3`, {
+        updateInterval: 500,
       });
 
-      // Lock screen controls with artwork
-      try {
-        const { Asset } = require('expo-asset');
-        const [icon] = await Asset.loadAsync(require('../assets/icon.png'));
-        player.setActiveForLockScreen(true, {
-          title: `Daily Briefing — ${date}`,
-          artist: 'zuhd.news',
-          artworkUrl: icon.localUri ?? icon.uri,
-        });
-      } catch {}
-
-      // Listen for playback end
-      subRef.current = player.addListener('playbackStatusUpdate', (status: any) => {
-        if (status.didJustFinish) {
-          setPlaying(false);
-          // Clear saved position on completion
-          setItemAsync(POSITION_KEY, '0');
-        }
-      });
+      // Event subscription BEFORE play
+      subRef.current = player.addListener(
+        PLAYBACK_STATUS_UPDATE,
+        (status: { playing?: boolean; currentTime?: number; duration?: number; didJustFinish?: boolean }) => {
+          if (status.didJustFinish) {
+            setPlaying(false);
+            setRemaining(0);
+            lockScreenActive.current = false;
+            setItemAsync(POSITION_KEY, '0');
+          } else if (status.duration && status.duration > 0) {
+            const left = Math.ceil(status.duration - (status.currentTime ?? 0));
+            setRemaining(left > 0 ? left : 0);
+          }
+        },
+      );
 
       // Restore position if same date
       try {
@@ -88,20 +115,22 @@ export function useBriefingPlayer(date: string | undefined): BriefingPlayer {
         ]);
         if (savedDateStr === date && savedPos) {
           const pos = parseInt(savedPos, 10);
-          if (pos > 0) {
-            player.seekTo(pos);
-          }
+          if (pos > 0) player.seekTo(pos);
         }
       } catch {}
 
+      // Play
       savedDate.current = date;
       playerRef.current = player;
       player.play();
       setPlaying(true);
+
+      // Lock screen AFTER play
+      activateLockScreen(player);
     } catch {
       // expo-audio unavailable
     }
-  }, [date, playing, savePosition]);
+  }, [date, playing, savePosition, activateLockScreen]);
 
-  return { playing, toggle };
+  return { playing, remaining, toggle };
 }
