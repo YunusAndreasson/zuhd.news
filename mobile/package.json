@@ -1,6 +1,6 @@
 {
   "name": "mobile",
-  "version": "1.0.0",
+  "version": "1447.10.3+5",
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
@@ -48,6 +48,7 @@
     "@types/react": "~19.2.2",
     "@types/topojson-client": "^3.1.5",
     "@types/topojson-specification": "^1.0.5",
+    "moment-hijri": "^3.0.0",
     "typescript": "~5.9.2"
   },
   "private": true

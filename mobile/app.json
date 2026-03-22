@@ -2,7 +2,7 @@
   "expo": {
     "name": "zuhd.news",
     "slug": "zuhd-news",
-    "version": "1.0.0",
+    "version": "1447.10.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
@@ -11,9 +11,12 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
-      "buildNumber": "3",
+      "buildNumber": "5",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "UIBackgroundModes": [
+          "audio"
+        ]
       }
     },
     "android": {
@@ -24,7 +27,7 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "versionCode": 1,
+      "versionCode": 5,
       "permissions": []
     },
     "plugins": [
@@ -33,7 +36,9 @@
       [
         "expo-audio",
         {
-          "microphonePermission": false
+          "microphonePermission": false,
+          "recordAudioAndroid": false,
+          "enableBackgroundPlayback": true
         }
       ],
       [
