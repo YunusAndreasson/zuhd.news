@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { RefreshControl, StyleSheet, View } from 'react-native';
 import Animated, {
   runOnJS,
@@ -28,10 +28,10 @@ interface ArticleListProps {
   lastSeenAt: number;
   onRefresh: () => Promise<void>;
   onEndReached?: () => void;
-  onThreadPress?: (article: Article) => void;
   onSourcePress?: (sourceName: string) => void;
   pagerIdle: React.RefObject<boolean>;
   progressesSV: SharedValue<number[]>;
+  tick?: number;
   ref?: React.Ref<ArticleListRef>;
 }
 
@@ -40,18 +40,22 @@ export const ArticleList = memo(function ArticleList({
   viewportHeight,
   catIndex,
   lastSeenAt,
-  onThreadPress,
   onSourcePress,
   onRefresh,
   onEndReached,
   pagerIdle,
   progressesSV,
+  tick,
   ref,
 }: ArticleListProps) {
   const insets = useSafeAreaInsets();
   const { impact: hapticSnap, notification: hapticComplete } = useHaptic();
   const articleCount = articles.length;
   const itemHeight = viewportHeight - LAYOUT.peekHeight;
+  const contentStyle = useMemo(
+    () => ({ paddingBottom: LAYOUT.peekHeight + insets.bottom }),
+    [insets.bottom],
+  );
   const scrollY = useSharedValue(0);
   const listRef = useAnimatedRef<Animated.FlatList<Article>>();
   const atEndSV = useSharedValue(false);
@@ -84,6 +88,7 @@ export const ArticleList = memo(function ArticleList({
     const cat = CATEGORIES[catIndex];
     if (cat && currentIndex > 0) saveReadingPosition(cat, currentIndex);
   }, [currentIndex, catIndex]);
+
 
   const handleRefresh = useCallback(async () => {
     setLocalRefreshing(true);
@@ -128,12 +133,32 @@ export const ArticleList = memo(function ArticleList({
     },
   });
 
+  // Find the boundary between new and previously seen articles
+  const earlierIndex = useMemo(() => {
+    if (lastSeenAt <= 0) return -1;
+    const idx = articles.findIndex((a) => a.addedAt <= lastSeenAt);
+    return idx > 0 ? idx : -1;
+  }, [articles, lastSeenAt]);
+
+  const caughtUpFired = useRef(false);
+  const handleSnap = useCallback(
+    (idx: number) => {
+      if (earlierIndex > 0 && idx === earlierIndex - 1 && !caughtUpFired.current) {
+        caughtUpFired.current = true;
+        hapticComplete();
+      } else {
+        hapticSnap();
+      }
+      setCurrentIndex(idx);
+    },
+    [earlierIndex, hapticSnap, hapticComplete],
+  );
+
   useAnimatedReaction(
     () => Math.round(scrollY.value / itemHeight),
     (idx, prev) => {
       if (prev !== null && idx !== prev) {
-        runOnJS(hapticSnap)();
-        runOnJS(setCurrentIndex)(idx);
+        runOnJS(handleSnap)(idx);
         if (idx === articleCount - 1 && !atEndSV.value) {
           atEndSV.value = true;
           runOnJS(hapticComplete)();
@@ -153,13 +178,7 @@ export const ArticleList = memo(function ArticleList({
     [itemHeight],
   );
 
-  // Find the boundary between new and previously seen articles
-  const earlierIndex = useMemo(() => {
-    if (lastSeenAt <= 0) return -1; // first visit — everything is new, no divider
-    const idx = articles.findIndex((a) => a.addedAt <= lastSeenAt);
-    // No divider if all articles are new or all are old
-    return idx > 0 ? idx : -1;
-  }, [articles, lastSeenAt]);
+
 
   const renderItem = useCallback(
     ({ item, index }: { item: Article; index: number }) => (
@@ -168,12 +187,11 @@ export const ArticleList = memo(function ArticleList({
         itemHeight={itemHeight}
         index={index}
         scrollY={scrollY}
-        onThreadPress={onThreadPress}
         onSourcePress={onSourcePress}
         showEarlierDivider={index === earlierIndex}
       />
     ),
-    [itemHeight, scrollY, onThreadPress, onSourcePress, earlierIndex],
+    [itemHeight, scrollY, onSourcePress, earlierIndex],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);
@@ -184,6 +202,7 @@ export const ArticleList = memo(function ArticleList({
     <Animated.FlatList
       ref={listRef}
       data={articles}
+      extraData={tick}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       getItemLayout={getItemLayout}
@@ -194,8 +213,9 @@ export const ArticleList = memo(function ArticleList({
       onScroll={scrollHandler}
       scrollEventThrottle={16}
       initialNumToRender={2}
-      windowSize={5}
-      contentContainerStyle={{ paddingBottom: LAYOUT.peekHeight + insets.bottom }}
+      maxToRenderPerBatch={2}
+      windowSize={3}
+      contentContainerStyle={contentStyle}
       refreshControl={
         <RefreshControl
           refreshing={localRefreshing}

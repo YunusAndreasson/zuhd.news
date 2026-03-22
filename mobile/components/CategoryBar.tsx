@@ -48,7 +48,7 @@ function TabLabel({
     <Pressable
       onPress={onPress}
       onLayout={onLayout}
-      hitSlop={SPACING.sm}
+      hitSlop={12}
       style={({ pressed }) => pressed && { opacity: 0.5 }}
     >
       {index === GLOBE_INDEX ? (

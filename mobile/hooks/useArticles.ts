@@ -33,10 +33,14 @@ export function useArticles() {
     getLastSeenAt().then(setLastSeenAt);
   }, []);
 
-  // Save current time as lastSeenAt when app goes to background
+  // Track foreground returns to refresh time labels
+  const [tick, setTick] = useState(0);
+
+  // Save lastSeenAt on background, bump tick on foreground
   useEffect(() => {
     const sub = AppState.addEventListener('change', (state) => {
       if (state === 'background') saveLastSeenAt(Date.now());
+      if (state === 'active') setTick((t) => t + 1);
     });
     return () => sub.remove();
   }, []);
@@ -116,5 +120,5 @@ export function useArticles() {
     }
   }, [fetchFeed]);
 
-  return { grouped, briefing, loading, error, lastSeenAt, refresh, retry };
+  return { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick };
 }

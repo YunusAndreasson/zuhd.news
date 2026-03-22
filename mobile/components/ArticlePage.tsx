@@ -1,6 +1,5 @@
-import { Ionicons } from '@expo/vector-icons';
 import { memo, useCallback, useMemo } from 'react';
-import { Pressable, Share, StyleSheet, Text, View } from 'react-native';
+import { Share, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -10,6 +9,7 @@ import Animated, {
   useReducedMotion,
 } from 'react-native-reanimated';
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { ActionLabel } from './ActionLabel';
 import { useHaptic } from '../hooks/useHaptic';
 import { renderSentences } from '../lib/markdown';
 import type { Article } from '../types';
@@ -19,7 +19,6 @@ interface ArticlePageProps {
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
-  onThreadPress?: (article: Article) => void;
   onSourcePress?: (sourceName: string) => void;
   showEarlierDivider?: boolean;
 }
@@ -38,7 +37,6 @@ export const ArticlePage = memo(function ArticlePage({
   itemHeight,
   index,
   scrollY,
-  onThreadPress,
   onSourcePress,
   showEarlierDivider,
 }: ArticlePageProps) {
@@ -56,14 +54,24 @@ export const ArticlePage = memo(function ArticlePage({
   const titleStyle = useAnimatedStyle(() => {
     if (reduceMotion) return { opacity: 1 };
     return {
-      opacity: interpolate(offset.value, [-itemHeight, 0], [0.12, 1], Extrapolation.CLAMP),
+      opacity: interpolate(
+        offset.value,
+        [-itemHeight, 0, itemHeight * 0.5],
+        [0.12, 1, 0],
+        Extrapolation.CLAMP,
+      ),
     };
   });
 
   const bodyStyle = useAnimatedStyle(() => {
     if (reduceMotion) return { opacity: 1 };
     return {
-      opacity: interpolate(offset.value, [-itemHeight, 0], [0, 1], Extrapolation.CLAMP),
+      opacity: interpolate(
+        offset.value,
+        [-itemHeight, 0, itemHeight * 0.4],
+        [0, 1, 0],
+        Extrapolation.CLAMP,
+      ),
     };
   });
 
@@ -101,7 +109,13 @@ export const ArticlePage = memo(function ArticlePage({
 
   return (
     <View style={[styles.container, { height: itemHeight }]}>
-      {showEarlierDivider && <Text style={styles.earlierDivider}>earlier</Text>}
+      {showEarlierDivider && (
+        <View style={styles.earlierDivider}>
+          <View style={styles.earlierLine} />
+          <Text style={styles.earlierLabel}>caught up</Text>
+          <View style={styles.earlierLine} />
+        </View>
+      )}
       <Animated.View style={titleStyle}>
         <Text style={[styles.title, titleSizeStyle]} numberOfLines={3}>
           {article.title}
@@ -113,42 +127,21 @@ export const ArticlePage = memo(function ArticlePage({
           {/* Attribution cluster: source + time */}
           <View style={styles.metaGroup}>
             {article.source ? (
-              <Pressable
+              <ActionLabel
+                label={article.source.toLowerCase()}
+                icon="chevron-down"
                 onPress={() => onSourcePress?.(article.source!)}
-                hitSlop={12}
-                style={({ pressed }) => pressed && { opacity: 0.5 }}
-              >
-                <Text style={styles.metaTap}>
-                  {article.source.toLowerCase()}{' '}
-                  <Ionicons name="chevron-down" size={8} color={COLORS.accent} />
-                </Text>
-              </Pressable>
+              />
             ) : null}
             <Text style={styles.metaDim}>{timeAgo}</Text>
           </View>
 
-          {/* Action cluster: story + share */}
           <View style={styles.metaGroup}>
-            {article.threadLabel && (article.threadArticleCount ?? 0) >= 3 ? (
-              <Pressable
-                onPress={() => onThreadPress?.(article)}
-                hitSlop={12}
-                style={({ pressed }) => pressed && { opacity: 0.5 }}
-              >
-                <Text style={styles.metaTap}>
-                  story <Ionicons name="chevron-down" size={8} color={COLORS.accent} />
-                </Text>
-              </Pressable>
-            ) : null}
-            <Pressable
+            <ActionLabel
+              label="share"
+              icon="arrow-up-outline"
               onPress={handleShare}
-              hitSlop={12}
-              style={({ pressed }) => pressed && { opacity: 0.5 }}
-            >
-              <Text style={styles.metaTap}>
-                share <Ionicons name="arrow-up-outline" size={8} color={COLORS.accent} />
-              </Text>
-            </Pressable>
+            />
           </View>
         </View>
       </Animated.View>
@@ -163,11 +156,22 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   earlierDivider: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.md,
+    marginBottom: SPACING.lg,
+    marginTop: -SPACING.md,
+  },
+  earlierLine: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: COLORS.accent,
+  },
+  earlierLabel: {
     fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeXs,
+    fontSize: TYPOGRAPHY.sizeBase,
     color: COLORS.accent,
-    textAlign: 'center',
-    marginBottom: SPACING.sm,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
   },
   title: {
     fontFamily: FONT.bold,
@@ -187,12 +191,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.sm,
-  },
-  metaTap: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeSm,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-    color: COLORS.accent,
   },
   metaDim: {
     fontFamily: FONT.smallCaps,

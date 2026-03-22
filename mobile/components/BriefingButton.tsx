@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useCallback, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { API_BASE, COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
@@ -9,7 +9,7 @@ interface BriefingButtonProps {
   date: string;
 }
 
-export function BriefingButton({ date }: BriefingButtonProps) {
+export const BriefingButton = memo(function BriefingButton({ date }: BriefingButtonProps) {
   const insets = useSafeAreaInsets();
   const { impact } = useHaptic();
   const [playing, setPlaying] = useState(false);
@@ -67,14 +67,15 @@ export function BriefingButton({ date }: BriefingButtonProps) {
       <View style={styles.row}>
         <Ionicons
           name={playing ? 'pause' : 'play'}
-          size={TYPOGRAPHY.sizeSm}
-          color={COLORS.textSecondary}
+          size={TYPOGRAPHY.sizeSm - 4}
+          color={COLORS.accent}
+          style={{ marginTop: 2 }}
         />
-        <Text style={styles.label}>BRIEFING</Text>
+        <Text style={styles.label}>briefing</Text>
       </View>
     </Pressable>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -88,9 +89,9 @@ const styles = StyleSheet.create({
     gap: SPACING.xs,
   },
   label: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeTab,
-    color: COLORS.textSecondary,
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeSm,
+    color: COLORS.accent,
     letterSpacing: TYPOGRAPHY.trackingCaps,
   },
 });

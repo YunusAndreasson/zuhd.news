@@ -1,4 +1,5 @@
 import Constants from 'expo-constants';
+import { memo } from 'react';
 import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
@@ -6,7 +7,7 @@ import { BrandLogo } from './BrandLogo';
 
 const VERSION = Constants.expoConfig?.version ?? '1.0.0';
 
-export function AboutPage() {
+export const AboutPage = memo(function AboutPage() {
   const insets = useSafeAreaInsets();
   return (
     <ScrollView
@@ -87,7 +88,7 @@ export function AboutPage() {
       </View>
     </ScrollView>
   );
-}
+});
 
 const styles = StyleSheet.create({
   scroll: {
@@ -112,12 +113,6 @@ const styles = StyleSheet.create({
     lineHeight: TYPOGRAPHY.sizeBase * TYPOGRAPHY.leadingBody,
     color: COLORS.text,
     marginBottom: SPACING.md,
-  },
-  dim: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeSm,
-    lineHeight: TYPOGRAPHY.sizeSm * TYPOGRAPHY.leadingBody,
-    color: COLORS.accent,
   },
   link: {
     color: COLORS.textSecondary,

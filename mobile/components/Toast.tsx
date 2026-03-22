@@ -1,16 +1,18 @@
 import { useCallback, useImperativeHandle, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import Animated, {
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
-  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 
+type ToastPosition = 'top' | 'bottom';
+
 export interface ToastRef {
-  show: (message: string, onPress?: () => void) => void;
+  show: (message: string, onPress?: () => void, position?: ToastPosition) => void;
 }
 
 const TOAST_VISIBLE_MS = 4000;
@@ -19,25 +21,40 @@ const TOAST_SLIDE_OFFSET = SPACING.xxl;
 export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
   const insets = useSafeAreaInsets();
   const [message, setMessage] = useState('');
+  const [pos, setPos] = useState<ToastPosition>('bottom');
+  const [visible, setVisible] = useState(false);
   const onPressRef = useRef<(() => void) | undefined>(undefined);
   const opacity = useSharedValue(0);
   const translateY = useSharedValue<number>(TOAST_SLIDE_OFFSET);
 
-  const dismiss = useCallback(() => {
-    opacity.value = withTiming(0);
-    translateY.value = withTiming(TOAST_SLIDE_OFFSET);
-  }, [opacity, translateY]);
-
   const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
+  const dismiss = useCallback(() => {
+    opacity.value = withTiming(0, { duration: 200 }, (finished) => {
+      if (finished) runOnJS(setVisible)(false);
+    });
+    translateY.value = withTiming(pos === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET, { duration: 200 });
+  }, [opacity, translateY, pos]);
+
   useImperativeHandle(ref, () => ({
-    show: (msg: string, onPress?: () => void) => {
+    show: (msg: string, onPress?: () => void, position: ToastPosition = 'bottom') => {
       if (timerRef.current) clearTimeout(timerRef.current);
       setMessage(msg);
+      setPos(position);
+      setVisible(true);
       onPressRef.current = onPress;
-      opacity.value = withTiming(1);
-      translateY.value = withSpring(0);
-      timerRef.current = setTimeout(dismiss, TOAST_VISIBLE_MS);
+
+      // Start off-screen in the correct direction
+      translateY.value = position === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET;
+      opacity.value = withTiming(1, { duration: 200 });
+      translateY.value = withTiming(0, { duration: 250 });
+
+      timerRef.current = setTimeout(() => {
+        opacity.value = withTiming(0, { duration: 200 }, (finished) => {
+          if (finished) runOnJS(setVisible)(false);
+        });
+        translateY.value = withTiming(position === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET, { duration: 200 });
+      }, TOAST_VISIBLE_MS);
     },
   }));
 
@@ -51,12 +68,16 @@ export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
     transform: [{ translateY: translateY.value }],
   }));
 
+  const positionStyle = pos === 'top'
+    ? { top: insets.top + SPACING.xl }
+    : { bottom: insets.bottom + SPACING.xl };
+
   return (
     <Animated.View
-      style={[styles.container, { bottom: insets.bottom + SPACING.xl }, animatedStyle]}
-      pointerEvents="auto"
+      style={[styles.container, positionStyle, animatedStyle]}
+      pointerEvents={visible ? 'auto' : 'none'}
     >
-      <Pressable onPress={handlePress} style={({ pressed }) => pressed && { opacity: 0.5 }}>
+      <Pressable onPress={handlePress} hitSlop={12} style={({ pressed }) => pressed && { opacity: 0.5 }}>
         <Text style={styles.text}>{message}</Text>
       </Pressable>
     </Animated.View>
@@ -66,13 +87,15 @@ export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    left: SPACING.xl,
-    right: SPACING.xl,
+    left: SPACING.screenPadding,
+    right: SPACING.screenPadding,
     alignItems: 'center',
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.md,
-    backgroundColor: COLORS.rule,
+    backgroundColor: COLORS.sheetBg,
     borderRadius: SPACING.sm,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: COLORS.rule,
     zIndex: 100,
   },
   text: {

@@ -15,28 +15,17 @@ import { SOURCES } from '../constants/sources';
 import { CATEGORIES, COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useHaptic } from '../hooks/useHaptic';
-import type { Article } from '../types';
-
-function formatTimeAgo(addedAt: number): string {
-  const hours = Math.floor((Date.now() - addedAt) / 3600000);
-  if (hours < 1) return 'just now';
-  if (hours < 24) return `${hours}h ago`;
-  return new Date(addedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
-}
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
-  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry } = useArticles();
+  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick } = useArticles();
   const { impact } = useHaptic();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
 
   // Sheet refs
-  const threadSheetRef = useRef<BottomSheetModal>(null);
   const sourceSheetRef = useRef<BottomSheetModal>(null);
-  const [threadSheet, setThreadSheet] = useState<Article | null>(null);
-  const [threadArticles, setThreadArticles] = useState<Article[]>([]);
   const [sourceSheet, setSourceSheet] = useState<string | null>(null);
   const [sheetOpen, setSheetOpen] = useState(false);
 
@@ -45,28 +34,6 @@ export default function HomeScreen() {
       <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} pressBehavior="close" />
     ),
     [],
-  );
-
-  const getThreadArticles = useCallback(
-    (threadId: string): Article[] => {
-      return Object.values(grouped)
-        .flat()
-        .filter((a) => a.threadId === threadId)
-        .sort((a, b) => b.addedAt - a.addedAt);
-    },
-    [grouped],
-  );
-
-  const handleThreadPress = useCallback(
-    (article: Article) => {
-      if (!article.threadId) return;
-      impact();
-      setThreadSheet(article);
-      setThreadArticles(getThreadArticles(article.threadId));
-      setSheetOpen(true);
-      threadSheetRef.current?.present();
-    },
-    [impact, getThreadArticles],
   );
 
   const handleSourcePress = useCallback(
@@ -134,12 +101,12 @@ export default function HomeScreen() {
     try {
       const n = await refresh();
       if (n > 0) {
-        toastRef.current?.show(`${n} new article${n > 1 ? 's' : ''}`);
+        toastRef.current?.show(`${n} new article${n > 1 ? 's' : ''}`, undefined, 'top');
       } else {
-        toastRef.current?.show('Already up to date');
+        toastRef.current?.show('Already up to date', undefined, 'top');
       }
     } catch {
-      toastRef.current?.show('Could not refresh');
+      toastRef.current?.show('Could not refresh', undefined, 'top');
     }
   }, [impact, refresh]);
 
@@ -208,10 +175,10 @@ export default function HomeScreen() {
                     () => listRefs[catIndex]?.current?.scrollToTop(),
                   )
                 }
-                onThreadPress={handleThreadPress}
                 onSourcePress={handleSourcePress}
                 pagerIdle={pagerIdle}
                 progressesSV={categoryProgresses}
+                tick={tick}
               />
             )}
           </View>
@@ -233,64 +200,6 @@ export default function HomeScreen() {
         <BriefingButton date={briefing.date} />
       )}
       <Toast ref={toastRef} />
-
-      {/* Thread sheet */}
-      <BottomSheetModal
-        ref={threadSheetRef}
-        enableDynamicSizing
-        enablePanDownToClose
-        backdropComponent={renderBackdrop}
-        backgroundStyle={styles.sheetBg}
-        handleIndicatorStyle={styles.sheetHandle}
-        onDismiss={() => { setThreadSheet(null); setSheetOpen(false); }}
-      >
-        <BottomSheetView
-          style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
-        >
-          {threadSheet && (
-            <>
-              <Text style={styles.sheetLabel}>
-                {threadSheet.threadArc?.toUpperCase()} · DAY {threadSheet.threadDay}
-              </Text>
-              <Text style={styles.sheetTitle}>{threadSheet.threadLabel}</Text>
-              {threadSheet.threadSummary && (
-                <Text style={styles.sheetBody}>{threadSheet.threadSummary}</Text>
-              )}
-              {threadArticles.length > 1 && (
-                <View style={styles.timeline}>
-                  <Text style={styles.timelineHeader}>
-                    {threadArticles.length} IN YOUR FEED · {threadSheet.threadArticleCount} TOTAL
-                  </Text>
-                  {threadArticles.map((a) => (
-                    <View key={a.slug} style={styles.timelineItem}>
-                      <View
-                        style={[
-                          styles.timelineDot,
-                          a.slug === threadSheet.slug && styles.timelineDotActive,
-                        ]}
-                      />
-                      <View style={styles.timelineText}>
-                        <Text
-                          style={[
-                            styles.timelineTitle,
-                            a.slug === threadSheet.slug && styles.timelineTitleActive,
-                          ]}
-                          numberOfLines={1}
-                        >
-                          {a.title}
-                        </Text>
-                        <Text style={styles.timelineSource}>
-                          {a.source?.toUpperCase()} · {formatTimeAgo(a.addedAt)}
-                        </Text>
-                      </View>
-                    </View>
-                  ))}
-                </View>
-              )}
-            </>
-          )}
-        </BottomSheetView>
-      </BottomSheetModal>
 
       {/* Source sheet */}
       <BottomSheetModal
@@ -361,7 +270,7 @@ const styles = StyleSheet.create({
   },
   // Bottom sheets
   sheetBg: {
-    backgroundColor: '#1c1c1c',
+    backgroundColor: COLORS.sheetBg,
   },
   sheetHandle: {
     backgroundColor: COLORS.rule,
@@ -388,52 +297,5 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizeSm,
     lineHeight: TYPOGRAPHY.sizeSm * TYPOGRAPHY.leadingBody,
     color: COLORS.textSecondary,
-  },
-  timeline: {
-    marginTop: SPACING.lg,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: COLORS.rule,
-    paddingTop: SPACING.md,
-  },
-  timelineHeader: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeXs,
-    color: COLORS.accent,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-    marginBottom: SPACING.md,
-  },
-  timelineItem: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: SPACING.sm,
-    gap: SPACING.sm,
-  },
-  timelineDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: COLORS.rule,
-    marginTop: 5,
-  },
-  timelineDotActive: {
-    backgroundColor: COLORS.text,
-  },
-  timelineText: {
-    flex: 1,
-  },
-  timelineTitle: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeSm,
-    color: COLORS.textSecondary,
-  },
-  timelineTitleActive: {
-    fontFamily: FONT.semiBold,
-    color: COLORS.text,
-  },
-  timelineSource: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeXs,
-    color: COLORS.accent,
-    marginTop: 2,
   },
 });

@@ -220,20 +220,22 @@ export function Globe({
       Gesture.Pan()
         .onChange((e) => {
           'worklet';
-          rotX.value -= e.changeX * 0.3;
-          rotY.value = Math.max(-80, Math.min(80, rotY.value - e.changeY * 0.3));
+          const sensitivity = 0.3 / scale.value;
+          rotX.value -= e.changeX * sensitivity;
+          rotY.value = Math.max(-80, Math.min(80, rotY.value - e.changeY * sensitivity));
         })
         .onEnd((e) => {
           'worklet';
-          rotX.value = withDecay({ velocity: -e.velocityX * 0.3, deceleration: 0.997 });
+          const sensitivity = 0.3 / scale.value;
+          rotX.value = withDecay({ velocity: -e.velocityX * sensitivity, deceleration: 0.997 });
           rotY.value = withDecay({
-            velocity: -e.velocityY * 0.3,
+            velocity: -e.velocityY * sensitivity,
             deceleration: 0.997,
             clamp: [-80, 80],
             rubberBandEffect: true,
           });
         }),
-    [rotX, rotY],
+    [rotX, rotY, scale],
   );
 
   const pinchGesture = useMemo(
@@ -263,6 +265,8 @@ export function Globe({
       // 1. Check news dots first (timely info takes priority)
       let bestDist = 30;
       let bestIdx = -1;
+      let bestDotX = x;
+      let bestDotY = y;
       for (const dot of cur.dots) {
         const dx = dot.x - x;
         const dy = dot.y - y;
@@ -270,6 +274,8 @@ export function Globe({
         if (dist < bestDist) {
           bestDist = dist;
           bestIdx = dot.dotIndex;
+          bestDotX = dot.x;
+          bestDotY = dot.y;
         }
       }
 
@@ -287,20 +293,26 @@ export function Globe({
         }
       }
 
-      // 3. Find country under tap
+      // 3. Find country — use dot position if a dot was hit (tap may be up to 30px off)
       const proj = projectionRef.current;
       if (!proj) return;
-      const geo = proj.invert?.([x, y]);
+      const lookupX = bestIdx >= 0 ? bestDotX : x;
+      const lookupY = bestIdx >= 0 ? bestDotY : y;
+      const geo = proj.invert?.([lookupX, lookupY]);
       if (!geo) return;
 
       const found = countries.features.find((f) => geoContains(f, geo));
       const countryName = (found?.properties as any)?.name ?? null;
 
-      // Highlight country — stays until tooltip is dismissed
+      // Highlight country — auto-clears after 5s if not dismissed
       if (found) {
         highlightedCountry.current = found;
         reprojectRef.current(rotX.value, rotY.value, scale.value);
         if (highlightTimer.current) clearTimeout(highlightTimer.current);
+        highlightTimer.current = setTimeout(() => {
+          highlightedCountry.current = null;
+          reprojectRef.current(rotX.value, rotY.value, scale.value);
+        }, 5000);
       }
 
       // 4. Fire the appropriate callback
@@ -329,14 +341,39 @@ export function Globe({
     [handleTap],
   );
 
+  const doubleTapGesture = useMemo(
+    () =>
+      Gesture.Tap()
+        .numberOfTaps(2)
+        .onEnd(() => {
+          'worklet';
+          if (scale.value > 1.5) {
+            scale.value = withTiming(1, { duration: 300, easing: Easing.out(Easing.cubic) });
+          } else {
+            scale.value = withTiming(2.5, { duration: 300, easing: Easing.out(Easing.cubic) });
+          }
+        }),
+    [scale],
+  );
+
   const gesture = useMemo(
-    () => Gesture.Race(Gesture.Simultaneous(panGesture, pinchGesture), tapGesture),
-    [panGesture, pinchGesture, tapGesture],
+    () =>
+      Gesture.Race(
+        Gesture.Simultaneous(panGesture, pinchGesture),
+        Gesture.Exclusive(doubleTapGesture, tapGesture),
+      ),
+    [panGesture, pinchGesture, doubleTapGesture, tapGesture],
   );
 
   // Currently highlighted country feature — re-projected each frame while active
   const highlightedCountry = useRef<GeoJSON.Feature | null>(null);
   const highlightTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  useEffect(() => {
+    return () => {
+      if (highlightTimer.current) clearTimeout(highlightTimer.current);
+    };
+  }, []);
 
   // Cached projection + path generator — mutated in place, never re-created
   const projectionRef = useRef<GeoProjection | null>(null);
@@ -568,7 +605,7 @@ export function Globe({
           <Circle cx={cx} cy={cy} r={globeRadius} color="#1a1a1a" />
 
           {/* Land fill + coastline stroke */}
-          <Path path={state.landPath} color="#2a2a2a" />
+          <Path path={state.landPath} color={COLORS.rule} />
           <Path path={state.landPath} color="#333333" style="stroke" strokeWidth={0.5} />
 
           {/* Highlighted country border — flashes on tap, fades after 3s */}
@@ -609,7 +646,7 @@ export function Globe({
                 cx={dot.x}
                 cy={dot.y}
                 r={3 * dot.radius}
-                color="#e8e8e8"
+                color={COLORS.text}
                 opacity={dot.brightness}
               />
             ))}

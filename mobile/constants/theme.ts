@@ -10,11 +10,12 @@ const fs = (size: number) => Math.round(size * scale);
 export const COLORS = {
   bg: '#141414',
   text: '#e8e8e8',
-  textSecondary: '#a3a3a3',
-  accent: '#999',
+  textSecondary: '#888',
+  accent: '#b3b3b3',
   rule: '#2a2a2a',
   white: '#ffffff',
   dome: '#c9a84c', // Dome of the Rock gold — the only color in the app
+  sheetBg: '#1c1c1c',
 } as const;
 
 export const FONT = {
@@ -50,8 +51,8 @@ export const SPACING = {
 export const LAYOUT = {
   progressBarHeight: 2,
   peekHeight: 200,
-  briefingButtonBottom: 24,
-  briefingButtonRight: 20,
+  briefingButtonBottom: SPACING.lg,
+  briefingButtonRight: SPACING.screenPadding,
 } as const;
 
 export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech'];

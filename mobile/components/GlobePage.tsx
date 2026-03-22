@@ -172,8 +172,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: SPACING.screenPadding,
     right: SPACING.screenPadding,
-    backgroundColor: '#1c1c1c',
-    borderRadius: 10,
+    backgroundColor: COLORS.sheetBg,
+    borderRadius: SPACING.sm,
     paddingHorizontal: SPACING.md,
     paddingVertical: SPACING.sm,
   },
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   tooltipTitle: {
     fontFamily: FONT.semiBold,
     fontSize: TYPOGRAPHY.sizeSm,
-    lineHeight: TYPOGRAPHY.sizeSm * 1.4,
+    lineHeight: TYPOGRAPHY.sizeSm * TYPOGRAPHY.leadingBody,
     color: COLORS.text,
   },
   tooltipTitleExtra: {
