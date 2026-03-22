@@ -9,6 +9,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { COLORS } from '../constants/theme';
 
 SplashScreen.preventAutoHideAsync();
+SplashScreen.setOptions({ fade: true, duration: 250 });
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({

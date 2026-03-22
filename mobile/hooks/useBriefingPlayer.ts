@@ -93,14 +93,8 @@ export function useBriefingPlayer(date: string | undefined): BriefingPlayer {
         updateInterval: 500,
       });
 
-      // Event subscription BEFORE play
-      subRef.current = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
-        // Update countdown
-        if (status.duration > 0) {
-          const left = Math.ceil(status.duration - status.currentTime);
-          setRemaining(left > 0 ? left : 0);
-        }
-        // Handle finish
+      // Event subscription — only for detecting playback end
+      const eventSub = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
         if (status.didJustFinish) {
           setPlaying(false);
           setRemaining(0);
@@ -144,9 +138,8 @@ export function useBriefingPlayer(date: string | undefined): BriefingPlayer {
       subRef.current = {
         remove: () => {
           clearInterval(countdownInterval);
-          subRef.current?._sub?.remove();
+          eventSub.remove();
         },
-        _sub: subRef.current,
       };
     } catch {
       // expo-audio unavailable
