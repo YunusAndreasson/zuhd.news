@@ -2,8 +2,10 @@
 // prefetch-articles.js — pre-fetches article content for selected stories
 // Runs between selector and writer; eliminates writer's WebFetch tool calls
 // Stories that already have contentText (from content:encoded) are skipped.
+// After fetch, a Haiku LLM pass checks content quality (catches paywalls, newsletters, junk).
 
 import { readFileSync, writeFileSync } from 'fs'
+import { spawnSync } from 'child_process'
 
 const SELECTION_PATH = '/tmp/zuhd-selection.json'
 const MAX_CONTENT_CHARS = 3000
@@ -123,6 +125,65 @@ for (const { story, result } of fetchResults) {
   } else {
     failed++
     console.log(`  ❌ ${result.status.padEnd(8)} — ${label}`)
+  }
+}
+
+// LLM quality check — catch paywalls, newsletters, and extraction junk that regex missed
+const fetchedStories = stories.filter(s => s.contentText)
+if (fetchedStories.length > 0) {
+  const t1 = Date.now()
+  const lines = fetchedStories.map((s, i) =>
+    `${i}. [${s.source}] "${s.title}"\n   CONTENT: ${s.contentText.slice(0, 400)}`
+  ).join('\n\n')
+
+  const prompt = `You are a content quality filter for a news site. Each entry below shows the first 400 characters extracted from a fetched article page.
+
+For each, decide if the content is a USABLE standalone news article or NOT USABLE.
+
+NOT USABLE means:
+- Paywall/login wall (content is mostly "subscribe" or "sign in" prompts)
+- Newsletter roundup (multiple unrelated stories bundled together, not a single article)
+- Mostly navigation junk, social sharing buttons, or boilerplate with little article text
+- Video/podcast page with no article text
+- Error page or redirect content
+
+USABLE means: contains actual article prose about the stated title, even if some nav junk is mixed in.
+
+Respond with ONLY a JSON array of indices that are NOT USABLE. Example: [0, 3]
+If all are usable, respond: []
+
+${lines}`
+
+  try {
+    const result = spawnSync('claude', [
+      '--model', 'claude-haiku-4-5-20251001',
+      '--print',
+      '--max-turns', '1',
+    ], { input: prompt, timeout: 30000, encoding: 'utf-8', env: { ...process.env, CLAUDECODE: undefined } })
+
+    if (result.error) throw result.error
+    if (result.status !== 0) throw new Error(result.stderr?.slice(0, 100) || `exit ${result.status}`)
+
+    const text = result.stdout.trim()
+    const match = text.match(/\[[\d,\s]*\]/)
+    if (match) {
+      const junkIndices = new Set(JSON.parse(match[0]))
+      let downgraded = 0
+      for (const idx of junkIndices) {
+        if (idx >= 0 && idx < fetchedStories.length) {
+          const s = fetchedStories[idx]
+          console.log(`  🗑️ junk    — ${s.source}: ${(s.title || '').slice(0, 50)}`)
+          delete s.contentText
+          fetched--
+          failed++
+          downgraded++
+        }
+      }
+      const qcElapsed = ((Date.now() - t1) / 1000).toFixed(1)
+      console.log(`Haiku quality: ${fetchedStories.length} checked, ${downgraded} junk, ${qcElapsed}s`)
+    }
+  } catch (err) {
+    console.log(`Haiku quality: error — ${err.message.slice(0, 60)}`)
   }
 }
 

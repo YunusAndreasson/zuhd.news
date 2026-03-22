@@ -73,6 +73,7 @@ Every article follows the same 3-sentence arc:
    - Backward-looking analogy: "The pattern mirrors self-driving cars." *(looks back, not forward)*
    - Vague trend: "as smart glasses proliferate." *(atmosphere, not a specific consequence)*
    - Generic call to action: "Researchers must now reexamine other sites." *(who? when? which sites?)*
+   - Absence-as-tension: "with no timeline set," "with no government response," "leaving displaced families with no return date." *(names what's missing, not what's at stake — flip it: who must act, by when, or what breaks if they don't?)*
    **Self-test:** Does the final sentence name a specific date, decision-maker, pending action, or consequence for specific people? If not, rewrite it.
 
 **Total article: under 55 words.** If you're over, cut — don't compress. Remove the least essential detail rather than cramming more into longer sentences. The 3 sentences should feel balanced in weight, not 1 short and 2 heavy.
@@ -90,15 +91,16 @@ This arc is not a suggestion — it is the format.
 
 ## Word choice
 
-- **Start with the fact.** Delete: "In a significant development," "It is worth noting that," "This comes as."
-- **No hedging words:** "significant," "major," "key," "important," "notably," "increasingly," "widely." State the fact and let the reader judge.
+- **Start with the fact.** Delete: "In a significant development," "It is worth noting that," "This comes as," "The move comes after," "The shift comes as."
+- **No hedging words:** "significant," "major," "key," "important," "notably," "increasingly," "widely," "amid," "underscoring," "highlighting," "signaling," "reshaping," "raising questions." State the fact and let the reader judge.
+- **No speculative hedging:** "could reshape," "may signal," "threatens to transform," "is poised to." Either state the consequence or don't.
 - **Plain language.** No jargon, idioms, or colloquialisms. Use common acronyms freely after first mention: NASA, NATO, ISIS, WHO, OPCW, ICC, ICJ. Spell out unfamiliar organizations on first use, then acronym if it recurs. Only US, UK, EU, and UN never need expansion.
 - **Identify people on first mention** with a brief role. The test: would a globally aware reader need this context to understand the sentence? If not, skip it.
 - **No obvious facts.** "Elon Musk, who owns X" wastes words — everyone knows.
 
 ## Attribution
 
-Vary the verb. "Said" is invisible once — dead by the third use. Use the most accurate verb: confirmed, estimated, warned, denied, dismissed, acknowledged, announced, reported. Reserve "said" for genuinely neutral statements. Never use "claimed" (implies doubt) or "admitted" (implies guilt) unless warranted.
+Vary the verb. "Said" is invisible once — dead by the third use. Use the most accurate verb: confirmed, estimated, warned, denied, dismissed, acknowledged, announced, reported. Reserve "said" for genuinely neutral statements. Never use "claimed" (implies doubt), "admitted" (implies guilt), or "signaled" (implies mind-reading) unless warranted. Say what the person actually did: "proposed," "ordered," "refused."
 
 ## Geographic neutrality
 

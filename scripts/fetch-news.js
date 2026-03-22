@@ -56,7 +56,7 @@ const SOURCES = [
   { name: 'Antara News',    url: 'https://en.antaranews.com/rss/news',                                  format: 'rss2', tier: 'B1', region: 'AS' },
 
   // ── Tier C — 2x/day, when cycleIndex % 5 === offset ──────────────
-  { name: 'Ars Technica Science', url: 'https://feeds.arstechnica.com/arstechnica/science', format: 'rss2', tier: 'C', offset: 0, region: 'GL', defaultCategory: 'science' },
+  { name: 'Ars Technica Science', url: 'https://feeds.arstechnica.com/arstechnica/science', format: 'rss2', tier: 'B1', region: 'GL', defaultCategory: 'science' },
   { name: 'Haaretz',              url: 'https://www.haaretz.com/srv/haaretz-latest-headlines', format: 'rss2', tier: 'C', offset: 0, region: 'ME' },
   { name: 'BBC Business',         url: 'https://feeds.bbci.co.uk/news/business/rss.xml',     format: 'rss2', tier: 'C', offset: 1, region: 'EU', defaultCategory: 'economy' },
   { name: 'Daily Star',           url: 'https://www.thedailystar.net/news/rss.xml',          format: 'rss2', tier: 'C', offset: 1, region: 'AS' },
@@ -195,21 +195,73 @@ function slugify(title, date) {
   return `${datePrefix}-${slug}`
 }
 
-function getExistingArticles() {
-  if (!existsSync(CONTENT_DIR)) return { slugs: new Set(), titles: [] }
+function getExistingArticles(maxDaysOld = 4) {
+  if (!existsSync(CONTENT_DIR)) return { slugs: new Set(), titles: [], urls: new Set() }
+  const cutoff = new Date(Date.now() - maxDaysOld * 86400000).toISOString().slice(0, 10)
   const files = readdirSync(CONTENT_DIR)
     .filter(f => f.endsWith('.md') && f !== 'example.md')
+    .filter(f => f.slice(0, 10) >= cutoff)  // date-prefixed filenames: only recent
+    .sort().reverse()  // newest first
 
   const slugs = new Set(files.map(f => basename(f, '.md')))
   const titles = []
+  const urls = new Set()
 
   for (const file of files) {
     const content = readFileSync(join(CONTENT_DIR, file), 'utf-8')
     const titleMatch = content.match(/^title:\s*["']?(.+?)["']?\s*$/m)
     if (titleMatch) titles.push(titleMatch[1])
+    const urlMatch = content.match(/^sourceUrl:\s*["']?(.+?)["']?\s*$/m)
+    if (urlMatch) urls.add(urlMatch[1])
   }
 
-  return { slugs, titles }
+  return { slugs, titles, urls }
+}
+
+// LLM-verify borderline cases: each suspect has _suspectMatch (the existing title it partially matched)
+async function llmDedup(suspects) {
+  if (!suspects.length) return []
+
+  const { spawnSync } = await import('child_process')
+
+  const lines = suspects.map((s, i) =>
+    `${i}. CANDIDATE: [${s.source}] ${s.title}\n   EXISTING: ${s._suspectMatch}`
+  ).join('\n')
+
+  const prompt = `You are a news deduplication filter. Each entry below pairs a CANDIDATE feed story with an EXISTING published article it partially matched.
+
+For each pair, decide: do they cover the SAME specific news event (same actors, same occurrence)? Or merely the same broad topic?
+
+Respond with ONLY a JSON array of indices that are TRUE duplicates (same event). Example: [0, 3]
+If none are duplicates, respond: []
+
+${lines}`
+
+  try {
+    const result = spawnSync('claude', [
+      '--model', 'claude-haiku-4-5-20251001',
+      '--print',
+      '--max-turns', '1',
+    ], { input: prompt, timeout: 30000, encoding: 'utf-8', env: { ...process.env, CLAUDECODE: undefined } })
+    if (result.error) throw result.error
+    if (result.status !== 0) throw new Error(result.stderr || `exit ${result.status}`)
+
+    const text = result.stdout.trim()
+    const match = text.match(/\[[\d,\s]*\]/)
+    if (!match) {
+      console.error(`Haiku dedup error: unparseable response — keeping all suspects`)
+      return suspects
+    }
+
+    const dupeIndices = new Set(JSON.parse(match[0]))
+    const kept = suspects.filter((_, i) => !dupeIndices.has(i))
+    const removed = suspects.filter((_, i) => dupeIndices.has(i))
+    for (const s of removed) console.error(`  LLM dedup removed: [${s.source}] ${s.title}`)
+    return kept
+  } catch (err) {
+    console.error(`Haiku dedup error: ${err.message} — keeping all suspects`)
+    return suspects
+  }
 }
 
 function cleanUrl(url, stripParams = []) {
@@ -231,12 +283,22 @@ const STOP_WORDS = new Set([
   'says', 'said', 'after', 'over', 'new', 'about'
 ])
 
+// Basic suffix stripping so "fractal"/"fractals", "shareholder"/"shareholders" match
+function stem(word) {
+  if (word.length <= 4) return word
+  return word
+    .replace(/ies$/, 'y')
+    .replace(/sses$/, 'ss')
+    .replace(/(.)s$/, '$1')
+}
+
 function fingerprint(title) {
   return title
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, '')
     .split(/\s+/)
     .filter(w => w.length > 1 && !STOP_WORDS.has(w))
+    .map(stem)
     .sort()
 }
 
@@ -246,7 +308,10 @@ function similarity(fpA, fpB) {
   const setB = new Set(fpB)
   const intersection = [...setA].filter(w => setB.has(w)).length
   const union = new Set([...setA, ...setB]).size
-  return intersection / union
+  const jaccard = intersection / union
+  // Overlap coefficient: catches short rewritten titles that are subsets of long RSS titles
+  const overlap = intersection / Math.min(setA.size, setB.size)
+  return Math.max(jaccard, overlap * 0.8)
 }
 
 const SIMILARITY_THRESHOLD = 0.55
@@ -441,7 +506,7 @@ async function main() {
   const tierCounts = tally(activeSources, s => s.tier)
   console.error(`Cycle ${cycleIndex}/9 — fetching ${activeSources.length} sources: ${JSON.stringify(tierCounts)}`)
 
-  const { slugs: existingSlugs, titles: existingTitles } = getExistingArticles()
+  const { slugs: existingSlugs, titles: existingTitles, urls: existingUrls } = getExistingArticles()
   const allStories = await fetchActiveSources(activeSources)
 
   // Update self-calibration cache
@@ -455,20 +520,43 @@ async function main() {
   const deduped = deduplicateStories(allStories)
   console.error(`After cross-source dedup: ${deduped.length} (from ${allStories.length})`)
 
-  // Deduplicate against existing articles (slug + fuzzy title)
+  // Deduplicate against existing articles (URL + slug + fuzzy title)
+  const MAX_AGE_DAYS = 10
+  const SUSPECT_THRESHOLD = 0.4  // borderline: might be same story, needs LLM check
   const existingFingerprints = existingTitles.map(fingerprint)
-  const fresh = deduped.filter(item => {
+  const fresh = []
+  const suspect = []  // borderline items for LLM verification
+  let dedupByAge = 0, dedupByUrl = 0, dedupBySlug = 0, dedupByFp = 0
+  for (const item of deduped) {
+    // Hard age cutoff — stale stories crowd out fresh ones
+    const pubMs = item.pubDate ? new Date(item.pubDate).getTime() : 0
+    if (pubMs && (Date.now() - pubMs) > MAX_AGE_DAYS * 86400000) { dedupByAge++; continue }
+    // Primary check: exact URL match (most reliable)
+    if (item.link && existingUrls.has(item.link)) { dedupByUrl++; continue }
     const slug = slugify(item.title, item.pubDate || new Date().toISOString())
-    if (existingSlugs.has(slug)) return false
+    if (existingSlugs.has(slug)) { dedupBySlug++; continue }
     const fp = fingerprint(item.title)
-    return !existingFingerprints.some(efp => similarity(fp, efp) >= SIMILARITY_THRESHOLD)
-  })
+    const maxSim = Math.max(...existingFingerprints.map(efp => similarity(fp, efp)), 0)
+    if (maxSim >= SIMILARITY_THRESHOLD) { dedupByFp++; continue }  // definite dupe
+    if (maxSim >= SUSPECT_THRESHOLD) {
+      // Find the best-matching existing title for LLM context
+      const bestIdx = existingFingerprints.reduce((best, efp, i) =>
+        similarity(fp, efp) > similarity(fp, existingFingerprints[best]) ? i : best, 0)
+      item._suspectMatch = existingTitles[bestIdx]
+      suspect.push(item)
+    } else {
+      fresh.push(item)
+    }
+  }
+
+  console.error(`Existing-article dedup: ${dedupByUrl} url, ${dedupByAge} age, ${dedupBySlug} slug, ${dedupByFp} fingerprint`)
+  console.error(`Fresh stories: ${fresh.length}, suspects: ${suspect.length}`)
+  // Include suspects in the pool — they'll be LLM-verified after selection
+  for (const s of suspect) fresh.push(s)
 
   // Sort by date (most recent first)
   const toMs = d => { const t = new Date(d).getTime(); return isNaN(t) ? 0 : t }
   fresh.sort((a, b) => toMs(b.pubDate || 0) - toMs(a.pubDate || 0))
-
-  console.error(`Fresh stories: ${fresh.length}`)
 
   const scored = fresh.map((item, i) => ({ item, i, score: infoScore(item) }))
 
@@ -519,6 +607,28 @@ async function main() {
       usedIdx.add(i)
     }
   }
+
+  // LLM-verify only selected stories that were borderline suspects
+  const selectedSuspects = selected.filter(s => s._suspectMatch)
+  let llmRemoved = 0
+  if (selectedSuspects.length > 0) {
+    const llmT0 = Date.now()
+    const cleared = await llmDedup(selectedSuspects)
+    const llmMs = Date.now() - llmT0
+    const clearedSet = new Set(cleared)
+    const removed = selectedSuspects.filter(s => !clearedSet.has(s))
+    llmRemoved = removed.length
+    const removedSet = new Set(removed)
+    // Remove LLM-confirmed dupes from selected
+    for (let i = selected.length - 1; i >= 0; i--) {
+      if (removedSet.has(selected[i])) selected.splice(i, 1)
+    }
+    console.error(`Haiku dedup: ${selectedSuspects.length} checked, ${llmRemoved} removed, ${(llmMs/1000).toFixed(1)}s`)
+  } else {
+    console.error(`Haiku dedup: 0 suspects in selection — skipped`)
+  }
+  // Clean up temporary property
+  for (const s of selected) delete s._suspectMatch
 
   // Log distributions
   const catCounts = tally(selected, s => zuhdCategory(s))

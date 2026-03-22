@@ -223,3 +223,34 @@ else
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 5: Weekly reflection (skipped — day $DAY_OF_WEEK $HOUR_UTC:00 UTC, runs Sunday 22:00 only) ---" | tee -a "$LOG_FILE"
 fi
+
+# Stage 6: Daily tuning — runs at last cycle of each day (22:30 UTC)
+# Computes metrics, evaluates experiments, proposes bounded parameter changes
+TOOLS_TUNE="Read,Edit,Glob,Grep,Bash"
+if [ "$HOUR_UTC" = "22" ]; then
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 6: Daily tuning ---" | tee -a "$LOG_FILE"
+  T6=$SECONDS
+  # Compute metrics deterministically (no LLM) — Claude reads the result
+  node scripts/compute-metrics.js > /tmp/zuhd-metrics.json 2>>"$LOG_FILE"
+  METRICS_OK=$?
+  if [ "$METRICS_OK" -eq 0 ]; then
+    TUNE_PROMPT=$(cat scripts/tune-prompt.md)
+    timeout 300 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_TUNE --max-turns 15 -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+    TUNE_EXIT=$?
+    echo "Tuning exit: $TUNE_EXIT — $((SECONDS - T6))s" | tee -a "$LOG_FILE"
+    # Tuning session handles its own git workflow (experiment branches + PRs).
+    # Here we only commit the tracking files if they changed.
+    AUDIT_CHANGES=$(git diff --name-only content/.experiments.json content/.daily-audit.md 2>/dev/null | wc -l)
+    if [ "$AUDIT_CHANGES" -gt 0 ]; then
+      git add content/.experiments.json content/.daily-audit.md 2>/dev/null
+      AUDIT_DATE=$(date -u +%Y-%m-%d)
+      git commit -m "Daily audit $AUDIT_DATE" 2>&1 | tee -a "$LOG_FILE"
+    fi
+  else
+    echo "Metrics computation failed — skipping tuning" | tee -a "$LOG_FILE"
+  fi
+else
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 6: Daily tuning (skipped — $HOUR_UTC:xx UTC, runs at 22:00 only) ---" | tee -a "$LOG_FILE"
+fi

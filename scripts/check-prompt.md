@@ -25,7 +25,7 @@ Check every rule in order.
 Engagement — check these first:
 - **Hook test:** Does the first sentence make the reader stop scrolling? It must contain a concrete, arresting detail — a specific number, a surprising fact, a vivid consequence. If the hook is generic ("X faces criticism," "Y announces plan"), rewrite it with the most striking detail from the article.
 - **Learning test:** Does the reader walk away knowing something they didn't before? The context sentence should illuminate *how* or *why* — a mechanism, a cause, a historical first. If the context merely restates the hook with more words, rewrite it to teach.
-- **Tension test:** Does the final sentence create forward pull? The reader should want to know what happens next. If the article ends on a summary or a flat statement of fact, rewrite the ending with what's unresolved or at stake.
+- **Tension test:** Does the final sentence create forward pull? The reader should want to know what happens next. If the article ends on a summary or a flat statement of fact, rewrite the ending with what's unresolved or at stake. Watch for the "with no [X]" formula ("with no timeline set," "with no government response," "leaving families with no return date") — absence of information is not tension. Rewrite to name who must act, what deadline looms, or what breaks if nothing changes.
 - If an article is factually correct but has a vague lead, generic context, and flat ending — rewrite it. The most interesting version of a story is usually also the most specific.
 
 Structure:
@@ -47,8 +47,9 @@ Sentence clarity:
 - Summarize lists. "The UK and 4 European allies" beats enumerating all 5 countries. Enumerate only when each item matters individually.
 
 Word choice:
-- Start with the fact. Delete "In a significant development," "It is worth noting," "This comes as."
-- No hedging words: "significant," "major," "key," "important," "notably," "increasingly," "widely," "amid growing concerns." State the fact and let the reader judge.
+- Start with the fact. Delete "In a significant development," "It is worth noting," "This comes as," "The move comes after," "The shift comes as."
+- No hedging words: "significant," "major," "key," "important," "notably," "increasingly," "widely," "amid," "amid growing concerns," "underscoring," "highlighting," "signaling," "reshaping," "raising questions." State the fact and let the reader judge.
+- No speculative hedging: "could reshape," "may signal," "threatens to transform," "is poised to." Either state the consequence or don't.
 - Active voice. "Fire hit the refinery" reads faster than "The refinery was hit by fire."
 - Plain language. Use common acronyms freely after first mention: NASA, NATO, ISIS, WHO, ICC, ICJ. Spell out unfamiliar organizations on first use, then acronym if it recurs. Only US, UK, EU, and UN never need expansion.
 - Digits for numbers: "3 dead" scans faster than "three dead."
