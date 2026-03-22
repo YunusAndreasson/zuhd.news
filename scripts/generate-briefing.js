@@ -183,7 +183,8 @@ for (let i = 0; i < chunks.length; i++) {
     voice: { languageCode: 'en-US', name: VOICE_NAME },
     audioConfig: {
       audioEncoding: 'MP3',
-      effectsProfileId: ['large-home-entertainment-class-device']
+      sampleRateHertz: 24000,
+      effectsProfileId: ['headphone-class-device']
     }
   })
   audioBuffers.push(response.audioContent)
