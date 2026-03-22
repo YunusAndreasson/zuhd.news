@@ -138,39 +138,12 @@
         "2026-03-21-joe-kent-resigns-counterterrorism-iran-war-dissent",
         "2026-03-22-democrats-war-powers-push-iran-oversight",
         "2026-03-22-iran-81000-civilian-units-damaged-red-crescent",
-        "2026-03-22-us-treasury-plenty-of-funds-iran-war-200bn-request",
-        "2026-03-22-iran-threatens-all-infrastructure-retaliation-power-plants",
-        "2026-03-22-patriot-bahrain-blast-us-operated-reuters-analysis"
+        "2026-03-22-iran-threatens-regional-energy-sites-trump-power-plant-ultimatum",
+        "2026-03-22-israel-miscalculated-iranian-military-capabilities",
+        "2026-03-22-us-escalate-de-escalate-iran-treasury-bessent",
+        "2026-03-22-arab-islamic-coalition-condemns-iranian-attacks"
       ],
-      "summary": "Day 23: Trump 48-hour power plant ultimatum triggers Iran counter-threat to all energy/IT/desalination infrastructure. Patriot blast in Bahrain confirmed US-operated."
-    },
-    {
-      "id": "democrats-iran-war-oversight",
-      "label": "Democrats push war powers resolutions on Iran",
-      "firstSeen": "2026-03-22T11:30:00Z",
-      "lastCovered": "2026-03-22T11:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-democrats-war-powers-push-iran-oversight"
-      ],
-      "summary": "17 Senate Democrats preparing war powers resolutions. Republicans refuse public hearings."
-    },
-    {
-      "id": "israeli-settler-violence-west-bank",
-      "label": "Israeli settlers attack Palestinians as West Bank settlements expand",
-      "firstSeen": "2026-03-22T11:30:00Z",
-      "lastCovered": "2026-03-22T11:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-israeli-settlers-attack-palestinians-west-bank"
-      ],
-      "summary": "Settlers smash cars and set fires in West Bank villages as government accelerates settlement expansion."
+      "summary": "Iran missiles reach Dimona despite 92% interception claim. Bessent signals 'escalate to de-escalate'. 12 Arab/Islamic nations condemn Iran. War week 4, 81,000+ housing units damaged."
     },
     {
       "id": "lebanon-israel-war",
@@ -232,32 +205,61 @@
         "2026-03-22-israel-expands-ground-offensive-lebanon",
         "2026-03-22-lebanon-displaced-streets-catastrophic-housing",
         "2026-03-22-israel-flatten-lebanese-villages-like-gaza-policy",
-        "2026-03-22-palestinian-refugees-lebanon-trapped-bombs-checkpoints"
+        "2026-03-22-palestinian-refugees-lebanon-camps-squeezed-war-restrictions",
+        "2026-03-22-palestinian-refugees-lebanon-camps-war-restrictions"
       ],
-      "summary": "Israeli strikes reach northern camps (Beddawi). 450,000 Palestinian refugees trapped between bombs and Lebanese military checkpoints."
+      "summary": "Israeli strikes reach northern Lebanon (Beddawi camp). Palestinian refugees caught between airstrikes and Lebanese army checkpoints. 1,029 killed in 20 days, 1M+ displaced."
     },
     {
-      "id": "interstellar-comet-3i-atlas",
-      "label": "Interstellar comet 3I/ATLAS carries alien water",
-      "firstSeen": "2026-03-22T08:30:00Z",
-      "lastCovered": "2026-03-22T11:30:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 2,
+      "id": "china-yuan-dedollarization",
+      "label": "China academic push to trim US Treasury holdings as yuan expands",
+      "firstSeen": "2026-03-22T14:30:00Z",
+      "lastCovered": "2026-03-22T14:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-03-22-interstellar-comet-3i-atlas-alien-water"
+        "2026-03-22-china-yuan-expansion-forex-reserves-us-treasury-debate"
       ],
-      "summary": "3I/ATLAS water has deuterium 30-40x Earth oceans - chemical fingerprint from another star system."
+      "summary": "Renmin University report calls for China to reduce forex reserves including US Treasuries as yuan internationalization accelerates during wartime."
+    },
+    {
+      "id": "climate-attribution-science",
+      "label": "Climate change attribution mapping links extreme weather globally",
+      "firstSeen": "2026-03-22T17:30:00Z",
+      "lastCovered": "2026-03-22T17:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-climate-change-extreme-weather-attribution-mapped"
+      ],
+      "summary": "Carbon Brief comprehensive map shows which extreme weather events have been scientifically linked to climate change."
+    },
+    {
+      "id": "cloudflare-archive-today-censorship",
+      "label": "Cloudflare flags archive.today as botnet, blocks DNS",
+      "firstSeen": "2026-03-22T17:30:00Z",
+      "lastCovered": "2026-03-22T17:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-cloudflare-archive-today-botnet-dns-censorship"
+      ],
+      "summary": "Cloudflare classified archive.today as C&C/Botnet. Users of 1.1.1.2 DNS can no longer access the web archive."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
       "label": "Hormuz crisis: Ras Laffan LNG attack, allies refuse escort, Pacific hit",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-22T12:30:00Z",
-      "coverageCount": 256,
+      "lastCovered": "2026-03-22T17:30:00Z",
+      "coverageCount": 258,
       "category": "economy",
-      "importance": 4,
+      "importance": 5,
       "arc": "ongoing",
       "articles": [
         "2026-03-08-iraq-oil-production-collapses-70-percent-hormuz-blockade",
@@ -370,9 +372,295 @@
         "2026-03-21-eu-winter-gas-storage-iran-war-price-surge",
         "2026-03-21-algeria-saudi-5bn-hydrocarbon-deal-energy-shift",
         "2026-03-22-dubai-property-market-weakens-iran-war",
-        "2026-03-22-south-korea-25-trillion-won-emergency-budget-hormuz"
+        "2026-03-22-south-korea-25-trillion-won-emergency-budget-hormuz",
+        "2026-03-22-vietnam-russia-energy-deal-hormuz-fuel-crisis",
+        "2026-03-22-uk-energy-bills-inescapable-oil-prices-hormuz-war",
+        "2026-03-22-bis-shin-bank-korea-governor-crisis-appointment",
+        "2026-03-22-coinbase-stock-perpetual-futures-non-us-crypto"
       ],
-      "summary": "South Korea rolls out 25 trillion won emergency budget. Won below 1,500/dollar. Asia's most aggressive fiscal response to Hormuz crisis."
+      "summary": "South Korea appoints 2008-crisis-predictor Shin as BOK governor amid won crisis at 1,500. Coinbase launches 24/7 stock futures for non-US customers. Oil above $112."
+    },
+    {
+      "id": "israeli-settler-violence-west-bank",
+      "label": "Israeli settlers attack Palestinians as West Bank settlements expand",
+      "firstSeen": "2026-03-22T11:30:00Z",
+      "lastCovered": "2026-03-22T14:30:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-22-israeli-settlers-attack-palestinians-west-bank",
+        "2026-03-22-european-nations-settler-terror-west-bank-diplomatic-shift"
+      ],
+      "summary": "13 European nations and Canada use word 'terror' for settler violence. Six Palestinians shot dead by settlers in March. 1,050 killed in West Bank since Oct 2023."
+    },
+    {
+      "id": "sahel-disinformation-network",
+      "label": "Disinformation network targets Sahel Alliance junta leaders",
+      "firstSeen": "2026-03-22T17:30:00Z",
+      "lastCovered": "2026-03-22T17:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-sahel-disinformation-network-destabilising-alliance"
+      ],
+      "summary": "RFI/France 24 investigation reveals vast fake social media ecosystem targeting Alliance of Sahel States since late 2025."
+    },
+    {
+      "id": "congo-brazzaville-nintendo-election",
+      "label": "Congo-Brazzaville rigged Nintendo election under Sassou-Nguesso",
+      "firstSeen": "2026-03-22T12:30:00Z",
+      "lastCovered": "2026-03-22T12:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-congo-brazzaville-nintendo-election-rigged-sassou-nguesso"
+      ],
+      "summary": "Observers say biometric voting devices pre-loaded with results. Sassou-Nguesso extends 40-year rule."
+    },
+    {
+      "id": "pakistan-free-speech-crackdown",
+      "label": "Pakistan arrests activists, journalists for social media and protest",
+      "firstSeen": "2026-03-22T14:30:00Z",
+      "lastCovered": "2026-03-22T14:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-pakistan-free-speech-arrests-womens-day-march-crackdown"
+      ],
+      "summary": "Women's Day marchers beaten and detained in Islamabad. Human rights lawyer Imaan Mazari jailed for social media posts. Amnesty warns of shrinking dissent space."
+    },
+    {
+      "id": "prague-babis-protests",
+      "label": "Czech Republic: tens of thousands protest populist PM Babis at Letn\u00e1",
+      "firstSeen": "2026-03-22T14:30:00Z",
+      "lastCovered": "2026-03-22T14:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-prague-letna-park-tens-thousands-protest-babis-populist-pm"
+      ],
+      "summary": "Tens of thousands rallied at Letn\u00e1 park \u2014 site of 1989 anti-communist protests \u2014 against new PM Babis, a billionaire populist with fraud convictions."
+    },
+    {
+      "id": "strategy-strc-bitcoin-risk",
+      "label": "Strategy STRC bitcoin funding model systemic risk",
+      "firstSeen": "2026-03-22T17:30:00Z",
+      "lastCovered": "2026-03-22T17:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-strategy-strc-bitcoin-funding-model-risk"
+      ],
+      "summary": "Strategy STRC concentrates bitcoin exposure in a public company; analysts warn risks obscured during wartime market stress."
+    },
+    {
+      "id": "us-south-asia-envoy",
+      "label": "US envoy Gor's South Asia tour signals Indian Ocean pivot",
+      "firstSeen": "2026-03-22T17:30:00Z",
+      "lastCovered": "2026-03-22T17:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-us-envoy-south-asia-gor-colombo-strategic-signals"
+      ],
+      "summary": "Trump envoy Sergio Gor visits Colombo and Maldives first, not Delhi. India watching for strategic realignment during Iran war."
+    },
+    {
+      "id": "vietnam-russia-energy-pivot",
+      "label": "Vietnam turns to Russia for energy amid Hormuz disruption",
+      "firstSeen": "2026-03-22T14:30:00Z",
+      "lastCovered": "2026-03-22T14:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-vietnam-russia-energy-deal-hormuz-fuel-crisis"
+      ],
+      "summary": "Vietnam PM visits Moscow to sign oil and gas deals as Hormuz blockade disrupts Southeast Asian fuel supplies. Russia emerging as energy beneficiary of Iran war."
+    },
+    {
+      "id": "china-asn301-drone-evolution",
+      "label": "China ASN-301 drone evolved beyond Iranian Shahed design lineage",
+      "firstSeen": "2026-03-22T14:30:00Z",
+      "lastCovered": "2026-03-22T14:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-china-asn-301-suicide-drone-iran-shahed-technology-divergence"
+      ],
+      "summary": "China's ASN-301 shares delta-wing lineage with Iran's Shahed-136 but evolved into autonomous SEAD system \u2014 revealing future of drone warfare beyond current Iran war use."
+    },
+    {
+      "id": "czech-democratic-crisis",
+      "label": "Czech Republic: protests escalate from foreign agent law to anti-Babis movement",
+      "firstSeen": "2026-03-21T11:00:00Z",
+      "lastCovered": "2026-03-22T14:30:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-21-czech-republic-foreign-agent-law-protest-democratic-backsliding",
+        "2026-03-22-prague-letna-park-tens-thousands-protest-babis-populist-pm"
+      ],
+      "summary": "Protests evolved from opposing foreign agent law to opposing PM Babis himself. Tens of thousands at Letn\u00e1 park, echoing 1989 Velvet Revolution site."
+    },
+    {
+      "id": "democrats-iran-war-oversight",
+      "label": "Democrats push war powers resolutions on Iran",
+      "firstSeen": "2026-03-22T11:30:00Z",
+      "lastCovered": "2026-03-22T11:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-democrats-war-powers-push-iran-oversight"
+      ],
+      "summary": "17 Senate Democrats preparing war powers resolutions. Republicans refuse public hearings."
+    },
+    {
+      "id": "flash-moe-consumer-ai",
+      "label": "Flash-MoE runs 397B parameter AI model on consumer Mac hardware",
+      "firstSeen": "2026-03-22T14:30:00Z",
+      "lastCovered": "2026-03-22T14:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-flash-moe-397b-ai-model-consumer-mac-48gb-ram"
+      ],
+      "summary": "Open-source project demonstrates running 397B parameter model on Mac with 48GB RAM using Mixture-of-Experts architecture \u2014 AI democratization milestone."
+    },
+    {
+      "id": "javascript-bloat-web-performance",
+      "label": "Analysis of three structural causes of JavaScript bloat",
+      "firstSeen": "2026-03-22T17:30:00Z",
+      "lastCovered": "2026-03-22T17:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-javascript-bloat-three-pillars-web-performance"
+      ],
+      "summary": "High-engagement analysis identifies three systemic causes of JavaScript bloat affecting users with slow connections."
+    },
+    {
+      "id": "latin-america-us-break",
+      "label": "Latin American presidents break with US over Iran war",
+      "firstSeen": "2026-03-22T12:30:00Z",
+      "lastCovered": "2026-03-22T12:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-latin-american-presidents-criticize-us-iran-war"
+      ],
+      "summary": "Multiple Latin American heads of state publicly criticize US actions. Regional strategic autonomy assertion."
+    },
+    {
+      "id": "project-nomad-offline-knowledge",
+      "label": "Project Nomad builds offline-first knowledge systems",
+      "firstSeen": "2026-03-22T17:30:00Z",
+      "lastCovered": "2026-03-22T17:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-project-nomad-offline-knowledge-system"
+      ],
+      "summary": "Offline knowledge system relevant to wartime internet blackouts and infrastructure failures."
+    },
+    {
+      "id": "uganda-bobi-wine-exile",
+      "label": "Uganda opposition leader Bobi Wine flees to US",
+      "firstSeen": "2026-03-22T12:30:00Z",
+      "lastCovered": "2026-03-22T12:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-uganda-bobi-wine-flees-us-museveni-opposition"
+      ],
+      "summary": "Bobi Wine fled to US citing threats. Uganda's leading opposition voice physically expelled under Museveni's 40-year rule."
+    },
+    {
+      "id": "who-nuclear-sites-alarm",
+      "label": "WHO warns of health risks from nuclear site strikes",
+      "firstSeen": "2026-03-22T12:30:00Z",
+      "lastCovered": "2026-03-22T12:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-who-alarm-nuclear-sites-dimona-natanz-health-risk"
+      ],
+      "summary": "WHO issues health warnings as strikes near Dimona and Natanz nuclear facilities escalate radiation risks."
+    },
+    {
+      "id": "bell-curve-central-limit-theorem",
+      "label": "Quanta: central limit theorem from bar trick to scientific bedrock",
+      "firstSeen": "2026-03-22T14:30:00Z",
+      "lastCovered": "2026-03-22T14:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-bell-curve-central-limit-theorem-math-everywhere"
+      ],
+      "summary": "Quanta explores how the central limit theorem evolved from an 18th-century gambling trick to the most relied-upon result in modern science."
+    },
+    {
+      "id": "humanoid-robots-fine-motor",
+      "label": "Humanoid robots solve walking but fine motor control remains frontier",
+      "firstSeen": "2026-03-22T14:30:00Z",
+      "lastCovered": "2026-03-22T14:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-humanoid-robots-fine-motor-control-moravec-paradox"
+      ],
+      "summary": "A decade after robots were famous for falling down, bipedal locomotion is solved but picking up a coffee cup remains an unsolved problem \u2014 Moravec's paradox in action."
+    },
+    {
+      "id": "interstellar-comet-3i-atlas",
+      "label": "Interstellar comet 3I/ATLAS carries alien water",
+      "firstSeen": "2026-03-22T08:30:00Z",
+      "lastCovered": "2026-03-22T11:30:00Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-interstellar-comet-3i-atlas-alien-water"
+      ],
+      "summary": "3I/ATLAS water has deuterium 30-40x Earth oceans - chemical fingerprint from another star system."
     },
     {
       "id": "italy-justice-referendum-meloni",
@@ -389,6 +677,48 @@
       "summary": "Italians vote in two-day referendum on contested judicial reform."
     },
     {
+      "id": "kenya-uganda-rail-debt",
+      "label": "Kenya-Uganda rail extension burdened by Chinese debt",
+      "firstSeen": "2026-03-22T12:30:00Z",
+      "lastCovered": "2026-03-22T12:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-kenya-uganda-rail-extension-chinese-debt-burden"
+      ],
+      "summary": "Rail extension opens with unsustainable Chinese loan terms burdening both nations."
+    },
+    {
+      "id": "russia-baikonur-resumes",
+      "label": "Russia resumes launches from damaged Baikonur site",
+      "firstSeen": "2026-03-22T14:30:00Z",
+      "lastCovered": "2026-03-22T14:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-russia-baikonur-space-launch-site-resumes-operations"
+      ],
+      "summary": "Russia launches rocket from Baikonur pad damaged in previous accident \u2014 milestone for increasingly isolated space program under sanctions."
+    },
+    {
+      "id": "trumprx-drug-pricing",
+      "label": "TrumpRx drug pricing order quietly narrowed",
+      "firstSeen": "2026-03-22T12:30:00Z",
+      "lastCovered": "2026-03-22T12:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-trumprx-narrow-scope-medicare-drug-pricing"
+      ],
+      "summary": "Medicare chief walking back scope of Trump drug pricing executive order."
+    },
+    {
       "id": "wildlife-trafficking-facebook",
       "label": "Bellingcat exposes wildlife trafficking on Facebook",
       "firstSeen": "2026-03-22T11:30:00Z",
@@ -401,304 +731,6 @@
         "2026-03-22-wildlife-traffickers-coded-language-facebook-bellingcat"
       ],
       "summary": "Nine Facebook groups used coded language to sell protected animals for years."
-    },
-    {
-      "id": "congo-brazzaville-nintendo-election",
-      "label": "Congo-Brazzaville rigged Nintendo election under Sassou-Nguesso",
-      "firstSeen": "2026-03-22T12:30:00Z",
-      "lastCovered": "2026-03-22T12:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-congo-brazzaville-nintendo-election-rigged-sassou-nguesso"
-      ],
-      "summary": "Observers say biometric voting devices pre-loaded with results. Sassou-Nguesso extends 40-year rule."
-    },
-    {
-      "id": "uganda-bobi-wine-exile",
-      "label": "Uganda opposition leader Bobi Wine flees to US",
-      "firstSeen": "2026-03-22T12:30:00Z",
-      "lastCovered": "2026-03-22T12:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-uganda-bobi-wine-flees-us-museveni-opposition"
-      ],
-      "summary": "Bobi Wine fled to US citing threats. Uganda's leading opposition voice physically expelled under Museveni's 40-year rule."
-    },
-    {
-      "id": "latin-america-us-break",
-      "label": "Latin American presidents break with US over Iran war",
-      "firstSeen": "2026-03-22T12:30:00Z",
-      "lastCovered": "2026-03-22T12:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-latin-american-presidents-criticize-us-iran-war"
-      ],
-      "summary": "Multiple Latin American heads of state publicly criticize US actions. Regional strategic autonomy assertion."
-    },
-    {
-      "id": "kenya-uganda-rail-debt",
-      "label": "Kenya-Uganda rail extension burdened by Chinese debt",
-      "firstSeen": "2026-03-22T12:30:00Z",
-      "lastCovered": "2026-03-22T12:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-kenya-uganda-rail-extension-chinese-debt-burden"
-      ],
-      "summary": "Rail extension opens with unsustainable Chinese loan terms burdening both nations."
-    },
-    {
-      "id": "indonesia-prabowo-growth",
-      "label": "Prabowo targets 8% growth amid energy crisis",
-      "firstSeen": "2026-03-22T12:30:00Z",
-      "lastCovered": "2026-03-22T12:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-indonesia-prabowo-8-percent-growth-ambition"
-      ],
-      "summary": "Indonesia targets 8% GDP growth through empowerment programs despite oil crisis."
-    },
-    {
-      "id": "trumprx-drug-pricing",
-      "label": "TrumpRx drug pricing order quietly narrowed",
-      "firstSeen": "2026-03-22T12:30:00Z",
-      "lastCovered": "2026-03-22T12:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-trumprx-narrow-scope-medicare-drug-pricing"
-      ],
-      "summary": "Medicare chief walking back scope of Trump drug pricing executive order."
-    },
-    {
-      "id": "who-nuclear-sites-alarm",
-      "label": "WHO warns of health risks from nuclear site strikes",
-      "firstSeen": "2026-03-22T12:30:00Z",
-      "lastCovered": "2026-03-22T12:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-who-alarm-nuclear-sites-dimona-natanz-health-risk"
-      ],
-      "summary": "WHO issues health warnings as strikes near Dimona and Natanz nuclear facilities escalate radiation risks."
-    },
-    {
-      "id": "openkylin-ai-native-os",
-      "label": "China openKylin AI-native OS at FOSSASIA",
-      "firstSeen": "2026-03-22T12:30:00Z",
-      "lastCovered": "2026-03-22T12:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-openkylin-ai-native-os-china-fossasia"
-      ],
-      "summary": "Chinese state-backed open-source OS presents AI-native architecture. Digital sovereignty vs control question."
-    },
-    {
-      "id": "post-assad-syria-governance",
-      "label": "Syria post-Assad governance: HTS vs pluralism",
-      "firstSeen": "2026-03-22T17:30:00Z",
-      "lastCovered": "2026-03-22T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-syria-reverses-alcohol-ban-post-assad-pluralism-test"
-      ],
-      "summary": "Damascus reverses alcohol ban after interfaith protest. Restrictive edicts vs public pushback tests HTS governance."
-    },
-    {
-      "id": "sahel-disinformation-network",
-      "label": "Coordinated disinformation targeting Sahel junta alliance",
-      "firstSeen": "2026-03-22T17:30:00Z",
-      "lastCovered": "2026-03-22T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-sahel-disinformation-network-destabilising-junta-alliance"
-      ],
-      "summary": "Vast fake social media network targeting Sahel States since late 2025. RFI/France 24 investigation."
-    },
-    {
-      "id": "ukraine-russia-sumy-buffer",
-      "label": "Russia establishes buffer zone in Sumy region",
-      "firstSeen": "2026-03-22T17:30:00Z",
-      "lastCovered": "2026-03-22T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-russia-claims-sumy-border-village-buffer-zone-ukraine"
-      ],
-      "summary": "Russia claims border village in Sumy, extending months-long buffer zone effort."
-    },
-    {
-      "id": "south-korea-bok-leadership",
-      "label": "2008 crisis predictor Shin named BOK governor",
-      "firstSeen": "2026-03-22T17:30:00Z",
-      "lastCovered": "2026-03-22T17:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-bis-economist-shin-bank-korea-governor-crisis"
-      ],
-      "summary": "BIS economist Shin Hyun-song appointed BOK governor during won crisis and oil shock."
-    },
-    {
-      "id": "coinbase-stock-futures",
-      "label": "Coinbase launches stock perpetual futures for non-US",
-      "firstSeen": "2026-03-22T17:30:00Z",
-      "lastCovered": "2026-03-22T17:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-coinbase-stock-perpetual-futures-non-us-customers"
-      ],
-      "summary": "First major exchange offering 24/7 stock trading via crypto contracts."
-    },
-    {
-      "id": "climate-attribution-evidence",
-      "label": "Climate attribution: 504 studies map extreme weather",
-      "firstSeen": "2026-03-22T17:30:00Z",
-      "lastCovered": "2026-03-22T17:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-climate-attribution-504-studies-extreme-weather-map"
-      ],
-      "summary": "Carbon Brief: 504 studies, 71% show climate change worsened events, 93% for heat."
-    },
-    {
-      "id": "ethereum-structural-challenges",
-      "label": "Ethereum faces quantum, AI, fragmentation pressures",
-      "firstSeen": "2026-03-22T17:30:00Z",
-      "lastCovered": "2026-03-22T17:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-ethereum-quantum-ai-scaling-structural-crossroads"
-      ],
-      "summary": "L2 fragmentation, quantum risk, AI pressure converge on second-largest blockchain."
-    },
-    {
-      "id": "javascript-ecosystem-bloat",
-      "label": "JavaScript bloat: systemic web performance crisis",
-      "firstSeen": "2026-03-22T17:30:00Z",
-      "lastCovered": "2026-03-22T17:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-22-three-pillars-javascript-bloat-web-ecosystem"
-      ],
-      "summary": "414-point HN analysis of structural incentives making JS bloat the default."
-    },
-    {
-      "id": "china-ai-one-person-companies",
-      "label": "China OpenClaw AI enables one-person companies",
-      "firstSeen": "2026-03-22T11:30:00Z",
-      "lastCovered": "2026-03-22T11:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-22-china-openclaw-ai-one-person-companies"
-      ],
-      "summary": "Chinese entrepreneurs use OpenClaw AI agent framework to run solo businesses."
-    },
-    {
-      "id": "france-local-elections-2026",
-      "label": "France second-round municipal elections across 1500 communes",
-      "firstSeen": "2026-03-22T11:30:00Z",
-      "lastCovered": "2026-03-22T11:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-22-france-local-elections-second-round-municipalities"
-      ],
-      "summary": "French voters head to polls in second round of local elections."
-    },
-    {
-      "id": "south-korea-factory-fire",
-      "label": "South Korea Daejeon factory fire kills 14",
-      "firstSeen": "2026-03-21T11:00:00Z",
-      "lastCovered": "2026-03-22T11:30:00Z",
-      "coverageCount": 4,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-south-korea-factory-fire-14-killed-daejeon",
-        "2026-03-21-south-korea-car-plant-fire-14-dead",
-        "2026-03-21-south-korea-car-plant-fire-14-dead",
-        "2026-03-22-south-korea-daejeon-factory-fire-14-dead"
-      ],
-      "summary": "Daejeon car parts factory fire toll rises to 14 dead, 59 injured. Sodium on-site prevented rescue."
-    },
-    {
-      "id": "sudan-darfur-hospital-attack",
-      "label": "Sudan hospital attack kills 64 in Darfur",
-      "firstSeen": "2026-03-22T05:30:00Z",
-      "lastCovered": "2026-03-22T12:30:00Z",
-      "coverageCount": 3,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-22-sudan-hospital-attack-64-killed-darfur-health-system",
-        "2026-03-22-sudan-army-denies-eid-hospital-strike-darfur-64-killed"
-      ],
-      "summary": "Army denies Eid hospital strike that killed 64 in Darfur. 70%+ health facilities in conflict zones non-functional."
-    },
-    {
-      "id": "zimbabwe-term-extension-biti",
-      "label": "Zimbabwe: Biti detained as Mnangagwa pushes term extension",
-      "firstSeen": "2026-03-21T20:30:00Z",
-      "lastCovered": "2026-03-21T20:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-zimbabwe-biti-detained-mnangagwa-term-extension"
-      ],
-      "summary": "Tendai Biti detained as Mnangagwa pushes term extension from 5 to 7 years."
     },
     {
       "id": "brazil-climate-plan-ndc",
@@ -727,6 +759,20 @@
         "2026-03-22-china-ai-harvest-forecast-food-security-advantage"
       ],
       "summary": "Chinese AI system predicts crop yields at county level."
+    },
+    {
+      "id": "china-ai-one-person-companies",
+      "label": "China OpenClaw AI enables one-person companies",
+      "firstSeen": "2026-03-22T11:30:00Z",
+      "lastCovered": "2026-03-22T11:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-22-china-openclaw-ai-one-person-companies"
+      ],
+      "summary": "Chinese entrepreneurs use OpenClaw AI agent framework to run solo businesses."
     },
     {
       "id": "china-child-trafficking-aunt-mei",
@@ -773,18 +819,18 @@
       "summary": "Cuba infrastructure collapse deepens under Trump oil blockade: total blackouts, no water, no fuel. 11 million civilians bearing cost of US regime-change policy."
     },
     {
-      "id": "czech-foreign-agent-law",
-      "label": "Czech Republic foreign agent law protest",
-      "firstSeen": "2026-03-21T11:00:00Z",
-      "lastCovered": "2026-03-21T11:00:00Z",
+      "id": "france-local-elections-2026",
+      "label": "France second-round municipal elections across 1500 communes",
+      "firstSeen": "2026-03-22T11:30:00Z",
+      "lastCovered": "2026-03-22T11:30:00Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 1,
       "arc": "fading",
       "articles": [
-        "2026-03-21-czech-republic-foreign-agent-law-protest-democratic-backsliding"
+        "2026-03-22-france-local-elections-second-round-municipalities"
       ],
-      "summary": "Prague expects largest demonstration in years against PM Babis's Russia-style foreign agent law targeting NGOs and journalists."
+      "summary": "French voters head to polls in second round of local elections."
     },
     {
       "id": "germany-regional-election-2026",
@@ -813,34 +859,6 @@
         "2026-03-22-icc-khan-cleared-misconduct-israel-warrants-backdrop"
       ],
       "summary": "ICC prosecutor Khan cleared of misconduct charges."
-    },
-    {
-      "id": "india-iran-diplomacy",
-      "label": "Modi-Pezeshkian call: India maintains diplomatic channel to Tehran",
-      "firstSeen": "2026-03-21T14:30:00Z",
-      "lastCovered": "2026-03-21T14:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-modi-pezeshkian-iran-india-diplomacy-infrastructure"
-      ],
-      "summary": "Modi condemns attacks on critical infrastructure while talking directly to Iran's president. India positioning as diplomatic channel when Western contact severed."
-    },
-    {
-      "id": "jellyfish-circadian-clock",
-      "label": "Japanese jellyfish evolved independent circadian clock mechanism",
-      "firstSeen": "2026-03-21T14:30:00Z",
-      "lastCovered": "2026-03-21T14:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-jellyfish-circadian-clock-different-timekeeping-evolution"
-      ],
-      "summary": "Pea-sized jellyfish off Japan coast has circadian clock using different molecular machinery than all other known organisms."
     }
   ]
 }

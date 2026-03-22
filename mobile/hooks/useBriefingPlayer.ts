@@ -29,6 +29,8 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const subRef = useRef<any>(null);
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
+  const feedDurationRef = useRef(feedDuration ?? 0);
+  feedDurationRef.current = feedDuration ?? 0;
 
   // Clean up on unmount
   useEffect(() => {
@@ -131,7 +133,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         const d = playerRef.current.duration;
         const c = playerRef.current.currentTime;
         // Use player duration if available, otherwise fall back to feed duration
-        const duration = (d > 0 && isFinite(d)) ? d : (feedDuration ?? 0);
+        const duration = (d > 0 && isFinite(d)) ? d : feedDurationRef.current;
         if (duration > 0) {
           const left = Math.ceil(duration - c);
           setRemaining(left > 0 ? left : 0);
@@ -146,7 +148,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     } catch {
       // expo-audio unavailable
     }
-  }, [date, playing, savePosition, activateLockScreen, feedDuration]);
+  }, [date, playing, savePosition, activateLockScreen]);
 
   return { playing, remaining, toggle };
 }
