@@ -14,6 +14,7 @@ import { Toast, type ToastRef } from '../components/Toast';
 import { SOURCES } from '../constants/sources';
 import { CATEGORIES, COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
+import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useHaptic } from '../hooks/useHaptic';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
@@ -23,6 +24,7 @@ export default function HomeScreen() {
   const { impact } = useHaptic();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
+  const briefingPlayer = useBriefingPlayer(briefing?.available ? briefing.date : undefined);
 
   // Sheet refs
   const sourceSheetRef = useRef<BottomSheetModal>(null);
@@ -196,8 +198,8 @@ export default function HomeScreen() {
         </View>
       </PagerView>
 
-      {currentCategory < CATEGORIES.length && briefing?.available && !sheetOpen && (
-        <BriefingButton date={briefing.date} />
+      {briefing?.available && (currentCategory < CATEGORIES.length || briefingPlayer.playing) && !sheetOpen && (
+        <BriefingButton playing={briefingPlayer.playing} onPress={briefingPlayer.toggle} />
       )}
       <Toast ref={toastRef} />
 

@@ -50,7 +50,8 @@ build_android() {
 }
 
 submit_ios() {
-  echo "› Submitting iOS to ${MODE == 'test' && echo 'TestFlight' || echo 'App Store'}..."
+  local target="App Store"; [[ "$MODE" == "test" ]] && target="TestFlight"
+  echo "› Submitting iOS to $target..."
   eas submit --platform ios --latest --non-interactive
 }
 

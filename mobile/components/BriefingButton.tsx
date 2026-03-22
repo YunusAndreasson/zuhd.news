@@ -1,58 +1,18 @@
 import { Ionicons } from '@expo/vector-icons';
-import { memo, useCallback, useEffect, useState } from 'react';
+import { memo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { API_BASE, COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 
 interface BriefingButtonProps {
-  date: string;
+  playing: boolean;
+  onPress: () => void;
 }
 
-export const BriefingButton = memo(function BriefingButton({ date }: BriefingButtonProps) {
+export const BriefingButton = memo(function BriefingButton({ playing, onPress }: BriefingButtonProps) {
   const insets = useSafeAreaInsets();
   const { impact } = useHaptic();
-  const [playing, setPlaying] = useState(false);
-  const [playerRef, setPlayerRef] = useState<{
-    play(): void;
-    pause(): void;
-    remove(): void;
-  } | null>(null);
-
-  useEffect(() => {
-    return () => {
-      playerRef?.remove();
-    };
-  }, [playerRef]);
-
-  const handlePress = useCallback(async () => {
-    impact();
-
-    try {
-      // Lazy-load expo-audio only on press — never at module/hook level
-      const { createAudioPlayer, setAudioModeAsync } = require('expo-audio');
-
-      if (playerRef) {
-        if (playing) {
-          playerRef.pause();
-          setPlaying(false);
-        } else {
-          playerRef.play();
-          setPlaying(true);
-        }
-      } else {
-        await setAudioModeAsync({ playsInSilentMode: true });
-        const player = createAudioPlayer({
-          uri: `${API_BASE}/audio/briefing-${date}.mp3`,
-        });
-        setPlayerRef(player);
-        player.play();
-        setPlaying(true);
-      }
-    } catch {
-      // expo-audio unavailable in this Expo Go build — button stays visible, tap is a no-op
-    }
-  }, [impact, playerRef, playing, date]);
 
   return (
     <Pressable
@@ -61,8 +21,8 @@ export const BriefingButton = memo(function BriefingButton({ date }: BriefingBut
         { bottom: insets.bottom + LAYOUT.briefingButtonBottom },
         pressed && { opacity: 0.5 },
       ]}
-      onPress={handlePress}
-      hitSlop={12}
+      onPress={() => { impact(); onPress(); }}
+      hitSlop={24}
     >
       <View style={styles.row}>
         <Ionicons
