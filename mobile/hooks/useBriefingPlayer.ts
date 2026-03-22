@@ -83,6 +83,7 @@ export function useBriefingPlayer(date: string | undefined): BriefingPlayer {
       await setAudioModeAsync({
         playsInSilentMode: true,
         shouldPlayInBackground: true,
+        interruptionMode: 'doNotMix',
       });
       await setIsAudioActiveAsync(true);
 
