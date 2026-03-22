@@ -72,10 +72,11 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         if (playing) {
           savePosition();
           playerRef.current.pause();
+          setPlaying(false);
         } else {
           playerRef.current.play();
+          setPlaying(true);
         }
-        // Don't setPlaying here — the event listener handles it
         return;
       }
 
@@ -120,6 +121,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       savedDate.current = date;
       playerRef.current = player;
       player.play();
+      setPlaying(true);
 
       activateLockScreen(player);
 
