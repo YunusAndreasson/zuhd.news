@@ -36,13 +36,16 @@ export const BriefingButton = memo(function BriefingButton({
         { bottom: insets.bottom + LAYOUT.briefingButtonBottom },
         pressed && { opacity: 0.5 },
       ]}
-      onPress={() => { impact(); onPress(); }}
+      onPress={() => {
+        impact();
+        onPress();
+      }}
       hitSlop={24}
     >
       <View style={styles.row}>
         <Ionicons
           name={playing ? 'pause' : 'play'}
-          size={TYPOGRAPHY.sizeSm - 4}
+          size={TYPOGRAPHY.sizeSm}
           color={COLORS.accent}
           style={{ marginTop: 2 }}
         />

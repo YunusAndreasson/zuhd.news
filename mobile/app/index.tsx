@@ -37,7 +37,12 @@ export default function HomeScreen() {
 
   const renderBackdrop = useCallback(
     (props: any) => (
-      <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} pressBehavior="close" />
+      <BottomSheetBackdrop
+        {...props}
+        disappearsOnIndex={-1}
+        appearsOnIndex={0}
+        pressBehavior="close"
+      />
     ),
     [],
   );
@@ -107,14 +112,19 @@ export default function HomeScreen() {
     try {
       const n = await refresh();
       if (n > 0) {
-        toastRef.current?.show(`${n} new article${n > 1 ? 's' : ''}`, undefined, 'top');
+        const allArticles = Object.values(grouped).flat();
+        const words = allArticles
+          .filter((a) => a.addedAt > lastSeenAt)
+          .reduce((sum, a) => sum + a.sentences.join(' ').split(/\s+/).length, 0);
+        const mins = Math.max(1, Math.ceil(words / 238));
+        toastRef.current?.show(`${n} new · ~${mins} min read`, undefined, 'top');
       } else {
         toastRef.current?.show('Already up to date', undefined, 'top');
       }
     } catch {
       toastRef.current?.show('Could not refresh', undefined, 'top');
     }
-  }, [impact, refresh]);
+  }, [impact, refresh, grouped, lastSeenAt]);
 
   useEffect(() => {
     if (!loading) SplashScreen.hideAsync();
@@ -200,9 +210,16 @@ export default function HomeScreen() {
         </View>
       </PagerView>
 
-      {briefing?.available && (currentCategory < CATEGORIES.length || briefingPlayer.playing) && !sheetOpen && (
-        <BriefingButton playing={briefingPlayer.playing} elapsed={briefingPlayer.elapsed} duration={briefingPlayer.duration} onPress={briefingPlayer.toggle} />
-      )}
+      {briefing?.available &&
+        (currentCategory < CATEGORIES.length || briefingPlayer.playing) &&
+        !sheetOpen && (
+          <BriefingButton
+            playing={briefingPlayer.playing}
+            elapsed={briefingPlayer.elapsed}
+            duration={briefingPlayer.duration}
+            onPress={briefingPlayer.toggle}
+          />
+        )}
       <Toast ref={toastRef} />
 
       {/* Source sheet */}
@@ -213,7 +230,10 @@ export default function HomeScreen() {
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
         handleIndicatorStyle={styles.sheetHandle}
-        onDismiss={() => { setSourceSheet(null); setSheetOpen(false); }}
+        onDismiss={() => {
+          setSourceSheet(null);
+          setSheetOpen(false);
+        }}
       >
         <BottomSheetView
           style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}

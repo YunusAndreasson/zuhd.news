@@ -9,10 +9,10 @@ import Animated, {
   useReducedMotion,
 } from 'react-native-reanimated';
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
-import { ActionLabel } from './ActionLabel';
 import { useHaptic } from '../hooks/useHaptic';
 import { renderSentences } from '../lib/markdown';
 import type { Article } from '../types';
+import { ActionLabel } from './ActionLabel';
 
 interface ArticlePageProps {
   article: Article;
@@ -137,11 +137,7 @@ export const ArticlePage = memo(function ArticlePage({
           </View>
 
           <View style={styles.metaGroup}>
-            <ActionLabel
-              label="share"
-              icon="arrow-up-outline"
-              onPress={handleShare}
-            />
+            <ActionLabel label="share" icon="arrow-up-outline" onPress={handleShare} />
           </View>
         </View>
       </Animated.View>
@@ -152,7 +148,7 @@ export const ArticlePage = memo(function ArticlePage({
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: SPACING.screenPadding,
-    paddingTop: SPACING.xxl,
+    paddingTop: SPACING.xl,
     overflow: 'hidden',
   },
   earlierDivider: {

@@ -1,11 +1,11 @@
 import { Asset } from 'expo-asset';
 import {
+  type AudioPlayer,
+  type AudioStatus,
   createAudioPlayer,
   preload,
   setAudioModeAsync,
   setIsAudioActiveAsync,
-  type AudioPlayer,
-  type AudioStatus,
 } from 'expo-audio';
 import { getItemAsync, setItemAsync } from 'expo-secure-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -117,7 +117,9 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
           setElapsed(0);
           setItemAsync(POSITION_KEY, '0');
           // Clean up native player + subscription
-          try { player.clearLockScreenControls(); } catch {}
+          try {
+            player.clearLockScreenControls();
+          } catch {}
           eventSub.remove();
           player.remove();
           subRef.current = null;
