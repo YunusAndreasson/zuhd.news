@@ -5,8 +5,8 @@
       "id": "iran-us-israel-war",
       "label": "Iran-US-Israel war: nuclear site exchange, Saudi diplomatic rupture",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-18T17:30:00Z",
-      "coverageCount": 305,
+      "lastCovered": "2026-03-22T02:34:00Z",
+      "coverageCount": 308,
       "category": "politics",
       "importance": 8,
       "arc": "ongoing",
@@ -145,16 +145,19 @@
         "2026-03-21-iran-strikes-dimona-nuclear-site-retaliation",
         "2026-03-18-iran-intelligence-minister-khatib-killed-airstrike",
         "2026-03-18-saudi-arabia-intercepts-missiles-riyadh-alerts",
-        "2026-03-18-iaea-bushehr-damage-not-significant-nuclear"
+        "2026-03-18-iaea-bushehr-damage-not-significant-nuclear",
+        "2026-03-22-trump-48-hour-ultimatum-iran-power-plants-hormuz",
+        "2026-03-22-iran-1400-killed-us-israeli-strikes-homes-hospitals",
+        "2026-03-22-iran-4000km-missiles-dimona-100-injured-european-range"
       ],
-      "summary": "Day 27+. Intelligence minister Khatib killed. Saudi intercepting missiles over Riyadh first time. IAEA confirms Bushehr damage limited."
+      "summary": "Day 22+. Trump 48h ultimatum on power plants. 1,400+ killed. Iran 4,000-km missile range, 100+ injured near Dimona."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
       "label": "Hormuz crisis: Ras Laffan LNG attack, allies refuse escort, Pacific hit",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-22T00:30:00Z",
-      "coverageCount": 267,
+      "lastCovered": "2026-03-22T02:34:00Z",
+      "coverageCount": 268,
       "category": "economy",
       "importance": 5,
       "arc": "ongoing",
@@ -277,9 +280,10 @@
         "2026-03-21-oil-prices-asia-subsidy-crisis-hormuz",
         "2026-03-18-turkey-iraq-pipeline-hormuz-bypass",
         "2026-03-18-liberia-commodity-prices-iran-war-impact",
-        "2026-03-22-pakistan-rejects-fuel-price-hike-69bn-subsidy"
+        "2026-03-22-pakistan-rejects-fuel-price-hike-69bn-subsidy",
+        "2026-03-22-korean-won-1500-second-day-iran-energy-crisis"
       ],
-      "summary": "Pakistan absorbing Rs69bn in 2 weeks to block fuel hikes as oil hits $158/bbl. PM admits unsustainable."
+      "summary": "Korean won at 1,500/$ for 2nd day, worst since 2008. Asian manufacturing hit by energy shock."
     },
     {
       "id": "sudan-rsf-kordofan-darfur",
@@ -288,7 +292,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-21-sudan-rsf-seizes-bara-civilians-killed-kordofan",
@@ -297,70 +301,13 @@
       "summary": "Hospital attack in eastern Darfur kills 64. Over 2,000 killed in healthcare facility attacks in 3 years. RSF advancing in Kordofan."
     },
     {
-      "id": "turkey-security-pact",
-      "label": "Turkey-Saudi-Egypt-Pakistan push mutual security pact",
-      "firstSeen": "2026-03-21T17:00:00Z",
-      "lastCovered": "2026-03-21T18:00:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-21-turkey-saudi-egypt-pakistan-security-pact",
-        "2026-03-21-turkey-saudi-egypt-pakistan-security-pact-riyadh"
-      ],
-      "summary": "First four-way FM meeting in Riyadh. Fidan: either we solve our own problems or an external hegemon will impose solutions."
-    },
-    {
-      "id": "trump-ice-dhs-shutdown",
-      "label": "Trump deploys ICE to airports amid DHS shutdown, targets Somalis",
-      "firstSeen": "2026-03-21T18:00:00Z",
-      "lastCovered": "2026-03-21T18:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-trump-ice-airports-dhs-shutdown-somali-targeting"
-      ],
-      "summary": "Trump using DHS partial shutdown to deploy ICE to airports with explicit targeting of Somali immigrants."
-    },
-    {
-      "id": "iran-brics-diplomacy",
-      "label": "Iran seeks BRICS/India mediation for West Asia security framework",
-      "firstSeen": "2026-03-21T18:00:00Z",
-      "lastCovered": "2026-03-21T18:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-21-iran-modi-brics-west-asia-security-framework"
-      ],
-      "summary": "Pezeshkian asks Modi to use BRICS chairmanship to halt hostilities; proposes regional security framework."
-    },
-    {
-      "id": "uk-bases-international-law",
-      "label": "HRW warns UK bases for US Iran strikes may violate Geneva Conventions",
-      "firstSeen": "2026-03-21T18:00:00Z",
-      "lastCovered": "2026-03-21T18:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-uk-bases-iran-international-law-hrw-geneva"
-      ],
-      "summary": "HRW cites Common Article 1 of Geneva Conventions: UK obligated to ensure US IHL compliance from British bases."
-    },
-    {
       "id": "iran-protest-executions",
       "label": "Iran executes teenager from 2022 Woman Life Freedom protests during wartime",
       "firstSeen": "2026-03-19T22:35:00Z",
       "lastCovered": "2026-03-19T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-19-iran-teenager-executed-protests-wrestling"
@@ -374,68 +321,12 @@
       "lastCovered": "2026-03-19T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-19-denmark-greenland-runways-blow-up-us-invasion"
       ],
       "summary": "Danish military drew up plans to destroy Greenland runways after Venezuela operation sparked fears Trump would act against Greenland."
-    },
-    {
-      "id": "south-africa-debt-crisis",
-      "label": "South Africa: working poor owe 28x monthly salary",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-19-south-africa-debt-28-times-salary-crisis"
-      ],
-      "summary": "NDA study of 70,000+ debt review cases: average income R9,536/month, average debt 28x that."
-    },
-    {
-      "id": "crypto-clarity-act",
-      "label": "Crypto Clarity Act moves toward Senate hearing",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-19-crypto-clarity-act-senate-hearing-regulation"
-      ],
-      "summary": "White House reviewing legislative text. Lawmakers trading crypto regulation support for unrelated banking provisions."
-    },
-    {
-      "id": "apple-watch-clinical-trials",
-      "label": "Consumer wearables enter clinical trials as measurement tools",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-19-apple-watch-parkinsons-drug-clinical-trial"
-      ],
-      "summary": "Biotech using Apple Watch tremor/movement data as clinical endpoint in Parkinson drug trial."
-    },
-    {
-      "id": "facebook-wildlife-trafficking",
-      "label": "Bellingcat: 70k+ Facebook group members in coded wildlife trafficking",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-19-wildlife-traffickers-facebook-coded-language"
-      ],
-      "summary": "Nine Facebook groups with 70,000+ members use coded language to sell protected animals, evading Meta AI moderation."
     },
     {
       "id": "saudi-expels-iran",
@@ -444,7 +335,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-21-saudi-arabia-expels-iranian-diplomats-rupture"
@@ -458,7 +349,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-21-joe-kent-resigns-counterterrorism-iran-war"
@@ -472,7 +363,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-21-icc-khan-cleared-misconduct-judges"
@@ -486,26 +377,12 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-21-russia-planned-fake-orban-assassination-election"
       ],
       "summary": "Leaked WaPo report: Russian intelligence planned staged attack to shift Hungary April election to emotional terrain."
-    },
-    {
-      "id": "morocco-avocado-trade",
-      "label": "Morocco overtakes East Africa in avocado exports via logistics",
-      "firstSeen": "2026-03-21T22:35:00Z",
-      "lastCovered": "2026-03-21T22:35:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-21-morocco-redrawing-africa-avocado-trade"
-      ],
-      "summary": "Morocco invested in logistics infrastructure while Hormuz disrupts shipping. Overtaking Kenya in European market access."
     },
     {
       "id": "co2-ch4-stable-3m-years",
@@ -514,7 +391,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-21-co2-methane-stable-3-million-years-nature"
@@ -528,7 +405,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-21-sepsis-surge-massachusetts-ai-billing"
@@ -542,26 +419,12 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-21-meta-translation-1600-languages"
       ],
       "summary": "Omnilingual MT covers 10x more languages than any prior system. Most are Indigenous/minority/endangered languages."
-    },
-    {
-      "id": "tinybox-offline-ai",
-      "label": "Tinygrad tinybox runs 120B-parameter AI offline on consumer hardware",
-      "firstSeen": "2026-03-21T22:35:00Z",
-      "lastCovered": "2026-03-21T22:35:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-21-tinybox-offline-ai-120b-parameters"
-      ],
-      "summary": "Consumer device runs frontier AI locally. No cloud, no API, no data leaving device."
     },
     {
       "id": "child-protection-access-control",
@@ -570,7 +433,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-21-child-protection-internet-access-control"
@@ -584,8 +447,8 @@
       "lastCovered": "2026-03-18T17:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 4,
+      "arc": "breaking",
       "articles": [
         "2026-03-18-permanent-inflation-floor-iran-war-cheap-money-over"
       ],
@@ -598,8 +461,8 @@
       "lastCovered": "2026-03-18T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 4,
+      "arc": "breaking",
       "articles": [
         "2026-03-18-boko-haram-maiduguri-bombings-hospital-market"
       ],
@@ -609,8 +472,8 @@
       "id": "lebanon-israel-war",
       "label": "Lebanon-Israel-Gaza: Hezbollah rebuilds, Gaza invisible war continues",
       "firstSeen": "2026-03-08T00:00:00Z",
-      "lastCovered": "2026-03-22T00:30:00Z",
-      "coverageCount": 54,
+      "lastCovered": "2026-03-22T02:34:00Z",
+      "coverageCount": 55,
       "category": "politics",
       "importance": 7,
       "arc": "developing",
@@ -667,9 +530,10 @@
         "2026-03-19-hezbollah-rebuilt-enemies-declared-dead",
         "2026-03-19-israel-gaza-attacks-rafah-reopens-invisible-war",
         "2026-03-18-unicef-classroom-children-daily-lebanon-strikes",
-        "2026-03-22-idf-strikes-100-medical-facilities-lebanon-40-killed"
+        "2026-03-22-idf-strikes-100-medical-facilities-lebanon-40-killed",
+        "2026-03-22-hezbollah-shells-israeli-troops-three-front-war"
       ],
-      "summary": "IDF struck 100+ medical facilities in Lebanon, killing 40 healthcare workers. Over 1M displaced. Second front overshadowed by Iran war."
+      "summary": "Hezbollah engaging Israeli troops, sirens in north. Third front active. 1M+ displaced, 1,000+ killed."
     },
     {
       "id": "south-pars-gasfield-strike",
@@ -678,68 +542,12 @@
       "lastCovered": "2026-03-18T17:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
-      "arc": "fading",
-      "articles": [
-        "2026-03-18-oil-110-south-pars-gasfield-strike-uae-condemns"
-      ],
-      "summary": "Israel struck South Pars with US approval. Oil at 110. UAE rare condemnation."
-    },
-    {
-      "id": "south-pars-gasfield-strike",
-      "label": "Israeli strike on South Pars gasfield oil 110 UAE condemns",
-      "firstSeen": "2026-03-18T17:30:00Z",
-      "lastCovered": "2026-03-18T17:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-18-oil-110-south-pars-gasfield-strike-uae-condemns"
       ],
       "summary": "Israel struck South Pars with US approval. Oil at 110. UAE rare condemnation."
-    },
-    {
-      "id": "permanent-inflation-floor",
-      "label": "Iran war creates permanent inflation floor",
-      "firstSeen": "2026-03-18T17:30:00Z",
-      "lastCovered": "2026-03-18T17:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-18-permanent-inflation-floor-iran-war-cheap-money-over"
-      ],
-      "summary": "Structural damage creates permanent inflation floor even if war ends."
-    },
-    {
-      "id": "boko-haram-maiduguri-2026",
-      "label": "Boko Haram suicide bombings kill 23+ Maiduguri",
-      "firstSeen": "2026-03-18T17:30:00Z",
-      "lastCovered": "2026-03-18T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-18-boko-haram-maiduguri-bombings-hospital-market"
-      ],
-      "summary": "Hospital and market bombings. First major northeast attack in months."
-    },
-    {
-      "id": "sri-lanka-india-refugee-reversal",
-      "label": "Sri Lanka offers to welcome Indian refugees",
-      "firstSeen": "2026-03-18T17:30:00Z",
-      "lastCovered": "2026-03-18T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-18-sri-lanka-welcomes-indian-refugees-reversal"
-      ],
-      "summary": "Inverting decades of Tamil refugee flow to India."
     },
     {
       "id": "press-freedom-wartime-israel",
@@ -748,7 +556,7 @@
       "lastCovered": "2026-03-18T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-18-israeli-police-break-journalist-wrist-al-aqsa"
@@ -762,7 +570,7 @@
       "lastCovered": "2026-03-22T00:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-22-brazil-lula-warns-foreign-interference-colonisation"
@@ -776,7 +584,7 @@
       "lastCovered": "2026-03-22T00:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-22-settlers-attack-west-bank-revenge-arson"
@@ -785,17 +593,18 @@
     },
     {
       "id": "cuba-us-blockade-diesel",
-      "label": "Cuba rejects US embassy diesel request amid blockade",
+      "label": "Cuba: repeated national blackouts as blockade + Hormuz collapse grid",
       "firstSeen": "2026-03-22T00:30:00Z",
-      "lastCovered": "2026-03-22T00:30:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-22T02:34:00Z",
+      "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 6,
+      "arc": "developing",
       "articles": [
-        "2026-03-22-cuba-rejects-us-diesel-request-blockade"
+        "2026-03-22-cuba-rejects-us-diesel-request-blockade",
+        "2026-03-22-cuba-second-national-blackout-week-grid-collapse"
       ],
-      "summary": "Cuba refused US embassy request for diesel while US blockade causes fuel shortage."
+      "summary": "Second national grid collapse in one week. US blockade + Hormuz = fuel starvation."
     },
     {
       "id": "south-korea-industrial-safety",
@@ -804,7 +613,7 @@
       "lastCovered": "2026-03-22T00:30:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-22-south-korea-daejeon-fire-toll-rises-14-dead"
@@ -818,7 +627,7 @@
       "lastCovered": "2026-03-22T00:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-22-ncar-climate-center-shutdown-lawsuit-trump"
@@ -832,7 +641,7 @@
       "lastCovered": "2026-03-22T00:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-22-russia-diabetes-epidemic-6-million-cases"
@@ -846,7 +655,7 @@
       "lastCovered": "2026-03-22T00:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-22-pre-inca-peru-parrot-trade-andes-ancient"
@@ -860,7 +669,7 @@
       "lastCovered": "2026-03-22T00:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-22-doge-silicon-valley-nuclear-regulator-nrc"
@@ -874,12 +683,209 @@
       "lastCovered": "2026-03-22T00:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-22-foxconn-kunshan-china-tech-manufacturing-transition"
       ],
       "summary": "Kunshan faces identity crisis as low-cost manufacturing falters."
+    },
+    {
+      "id": "south-korea-lee-housing-reform",
+      "label": "South Korea Lee bans multi-home officials from housing policy",
+      "firstSeen": "2026-03-22T02:34:00Z",
+      "lastCovered": "2026-03-22T02:34:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-south-korea-lee-bans-multi-home-officials-housing"
+      ],
+      "summary": "President Lee bars multi-property officials from housing policymaking."
+    },
+    {
+      "id": "musk-tsa-dhs-funding",
+      "label": "Musk offers TSA salaries amid DHS funding fight",
+      "firstSeen": "2026-03-22T02:34:00Z",
+      "lastCovered": "2026-03-22T02:34:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-musk-tsa-salaries-dhs-funding-government-erosion"
+      ],
+      "summary": "DOGE chief offers personal funds for TSA workers missing 2nd paycheck."
+    },
+    {
+      "id": "cannabis-mental-health-review",
+      "label": "No evidence cannabis treats anxiety, depression, PTSD",
+      "firstSeen": "2026-03-22T02:34:00Z",
+      "lastCovered": "2026-03-22T02:34:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-cannabis-no-evidence-anxiety-depression-ptsd-review"
+      ],
+      "summary": "Comprehensive review finds no reliable evidence for common medical cannabis claims."
+    },
+    {
+      "id": "south-korea-ai-global-top50",
+      "label": "South Korean AI tools enter global top 50",
+      "firstSeen": "2026-03-22T02:34:00Z",
+      "lastCovered": "2026-03-22T02:34:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-south-korea-ai-adot-papago-top-50-global"
+      ],
+      "summary": "SKT Adot and Naver Papago in top 50 most-used generative AI globally."
+    },
+    {
+      "id": "turkey-security-pact",
+      "label": "Turkey-Saudi-Egypt-Pakistan push mutual security pact",
+      "firstSeen": "2026-03-21T17:00:00Z",
+      "lastCovered": "2026-03-21T18:00:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-21-turkey-saudi-egypt-pakistan-security-pact",
+        "2026-03-21-turkey-saudi-egypt-pakistan-security-pact-riyadh"
+      ],
+      "summary": "First four-way FM meeting in Riyadh. Fidan: either we solve our own problems or an external hegemon will impose solutions."
+    },
+    {
+      "id": "trump-ice-dhs-shutdown",
+      "label": "Trump deploys ICE to airports amid DHS shutdown, targets Somalis",
+      "firstSeen": "2026-03-21T18:00:00Z",
+      "lastCovered": "2026-03-21T18:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-21-trump-ice-airports-dhs-shutdown-somali-targeting"
+      ],
+      "summary": "Trump using DHS partial shutdown to deploy ICE to airports with explicit targeting of Somali immigrants."
+    },
+    {
+      "id": "iran-brics-diplomacy",
+      "label": "Iran seeks BRICS/India mediation for West Asia security framework",
+      "firstSeen": "2026-03-21T18:00:00Z",
+      "lastCovered": "2026-03-21T18:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-21-iran-modi-brics-west-asia-security-framework"
+      ],
+      "summary": "Pezeshkian asks Modi to use BRICS chairmanship to halt hostilities; proposes regional security framework."
+    },
+    {
+      "id": "uk-bases-international-law",
+      "label": "HRW warns UK bases for US Iran strikes may violate Geneva Conventions",
+      "firstSeen": "2026-03-21T18:00:00Z",
+      "lastCovered": "2026-03-21T18:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-21-uk-bases-iran-international-law-hrw-geneva"
+      ],
+      "summary": "HRW cites Common Article 1 of Geneva Conventions: UK obligated to ensure US IHL compliance from British bases."
+    },
+    {
+      "id": "south-africa-debt-crisis",
+      "label": "South Africa: working poor owe 28x monthly salary",
+      "firstSeen": "2026-03-19T22:35:00Z",
+      "lastCovered": "2026-03-19T22:35:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-19-south-africa-debt-28-times-salary-crisis"
+      ],
+      "summary": "NDA study of 70,000+ debt review cases: average income R9,536/month, average debt 28x that."
+    },
+    {
+      "id": "crypto-clarity-act",
+      "label": "Crypto Clarity Act moves toward Senate hearing",
+      "firstSeen": "2026-03-19T22:35:00Z",
+      "lastCovered": "2026-03-19T22:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-19-crypto-clarity-act-senate-hearing-regulation"
+      ],
+      "summary": "White House reviewing legislative text. Lawmakers trading crypto regulation support for unrelated banking provisions."
+    },
+    {
+      "id": "apple-watch-clinical-trials",
+      "label": "Consumer wearables enter clinical trials as measurement tools",
+      "firstSeen": "2026-03-19T22:35:00Z",
+      "lastCovered": "2026-03-19T22:35:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-19-apple-watch-parkinsons-drug-clinical-trial"
+      ],
+      "summary": "Biotech using Apple Watch tremor/movement data as clinical endpoint in Parkinson drug trial."
+    },
+    {
+      "id": "facebook-wildlife-trafficking",
+      "label": "Bellingcat: 70k+ Facebook group members in coded wildlife trafficking",
+      "firstSeen": "2026-03-19T22:35:00Z",
+      "lastCovered": "2026-03-19T22:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-19-wildlife-traffickers-facebook-coded-language"
+      ],
+      "summary": "Nine Facebook groups with 70,000+ members use coded language to sell protected animals, evading Meta AI moderation."
+    },
+    {
+      "id": "morocco-avocado-trade",
+      "label": "Morocco overtakes East Africa in avocado exports via logistics",
+      "firstSeen": "2026-03-21T22:35:00Z",
+      "lastCovered": "2026-03-21T22:35:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-21-morocco-redrawing-africa-avocado-trade"
+      ],
+      "summary": "Morocco invested in logistics infrastructure while Hormuz disrupts shipping. Overtaking Kenya in European market access."
+    },
+    {
+      "id": "tinybox-offline-ai",
+      "label": "Tinygrad tinybox runs 120B-parameter AI offline on consumer hardware",
+      "firstSeen": "2026-03-21T22:35:00Z",
+      "lastCovered": "2026-03-21T22:35:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-21-tinybox-offline-ai-120b-parameters"
+      ],
+      "summary": "Consumer device runs frontier AI locally. No cloud, no API, no data leaving device."
     }
   ]
 }
