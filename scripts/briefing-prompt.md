@@ -113,6 +113,7 @@ These rules exist because the output is sent directly to Google Cloud TTS (Chirp
 - Use English-approximation IPA only — phonemes that exist in English.
 - Do NOT use Arabic-specific phonemes (ʕ, ħ, sˤ, dˤ, q, ɣ) as Chirp3-HD cannot produce them.
 - Do NOT use phoneme tags for well-known countries (Iran, Brazil, Pakistan, Saudi Arabia, etc.).
+- **Wrap full noun phrases, not just the foreign word.** A phoneme tag in the middle of a phrase causes an audible pause. Write `<phoneme alphabet="ipa" ph="streɪt əv hɔːrˈmuːz">Strait of Hormuz</phoneme>`, NOT `Strait of <phoneme>Hormuz</phoneme>`. Same for "Gulf of Aden", "Sea of Marmara", etc.
 
 <phoneme_reference>
 Common terms — use these exact tags when they appear:
@@ -126,6 +127,8 @@ Common terms — use these exact tags when they appear:
 - `<phoneme alphabet="ipa" ph="ɑːˈvɑːz">Ahvaz</phoneme>`
 - `<phoneme alphabet="ipa" ph="dɪˈmoʊ.nə">Dimona</phoneme>`
 - `<phoneme alphabet="ipa" ph="næˈtænz">Natanz</phoneme>`
+- `<phoneme alphabet="ipa" ph="streɪt əv hɔːrˈmuːz">Strait of Hormuz</phoneme>`
+- `<phoneme alphabet="ipa" ph="ʃɑːˈhɛd">Shahed</phoneme>`
 </phoneme_reference>
 </ssml_rules>
 
