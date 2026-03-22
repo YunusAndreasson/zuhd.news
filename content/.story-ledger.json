@@ -5,10 +5,10 @@
       "id": "iran-us-israel-war",
       "label": "Iran-US-Israel war: nuclear site exchange, Saudi diplomatic rupture",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-21T22:35:00Z",
-      "coverageCount": 302,
+      "lastCovered": "2026-03-18T17:30:00Z",
+      "coverageCount": 305,
       "category": "politics",
-      "importance": 9,
+      "importance": 8,
       "arc": "ongoing",
       "articles": [
         "2026-03-01-us-israel-attacks-iran-retaliation-regional-war",
@@ -142,16 +142,19 @@
         "2026-03-21-iran-modi-brics-west-asia-security-framework",
         "2026-03-21-us-strikes-iran-hormuz-base-22-nation-statement",
         "2026-03-19-pentagon-200bn-iran-war-congress-bad-guys",
-        "2026-03-21-iran-strikes-dimona-nuclear-site-retaliation"
+        "2026-03-21-iran-strikes-dimona-nuclear-site-retaliation",
+        "2026-03-18-iran-intelligence-minister-khatib-killed-airstrike",
+        "2026-03-18-saudi-arabia-intercepts-missiles-riyadh-alerts",
+        "2026-03-18-iaea-bushehr-damage-not-significant-nuclear"
       ],
-      "summary": "Day 30+. Iran strikes Dimona in retaliation for Natanz attack. First nuclear-site-for-nuclear-site exchange. Saudi expels Iranian diplomats. Joe Kent resigns over war."
+      "summary": "Day 27+. Intelligence minister Khatib killed. Saudi intercepting missiles over Riyadh first time. IAEA confirms Bushehr damage limited."
     },
     {
       "id": "iran-war-hormuz-economic-impact",
       "label": "Hormuz crisis: Ras Laffan LNG attack, allies refuse escort, Pacific hit",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-21T22:35:00Z",
-      "coverageCount": 264,
+      "lastCovered": "2026-03-22T00:30:00Z",
+      "coverageCount": 267,
       "category": "economy",
       "importance": 5,
       "arc": "ongoing",
@@ -271,9 +274,12 @@
         "2026-03-19-ras-laffan-qatar-gas-hub-attack-asia-lng",
         "2026-03-19-trump-japan-hormuz-step-up-allies-refuse",
         "2026-03-19-marshall-islands-income-tax-cut-living-costs",
-        "2026-03-21-oil-prices-asia-subsidy-crisis-hormuz"
+        "2026-03-21-oil-prices-asia-subsidy-crisis-hormuz",
+        "2026-03-18-turkey-iraq-pipeline-hormuz-bypass",
+        "2026-03-18-liberia-commodity-prices-iran-war-impact",
+        "2026-03-22-pakistan-rejects-fuel-price-hike-69bn-subsidy"
       ],
-      "summary": "Oil at 158/bbl. Asian economies hit hardest: Malaysia fuel subsidies crushing treasury, Australia LNG profits not reaching citizens."
+      "summary": "Pakistan absorbing Rs69bn in 2 weeks to block fuel hikes as oil hits $158/bbl. PM admits unsustainable."
     },
     {
       "id": "sudan-rsf-kordofan-darfur",
@@ -282,7 +288,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-21-sudan-rsf-seizes-bara-civilians-killed-kordofan",
@@ -297,7 +303,7 @@
       "lastCovered": "2026-03-21T18:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-21-turkey-saudi-egypt-pakistan-security-pact",
@@ -306,44 +312,14 @@
       "summary": "First four-way FM meeting in Riyadh. Fidan: either we solve our own problems or an external hegemon will impose solutions."
     },
     {
-      "id": "bangladesh-energy-crisis",
-      "label": "Bangladesh seeks $2B emergency loan amid energy crisis",
-      "firstSeen": "2026-03-21T17:00:00Z",
-      "lastCovered": "2026-03-21T18:00:00Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-21-bangladesh-2b-loan-energy-crisis",
-        "2026-03-21-bangladesh-2b-energy-loan-hormuz-crisis"
-      ],
-      "summary": "Bangladesh imports 95% oil/gas, seeks $2B emergency loan. Garment sector (4M workers) at risk."
-    },
-    {
-      "id": "internet-archive-ai-blocking",
-      "label": "Publishers blocking Internet Archive to stop AI erasing web history",
-      "firstSeen": "2026-03-21T17:00:00Z",
-      "lastCovered": "2026-03-21T18:00:00Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-21-internet-archive-ai-blocking-web-history",
-        "2026-03-21-eff-internet-archive-blocking-ai-web-history"
-      ],
-      "summary": "EFF argues publisher blocks destroy web history without stopping AI scraping. AI companies already scraped the data."
-    },
-    {
       "id": "trump-ice-dhs-shutdown",
       "label": "Trump deploys ICE to airports amid DHS shutdown, targets Somalis",
       "firstSeen": "2026-03-21T18:00:00Z",
       "lastCovered": "2026-03-21T18:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-21-trump-ice-airports-dhs-shutdown-somali-targeting"
       ],
@@ -356,40 +332,12 @@
       "lastCovered": "2026-03-21T18:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-21-iran-modi-brics-west-asia-security-framework"
       ],
       "summary": "Pezeshkian asks Modi to use BRICS chairmanship to halt hostilities; proposes regional security framework."
-    },
-    {
-      "id": "afcfta-trade-acceleration",
-      "label": "AfCFTA Adjustment Fund pitched to Nigerian investors",
-      "firstSeen": "2026-03-21T18:00:00Z",
-      "lastCovered": "2026-03-21T18:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-21-afcfta-adjustment-fund-african-trade-acceleration"
-      ],
-      "summary": "Afreximbank launches AfCFTA Adjustment Fund, first concrete financing for African free trade."
-    },
-    {
-      "id": "grayscale-defi-brokerage",
-      "label": "Grayscale files trust product for Hyperliquid DeFi derivatives",
-      "firstSeen": "2026-03-21T18:00:00Z",
-      "lastCovered": "2026-03-21T18:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-21-grayscale-hyperliquid-defi-brokerage-trust"
-      ],
-      "summary": "Grayscale creating trust wrapper for Hyperliquid DeFi derivatives for traditional brokerages."
     },
     {
       "id": "uk-bases-international-law",
@@ -398,8 +346,8 @@
       "lastCovered": "2026-03-21T18:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-21-uk-bases-iran-international-law-hrw-geneva"
       ],
@@ -412,7 +360,7 @@
       "lastCovered": "2026-03-19T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-19-iran-teenager-executed-protests-wrestling"
@@ -426,7 +374,7 @@
       "lastCovered": "2026-03-19T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-19-denmark-greenland-runways-blow-up-us-invasion"
@@ -440,7 +388,7 @@
       "lastCovered": "2026-03-19T22:35:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-19-south-africa-debt-28-times-salary-crisis"
@@ -454,8 +402,8 @@
       "lastCovered": "2026-03-19T22:35:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-19-crypto-clarity-act-senate-hearing-regulation"
       ],
@@ -468,8 +416,8 @@
       "lastCovered": "2026-03-19T22:35:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-19-apple-watch-parkinsons-drug-clinical-trial"
       ],
@@ -482,26 +430,12 @@
       "lastCovered": "2026-03-19T22:35:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-19-wildlife-traffickers-facebook-coded-language"
       ],
       "summary": "Nine Facebook groups with 70,000+ members use coded language to sell protected animals, evading Meta AI moderation."
-    },
-    {
-      "id": "kitten-tts-on-device",
-      "label": "Open-source TTS models small enough for any phone (25MB)",
-      "firstSeen": "2026-03-19T22:35:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-19-kitten-tts-open-source-25mb-on-device"
-      ],
-      "summary": "KittenTTS releases expressive text-to-speech models as small as 25MB for on-device synthesis."
     },
     {
       "id": "saudi-expels-iran",
@@ -510,7 +444,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-21-saudi-arabia-expels-iranian-diplomats-rupture"
@@ -524,7 +458,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-21-joe-kent-resigns-counterterrorism-iran-war"
@@ -538,7 +472,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-21-icc-khan-cleared-misconduct-judges"
@@ -552,7 +486,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-21-russia-planned-fake-orban-assassination-election"
@@ -566,7 +500,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-21-morocco-redrawing-africa-avocado-trade"
@@ -580,7 +514,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-21-co2-methane-stable-3-million-years-nature"
@@ -594,7 +528,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-21-sepsis-surge-massachusetts-ai-billing"
@@ -608,7 +542,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-21-meta-translation-1600-languages"
@@ -622,7 +556,7 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-21-tinybox-offline-ai-120b-parameters"
@@ -636,194 +570,12 @@
       "lastCovered": "2026-03-21T22:35:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-21-child-protection-internet-access-control"
       ],
       "summary": "EU Chat Control, UK OSA, Australia age verification all framed as child safety but build censorship infrastructure."
-    },
-    {
-      "id": "china-critical-minerals-2026",
-      "label": "China announces major critical minerals discoveries",
-      "firstSeen": "2026-03-21T15:00:00Z",
-      "lastCovered": "2026-03-21T15:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-china-critical-minerals-discovery-rare-earths-tech-race"
-      ],
-      "summary": "Major new rare earth and fluorite reserves. Strategic signaling during Hormuz disruption."
-    },
-    {
-      "id": "turing-award-quantum-crypto-2026",
-      "label": "Bennett and Brassard win Turing Award for quantum cryptography",
-      "firstSeen": "2026-03-21T15:00:00Z",
-      "lastCovered": "2026-03-21T15:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-quantum-cryptography-turing-award-bennett-brassard"
-      ],
-      "summary": "2026 Turing Award for BB84 quantum key distribution protocol."
-    },
-    {
-      "id": "humanoid-robot-dexterity-gap",
-      "label": "Humanoid robots: dexterity gap between locomotion and manipulation",
-      "firstSeen": "2026-03-21T15:00:00Z",
-      "lastCovered": "2026-03-21T15:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-humanoid-robots-dexterity-gap-manipulation-problem"
-      ],
-      "summary": "Robots still cannot handle fine manipulation despite locomotion advances."
-    },
-    {
-      "id": "pentagon-press-freedom",
-      "label": "Judge rules Pentagon press restrictions unconstitutional",
-      "firstSeen": "2026-03-21T17:00:00Z",
-      "lastCovered": "2026-03-21T17:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-pentagon-press-restrictions-first-amendment"
-      ],
-      "summary": "Federal judge strikes down wartime press access restrictions as First Amendment violation."
-    },
-    {
-      "id": "ntsb-newark-near-miss",
-      "label": "NTSB probes Alaska Airlines-FedEx near-miss at Newark",
-      "firstSeen": "2026-03-21T17:00:00Z",
-      "lastCovered": "2026-03-21T17:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-ntsb-newark-near-miss-alaska-fedex"
-      ],
-      "summary": "Passenger jet flew directly over cargo plane on runway. Latest in series of Newark incidents."
-    },
-    {
-      "id": "sri-lanka-trincomalee-energy",
-      "label": "Sri Lanka turns to India-backed Trincomalee for energy security",
-      "firstSeen": "2026-03-21T17:00:00Z",
-      "lastCovered": "2026-03-21T17:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-sri-lanka-india-trincomalee-energy-crisis"
-      ],
-      "summary": "Colonial-era oil tank farm developed with India as Hormuz crisis accelerates Indian Ocean geopolitical realignment."
-    },
-    {
-      "id": "china-nuclear-ecological-code",
-      "label": "China joins nuclear pledge and passes ecological code",
-      "firstSeen": "2026-03-21T17:00:00Z",
-      "lastCovered": "2026-03-21T17:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-china-nuclear-pledge-ecological-code"
-      ],
-      "summary": "Triple nuclear capacity pledge plus first comprehensive environmental law. Hormuz vindicates energy diversification."
-    },
-    {
-      "id": "china-coal-methane-research",
-      "label": "Research: China coal mine consolidation and methane emissions",
-      "firstSeen": "2026-03-21T17:00:00Z",
-      "lastCovered": "2026-03-21T17:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-china-coal-methane-emissions-research"
-      ],
-      "summary": "New research quantifies methane impact of consolidating thousands of small mines into large operations."
-    },
-    {
-      "id": "prediction-markets-wartime",
-      "label": "Prediction market debunks wartime death conspiracy at 5 cents",
-      "firstSeen": "2026-03-21T17:00:00Z",
-      "lastCovered": "2026-03-21T17:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-prediction-market-debunks-wartime-conspiracy"
-      ],
-      "summary": "Decentralized market resolved faster than government denials or media investigations during fog of war."
-    },
-    {
-      "id": "sri-lanka-india-refugee-reversal",
-      "label": "Sri Lanka offers to welcome Indian refugees",
-      "firstSeen": "2026-03-18T17:30:00Z",
-      "lastCovered": "2026-03-18T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-18-sri-lanka-welcomes-indian-refugees-reversal"
-      ],
-      "summary": "Inverting decades of Tamil refugee flow to India."
-    },
-    {
-      "id": "press-freedom-wartime-israel",
-      "label": "Israeli police break journalist wrist Al-Aqsa",
-      "firstSeen": "2026-03-18T17:30:00Z",
-      "lastCovered": "2026-03-18T17:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-18-israeli-police-break-journalist-wrist-al-aqsa"
-      ],
-      "summary": "FPA condemns assault on CNN producer at closed Al-Aqsa."
-    },
-    {
-      "id": "sadc-mineral-crimes",
-      "label": "SADC-UNODC workshop on illegal mineral extraction Southern Africa",
-      "firstSeen": "2026-03-21T18:00:00Z",
-      "lastCovered": "2026-03-21T18:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-sadc-unodc-mineral-crimes-southern-africa"
-      ],
-      "summary": "Regional workshop targets mineral crime across Southern Africa cobalt/lithium/rare earth zones."
-    },
-    {
-      "id": "ubuntu-sudo-change",
-      "label": "Ubuntu 26.04 shows asterisks for sudo passwords after 46 years",
-      "firstSeen": "2026-03-21T18:00:00Z",
-      "lastCovered": "2026-03-21T18:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-21-ubuntu-sudo-password-asterisks-46-year-unix-change"
-      ],
-      "summary": "Ubuntu breaks 46-year Unix tradition of silent password entry."
     },
     {
       "id": "permanent-inflation-floor",
@@ -832,7 +584,7 @@
       "lastCovered": "2026-03-18T17:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-18-permanent-inflation-floor-iran-war-cheap-money-over"
@@ -846,7 +598,7 @@
       "lastCovered": "2026-03-18T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "fading",
       "articles": [
         "2026-03-18-boko-haram-maiduguri-bombings-hospital-market"
@@ -857,11 +609,11 @@
       "id": "lebanon-israel-war",
       "label": "Lebanon-Israel-Gaza: Hezbollah rebuilds, Gaza invisible war continues",
       "firstSeen": "2026-03-08T00:00:00Z",
-      "lastCovered": "2026-03-19T22:35:00Z",
-      "coverageCount": 52,
+      "lastCovered": "2026-03-22T00:30:00Z",
+      "coverageCount": 54,
       "category": "politics",
-      "importance": 5,
-      "arc": "fading",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
         "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
         "2026-03-09-hrw-israel-white-phosphorus-lebanon-populated-areas",
@@ -913,9 +665,11 @@
         "2026-03-19-israel-gaza-attacks-rafah-reopens-invisible-war",
         "2026-03-18-unicef-classroom-children-daily-lebanon-strikes",
         "2026-03-19-hezbollah-rebuilt-enemies-declared-dead",
-        "2026-03-19-israel-gaza-attacks-rafah-reopens-invisible-war"
+        "2026-03-19-israel-gaza-attacks-rafah-reopens-invisible-war",
+        "2026-03-18-unicef-classroom-children-daily-lebanon-strikes",
+        "2026-03-22-idf-strikes-100-medical-facilities-lebanon-40-killed"
       ],
-      "summary": "Hezbollah rebuilding while Israel focused on Iran. Gaza attacks continue invisibly; Rafah reopens for limited medical evacuations."
+      "summary": "IDF struck 100+ medical facilities in Lebanon, killing 40 healthcare workers. Over 1M displaced. Second front overshadowed by Iran war."
     },
     {
       "id": "south-pars-gasfield-strike",
@@ -924,12 +678,208 @@
       "lastCovered": "2026-03-18T17:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "fading",
       "articles": [
         "2026-03-18-oil-110-south-pars-gasfield-strike-uae-condemns"
       ],
       "summary": "Israel struck South Pars with US approval. Oil at 110. UAE rare condemnation."
+    },
+    {
+      "id": "south-pars-gasfield-strike",
+      "label": "Israeli strike on South Pars gasfield oil 110 UAE condemns",
+      "firstSeen": "2026-03-18T17:30:00Z",
+      "lastCovered": "2026-03-18T17:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-18-oil-110-south-pars-gasfield-strike-uae-condemns"
+      ],
+      "summary": "Israel struck South Pars with US approval. Oil at 110. UAE rare condemnation."
+    },
+    {
+      "id": "permanent-inflation-floor",
+      "label": "Iran war creates permanent inflation floor",
+      "firstSeen": "2026-03-18T17:30:00Z",
+      "lastCovered": "2026-03-18T17:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-18-permanent-inflation-floor-iran-war-cheap-money-over"
+      ],
+      "summary": "Structural damage creates permanent inflation floor even if war ends."
+    },
+    {
+      "id": "boko-haram-maiduguri-2026",
+      "label": "Boko Haram suicide bombings kill 23+ Maiduguri",
+      "firstSeen": "2026-03-18T17:30:00Z",
+      "lastCovered": "2026-03-18T17:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-18-boko-haram-maiduguri-bombings-hospital-market"
+      ],
+      "summary": "Hospital and market bombings. First major northeast attack in months."
+    },
+    {
+      "id": "sri-lanka-india-refugee-reversal",
+      "label": "Sri Lanka offers to welcome Indian refugees",
+      "firstSeen": "2026-03-18T17:30:00Z",
+      "lastCovered": "2026-03-18T17:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-18-sri-lanka-welcomes-indian-refugees-reversal"
+      ],
+      "summary": "Inverting decades of Tamil refugee flow to India."
+    },
+    {
+      "id": "press-freedom-wartime-israel",
+      "label": "Israeli police break journalist wrist Al-Aqsa",
+      "firstSeen": "2026-03-18T17:30:00Z",
+      "lastCovered": "2026-03-18T17:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-18-israeli-police-break-journalist-wrist-al-aqsa"
+      ],
+      "summary": "FPA condemns assault on CNN producer at closed Al-Aqsa."
+    },
+    {
+      "id": "brazil-lula-sovereignty",
+      "label": "Lula warns of US colonisation of Latin America",
+      "firstSeen": "2026-03-22T00:30:00Z",
+      "lastCovered": "2026-03-22T00:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-brazil-lula-warns-foreign-interference-colonisation"
+      ],
+      "summary": "Lula warns of US foreign interference across Latin America."
+    },
+    {
+      "id": "settler-violence-west-bank",
+      "label": "Organized settler reprisal attacks in West Bank",
+      "firstSeen": "2026-03-22T00:30:00Z",
+      "lastCovered": "2026-03-22T00:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-settlers-attack-west-bank-revenge-arson"
+      ],
+      "summary": "Settler groups launched coordinated arson attacks on Palestinian communities after traffic collision."
+    },
+    {
+      "id": "cuba-us-blockade-diesel",
+      "label": "Cuba rejects US embassy diesel request amid blockade",
+      "firstSeen": "2026-03-22T00:30:00Z",
+      "lastCovered": "2026-03-22T00:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-cuba-rejects-us-diesel-request-blockade"
+      ],
+      "summary": "Cuba refused US embassy request for diesel while US blockade causes fuel shortage."
+    },
+    {
+      "id": "south-korea-industrial-safety",
+      "label": "South Korea Daejeon factory fire: 14 dead",
+      "firstSeen": "2026-03-21T04:00:00Z",
+      "lastCovered": "2026-03-22T00:30:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-22-south-korea-daejeon-fire-toll-rises-14-dead"
+      ],
+      "summary": "Daejeon fire toll rises to 14 dead, 59 injured. 10,000+ worksite deaths since 2000."
+    },
+    {
+      "id": "ncar-shutdown-lawsuit",
+      "label": "UCAR sues Trump over NCAR shutdown",
+      "firstSeen": "2026-03-22T00:30:00Z",
+      "lastCovered": "2026-03-22T00:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-ncar-climate-center-shutdown-lawsuit-trump"
+      ],
+      "summary": "UCAR suing Trump admin over NCAR dismantlement, alleging political retaliation."
+    },
+    {
+      "id": "russia-diabetes-crisis",
+      "label": "Russia diabetes epidemic: 6 million cases",
+      "firstSeen": "2026-03-22T00:30:00Z",
+      "lastCovered": "2026-03-22T00:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-russia-diabetes-epidemic-6-million-cases"
+      ],
+      "summary": "Russia diabetes doubled in 20 years to 6M adults and 65K children."
+    },
+    {
+      "id": "pre-inca-peru-trade",
+      "label": "Pre-Inca Peru trans-Andean trade networks",
+      "firstSeen": "2026-03-22T00:30:00Z",
+      "lastCovered": "2026-03-22T00:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-pre-inca-peru-parrot-trade-andes-ancient"
+      ],
+      "summary": "DNA from 600-year-old feathers reveals pre-Inca trade across the Andes."
+    },
+    {
+      "id": "doge-nuclear-regulator",
+      "label": "DOGE appointee reshaping NRC",
+      "firstSeen": "2026-03-22T00:30:00Z",
+      "lastCovered": "2026-03-22T00:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-doge-silicon-valley-nuclear-regulator-nrc"
+      ],
+      "summary": "31-year-old DOGE appointee with no nuclear experience reshaping NRC."
+    },
+    {
+      "id": "china-tech-manufacturing-transition",
+      "label": "Foxconn Kunshan hub adapting",
+      "firstSeen": "2026-03-22T00:30:00Z",
+      "lastCovered": "2026-03-22T00:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-22-foxconn-kunshan-china-tech-manufacturing-transition"
+      ],
+      "summary": "Kunshan faces identity crisis as low-cost manufacturing falters."
     }
   ]
 }
