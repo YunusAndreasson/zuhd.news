@@ -129,6 +129,25 @@ export function useBriefingPlayer(date: string | undefined): BriefingPlayer {
 
       // Lock screen AFTER play
       activateLockScreen(player);
+
+      // Poll player properties directly for countdown (iOS may not report
+      // duration in events for streaming audio without Content-Length)
+      const countdownInterval = setInterval(() => {
+        if (!playerRef.current) { clearInterval(countdownInterval); return; }
+        const d = playerRef.current.duration;
+        const c = playerRef.current.currentTime;
+        if (d > 0) {
+          const left = Math.ceil(d - c);
+          setRemaining(left > 0 ? left : 0);
+        }
+      }, 500);
+      subRef.current = {
+        remove: () => {
+          clearInterval(countdownInterval);
+          subRef.current?._sub?.remove();
+        },
+        _sub: subRef.current,
+      };
     } catch {
       // expo-audio unavailable
     }

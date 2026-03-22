@@ -27,3 +27,8 @@
   Cache-Control: public, s-maxage=300, max-age=0, stale-while-revalidate=3600, stale-if-error=86400
   Access-Control-Allow-Origin: *
   Content-Type: application/json; charset=utf-8
+
+/audio/*
+  Cache-Control: public, max-age=86400
+  Access-Control-Allow-Origin: *
+  Accept-Ranges: bytes
