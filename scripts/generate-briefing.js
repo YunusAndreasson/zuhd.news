@@ -15,7 +15,7 @@ const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'briefing-prompt.md')
 
 // Voice config — easy to swap after testing
-const VOICE_NAME = 'en-US-Chirp3-HD-Charon'
+const VOICE_NAME = 'en-US-Chirp3-HD-Enceladus'
 
 const today = new Date().toISOString().slice(0, 10)
 
@@ -111,7 +111,7 @@ try {
   const env = { ...process.env }
   delete env.CLAUDECODE
   const result = spawnSync('claude', [
-    '--model', process.env.ZUHD_MODEL || 'sonnet',
+    '--model', process.env.ZUHD_BRIEFING_MODEL || 'opus',
     '--effort', 'medium',
     '--no-session-persistence',
     '--max-turns', '1',
