@@ -22,5 +22,5 @@ export interface Article {
 export interface FeedResponse {
   generated: string;
   categories: Record<Category, Article[]>;
-  briefing: { date: string; available: boolean } | null;
+  briefing: { date: string; available: boolean; duration?: number } | null;
 }

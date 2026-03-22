@@ -237,6 +237,17 @@ try { unlinkSync(join(tmpDir, 'concat.txt')) } catch {}
 try { rmdirSync(tmpDir) } catch {}
 console.log(`Audio saved: ${mp3Path}`)
 
+// Get MP3 duration via ffprobe
+let durationSec = 0
+try {
+  const probe = spawnSync('ffprobe', [
+    '-v', 'error', '-show_entries', 'format=duration',
+    '-of', 'default=noprint_wrappers=1:nokey=1', mp3Path
+  ], { encoding: 'utf-8' })
+  durationSec = Math.round(parseFloat(probe.stdout.trim()) || 0)
+  console.log(`Duration: ${durationSec}s`)
+} catch {}
+
 // Write metadata
 const metaPath = join(AUDIO_DIR, 'briefing-meta.json')
 writeFileSync(metaPath, JSON.stringify({
@@ -244,7 +255,8 @@ writeFileSync(metaPath, JSON.stringify({
   generated: new Date().toISOString(),
   articles: articles.length,
   voice: VOICE_NAME,
-  ssmlLength: ssml.length
+  ssmlLength: ssml.length,
+  duration: durationSec
 }, null, 2))
 console.log(`Metadata saved: ${metaPath}`)
 

@@ -295,7 +295,7 @@ if (existsSync(apiBriefingMetaPath)) {
   const bm = JSON.parse(readFileSync(apiBriefingMetaPath, 'utf-8'))
   const age = Date.now() - new Date(bm.generated).getTime()
   if (age < 36 * 60 * 60 * 1000) {
-    briefingInfo = { date: bm.date, available: true }
+    briefingInfo = { date: bm.date, available: true, duration: bm.duration ?? 0 }
   }
 }
 

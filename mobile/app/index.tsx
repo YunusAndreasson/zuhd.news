@@ -1,6 +1,7 @@
 import { BottomSheetBackdrop, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
-import { createRef, useCallback, useRef, useState } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+import { createRef, useCallback, useEffect, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
@@ -24,7 +25,10 @@ export default function HomeScreen() {
   const { impact } = useHaptic();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
-  const briefingPlayer = useBriefingPlayer(briefing?.available ? briefing.date : undefined);
+  const briefingPlayer = useBriefingPlayer(
+    briefing?.available ? briefing.date : undefined,
+    briefing?.duration,
+  );
 
   // Sheet refs
   const sourceSheetRef = useRef<BottomSheetModal>(null);
@@ -112,13 +116,11 @@ export default function HomeScreen() {
     }
   }, [impact, refresh]);
 
-  if (loading) {
-    return (
-      <View style={styles.center}>
-        <Text style={styles.loadingText}>zuhd.news</Text>
-      </View>
-    );
-  }
+  useEffect(() => {
+    if (!loading) SplashScreen.hideAsync();
+  }, [loading]);
+
+  if (loading) return null;
 
   if (error && Object.values(grouped).every((a) => a.length === 0)) {
     const offline = network.isInternetReachable === false;

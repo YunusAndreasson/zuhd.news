@@ -16,6 +16,7 @@ const emptyGrouped: GroupedArticles = {
 interface BriefingInfo {
   date: string;
   available: boolean;
+  duration?: number;
 }
 
 export function useArticles() {
