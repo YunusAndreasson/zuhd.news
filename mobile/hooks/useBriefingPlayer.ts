@@ -130,9 +130,12 @@ export function useBriefingPlayer(date: string | undefined): BriefingPlayer {
         if (!playerRef.current) { clearInterval(countdownInterval); return; }
         const d = playerRef.current.duration;
         const c = playerRef.current.currentTime;
-        if (d > 0) {
+        if (d > 0 && isFinite(d)) {
           const left = Math.ceil(d - c);
           setRemaining(left > 0 ? left : 0);
+        } else {
+          // Debug: set negative value to show what duration returns on iOS
+          setRemaining(d === 0 ? -1 : d === Infinity ? -2 : isNaN(d) ? -3 : -4);
         }
       }, 500);
       subRef.current = {
