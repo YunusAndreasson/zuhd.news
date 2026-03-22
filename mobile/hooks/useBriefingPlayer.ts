@@ -18,21 +18,19 @@ const icon = require('../assets/icon.png');
 
 interface BriefingPlayer {
   playing: boolean;
-  remaining: number; // seconds remaining, 0 if unknown
+  startedAt: number;
+  duration: number;
   toggle: () => void;
 }
 
 export function useBriefingPlayer(date: string | undefined, feedDuration?: number): BriefingPlayer {
   const [playing, setPlaying] = useState(false);
-  const [remaining, setRemaining] = useState(0);
+  const [startedAt, setStartedAt] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
   const subRef = useRef<any>(null);
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
-  const feedDurationRef = useRef(feedDuration ?? 0);
-  feedDurationRef.current = feedDuration ?? 0;
 
-  // Clean up on unmount
   useEffect(() => {
     return () => {
       savePosition();
@@ -78,11 +76,11 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         } else {
           playerRef.current.play();
           setPlaying(true);
+          setStartedAt(Date.now());
         }
         return;
       }
 
-      // Configure audio session
       await setAudioModeAsync({
         playsInSilentMode: true,
         shouldPlayInBackground: true,
@@ -90,22 +88,19 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       });
       await setIsAudioActiveAsync(true);
 
-      // Create player with periodic status updates for countdown
       const player = createAudioPlayer(`${API_BASE}/audio/briefing-${date}.mp3`, {
         updateInterval: 500,
       });
 
-      // Event subscription — only for detecting playback end
       const eventSub = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
         if (status.didJustFinish) {
           setPlaying(false);
-          setRemaining(0);
+          setStartedAt(0);
           lockScreenActive.current = false;
           setItemAsync(POSITION_KEY, '0');
         }
       });
 
-      // Restore position if same date
       try {
         const [savedPos, savedDateStr] = await Promise.all([
           getItemAsync(POSITION_KEY),
@@ -117,41 +112,19 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         }
       } catch {}
 
-      // Play
       savedDate.current = date;
       playerRef.current = player;
       player.play();
       setPlaying(true);
+      setStartedAt(Date.now());
 
-      // Lock screen AFTER play
       activateLockScreen(player);
 
-      // Poll player properties directly for countdown (iOS may not report
-      // duration in events for streaming audio without Content-Length)
-      const countdownInterval = setInterval(() => {
-        if (!playerRef.current) { clearInterval(countdownInterval); return; }
-        const d = playerRef.current.duration;
-        const c = playerRef.current.currentTime;
-        const fd = feedDurationRef.current;
-        // iOS reports buffered amount as duration, not total length.
-        // Trust player.duration only if it's at least as large as feed duration.
-        // Otherwise use feed duration (from ffprobe, always accurate).
-        const duration = (d > 0 && isFinite(d) && d >= fd * 0.9) ? d : fd;
-        if (duration > 0 && isFinite(c)) {
-          const left = Math.ceil(duration - c);
-          setRemaining(left > 0 ? left : 0);
-        }
-      }, 500);
-      subRef.current = {
-        remove: () => {
-          clearInterval(countdownInterval);
-          eventSub.remove();
-        },
-      };
+      subRef.current = eventSub;
     } catch {
       // expo-audio unavailable
     }
   }, [date, playing, savePosition, activateLockScreen]);
 
-  return { playing, remaining, toggle };
+  return { playing, startedAt, duration: feedDuration ?? 0, toggle };
 }

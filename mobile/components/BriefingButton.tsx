@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
@@ -7,7 +7,8 @@ import { useHaptic } from '../hooks/useHaptic';
 
 interface BriefingButtonProps {
   playing: boolean;
-  remaining: number;
+  startedAt: number;
+  duration: number;
   onPress: () => void;
 }
 
@@ -17,9 +18,31 @@ function formatRemaining(s: number): string {
   return `${m}:${sec.toString().padStart(2, '0')}`;
 }
 
-export const BriefingButton = memo(function BriefingButton({ playing, remaining, onPress }: BriefingButtonProps) {
+export const BriefingButton = memo(function BriefingButton({
+  playing,
+  startedAt,
+  duration,
+  onPress,
+}: BriefingButtonProps) {
   const insets = useSafeAreaInsets();
   const { impact } = useHaptic();
+  const [remaining, setRemaining] = useState(0);
+
+  // Countdown runs inside the button — no cross-component state issues
+  useEffect(() => {
+    if (!playing || !startedAt || !duration) {
+      setRemaining(0);
+      return;
+    }
+    const tick = () => {
+      const elapsed = (Date.now() - startedAt) / 1000;
+      const left = Math.ceil(duration - elapsed);
+      setRemaining(left > 0 ? left : 0);
+    };
+    tick();
+    const interval = setInterval(tick, 1000);
+    return () => clearInterval(interval);
+  }, [playing, startedAt, duration]);
 
   return (
     <Pressable
@@ -38,7 +61,9 @@ export const BriefingButton = memo(function BriefingButton({ playing, remaining,
           color={COLORS.accent}
           style={{ marginTop: 2 }}
         />
-        <Text style={styles.label}>{playing && remaining > 0 ? formatRemaining(remaining) : 'briefing'}</Text>
+        <Text style={styles.label}>
+          {playing && remaining > 0 ? formatRemaining(remaining) : 'briefing'}
+        </Text>
       </View>
     </Pressable>
   );
