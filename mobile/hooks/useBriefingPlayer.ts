@@ -146,7 +146,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     } catch {
       // expo-audio unavailable
     }
-  }, [date, playing, savePosition, activateLockScreen]);
+  }, [date, playing, savePosition, activateLockScreen, feedDuration]);
 
   return { playing, remaining, toggle };
 }
