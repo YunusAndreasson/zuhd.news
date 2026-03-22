@@ -4,6 +4,7 @@ import {
   setAudioModeAsync,
   setIsAudioActiveAsync,
   type AudioPlayer,
+  type AudioStatus,
 } from 'expo-audio';
 import { getItemAsync, setItemAsync } from 'expo-secure-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -93,20 +94,20 @@ export function useBriefingPlayer(date: string | undefined): BriefingPlayer {
       });
 
       // Event subscription BEFORE play
-      subRef.current = player.addListener(
-        PLAYBACK_STATUS_UPDATE,
-        (status: { playing?: boolean; currentTime?: number; duration?: number; didJustFinish?: boolean }) => {
-          if (status.didJustFinish) {
-            setPlaying(false);
-            setRemaining(0);
-            lockScreenActive.current = false;
-            setItemAsync(POSITION_KEY, '0');
-          } else if (status.duration && status.duration > 0) {
-            const left = Math.ceil(status.duration - (status.currentTime ?? 0));
-            setRemaining(left > 0 ? left : 0);
-          }
-        },
-      );
+      subRef.current = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
+        // Update countdown
+        if (status.duration > 0) {
+          const left = Math.ceil(status.duration - status.currentTime);
+          setRemaining(left > 0 ? left : 0);
+        }
+        // Handle finish
+        if (status.didJustFinish) {
+          setPlaying(false);
+          setRemaining(0);
+          lockScreenActive.current = false;
+          setItemAsync(POSITION_KEY, '0');
+        }
+      });
 
       // Restore position if same date
       try {
