@@ -1,6 +1,6 @@
 {
   "name": "mobile",
-  "version": "1447.10.1+1",
+  "version": "1.0.0",
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
@@ -10,17 +10,17 @@
     "lint:fix": "biome check --write .",
     "typecheck": "tsc --noEmit",
     "bump": "node scripts/bump.js",
-    "build:preview": "eas build --profile preview",
-    "build:production": "eas build --profile production",
-    "release": "gh workflow run release.yml",
-    "release:android": "gh workflow run release.yml -f platform=android",
-    "release:ios": "gh workflow run release.yml -f platform=ios"
+    "test:ios": "./scripts/release.sh test ios",
+    "test:android": "./scripts/release.sh test android",
+    "release:ios": "./scripts/release.sh release ios",
+    "release:all": "./scripts/release.sh release all"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.2.8",
     "@shopify/react-native-skia": "2.4.18",
     "d3-geo": "^3.1.1",
     "expo": "~55.0.8",
+    "expo-asset": "~55.0.10",
     "expo-audio": "~55.0.9",
     "expo-constants": "~55.0.9",
     "expo-font": "~55.0.4",

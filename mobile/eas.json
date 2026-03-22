@@ -13,9 +13,6 @@
     },
     "preview": {
       "distribution": "internal",
-      "ios": {
-        "simulator": true
-      },
       "android": {
         "buildType": "apk"
       }
@@ -32,6 +29,11 @@
   },
   "submit": {
     "production": {
+      "ios": {
+        "appleId": "jonas@lightgate-imagery.com",
+        "ascAppId": "6760964753",
+        "appleTeamId": "G9UUQ9MDS4"
+      },
       "android": {
         "serviceAccountKeyPath": "./google-service-account.json",
         "track": "internal"
