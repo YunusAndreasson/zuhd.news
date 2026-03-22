@@ -33,7 +33,7 @@ export const AboutPage = memo(function AboutPage() {
         read, understand, and leave.
       </Text>
 
-      <Text style={styles.heading}>Why this exists</Text>
+      <Text style={styles.heading}>Purpose</Text>
 
       <Text style={styles.body}>
         Ignorance is not neutrality. It has consequences. While Muslims were not
@@ -41,16 +41,16 @@ export const AboutPage = memo(function AboutPage() {
         next. The New York Times did not print the word Nakba until 1998 — fifty years later.
       </Text>
 
-      <Text style={styles.heading}>How we write</Text>
+      <Text style={styles.heading}>Format</Text>
 
       <Text style={styles.body}>
         Every article says what happened, why it matters, and what comes next. Then it stops. When
-        people are killed, we name who killed them — not {'"'}clashes erupted.{'"'} The Quran,
-        fourteen centuries ago: if a fasiq brings you news, verify it, lest you harm a people out of
-        ignorance.
+        people are killed, the report names who killed them — not {'"'}clashes erupted.{'"'} The
+        Quran, fourteen centuries ago: if a fasiq brings you news, verify it, lest you harm a people
+        out of ignorance.
       </Text>
 
-      <Text style={styles.heading}>What we believe</Text>
+      <Text style={styles.heading}>Editorial principles</Text>
 
       <Text style={styles.body}>
         Every human life carries equal dignity. The Quran grants karamah to all children of Adam —
@@ -58,7 +58,7 @@ export const AboutPage = memo(function AboutPage() {
         what happened. Not both sides. What happened.
       </Text>
 
-      <Text style={styles.heading}>What we cover</Text>
+      <Text style={styles.heading}>Coverage</Text>
 
       <Text style={styles.body}>
         Forty sources across six continents. The Associated Press sends 90,000 words daily from New
@@ -76,7 +76,7 @@ export const AboutPage = memo(function AboutPage() {
       <Text style={styles.heading}>Feedback</Text>
 
       <Text style={styles.body}>
-        Tell us what we got wrong.{' '}
+        Something wrong? Say so.{' '}
         <Text style={styles.link} onPress={() => Linking.openURL('mailto:yunus@edenmind.com')}>
           yunus@edenmind.com
         </Text>

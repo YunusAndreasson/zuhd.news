@@ -434,7 +434,7 @@ export function Globe({
       pg.projection(proj);
     }
 
-    // Land — reuse single context object
+    // Land
     const landSkPath = Skia.Path.Make();
     skiaCtx.setPath(landSkPath);
     pg.context(skiaCtx as any)(land);
@@ -482,6 +482,7 @@ export function Globe({
         });
       }
     }
+
 
     // Highlighted country border — only 1 country at a time, ~100 points
     let highlight: SkPath | null = null;
@@ -545,7 +546,7 @@ export function Globe({
     }
   }, [state.meccaCentered, notification]);
 
-  // Intro reveal: one slow rotation to Al-Aqsa when the globe tab becomes visible
+  // Intro reveal: rotate to Mecca when the globe tab becomes visible
   useEffect(() => {
     if (visible && !hasRevealed.current && width > 0) {
       hasRevealed.current = true;
@@ -560,7 +561,7 @@ export function Globe({
     ([rx, ry, s]) => {
       'worklet';
       const now = Date.now();
-      if (now - lastProjectionTime.value > 30) {
+      if (now - lastProjectionTime.value > 50) {
         lastProjectionTime.value = now;
         runOnJS(callReproject)(rx, ry, s);
       }
@@ -606,7 +607,7 @@ export function Globe({
 
           {/* Land fill + coastline stroke */}
           <Path path={state.landPath} color={COLORS.rule} />
-          <Path path={state.landPath} color="#333333" style="stroke" strokeWidth={0.5} />
+          <Path path={state.landPath} color={COLORS.accent} style="stroke" strokeWidth={0.4 * state.globeScale} opacity={0.3} />
 
           {/* Highlighted country border — flashes on tap, fades after 3s */}
           {state.highlightPath && (
@@ -657,7 +658,7 @@ export function Globe({
               cx={dot.x}
               cy={dot.y}
               r={1.5 * dot.radius}
-              color="#e8e8e8"
+              color={COLORS.text}
               opacity={dot.brightness}
             />
           ))}
