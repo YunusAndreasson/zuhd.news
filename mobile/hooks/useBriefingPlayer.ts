@@ -128,22 +128,16 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
 
       // Poll player properties directly for countdown (iOS may not report
       // duration in events for streaming audio without Content-Length)
-      // Debug: show raw values on first tick, then countdown
-      let debugTicks = 0;
       const countdownInterval = setInterval(() => {
         if (!playerRef.current) { clearInterval(countdownInterval); return; }
         const d = playerRef.current.duration;
         const c = playerRef.current.currentTime;
         const fd = feedDurationRef.current;
-        // Debug first 3 ticks: encode d/c/fd as negative remaining
-        if (debugTicks < 3) {
-          debugTicks++;
-          // Show as -DDDCCFF (duration*10000 + currentTime*100 + feedDuration)
-          setRemaining(-(Math.round(d) * 10000 + Math.round(c) * 100 + Math.min(fd, 99)));
-          return;
-        }
-        const duration = (d > 0 && isFinite(d)) ? d : fd;
-        if (duration > 0) {
+        // iOS reports buffered amount as duration, not total length.
+        // Trust player.duration only if it's at least as large as feed duration.
+        // Otherwise use feed duration (from ffprobe, always accurate).
+        const duration = (d > 0 && isFinite(d) && d >= fd * 0.9) ? d : fd;
+        if (duration > 0 && isFinite(c)) {
           const left = Math.ceil(duration - c);
           setRemaining(left > 0 ? left : 0);
         }

@@ -38,7 +38,7 @@ export const BriefingButton = memo(function BriefingButton({ playing, remaining,
           color={COLORS.accent}
           style={{ marginTop: 2 }}
         />
-        <Text style={styles.label}>{playing ? (remaining > 0 ? formatRemaining(remaining) : remaining < 0 ? `d${remaining}` : 'briefing') : 'briefing'}</Text>
+        <Text style={styles.label}>{playing && remaining > 0 ? formatRemaining(remaining) : 'briefing'}</Text>
       </View>
     </Pressable>
   );
