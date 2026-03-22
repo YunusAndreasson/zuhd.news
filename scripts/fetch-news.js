@@ -200,7 +200,7 @@ function slugify(title, date) {
   return `${datePrefix}-${slug}`
 }
 
-function getExistingArticles(maxDaysOld = 4) {
+function getExistingArticles(maxDaysOld = 10) {
   if (!existsSync(CONTENT_DIR)) return { slugs: new Set(), titles: [], urls: new Set() }
   const cutoff = new Date(Date.now() - maxDaysOld * 86400000).toISOString().slice(0, 10)
   const files = readdirSync(CONTENT_DIR)
