@@ -2,7 +2,7 @@
 // zuhd.news daily audio briefing generator
 // Three stages: collect articles → Claude SSML → Google TTS MP3
 
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, unlinkSync, existsSync, statSync } from 'fs'
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, unlinkSync, existsSync, statSync, cpSync, rmdirSync } from 'fs'
 import { join, basename } from 'path'
 import { spawnSync } from 'child_process'
 import textToSpeech from '@google-cloud/text-to-speech'
@@ -154,8 +154,9 @@ console.log('\n=== Stage 3: Synthesizing audio ===')
 
 mkdirSync(AUDIO_DIR, { recursive: true })
 
-// Google TTS Chirp3-HD has a tighter byte limit. Split SSML at <break> tags.
-const MAX_BYTES = 2500
+// Google TTS Chirp3-HD supports up to 5000 bytes per request.
+// Fewer chunks = no MP3 header concatenation glitches on mobile players.
+const MAX_BYTES = 4800
 const innerSsml = ssml.replace(/^<speak>\s*/, '').replace(/\s*<\/speak>\s*$/, '')
 const segments = innerSsml.split(/(?=<break\s[^>]*\/>)/)
 
@@ -174,7 +175,9 @@ if (current) chunks.push(`<speak>${current}</speak>`)
 console.log(`Split into ${chunks.length} chunk(s) for synthesis`)
 
 const client = new textToSpeech.TextToSpeechClient()
-const audioBuffers = []
+const tmpDir = join(AUDIO_DIR, '.tmp')
+mkdirSync(tmpDir, { recursive: true })
+const chunkPaths = []
 
 for (let i = 0; i < chunks.length; i++) {
   console.log(`  Synthesizing chunk ${i + 1}/${chunks.length} (${Buffer.byteLength(chunks[i], 'utf-8')} bytes)`)
@@ -187,11 +190,32 @@ for (let i = 0; i < chunks.length; i++) {
       effectsProfileId: ['headphone-class-device']
     }
   })
-  audioBuffers.push(response.audioContent)
+  const chunkPath = join(tmpDir, `chunk-${i}.mp3`)
+  writeFileSync(chunkPath, Buffer.from(response.audioContent))
+  chunkPaths.push(chunkPath)
 }
 
+// Merge chunks into a single clean MP3 via ffmpeg (avoids header duplication glitches)
 const mp3Path = join(AUDIO_DIR, `briefing-${today}.mp3`)
-writeFileSync(mp3Path, Buffer.concat(audioBuffers.map(b => Buffer.from(b))))
+if (chunkPaths.length === 1) {
+  cpSync(chunkPaths[0], mp3Path)
+} else {
+  const concatList = join(tmpDir, 'concat.txt')
+  writeFileSync(concatList, chunkPaths.map(p => `file '${p}'`).join('\n'))
+  const ff = spawnSync('ffmpeg', [
+    '-y', '-f', 'concat', '-safe', '0', '-i', concatList,
+    '-c', 'copy', mp3Path
+  ], { encoding: 'utf-8', timeout: 30000 })
+  if (ff.status !== 0) {
+    console.error('ffmpeg merge failed:', ff.stderr?.slice(0, 200))
+    // Fallback: raw concatenation (better than nothing)
+    writeFileSync(mp3Path, Buffer.concat(chunkPaths.map(p => readFileSync(p))))
+  }
+}
+// Clean up temp chunks
+for (const p of chunkPaths) try { unlinkSync(p) } catch {}
+try { unlinkSync(join(tmpDir, 'concat.txt')) } catch {}
+try { rmdirSync(tmpDir) } catch {}
 console.log(`Audio saved: ${mp3Path}`)
 
 // Write metadata
