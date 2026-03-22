@@ -44,11 +44,11 @@ for (const file of files) {
   })
 }
 
-// Keep the 20 most recent articles — enough for a full briefing
+// Keep the 30 most recent articles — gives Opus enough distinct stories after merges
 articles.sort((a, b) => b.addedTime - a.addedTime)
-if (articles.length > 20) {
-  console.log(`Trimmed from ${articles.length} to 20 articles (most recent)`)
-  articles = articles.slice(0, 20)
+if (articles.length > 30) {
+  console.log(`Trimmed from ${articles.length} to 30 articles (most recent)`)
+  articles = articles.slice(0, 30)
 }
 articles.forEach(a => delete a.addedTime) // strip internal field before sending to Claude
 

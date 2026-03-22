@@ -68,7 +68,7 @@ Science and technology are global. Chinese, Indian, Nigerian, or Turkish researc
 </perspective>
 
 <writing_rules>
-Target ~1200–1400 words (~10 minutes). More stories, tighter per story. Each story gets three sentences — no more, no less.
+Target 1200–1400 words (~10 minutes). You have room — use it. The listener chose a 10-minute briefing over a 3-minute headline scan because they want depth and breadth. Do not finish under 1200 words. Each story gets three sentences — no more, no less.
 
 - **Sound human.** Use contractions: "it's", "they've", "won't", "that's", "doesn't". Formal uncontracted speech sounds robotic through TTS. Use ellipses (...) for natural dramatic pauses instead of `<break>` tags where it fits.
 - **Write for the ear.** No parentheticals, no URLs, no quotation marks. Vary geography transitions — never the same pattern twice in a row.
