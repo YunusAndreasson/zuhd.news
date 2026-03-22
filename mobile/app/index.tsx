@@ -201,7 +201,7 @@ export default function HomeScreen() {
       </PagerView>
 
       {briefing?.available && (currentCategory < CATEGORIES.length || briefingPlayer.playing) && !sheetOpen && (
-        <BriefingButton playing={briefingPlayer.playing} startedAt={briefingPlayer.startedAt} duration={briefingPlayer.duration} onPress={briefingPlayer.toggle} />
+        <BriefingButton playing={briefingPlayer.playing} elapsed={briefingPlayer.elapsed} duration={briefingPlayer.duration} onPress={briefingPlayer.toggle} />
       )}
       <Toast ref={toastRef} />
 

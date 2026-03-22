@@ -18,14 +18,14 @@ const icon = require('../assets/icon.png');
 
 interface BriefingPlayer {
   playing: boolean;
-  startedAt: number;
-  duration: number;
+  elapsed: number; // seconds played so far
+  duration: number; // total duration from feed
   toggle: () => void;
 }
 
 export function useBriefingPlayer(date: string | undefined, feedDuration?: number): BriefingPlayer {
   const [playing, setPlaying] = useState(false);
-  const [startedAt, setStartedAt] = useState(0);
+  const [elapsed, setElapsed] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
   const subRef = useRef<any>(null);
   const savedDate = useRef<string | null>(null);
@@ -72,12 +72,10 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         if (playing) {
           savePosition();
           playerRef.current.pause();
-          setPlaying(false);
         } else {
           playerRef.current.play();
-          setPlaying(true);
-          setStartedAt(Date.now());
         }
+        // Don't setPlaying here — the event listener handles it
         return;
       }
 
@@ -92,15 +90,22 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         updateInterval: 500,
       });
 
+      // Sync play/pause state + elapsed from player events
+      // This handles lock screen controls, headphone controls, interruptions
       const eventSub = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
+        setPlaying(status.playing);
+        if (status.currentTime > 0) {
+          setElapsed(Math.floor(status.currentTime));
+        }
         if (status.didJustFinish) {
           setPlaying(false);
-          setStartedAt(0);
+          setElapsed(0);
           lockScreenActive.current = false;
           setItemAsync(POSITION_KEY, '0');
         }
       });
 
+      // Restore position if same date
       try {
         const [savedPos, savedDateStr] = await Promise.all([
           getItemAsync(POSITION_KEY),
@@ -115,8 +120,6 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       savedDate.current = date;
       playerRef.current = player;
       player.play();
-      setPlaying(true);
-      setStartedAt(Date.now());
 
       activateLockScreen(player);
 
@@ -126,5 +129,5 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     }
   }, [date, playing, savePosition, activateLockScreen]);
 
-  return { playing, startedAt, duration: feedDuration ?? 0, toggle };
+  return { playing, elapsed, duration: feedDuration ?? 0, toggle };
 }
