@@ -82,6 +82,11 @@ const SOURCES = [
   { name: 'Fox News',            url: 'https://moxie.foxnews.com/google-publisher/world.xml',    format: 'rss2', tier: 'D', slot: 7, region: 'AM' },
   { name: 'ABC News Australia',  url: 'https://www.abc.net.au/news/feed/51120/rss.xml',          format: 'rss2', tier: 'D', slot: 8, region: 'OC' },
   { name: 'RNZ Pacific',         url: 'https://www.rnz.co.nz/rss/pacific.xml',                  format: 'rss2', tier: 'D', slot: 9, region: 'OC' },
+  // ── Muslim world tech + Islamic economy ────────────────────────────
+  { name: 'Anadolu Agency',     url: 'https://www.aa.com.tr/en/rss/default?cat=world',          format: 'rss2', tier: 'B1', region: 'ME' },
+  { name: 'Wamda',              url: 'https://www.wamda.com/feed',                              format: 'rss2', tier: 'C', offset: 3, region: 'ME', defaultCategory: 'tech' },
+  { name: 'TechCabal',          url: 'https://techcabal.com/feed/',                             format: 'rss2', tier: 'C', offset: 1, region: 'AF', defaultCategory: 'tech' },
+  { name: 'Salaam Gateway',     url: 'https://salaamgateway.com/feed',                          format: 'atom', tier: 'C', offset: 4, region: 'ME', defaultCategory: 'economy' },
 ]
 
 const EXCLUDE_RE = /\b(opinion|features|gallery|photos|video|sport|entertainment|culture|food|travel|lifestyle|podcast)\b/i
@@ -403,6 +408,11 @@ function parseRdfItems(feed) {
   return toArray(root?.item || [])
 }
 
+function parseAtomItems(feed) {
+  const root = feed?.feed || feed
+  return toArray(root?.entry || [])
+}
+
 function extractText(val) {
   if (typeof val === 'string') return val
   if (typeof val === 'object' && val !== null) return val['#text'] || val?.a?.['#text'] || ''
@@ -414,11 +424,12 @@ function normalizeItem(raw, source) {
   if (!title) return null
 
   let link = raw.link || ''
-  if (typeof link === 'object') link = link['@_href'] || link['#text'] || ''
+  if (Array.isArray(link)) link = (link.find(l => l['@_rel'] === 'alternate') || link[0])?.['@_href'] || ''
+  else if (typeof link === 'object') link = link['@_href'] || link['#text'] || ''
   link = cleanUrl(link, source.stripParams || [])
 
-  const description = decodeEntities(stripHtml(extractText(raw.description || raw['dc:description'] || '').trim()))
-  const pubDate = raw.pubDate || raw['dc:date'] || raw.date || ''
+  const description = decodeEntities(stripHtml(extractText(raw.description || raw.summary || raw['dc:description'] || '').trim()))
+  const pubDate = raw.pubDate || raw.published || raw.updated || raw['dc:date'] || raw.date || ''
 
   let category = source.defaultCategory || ''
   const allTags = []
@@ -431,11 +442,12 @@ function normalizeItem(raw, source) {
     category = allTags[0] || ''
   }
 
-  const rawContent = extractText(raw['content:encoded'] || '')
+  const rawContent = extractText(raw['content:encoded'] || raw.content || '')
   const contentText = rawContent ? decodeEntities(stripHtml(rawContent)).trim() : ''
 
   const comments = raw.comments || ''
-  const author = extractText(raw['dc:creator'] || raw.author || '').trim() || undefined
+  const authorRaw = raw['dc:creator'] || raw.author || ''
+  const author = (typeof authorRaw === 'object' ? extractText(authorRaw.name || authorRaw) : extractText(authorRaw)).trim() || undefined
 
   return {
     title,
@@ -473,6 +485,8 @@ async function fetchSource(source) {
 
     const rawItems = source.format === 'rdf'
       ? parseRdfItems(feed)
+      : source.format === 'atom'
+      ? parseAtomItems(feed)
       : parseRss2Items(feed)
 
     const items = rawItems
