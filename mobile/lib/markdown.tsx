@@ -111,6 +111,8 @@ const styles = StyleSheet.create({
     color: COLORS.text,
     marginBottom: TYPOGRAPHY.sizeBase * 0.5,
     fontVariant: ['oldstyle-nums'],
+    includeFontPadding: false,
+    textAlignVertical: 'center',
   },
   bold: {
     fontFamily: FONT.bold,

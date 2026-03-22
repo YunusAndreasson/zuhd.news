@@ -1,9 +1,11 @@
 import { Asset } from 'expo-asset';
 import {
   createAudioPlayer,
+  preload,
   setAudioModeAsync,
   setIsAudioActiveAsync,
   type AudioPlayer,
+  type AudioStatus,
 } from 'expo-audio';
 import { getItemAsync, setItemAsync } from 'expo-secure-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -11,6 +13,7 @@ import { API_BASE } from '../constants/theme';
 
 const POSITION_KEY = 'zuhd_briefing_pos';
 const DATE_KEY = 'zuhd_briefing_date';
+const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
 
 const icon = require('../assets/icon.png');
 
@@ -25,52 +28,28 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
-  const pollRef = useRef<ReturnType<typeof setInterval>>(undefined);
+  const subRef = useRef<any>(null);
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
+  const preloadedUrl = useRef<string | null>(null);
 
-  // Polling: sync playing state + elapsed from player properties directly.
-  // No reliance on events (iOS events are unreliable for streaming audio).
-  const startPolling = useCallback(() => {
-    if (pollRef.current) clearInterval(pollRef.current);
-    pollRef.current = setInterval(() => {
-      const p = playerRef.current;
-      if (!p) return;
-
-      // Sync playing state (handles lock screen pause/play, interruptions)
-      setPlaying(p.playing);
-
-      // Update elapsed from currentTime
-      const c = p.currentTime;
-      if (c > 0 && isFinite(c)) {
-        setElapsed(Math.floor(c));
-      }
-
-      // Detect finish (currentTime reaches or exceeds duration from feed)
-      const fd = feedDuration ?? 0;
-      if (fd > 0 && c >= fd - 1) {
-        setPlaying(false);
-        setElapsed(0);
-        lockScreenActive.current = false;
-        setItemAsync(POSITION_KEY, '0');
-        clearInterval(pollRef.current);
-      }
-    }, 500);
-  }, [feedDuration]);
-
-  const stopPolling = useCallback(() => {
-    if (pollRef.current) {
-      clearInterval(pollRef.current);
-      pollRef.current = undefined;
+  // Preload audio as soon as we know the briefing date
+  useEffect(() => {
+    if (!date) return;
+    const url = `${API_BASE}/audio/briefing-${date}.mp3`;
+    if (preloadedUrl.current !== url) {
+      preload(url);
+      preloadedUrl.current = url;
     }
-  }, []);
+  }, [date]);
 
   useEffect(() => {
     return () => {
-      stopPolling();
+      savePosition();
+      subRef.current?.remove();
       playerRef.current?.remove();
     };
-  }, [stopPolling]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const savePosition = useCallback(() => {
     if (!playerRef.current || !savedDate.current) return;
@@ -126,6 +105,27 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         updateInterval: 500,
       });
 
+      // Sync play/pause state + elapsed from player events
+      // This handles lock screen controls, headphone controls, interruptions
+      const eventSub = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
+        setPlaying(status.playing);
+        if (status.currentTime > 0) {
+          setElapsed(Math.floor(status.currentTime));
+        }
+        if (status.didJustFinish) {
+          setPlaying(false);
+          setElapsed(0);
+          setItemAsync(POSITION_KEY, '0');
+          // Clean up native player + subscription
+          try { player.clearLockScreenControls(); } catch {}
+          eventSub.remove();
+          player.remove();
+          subRef.current = null;
+          playerRef.current = null;
+          lockScreenActive.current = false;
+        }
+      });
+
       // Restore position if same date
       try {
         const [savedPos, savedDateStr] = await Promise.all([
@@ -143,18 +143,21 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
 
       savedDate.current = date;
       playerRef.current = player;
+      subRef.current = eventSub;
+
       player.play();
       setPlaying(true);
-
-      // Start polling for state + elapsed
-      startPolling();
 
       // Lock screen AFTER play
       activateLockScreen(player);
     } catch {
-      // expo-audio unavailable
+      // Clean up partially-created player on failure
+      subRef.current?.remove();
+      subRef.current = null;
+      playerRef.current?.remove();
+      playerRef.current = null;
     }
-  }, [date, savePosition, activateLockScreen, startPolling]);
+  }, [date, savePosition, activateLockScreen]);
 
   return { playing, elapsed, duration: feedDuration ?? 0, toggle };
 }

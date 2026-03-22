@@ -11,7 +11,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
-      "buildNumber": "47",
+      "buildNumber": "48",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
@@ -40,17 +40,7 @@
     },
     "plugins": [
       "expo-router",
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./assets/fonts/SourceSans3-Regular.ttf",
-            "./assets/fonts/SourceSans3-SemiBold.ttf",
-            "./assets/fonts/SourceSans3-Bold.ttf",
-            "./assets/fonts/SourceSans3SC-SemiBold.ttf"
-          ]
-        }
-      ],
+      "expo-font",
       [
         "expo-audio",
         {
