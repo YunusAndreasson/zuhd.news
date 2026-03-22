@@ -128,12 +128,21 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
 
       // Poll player properties directly for countdown (iOS may not report
       // duration in events for streaming audio without Content-Length)
+      // Debug: show raw values on first tick, then countdown
+      let debugTicks = 0;
       const countdownInterval = setInterval(() => {
         if (!playerRef.current) { clearInterval(countdownInterval); return; }
         const d = playerRef.current.duration;
         const c = playerRef.current.currentTime;
-        // Use player duration if available, otherwise fall back to feed duration
-        const duration = (d > 0 && isFinite(d)) ? d : feedDurationRef.current;
+        const fd = feedDurationRef.current;
+        // Debug first 3 ticks: encode d/c/fd as negative remaining
+        if (debugTicks < 3) {
+          debugTicks++;
+          // Show as -DDDCCFF (duration*10000 + currentTime*100 + feedDuration)
+          setRemaining(-(Math.round(d) * 10000 + Math.round(c) * 100 + Math.min(fd, 99)));
+          return;
+        }
+        const duration = (d > 0 && isFinite(d)) ? d : fd;
         if (duration > 0) {
           const left = Math.ceil(duration - c);
           setRemaining(left > 0 ? left : 0);
