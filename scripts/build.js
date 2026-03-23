@@ -63,13 +63,39 @@ const formatDate = (dateStr) =>
 const buildArticle = (filename) => {
   const raw = readFileSync(join(CONTENT_DIR, filename), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
-  const sourcemark = meta.source ? `<p class="end-source">${meta.source}</p>` : ''
+
+  // Handle both legacy source/sourceUrl and new sources array
+  const sources = Array.isArray(meta.sources)
+    ? meta.sources
+    : (meta.source ? [{ name: meta.source, url: meta.sourceUrl || '' }] : [])
+  const primarySource = sources[0]?.name || ''
+
+  // Source attribution
+  let sourcemark = ''
+  if (sources.length > 1) {
+    const items = sources.map(s => {
+      const country = s.country ? ` <span class="source-country">${s.country}</span>` : ''
+      const link = s.url ? ` <a href="${s.url}" rel="noopener" target="_blank">&#8599;</a>` : ''
+      return `<li>${s.name}${country}${link}</li>`
+    }).join('')
+    sourcemark = `<details class="article-sources"><summary class="source-count">${sources.length} sources</summary><ul>${items}</ul></details>`
+  } else if (primarySource) {
+    sourcemark = `<p class="end-source">${primarySource}</p>`
+  }
+
+  // Concept tags
+  const concepts = Array.isArray(meta.concepts) ? meta.concepts : []
+  const conceptsHtml = concepts.length > 0
+    ? `<div class="article-concepts">${concepts.map(c => `<span class="concept-tag">${c}</span>`).join('')}</div>`
+    : ''
+
   const slug = basename(filename, '.md')
   return {
-    slug, meta, body,
-    bodyHtml: splitSentences(markdownToHtml(body)) + sourcemark,
+    slug, meta, body, sources, concepts,
+    bodyHtml: splitSentences(markdownToHtml(body)) + sourcemark + conceptsHtml,
     title: smartQuotes(meta.title || 'Untitled'),
-    dateFormatted: formatDate(meta.date)
+    dateFormatted: formatDate(meta.date),
+    sourceCount: sources.length,
   }
 }
 
@@ -92,11 +118,15 @@ const buildHomepage = (sorted, cutoff, homepageTemplate) => {
   const grouped = Object.fromEntries(
     Object.entries(rawGrouped).map(([cat, articles]) => [
       cat,
-      articles.map(({ slug, title, meta, addedAt, bodyHtml }) => ({
+      articles.map(({ slug, title, meta, addedAt, bodyHtml, sources, concepts, sourceCount }) => ({
         slug, title, addedAt,
         date: meta.date,
         bodyHtml,
-        sourceUrl: meta.sourceUrl || ''
+        sourceUrl: meta.sourceUrl || sources?.[0]?.url || '',
+        sources: (sources || []).map(s => ({ name: s.name, url: s.url, country: s.country || null })),
+        concepts: concepts || [],
+        sourceCount: sourceCount || 1,
+        eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
       }))
     ])
   )
@@ -261,8 +291,11 @@ const apiCategories = Object.fromEntries(
         title: meta.title || 'Untitled',
         date: meta.date,
         addedAt,
-        source: meta.source || null,
-        sourceUrl: meta.sourceUrl || null,
+        source: meta.source || (Array.isArray(meta.sources) ? meta.sources[0]?.name : null),
+        sourceUrl: meta.sourceUrl || (Array.isArray(meta.sources) ? meta.sources[0]?.url : null),
+        sources: (Array.isArray(meta.sources) ? meta.sources : (meta.source ? [{ name: meta.source }] : [])).map(s => ({ name: s.name, country: s.country || null })),
+        concepts: Array.isArray(meta.concepts) ? meta.concepts : [],
+        eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
         location: meta.location || null,
         lat: meta.lat != null ? Number(meta.lat) : null,
         lng: meta.lng != null ? Number(meta.lng) : null,

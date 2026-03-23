@@ -29,7 +29,8 @@ interface ArticleListProps {
   lastSeenAt: number;
   onRefresh: () => Promise<void>;
   onEndReached?: () => void;
-  onSourcePress?: (sourceName: string) => void;
+  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => void;
+  onConceptPress?: (concept: string) => void;
   onCountryPress?: (result: TapResult) => void;
   pagerIdle: React.RefObject<boolean>;
   progressesSV: SharedValue<number[]>;
@@ -43,6 +44,7 @@ export const ArticleList = memo(function ArticleList({
   catIndex,
   lastSeenAt,
   onSourcePress,
+  onConceptPress,
   onCountryPress,
   onRefresh,
   onEndReached,
@@ -196,6 +198,7 @@ export const ArticleList = memo(function ArticleList({
         index={index}
         scrollY={scrollY}
         onSourcePress={onSourcePress}
+        onConceptPress={onConceptPress}
         showEarlierDivider={index === earlierIndex}
         feedInfo={index === 0 ? categoryFeedInfo : undefined}
         globeRef={globeRef}
@@ -203,7 +206,7 @@ export const ArticleList = memo(function ArticleList({
         onCountryPress={onCountryPress}
       />
     ),
-    [itemHeight, scrollY, onSourcePress, earlierIndex, categoryFeedInfo],
+    [itemHeight, scrollY, onSourcePress, onConceptPress, earlierIndex, categoryFeedInfo],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);

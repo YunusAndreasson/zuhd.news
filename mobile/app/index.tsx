@@ -45,6 +45,7 @@ export default function HomeScreen() {
   // Sheet refs
   const sourceSheetRef = useRef<BottomSheetModal>(null);
   const [sourceSheet, setSourceSheet] = useState<string | null>(null);
+  const [sourceSheetSources, setSourceSheetSources] = useState<Array<{name: string; country?: string | null}>>([]);
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
 
@@ -60,10 +61,28 @@ export default function HomeScreen() {
     [],
   );
 
+  const handleConceptPress = useCallback(
+    (concept: string) => {
+      impact();
+      // Count articles across all categories that share this concept
+      const allArticles = Object.values(grouped).flat();
+      const related = allArticles.filter(
+        (a) => a.concepts?.includes(concept) || a.title.includes(concept),
+      );
+      if (related.length > 1) {
+        toastRef.current?.show(`${concept} · ${related.length} articles`);
+      } else {
+        toastRef.current?.show(concept);
+      }
+    },
+    [impact, grouped],
+  );
+
   const handleSourcePress = useCallback(
-    (sourceName: string) => {
+    (sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => {
       impact();
       setSourceSheet(sourceName);
+      setSourceSheetSources(allSources ?? []);
       sourceSheetRef.current?.present();
     },
     [impact],
@@ -214,6 +233,7 @@ export default function HomeScreen() {
                   )
                 }
                 onSourcePress={handleSourcePress}
+                onConceptPress={handleConceptPress}
                 onCountryPress={handleCountryPress}
                 pagerIdle={pagerIdle}
                 progressesSV={categoryProgresses}
@@ -237,12 +257,28 @@ export default function HomeScreen() {
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
         handleIndicatorStyle={styles.sheetHandle}
-        onDismiss={() => setSourceSheet(null)}
+        onDismiss={() => { setSourceSheet(null); setSourceSheetSources([]); }}
       >
         <BottomSheetView
           style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
         >
-          {sourceInfo && (
+          {sourceSheetSources.length > 1 ? (
+            <>
+              <Text style={styles.sheetLabel}>
+                {sourceSheetSources.length} SOURCES
+              </Text>
+              {sourceSheetSources.map((s, i) => {
+                const info = SOURCES[s.name];
+                return (
+                  <View key={i} style={styles.sourceRow}>
+                    <Text style={styles.sheetTitle}>{s.name}</Text>
+                    {s.country && <Text style={styles.sourceCountry}>{s.country}</Text>}
+                    {info && <Text style={styles.sheetBody}>{info.description}</Text>}
+                  </View>
+                );
+              })}
+            </>
+          ) : sourceInfo ? (
             <>
               <Text style={styles.sheetLabel}>
                 {sourceInfo.type.toUpperCase()} · {sourceInfo.location.toUpperCase()}
@@ -250,7 +286,7 @@ export default function HomeScreen() {
               <Text style={styles.sheetTitle}>{sourceSheet}</Text>
               <Text style={styles.sheetBody}>{sourceInfo.description}</Text>
             </>
-          )}
+          ) : null}
         </BottomSheetView>
       </BottomSheetModal>
 
@@ -387,6 +423,16 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizeSm,
     lineHeight: TYPOGRAPHY.sizeSm * TYPOGRAPHY.leadingBody,
     color: COLORS.textSecondary,
+  },
+  sourceRow: {
+    marginBottom: SPACING.md,
+  },
+  sourceCountry: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeXs,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    color: COLORS.accent,
+    marginBottom: SPACING.xs,
   },
   countryIdentity: {
     flexDirection: 'row',

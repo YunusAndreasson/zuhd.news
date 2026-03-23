@@ -11,14 +11,20 @@ A separate editor reviews output for framing issues — do not build or deploy.
 <task>
 
 1. Read `/tmp/zuhd-selection.json` for today's selected stories (a selector has already chosen them)
-2. For each selected story, get full context:
-   - If the story has a `contentText` field, use it — this is article text extracted from the RSS feed, no fetch needed
-   - Otherwise, fetch the full article from the source URL (`link` field)
-   - If the fetch fails (paywall, timeout, 403), use `description` + `contentText` as fallback — do not skip the story
-3. Use the `angle` field from the selection to guide your framing
-4. Write each story as a markdown article following the format and rules below
-5. Save each article to `content/articles/` using the `suggestedSlug` as the filename
-6. Do not modify existing articles — only add new ones
+2. For each selected story, read ALL sources in the `sources` array:
+   - Each source has a `body` field with full article text — use it directly
+   - If a source body is missing or empty, use the story's `description` as fallback
+   - **DO NOT fetch any URLs** — all content is pre-loaded in the selection JSON
+3. Synthesize a single article from multiple perspectives:
+   - Identify the core facts that ALL sources agree on — state these as fact
+   - Note where sources DISAGREE — this is often the most newsworthy detail. Report both with attribution.
+   - Center the perspective of the people most affected (use sources from the affected country first)
+   - Use wire/Western sources for factual scaffolding, non-Western sources for lived reality and local context
+   - If a fact appears in only 1 source, attribute it ("according to TASS" / "Mehr News reports")
+4. Use the `angle` field from the selection to guide your framing
+5. Write each story as a markdown article following the format and rules below
+6. Save each article to `content/articles/` using the `suggestedSlug` as the filename
+7. Do not modify existing articles — only add new ones
 
 </task>
 
@@ -29,19 +35,39 @@ Each article uses this exact markdown structure. The YAML frontmatter feeds the 
 ```markdown
 ---
 title: "3-5 word headline"
-date: "ISO 8601 datetime from the RSS pubDate"
-source: "Source Name from JSON (e.g. BBC World, Al Jazeera, Hacker News)"
-sourceUrl: "full URL to the original article"
+date: "ISO 8601 datetime from the story's pubDate"
 category: "one of: politics, economy, science, tech"
 location: "City or country where the news originates (matches the dateline)"
 lat: decimal latitude (e.g. 35.69)
 lng: decimal longitude (e.g. 51.39)
+sources:
+  - name: "Source Name"
+    url: "full URL to original article"
+    country: "2-letter ISO code (e.g. IR, US, IN)"
+  - name: "Second Source"
+    url: "https://..."
+    country: "US"
+eventCoverage: 268
+concepts:
+  - "Key Entity One"
+  - "Key Entity Two"
 ---
 
-One paragraph, exactly 3 sentences. No line breaks within the body. No source attribution line — the source is in the frontmatter. Every sentence must earn its place — if the article works without it, cut it.
+One paragraph, exactly 3 sentences. No line breaks within the body. No source attribution line — the sources are in the frontmatter. Every sentence must earn its place — if the article works without it, cut it.
 ```
 
-For Hacker News stories: set `source` to "Hacker News", use the original article URL (the `link` field) as `sourceUrl`, set `category` to "tech".
+**Sources frontmatter rules:**
+- List ALL sources you actually used in writing the article, in the `sources` array
+- Each entry needs `name`, `url`, and `country` (2-letter ISO code)
+- If a source's body contributed no useful information, drop it from the list
+- Never list a source you didn't read
+- For single-source stories (e.g., Hacker News, 404 Media), use a one-element array
+
+**`eventCoverage`**: copy from the selection JSON (total articles covering this event globally). Omit for single-source stories.
+
+**`concepts`**: copy the top 3-5 from the selection JSON. These are key entities (people, organizations, locations) for reader context.
+
+For Hacker News stories: set `sources` to `[{name: "Hacker News", url: "...", country: "US"}]`, set `category` to "tech".
 
 </format>
 
@@ -153,12 +179,25 @@ Assign exactly one per article:
 ---
 title: "UK Blames Russia for Navalny"
 date: "2026-02-14T15:58:00Z"
-source: "BBC World"
-sourceUrl: "https://www.bbc.com/news/articles/cwyk4lz4e3eo"
 category: "politics"
 location: "London"
 lat: 51.51
 lng: -0.13
+sources:
+  - name: "BBC World"
+    url: "https://www.bbc.com/news/articles/cwyk4lz4e3eo"
+    country: "GB"
+  - name: "TASS"
+    url: "https://tass.com/world/example"
+    country: "RU"
+  - name: "Deutsche Welle"
+    url: "https://www.dw.com/en/example"
+    country: "DE"
+eventCoverage: 412
+concepts:
+  - "Alexei Navalny"
+  - "Russia"
+  - "Chemical Weapons Convention"
 ---
 
 London — Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. They are now reporting Russia to the chemical weapons watchdog.
@@ -168,12 +207,14 @@ London — Dart frog toxin killed Alexei Navalny. 5 European governments confirm
 ---
 title: "Venezuela Rearrests Freed Lawmaker"
 date: "2026-02-14T13:51:00Z"
-source: "Deutsche Welle"
-sourceUrl: "https://www.dw.com/en/how-serious-is-venezuela-about-its-amnesty-law/a-75899705"
 category: "politics"
 location: "Caracas"
 lat: 10.48
 lng: -66.90
+sources:
+  - name: "Deutsche Welle"
+    url: "https://www.dw.com/en/how-serious-is-venezuela-about-its-amnesty-law/a-75899705"
+    country: "DE"
 ---
 
 Caracas — Venezuela freed a political prisoner, then rearrested him. The government claims 900 released under a draft amnesty law, but rights group Foro Penal counts only 200 freed. A second parliamentary reading is set for Tuesday with no observers invited.

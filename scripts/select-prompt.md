@@ -11,7 +11,15 @@ Output only a selection file — a separate writer drafts the articles.
 1. Read `content/.last-cycle.json` (if it exists) to see what was published last cycle
 2. Read `content/.editorial-notes.md` (if it exists) for ongoing editorial context
 3. Read `content/.story-ledger.json` (if it exists) for multi-day story tracking
-4. Read `/tmp/zuhd-feed.json` — the latest stories, pre-fetched from rotating global sources. The JSON has a `stories` array (fields: title, description, link, pubDate, category, source, suggestedSlug) and a `cycleIndex` field (0-9) indicating which tier of sources ran this cycle
+4. Read `/tmp/zuhd-feed.json` — the latest stories from NewsAPI.ai (event-grouped, multi-source) and RSS niche feeds. The JSON has a `stories` array. Each story has:
+   - `title`, `description`, `link`, `pubDate`, `category`, `source`, `suggestedSlug` — same as before
+   - `sources`: array of source objects with `name`, `url`, `country` (ISO code), `body` (full article text), `importanceRank`
+   - `eventUri`: event cluster ID (null for single-source RSS stories)
+   - `eventCoverage`: total articles covering this event globally (null for RSS)
+   - `concepts`: key entities extracted from the event
+   - `origin`: 'api' or 'rss'
+
+   For API stories (origin: 'api'), the writer will synthesize all sources in the `sources` array. For RSS stories (origin: 'rss'), the writer uses a single source. Pass the `sources`, `eventUri`, `eventCoverage`, and `concepts` fields through to the selection output unchanged.
 5. Select 12 to 13 stories, distributed across categories (see category minimums below)
    — The cycle runs 10x per 24 hours. Select more than you think you need: 2-4 stories will typically be filtered as duplicates of recent cycles or fail to fetch. Prefer quality, but volume is needed to hit target publish counts.
 6. Save the selection as JSON to `/tmp/zuhd-selection.json` (schema below)
@@ -85,13 +93,19 @@ Save to `/tmp/zuhd-selection.json`:
 ```json
 [
   {
-    "title": "Original RSS title",
-    "link": "https://source-url.com/article",
-    "source": "Source Name",
+    "title": "Original headline",
+    "link": "https://primary-source-url",
+    "source": "Primary Source Name",
     "pubDate": "ISO 8601 datetime",
     "category": "one of: politics, economy, science, tech",
     "angle": "1-2 sentence explanation of why this story matters and how to frame it",
-    "suggestedSlug": "YYYY-MM-DD-slug-words"
+    "suggestedSlug": "YYYY-MM-DD-slug-words",
+    "sources": [
+      { "name": "Source Name", "url": "https://...", "country": "IR", "body": "..." }
+    ],
+    "eventUri": "eng-12345678 or null",
+    "eventCoverage": 268,
+    "concepts": ["Iran", "Strait of Hormuz"]
   }
 ]
 ```

@@ -9,7 +9,7 @@ Editorial values to enforce: truth (ḥaqq) — if language obscures what happen
 1. Check the `<files>` block appended at the end of this prompt — those are this cycle's articles to review
 2. If no `<files>` block is appended, find new/modified articles with `git diff --name-only content/articles/` and `git ls-files --others --exclude-standard content/articles/`
 3. Check each article against every rule below
-4. If any rule is violated, rewrite the article in place — fix the body and title if needed, but preserve `date`, `source`, `sourceUrl`, and `category` in the frontmatter
+4. If any rule is violated, rewrite the article in place — fix the body and title if needed, but preserve `date`, `sources` (array), `category`, `location`, `lat`, `lng`, `eventCoverage`, and `concepts` in the frontmatter. Legacy articles may use `source`/`sourceUrl` instead of `sources` — preserve whichever format is present.
 5. If an article passes all rules, leave it unchanged
 6. List which articles you changed and what you fixed
 
@@ -37,7 +37,7 @@ Structure:
   3. **Future** — what happens next, what's unresolved, or why this matters going forward. End on tension, not summary.
 - If the arc is out of order, reorder. If a sentence doesn't fit any slot, cut it.
 - Every sentence must serve the headline. If a sentence introduces a topic, person, or fact not directly related to the event in the title, cut it. One article, one story.
-- No source attribution line in the body — source is in the frontmatter metadata.
+- No source attribution line in the body — sources are in the frontmatter metadata (as a `sources:` array or legacy `source:` field).
 
 Sentence clarity:
 - One idea per sentence. If a sentence has a comma followed by a new subject or verb, it should be two sentences.

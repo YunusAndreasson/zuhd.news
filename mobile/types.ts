@@ -1,5 +1,10 @@
 export type Category = 'politics' | 'economy' | 'science' | 'tech';
 
+export interface ArticleSource {
+  name: string;
+  country?: string | null;
+}
+
 export interface Article {
   slug: string;
   title: string;
@@ -7,6 +12,9 @@ export interface Article {
   addedAt: number;
   source: string | null;
   sourceUrl: string | null;
+  sources?: ArticleSource[];
+  concepts?: string[];
+  eventCoverage?: number | null;
   location: string | null;
   lat: number | null;
   lng: number | null;

@@ -1,0 +1,485 @@
+#!/usr/bin/env node
+// Fetches news from NewsAPI.ai (Event Registry).
+// Strategy: events endpoint for story discovery + article queries for source diversity.
+// Output: /tmp/zuhd-feed-api.json
+import { writeFileSync } from 'fs'
+
+const API_KEY = process.env.NEWSAPI_KEY
+if (!API_KEY) { console.error('NEWSAPI_KEY not set'); process.exit(1) }
+
+const API_BASE = 'https://eventregistry.org/api/v1'
+const OUTPUT = '/tmp/zuhd-feed-api.json'
+const MAX_BODY = 3000
+
+// ── Category filter ─────────────────────────────────────────────────
+
+const INCLUDE_CATEGORIES = ['news/Politics', 'news/Business', 'news/Science', 'news/Technology', 'news/Environment', 'news/Health']
+const EXCLUDE_CATEGORIES = ['news/Sports', 'news/Arts_and_Entertainment']
+
+// ── Region / Bloc Classification ────────────────────────────────────
+
+const WESTERN = new Set(['US', 'GB', 'CA', 'AU', 'NZ', 'FR', 'DE', 'IT', 'ES', 'NL', 'BE', 'AT', 'CH', 'SE', 'NO', 'DK', 'FI', 'IE', 'PT'])
+const WIRE_NAMES = new Set(['Associated Press', 'Reuters', 'Agence France-Presse', 'AFP'])
+
+const REGIONS = {
+  ME: ['IR', 'IQ', 'SY', 'LB', 'JO', 'IL', 'PS', 'SA', 'AE', 'QA', 'BH', 'KW', 'OM', 'YE', 'EG', 'TR', 'DZ', 'MA', 'TN', 'LY'],
+  SA: ['AF', 'PK', 'BD', 'LK', 'NP', 'IN', 'MV'],
+  EA: ['CN', 'JP', 'KR', 'KP', 'TW', 'MN', 'HK'],
+  SEA: ['VN', 'TH', 'MY', 'ID', 'PH', 'SG', 'MM', 'KH', 'LA', 'BN'],
+  EU: ['GB', 'FR', 'DE', 'IT', 'ES', 'NL', 'BE', 'PL', 'UA', 'RO', 'SE', 'NO', 'FI', 'DK', 'CZ', 'HU', 'GR', 'BG', 'HR', 'RS', 'SK', 'SI', 'LT', 'LV', 'EE', 'IE', 'PT', 'AT', 'CH'],
+  CAsia: ['KZ', 'UZ', 'TM', 'KG', 'TJ', 'GE', 'AM', 'AZ'],
+  AF: ['NG', 'KE', 'ZA', 'ET', 'GH', 'TZ', 'SD', 'SN', 'CI', 'CM', 'UG', 'RW', 'MZ', 'AO', 'CD', 'SS'],
+  AM: ['US', 'CA', 'MX', 'BR', 'AR', 'CO', 'CL', 'PE', 'VE', 'EC', 'CU', 'BO', 'PY', 'UY'],
+  RU: ['RU', 'BY'],
+}
+
+function sameRegion(a, b) {
+  if (!a || !b) return false
+  return Object.values(REGIONS).some(r => r.includes(a) && r.includes(b))
+}
+
+const COUNTRY_LOOKUP = {
+  'Iran': 'IR', 'China': 'CN', 'Russia': 'RU', 'United States': 'US',
+  'United Kingdom': 'GB', 'India': 'IN', 'Pakistan': 'PK', 'Turkey': 'TR',
+  'France': 'FR', 'Germany': 'DE', 'Japan': 'JP', 'South Korea': 'KR',
+  'Brazil': 'BR', 'Nigeria': 'NG', 'Kenya': 'KE', 'Sudan': 'SD',
+  'Egypt': 'EG', 'South Africa': 'ZA', 'Australia': 'AU', 'Canada': 'CA',
+  'Indonesia': 'ID', 'Malaysia': 'MY', 'Kazakhstan': 'KZ', 'Israel': 'IL',
+  'Qatar': 'QA', 'Saudi Arabia': 'SA', 'United Arab Emirates': 'AE',
+  'Mexico': 'MX', 'Argentina': 'AR', 'Colombia': 'CO', 'Italy': 'IT',
+  'Spain': 'ES', 'Netherlands': 'NL', 'Sweden': 'SE', 'Norway': 'NO',
+  'Denmark': 'DK', 'Finland': 'FI', 'Poland': 'PL', 'Ukraine': 'UA',
+  'Romania': 'RO', 'Greece': 'GR', 'Ireland': 'IE', 'Bangladesh': 'BD',
+  'Sri Lanka': 'LK', 'Vietnam': 'VN', 'Thailand': 'TH', 'Philippines': 'PH',
+  'Singapore': 'SG', 'Myanmar': 'MM', 'Afghanistan': 'AF', 'Iraq': 'IQ',
+  'Syria': 'SY', 'Lebanon': 'LB', 'Jordan': 'JO', 'Palestine': 'PS',
+  'New Zealand': 'NZ', 'Belgium': 'BE', 'Switzerland': 'CH', 'Austria': 'AT',
+  'Portugal': 'PT', 'Czech Republic': 'CZ', 'Hungary': 'HU', 'Bulgaria': 'BG',
+  'Serbia': 'RS', 'Croatia': 'HR', 'Hong Kong': 'HK', 'Taiwan': 'TW',
+  'Ethiopia': 'ET', 'Ghana': 'GH', 'Tanzania': 'TZ', 'Uganda': 'UG',
+  'Algeria': 'DZ', 'Morocco': 'MA', 'Tunisia': 'TN', 'Senegal': 'SN',
+  'Georgia': 'GE', 'Armenia': 'AM', 'Azerbaijan': 'AZ', 'Uzbekistan': 'UZ',
+  'Belarus': 'BY', 'Cuba': 'CU', 'Peru': 'PE', 'Chile': 'CL', 'Venezuela': 'VE',
+}
+
+function getCountryCode(source) {
+  const loc = source?.location
+  if (!loc) return null
+  const countryName = loc.type === 'country'
+    ? loc.label?.eng
+    : loc.country?.label?.eng
+  return countryName ? (COUNTRY_LOOKUP[countryName] || null) : null
+}
+
+function getCountryFromLoc(loc) {
+  if (!loc) return null
+  if (loc.type === 'country') return COUNTRY_LOOKUP[loc.label?.eng] || null
+  if (loc.country) return COUNTRY_LOOKUP[loc.country?.label?.eng] || null
+  return null
+}
+
+// ── Source Diversity Algorithm ───────────────────────────────────────
+
+function assembleSourcePanel(articles, eventLocation) {
+  if (articles.length <= 3) return articles
+
+  const affectedCountry = eventLocation ? getCountryFromLoc(eventLocation) : null
+
+  const affected = [], regional = [], wire = [], alternative = []
+  for (const a of articles) {
+    const cc = a._sourceCountry
+    const srcName = a.source?.title || ''
+    if (cc && cc === affectedCountry) {
+      affected.push(a)
+    } else if (WIRE_NAMES.has(srcName)) {
+      wire.push(a)
+    } else if (WESTERN.has(cc) && (a.source?.ranking?.importanceRank || 999999) < 3000) {
+      wire.push(a)
+    } else if (affectedCountry && sameRegion(cc, affectedCountry)) {
+      regional.push(a)
+    } else if (!WESTERN.has(cc)) {
+      alternative.push(a)
+    } else {
+      wire.push(a) // remaining Western sources
+    }
+  }
+
+  const byRank = arr => arr.sort((a, b) => (a.source?.ranking?.importanceRank || 999999) - (b.source?.ranking?.importanceRank || 999999))
+
+  const panel = []
+  const usedCountries = new Set()
+
+  function pickFrom(arr) {
+    byRank(arr)
+    for (const a of arr) {
+      if (!usedCountries.has(a._sourceCountry) || !a._sourceCountry) {
+        panel.push(a)
+        if (a._sourceCountry) usedCountries.add(a._sourceCountry)
+        return
+      }
+    }
+    if (arr.length > 0 && panel.length < 5) {
+      panel.push(arr[0])
+    }
+  }
+
+  pickFrom(affected)
+  pickFrom(regional)
+  pickFrom(wire)
+  byRank(alternative)
+  for (const a of alternative) {
+    if (panel.length >= 5) break
+    if (!usedCountries.has(a._sourceCountry) || !a._sourceCountry) {
+      panel.push(a)
+      if (a._sourceCountry) usedCountries.add(a._sourceCountry)
+    }
+  }
+
+  // Fill to 3 minimum
+  if (panel.length < 3) {
+    const remaining = articles.filter(a => !panel.includes(a))
+    byRank(remaining)
+    for (const a of remaining) {
+      if (panel.length >= 3) break
+      panel.push(a)
+    }
+  }
+
+  // Hard cap: max 2 Western-bloc sources
+  let westernCount = panel.filter(a => WESTERN.has(a._sourceCountry)).length
+  while (westernCount > 2 && panel.length > 2) {
+    const idx = [...panel].reverse().findIndex(a => WESTERN.has(a._sourceCountry))
+    if (idx === -1) break
+    const realIdx = panel.length - 1 - idx
+    const replacement = articles.find(a => !panel.includes(a) && !WESTERN.has(a._sourceCountry))
+    if (replacement) {
+      panel[realIdx] = replacement
+      westernCount--
+    } else break
+  }
+
+  return panel.slice(0, 5)
+}
+
+// ── API Calls ───────────────────────────────────────────────────────
+
+async function apiPost(endpoint, params) {
+  const res = await fetch(`${API_BASE}/${endpoint}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ apiKey: API_KEY, ...params }),
+  })
+  if (!res.ok) {
+    console.error(`API ${endpoint} error ${res.status}`)
+    return {}
+  }
+  return res.json()
+}
+
+// Q1: Event discovery (5 tokens)
+async function fetchEvents() {
+  const data = await apiPost('event/getEvents', {
+    resultType: 'events',
+    eventsCount: 40,
+    eventsSortBy: 'size',
+    lang: 'eng',
+    categoryUri: INCLUDE_CATEGORIES,
+    ignoreCategoryUri: EXCLUDE_CATEGORIES,
+    dateStart: new Date().toISOString().slice(0, 10),
+    minArticlesInEvent: 8,
+  })
+  return (data.events?.results || []).filter(Boolean)
+}
+
+// Q2: Curated high-quality source articles (1 token)
+async function fetchCuratedArticles() {
+  const data = await apiPost('article/getArticles', {
+    resultType: 'articles',
+    articlesCount: 100,
+    articlesSortBy: 'sourceImportance',
+    eventFilter: 'skipArticlesWithoutEvent',
+    lang: 'eng',
+    dataType: ['news'],
+    isDuplicateFilter: 'skipDuplicates',
+    sourceUri: [
+      'bbc.com', 'aljazeera.com', 'reuters.com', 'france24.com',
+      'dw.com', 'dawn.com', 'scmp.com', 'middleeasteye.net',
+      'al-monitor.com', 'haaretz.com', 'tass.com', 'en.mehrnews.com',
+      'restofworld.org', 'statnews.com', 'newscientist.com',
+      'nature.com', 'arstechnica.com', 'technologyreview.com',
+      'coindesk.com', 'dailymaverick.co.za', 'premiumtimesng.com',
+      'dabangasudan.org', 'carbonbrief.org',
+    ],
+    dateStart: new Date().toISOString().slice(0, 10),
+    articleBodyLen: -1,
+    includeArticleConcepts: true,
+    includeArticleCategories: true,
+    includeArticleLocation: true,
+    includeSourceLocation: true,
+    includeSourceRanking: true,
+  })
+  return data.articles?.results || []
+}
+
+// Q3: Gap-region source articles (1 token)
+async function fetchGapArticles() {
+  const data = await apiPost('article/getArticles', {
+    resultType: 'articles',
+    articlesCount: 100,
+    articlesSortBy: 'sourceImportance',
+    eventFilter: 'skipArticlesWithoutEvent',
+    lang: 'eng',
+    dataType: ['news'],
+    isDuplicateFilter: 'skipDuplicates',
+    categoryUri: INCLUDE_CATEGORIES,
+    ignoreCategoryUri: EXCLUDE_CATEGORIES,
+    sourceLocationUri: [
+      'http://en.wikipedia.org/wiki/Iran',
+      'http://en.wikipedia.org/wiki/China',
+      'http://en.wikipedia.org/wiki/Russia',
+      'http://en.wikipedia.org/wiki/Kenya',
+      'http://en.wikipedia.org/wiki/Sudan',
+      'http://en.wikipedia.org/wiki/Brazil',
+      'http://en.wikipedia.org/wiki/Turkey',
+      'http://en.wikipedia.org/wiki/Qatar',
+      'http://en.wikipedia.org/wiki/Israel',
+      'http://en.wikipedia.org/wiki/Pakistan',
+      'http://en.wikipedia.org/wiki/South_Africa',
+      'http://en.wikipedia.org/wiki/Nigeria',
+      'http://en.wikipedia.org/wiki/Colombia',
+    ],
+    dateStart: new Date().toISOString().slice(0, 10),
+    articleBodyLen: -1,
+    includeArticleConcepts: true,
+    includeArticleCategories: true,
+    includeArticleLocation: true,
+    includeSourceLocation: true,
+    includeSourceRanking: true,
+  })
+  return data.articles?.results || []
+}
+
+// Q4: Broad global news sorted by date — catches events Q2/Q3 missed (1 token)
+async function fetchBroadArticles() {
+  const data = await apiPost('article/getArticles', {
+    resultType: 'articles',
+    articlesCount: 100,
+    articlesSortBy: 'date',
+    eventFilter: 'skipArticlesWithoutEvent',
+    lang: 'eng',
+    dataType: ['news'],
+    isDuplicateFilter: 'skipDuplicates',
+    categoryUri: INCLUDE_CATEGORIES,
+    ignoreCategoryUri: EXCLUDE_CATEGORIES,
+    startSourceRankPercentile: 0,
+    endSourceRankPercentile: 20,
+    dateStart: new Date().toISOString().slice(0, 10),
+    articleBodyLen: -1,
+    includeArticleConcepts: true,
+    includeArticleCategories: true,
+    includeArticleLocation: true,
+    includeSourceLocation: true,
+    includeSourceRanking: true,
+  })
+  return data.articles?.results || []
+}
+
+// ── Category Mapping ────────────────────────────────────────────────
+
+function mapCategory(categories) {
+  for (const cat of (categories || [])) {
+    const uri = (cat.uri || cat.label || '').toLowerCase()
+    if (uri.includes('politic') || uri.includes('society') || uri.includes('conflict') || uri.includes('government')) return 'politics'
+    if (uri.includes('business') || uri.includes('econom') || uri.includes('financ') || uri.includes('market')) return 'economy'
+    if (uri.includes('science') || uri.includes('health') || uri.includes('environment') || uri.includes('medicine')) return 'science'
+    if (uri.includes('technolog') || uri.includes('computer') || uri.includes('internet') || uri.includes('software')) return 'tech'
+  }
+  return 'politics'
+}
+
+function slugify(title, date) {
+  const d = new Date(date)
+  const prefix = isNaN(d.getTime()) ? new Date().toISOString().slice(0, 10) : d.toISOString().slice(0, 10)
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60).replace(/-$/, '')
+  return `${prefix}-${slug}`
+}
+
+function extractConcepts(articles) {
+  const map = new Map()
+  for (const a of articles) {
+    for (const c of (a.concepts || [])) {
+      const label = c.label?.eng
+      if (!label) continue
+      if (!map.has(label) || (c.score || 0) > (map.get(label).score || 0)) {
+        map.set(label, c)
+      }
+    }
+  }
+  return [...map.values()]
+    .sort((a, b) => (b.score || 0) - (a.score || 0))
+    .slice(0, 8)
+    .map(c => c.label?.eng)
+    .filter(Boolean)
+}
+
+function avg(nums) {
+  return nums.length ? +(nums.reduce((a, b) => a + b, 0) / nums.length).toFixed(2) : null
+}
+
+// ── Main ────────────────────────────────────────────────────────────
+
+async function main() {
+  console.error('Fetching from NewsAPI.ai...')
+
+  // Run all 4 queries in parallel (5+1+1+1 = 8 tokens)
+  const [events, curatedArticles, gapArticles, broadArticles] = await Promise.all([
+    fetchEvents(),
+    fetchCuratedArticles(),
+    fetchGapArticles(),
+    fetchBroadArticles(),
+  ])
+
+  console.error(`Q1: ${events.length} events, Q2: ${curatedArticles.length} curated, Q3: ${gapArticles.length} gap, Q4: ${broadArticles.length} broad`)
+
+  // Annotate all articles with country codes
+  const allArticles = [...curatedArticles, ...gapArticles, ...broadArticles]
+  const seen = new Set()
+  const dedupedArticles = []
+  for (const a of allArticles) {
+    if (seen.has(a.uri)) continue
+    seen.add(a.uri)
+    a._sourceCountry = getCountryCode(a.source) || null
+    dedupedArticles.push(a)
+  }
+
+  console.error(`Deduped articles: ${dedupedArticles.length}`)
+
+  // Index articles by eventUri
+  const articlesByEvent = new Map()
+  const standaloneArticles = []
+  for (const a of dedupedArticles) {
+    if (a.eventUri) {
+      if (!articlesByEvent.has(a.eventUri)) articlesByEvent.set(a.eventUri, [])
+      articlesByEvent.get(a.eventUri).push(a)
+    } else {
+      standaloneArticles.push(a)
+    }
+  }
+
+  // Build stories: merge events with their matched articles
+  const stories = []
+  const usedEventUris = new Set()
+
+  for (const event of events) {
+    const uri = event.uri
+    const matchedArticles = articlesByEvent.get(uri) || []
+    const title = event.title?.eng || ''
+    const totalArticles = event.totalArticleCount || 0
+    const eventLoc = event.location || null
+    const eventConcepts = (event.concepts || [])
+      .sort((a, b) => (b.score || 0) - (a.score || 0))
+      .slice(0, 8)
+      .map(c => c.label?.eng)
+      .filter(Boolean)
+    const eventDate = event.eventDate || new Date().toISOString().slice(0, 10)
+    const eventCategories = event.categories || []
+
+    usedEventUris.add(uri)
+
+    if (matchedArticles.length === 0) {
+      // Event with no matched articles — include as headline-only for the selector
+      stories.push({
+        title,
+        description: event.summary?.eng || '',
+        link: '',
+        pubDate: eventDate + 'T00:00:00Z',
+        category: mapCategory(eventCategories),
+        source: '',
+        suggestedSlug: slugify(title, eventDate),
+        eventUri: uri,
+        eventCoverage: totalArticles,
+        sources: [],
+        concepts: eventConcepts,
+        location: eventLoc?.type === 'place' ? eventLoc.label?.eng : (eventLoc?.label?.eng || null),
+        sentiment: null,
+        origin: 'api',
+      })
+      continue
+    }
+
+    // Assemble diverse source panel
+    const panel = assembleSourcePanel(matchedArticles, eventLoc)
+    const primary = panel[0]
+    const concepts = eventConcepts.length > 0 ? eventConcepts : extractConcepts(panel)
+    const location = eventLoc?.type === 'place'
+      ? eventLoc.label?.eng
+      : (eventLoc?.label?.eng || primary.location?.label?.eng || null)
+
+    stories.push({
+      title: primary.title || title,
+      description: (primary.body || '').slice(0, 300),
+      link: primary.url || '',
+      pubDate: primary.dateTimePub || primary.dateTime || eventDate + 'T00:00:00Z',
+      category: mapCategory(primary.categories || eventCategories),
+      source: primary.source?.title || '',
+      suggestedSlug: slugify(primary.title || title, primary.dateTimePub || eventDate),
+      eventUri: uri,
+      eventCoverage: totalArticles,
+      sources: panel.map(a => ({
+        name: a.source?.title || '',
+        url: a.url || '',
+        country: a._sourceCountry,
+        body: (a.body || '').slice(0, MAX_BODY),
+        importanceRank: a.source?.ranking?.importanceRank || null,
+      })),
+      concepts,
+      location,
+      sentiment: avg(panel.map(a => a.sentiment).filter(s => s != null)),
+      origin: 'api',
+    })
+  }
+
+  // Sort: events with matched articles first (by coverage), then headline-only events
+  stories.sort((a, b) => {
+    const aHas = a.sources.length > 0 ? 1 : 0
+    const bHas = b.sources.length > 0 ? 1 : 0
+    if (aHas !== bHas) return bHas - aHas
+    return (b.eventCoverage || 0) - (a.eventCoverage || 0)
+  })
+
+  // Add standalone articles (not matched to any top event) — these are niche/specialist coverage
+  for (const a of standaloneArticles.slice(0, 10)) {
+    stories.push({
+      title: a.title,
+      description: (a.body || '').slice(0, 300),
+      link: a.url || '',
+      pubDate: a.dateTimePub || a.dateTime,
+      category: mapCategory(a.categories || []),
+      source: a.source?.title || '',
+      suggestedSlug: slugify(a.title, a.dateTimePub || a.dateTime),
+      eventUri: a.eventUri || null,
+      eventCoverage: null,
+      sources: [{
+        name: a.source?.title || '',
+        url: a.url || '',
+        country: a._sourceCountry,
+        body: (a.body || '').slice(0, MAX_BODY),
+        importanceRank: a.source?.ranking?.importanceRank || null,
+      }],
+      concepts: (a.concepts || []).slice(0, 5).map(c => c.label?.eng || '').filter(Boolean),
+      location: a.location?.label?.eng || null,
+      sentiment: a.sentiment,
+      origin: 'api',
+    })
+  }
+
+  const withSources = stories.filter(s => s.sources.length > 0).length
+  const multiSource = stories.filter(s => s.sources.length > 1).length
+  const output = { fetchedAt: new Date().toISOString(), events: events.length, stories }
+
+  writeFileSync(OUTPUT, JSON.stringify(output, null, 2))
+  console.error(`Wrote ${stories.length} stories: ${withSources} with articles (${multiSource} multi-source), ${stories.length - withSources} headline-only`)
+  console.log(`${stories.length} stories from ${events.length} events`)
+}
+
+main().catch(e => { console.error(e); process.exit(1) })

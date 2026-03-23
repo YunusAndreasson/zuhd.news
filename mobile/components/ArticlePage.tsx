@@ -28,7 +28,8 @@ interface ArticlePageProps {
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
-  onSourcePress?: (sourceName: string) => void;
+  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => void;
+  onConceptPress?: (concept: string) => void;
   showEarlierDivider?: boolean;
   feedInfo?: FeedInfo | null;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
@@ -84,6 +85,7 @@ export const ArticlePage = memo(function ArticlePage({
   index,
   scrollY,
   onSourcePress,
+  onConceptPress,
   showEarlierDivider,
   feedInfo,
   globeRef,
@@ -177,9 +179,39 @@ export const ArticlePage = memo(function ArticlePage({
             {article.title}
           </Text>
           {body}
+          {/* Perspective strip — multi-source articles show country codes + coverage */}
+          {article.sources && article.sources.length > 1 ? (
+            <Pressable
+              style={styles.perspectiveStrip}
+              onPress={() => onSourcePress?.(article.source ?? article.sources![0]?.name ?? '', article.sources)}
+              hitSlop={8}
+            >
+              <View style={styles.perspectiveLeft}>
+                {article.sources.map((s, i) => (
+                  <Text key={i} style={styles.perspectiveCountry}>
+                    {s.country ?? '??'}
+                    {i < article.sources!.length - 1 && <Text style={styles.perspectiveDot}> · </Text>}
+                  </Text>
+                ))}
+              </View>
+              {article.eventCoverage && article.eventCoverage > 1 ? (
+                <Text style={styles.perspectiveCoverage}>
+                  {article.eventCoverage} worldwide
+                </Text>
+              ) : null}
+            </Pressable>
+          ) : null}
+
+          {/* Meta row */}
           <View style={styles.meta}>
             <View style={styles.metaGroup}>
-              {article.source ? (
+              {article.sources && article.sources.length > 1 ? (
+                <ActionLabel
+                  label={`${article.sources.length} sources`}
+                  icon="chevron-down"
+                  onPress={() => onSourcePress?.(article.source ?? article.sources![0]?.name ?? '', article.sources)}
+                />
+              ) : article.source ? (
                 <ActionLabel
                   label={article.source.toLowerCase()}
                   icon="chevron-down"
@@ -192,6 +224,22 @@ export const ArticlePage = memo(function ArticlePage({
               <ActionLabel label="share" icon="arrow-up-outline" onPress={handleShare} />
             </View>
           </View>
+
+          {/* Concepts — interactive, tap to explore related articles */}
+          {article.concepts && article.concepts.length > 0 && (
+            <View style={styles.concepts}>
+              {article.concepts.slice(0, 5).map((c) => (
+                <Pressable
+                  key={c}
+                  style={({ pressed }) => [styles.conceptTag, pressed && styles.conceptPressed]}
+                  onPress={() => { impact(); onConceptPress?.(c); }}
+                  hitSlop={4}
+                >
+                  <Text style={styles.conceptText}>{c}</Text>
+                </Pressable>
+              ))}
+            </View>
+          )}
         </Animated.View>
       </View>
 
@@ -283,6 +331,62 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0,0,0,0.6)',
     textShadowOffset: { width: 0, height: 1 },
     textShadowRadius: 2,
+  },
+  perspectiveStrip: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: SPACING.md,
+    paddingVertical: SPACING.xs,
+  },
+  perspectiveLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  perspectiveCountry: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeSm,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    color: COLORS.accent,
+    textShadowColor: 'rgba(0,0,0,0.6)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
+  },
+  perspectiveDot: {
+    color: COLORS.rule,
+  },
+  perspectiveCoverage: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeXs,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    color: COLORS.textSecondary,
+    opacity: 0.6,
+    textShadowColor: 'rgba(0,0,0,0.6)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
+  },
+  concepts: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 6,
+    marginTop: SPACING.sm,
+  },
+  conceptTag: {
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: COLORS.rule,
+    borderRadius: 2,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+  },
+  conceptPressed: {
+    opacity: 0.5,
+    backgroundColor: COLORS.rule,
+  },
+  conceptText: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeXs,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    color: COLORS.accent,
   },
   globeTapZone: {
     ...StyleSheet.absoluteFillObject,

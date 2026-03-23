@@ -34,7 +34,7 @@ export ZUHD_MODEL="$CLAUDE_MODEL"
 # Stage-specific tool sets: narrower access = fewer wrong turns
 # Selector no longer needs Bash — RSS feed is pre-fetched to /tmp/zuhd-feed.json before session starts
 TOOLS_SELECTOR="Read,Write,Edit,Glob,Grep"
-TOOLS_WRITER="Read,Write,WebFetch"
+TOOLS_WRITER="Read,Write"
 TOOLS_EDITOR="Read,Edit,Glob,Grep"
 TOOLS_REFLECT="Read,Write,Glob,Grep"
 # Common flags for all headless Claude CLI invocations (no --model: passed per stage)
@@ -60,13 +60,25 @@ echo "Started: $(date)" | tee -a "$LOG_FILE"
 # Clear stale selection from previous cycle — prevents writer from using yesterday's picks if selector fails
 rm -f /tmp/zuhd-selection.json /tmp/zuhd-new-articles.txt /tmp/zuhd-feed.json
 
-# Stage 0: Pre-fetch RSS feeds — run outside Claude so selector just reads a file
+# Stage 0: Fetch from NewsAPI.ai + RSS niche sources, then merge
 echo "" | tee -a "$LOG_FILE"
-echo "--- Stage 0: RSS feed fetch ---" | tee -a "$LOG_FILE"
+echo "--- Stage 0: API + RSS feed fetch ---" | tee -a "$LOG_FILE"
 T0=$SECONDS
-node scripts/fetch-news.js > /tmp/zuhd-feed.json 2>>"$LOG_FILE"
-FEED_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed.json'));console.log('cycle '+d.cycleIndex+'/9, '+d.freshItems+' fresh from '+d.sources.length+' sources')}catch{console.log('failed')}" 2>/dev/null)
-echo "Feed fetch done — $((SECONDS - T0))s ($FEED_STATS)" | tee -a "$LOG_FILE"
+
+# Step 1: NewsAPI.ai event-grouped fetch (3 queries, 3 tokens)
+node scripts/fetch-news-api.js 2>>"$LOG_FILE"
+API_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed-api.json'));console.log(d.stories.length+' stories from '+d.events+' events')}catch{console.log('failed')}" 2>/dev/null)
+echo "API fetch: $API_STATS" | tee -a "$LOG_FILE"
+
+# Step 2: RSS niche sources (HN, 404 Media, Bellingcat, Mada Masr, etc.)
+node scripts/fetch-news.js > /tmp/zuhd-feed-rss.json 2>>"$LOG_FILE"
+RSS_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed-rss.json'));console.log(d.stories?.length||d.freshItems||0)}catch{console.log('0')}" 2>/dev/null)
+echo "RSS fetch: ${RSS_STATS} stories" | tee -a "$LOG_FILE"
+
+# Step 3: Merge into unified feed
+node scripts/merge-feeds.js 2>>"$LOG_FILE"
+FEED_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed.json'));console.log(d.stories.length+' stories ('+d.apiStories+' API, '+d.rssStories+' RSS)')}catch{console.log('failed')}" 2>/dev/null)
+echo "Merged feed: $FEED_STATS — $((SECONDS - T0))s" | tee -a "$LOG_FILE"
 
 # Stage 1: Selector — read pre-fetched feed, pick stories, save selection
 echo "" | tee -a "$LOG_FILE"
@@ -108,14 +120,9 @@ if [ "$SELECTION_COUNT" -eq 0 ]; then
 fi
 echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
 
-# Stage 1.5: Pre-fetch article content — eliminates writer's WebFetch tool calls
-echo "" | tee -a "$LOG_FILE"
-echo "--- Stage 1.5: Pre-fetch article content ---" | tee -a "$LOG_FILE"
-T15=$SECONDS
-timeout 60 node scripts/prefetch-articles.js 2>&1 | tee -a "$LOG_FILE"
-echo "Pre-fetch done — $((SECONDS - T15))s" | tee -a "$LOG_FILE"
+# Stage 1.5: REMOVED — API provides full article text in the feed, no prefetch needed
 
-# Stage 2: Writer — read selection, fetch full articles, draft markdown
+# Stage 2: Writer — read selection (with pre-loaded article bodies), draft markdown
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 2: Writer ---" | tee -a "$LOG_FILE"
 T2=$SECONDS

@@ -100,7 +100,9 @@ function init(data) {
       const timeLabel = ageH < 1 ? 'just now'
         : ageH < 24 ? ageH + 'h ago'
         : displayDate.toLocaleDateString([], { day: 'numeric', month: 'short' });
-      div.innerHTML = `<h2>${esc(a.title)}</h2><time datetime="${displayDate.toISOString()}">${timeLabel}</time>`;
+      const srcBadge = (a.sourceCount || (a.sources && a.sources.length) || 0) > 1
+        ? `<span class="source-badge">${a.sourceCount || a.sources.length}</span>` : '';
+      div.innerHTML = `<h2>${esc(a.title)}${srcBadge}</h2><time datetime="${displayDate.toISOString()}">${timeLabel}</time>`;
       div.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); div.click(); }
       });
@@ -255,9 +257,15 @@ function init(data) {
       case 'o':
         if (state.artIdx >= 0) {
           const a = currentArticle();
-          if (a.sourceUrl) window.open(a.sourceUrl, '_blank', 'noopener');
+          const url = a.sourceUrl || (a.sources && a.sources[0] && a.sources[0].url);
+          if (url) window.open(url, '_blank', 'noopener');
         }
         break;
+      case 's': {
+        const det = (desktop ? viewInner : listEl)?.querySelector('.article-sources');
+        if (det) det.open = !det.open;
+        break;
+      }
       case 'Enter':
         if (!desktop) { e.preventDefault(); openArticle(true); }
         break;
