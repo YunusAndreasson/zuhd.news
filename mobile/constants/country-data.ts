@@ -2285,11 +2285,11 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
   Palestine: {
     official: 'State of Palestine',
     flag: '🇵🇸',
-    capital: 'Ramallah',
+    capital: 'East Jerusalem',
     region: 'Western Asia',
     languages: 'Arabic',
-    currency: 'Egyptian pound',
-    currencySymbol: 'E£',
+    currency: 'Israeli new shekel',
+    currencySymbol: '₪',
     population: '5M',
     area: '6K km²',
     landlocked: false,
@@ -2298,7 +2298,7 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
     gdpPerCapita: '$3,455',
     military: null,
     militaryPctGdp: null,
-    lifeExpectancy: '65.2 yr',
+    lifeExpectancy: '74.2 yr',
     internetPct: '87%',
   },
   Panama: {
