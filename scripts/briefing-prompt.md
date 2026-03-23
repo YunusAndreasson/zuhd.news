@@ -114,6 +114,7 @@ These rules exist because the output is sent directly to Google Cloud TTS (Chirp
 **When NOT to use phoneme tags:**
 - Names that are roughly phonetic in English — trust the engine.
 - Well-known places and countries (Paris, Tehran, Istanbul, Pakistan, etc.).
+- Common Islamic/Arabic terms the engine already knows: Ramadan, Eid, Hamas, Hezbollah, Taliban, imam, mosque, sharia, fatwa, jihad, mufti, ayatollah, caliph.
 - Any word the engine would get close enough on. A 90% correct pronunciation with natural flow beats 100% correct pronunciation with an audible robot pause.
 
 **Phoneme tag format (when you do use them):**
@@ -128,7 +129,6 @@ Common terms — use these exact tags when they appear:
 - `<phoneme alphabet="ipa" ph="iːd æl ˈfɪt.ər">Eid al-Fitr</phoneme>`
 - `<phoneme alphabet="ipa" ph="iːd æl ˈɑːd.hɑː">Eid al-Adha</phoneme>`
 - `<phoneme alphabet="ipa" ph="noʊˈruːz">Nowruz</phoneme>`
-- `<phoneme alphabet="ipa" ph="ˈræm.ə.dɑːn">Ramadan</phoneme>`
 - `<phoneme alphabet="ipa" ph="tɔːr">Tyre</phoneme>` (Lebanese city, NOT like car tire)
 - `<phoneme alphabet="ipa" ph="ɑːˈvɑːz">Ahvaz</phoneme>`
 - `<phoneme alphabet="ipa" ph="dɪˈmoʊ.nə">Dimona</phoneme>`
@@ -143,7 +143,7 @@ Before writing the `<speak>` document, verify:
 1. **Story count**: 14–16 stories including lead.
 2. **Category balance**: all four categories represented. Science and tech matter — don't let a war-heavy news cycle push them out.
 3. **Numbers as words**: no digits anywhere except inside `<say-as>` date tags.
-4. **Phoneme coverage**: every non-English name and every Islamic/Arabic term has a `<phoneme>` tag.
+4. **Phoneme coverage**: only words the TTS engine will clearly mispronounce have a `<phoneme>` tag. Common words like Ramadan, Hamas, Hezbollah, Taliban, imam, and mosque do NOT need tags.
 5. **No country repeated**: each country appears in at most one story.
 6. **Word count**: 1200–1400 words (~10 minutes of audio).
 7. **Prosody**: lead story wrapped in `<prosody rate="95%">`, sign-off in `<prosody rate="90%">`.
