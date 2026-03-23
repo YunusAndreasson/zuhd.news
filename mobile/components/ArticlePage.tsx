@@ -1,4 +1,4 @@
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useEffect, useMemo } from 'react';
 import { Share, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Extrapolation,
@@ -7,10 +7,14 @@ import Animated, {
   useAnimatedStyle,
   useDerivedValue,
   useReducedMotion,
+  useSharedValue,
+  withDelay,
+  withTiming,
 } from 'react-native-reanimated';
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { renderSentences } from '../lib/markdown';
+import type { FeedInfo } from '../lib/feed-cache';
 import type { Article } from '../types';
 import { ActionLabel } from './ActionLabel';
 
@@ -21,6 +25,7 @@ interface ArticlePageProps {
   scrollY: SharedValue<number>;
   onSourcePress?: (sourceName: string) => void;
   showEarlierDivider?: boolean;
+  feedInfo?: FeedInfo | null;
 }
 
 function formatTimeAgo(addedAt: number): string {
@@ -32,6 +37,21 @@ function formatTimeAgo(addedAt: number): string {
   return date.toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 }
 
+function FeedLabel({ total, readMins }: { total: number; readMins: number }) {
+  const opacity = useSharedValue(1);
+  useEffect(() => {
+    opacity.value = withDelay(6000, withTiming(0, { duration: 1500 }));
+  }, [opacity]);
+  const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
+  return (
+    <Animated.View style={[styles.feedPill, style]}>
+      <Text style={styles.feedPillText}>
+        {total} articles · ~{readMins} min read
+      </Text>
+    </Animated.View>
+  );
+}
+
 export const ArticlePage = memo(function ArticlePage({
   article,
   itemHeight,
@@ -39,6 +59,7 @@ export const ArticlePage = memo(function ArticlePage({
   scrollY,
   onSourcePress,
   showEarlierDivider,
+  feedInfo,
 }: ArticlePageProps) {
   const { impact } = useHaptic();
   const timeAgo = formatTimeAgo(article.addedAt);
@@ -109,6 +130,9 @@ export const ArticlePage = memo(function ArticlePage({
 
   return (
     <View style={[styles.container, { height: itemHeight }]}>
+      {index === 0 && feedInfo && (
+        <FeedLabel total={feedInfo.total} readMins={feedInfo.readMins} />
+      )}
       {showEarlierDivider && (
         <View style={styles.earlierDivider}>
           <View style={styles.earlierLine} />
@@ -150,6 +174,21 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.screenPadding,
     paddingTop: SPACING.xl,
     overflow: 'hidden',
+  },
+  feedPill: {
+    alignSelf: 'flex-start',
+    backgroundColor: COLORS.textSecondary,
+    borderRadius: 4,
+    paddingHorizontal: SPACING.sm,
+    paddingVertical: SPACING.xs,
+    marginBottom: SPACING.sm,
+    marginTop: -SPACING.md,
+  },
+  feedPillText: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.bg,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
   },
   earlierDivider: {
     flexDirection: 'row',

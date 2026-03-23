@@ -22,3 +22,7 @@ export async function saveReadingPosition(cat: string, index: number): Promise<v
   pos[cat] = index;
   await SecureStore.setItemAsync(POSITIONS_KEY, JSON.stringify(pos));
 }
+
+export async function resetReadingPositions(): Promise<void> {
+  await SecureStore.setItemAsync(POSITIONS_KEY, JSON.stringify({}));
+}

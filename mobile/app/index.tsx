@@ -21,7 +21,7 @@ import { useHaptic } from '../hooks/useHaptic';
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
-  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick } = useArticles();
+  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, feedInfo } = useArticles();
   const { impact } = useHaptic();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
@@ -193,6 +193,7 @@ export default function HomeScreen() {
                 pagerIdle={pagerIdle}
                 progressesSV={categoryProgresses}
                 tick={tick}
+                feedInfo={feedInfo}
               />
             )}
           </View>

@@ -11,12 +11,13 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
-      "buildNumber": "49",
+      "buildNumber": "50",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
           "audio",
-          "processing"
+          "processing",
+          "fetch"
         ],
         "BGTaskSchedulerPermittedIdentifiers": [
           "zuhd.news.backgroundtask"

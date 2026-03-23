@@ -3,9 +3,11 @@ import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { COLORS } from '../constants/theme';
+import { registerBackgroundFetch } from '../lib/background-fetch';
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({ fade: true, duration: 250 });
@@ -17,6 +19,10 @@ export default function RootLayout() {
     'SourceSans3-Bold': require('../assets/fonts/SourceSans3-Bold.ttf'),
     'SourceSans3SC-SemiBold': require('../assets/fonts/SourceSans3SC-SemiBold.ttf'),
   });
+
+  useEffect(() => {
+    registerBackgroundFetch();
+  }, []);
 
   if (!fontsLoaded) return null;
 

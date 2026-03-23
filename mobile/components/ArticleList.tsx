@@ -14,6 +14,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATEGORIES, COLORS, LAYOUT } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { getReadingPositions, saveReadingPosition } from '../lib/storage';
+import type { FeedInfo } from '../lib/feed-cache';
 import type { Article } from '../types';
 import { ArticlePage } from './ArticlePage';
 
@@ -32,6 +33,7 @@ interface ArticleListProps {
   pagerIdle: React.RefObject<boolean>;
   progressesSV: SharedValue<number[]>;
   tick?: number;
+  feedInfo?: FeedInfo | null;
   ref?: React.Ref<ArticleListRef>;
 }
 
@@ -46,6 +48,7 @@ export const ArticleList = memo(function ArticleList({
   pagerIdle,
   progressesSV,
   tick,
+  feedInfo,
   ref,
 }: ArticleListProps) {
   const insets = useSafeAreaInsets();
@@ -189,9 +192,10 @@ export const ArticleList = memo(function ArticleList({
         scrollY={scrollY}
         onSourcePress={onSourcePress}
         showEarlierDivider={index === earlierIndex}
+        feedInfo={index === 0 ? feedInfo : undefined}
       />
     ),
-    [itemHeight, scrollY, onSourcePress, earlierIndex],
+    [itemHeight, scrollY, onSourcePress, earlierIndex, feedInfo],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);
