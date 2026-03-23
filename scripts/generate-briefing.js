@@ -35,12 +35,16 @@ for (const file of files) {
   const fileTime = statSync(join(ARTICLES_DIR, file)).mtimeMs
   const addedTime = Math.max(sourceTime, fileTime)
   if (addedTime < cutoff) continue
+  const sources = Array.isArray(meta.sources) ? meta.sources : []
   articles.push({
     title: meta.title || basename(file, '.md'),
     category: meta.category || 'uncategorised',
-    source: (Array.isArray(meta.sources) && meta.sources[0]?.name) || '',
+    sources: sources.map(s => s.name).filter(Boolean),
+    sourceCountries: sources.map(s => s.country).filter(Boolean),
+    eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
+    concepts: Array.isArray(meta.concepts) ? meta.concepts.slice(0, 3) : [],
     addedTime,
-    body: body.slice(0, 300) // trimmed to keep prompt compact
+    body: body.slice(0, 300)
   })
 }
 
