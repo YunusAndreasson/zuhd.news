@@ -21,6 +21,8 @@ const SOURCES = [
   { name: '+972 Magazine',  url: 'https://www.972mag.com/feed/',               format: 'rss2' },
   { name: 'Drop Site News', url: 'https://www.dropsitenews.com/feed',          format: 'rss2' },
   { name: 'OCCRP',          url: 'https://www.occrp.org/en/feed',              format: 'rss2' },
+  { name: 'SMEX',           url: 'https://smex.org/feed/',                     format: 'rss2', defaultCategory: 'tech' },
+  { name: 'SciDev.Net',     url: 'https://www.scidev.net/global/global_rss.xml', format: 'rss2', defaultCategory: 'science' },
 ]
 
 const EXCLUDE_RE = /\b(opinion|features|gallery|photos|video|sport|entertainment|culture|food|travel|lifestyle|podcast)\b/i
