@@ -94,6 +94,12 @@ These rules exist because the output is sent directly to Google Cloud TTS (Chirp
 - Use `<prosody rate="90%">` around the sign-off for a calm close.
 - Do NOT change prosody mid-sentence — wrap complete `<s>` elements.
 
+**Em dashes and punctuation:**
+- Chirp3-HD uses em dashes (—) as natural pacing cues — like a breath or a dramatic beat. Use them for spoken rhythm: "families' last resort — in a country with no healthcare" works because a speaker would pause there.
+- Do NOT use em dashes for written clarifications, data ranges, or parenthetical asides that wouldn't be spoken aloud. "From forty-five thousand to just ten thousand" is better than "— from forty-five thousand to ten thousand."
+- Do NOT use ellipsis (...). Use `<break time="300ms"/>` for a deliberate spoken pause, or restructure the sentence.
+- Write for the ear, not the eye. Every sentence should sound natural if you read it aloud. If a punctuation mark creates an awkward pause when spoken, remove it.
+
 **Dates:**
 - `<say-as interpret-as="date" format="dmy">` for dates.
 
