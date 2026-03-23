@@ -5,8 +5,8 @@
       "id": "iran-us-israel-war",
       "label": "Iran-US-Israel war: Pentagon $200bn request, Saudi threatens action",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-23T02:45:00Z",
-      "coverageCount": 300,
+      "lastCovered": "2026-03-23T07:32:00Z",
+      "coverageCount": 303,
       "category": "politics",
       "importance": 5,
       "arc": "ongoing",
@@ -142,9 +142,12 @@
         "2026-03-22-iran-threatens-all-infrastructure-retaliation-power-plants",
         "2026-03-22-patriot-bahrain-blast-us-operated-reuters-analysis",
         "2026-03-22-british-pm-emergency-cabinet-mideast",
-        "2026-03-23-tehran-struck-khorramabad-blackout-infrastructure-war"
+        "2026-03-23-tehran-struck-khorramabad-blackout-infrastructure-war",
+        "2026-03-23-us-strikes-qom-engine-factory-iran-manufacturing",
+        "2026-03-23-iran-condemns-jordan-un-us-attacks-facilitation",
+        "2026-03-23-israeli-poll-90-percent-support-iran-war"
       ],
-      "summary": "Day 24: Tehran struck overnight, Khorramabad blackout. Infrastructure targeting escalating as 48-hour Hormuz ultimatum deadline approaches."
+      "summary": "US strikes Qom engine factory — targeting manufacturing capability. Iran names Jordan as US attack facilitator at UN. 90% of Jewish Israelis support war per Tel Aviv poll."
     },
     {
       "id": "lebanon-israel-war",
@@ -153,7 +156,7 @@
       "lastCovered": "2026-03-23T05:04:00Z",
       "coverageCount": 55,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-03-08-lebanon-394-killed-one-week-83-children-israel-offensive",
@@ -216,8 +219,8 @@
       "id": "iran-war-hormuz-economic-impact",
       "label": "Hormuz crisis: Ras Laffan LNG attack, allies refuse escort, Pacific hit",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-23T05:04:00Z",
-      "coverageCount": 270,
+      "lastCovered": "2026-03-23T07:32:00Z",
+      "coverageCount": 272,
       "category": "economy",
       "importance": 5,
       "arc": "ongoing",
@@ -343,183 +346,348 @@
         "2026-03-23-asian-markets-plunge-trump-iran-ultimatum",
         "2026-03-23-malaysia-fuel-subsidies-rm2b-hormuz-strain",
         "2026-03-23-middle-east-war-global-economic-doom-loop",
-        "2026-03-23-iea-head-iran-war-major-economic-threat"
+        "2026-03-23-iea-head-iran-war-major-economic-threat",
+        "2026-03-23-seoul-kospi-crash-6-percent-iran-war-markets",
+        "2026-03-23-qatar-airways-fleet-relocation-spain-gulf-war"
       ],
-      "summary": "IEA head calls Iran war major threat to world economy. Oil above 112, cascading effects across Asia."
+      "summary": "KOSPI crashes 6%+ worst day since 2020. Qatar Airways relocates wide-body fleet to Spain. IEA calls war major economic threat."
     },
     {
-      "id": "ukraine-russia-sumy-buffer",
-      "label": "Ukraine: Russian attacks continue across south-east while world watches Iran",
-      "firstSeen": "2026-03-22T17:30:00Z",
-      "lastCovered": "2026-03-23T02:45:00Z",
-      "coverageCount": 3,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-22-russia-claims-sumy-border-village-buffer-zone-ukraine",
-        "2026-03-22-russia-attacks-six-killed-ukraine-southeast",
-        "2026-03-23-zelensky-russia-attacks-heavy-losses-ukraine-forgotten"
-      ],
-      "summary": "Russia escalating while NATO bandwidth absorbed by Iran war. Zelensky warns of heavy attacks but claims heavy Russian losses."
-    },
-    {
-      "id": "belarus-us-sanctions-thaw",
-      "label": "Belarus frees 250 political prisoners in sanctions bargain with US",
-      "firstSeen": "2026-03-20T05:15:00Z",
-      "lastCovered": "2026-03-20T05:15:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-20-belarus-frees-250-political-prisoners-sanctions-thaw"
-      ],
-      "summary": "Lukashenko releases largest batch of political prisoners (250) in exchange for US sanctions relief."
-    },
-    {
-      "id": "venezuela-post-maduro-transition",
-      "label": "Venezuela: interim president purges military leadership post-Maduro",
-      "firstSeen": "2026-03-20T05:15:00Z",
-      "lastCovered": "2026-03-20T05:15:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-20-venezuela-interim-president-replaces-military-commanders"
-      ],
-      "summary": "Delcy Rodriguez replaces all senior military commanders after US-backed ouster of Maduro."
-    },
-    {
-      "id": "japan-north-korea-diplomacy",
-      "label": "Japan PM Takaichi seeks Kim Jong Un summit on abductions",
-      "firstSeen": "2026-03-20T05:15:00Z",
-      "lastCovered": "2026-03-20T05:15:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-20-japan-takaichi-trump-north-korea-kim-meeting"
-      ],
-      "summary": "Takaichi told Trump she wants direct talks with Kim on Japanese abductees. First since Koizumi 2004."
-    },
-    {
-      "id": "interstellar-comet-3i-atlas",
-      "label": "Interstellar comet 3I/ATLAS has extreme deuterium levels",
-      "firstSeen": "2026-03-20T05:15:00Z",
-      "lastCovered": "2026-03-20T05:15:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-17-interstellar-comet-water-unlike-solar-system"
-      ],
-      "summary": "Third confirmed interstellar object. Deuterium 30-40x Earth ocean levels."
-    },
-    {
-      "id": "china-nuclear-energy-pledge",
-      "label": "China joins nuclear energy pledge, new ecological code",
-      "firstSeen": "2026-03-20T05:15:00Z",
-      "lastCovered": "2026-03-20T05:15:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-19-china-nuclear-pledge-energy-ecological-code"
-      ],
-      "summary": "China joins nuclear energy pledge and introduces comprehensive ecological code."
-    },
-    {
-      "id": "pakistan-social-media-authority",
-      "label": "Pakistan establishes Social Media Protection and Regulatory Authority",
-      "firstSeen": "2026-03-20T05:15:00Z",
-      "lastCovered": "2026-03-20T05:15:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-19-pakistan-social-media-regulatory-authority"
-      ],
-      "summary": "SMPRA established under amended cybercrime law. Government lawyer appointed chairman."
-    },
-    {
-      "id": "north-korea-kim-governance",
-      "label": "North Korea: Kim reappointed head of state at Supreme People's Assembly",
-      "firstSeen": "2026-03-22T22:30:00Z",
-      "lastCovered": "2026-03-22T22:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-22-north-korea-kim-reappointed-head-state"
-      ],
-      "summary": "Kim Jong Un formally reappointed as president of state affairs while global attention is on Iran war."
-    },
-    {
-      "id": "slovenia-election-2026",
-      "label": "Slovenia election: Freedom Movement holds off populist challenge",
-      "firstSeen": "2026-03-22T22:30:00Z",
+      "id": "japan-indonesia-defense-courtship",
+      "label": "Japan woos Indonesia with stealth frigates and mineral deal",
+      "firstSeen": "2026-03-23T00:30:00Z",
       "lastCovered": "2026-03-23T00:30:00Z",
-      "coverageCount": 2,
+      "coverageCount": 1,
       "category": "politics",
       "importance": 2,
-      "arc": "developing",
+      "arc": "breaking",
       "articles": [
-        "2026-03-22-slovenia-election-freedom-movement-wins",
-        "2026-03-22-slovenia-fuel-rationing-election-day-iran-war"
+        "2026-03-23-japan-woos-indonesia-stealth-frigates-mineral-deal"
       ],
-      "summary": "Slovenia rationed fuel on election day as pumps ran dry from Iran-war stockpiling. Freedom Movement narrowly held lead."
+      "summary": "Japan offering 8 stealth frigates + mineral access ahead of Prabowo state visit March 29. Biggest SE Asian defense courtship in years."
     },
     {
-      "id": "trump-wartime-access-selling",
-      "label": "Trump 6M crypto lunch: wartime access selling",
-      "firstSeen": "2026-03-22T22:30:00Z",
-      "lastCovered": "2026-03-22T22:30:00Z",
+      "id": "libya-mufti-iran-solidarity",
+      "label": "Libya grand mufti calls on Muslims to back Iran",
+      "firstSeen": "2026-03-23T02:45:00Z",
+      "lastCovered": "2026-03-23T02:45:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-libya-mufti-muslims-back-iran-no-neutrality"
+      ],
+      "summary": "Libya grand mufti invokes Quranic injunction against neutrality, breaks with cautious government silence on Iran war."
+    },
+    {
+      "id": "fda-political-interference-trump",
+      "label": "Former FDA commissioner warns of political interference",
+      "firstSeen": "2026-03-23T02:45:00Z",
+      "lastCovered": "2026-03-23T02:45:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-fda-political-influence-califf-warning-trump"
+      ],
+      "summary": "Robert Califf publicly warns political influence is serious problem at FDA. Global drug safety implications."
+    },
+    {
+      "id": "iaea-nuclear-danger-assessment",
+      "label": "IAEA chief: nuclear situation worse than 1970s",
+      "firstSeen": "2026-03-23T02:45:00Z",
+      "lastCovered": "2026-03-23T02:45:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-iaea-chief-nuclear-danger-worse-than-1970s"
+      ],
+      "summary": "Grossi says three nuclear facilities struck or targeted in two countries in under a month."
+    },
+    {
+      "id": "korea-chip-export-boom",
+      "label": "South Korea exports surge 50.4% on semiconductor demand",
+      "firstSeen": "2026-03-23T02:45:00Z",
+      "lastCovered": "2026-03-23T02:45:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 1,
-      "arc": "fading",
+      "importance": 2,
+      "arc": "breaking",
       "articles": [
-        "2026-03-22-trump-6m-crypto-lunch-wartime-access"
+        "2026-03-23-south-korea-exports-surge-50-percent-chips-crisis"
       ],
-      "summary": "Crypto-funded mechanism allows up to 6M for presidential face time during active wartime."
+      "summary": "Chip exports booming despite won crisis and energy emergency. Two economies in one country."
     },
     {
-      "id": "palantir-transnational-surveillance",
-      "label": "Palantir: expanding into UK financial regulation after Pentagon, immigration",
-      "firstSeen": "2026-03-22T22:30:00Z",
-      "lastCovered": "2026-03-22T22:30:00Z",
+      "id": "posco-rare-earth-supply-chain",
+      "label": "POSCO International building rare earth supply chain",
+      "firstSeen": "2026-03-23T02:45:00Z",
+      "lastCovered": "2026-03-23T02:45:00Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 2,
       "arc": "breaking",
       "articles": [
-        "2026-03-22-palantir-british-fca-financial-surveillance"
+        "2026-03-23-posco-rare-earth-supply-chain-korea"
       ],
-      "summary": "Palantir gains access to UK FCA data, extending surveillance reach across military, immigration, and financial regulation."
+      "summary": "Korean steel giant building rare earth supply chain to reduce China dependency."
     },
     {
-      "id": "cuba-humanitarian-crisis",
-      "label": "Cuba: rolling blackouts, US blockade, bracing for attack",
-      "firstSeen": "2026-03-16T00:00:00Z",
-      "lastCovered": "2026-03-22T22:30:00Z",
-      "coverageCount": 4,
+      "id": "hyundai-ai-shipyard-robots",
+      "label": "HD Hyundai deploying AI welding robots in shipyards",
+      "firstSeen": "2026-03-23T02:45:00Z",
+      "lastCovered": "2026-03-23T02:45:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-hyundai-ai-welding-robots-shipyards"
+      ],
+      "summary": "World largest shipbuilder automating welding with AI robots as LNG rerouting orders fill capacity."
+    },
+    {
+      "id": "malaysia-fuel-subsidy-hormuz",
+      "label": "Malaysia RM2b/month fuel subsidies amid Hormuz crisis",
+      "firstSeen": "2026-03-23T02:45:00Z",
+      "lastCovered": "2026-03-23T02:45:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-malaysia-fuel-subsidies-rm2b-hormuz-strain"
+      ],
+      "summary": "DPM says subsidies affordable for now but RM2b monthly bill unsustainable. SE Asia Hormuz reckoning."
+    },
+    {
+      "id": "istanbul-building-collapse",
+      "label": "Istanbul Fatih building collapse",
+      "firstSeen": "2026-03-23T05:04:00Z",
+      "lastCovered": "2026-03-23T05:04:00Z",
+      "coverageCount": 1,
       "category": "politics",
       "importance": 2,
-      "arc": "developing",
+      "arc": "breaking",
       "articles": [
-        "2026-03-16-cuba-blackouts-oil-blockade",
-        "2026-03-17-cuba-rejects-us-diesel",
-        "2026-03-21-cuba-second-blackout",
-        "2026-03-22-cuba-blackout-defiance-us-attack"
+        "2026-03-23-istanbul-building-collapse-fatih-construction-safety"
       ],
-      "summary": "Second national blackout in a week. Cuba invoking total defense doctrine, bracing for potential US attack amid Iran war."
+      "summary": "Two buildings collapsed in Istanbul Fatih district, killing 1 injuring 10. Turkey construction safety crisis persists."
+    },
+    {
+      "id": "pti-imran-khan-detention",
+      "label": "PTI frustration over Imran Khan release delay",
+      "firstSeen": "2026-03-23T05:04:00Z",
+      "lastCovered": "2026-03-23T05:04:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-pti-imran-release-delay-party-frustration"
+      ],
+      "summary": "PTI leaders publicly frustrated with delays in Imran Khan release movement after 80+ days detention."
+    },
+    {
+      "id": "india-rupee-crisis-war",
+      "label": "India rupee record low on oil shock",
+      "firstSeen": "2026-03-23T05:04:00Z",
+      "lastCovered": "2026-03-23T05:04:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-india-rupee-record-low-middle-east-oil-crisis"
+      ],
+      "summary": "Indian rupee hits record low as oil above 112 strains 85 percent crude import dependency."
+    },
+    {
+      "id": "gold-safe-haven-collapse",
+      "label": "Gold crashes 9 consecutive days",
+      "firstSeen": "2026-03-23T05:04:00Z",
+      "lastCovered": "2026-03-23T05:04:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-gold-nine-day-crash-bitcoin-holds-war-markets"
+      ],
+      "summary": "Gold fallen nine consecutive days during active war. Unprecedented breakdown of safe haven thesis."
+    },
+    {
+      "id": "china-surgery-robot",
+      "label": "Chinese surgery robot outperforms humans",
+      "firstSeen": "2026-03-23T05:04:00Z",
+      "lastCovered": "2026-03-23T05:04:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-chinese-surgery-robot-outperforms-humans-brain-imaging"
+      ],
+      "summary": "Chinese surgical robot outperformed human surgeons in brain imaging cutting time by 29 percent."
+    },
+    {
+      "id": "wmo-2025-heat-record",
+      "label": "WMO confirms 2025 hottest year warming millennia",
+      "firstSeen": "2026-03-23T05:04:00Z",
+      "lastCovered": "2026-03-23T05:04:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-wmo-earth-heat-record-2025-warming-millennia"
+      ],
+      "summary": "WMO confirms 2025 hottest year on record. Warming locked in for thousands of years even if emissions stop."
+    },
+    {
+      "id": "china-deep-sea-submersible",
+      "label": "China 1000m tourist submersible",
+      "firstSeen": "2026-03-23T05:04:00Z",
+      "lastCovered": "2026-03-23T05:04:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-china-tourist-submersible-1000m-deep-sea"
+      ],
+      "summary": "China building first tourist submersible for 1000m depth. Same pressure hull tech as military subs."
+    },
+    {
+      "id": "ai-labor-market-displacement",
+      "label": "Young workers restructuring careers around AI",
+      "firstSeen": "2026-03-23T05:04:00Z",
+      "lastCovered": "2026-03-23T05:04:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-young-workers-ai-proof-careers-strategy"
+      ],
+      "summary": "Young workers actively choosing AI-resistant roles and skills before mass layoffs materialize."
+    },
+    {
+      "id": "south-korea-crypto-stock-rotation",
+      "label": "South Korea 55 percent stablecoin plunge",
+      "firstSeen": "2026-03-23T05:04:00Z",
+      "lastCovered": "2026-03-23T05:04:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-south-korea-crypto-liquidity-plunge-55-percent"
+      ],
+      "summary": "Korean retail investors rotating from crypto to discounted stocks. 55 percent stablecoin drawdown."
+    },
+    {
+      "id": "sbf-ftx-creditor-dispute",
+      "label": "SBF parents claim no money lost creditors dispute",
+      "firstSeen": "2026-03-23T05:04:00Z",
+      "lastCovered": "2026-03-23T05:04:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-sbf-parents-cnn-ftx-creditors-dispute"
+      ],
+      "summary": "SBF parents claim on CNN no customer money lost. FTX creditors directly contradict."
+    },
+    {
+      "id": "argentina-coup-anniversary-50",
+      "label": "Argentina marks 50 years since 1976 coup, Church breaks silence",
+      "firstSeen": "2026-03-23T07:32:00Z",
+      "lastCovered": "2026-03-23T07:32:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-argentina-church-never-again-coup-anniversary-50-years"
+      ],
+      "summary": "Argentine Catholic Church says never again on 50th anniversary of 1976 coup. Historic break from institutional silence on complicity in Dirty War."
+    },
+    {
+      "id": "south-korea-defense-self-reliance",
+      "label": "South Korea signals self-reliant defense as US stretched",
+      "firstSeen": "2026-03-23T07:32:00Z",
+      "lastCovered": "2026-03-23T07:32:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-south-korea-lee-self-reliant-defense-us-stretched"
+      ],
+      "summary": "Acting president Lee stresses self-reliant defense citing very complex global situation. 28,500 US troops may be needed elsewhere."
+    },
+    {
+      "id": "resolv-stablecoin-exploit",
+      "label": "Resolv stablecoin exploited for 5M, crashes 70%",
+      "firstSeen": "2026-03-23T07:32:00Z",
+      "lastCovered": "2026-03-23T07:32:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-resolv-stablecoin-crash-70-percent-25m-exploit"
+      ],
+      "summary": "Resolv stablecoin crashed 70% after attacker exploited minting vulnerability to extract 25M in ETH."
+    },
+    {
+      "id": "singapore-urban-cooling-study",
+      "label": "Singapore: basketball-court green space cools 5C",
+      "firstSeen": "2026-03-23T07:32:00Z",
+      "lastCovered": "2026-03-23T07:32:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-singapore-green-space-basketball-court-cooling-5c"
+      ],
+      "summary": "Singapore study finds green space as small as a basketball court can cool surroundings by up to 5C."
+    },
+    {
+      "id": "gcc-ai-hub-emergence",
+      "label": "GCC emerging as global AI capital hub",
+      "firstSeen": "2026-03-23T07:32:00Z",
+      "lastCovered": "2026-03-23T07:32:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-gcc-ai-capital-hub-sovereign-wealth-investment",
+        "2026-03-23-ami-labs-3-5-billion-ai-startup-gulf-investment"
+      ],
+      "summary": "Gulf states positioning as AI hub with sovereign wealth. AMI Labs hits 3.5B valuation with Shorooq backing."
+    },
+    {
+      "id": "who-pandemic-preparedness-war-impact",
+      "label": "WHO pandemic talks disrupted by war, Malaysia joins virtually",
+      "firstSeen": "2026-03-23T07:32:00Z",
+      "lastCovered": "2026-03-23T07:32:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-malaysia-who-pandemic-talks-virtual-war-disruption"
+      ],
+      "summary": "Malaysia joins WHO pandemic preparedness talks virtually because war makes Geneva travel impractical."
     },
     {
       "id": "israeli-settler-violence-west-bank",
@@ -536,28 +704,14 @@
       "summary": "Fresh wave of settler attacks on Palestinian villages. Buildings burned, people attacked with impunity while world watches Iran."
     },
     {
-      "id": "japan-indonesia-defense-courtship",
-      "label": "Japan woos Indonesia with stealth frigates and mineral deal",
-      "firstSeen": "2026-03-23T00:30:00Z",
-      "lastCovered": "2026-03-23T00:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-japan-woos-indonesia-stealth-frigates-mineral-deal"
-      ],
-      "summary": "Japan offering 8 stealth frigates + mineral access ahead of Prabowo state visit March 29. Biggest SE Asian defense courtship in years."
-    },
-    {
       "id": "france-municipal-elections-2026",
       "label": "France municipal elections: left holds Paris, far right defeated",
       "firstSeen": "2026-03-23T00:30:00Z",
       "lastCovered": "2026-03-23T00:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-22-gregoire-elected-paris-mayor-left-defeats-far-right"
       ],
@@ -584,8 +738,8 @@
       "lastCovered": "2026-03-23T00:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-22-israeli-journalist-war-normalization-death-criticism"
       ],
@@ -603,7 +757,7 @@
       "articles": [
         "2026-03-22-karachi-gul-plaza-fire-returns-accountability-failure"
       ],
-      "summary": "Building where 70+ died in January caught fire again \u2014 left unguarded, warning letters ignored, 8 police suspended."
+      "summary": "Building where 70+ died in January caught fire again — left unguarded, warning letters ignored, 8 police suspended."
     },
     {
       "id": "south-africa-commercial-crime",
@@ -612,8 +766,8 @@
       "lastCovered": "2026-03-23T00:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-22-south-africa-commercial-crime-growth-invisible-heist"
       ],
@@ -626,8 +780,8 @@
       "lastCovered": "2026-03-23T00:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-22-hong-kong-mri-ultrasound-parkinsons-treatment"
       ],
@@ -659,63 +813,7 @@
       "articles": [
         "2026-03-22-37mb-article-recommends-rss-web-bloat-crisis"
       ],
-      "summary": "PC Gamer article recommending RSS readers weighs 37MB \u2014 a perfect illustration of the web bloat problem it aims to solve."
-    },
-    {
-      "id": "libya-mufti-iran-solidarity",
-      "label": "Libya grand mufti calls on Muslims to back Iran",
-      "firstSeen": "2026-03-23T02:45:00Z",
-      "lastCovered": "2026-03-23T02:45:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-libya-mufti-muslims-back-iran-no-neutrality"
-      ],
-      "summary": "Libya grand mufti invokes Quranic injunction against neutrality, breaks with cautious government silence on Iran war."
-    },
-    {
-      "id": "fda-political-interference-trump",
-      "label": "Former FDA commissioner warns of political interference",
-      "firstSeen": "2026-03-23T02:45:00Z",
-      "lastCovered": "2026-03-23T02:45:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-fda-political-influence-califf-warning-trump"
-      ],
-      "summary": "Robert Califf publicly warns political influence is serious problem at FDA. Global drug safety implications."
-    },
-    {
-      "id": "iaea-nuclear-danger-assessment",
-      "label": "IAEA chief: nuclear situation worse than 1970s",
-      "firstSeen": "2026-03-23T02:45:00Z",
-      "lastCovered": "2026-03-23T02:45:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-iaea-chief-nuclear-danger-worse-than-1970s"
-      ],
-      "summary": "Grossi says three nuclear facilities struck or targeted in two countries in under a month."
-    },
-    {
-      "id": "korea-chip-export-boom",
-      "label": "South Korea exports surge 50.4% on semiconductor demand",
-      "firstSeen": "2026-03-23T02:45:00Z",
-      "lastCovered": "2026-03-23T02:45:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-south-korea-exports-surge-50-percent-chips-crisis"
-      ],
-      "summary": "Chip exports booming despite won crisis and energy emergency. Two economies in one country."
+      "summary": "PC Gamer article recommending RSS readers weighs 37MB — a perfect illustration of the web bloat problem it aims to solve."
     },
     {
       "id": "uk-minimum-wage-enforcement",
@@ -724,194 +822,12 @@
       "lastCovered": "2026-03-23T02:45:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-23-uk-400-firms-fined-minimum-wage-violations"
       ],
       "summary": "Nearly 400 employers named and fined for paying below minimum wage amid cost-of-living crisis."
-    },
-    {
-      "id": "posco-rare-earth-supply-chain",
-      "label": "POSCO International building rare earth supply chain",
-      "firstSeen": "2026-03-23T02:45:00Z",
-      "lastCovered": "2026-03-23T02:45:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-posco-rare-earth-supply-chain-korea"
-      ],
-      "summary": "Korean steel giant building rare earth supply chain to reduce China dependency."
-    },
-    {
-      "id": "hyundai-ai-shipyard-robots",
-      "label": "HD Hyundai deploying AI welding robots in shipyards",
-      "firstSeen": "2026-03-23T02:45:00Z",
-      "lastCovered": "2026-03-23T02:45:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-hyundai-ai-welding-robots-shipyards"
-      ],
-      "summary": "World largest shipbuilder automating welding with AI robots as LNG rerouting orders fill capacity."
-    },
-    {
-      "id": "malaysia-fuel-subsidy-hormuz",
-      "label": "Malaysia RM2b/month fuel subsidies amid Hormuz crisis",
-      "firstSeen": "2026-03-23T02:45:00Z",
-      "lastCovered": "2026-03-23T02:45:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-malaysia-fuel-subsidies-rm2b-hormuz-strain"
-      ],
-      "summary": "DPM says subsidies affordable for now but RM2b monthly bill unsustainable. SE Asia Hormuz reckoning."
-    },
-    {
-      "id": "istanbul-building-collapse",
-      "label": "Istanbul Fatih building collapse",
-      "firstSeen": "2026-03-23T05:04:00Z",
-      "lastCovered": "2026-03-23T05:04:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-istanbul-building-collapse-fatih-construction-safety"
-      ],
-      "summary": "Two buildings collapsed in Istanbul Fatih district, killing 1 injuring 10. Turkey construction safety crisis persists."
-    },
-    {
-      "id": "pti-imran-khan-detention",
-      "label": "PTI frustration over Imran Khan release delay",
-      "firstSeen": "2026-03-23T05:04:00Z",
-      "lastCovered": "2026-03-23T05:04:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-pti-imran-release-delay-party-frustration"
-      ],
-      "summary": "PTI leaders publicly frustrated with delays in Imran Khan release movement after 80+ days detention."
-    },
-    {
-      "id": "india-rupee-crisis-war",
-      "label": "India rupee record low on oil shock",
-      "firstSeen": "2026-03-23T05:04:00Z",
-      "lastCovered": "2026-03-23T05:04:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-india-rupee-record-low-middle-east-oil-crisis"
-      ],
-      "summary": "Indian rupee hits record low as oil above 112 strains 85 percent crude import dependency."
-    },
-    {
-      "id": "gold-safe-haven-collapse",
-      "label": "Gold crashes 9 consecutive days",
-      "firstSeen": "2026-03-23T05:04:00Z",
-      "lastCovered": "2026-03-23T05:04:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-gold-nine-day-crash-bitcoin-holds-war-markets"
-      ],
-      "summary": "Gold fallen nine consecutive days during active war. Unprecedented breakdown of safe haven thesis."
-    },
-    {
-      "id": "china-surgery-robot",
-      "label": "Chinese surgery robot outperforms humans",
-      "firstSeen": "2026-03-23T05:04:00Z",
-      "lastCovered": "2026-03-23T05:04:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-chinese-surgery-robot-outperforms-humans-brain-imaging"
-      ],
-      "summary": "Chinese surgical robot outperformed human surgeons in brain imaging cutting time by 29 percent."
-    },
-    {
-      "id": "wmo-2025-heat-record",
-      "label": "WMO confirms 2025 hottest year warming millennia",
-      "firstSeen": "2026-03-23T05:04:00Z",
-      "lastCovered": "2026-03-23T05:04:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 7,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-wmo-earth-heat-record-2025-warming-millennia"
-      ],
-      "summary": "WMO confirms 2025 hottest year on record. Warming locked in for thousands of years even if emissions stop."
-    },
-    {
-      "id": "china-deep-sea-submersible",
-      "label": "China 1000m tourist submersible",
-      "firstSeen": "2026-03-23T05:04:00Z",
-      "lastCovered": "2026-03-23T05:04:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-china-tourist-submersible-1000m-deep-sea"
-      ],
-      "summary": "China building first tourist submersible for 1000m depth. Same pressure hull tech as military subs."
-    },
-    {
-      "id": "ai-labor-market-displacement",
-      "label": "Young workers restructuring careers around AI",
-      "firstSeen": "2026-03-23T05:04:00Z",
-      "lastCovered": "2026-03-23T05:04:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-young-workers-ai-proof-careers-strategy"
-      ],
-      "summary": "Young workers actively choosing AI-resistant roles and skills before mass layoffs materialize."
-    },
-    {
-      "id": "south-korea-crypto-stock-rotation",
-      "label": "South Korea 55 percent stablecoin plunge",
-      "firstSeen": "2026-03-23T05:04:00Z",
-      "lastCovered": "2026-03-23T05:04:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-south-korea-crypto-liquidity-plunge-55-percent"
-      ],
-      "summary": "Korean retail investors rotating from crypto to discounted stocks. 55 percent stablecoin drawdown."
-    },
-    {
-      "id": "sbf-ftx-creditor-dispute",
-      "label": "SBF parents claim no money lost creditors dispute",
-      "firstSeen": "2026-03-23T05:04:00Z",
-      "lastCovered": "2026-03-23T05:04:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-23-sbf-parents-cnn-ftx-creditors-dispute"
-      ],
-      "summary": "SBF parents claim on CNN no customer money lost. FTX creditors directly contradict."
     }
   ]
 }
