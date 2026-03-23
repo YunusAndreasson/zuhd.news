@@ -183,9 +183,10 @@ if (pBlocks.length === 0) {
   ssmlSections.push({ type: 'intro', ssml: innerSsml })
 } else {
   // Intro+lead: everything before first <p>, strip trailing inter-section break
+  // Prepend 1.5s silence so the voice starts AFTER the intro music crossfade
   const introContent = innerSsml.slice(0, pBlocks[0].index)
     .replace(/\s*<break\s[^>]*\/>\s*$/, '').trim()
-  if (introContent) ssmlSections.push({ type: 'intro', ssml: introContent })
+  if (introContent) ssmlSections.push({ type: 'intro', ssml: `<break time="1500ms"/>${introContent}` })
 
   // Category sections (each <p>...</p> block)
   for (const block of pBlocks) {
