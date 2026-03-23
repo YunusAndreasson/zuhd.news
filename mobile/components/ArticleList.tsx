@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
-import { RefreshControl, StyleSheet, View } from 'react-native';
+import { Dimensions, RefreshControl, StyleSheet, View } from 'react-native';
 import Animated, {
   runOnJS,
   runOnUI,
@@ -14,9 +14,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATEGORIES, COLORS, LAYOUT } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { getReadingPositions, saveReadingPosition } from '../lib/storage';
-import type { FeedInfo } from '../lib/feed-cache';
 import type { Article } from '../types';
 import { ArticlePage } from './ArticlePage';
+import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
 
 export interface ArticleListRef {
   scrollToTop: () => void;
@@ -30,10 +30,10 @@ interface ArticleListProps {
   onRefresh: () => Promise<void>;
   onEndReached?: () => void;
   onSourcePress?: (sourceName: string) => void;
+  onCountryPress?: (result: TapResult) => void;
   pagerIdle: React.RefObject<boolean>;
   progressesSV: SharedValue<number[]>;
   tick?: number;
-  feedInfo?: FeedInfo | null;
   ref?: React.Ref<ArticleListRef>;
 }
 
@@ -43,18 +43,23 @@ export const ArticleList = memo(function ArticleList({
   catIndex,
   lastSeenAt,
   onSourcePress,
+  onCountryPress,
   onRefresh,
   onEndReached,
   pagerIdle,
   progressesSV,
   tick,
-  feedInfo,
   ref,
 }: ArticleListProps) {
   const insets = useSafeAreaInsets();
   const { impact: hapticSnap, notification: hapticComplete } = useHaptic();
   const articleCount = articles.length;
   const itemHeight = viewportHeight - LAYOUT.peekHeight;
+  const categoryFeedInfo = useMemo(() => {
+    if (articleCount === 0) return null;
+    const words = articles.reduce((sum, a) => sum + a.sentences.join(' ').split(/\s+/).length, 0);
+    return { total: articleCount, readMins: Math.max(1, Math.ceil(words / 238)) };
+  }, [articles, articleCount]);
   const contentStyle = useMemo(
     () => ({ paddingBottom: LAYOUT.peekHeight + insets.bottom }),
     [insets.bottom],
@@ -63,6 +68,9 @@ export const ArticleList = memo(function ArticleList({
   const listRef = useAnimatedRef<Animated.FlatList<Article>>();
   const atEndSV = useSharedValue(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const globeRef = useRef<MiniGlobeRef>(null);
+  const containerRef = useRef<View>(null);
+  const containerTopRef = useRef(0);
   const overscrollFired = useSharedValue(false);
   const resetOverscroll = useCallback(() => {
     setTimeout(() => {
@@ -91,7 +99,6 @@ export const ArticleList = memo(function ArticleList({
     const cat = CATEGORIES[catIndex];
     if (cat && currentIndex > 0) saveReadingPosition(cat, currentIndex);
   }, [currentIndex, catIndex]);
-
 
   const handleRefresh = useCallback(async () => {
     setLocalRefreshing(true);
@@ -181,8 +188,6 @@ export const ArticleList = memo(function ArticleList({
     [itemHeight],
   );
 
-
-
   const renderItem = useCallback(
     ({ item, index }: { item: Article; index: number }) => (
       <ArticlePage
@@ -192,10 +197,13 @@ export const ArticleList = memo(function ArticleList({
         scrollY={scrollY}
         onSourcePress={onSourcePress}
         showEarlierDivider={index === earlierIndex}
-        feedInfo={index === 0 ? feedInfo : undefined}
+        feedInfo={index === 0 ? categoryFeedInfo : undefined}
+        globeRef={globeRef}
+        globeYOffset={containerTopRef}
+        onCountryPress={onCountryPress}
       />
     ),
-    [itemHeight, scrollY, onSourcePress, earlierIndex, feedInfo],
+    [itemHeight, scrollY, onSourcePress, earlierIndex, categoryFeedInfo],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);
@@ -203,37 +211,56 @@ export const ArticleList = memo(function ArticleList({
   if (articles.length === 0) return <View style={styles.empty} />;
 
   return (
-    <Animated.FlatList
-      ref={listRef}
-      data={articles}
-      extraData={tick}
-      renderItem={renderItem}
-      keyExtractor={keyExtractor}
-      getItemLayout={getItemLayout}
-      snapToInterval={itemHeight}
-      snapToAlignment="start"
-      decelerationRate="fast"
-      showsVerticalScrollIndicator={false}
-      onScroll={scrollHandler}
-      scrollEventThrottle={16}
-      initialNumToRender={2}
-      maxToRenderPerBatch={2}
-      windowSize={3}
-      contentContainerStyle={contentStyle}
-      refreshControl={
-        <RefreshControl
-          refreshing={localRefreshing}
-          onRefresh={currentIndex === 0 && pagerIdle.current ? handleRefresh : undefined}
-          enabled={currentIndex === 0 && pagerIdle.current}
-          tintColor={COLORS.textSecondary}
-          progressBackgroundColor={COLORS.bg}
-          colors={[COLORS.textSecondary]}
-        />
-      }
-    />
+    <View
+      ref={containerRef}
+      style={styles.container}
+      onLayout={() => {
+        containerRef.current?.measureInWindow((_x, y) => {
+          containerTopRef.current = y;
+        });
+      }}
+    >
+      <MiniGlobe
+        ref={globeRef}
+        articles={articles}
+        scrollY={scrollY}
+        itemHeight={itemHeight}
+        width={Dimensions.get('window').width}
+        height={viewportHeight}
+      />
+      <Animated.FlatList
+        ref={listRef}
+        data={articles}
+        extraData={tick}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        getItemLayout={getItemLayout}
+        snapToInterval={itemHeight}
+        snapToAlignment="start"
+        decelerationRate="fast"
+        showsVerticalScrollIndicator={false}
+        onScroll={scrollHandler}
+        scrollEventThrottle={16}
+        initialNumToRender={2}
+        maxToRenderPerBatch={2}
+        windowSize={3}
+        contentContainerStyle={contentStyle}
+        refreshControl={
+          <RefreshControl
+            refreshing={localRefreshing}
+            onRefresh={currentIndex === 0 && pagerIdle.current ? handleRefresh : undefined}
+            enabled={currentIndex === 0 && pagerIdle.current}
+            tintColor={COLORS.textSecondary}
+            progressBackgroundColor={COLORS.bg}
+            colors={[COLORS.textSecondary]}
+          />
+        }
+      />
+    </View>
   );
 });
 
 const styles = StyleSheet.create({
+  container: { flex: 1 },
   empty: { flex: 1 },
 });

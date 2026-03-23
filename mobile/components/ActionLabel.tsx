@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizeSm,
     letterSpacing: TYPOGRAPHY.trackingCaps,
     color: COLORS.accent,
+    textShadowColor: 'rgba(0,0,0,0.6)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
   },
   iconLeft: {
     marginTop: 2,

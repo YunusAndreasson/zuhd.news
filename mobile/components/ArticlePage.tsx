@@ -1,5 +1,6 @@
+import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import { memo, useCallback, useEffect, useMemo } from 'react';
-import { Share, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Pressable, Share, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -15,8 +16,12 @@ import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { renderSentences } from '../lib/markdown';
 import type { FeedInfo } from '../lib/feed-cache';
+import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 import type { Article } from '../types';
 import { ActionLabel } from './ActionLabel';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const GRADIENT_HEIGHT = 24;
 
 interface ArticlePageProps {
   article: Article;
@@ -26,6 +31,9 @@ interface ArticlePageProps {
   onSourcePress?: (sourceName: string) => void;
   showEarlierDivider?: boolean;
   feedInfo?: FeedInfo | null;
+  globeRef?: React.RefObject<MiniGlobeRef | null>;
+  globeYOffset?: React.RefObject<number>;
+  onCountryPress?: (result: TapResult) => void;
 }
 
 function formatTimeAgo(addedAt: number): string {
@@ -52,6 +60,24 @@ function FeedLabel({ total, readMins }: { total: number; readMins: number }) {
   );
 }
 
+function GlobeTapZone({ globeRef, globeYOffset, onTap }: {
+  globeRef?: React.RefObject<MiniGlobeRef | null>;
+  globeYOffset?: React.RefObject<number>;
+  onTap?: (result: TapResult) => void;
+}) {
+  const { impact } = useHaptic();
+
+  const handleTap = useCallback((e: { nativeEvent: { pageX: number; pageY: number } }) => {
+    const yOff = globeYOffset?.current ?? 0;
+    const result = globeRef?.current?.hitTest(e.nativeEvent.pageX, e.nativeEvent.pageY - yOff);
+    if (!result) return;
+    impact();
+    onTap?.(result);
+  }, [impact, globeRef, globeYOffset, onTap]);
+
+  return <Pressable style={styles.globeTapZone} onPress={handleTap} />;
+}
+
 export const ArticlePage = memo(function ArticlePage({
   article,
   itemHeight,
@@ -60,6 +86,9 @@ export const ArticlePage = memo(function ArticlePage({
   onSourcePress,
   showEarlierDivider,
   feedInfo,
+  globeRef,
+  globeYOffset,
+  onCountryPress,
 }: ArticlePageProps) {
   const { impact } = useHaptic();
   const timeAgo = formatTimeAgo(article.addedAt);
@@ -72,19 +101,7 @@ export const ArticlePage = memo(function ArticlePage({
     return scrollY.value - pageStart;
   });
 
-  const titleStyle = useAnimatedStyle(() => {
-    if (reduceMotion) return { opacity: 1 };
-    return {
-      opacity: interpolate(
-        offset.value,
-        [-itemHeight, 0, itemHeight * 0.5],
-        [0.12, 1, 0],
-        Extrapolation.CLAMP,
-      ),
-    };
-  });
-
-  const bodyStyle = useAnimatedStyle(() => {
+  const fadeStyle = useAnimatedStyle(() => {
     if (reduceMotion) return { opacity: 1 };
     return {
       opacity: interpolate(
@@ -97,7 +114,6 @@ export const ArticlePage = memo(function ArticlePage({
   });
 
   // Scale fonts down for long articles so content fits the snap viewport.
-  // Title chars count double (larger font, ~2x vertical impact per char).
   const contentLength = article.title.length * 2 + article.sentences.join(' ').length;
   const fontScale = useMemo(() => {
     const threshold = 450;
@@ -130,50 +146,83 @@ export const ArticlePage = memo(function ArticlePage({
 
   return (
     <View style={[styles.container, { height: itemHeight }]}>
-      {index === 0 && feedInfo && (
-        <FeedLabel total={feedInfo.total} readMins={feedInfo.readMins} />
-      )}
-      {showEarlierDivider && (
-        <View style={styles.earlierDivider}>
-          <View style={styles.earlierLine} />
-          <Text style={styles.earlierLabel}>caught up</Text>
-          <View style={styles.earlierLine} />
-        </View>
-      )}
-      <Animated.View style={titleStyle}>
-        <Text style={[styles.title, titleSizeStyle]} numberOfLines={3}>
-          {article.title}
-        </Text>
-      </Animated.View>
-      <Animated.View style={bodyStyle}>
-        {body}
-        <View style={styles.meta}>
-          {/* Attribution cluster: source + time */}
-          <View style={styles.metaGroup}>
-            {article.source ? (
-              <ActionLabel
-                label={article.source.toLowerCase()}
-                icon="chevron-down"
-                onPress={() => onSourcePress?.(article.source!)}
-              />
-            ) : null}
-            <Text style={styles.metaDim}>{timeAgo}</Text>
-          </View>
+      {/* Globe tap zone — behind content, full card size */}
+      <GlobeTapZone globeRef={globeRef} globeYOffset={globeYOffset} onTap={onCountryPress} />
 
-          <View style={styles.metaGroup}>
-            <ActionLabel label="share" icon="arrow-up-outline" onPress={handleShare} />
+      {/* Top gradient — dissolves globe into content */}
+      <Canvas style={styles.gradient} pointerEvents="none">
+        <Rect x={0} y={0} width={SCREEN_WIDTH} height={GRADIENT_HEIGHT}>
+          <LinearGradient
+            start={vec(0, 0)}
+            end={vec(0, GRADIENT_HEIGHT)}
+            colors={[`${COLORS.bg}00`, COLORS.bg]}
+          />
+        </Rect>
+      </Canvas>
+
+      {/* Content zone — title, body, meta all grouped together */}
+      <View style={styles.content}>
+        {index === 0 && feedInfo && (
+          <FeedLabel total={feedInfo.total} readMins={feedInfo.readMins} />
+        )}
+        {showEarlierDivider && (
+          <View style={styles.earlierDivider}>
+            <View style={styles.earlierLine} />
+            <Text style={styles.earlierLabel}>caught up</Text>
+            <View style={styles.earlierLine} />
           </View>
-        </View>
+        )}
+        <Animated.View style={fadeStyle}>
+          <Text style={[styles.title, titleSizeStyle]} numberOfLines={3}>
+            {article.title}
+          </Text>
+          {body}
+          <View style={styles.meta}>
+            <View style={styles.metaGroup}>
+              {article.source ? (
+                <ActionLabel
+                  label={article.source.toLowerCase()}
+                  icon="chevron-down"
+                  onPress={() => onSourcePress?.(article.source!)}
+                />
+              ) : null}
+              <Text style={styles.metaDim}>{timeAgo}</Text>
+            </View>
+            <View style={styles.metaGroup}>
+              <ActionLabel label="share" icon="arrow-up-outline" onPress={handleShare} />
+            </View>
+          </View>
+        </Animated.View>
+      </View>
+
+      {/* Gradient dissolves content into globe — fades with body */}
+      <Animated.View style={fadeStyle} pointerEvents="none">
+        <Canvas style={styles.gradient}>
+          <Rect x={0} y={0} width={SCREEN_WIDTH} height={GRADIENT_HEIGHT}>
+            <LinearGradient
+              start={vec(0, 0)}
+              end={vec(0, GRADIENT_HEIGHT)}
+              colors={[COLORS.bg, `${COLORS.bg}00`]}
+            />
+          </Rect>
+        </Canvas>
       </Animated.View>
+
     </View>
   );
 });
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: SPACING.screenPadding,
-    paddingTop: SPACING.xl,
     overflow: 'hidden',
+  },
+  content: {
+    paddingHorizontal: SPACING.screenPadding,
+    backgroundColor: COLORS.bg,
+  },
+  gradient: {
+    width: SCREEN_WIDTH,
+    height: GRADIENT_HEIGHT,
   },
   feedPill: {
     alignSelf: 'flex-start',
@@ -185,7 +234,7 @@ const styles = StyleSheet.create({
     marginTop: -SPACING.md,
   },
   feedPillText: {
-    fontFamily: FONT.smallCaps,
+    fontFamily: FONT.bold,
     fontSize: TYPOGRAPHY.sizeXs,
     color: COLORS.bg,
     letterSpacing: TYPOGRAPHY.trackingCaps,
@@ -213,14 +262,14 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizeH1,
     lineHeight: TYPOGRAPHY.sizeH1 * TYPOGRAPHY.leadingHeading,
     color: COLORS.white,
-    marginBottom: SPACING.lg,
+    marginBottom: SPACING.md,
     fontVariant: ['oldstyle-nums'],
   },
   meta: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: SPACING.xl,
+    marginTop: SPACING.lg,
   },
   metaGroup: {
     flexDirection: 'row',
@@ -231,5 +280,11 @@ const styles = StyleSheet.create({
     fontFamily: FONT.smallCaps,
     fontSize: TYPOGRAPHY.sizeSm,
     color: COLORS.accent,
+    textShadowColor: 'rgba(0,0,0,0.6)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
+  },
+  globeTapZone: {
+    ...StyleSheet.absoluteFillObject,
   },
 });

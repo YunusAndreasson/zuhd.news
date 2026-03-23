@@ -50,7 +50,7 @@ export const SPACING = {
 
 export const LAYOUT = {
   progressBarHeight: 2,
-  peekHeight: 200,
+  peekHeight: 0,
   briefingButtonBottom: SPACING.lg,
   briefingButtonRight: SPACING.screenPadding,
 } as const;

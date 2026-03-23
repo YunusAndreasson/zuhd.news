@@ -8,9 +8,10 @@ import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AboutPage } from '../components/AboutPage';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
-import { BriefingButton } from '../components/BriefingButton';
+import type { TapResult } from '../components/globe/MiniGlobe';
+
 import { CategoryBar } from '../components/CategoryBar';
-import { GlobePage } from '../components/GlobePage';
+
 import { Toast, type ToastRef } from '../components/Toast';
 import { SOURCES } from '../constants/sources';
 import { CATEGORIES, COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
@@ -18,10 +19,21 @@ import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useHaptic } from '../hooks/useHaptic';
 
+function CountrySection({ label, items }: { label: string; items: (string | null | undefined)[] }) {
+  const text = items.filter(Boolean).join(' · ');
+  if (!text) return null;
+  return (
+    <>
+      <Text style={styles.countrySectionLabel}>{label}</Text>
+      <Text style={styles.countryContext}>{text}</Text>
+    </>
+  );
+}
+
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
-  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, feedInfo } = useArticles();
+  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick } = useArticles();
   const { impact } = useHaptic();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
@@ -33,7 +45,8 @@ export default function HomeScreen() {
   // Sheet refs
   const sourceSheetRef = useRef<BottomSheetModal>(null);
   const [sourceSheet, setSourceSheet] = useState<string | null>(null);
-  const [sheetOpen, setSheetOpen] = useState(false);
+  const countrySheetRef = useRef<BottomSheetModal>(null);
+  const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
 
   const renderBackdrop = useCallback(
     (props: any) => (
@@ -51,8 +64,16 @@ export default function HomeScreen() {
     (sourceName: string) => {
       impact();
       setSourceSheet(sourceName);
-      setSheetOpen(true);
       sourceSheetRef.current?.present();
+    },
+    [impact],
+  );
+
+  const handleCountryPress = useCallback(
+    (result: TapResult) => {
+      impact();
+      setCountrySheet(result);
+      countrySheetRef.current?.present();
     },
     [impact],
   );
@@ -69,7 +90,7 @@ export default function HomeScreen() {
   }, []);
 
   const pagerOffset = useSharedValue(0);
-  const categoryProgresses = useSharedValue([0, 0, 0, 0, 0]);
+  const categoryProgresses = useSharedValue([0, 0, 0, 0]);
 
   const onPageSelected = useCallback(
     (e: PagerViewOnPageSelectedEvent) => {
@@ -161,6 +182,9 @@ export default function HomeScreen() {
         pagerOffset={pagerOffset}
         categoryProgresses={categoryProgresses}
         onCategoryPress={onCategoryPress}
+        briefingAvailable={briefing?.available ?? false}
+        briefingPlaying={briefingPlayer.playing}
+        onBriefingPress={briefingPlayer.toggle}
       />
 
       <PagerView
@@ -190,37 +214,19 @@ export default function HomeScreen() {
                   )
                 }
                 onSourcePress={handleSourcePress}
+                onCountryPress={handleCountryPress}
                 pagerIdle={pagerIdle}
                 progressesSV={categoryProgresses}
                 tick={tick}
-                feedInfo={feedInfo}
               />
             )}
           </View>
         ))}
-        <View key="globe" collapsable={false}>
-          <GlobePage
-            grouped={grouped}
-            visible={currentCategory === CATEGORIES.length}
-            onRefresh={refresh}
-            onToast={(msg) => toastRef.current?.show(msg)}
-          />
-        </View>
         <View key="about" collapsable={false}>
           <AboutPage />
         </View>
       </PagerView>
 
-      {briefing?.available &&
-        (currentCategory < CATEGORIES.length || briefingPlayer.playing) &&
-        !sheetOpen && (
-          <BriefingButton
-            playing={briefingPlayer.playing}
-            elapsed={briefingPlayer.elapsed}
-            duration={briefingPlayer.duration}
-            onPress={briefingPlayer.toggle}
-          />
-        )}
       <Toast ref={toastRef} />
 
       {/* Source sheet */}
@@ -231,10 +237,7 @@ export default function HomeScreen() {
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
         handleIndicatorStyle={styles.sheetHandle}
-        onDismiss={() => {
-          setSourceSheet(null);
-          setSheetOpen(false);
-        }}
+        onDismiss={() => setSourceSheet(null)}
       >
         <BottomSheetView
           style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
@@ -246,6 +249,73 @@ export default function HomeScreen() {
               </Text>
               <Text style={styles.sheetTitle}>{sourceSheet}</Text>
               <Text style={styles.sheetBody}>{sourceInfo.description}</Text>
+            </>
+          )}
+        </BottomSheetView>
+      </BottomSheetModal>
+
+      {/* Country sheet */}
+      <BottomSheetModal
+        ref={countrySheetRef}
+        enableDynamicSizing
+        enablePanDownToClose
+        backdropComponent={renderBackdrop}
+        backgroundStyle={styles.sheetBg}
+        handleIndicatorStyle={styles.sheetHandle}
+        onDismiss={() => setCountrySheet(null)}
+      >
+        <BottomSheetView
+          style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
+        >
+          {countrySheet?.data && (
+            <>
+              {/* Identity */}
+              <Text style={styles.sheetLabel}>
+                {[
+                  countrySheet.data.region?.toUpperCase(),
+                  countrySheet.data.landlocked ? 'LANDLOCKED' : null,
+                  !countrySheet.data.independent ? 'DISPUTED' : null,
+                  countrySheet.localTime,
+                ].filter(Boolean).join(' · ')}
+              </Text>
+              <View style={styles.countryIdentity}>
+                <Text style={styles.countryFlag}>{countrySheet.data.flag}</Text>
+                <View style={styles.countryIdentityText}>
+                  <Text style={styles.countryName}>{countrySheet.data.official}</Text>
+                  {countrySheet.location && countrySheet.location !== countrySheet.data.capital && (
+                    <Text style={styles.sheetBody}>{countrySheet.location}</Text>
+                  )}
+                </View>
+              </View>
+
+              {/* Geography & People */}
+              <CountrySection label="geography & people" items={[
+                countrySheet.data.capital ? `Capital ${countrySheet.data.capital}` : null,
+                countrySheet.data.population,
+                countrySheet.data.area,
+                countrySheet.data.languages,
+              ]} />
+
+              {/* Economy */}
+              <CountrySection label="economy" items={[
+                countrySheet.data.gdp ? `GDP ${countrySheet.data.gdp}` : null,
+                countrySheet.data.gdpPerCapita ? `${countrySheet.data.gdpPerCapita}/capita` : null,
+                countrySheet.data.currency
+                  ? `${countrySheet.data.currency}${countrySheet.data.currencySymbol ? ` ${countrySheet.data.currencySymbol}` : ''}`
+                  : null,
+              ]} />
+
+              {/* Society */}
+              <CountrySection label="society" items={[
+                countrySheet.data.lifeExpectancy ? `Life expectancy ${countrySheet.data.lifeExpectancy}` : null,
+                countrySheet.data.internetPct ? `${countrySheet.data.internetPct} online` : null,
+              ]} />
+
+              {/* Military */}
+              <CountrySection label="military" items={[
+                countrySheet.data.military,
+                countrySheet.data.militaryPctGdp ? `${countrySheet.data.militaryPctGdp} of GDP` : null,
+              ]} />
             </>
           )}
         </BottomSheetView>
@@ -268,11 +338,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: SPACING.xl,
-  },
-  loadingText: {
-    fontFamily: FONT.bold,
-    fontSize: TYPOGRAPHY.sizeWordmark,
-    color: COLORS.textSecondary,
   },
   errorText: {
     fontFamily: FONT.regular,
@@ -322,5 +387,37 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizeSm,
     lineHeight: TYPOGRAPHY.sizeSm * TYPOGRAPHY.leadingBody,
     color: COLORS.textSecondary,
+  },
+  countryIdentity: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.md,
+    marginBottom: SPACING.md,
+  },
+  countryIdentityText: {
+    flex: 1,
+  },
+  countryFlag: {
+    fontSize: 36,
+  },
+  countryName: {
+    fontFamily: FONT.bold,
+    fontSize: TYPOGRAPHY.sizeBase,
+    color: COLORS.text,
+  },
+  countrySectionLabel: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeSm,
+    color: COLORS.accent,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    marginTop: SPACING.md,
+    marginBottom: SPACING.xs,
+  },
+  countryContext: {
+    fontFamily: FONT.regular,
+    fontSize: TYPOGRAPHY.sizeSm,
+    lineHeight: TYPOGRAPHY.sizeSm * TYPOGRAPHY.leadingBody,
+    color: COLORS.textSecondary,
+    marginBottom: SPACING.sm,
   },
 });

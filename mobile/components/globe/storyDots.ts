@@ -10,7 +10,7 @@ export interface DotLocation {
   newestAt: number; // most recent addedAt in the group
 }
 
-function getCoords(article: Article): [number, number] | null {
+export function getCoords(article: Article): [number, number] | null {
   // 1. Frontmatter coordinates (most reliable)
   if (article.lat != null && article.lng != null) {
     return [article.lat, article.lng];

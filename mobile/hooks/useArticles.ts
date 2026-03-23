@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 import { API_BASE } from '../constants/theme';
-import { type FeedInfo, readFeedCache, readFeedInfoSync, writeFeedCache } from '../lib/feed-cache';
+import { readFeedCache, writeFeedCache } from '../lib/feed-cache';
 import { getLastSeenAt, resetReadingPositions, saveLastSeenAt } from '../lib/storage';
 import type { Article, Category, FeedResponse } from '../types';
 
@@ -28,7 +28,6 @@ export function useArticles() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastSeenAt, setLastSeenAt] = useState(0);
-  const [feedInfo, setFeedInfo] = useState<FeedInfo | null>(null);
   const prevSlugsRef = useRef<Set<string>>(new Set());
   const lastGeneratedRef = useRef<string | null>(null);
   const refreshingRef = useRef(false);
@@ -63,10 +62,6 @@ export function useArticles() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data: FeedResponse = await res.json();
     const addedCount = applyFeed(data);
-    // Write-through to disk cache
-    const articles = Object.values(data.categories).flat();
-    const words = articles.reduce((sum, a) => sum + a.sentences.join(' ').split(/\s+/).length, 0);
-    setFeedInfo({ total: articles.length, readMins: Math.max(1, Math.ceil(words / 238)) });
     writeFeedCache(data).catch(() => {});
     return addedCount;
   }, [applyFeed]);
@@ -95,8 +90,7 @@ export function useArticles() {
       // Try disk cache first
       const cached = await readFeedCache();
       if (cached) {
-        applyFeed(cached.feed);
-        setFeedInfo(cached.info);
+        applyFeed(cached);
         setLoading(false);
         // Silent background check for fresher content
         try {
@@ -128,10 +122,6 @@ export function useArticles() {
       }
       if (state === 'active') {
         setTick((t) => t + 1);
-        // Check if background task updated cache while we were away
-        const info = readFeedInfoSync();
-        if (info) setFeedInfo(info);
-
         const away = Date.now() - lastActiveRef.current;
         if (away > STALE_THRESHOLD) {
           try {
@@ -171,5 +161,5 @@ export function useArticles() {
     }
   }, [fetchFeed]);
 
-  return { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, feedInfo };
+  return { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick };
 }

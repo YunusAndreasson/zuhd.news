@@ -5,9 +5,8 @@ import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATEGORIES, COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
 
-const GLOBE_INDEX = CATEGORIES.length;
-const INFO_INDEX = CATEGORIES.length + 1;
-const TAB_LABELS = [...CATEGORIES.map((c) => c.toUpperCase()), 'globe', 'info'];
+const INFO_INDEX = CATEGORIES.length;
+const TAB_LABELS = [...CATEGORIES.map((c) => c.toUpperCase()), 'info'];
 
 interface TabLayout {
   x: number;
@@ -18,6 +17,9 @@ interface CategoryBarProps {
   pagerOffset: SharedValue<number>;
   categoryProgresses: SharedValue<number[]>;
   onCategoryPress: (index: number) => void;
+  briefingAvailable: boolean;
+  briefingPlaying: boolean;
+  onBriefingPress: () => void;
 }
 
 function TabLabel({
@@ -33,7 +35,7 @@ function TabLabel({
   onPress: () => void;
   onLayout: (e: LayoutChangeEvent) => void;
 }) {
-  const isIcon = index >= GLOBE_INDEX;
+  const isIcon = index >= INFO_INDEX;
   const animatedStyle = useAnimatedStyle(() => {
     'worklet';
     const distance = Math.abs(pagerOffset.value - index);
@@ -51,11 +53,7 @@ function TabLabel({
       hitSlop={12}
       style={({ pressed }) => pressed && { opacity: 0.5 }}
     >
-      {index === GLOBE_INDEX ? (
-        <Animated.View style={[styles.tabIcon, animatedStyle]}>
-          <Ionicons name="globe-outline" size={TYPOGRAPHY.sizeSm} color={COLORS.white} />
-        </Animated.View>
-      ) : index === INFO_INDEX ? (
+      {index === INFO_INDEX ? (
         <Animated.View style={[styles.tabIcon, animatedStyle]}>
           <Ionicons name="compass-outline" size={TYPOGRAPHY.sizeSm} color={COLORS.white} />
         </Animated.View>
@@ -70,6 +68,9 @@ export function CategoryBar({
   pagerOffset,
   categoryProgresses,
   onCategoryPress,
+  briefingAvailable,
+  briefingPlaying,
+  onBriefingPress,
 }: CategoryBarProps) {
   const insets = useSafeAreaInsets();
   const [tabLayouts, setTabLayouts] = useState<TabLayout[]>([]);
@@ -106,8 +107,8 @@ export function CategoryBar({
       'clamp',
     );
     // Hide underline on icon tabs
-    const isGlobeTab = Math.round(pagerOffset.value) >= GLOBE_INDEX;
-    return { left: x, width: w, opacity: isGlobeTab ? 0 : 0.15 };
+    const isIconTab = Math.round(pagerOffset.value) >= INFO_INDEX;
+    return { left: x, width: w, opacity: isIconTab ? 0 : 0.15 };
   });
 
   const fillPos = useAnimatedStyle(() => {
@@ -118,8 +119,8 @@ export function CategoryBar({
     const progress =
       currentIdx < CATEGORIES.length ? (categoryProgresses.value[currentIdx] ?? 0) : 1;
 
-    const isGlobeTab = currentIdx >= GLOBE_INDEX;
-    return { left: tab?.x ?? 0, width: (tab?.width ?? 0) * progress, opacity: isGlobeTab ? 0 : 1 };
+    const isIconTab = currentIdx >= INFO_INDEX;
+    return { left: tab?.x ?? 0, width: (tab?.width ?? 0) * progress, opacity: isIconTab ? 0 : 1 };
   });
 
   return (
@@ -145,6 +146,22 @@ export function CategoryBar({
             onLayout={tabLayoutHandlers[i]!}
           />
         ))}
+        {briefingAvailable && (
+          <Pressable
+            onPress={onBriefingPress}
+            hitSlop={12}
+            style={({ pressed }) => pressed && { opacity: 0.5 }}
+          >
+            <View style={styles.tabIcon}>
+              <Ionicons
+                name={briefingPlaying ? 'pause' : 'play'}
+                size={TYPOGRAPHY.sizeSm}
+                color={COLORS.white}
+                style={{ opacity: briefingPlaying ? 1 : 0.4 }}
+              />
+            </View>
+          </Pressable>
+        )}
 
         <Animated.View style={[styles.track, trackPos]} />
         <Animated.View style={[styles.fill, fillPos]} />
