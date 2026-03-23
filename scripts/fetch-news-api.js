@@ -227,6 +227,7 @@ async function fetchCuratedArticles() {
       'coindesk.com', 'dailymaverick.co.za', 'premiumtimesng.com',
       'dabangasudan.org', 'carbonbrief.org',
       'eurasianet.org', 'insightcrime.org', 'sixthtone.com',
+      'quantamagazine.org', 'grist.org',
     ],
   })
   return data.articles?.results || []
