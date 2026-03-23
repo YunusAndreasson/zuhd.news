@@ -28,9 +28,8 @@ interface ArticleListProps {
   catIndex: number;
   lastSeenAt: number;
   onRefresh: () => Promise<void>;
-  onEndReached?: () => void;
+  onEndReached?: (catIndex: number) => void;
   onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => void;
-  onConceptPress?: (concept: string) => void;
   onCountryPress?: (result: TapResult) => void;
   pagerIdle: React.RefObject<boolean>;
   progressesSV: SharedValue<number[]>;
@@ -44,7 +43,6 @@ export const ArticleList = memo(function ArticleList({
   catIndex,
   lastSeenAt,
   onSourcePress,
-  onConceptPress,
   onCountryPress,
   onRefresh,
   onEndReached,
@@ -79,6 +77,11 @@ export const ArticleList = memo(function ArticleList({
       overscrollFired.value = false;
     }, 800);
   }, [overscrollFired]);
+  const onEndReachedRef = useRef(onEndReached);
+  onEndReachedRef.current = onEndReached;
+  const fireEndReached = useCallback(() => {
+    onEndReachedRef.current?.(catIndex);
+  }, [catIndex]);
   const [localRefreshing, setLocalRefreshing] = useState(false);
 
   // Restore saved reading position on mount
@@ -138,7 +141,7 @@ export const ArticleList = memo(function ArticleList({
       if (event.contentOffset.y > maxScroll + 15 && !overscrollFired.value) {
         overscrollFired.value = true;
         runOnJS(hapticComplete)();
-        if (onEndReached) runOnJS(onEndReached)();
+        runOnJS(fireEndReached)();
         // Reset after bounce-back settles
         runOnJS(resetOverscroll)();
       }
@@ -182,7 +185,7 @@ export const ArticleList = memo(function ArticleList({
   );
 
   const getItemLayout = useCallback(
-    (_: any, index: number) => ({
+    (_: ArrayLike<Article> | null | undefined, index: number) => ({
       length: itemHeight,
       offset: itemHeight * index,
       index,
@@ -198,7 +201,6 @@ export const ArticleList = memo(function ArticleList({
         index={index}
         scrollY={scrollY}
         onSourcePress={onSourcePress}
-        onConceptPress={onConceptPress}
         showEarlierDivider={index === earlierIndex}
         feedInfo={index === 0 ? categoryFeedInfo : undefined}
         globeRef={globeRef}
@@ -206,7 +208,7 @@ export const ArticleList = memo(function ArticleList({
         onCountryPress={onCountryPress}
       />
     ),
-    [itemHeight, scrollY, onSourcePress, onConceptPress, earlierIndex, categoryFeedInfo],
+    [itemHeight, scrollY, onSourcePress, onCountryPress, earlierIndex, categoryFeedInfo],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);

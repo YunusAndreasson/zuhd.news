@@ -1,4 +1,4 @@
-import { BottomSheetBackdrop, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
+import { BottomSheetBackdrop, type BottomSheetBackdropProps, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useRef, useState } from 'react';
@@ -19,14 +19,13 @@ import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useHaptic } from '../hooks/useHaptic';
 
-function CountrySection({ label, items }: { label: string; items: (string | null | undefined)[] }) {
-  const text = items.filter(Boolean).join(' · ');
-  if (!text) return null;
+function CountryRow({ label, value }: { label: string; value: string | null | undefined }) {
+  if (!value) return null;
   return (
-    <>
-      <Text style={styles.countrySectionLabel}>{label}</Text>
-      <Text style={styles.countryContext}>{text}</Text>
-    </>
+    <View style={styles.countryRow}>
+      <Text style={styles.countryRowLabel}>{label}</Text>
+      <Text style={styles.countryRowValue}>{value}</Text>
+    </View>
   );
 }
 
@@ -50,7 +49,7 @@ export default function HomeScreen() {
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
 
   const renderBackdrop = useCallback(
-    (props: any) => (
+    (props: BottomSheetBackdropProps) => (
       <BottomSheetBackdrop
         {...props}
         disappearsOnIndex={-1}
@@ -59,23 +58,6 @@ export default function HomeScreen() {
       />
     ),
     [],
-  );
-
-  const handleConceptPress = useCallback(
-    (concept: string) => {
-      impact();
-      // Count articles across all categories that share this concept
-      const allArticles = Object.values(grouped).flat();
-      const related = allArticles.filter(
-        (a) => a.concepts?.includes(concept) || a.title.includes(concept),
-      );
-      if (related.length > 1) {
-        toastRef.current?.show(`${concept} · ${related.length} articles`);
-      } else {
-        toastRef.current?.show(concept);
-      }
-    },
-    [impact, grouped],
   );
 
   const handleSourcePress = useCallback(
@@ -145,6 +127,19 @@ export default function HomeScreen() {
       impact();
     },
     [impact, currentCategory],
+  );
+
+  const handleEndReached = useCallback(
+    (catIndex: number) => {
+      const cat = CATEGORIES[catIndex];
+      if (!cat) return;
+      const count = grouped[cat]?.length ?? 0;
+      toastRef.current?.show(
+        `All ${count} articles \u00B7 tap to scroll up`,
+        () => listRefs[catIndex]?.current?.scrollToTop(),
+      );
+    },
+    [grouped],
   );
 
   const handleRefresh = useCallback(async () => {
@@ -226,14 +221,8 @@ export default function HomeScreen() {
                 catIndex={catIndex}
                 lastSeenAt={lastSeenAt}
                 onRefresh={handleRefresh}
-                onEndReached={() =>
-                  toastRef.current?.show(
-                    `All ${grouped[cat].length} articles \u00B7 tap to scroll up`,
-                    () => listRefs[catIndex]?.current?.scrollToTop(),
-                  )
-                }
+                onEndReached={handleEndReached}
                 onSourcePress={handleSourcePress}
-                onConceptPress={handleConceptPress}
                 onCountryPress={handleCountryPress}
                 pagerIdle={pagerIdle}
                 progressesSV={categoryProgresses}
@@ -305,53 +294,44 @@ export default function HomeScreen() {
         >
           {countrySheet?.data && (
             <>
-              {/* Identity */}
-              <Text style={styles.sheetLabel}>
-                {[
-                  countrySheet.data.region?.toUpperCase(),
-                  countrySheet.data.landlocked ? 'LANDLOCKED' : null,
-                  !countrySheet.data.independent ? 'DISPUTED' : null,
-                  countrySheet.localTime,
-                ].filter(Boolean).join(' · ')}
-              </Text>
+              {/* Identity — city + country hero */}
               <View style={styles.countryIdentity}>
                 <Text style={styles.countryFlag}>{countrySheet.data.flag}</Text>
                 <View style={styles.countryIdentityText}>
-                  <Text style={styles.countryName}>{countrySheet.data.official}</Text>
-                  {countrySheet.location && countrySheet.location !== countrySheet.data.capital && (
-                    <Text style={styles.sheetBody}>{countrySheet.location}</Text>
+                  {countrySheet.location && (
+                    <Text style={styles.countryLocation}>{countrySheet.location}</Text>
                   )}
+                  <Text style={styles.countryName}>{countrySheet.data.official}</Text>
                 </View>
               </View>
 
-              {/* Geography & People */}
-              <CountrySection label="geography & people" items={[
-                countrySheet.data.capital ? `Capital ${countrySheet.data.capital}` : null,
-                countrySheet.data.population,
-                countrySheet.data.area,
-                countrySheet.data.languages,
-              ]} />
-
-              {/* Economy */}
-              <CountrySection label="economy" items={[
-                countrySheet.data.gdp ? `GDP ${countrySheet.data.gdp}` : null,
-                countrySheet.data.gdpPerCapita ? `${countrySheet.data.gdpPerCapita}/capita` : null,
-                countrySheet.data.currency
+              {/* Data grid */}
+              <CountryRow label="Region" value={[
+                countrySheet.data.region,
+                countrySheet.data.landlocked ? 'Landlocked' : null,
+                !countrySheet.data.independent ? 'Disputed' : null,
+              ].filter(Boolean).join(' · ')} />
+              <CountryRow label="Local time" value={countrySheet.localTime} />
+              <CountryRow label="Capital" value={countrySheet.data.capital} />
+              <CountryRow label="Population" value={countrySheet.data.population} />
+              <CountryRow label="Area" value={countrySheet.data.area} />
+              <CountryRow label="Languages" value={countrySheet.data.languages} />
+              <CountryRow label="GDP" value={countrySheet.data.gdp} />
+              <CountryRow label="GDP/capita" value={countrySheet.data.gdpPerCapita} />
+              <CountryRow
+                label="Currency"
+                value={countrySheet.data.currency
                   ? `${countrySheet.data.currency}${countrySheet.data.currencySymbol ? ` ${countrySheet.data.currencySymbol}` : ''}`
-                  : null,
-              ]} />
-
-              {/* Society */}
-              <CountrySection label="society" items={[
-                countrySheet.data.lifeExpectancy ? `Life expectancy ${countrySheet.data.lifeExpectancy}` : null,
-                countrySheet.data.internetPct ? `${countrySheet.data.internetPct} online` : null,
-              ]} />
-
-              {/* Military */}
-              <CountrySection label="military" items={[
-                countrySheet.data.military,
-                countrySheet.data.militaryPctGdp ? `${countrySheet.data.militaryPctGdp} of GDP` : null,
-              ]} />
+                  : null}
+              />
+              <CountryRow label="Life expectancy" value={countrySheet.data.lifeExpectancy} />
+              <CountryRow label="Internet" value={countrySheet.data.internetPct} />
+              <CountryRow
+                label="Military"
+                value={countrySheet.data.military
+                  ? `${countrySheet.data.military}${countrySheet.data.militaryPctGdp ? ` (${countrySheet.data.militaryPctGdp} GDP)` : ''}`
+                  : null}
+              />
             </>
           )}
         </BottomSheetView>
@@ -446,24 +426,34 @@ const styles = StyleSheet.create({
   countryFlag: {
     fontSize: 36,
   },
-  countryName: {
+  countryLocation: {
     fontFamily: FONT.bold,
-    fontSize: TYPOGRAPHY.sizeBase,
-    color: COLORS.text,
+    fontSize: TYPOGRAPHY.sizeH1 * 0.75,
+    lineHeight: TYPOGRAPHY.sizeH1 * 0.75 * TYPOGRAPHY.leadingHeading,
+    color: COLORS.white,
   },
-  countrySectionLabel: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeSm,
-    color: COLORS.accent,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-    marginTop: SPACING.md,
-    marginBottom: SPACING.xs,
-  },
-  countryContext: {
+  countryName: {
     fontFamily: FONT.regular,
     fontSize: TYPOGRAPHY.sizeSm,
-    lineHeight: TYPOGRAPHY.sizeSm * TYPOGRAPHY.leadingBody,
     color: COLORS.textSecondary,
-    marginBottom: SPACING.sm,
+  },
+  countryRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: SPACING.xs,
+  },
+  countryRowLabel: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeSm,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    color: COLORS.accent,
+    flex: 1,
+  },
+  countryRowValue: {
+    fontFamily: FONT.regular,
+    fontSize: TYPOGRAPHY.sizeSm,
+    color: COLORS.text,
+    textAlign: 'right',
+    flex: 1,
   },
 });

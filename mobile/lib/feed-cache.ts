@@ -14,7 +14,7 @@ export interface FeedInfo {
   readMins: number;
 }
 
-export async function writeFeedCache(feed: FeedResponse): Promise<void> {
+export function writeFeedCache(feed: FeedResponse): void {
   FEED_FILE.write(JSON.stringify(feed));
   META_FILE.write(JSON.stringify({ cachedAt: Date.now(), generated: feed.generated }));
 }

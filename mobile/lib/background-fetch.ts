@@ -32,7 +32,7 @@ export async function fetchAndCacheIfNew(): Promise<boolean> {
     clearTimeout(timeout2);
     if (!res.ok) return false;
     const feed = await res.json();
-    await writeFeedCache(feed);
+    writeFeedCache(feed);
     await resetReadingPositions();
     return true;
   } catch {

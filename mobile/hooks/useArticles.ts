@@ -44,7 +44,7 @@ export function useArticles() {
   const applyFeed = useCallback((data: FeedResponse): number => {
     lastGeneratedRef.current = data.generated;
     setBriefing(data.briefing);
-    const newGrouped = data.categories as GroupedArticles;
+    const newGrouped = { ...emptyGrouped, ...data.categories } as GroupedArticles;
     const allSlugs = Object.values(newGrouped).flat().map((a) => a.slug);
     const newSlugs = new Set(allSlugs);
     const addedCount = [...newSlugs].filter((s) => !prevSlugsRef.current.has(s)).length;
@@ -62,7 +62,7 @@ export function useArticles() {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data: FeedResponse = await res.json();
     const addedCount = applyFeed(data);
-    writeFeedCache(data).catch(() => {});
+    try { writeFeedCache(data); } catch {}
     return addedCount;
   }, [applyFeed]);
 
@@ -123,7 +123,8 @@ export function useArticles() {
       if (state === 'active') {
         setTick((t) => t + 1);
         const away = Date.now() - lastActiveRef.current;
-        if (away > STALE_THRESHOLD) {
+        if (away > STALE_THRESHOLD && !refreshingRef.current) {
+          refreshingRef.current = true;
           try {
             const changed = await hasNewContent();
             if (changed) {
@@ -131,6 +132,7 @@ export function useArticles() {
               await resetReadingPositions();
             }
           } catch {} // silent — existing content is fine
+          finally { refreshingRef.current = false; }
         }
       }
     });
