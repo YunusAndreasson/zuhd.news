@@ -10,11 +10,11 @@ export interface Article {
   title: string;
   date: string;
   addedAt: number;
-  source: string | null;
-  sourceUrl: string | null;
-  sources?: ArticleSource[];
-  concepts?: string[];
-  eventCoverage?: number | null;
+  source: string | null;      // derived from sources[0].name — used by globe, share
+  sourceUrl: string | null;   // derived from sources[0].url — used by share
+  sources: ArticleSource[];
+  concepts: string[];
+  eventCoverage: number | null;
   location: string | null;
   lat: number | null;
   lng: number | null;

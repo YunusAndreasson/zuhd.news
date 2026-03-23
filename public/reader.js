@@ -257,7 +257,7 @@ function init(data) {
       case 'o':
         if (state.artIdx >= 0) {
           const a = currentArticle();
-          const url = a.sourceUrl || (a.sources && a.sources[0] && a.sources[0].url);
+          const url = a.sources && a.sources[0] && a.sources[0].url;
           if (url) window.open(url, '_blank', 'noopener');
         }
         break;

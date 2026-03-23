@@ -23,8 +23,7 @@ for (const f of files) {
   const yaml = fm[1]
   const has = k => yaml.includes(k + ':')
   const hasSources = yaml.includes('sources:') && yaml.includes('  - name:')
-  const hasLegacySource = has('source') && !yaml.includes('sources:')
-  if (!has('title') || !has('date') || !has('category') || !has('location') || (!hasSources && !hasLegacySource)) {
+  if (!has('title') || !has('date') || !has('category') || !has('location') || !hasSources) {
     console.log('SKIP (missing fields): ' + f)
     renameSync(full, full + '.bad'); bad++; continue
   }

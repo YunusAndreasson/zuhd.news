@@ -64,23 +64,18 @@ const buildArticle = (filename) => {
   const raw = readFileSync(join(CONTENT_DIR, filename), 'utf-8')
   const { meta, body } = parseFrontmatter(raw)
 
-  // Handle both legacy source/sourceUrl and new sources array
-  const sources = Array.isArray(meta.sources)
-    ? meta.sources
-    : (meta.source ? [{ name: meta.source, url: meta.sourceUrl || '' }] : [])
+  const sources = Array.isArray(meta.sources) ? meta.sources : []
   const primarySource = sources[0]?.name || ''
 
-  // Source attribution
+  // Source attribution — always use expandable details format
   let sourcemark = ''
-  if (sources.length > 1) {
+  if (sources.length > 0) {
     const items = sources.map(s => {
       const country = s.country ? ` <span class="source-country">${s.country}</span>` : ''
       const link = s.url ? ` <a href="${s.url}" rel="noopener" target="_blank">&#8599;</a>` : ''
       return `<li>${s.name}${country}${link}</li>`
     }).join('')
-    sourcemark = `<details class="article-sources"><summary class="source-count">${sources.length} sources</summary><ul>${items}</ul></details>`
-  } else if (primarySource) {
-    sourcemark = `<p class="end-source">${primarySource}</p>`
+    sourcemark = `<details class="article-sources"><summary class="source-count">${sources.length} source${sources.length > 1 ? 's' : ''}</summary><ul>${items}</ul></details>`
   }
 
   // Concept tags
@@ -122,10 +117,9 @@ const buildHomepage = (sorted, cutoff, homepageTemplate) => {
         slug, title, addedAt,
         date: meta.date,
         bodyHtml,
-        sourceUrl: meta.sourceUrl || sources?.[0]?.url || '',
-        sources: (sources || []).map(s => ({ name: s.name, url: s.url, country: s.country || null })),
-        concepts: concepts || [],
-        sourceCount: sourceCount || 1,
+        sources: sources.map(s => ({ name: s.name, url: s.url || '', country: s.country || null })),
+        concepts,
+        sourceCount,
         eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
       }))
     ])
@@ -284,17 +278,17 @@ const apiGrouped = groupByWindow(sorted, cutoff)
 const apiCategories = Object.fromEntries(
   Object.entries(apiGrouped).map(([cat, articles]) => [
     cat,
-    articles.map(({ slug, meta, addedAt, body }) => {
+    articles.map(({ slug, meta, addedAt, body, sources, concepts }) => {
       const thread = threadLookup.get(slug)
       return {
         slug,
         title: meta.title || 'Untitled',
         date: meta.date,
         addedAt,
-        source: meta.source || (Array.isArray(meta.sources) ? meta.sources[0]?.name : null),
-        sourceUrl: meta.sourceUrl || (Array.isArray(meta.sources) ? meta.sources[0]?.url : null),
-        sources: (Array.isArray(meta.sources) ? meta.sources : (meta.source ? [{ name: meta.source }] : [])).map(s => ({ name: s.name, country: s.country || null })),
-        concepts: Array.isArray(meta.concepts) ? meta.concepts : [],
+        source: sources[0]?.name || null,
+        sourceUrl: sources[0]?.url || null,
+        sources: sources.map(s => ({ name: s.name, country: s.country || null })),
+        concepts,
         eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
         location: meta.location || null,
         lat: meta.lat != null ? Number(meta.lat) : null,
@@ -354,7 +348,7 @@ const atomEntries = feedArticles.map(a => `  <entry>
     <id>tag:zuhd.news,${a.meta.date?.slice(0, 10) || '2026'}:${a.slug}</id>
     <updated>${new Date(a.meta.date || a.addedAt).toISOString()}</updated>
     <category term="${escXml(a.meta.category || 'politics')}"/>
-    <summary>${escXml(a.body.trim())}</summary>${a.meta.source ? `\n    <source><title>${escXml(a.meta.source)}</title></source>` : ''}
+    <summary>${escXml(a.body.trim())}</summary>${a.sources[0] ? `\n    <source><title>${escXml(a.sources[0].name)}</title></source>` : ''}
   </entry>`).join('\n')
 
 const atomFeed = `<?xml version="1.0" encoding="utf-8"?>

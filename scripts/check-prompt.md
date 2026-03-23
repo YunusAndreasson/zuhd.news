@@ -9,7 +9,7 @@ Editorial values to enforce: truth (ḥaqq) — if language obscures what happen
 1. Check the `<files>` block appended at the end of this prompt — those are this cycle's articles to review
 2. If no `<files>` block is appended, find new/modified articles with `git diff --name-only content/articles/` and `git ls-files --others --exclude-standard content/articles/`
 3. Check each article against every rule below
-4. If any rule is violated, rewrite the article in place — fix the body and title if needed, but preserve `date`, `sources` (array), `category`, `location`, `lat`, `lng`, `eventCoverage`, and `concepts` in the frontmatter. Legacy articles may use `source`/`sourceUrl` instead of `sources` — preserve whichever format is present.
+4. If any rule is violated, rewrite the article in place — fix the body and title if needed, but preserve `date`, `sources` (array), `category`, `location`, `lat`, `lng`, `eventCoverage`, and `concepts` in the frontmatter.
 5. If an article passes all rules, leave it unchanged
 6. List which articles you changed and what you fixed
 

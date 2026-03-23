@@ -38,7 +38,7 @@ for (const file of files) {
   articles.push({
     title: meta.title || basename(file, '.md'),
     category: meta.category || 'uncategorised',
-    source: meta.source || '',
+    source: (Array.isArray(meta.sources) && meta.sources[0]?.name) || '',
     addedTime,
     body: body.slice(0, 300) // trimmed to keep prompt compact
   })

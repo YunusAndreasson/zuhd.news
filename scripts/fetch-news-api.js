@@ -81,12 +81,23 @@ function getCountryFromLoc(loc) {
 // ── Source Diversity Algorithm ───────────────────────────────────────
 
 function assembleSourcePanel(articles, eventLocation) {
-  if (articles.length <= 3) return articles
+  // Dedupe by source name — no two articles from the same outlet
+  const seenNames = new Set()
+  const unique = []
+  for (const a of articles) {
+    const name = a.source?.title || ''
+    if (!seenNames.has(name)) {
+      seenNames.add(name)
+      unique.push(a)
+    }
+  }
+
+  if (unique.length <= 3) return unique
 
   const affectedCountry = eventLocation ? getCountryFromLoc(eventLocation) : null
 
   const affected = [], regional = [], wire = [], alternative = []
-  for (const a of articles) {
+  for (const a of unique) {
     const cc = a._sourceCountry
     const srcName = a.source?.title || ''
     if (cc && cc === affectedCountry) {
@@ -100,12 +111,11 @@ function assembleSourcePanel(articles, eventLocation) {
     } else if (!WESTERN.has(cc)) {
       alternative.push(a)
     } else {
-      wire.push(a) // remaining Western sources
+      wire.push(a)
     }
   }
 
   const byRank = arr => arr.sort((a, b) => (a.source?.ranking?.importanceRank || 999999) - (b.source?.ranking?.importanceRank || 999999))
-
   const panel = []
   const usedCountries = new Set()
 
@@ -118,9 +128,7 @@ function assembleSourcePanel(articles, eventLocation) {
         return
       }
     }
-    if (arr.length > 0 && panel.length < 5) {
-      panel.push(arr[0])
-    }
+    if (arr.length > 0 && panel.length < 5) panel.push(arr[0])
   }
 
   pickFrom(affected)
@@ -135,27 +143,23 @@ function assembleSourcePanel(articles, eventLocation) {
     }
   }
 
-  // Fill to 3 minimum
+  // Fill to 3
   if (panel.length < 3) {
-    const remaining = articles.filter(a => !panel.includes(a))
-    byRank(remaining)
-    for (const a of remaining) {
+    for (const a of unique.filter(a => !panel.includes(a))) {
       if (panel.length >= 3) break
       panel.push(a)
     }
   }
 
-  // Hard cap: max 2 Western-bloc sources
+  // Cap: max 2 Western-bloc sources
   let westernCount = panel.filter(a => WESTERN.has(a._sourceCountry)).length
   while (westernCount > 2 && panel.length > 2) {
     const idx = [...panel].reverse().findIndex(a => WESTERN.has(a._sourceCountry))
     if (idx === -1) break
     const realIdx = panel.length - 1 - idx
-    const replacement = articles.find(a => !panel.includes(a) && !WESTERN.has(a._sourceCountry))
-    if (replacement) {
-      panel[realIdx] = replacement
-      westernCount--
-    } else break
+    const replacement = unique.find(a => !panel.includes(a) && !WESTERN.has(a._sourceCountry))
+    if (replacement) { panel[realIdx] = replacement; westernCount-- }
+    else break
   }
 
   return panel.slice(0, 5)
@@ -176,6 +180,24 @@ async function apiPost(endpoint, params) {
   return res.json()
 }
 
+// ── Shared article query defaults ────────────────────────────────────
+// Uses API-native filtering: isDuplicateFilter, dataType, forceMaxDataTimeWindow
+const ARTICLE_DEFAULTS = {
+  resultType: 'articles',
+  articlesCount: 100,
+  lang: 'eng',
+  dataType: ['news'],
+  isDuplicateFilter: 'skipDuplicates',
+  dateStart: new Date().toISOString().slice(0, 10),
+  articleBodyLen: -1,           // full text — eliminates prefetch stage
+  includeArticleConcepts: true,
+  includeArticleCategories: true,
+  includeArticleLocation: true,
+  // includeArticleOriginalArticle available if needed for syndication detection
+  includeSourceLocation: true,
+  includeSourceRanking: true,
+}
+
 // Q1: Event discovery (5 tokens)
 async function fetchEvents() {
   const data = await apiPost('event/getEvents', {
@@ -186,7 +208,7 @@ async function fetchEvents() {
     categoryUri: INCLUDE_CATEGORIES,
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
     dateStart: new Date().toISOString().slice(0, 10),
-    minArticlesInEvent: 8,
+    minArticlesInEvent: 15,
   })
   return (data.events?.results || []).filter(Boolean)
 }
@@ -194,13 +216,8 @@ async function fetchEvents() {
 // Q2: Curated high-quality source articles (1 token)
 async function fetchCuratedArticles() {
   const data = await apiPost('article/getArticles', {
-    resultType: 'articles',
-    articlesCount: 100,
-    articlesSortBy: 'sourceImportance',
-    eventFilter: 'skipArticlesWithoutEvent',
-    lang: 'eng',
-    dataType: ['news'],
-    isDuplicateFilter: 'skipDuplicates',
+    ...ARTICLE_DEFAULTS,
+    articlesSortBy: 'date',
     sourceUri: [
       'bbc.com', 'aljazeera.com', 'reuters.com', 'france24.com',
       'dw.com', 'dawn.com', 'scmp.com', 'middleeasteye.net',
@@ -210,13 +227,6 @@ async function fetchCuratedArticles() {
       'coindesk.com', 'dailymaverick.co.za', 'premiumtimesng.com',
       'dabangasudan.org', 'carbonbrief.org',
     ],
-    dateStart: new Date().toISOString().slice(0, 10),
-    articleBodyLen: -1,
-    includeArticleConcepts: true,
-    includeArticleCategories: true,
-    includeArticleLocation: true,
-    includeSourceLocation: true,
-    includeSourceRanking: true,
   })
   return data.articles?.results || []
 }
@@ -224,13 +234,9 @@ async function fetchCuratedArticles() {
 // Q3: Gap-region source articles (1 token)
 async function fetchGapArticles() {
   const data = await apiPost('article/getArticles', {
-    resultType: 'articles',
-    articlesCount: 100,
+    ...ARTICLE_DEFAULTS,
     articlesSortBy: 'sourceImportance',
     eventFilter: 'skipArticlesWithoutEvent',
-    lang: 'eng',
-    dataType: ['news'],
-    isDuplicateFilter: 'skipDuplicates',
     categoryUri: INCLUDE_CATEGORIES,
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
     sourceLocationUri: [
@@ -248,38 +254,20 @@ async function fetchGapArticles() {
       'http://en.wikipedia.org/wiki/Nigeria',
       'http://en.wikipedia.org/wiki/Colombia',
     ],
-    dateStart: new Date().toISOString().slice(0, 10),
-    articleBodyLen: -1,
-    includeArticleConcepts: true,
-    includeArticleCategories: true,
-    includeArticleLocation: true,
-    includeSourceLocation: true,
-    includeSourceRanking: true,
   })
   return data.articles?.results || []
 }
 
-// Q4: Broad global news sorted by date — catches events Q2/Q3 missed (1 token)
+// Q4: Broad global news — top-ranked sources, catches events Q2/Q3 missed (1 token)
 async function fetchBroadArticles() {
   const data = await apiPost('article/getArticles', {
-    resultType: 'articles',
-    articlesCount: 100,
+    ...ARTICLE_DEFAULTS,
     articlesSortBy: 'date',
     eventFilter: 'skipArticlesWithoutEvent',
-    lang: 'eng',
-    dataType: ['news'],
-    isDuplicateFilter: 'skipDuplicates',
     categoryUri: INCLUDE_CATEGORIES,
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
     startSourceRankPercentile: 0,
     endSourceRankPercentile: 20,
-    dateStart: new Date().toISOString().slice(0, 10),
-    articleBodyLen: -1,
-    includeArticleConcepts: true,
-    includeArticleCategories: true,
-    includeArticleLocation: true,
-    includeSourceLocation: true,
-    includeSourceRanking: true,
   })
   return data.articles?.results || []
 }
@@ -447,8 +435,44 @@ async function main() {
     return (b.eventCoverage || 0) - (a.eventCoverage || 0)
   })
 
-  // Add standalone articles (not matched to any top event) — these are niche/specialist coverage
-  for (const a of standaloneArticles.slice(0, 10)) {
+  // Add standalone + unmatched articles — prioritize niche/specialist sources
+  // These are the science, tech, and specialist stories that don't cluster into big events
+  const NICHE_SOURCES = new Set([
+    'statnews.com', 'newscientist.com', 'nature.com', 'arstechnica.com',
+    'technologyreview.com', 'coindesk.com', 'carbonbrief.org', 'restofworld.org',
+    'dailymaverick.co.za', 'premiumtimesng.com', 'dabangasudan.org',
+    'en.mehrnews.com', 'tass.com', 'dawn.com',
+  ])
+
+  // Also include articles from Q2/Q3 that matched events but weren't in a panel
+  const panelUris = new Set(stories.flatMap(s => s.sources.map(src => src.url)))
+  const unmatched = dedupedArticles.filter(a =>
+    !panelUris.has(a.url) && !standaloneArticles.includes(a)
+  )
+
+  const allCandidates = [...standaloneArticles, ...unmatched]
+
+  // Sort: niche sources first, then by source importance
+  const isNiche = a => NICHE_SOURCES.has(a.source?.uri || '')
+  allCandidates.sort((a, b) => {
+    if (isNiche(a) !== isNiche(b)) return isNiche(a) ? -1 : 1
+    return (a.source?.ranking?.importanceRank || 999999) - (b.source?.ranking?.importanceRank || 999999)
+  })
+
+  // Dedupe + cap per source to prevent one outlet dominating standalone
+  const storyFingerprints = new Set(stories.map(s => s.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)))
+  const sourceCount = {}
+
+  let added = 0
+  for (const a of allCandidates) {
+    if (added >= 15) break
+    const fp = a.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)
+    if (storyFingerprints.has(fp)) continue
+    const srcName = a.source?.title || '?'
+    sourceCount[srcName] = (sourceCount[srcName] || 0) + 1
+    if (sourceCount[srcName] > 3) continue  // max 3 standalone per source
+    storyFingerprints.add(fp)
+
     stories.push({
       title: a.title,
       description: (a.body || '').slice(0, 300),
@@ -471,6 +495,7 @@ async function main() {
       sentiment: a.sentiment,
       origin: 'api',
     })
+    added++
   }
 
   const withSources = stories.filter(s => s.sources.length > 0).length
