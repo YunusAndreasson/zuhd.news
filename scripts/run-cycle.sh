@@ -71,7 +71,7 @@ API_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuh
 echo "API fetch: $API_STATS" | tee -a "$LOG_FILE"
 
 # Step 2: RSS niche sources (HN, 404 Media, Bellingcat, Mada Masr, etc.)
-node scripts/fetch-news.js > /tmp/zuhd-feed-rss.json 2>>"$LOG_FILE"
+node scripts/fetch-news.js 2>>"$LOG_FILE"
 RSS_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed-rss.json'));console.log(d.stories?.length||d.freshItems||0)}catch{console.log('0')}" 2>/dev/null)
 echo "RSS fetch: ${RSS_STATS} stories" | tee -a "$LOG_FILE"
 
