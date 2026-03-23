@@ -219,15 +219,23 @@ async function fetchCuratedArticles() {
     ...ARTICLE_DEFAULTS,
     articlesSortBy: 'date',
     sourceUri: [
-      'bbc.com', 'aljazeera.com', 'reuters.com', 'france24.com',
-      'dw.com', 'dawn.com', 'scmp.com', 'middleeasteye.net',
-      'al-monitor.com', 'haaretz.com', 'tass.com', 'en.mehrnews.com',
-      'restofworld.org', 'statnews.com', 'newscientist.com',
-      'nature.com', 'arstechnica.com', 'technologyreview.com',
-      'coindesk.com', 'dailymaverick.co.za', 'premiumtimesng.com',
-      'dabangasudan.org', 'carbonbrief.org',
+      // Wire + Western
+      'bbc.com', 'reuters.com', 'france24.com', 'dw.com',
+      // Muslim world + Middle East
+      'aljazeera.com', 'middleeasteye.net', 'al-monitor.com', 'en.mehrnews.com',
+      'trtworld.com', 'newarab.com', 'middleeastmonitor.com', 'thenationalnews.com',
+      // South + East Asia
+      'dawn.com', 'scmp.com', 'antaranews.com',
+      // Russia
+      'tass.com', 'haaretz.com',
+      // Africa + Latin America
+      'dailymaverick.co.za', 'premiumtimesng.com', 'dabangasudan.org', 'techcabal.com',
+      // Science + Tech
+      'restofworld.org', 'statnews.com', 'newscientist.com', 'nature.com',
+      'arstechnica.com', 'technologyreview.com', 'coindesk.com',
+      'carbonbrief.org', 'quantamagazine.org', 'grist.org',
+      // Niche regional
       'eurasianet.org', 'insightcrime.org', 'sixthtone.com',
-      'quantamagazine.org', 'grist.org',
     ],
   })
   return data.articles?.results || []
@@ -250,11 +258,14 @@ async function fetchGapArticles() {
       'http://en.wikipedia.org/wiki/Brazil',
       'http://en.wikipedia.org/wiki/Turkey',
       'http://en.wikipedia.org/wiki/Qatar',
-      'http://en.wikipedia.org/wiki/Israel',
       'http://en.wikipedia.org/wiki/Pakistan',
       'http://en.wikipedia.org/wiki/South_Africa',
       'http://en.wikipedia.org/wiki/Nigeria',
       'http://en.wikipedia.org/wiki/Colombia',
+      'http://en.wikipedia.org/wiki/Indonesia',
+      'http://en.wikipedia.org/wiki/Malaysia',
+      'http://en.wikipedia.org/wiki/Bangladesh',
+      'http://en.wikipedia.org/wiki/United_Arab_Emirates',
     ],
   })
   return data.articles?.results || []
