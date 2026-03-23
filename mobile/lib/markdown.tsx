@@ -69,7 +69,7 @@ function renderSegments(segments: Segment[]): ReactNode[] {
   });
 }
 
-export function renderSentences(sentences: string[], fontSize?: number): ReactNode[] {
+export function renderSentences(sentences: string[], fontSize?: number, location?: string | null): ReactNode[] {
   const size = fontSize ?? TYPOGRAPHY.sizeBase;
   const sizeStyle = fontSize
     ? {
@@ -80,20 +80,17 @@ export function renderSentences(sentences: string[], fontSize?: number): ReactNo
     : null;
 
   return sentences.map((sentence, i) => {
-    // First sentence: extract dateline before em dash (e.g. "Tehran — ")
-    if (i === 0) {
-      const dashIdx = sentence.indexOf(' \u2014 ');
-      if (dashIdx > 0 && dashIdx < 40) {
-        const dateline = sentence.slice(0, dashIdx).toLowerCase();
-        const rest = sentence.slice(dashIdx + 3);
-        return (
-          <Text key={i} style={[styles.sentence, sizeStyle]} selectable>
-            <Text style={styles.dateline}>{dateline}</Text>
-            {'  '}
-            {renderSegments(parseInline(rest))}
-          </Text>
-        );
-      }
+    // First sentence: use location meta for dateline, strip "Location — " prefix
+    if (i === 0 && location) {
+      const prefix = location + ' \u2014 ';
+      const rest = sentence.startsWith(prefix) ? sentence.slice(prefix.length) : sentence;
+      return (
+        <Text key={i} style={[styles.sentence, sizeStyle]} selectable>
+          <Text style={styles.dateline}>{location.toLowerCase()}</Text>
+          {'  '}
+          {renderSegments(parseInline(rest))}
+        </Text>
+      );
     }
     return (
       <Text key={i} style={[styles.sentence, sizeStyle]} selectable>

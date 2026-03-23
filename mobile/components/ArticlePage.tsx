@@ -96,8 +96,8 @@ export const ArticlePage = memo(function ArticlePage({
       : null;
 
   const body = useMemo(
-    () => renderSentences(article.sentences, bodyFontSize),
-    [article.sentences, bodyFontSize],
+    () => renderSentences(article.sentences, bodyFontSize, article.location),
+    [article.sentences, bodyFontSize, article.location],
   );
 
   const handleShare = useCallback(() => {

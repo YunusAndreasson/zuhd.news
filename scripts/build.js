@@ -48,11 +48,13 @@ const markdownToHtml = (md) => {
   return result.join('\n')
 }
 
+const ABBREVS = /(?:St|Mr|Mrs|Ms|Dr|Jr|Sr|vs|Gen|Gov|Sgt|Col|Cpl|Pvt|Prof|Rev|Rep|Sen|Inc|Ltd|Corp|Dept|Univ|Est|approx|[A-Z])\.\s+/g
 const splitSentences = (html) =>
   html.replace(/<p>([\s\S]*?)<\/p>/g, (match, inner) => {
-    const sentences = inner.split(/(?<=[.!?][\u201D\u2019]?(?:<\/em>)?)\s+(?=[A-Z\u00C0-\u024F])/)
+    const masked = inner.replace(ABBREVS, m => m.replace('. ', '.\x00'))
+    const sentences = masked.split(/(?<=[.!?][\u201D\u2019]?(?:<\/em>)?)\s+(?=[A-Z\u00C0-\u024F])/)
     if (sentences.length <= 1) return match
-    return '<p>' + sentences.map(s => `<span class="s">${s}</span>`).join(' ') + '</p>'
+    return '<p>' + sentences.map(s => `<span class="s">${s.replace(/\.\x00/g, '. ')}</span>`).join(' ') + '</p>'
   })
 
 const formatDate = (dateStr) =>
@@ -219,7 +221,10 @@ const lastCycleTs = existsSync(lastCyclePath)
   : ''
 
 // Split body into sentences — same logic as web's .s { display: block }
-const splitBodySentences = (text) => text.trim().split(/(?<=[.!?])\s+(?=[A-Z])/).filter(Boolean)
+const splitBodySentences = (text) => {
+  const masked = text.trim().replace(ABBREVS, m => m.replace('. ', '.\x00'))
+  return masked.split(/(?<=[.!?])\s+(?=[A-Z])/).map(s => s.replace(/\.\x00/g, '. ')).filter(Boolean)
+}
 
 // Story thread lookup — maps article slugs to their thread info from the ledger
 const ledgerPath = join(ROOT, 'content', '.story-ledger.json')
