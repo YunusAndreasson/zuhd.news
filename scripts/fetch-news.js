@@ -18,6 +18,9 @@ const SOURCES = [
   { name: 'Mada Masr',      url: 'https://www.madamasr.com/en/feed/',          format: 'rss2' },
   { name: 'Wamda',          url: 'https://www.wamda.com/feed',                 format: 'rss2', defaultCategory: 'tech' },
   { name: 'Salaam Gateway', url: 'https://salaamgateway.com/feed',             format: 'atom', defaultCategory: 'economy' },
+  { name: '+972 Magazine',  url: 'https://www.972mag.com/feed/',               format: 'rss2' },
+  { name: 'Drop Site News', url: 'https://www.dropsitenews.com/feed',          format: 'rss2' },
+  { name: 'OCCRP',          url: 'https://www.occrp.org/en/feed',              format: 'rss2' },
 ]
 
 const EXCLUDE_RE = /\b(opinion|features|gallery|photos|video|sport|entertainment|culture|food|travel|lifestyle|podcast)\b/i

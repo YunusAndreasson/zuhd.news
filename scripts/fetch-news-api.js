@@ -226,6 +226,7 @@ async function fetchCuratedArticles() {
       'nature.com', 'arstechnica.com', 'technologyreview.com',
       'coindesk.com', 'dailymaverick.co.za', 'premiumtimesng.com',
       'dabangasudan.org', 'carbonbrief.org',
+      'eurasianet.org', 'insightcrime.org', 'sixthtone.com',
     ],
   })
   return data.articles?.results || []
