@@ -5,10 +5,10 @@
       "id": "iran-us-israel-war",
       "label": "Iran-US-Israel war: Pentagon $200bn request, Saudi threatens action",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-23T10:00:00Z",
-      "coverageCount": 305,
+      "lastCovered": "2026-03-23T12:32:00Z",
+      "coverageCount": 306,
       "category": "politics",
-      "importance": 5,
+      "importance": 7,
       "arc": "ongoing",
       "articles": [
         "2026-03-01-us-israel-attacks-iran-retaliation-regional-war",
@@ -146,9 +146,10 @@
         "2026-03-23-us-strikes-qom-engine-factory-iran-manufacturing",
         "2026-03-23-iran-condemns-jordan-un-us-attacks-facilitation",
         "2026-03-23-israeli-poll-90-percent-support-iran-war",
-        "2026-03-23-trump-weekend-pivot-domestic-iran-war-attention"
+        "2026-03-23-trump-weekend-pivot-domestic-iran-war-attention",
+        "2026-03-23-trump-halts-iran-strikes-five-day-pause-talks"
       ],
-      "summary": "Trump pivots to domestic politics mid-war weekend as 48-hour Hormuz ultimatum ticks."
+      "summary": "Trump halts strikes on Iran power plants for 5 days citing 'very good' talks. Iran denies any negotiations. Oil dropped 8%. First direct contact since war began Feb 28."
     },
     {
       "id": "lebanon-israel-war",
@@ -220,10 +221,10 @@
       "id": "iran-war-hormuz-economic-impact",
       "label": "Hormuz crisis: Ras Laffan LNG attack, allies refuse escort, Pacific hit",
       "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-23T10:00:00Z",
-      "coverageCount": 276,
+      "lastCovered": "2026-03-23T12:32:00Z",
+      "coverageCount": 277,
       "category": "economy",
-      "importance": 5,
+      "importance": 6,
       "arc": "ongoing",
       "articles": [
         "2026-03-08-iraq-oil-production-collapses-70-percent-hormuz-blockade",
@@ -351,9 +352,10 @@
         "2026-03-23-seoul-kospi-crash-6-percent-iran-war-markets",
         "2026-03-23-qatar-airways-fleet-relocation-spain-gulf-war",
         "2026-03-23-pakistan-fuel-levy-rs200-litre-hormuz-austerity",
-        "2026-03-23-consumer-prices-rise-war-toys-toilet-paper-hong-kong"
+        "2026-03-23-consumer-prices-rise-war-toys-toilet-paper-hong-kong",
+        "2026-03-23-saudi-aramco-cuts-asia-supply-second-month"
       ],
-      "summary": "Pakistan raises fuel levy Rs200/litre (Rs500 total in one week). Consumer prices rising in HK."
+      "summary": "Saudi Aramco exports collapsed 39% (7.1M→4.35M bpd) with only Yanbu Red Sea port operational. Second month of Asian supply cuts."
     },
     {
       "id": "iaea-nuclear-danger-assessment",
@@ -545,8 +547,8 @@
       "lastCovered": "2026-03-20T05:15:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
+      "importance": 4,
+      "arc": "developing",
       "articles": [
         "2026-03-20-belarus-frees-250-political-prisoners-sanctions-thaw"
       ],
@@ -671,8 +673,8 @@
       "lastCovered": "2026-03-23T10:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
         "2026-03-23-laguardia-collision-two-pilots-killed-air-canada"
       ],
@@ -708,17 +710,18 @@
     },
     {
       "id": "hong-kong-nsl-trials",
-      "label": "Hong Kong NSL trials: activist defiance from dock",
+      "label": "Hong Kong authoritarianism: NSL trials + phone password law",
       "firstSeen": "2026-03-23T10:00:00Z",
-      "lastCovered": "2026-03-23T10:00:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-23T12:32:00Z",
+      "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
-        "2026-03-23-hong-kong-activist-subversion-trial-one-party-regression"
+        "2026-03-23-hong-kong-activist-subversion-trial-one-party-regression",
+        "2026-03-23-hong-kong-police-phone-passwords-national-security"
       ],
-      "summary": "Activist called one-party rule regression from the dock. Rare defiance under NSL."
+      "summary": "Police can now demand phone passwords (1yr jail for refusal) under new national security rules. Coincides with ongoing NSL subversion trials where activist called one-party rule regression."
     },
     {
       "id": "jospin-death-french-left",
@@ -859,6 +862,119 @@
         "2026-03-23-malaysia-who-pandemic-talks-virtual-war-disruption"
       ],
       "summary": "Malaysia joins WHO pandemic preparedness talks virtually because war makes Geneva travel impractical."
+    },
+    {
+      "id": "haftar-us-lobbying",
+      "label": "US lobby firm $2m contract to whitewash Libya's Haftar",
+      "firstSeen": "2026-03-23T12:32:00Z",
+      "lastCovered": "2026-03-23T12:32:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-us-lobby-firm-2m-haftar-libya-whitewash"
+      ],
+      "summary": "Ballard Partners (staffed by ex-Trump officials) gets $2m to represent Haftar, found liable for war crimes by US court in 2022. Trump advisor Boulos brokering power-sharing deal bypassing elections."
+    },
+    {
+      "id": "uganda-ngo-crackdown",
+      "label": "Uganda NGO crackdown creates service gaps",
+      "firstSeen": "2026-03-23T12:32:00Z",
+      "lastCovered": "2026-03-23T12:32:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-uganda-ngo-crackdown-service-gaps-democracy"
+      ],
+      "summary": "Uganda crackdown on NGOs creating cascading service gaps in health, education. Follows Bobi Wine fleeing to US."
+    },
+    {
+      "id": "nigeria-security-crisis-march",
+      "label": "Nigeria dual crisis: Cross River gas explosion + Kwara bomb",
+      "firstSeen": "2026-03-23T12:32:00Z",
+      "lastCovered": "2026-03-23T12:32:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-cross-river-gas-explosion-60-victims-nigeria",
+        "2026-03-23-nigeria-bomb-kwara-niger-road-security"
+      ],
+      "summary": "60 burn victims from gas explosion in Cross River state. Same day, bomb detonated on Kwara-Niger road. Dual infrastructure/security crisis."
+    },
+    {
+      "id": "grab-foodpanda-taiwan",
+      "label": "Grab acquires Foodpanda Taiwan for $600m",
+      "firstSeen": "2026-03-23T12:32:00Z",
+      "lastCovered": "2026-03-23T12:32:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-grab-foodpanda-taiwan-600m-deal"
+      ],
+      "summary": "Singapore super-app Grab expands beyond SE Asia for first time. Foodpanda Taiwan was €1.5B GMV and already profitable."
+    },
+    {
+      "id": "uganda-lake-victoria-trade-collapse",
+      "label": "Uganda Lake Victoria cargo trade collapsed from 30% to near zero",
+      "firstSeen": "2026-03-23T12:32:00Z",
+      "lastCovered": "2026-03-23T12:32:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-uganda-lake-victoria-cargo-collapse-trade"
+      ],
+      "summary": "Lake Victoria cargo once carried ~30% of Uganda's trade, now near zero. Structural infrastructure failure."
+    },
+    {
+      "id": "doctronic-ai-doctor",
+      "label": "Doctronic AI doctor raises $40m, chatbot prescriptions in Utah",
+      "firstSeen": "2026-03-23T12:32:00Z",
+      "lastCovered": "2026-03-23T12:32:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-doctronic-40m-ai-doctor-prescriptions-chatbot"
+      ],
+      "summary": "Doctronic raised $65M total. First-in-nation chatbot prescription renewals in Utah. $39/visit, $10M revenue, expanding to health systems."
+    },
+    {
+      "id": "iran-handala-hackers-return",
+      "label": "Iranian state hackers Handala back, hit US medical firm Stryker",
+      "firstSeen": "2026-03-23T12:32:00Z",
+      "lastCovered": "2026-03-23T12:32:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-iranian-hackers-handala-back-fbi-stryker-attack"
+      ],
+      "summary": "Handala formally attributed to Iran intelligence ministry. Escalated from trolling Israel to destructive cyberattack on US medical firm Stryker."
+    },
+    {
+      "id": "russia-telegram-fines",
+      "label": "Russia piles fines on Telegram, 40M+ rubles unpaid",
+      "firstSeen": "2026-03-23T12:32:00Z",
+      "lastCovered": "2026-03-23T12:32:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-23-russia-telegram-fines-40-million-rubles"
+      ],
+      "summary": "Telegram fined for 2 more violations, total unpaid fines exceed 40M rubles. Pressured from both Russia and Western governments post-Durov arrest."
     }
   ]
 }
