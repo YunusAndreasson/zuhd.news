@@ -97,7 +97,8 @@ These rules exist because the output is sent directly to Google Cloud TTS (Chirp
 **Em dashes and punctuation:**
 - Chirp3-HD uses em dashes (—) as natural pacing cues — like a breath or a dramatic beat. Use them for spoken rhythm: "families' last resort — in a country with no healthcare" works because a speaker would pause there.
 - Do NOT use em dashes for written clarifications, data ranges, or parenthetical asides that wouldn't be spoken aloud. "From forty-five thousand to just ten thousand" is better than "— from forty-five thousand to ten thousand."
-- Do NOT use ellipsis (...). Use `<break time="300ms"/>` for a deliberate spoken pause, or restructure the sentence.
+- Ellipsis (...) creates a natural deliberate pause in Chirp3-HD. Use it sparingly for dramatic effect ("oil prices have surged fifty percent..."). For precise timing control, use `<break time="300ms"/>` instead.
+- Keep sentences short. Chirp3-HD rejects sentences that are too long — if a sentence has more than ~40 words, split it.
 - Write for the ear, not the eye. Every sentence should sound natural if you read it aloud. If a punctuation mark creates an awkward pause when spoken, remove it.
 
 **Dates:**

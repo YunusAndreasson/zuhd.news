@@ -195,12 +195,13 @@ if (pBlocks.length === 0) {
 
   // Signoff: everything after last </p> — append to last category section
   // so TTS has enough context for natural pacing (tiny standalone chunks sound choppy)
+  // Append 2s trailing silence so the voice finishes before the outro crossfade begins
   const lastBlock = pBlocks[pBlocks.length - 1]
   const signoffContent = innerSsml.slice(lastBlock.index + lastBlock[0].length).trim()
   if (signoffContent && ssmlSections.length > 0) {
-    ssmlSections[ssmlSections.length - 1].ssml += '\n' + signoffContent
+    ssmlSections[ssmlSections.length - 1].ssml += '\n' + signoffContent + '\n<break time="2s"/>'
   } else if (signoffContent) {
-    ssmlSections.push({ type: 'signoff', ssml: signoffContent })
+    ssmlSections.push({ type: 'signoff', ssml: signoffContent + '\n<break time="2s"/>' })
   }
 }
 
