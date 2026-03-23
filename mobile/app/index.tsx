@@ -2,11 +2,10 @@ import { BottomSheetBackdrop, type BottomSheetBackdropProps, BottomSheetModal, B
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useRef, useState } from 'react';
-import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
+import { type LayoutChangeEvent, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { AboutPage } from '../components/AboutPage';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
 import type { TapResult } from '../components/globe/MiniGlobe';
 
@@ -18,6 +17,32 @@ import { CATEGORIES, COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/them
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useHaptic } from '../hooks/useHaptic';
+
+function KeyStat({ label, value }: { label: string; value: string | null | undefined }) {
+  if (!value) return null;
+  return (
+    <View style={styles.keyStat}>
+      <Text style={styles.keyStatValue}>{value}</Text>
+      <Text style={styles.keyStatLabel}>{label}</Text>
+    </View>
+  );
+}
+
+// Country code → flag emoji + full name
+const CC_NAMES: Record<string, string> = {
+  US: 'United States', GB: 'United Kingdom', QA: 'Qatar', FR: 'France', DE: 'Germany',
+  ZA: 'South Africa', IN: 'India', KR: 'South Korea', NL: 'Netherlands', IL: 'Israel',
+  RU: 'Russia', PK: 'Pakistan', BD: 'Bangladesh', HK: 'Hong Kong', MY: 'Malaysia',
+  ID: 'Indonesia', NG: 'Nigeria', SE: 'Sweden', AR: 'Argentina', UY: 'Uruguay',
+  CA: 'Canada', AU: 'Australia', NZ: 'New Zealand', EG: 'Egypt', TR: 'Türkiye',
+  DZ: 'Algeria', CN: 'China', JP: 'Japan', BR: 'Brazil', MX: 'Mexico', CY: 'Cyprus',
+};
+
+function ccToFlag(cc: string): string {
+  return cc.toUpperCase().replace(/./g, (c) =>
+    String.fromCodePoint(0x1f1e6 + c.charCodeAt(0) - 65),
+  );
+}
 
 function CountryRow({ label, value }: { label: string; value: string | null | undefined }) {
   if (!value) return null;
@@ -61,7 +86,7 @@ export default function HomeScreen() {
   );
 
   const handleSourcePress = useCallback(
-    (sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => {
+    (sourceName: string, allSources?: Array<{name: string; country?: string | null}>, eventCoverage?: number | null) => {
       impact();
       setSourceSheet(sourceName);
       setSourceSheetSources(allSources ?? []);
@@ -231,9 +256,6 @@ export default function HomeScreen() {
             )}
           </View>
         ))}
-        <View key="about" collapsable={false}>
-          <AboutPage />
-        </View>
       </PagerView>
 
       <Toast ref={toastRef} />
@@ -251,29 +273,32 @@ export default function HomeScreen() {
         <BottomSheetView
           style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
         >
-          {sourceSheetSources.length > 1 ? (
+          {sourceSheetSources.length > 0 ? (
             <>
               <Text style={styles.sheetLabel}>
-                {sourceSheetSources.length} SOURCES
+                SOURCES
               </Text>
               {sourceSheetSources.map((s, i) => {
                 const info = SOURCES[s.name];
+                const cc = s.country?.toUpperCase();
+                const countryName = cc ? CC_NAMES[cc] ?? cc : null;
+                const flag = cc ? ccToFlag(cc) : null;
                 return (
                   <View key={i} style={styles.sourceRow}>
                     <Text style={styles.sheetTitle}>{s.name}</Text>
-                    {s.country && <Text style={styles.sourceCountry}>{s.country}</Text>}
+                    {countryName && (
+                      <Text style={styles.sourceCountry}>{flag} {countryName}</Text>
+                    )}
                     {info && <Text style={styles.sheetBody}>{info.description}</Text>}
                   </View>
                 );
               })}
-            </>
-          ) : sourceInfo ? (
-            <>
-              <Text style={styles.sheetLabel}>
-                {sourceInfo.type.toUpperCase()} · {sourceInfo.location.toUpperCase()}
+              <Text
+                style={styles.correctionLink}
+                onPress={() => Linking.openURL('mailto:yunus@edenmind.com?subject=Correction')}
+              >
+                Submit a correction
               </Text>
-              <Text style={styles.sheetTitle}>{sourceSheet}</Text>
-              <Text style={styles.sheetBody}>{sourceInfo.description}</Text>
             </>
           ) : null}
         </BottomSheetView>
@@ -296,42 +321,39 @@ export default function HomeScreen() {
             <>
               {/* Identity — city + country hero */}
               <View style={styles.countryIdentity}>
-                <Text style={styles.countryFlag}>{countrySheet.data.flag}</Text>
                 <View style={styles.countryIdentityText}>
-                  {countrySheet.location && (
-                    <Text style={styles.countryLocation}>{countrySheet.location}</Text>
-                  )}
+                  <Text style={styles.countryLocation}>{countrySheet.countryName}</Text>
                   <Text style={styles.countryName}>{countrySheet.data.official}</Text>
                 </View>
+                <Text style={styles.countryFlag}>{countrySheet.data.flag}</Text>
               </View>
 
-              {/* Data grid */}
-              <CountryRow label="Region" value={[
-                countrySheet.data.region,
-                countrySheet.data.landlocked ? 'Landlocked' : null,
-                !countrySheet.data.independent ? 'Disputed' : null,
-              ].filter(Boolean).join(' · ')} />
-              <CountryRow label="Local time" value={countrySheet.localTime} />
+              {/* Key stats — at-a-glance numbers */}
+              <View style={styles.countryKeyStats}>
+                <KeyStat label="population" value={countrySheet.data.population} />
+                <KeyStat label="gdp" value={countrySheet.data.gdp} />
+                <KeyStat label="military spend" value={countrySheet.data.military ?? null} />
+              </View>
+
+              {/* Detail rows — ordered by user interest */}
               <CountryRow label="Capital" value={countrySheet.data.capital} />
-              <CountryRow label="Population" value={countrySheet.data.population} />
-              <CountryRow label="Area" value={countrySheet.data.area} />
               <CountryRow label="Languages" value={countrySheet.data.languages} />
-              <CountryRow label="GDP" value={countrySheet.data.gdp} />
-              <CountryRow label="GDP/capita" value={countrySheet.data.gdpPerCapita} />
               <CountryRow
                 label="Currency"
                 value={countrySheet.data.currency
                   ? `${countrySheet.data.currency}${countrySheet.data.currencySymbol ? ` ${countrySheet.data.currencySymbol}` : ''}`
                   : null}
               />
+              <CountryRow label="Local time" value={countrySheet.localTime} />
+              <CountryRow label="Area" value={countrySheet.data.area} />
+              <CountryRow label="GDP/capita" value={countrySheet.data.gdpPerCapita} />
               <CountryRow label="Life expectancy" value={countrySheet.data.lifeExpectancy} />
               <CountryRow label="Internet" value={countrySheet.data.internetPct} />
-              <CountryRow
-                label="Military"
-                value={countrySheet.data.military
-                  ? `${countrySheet.data.military}${countrySheet.data.militaryPctGdp ? ` (${countrySheet.data.militaryPctGdp} GDP)` : ''}`
-                  : null}
-              />
+              <CountryRow label="Region" value={[
+                countrySheet.data.region,
+                countrySheet.data.landlocked ? 'Landlocked' : null,
+                !countrySheet.data.independent ? 'Disputed' : null,
+              ].filter(Boolean).join(' · ')} />
             </>
           )}
         </BottomSheetView>
@@ -398,11 +420,19 @@ const styles = StyleSheet.create({
     color: COLORS.text,
     marginBottom: SPACING.sm,
   },
+  correctionLink: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.textSecondary,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    marginTop: SPACING.lg,
+    textDecorationLine: 'underline',
+  },
   sheetBody: {
     fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeSm,
-    lineHeight: TYPOGRAPHY.sizeSm * TYPOGRAPHY.leadingBody,
-    color: COLORS.textSecondary,
+    fontSize: TYPOGRAPHY.sizeBase,
+    lineHeight: TYPOGRAPHY.sizeBase * TYPOGRAPHY.leadingBody,
+    color: COLORS.accent,
   },
   sourceRow: {
     marginBottom: SPACING.md,
@@ -436,6 +466,30 @@ const styles = StyleSheet.create({
     fontFamily: FONT.regular,
     fontSize: TYPOGRAPHY.sizeSm,
     color: COLORS.textSecondary,
+  },
+  countryKeyStats: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: SPACING.lg,
+    paddingBottom: SPACING.md,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: COLORS.rule,
+  },
+  keyStat: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  keyStatValue: {
+    fontFamily: FONT.bold,
+    fontSize: TYPOGRAPHY.sizeBase,
+    color: COLORS.white,
+    marginBottom: 2,
+  },
+  keyStatLabel: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.textSecondary,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
   },
   countryRow: {
     flexDirection: 'row',

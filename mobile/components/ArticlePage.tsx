@@ -1,5 +1,5 @@
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
-import { memo, useCallback, useEffect, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { Dimensions, Pressable, Share, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Extrapolation,
@@ -8,14 +8,11 @@ import Animated, {
   useAnimatedStyle,
   useDerivedValue,
   useReducedMotion,
-  useSharedValue,
-  withDelay,
-  withTiming,
 } from 'react-native-reanimated';
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { renderSentences } from '../lib/markdown';
-import type { FeedInfo } from '../lib/feed-cache';
+
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 import type { Article } from '../types';
 import { ActionLabel } from './ActionLabel';
@@ -28,9 +25,8 @@ interface ArticlePageProps {
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
-  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => void;
+  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>, eventCoverage?: number | null) => void;
   showEarlierDivider?: boolean;
-  feedInfo?: FeedInfo | null;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
   onCountryPress?: (result: TapResult) => void;
@@ -45,20 +41,7 @@ function formatTimeAgo(addedAt: number): string {
   return date.toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 }
 
-function FeedLabel({ total, readMins }: { total: number; readMins: number }) {
-  const opacity = useSharedValue(1);
-  useEffect(() => {
-    opacity.value = withDelay(6000, withTiming(0, { duration: 1500 }));
-  }, [opacity]);
-  const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
-  return (
-    <Animated.View style={[styles.feedPill, style]}>
-      <Text style={styles.feedPillText}>
-        {total} articles · ~{readMins} min read
-      </Text>
-    </Animated.View>
-  );
-}
+
 
 function GlobeTapZone({ globeRef, globeYOffset, onTap }: {
   globeRef?: React.RefObject<MiniGlobeRef | null>;
@@ -85,7 +68,6 @@ export const ArticlePage = memo(function ArticlePage({
   scrollY,
   onSourcePress,
   showEarlierDivider,
-  feedInfo,
   globeRef,
   globeYOffset,
   onCountryPress,
@@ -162,9 +144,6 @@ export const ArticlePage = memo(function ArticlePage({
 
       {/* Content zone — title, body, meta all grouped together */}
       <View style={styles.content}>
-        {index === 0 && feedInfo && (
-          <FeedLabel total={feedInfo.total} readMins={feedInfo.readMins} />
-        )}
         {showEarlierDivider && (
           <View style={styles.earlierDivider}>
             <View style={styles.earlierLine} />
@@ -178,25 +157,24 @@ export const ArticlePage = memo(function ArticlePage({
           </Text>
           {body}
 
-          {/* Meta — source + time | share */}
+          {/* Meta — status left, actions right */}
           <View style={styles.meta}>
             <View style={styles.metaGroup}>
-              {article.sources && article.sources.length > 1 ? (
-                <ActionLabel
-                  label={`${article.sources.length} sources`}
-                  icon="chevron-down"
-                  onPress={() => onSourcePress?.(article.source ?? article.sources![0]?.name ?? '', article.sources)}
-                />
-              ) : article.source ? (
-                <ActionLabel
-                  label={article.source.toLowerCase()}
-                  icon="chevron-down"
-                  onPress={() => onSourcePress?.(article.source!)}
-                />
-              ) : null}
+              {article.eventCoverage != null && article.eventCoverage >= 100 && (
+                <View style={styles.breakingPill}>
+                  <Text style={styles.breakingText}>breaking</Text>
+                </View>
+              )}
               <Text style={styles.metaDim}>{timeAgo}</Text>
             </View>
             <View style={styles.metaGroup}>
+              {article.sources && article.sources.length > 0 ? (
+                <ActionLabel
+                  label="sources"
+                  icon="chevron-down"
+                  onPress={() => onSourcePress?.(article.sources![0]?.name ?? '', article.sources, article.eventCoverage)}
+                />
+              ) : null}
               <ActionLabel label="share" icon="arrow-up-outline" onPress={handleShare} />
             </View>
           </View>
@@ -233,21 +211,6 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
     height: GRADIENT_HEIGHT,
   },
-  feedPill: {
-    alignSelf: 'flex-start',
-    backgroundColor: COLORS.textSecondary,
-    borderRadius: 4,
-    paddingHorizontal: SPACING.sm,
-    paddingVertical: SPACING.xs,
-    marginBottom: SPACING.sm,
-    marginTop: -SPACING.md,
-  },
-  feedPillText: {
-    fontFamily: FONT.bold,
-    fontSize: TYPOGRAPHY.sizeXs,
-    color: COLORS.bg,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-  },
   earlierDivider: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -273,6 +236,18 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     marginBottom: SPACING.md,
     fontVariant: ['oldstyle-nums'],
+  },
+  breakingPill: {
+    backgroundColor: COLORS.text,
+    borderRadius: 3,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+  },
+  breakingText: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.bg,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
   },
   meta: {
     flexDirection: 'row',

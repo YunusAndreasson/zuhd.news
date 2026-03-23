@@ -5,8 +5,7 @@ import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATEGORIES, COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
 
-const INFO_INDEX = CATEGORIES.length;
-const TAB_LABELS = [...CATEGORIES.map((c) => c.toUpperCase()), 'info'];
+const TAB_LABELS = CATEGORIES.map((c) => c.toUpperCase());
 
 interface TabLayout {
   x: number;
@@ -35,14 +34,10 @@ function TabLabel({
   onPress: () => void;
   onLayout: (e: LayoutChangeEvent) => void;
 }) {
-  const isIcon = index >= INFO_INDEX;
   const animatedStyle = useAnimatedStyle(() => {
     'worklet';
     const distance = Math.abs(pagerOffset.value - index);
     const active = distance < 0.5;
-    if (isIcon) {
-      return { opacity: active ? 1 : 0.4 };
-    }
     return { color: active ? COLORS.text : COLORS.textSecondary };
   });
 
@@ -53,13 +48,7 @@ function TabLabel({
       hitSlop={12}
       style={({ pressed }) => pressed && { opacity: 0.5 }}
     >
-      {index === INFO_INDEX ? (
-        <Animated.View style={[styles.tabIcon, animatedStyle]}>
-          <Ionicons name="compass-outline" size={TYPOGRAPHY.sizeSm} color={COLORS.white} />
-        </Animated.View>
-      ) : (
-        <Animated.Text style={[styles.tabLabel, animatedStyle]}>{label}</Animated.Text>
-      )}
+      <Animated.Text style={[styles.tabLabel, animatedStyle]}>{label}</Animated.Text>
     </Pressable>
   );
 }
@@ -107,8 +96,7 @@ export function CategoryBar({
       'clamp',
     );
     // Hide underline on icon tabs
-    const isIconTab = Math.round(pagerOffset.value) >= INFO_INDEX;
-    return { left: x, width: w, opacity: isIconTab ? 0 : 0.15 };
+    return { left: x, width: w, opacity: 0.15 };
   });
 
   const fillPos = useAnimatedStyle(() => {
@@ -119,8 +107,7 @@ export function CategoryBar({
     const progress =
       currentIdx < CATEGORIES.length ? (categoryProgresses.value[currentIdx] ?? 0) : 1;
 
-    const isIconTab = currentIdx >= INFO_INDEX;
-    return { left: tab?.x ?? 0, width: (tab?.width ?? 0) * progress, opacity: isIconTab ? 0 : 1 };
+    return { left: tab?.x ?? 0, width: (tab?.width ?? 0) * progress, opacity: 1 };
   });
 
   return (

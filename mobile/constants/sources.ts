@@ -250,4 +250,166 @@ export const SOURCES: Record<string, SourceInfo> = {
     description:
       'Tout Sur l\u2019Alg\u00e9rie. One of the most-read independent online news sources in Algeria.',
   },
+  'Anadolu Agency': {
+    type: 'News agency',
+    location: 'Ankara, T\u00fcrkiye',
+    description:
+      'T\u00fcrkiye\u2019s state-run news agency. Publishes in 13 languages with extensive coverage of the Muslim world and Central Asia.',
+  },
+  'Associated Press': {
+    type: 'News agency',
+    location: 'New York, US',
+    description:
+      'American nonprofit news cooperative founded in 1846. One of the two major global wire services alongside Reuters.',
+  },
+  BBC: {
+    type: 'Public broadcaster',
+    location: 'London, UK',
+    description:
+      'British Broadcasting Corporation. Funded by the UK licence fee. One of the largest and oldest news operations in the world.',
+  },
+  'Economic Times': {
+    type: 'Newspaper',
+    location: 'Mumbai, India',
+    description:
+      'Indian financial daily owned by the Times Group. India\u2019s most widely read English-language business newspaper.',
+  },
+  HuffPost: {
+    type: 'Digital media',
+    location: 'New York, US',
+    description:
+      'American online news aggregator and blog founded in 2005. Covers US politics, culture, and social issues.',
+  },
+  'Investing.com': {
+    type: 'Financial data',
+    location: 'Nicosia, Cyprus',
+    description:
+      'Financial markets platform providing real-time data, analysis, and news across global markets and commodities.',
+  },
+  'New York Times': {
+    type: 'Newspaper',
+    location: 'New York, US',
+    description:
+      'American newspaper of record founded in 1851. Extensive international bureau network. Owned by the Sulzberger family.',
+  },
+  RT: {
+    type: 'State broadcaster',
+    location: 'Moscow, Russia',
+    description:
+      'Russian government-funded international television network. Designated a foreign agent in the US and banned in the EU.',
+  },
+  'Space.com': {
+    type: 'Digital media',
+    location: 'New York, US',
+    description:
+      'Space and astronomy news site owned by Future plc. Covers NASA missions, rocket launches, and astrophysics.',
+  },
+  TASS: {
+    type: 'News agency',
+    location: 'Moscow, Russia',
+    description:
+      'Russia\u2019s largest news agency, state-owned since 1904. Primary wire service for Russian government communications.',
+  },
+  'The Guardian': {
+    type: 'Newspaper',
+    location: 'London, UK',
+    description:
+      'British daily owned by the Scott Trust, guaranteeing editorial independence. Known for investigative journalism and progressive editorial stance.',
+  },
+  'The Jerusalem Post': {
+    type: 'Newspaper',
+    location: 'Tel Aviv, Israel',
+    description:
+      'English-language Israeli newspaper founded in 1932. Centre-right editorial line. Widely read internationally for Israeli perspective.',
+  },
+  'The Times of India': {
+    type: 'Newspaper',
+    location: 'Mumbai, India',
+    description:
+      'World\u2019s largest-selling English-language daily newspaper. Flagship of the Times Group media conglomerate.',
+  },
+  'Times of Israel': {
+    type: 'Digital media',
+    location: 'Tel Aviv, Israel',
+    description:
+      'Online newspaper founded in 2012. Covers Israeli news, Middle East affairs, and Jewish world. Centrist editorial line.',
+  },
+  'Yahoo News': {
+    type: 'Digital media',
+    location: 'Sunnyvale, US',
+    description:
+      'News aggregation platform combining original reporting with wire service and partner content. One of the most-visited news sites globally.',
+  },
+  'Drop Site': {
+    type: 'Investigative',
+    location: 'United States',
+    description:
+      'Independent investigative outlet founded by journalists Jeremy Scahill and Ryan Grim. Covers national security, foreign policy, and government accountability.',
+  },
+  OCCRP: {
+    type: 'Investigative',
+    location: 'Amsterdam, Netherlands',
+    description:
+      'Organised Crime and Corruption Reporting Project. Global network of investigative journalists exposing kleptocracy, money laundering, and state capture.',
+  },
+  Reuters: {
+    type: 'News agency',
+    location: 'London, UK',
+    description:
+      'Global wire service owned by Thomson Reuters. One of the two largest international news agencies alongside Associated Press.',
+  },
+  'Al Arabiya': {
+    type: 'Broadcaster',
+    location: 'Dubai, UAE',
+    description:
+      'Saudi-owned Arabic news channel. Covers Middle East affairs with editorial perspective aligned with Saudi foreign policy.',
+  },
+  'The Intercept': {
+    type: 'Investigative',
+    location: 'New York, US',
+    description:
+      'Digital publication focused on national security, civil liberties, and government surveillance. Founded on the Snowden archive.',
+  },
+  'Kyodo News': {
+    type: 'News agency',
+    location: 'Tokyo, Japan',
+    description:
+      'Japan\u2019s largest news cooperative. Primary wire service for Japanese media, covering domestic politics and Asia-Pacific affairs.',
+  },
+  Xinhua: {
+    type: 'News agency',
+    location: 'Beijing, China',
+    description:
+      'China\u2019s official state news agency. Largest news agency in the world by correspondents and bureaus. Reflects Chinese government positions.',
+  },
+  'The Washington Post': {
+    type: 'Newspaper',
+    location: 'Washington, DC',
+    description:
+      'American broadsheet known for political coverage and investigative journalism. Owned by Jeff Bezos since 2013.',
+  },
+  'Financial Times': {
+    type: 'Newspaper',
+    location: 'London, UK',
+    description:
+      'Global business daily owned by Nikkei. Authoritative coverage of finance, economics, and international trade.',
+  },
+  'The Economist': {
+    type: 'Magazine',
+    location: 'London, UK',
+    description:
+      'Weekly magazine covering international affairs, politics, business, and economics. Known for unsigned editorial voice.',
+  },
+  'Le Monde': {
+    type: 'Newspaper',
+    location: 'Paris, France',
+    description:
+      'France\u2019s newspaper of record. Independent editorial line covering French and international politics.',
+  },
+  'Der Spiegel': {
+    type: 'Magazine',
+    location: 'Hamburg, Germany',
+    description:
+      'Germany\u2019s largest news magazine. Known for investigative reporting and its role in exposing political scandals.',
+  },
 };

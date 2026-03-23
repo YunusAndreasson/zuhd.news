@@ -1,4 +1,4 @@
-import { BlurMask, Canvas, Circle, Path, Skia } from '@shopify/react-native-skia';
+import { BlurMask, Canvas, Circle, Group, Image, Path, Skia, useImage } from '@shopify/react-native-skia';
 import { geoCircle, geoContains, geoDistance, geoOrthographic, geoPath } from 'd3-geo';
 import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
@@ -19,8 +19,18 @@ const skiaCtx = createSkiaPathContext();
 const nightCircleGen = geoCircle();
 const HALF_PI = Math.PI / 2;
 
+// Moon phase — synodic period from known new moon
+const SYNODIC = 29.53059;
+const KNOWN_NEW_MOON = Date.UTC(2025, 0, 29, 12, 36); // Jan 29, 2025 12:36 UTC
+
+function getMoonPhase(): number {
+  const days = (Date.now() - KNOWN_NEW_MOON) / 86400000;
+  return ((days % SYNODIC) + SYNODIC) % SYNODIC / SYNODIC; // 0 = new, 0.5 = full
+}
+
+
 // Al-Aqsa / Dome of the Rock — [lng, lat] for d3-geo
-const AL_AQSA = { coords: [35.2354, 31.7761] as [number, number], name: 'Al-Aqsa', tz: 'Asia/Hebron', country: 'Palestine' };
+const AL_AQSA = { coords: [35.2354, 31.7761] as [number, number], name: 'Al-Quds', tz: 'Asia/Hebron', country: 'Palestine' };
 
 // Sun position from UTC time (cached 60s)
 let cachedSunPos: [number, number] = [0, 0];
@@ -39,11 +49,32 @@ function getSunPosition(): [number, number] {
 
 // Nudge offsets for coastal/border coordinate fallback (0.1° ≈ 11km)
 const NUDGES: [number, number][] = [
-  [0, 0], [0.1, 0], [-0.1, 0], [0, 0.1], [0, -0.1],
+  [0, 0],
+  [0.1, 0], [-0.1, 0], [0, 0.1], [0, -0.1],
   [0.1, 0.1], [-0.1, 0.1], [0.1, -0.1], [-0.1, -0.1],
+  [0.2, 0], [-0.2, 0], [0, 0.2], [0, -0.2],
+  [0.3, 0], [-0.3, 0], [0, 0.3], [0, -0.3],
 ];
 
-function findCountry(lat: number, lng: number): GeoJSON.Feature | null {
+// Manual overrides for cities that fall outside their country in 110m TopoJSON
+const COUNTRY_OVERRIDES: Record<string, string> = {
+  'singapore': 'Singapore',
+  'gaza': 'Palestine',
+  'ramallah': 'Palestine',
+  'nablus': 'Palestine',
+  'hebron': 'Palestine',
+  'jenin': 'Palestine',
+  'al-quds': 'Palestine',
+};
+
+function findCountry(lat: number, lng: number, location?: string | null): GeoJSON.Feature | null {
+  // Check manual overrides first
+  if (location) {
+    const override = COUNTRY_OVERRIDES[location.toLowerCase()];
+    if (override) {
+      return countries.features.find((f) => (f.properties as any)?.name === override) ?? null;
+    }
+  }
   for (const [dlat, dlng] of NUDGES) {
     const pt: [number, number] = [lng + dlng, lat + dlat];
     const found = countries.features.find((f) => geoContains(f, pt));
@@ -105,7 +136,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     return articles.map((a) => {
       const coords = getCoords(a);
       if (!coords) return null;
-      const country = findCountry(coords[0], coords[1]);
+      const country = findCountry(coords[0], coords[1], a.location);
       const countryName = (country?.properties as any)?.name ?? null;
       return { lat: coords[0], lng: coords[1], country, countryName, location: a.location };
     });
@@ -245,21 +276,6 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   useImperativeHandle(ref, () => ({
     hitTest(x: number, y: number): TapResult | null {
-      // Check Al-Aqsa first
-      if (state.aqsa) {
-        const adx = x - state.aqsa.x;
-        const ady = y - state.aqsa.y;
-        if (adx * adx + ady * ady <= 3600) {
-          let localTime: string | null = null;
-          try {
-            localTime = new Date().toLocaleTimeString('en-GB', {
-              timeZone: AL_AQSA.tz, hour: '2-digit', minute: '2-digit',
-            });
-          } catch {}
-          return { countryName: AL_AQSA.country, location: AL_AQSA.name, localTime, data: COUNTRY_DATA['Palestine'] ?? null };
-        }
-      }
-
       // Check article dot
       const dot = state.dot;
       if (!dot) return null;
@@ -285,10 +301,119 @@ export const MiniGlobe = memo(function MiniGlobe({
     },
   }));
 
+  // Moon — NASA texture with phase shadow
+  const moonTexture = useImage(require('../../assets/moon.png'));
+  const moonPhase = getMoonPhase();
+  const moonR = globeRadius * 0.05;
+  const moonX = cx;
+  const moonY = cy - globeRadius - moonR * 5;
+
+  const moonClip = useMemo(() => {
+    const p = Skia.Path.Make();
+    p.addCircle(moonX, moonY, moonR);
+    return p;
+  }, [moonX, moonY, moonR]);
+
+  const moonShadowPath = useMemo(() => {
+    const tc = Math.cos(moonPhase * 2 * Math.PI);
+    const p = Skia.Path.Make();
+    const steps = 16;
+    if (tc > 0.01) {
+      p.moveTo(moonX, moonY - moonR);
+      for (let i = 0; i <= steps; i++) {
+        const a = -Math.PI / 2 + Math.PI * (i / steps);
+        p.lineTo(moonX - Math.cos(a) * moonR, moonY + Math.sin(a) * moonR);
+      }
+      for (let i = steps; i >= 0; i--) {
+        const a = -Math.PI / 2 + Math.PI * (i / steps);
+        p.lineTo(moonX + Math.cos(a) * moonR * tc, moonY + Math.sin(a) * moonR);
+      }
+      p.close();
+    } else if (tc < -0.01) {
+      p.moveTo(moonX, moonY - moonR);
+      for (let i = 0; i <= steps; i++) {
+        const a = -Math.PI / 2 + Math.PI * (i / steps);
+        p.lineTo(moonX + Math.cos(a) * moonR * tc, moonY + Math.sin(a) * moonR);
+      }
+      for (let i = steps; i >= 0; i--) {
+        const a = -Math.PI / 2 + Math.PI * (i / steps);
+        p.lineTo(moonX + Math.cos(a) * moonR, moonY + Math.sin(a) * moonR);
+      }
+      p.close();
+    } else {
+      if (moonPhase < 0.5) {
+        p.addRect({ x: moonX - moonR, y: moonY - moonR, width: moonR, height: moonR * 2 });
+      } else {
+        p.addRect({ x: moonX, y: moonY - moonR, width: moonR, height: moonR * 2 });
+      }
+    }
+    return p;
+  }, [moonX, moonY, moonR, moonPhase]);
+
+  // Stars — fixed positions, memoized once
+  const stars = useMemo(() => {
+    const s: { x: number; y: number; r: number; o: number }[] = [];
+    // Seeded pseudo-random for deterministic positions
+    let seed = 42;
+    const rand = () => { seed = (seed * 16807 + 0) % 2147483647; return seed / 2147483647; };
+    for (let i = 0; i < 40; i++) {
+      const x = rand() * width;
+      const y = rand() * height;
+      // Skip stars that would be behind the globe
+      const dx = x - cx;
+      const dy = y - cy;
+      if (dx * dx + dy * dy < globeRadius * globeRadius) continue;
+      s.push({
+        x,
+        y,
+        r: 0.5 + rand() * 1.0, // 0.5–1.5px
+        o: 0.15 + rand() * 0.35, // 15–50% opacity
+      });
+    }
+    return s;
+  }, [width, height, cx, cy, globeRadius]);
+
   if (!state.landPath) return null;
 
   return (
     <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
+      {/* Stars — tiny fixed points */}
+      {stars.map((s, i) => (
+        <Circle key={i} cx={s.x} cy={s.y} r={s.r} color={COLORS.accent} opacity={s.o} />
+      ))}
+
+      {/* Moon — NASA texture with phase shadow */}
+      {moonTexture && (
+        <>
+          {/* Halo — offset toward the lit side */}
+          <Circle
+            cx={moonX + (moonPhase < 0.5 ? moonR * 0.3 : -moonR * 0.3)}
+            cy={moonY}
+            r={moonR * 2}
+            color={COLORS.accent}
+            opacity={0.02}
+          >
+            <BlurMask blur={moonR} style="solid" />
+          </Circle>
+          <Group clip={moonClip}>
+            <Image
+              image={moonTexture}
+              x={moonX - moonR}
+              y={moonY - moonR}
+              width={moonR * 2}
+              height={moonR * 2}
+              opacity={0.25}
+            />
+            <Path path={moonShadowPath} color={COLORS.bg} opacity={0.7} />
+          </Group>
+        </>
+      )}
+
+      {/* Atmospheric halo — thin glow at the globe's edge */}
+      <Circle cx={cx} cy={cy} r={globeRadius * 1.03} color="#334455" opacity={0.08}>
+        <BlurMask blur={globeRadius * 0.04} style="solid" />
+      </Circle>
+
       {/* Land silhouette */}
       <Path path={state.landPath} color={COLORS.rule} opacity={0.4} />
 
@@ -313,7 +438,12 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Al-Aqsa — golden reference point */}
       {state.aqsa && (
-        <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={1.5} color={COLORS.dome} opacity={0.7} />
+        <>
+          <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={4} color={COLORS.dome} opacity={0.08}>
+            <BlurMask blur={3} style="solid" />
+          </Circle>
+          <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={1.5} color={COLORS.dome} opacity={0.8} />
+        </>
       )}
 
       {/* Story dot */}

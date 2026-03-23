@@ -1447,11 +1447,11 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
     internetPct: '96%',
   },
   Israel: {
-    official: 'State of Israel',
+    official: 'State of Israel (Occupying Power)',
     flag: '🇮🇱',
     capital: 'Tel Aviv',
     region: 'Western Asia',
-    languages: 'Arabic, Hebrew',
+    languages: 'Hebrew, Arabic',
     currency: 'Israeli new shekel',
     currencySymbol: '₪',
     population: '10M',
@@ -2285,7 +2285,7 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
   Palestine: {
     official: 'State of Palestine',
     flag: '🇵🇸',
-    capital: 'East Jerusalem',
+    capital: 'Al-Quds',
     region: 'Western Asia',
     languages: 'Arabic',
     currency: 'Jordanian dinar',

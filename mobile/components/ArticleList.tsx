@@ -13,7 +13,7 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATEGORIES, COLORS, LAYOUT } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
-import { getReadingPositions, saveReadingPosition } from '../lib/storage';
+import { saveReadingPosition } from '../lib/storage';
 import type { Article } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
@@ -29,7 +29,7 @@ interface ArticleListProps {
   lastSeenAt: number;
   onRefresh: () => Promise<void>;
   onEndReached?: (catIndex: number) => void;
-  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => void;
+  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>, eventCoverage?: number | null) => void;
   onCountryPress?: (result: TapResult) => void;
   pagerIdle: React.RefObject<boolean>;
   progressesSV: SharedValue<number[]>;
@@ -53,13 +53,17 @@ export const ArticleList = memo(function ArticleList({
 }: ArticleListProps) {
   const insets = useSafeAreaInsets();
   const { impact: hapticSnap, notification: hapticComplete } = useHaptic();
-  const articleCount = articles.length;
+  // Breaking stories (100+ worldwide coverage) float to top, rest chronological
+  const sortedArticles = useMemo(() => {
+    const BREAKING_THRESHOLD = 100;
+    const breaking = articles.filter((a) => (a.eventCoverage ?? 0) >= BREAKING_THRESHOLD);
+    const rest = articles.filter((a) => (a.eventCoverage ?? 0) < BREAKING_THRESHOLD);
+    // Breaking sorted by coverage (highest first), rest keeps API order (chronological)
+    breaking.sort((a, b) => (b.eventCoverage ?? 0) - (a.eventCoverage ?? 0));
+    return [...breaking, ...rest];
+  }, [articles]);
+  const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight - LAYOUT.peekHeight;
-  const categoryFeedInfo = useMemo(() => {
-    if (articleCount === 0) return null;
-    const words = articles.reduce((sum, a) => sum + a.sentences.join(' ').split(/\s+/).length, 0);
-    return { total: articleCount, readMins: Math.max(1, Math.ceil(words / 238)) };
-  }, [articles, articleCount]);
   const contentStyle = useMemo(
     () => ({ paddingBottom: LAYOUT.peekHeight + insets.bottom }),
     [insets.bottom],
@@ -84,20 +88,7 @@ export const ArticleList = memo(function ArticleList({
   }, [catIndex]);
   const [localRefreshing, setLocalRefreshing] = useState(false);
 
-  // Restore saved reading position on mount
-  useEffect(() => {
-    const cat = CATEGORIES[catIndex];
-    if (!cat) return;
-    getReadingPositions().then((positions) => {
-      const idx = positions[cat];
-      if (idx != null && idx > 0 && idx < articles.length) {
-        runOnUI(() => {
-          'worklet';
-          scrollTo(listRef, 0, idx * itemHeight, false);
-        })();
-      }
-    });
-  }, [articles.length, catIndex, itemHeight, listRef]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
   // Persist reading position on scroll
   useEffect(() => {
@@ -151,9 +142,9 @@ export const ArticleList = memo(function ArticleList({
   // Find the boundary between new and previously seen articles
   const earlierIndex = useMemo(() => {
     if (lastSeenAt <= 0) return -1;
-    const idx = articles.findIndex((a) => a.addedAt <= lastSeenAt);
+    const idx = sortedArticles.findIndex((a) => a.addedAt <= lastSeenAt);
     return idx > 0 ? idx : -1;
-  }, [articles, lastSeenAt]);
+  }, [sortedArticles, lastSeenAt]);
 
   const caughtUpFired = useRef(false);
   const handleSnap = useCallback(
@@ -202,18 +193,17 @@ export const ArticleList = memo(function ArticleList({
         scrollY={scrollY}
         onSourcePress={onSourcePress}
         showEarlierDivider={index === earlierIndex}
-        feedInfo={index === 0 ? categoryFeedInfo : undefined}
         globeRef={globeRef}
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
       />
     ),
-    [itemHeight, scrollY, onSourcePress, onCountryPress, earlierIndex, categoryFeedInfo],
+    [itemHeight, scrollY, onSourcePress, onCountryPress, earlierIndex],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);
 
-  if (articles.length === 0) return <View style={styles.empty} />;
+  if (sortedArticles.length === 0) return <View style={styles.empty} />;
 
   return (
     <View
@@ -227,7 +217,7 @@ export const ArticleList = memo(function ArticleList({
     >
       <MiniGlobe
         ref={globeRef}
-        articles={articles}
+        articles={sortedArticles}
         scrollY={scrollY}
         itemHeight={itemHeight}
         width={Dimensions.get('window').width}
@@ -235,7 +225,7 @@ export const ArticleList = memo(function ArticleList({
       />
       <Animated.FlatList
         ref={listRef}
-        data={articles}
+        data={sortedArticles}
         extraData={tick}
         renderItem={renderItem}
         keyExtractor={keyExtractor}

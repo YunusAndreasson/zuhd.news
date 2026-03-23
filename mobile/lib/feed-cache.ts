@@ -9,11 +9,6 @@ interface CacheMeta {
   generated: string;
 }
 
-export interface FeedInfo {
-  total: number;
-  readMins: number;
-}
-
 export function writeFeedCache(feed: FeedResponse): void {
   FEED_FILE.write(JSON.stringify(feed));
   META_FILE.write(JSON.stringify({ cachedAt: Date.now(), generated: feed.generated }));
