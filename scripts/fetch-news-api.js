@@ -276,12 +276,37 @@ async function fetchEvents() {
   return (data.events?.results || []).filter(Boolean)
 }
 
-// Q2: Curated editorial sources (1 token)
+// Q2: Reader-aligned sources — guaranteed slot for niche sources the reader chose us for (1 token)
+const READER_ALIGNED = [
+  // Hacker/AI culture
+  'theregister.com', 'the-decoder.com', 'arstechnica.com', 'technologyreview.com',
+  // Macro-economics depth
+  'bloomberg.com', 'ft.com', 'economist.com', 'coindesk.com',
+  // Muslim world from inside
+  'aljazeera.com', 'middleeasteye.net', 'trtworld.com', 'en.mehrnews.com', 'dawn.com', 'wamda.com',
+  // Accountability
+  'occrp.org', 'theintercept.com', 'hrw.org', 'amnesty.org', 'mondoweiss.net', 'balkaninsight.com',
+  // Global South
+  'rappler.com', 'irrawaddy.com', 'news.mongabay.com', 'disruptafrica.com', 'caixinglobal.com',
+]
+
+async function fetchReaderAlignedArticles() {
+  const data = await apiPost('article/getArticles', {
+    ...ARTICLE_DEFAULTS,
+    articlesSortBy: 'date',
+    sourceUri: READER_ALIGNED,
+  })
+  return data.articles?.results || []
+}
+
+// Q3: Remaining curated sources — wire, regional, science (1 token)
+const CURATED_REMAINING = CURATED_SOURCES.filter(s => !READER_ALIGNED.includes(s))
+
 async function fetchCuratedArticles() {
   const data = await apiPost('article/getArticles', {
     ...ARTICLE_DEFAULTS,
     articlesSortBy: 'date',
-    sourceUri: CURATED_SOURCES,
+    sourceUri: CURATED_REMAINING,
   })
   return data.articles?.results || []
 }
@@ -350,18 +375,19 @@ function sentimentSpread(articles) {
 async function main() {
   console.error('Fetching from NewsAPI.ai...')
 
-  // Run all 4 queries in parallel (5+1+1+1 = 8 tokens)
-  const [events, curatedArticles, gapArticles, broadArticles] = await Promise.all([
+  // Run all 5 queries in parallel (5+1+1+1+1 = 9 tokens)
+  const [events, readerArticles, curatedArticles, gapArticles, broadArticles] = await Promise.all([
     fetchEvents(),
+    fetchReaderAlignedArticles(),
     fetchCuratedArticles(),
     fetchGapArticles(),
     fetchBroadArticles(),
   ])
 
-  console.error(`Q1: ${events.length} events, Q2: ${curatedArticles.length} curated, Q3: ${gapArticles.length} gap, Q4: ${broadArticles.length} broad`)
+  console.error(`Q1: ${events.length} events, Q2: ${readerArticles.length} reader, Q3: ${curatedArticles.length} curated, Q4: ${gapArticles.length} gap, Q5: ${broadArticles.length} broad`)
 
   // Annotate all articles with country codes
-  const allArticles = [...curatedArticles, ...gapArticles, ...broadArticles]
+  const allArticles = [...readerArticles, ...curatedArticles, ...gapArticles, ...broadArticles]
   const seen = new Set()
   const dedupedArticles = []
   for (const a of allArticles) {
