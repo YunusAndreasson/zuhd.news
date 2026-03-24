@@ -11,4 +11,4 @@ sources:
     country: "US"
 ---
 
-Cupertino — Apple launched a platform targeting Microsoft 365 and Google Workspace. The service extends Apple from hardware into invoicing, HR, and collaboration — its first direct push into enterprise software. Apple's installed hardware base gives it a built-in sales channel, but enterprises must decide whether to accept deeper lock-in from a company built on consumer devices.
+Cupertino — Apple launched a platform targeting Microsoft 365 and Google Workspace. The service extends Apple from hardware into invoicing, HR, and collaboration — its first direct push into enterprise software. Whether enterprises accept deeper lock-in from a company built on consumer devices will determine how far Apple can penetrate beyond its existing hardware shops.

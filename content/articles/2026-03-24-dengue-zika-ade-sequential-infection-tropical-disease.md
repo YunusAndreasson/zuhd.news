@@ -11,4 +11,4 @@ sources:
     country: "GB"
 ---
 
-London — Dengue antibodies amplify Zika, not block it. Antibody-dependent enhancement means dengue immunity assists Zika viral entry rather than neutralizing it — a mechanism now confirmed in mathematical models. Researchers developing vaccines for either virus must now model ADE cross-reactivity, or campaigns targeting one disease risk worsening outcomes for the other.
+London — Dengue antibodies amplify Zika, not block it. Antibody-dependent enhancement means dengue immunity assists Zika viral entry rather than neutralizing it — a mechanism now confirmed in mathematical models. Vaccine developers must now model ADE cross-reactivity to avoid campaigns against one virus amplifying outcomes for the other.

@@ -1,5 +1,5 @@
 ---
-title: "Nigeria Southeast Gets $50M VC Fund"
+title: "Nigeria Launches Southeast Startup Fund"
 date: "2026-03-24T17:25:48Z"
 category: "economy"
 location: "Abuja"
@@ -18,4 +18,4 @@ concepts:
   - "Sustainable development"
 ---
 
-Abuja — Nigeria's South East Development Commission launched a $50 million startup fund for southeast Nigeria. The South East Venture Capital Program targets technology startups across 5 Igbo states — Abia, Anambra, Ebonyi, Enugu, and Imo — a region historically underserved by federal capital despite strong entrepreneurial output. A Pitch Competition finals on May 13 will channel $450,000 in SAFE investments to the first cohort of selected startups.
+Abuja — Nigeria's Southeast Development Commission launched a $50 million startup fund. The South East Venture Capital Program targets tech startups across the 5 Igbo states, a region historically underserved by federal capital despite strong entrepreneurial output. Selected startups compete for $450,000 in SAFE investments at the May 13 Pitch Competition finals.

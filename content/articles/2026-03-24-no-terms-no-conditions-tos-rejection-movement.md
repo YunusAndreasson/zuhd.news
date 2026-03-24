@@ -11,4 +11,4 @@ sources:
     country: "US"
 ---
 
-San Francisco — Click-to-agree contracts legally bind users who never read them. A new manifesto argues this constitutes consent theater — enforceable in courts but providing no meaningful protection to users. Courts have consistently upheld click-wrap agreements, so the movement's reach depends on whether regulators act.
+San Francisco — Click-to-agree contracts legally bind users who never read them. A new manifesto argues this constitutes consent theater — enforceable in courts but providing no meaningful protection to users. EU and US regulators must now impose meaningful consent standards — or courts will keep enforcing contracts users never negotiate.

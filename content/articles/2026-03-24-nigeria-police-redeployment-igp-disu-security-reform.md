@@ -1,5 +1,5 @@
 ---
-title: "Nigeria IGP Reshuffles Senior Police"
+title: "Nigeria Police Chief Reshuffles Command"
 date: "2026-03-24T17:59:34Z"
 category: "politics"
 location: "Abuja"

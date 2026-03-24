@@ -11,4 +11,4 @@ sources:
     country: "PK"
 ---
 
-Bahawalpur — A train that killed 74 passengers in a 2019 fire derailed again near Bahawalpur. Pakistan's rail network runs on British-era infrastructure whose maintenance funding has fallen below minimum safety requirements for years. The government ordered a probe, but engineers say investment falls far short of what is needed to prevent repeat disasters.
+Bahawalpur — The Tezgam Express derailed near Bahawalpur Tuesday night. The same train killed 74 in a 2019 fire on British-era track that Pakistan has chronically underfunded. Pakistan ordered a probe into a line engineers have flagged for preventable safety failures for years.

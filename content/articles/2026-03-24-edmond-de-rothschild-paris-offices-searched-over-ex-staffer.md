@@ -30,4 +30,4 @@ concepts:
   - "United Nations"
 ---
 
-Paris — French prosecutors searched Edmond de Rothschild's Paris offices last Friday. The National Financial Prosecutor opened the probe after France's Foreign Ministry referred the case against ex-diplomat Fabrice Aidan — named in ~200 Epstein files — on suspicion of bribing a foreign public official during his 2014–2016 tenure at the bank. Aidan denies wrongdoing; a separate judicial investigation into his conduct opened last month.
+Paris — French prosecutors searched Edmond de Rothschild's Paris offices last Friday. The National Financial Prosecutor opened the probe after France's Foreign Ministry referred the case against ex-diplomat Fabrice Aidan — named in ~200 Epstein files — on suspicion of bribing a foreign public official during his 2014–2016 tenure at the bank. Aidan denies wrongdoing as a separate judicial probe into his tenure advances.

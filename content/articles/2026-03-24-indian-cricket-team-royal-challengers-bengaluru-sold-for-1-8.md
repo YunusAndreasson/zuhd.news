@@ -30,4 +30,4 @@ concepts:
   - "Crore"
 ---
 
-Bengaluru — Aditya Birla Group bought RCB for $1.78 billion, the most expensive IPL franchise sale ever. The consortium — Blackstone, Bolt Ventures, and the Times of India Group — acquired the team from Diageo's Indian arm United Spirits, which had labelled the franchise "non-core" to its alcohol business. The sale requires approval from BCCI and the Competition Commission of India; IPL media rights renew in 2027 and are projected flat.
+Bengaluru — Aditya Birla Group paid $1.78 billion for RCB. The consortium — Blackstone, Bolt Ventures, and the Times of India Group — acquired the team from Diageo's Indian arm United Spirits, which had labelled the franchise "non-core" to its alcohol business. BCCI and India's Competition Commission must approve the deal before Birla takes control, with flat 2027 media rights projections capping the franchise's revenue upside.
