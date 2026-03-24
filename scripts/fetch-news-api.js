@@ -187,7 +187,6 @@ async function apiPost(endpoint, params) {
 }
 
 // ── Shared article query defaults ────────────────────────────────────
-// Uses API-native filtering: isDuplicateFilter, dataType, forceMaxDataTimeWindow
 const ARTICLE_DEFAULTS = {
   resultType: 'articles',
   articlesCount: 100,
@@ -199,10 +198,51 @@ const ARTICLE_DEFAULTS = {
   includeArticleConcepts: true,
   includeArticleCategories: true,
   includeArticleLocation: true,
-  // includeArticleOriginalArticle available if needed for syndication detection
+  includeArticleImage: false,   // never used
+  includeArticleAuthors: false, // never used
   includeSourceLocation: true,
   includeSourceRanking: true,
 }
+
+// ── Source lists (used by merged Q2+Q3 query) ───────────────────────
+const CURATED_SOURCES = [
+  // Wire + Western
+  'bbc.com', 'reuters.com', 'france24.com', 'dw.com',
+  // Muslim world + Middle East
+  'aljazeera.com', 'middleeasteye.net', 'al-monitor.com', 'en.mehrnews.com',
+  'trtworld.com', 'newarab.com', 'middleeastmonitor.com', 'thenationalnews.com',
+  // South + East Asia
+  'dawn.com', 'scmp.com', 'antaranews.com',
+  // Russia
+  'tass.com', 'haaretz.com',
+  // Africa + Latin America
+  'dailymaverick.co.za', 'premiumtimesng.com', 'dabangasudan.org', 'techcabal.com',
+  // Science + Tech
+  'restofworld.org', 'statnews.com', 'newscientist.com', 'nature.com',
+  'arstechnica.com', 'technologyreview.com', 'coindesk.com',
+  'carbonbrief.org', 'quantamagazine.org', 'grist.org',
+  // Niche regional
+  'eurasianet.org', 'insightcrime.org', 'sixthtone.com',
+]
+
+const GAP_COUNTRIES = [
+  'http://en.wikipedia.org/wiki/Iran',
+  'http://en.wikipedia.org/wiki/China',
+  'http://en.wikipedia.org/wiki/Russia',
+  'http://en.wikipedia.org/wiki/Kenya',
+  'http://en.wikipedia.org/wiki/Sudan',
+  'http://en.wikipedia.org/wiki/Brazil',
+  'http://en.wikipedia.org/wiki/Turkey',
+  'http://en.wikipedia.org/wiki/Qatar',
+  'http://en.wikipedia.org/wiki/Pakistan',
+  'http://en.wikipedia.org/wiki/South_Africa',
+  'http://en.wikipedia.org/wiki/Nigeria',
+  'http://en.wikipedia.org/wiki/Colombia',
+  'http://en.wikipedia.org/wiki/Indonesia',
+  'http://en.wikipedia.org/wiki/Malaysia',
+  'http://en.wikipedia.org/wiki/Bangladesh',
+  'http://en.wikipedia.org/wiki/United_Arab_Emirates',
+]
 
 // Q1: Event discovery (5 tokens)
 async function fetchEvents() {
@@ -219,60 +259,42 @@ async function fetchEvents() {
   return (data.events?.results || []).filter(Boolean)
 }
 
-// Q2: Curated high-quality source articles (1 token)
-async function fetchCuratedArticles() {
+// Q2: Curated sources + gap-region sources in ONE query via Advanced Query Language (1 token)
+// Merges what was previously Q2+Q3 — saves 1 token/cycle (150/month)
+async function fetchSourceArticles() {
+  // Uses Advanced Query Language — simple params (lang, dateStart, isDuplicateFilter)
+  // must go inside the query object, not as top-level params
   const data = await apiPost('article/getArticles', {
-    ...ARTICLE_DEFAULTS,
+    resultType: 'articles',
+    articlesCount: 100,
     articlesSortBy: 'date',
-    sourceUri: [
-      // Wire + Western
-      'bbc.com', 'reuters.com', 'france24.com', 'dw.com',
-      // Muslim world + Middle East
-      'aljazeera.com', 'middleeasteye.net', 'al-monitor.com', 'en.mehrnews.com',
-      'trtworld.com', 'newarab.com', 'middleeastmonitor.com', 'thenationalnews.com',
-      // South + East Asia
-      'dawn.com', 'scmp.com', 'antaranews.com',
-      // Russia
-      'tass.com', 'haaretz.com',
-      // Africa + Latin America
-      'dailymaverick.co.za', 'premiumtimesng.com', 'dabangasudan.org', 'techcabal.com',
-      // Science + Tech
-      'restofworld.org', 'statnews.com', 'newscientist.com', 'nature.com',
-      'arstechnica.com', 'technologyreview.com', 'coindesk.com',
-      'carbonbrief.org', 'quantamagazine.org', 'grist.org',
-      // Niche regional
-      'eurasianet.org', 'insightcrime.org', 'sixthtone.com',
-    ],
-  })
-  return data.articles?.results || []
-}
-
-// Q3: Gap-region source articles (1 token)
-async function fetchGapArticles() {
-  const data = await apiPost('article/getArticles', {
-    ...ARTICLE_DEFAULTS,
-    articlesSortBy: 'sourceImportance',
-    eventFilter: 'skipArticlesWithoutEvent',
-    categoryUri: INCLUDE_CATEGORIES,
-    ignoreCategoryUri: EXCLUDE_CATEGORIES,
-    sourceLocationUri: [
-      'http://en.wikipedia.org/wiki/Iran',
-      'http://en.wikipedia.org/wiki/China',
-      'http://en.wikipedia.org/wiki/Russia',
-      'http://en.wikipedia.org/wiki/Kenya',
-      'http://en.wikipedia.org/wiki/Sudan',
-      'http://en.wikipedia.org/wiki/Brazil',
-      'http://en.wikipedia.org/wiki/Turkey',
-      'http://en.wikipedia.org/wiki/Qatar',
-      'http://en.wikipedia.org/wiki/Pakistan',
-      'http://en.wikipedia.org/wiki/South_Africa',
-      'http://en.wikipedia.org/wiki/Nigeria',
-      'http://en.wikipedia.org/wiki/Colombia',
-      'http://en.wikipedia.org/wiki/Indonesia',
-      'http://en.wikipedia.org/wiki/Malaysia',
-      'http://en.wikipedia.org/wiki/Bangladesh',
-      'http://en.wikipedia.org/wiki/United_Arab_Emirates',
-    ],
+    articleBodyLen: -1,
+    includeArticleConcepts: true,
+    includeArticleCategories: true,
+    includeArticleLocation: true,
+    includeArticleImage: false,
+    includeArticleAuthors: false,
+    includeSourceLocation: true,
+    includeSourceRanking: true,
+    query: {
+      $query: {
+        $or: [
+          // Curated editorial sources (any category)
+          { sourceUri: { $or: CURATED_SOURCES } },
+          // Gap-region sources (news categories only)
+          {
+            sourceLocationUri: { $or: GAP_COUNTRIES },
+            categoryUri: { $or: INCLUDE_CATEGORIES }
+          }
+        ],
+        lang: 'eng',
+        dateStart: new Date().toISOString().slice(0, 10)
+      },
+      $filter: {
+        isDuplicate: 'skipDuplicates',
+        dataType: 'news'
+      }
+    },
   })
   return data.articles?.results || []
 }
@@ -321,18 +343,17 @@ function avg(nums) {
 async function main() {
   console.error('Fetching from NewsAPI.ai...')
 
-  // Run all 4 queries in parallel (5+1+1+1 = 8 tokens)
-  const [events, curatedArticles, gapArticles, broadArticles] = await Promise.all([
+  // Run all 3 queries in parallel (5+1+1 = 7 tokens)
+  const [events, sourceArticles, broadArticles] = await Promise.all([
     fetchEvents(),
-    fetchCuratedArticles(),
-    fetchGapArticles(),
+    fetchSourceArticles(),
     fetchBroadArticles(),
   ])
 
-  console.error(`Q1: ${events.length} events, Q2: ${curatedArticles.length} curated, Q3: ${gapArticles.length} gap, Q4: ${broadArticles.length} broad`)
+  console.error(`Q1: ${events.length} events, Q2: ${sourceArticles.length} sources, Q3: ${broadArticles.length} broad`)
 
   // Annotate all articles with country codes
-  const allArticles = [...curatedArticles, ...gapArticles, ...broadArticles]
+  const allArticles = [...sourceArticles, ...broadArticles]
   const seen = new Set()
   const dedupedArticles = []
   for (const a of allArticles) {
