@@ -226,6 +226,8 @@ const CURATED_SOURCES = [
   'occrp.org', 'wamda.com',
   // Balkans (Bosnia, Albania — Muslim communities)
   'balkaninsight.com', 'sarajevotimes.com', 'albaniandailynews.com',
+  // Human rights + investigative (critical of occupation, evidence-based)
+  'theintercept.com', 'hrw.org', 'amnesty.org', 'mondoweiss.net',
 ]
 
 const GAP_COUNTRIES = [
