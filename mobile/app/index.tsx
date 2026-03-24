@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import {
   BottomSheetBackdrop,
   type BottomSheetBackdropProps,
@@ -392,7 +393,11 @@ export default function HomeScreen() {
                             <Text style={styles.tonePillText}>{toneWord}</Text>
                           </View>
                         )}
-                        <Text style={styles.expandHint}>{isExpanded ? '\u25B4' : '\u25BE'}</Text>
+                        <Ionicons
+                          name={isExpanded ? 'chevron-up' : 'chevron-down'}
+                          size={14}
+                          color={COLORS.accent}
+                        />
                       </View>
                     </View>
                     {isExpanded && info && (
@@ -584,7 +589,9 @@ const styles = StyleSheet.create({
     color: COLORS.accent,
   },
   sourceRow: {
-    paddingBottom: SPACING.md,
+    paddingVertical: SPACING.md,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: COLORS.rule,
   },
   sourceRowHeader: {
     flexDirection: 'row',
@@ -596,10 +603,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.xs,
-  },
-  expandHint: {
-    fontSize: TYPOGRAPHY.sizeXs,
-    color: COLORS.accent,
   },
   sourceName: {
     fontFamily: FONT.semiBold,
@@ -630,7 +633,7 @@ const styles = StyleSheet.create({
   sourceType: {
     ...TEXT_STYLES.smallCapsXs,
     marginTop: SPACING.sm,
-    marginBottom: SPACING.xs,
+    marginBottom: SPACING.sm,
   },
   hotspotSection: {
     paddingBottom: SPACING.md,
