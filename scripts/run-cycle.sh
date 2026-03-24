@@ -77,7 +77,7 @@ echo "RSS fetch: ${RSS_STATS} stories" | tee -a "$LOG_FILE"
 
 # Step 3: Merge into unified feed
 node scripts/merge-feeds.js 2>>"$LOG_FILE"
-FEED_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed.json'));console.log(d.stories.length+' stories ('+d.apiStories+' API, '+d.rssStories+' RSS)')}catch{console.log('failed')}" 2>/dev/null)
+FEED_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed.json'));console.log((d.multiSourceStories?.length||0)+' multi + '+(d.nicheStories?.length||0)+' niche')}catch{console.log('failed')}" 2>/dev/null)
 echo "Merged feed: $FEED_STATS — $((SECONDS - T0))s" | tee -a "$LOG_FILE"
 
 # Stage 1: Selector — read pre-fetched feed, pick stories, save selection

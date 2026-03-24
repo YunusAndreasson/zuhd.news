@@ -35,18 +35,19 @@ for (const s of rss) {
   }
 }
 
-// Split into multi-source and niche for the selector
-const multiSource = stories.filter(s => (s.sources || []).length > 1)
-const niche = stories.filter(s => (s.sources || []).length <= 1)
+// Split into multi-source and niche — no flat list, forces selector to use both sections
+const multiSourceStories = stories.filter(s => (s.sources || []).length > 1)
+const nicheStories = stories.filter(s => (s.sources || []).length === 1)
+// Drop stories with empty sources — headline-only, writer can't use them
+const dropped = stories.filter(s => (s.sources || []).length === 0).length
 
 const output = {
   fetchedAt: new Date().toISOString(),
   apiStories: api.length,
   rssStories: rss.length,
-  multiSourceStories: multiSource,
-  nicheStories: niche,
-  stories, // flat list for backward compat
+  multiSourceStories,
+  nicheStories,
 }
 
 writeFileSync('/tmp/zuhd-feed.json', JSON.stringify(output, null, 2))
-console.log(`${stories.length} stories (${api.length} API, ${rss.length} RSS)`)
+console.log(`${multiSourceStories.length} multi + ${nicheStories.length} niche (${dropped} headline-only dropped)`)
