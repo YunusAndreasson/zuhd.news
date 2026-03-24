@@ -342,6 +342,32 @@ async function fetchBroadArticles() {
 // mapCategory alias — uses shared zuhdCategory with API category arrays
 const mapCategory = (categories) => zuhdCategory(categories || [])
 
+// Pick the most specific/arresting headline from a panel.
+// Wire headlines are flat ("EU says deal will apply May 1").
+// Non-wire headlines are specific ("Lebanon expels Iran's ambassador").
+// Prefer shorter, punchier titles with numbers or named actors.
+function bestTitle(articles, fallback) {
+  if (!articles.length) return fallback
+  const scored = articles.map(a => {
+    const t = a.title || ''
+    let score = 0
+    // Shorter titles tend to be punchier
+    if (t.length < 70) score += 2
+    if (t.length < 50) score += 2
+    // Numbers are specific
+    if (/\d/.test(t)) score += 1
+    // Quotes suggest a named actor
+    if (/['"\u2018\u201C]/.test(t)) score += 1
+    // Colon/dash often means explanatory wire headline — penalize
+    if (/[:,] /.test(t) && t.length > 60) score -= 1
+    // "says", "announces", "declares" suggest wire framing
+    if (/\b(says|announces|according)\b/i.test(t)) score -= 1
+    return { title: t, score }
+  })
+  scored.sort((a, b) => b.score - a.score)
+  return scored[0].title || fallback
+}
+
 function extractConcepts(articles) {
   const map = new Map()
   for (const a of articles) {
@@ -506,14 +532,15 @@ async function main() {
       ? eventLoc.label?.eng
       : (eventLoc?.label?.eng || primary.location?.label?.eng || null)
 
+    const storyTitle = panel.length > 1 ? bestTitle(panel, primary.title || title) : (primary.title || title)
     stories.push({
-      title: primary.title || title,
+      title: storyTitle,
       description: (primary.body || '').slice(0, 300),
       link: primary.url || '',
       pubDate: primary.dateTimePub || primary.dateTime || eventDate + 'T00:00:00Z',
       category: mapCategory(primary.categories || eventCategories),
       source: primary.source?.title || '',
-      suggestedSlug: slugify(primary.title || title, primary.dateTimePub || eventDate),
+      suggestedSlug: slugify(storyTitle, primary.dateTimePub || eventDate),
       eventUri: uri,
       eventCoverage: totalArticles,
       sources: panel.map(a => ({
