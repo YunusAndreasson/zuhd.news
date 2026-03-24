@@ -15,7 +15,7 @@ if (!API_KEY) {
 }
 
 const API_BASE = 'https://eventregistry.org/api/v1'
-const MAX_BODY = 3000
+const MAX_BODY = 10000  // 1M context window allows full article text
 
 // ── Category filter ─────────────────────────────────────────────────
 
