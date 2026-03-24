@@ -412,6 +412,51 @@ async function main() {
     }
   }
 
+  // Per-event fetch: for the top 5 events, directly fetch 15 diverse articles
+  // This guarantees multi-source panels — the Q2-Q5 matching often misses.
+  // Cost: ~2 tokens per event (info check + article fetch) = ~10 tokens/cycle
+  const TOP_EVENTS_TO_FETCH = 5
+  const topEvents = events.slice(0, TOP_EVENTS_TO_FETCH)
+  let perEventFetched = 0
+  for (const event of topEvents) {
+    const uri = event.uri
+    // Skip if we already have 3+ articles from Q2-Q5
+    if ((articlesByEvent.get(uri) || []).length >= 3) continue
+
+    // Check for URI redirect
+    const infoData = await apiPost('event/getEvent', { eventUri: uri, resultType: 'info' })
+    const actualUri = infoData[uri]?.newEventUri || uri
+
+    // Fetch articles for this event
+    const artData = await apiPost('event/getEvent', {
+      eventUri: actualUri,
+      resultType: 'articles',
+      articlesCount: 15,
+      articlesLang: 'eng',
+      articlesSortBy: 'sourceImportance',
+      articleBodyLen: -1,
+      includeSourceLocation: true,
+      includeSourceRanking: true,
+      includeArticleSentiment: true,
+      includeArticleConcepts: true,
+      includeArticleLocation: true,
+    })
+
+    const fetchedArts = artData[actualUri]?.articles?.results || []
+    if (fetchedArts.length > 0) {
+      // Annotate and add to the event's article pool
+      for (const a of fetchedArts) {
+        if (seen.has(a.uri)) continue
+        seen.add(a.uri)
+        a._sourceCountry = getCountryCode(a.source) || null
+        if (!articlesByEvent.has(uri)) articlesByEvent.set(uri, [])
+        articlesByEvent.get(uri).push(a)
+      }
+      perEventFetched++
+    }
+  }
+  console.error(`Per-event fetch: enriched ${perEventFetched}/${TOP_EVENTS_TO_FETCH} top events`)
+
   // Build stories: merge events with their matched articles
   const stories = []
   const usedEventUris = new Set()
