@@ -237,8 +237,9 @@ const CURATED_SOURCES = [
   'news.mongabay.com',
   // Ukraine/Eastern Europe
   'kyivindependent.com',
-  // Tech + Global South startups + AI
+  // Tech + Global South startups + AI + hacker culture
   'techcrunch.com', 'semafor.com', 'disruptafrica.com', 'the-decoder.com',
+  'theregister.com',
 ]
 
 const GAP_COUNTRIES = [
