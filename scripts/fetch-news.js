@@ -5,6 +5,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs'
 import { join, basename } from 'path'
 import { XMLParser } from 'fast-xml-parser'
+import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -41,12 +42,6 @@ function decodeEntities(str) {
 
 function stripHtml(str) { return str.replace(/<[^>]*>/g, '') }
 
-function slugify(title, date) {
-  const d = new Date(date)
-  const prefix = isNaN(d.getTime()) ? new Date().toISOString().slice(0, 10) : d.toISOString().slice(0, 10)
-  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60).replace(/-$/, '')
-  return `${prefix}-${slug}`
-}
 
 function extractText(val) {
   if (typeof val === 'string') return val
@@ -59,16 +54,6 @@ function parseRss2Items(feed) { return toArray(feed?.rss?.channel?.item || []) }
 function parseRdfItems(feed) { return toArray((feed?.['rdf:RDF'] || feed?.RDF || feed)?.item || []) }
 function parseAtomItems(feed) { return toArray((feed?.feed || feed)?.entry || []) }
 
-// Map to zuhd's 4 categories
-function zuhdCategory(item) {
-  const cat = (item.category || '').toLowerCase()
-  if (['science', 'tech', 'economy'].includes(cat)) return cat
-  const text = ((item.title || '') + ' ' + (item.description || '')).toLowerCase()
-  if (/\b(study|research|climate|vaccine|species|quantum|genome|crispr)\b/.test(text)) return 'science'
-  if (/\b(ai|startup|crypto|bitcoin|software|hack|data breach|algorithm|llm|chatbot)\b/.test(text)) return 'tech'
-  if (/\b(gdp|inflation|market|trade|tariff|oil price|currency|imf)\b/.test(text)) return 'economy'
-  return 'politics'
-}
 
 // ── Dedup against existing articles ─────────────────────────────────
 
@@ -85,9 +70,6 @@ function getExistingTitles(maxDaysOld = 10) {
     .filter(Boolean)
 }
 
-function fingerprint(title) {
-  return title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 40)
-}
 
 // ── Fetch + Parse ───────────────────────────────────────────────────
 
@@ -155,7 +137,7 @@ async function main() {
     if (existingFps.has(fp) || seenFps.has(fp)) continue
     seenFps.add(fp)
 
-    const category = zuhdCategory(item)
+    const category = item.category || zuhdCategory([], item.title, item.description)
     const pubDate = item.pubDate || new Date().toISOString()
 
     stories.push({

@@ -3,6 +3,7 @@
 // Strategy: events endpoint for story discovery + article queries for source diversity.
 // Output: /tmp/zuhd-feed-api.json
 import { writeFileSync } from 'fs'
+import { slugify, zuhdCategory } from './lib/utils.js'
 
 const API_KEY = process.env.NEWSAPI_KEY
 if (!API_KEY) { console.error('NEWSAPI_KEY not set'); process.exit(1) }
@@ -285,25 +286,8 @@ async function fetchBroadArticles() {
   return data.articles?.results || []
 }
 
-// ── Category Mapping ────────────────────────────────────────────────
-
-function mapCategory(categories) {
-  for (const cat of (categories || [])) {
-    const uri = (cat.uri || cat.label || '').toLowerCase()
-    if (uri.includes('politic') || uri.includes('society') || uri.includes('conflict') || uri.includes('government')) return 'politics'
-    if (uri.includes('business') || uri.includes('econom') || uri.includes('financ') || uri.includes('market')) return 'economy'
-    if (uri.includes('science') || uri.includes('health') || uri.includes('environment') || uri.includes('medicine')) return 'science'
-    if (uri.includes('technolog') || uri.includes('computer') || uri.includes('internet') || uri.includes('software')) return 'tech'
-  }
-  return 'politics'
-}
-
-function slugify(title, date) {
-  const d = new Date(date)
-  const prefix = isNaN(d.getTime()) ? new Date().toISOString().slice(0, 10) : d.toISOString().slice(0, 10)
-  const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60).replace(/-$/, '')
-  return `${prefix}-${slug}`
-}
+// mapCategory alias — uses shared zuhdCategory with API category arrays
+const mapCategory = (categories) => zuhdCategory(categories || [])
 
 function extractConcepts(articles) {
   const map = new Map()

@@ -2,10 +2,7 @@
 // Merges API feed (/tmp/zuhd-feed-api.json) and RSS feed (/tmp/zuhd-feed-rss.json)
 // into a single /tmp/zuhd-feed.json. Deduplicates by title fingerprint.
 import { readFileSync, writeFileSync, existsSync } from 'fs'
-
-function fingerprint(title) {
-  return title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 40)
-}
+import { fingerprint } from './lib/utils.js'
 
 function loadFeed(path) {
   if (!existsSync(path)) return []
