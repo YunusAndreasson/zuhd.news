@@ -198,6 +198,7 @@ const ARTICLE_DEFAULTS = {
   includeArticleConcepts: true,
   includeArticleCategories: true,
   includeArticleLocation: true,
+  includeArticleSentiment: true, // per-source tone for divergence detection
   includeArticleImage: false,   // never used
   includeArticleAuthors: false, // never used
   includeSourceLocation: true,
