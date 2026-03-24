@@ -260,42 +260,25 @@ async function fetchEvents() {
   return (data.events?.results || []).filter(Boolean)
 }
 
-// Q2: Curated sources + gap-region sources in ONE query via Advanced Query Language (1 token)
-// Merges what was previously Q2+Q3 — saves 1 token/cycle (150/month)
-async function fetchSourceArticles() {
-  // Uses Advanced Query Language — simple params (lang, dateStart, isDuplicateFilter)
-  // must go inside the query object, not as top-level params
+// Q2: Curated editorial sources (1 token)
+async function fetchCuratedArticles() {
   const data = await apiPost('article/getArticles', {
-    resultType: 'articles',
-    articlesCount: 100,
+    ...ARTICLE_DEFAULTS,
     articlesSortBy: 'date',
-    articleBodyLen: -1,
-    includeArticleConcepts: true,
-    includeArticleCategories: true,
-    includeArticleLocation: true,
-    includeArticleImage: false,
-    includeArticleAuthors: false,
-    includeSourceLocation: true,
-    includeSourceRanking: true,
-    query: {
-      $query: {
-        $or: [
-          // Curated editorial sources (any category)
-          { sourceUri: { $or: CURATED_SOURCES } },
-          // Gap-region sources (news categories only)
-          {
-            sourceLocationUri: { $or: GAP_COUNTRIES },
-            categoryUri: { $or: INCLUDE_CATEGORIES }
-          }
-        ],
-        lang: 'eng',
-        dateStart: new Date().toISOString().slice(0, 10)
-      },
-      $filter: {
-        isDuplicate: 'skipDuplicates',
-        dataType: 'news'
-      }
-    },
+    sourceUri: CURATED_SOURCES,
+  })
+  return data.articles?.results || []
+}
+
+// Q3: Gap-region sources — different countries, sorted by importance (1 token)
+async function fetchGapArticles() {
+  const data = await apiPost('article/getArticles', {
+    ...ARTICLE_DEFAULTS,
+    articlesSortBy: 'sourceImportance',
+    eventFilter: 'skipArticlesWithoutEvent',
+    categoryUri: INCLUDE_CATEGORIES,
+    ignoreCategoryUri: EXCLUDE_CATEGORIES,
+    sourceLocationUri: GAP_COUNTRIES,
   })
   return data.articles?.results || []
 }
@@ -351,17 +334,18 @@ function sentimentSpread(articles) {
 async function main() {
   console.error('Fetching from NewsAPI.ai...')
 
-  // Run all 3 queries in parallel (5+1+1 = 7 tokens)
-  const [events, sourceArticles, broadArticles] = await Promise.all([
+  // Run all 4 queries in parallel (5+1+1+1 = 8 tokens)
+  const [events, curatedArticles, gapArticles, broadArticles] = await Promise.all([
     fetchEvents(),
-    fetchSourceArticles(),
+    fetchCuratedArticles(),
+    fetchGapArticles(),
     fetchBroadArticles(),
   ])
 
-  console.error(`Q1: ${events.length} events, Q2: ${sourceArticles.length} sources, Q3: ${broadArticles.length} broad`)
+  console.error(`Q1: ${events.length} events, Q2: ${curatedArticles.length} curated, Q3: ${gapArticles.length} gap, Q4: ${broadArticles.length} broad`)
 
   // Annotate all articles with country codes
-  const allArticles = [...sourceArticles, ...broadArticles]
+  const allArticles = [...curatedArticles, ...gapArticles, ...broadArticles]
   const seen = new Set()
   const dedupedArticles = []
   for (const a of allArticles) {
