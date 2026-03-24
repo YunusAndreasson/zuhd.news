@@ -224,6 +224,8 @@ const CURATED_SOURCES = [
   // Niche regional + moved from RSS (indexed in API)
   'eurasianet.org', 'insightcrime.org', 'sixthtone.com',
   'occrp.org', 'wamda.com',
+  // Balkans (Bosnia, Kosovo, Albania)
+  'balkaninsight.com', 'sarajevotimes.com', 'kosovo-online.com', 'albaniandailynews.com',
 ]
 
 const GAP_COUNTRIES = [
