@@ -2,797 +2,775 @@
   "version": 1,
   "stories": [
     {
-      "id": "afghanistan-rehab-center-strike",
-      "label": "Pakistan airstrike kills 400+ at Kabul rehab center",
-      "firstSeen": "2026-03-24T00:30:00Z",
-      "lastCovered": "2026-03-24T00:30:00Z",
-      "coverageCount": 1,
+      "id": "iran-us-israel-war",
+      "label": "Iran-US-Israel war: Pentagon $200bn request, Saudi threatens action",
+      "firstSeen": "2026-03-01T11:00:00Z",
+      "lastCovered": "2026-03-24T17:00:00Z",
+      "coverageCount": 329,
       "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-afghanistan-rehab-center-strike-400-killed-pakistan"
-      ],
-      "summary": "Pakistan airstrike killed at least 400 at a drug rehabilitation center in Kabul. Families searching for missing."
-    },
-    {
-      "id": "palestinian-refugees-lebanon-squeeze",
-      "label": "Palestinian refugees squeezed between Israeli strikes and Lebanese army",
-      "firstSeen": "2026-03-24T04:00:00Z",
-      "lastCovered": "2026-03-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-palestinian-refugees-lebanon-war-restrictions-beddawi"
-      ],
-      "summary": "Palestinian camps in Lebanon face simultaneous Israeli airstrikes and Lebanese military restrictions."
-    },
-    {
-      "id": "wildlife-trafficking-facebook-indonesia",
-      "label": "Bellingcat: 70K-member Facebook wildlife trafficking ring in Indonesia",
-      "firstSeen": "2026-03-24T04:00:00Z",
-      "lastCovered": "2026-03-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-wildlife-traffickers-coded-language-facebook-indonesia"
-      ],
-      "summary": "Nine Facebook groups with 70K+ members openly trading endangered species in Indonesia."
-    },
-    {
-      "id": "russia-war-snuff-monetization",
-      "label": "Russian civilians monetize Ukraine war atrocity videos",
-      "firstSeen": "2026-03-24T04:00:00Z",
-      "lastCovered": "2026-03-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-russian-civilians-war-snuff-telegram-ukraine-monetization"
-      ],
-      "summary": "Russian Telegram channels broadcasting graphic Ukraine war footage run by civilians and teenagers."
-    },
-    {
-      "id": "somalia-constitutional-crisis",
-      "label": "Somalia new constitution; Puntland and Jubaland reject",
-      "firstSeen": "2026-03-24T04:00:00Z",
-      "lastCovered": "2026-03-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-somalia-constitution-crisis-puntland-jubaland-reject"
-      ],
-      "summary": "Somalia ended 12-year provisional governance. Puntland, Jubaland, and opposition reject it."
-    },
-    {
-      "id": "egypt-industrial-energy-subsidy",
-      "label": "Egypt hikes consumer fuel 31% but protects industrial gas",
-      "firstSeen": "2026-03-24T04:00:00Z",
-      "lastCovered": "2026-03-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-egypt-industrial-gas-subsidy-consumer-fuel-hike-war"
-      ],
-      "summary": "Egypt imposed 31% consumer fuel hike while leaving industrial gas untouched."
-    },
-    {
-      "id": "shamkhani-dubai-property-sanctions",
-      "label": "Sanctioned Iranian official sons hold $29M Dubai property",
-      "firstSeen": "2026-03-24T04:00:00Z",
-      "lastCovered": "2026-03-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-shamkhani-sons-29m-dubai-property-caribbean-aliases"
-      ],
-      "summary": "Shamkhani brothers used Dominica golden passports under aliases to buy $29M in Dubai villas."
-    },
-    {
-      "id": "gulf-war-toxic-fallout",
-      "label": "Gulf war oil bombing causing decades-long contamination",
-      "firstSeen": "2026-03-24T04:00:00Z",
-      "lastCovered": "2026-03-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-toxic-fallout-gulf-war-oil-contamination-decades"
-      ],
-      "summary": "Bombing of Gulf oil facilities contaminating air, soil and water for decades."
-    },
-    {
-      "id": "meta-instagram-encryption-removal",
-      "label": "Meta removes Instagram DM encryption, MENA users at risk",
-      "firstSeen": "2026-03-24T00:30:00Z",
-      "lastCovered": "2026-03-24T00:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-meta-instagram-dm-encryption-removed-mena-risk"
-      ],
-      "summary": "Meta removed E2EE from Instagram DMs. SMEX warns this endangers activists and journalists in MENA region."
-    },
-    {
-      "id": "trivy-supply-chain-attack",
-      "label": "Trivy GitHub Actions tags compromised, secrets exposed",
-      "firstSeen": "2026-03-24T00:30:00Z",
-      "lastCovered": "2026-03-24T00:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-trivy-github-actions-supply-chain-attack-secrets"
-      ],
-      "summary": "Second supply-chain attack on Trivy security scanner. GitHub Actions tags compromised to steal CI/CD secrets."
-    },
-    {
-      "id": "turkey-imamoglu-trial",
-      "label": "Turkey closes Imamoglu corruption trial to public",
-      "firstSeen": "2026-03-24T00:30:00Z",
-      "lastCovered": "2026-03-24T00:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-turkey-imamoglu-trial-closed-public-erdogan"
-      ],
-      "summary": "Turkey barred public from mass corruption trial of jailed Istanbul mayor Imamoglu, Erdogan's chief rival."
-    },
-    {
-      "id": "zakat-humanitarian-response",
-      "label": "Zakat mobilized to bridge $1B/day Middle East humanitarian gap",
-      "firstSeen": "2026-03-24T00:30:00Z",
-      "lastCovered": "2026-03-24T00:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-zakat-bridging-1-billion-day-middle-east-crisis"
-      ],
-      "summary": "Islamic zakat charity mobilized at unprecedented scale to fill $1B/day humanitarian gap from Iran war."
-    },
-    {
-      "id": "iran-war-hormuz-economic-impact",
-      "label": "Hormuz crisis: Ras Laffan LNG attack, allies refuse escort, Pacific hit",
-      "firstSeen": "2026-03-01T13:00:00Z",
-      "lastCovered": "2026-03-24T12:00:00Z",
-      "coverageCount": 292,
-      "category": "economy",
-      "importance": 5,
+      "importance": 8,
       "arc": "ongoing",
       "articles": [
-        "2026-03-08-iraq-oil-production-collapses-70-percent-hormuz-blockade",
-        "2026-03-09-oil-surges-past-110-asian-markets-crash-hormuz-war",
-        "2026-03-09-g7-emergency-oil-reserves-markets-crash",
-        "2026-03-09-uk-heating-oil-crisis-hormuz-war",
-        "2026-03-09-pakistan-austerity-plan-triple-crisis-iran-war",
-        "2026-03-10-russia-iran-war-energy-winner-oil-prices",
-        "2026-03-10-saudi-petroline-bypass-hormuz-pipeline-capacity-gulf",
-        "2026-03-10-oil-sinks-trump-de-escalation-iran-market",
-        "2026-03-11-iran-hormuz-blockade-indefinite-wartime-declaration",
-        "2026-03-11-araghchi-rejects-talks-hormuz-blockade-permanent-wartime",
-        "2026-03-11-oil-plunges-15-percent-de-escalation-hopes",
-        "2026-03-11-iea-emergency-oil-reserves-middle-east-war",
-        "2026-03-11-stagflation-risk-iran-war-1970s-oil-shock-economy",
-        "2026-03-12-iea-one-third-reserves-hormuz-oil-emergency",
-        "2026-03-12-g7-record-400-million-barrel-oil-release-hormuz-countdown",
-        "2026-03-12-totalenergies-15-percent-output-cut-iran-war-market",
-        "2026-03-12-qatar-lng-workforce-halved-iran-war-europe-gas-crisis",
-        "2026-03-12-oil-tanker-armada-red-sea-both-chokepoints-blocked",
-        "2026-03-12-citi-deloitte-pwc-evacuate-dubai-iran-economic-warfare-gulf",
-        "2026-03-15-karachi-gas-cuts-ramadan-sehri-iftar",
-        "2026-03-15-ukraine-drone-expertise-middle-east-exports",
-        "2026-03-15-egypt-inflation-currency-crisis-suez",
-        "2026-03-15-malaysia-fuel-black-market-hormuz-crisis",
-        "2026-03-15-zelensky-eu-blackmail-oil-pipeline-dispute",
-        "2026-03-15-uk-hormuz-minesweeping-drones-energy-security",
-        "2026-03-15-pakistan-kerosene-hike-rs40-ramadan-poorest",
-        "2026-03-15-iran-selective-hormuz-blockade-india-diplomacy",
-        "2026-03-15-iea-emergency-oil-reserves-middle-east-war",
-        "2026-03-15-australia-fuel-rationing-iran-war-oil-supply",
-        "2026-03-15-eu-nuclear-power-strategic-mistake-energy-reversal",
-        "2026-03-15-us-naval-coalition-hormuz-escort-escalation-risk",
-        "2026-03-15-iran-60-percent-minimum-wage-hike-wartime-populism",
-        "2026-03-16-japan-hormuz-warships-takaichi-constitution-trap",
-        "2026-03-16-bitcoin-71k-kharg-island-war-decorrelation",
-        "2026-03-16-hormuz-escort-muted-response-allies-refuse",
-        "2026-03-16-japan-refuses-hormuz-escort-constitution",
-        "2026-03-16-australia-refuses-hormuz-naval-deployment",
-        "2026-03-16-oil-106-brent-hormuz-coalition-failure",
-        "2026-03-16-korean-won-1500-dollar-17-year-low-hormuz",
-        "2026-03-16-japan-energy-vulnerability-hormuz-gas-electricity-prices",
-        "2026-03-16-japan-oil-reserves-release-iran-crisis",
-        "2026-03-16-gold-below-5000-war-signal",
-        "2026-03-16-sri-lanka-thailand-fuel-rationing-hormuz-war",
-        "2026-03-16-indonesia-fuel-supply-eid-28-days-hormuz",
-        "2026-03-17-south-korea-japan-stock-crash-oil-shock-hormuz",
-        "2026-03-17-south-korea-catch-22-hormuz-warships-trump-demand",
-        "2026-03-17-pakistan-exporters-air-cargo-surcharges-war-costs",
-        "2026-03-17-south-korea-worst-case-energy-scenario-hormuz",
-        "2026-03-17-gas-electricity-prices-hormuz-energy-shock-lag",
-        "2026-03-17-sri-lanka-wednesdays-off-fuel-conservation-hormuz",
-        "2026-03-17-south-africa-fruit-exports-iran-war-shipping-delays",
-        "2026-03-17-middle-east-oil-benchmarks-record-highs-losing-relevance",
-        "2026-03-17-pakistan-subsidized-fuel-bikes-rickshaws-hormuz-poor",
-        "2026-03-17-malaysia-cash-handouts-diesel-spike-hormuz",
-        "2026-03-17-iraq-kurdistan-oil-exports-dispute-war",
-        "2026-03-17-south-korea-fiscal-policy-oil-crisis-hormuz",
-        "2026-03-17-gulf-economies-recession-risk-iran-war",
-        "2026-03-17-pakistan-solar-boom-hormuz-shield",
-        "2026-03-17-eu-rejects-trump-hormuz-escort-demands",
-        "2026-03-17-asia-coal-pivot-lng-hormuz-choke",
-        "2026-03-17-ships-gulf-shortages-crew-hormuz",
-        "2026-03-18-allies-refuse-hormuz-operation-misguided",
-        "2026-03-16-hormuz-zero-ships-first-complete-shutdown",
-        "2026-03-18-pakistan-china-khunjerab-trade-hormuz-alternative",
-        "2026-03-18-pakistan-money-laundering-crackdown-capital-flight",
-        "2026-03-18-hsbc-at1-bond-hong-kong-market-stress-test",
-        "2026-03-18-indonesia-energy-security-hormuz-eid",
-        "2026-03-18-sri-lanka-ev-daytime-solar-coal-charging",
-        "2026-03-18-pia-fujairah-flights-suspended-security",
-        "2026-03-18-psx-surges-3600-points-pakistan-recovery",
-        "2026-03-18-turkey-iraq-pipeline-hormuz-bypass",
-        "2026-03-18-liberia-commodity-prices-iran-war-impact",
-        "2026-03-18-pakistan-fx-constraints-oil-supply-chain-hormuz",
-        "2026-03-18-sudan-children-aid-delayed-hormuz-disruption",
-        "2026-03-16-hormuz-zero-ships-first-complete-shutdown",
-        "2026-03-19-ras-laffan-qatar-gas-hub-attack-asia-lng",
-        "2026-03-19-trump-japan-hormuz-step-up-allies-refuse",
-        "2026-03-19-marshall-islands-income-tax-cut-living-costs",
-        "2026-03-20-south-korea-us-rift-hormuz-energy-dependence",
-        "2026-03-20-six-nations-hormuz-safe-passage-coalition",
-        "2026-03-20-britain-joins-us-hormuz-military-planning",
-        "2026-03-20-south-korea-export-restrictions-crude-oil-emergency",
-        "2026-03-20-samsung-heavy-lng-ship-order-oceania-hormuz",
-        "2026-03-20-gold-loses-safe-haven-shine-war",
-        "2026-03-20-japan-lng-carriers-iran-energy-crisis",
-        "2026-03-20-saudi-warns-oil-180-hormuz-disruptions",
-        "2026-03-20-russian-oil-biggest-winner-iran-war-hormuz",
-        "2026-03-20-iea-work-from-home-save-energy-hormuz-crisis",
-        "2026-03-20-egypt-pound-slides-war-drains-forex-reserves",
-        "2026-03-20-zimbabwe-senator-challenges-war-fuel-costs",
-        "2026-03-20-qatarenergy-ceo-warned-us-energy-attack-consequences",
-        "2026-03-20-australia-fuel-supplies-mid-april-hormuz-crisis",
-        "2026-03-21-panama-canal-max-capacity-lng-iran-war-rerouting",
-        "2026-03-21-south-korean-won-1500-iran-crisis-energy",
-        "2026-03-21-india-cooking-gas-crisis-textile-workers-exodus",
-        "2026-03-21-dubai-property-transactions-37-percent-drop-iran-war",
-        "2026-03-21-spain-5-billion-euros-middle-east-war-economic-shield",
-        "2026-03-21-pakistan-pm-rejects-petrol-price-hike-eid-hormuz",
-        "2026-03-21-pakistan-rejects-fuel-price-hike-69bn-burden-hormuz",
-        "2026-03-21-ukraine-drone-specialists-middle-east-counter-drone",
-        "2026-03-21-bangladesh-2-billion-loan-energy-crisis-hormuz",
-        "2026-03-21-hormuz-100-ships-selective-blockade-who-passes",
-        "2026-03-21-pakistan-rejects-fuel-price-hike-69bn-burden-hormuz",
-        "2026-03-21-ukraine-drone-specialists-middle-east-counter-drone",
-        "2026-03-21-eu-winter-gas-storage-iran-war-price-surge",
-        "2026-03-21-algeria-saudi-5bn-hydrocarbon-deal-energy-shift",
-        "2026-03-22-iran-war-wipes-53-billion-global-airline-values",
-        "2026-03-21-eu-winter-gas-storage-iran-war-price-surge",
-        "2026-03-21-algeria-saudi-5bn-hydrocarbon-deal-energy-shift",
-        "2026-03-22-dubai-property-market-weakens-iran-war",
-        "2026-03-22-south-korea-25-trillion-won-emergency-budget-hormuz",
-        "2026-03-22-pakistan-luxury-fuel-levy-rs300-austerity",
-        "2026-03-22-edison-edf-algeria-gas-iran-war-regret",
-        "2026-03-22-pakistan-psl-no-spectators-austerity-crisis",
-        "2026-03-22-australia-fuel-crisis-warning-ignored",
-        "2026-03-22-northern-mariana-fuel-crisis-pacific-austerity",
-        "2026-03-22-pakistan-energy-austerity-red-sea-oil-route-hormuz",
-        "2026-03-22-hong-kong-property-stalled-war-rate-cut-pause",
-        "2026-03-23-asian-markets-plunge-trump-iran-ultimatum",
-        "2026-03-23-malaysia-fuel-subsidies-rm2b-hormuz-strain",
-        "2026-03-23-middle-east-war-global-economic-doom-loop",
-        "2026-03-23-iea-head-iran-war-major-economic-threat",
-        "2026-03-23-seoul-kospi-crash-6-percent-iran-war-markets",
-        "2026-03-23-qatar-airways-fleet-relocation-spain-gulf-war",
-        "2026-03-23-pakistan-fuel-levy-rs200-litre-hormuz-austerity",
-        "2026-03-23-consumer-prices-rise-war-toys-toilet-paper-hong-kong",
-        "2026-03-23-saudi-aramco-cuts-asia-supply-second-month",
-        "2026-03-22-pakistan-luxury-fuel-levy-rs300-austerity",
-        "2026-03-22-edison-edf-algeria-gas-iran-war-regret",
-        "2026-03-22-pakistan-psl-no-spectators-austerity-crisis",
-        "2026-03-22-australia-fuel-crisis-warning-ignored",
-        "2026-03-23-uk-middle-income-families-cut-back-war-costs",
-        "2026-03-23-pakistan-high-octane-ban-austerity-hormuz",
-        "2026-03-23-oil-falls-shares-rebound-trump-iran-pause",
-        "2026-03-23-asian-markets-plunge-trump-iran-ultimatum",
-        "2026-03-23-gold-4-month-low-war-inflation-rate-hike",
-        "2026-03-23-karnataka-india-lpg-10-percent-supply-war",
-        "2026-03-24-egypt-industrial-gas-subsidy-consumer-fuel-hike-war",
-        "2026-03-24-iran-declares-us-tech-banks-military-targets-economic-war",
-        "2026-03-24-iran-parents-nightly-vigil-children-graves-us-school-strike",
-        "2026-03-24-iran-blasts-trump-direct-talks-fake-news-market-manipulation",
-        "2026-03-24-house-iran-wpr-vote-pro-israel-democrats-delay-tactics"
+        "2026-03-01-us-israel-attacks-iran-retaliation-regional-war",
+        "2026-03-08-iran-war-day-12-1300-killed-100000-displaced",
+        "2026-03-09-trump-says-iran-war-almost-over",
+        "2026-03-09-us-israel-diverge-iran-war-goals",
+        "2026-03-10-hegseth-most-intense-strikes-iran-day-15",
+        "2026-03-10-trump-kharg-island-seizure-iran",
+        "2026-03-10-trump-us-troops-deployment-iran-senator-warning",
+        "2026-03-11-iran-dissent-crackdown-airstrikes-day-16-war",
+        "2026-03-11-israel-switches-regime-targets-iran-war-haaretz",
+        "2026-03-11-israel-privately-admits-no-certainty-iran-regime-collapse",
+        "2026-03-12-trump-we-won-iran-war-wont-leave-early-day-18",
+        "2026-03-12-iran-war-cost-eleven-billion-six-days-pentagon",
+        "2026-03-12-iran-32-million-displaced-us-israeli-attacks-un",
+        "2026-03-12-iran-no-collapse-us-intelligence-war-failure",
+        "2026-03-15-trump-kharg-island-just-for-fun",
+        "2026-03-15-french-spies-undercover-iran",
+        "2026-03-15-zelenskyy-ukraine-us-backing-iran-war",
+        "2026-03-15-iran-arrests-informants-israel-intelligence-war",
+        "2026-03-15-iran-hypersonic-missiles-technology",
+        "2026-03-15-pope-leo-xiv-demands-ceasefire-middle-east-war",
+        "2026-03-15-israel-bombing-expands-western-iran-third-week",
+        "2026-03-15-us-10m-reward-iran-supreme-leader-irgc",
+        "2026-03-15-iraq-warns-kurds-iran-war",
+        "2026-03-15-nepali-guard-killed-abu-dhabi-migrant-workers-iran-war",
+        "2026-03-15-pti-oic-emergency-session-iran-war-muslim-silence",
+        "2026-03-15-bahrain-337-intercepts-small-gulf-state-war-burden",
+        "2026-03-15-bellingcat-satellite-imagery-iran-police-stations-strikes",
+        "2026-03-15-iran-denies-saudi-oil-attacks-war-containment",
+        "2026-03-15-russia-strikes-kyiv-energy-iran-war-shadow",
+        "2026-03-15-iran-brics-india-chairmanship-silence-war",
+        "2026-03-15-india-iran-hormuz-diplomacy-vs-us-military-escort",
+        "2026-03-16-iranian-missile-fragment-us-consul-israel",
+        "2026-03-16-iran-captain-asylum-dropped-wartime-returns",
+        "2026-03-16-iran-israel-environmental-crimes-tehran-war",
+        "2026-03-16-trump-us-israel-shared-war-objectives",
+        "2026-03-16-london-thousands-protest-war-iran-despite-bans",
+        "2026-03-16-war-environmental-damage-carbon-toxins-middle-east",
+        "2026-03-16-abu-dhabi-missile-civilian-car-killed",
+        "2026-03-16-us-israeli-strike-school-iran-day-24",
+        "2026-03-16-us-strikes-chabahar-india-port-iran",
+        "2026-03-16-netanyahu-ignored-trump-warning-oil-depots-strike",
+        "2026-03-16-uk-starmer-rules-out-iran-war-hormuz-coalition-fails",
+        "2026-03-16-hamas-trump-board-talks-iran-war-gaza",
+        "2026-03-16-amnesty-us-tomahawk-minab-school-170-children-killed",
+        "2026-03-16-iran-heritage-sites-devastated-us-israeli-strikes",
+        "2026-03-16-reza-pahlavi-supporters-iran-turning-against",
+        "2026-03-16-uae-missiles-drones-iran-gulf-campaign",
+        "2026-03-16-iranian-families-bury-war-dead-tehran",
+        "2026-03-16-us-centcom-7000-targets-struck-iran-24-days",
+        "2026-03-16-baghdad-green-zone-drone-rockets-war-spreads-iraq",
+        "2026-03-17-iran-us-direct-contact-backchannel-war",
+        "2026-03-17-uae-shah-gas-field-suspended-iranian-drone-attack",
+        "2026-03-17-iran-navy-deadly-retaliation-dena-sinking",
+        "2026-03-17-uae-fujairah-oil-zone-fire-drone-strike",
+        "2026-03-17-trump-allies-ingratitude-hormuz-coalition-refuses",
+        "2026-03-17-jeffries-reckless-war-choice-first-democratic-opposition",
+        "2026-03-17-tehran-12000-buildings-damaged-25-days-bombing",
+        "2026-03-17-three-day-old-infant-family-killed-arak-strike",
+        "2026-03-17-israel-kills-larijani-iran-security-chief",
+        "2026-03-17-us-embassy-baghdad-attacked-iraq-war-spreads",
+        "2026-03-17-third-pakistani-killed-uae-debris-migrant-war",
+        "2026-03-17-eu-kallas-calls-us-israel-end-iran-war",
+        "2026-03-17-us-counterterrorism-chief-resigns-iran-no-threat",
+        "2026-03-17-israel-assessed-iranians-slaughtered-uprising",
+        "2026-03-17-uk-official-iran-no-nuclear-threat-war",
+        "2026-03-17-eu-face-saving-exit-iran-war",
+        "2026-03-18-iran-basij-commander-killed-israel-targets-supreme-leader",
+        "2026-03-18-bushehr-nuclear-plant-projectile-iran-war",
+        "2026-03-16-russian-consulate-isfahan-closes-war",
+        "2026-03-16-trump-hormuz-nato-threat-global-backing",
+        "2026-03-18-ukraine-drone-experts-gulf-iran-war",
+        "2026-03-18-irgc-tel-aviv-missiles-revenge-larijani",
+        "2026-03-18-larijani-son-aide-killed-israeli-strike-tehran",
+        "2026-03-18-larijani-death-iran-leadership-crisis-succession",
+        "2026-03-18-china-gulf-iran-balancing-act-war-test",
+        "2026-03-18-iran-nuclear-doctrine-restraint-bushehr-strike",
+        "2026-03-18-uss-gerald-ford-fire-docks-iran-war",
+        "2026-03-18-rosatom-condemns-bushehr-nuclear-plant-strike",
+        "2026-03-18-iran-war-brics-fault-lines-bloc-failure",
+        "2026-03-18-riyadh-regional-fms-meeting-iran-war-diplomacy",
+        "2026-03-18-iran-intelligence-minister-khatib-killed-airstrike",
+        "2026-03-18-saudi-arabia-intercepts-missiles-riyadh-alerts",
+        "2026-03-18-iaea-bushehr-damage-not-significant-nuclear",
+        "2026-03-18-gabbard-accused-omitting-iran-intel-trump",
+        "2026-03-18-gabbard-iran-government-intact-decapitation-failed",
+        "2026-03-18-who-worst-case-nuclear-incident-iran-war",
+        "2026-03-18-gabbard-not-her-job-threat-assessment-dni",
+        "2026-03-18-tehran-grand-bazaar-war-prices-shops-shut",
+        "2026-03-16-russian-consulate-isfahan-closes-war",
+        "2026-03-16-trump-hormuz-nato-threat-global-backing",
+        "2026-03-19-pentagon-200bn-iran-war-congress-bad-guys",
+        "2026-03-20-eid-mourning-migrant-workers-killed-iran-war-gulf",
+        "2026-03-20-netanyahu-israel-acted-alone-iran-gas-field",
+        "2026-03-20-idf-90-percent-iran-missiles-intercepted",
+        "2026-03-20-uae-saudi-kuwait-air-defense-alerts-iran-war-gulf",
+        "2026-03-20-us-16bn-arms-gulf-iran-zero-restraint",
+        "2026-03-20-gulf-eid-prayers-restricted-iran-war",
+        "2026-03-20-kuwait-refinery-fire-bahrain-blaze-gulf-infrastructure",
+        "2026-03-20-cyberattack-mossad-official-documents-leaked",
+        "2026-03-20-switzerland-halts-arms-exports-us-iran-neutrality",
+        "2026-03-20-netherlands-security-iranian-dissidents-shooting",
+        "2026-03-20-iran-warns-us-israeli-personnel-not-safe-worldwide",
+        "2026-03-20-nato-withdraws-iraq-troops-europe-iran-war",
+        "2026-03-20-iran-arrests-97-accused-israeli-spies-wartime-crackdown",
+        "2026-03-20-iran-denies-striking-turkey-oman-blames-israel",
+        "2026-03-20-iranian-arrested-uk-nuclear-missile-base",
+        "2026-03-20-trump-no-iranian-leaders-left-war-diplomacy-closed",
+        "2026-03-21-us-ground-troops-plan-iran-invasion",
+        "2026-03-21-saudi-uae-inch-closer-supporting-us-israeli-war-iran",
+        "2026-03-21-us-israel-strike-natanz-nuclear-facility-iran",
+        "2026-03-21-syria-vows-neutrality-iran-war-fragile-government",
+        "2026-03-21-drone-strike-iraqi-intelligence-hq-baghdad-war-spreads",
+        "2026-03-21-jerusalem-old-city-iranian-projectile-sacred-site",
+        "2026-03-21-uk-bases-iran-war-diego-garcia-missiles",
+        "2026-03-21-bahrain-patriot-intercept-drone-civilian-homes",
+        "2026-03-21-iran-war-5-million-tonnes-emissions-climate-cost",
+        "2026-03-21-jerusalem-old-city-iranian-projectile-sacred-site",
+        "2026-03-21-iranian-missile-dimona-nuclear-town-escalation",
+        "2026-03-21-trump-winding-down-iran-war-no-ceasefire",
+        "2026-03-21-joe-kent-resigns-counterterrorism-iran-war-dissent",
+        "2026-03-22-british-nationals-mass-exodus-gulf-uae-attacks",
+        "2026-03-22-patriot-missile-bahrain-blast-us-operated-analysis",
+        "2026-03-21-iranian-missile-dimona-nuclear-town-escalation",
+        "2026-03-21-trump-winding-down-iran-war-no-ceasefire",
+        "2026-03-21-joe-kent-resigns-counterterrorism-iran-war-dissent",
+        "2026-03-22-democrats-war-powers-push-iran-oversight",
+        "2026-03-22-iran-81000-civilian-units-damaged-red-crescent",
+        "2026-03-22-us-treasury-plenty-of-funds-iran-war-200bn-request",
+        "2026-03-22-iran-threatens-all-infrastructure-retaliation-power-plants",
+        "2026-03-22-patriot-bahrain-blast-us-operated-reuters-analysis",
+        "2026-03-22-british-pm-emergency-cabinet-mideast",
+        "2026-03-23-tehran-struck-khorramabad-blackout-infrastructure-war",
+        "2026-03-23-us-strikes-qom-engine-factory-iran-manufacturing",
+        "2026-03-23-iran-condemns-jordan-un-us-attacks-facilitation",
+        "2026-03-23-israeli-poll-90-percent-support-iran-war",
+        "2026-03-23-trump-weekend-pivot-domestic-iran-war-attention",
+        "2026-03-23-trump-halts-iran-strikes-five-day-pause-talks",
+        "2026-03-23-congress-war-powers-push-curb-trump-iran",
+        "2026-03-23-turkey-off-ramp-iran-war-fidan-diplomacy",
+        "2026-03-23-nato-cannot-confirm-iran-diego-garcia-attack",
+        "2026-03-23-pakistan-egypt-turkey-backchannel-iran-us-mediation",
+        "2026-03-24-us-israeli-strikes-iran-energy-infrastructure-isfahan",
+        "2026-03-23-iran-denies-trump-direct-talks-market-manipulation",
+        "2026-03-19-hezbollah-khiam-taybeh-israel-southern-lebanon-encirclement",
+        "2026-03-24-grieving-parents-iran-minab-school-strike",
+        "2026-03-24-house-iran-wpr-vote-democrats-delay",
+        "2026-03-24-toxic-fallout-gulf-war-decades-contamination",
+        "2026-03-20-house-iran-wpr-vote-democrats-delay",
+        "2026-03-18-grieving-parents-iran-minab-school-strike",
+        "2026-03-24-iran-strikes-continue-despite-trump-pause-khorramshahr",
+        "2026-03-24-pakistan-army-chief-trump-call-iran-peace-broker",
+        "2026-03-24-house-wpr-vote-pro-israel-democrats-delay-tactics",
+        "2026-03-24-israel-kills-two-beirut-intensifies-lebanon-attacks",
+        "2026-03-24-lebanon-expels-iranian-ambassador-persona-non-grata",
+        "2026-03-24-iran-war-economic-consequences-outlast-fighting",
+        "2026-03-24-german-president-iran-war-disastrous-mistake-trump-rebuke",
+        "2026-03-24-zolghadr-replaces-larijani-iran-security-chief-irgc",
+        "2026-03-24-french-military-us-unpredictability-europe-security",
+        "2026-03-24-india-us-hormuz-energy-security-diplomacy",
+        "2026-03-24-philippines-energy-emergency-iran-war-oil-shock",
+        "2026-03-24-afghanistan-taliban-releases-us-citizen-iran-war-leverage"
       ],
-      "summary": "Pro-Israel Democrats (Gottheimer, Meeks) exploring procedural routes to block War Powers Resolution vote on unauthorized Iran war."
+      "summary": "France's defense chief says US does not warn Europe before military decisions. India-US coordinating on Hormuz. Philippines declares energy emergency. Taliban releases US citizen amid distraction. War consequences spreading globally."
     },
     {
-      "id": "dengue-global-observatory",
-      "label": "Global dengue observatory launched for surveillance",
-      "firstSeen": "2026-03-24T00:30:00Z",
-      "lastCovered": "2026-03-24T04:00:00Z",
+      "id": "glp1-mental-health-benefits",
+      "label": "GLP-1 drugs: benefits, misuse, and India crackdown",
+      "firstSeen": "2026-03-24T10:10:00Z",
+      "lastCovered": "2026-03-24T14:30:00Z",
       "coverageCount": 2,
       "category": "science",
       "importance": 2,
       "arc": "developing",
       "articles": [
-        "2026-03-24-dengue-observatory-global-surveillance-launch",
-        "2026-03-24-dengue-observatory-88-countries-global-surveillance"
+        "2026-03-24-glp1-drugs-mental-health-benefits-study-sweden",
+        "2026-03-24-india-glp1-weight-loss-drug-crackdown-supply-chain"
       ],
-      "summary": "Global dengue observatory collecting data from 88 countries."
+      "summary": "India cracks down on off-label GLP-1 misuse across supply chain. Prior: Swedish study showed mental health benefits. Two-tier system: rich countries manage shortages, India fights black market."
     },
     {
-      "id": "poland-judicial-corruption",
-      "label": "Poland Kraków court corruption scandal widens",
-      "firstSeen": "2026-03-24T04:00:00Z",
-      "lastCovered": "2026-03-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-poland-judicial-corruption-scandal-widens-krakow"
-      ],
-      "summary": "Five court officials arrested in $9M embezzlement at Kraków Court of Appeal; 57 indicted."
-    },
-    {
-      "id": "antibiotic-pipeline-children",
-      "label": "Antibiotic pipeline shrinking, children most at risk",
-      "firstSeen": "2026-03-24T04:00:00Z",
-      "lastCovered": "2026-03-24T12:00:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-antibiotic-pipeline-shrinking-children-drug-resistance",
-        "2026-03-24-antibiotic-pipeline-children-drug-resistance-crisis"
-      ],
-      "summary": "Report warns pediatric antibiotic pipeline dangerously thin while drug-resistant infections kill hundreds of thousands of children annually."
-    },
-    {
-      "id": "fcc-foreign-routers-security",
-      "label": "FCC adds foreign-made consumer routers to covered list",
-      "firstSeen": "2026-03-24T04:00:00Z",
-      "lastCovered": "2026-03-24T08:00:00Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-fcc-foreign-routers-covered-list-security",
-        "2026-03-24-fcc-foreign-routers-covered-list-national-security-threat"
-      ],
-      "summary": "FCC added foreign-made consumer routers to covered list as national security threats."
-    },
-    {
-      "id": "krafton-chatgpt-contract-court",
-      "label": "Krafton CEO used ChatGPT to dodge $250M bonus, lost",
-      "firstSeen": "2026-03-24T04:00:00Z",
-      "lastCovered": "2026-03-24T04:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-krafton-ceo-chatgpt-250m-contract-court-loss"
-      ],
-      "summary": "Krafton CEO used ChatGPT to avoid $250M bonus; judge ordered developer reinstated."
-    },
-    {
-      "id": "armenia-press-crackdown",
-      "label": "Armenia targets independent editor ahead of elections",
-      "firstSeen": "2026-03-24T00:30:00Z",
-      "lastCovered": "2026-03-24T08:00:00Z",
-      "coverageCount": 2,
+      "id": "somalia-constitution-crisis",
+      "label": "Somalia new constitution ends 12-year provisional governance, federal crisis",
+      "firstSeen": "2026-03-24T11:00:00Z",
+      "lastCovered": "2026-03-24T11:30:00Z",
+      "coverageCount": 3,
       "category": "politics",
       "importance": 3,
       "arc": "developing",
       "articles": [
-        "2026-03-24-armenia-independent-editor-crackdown-elections",
-        "2026-03-24-armenia-editor-hraparak-crackdown-elections-article-422"
+        "2026-03-24-somalia-constitution-provisional-governance-crisis",
+        "2026-03-10-somalia-constitution-fracture-puntland-jubaland",
+        "2026-03-24-somalia-constitution-ends-provisional-governance-crisis"
       ],
-      "summary": "Armenian authorities summoned Hraparak editor Armine Ohanyan over 2024 editorial; faces 2-5 years under Article 422 ahead of elections."
+      "eventUri": null,
+      "summary": "New constitution formally ends 12-year provisional governance but Puntland and Jubaland reject it. Risk of armed standoff if Mogadishu presses implementation."
     },
     {
-      "id": "heat-male-births-africa",
-      "label": "Heat linked to fewer male births in Africa",
-      "firstSeen": "2026-03-24T00:30:00Z",
-      "lastCovered": "2026-03-24T08:00:00Z",
-      "coverageCount": 2,
+      "id": "gulf-war-toxic-contamination",
+      "label": "Scientists warn Gulf war toxic fallout could last decades",
+      "firstSeen": "2026-03-24T11:00:00Z",
+      "lastCovered": "2026-03-24T11:00:00Z",
+      "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "developing",
+      "importance": 2,
+      "arc": "breaking",
       "articles": [
-        "2026-03-24-heat-fewer-male-births-africa-climate-study",
-        "2026-03-24-heat-fewer-male-births-africa-climate-demographic-shift"
+        "2026-03-24-toxic-fallout-gulf-war-decades-contamination"
       ],
-      "summary": "Study finds warmer temperatures during early pregnancy in Africa selectively affect male fetuses, linking climate to demographic shifts."
+      "eventUri": null,
+      "summary": "Long-term environmental contamination from Gulf war: depleted uranium, burning oil, chemical runoff from destroyed industrial sites."
     },
     {
-      "id": "sleeping-sickness-pill",
-      "label": "Single-dose sleeping sickness pill raises hopes in Africa",
-      "firstSeen": "2026-03-24T00:30:00Z",
-      "lastCovered": "2026-03-24T08:00:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-sleeping-sickness-single-pill-africa-breakthrough",
-        "2026-03-24-sleeping-sickness-single-dose-pill-africa-elimination"
-      ],
-      "summary": "Single-dose oral pill for sleeping sickness could replace multi-day IV treatment, accelerating elimination in Africa."
-    },
-    {
-      "id": "tinder-ai-camera-roll",
-      "label": "Tinder to scan camera rolls with AI",
-      "firstSeen": "2026-03-24T00:30:00Z",
-      "lastCovered": "2026-03-24T08:00:00Z",
-      "coverageCount": 2,
+      "id": "fcc-foreign-routers-ban",
+      "label": "FCC adds foreign consumer routers to national security covered list",
+      "firstSeen": "2026-03-24T11:00:00Z",
+      "lastCovered": "2026-03-24T11:00:00Z",
+      "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-fcc-foreign-routers-covered-list-security"
+      ],
+      "eventUri": null,
+      "summary": "FCC designates foreign-manufactured consumer routers as covered equipment, likely targeting Chinese manufacturers."
+    },
+    {
+      "id": "tinder-ai-camera-scanning",
+      "label": "Tinder plans AI scanning of users' entire camera rolls",
+      "firstSeen": "2026-03-24T11:00:00Z",
+      "lastCovered": "2026-03-24T11:30:00Z",
+      "coverageCount": 3,
+      "category": "tech",
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-24-tinder-ai-camera-roll-scan-privacy",
-        "2026-03-24-tinder-ai-camera-roll-scan-privacy-dating-profiles"
-      ],
-      "summary": "Tinder to let AI scan users' entire camera rolls to build dating profiles by inferring interests."
-    },
-    {
-      "id": "uae-central-bank-liquidity",
-      "label": "UAE central bank eases liquidity rules amid war stress",
-      "firstSeen": "2026-03-24T00:30:00Z",
-      "lastCovered": "2026-03-24T08:00:00Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-uae-central-bank-eases-liquidity-iran-war-stress",
-        "2026-03-24-uae-central-bank-eases-liquidity-iran-war-banking-stress"
-      ],
-      "summary": "UAE central bank eased liquidity rules to prevent banking crunch as Iran war hammers Gulf economies."
-    },
-    {
-      "id": "palestinian-prisoner-access-denied",
-      "label": "Palestinian prisoner's lawyer cut off from client in Israeli jail",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T08:00:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 7,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-palestinian-prisoner-lawyer-cut-off-israeli-jail",
-        "2026-03-24-palestinian-prisoners-lawyer-access-blocked-iran-war-lockdown"
-      ],
-      "summary": "Israel locked down prisons at start of Iran war, barring almost all lawyer visits to Palestinian detainees."
-    },
-    {
-      "id": "doge-deposition-videos",
-      "label": "Judge unblocks DOGE deposition videos showing ChatGPT contract filtering",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T05:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-doge-deposition-videos-unblocked-judge-reversal"
-      ],
-      "summary": "Federal judge reversed order, allowed DOGE deposition videos back online showing members admitted using ChatGPT to filter contracts by race-related keywords."
-    },
-    {
-      "id": "border-patrol-use-of-force",
-      "label": "Bellingcat tracks Border Patrol agents across US cities in use-of-force pattern",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T05:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-border-patrol-agents-tracked-use-of-force-us-cities"
-      ],
-      "summary": "Bellingcat used 85+ hours of footage to track specific Border Patrol agents across Bakersfield and Chicago, documenting repeated use-of-force incidents."
-    },
-    {
-      "id": "sde-teiman-military-justice",
-      "label": "Sde Teiman exposes structural impunity in Israeli military justice",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T08:00:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 7,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-sde-teiman-israel-military-justice-impunity-design",
-        "2026-03-24-sde-teiman-charges-dropped-israel-military-justice-masquerade"
-      ],
-      "summary": "Israel dropped all charges against soldiers filmed abusing Palestinian detainee at Sde Teiman, abandoning accountability masquerade."
-    },
-    {
-      "id": "marseille-narco-trial",
-      "label": "Six on trial in Marseille drug war that killed 100+ in 2024",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T05:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-marseille-drug-war-trial-six-defendants-narco-violence"
-      ],
-      "summary": "First major trial from Marseille's narco-war. Six defendants face charges; the conflict killed 100+ people in 2024, many teenage hitmen."
-    },
-    {
-      "id": "ireland-russia-aluminum-sanctions",
-      "label": "Irish aluminum traced to Russian military rockets despite EU sanctions",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T08:00:00Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 7,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-ireland-aluminum-supply-chain-russian-rockets-sanctions",
-        "2026-03-24-irish-alumina-refinery-russian-rockets-sanctions-gap"
-      ],
-      "summary": "OCCRP investigation reveals Europe's largest alumina refinery in Ireland ships majority output to Russian smelters feeding sanctioned defense contractors."
-    },
-    {
-      "id": "chelsea-abramovich-fine",
-      "label": "Chelsea hit with record Premier League fine for Abramovich-era deception",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T05:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-chelsea-record-fine-abramovich-era-financial-deception"
-      ],
-      "summary": "Chelsea FC fined record amount by Premier League for financial deception during Abramovich ownership era."
-    },
-    {
-      "id": "gpt5-frontier-math",
-      "label": "GPT-5.4 Pro solves open problem in Ramsey theory",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T08:00:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 7,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-gpt5-4-pro-solves-open-math-problem-ramsey-hypergraphs",
-        "2026-03-24-gpt5-pro-solves-open-ramsey-theory-problem-frontier-math"
-      ],
-      "summary": "GPT5.4 Pro solved an open Ramsey theory problem on hypergraphs, verified by Epoch's FrontierMath benchmark."
-    },
-    {
-      "id": "africa-climate-adaptation",
-      "label": "Africa pushes to mainstream homegrown climate adaptation",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T05:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-africa-homegrown-climate-adaptation-mainstream-push"
-      ],
-      "summary": "African scientists argue homegrown climate solutions should be mainstreamed rather than sidelined by Western-designed frameworks."
-    },
-    {
-      "id": "autoresearch-ai-science",
-      "label": "AI agents autonomously pursue abandoned research idea, produce novel results",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T05:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-autoresearch-ai-agents-autonomous-scientific-discovery"
-      ],
-      "summary": "Researcher used AI agents to autonomously revisit abandoned research idea; system produced novel results, generating experiments and writing up findings."
-    },
-    {
-      "id": "lebanon-telecom-war-failure",
-      "label": "Lebanon telecom infrastructure fails during Israeli escalation",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T12:00:00Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-lebanon-telecom-fails-israeli-escalation-connectivity",
-        "2026-03-24-lebanon-telecom-infrastructure-war-preparedness-failure"
-      ],
-      "summary": "SMEX reports Lebanons telecom networks failing during Israeli strikes, leaving civilians unable to receive warnings or call for help."
-    },
-    {
-      "id": "streameast-piracy-takedown",
-      "label": "StreamEast: world's largest piracy network run from Cairo suburb, taken down",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T05:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-streameast-piracy-network-egypt-takedown-billion-visits"
-      ],
-      "summary": "Two men in Giza ran StreamEast (1.6B visits/year); 22-officer raid shut them down but piracy infrastructure already respawned."
-    },
-    {
-      "id": "nuclear-datacenter-drone-fears",
-      "label": "Michigan township fears drone strikes over Los Alamos nuclear datacenter",
-      "firstSeen": "2026-03-24T05:30:00Z",
-      "lastCovered": "2026-03-24T08:00:00Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-michigan-township-nuclear-datacenter-drone-strike-fears",
-        "2026-03-24-ypsilanti-township-nuclear-datacenter-iran-drone-strike-fears"
-      ],
-      "summary": "Ypsilanti Township (pop. 20,000) fights $1.25B Los Alamos nuclear weapons datacenter over drone strike fears."
-    },
-    {
-      "id": "kyrgyzstan-journalist-release",
-      "label": "Kyrgyzstan releases investigative journalist Makhabat after 18 months",
-      "firstSeen": "2026-03-24T08:00:00Z",
-      "lastCovered": "2026-03-24T08:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-kyrgyzstan-journalist-makhabat-released-18-months-retrial"
-      ],
-      "summary": "Kyrgyz court released investigative journalist Makhabat Tazhibek kyzy after 18 months in prison, pending retrial. Supreme Court overturned 6-year sentence."
-    },
-    {
-      "id": "chad-rsf-munitions-match",
-      "label": "Bellingcat: Chad strike munitions match RSF weapons",
-      "firstSeen": "2026-03-24T12:00:00Z",
-      "lastCovered": "2026-03-24T12:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 7,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-chad-strike-munitions-match-rsf-weapon-bellingcat"
+        "2026-03-19-tinder-ai-camera-roll-scan-privacy",
+        "2026-03-24-tinder-ai-scan-camera-roll-privacy"
       ],
       "eventUri": null,
-      "summary": "Bellingcat forensic analysis matched munition remnants at deadly Chad strike to weapons previously used by Sudans RSF, proving cross-border operations."
+      "summary": "Tinder plans AI scanning of entire camera rolls to select photos and infer interests. Match Group desperate to reverse subscriber decline via AI personalization."
     },
     {
-      "id": "romanian-belarus-russian-drones",
-      "label": "Romanian businessman linked to sanctioned Belarus elites and Russian drone makers",
-      "firstSeen": "2026-03-24T12:00:00Z",
-      "lastCovered": "2026-03-24T12:00:00Z",
+      "id": "chad-rsf-munitions-cross-border",
+      "label": "Bellingcat links RSF munitions to deadly Chad airstrike",
+      "firstSeen": "2026-03-24T11:30:00Z",
+      "lastCovered": "2026-03-24T11:30:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-24-chad-strike-munitions-rsf-weapons-bellingcat",
+        "2026-03-24-bellingcat-chad-strike-munitions-match-rsf-weapons"
+      ],
+      "eventUri": null,
+      "summary": "Bellingcat forensically matches munition remnants from deadly Chad strike in Tine to weapons previously used by RSF in Sudan. Smoking gun for cross-border RSF operations."
+    },
+    {
+      "id": "humid-heatwaves-coastal-warming",
+      "label": "Nature: humid heatwaves clustering at unprecedented scale",
+      "firstSeen": "2026-03-24T11:30:00Z",
+      "lastCovered": "2026-03-24T11:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-humid-heatwaves-coastal-oceanic-warming-nature"
+      ],
+      "eventUri": null,
+      "summary": "Humid heatwaves aggregating at massive scales driven by coastal ocean warming."
+    },
+    {
+      "id": "south-asia-air-pollution-crisis",
+      "label": "IQAir 2025: Pakistan most polluted country, Ghaziabad most polluted city",
+      "firstSeen": "2026-03-24T11:30:00Z",
+      "lastCovered": "2026-03-24T12:30:00Z",
+      "coverageCount": 3,
+      "category": "science",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-24-ghaziabad-india-most-polluted-city-world",
+        "2026-03-24-ghaziabad-worlds-most-polluted-city-not-delhi",
+        "2026-03-24-pakistan-most-polluted-country-2025-iqair-data"
+      ],
+      "eventUri": "eng-11506656",
+      "summary": "IQAir 2025 data: Pakistan ranked most polluted country (PM2.5 13x WHO limit), Ghaziabad most polluted city. 14 of top 20 cities in India/Pakistan."
+    },
+    {
+      "id": "europe-stagflation-iran-war",
+      "label": "European PMI signals stagflation from Iran war energy shock",
+      "firstSeen": "2026-03-24T11:30:00Z",
+      "lastCovered": "2026-03-24T12:30:00Z",
+      "coverageCount": 3,
+      "category": "economy",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-24-europe-stagflation-iran-war-pmi",
+        "2026-03-24-europe-stagflation-iran-war-pmi-crisis",
+        "2026-03-24-global-markets-jittery-oil-climbs-relief-rally-sours"
+      ],
+      "eventUri": "eng-11506407",
+      "summary": "Global markets sour within 24 hours of Trump peace talk claims. Oil resumes climbing. European PMI still showing stagflation. Relief rally was theatrics."
+    },
+    {
+      "id": "revolut-record-profit-fintech",
+      "label": "Revolut posts record 1.7B pounds profit, targets 100M customers",
+      "firstSeen": "2026-03-24T11:30:00Z",
+      "lastCovered": "2026-03-24T11:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-revolut-record-profit-1-7bn-100m-customer-target"
+      ],
+      "eventUri": "deu-2099339",
+      "summary": "Revolut posts record 1.7B GBP profit (57% surge), targets 100M customers by mid-2027. Europe's most valuable fintech expanding to US banking."
+    },
+    {
+      "id": "lrrk2-parkinsons-trial",
+      "label": "First LRRK2-targeting Parkinson's drug passes phase 1 trial",
+      "firstSeen": "2026-03-24T11:30:00Z",
+      "lastCovered": "2026-03-24T11:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-lrrk2-parkinsons-antisense-oligonucleotide-phase-1-trial"
+      ],
+      "eventUri": "eng-11507445",
+      "summary": "BIIB094 antisense oligonucleotide targeting LRRK2 is well-tolerated and reduces target protein in cerebrospinal fluid. First disease-modifying approach for Parkinson's."
+    },
+    {
+      "id": "pacemaker-metabolic-switch",
+      "label": "Pacemaker implant switches failing hearts from sugar to fat fuel",
+      "firstSeen": "2026-03-24T11:30:00Z",
+      "lastCovered": "2026-03-24T11:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-pacemaker-switches-heart-burn-fat-not-sugar"
+      ],
+      "eventUri": "eng-11505238",
+      "summary": "Watch-sized implant reverses metabolic dysfunction in heart failure by switching fuel source from glucose to fatty acids. In human trials in UK."
+    },
+    {
+      "id": "nature-ai-jobs-analysis",
+      "label": "Nature: AI has not caused mass job losses but displacement is concentrated",
+      "firstSeen": "2026-03-24T11:30:00Z",
+      "lastCovered": "2026-03-24T11:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-nature-ai-job-apocalypse-hasnt-happened-yet"
+      ],
+      "eventUri": "eng-11503270",
+      "summary": "Nature labor market analysis finds AI companies hiring more, not less, but displacement concentrated in translation, basic coding, customer service roles."
+    },
+    {
+      "id": "saudi-aramco-deepfake-detection",
+      "label": "Saudi Aramco Wa'ed invests in Resemble AI for deepfake detection",
+      "firstSeen": "2026-03-24T11:30:00Z",
+      "lastCovered": "2026-03-24T11:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-saudi-aramco-waed-resemble-ai-deepfake-detection"
+      ],
+      "eventUri": null,
+      "summary": "Aramco's $500M VC arm invests in AI deepfake detection during wartime when fake audio of Gulf leaders could move energy markets."
+    },
+    {
+      "id": "indonesia-trump-board-of-peace",
+      "label": "Indonesia rejects $1bn fee for Trump's Board of Peace",
+      "firstSeen": "2026-03-24T01:04:19Z",
+      "lastCovered": "2026-03-24T12:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-indonesia-rejects-trump-board-of-peace-billion-dollar-fee"
+      ],
+      "eventUri": "eng-11502497",
+      "summary": "Prabowo refused $1bn Board of Peace fee after domestic backlash. World's largest Muslim-majority nation rejecting US peace initiative during Iran war."
+    },
+    {
+      "id": "nigeria-press-freedom-bauchi",
+      "label": "Nigerian journalist assaulted in Bauchi, MRA demands probe",
+      "firstSeen": "2026-03-24T12:30:00Z",
+      "lastCovered": "2026-03-24T12:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-nigeria-journalist-assault-bauchi-press-freedom"
+      ],
+      "eventUri": "eng-11504364",
+      "summary": "Media Rights Agenda demands independent investigation into journalist assault in Bauchi state. Pattern of press freedom erosion in northern Nigeria."
+    },
+    {
+      "id": "russia-steel-industrial-contraction",
+      "label": "Russia steel output drops 10.2% as industrial base contracts",
+      "firstSeen": "2026-03-24T12:30:00Z",
+      "lastCovered": "2026-03-24T12:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-russia-steel-output-drops-ten-percent-industrial-contraction"
+      ],
+      "eventUri": null,
+      "summary": "WSA data: Russia steel production down 10.2% YoY in Feb to 5M tons. CIS overall down 10.5%. Combined sanctions, war diversion, and Iran supply chain disruption."
+    },
+    {
+      "id": "dark-matter-underground-labs-review",
+      "label": "Nature review: dark matter search progress across underground labs",
+      "firstSeen": "2026-03-24T12:30:00Z",
+      "lastCovered": "2026-03-24T12:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-dark-matter-underground-labs-search-progress-nature"
+      ],
+      "eventUri": null,
+      "summary": "Comprehensive Nature review of underground dark matter labs (CRESST, CDMS, DAMA/LIBRA, ANAIS). Pushing into lighter particle territory. Seasonal modulation controversy unresolved."
+    },
+    {
+      "id": "sodium-ion-battery-breakthrough",
+      "label": "Sodium-ion battery electrolyte breakthrough for wide temperature range",
+      "firstSeen": "2026-03-24T12:30:00Z",
+      "lastCovered": "2026-03-24T12:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-sodium-ion-battery-high-voltage-wide-temperature-breakthrough"
+      ],
+      "eventUri": null,
+      "summary": "Nature: asymmetric sulfonamide electrolyte enables high-voltage sodium-ion pouch cells across wide temperature range. Potential lithium-free grid storage breakthrough."
+    },
+    {
+      "id": "bitcoin-wartime-stress-test",
+      "label": "Bitcoin holds at 2023 cost basis as wartime stress test",
+      "firstSeen": "2026-03-24T12:30:00Z",
+      "lastCovered": "2026-03-24T12:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-bitcoin-stability-2023-cost-basis-wartime-stress-test"
+      ],
+      "eventUri": null,
+      "summary": "BTC finding support at $60K (2023 cost basis). Broader realized price at $54.3K is bear/bull boundary. Crypto's first real wartime stress test."
+    },
+    {
+      "id": "slow-llm-ai-art-sabotage",
+      "label": "Artist creates Slow LLM tool to question AI speed dependence",
+      "firstSeen": "2026-03-24T12:30:00Z",
+      "lastCovered": "2026-03-24T12:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 1,
+      "arc": "fading",
+      "articles": [
+        "2026-03-24-slow-llm-art-tool-sabotages-ai-chatbots"
+      ],
+      "eventUri": null,
+      "summary": "Sam Lavigne's Slow LLM deliberately slows AI chatbot responses as conceptual art. Distinct from Nepenthes crawler traps -- targets UX, not web scraping."
+    },
+    {
+      "id": "lebanon-expels-iran-ambassador",
+      "label": "Israel declares south Lebanon control zone; Lebanon diplomatic rupture with Iran",
+      "firstSeen": "2026-03-24T12:30:00Z",
+      "lastCovered": "2026-03-24T14:30:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-03-24-lebanon-expels-iranian-ambassador-persona-non-grata",
+        "2026-03-24-israel-declares-control-south-lebanon-security-zone"
+      ],
+      "eventUri": "eng-11507631",
+      "summary": "Israel declared military control south of Litani -- de facto occupation zone echoing 1978-2000. Lebanon expelled Iranian ambassador under military pressure. 300K+ displaced, no end date."
+    },
+    {
+      "id": "zamfara-apc-defection",
+      "label": "Zamfara entire assembly defects from PDP to APC",
+      "firstSeen": "2026-03-24T14:30:00Z",
+      "lastCovered": "2026-03-24T14:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-zamfara-assembly-governor-defect-apc-nigeria"
+      ],
+      "eventUri": "eng-11501251",
+      "summary": "Zamfara governor and entire state assembly defect from PDP to ruling APC. One commissioner resigned rather than switch. Democratic mandate erased."
+    },
+    {
+      "id": "russia-ukraine-moldova-energy",
+      "label": "Russia strikes damage Moldova energy infrastructure",
+      "firstSeen": "2026-03-24T14:30:00Z",
+      "lastCovered": "2026-03-24T17:00:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-24-russia-strikes-ukraine-moldova-energy-damage",
+        "2026-03-24-ukraine-peace-talks-stall-russia-spring-offensive"
+      ],
+      "eventUri": "deu-2099221",
+      "summary": "Ukraine peace talks frozen as Iran war absorbs global attention. Russia exploiting vacuum with spring offensive hitting Poltava. War's cost: another war's impunity."
+    },
+    {
+      "id": "pakistan-markets-war-diplomacy",
+      "label": "Pakistan markets rally on ceasefire hopes and peace broker role",
+      "firstSeen": "2026-03-24T14:30:00Z",
+      "lastCovered": "2026-03-24T14:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-pakistan-stock-exchange-rallies-eid-ceasefire-hopes"
+      ],
+      "eventUri": null,
+      "summary": "PSX surged 1200 points post-Eid on ceasefire hopes. Army chief Munir positioning Pakistan as Iran peace broker after Trump call."
+    },
+    {
+      "id": "cloud-infrastructure-war-disruption",
+      "label": "AWS Bahrain disrupted by war, Pakistani fintech goes offline",
+      "firstSeen": "2026-03-24T14:30:00Z",
+      "lastCovered": "2026-03-24T14:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-sadapay-aws-bahrain-war-fintech-disruption"
+      ],
+      "eventUri": "eng-11506519",
+      "summary": "SadaPay offline after AWS Bahrain datacenter disrupted by Iran war. Cloud dependency creates financial fragility for non-combatant countries."
+    },
+    {
+      "id": "jak-inhibitors-immune-suppression",
+      "label": "Nature: JAK inhibitors suppress killer T cells via metabolic licensing",
+      "firstSeen": "2026-03-24T14:30:00Z",
+      "lastCovered": "2026-03-24T14:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-jak-inhibitors-suppress-killer-t-cells-nature"
+      ],
+      "eventUri": null,
+      "summary": "JAK inhibitor drugs suppress immune killer T cells by disrupting metabolic licensing. Explains infection risk in millions of autoimmune patients."
+    },
+    {
+      "id": "orbital-data-centers",
+      "label": "Ars Technica deep-dive: are orbital data centers economically viable?",
+      "firstSeen": "2026-03-24T14:30:00Z",
+      "lastCovered": "2026-03-24T14:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-orbital-data-centers-economics-ars-technica"
+      ],
+      "eventUri": null,
+      "summary": "Space-based computing economics shifting: Starlink-era manufacturing costs change assumptions. Cooling and power advantages in orbit may offset launch costs."
+    },
+    {
+      "id": "open-source-malware-iran-wiper",
+      "label": "Self-propagating malware poisons open source, deploys Iran-targeting wiper",
+      "firstSeen": "2026-03-24T14:30:00Z",
+      "lastCovered": "2026-03-24T17:00:00Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 7,
+      "arc": "developing",
+      "articles": [
+        "2026-03-24-malware-open-source-supply-chain-iran-wiper",
+        "2026-03-24-litellm-supply-chain-attack-ai-dependency"
+      ],
+      "eventUri": null,
+      "summary": "AI supply chain under active attack: LiteLLM compromised (second incident after Iran-targeting wiper). Dependency chains becoming attack surfaces."
+    },
+    {
+      "id": "zoom-ai-podcast-surveillance",
+      "label": "WebinarTV secretly converts 200K Zoom calls into AI podcasts",
+      "firstSeen": "2026-03-24T14:30:00Z",
+      "lastCovered": "2026-03-24T14:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-zoom-meetings-secretly-turned-ai-podcasts-webinartv"
+      ],
+      "eventUri": null,
+      "summary": "WebinarTV turning 200,000 Zoom calls into AI podcasts without participant consent. Hosts opt in but attendees never told."
+    },
+    {
+      "id": "ai-chatbot-delusion-research",
+      "label": "Stanford: first systematic study of AI-reinforced delusional thinking",
+      "firstSeen": "2026-03-24T14:30:00Z",
+      "lastCovered": "2026-03-24T14:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-stanford-ai-chatbot-delusions-research-openai-microsoft"
+      ],
+      "eventUri": null,
+      "summary": "Stanford transcript analysis: chatbots amplify delusional thinking by never pushing back or expressing doubt. OpenAI admits Microsoft AI products pose existential business risk."
+    },
+    {
+      "id": "cern-antimatter-transport",
+      "label": "CERN transports antimatter by road for first time",
+      "firstSeen": "2026-03-24T17:00:00Z",
+      "lastCovered": "2026-03-24T17:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-cern-antimatter-road-transport-first-time"
+      ],
+      "eventUri": "deu-2098735",
+      "summary": "CERN transported 92 antiprotons by road in portable magnetic bottle. Proof-of-concept for antimatter delivery service enabling hospitals/labs worldwide."
+    },
+    {
+      "id": "prefrontal-leadership-neurons",
+      "label": "Nature Neuroscience: prefrontal neurons govern group leadership dynamics",
+      "firstSeen": "2026-03-24T17:00:00Z",
+      "lastCovered": "2026-03-24T17:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-prefrontal-neurons-leadership-group-dynamics-nature"
+      ],
+      "eventUri": null,
+      "summary": "Mapped specific neurons determining who leads/follows in real-time group behavior. Leadership is dynamic negotiation, not fixed trait."
+    },
+    {
+      "id": "ai-physics-methodology-shift",
+      "label": "AI reshaping physics methodology at APS summit",
+      "firstSeen": "2026-03-24T17:00:00Z",
+      "lastCovered": "2026-03-24T17:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-ai-disrupts-physics-aps-meeting-methodology"
+      ],
+      "eventUri": null,
+      "summary": "AI generating hypotheses, designing experiments, writing indistinguishable abstracts at world's largest physics meeting. Debate shifted from 'should AI be here' to 'who controls it'."
+    },
+    {
+      "id": "deepfake-medical-imaging",
+      "label": "Radiologists cannot detect deepfake X-rays",
+      "firstSeen": "2026-03-24T17:00:00Z",
+      "lastCovered": "2026-03-24T17:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-deepfake-xrays-radiologists-cant-detect"
+      ],
+      "eventUri": null,
+      "summary": "STAT: radiologists fail to distinguish AI-generated X-rays from real ones. Telehealth expansion increases risk of fraud and fabricated diagnoses."
+    },
+    {
+      "id": "tether-big-four-audit",
+      "label": "Tether hires Big Four firm for first full audit",
+      "firstSeen": "2026-03-24T17:00:00Z",
+      "lastCovered": "2026-03-24T17:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-tether-usdt-big-four-audit-stablecoin"
+      ],
+      "eventUri": null,
+      "summary": "$140bn stablecoin finally submitting to real audit. Could legitimize or expose largest unregulated money market fund."
+    },
+    {
+      "id": "claude-seo-poisoning",
+      "label": "Hackers plant malicious Claude plugins link as top Google result",
+      "firstSeen": "2026-03-24T17:00:00Z",
+      "lastCovered": "2026-03-24T17:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-claude-plugins-google-search-seo-poisoning-hackers"
+      ],
+      "eventUri": null,
+      "summary": "404 Media: SEO poisoning targeting developers searching for AI integrations. AI hype creating gold rush for attackers."
+    },
+    {
+      "id": "palestinian-journalist-killings",
+      "label": "Anniversary of Hossam Shabat assassination, 180+ journalists killed",
+      "firstSeen": "2026-03-24T17:00:00Z",
+      "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-03-24-romanian-tycoon-sanctioned-belarus-russian-drone-makers"
+        "2026-03-24-palestinian-journalist-hossam-shabat-assassination-anniversary"
       ],
       "eventUri": null,
-      "summary": "OCCRP reveals Romanian tycoon built empire in Lukashenkos Belarus with links to sanctioned elites and Russian drone manufacturers."
+      "summary": "One year since Israel killed 23-year-old journalist Hossam Shabat in Gaza. Over 180 Palestinian journalists killed since Oct 2023 -- deadliest period for press in modern conflict history."
     },
     {
-      "id": "israel-lebanon-southern-encirclement",
-      "label": "Israel pushes to encircle southern Lebanon towns",
-      "firstSeen": "2026-03-24T12:00:00Z",
-      "lastCovered": "2026-03-24T12:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 7,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-hezbollah-holds-khiam-taybeh-israel-southern-lebanon-encirclement"
-      ],
-      "eventUri": null,
-      "summary": "Hezbollah held off Israeli advances at Khiam and Taybeh as Israel pushed to cut off southern Lebanese towns from resupply."
-    },
-    {
-      "id": "ninja-riyadh-ipo-saudi-resilience",
-      "label": "Ninja explores Riyadh IPO as Saudi market holds steady",
-      "firstSeen": "2026-03-24T12:00:00Z",
-      "lastCovered": "2026-03-24T12:00:00Z",
+      "id": "philippines-energy-emergency",
+      "label": "Philippines declares national energy emergency from Iran war oil shock",
+      "firstSeen": "2026-03-24T17:00:00Z",
+      "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-03-24-ninja-riyadh-ipo-saudi-market-resilience-gulf-war"
+        "2026-03-24-philippines-energy-emergency-iran-war-oil-shock"
       ],
-      "eventUri": null,
-      "summary": "Saudi q-commerce startup Ninja exploring Riyadh IPO while Dubais market crashes, showing Saudi market resilience amid Gulf war."
-    },
-    {
-      "id": "pakistan-shariah-screening",
-      "label": "Pakistan SECP approves independent Shariah screening",
-      "firstSeen": "2026-03-24T12:00:00Z",
-      "lastCovered": "2026-03-24T12:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-pakistan-secp-shariah-screening-capital-markets"
-      ],
-      "eventUri": null,
-      "summary": "Pakistans SECP approved independent Shariah screening for listed securities to attract Islamic investors amid war-driven capital flight."
-    },
-    {
-      "id": "africa-homegrown-climate-adaptation",
-      "label": "Africa urged to mainstream homegrown climate adaptation",
-      "firstSeen": "2026-03-24T12:00:00Z",
-      "lastCovered": "2026-03-24T12:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-africa-homegrown-climate-adaptation-mainstream"
-      ],
-      "eventUri": null,
-      "summary": "African researchers call for locally-developed climate adaptation over imported Western solutions that fail in African contexts."
-    },
-    {
-      "id": "starlink-uae-launch",
-      "label": "SpaceX Starlink launches in UAE amid surveillance concerns",
-      "firstSeen": "2026-03-24T12:00:00Z",
-      "lastCovered": "2026-03-24T12:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-starlink-launches-uae-satellite-internet-control"
-      ],
-      "eventUri": null,
-      "summary": "Starlink officially launched in UAE, bringing satellite internet to a country with tight internet controls and expanding surveillance."
-    },
-    {
-      "id": "iphone-17-400b-llm",
-      "label": "iPhone 17 Pro runs 400B parameter LLM locally",
-      "firstSeen": "2026-03-24T12:00:00Z",
-      "lastCovered": "2026-03-24T12:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-iphone-17-pro-400b-llm-on-device-ai-milestone"
-      ],
-      "eventUri": null,
-      "summary": "Developer demonstrated iPhone 17 Pro running 400B parameter LLM locally, a milestone for on-device AI."
+      "eventUri": "eng-11507722",
+      "summary": "First Southeast Asian country to formally declare energy emergency from Iran war oil price shock. Import-dependent grid facing blackout risk."
     }
   ]
 }
