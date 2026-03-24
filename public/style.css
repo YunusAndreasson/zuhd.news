@@ -675,6 +675,51 @@ footer {
 }
 .article-sources a:hover { text-decoration: underline; }
 
+/* --- Progressive Disclosure: Context Brief --- */
+.article-context {
+  margin-top: 1.2em;
+  font-size: var(--size-sm);
+  color: var(--text-secondary);
+}
+.context-label {
+  cursor: pointer;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  list-style: none;
+}
+.context-label::-webkit-details-marker { display: none; }
+.context-label::before {
+  content: '\25B8';
+  display: inline-block;
+  margin-right: 0.3em;
+  transition: transform 0.15s;
+}
+.article-context[open] .context-label::before { transform: rotate(90deg); }
+.context-body {
+  margin-top: 0.6em;
+  padding-left: 1em;
+  line-height: var(--leading-body);
+}
+.context-body .context-heading {
+  font-size: var(--size-sm);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  margin: 1em 0 0.3em 0;
+}
+.context-body .context-heading:first-child { margin-top: 0; }
+.context-body p { margin: 0 0 0.3em 0; }
+.context-body hr.context-divider {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 1em 0 0.8em 0;
+}
+.context-body .context-verse-line {
+  margin: 0 0 0.2em 0;
+  font-style: italic;
+}
+
 /* --- Progressive Disclosure: Concepts --- */
 .article-concepts {
   display: flex;
@@ -696,5 +741,5 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .headline-item h2, .category-tab { transition: none; }
   .article-expand, .article-view { animation: none; }
-  .source-count::before { transition: none; }
+  .source-count::before, .context-label::before { transition: none; }
 }

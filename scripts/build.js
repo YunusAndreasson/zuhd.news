@@ -8,6 +8,30 @@ const DIST_DIR = join(ROOT, 'dist')
 const TEMPLATES_DIR = join(ROOT, 'templates')
 
 const CATEGORY_ORDER = ['politics', 'economy', 'science', 'tech']
+
+// Convert a plain-text context brief (ALL CAPS headings, year-prefixed entries) to HTML
+const contextToHtml = (text) => {
+  if (!text) return ''
+  const lines = text.split('\n').filter(l => l.trim())
+  let html = ''
+  let inIslamicContext = false
+  for (const line of lines) {
+    const trimmed = line.trim()
+    if (trimmed.startsWith('CONTEXT:')) continue // skip title line, we use our own label
+    if (trimmed === '---' || trimmed === '―') continue // skip dividers
+    if (/^[A-Z][A-Z\s,–\-&']{2,}$/.test(trimmed)) {
+      inIslamicContext = trimmed === 'ISLAMIC CONTEXT'
+      html += `<h3 class="context-heading">${trimmed}</h3>`
+    } else if (inIslamicContext) {
+      // Verse/tafsir lines rendered in italic
+      const clean = trimmed.replace(/^>\s*/, '').replace(/^\*\*?(.*?)\*?\*?$/, '$1')
+      html += `<p class="context-verse-line">${clean}</p>`
+    } else {
+      html += `<p>${trimmed}</p>`
+    }
+  }
+  return html
+}
 const WINDOW_MS = 24 * 60 * 60 * 1000
 const MIN_PER_CATEGORY = 10
 const MAX_PER_CATEGORY = 13
@@ -81,7 +105,7 @@ const buildArticle = (filename) => {
   // Concept tags
   const concepts = Array.isArray(meta.concepts) ? meta.concepts : []
   const conceptsHtml = concepts.length > 0
-    ? `<div class="article-concepts">${concepts.map(c => `<span class="concept-tag">${c}</span>`).join('')}</div>`
+    ? `<div class="article-concepts">${concepts.map(c => `<span class="concept-tag">${typeof c === 'object' ? c.label : c}</span>`).join('')}</div>`
     : ''
 
   const slug = basename(filename, '.md')
@@ -113,16 +137,20 @@ const buildHomepage = (sorted, cutoff, homepageTemplate) => {
   const grouped = Object.fromEntries(
     Object.entries(rawGrouped).map(([cat, articles]) => [
       cat,
-      articles.map(({ slug, title, meta, addedAt, bodyHtml, sources, concepts, sourceCount }) => ({
-        slug, title, addedAt,
-        date: meta.date,
-        bodyHtml,
-        sources: sources.map(s => ({ name: s.name, url: s.url || '', country: s.country || null, sentiment: s.sentiment ? Number(s.sentiment) : null })),
-        concepts,
-        sourceCount,
-        eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
-        sentimentDivergence: meta.sentimentDivergence ? Number(meta.sentimentDivergence) : null,
-      }))
+      articles.map(({ slug, title, meta, addedAt, bodyHtml, sources, concepts, sourceCount }) => {
+        const thread = threadLookup.get(slug)
+        return {
+          slug, title, addedAt,
+          date: meta.date,
+          bodyHtml,
+          sources: sources.map(s => ({ name: s.name, url: s.url || '', country: s.country || null, sentiment: s.sentiment ? Number(s.sentiment) : null })),
+          concepts: concepts.map(c => typeof c === 'object' ? c.label : c),
+          sourceCount,
+          eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
+          sentimentDivergence: meta.sentimentDivergence ? Number(meta.sentimentDivergence) : null,
+          ...(thread?.threadContext && { threadId: thread.threadId }),
+        }
+      })
     ])
   )
 
@@ -142,8 +170,20 @@ const buildHomepage = (sorted, cutoff, homepageTemplate) => {
       </article>`)
     .join('\n')
 
+  // Build contexts map — only include briefs referenced by articles on the page
+  const referencedThreadIds = new Set(
+    Object.values(grouped).flat().map(a => a.threadId).filter(Boolean)
+  )
+  const contexts = {}
+  for (const id of referencedThreadIds) {
+    const brief = contextBriefs[id]
+    if (brief?.context) {
+      contexts[id] = contextToHtml(brief.context)
+    }
+  }
+
   return homepageTemplate
-    .replace(/{{articleDataJson}}/g, JSON.stringify({ categoryOrder, articles: grouped }))
+    .replace(/{{articleDataJson}}/g, JSON.stringify({ categoryOrder, articles: grouped, contexts }))
     .replace(/{{fallbackArticleList}}/g, fallbackArticleList)
 }
 
@@ -182,6 +222,34 @@ const headCommon = `<meta charset="utf-8">
 const homepageTemplate = readFileSync(join(TEMPLATES_DIR, 'index.html'), 'utf-8')
   .replace('{{headCommon}}', headCommon)
   .replace('{{inlineJS}}', jsContent)
+
+// Story thread lookup — maps article slugs to their thread info from the ledger
+const ledgerPath = join(ROOT, 'content', '.story-ledger.json')
+const briefsPath = join(ROOT, 'content', '.context-briefs.json')
+const threadLookup = new Map()
+const contextBriefs = existsSync(briefsPath) ? JSON.parse(readFileSync(briefsPath, 'utf8')) : {}
+if (existsSync(ledgerPath)) {
+  const ledger = JSON.parse(readFileSync(ledgerPath, 'utf8'))
+  for (const story of ledger.stories) {
+    if (story.arc === 'fading' || story.importance < 2) continue
+    const firstDate = new Date(story.firstSeen)
+    // Context comes from the separate briefs file (survives selector rewrites)
+    const brief = contextBriefs[story.id]
+    for (const slug of story.articles || []) {
+      threadLookup.set(slug, {
+        threadId: story.id,
+        threadLabel: story.label,
+        threadArc: story.arc,
+        threadSummary: story.summary || null,
+        threadDay: Math.max(1, Math.ceil((Date.now() - firstDate.getTime()) / 86400000)),
+        threadArticleCount: story.articles.length,
+        threadContext: brief?.context || null,
+      })
+    }
+  }
+  const briefCount = Object.keys(contextBriefs).length
+  console.log(`  Ledger: ${threadLookup.size} articles mapped to ${ledger.stories.filter(s => s.arc !== 'fading' && s.importance >= 2).length} threads (${briefCount} context briefs)`)
+}
 
 const articles = readdirSync(CONTENT_DIR)
   .filter(f => f.endsWith('.md') && f !== 'example.md')
@@ -251,27 +319,7 @@ const splitBodySentences = (text) => {
   return masked.split(/(?<=[.!?])\s+(?=[A-Z])/).map(s => s.replace(/\.\x00/g, '. ')).filter(Boolean)
 }
 
-// Story thread lookup — maps article slugs to their thread info from the ledger
-const ledgerPath = join(ROOT, 'content', '.story-ledger.json')
-const threadLookup = new Map()
-if (existsSync(ledgerPath)) {
-  const ledger = JSON.parse(readFileSync(ledgerPath, 'utf8'))
-  for (const story of ledger.stories) {
-    if (story.arc === 'fading' || story.importance < 2) continue
-    const firstDate = new Date(story.firstSeen)
-    for (const slug of story.articles || []) {
-      threadLookup.set(slug, {
-        threadId: story.id,
-        threadLabel: story.label,
-        threadArc: story.arc,
-        threadSummary: story.summary || null,
-        threadDay: Math.max(1, Math.ceil((Date.now() - firstDate.getTime()) / 86400000)),
-        threadArticleCount: story.articles.length,
-      })
-    }
-  }
-  console.log(`  Ledger: ${threadLookup.size} articles mapped to ${ledger.stories.filter(s => s.arc !== 'fading' && s.importance >= 2).length} threads`)
-}
+// (threadLookup moved above buildArticle calls)
 
 // API feeds — pre-grouped, pre-split sentences for native rendering
 const generated = new Date().toISOString()
@@ -289,7 +337,7 @@ const apiCategories = Object.fromEntries(
         source: sources[0]?.name || null,
         sourceUrl: sources[0]?.url || null,
         sources: sources.map(s => ({ name: s.name, country: s.country || null, sentiment: s.sentiment ? Number(s.sentiment) : null })),
-        concepts,
+        concepts: concepts.map(c => typeof c === 'object' ? c.label : c),
         eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
         location: meta.location || null,
         lat: meta.lat != null ? Number(meta.lat) : null,
@@ -310,6 +358,26 @@ const apiCategories = Object.fromEntries(
 const apiArticles = Object.values(apiCategories).flat().sort((a, b) => b.addedAt - a.addedAt)
 
 mkdirSync(join(DIST_DIR, 'api', 'articles'), { recursive: true })
+mkdirSync(join(DIST_DIR, 'api', 'context'), { recursive: true })
+
+// Write each context brief as a separate JSON file for mobile consumption
+const contextIndex = {}
+for (const [id, brief] of Object.entries(contextBriefs)) {
+  if (!brief?.context) continue
+  const payload = {
+    id,
+    label: brief.label,
+    category: brief.category,
+    articleCount: brief.articleCount,
+    generatedAt: brief.generatedAt,
+    brief: brief.context,
+  }
+  writeFileSync(join(DIST_DIR, 'api', 'context', `${id}.json`), JSON.stringify(payload))
+  contextIndex[id] = { label: brief.label, category: brief.category, articleCount: brief.articleCount, generatedAt: brief.generatedAt }
+}
+if (Object.keys(contextIndex).length > 0) {
+  console.log(`  Built: api/context/ (${Object.keys(contextIndex).length} briefs)`)
+}
 
 // Legacy flat endpoint (backwards compatible)
 writeFileSync(join(DIST_DIR, 'api', 'articles.json'), JSON.stringify({ generated, articles: apiArticles.map(a => ({ ...a, category: CATEGORY_ORDER.find(c => apiCategories[c]?.includes(a)) ?? 'politics', body: a.sentences.join(' ') })) }))
@@ -336,7 +404,8 @@ if (existsSync(apiBriefingMetaPath)) {
 writeFileSync(join(DIST_DIR, 'api', 'feed.json'), JSON.stringify({
   generated,
   categories: apiCategories,
-  briefing: briefingInfo
+  briefing: briefingInfo,
+  contexts: contextIndex
 }))
 console.log(`  Built: api/feed.json (${apiArticles.length} articles, pre-grouped)`)
 

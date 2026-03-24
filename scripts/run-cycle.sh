@@ -165,6 +165,14 @@ $ARTICLE_LIST
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT — $((SECONDS - T3))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.5: Context briefs — generate background briefs for qualifying threads
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.5: Context briefs ---" | tee -a "$LOG_FILE"
+  T35=$SECONDS
+  timeout 600 node scripts/generate-context.js 2>&1 | tee -a "$LOG_FILE"
+  CONTEXT_EXIT=$?
+  echo "Context exit: $CONTEXT_EXIT — $((SECONDS - T35))s" | tee -a "$LOG_FILE"
+
   # Stage 3b: Build and deploy — always runs, even if editor timed out
   # This ensures articles get published regardless of editor success
   echo "" | tee -a "$LOG_FILE"
@@ -184,7 +192,7 @@ $ARTICLE_LIST
 
   if [ "$BUILD_EXIT" -eq 0 ]; then
     # Commit
-    git add content/articles/ content/.last-cycle.json content/.editorial-notes.md content/.story-ledger.json 2>&1 | tee -a "$LOG_FILE"
+    git add content/articles/ content/.last-cycle.json content/.editorial-notes.md content/.story-ledger.json content/.context-briefs.json 2>&1 | tee -a "$LOG_FILE"
     CYCLE_TIME=$(date -u +"%Y-%m-%d %H:%M UTC")
     git commit -m "Editorial cycle $CYCLE_TIME: $NEW_COUNT articles" 2>&1 | tee -a "$LOG_FILE"
 

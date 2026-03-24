@@ -2,7 +2,7 @@ const el = document.getElementById('article-data');
 if (el) init(JSON.parse(el.textContent));
 
 function init(data) {
-  const { categoryOrder: categories, articles } = data;
+  const { categoryOrder: categories, articles, contexts } = data;
   if (!categories.length) return;
 
   const mql = matchMedia('(min-width: 641px)');
@@ -149,6 +149,11 @@ function init(data) {
     updateSelection();
   };
 
+  const contextBlock = (article) => {
+    if (!article.threadId || !contexts?.[article.threadId]) return '';
+    return `<details class="article-context"><summary class="context-label">Background</summary><div class="context-body">${contexts[article.threadId]}</div></details>`;
+  };
+
   const openArticle = (userInitiated = false) => {
     if (state.artIdx < 0) return;
     const article = currentArticle();
@@ -158,7 +163,7 @@ function init(data) {
     }
 
     if (isDesktop()) {
-      viewInner.innerHTML = `<div class="article-view-header"><h2>${esc(article.title)}</h2></div><div class="article-body">${article.bodyHtml}</div>`;
+      viewInner.innerHTML = `<div class="article-view-header"><h2>${esc(article.title)}</h2></div><div class="article-body">${article.bodyHtml}</div>${contextBlock(article)}`;
       viewInner.classList.remove('fade-in');
       void viewInner.offsetWidth;
       viewInner.classList.add('fade-in');
@@ -176,7 +181,7 @@ function init(data) {
 
     const expand = document.createElement('div');
     expand.className = 'article-expand';
-    expand.innerHTML = `<div class="article-body">${article.bodyHtml}</div>`;
+    expand.innerHTML = `<div class="article-body">${article.bodyHtml}</div>${contextBlock(article)}`;
 
     const item = listEl.children[state.artIdx];
     item?.append(expand);
@@ -264,6 +269,11 @@ function init(data) {
       case 's': {
         const det = (desktop ? viewInner : listEl)?.querySelector('.article-sources');
         if (det) det.open = !det.open;
+        break;
+      }
+      case 'c': {
+        const ctx = (desktop ? viewInner : listEl)?.querySelector('.article-context');
+        if (ctx) ctx.open = !ctx.open;
         break;
       }
       case 'Enter':
