@@ -26,7 +26,7 @@ Every human life has equal dignity (karāmah). Truth (ḥaqq) is reported precis
 
 Each story has: `title`, `description`, `link`, `pubDate`, `category`, `source`, `suggestedSlug`, `sources` (array with `name`, `url`, `country`, `body`), `eventUri`, `eventCoverage`, `concepts`, `sentimentDivergence`, `origin` ('api' or 'rss').
 
-Pass `sources`, `eventUri`, `eventCoverage`, `sentimentDivergence`, and `concepts` through to the selection output unchanged.
+**Critical: copy `sources`, `eventUri`, `eventCoverage`, `sentimentDivergence`, and `concepts` from the feed entry to the selection entry exactly as they appear.** The `sources` array contains full article text the writer needs. If you reconstruct the JSON instead of copying, the writer gets empty bodies and cannot write the article.
 </task>
 
 <selection_criteria>
