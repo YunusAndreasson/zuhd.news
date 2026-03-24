@@ -228,6 +228,8 @@ const CURATED_SOURCES = [
   'balkaninsight.com', 'sarajevotimes.com', 'albaniandailynews.com',
   // Human rights + investigative (critical of occupation, evidence-based)
   'theintercept.com', 'hrw.org', 'amnesty.org', 'mondoweiss.net',
+  // Tech + Global South startups
+  'techcrunch.com', 'semafor.com', 'disruptafrica.com',
 ]
 
 const GAP_COUNTRIES = [
