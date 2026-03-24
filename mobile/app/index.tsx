@@ -1,7 +1,7 @@
 import { BottomSheetBackdrop, type BottomSheetBackdropProps, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
-import { Activity, createRef, useCallback, useEffect, useRef, useState } from 'react';
+import { Activity, createRef, useCallback, useEffect, useRef, useState, useTransition } from 'react';
 import { type LayoutChangeEvent, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
@@ -116,14 +116,18 @@ export default function HomeScreen() {
   const pagerOffset = useSharedValue(0);
   const categoryProgresses = useSharedValue([0, 0, 0, 0]);
 
+  const [, startTransition] = useTransition();
+
   const onPageSelected = useCallback(
     (e: PagerViewOnPageSelectedEvent) => {
       const page = e.nativeEvent.position;
-      setCurrentCategory(page);
       pagerOffset.value = page;
       hapticTick();
+      startTransition(() => {
+        setCurrentCategory(page);
+      });
     },
-    [hapticTick, pagerOffset],
+    [hapticTick, pagerOffset, startTransition],
   );
 
   const onPageScroll = useCallback(

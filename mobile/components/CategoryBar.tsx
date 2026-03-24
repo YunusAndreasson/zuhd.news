@@ -37,8 +37,8 @@ function TabLabel({
   const animatedStyle = useAnimatedStyle(() => {
     'worklet';
     const distance = Math.abs(pagerOffset.value - index);
-    const active = distance < 0.5;
-    return { color: active ? COLORS.text : COLORS.textSecondary };
+    const opacity = interpolate(distance, [0, 1], [1, 0.4], 'clamp');
+    return { color: COLORS.text, opacity };
   });
 
   return (
