@@ -221,8 +221,9 @@ const CURATED_SOURCES = [
   'restofworld.org', 'statnews.com', 'newscientist.com', 'nature.com',
   'arstechnica.com', 'technologyreview.com', 'coindesk.com',
   'carbonbrief.org', 'quantamagazine.org', 'grist.org',
-  // Niche regional
+  // Niche regional + moved from RSS (indexed in API)
   'eurasianet.org', 'insightcrime.org', 'sixthtone.com',
+  'occrp.org', 'wamda.com',
 ]
 
 const GAP_COUNTRIES = [

@@ -12,16 +12,16 @@ const CONTENT_DIR = join(ROOT, 'content', 'articles')
 
 // ── Sources — only those NOT reliably indexed by NewsAPI.ai ─────────
 
+// Only sources NOT reliably indexed by NewsAPI.ai.
+// Nature, OCCRP, Wamda moved to API curated list (they return articles there).
 const SOURCES = [
   { name: 'Hacker News',    url: 'https://hnrss.org/frontpage?points=100',     format: 'rss2', defaultCategory: 'tech' },
   { name: '404 Media',      url: 'https://404media.co/rss/',                   format: 'rss2', defaultCategory: 'tech' },
   { name: 'Bellingcat',     url: 'https://www.bellingcat.com/feed/',            format: 'rss2' },
   { name: 'Mada Masr',      url: 'https://www.madamasr.com/en/feed/',          format: 'rss2' },
-  { name: 'Wamda',          url: 'https://www.wamda.com/feed',                 format: 'rss2', defaultCategory: 'tech' },
   { name: 'Salaam Gateway', url: 'https://salaamgateway.com/feed',             format: 'atom', defaultCategory: 'economy' },
   { name: '+972 Magazine',  url: 'https://www.972mag.com/feed/',               format: 'rss2' },
   { name: 'Drop Site News', url: 'https://www.dropsitenews.com/feed',          format: 'rss2' },
-  { name: 'OCCRP',          url: 'https://www.occrp.org/en/feed',              format: 'rss2' },
   { name: 'SMEX',           url: 'https://smex.org/feed/',                     format: 'rss2', defaultCategory: 'tech' },
   { name: 'SciDev.Net',     url: 'https://www.scidev.net/global/global_rss.xml', format: 'rss2', defaultCategory: 'science' },
 ]
@@ -124,7 +124,7 @@ async function main() {
 
   const results = await Promise.all(SOURCES.map(fetchSource))
   // Cap per source to prevent any single feed from dominating the candidate pool
-  const MAX_PER_SOURCE = 5
+  const MAX_PER_SOURCE = 3
   const allItems = results.flatMap(items => items.slice(0, MAX_PER_SOURCE))
   console.error(`Raw items: ${allItems.length} (capped at ${MAX_PER_SOURCE}/source)`)
 
