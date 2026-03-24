@@ -52,6 +52,12 @@ for (const f of files) {
     changed = true
   }
 
+  // Fill missing sentimentDivergence
+  if (story.sentimentDivergence != null && !yaml.includes('sentimentDivergence:')) {
+    yaml = yaml.trimEnd() + `\nsentimentDivergence: ${story.sentimentDivergence}`
+    changed = true
+  }
+
   // Fill empty sources array from selection
   if (yaml.includes('sources: []') && story.sources?.length > 0) {
     const sourcesYaml = 'sources:\n' + story.sources.map(s => {

@@ -17,9 +17,10 @@ Output only a selection file — a separate writer drafts the articles.
    - `eventUri`: event cluster ID (null for single-source RSS stories)
    - `eventCoverage`: total articles covering this event globally (null for RSS)
    - `concepts`: key entities extracted from the event
+   - `sentimentDivergence`: how differently sources frame this story (0 = agree, >0.5 = divergent). High divergence = the story is contentious and worth covering.
    - `origin`: 'api' or 'rss'
 
-   For API stories (origin: 'api'), the writer will synthesize all sources in the `sources` array. For RSS stories (origin: 'rss'), the writer uses a single source. Pass the `sources`, `eventUri`, `eventCoverage`, and `concepts` fields through to the selection output unchanged.
+   For API stories (origin: 'api'), the writer will synthesize all sources in the `sources` array. For RSS stories (origin: 'rss'), the writer uses a single source. Pass the `sources`, `eventUri`, `eventCoverage`, `sentimentDivergence`, and `concepts` fields through to the selection output unchanged.
 
    **Important constraints:**
    - **Never select stories with an empty `sources` array** (`sources: []`). The writer cannot write an article without source text.
@@ -162,9 +163,12 @@ Each story in the `stories` array:
   "importance": 8,
   "arc": "breaking|developing|ongoing|fading",
   "articles": ["2026-02-14-slug", "2026-02-16-slug"],
+  "eventUri": "eng-12345678",
   "summary": "1-2 sentence summary of current state of this story arc"
 }
 ```
+
+The `eventUri` field links to the NewsAPI.ai event cluster. Use it to match stories across cycles: if an incoming story has the same `eventUri` as an existing ledger entry, they are definitively the same event — no fuzzy title matching needed.
 
 Rules for updating the ledger:
 

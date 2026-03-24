@@ -121,6 +121,7 @@ const buildHomepage = (sorted, cutoff, homepageTemplate) => {
         concepts,
         sourceCount,
         eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
+        sentimentDivergence: meta.sentimentDivergence ? Number(meta.sentimentDivergence) : null,
       }))
     ])
   )

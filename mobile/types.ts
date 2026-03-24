@@ -3,6 +3,7 @@ export type Category = 'politics' | 'economy' | 'science' | 'tech';
 export interface ArticleSource {
   name: string;
   country?: string | null;
+  sentiment?: number | null;
 }
 
 export interface Article {
@@ -15,6 +16,7 @@ export interface Article {
   sources: ArticleSource[];
   concepts: string[];
   eventCoverage: number | null;
+  sentimentDivergence?: number | null;
   location: string | null;
   lat: number | null;
   lng: number | null;

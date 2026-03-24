@@ -2,7 +2,7 @@
 // Fetches news from NewsAPI.ai (Event Registry).
 // Strategy: events endpoint for story discovery + article queries for source diversity.
 // Output: /tmp/zuhd-feed-api.json
-import { writeFileSync, unlinkSync } from 'fs'
+import { writeFileSync } from 'fs'
 import { slugify, zuhdCategory } from './lib/utils.js'
 
 const API_KEY = process.env.NEWSAPI_KEY
@@ -338,6 +338,13 @@ function avg(nums) {
   return nums.length ? +(nums.reduce((a, b) => a + b, 0) / nums.length).toFixed(2) : null
 }
 
+// Sentiment spread: max - min across sources. >0.5 = divergent framing.
+function sentimentSpread(articles) {
+  const sentiments = articles.map(a => a.sentiment).filter(s => s != null)
+  if (sentiments.length < 2) return null
+  return +(Math.max(...sentiments) - Math.min(...sentiments)).toFixed(2)
+}
+
 // ── Main ────────────────────────────────────────────────────────────
 
 async function main() {
@@ -442,10 +449,12 @@ async function main() {
         country: a._sourceCountry,
         body: (a.body || '').slice(0, MAX_BODY),
         importanceRank: a.source?.ranking?.importanceRank || null,
+        sentiment: a.sentiment != null ? +a.sentiment.toFixed(2) : null,
       })),
       concepts,
       location,
       sentiment: avg(panel.map(a => a.sentiment).filter(s => s != null)),
+      sentimentDivergence: sentimentSpread(panel),
       origin: 'api',
     })
   }
@@ -523,7 +532,11 @@ async function main() {
 
   const withSources = stories.filter(s => s.sources.length > 0).length
   const multiSource = stories.filter(s => s.sources.length > 1).length
-  const output = { fetchedAt: new Date().toISOString(), events: events.length, stories }
+  const output = {
+    fetchedAt: new Date().toISOString(),
+    events: events.length,
+    stories,
+  }
 
   writeFileSync(OUTPUT, JSON.stringify(output, null, 2))
   console.error(`Wrote ${stories.length} stories: ${withSources} with articles (${multiSource} multi-source), ${stories.length - withSources} headline-only`)
