@@ -20,12 +20,22 @@ function readArticles(datePrefix) {
     .map(f => {
       const content = readFileSync(join(ARTICLES_DIR, f), 'utf-8')
       const get = key => (content.match(new RegExp(`^${key}:\\s*["']?(.+?)["']?\\s*$`, 'm')) || [])[1] || ''
+      // Parse sources array from YAML frontmatter
+      const sources = []
+      const sourcesMatch = content.match(/^sources:\n((?:\s+-[\s\S]*?)?)(?=\n[a-z]|\n---|\n$)/m)
+      if (sourcesMatch) {
+        for (const m of sourcesMatch[1].matchAll(/- name:\s*["']?(.+?)["']?\s*$/gm)) {
+          sources.push(m[1])
+        }
+      }
+      const urlMatch = content.match(/^\s+url:\s*["']?(.+?)["']?\s*$/m)
       return {
         slug: basename(f, '.md'),
         title: get('title'),
         date: get('date'),
-        source: get('source'),
-        sourceUrl: get('sourceUrl'),
+        source: sources[0] || '',
+        sources,
+        sourceUrl: urlMatch ? urlMatch[1] : '',
         category: get('category'),
         location: get('location'),
         lat: parseFloat(get('lat')) || null,
@@ -83,11 +93,13 @@ function computeFreshness(articles) {
 
 function computeDiversity(articles) {
   const categories = tally(articles, a => a.category)
-  const sources = tally(articles, a => a.source)
+  const allSourceNames = articles.flatMap(a => a.sources.length > 0 ? a.sources : [a.source || 'unknown'])
+  const sources = {}
+  for (const s of allSourceNames) { sources[s || 'unknown'] = (sources[s || 'unknown'] || 0) + 1 }
   const regions = tally(articles, a => regionFromCoords(a.lat, a.lng))
   const uniqueSources = Object.keys(sources).length
   const uniqueRegions = Object.keys(regions).filter(r => r !== 'unknown').length
-  const scienceSources = [...new Set(articles.filter(a => a.category === 'science').map(a => a.source))]
+  const scienceSources = [...new Set(articles.filter(a => a.category === 'science').flatMap(a => a.sources))]
 
   return { categories, sources, regions, uniqueSources, uniqueRegions, scienceSources }
 }
@@ -101,8 +113,8 @@ function computeEducational(articles) {
     scienceCount: science.length,
     techCount: tech.length,
     sciTechRatio: articles.length > 0 ? Math.round((science.length + tech.length) / articles.length * 100) : 0,
-    scienceSources: [...new Set(science.map(a => a.source))],
-    techSources: [...new Set(tech.map(a => a.source))],
+    scienceSources: [...new Set(science.flatMap(a => a.sources))],
+    techSources: [...new Set(tech.flatMap(a => a.sources))],
   }
 }
 
