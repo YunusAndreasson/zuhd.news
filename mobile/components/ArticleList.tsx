@@ -29,7 +29,7 @@ interface ArticleListProps {
   lastSeenAt: number;
   onRefresh: () => Promise<void>;
   onEndReached?: (catIndex: number) => void;
-  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>, eventCoverage?: number | null) => void;
+  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => void;
   onCountryPress?: (result: TapResult) => void;
   pagerIdle: React.RefObject<boolean>;
   progressesSV: SharedValue<number[]>;
@@ -87,8 +87,6 @@ export const ArticleList = memo(function ArticleList({
     onEndReachedRef.current?.(catIndex);
   }, [catIndex]);
   const [localRefreshing, setLocalRefreshing] = useState(false);
-
-
 
   // Persist reading position on scroll
   useEffect(() => {

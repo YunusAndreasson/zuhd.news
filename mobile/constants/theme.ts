@@ -10,12 +10,14 @@ const fs = (size: number) => Math.round(size * scale);
 export const COLORS = {
   bg: '#141414',
   text: '#e8e8e8',
-  textSecondary: '#888',
+  textSecondary: '#999',
   accent: '#b3b3b3',
-  rule: '#2a2a2a',
+  rule: '#2e2e2e',
   white: '#ffffff',
   dome: '#c9a84c', // Dome of the Rock gold — the only color in the app
   sheetBg: '#1c1c1c',
+  black: '#000000',
+  atmosphere: '#334455',
 } as const;
 
 export const FONT = {

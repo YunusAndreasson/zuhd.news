@@ -25,7 +25,7 @@ interface ArticlePageProps {
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
-  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>, eventCoverage?: number | null) => void;
+  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => void;
   showEarlierDivider?: boolean;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
@@ -40,8 +40,6 @@ function formatTimeAgo(addedAt: number): string {
   const date = new Date(addedAt);
   return date.toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 }
-
-
 
 function GlobeTapZone({ globeRef, globeYOffset, onTap }: {
   globeRef?: React.RefObject<MiniGlobeRef | null>;
@@ -172,13 +170,12 @@ export const ArticlePage = memo(function ArticlePage({
                 <ActionLabel
                   label="sources"
                   icon="chevron-down"
-                  onPress={() => onSourcePress?.(article.sources![0]?.name ?? '', article.sources, article.eventCoverage)}
+                  onPress={() => onSourcePress?.(article.sources![0]?.name ?? '', article.sources)}
                 />
               ) : null}
               <ActionLabel label="share" icon="arrow-up-outline" onPress={handleShare} />
             </View>
           </View>
-
         </Animated.View>
       </View>
 
@@ -194,7 +191,6 @@ export const ArticlePage = memo(function ArticlePage({
           </Rect>
         </Canvas>
       </Animated.View>
-
     </View>
   );
 });

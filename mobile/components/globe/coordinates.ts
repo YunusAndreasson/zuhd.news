@@ -230,44 +230,6 @@ export const SOURCE_COORDS: Record<string, [number, number]> = {
   TSA: [-33.93, 18.42],
 };
 
-// Population in millions (2024 estimates), keyed by TopoJSON country name
-export const COUNTRY_POP: Record<string, number> = {
-  Afghanistan: 42, Albania: 2.8, Algeria: 45, Angola: 36, Argentina: 46,
-  Armenia: 3, Australia: 26, Austria: 9.1, Azerbaijan: 10, Bahamas: 0.4,
-  Bangladesh: 173, Belarus: 9.2, Belgium: 11.7, Belize: 0.4, Benin: 13.7,
-  Bhutan: 0.8, Bolivia: 12.4, 'Bosnia and Herz.': 3.2, Botswana: 2.6, Brazil: 216,
-  Brunei: 0.45, Bulgaria: 6.5, 'Burkina Faso': 23, Burundi: 13.2, Cambodia: 17,
-  Cameroon: 28.6, Canada: 41, 'Central African Rep.': 5.5, Chad: 18.3, Chile: 19.5,
-  China: 1412, Colombia: 52, Congo: 6.1, 'Costa Rica': 5.2, Croatia: 3.9,
-  Cuba: 11.1, Cyprus: 1.3, Czechia: 10.9, "Côte d'Ivoire": 28.9, "Dem. Rep. Congo": 102,
-  Denmark: 5.9, Djibouti: 1.1, 'Dominican Rep.': 11.3, Ecuador: 18.2, Egypt: 105,
-  'El Salvador': 6.3, 'Eq. Guinea': 1.7, Eritrea: 3.7, Estonia: 1.4, Ethiopia: 126,
-  Fiji: 0.93, Finland: 5.6, France: 68, Gabon: 2.4, Gambia: 2.7,
-  Georgia: 3.7, Germany: 84, Ghana: 34, Greece: 10.4, Guatemala: 17.6,
-  Guinea: 14, 'Guinea-Bissau': 2.1, Guyana: 0.8, Haiti: 11.7, Honduras: 10.4,
-  Hungary: 9.6, Iceland: 0.38, India: 1428, Indonesia: 277, Iran: 88,
-  Iraq: 44, Ireland: 5.1, Israel: 9.8, Italy: 59, Jamaica: 2.8,
-  Japan: 124, Jordan: 11.5, Kazakhstan: 19.8, Kenya: 55, Kuwait: 4.3,
-  Kyrgyzstan: 7, Laos: 7.5, Latvia: 1.8, Lebanon: 5.5, Lesotho: 2.3,
-  Liberia: 5.4, Libya: 7, Lithuania: 2.9, Luxembourg: 0.66, 'N. Macedonia': 2.1,
-  Madagascar: 30, Malawi: 20.4, Malaysia: 34, Mali: 23, Mauritania: 4.9,
-  Mexico: 130, Moldova: 2.6, Mongolia: 3.4, Montenegro: 0.62, Morocco: 37.5,
-  Mozambique: 33, Myanmar: 55, Namibia: 2.6, Nepal: 30.9, Netherlands: 17.9,
-  'New Zealand': 5.2, Nicaragua: 7, Niger: 27, Nigeria: 224, 'North Korea': 26,
-  Norway: 5.5, Oman: 4.6, Pakistan: 240, Palestine: 5.4, Panama: 4.4,
-  'Papua New Guinea': 10.3, Paraguay: 6.9, Peru: 34, Philippines: 117, Poland: 37.6,
-  Portugal: 10.4, Qatar: 2.7, Romania: 19, Russia: 144, Rwanda: 14,
-  'S. Sudan': 11.1, 'Saudi Arabia': 36.9, Senegal: 17.7, Serbia: 6.6,
-  'Sierra Leone': 8.6, Slovakia: 5.4, Slovenia: 2.1, 'Solomon Is.': 0.74,
-  Somalia: 18, 'South Africa': 60, 'South Korea': 52, Spain: 48, 'Sri Lanka': 22,
-  Sudan: 48, Suriname: 0.62, Sweden: 10.5, Switzerland: 8.8, Syria: 23,
-  Taiwan: 23.9, Tajikistan: 10, Tanzania: 65, Thailand: 72, 'Timor-Leste': 1.4,
-  Togo: 9, 'Trinidad and Tobago': 1.5, Tunisia: 12.5, Turkey: 85, Turkmenistan: 6.5,
-  Uganda: 49, Ukraine: 37, 'United Arab Emirates': 10, 'United Kingdom': 68,
-  'United States of America': 336, Uruguay: 3.4, Uzbekistan: 36, Venezuela: 28.4,
-  Vietnam: 100, Yemen: 34, Zambia: 20.6, Zimbabwe: 16.7, eSwatini: 1.2,
-};
-
 // IANA timezone per country (capital/primary city). Keyed by TopoJSON country name.
 export const COUNTRY_TZ: Record<string, string> = {
   Afghanistan: 'Asia/Kabul', Albania: 'Europe/Tirane', Algeria: 'Africa/Algiers',

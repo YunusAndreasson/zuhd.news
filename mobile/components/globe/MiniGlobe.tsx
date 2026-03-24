@@ -28,7 +28,6 @@ function getMoonPhase(): number {
   return ((days % SYNODIC) + SYNODIC) % SYNODIC / SYNODIC; // 0 = new, 0.5 = full
 }
 
-
 // Al-Aqsa / Dome of the Rock — [lng, lat] for d3-geo
 const AL_AQSA = { coords: [35.2354, 31.7761] as [number, number], name: 'Al-Quds', tz: 'Asia/Hebron', country: 'Palestine' };
 
@@ -276,28 +275,44 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   useImperativeHandle(ref, () => ({
     hitTest(x: number, y: number): TapResult | null {
-      // Check article dot
+      // Check article dot first — news takes precedence
       const dot = state.dot;
-      if (!dot) return null;
-      const dx = x - dot.x;
-      const dy = y - dot.y;
-      if (dx * dx + dy * dy > 3600) return null;
-
-      const geoData = articleGeoRef.current[lastSettled.current];
-      if (!geoData) return null;
-      const countryName = geoData.countryName;
-      if (!countryName) return null;
-
-      const tz = COUNTRY_TZ[countryName];
-      let localTime: string | null = null;
-      if (tz) {
-        try {
-          localTime = new Date().toLocaleTimeString('en-GB', {
-            timeZone: tz, hour: '2-digit', minute: '2-digit',
-          });
-        } catch {}
+      if (dot) {
+        const dx = x - dot.x;
+        const dy = y - dot.y;
+        if (dx * dx + dy * dy <= 3600) {
+          const geoData = articleGeoRef.current[lastSettled.current];
+          if (geoData?.countryName) {
+            const tz = COUNTRY_TZ[geoData.countryName];
+            let localTime: string | null = null;
+            if (tz) {
+              try {
+                localTime = new Date().toLocaleTimeString('en-GB', {
+                  timeZone: tz, hour: '2-digit', minute: '2-digit',
+                });
+              } catch {}
+            }
+            return { countryName: geoData.countryName, location: geoData.location, localTime, data: COUNTRY_DATA[geoData.countryName] ?? null };
+          }
+        }
       }
-      return { countryName, location: geoData.location, localTime, data: COUNTRY_DATA[countryName] ?? null };
+
+      // Then check Al-Aqsa
+      if (state.aqsa) {
+        const adx = x - state.aqsa.x;
+        const ady = y - state.aqsa.y;
+        if (adx * adx + ady * ady <= 3600) {
+          let localTime: string | null = null;
+          try {
+            localTime = new Date().toLocaleTimeString('en-GB', {
+              timeZone: AL_AQSA.tz, hour: '2-digit', minute: '2-digit',
+            });
+          } catch {}
+          return { countryName: AL_AQSA.country, location: AL_AQSA.name, localTime, data: COUNTRY_DATA['Palestine'] ?? null };
+        }
+      }
+
+      return null;
     },
   }));
 
@@ -410,7 +425,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       )}
 
       {/* Atmospheric halo — thin glow at the globe's edge */}
-      <Circle cx={cx} cy={cy} r={globeRadius * 1.03} color="#334455" opacity={0.08}>
+      <Circle cx={cx} cy={cy} r={globeRadius * 1.03} color={COLORS.atmosphere} opacity={0.08}>
         <BlurMask blur={globeRadius * 0.04} style="solid" />
       </Circle>
 
@@ -419,7 +434,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Night shadow — darker overlay on the unlit hemisphere */}
       {state.nightPath && (
-        <Path path={state.nightPath} color="#000000" opacity={0.15} />
+        <Path path={state.nightPath} color={COLORS.black} opacity={0.15} />
       )}
 
       {/* Country highlight */}

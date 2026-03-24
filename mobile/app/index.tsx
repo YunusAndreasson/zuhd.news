@@ -8,9 +8,7 @@ import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
 import type { TapResult } from '../components/globe/MiniGlobe';
-
 import { CategoryBar } from '../components/CategoryBar';
-
 import { Toast, type ToastRef } from '../components/Toast';
 import { SOURCES } from '../constants/sources';
 import { CATEGORIES, COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
@@ -68,7 +66,6 @@ export default function HomeScreen() {
 
   // Sheet refs
   const sourceSheetRef = useRef<BottomSheetModal>(null);
-  const [sourceSheet, setSourceSheet] = useState<string | null>(null);
   const [sourceSheetSources, setSourceSheetSources] = useState<Array<{name: string; country?: string | null}>>([]);
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
@@ -86,9 +83,8 @@ export default function HomeScreen() {
   );
 
   const handleSourcePress = useCallback(
-    (sourceName: string, allSources?: Array<{name: string; country?: string | null}>, eventCoverage?: number | null) => {
+    (_sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => {
       impact();
-      setSourceSheet(sourceName);
       setSourceSheetSources(allSources ?? []);
       sourceSheetRef.current?.present();
     },
@@ -213,8 +209,6 @@ export default function HomeScreen() {
     );
   }
 
-  const sourceInfo = sourceSheet ? SOURCES[sourceSheet] : null;
-
   return (
     <View style={styles.screen}>
       <CategoryBar
@@ -268,7 +262,7 @@ export default function HomeScreen() {
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
         handleIndicatorStyle={styles.sheetHandle}
-        onDismiss={() => { setSourceSheet(null); setSourceSheetSources([]); }}
+        onDismiss={() => setSourceSheetSources([])}
       >
         <BottomSheetView
           style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
@@ -332,7 +326,7 @@ export default function HomeScreen() {
               <View style={styles.countryKeyStats}>
                 <KeyStat label="population" value={countrySheet.data.population} />
                 <KeyStat label="gdp" value={countrySheet.data.gdp} />
-                <KeyStat label="military spend" value={countrySheet.data.military ?? null} />
+                <KeyStat label="military spend" value={countrySheet.data.military} />
               </View>
 
               {/* Detail rows — ordered by user interest */}

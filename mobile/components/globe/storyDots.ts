@@ -1,14 +1,5 @@
-import type { Article, Category } from '../../types';
+import type { Article } from '../../types';
 import { CITY_COORDS, SOURCE_COORDS } from './coordinates';
-
-export interface DotLocation {
-  key: string;
-  titles: string[];
-  slugs: string[];
-  coords: [number, number]; // [lat, lng]
-  count: number;
-  newestAt: number; // most recent addedAt in the group
-}
 
 export function getCoords(article: Article): [number, number] | null {
   // 1. Frontmatter coordinates (most reliable)
@@ -32,38 +23,4 @@ export function getCoords(article: Article): [number, number] | null {
   }
 
   return null;
-}
-
-export function extractDotLocations(grouped: Record<Category, Article[]>): DotLocation[] {
-  const articles = Object.values(grouped).flat();
-  const groups = new Map<string, DotLocation>();
-
-  for (const article of articles) {
-    const coords = getCoords(article);
-    if (!coords) continue;
-
-    // Group by approximate location (0.5° grid ≈ 50km)
-    const key = `${Math.round(coords[0] * 2)},${Math.round(coords[1] * 2)}`;
-    const existing = groups.get(key);
-
-    if (existing) {
-      existing.titles.push(article.title);
-      existing.slugs.push(article.slug);
-      existing.count++;
-      if (article.addedAt > existing.newestAt) {
-        existing.newestAt = article.addedAt;
-      }
-    } else {
-      groups.set(key, {
-        key,
-        titles: [article.title],
-        slugs: [article.slug],
-        coords,
-        count: 1,
-        newestAt: article.addedAt,
-      });
-    }
-  }
-
-  return [...groups.values()];
 }
