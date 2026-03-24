@@ -207,7 +207,7 @@ interface Hotspot {
   lat: number;
   lng: number;
   intensity: number; // 0–1 log-normalized
-  label: string;
+  labels: string[];
   countryName: string | null;
 }
 
@@ -221,7 +221,7 @@ interface GlobeState {
     x: number;
     y: number;
     intensity: number;
-    label: string;
+    labels: string[];
     countryName: string | null;
   }[];
 }
@@ -266,8 +266,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         lat: number;
         lng: number;
         total: number;
-        bestCov: number;
-        label: string;
+        labels: Set<string>;
         countryName: string | null;
       }
     >();
@@ -285,18 +284,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       const existing = clusters.get(key);
       if (existing) {
         existing.total += coverage;
-        if (coverage > existing.bestCov) {
-          existing.bestCov = coverage;
-          existing.label = label;
-          existing.countryName = geo.countryName;
-        }
+        existing.labels.add(label);
       } else {
         clusters.set(key, {
           lat: geo.lat,
           lng: geo.lng,
           total: coverage,
-          bestCov: coverage,
-          label,
+          labels: new Set([label]),
           countryName: geo.countryName,
         });
       }
@@ -308,7 +302,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       lat: z.lat,
       lng: z.lng,
       intensity: Math.log(z.total + 1) / logMax,
-      label: z.label,
+      labels: [...z.labels],
       countryName: z.countryName,
     }));
   }, [articles, articleGeo]);
@@ -327,6 +321,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   const cachedCountryRef = useRef<GeoJSON.Feature | null>(null);
 
   // Keep closure dependencies in refs so the reproject callback stays stable
+  const articlesRef = useRef(articles);
+  articlesRef.current = articles;
   const articleGeoRef = useRef(articleGeo);
   articleGeoRef.current = articleGeo;
   const hotspotsRef = useRef(hotspots);
@@ -405,7 +401,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             x: pt[0],
             y: pt[1],
             intensity: zone.intensity,
-            label: zone.label,
+            labels: zone.labels,
             countryName: zone.countryName,
           });
       }
@@ -464,10 +460,22 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   useImperativeHandle(ref, () => ({
     hitTest(x: number, y: number): TapResult | null {
-      // Collect all hotspot labels matching a country (a country may have multiple)
-      const hotspotsFor = (name: string) => {
-        const labels = state.hotspotGlows.filter((z) => z.countryName === name).map((z) => z.label);
-        return labels.length > 0 ? labels : undefined;
+      // Collect all unique developing-story labels for a country from the full article set
+      const storiesFor = (name: string) => {
+        const seen = new Set<string>();
+        const geoArr = articleGeoRef.current;
+        const artArr = articlesRef.current;
+        for (let i = 0; i < geoArr.length; i++) {
+          const geo = geoArr[i];
+          if (!geo || geo.countryName !== name) continue;
+          const a = artArr[i];
+          if (!a?.threadLabel) continue;
+          const label = a.threadLabel.includes(':')
+            ? a.threadLabel.slice(0, a.threadLabel.indexOf(':'))
+            : a.threadLabel;
+          seen.add(label);
+        }
+        return seen.size > 0 ? [...seen] : undefined;
       };
 
       // Check article dot first — news takes precedence
@@ -481,7 +489,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             location: geoData.location,
             localTime: tz ? formatLocalTime(tz) : null,
             data: COUNTRY_DATA[geoData.countryName] ?? null,
-            hotspotLabels: hotspotsFor(geoData.countryName),
+            hotspotLabels: storiesFor(geoData.countryName),
           };
         }
       }
@@ -493,7 +501,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           location: AL_AQSA.name,
           localTime: formatLocalTime(AL_AQSA.tz),
           data: COUNTRY_DATA['Palestine'] ?? null,
-          hotspotLabels: hotspotsFor('Palestine'),
+          hotspotLabels: storiesFor('Palestine'),
         };
       }
 
@@ -505,7 +513,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             location: null,
             localTime: null,
             data: null,
-            hotspotLabels: [z.label],
+            hotspotLabels: z.labels,
           };
         }
       }

@@ -3,6 +3,7 @@ import {
   BottomSheetBackdrop,
   type BottomSheetBackdropProps,
   BottomSheetModal,
+  BottomSheetScrollView,
   BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
@@ -16,7 +17,15 @@ import {
   useState,
   useTransition,
 } from 'react';
-import { type LayoutChangeEvent, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  Dimensions,
+  type LayoutChangeEvent,
+  Linking,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -443,14 +452,18 @@ export default function HomeScreen() {
       <BottomSheetModal
         ref={countrySheetRef}
         enableDynamicSizing
+        maxDynamicContentSize={Dimensions.get('window').height * 0.7}
         enablePanDownToClose
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
         handleComponent={CountryHandle}
         onDismiss={() => setCountrySheet(null)}
       >
-        <BottomSheetView
-          style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
+        <BottomSheetScrollView
+          contentContainerStyle={[
+            styles.sheetContent,
+            { paddingBottom: insets.bottom + SPACING.lg },
+          ]}
         >
           {countrySheet?.data && (
             <>
@@ -514,7 +527,7 @@ export default function HomeScreen() {
               />
             </>
           )}
-        </BottomSheetView>
+        </BottomSheetScrollView>
       </BottomSheetModal>
 
       {/* Context sheet */}
