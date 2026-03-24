@@ -282,17 +282,16 @@ export default function HomeScreen() {
                 const cc = s.country?.toUpperCase();
                 const countryName = cc ? CC_NAMES[cc] ?? cc : null;
                 const flag = cc ? ccToFlag(cc) : null;
-                // Show sentiment as a quiet number — the reader interprets, we don't label
-                const sentimentStr = s.sentiment != null
-                  ? (s.sentiment >= 0 ? '+' : '') + s.sentiment.toFixed(1)
+                const tone = s.sentiment != null
+                  ? s.sentiment > 0.2 ? 'favorable'
+                  : s.sentiment < -0.2 ? 'unfavorable'
+                  : 'neutral'
                   : null;
                 return (
                   <View key={i} style={styles.sourceRow}>
                     <View style={styles.sourceRowHeader}>
                       <Text style={styles.sheetTitle}>{s.name}</Text>
-                      {sentimentStr && (
-                        <Text style={styles.sentimentValue}>{sentimentStr}</Text>
-                      )}
+                      {tone && <Text style={styles.toneLabel}>{tone}</Text>}
                     </View>
                     {countryName && (
                       <Text style={styles.sourceCountry}>{flag} {countryName}</Text>
@@ -450,11 +449,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  sentimentValue: {
-    fontFamily: FONT.regular,
+  toneLabel: {
+    fontFamily: FONT.smallCaps,
     fontSize: TYPOGRAPHY.sizeXs,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
     color: COLORS.textSecondary,
-    opacity: 0.5,
+    opacity: 0.6,
   },
   sourceCountry: {
     fontFamily: FONT.smallCaps,
