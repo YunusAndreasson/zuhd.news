@@ -138,6 +138,12 @@ export default function HomeScreen() {
   const handleCountryPress = useCallback(
     (result: TapResult) => {
       impact();
+      // Direct crisis-glow tap (no country data) → toast
+      if (result.crisisLabel && !result.data) {
+        toastRef.current?.show(result.crisisLabel);
+        return;
+      }
+      // Country tap (may include crisisLabel) → sheet
       setCountrySheet(result);
       countrySheetRef.current?.present();
     },
@@ -422,6 +428,14 @@ export default function HomeScreen() {
                 <KeyStat label="military spend" value={countrySheet.data.military} />
               </View>
 
+              {/* Active crisis — shown when a crisis zone overlaps this country */}
+              {countrySheet.crisisLabel && (
+                <View style={styles.crisisSection}>
+                  <Text style={styles.sheetLabel}>ACTIVE CRISIS</Text>
+                  <Text style={styles.crisisValue}>{countrySheet.crisisLabel}</Text>
+                </View>
+              )}
+
               {/* Detail rows — ordered by user interest */}
               <CountryRow label="Capital" value={countrySheet.data.capital} />
               <CountryRow label="Languages" value={countrySheet.data.languages} />
@@ -570,6 +584,17 @@ const styles = StyleSheet.create({
     letterSpacing: TYPOGRAPHY.trackingCaps,
     color: COLORS.accent,
     marginBottom: SPACING.xs,
+  },
+  crisisSection: {
+    paddingBottom: SPACING.md,
+    marginBottom: SPACING.sm,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: COLORS.rule,
+  },
+  crisisValue: {
+    fontFamily: FONT.regular,
+    fontSize: TYPOGRAPHY.sizeSm,
+    color: COLORS.text,
   },
   countryIdentity: {
     flexDirection: 'row',
