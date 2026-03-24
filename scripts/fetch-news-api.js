@@ -213,6 +213,7 @@ const CURATED_SOURCES = [
   'trtworld.com', 'newarab.com', 'middleeastmonitor.com', 'thenationalnews.com',
   // South + East Asia
   'dawn.com', 'scmp.com', 'antaranews.com', 'caixinglobal.com',
+  'rappler.com', 'asia.nikkei.com', 'irrawaddy.com',
   // Russia
   'tass.com', 'haaretz.com',
   // Africa + Latin America
@@ -230,6 +231,10 @@ const CURATED_SOURCES = [
   'theintercept.com', 'hrw.org', 'amnesty.org', 'mondoweiss.net',
   // Economy
   'bloomberg.com', 'ft.com', 'economist.com',
+  // Climate + Global South environment
+  'news.mongabay.com',
+  // Ukraine/Eastern Europe
+  'kyivindependent.com',
   // Tech + Global South startups + AI
   'techcrunch.com', 'semafor.com', 'disruptafrica.com', 'the-decoder.com',
 ]
