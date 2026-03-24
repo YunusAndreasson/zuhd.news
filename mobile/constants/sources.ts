@@ -704,6 +704,50 @@ const _SOURCES: Record<string, SourceInfo> = {
     description:
       'Official communications arm of the People\u2019s Republic of China\u2019s foreign ministry. Statements reflect Chinese Communist Party foreign policy positions on trade, territorial disputes, and multilateral diplomacy.',
   },
+  'Chosun.com': {
+    type: 'Newspaper',
+    location: 'Seoul, South Korea',
+    description:
+      'Digital arm of the Chosun Ilbo, South Korea\u2019s largest-circulation newspaper. Conservative editorial stance, broadly supportive of the US-South Korea alliance. Historically close to South Korean business and political establishment.',
+  },
+  'Hindustan Times': {
+    type: 'Newspaper',
+    location: 'New Delhi, India',
+    description:
+      'Major English-language Indian daily owned by the Birla family via HT Media. One of the oldest newspapers in India, founded during the independence movement. Editorial line is more centrist than the Times Group papers but has shifted toward accommodation of the BJP government.',
+  },
+  'IGN India': {
+    type: 'Digital media',
+    location: 'Mumbai, India',
+    description:
+      'Indian edition of the global gaming and entertainment site. Covers games, tech, and pop culture for the Indian market.',
+  },
+  'RTE.ie': {
+    type: 'Public broadcaster',
+    location: 'Dublin, Ireland',
+    description:
+      'Ireland\u2019s national public broadcaster, funded by licence fee and advertising. Covers Irish politics, EU affairs, and international news. Ireland has been among the most outspoken EU members on Palestinian rights, including recognizing the State of Palestine in 2024.',
+  },
+  'Radio Dabanga': {
+    type: 'Nonprofit',
+    location: 'Amsterdam, Netherlands',
+    description:
+      'Independent radio station covering Sudan, broadcasting in Arabic and local languages from the Netherlands since 2008. One of the few outlets providing consistent reporting from Darfur and conflict zones within Sudan, where most international media cannot operate.',
+  },
+  'cnbctv18.com': {
+    type: 'Broadcaster',
+    location: 'Mumbai, India',
+    description:
+      'Indian business news channel, a joint venture between Network18 (Reliance Industries) and NBCUniversal. Covers Indian markets, corporate news, and economic policy. Operates under the same Reliance ownership structure as MoneyControl and News18.',
+  },
+
+  // --- Name variants ---
+  'Yonhap News Agency': {
+    type: 'News agency',
+    location: 'Seoul, South Korea',
+    description:
+      'South Korea\u2019s largest news agency. Primary wire service for Korean news and inter-Korean relations.',
+  },
 };
 
 // Case-insensitive lookup — feed names may vary in capitalization
