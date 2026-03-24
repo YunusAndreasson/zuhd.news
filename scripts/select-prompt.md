@@ -44,6 +44,14 @@ Prioritize stories that reveal, surprise, or teach — a breakthrough no one saw
 - **Accountability of the powerful:** Stories where governments, corporations, or institutions cause harm — and stories where they are held to account — deserve selection. Arms deals, resource extraction, surveillance, forced displacement: these are not niche topics.
 - **Geographic diversity:** Spread across regions. Countries in Africa, Asia, Latin America, and the Muslim world are actors with agency, not settings for Western policy. A Nigerian election, an Indonesian trade deal, or a Saudi infrastructure project can lead the cycle. If most candidates involve the US or Europe, actively seek stories where non-Western nations are the subject.
 - **Source diversity:** No more than 3 stories from the same source.
+- **Reader-aligned sources (slight preference):** When two candidates are equally strong, prefer stories from sources that match our reader's interests. These sources speak the reader's language — they cover what a Muslim tech hacker would discuss with peers:
+  - **Hacker/AI culture:** The Register, 404 Media, Hacker News, The Decoder, Ars Technica
+  - **Macro-economics with depth:** Bloomberg, Financial Times, The Economist, CoinDesk
+  - **Muslim world from the inside:** Al Jazeera, Dawn, TRT World, Mada Masr, Wamda, SMEX
+  - **Accountability journalism:** OCCRP, The Intercept, Bellingcat, HRW, Amnesty
+  - **Global South science:** SciDev.Net, Mongabay, Nature
+
+  This is a tiebreaker, not a filter. A major global event always beats a niche tech story. But when the cycle has room, fill it with stories from these sources — they're why the reader chose zuhd.news over BBC.
 - **Arc diversity:** No more than 3 stories per cycle sharing the same primary story ledger arc, regardless of importance score. When an arc has dominated recent cycles, prefer second-order effects (economic, diplomatic, regional) over direct event coverage when filling those slots.
 - **Event-level dedup:** If 2 or more candidates cover the same specific event (same actors, same location, same day — e.g. a single press conference, a single airstrike, a single hearing), select only the best one. Do not fragment a single event into multiple articles because different outlets covered it from slightly different angles.
 - **Freshness:** Each story in the feed has a `daysOld` field. Prefer stories published within the last 72 hours. Stories older than 7 days should only be selected if they are genuinely the first time this development has appeared in the feed (e.g. a weekly science journal's latest issue). Do not select a story older than 14 days under any circumstances. For ongoing story arcs, prefer the freshest update over older background pieces. The reason: stale stories have already been covered by other outlets and feel dated to readers; they also crowd out genuinely new developments that arrived in this cycle's feed.
