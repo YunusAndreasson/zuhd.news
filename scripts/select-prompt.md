@@ -24,7 +24,7 @@ Every human life has equal dignity (karāmah). Truth (ḥaqq) is reported precis
 5. Rewrite `content/.editorial-notes.md` (schema below).
 6. Update `content/.story-ledger.json` (schema below).
 
-Each story has: `title`, `description`, `link`, `pubDate`, `category`, `source`, `suggestedSlug`, `sources` (array with `name`, `url`, `country`, `body`), `eventUri`, `eventCoverage`, `concepts`, `sentimentDivergence`, `origin` ('api' or 'rss').
+Each story has: `title`, `description`, `link`, `pubDate`, `category`, `source`, `suggestedSlug`, `sources` (array with `name`, `url`, `country`, `body`), `eventUri`, `eventCoverage`, `concepts` (array of strings or `{label, uri}` objects), `sentimentDivergence`, `origin` ('api' or 'rss').
 
 **Critical: copy `sources`, `eventUri`, `eventCoverage`, `sentimentDivergence`, and `concepts` from the feed entry to the selection entry exactly as they appear.** The `sources` array contains full article text the writer needs. If you reconstruct the JSON instead of copying, the writer gets empty bodies and cannot write the article.
 </task>
@@ -89,7 +89,7 @@ Save to `/tmp/zuhd-selection.json`:
     "sources": [{ "name": "...", "url": "...", "country": "IR", "body": "..." }],
     "eventUri": "eng-12345678 or null",
     "eventCoverage": 268,
-    "concepts": ["Iran", "Strait of Hormuz"]
+    "concepts": [{"label": "Iran", "uri": "http://en.wikipedia.org/wiki/Iran"}, {"label": "Strait of Hormuz", "uri": "http://en.wikipedia.org/wiki/Strait_of_Hormuz"}]
   }
 ]
 ```
@@ -173,9 +173,12 @@ Update `content/.story-ledger.json`. Keep `version` at 1. Each story:
   "arc": "breaking|developing|ongoing|fading",
   "articles": ["2026-03-24-slug"],
   "eventUri": "eng-12345678",
-  "summary": "1-2 sentence current state"
+  "summary": "1-2 sentence current state",
+  "conceptUris": ["http://en.wikipedia.org/wiki/Iran"]
 }
 ```
+
+When a selection entry's `concepts` array contains objects with `uri` fields, collect those URIs into the story's `conceptUris` array (deduplicate, keep up to 10). These URIs point to Wikipedia pages used for context generation. Do not modify `context` or `contextGeneratedAt` fields if they exist — those are managed by a separate pipeline stage.
 
 Use `eventUri` to match stories across cycles when available. New stories start as `breaking`. Arc progression: breaking → developing (2+ cycles) → ongoing (5+ cycles) → fading. Decay uncovered stories' importance by 1 each cycle. Keep 15-30 active entries.
 

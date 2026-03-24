@@ -42,7 +42,7 @@ for (const file of files) {
     sources: sources.map(s => s.name).filter(Boolean),
     sourceCountries: sources.map(s => s.country).filter(Boolean),
     eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
-    concepts: Array.isArray(meta.concepts) ? meta.concepts.slice(0, 3) : [],
+    concepts: (Array.isArray(meta.concepts) ? meta.concepts : []).slice(0, 3).map(c => typeof c === 'object' ? c.label : c),
     addedTime,
     body: body.slice(0, 300)
   })

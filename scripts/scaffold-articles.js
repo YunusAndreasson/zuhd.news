@@ -43,7 +43,7 @@ for (const f of files) {
   const hasConcepts = yaml.match(/^concepts:\s*\n\s+- /m)
   if (story.concepts?.length > 0 && !hasConcepts) {
     yaml = yaml.replace(/^concepts:.*$/m, '').trimEnd()
-    yaml += '\nconcepts:\n' + story.concepts.slice(0, 5).map(c => `  - "${c}"`).join('\n')
+    yaml += '\nconcepts:\n' + story.concepts.slice(0, 5).map(c => `  - "${typeof c === 'object' ? c.label : c}"`).join('\n')
     changed = true
   }
 
