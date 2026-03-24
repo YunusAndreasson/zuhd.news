@@ -93,7 +93,7 @@ export const ContextSheet = memo(function ContextSheet({
 
         {sections.map((section, si) => (
           <View key={si} style={si === 0 ? undefined : styles.sectionSpacing}>
-            <Text style={[styles.heading, si === 0 && styles.headingFirst]}>
+            <Text style={styles.heading}>
               {section.heading}
             </Text>
             {section.entries.map(renderEntry)}
@@ -136,9 +136,6 @@ const styles = StyleSheet.create({
     ...TEXT_STYLES.smallCaps,
     color: COLORS.textEmphasis,
     marginBottom: SPACING.sm,
-  },
-  headingFirst: {
-    marginTop: 0,
   },
   entry: {
     marginBottom: SPACING.md,
