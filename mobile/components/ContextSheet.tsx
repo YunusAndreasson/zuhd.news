@@ -2,8 +2,7 @@ import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useMemo } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
 import { COLORS, FONT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
-import { type BriefNode, parseContext } from '../lib/parse-context';
-import type { ContextBrief } from '../types';
+import type { ContextBrief, TimelineEntry } from '../types';
 import { SheetHandle } from './SheetHandle';
 
 const MAX_SHEET_HEIGHT = Dimensions.get('window').height * 0.7;
@@ -18,36 +17,38 @@ interface ContextSheetProps {
   onDismiss: () => void;
 }
 
-function renderNode(node: BriefNode, i: number, arr: BriefNode[]) {
-  const isFirst = i === 0 || arr[i - 1]?.type === 'heading';
+interface SectionGroup {
+  heading: string;
+  entries: TimelineEntry[];
+}
 
-  switch (node.type) {
-    case 'heading':
-      return (
-        <Text key={i} style={[styles.heading, i === 0 && styles.headingFirst]}>
-          {node.text}
-        </Text>
-      );
-    case 'entry':
-      return (
-        <View key={i} style={[styles.entry, isFirst && styles.entryFirst]}>
-          <Text style={styles.entryYear}>{node.year}</Text>
-          <Text style={styles.bodyText}>{node.text}</Text>
-        </View>
-      );
-    case 'verse':
-      return (
-        <Text key={i} style={styles.verse}>
-          {node.text}
-        </Text>
-      );
-    default:
-      return (
-        <Text key={i} style={[styles.bodyText, styles.bodySpacing]}>
-          {node.text}
-        </Text>
-      );
+function groupBySection(timeline: TimelineEntry[]): SectionGroup[] {
+  const groups: SectionGroup[] = [];
+  for (const entry of timeline) {
+    const last = groups[groups.length - 1];
+    if (last && last.heading === entry.section) {
+      last.entries.push(entry);
+    } else {
+      groups.push({ heading: entry.section, entries: [entry] });
+    }
   }
+  return groups;
+}
+
+function renderEntry(entry: TimelineEntry, i: number) {
+  if (entry.verse) {
+    return (
+      <Text key={i} style={styles.verse}>
+        {entry.body}
+      </Text>
+    );
+  }
+  return (
+    <View key={i} style={styles.entry}>
+      {entry.year && <Text style={styles.entryYear}>{entry.year}</Text>}
+      <Text style={styles.bodyText}>{entry.body}</Text>
+    </View>
+  );
 }
 
 export const ContextSheet = memo(function ContextSheet({
@@ -59,7 +60,10 @@ export const ContextSheet = memo(function ContextSheet({
   renderBackdrop,
   onDismiss,
 }: ContextSheetProps) {
-  const nodes = useMemo(() => (brief ? parseContext(brief.brief) : []), [brief]);
+  const sections = useMemo(
+    () => (brief?.timeline ? groupBySection(brief.timeline) : []),
+    [brief],
+  );
   const label = brief?.label ?? threadLabel;
   const ContextHandle = useCallback(() => <SheetHandle title="context" />, []);
 
@@ -87,7 +91,14 @@ export const ContextSheet = memo(function ContextSheet({
 
         {loading && !brief && <ActivityIndicator color={COLORS.accent} style={styles.loader} />}
 
-        {nodes.map(renderNode)}
+        {sections.map((section, si) => (
+          <View key={si} style={si === 0 ? undefined : styles.sectionSpacing}>
+            <Text style={[styles.heading, si === 0 && styles.headingFirst]}>
+              {section.heading}
+            </Text>
+            {section.entries.map(renderEntry)}
+          </View>
+        ))}
       </BottomSheetScrollView>
     </BottomSheetModal>
   );
@@ -118,10 +129,12 @@ const styles = StyleSheet.create({
   loader: {
     marginTop: SPACING.lg,
   },
+  sectionSpacing: {
+    marginTop: SPACING.lg,
+  },
   heading: {
     ...TEXT_STYLES.smallCaps,
     color: COLORS.textEmphasis,
-    marginTop: SPACING.lg,
     marginBottom: SPACING.sm,
   },
   headingFirst: {
@@ -129,9 +142,6 @@ const styles = StyleSheet.create({
   },
   entry: {
     marginBottom: SPACING.md,
-  },
-  entryFirst: {
-    marginTop: 0,
   },
   entryYear: {
     fontFamily: FONT.semiBold,
@@ -142,9 +152,6 @@ const styles = StyleSheet.create({
   },
   bodyText: {
     ...TEXT_STYLES.body,
-  },
-  bodySpacing: {
-    marginBottom: SPACING.sm,
   },
   verse: {
     ...TEXT_STYLES.body,

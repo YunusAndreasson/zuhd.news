@@ -9,25 +9,22 @@ const TEMPLATES_DIR = join(ROOT, 'templates')
 
 const CATEGORY_ORDER = ['politics', 'economy', 'science', 'tech']
 
-// Convert a plain-text context brief (ALL CAPS headings, year-prefixed entries) to HTML
-const contextToHtml = (text) => {
-  if (!text) return ''
-  const lines = text.split('\n').filter(l => l.trim())
+// Convert structured timeline array to HTML for web rendering
+const contextToHtml = (timeline) => {
+  if (!Array.isArray(timeline) || timeline.length === 0) return ''
   let html = ''
-  let inIslamicContext = false
-  for (const line of lines) {
-    const trimmed = line.trim()
-    if (trimmed.startsWith('CONTEXT:')) continue // skip title line, we use our own label
-    if (trimmed === '---' || trimmed === '―') continue // skip dividers
-    if (/^[A-Z][A-Z\s,–\-&']{2,}$/.test(trimmed)) {
-      inIslamicContext = trimmed === 'ISLAMIC CONTEXT'
-      html += `<h3 class="context-heading">${trimmed}</h3>`
-    } else if (inIslamicContext) {
-      // Verse/tafsir lines rendered in italic
-      const clean = trimmed.replace(/^>\s*/, '').replace(/^\*\*?(.*?)\*?\*?$/, '$1')
-      html += `<p class="context-verse-line">${clean}</p>`
+  let currentSection = null
+  for (const entry of timeline) {
+    if (entry.section !== currentSection) {
+      currentSection = entry.section
+      html += `<h3 class="context-heading">${currentSection}</h3>`
+    }
+    if (entry.verse) {
+      html += `<p class="context-verse-line">${entry.body}</p>`
+    } else if (entry.year) {
+      html += `<p><strong class="context-year">${entry.year}</strong> ${entry.body}</p>`
     } else {
-      html += `<p>${trimmed}</p>`
+      html += `<p>${entry.body}</p>`
     }
   }
   return html
@@ -177,8 +174,8 @@ const buildHomepage = (sorted, cutoff, homepageTemplate) => {
   const contexts = {}
   for (const id of referencedThreadIds) {
     const brief = contextBriefs[id]
-    if (brief?.context) {
-      contexts[id] = contextToHtml(brief.context)
+    if (brief?.timeline) {
+      contexts[id] = contextToHtml(brief.timeline)
     }
   }
 
@@ -243,7 +240,7 @@ if (existsSync(ledgerPath)) {
         threadSummary: story.summary || null,
         threadDay: Math.max(1, Math.ceil((Date.now() - firstDate.getTime()) / 86400000)),
         threadArticleCount: story.articles.length,
-        threadContext: brief?.context || null,
+        threadContext: brief?.timeline || null,
       })
     }
   }
@@ -364,14 +361,14 @@ mkdirSync(join(DIST_DIR, 'api', 'context'), { recursive: true })
 // Write each context brief as a separate JSON file for mobile consumption
 const contextIndex = {}
 for (const [id, brief] of Object.entries(contextBriefs)) {
-  if (!brief?.context) continue
+  if (!brief?.timeline) continue
   const payload = {
     id,
     label: brief.label,
     category: brief.category,
     articleCount: brief.articleCount,
     generatedAt: brief.generatedAt,
-    brief: brief.context,
+    timeline: brief.timeline,
   }
   writeFileSync(join(DIST_DIR, 'api', 'context', `${id}.json`), JSON.stringify(payload))
   contextIndex[id] = { label: brief.label, category: brief.category, articleCount: brief.articleCount, generatedAt: brief.generatedAt }

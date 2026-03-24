@@ -190,7 +190,7 @@ Output ONLY the Wikipedia page titles, one per line. Use exact Wikipedia titles.
 
 ${allExtractText}
 
-Now generate the context brief. Output ONLY the brief text, starting with "CONTEXT:" — no commentary, no explanation. If you include a Quranic verse, validate it using the Tarteel MCP tools (ayah_translation and ayah_tafsir) before including it.`
+Now generate the context brief as a JSON array of timeline entries. Output ONLY the JSON array — no markdown fences, no commentary. If you include a Quranic verse, validate it using the Tarteel MCP tools (ayah_translation and ayah_tafsir) before including it.`
 
   console.log(`  Generating brief (${allExtracts.length} extracts, ${allExtractText.length} chars)...`)
   const brief = callClaude(briefPrompt, {
@@ -205,21 +205,36 @@ Now generate the context brief. Output ONLY the brief text, starting with "CONTE
     continue
   }
 
-  // Clean the output — extract just the CONTEXT block
-  const contextStart = brief.indexOf('CONTEXT:')
-  const cleanBrief = contextStart >= 0 ? brief.slice(contextStart).trim() : brief.trim()
+  // Parse JSON timeline from output — strip markdown fences if present
+  let timeline
+  try {
+    const jsonStr = brief.replace(/^```json\s*\n?/m, '').replace(/\n?```\s*$/m, '').trim()
+    // Find first [ and last ] to extract the array
+    const start = jsonStr.indexOf('[')
+    const end = jsonStr.lastIndexOf(']')
+    if (start === -1 || end === -1) throw new Error('No JSON array found')
+    timeline = JSON.parse(jsonStr.slice(start, end + 1))
+    if (!Array.isArray(timeline)) throw new Error('Not an array')
+  } catch (e) {
+    console.log(`  Failed to parse JSON: ${e.message} — skipping.`)
+    console.log(`  Raw output (first 300 chars): ${brief.slice(0, 300)}`)
+    continue
+  }
+
+  // Validate entries
+  timeline = timeline.filter(e => e.section && e.body)
 
   // Step 6: Write to briefs file (keyed by thread ID)
   briefs[thread.id] = {
-    context: cleanBrief,
+    timeline,
     generatedAt: new Date().toISOString(),
     label: thread.label,
     category: thread.category,
     articleCount: (thread.articles || []).length,
   }
   generated++
-  console.log(`  Brief generated (${cleanBrief.length} chars)`)
-  console.log(`  Preview: ${cleanBrief.slice(0, 150)}...`)
+  const sections = [...new Set(timeline.map(e => e.section))]
+  console.log(`  Brief generated (${timeline.length} entries, ${sections.length} sections: ${sections.join(', ')})`)
 }
 
 // Save briefs file

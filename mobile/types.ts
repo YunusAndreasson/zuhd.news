@@ -36,9 +36,16 @@ export interface ContextIndexEntry {
   generatedAt: string;
 }
 
+export interface TimelineEntry {
+  section: string;
+  year?: string;
+  body: string;
+  verse?: boolean;
+}
+
 export interface ContextBrief extends ContextIndexEntry {
   id: string;
-  brief: string;
+  timeline: TimelineEntry[];
 }
 
 export interface FeedResponse {

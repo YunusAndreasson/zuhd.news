@@ -8,17 +8,38 @@ You will receive:
 - Thread metadata (id, label, category, arc, article count)
 - Wikipedia extracts for key entities and historical events related to this thread
 
-## Output
+## Output format
 
-Write a context brief in plain text (no markdown formatting, no bullet points). Use this exact structure:
+Output a JSON array of timeline entries. Each entry has:
+- `section` (string) — ALL CAPS heading (e.g., ORIGINS, ESCALATION, RESISTANCE, NOW, THE STRAIT, WHY IT MATTERS)
+- `year` (string, optional) — year or year range (e.g., "1953", "1980–1988"). Omit for thematic entries.
+- `body` (string) — one sentence. No markdown, no formatting.
+- `verse` (boolean, optional) — true only for Quranic verse/tafsir lines in the ISLAMIC CONTEXT section.
 
-1. Start with a title line: `CONTEXT: [Thread subject]`
-2. Add 3-5 section headings in ALL CAPS (e.g., ORIGINS, ESCALATION, RESISTANCE, NOW, ROLE, POSITION, WHY IT MATTERS)
-3. Under each heading, write entries as: `[Year]  [One sentence fact.]` for chronological briefs, or just `[One sentence fact.]` for thematic briefs.
-4. Choose the structure that fits the subject:
-   - **Chronological** for conflicts, treaties, crises (year + sentence)
-   - **Thematic** for people, places, institutions (heading + sentence)
-   - **Hybrid** when both apply
+Output ONLY the JSON array — no commentary, no wrapping object, no markdown fences.
+
+### Example output
+
+```json
+[
+  {"section":"ORIGINS","year":"1953","body":"CIA and MI6 overthrew Prime Minister Mosaddegh, ending Iran's democratic experiment and installing Shah Pahlavi as a Western client."},
+  {"section":"ORIGINS","year":"1979","body":"Iranian Revolution toppled the Shah; the Islamic Republic severed all ties with both the United States and Israel."},
+  {"section":"THE STRAIT","body":"The Strait of Hormuz is 104 miles long and as narrow as 24 miles, connecting the Persian Gulf to the Gulf of Oman."},
+  {"section":"THE STRAIT","body":"Every tanker leaving the Gulf must pass through it — whoever controls the strait controls the flow."},
+  {"section":"NOW","year":"2026","body":"IRGC turns back a container ship as Gulf states declare highest air defense alert."},
+  {"section":"ISLAMIC CONTEXT","verse":true,"body":"\"And if they incline to peace, then incline to it [also] and rely upon Allah.\" — Quran 8:61"},
+  {"section":"ISLAMIC CONTEXT","verse":true,"body":"Ibn Kathir: This verse commands acceptance of genuine peace overtures, citing the Prophet's acceptance of the Treaty of Hudaybiyah."}
+]
+```
+
+### Structure guidelines
+
+- Use 3-5 sections. Choose what fits the subject:
+  - **Chronological** for conflicts, treaties, crises — entries have `year`
+  - **Thematic** for people, places, institutions — entries omit `year`
+  - **Hybrid** when both apply
+- Every section must have at least 2 entries. A section with only 1 entry should be merged into an adjacent section.
+- One sentence per entry, no exceptions.
 
 ## Perspective
 
@@ -41,7 +62,7 @@ Don't compress to fit a token budget. If a conflict needs 15 entries to tell the
 
 ## Quranic anchoring (optional)
 
-Some context briefs have a natural connection to Quranic principles — oppression, justice, patience, stewardship. When the connection is genuine, include a single verse reference at the end of the brief.
+Some context briefs have a natural connection to Quranic principles — oppression, justice, patience, stewardship. When the connection is genuine, include verse entries at the end in an ISLAMIC CONTEXT section.
 
 **Rules:**
 - If a Quranic principle genuinely illuminates this history, include ONE verse at the end
@@ -54,12 +75,9 @@ Some context briefs have a natural connection to Quranic principles — oppressi
 3. Read the tafsir (it returns thematic verse groups, not single verses — this is useful for checking context)
 4. If the tafsir supports the connection, include the verse. If not, drop it silently.
 
-**Format the verse block as a separate section at the end of the brief (no Arabic text — it doesn't render well):**
-```
-ISLAMIC CONTEXT
-"[English translation from Saheeh International]" — Quran [surah:ayah]
-Ibn Kathir: [One sentence summarizing the relevant tafsir insight]
-```
+**Format as two entries with `"verse": true`:**
+- First: `"[English translation from Saheeh International]" — Quran [surah:ayah]`
+- Second: `Ibn Kathir: [One sentence summarizing the relevant tafsir insight]`
 
 **Examples of natural fits:**
 - Israel-Palestine / oppression → 2:191 — "fitnah is worse than killing"
