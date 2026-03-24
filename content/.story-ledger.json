@@ -6,9 +6,9 @@
       "label": "Iran-US-Israel war: Pentagon $200bn request, Saudi threatens action",
       "firstSeen": "2026-03-01T11:00:00Z",
       "lastCovered": "2026-03-24T17:00:00Z",
-      "coverageCount": 329,
+      "coverageCount": 333,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "ongoing",
       "articles": [
         "2026-03-01-us-israel-attacks-iran-retaliation-regional-war",
@@ -176,29 +176,14 @@
       "summary": "France's defense chief says US does not warn Europe before military decisions. India-US coordinating on Hormuz. Philippines declares energy emergency. Taliban releases US citizen amid distraction. War consequences spreading globally."
     },
     {
-      "id": "glp1-mental-health-benefits",
-      "label": "GLP-1 drugs: benefits, misuse, and India crackdown",
-      "firstSeen": "2026-03-24T10:10:00Z",
-      "lastCovered": "2026-03-24T14:30:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-glp1-drugs-mental-health-benefits-study-sweden",
-        "2026-03-24-india-glp1-weight-loss-drug-crackdown-supply-chain"
-      ],
-      "summary": "India cracks down on off-label GLP-1 misuse across supply chain. Prior: Swedish study showed mental health benefits. Two-tier system: rich countries manage shortages, India fights black market."
-    },
-    {
       "id": "somalia-constitution-crisis",
       "label": "Somalia new constitution ends 12-year provisional governance, federal crisis",
       "firstSeen": "2026-03-24T11:00:00Z",
       "lastCovered": "2026-03-24T11:30:00Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 3,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-somalia-constitution-provisional-governance-crisis",
         "2026-03-10-somalia-constitution-fracture-puntland-jubaland",
@@ -208,60 +193,13 @@
       "summary": "New constitution formally ends 12-year provisional governance but Puntland and Jubaland reject it. Risk of armed standoff if Mogadishu presses implementation."
     },
     {
-      "id": "gulf-war-toxic-contamination",
-      "label": "Scientists warn Gulf war toxic fallout could last decades",
-      "firstSeen": "2026-03-24T11:00:00Z",
-      "lastCovered": "2026-03-24T11:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-toxic-fallout-gulf-war-decades-contamination"
-      ],
-      "eventUri": null,
-      "summary": "Long-term environmental contamination from Gulf war: depleted uranium, burning oil, chemical runoff from destroyed industrial sites."
-    },
-    {
-      "id": "fcc-foreign-routers-ban",
-      "label": "FCC adds foreign consumer routers to national security covered list",
-      "firstSeen": "2026-03-24T11:00:00Z",
-      "lastCovered": "2026-03-24T11:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-fcc-foreign-routers-covered-list-security"
-      ],
-      "eventUri": null,
-      "summary": "FCC designates foreign-manufactured consumer routers as covered equipment, likely targeting Chinese manufacturers."
-    },
-    {
-      "id": "tinder-ai-camera-scanning",
-      "label": "Tinder plans AI scanning of users' entire camera rolls",
-      "firstSeen": "2026-03-24T11:00:00Z",
-      "lastCovered": "2026-03-24T11:30:00Z",
-      "coverageCount": 3,
-      "category": "tech",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-tinder-ai-camera-roll-scan-privacy",
-        "2026-03-19-tinder-ai-camera-roll-scan-privacy",
-        "2026-03-24-tinder-ai-scan-camera-roll-privacy"
-      ],
-      "eventUri": null,
-      "summary": "Tinder plans AI scanning of entire camera rolls to select photos and infer interests. Match Group desperate to reverse subscriber decline via AI personalization."
-    },
-    {
       "id": "chad-rsf-munitions-cross-border",
       "label": "Bellingcat links RSF munitions to deadly Chad airstrike",
       "firstSeen": "2026-03-24T11:30:00Z",
       "lastCovered": "2026-03-24T11:30:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-24-chad-strike-munitions-rsf-weapons-bellingcat",
@@ -271,29 +209,14 @@
       "summary": "Bellingcat forensically matches munition remnants from deadly Chad strike in Tine to weapons previously used by RSF in Sudan. Smoking gun for cross-border RSF operations."
     },
     {
-      "id": "humid-heatwaves-coastal-warming",
-      "label": "Nature: humid heatwaves clustering at unprecedented scale",
-      "firstSeen": "2026-03-24T11:30:00Z",
-      "lastCovered": "2026-03-24T11:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-humid-heatwaves-coastal-oceanic-warming-nature"
-      ],
-      "eventUri": null,
-      "summary": "Humid heatwaves aggregating at massive scales driven by coastal ocean warming."
-    },
-    {
       "id": "south-asia-air-pollution-crisis",
       "label": "IQAir 2025: Pakistan most polluted country, Ghaziabad most polluted city",
       "firstSeen": "2026-03-24T11:30:00Z",
       "lastCovered": "2026-03-24T12:30:00Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 3,
-      "arc": "developing",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-ghaziabad-india-most-polluted-city-world",
         "2026-03-24-ghaziabad-worlds-most-polluted-city-not-delhi",
@@ -306,33 +229,19 @@
       "id": "europe-stagflation-iran-war",
       "label": "European PMI signals stagflation from Iran war energy shock",
       "firstSeen": "2026-03-24T11:30:00Z",
-      "lastCovered": "2026-03-24T12:30:00Z",
-      "coverageCount": 3,
+      "lastCovered": "2026-03-24T17:30:00Z",
+      "coverageCount": 4,
       "category": "economy",
-      "importance": 4,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-24-europe-stagflation-iran-war-pmi",
         "2026-03-24-europe-stagflation-iran-war-pmi-crisis",
-        "2026-03-24-global-markets-jittery-oil-climbs-relief-rally-sours"
+        "2026-03-24-global-markets-jittery-oil-climbs-relief-rally-sours",
+        "2026-03-24-us-business-activity-cools-iran-war-prices-surge"
       ],
       "eventUri": "eng-11506407",
-      "summary": "Global markets sour within 24 hours of Trump peace talk claims. Oil resumes climbing. European PMI still showing stagflation. Relief rally was theatrics."
-    },
-    {
-      "id": "revolut-record-profit-fintech",
-      "label": "Revolut posts record 1.7B pounds profit, targets 100M customers",
-      "firstSeen": "2026-03-24T11:30:00Z",
-      "lastCovered": "2026-03-24T11:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-revolut-record-profit-1-7bn-100m-customer-target"
-      ],
-      "eventUri": "deu-2099339",
-      "summary": "Revolut posts record 1.7B GBP profit (57% surge), targets 100M customers by mid-2027. Europe's most valuable fintech expanding to US banking."
+      "summary": "US flash PMI hits 11-month low while prices surge to 2-year high. First hard US data showing Iran war driving stagflation. Eurozone showing same pattern."
     },
     {
       "id": "lrrk2-parkinsons-trial",
@@ -341,7 +250,7 @@
       "lastCovered": "2026-03-24T11:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-lrrk2-parkinsons-antisense-oligonucleotide-phase-1-trial"
@@ -350,49 +259,19 @@
       "summary": "BIIB094 antisense oligonucleotide targeting LRRK2 is well-tolerated and reduces target protein in cerebrospinal fluid. First disease-modifying approach for Parkinson's."
     },
     {
-      "id": "pacemaker-metabolic-switch",
-      "label": "Pacemaker implant switches failing hearts from sugar to fat fuel",
-      "firstSeen": "2026-03-24T11:30:00Z",
-      "lastCovered": "2026-03-24T11:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-pacemaker-switches-heart-burn-fat-not-sugar"
-      ],
-      "eventUri": "eng-11505238",
-      "summary": "Watch-sized implant reverses metabolic dysfunction in heart failure by switching fuel source from glucose to fatty acids. In human trials in UK."
-    },
-    {
       "id": "nature-ai-jobs-analysis",
       "label": "Nature: AI has not caused mass job losses but displacement is concentrated",
       "firstSeen": "2026-03-24T11:30:00Z",
       "lastCovered": "2026-03-24T11:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-nature-ai-job-apocalypse-hasnt-happened-yet"
       ],
       "eventUri": "eng-11503270",
       "summary": "Nature labor market analysis finds AI companies hiring more, not less, but displacement concentrated in translation, basic coding, customer service roles."
-    },
-    {
-      "id": "saudi-aramco-deepfake-detection",
-      "label": "Saudi Aramco Wa'ed invests in Resemble AI for deepfake detection",
-      "firstSeen": "2026-03-24T11:30:00Z",
-      "lastCovered": "2026-03-24T11:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-saudi-aramco-waed-resemble-ai-deepfake-detection"
-      ],
-      "eventUri": null,
-      "summary": "Aramco's $500M VC arm invests in AI deepfake detection during wartime when fake audio of Gulf leaders could move energy markets."
     },
     {
       "id": "indonesia-trump-board-of-peace",
@@ -401,7 +280,7 @@
       "lastCovered": "2026-03-24T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-indonesia-rejects-trump-board-of-peace-billion-dollar-fee"
@@ -416,8 +295,8 @@
       "lastCovered": "2026-03-24T12:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-nigeria-journalist-assault-bauchi-press-freedom"
       ],
@@ -431,7 +310,7 @@
       "lastCovered": "2026-03-24T12:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-russia-steel-output-drops-ten-percent-industrial-contraction"
@@ -446,8 +325,8 @@
       "lastCovered": "2026-03-24T12:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-dark-matter-underground-labs-search-progress-nature"
       ],
@@ -461,7 +340,7 @@
       "lastCovered": "2026-03-24T12:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-sodium-ion-battery-high-voltage-wide-temperature-breakthrough"
@@ -476,8 +355,8 @@
       "lastCovered": "2026-03-24T12:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-bitcoin-stability-2023-cost-basis-wartime-stress-test"
       ],
@@ -506,7 +385,7 @@
       "lastCovered": "2026-03-24T14:30:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 7,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-24-lebanon-expels-iranian-ambassador-persona-non-grata",
@@ -522,7 +401,7 @@
       "lastCovered": "2026-03-24T14:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-zamfara-assembly-governor-defect-apc-nigeria"
@@ -535,9 +414,9 @@
       "label": "Russia strikes damage Moldova energy infrastructure",
       "firstSeen": "2026-03-24T14:30:00Z",
       "lastCovered": "2026-03-24T17:00:00Z",
-      "coverageCount": 2,
+      "coverageCount": 3,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-24-russia-strikes-ukraine-moldova-energy-damage",
@@ -548,18 +427,19 @@
     },
     {
       "id": "pakistan-markets-war-diplomacy",
-      "label": "Pakistan markets rally on ceasefire hopes and peace broker role",
+      "label": "Pakistan positions as Iran war peace broker and mediator",
       "firstSeen": "2026-03-24T14:30:00Z",
-      "lastCovered": "2026-03-24T14:30:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-24T17:30:00Z",
+      "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
-        "2026-03-24-pakistan-stock-exchange-rallies-eid-ceasefire-hopes"
+        "2026-03-24-pakistan-stock-exchange-rallies-eid-ceasefire-hopes",
+        "2026-03-24-pakistan-pm-offers-host-us-iran-negotiations"
       ],
       "eventUri": null,
-      "summary": "PSX surged 1200 points post-Eid on ceasefire hopes. Army chief Munir positioning Pakistan as Iran peace broker after Trump call."
+      "summary": "PM Sharif publicly offers to host US-Iran negotiations in Islamabad. Escalation from army chief Trump call. Markets rallied on diplomatic positioning."
     },
     {
       "id": "cloud-infrastructure-war-disruption",
@@ -568,7 +448,7 @@
       "lastCovered": "2026-03-24T14:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-24-sadapay-aws-bahrain-war-fintech-disruption"
@@ -583,8 +463,8 @@
       "lastCovered": "2026-03-24T14:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-jak-inhibitors-suppress-killer-t-cells-nature"
       ],
@@ -598,8 +478,8 @@
       "lastCovered": "2026-03-24T14:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-orbital-data-centers-economics-ars-technica"
       ],
@@ -611,9 +491,9 @@
       "label": "Self-propagating malware poisons open source, deploys Iran-targeting wiper",
       "firstSeen": "2026-03-24T14:30:00Z",
       "lastCovered": "2026-03-24T17:00:00Z",
-      "coverageCount": 2,
+      "coverageCount": 3,
       "category": "tech",
-      "importance": 7,
+      "importance": 6,
       "arc": "developing",
       "articles": [
         "2026-03-24-malware-open-source-supply-chain-iran-wiper",
@@ -629,7 +509,7 @@
       "lastCovered": "2026-03-24T14:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-zoom-meetings-secretly-turned-ai-podcasts-webinartv"
@@ -644,7 +524,7 @@
       "lastCovered": "2026-03-24T14:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-stanford-ai-chatbot-delusions-research-openai-microsoft"
@@ -659,7 +539,7 @@
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-24-cern-antimatter-road-transport-first-time"
@@ -674,7 +554,7 @@
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-prefrontal-neurons-leadership-group-dynamics-nature"
@@ -689,7 +569,7 @@
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-ai-disrupts-physics-aps-meeting-methodology"
@@ -704,7 +584,7 @@
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-24-deepfake-xrays-radiologists-cant-detect"
@@ -719,7 +599,7 @@
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-24-tether-usdt-big-four-audit-stablecoin"
@@ -734,7 +614,7 @@
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-claude-plugins-google-search-seo-poisoning-hackers"
@@ -749,7 +629,7 @@
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-24-palestinian-journalist-hossam-shabat-assassination-anniversary"
@@ -764,13 +644,163 @@
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-24-philippines-energy-emergency-iran-war-oil-shock"
       ],
       "eventUri": "eng-11507722",
       "summary": "First Southeast Asian country to formally declare energy emergency from Iran war oil price shock. Import-dependent grid facing blackout risk."
+    },
+    {
+      "id": "tesla-europe-sales-rebound",
+      "label": "Tesla sales rebound in Europe after anti-Musk slump",
+      "firstSeen": "2026-03-24T17:30:00Z",
+      "lastCovered": "2026-03-24T17:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-tesla-sales-rebound-europe-after-slump"
+      ],
+      "eventUri": "eng-11506822",
+      "summary": "Tesla registrations tick up in Europe after months of decline. ACEA data suggests anti-Musk boycott may be peaking."
+    },
+    {
+      "id": "arizona-groundwater-climate",
+      "label": "Nature: climate draining Arizona aquifers beyond human pumping",
+      "firstSeen": "2026-03-24T17:30:00Z",
+      "lastCovered": "2026-03-24T17:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-arizona-groundwater-climate-depletion-nature-study"
+      ],
+      "eventUri": null,
+      "summary": "NASA GRACE satellite data shows natural climate variability depleting Arizona groundwater independently of human pumping."
+    },
+    {
+      "id": "bilirubin-ripk3-cell-death",
+      "label": "Cell Discovery: unknown cell death pathway explains jaundice brain damage",
+      "firstSeen": "2026-03-24T17:30:00Z",
+      "lastCovered": "2026-03-24T17:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-bilirubin-ripk3-new-cell-death-pathway-jaundice"
+      ],
+      "eventUri": null,
+      "summary": "Bilirubin triggers non-classical necroptosis via RIPK3, bypassing all known cell death pathways. Explains neonatal jaundice brain damage."
+    },
+    {
+      "id": "adb-developing-states-support",
+      "label": "ADB launches support package for Iran war-affected developing states",
+      "firstSeen": "2026-03-24T17:30:00Z",
+      "lastCovered": "2026-03-24T17:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-adb-support-package-developing-states-iran-war"
+      ],
+      "eventUri": "eng-11505538",
+      "summary": "First multilateral institution to treat Iran war as development crisis. Package targets Pacific islands, Central Asia, South Asian importers."
+    },
+    {
+      "id": "parafi-crypto-fund-downturn",
+      "label": "ParaFi raises $125M crypto fund with KKR backing despite downturn",
+      "firstSeen": "2026-03-24T17:30:00Z",
+      "lastCovered": "2026-03-24T17:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-parafi-125m-crypto-fund-kkr-market-downturn"
+      ],
+      "eventUri": null,
+      "summary": "KKR-backed ParaFi raises $125M during BTC 26% drawdown. Institutional crypto confidence despite wartime market chaos."
+    },
+    {
+      "id": "maternal-health-africa-gaps",
+      "label": "Sub-Saharan Africa maternal health policy and funding failures",
+      "firstSeen": "2026-03-24T17:30:00Z",
+      "lastCovered": "2026-03-24T17:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-maternal-health-africa-policy-funding-gaps"
+      ],
+      "eventUri": null,
+      "summary": "70% of global maternal deaths in sub-Saharan Africa despite 14% of population. Expert meeting identifies fixable gaps in emergency obstetric care."
+    },
+    {
+      "id": "colombian-pmcs-ukraine",
+      "label": "Colombian fighters from US PMCs deployed to Ukraine",
+      "firstSeen": "2026-03-24T17:30:00Z",
+      "lastCovered": "2026-03-24T17:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-colombian-pmcs-american-contractors-ukraine"
+      ],
+      "eventUri": null,
+      "summary": "Colombian combat veterans recruited by American PMCs for Ukraine. Privatized warfare using Global South labor pipeline."
+    },
+    {
+      "id": "missile-defense-np-complete",
+      "label": "Mathematical proof: optimal missile defense is NP-complete",
+      "firstSeen": "2026-03-24T17:30:00Z",
+      "lastCovered": "2026-03-24T17:30:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-missile-defense-np-complete-proof"
+      ],
+      "eventUri": null,
+      "summary": "Proof that missile defense resource allocation is NP-complete. No algorithm can optimally solve it at scale."
+    },
+    {
+      "id": "microsoft-windows-11-backlash",
+      "label": "Microsoft Windows 11 fix criticized as gaslighting by developers",
+      "firstSeen": "2026-03-24T17:30:00Z",
+      "lastCovered": "2026-03-24T17:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-microsoft-windows-11-fix-gaslighting-backlash"
+      ],
+      "eventUri": null,
+      "summary": "Microsoft cosmetic Win11 changes while keeping mandatory account, Copilot integration, Start menu ads. 580-point HN thread."
+    },
+    {
+      "id": "uae-sovereign-financial-cloud",
+      "label": "UAE builds sovereign financial cloud for data sovereignty",
+      "firstSeen": "2026-03-24T17:30:00Z",
+      "lastCovered": "2026-03-24T17:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-uae-sovereign-financial-cloud-data-sovereignty"
+      ],
+      "eventUri": null,
+      "summary": "UAE sovereign financial cloud addresses war-exposed vulnerability of foreign cloud dependency."
     }
   ]
 }
