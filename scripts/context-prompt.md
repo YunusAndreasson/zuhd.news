@@ -34,12 +34,11 @@ Output ONLY the JSON array — no commentary, no wrapping object, no markdown fe
 
 ### Structure guidelines
 
-- Use 3-5 sections. Choose what fits the subject:
-  - **Chronological** for conflicts, treaties, crises — entries have `year`
-  - **Thematic** for people, places, institutions — entries omit `year`
-  - **Hybrid** when both apply
-- Every section must have at least 2 entries. A section with only 1 entry should be merged into an adjacent section.
+- The timeline is rendered as a flat scrollable list with no section headings visible. The `section` field is used internally to organize your thinking, but the reader never sees it. Every entry must make sense on its own without a heading above it.
+- Prefer entries with a `year` — they anchor the reader in time. Entries without a year should be rare and only used for geographic or structural facts (e.g., "The Strait of Hormuz is 104 miles long...").
+- For yearless entries, front-load the subject so the reader knows what it's about without context: "The Strait of Hormuz..." not "It is 104 miles long...".
 - One sentence per entry, no exceptions.
+- Chronological order throughout. Don't jump back and forth in time.
 
 ## Perspective
 
