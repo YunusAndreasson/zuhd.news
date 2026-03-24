@@ -334,7 +334,7 @@ const apiCategories = Object.fromEntries(
         lat: meta.lat != null ? Number(meta.lat) : null,
         lng: meta.lng != null ? Number(meta.lng) : null,
         ...(thread && {
-          threadId: thread.threadId,
+          ...(thread.threadContext && { threadId: thread.threadId }),
           threadLabel: thread.threadLabel,
           threadArc: thread.threadArc,
           threadSummary: thread.threadSummary,
