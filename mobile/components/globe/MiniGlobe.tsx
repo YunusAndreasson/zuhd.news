@@ -46,6 +46,21 @@ function getSunPosition(): [number, number] {
   return cachedSunPos;
 }
 
+// Night check — is the sun below the horizon at the user's approximate location?
+// Uses timezone offset for longitude, 25°N as latitude proxy (primary audience band).
+// Cached 60s (matches sun position cache).
+let _isNight = false;
+let _nightTs = 0;
+function isLocalNight(): boolean {
+  const now = Date.now();
+  if (now - _nightTs < 60000) return _isNight;
+  _nightTs = now;
+  const [sunLng, sunLat] = getSunPosition();
+  const userLng = -(new Date(now).getTimezoneOffset() / 60) * 15;
+  _isNight = geoDistance([sunLng, sunLat], [userLng, 25]) > HALF_PI;
+  return _isNight;
+}
+
 // Nudge offsets for coastal/border coordinate fallback (0.1° ≈ 11km)
 const NUDGES: [number, number][] = [
   [0, 0],
@@ -395,7 +410,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       ))}
 
       {/* Moon — NASA texture with phase shadow */}
-      {moonTexture && (
+      {moonTexture && isLocalNight() && (
         <>
           {/* Halo — tight glow around the moon */}
           <Circle

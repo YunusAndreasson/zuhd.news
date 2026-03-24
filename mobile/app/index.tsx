@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { BottomSheetBackdrop, type BottomSheetBackdropProps, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
@@ -68,6 +69,7 @@ export default function HomeScreen() {
   const sourceSheetRef = useRef<BottomSheetModal>(null);
   const [sourceSheetSources, setSourceSheetSources] = useState<Array<{name: string; country?: string | null; sentiment?: number | null}>>([]);
   const [sourceSheetDivergence, setSourceSheetDivergence] = useState<number | null>(null);
+  const [expandedSource, setExpandedSource] = useState<number | null>(null);
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
 
@@ -106,7 +108,6 @@ export default function HomeScreen() {
   const toastRef = useRef<ToastRef>(null);
 
   const [currentCategory, setCurrentCategory] = useState(0);
-  const pagerIdle = useRef(true);
 
   const [pagerHeight, setPagerHeight] = useState(0);
   const onPagerLayout = useCallback((e: LayoutChangeEvent) => {
@@ -139,7 +140,7 @@ export default function HomeScreen() {
 
   const onPageScrollStateChanged = useCallback(
     (e: { nativeEvent: { pageScrollState: string } }) => {
-      pagerIdle.current = e.nativeEvent.pageScrollState === 'idle';
+      // Reserved for future use (e.g. disabling interactions during swipe)
     },
     [],
   );
@@ -257,7 +258,6 @@ export default function HomeScreen() {
                   onCaughtUp={handleCaughtUp}
                   onSourcePress={handleSourcePress}
                   onCountryPress={handleCountryPress}
-                  pagerIdle={pagerIdle}
                   progressesSV={categoryProgresses}
                   tick={tick}
                   resetKey={resetKey}
@@ -278,7 +278,7 @@ export default function HomeScreen() {
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
         handleIndicatorStyle={styles.sheetHandle}
-        onDismiss={() => { setSourceSheetSources([]); setSourceSheetDivergence(null); }}
+        onDismiss={() => { setSourceSheetSources([]); setSourceSheetDivergence(null); setExpandedSource(null); }}
       >
         <BottomSheetView
           style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
@@ -298,17 +298,37 @@ export default function HomeScreen() {
                   : s.sentiment < -0.2 ? 'unfavorable'
                   : 'neutral'
                   : null;
+                const isExpanded = expandedSource === i;
                 return (
-                  <View key={i} style={styles.sourceRow}>
+                  <Pressable
+                    key={i}
+                    style={styles.sourceRow}
+                    onPress={() => setExpandedSource(isExpanded ? null : i)}
+                  >
                     <View style={styles.sourceRowHeader}>
-                      <Text style={styles.sheetTitle}>{s.name}</Text>
-                      {tone && <Text style={styles.toneLabel}>{tone}</Text>}
+                      <View style={styles.sourceRowLeft}>
+                        <Text style={styles.sheetTitle}>
+                          {flag ? `${flag} ` : ''}{s.name}
+                        </Text>
+                        {info && (
+                          <Text style={styles.sourceType}>{info.type} · {info.location}</Text>
+                        )}
+                      </View>
+                      <View style={styles.sourceRowRight}>
+                        {tone && <Text style={styles.toneLabel}>{tone}</Text>}
+                        {info && (
+                          <Ionicons
+                            name={isExpanded ? 'chevron-up' : 'chevron-down'}
+                            size={16}
+                            color={COLORS.accent}
+                          />
+                        )}
+                      </View>
                     </View>
-                    {countryName && (
-                      <Text style={styles.sourceCountry}>{flag} {countryName}</Text>
+                    {isExpanded && info && (
+                      <Text style={styles.sheetBody}>{info.description}</Text>
                     )}
-                    {info && <Text style={styles.sheetBody}>{info.description}</Text>}
-                  </View>
+                  </Pressable>
                 );
               })}
               <Text
@@ -452,13 +472,27 @@ const styles = StyleSheet.create({
     lineHeight: TYPOGRAPHY.sizeBase * TYPOGRAPHY.leadingBody,
     color: COLORS.accent,
   },
+  sourceType: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeXs,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    color: COLORS.accent,
+  },
   sourceRow: {
     marginBottom: SPACING.md,
   },
   sourceRowHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+  },
+  sourceRowLeft: {
+    flex: 1,
+  },
+  sourceRowRight: {
+    alignItems: 'flex-end',
+    gap: SPACING.xs,
+    paddingLeft: SPACING.md,
   },
   toneLabel: {
     fontFamily: FONT.smallCaps,

@@ -32,7 +32,6 @@ interface ArticleListProps {
   onCaughtUp?: () => void;
   onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null; sentiment?: number | null}>, divergence?: number | null) => void;
   onCountryPress?: (result: TapResult) => void;
-  pagerIdle: React.RefObject<boolean>;
   progressesSV: SharedValue<number[]>;
   tick?: number;
   resetKey?: number;
@@ -49,7 +48,6 @@ export const ArticleList = memo(function ArticleList({
   onRefresh,
   onEndReached,
   onCaughtUp,
-  pagerIdle,
   progressesSV,
   tick,
   resetKey,
@@ -246,8 +244,8 @@ export const ArticleList = memo(function ArticleList({
         refreshControl={
           <RefreshControl
             refreshing={localRefreshing}
-            onRefresh={currentIndex === 0 && pagerIdle.current ? handleRefresh : undefined}
-            enabled={currentIndex === 0 && pagerIdle.current}
+            onRefresh={currentIndex === 0 ? handleRefresh : undefined}
+            enabled={currentIndex === 0}
             tintColor={COLORS.textSecondary}
             progressBackgroundColor={COLORS.bg}
             colors={[COLORS.textSecondary]}
