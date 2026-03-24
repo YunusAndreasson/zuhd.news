@@ -120,7 +120,6 @@ if [ "$SELECTION_COUNT" -eq 0 ]; then
 fi
 echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
 
-# Stage 1.5: REMOVED — API provides full article text in the feed, no prefetch needed
 
 # Stage 2: Writer — read selection (with pre-loaded article bodies), draft markdown
 echo "" | tee -a "$LOG_FILE"

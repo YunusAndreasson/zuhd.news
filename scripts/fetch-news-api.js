@@ -194,7 +194,7 @@ const ARTICLE_DEFAULTS = {
   dataType: ['news'],
   isDuplicateFilter: 'skipDuplicates',
   dateStart: new Date().toISOString().slice(0, 10),
-  articleBodyLen: -1,           // full text — eliminates prefetch stage
+  articleBodyLen: -1,
   includeArticleConcepts: true,
   includeArticleCategories: true,
   includeArticleLocation: true,
