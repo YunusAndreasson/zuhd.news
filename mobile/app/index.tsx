@@ -276,28 +276,22 @@ export default function HomeScreen() {
             <>
               <Text style={styles.sheetLabel}>
                 {sourceSheetSources.length} SOURCE{sourceSheetSources.length > 1 ? 'S' : ''}
-                {sourceSheetDivergence != null && sourceSheetDivergence > 0.3
-                  ? ` · ${sourceSheetDivergence >= 0.6 ? 'DIVERGENT' : 'MIXED'} FRAMING`
-                  : ''}
               </Text>
               {sourceSheetSources.map((s, i) => {
                 const info = SOURCES[s.name];
                 const cc = s.country?.toUpperCase();
                 const countryName = cc ? CC_NAMES[cc] ?? cc : null;
                 const flag = cc ? ccToFlag(cc) : null;
-                const sentimentLabel = s.sentiment != null
-                  ? s.sentiment > 0.2 ? 'positive' : s.sentiment < -0.2 ? 'critical' : 'neutral'
+                // Show sentiment as a quiet number — the reader interprets, we don't label
+                const sentimentStr = s.sentiment != null
+                  ? (s.sentiment >= 0 ? '+' : '') + s.sentiment.toFixed(1)
                   : null;
                 return (
                   <View key={i} style={styles.sourceRow}>
                     <View style={styles.sourceRowHeader}>
                       <Text style={styles.sheetTitle}>{s.name}</Text>
-                      {sentimentLabel && (
-                        <Text style={[
-                          styles.sentimentBadge,
-                          sentimentLabel === 'critical' && styles.sentimentCritical,
-                          sentimentLabel === 'positive' && styles.sentimentPositive,
-                        ]}>{sentimentLabel}</Text>
+                      {sentimentStr && (
+                        <Text style={styles.sentimentValue}>{sentimentStr}</Text>
                       )}
                     </View>
                     {countryName && (
@@ -456,18 +450,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  sentimentBadge: {
-    fontFamily: FONT.smallCaps,
+  sentimentValue: {
+    fontFamily: FONT.regular,
     fontSize: TYPOGRAPHY.sizeXs,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-    color: COLORS.accent,
-    opacity: 0.6,
-  },
-  sentimentCritical: {
-    color: '#c47070',
-  },
-  sentimentPositive: {
-    color: '#70a870',
+    color: COLORS.textSecondary,
+    opacity: 0.5,
   },
   sourceCountry: {
     fontFamily: FONT.smallCaps,
