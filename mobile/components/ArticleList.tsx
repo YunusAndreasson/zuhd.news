@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useEffectEvent, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { Dimensions, RefreshControl, StyleSheet, View } from 'react-native';
 import Animated, {
   runOnJS,
@@ -34,6 +34,7 @@ interface ArticleListProps {
   pagerIdle: React.RefObject<boolean>;
   progressesSV: SharedValue<number[]>;
   tick?: number;
+  resetKey?: number;
   ref?: React.Ref<ArticleListRef>;
 }
 
@@ -49,6 +50,7 @@ export const ArticleList = memo(function ArticleList({
   pagerIdle,
   progressesSV,
   tick,
+  resetKey,
   ref,
 }: ArticleListProps) {
   const insets = useSafeAreaInsets();
@@ -81,11 +83,9 @@ export const ArticleList = memo(function ArticleList({
       overscrollFired.value = false;
     }, 800);
   }, [overscrollFired]);
-  const onEndReachedRef = useRef(onEndReached);
-  onEndReachedRef.current = onEndReached;
-  const fireEndReached = useCallback(() => {
-    onEndReachedRef.current?.(catIndex);
-  }, [catIndex]);
+  const fireEndReached = useEffectEvent(() => {
+    onEndReached?.(catIndex);
+  });
   const [localRefreshing, setLocalRefreshing] = useState(false);
 
   // Persist reading position on scroll
@@ -222,6 +222,7 @@ export const ArticleList = memo(function ArticleList({
         height={viewportHeight}
       />
       <Animated.FlatList
+        key={resetKey}
         ref={listRef}
         data={sortedArticles}
         extraData={tick}

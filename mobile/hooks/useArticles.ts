@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 import { API_BASE } from '../constants/theme';
 import { readFeedCache, writeFeedCache } from '../lib/feed-cache';
@@ -32,6 +32,7 @@ export function useArticles() {
   const lastGeneratedRef = useRef<string | null>(null);
   const refreshingRef = useRef(false);
   const lastActiveRef = useRef(Date.now());
+  const [resetKey, setResetKey] = useState(0);
 
   // Load lastSeenAt from storage on mount
   useEffect(() => {
@@ -98,6 +99,7 @@ export function useArticles() {
           if (changed) {
             await fetchFeed();
             await resetReadingPositions();
+            setResetKey((k) => k + 1);
           }
         } catch {} // cached data is fine
         return;
@@ -114,30 +116,35 @@ export function useArticles() {
   }, [applyFeed, fetchFeed, hasNewContent]);
 
   // Foreground resume: refresh if away > 5 min
+  const handleResume = useEffectEvent(async () => {
+    setTick((t) => t + 1);
+    const away = Date.now() - lastActiveRef.current;
+    if (away > STALE_THRESHOLD && !refreshingRef.current) {
+      refreshingRef.current = true;
+      try {
+        const changed = await hasNewContent();
+        if (changed) {
+          await fetchFeed();
+          await resetReadingPositions();
+          setResetKey((k) => k + 1);
+        }
+      } catch {} // silent — existing content is fine
+      finally { refreshingRef.current = false; }
+    }
+  });
+
   useEffect(() => {
-    const sub = AppState.addEventListener('change', async (state) => {
+    const sub = AppState.addEventListener('change', (state) => {
       if (state === 'background') {
         saveLastSeenAt(Date.now());
         lastActiveRef.current = Date.now();
       }
       if (state === 'active') {
-        setTick((t) => t + 1);
-        const away = Date.now() - lastActiveRef.current;
-        if (away > STALE_THRESHOLD && !refreshingRef.current) {
-          refreshingRef.current = true;
-          try {
-            const changed = await hasNewContent();
-            if (changed) {
-              await fetchFeed();
-              await resetReadingPositions();
-            }
-          } catch {} // silent — existing content is fine
-          finally { refreshingRef.current = false; }
-        }
+        handleResume();
       }
     });
     return () => sub.remove();
-  }, [fetchFeed, hasNewContent]);
+  }, []);
 
   const refresh = useCallback(async (): Promise<number> => {
     if (refreshingRef.current) return 0;
@@ -163,5 +170,5 @@ export function useArticles() {
     }
   }, [fetchFeed]);
 
-  return { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick };
+  return { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey };
 }

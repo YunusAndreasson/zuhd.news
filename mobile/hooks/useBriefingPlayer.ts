@@ -24,6 +24,16 @@ interface BriefingPlayer {
   toggle: () => void;
 }
 
+// createAudioPlayer may throw in Expo Go when native module is outdated.
+// Wrap to return null instead of crashing.
+function safeCreatePlayer(url: string): AudioPlayer | null {
+  try {
+    return createAudioPlayer(url, { updateInterval: 500 });
+  } catch {
+    return null;
+  }
+}
+
 export function useBriefingPlayer(date: string | undefined, feedDuration?: number): BriefingPlayer {
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -38,7 +48,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     if (!date) return;
     const url = `${API_BASE}/audio/briefing-${date}.mp3`;
     if (preloadedUrl.current !== url) {
-      preload(url);
+      try { preload(url); } catch {}
       preloadedUrl.current = url;
     }
   }, [date]);
@@ -101,9 +111,8 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       });
       await setIsAudioActiveAsync(true);
 
-      const player = createAudioPlayer(`${API_BASE}/audio/briefing-${date}.mp3`, {
-        updateInterval: 500,
-      });
+      const player = safeCreatePlayer(`${API_BASE}/audio/briefing-${date}.mp3`);
+      if (!player) return; // Native module unavailable (Expo Go)
 
       // Sync play/pause state + elapsed from player events
       // This handles lock screen controls, headphone controls, interruptions
@@ -116,7 +125,6 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
           setPlaying(false);
           setElapsed(0);
           setItemAsync(POSITION_KEY, '0');
-          // Clean up native player + subscription
           try {
             player.clearLockScreenControls();
           } catch {}

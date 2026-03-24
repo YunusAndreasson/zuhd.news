@@ -1,7 +1,7 @@
 import { BottomSheetBackdrop, type BottomSheetBackdropProps, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
-import { createRef, useCallback, useEffect, useRef, useState } from 'react';
+import { Activity, createRef, useCallback, useEffect, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
@@ -55,7 +55,7 @@ function CountryRow({ label, value }: { label: string; value: string | null | un
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
-  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick } = useArticles();
+  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey } = useArticles();
   const { impact } = useHaptic();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
@@ -232,22 +232,25 @@ export default function HomeScreen() {
       >
         {CATEGORIES.map((cat, catIndex) => (
           <View key={cat} collapsable={false}>
-            {pagerHeight > 0 && (
-              <ArticleList
-                ref={listRefs[catIndex]}
-                articles={grouped[cat]}
-                viewportHeight={pagerHeight}
-                catIndex={catIndex}
-                lastSeenAt={lastSeenAt}
-                onRefresh={handleRefresh}
-                onEndReached={handleEndReached}
-                onSourcePress={handleSourcePress}
-                onCountryPress={handleCountryPress}
-                pagerIdle={pagerIdle}
-                progressesSV={categoryProgresses}
-                tick={tick}
-              />
-            )}
+            <Activity mode={catIndex === currentCategory ? 'visible' : 'hidden'}>
+              {pagerHeight > 0 && (
+                <ArticleList
+                  ref={listRefs[catIndex]}
+                  articles={grouped[cat]}
+                  viewportHeight={pagerHeight}
+                  catIndex={catIndex}
+                  lastSeenAt={lastSeenAt}
+                  onRefresh={handleRefresh}
+                  onEndReached={handleEndReached}
+                  onSourcePress={handleSourcePress}
+                  onCountryPress={handleCountryPress}
+                  pagerIdle={pagerIdle}
+                  progressesSV={categoryProgresses}
+                  tick={tick}
+                  resetKey={resetKey}
+                />
+              )}
+            </Activity>
           </View>
         ))}
       </PagerView>

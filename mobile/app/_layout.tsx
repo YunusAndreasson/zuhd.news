@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { COLORS } from '../constants/theme';
-import { registerBackgroundFetch } from '../lib/background-fetch';
+import { registerBackgroundTask } from '../lib/background-fetch';
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({ fade: true, duration: 250 });
@@ -21,7 +21,7 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    registerBackgroundFetch();
+    registerBackgroundTask();
   }, []);
 
   if (!fontsLoaded) return null;

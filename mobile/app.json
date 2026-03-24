@@ -16,11 +16,7 @@
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
           "audio",
-          "processing",
-          "fetch"
-        ],
-        "BGTaskSchedulerPermittedIdentifiers": [
-          "zuhd.news.backgroundtask"
+          "processing"
         ]
       }
     },
@@ -56,7 +52,8 @@
           "backgroundColor": "#141414"
         }
       ],
-      "expo-asset"
+      "expo-asset",
+      "expo-background-task"
     ],
     "extra": {
       "router": {},

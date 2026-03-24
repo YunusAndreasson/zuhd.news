@@ -1,4 +1,4 @@
-import * as BackgroundFetch from 'expo-background-fetch';
+import * as BackgroundTask from 'expo-background-task';
 import * as TaskManager from 'expo-task-manager';
 import { API_BASE } from '../constants/theme';
 import { readCachedGenerated, writeFeedCache } from './feed-cache';
@@ -45,18 +45,16 @@ export async function fetchAndCacheIfNew(): Promise<boolean> {
 TaskManager.defineTask(TASK_NAME, async () => {
   const updated = await fetchAndCacheIfNew();
   return updated
-    ? BackgroundFetch.BackgroundFetchResult.NewData
-    : BackgroundFetch.BackgroundFetchResult.NoData;
+    ? BackgroundTask.BackgroundTaskResult.Success
+    : BackgroundTask.BackgroundTaskResult.Failed;
 });
 
-export async function registerBackgroundFetch(): Promise<void> {
+export async function registerBackgroundTask(): Promise<void> {
   try {
-    await BackgroundFetch.registerTaskAsync(TASK_NAME, {
-      minimumInterval: 4 * 60 * 60, // 4 hours — matches ~5 cycles/day
-      stopOnTerminate: false,
-      startOnBoot: true,
+    await BackgroundTask.registerTaskAsync(TASK_NAME, {
+      minimumInterval: 240, // 4 hours in minutes — matches ~5 cycles/day
     });
   } catch {
-    // Background fetch not available (e.g. Expo Go)
+    // Background task not available (e.g. Expo Go)
   }
 }
