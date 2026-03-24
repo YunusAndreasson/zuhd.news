@@ -66,7 +66,8 @@ export default function HomeScreen() {
 
   // Sheet refs
   const sourceSheetRef = useRef<BottomSheetModal>(null);
-  const [sourceSheetSources, setSourceSheetSources] = useState<Array<{name: string; country?: string | null}>>([]);
+  const [sourceSheetSources, setSourceSheetSources] = useState<Array<{name: string; country?: string | null; sentiment?: number | null}>>([]);
+  const [sourceSheetDivergence, setSourceSheetDivergence] = useState<number | null>(null);
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
 
@@ -83,9 +84,10 @@ export default function HomeScreen() {
   );
 
   const handleSourcePress = useCallback(
-    (_sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => {
+    (_sourceName: string, allSources?: Array<{name: string; country?: string | null; sentiment?: number | null}>, divergence?: number | null) => {
       impact();
       setSourceSheetSources(allSources ?? []);
+      setSourceSheetDivergence(divergence ?? null);
       sourceSheetRef.current?.present();
     },
     [impact],
@@ -265,7 +267,7 @@ export default function HomeScreen() {
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
         handleIndicatorStyle={styles.sheetHandle}
-        onDismiss={() => setSourceSheetSources([])}
+        onDismiss={() => { setSourceSheetSources([]); setSourceSheetDivergence(null); }}
       >
         <BottomSheetView
           style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
@@ -273,16 +275,31 @@ export default function HomeScreen() {
           {sourceSheetSources.length > 0 ? (
             <>
               <Text style={styles.sheetLabel}>
-                SOURCES
+                {sourceSheetSources.length} SOURCE{sourceSheetSources.length > 1 ? 'S' : ''}
+                {sourceSheetDivergence != null && sourceSheetDivergence > 0.3
+                  ? ` · ${sourceSheetDivergence >= 0.6 ? 'DIVERGENT' : 'MIXED'} FRAMING`
+                  : ''}
               </Text>
               {sourceSheetSources.map((s, i) => {
                 const info = SOURCES[s.name];
                 const cc = s.country?.toUpperCase();
                 const countryName = cc ? CC_NAMES[cc] ?? cc : null;
                 const flag = cc ? ccToFlag(cc) : null;
+                const sentimentLabel = s.sentiment != null
+                  ? s.sentiment > 0.2 ? 'positive' : s.sentiment < -0.2 ? 'critical' : 'neutral'
+                  : null;
                 return (
                   <View key={i} style={styles.sourceRow}>
-                    <Text style={styles.sheetTitle}>{s.name}</Text>
+                    <View style={styles.sourceRowHeader}>
+                      <Text style={styles.sheetTitle}>{s.name}</Text>
+                      {sentimentLabel && (
+                        <Text style={[
+                          styles.sentimentBadge,
+                          sentimentLabel === 'critical' && styles.sentimentCritical,
+                          sentimentLabel === 'positive' && styles.sentimentPositive,
+                        ]}>{sentimentLabel}</Text>
+                      )}
+                    </View>
                     {countryName && (
                       <Text style={styles.sourceCountry}>{flag} {countryName}</Text>
                     )}
@@ -433,6 +450,24 @@ const styles = StyleSheet.create({
   },
   sourceRow: {
     marginBottom: SPACING.md,
+  },
+  sourceRowHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  sentimentBadge: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeXs,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    color: COLORS.accent,
+    opacity: 0.6,
+  },
+  sentimentCritical: {
+    color: '#c47070',
+  },
+  sentimentPositive: {
+    color: '#70a870',
   },
   sourceCountry: {
     fontFamily: FONT.smallCaps,

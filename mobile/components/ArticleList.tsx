@@ -29,7 +29,7 @@ interface ArticleListProps {
   lastSeenAt: number;
   onRefresh: () => Promise<void>;
   onEndReached?: (catIndex: number) => void;
-  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => void;
+  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null; sentiment?: number | null}>, divergence?: number | null) => void;
   onCountryPress?: (result: TapResult) => void;
   pagerIdle: React.RefObject<boolean>;
   progressesSV: SharedValue<number[]>;

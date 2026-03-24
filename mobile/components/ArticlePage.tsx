@@ -25,7 +25,7 @@ interface ArticlePageProps {
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
-  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null}>) => void;
+  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null; sentiment?: number | null}>, divergence?: number | null) => void;
   showEarlierDivider?: boolean;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
@@ -170,7 +170,7 @@ export const ArticlePage = memo(function ArticlePage({
                 <ActionLabel
                   label="sources"
                   icon="chevron-down"
-                  onPress={() => onSourcePress?.(article.sources![0]?.name ?? '', article.sources)}
+                  onPress={() => onSourcePress?.(article.sources![0]?.name ?? '', article.sources, article.sentimentDivergence)}
                 />
               ) : null}
               <ActionLabel label="share" icon="arrow-up-outline" onPress={handleShare} />
