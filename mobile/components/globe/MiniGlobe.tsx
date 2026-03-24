@@ -1,4 +1,4 @@
-import { BlurMask, Canvas, Circle, Group, Image, Path, Skia, useImage } from '@shopify/react-native-skia';
+import { BlurMask, Canvas, Circle, Group, Image, LinearGradient, Path, Rect, Skia, useImage, vec } from '@shopify/react-native-skia';
 import { geoCircle, geoContains, geoDistance, geoOrthographic, geoPath } from 'd3-geo';
 import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import { StyleSheet } from 'react-native';
@@ -397,25 +397,15 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Moon — NASA texture with phase shadow */}
       {moonTexture && (
         <>
-          {/* Atmospheric scatter — very wide, faint sky glow */}
+          {/* Halo — tight glow around the moon */}
           <Circle
-            cx={moonX}
+            cx={moonX + (moonPhase < 0.5 ? moonR * 0.3 : -moonR * 0.3)}
             cy={moonY}
-            r={moonR * 6}
+            r={moonR * 1.8}
             color={COLORS.accent}
-            opacity={0.008}
+            opacity={0.025}
           >
-            <BlurMask blur={moonR * 4} style="solid" />
-          </Circle>
-          {/* Halo — diffuse glow, offset toward the lit side */}
-          <Circle
-            cx={moonX + (moonPhase < 0.5 ? moonR * 0.5 : -moonR * 0.5)}
-            cy={moonY}
-            r={moonR * 3.5}
-            color={COLORS.accent}
-            opacity={0.03}
-          >
-            <BlurMask blur={moonR * 2} style="solid" />
+            <BlurMask blur={moonR * 0.8} style="solid" />
           </Circle>
           {/* Limb glow — bright ring right at the disk edge */}
           <Circle
@@ -427,21 +417,9 @@ export const MiniGlobe = memo(function MiniGlobe({
           >
             <BlurMask blur={moonR * 0.25} style="outer" />
           </Circle>
-          {/* Earthshine — faint texture on the unlit side */}
+          {/* Moon texture — full disk */}
           <Group clip={moonClip}>
-            <BlurMask blur={moonR * 0.08} style="normal" />
-            <Image
-              image={moonTexture}
-              x={moonX - moonR}
-              y={moonY - moonR}
-              width={moonR * 2}
-              height={moonR * 2}
-              opacity={0.07}
-            />
-          </Group>
-          {/* Lit side — full texture, soft terminator */}
-          <Group clip={moonLitClip}>
-            <BlurMask blur={moonR * 0.3} style="normal" />
+            <BlurMask blur={moonR * 0.06} style="normal" />
             <Image
               image={moonTexture}
               x={moonX - moonR}
@@ -450,29 +428,23 @@ export const MiniGlobe = memo(function MiniGlobe({
               height={moonR * 2}
               opacity={0.45}
             />
-            {/* Core brightness boost — lit surface is slightly whiter than texture */}
-            <Circle
-              cx={moonX}
-              cy={moonY}
-              r={moonR * 0.85}
-              color={COLORS.white}
-              opacity={0.06}
-            >
-              <BlurMask blur={moonR * 0.3} style="normal" />
-            </Circle>
           </Group>
-          {/* Limb brightening — brighter edge on the lit side (Fresnel-like) */}
-          <Group clip={moonLitClip}>
-            <BlurMask blur={moonR * 0.15} style="normal" />
-            <Circle
-              cx={moonX}
-              cy={moonY}
-              r={moonR}
-              color={COLORS.accent}
-              opacity={0.08}
+          {/* Gradient shadow — gradual terminator falloff */}
+          <Group clip={moonClip}>
+            <BlurMask blur={moonR * 0.04} style="normal" />
+            <Rect
+              x={moonX - moonR}
+              y={moonY - moonR}
+              width={moonR * 2}
+              height={moonR * 2}
             >
-              <BlurMask blur={moonR * 0.15} style="inner" />
-            </Circle>
+              <LinearGradient
+                start={vec(moonPhase < 0.5 ? moonX + moonR : moonX - moonR, moonY)}
+                end={vec(moonPhase < 0.5 ? moonX - moonR : moonX + moonR, moonY)}
+                colors={['rgba(20,20,20,0)', 'rgba(20,20,20,0)', 'rgba(20,20,20,0.85)', 'rgba(20,20,20,0.95)']}
+                positions={[0, Math.max(0, Math.abs(Math.cos(moonPhase * 2 * Math.PI)) * 0.5), Math.min(1, 0.5 + Math.abs(Math.cos(moonPhase * 2 * Math.PI)) * 0.35), 1]}
+              />
+            </Rect>
           </Group>
         </>
       )}
@@ -493,34 +465,58 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Country highlight */}
       {state.countryPath && (
         <>
-          <Path path={state.countryPath} color={COLORS.sheetBg} />
+          <Path path={state.countryPath} color={COLORS.sheetBg} opacity={0.8}>
+            <BlurMask blur={0.5} style="normal" />
+          </Path>
           <Path
             path={state.countryPath}
             color={COLORS.textSecondary}
             style="stroke"
-            strokeWidth={1}
-            opacity={0.6}
-          />
+            strokeWidth={0.8}
+            opacity={0.4}
+          >
+            <BlurMask blur={0.8} style="normal" />
+          </Path>
         </>
       )}
 
       {/* Al-Aqsa — golden reference point */}
       {state.aqsa && (
         <>
-          <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={4} color={COLORS.dome} opacity={0.08}>
+          {/* Warm radiance — faint golden light */}
+          <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={12} color={COLORS.dome} opacity={0.03}>
+            <BlurMask blur={8} style="solid" />
+          </Circle>
+          {/* Mid glow */}
+          <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={5} color={COLORS.dome} opacity={0.08}>
             <BlurMask blur={3} style="solid" />
           </Circle>
-          <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={1.5} color={COLORS.dome} opacity={0.8} />
+          {/* Tight halo */}
+          <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={2.5} color={COLORS.dome} opacity={0.2}>
+            <BlurMask blur={1.5} style="solid" />
+          </Circle>
+          {/* Core */}
+          <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={1.2} color={COLORS.dome} opacity={0.7} />
         </>
       )}
 
       {/* Story dot */}
       {state.dot && (
         <>
-          <Circle cx={state.dot.x} cy={state.dot.y} r={6} color={COLORS.text} opacity={0.5}>
+          {/* Wide radiance — faint atmospheric scatter */}
+          <Circle cx={state.dot.x} cy={state.dot.y} r={14} color={COLORS.text} opacity={0.04}>
+            <BlurMask blur={10} style="solid" />
+          </Circle>
+          {/* Mid glow */}
+          <Circle cx={state.dot.x} cy={state.dot.y} r={7} color={COLORS.text} opacity={0.12}>
             <BlurMask blur={5} style="solid" />
           </Circle>
-          <Circle cx={state.dot.x} cy={state.dot.y} r={2.5} color={COLORS.text} />
+          {/* Tight halo */}
+          <Circle cx={state.dot.x} cy={state.dot.y} r={3.5} color={COLORS.text} opacity={0.3}>
+            <BlurMask blur={2} style="solid" />
+          </Circle>
+          {/* Core dot */}
+          <Circle cx={state.dot.x} cy={state.dot.y} r={2} color={COLORS.text} />
         </>
       )}
     </Canvas>

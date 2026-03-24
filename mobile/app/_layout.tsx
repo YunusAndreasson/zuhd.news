@@ -6,8 +6,11 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 import { COLORS } from '../constants/theme';
 import { registerBackgroundTask } from '../lib/background-fetch';
+
+configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({ fade: true, duration: 250 });

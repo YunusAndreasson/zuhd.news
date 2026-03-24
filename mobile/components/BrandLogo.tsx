@@ -27,7 +27,7 @@ function playRotation(rotation: { value: number }) {
 }
 
 export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
-  const { impact } = useHaptic();
+  const { notification } = useHaptic();
   const rotation = useSharedValue(0);
 
   useEffect(() => {
@@ -35,9 +35,9 @@ export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
   }, [autoPlay, rotation]);
 
   const onPress = useCallback(() => {
-    impact();
+    notification();
     playRotation(rotation);
-  }, [impact, rotation]);
+  }, [notification, rotation]);
 
   const logoStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${rotation.value}deg` }],

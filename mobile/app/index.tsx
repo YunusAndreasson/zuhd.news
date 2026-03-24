@@ -56,7 +56,7 @@ const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
   const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey } = useArticles();
-  const { impact } = useHaptic();
+  const { tick: hapticTick, impact } = useHaptic();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
   const briefingPlayer = useBriefingPlayer(
@@ -121,9 +121,9 @@ export default function HomeScreen() {
       const page = e.nativeEvent.position;
       setCurrentCategory(page);
       pagerOffset.value = page;
-      impact();
+      hapticTick();
     },
-    [impact, pagerOffset],
+    [hapticTick, pagerOffset],
   );
 
   const onPageScroll = useCallback(
@@ -152,6 +152,10 @@ export default function HomeScreen() {
     [impact, currentCategory],
   );
 
+  const handleCaughtUp = useCallback(() => {
+    toastRef.current?.show('Caught up', undefined, 'top');
+  }, []);
+
   const handleEndReached = useCallback(
     (catIndex: number) => {
       const cat = CATEGORIES[catIndex];
@@ -166,7 +170,7 @@ export default function HomeScreen() {
   );
 
   const handleRefresh = useCallback(async () => {
-    impact();
+    hapticTick();
     try {
       const n = await refresh();
       if (n > 0) {
@@ -176,13 +180,15 @@ export default function HomeScreen() {
           .reduce((sum, a) => sum + a.sentences.join(' ').split(/\s+/).length, 0);
         const mins = Math.max(1, Math.ceil(words / 238));
         toastRef.current?.show(`${n} new · ~${mins} min read`, undefined, 'top');
+        // Scroll to top so new/breaking articles are visible
+        listRefs[currentCategory]?.current?.scrollToTop();
       } else {
         toastRef.current?.show('Already up to date', undefined, 'top');
       }
     } catch {
       toastRef.current?.show('Could not refresh', undefined, 'top');
     }
-  }, [impact, refresh, grouped, lastSeenAt]);
+  }, [hapticTick, refresh, grouped, lastSeenAt, currentCategory]);
 
   useEffect(() => {
     if (!loading) SplashScreen.hideAsync();
@@ -244,6 +250,7 @@ export default function HomeScreen() {
                   lastSeenAt={lastSeenAt}
                   onRefresh={handleRefresh}
                   onEndReached={handleEndReached}
+                  onCaughtUp={handleCaughtUp}
                   onSourcePress={handleSourcePress}
                   onCountryPress={handleCountryPress}
                   pagerIdle={pagerIdle}

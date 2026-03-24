@@ -18,7 +18,8 @@ import type { Article } from '../types';
 import { ActionLabel } from './ActionLabel';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const GRADIENT_HEIGHT = 24;
+const GRADIENT_HEIGHT_TOP = 16;
+const GRADIENT_HEIGHT_BOTTOM = 40;
 
 interface ArticlePageProps {
   article: Article;
@@ -130,12 +131,13 @@ export const ArticlePage = memo(function ArticlePage({
       <GlobeTapZone globeRef={globeRef} globeYOffset={globeYOffset} onTap={onCountryPress} />
 
       {/* Top gradient — dissolves globe into content */}
-      <Canvas style={styles.gradient} pointerEvents="none">
-        <Rect x={0} y={0} width={SCREEN_WIDTH} height={GRADIENT_HEIGHT}>
+      <Canvas style={styles.gradientTop} pointerEvents="none">
+        <Rect x={0} y={0} width={SCREEN_WIDTH} height={GRADIENT_HEIGHT_TOP}>
           <LinearGradient
             start={vec(0, 0)}
-            end={vec(0, GRADIENT_HEIGHT)}
-            colors={[`${COLORS.bg}00`, COLORS.bg]}
+            end={vec(0, GRADIENT_HEIGHT_TOP)}
+            colors={[`${COLORS.bg}00`, `${COLORS.bg}66`, `${COLORS.bg}CC`, COLORS.bg]}
+            positions={[0, 0.3, 0.7, 1]}
           />
         </Rect>
       </Canvas>
@@ -181,12 +183,13 @@ export const ArticlePage = memo(function ArticlePage({
 
       {/* Gradient dissolves content into globe — fades with body */}
       <Animated.View style={fadeStyle} pointerEvents="none">
-        <Canvas style={styles.gradient}>
-          <Rect x={0} y={0} width={SCREEN_WIDTH} height={GRADIENT_HEIGHT}>
+        <Canvas style={styles.gradientBottom}>
+          <Rect x={0} y={0} width={SCREEN_WIDTH} height={GRADIENT_HEIGHT_BOTTOM}>
             <LinearGradient
               start={vec(0, 0)}
-              end={vec(0, GRADIENT_HEIGHT)}
-              colors={[COLORS.bg, `${COLORS.bg}00`]}
+              end={vec(0, GRADIENT_HEIGHT_BOTTOM)}
+              colors={[COLORS.bg, `${COLORS.bg}CC`, `${COLORS.bg}66`, `${COLORS.bg}00`]}
+              positions={[0, 0.3, 0.7, 1]}
             />
           </Rect>
         </Canvas>
@@ -203,9 +206,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.screenPadding,
     backgroundColor: COLORS.bg,
   },
-  gradient: {
+  gradientTop: {
     width: SCREEN_WIDTH,
-    height: GRADIENT_HEIGHT,
+    height: GRADIENT_HEIGHT_TOP,
+  },
+  gradientBottom: {
+    width: SCREEN_WIDTH,
+    height: GRADIENT_HEIGHT_BOTTOM,
   },
   earlierDivider: {
     flexDirection: 'row',

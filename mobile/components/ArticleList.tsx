@@ -29,6 +29,7 @@ interface ArticleListProps {
   lastSeenAt: number;
   onRefresh: () => Promise<void>;
   onEndReached?: (catIndex: number) => void;
+  onCaughtUp?: () => void;
   onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null; sentiment?: number | null}>, divergence?: number | null) => void;
   onCountryPress?: (result: TapResult) => void;
   pagerIdle: React.RefObject<boolean>;
@@ -47,6 +48,7 @@ export const ArticleList = memo(function ArticleList({
   onCountryPress,
   onRefresh,
   onEndReached,
+  onCaughtUp,
   pagerIdle,
   progressesSV,
   tick,
@@ -54,7 +56,7 @@ export const ArticleList = memo(function ArticleList({
   ref,
 }: ArticleListProps) {
   const insets = useSafeAreaInsets();
-  const { impact: hapticSnap, notification: hapticComplete } = useHaptic();
+  const { tick: hapticSnap, notification: hapticComplete } = useHaptic();
   // Breaking stories (100+ worldwide coverage) float to top, rest chronological
   const sortedArticles = useMemo(() => {
     const BREAKING_THRESHOLD = 100;
@@ -150,6 +152,7 @@ export const ArticleList = memo(function ArticleList({
       if (earlierIndex > 0 && idx === earlierIndex - 1 && !caughtUpFired.current) {
         caughtUpFired.current = true;
         hapticComplete();
+        onCaughtUp?.();
       } else {
         hapticSnap();
       }
@@ -166,6 +169,7 @@ export const ArticleList = memo(function ArticleList({
         if (idx === articleCount - 1 && !atEndSV.value) {
           atEndSV.value = true;
           runOnJS(hapticComplete)();
+          runOnJS(fireEndReached)();
         } else if (idx < articleCount - 1 && atEndSV.value) {
           atEndSV.value = false;
         }
