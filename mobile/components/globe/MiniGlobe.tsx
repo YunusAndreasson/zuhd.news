@@ -329,41 +329,38 @@ export const MiniGlobe = memo(function MiniGlobe({
     return p;
   }, [moonX, moonY, moonR]);
 
-  const moonShadowPath = useMemo(() => {
+  // Lit-side clip: circle minus the shadow region — texture only draws on the lit part
+  const moonLitClip = useMemo(() => {
     const tc = Math.cos(moonPhase * 2 * Math.PI);
-    const p = Skia.Path.Make();
+    const shadow = Skia.Path.Make();
     const steps = 16;
-    if (tc > 0.01) {
-      p.moveTo(moonX, moonY - moonR);
+    shadow.moveTo(moonX, moonY - moonR);
+    if (moonPhase < 0.5) {
+      // Waxing: shadow on the left — left semicircle + right terminator ellipse
       for (let i = 0; i <= steps; i++) {
         const a = -Math.PI / 2 + Math.PI * (i / steps);
-        p.lineTo(moonX - Math.cos(a) * moonR, moonY + Math.sin(a) * moonR);
+        shadow.lineTo(moonX - Math.cos(a) * moonR, moonY + Math.sin(a) * moonR);
       }
       for (let i = steps; i >= 0; i--) {
         const a = -Math.PI / 2 + Math.PI * (i / steps);
-        p.lineTo(moonX + Math.cos(a) * moonR * tc, moonY + Math.sin(a) * moonR);
+        shadow.lineTo(moonX + Math.cos(a) * moonR * tc, moonY + Math.sin(a) * moonR);
       }
-      p.close();
-    } else if (tc < -0.01) {
-      p.moveTo(moonX, moonY - moonR);
-      for (let i = 0; i <= steps; i++) {
-        const a = -Math.PI / 2 + Math.PI * (i / steps);
-        p.lineTo(moonX + Math.cos(a) * moonR * tc, moonY + Math.sin(a) * moonR);
-      }
-      for (let i = steps; i >= 0; i--) {
-        const a = -Math.PI / 2 + Math.PI * (i / steps);
-        p.lineTo(moonX + Math.cos(a) * moonR, moonY + Math.sin(a) * moonR);
-      }
-      p.close();
     } else {
-      if (moonPhase < 0.5) {
-        p.addRect({ x: moonX - moonR, y: moonY - moonR, width: moonR, height: moonR * 2 });
-      } else {
-        p.addRect({ x: moonX, y: moonY - moonR, width: moonR, height: moonR * 2 });
+      // Waning: shadow on the right — right semicircle + left terminator ellipse
+      for (let i = 0; i <= steps; i++) {
+        const a = -Math.PI / 2 + Math.PI * (i / steps);
+        shadow.lineTo(moonX + Math.cos(a) * moonR, moonY + Math.sin(a) * moonR);
+      }
+      for (let i = steps; i >= 0; i--) {
+        const a = -Math.PI / 2 + Math.PI * (i / steps);
+        shadow.lineTo(moonX - Math.cos(a) * moonR * tc, moonY + Math.sin(a) * moonR);
       }
     }
-    return p;
-  }, [moonX, moonY, moonR, moonPhase]);
+    shadow.close();
+    const lit = moonClip.copy();
+    lit.op(shadow, 0); // 0 = Difference: circle minus shadow = lit area
+    return lit;
+  }, [moonClip, moonX, moonY, moonR, moonPhase]);
 
   // Stars — fixed positions, memoized once
   const stars = useMemo(() => {
@@ -400,26 +397,82 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Moon — NASA texture with phase shadow */}
       {moonTexture && (
         <>
-          {/* Halo — offset toward the lit side */}
+          {/* Atmospheric scatter — very wide, faint sky glow */}
           <Circle
-            cx={moonX + (moonPhase < 0.5 ? moonR * 0.3 : -moonR * 0.3)}
+            cx={moonX}
             cy={moonY}
-            r={moonR * 2}
+            r={moonR * 6}
             color={COLORS.accent}
-            opacity={0.02}
+            opacity={0.008}
           >
-            <BlurMask blur={moonR} style="solid" />
+            <BlurMask blur={moonR * 4} style="solid" />
           </Circle>
+          {/* Halo — diffuse glow, offset toward the lit side */}
+          <Circle
+            cx={moonX + (moonPhase < 0.5 ? moonR * 0.5 : -moonR * 0.5)}
+            cy={moonY}
+            r={moonR * 3.5}
+            color={COLORS.accent}
+            opacity={0.03}
+          >
+            <BlurMask blur={moonR * 2} style="solid" />
+          </Circle>
+          {/* Limb glow — bright ring right at the disk edge */}
+          <Circle
+            cx={moonX}
+            cy={moonY}
+            r={moonR}
+            color={COLORS.accent}
+            opacity={0.15}
+          >
+            <BlurMask blur={moonR * 0.25} style="outer" />
+          </Circle>
+          {/* Earthshine — faint texture on the unlit side */}
           <Group clip={moonClip}>
+            <BlurMask blur={moonR * 0.08} style="normal" />
             <Image
               image={moonTexture}
               x={moonX - moonR}
               y={moonY - moonR}
               width={moonR * 2}
               height={moonR * 2}
-              opacity={0.25}
+              opacity={0.07}
             />
-            <Path path={moonShadowPath} color={COLORS.bg} opacity={0.7} />
+          </Group>
+          {/* Lit side — full texture, soft terminator */}
+          <Group clip={moonLitClip}>
+            <BlurMask blur={moonR * 0.3} style="normal" />
+            <Image
+              image={moonTexture}
+              x={moonX - moonR}
+              y={moonY - moonR}
+              width={moonR * 2}
+              height={moonR * 2}
+              opacity={0.45}
+            />
+            {/* Core brightness boost — lit surface is slightly whiter than texture */}
+            <Circle
+              cx={moonX}
+              cy={moonY}
+              r={moonR * 0.85}
+              color={COLORS.white}
+              opacity={0.06}
+            >
+              <BlurMask blur={moonR * 0.3} style="normal" />
+            </Circle>
+          </Group>
+          {/* Limb brightening — brighter edge on the lit side (Fresnel-like) */}
+          <Group clip={moonLitClip}>
+            <BlurMask blur={moonR * 0.15} style="normal" />
+            <Circle
+              cx={moonX}
+              cy={moonY}
+              r={moonR}
+              color={COLORS.accent}
+              opacity={0.08}
+            >
+              <BlurMask blur={moonR * 0.15} style="inner" />
+            </Circle>
           </Group>
         </>
       )}
