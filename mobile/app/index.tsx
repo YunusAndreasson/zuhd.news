@@ -25,7 +25,7 @@ import { CategoryBar } from '../components/CategoryBar';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { Toast, type ToastRef } from '../components/Toast';
 import { SOURCES } from '../constants/sources';
-import { CATEGORIES, COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { CATEGORIES, COLORS, FONT, PRESSED_STYLE, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useHaptic } from '../hooks/useHaptic';
@@ -251,7 +251,7 @@ export default function HomeScreen() {
         </Text>
         <Pressable
           onPress={retry}
-          style={({ pressed }) => pressed && { opacity: 0.5 }}
+          style={({ pressed }) => pressed && PRESSED_STYLE}
           hitSlop={12}
         >
           <Text style={styles.retryText}>Try again</Text>
@@ -524,10 +524,8 @@ const styles = StyleSheet.create({
     padding: SPACING.screenPadding,
   },
   sheetLabel: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeXs,
+    ...TEXT_STYLES.smallCapsXs,
     color: COLORS.textSecondary,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
     marginBottom: SPACING.sm,
   },
   divergenceNote: {
@@ -544,25 +542,16 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.sm,
   },
   correctionLink: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeXs,
+    ...TEXT_STYLES.smallCapsXs,
     color: COLORS.textSecondary,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
     marginTop: SPACING.lg,
-    textDecorationLine: 'underline',
+    textDecorationLine: 'underline' as const,
   },
   sheetBody: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeBase,
-    lineHeight: TYPOGRAPHY.sizeBase * TYPOGRAPHY.leadingBody,
+    ...TEXT_STYLES.body,
     color: COLORS.accent,
   },
-  sourceType: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeXs,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-    color: COLORS.accent,
-  },
+  sourceType: TEXT_STYLES.smallCapsXs,
   sourceRow: {
     marginBottom: SPACING.md,
   },
@@ -580,17 +569,12 @@ const styles = StyleSheet.create({
     paddingLeft: SPACING.md,
   },
   toneLabel: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeXs,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
+    ...TEXT_STYLES.smallCapsXs,
     color: COLORS.textSecondary,
     opacity: 0.6,
   },
   sourceCountry: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeXs,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-    color: COLORS.accent,
+    ...TEXT_STYLES.smallCapsXs,
     marginBottom: SPACING.xs,
   },
   hotspotSection: {
@@ -620,7 +604,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT.bold,
     fontSize: TYPOGRAPHY.sizeH1 * 0.75,
     lineHeight: TYPOGRAPHY.sizeH1 * 0.75 * TYPOGRAPHY.leadingHeading,
-    color: COLORS.white,
+    color: COLORS.textEmphasis,
   },
   countryName: {
     fontFamily: FONT.regular,
@@ -642,14 +626,12 @@ const styles = StyleSheet.create({
   keyStatValue: {
     fontFamily: FONT.bold,
     fontSize: TYPOGRAPHY.sizeBase,
-    color: COLORS.white,
+    color: COLORS.textEmphasis,
     marginBottom: 2,
   },
   keyStatLabel: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeXs,
+    ...TEXT_STYLES.smallCapsXs,
     color: COLORS.textSecondary,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
   },
   countryRow: {
     flexDirection: 'row',
@@ -657,10 +639,7 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.xs,
   },
   countryRowLabel: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeSm,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-    color: COLORS.accent,
+    ...TEXT_STYLES.smallCaps,
     flex: 1,
   },
   countryRowValue: {

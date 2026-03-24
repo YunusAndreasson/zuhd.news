@@ -29,11 +29,37 @@ import {
   useSharedValue,
 } from 'react-native-reanimated';
 import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
-import { COLORS } from '../../constants/theme';
+import { COLORS, bgAlpha } from '../../constants/theme';
 import type { Article } from '../../types';
 import { COUNTRY_TZ } from './coordinates';
 import { countries, createSkiaPathContext, land } from './shared';
 import { getCoords } from './storyDots';
+
+/** Squared-distance hit test */
+function isNear(x: number, y: number, px: number, py: number, r2: number): boolean {
+  const dx = x - px;
+  const dy = y - py;
+  return dx * dx + dy * dy <= r2;
+}
+
+interface GlowLayer {
+  r: number;
+  opacity: number;
+  blur?: number;
+}
+
+/** Concentric circle glow — data-driven layers with optional blur */
+function Glow({ x, y, color, layers }: { x: number; y: number; color: string; layers: GlowLayer[] }) {
+  return (
+    <>
+      {layers.map((l, i) => (
+        <Circle key={i} cx={x} cy={y} r={l.r} color={color} opacity={l.opacity}>
+          {l.blur != null && <BlurMask blur={l.blur} style="solid" />}
+        </Circle>
+      ))}
+    </>
+  );
+}
 
 const skiaCtx = createSkiaPathContext();
 const nightCircleGen = geoCircle();
@@ -436,44 +462,34 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       // Check article dot first — news takes precedence
       const dot = state.dot;
-      if (dot) {
-        const dx = x - dot.x;
-        const dy = y - dot.y;
-        if (dx * dx + dy * dy <= 3600) {
-          const geoData = articleGeoRef.current[lastSettled.current];
-          if (geoData?.countryName) {
-            const tz = COUNTRY_TZ[geoData.countryName];
-            return {
-              countryName: geoData.countryName,
-              location: geoData.location,
-              localTime: tz ? formatLocalTime(tz) : null,
-              data: COUNTRY_DATA[geoData.countryName] ?? null,
-              hotspotLabels: hotspotsFor(geoData.countryName),
-            };
-          }
-        }
-      }
-
-      // Then check Al-Aqsa
-      if (state.aqsa) {
-        const adx = x - state.aqsa.x;
-        const ady = y - state.aqsa.y;
-        if (adx * adx + ady * ady <= 3600) {
+      if (dot && isNear(x, y, dot.x, dot.y, 3600)) {
+        const geoData = articleGeoRef.current[lastSettled.current];
+        if (geoData?.countryName) {
+          const tz = COUNTRY_TZ[geoData.countryName];
           return {
-            countryName: AL_AQSA.country,
-            location: AL_AQSA.name,
-            localTime: formatLocalTime(AL_AQSA.tz),
-            data: COUNTRY_DATA['Palestine'] ?? null,
-            hotspotLabels: hotspotsFor('Palestine'),
+            countryName: geoData.countryName,
+            location: geoData.location,
+            localTime: tz ? formatLocalTime(tz) : null,
+            data: COUNTRY_DATA[geoData.countryName] ?? null,
+            hotspotLabels: hotspotsFor(geoData.countryName),
           };
         }
       }
 
+      // Then check Al-Aqsa
+      if (state.aqsa && isNear(x, y, state.aqsa.x, state.aqsa.y, 3600)) {
+        return {
+          countryName: AL_AQSA.country,
+          location: AL_AQSA.name,
+          localTime: formatLocalTime(AL_AQSA.tz),
+          data: COUNTRY_DATA['Palestine'] ?? null,
+          hotspotLabels: hotspotsFor('Palestine'),
+        };
+      }
+
       // Then check hotspot glows directly
       for (const z of state.hotspotGlows) {
-        const cdx = x - z.x;
-        const cdy = y - z.y;
-        if (cdx * cdx + cdy * cdy <= 900) {
+        if (isNear(x, y, z.x, z.y, 900)) {
           return {
             countryName: '',
             location: null,
@@ -606,10 +622,10 @@ export const MiniGlobe = memo(function MiniGlobe({
                 start={vec(moonPhase < 0.5 ? moonX + moonR : moonX - moonR, moonY)}
                 end={vec(moonPhase < 0.5 ? moonX - moonR : moonX + moonR, moonY)}
                 colors={[
-                  'rgba(20,20,20,0)',
-                  'rgba(20,20,20,0)',
-                  'rgba(20,20,20,0.85)',
-                  'rgba(20,20,20,0.95)',
+                  bgAlpha(0),
+                  bgAlpha(0),
+                  bgAlpha(0.85),
+                  bgAlpha(0.95),
                 ]}
                 positions={[
                   0,
@@ -636,26 +652,10 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Coverage hotspot ambient glows — top coverage hotspots */}
       {state.hotspotGlows.map((z, i) => (
-        <Group key={i}>
-          <Circle
-            cx={z.x}
-            cy={z.y}
-            r={16 + z.intensity * 18}
-            color={COLORS.text}
-            opacity={0.02 + z.intensity * 0.04}
-          >
-            <BlurMask blur={12} style="solid" />
-          </Circle>
-          <Circle
-            cx={z.x}
-            cy={z.y}
-            r={5 + z.intensity * 8}
-            color={COLORS.text}
-            opacity={0.03 + z.intensity * 0.06}
-          >
-            <BlurMask blur={4} style="solid" />
-          </Circle>
-        </Group>
+        <Glow key={i} x={z.x} y={z.y} color={COLORS.text} layers={[
+          { r: 16 + z.intensity * 18, opacity: 0.02 + z.intensity * 0.04, blur: 12 },
+          { r: 5 + z.intensity * 8, opacity: 0.03 + z.intensity * 0.06, blur: 4 },
+        ]} />
       ))}
 
       {/* Country highlight */}
@@ -676,42 +676,22 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Al-Aqsa — golden reference point */}
       {state.aqsa && (
-        <>
-          {/* Warm radiance — faint golden light */}
-          <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={12} color={COLORS.dome} opacity={0.03}>
-            <BlurMask blur={8} style="solid" />
-          </Circle>
-          {/* Mid glow */}
-          <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={5} color={COLORS.dome} opacity={0.08}>
-            <BlurMask blur={3} style="solid" />
-          </Circle>
-          {/* Tight halo */}
-          <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={2.5} color={COLORS.dome} opacity={0.2}>
-            <BlurMask blur={1.5} style="solid" />
-          </Circle>
-          {/* Core */}
-          <Circle cx={state.aqsa.x} cy={state.aqsa.y} r={1.2} color={COLORS.dome} opacity={0.7} />
-        </>
+        <Glow x={state.aqsa.x} y={state.aqsa.y} color={COLORS.dome} layers={[
+          { r: 12, opacity: 0.03, blur: 8 },
+          { r: 5, opacity: 0.08, blur: 3 },
+          { r: 2.5, opacity: 0.2, blur: 1.5 },
+          { r: 1.2, opacity: 0.7 },
+        ]} />
       )}
 
       {/* Story dot */}
       {state.dot && (
-        <>
-          {/* Wide radiance — faint atmospheric scatter */}
-          <Circle cx={state.dot.x} cy={state.dot.y} r={14} color={COLORS.text} opacity={0.04}>
-            <BlurMask blur={10} style="solid" />
-          </Circle>
-          {/* Mid glow */}
-          <Circle cx={state.dot.x} cy={state.dot.y} r={7} color={COLORS.text} opacity={0.12}>
-            <BlurMask blur={5} style="solid" />
-          </Circle>
-          {/* Tight halo */}
-          <Circle cx={state.dot.x} cy={state.dot.y} r={3.5} color={COLORS.text} opacity={0.3}>
-            <BlurMask blur={2} style="solid" />
-          </Circle>
-          {/* Core dot */}
-          <Circle cx={state.dot.x} cy={state.dot.y} r={2} color={COLORS.text} />
-        </>
+        <Glow x={state.dot.x} y={state.dot.y} color={COLORS.text} layers={[
+          { r: 14, opacity: 0.04, blur: 10 },
+          { r: 7, opacity: 0.12, blur: 5 },
+          { r: 3.5, opacity: 0.3, blur: 2 },
+          { r: 2, opacity: 1 },
+        ]} />
       )}
     </Canvas>
   );

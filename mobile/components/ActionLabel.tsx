@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { memo } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { COLORS, FONT, TYPOGRAPHY } from '../constants/theme';
+import { COLORS, PRESSED_STYLE, TEXT_STYLES } from '../constants/theme';
 
 interface ActionLabelProps {
   label: string;
@@ -26,7 +26,7 @@ export const ActionLabel = memo(function ActionLabel({
   );
 
   return (
-    <Pressable onPress={onPress} hitSlop={12} style={({ pressed }) => pressed && styles.pressed}>
+    <Pressable onPress={onPress} hitSlop={12} style={({ pressed }) => pressed && PRESSED_STYLE}>
       <Text style={styles.label}>
         {iconPosition === 'left' && iconEl}
         {iconPosition === 'left' ? ' ' : ''}
@@ -40,18 +40,10 @@ export const ActionLabel = memo(function ActionLabel({
 
 const styles = StyleSheet.create({
   label: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeSm,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-    color: COLORS.accent,
-    textShadowColor: 'rgba(0,0,0,0.6)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
+    ...TEXT_STYLES.smallCaps,
+    ...TEXT_STYLES.textShadow,
   },
   iconLeft: {
     marginTop: 2,
-  },
-  pressed: {
-    opacity: 0.5,
   },
 });

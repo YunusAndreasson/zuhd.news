@@ -3,7 +3,7 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CATEGORIES, COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { CATEGORIES, COLORS, FONT, LAYOUT, PRESSED_STYLE, SPACING, TYPOGRAPHY } from '../constants/theme';
 
 const TAB_LABELS = CATEGORIES.map((c) => c.toUpperCase());
 
@@ -47,7 +47,7 @@ function TabLabel({
       onPress={onPress}
       onLayout={onLayout}
       hitSlop={12}
-      style={({ pressed }) => pressed && { opacity: 0.5 }}
+      style={({ pressed }) => pressed && PRESSED_STYLE}
     >
       <Animated.Text style={[styles.tabLabel, animatedStyle]}>{label}</Animated.Text>
     </Pressable>
@@ -116,7 +116,7 @@ export function CategoryBar({
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <Pressable
         onPress={() => onCategoryPress(currentCategory)}
-        style={({ pressed }) => pressed && { opacity: 0.5 }}
+        style={({ pressed }) => pressed && PRESSED_STYLE}
       >
         <Text style={styles.wordmark}>
           <Text style={styles.wordmarkName}>zuhd</Text>
@@ -139,13 +139,13 @@ export function CategoryBar({
           <Pressable
             onPress={onBriefingPress}
             hitSlop={12}
-            style={({ pressed }) => pressed && { opacity: 0.5 }}
+            style={({ pressed }) => pressed && PRESSED_STYLE}
           >
             <View style={styles.tabIcon}>
               <Ionicons
                 name={briefingPlaying ? 'pause' : 'play'}
                 size={TYPOGRAPHY.sizeSm}
-                color={COLORS.white}
+                color={COLORS.text}
                 style={{ opacity: briefingPlaying ? 1 : 0.4 }}
               />
             </View>
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   },
   tabLabel: {
     fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeTab,
+    fontSize: TYPOGRAPHY.sizeXs,
     letterSpacing: TYPOGRAPHY.trackingCaps,
   },
   tabIcon: {
@@ -202,6 +202,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     height: LAYOUT.progressBarHeight,
     borderRadius: LAYOUT.progressBarHeight,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.textEmphasis,
   },
 });

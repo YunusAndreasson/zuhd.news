@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { memo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { COLORS, FONT, LAYOUT, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { COLORS, LAYOUT, PRESSED_STYLE, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 
 interface BriefingButtonProps {
@@ -34,7 +34,7 @@ export const BriefingButton = memo(function BriefingButton({
       style={({ pressed }) => [
         styles.container,
         { bottom: insets.bottom + LAYOUT.briefingButtonBottom },
-        pressed && { opacity: 0.5 },
+        pressed && PRESSED_STYLE,
       ]}
       onPress={() => {
         impact();
@@ -68,10 +68,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: SPACING.xs,
   },
-  label: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeSm,
-    color: COLORS.accent,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-  },
+  label: TEXT_STYLES.smallCaps,
 });

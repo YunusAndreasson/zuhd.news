@@ -8,7 +8,7 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import { COLORS, SPACING } from '../constants/theme';
+import { COLORS, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 
 const logo = require('../assets/icon.png');
@@ -47,7 +47,7 @@ export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
     <Pressable
       onPress={onPress}
       hitSlop={SPACING.md}
-      style={({ pressed }) => pressed && { opacity: 0.5 }}
+      style={({ pressed }) => pressed && PRESSED_STYLE}
     >
       <Animated.View style={logoStyle}>
         <Image source={logo} style={[styles.logo, { width: size, height: size }]} />

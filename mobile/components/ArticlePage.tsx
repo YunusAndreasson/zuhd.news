@@ -9,7 +9,7 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { COLORS, FONT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { renderSentences } from '../lib/markdown';
 import type { Article, SourcePressHandler } from '../types';
@@ -244,16 +244,14 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.accent,
   },
   earlierLabel: {
-    fontFamily: FONT.smallCaps,
+    ...TEXT_STYLES.smallCaps,
     fontSize: TYPOGRAPHY.sizeBase,
-    color: COLORS.accent,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
   },
   title: {
     fontFamily: FONT.bold,
     fontSize: TYPOGRAPHY.sizeH1,
     lineHeight: TYPOGRAPHY.sizeH1 * TYPOGRAPHY.leadingHeading,
-    color: COLORS.white,
+    color: COLORS.textEmphasis,
     marginBottom: SPACING.md,
     fontVariant: ['oldstyle-nums'],
   },
@@ -264,10 +262,8 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
   },
   breakingText: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeXs,
+    ...TEXT_STYLES.smallCapsXs,
     color: COLORS.bg,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
   },
   meta: {
     flexDirection: 'row',
@@ -281,12 +277,8 @@ const styles = StyleSheet.create({
     gap: SPACING.sm,
   },
   metaDim: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeSm,
-    color: COLORS.accent,
-    textShadowColor: 'rgba(0,0,0,0.6)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
+    ...TEXT_STYLES.smallCaps,
+    ...TEXT_STYLES.textShadow,
   },
   globeTapZone: {
     ...StyleSheet.absoluteFillObject,

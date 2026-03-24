@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, type TextStyle } from 'react-native';
 import type { Category } from '../types';
 
 // Scale fonts relative to iPhone SE/8 width (375pt).
@@ -13,12 +13,16 @@ export const COLORS = {
   textSecondary: '#999',
   accent: '#b3b3b3',
   rule: '#2e2e2e',
-  white: '#ffffff',
+  textEmphasis: '#ffffff',
   dome: '#c9a84c', // Dome of the Rock gold — the only color in the app
   sheetBg: '#1c1c1c',
   black: '#000000',
   atmosphere: '#334455',
+  shadow: 'rgba(0,0,0,0.6)',
 } as const;
+
+/** bg (#141414 = rgb(20,20,20)) at a given alpha — keeps gradient stops in sync with bg */
+export const bgAlpha = (a: number) => `rgba(20,20,20,${a})`;
 
 export const FONT = {
   regular: 'SourceSans3-Regular',
@@ -33,7 +37,7 @@ export const TYPOGRAPHY = {
   sizeXs: fs(11),
   sizeH1: fs(28),
   sizeWordmark: fs(14),
-  sizeTab: fs(11),
+
   leadingBody: 1.55,
   leadingHeading: 1.2,
   trackingCaps: 1.2,
@@ -58,5 +62,35 @@ export const LAYOUT = {
 } as const;
 
 export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech'];
+
+/** Shared pressed-state style for Pressable components */
+export const PRESSED_STYLE = { opacity: 0.5 } as const;
+
+/** Reusable text style bases — spread into StyleSheet.create or use directly */
+export const TEXT_STYLES = {
+  smallCaps: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeSm,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    color: COLORS.accent,
+  } as TextStyle,
+  smallCapsXs: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeXs,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    color: COLORS.accent,
+  } as TextStyle,
+  textShadow: {
+    textShadowColor: COLORS.shadow,
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
+  } as TextStyle,
+  body: {
+    fontFamily: FONT.regular,
+    fontSize: TYPOGRAPHY.sizeBase,
+    lineHeight: TYPOGRAPHY.sizeBase * TYPOGRAPHY.leadingBody,
+    color: COLORS.text,
+  } as TextStyle,
+};
 
 export const API_BASE = 'https://zuhd-news.pages.dev';

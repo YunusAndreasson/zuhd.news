@@ -147,13 +147,13 @@ const _SOURCES: Record<string, SourceInfo> = {
     type: 'Newspaper',
     location: 'Kuala Lumpur, Malaysia',
     description:
-      'English-language newspaper founded in 1896. Covers Malaysian politics, courts, and national affairs. Malaysia does not recognize Israel and is one of the most vocal supporters of Palestine among ASEAN states.',
+      'English-language newspaper founded in 1896. Covers Malaysian politics, courts, and national affairs.',
   },
   'Antara News': {
     type: 'News agency',
     location: 'Jakarta, Indonesia',
     description:
-      'Indonesia\u2019s state-owned national news agency, established in 1937. Covers domestic politics and ASEAN affairs. Indonesia does not recognize Israel and has been a consistent supporter of Palestinian statehood.',
+      'Indonesia\u2019s state-owned national news agency, established in 1937. Covers domestic politics, ASEAN affairs, and the world\u2019s largest Muslim-majority country.',
   },
   'Premium Times': {
     type: 'Digital media',
@@ -195,7 +195,7 @@ const _SOURCES: Record<string, SourceInfo> = {
     type: 'Digital media',
     location: 'Johannesburg, South Africa',
     description:
-      'South African online newspaper. Its Scorpio unit has broken major stories on state capture and corruption. South Africa brought the ICJ genocide case against Israel in 2024; the country\u2019s media landscape is broadly sympathetic to the Palestinian cause.',
+      'South African online newspaper. Its Scorpio investigative unit has broken major stories on state capture, corruption, and political accountability.',
   },
   'Buenos Aires Times': {
     type: 'Newspaper',
@@ -255,7 +255,7 @@ const _SOURCES: Record<string, SourceInfo> = {
     type: 'News agency',
     location: 'Ankara, T\u00fcrkiye',
     description:
-      'T\u00fcrkiye\u2019s state-run news agency. Publishes in 13 languages with extensive coverage of the Muslim world and Central Asia. T\u00fcrkiye severed all diplomatic relations with Israel; Anadolu\u2019s coverage reflects this, and its photographs and videos are widely syndicated by international outlets.',
+      'T\u00fcrkiye\u2019s state-run news agency. Publishes in 13 languages with extensive coverage of the Muslim world, Central Asia, and conflict zones. Photographs and videos widely syndicated by international outlets.',
   },
   'Associated Press': {
     type: 'News agency',
@@ -297,7 +297,7 @@ const _SOURCES: Record<string, SourceInfo> = {
     type: 'State broadcaster',
     location: 'Moscow, Russia',
     description:
-      'Russian government-funded international television network. Designated a foreign agent in the US and banned in the EU. Russia has positioned itself as sympathetic to the Palestinian cause at the UN, though this is primarily geopolitical rivalry with the US rather than principled support.',
+      'Russian government-funded international television network. Designated a foreign agent in the US and banned in the EU. Primary instrument of Russian state messaging abroad; amplifies Kremlin narratives on NATO, Ukraine, and Western policy.',
   },
   'Space.com': {
     type: 'Digital media',
@@ -309,7 +309,7 @@ const _SOURCES: Record<string, SourceInfo> = {
     type: 'News agency',
     location: 'Moscow, Russia',
     description:
-      'Russia\u2019s largest news agency, state-owned since 1904. Primary wire service for Russian government communications. Reflects Kremlin foreign policy, including rhetorical support for Palestinian statehood and criticism of US-backed Israeli operations.',
+      'Russia\u2019s largest news agency, state-owned since 1904. Primary wire service for Russian government communications. Reflects Kremlin foreign policy positions on all subjects.',
   },
   'The Guardian': {
     type: 'Newspaper',
@@ -381,7 +381,7 @@ const _SOURCES: Record<string, SourceInfo> = {
     type: 'News agency',
     location: 'Beijing, China',
     description:
-      'China\u2019s official state news agency. Largest news agency in the world by correspondents and bureaus. Reflects Chinese government positions. China has consistently supported Palestinian statehood at the UN while maintaining quiet trade and tech ties with Israel. China leverages its pro-Palestinian stance to deflect Western criticism of its treatment of Uyghur Muslims, whose coverage is entirely state-controlled.',
+      'China\u2019s official state news agency. Largest news agency in the world by correspondents and bureaus. Reflects Chinese government positions on trade, territorial claims, and multilateral affairs. Coverage of domestic issues including Xinjiang and Tibet is entirely state-controlled.',
   },
   'The Washington Post': {
     type: 'Newspaper',
@@ -438,6 +438,48 @@ const _SOURCES: Record<string, SourceInfo> = {
     description:
       'Indian news portal owned by Network18 (Reliance Industries). Covers politics, business, and entertainment. One of the most explicitly pro-BJP outlets in the Network18 stable; frequently amplifies Hindu nationalist talking points.',
   },
+  Bloomberg: {
+    type: 'News agency',
+    location: 'New York, US',
+    description:
+      'Financial news division of Bloomberg LP, founded by Michael Bloomberg. One of the most influential business wire services globally. Bloomberg has donated tens of millions to Israeli causes and was awarded the Genesis Prize for commitment to Jewish values and Israel. Coverage generally reflects US establishment framing on the conflict.',
+  },
+  'Game Rant': {
+    type: 'Digital media',
+    location: 'United States',
+    description:
+      'Gaming and entertainment news site owned by Valnet Inc. Covers game releases, reviews, and industry news.',
+  },
+  GamesRadar: {
+    type: 'Digital media',
+    location: 'Bath, UK',
+    description:
+      'Gaming and entertainment publication owned by Future plc. Covers games, film, and TV.',
+  },
+  'Investing.com South Africa': {
+    type: 'Financial data',
+    location: 'Nicosia, Cyprus',
+    description:
+      'South African edition of the global financial markets platform. Provides real-time data, analysis, and news on markets and commodities.',
+  },
+  'The Register': {
+    type: 'Digital media',
+    location: 'London, UK',
+    description:
+      'British technology news site founded in 1994. Known for irreverent tone and detailed coverage of enterprise IT, security, and science.',
+  },
+  'Ukrainska Pravda': {
+    type: 'Digital media',
+    location: 'Kyiv, Ukraine',
+    description:
+      'Ukraine\u2019s most-read online newspaper, founded in 2000 by Georgiy Gongadze, who was murdered months later by state agents. Covers politics, war, and corruption. Essential source on the Russia-Ukraine conflict from the Ukrainian perspective.',
+  },
+  news24: {
+    type: 'Digital media',
+    location: 'Cape Town, South Africa',
+    description:
+      'South Africa\u2019s largest online news publisher, owned by Media24 (Naspers). Covers politics, crime, and sport.',
+  },
   '+972 Magazine': {
     type: 'Digital media',
     location: 'Israel/Palestine',
@@ -474,7 +516,7 @@ const _SOURCES: Record<string, SourceInfo> = {
     type: 'News agency',
     location: 'Ankara, T\u00fcrkiye',
     description:
-      'T\u00fcrkiye\u2019s state-run news agency. Publishes in 13 languages with extensive coverage of the Muslim world and Central Asia. T\u00fcrkiye severed all diplomatic relations with Israel; Anadolu\u2019s coverage reflects this, and its photographs and videos are widely syndicated by international outlets.',
+      'T\u00fcrkiye\u2019s state-run news agency. Publishes in 13 languages with extensive coverage of the Muslim world, Central Asia, and conflict zones. Photographs and videos widely syndicated by international outlets.',
   },
   'Drop Site News': {
     type: 'Investigative',
@@ -500,7 +542,7 @@ const _SOURCES: Record<string, SourceInfo> = {
     type: 'State broadcaster',
     location: 'Istanbul, T\u00fcrkiye',
     description:
-      'English-language international channel of Turkish Radio and Television Corporation. State-funded. Covers the Muslim world, Africa, and conflict zones. Reflects Turkish government positions; openly critical of Israeli operations in Gaza and of Western inaction.',
+      'English-language international channel of Turkish Radio and Television Corporation. State-funded. Covers the Muslim world, Africa, and conflict zones. Reflects Turkish government foreign policy positions.',
   },
   'Nikkei Asia': {
     type: 'Digital media',
@@ -518,7 +560,7 @@ const _SOURCES: Record<string, SourceInfo> = {
     type: 'Newspaper',
     location: 'Abu Dhabi, UAE',
     description:
-      'English-language broadsheet owned by the Abu Dhabi state investment fund. Covers Gulf affairs, business, and regional politics. Editorial line reflects UAE foreign policy, including the Abraham Accords normalization with Israel.',
+      'English-language broadsheet owned by the Abu Dhabi state investment fund. Covers Gulf affairs, business, and regional politics. Editorial line reflects UAE foreign policy interests.',
   },
   'Mehr News Agency': {
     type: 'News agency',
@@ -591,6 +633,76 @@ const _SOURCES: Record<string, SourceInfo> = {
     location: 'New York, US',
     description:
       'News division of CBS, one of the three major US broadcast networks. Coverage of the Middle East generally reflects US bipartisan consensus, which has historically been supportive of Israel.',
+  },
+
+  // --- Name variants ---
+  'The New York Times': {
+    type: 'Newspaper',
+    location: 'New York, US',
+    description:
+      'American newspaper of record founded in 1851. One of the largest newspaper bureau networks globally. Owned by the Sulzberger family. Criticized by media watchdogs for disproportionate reliance on Israeli military sources and framing that minimizes Palestinian casualties in Gaza coverage.',
+  },
+  'Financial Times News': {
+    type: 'Newspaper',
+    location: 'London, UK',
+    description:
+      'Global business daily owned by Nikkei. Authoritative coverage of finance, economics, and international trade. Reflects the perspective of global financial elites; political coverage generally aligns with Western establishment consensus.',
+  },
+  'Nature npj Digital Medicine': {
+    type: 'Scientific journal',
+    location: 'London, UK',
+    description:
+      'Open-access journal in the Nature portfolio covering digital health, AI in medicine, and clinical informatics. Peer-reviewed under the Nature brand.',
+  },
+
+  // --- New sources ---
+  'Haberler.com': {
+    type: 'Digital media',
+    location: 'Istanbul, Türkiye',
+    description:
+      'One of Türkiye\u2019s most-visited news aggregation platforms. Compiles content from Turkish media outlets. Reflects the range of the Turkish media landscape, which is largely aligned with the government.',
+  },
+  TimesNow: {
+    type: 'Broadcaster',
+    location: 'Mumbai, India',
+    description:
+      'English-language Indian news channel owned by Times Network (part of the Times Group). Known for aggressive, opinion-heavy prime-time programming. Broadly supportive of the BJP government and Hindu nationalist narratives.',
+  },
+  'Salaam Gateway': {
+    type: 'Digital media',
+    location: 'Dubai, UAE',
+    description:
+      'Platform covering the global Islamic economy — halal industry, Islamic finance, modest fashion, and Muslim consumer markets. Operated by Refinitiv (LSEG).',
+  },
+  'The Daily Tribune': {
+    type: 'Newspaper',
+    location: 'Manila, Philippines',
+    description:
+      'Filipino English-language broadsheet covering politics, business, and regional affairs in the Philippines and Southeast Asia.',
+  },
+  Aol: {
+    type: 'Digital media',
+    location: 'New York, US',
+    description:
+      'Legacy internet portal now operating as a news aggregator under Yahoo. Content is largely syndicated from wire services and partner outlets.',
+  },
+  USGS: {
+    type: 'Government agency',
+    location: 'Reston, US',
+    description:
+      'United States Geological Survey. Federal science agency providing data on natural hazards, earthquakes, water resources, and ecosystems. Primary global source for real-time earthquake monitoring and volcanic activity alerts.',
+  },
+  'S&P Global PMI': {
+    type: 'Financial data',
+    location: 'New York, US',
+    description:
+      'Purchasing Managers\u2019 Index surveys published by S&P Global. Widely tracked leading indicators of manufacturing and services activity. PMI readings above 50 signal expansion; below 50 signal contraction.',
+  },
+  'Ministry of Foreign Affairs PRC': {
+    type: 'Government',
+    location: 'Beijing, China',
+    description:
+      'Official communications arm of the People\u2019s Republic of China\u2019s foreign ministry. Statements reflect Chinese Communist Party foreign policy positions on trade, territorial disputes, and multilateral diplomacy.',
   },
 };
 
