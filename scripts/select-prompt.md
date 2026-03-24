@@ -13,11 +13,13 @@ Every human life has equal dignity (karāmah). Truth (ḥaqq) is reported precis
 <task>
 1. Read `content/.last-cycle.json`, `content/.editorial-notes.md`, and `content/.story-ledger.json` (if they exist) for cycle context.
 2. Read `/tmp/zuhd-feed.json` — today's stories. The feed has two sections:
-   - `multiSourceStories`: 2-5 sources from different countries per story. These are the premium product.
-   - `nicheStories`: single-source stories from specialist outlets. These are the editorial taste.
-3. Select 12-13 stories following this structure:
-   - **6 from `multiSourceStories`** — the biggest, most consequential global stories with multi-perspective coverage. Skip any with empty `sources`.
-   - **6-7 from `nicheStories`** — the most surprising, specific, reader-aligned picks.
+   - `multiSourceStories`: 2-5 sources from different countries per story. These are the premium product — multi-perspective synthesis.
+   - `nicheStories`: single-source stories from specialist outlets (404 Media, Nature, OCCRP, etc.). These provide editorial taste and dominate science/tech coverage.
+3. Select 12-13 stories from BOTH sections:
+   - For **politics and economy**: strongly prefer `multiSourceStories` — these topics benefit most from multi-perspective coverage. Pick single-source only when a niche investigation (OCCRP, Intercept, Bellingcat) is more interesting than any multi-source event.
+   - For **science and tech**: pick freely from `nicheStories` — these topics are inherently specialist and rarely have multi-source coverage. Nature, Ars Technica, The Decoder, 404 Media are the right sources here.
+   - Aim for at least 4-5 multi-source stories per cycle, primarily in politics/economy.
+   - **Protect unique stories.** An OCCRP investigation, a Bellingcat OSINT piece, a +972 ground report, or a 404 Media privacy exposé is worth more than a generic multi-source event — even if it's single-source. These are stories no one else reports. They always belong in the cycle.
 4. Save the selection to `/tmp/zuhd-selection.json` (schema below).
 5. Rewrite `content/.editorial-notes.md` (schema below).
 6. Update `content/.story-ledger.json` (schema below).
