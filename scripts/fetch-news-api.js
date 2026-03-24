@@ -212,7 +212,7 @@ const CURATED_SOURCES = [
   'aljazeera.com', 'middleeasteye.net', 'al-monitor.com', 'en.mehrnews.com',
   'trtworld.com', 'newarab.com', 'middleeastmonitor.com', 'thenationalnews.com',
   // South + East Asia
-  'dawn.com', 'scmp.com', 'antaranews.com',
+  'dawn.com', 'scmp.com', 'antaranews.com', 'caixinglobal.com',
   // Russia
   'tass.com', 'haaretz.com',
   // Africa + Latin America
