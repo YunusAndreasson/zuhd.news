@@ -15,30 +15,28 @@ Lead with the most striking detail in each sentence. "USS Vincennes shot down Ir
 <format>
 Output a JSON array of timeline entries. Each entry has:
 
-- `section` — ALL CAPS label for your internal organization (e.g., ORIGINS, ESCALATION). The reader never sees this — it only helps you think in groups.
-- `year` — year or year range as a string (e.g., "1953", "1980–1988"). Prefer dated entries. Omit only for geographic or structural facts.
-- `body` — one sentence. No markdown. The sentence must stand completely on its own with no heading above it.
-- `verse` — true only for the optional Quranic verse at the end.
+- `year` (string, optional) — year or year range (e.g., "1953", "1980–1988"). Prefer dated entries. Omit only for geographic or structural facts that have no single date.
+- `body` (string) — one sentence. No markdown, no formatting. Must stand completely on its own.
 
 Output ONLY the JSON array. No commentary, no wrapping object, no markdown fences.
 </format>
 
 <example>
 [
-  {"section":"ORIGINS","year":"1916","body":"Britain and France secretly carved the Ottoman Middle East into spheres of influence under the Sykes-Picot Agreement, drawing borders that ignored every ethnic, tribal, and religious reality on the ground."},
-  {"section":"ORIGINS","year":"1948","body":"750,000 Palestinians were expelled or fled during the Nakba as Israel declared statehood, creating a refugee population that now numbers over five million."},
-  {"section":"GEOGRAPHY","body":"The Strait of Hormuz narrows to just 24 miles between Iran and Oman — roughly one-fifth of the world's oil passes through it every day."},
-  {"section":"ISLAMIC CONTEXT","verse":true,"body":"\"And if they incline to peace, then incline to it [also] and rely upon Allah.\" — Quran 8:61"}
+  {"year":"1916","body":"Britain and France secretly carved the Ottoman Middle East into spheres of influence under the Sykes-Picot Agreement, drawing borders that ignored every ethnic, tribal, and religious reality on the ground."},
+  {"year":"1948","body":"750,000 Palestinians were expelled or fled during the Nakba as Israel declared statehood, creating a refugee population that now numbers over five million."},
+  {"body":"The Strait of Hormuz narrows to just 24 miles between Iran and Oman — roughly one-fifth of the world's oil passes through it every day."}
 ]
 </example>
 
 <rules>
-- Every entry must make sense without a heading above it. Front-load the subject: "The Strait of Hormuz narrows to..." not "It is 24 miles wide..."
+- One flat timeline. No sections, no headings, no grouping — just a chronological list of entries.
+- Every entry must make sense on its own. Front-load the subject: "The Strait of Hormuz narrows to..." not "It is 24 miles wide..."
 - Chronological order throughout. Do not jump back and forth in time.
 - One sentence per entry, no exceptions. If a fact needs two sentences, it is two entries.
-- Favor entries with a year. Yearless entries are the exception, used only for geography or structural facts that have no single date.
-- Do NOT include a "NOW" or current-events section. The reader already has the article. End where history meets the present.
-- Do not pad with obvious filler. "The United Nations was founded in 1945" does not belong in a brief about the Iran war unless it directly explains something that follows.
+- Favor entries with a year. Yearless entries are the exception.
+- Do NOT include current events. The reader already has the article. End where history meets the present.
+- Each entry earns its place by teaching something. If it merely restates common knowledge without adding insight, cut it.
 </rules>
 
 <perspective>
@@ -61,16 +59,4 @@ What you must not do: speculate, editorialize beyond framing, or invent recent e
 
 <quality>
 Aim for 12-20 entries depending on the thread's complexity. A reader should be able to scroll the full timeline in 15-20 seconds and come away understanding how the present was constructed.
-
-Each entry earns its place by teaching something. If an entry merely restates common knowledge without adding insight, cut it.
 </quality>
-
-<quranic_anchor>
-When a context brief has a genuine connection to Quranic principles — oppression, justice, patience, stewardship — include a single verse as the final entry with `"verse": true`.
-
-- ONE verse only, well-known, uncontroversial in its application
-- Use the Saheeh International translation
-- Most briefs will not have one — tech, economic, and secular topics should not force a verse
-
-Format: `{"section":"ISLAMIC CONTEXT","verse":true,"body":"\"[translation]\" — Quran [surah:ayah]"}`
-</quranic_anchor>

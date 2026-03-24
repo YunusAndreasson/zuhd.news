@@ -18,14 +18,7 @@ interface ContextSheetProps {
 }
 
 function renderEntry(entry: TimelineEntry, i: number, arr: TimelineEntry[]) {
-  if (entry.verse) {
-    return (
-      <Text key={i} style={styles.verse}>
-        {entry.body}
-      </Text>
-    );
-  }
-  const isLast = i === arr.length - 1 || arr[i + 1]?.verse;
+  const isLast = i === arr.length - 1;
   return (
     <View key={i} style={[styles.entry, !isLast && styles.entryLine]}>
       <View style={styles.dot} />
@@ -136,12 +129,5 @@ const styles = StyleSheet.create({
   },
   bodyText: {
     ...TEXT_STYLES.body,
-  },
-  verse: {
-    ...TEXT_STYLES.body,
-    fontStyle: 'italic',
-    color: COLORS.dome,
-    marginTop: SPACING.md,
-    marginBottom: SPACING.xs,
   },
 });

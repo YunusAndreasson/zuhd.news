@@ -37,10 +37,8 @@ export interface ContextIndexEntry {
 }
 
 export interface TimelineEntry {
-  section: string;
   year?: string;
   body: string;
-  verse?: boolean;
 }
 
 export interface ContextBrief extends ContextIndexEntry {

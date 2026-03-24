@@ -221,7 +221,7 @@ Now generate the context brief as a JSON array of timeline entries. Output ONLY 
   }
 
   // Validate entries
-  timeline = timeline.filter(e => e.section && e.body)
+  timeline = timeline.filter(e => e.body)
 
   // Step 6: Write to briefs file (keyed by thread ID)
   briefs[thread.id] = {
@@ -232,8 +232,8 @@ Now generate the context brief as a JSON array of timeline entries. Output ONLY 
     articleCount: (thread.articles || []).length,
   }
   generated++
-  const sections = [...new Set(timeline.map(e => e.section))]
-  console.log(`  Brief generated (${timeline.length} entries, ${sections.length} sections: ${sections.join(', ')})`)
+  const dated = timeline.filter(e => e.year).length
+  console.log(`  Brief generated (${timeline.length} entries, ${dated} dated)`)
 }
 
 // Save briefs file

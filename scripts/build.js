@@ -13,15 +13,8 @@ const CATEGORY_ORDER = ['politics', 'economy', 'science', 'tech']
 const contextToHtml = (timeline) => {
   if (!Array.isArray(timeline) || timeline.length === 0) return ''
   let html = ''
-  let currentSection = null
   for (const entry of timeline) {
-    if (entry.section !== currentSection) {
-      currentSection = entry.section
-      html += `<h3 class="context-heading">${currentSection}</h3>`
-    }
-    if (entry.verse) {
-      html += `<p class="context-verse-line">${entry.body}</p>`
-    } else if (entry.year) {
+    if (entry.year) {
       html += `<p><strong class="context-year">${entry.year}</strong> ${entry.body}</p>`
     } else {
       html += `<p>${entry.body}</p>`
