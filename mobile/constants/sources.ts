@@ -4,24 +4,24 @@ interface SourceInfo {
   description: string;
 }
 
-export const SOURCES: Record<string, SourceInfo> = {
+const _SOURCES: Record<string, SourceInfo> = {
   'Al Jazeera': {
     type: 'Public broadcaster',
     location: 'Doha, Qatar',
     description:
-      'English-language news network funded by the Qatari government. Extensive coverage of the Middle East, Africa, and the Global South.',
+      'English-language news network funded by the Qatari government. Extensive coverage of the Middle East, Africa, and the Global South. One of the few major international broadcasters with sustained Palestinian perspective. Israel banned Al Jazeera from operating in 2024; at least ten staff journalists and nine freelancers have been killed by Israeli strikes in Gaza. Coverage of Qatari domestic affairs is noticeably limited.',
   },
   'BBC World': {
     type: 'Public broadcaster',
     location: 'London, UK',
     description:
-      'International news service of the BBC, funded by the UK licence fee. One of the largest global news operations.',
+      'International news service of the BBC, funded by the UK licence fee. One of the largest global news operations. Internal guidelines avoid labelling Israeli military actions as \u201cattacks\u201d; the suppressed Balen Report on Middle East coverage bias has never been released.',
   },
   'BBC Business': {
     type: 'Public broadcaster',
     location: 'London, UK',
     description:
-      'Business and economics vertical of BBC News. Covers global markets, trade, and economic policy.',
+      'Business and economics vertical of BBC News. Covers global markets, trade, and economic policy. Subject to the same BBC editorial guidelines that have been criticized for language choices minimizing Israeli military violence.',
   },
   'France 24': {
     type: 'Public broadcaster',
@@ -33,19 +33,19 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Public broadcaster',
     location: 'Bonn, Germany',
     description:
-      'Germany\u2019s international broadcaster. Publishes in 30 languages with strong coverage of European politics and human rights. Fired several Arab journalists in 2022 over social media posts critical of Israel, reflecting Germany\u2019s policy of unconditional Israel support.',
+      'Germany\u2019s international broadcaster. Publishes in 30 languages with strong coverage of European politics and human rights. Fired several Arab journalists over social media posts critical of Israel; German courts later ruled at least two of the dismissals were unjustified. DW subsequently updated its code of conduct to require all employees to support Israel\u2019s right to exist.',
   },
   AllAfrica: {
     type: 'Digital media',
     location: 'Washington, DC / Nairobi',
     description:
-      'Aggregator and publisher of African news from over 100 sources across the continent. Registered in Mauritius with editorial offices in Washington, Nairobi, Lagos, and Cape Town.',
+      'Aggregator and publisher of African news from over a hundred sources across the continent. Editorial offices in Washington, Nairobi, Lagos, and Cape Town.',
   },
   'Al Monitor': {
     type: 'Digital media',
     location: 'Washington, DC',
     description:
-      'Covers the Middle East and North Africa with reporting from journalists based in the region. Funded by subscriptions and corporate sponsors. Founded by Jamal Daniel, an Iraqi-American businessman.',
+      'Covers the Middle East and North Africa with reporting from journalists based in the region. Funded by subscriptions and corporate sponsors. Founded by Jamal Daniel, a Syrian-American businessman.',
   },
   'Hacker News': {
     type: 'Community',
@@ -57,7 +57,7 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Newspaper',
     location: 'Chennai, India',
     description:
-      'English-language daily founded in 1878. Regarded as a paper of record in India for politics and policy.',
+      'English-language daily founded in 1878. Regarded as a paper of record in India for politics and policy. Editorially independent and often critical of the BJP government; one of the few major Indian outlets that consistently questions Hindu nationalist policies.',
   },
   Yonhap: {
     type: 'News agency',
@@ -69,13 +69,13 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Digital media',
     location: 'New York, US',
     description:
-      'Trade publication covering cryptocurrency, blockchain, and digital assets. Acquired in 2023 by Bullish, a crypto exchange backed by Peter Thiel and others \u2014 a potential conflict of interest on industry coverage.',
+      'Trade publication covering cryptocurrency, blockchain, and digital assets. Acquired by Bullish, a crypto exchange backed by Peter Thiel and spun out of Block.one, a controversial crypto firm \u2014 a structural conflict of interest on industry coverage.',
   },
   Bellingcat: {
     type: 'Investigative',
     location: 'The Hague, Netherlands',
     description:
-      'Open-source intelligence collective using publicly available data and satellite imagery. Funded by grants including from the European Union, Dutch government, and private foundations.',
+      'Open-source intelligence collective using publicly available data and satellite imagery. Funded by grants including from the National Endowment for Democracy (US State Dept\u2013linked), EU, and Dutch government. Investigations have predominantly focused on Russian and Syrian targets, though since October 2023 it has applied similar methods to documenting strikes in Gaza.',
   },
   Haaretz: {
     type: 'Newspaper',
@@ -147,13 +147,13 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Newspaper',
     location: 'Kuala Lumpur, Malaysia',
     description:
-      'English-language newspaper founded in 1896. Covers Malaysian politics, courts, and national affairs.',
+      'English-language newspaper founded in 1896. Covers Malaysian politics, courts, and national affairs. Malaysia does not recognize Israel and is one of the most vocal supporters of Palestine among ASEAN states.',
   },
   'Antara News': {
     type: 'News agency',
     location: 'Jakarta, Indonesia',
     description:
-      'Indonesia\u2019s state-owned national news agency, established in 1937. Covers domestic politics and ASEAN affairs.',
+      'Indonesia\u2019s state-owned national news agency, established in 1937. Covers domestic politics and ASEAN affairs. Indonesia does not recognize Israel and has been a consistent supporter of Palestinian statehood.',
   },
   'Premium Times': {
     type: 'Digital media',
@@ -171,19 +171,19 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Newspaper',
     location: 'Dhaka, Bangladesh',
     description:
-      'Leading English-language daily in Bangladesh. Covers politics, garment industry, and climate vulnerability.',
+      'Leading English-language daily in Bangladesh. Covers politics, garment industry, and climate vulnerability. Bangladesh is one of the countries most threatened by rising sea levels.',
   },
   'South China Morning Post': {
     type: 'Newspaper',
     location: 'Hong Kong',
     description:
-      'English-language newspaper covering Hong Kong, China, and Asia-Pacific. Owned by Alibaba Group since 2016. Editorial independence questioned after acquisition; coverage of mainland China has softened notably.',
+      'English-language newspaper covering Hong Kong, China, and Asia-Pacific. Owned by Alibaba Group since 2016. Editorial independence questioned after acquisition; coverage of mainland China has softened notably, including on the treatment of Uyghur Muslims in Xinjiang.',
   },
   'Middle East Eye': {
     type: 'Digital media',
     location: 'London, UK',
     description:
-      'Online news organization covering the Middle East and North Africa. Original reporting on conflicts and human rights. Funded by Qatari interests; editorially sympathetic to political Islam and Palestinian causes.',
+      'Online news organization covering the Middle East and North Africa. Original reporting on conflicts and human rights. Majority shareholder is a former Al Jazeera executive; Saudi Arabia, UAE, Egypt, and Bahrain accused MEE of being Qatari-funded during the 2017 diplomatic crisis, which MEE denies. Editorially sympathetic to political Islam and Palestinian causes.',
   },
   'Sveriges Radio': {
     type: 'Public broadcaster',
@@ -195,7 +195,7 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Digital media',
     location: 'Johannesburg, South Africa',
     description:
-      'South African online newspaper. Its Scorpio unit has broken major stories on state capture and corruption.',
+      'South African online newspaper. Its Scorpio unit has broken major stories on state capture and corruption. South Africa brought the ICJ genocide case against Israel in 2024; the country\u2019s media landscape is broadly sympathetic to the Palestinian cause.',
   },
   'Buenos Aires Times': {
     type: 'Newspaper',
@@ -213,13 +213,13 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Public broadcaster',
     location: 'Toronto, Canada',
     description:
-      'News division of the Canadian Broadcasting Corporation. Covers Canadian politics, Arctic affairs, and international news.',
+      'News division of the Canadian Broadcasting Corporation. Covers Canadian politics, Arctic affairs, and international news. Canada has historically voted with the US at the UN on Israel-Palestine resolutions; CBC coverage generally reflects this alignment.',
   },
   'Fox News': {
     type: 'Cable news',
     location: 'New York, US',
     description:
-      'American cable news network owned by Fox Corporation. Conservative editorial stance with a consistently pro-Israel position. Largest cable news audience in the US. Paid $787.5M to settle Dominion\u2019s defamation suit in 2023.',
+      'American cable news network owned by Fox Corporation. Conservative editorial stance with a consistently pro-Israel position. Largest cable news audience in the US. Settled the Dominion Voting Systems defamation lawsuit over false election claims.',
   },
   'ABC News Australia': {
     type: 'Public broadcaster',
@@ -237,13 +237,13 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Digital media',
     location: 'Cairo, Egypt',
     description:
-      'Independent Egyptian news outlet operating under significant government pressure. Critical reporting on politics and human rights.',
+      'Independent Egyptian news outlet founded in 2013. The government blocked its website in 2023 in apparent reprisal for reporting on Egypt\u2019s plans regarding Palestinian refugees. Chief editor Lina Atallah has been detained by security forces. One of the few Egyptian outlets that reports critically on Egypt\u2019s enforcement of the Gaza blockade.',
   },
   Medyascope: {
     type: 'Digital media',
     location: 'Istanbul, Turkey',
     description:
-      'Independent Turkish digital platform. Provides news outside Turkey\u2019s largely government-aligned mainstream media.',
+      'Independent Turkish digital platform. One of the few outlets providing critical news outside T\u00fcrkiye\u2019s largely government-aligned mainstream media landscape.',
   },
   TSA: {
     type: 'Digital media',
@@ -255,7 +255,7 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'News agency',
     location: 'Ankara, T\u00fcrkiye',
     description:
-      'T\u00fcrkiye\u2019s state-run news agency. Publishes in 13 languages with extensive coverage of the Muslim world and Central Asia.',
+      'T\u00fcrkiye\u2019s state-run news agency. Publishes in 13 languages with extensive coverage of the Muslim world and Central Asia. T\u00fcrkiye severed all diplomatic relations with Israel; Anadolu\u2019s coverage reflects this, and its photographs and videos are widely syndicated by international outlets.',
   },
   'Associated Press': {
     type: 'News agency',
@@ -267,19 +267,19 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Public broadcaster',
     location: 'London, UK',
     description:
-      'British Broadcasting Corporation. Funded by the UK licence fee. One of the largest and oldest news operations in the world. Internal editorial guidelines avoid labelling Israeli military actions as \u201cattacks.\u201d The suppressed Balen Report on Middle East coverage bias has never been released despite Freedom of Information requests.',
+      'British Broadcasting Corporation. Funded by the UK licence fee. One of the largest and oldest news operations in the world. Internal editorial guidelines have been criticized for systematic language asymmetry \u2014 emotive terms used far more frequently for Israeli casualties than Palestinian ones. The Balen Report, commissioned in 2004 to examine Middle East coverage, has never been released despite Freedom of Information requests. Over 100 BBC staff signed a letter in 2024 accusing the corporation of failing to humanize Palestinians.',
   },
   'Economic Times': {
     type: 'Newspaper',
     location: 'Mumbai, India',
     description:
-      'Indian financial daily owned by the Times Group. India\u2019s most widely read English-language business newspaper.',
+      'Indian financial daily owned by the Times Group. India\u2019s most widely read English-language business newspaper. The Times Group is broadly supportive of the BJP government\u2019s economic agenda.',
   },
   HuffPost: {
     type: 'Digital media',
     location: 'New York, US',
     description:
-      'American online news outlet founded in 2005. Progressive editorial stance. Acquired by BuzzFeed in 2021. Covers US politics, culture, and social issues.',
+      'American online news outlet founded in 2005. Progressive editorial stance. Acquired by BuzzFeed in 2021. Has published more coverage sympathetic to Palestinian civilians than most US mainstream outlets, though editorial line is inconsistent.',
   },
   'Investing.com': {
     type: 'Financial data',
@@ -291,13 +291,13 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Newspaper',
     location: 'New York, US',
     description:
-      'American newspaper of record founded in 1851. Extensive international bureau network. Owned by the Sulzberger family. Criticized by The Intercept and media watchdogs for disproportionate reliance on Israeli military sources and framing that minimizes Palestinian casualties in Gaza coverage.',
+      'American newspaper of record founded in 1851. One of the largest newspaper bureau networks globally. Owned by the Sulzberger family. Criticized by media watchdogs for disproportionate reliance on Israeli military sources and framing that minimizes Palestinian casualties in Gaza coverage.',
   },
   RT: {
     type: 'State broadcaster',
     location: 'Moscow, Russia',
     description:
-      'Russian government-funded international television network. Designated a foreign agent in the US and banned in the EU.',
+      'Russian government-funded international television network. Designated a foreign agent in the US and banned in the EU. Russia has positioned itself as sympathetic to the Palestinian cause at the UN, though this is primarily geopolitical rivalry with the US rather than principled support.',
   },
   'Space.com': {
     type: 'Digital media',
@@ -309,13 +309,13 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'News agency',
     location: 'Moscow, Russia',
     description:
-      'Russia\u2019s largest news agency, state-owned since 1904. Primary wire service for Russian government communications.',
+      'Russia\u2019s largest news agency, state-owned since 1904. Primary wire service for Russian government communications. Reflects Kremlin foreign policy, including rhetorical support for Palestinian statehood and criticism of US-backed Israeli operations.',
   },
   'The Guardian': {
     type: 'Newspaper',
     location: 'London, UK',
     description:
-      'British daily owned by the Scott Trust, guaranteeing editorial independence. No paywall; funded by reader donations and advertising. Progressive editorial stance. Known for investigative journalism.',
+      'British daily owned by the Scott Trust, guaranteeing editorial independence. No paywall; funded by reader donations and advertising. Publishes more Palestinian perspectives than most UK outlets, though staff and critics have documented instances of amplifying Israeli government narratives uncritically.',
   },
   'The Jerusalem Post': {
     type: 'Newspaper',
@@ -327,7 +327,7 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Newspaper',
     location: 'Mumbai, India',
     description:
-      'World\u2019s largest-selling English-language daily newspaper. Flagship of the Times Group media conglomerate.',
+      'World\u2019s largest-selling English-language daily newspaper. Flagship of the Times Group media conglomerate. Generally avoids confrontation with the BJP government; coverage of Hindu-Muslim tensions tends to reflect the ruling party\u2019s framing.',
   },
   'Times of Israel': {
     type: 'Digital media',
@@ -339,19 +339,19 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Digital media',
     location: 'Sunnyvale, US',
     description:
-      'News aggregation platform combining original reporting with wire service and partner content. One of the most-visited news sites globally.',
+      'News aggregation platform combining original reporting with wire service and partner content. One of the most-visited news sites globally. Editorial voice depends on the underlying source; Yahoo\u2019s own reporting is limited.',
   },
   'Drop Site': {
     type: 'Investigative',
     location: 'United States',
     description:
-      'Independent investigative outlet founded by journalists Jeremy Scahill and Ryan Grim. Covers national security, foreign policy, and government accountability.',
+      'Independent investigative outlet founded by journalists Jeremy Scahill and Ryan Grim. Covers national security, foreign policy, and government accountability. Has published detailed reporting on US arms transfers to Israel and their use in Gaza.',
   },
   OCCRP: {
     type: 'Investigative',
     location: 'Amsterdam, Netherlands',
     description:
-      'Organised Crime and Corruption Reporting Project. Global network of investigative journalists exposing kleptocracy, money laundering, and state capture.',
+      'Organised Crime and Corruption Reporting Project. Global network of investigative journalists exposing kleptocracy, money laundering, and state capture. Received over half its budget from USAID until 2025 when the Trump administration froze funding, triggering major layoffs. Soros foundations also contribute. Investigations have primarily targeted non-Western governments.',
   },
   Reuters: {
     type: 'News agency',
@@ -361,15 +361,15 @@ export const SOURCES: Record<string, SourceInfo> = {
   },
   'Al Arabiya': {
     type: 'Broadcaster',
-    location: 'Dubai, UAE',
+    location: 'Riyadh, Saudi Arabia',
     description:
-      'Saudi-owned Arabic news channel. Covers Middle East affairs with editorial perspective aligned with Saudi foreign policy, which has increasingly aligned with Israeli interests against Iran through normalization efforts.',
+      'Saudi-owned Arabic news channel, part of MBC Group. Saudi Arabia\u2019s sovereign wealth fund acquired majority ownership of MBC in 2025. Editorial perspective aligned with Saudi foreign policy, which has increasingly aligned with Israeli interests against Iran through normalization efforts. Algeria suspended Al Arabiya operations over bias in Gaza coverage.',
   },
   'The Intercept': {
     type: 'Investigative',
     location: 'New York, US',
     description:
-      'Digital publication focused on national security, civil liberties, and government surveillance. Founded in 2014 by Pierre Omidyar\u2019s First Look Media, originally to publish the Snowden documents.',
+      'Digital publication focused on national security, civil liberties, and government surveillance. Founded in 2014 by Pierre Omidyar\u2019s First Look Media to publish the Snowden documents; spun off as an independent nonprofit in 2023 after Omidyar ended funding. Has faced financial difficulty, with its CEO citing Israel-Palestine coverage as a barrier to philanthropic donations. One of the few US outlets that consistently reports on Israeli military operations with the same scrutiny applied to other militaries.',
   },
   'Kyodo News': {
     type: 'News agency',
@@ -381,37 +381,80 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'News agency',
     location: 'Beijing, China',
     description:
-      'China\u2019s official state news agency. Largest news agency in the world by correspondents and bureaus. Reflects Chinese government positions.',
+      'China\u2019s official state news agency. Largest news agency in the world by correspondents and bureaus. Reflects Chinese government positions. China has consistently supported Palestinian statehood at the UN while maintaining quiet trade and tech ties with Israel. China leverages its pro-Palestinian stance to deflect Western criticism of its treatment of Uyghur Muslims, whose coverage is entirely state-controlled.',
   },
   'The Washington Post': {
     type: 'Newspaper',
     location: 'Washington, DC',
     description:
-      'American broadsheet known for political coverage and investigative journalism. Owned by Jeff Bezos since 2013. Generally reflects US establishment consensus on Israel-Palestine, which skews toward Israeli state framing.',
+      'American broadsheet known for political coverage and investigative journalism. Owned by Jeff Bezos since 2013. Bezos\u2019s Amazon holds a major cloud computing contract with the Israeli government (Project Nimbus). In 2024, Bezos blocked the paper from endorsing a presidential candidate, triggering mass subscriber cancellations and columnist resignations.',
   },
   'Financial Times': {
     type: 'Newspaper',
     location: 'London, UK',
     description:
-      'Global business daily owned by Nikkei. Authoritative coverage of finance, economics, and international trade.',
+      'Global business daily owned by Nikkei. Authoritative coverage of finance, economics, and international trade. Reflects the perspective of global financial elites; political coverage generally aligns with Western establishment consensus.',
   },
   'The Economist': {
     type: 'Magazine',
     location: 'London, UK',
     description:
-      'Weekly magazine covering international affairs, politics, business, and economics. Known for unsigned editorial voice.',
+      'Weekly magazine covering international affairs, politics, business, and economics. Known for unsigned editorial voice. Reflects a liberal internationalist worldview rooted in free-market economics; coverage of Israel-Palestine has varied but generally operates within a Western establishment framework. Skeptical of political Islam.',
   },
   'Le Monde': {
     type: 'Newspaper',
     location: 'Paris, France',
     description:
-      'France\u2019s newspaper of record. Independent editorial line covering French and international politics.',
+      'France\u2019s newspaper of record. Independent editorial line covering French and international politics. Coverage of Muslim communities in France is filtered through the la\u00efcit\u00e9 (secularism) framework, which often frames religious practice as a problem to be managed.',
   },
   'Der Spiegel': {
     type: 'Magazine',
     location: 'Hamburg, Germany',
     description:
-      'Germany\u2019s largest news magazine. Known for investigative reporting and its role in exposing political scandals.',
+      'Germany\u2019s largest news magazine. Known for investigative reporting and its role in exposing political scandals. Operates within Germany\u2019s political consensus that treats support for Israel as a state obligation rooted in Holocaust responsibility, which constrains critical coverage of Israeli military operations.',
+  },
+
+  'Bloomberg Business': {
+    type: 'News agency',
+    location: 'New York, US',
+    description:
+      'Financial news division of Bloomberg LP, founded by Michael Bloomberg. One of the most influential business wire services globally. Bloomberg has donated tens of millions to Israeli causes and was awarded the Genesis Prize for commitment to Jewish values and Israel. Coverage generally reflects US establishment framing on the conflict.',
+  },
+  'ABP Live': {
+    type: 'Digital media',
+    location: 'New Delhi, India',
+    description:
+      'English-language digital arm of ABP News Network. Covers Indian politics, business, and technology. ABP\u2019s Hindi-language channels have faced criticism for amplifying BJP nationalist narratives, though the English arm is more restrained.',
+  },
+  MoneyControl: {
+    type: 'Financial data',
+    location: 'Mumbai, India',
+    description:
+      'Indian financial news platform owned by Network18 (Reliance Industries). Covers markets, mutual funds, and economic policy. Network18 staff have reported that criticism of the Modi government or Reliance is prohibited in the newsroom.',
+  },
+  News18: {
+    type: 'Digital media',
+    location: 'New Delhi, India',
+    description:
+      'Indian news portal owned by Network18 (Reliance Industries). Covers politics, business, and entertainment. One of the most explicitly pro-BJP outlets in the Network18 stable; frequently amplifies Hindu nationalist talking points.',
+  },
+  '+972 Magazine': {
+    type: 'Digital media',
+    location: 'Israel/Palestine',
+    description:
+      'Independent, nonprofit magazine run by Israeli and Palestinian journalists. Named after the shared telephone country code. Critical coverage of the occupation, military policy, and settler violence.',
+  },
+  'Daily Mail Online': {
+    type: 'Tabloid',
+    location: 'London, UK',
+    description:
+      'Most-visited English-language newspaper website globally. Known for sensationalist framing and clickbait. Consistently pro-Israel editorial line; coverage of Palestinian casualties is typically minimal and framed through Israeli security narratives.',
+  },
+  'SciDev.Net': {
+    type: 'Nonprofit',
+    location: 'London, UK',
+    description:
+      'Covers science and technology for the developing world. Funded by international development agencies. One of the few outlets bridging scientific research and Global South policy.',
   },
 
   // --- Name variants (same outlets, different feed names) ---
@@ -419,25 +462,31 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Public broadcaster',
     location: 'Doha, Qatar',
     description:
-      'English-language news network funded by the Qatari government. Extensive coverage of the Middle East, Africa, and the Global South.',
+      'English-language news network funded by the Qatari government. Extensive coverage of the Middle East, Africa, and the Global South. One of the few major international broadcasters with sustained Palestinian perspective. Israel banned Al Jazeera from operating in 2024; at least ten staff journalists and nine freelancers have been killed by Israeli strikes in Gaza. Coverage of Qatari domestic affairs is noticeably limited.',
   },
   'Al-Monitor': {
     type: 'Digital media',
     location: 'Washington, DC',
     description:
-      'Covers the Middle East and North Africa with reporting from journalists based in the region. Funded by subscriptions and corporate sponsors. Founded by Jamal Daniel, an Iraqi-American businessman.',
+      'Covers the Middle East and North Africa with reporting from journalists based in the region. Funded by subscriptions and corporate sponsors. Founded by Jamal Daniel, a Syrian-American businessman.',
   },
-  'Anadolu Ajans\u0131': {
+  'Anadolu Ajansı': {
     type: 'News agency',
     location: 'Ankara, T\u00fcrkiye',
     description:
-      'T\u00fcrkiye\u2019s state-run news agency. Publishes in 13 languages with extensive coverage of the Muslim world and Central Asia.',
+      'T\u00fcrkiye\u2019s state-run news agency. Publishes in 13 languages with extensive coverage of the Muslim world and Central Asia. T\u00fcrkiye severed all diplomatic relations with Israel; Anadolu\u2019s coverage reflects this, and its photographs and videos are widely syndicated by international outlets.',
   },
   'Drop Site News': {
     type: 'Investigative',
     location: 'United States',
     description:
-      'Independent investigative outlet founded by journalists Jeremy Scahill and Ryan Grim. Covers national security, foreign policy, and government accountability.',
+      'Independent investigative outlet founded by journalists Jeremy Scahill and Ryan Grim. Covers national security, foreign policy, and government accountability. Has published detailed reporting on US arms transfers to Israel and their use in Gaza.',
+  },
+  STAT: {
+    type: 'Digital media',
+    location: 'Boston, US',
+    description:
+      'Health and medicine publication owned by Boston Globe Media. Covers pharma, biotech, and public health policy.',
   },
   'Premium Times Nigeria': {
     type: 'Digital media',
@@ -451,19 +500,19 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'State broadcaster',
     location: 'Istanbul, T\u00fcrkiye',
     description:
-      'English-language international channel of Turkish Radio and Television Corporation. State-funded. Covers the Muslim world, Africa, and conflict zones. Editorial line reflects Turkish government positions on foreign policy.',
+      'English-language international channel of Turkish Radio and Television Corporation. State-funded. Covers the Muslim world, Africa, and conflict zones. Reflects Turkish government positions; openly critical of Israeli operations in Gaza and of Western inaction.',
   },
   'Nikkei Asia': {
     type: 'Digital media',
     location: 'Tokyo, Japan',
     description:
-      'English-language outlet of Nikkei Inc. covering Asian business, politics, and economics. Also owns the Financial Times.',
+      'English-language outlet of Nikkei Inc., which also owns the Financial Times. Covers Asian business, politics, and economics with a focus on the China-Japan-Korea triangle.',
   },
   'The New Arab': {
     type: 'Digital media',
     location: 'London, UK',
     description:
-      'English-language outlet covering the Middle East, North Africa, and the wider Muslim world. Funded by Qatari interests.',
+      'English-language outlet covering the Middle East, North Africa, and the wider Muslim world. Funded by Qatari interests. Provides a platform for Arab and Muslim voices underrepresented in Western media.',
   },
   'The National': {
     type: 'Newspaper',
@@ -475,19 +524,19 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'News agency',
     location: 'Tehran, Iran',
     description:
-      'Semi-official Iranian news agency affiliated with the Islamic Ideology Dissemination Organization. Provides an Iranian government-adjacent perspective on regional affairs.',
+      'Semi-official Iranian news agency whose director is appointed by Iran\u2019s Supreme Leader. Affiliated with the Islamic Development Organization, which also operates the Tehran Times and Tasnim News Agency. Publishes in six languages.',
   },
   Euronews: {
     type: 'Broadcaster',
     location: 'Lyon, France',
     description:
-      'Pan-European multilingual news channel. Covers EU politics, climate, and technology from a continental perspective.',
+      'Pan-European multilingual news channel. Since 2022, majority-owned by Alpac Capital, a Portuguese firm with documented ties to Hungarian PM Viktor Orb\u00e1n, who contributed at least a third of the acquisition funding. Mass layoffs eliminated two-thirds of journalists. Editorial independence under serious question.',
   },
   'Euronews English': {
     type: 'Broadcaster',
     location: 'Lyon, France',
     description:
-      'Pan-European multilingual news channel. Covers EU politics, climate, and technology from a continental perspective.',
+      'Pan-European multilingual news channel. Since 2022, majority-owned by Alpac Capital, a Portuguese firm with documented ties to Hungarian PM Viktor Orb\u00e1n, who contributed at least a third of the acquisition funding. Mass layoffs eliminated two-thirds of journalists. Editorial independence under serious question.',
   },
   SMEX: {
     type: 'Nonprofit',
@@ -499,13 +548,13 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Magazine',
     location: 'New Delhi, India',
     description:
-      'India\u2019s most widely read English-language news magazine. Covers politics, economy, and society across the subcontinent.',
+      'India\u2019s most widely read English-language news magazine. Covers politics, economy, and society across the subcontinent. Owned by the India Today Group; editorial tone has shifted toward the BJP government under current management.',
   },
   'The Independent': {
     type: 'Digital media',
     location: 'London, UK',
     description:
-      'British online newspaper. Originally a broadsheet, now digital-only since 2016. Owned by a Saudi-linked consortium.',
+      'British online newspaper. Originally a broadsheet, now digital-only since 2016. Owned by Saudi investor Sultan Muhammad Abuljadayel through the Lebedev family. Ownership has not visibly shifted editorial line, which remains broadly liberal.',
   },
   Wamda: {
     type: 'Digital media',
@@ -517,7 +566,7 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Newspaper',
     location: 'New Delhi, India',
     description:
-      'Indian business daily published by HT Media in arrangement with the Wall Street Journal. Covers markets, policy, and technology.',
+      'Indian business daily published by HT Media, controlled by the Birla family. Covers markets, policy, and technology. Financial reporting is generally straightforward, though HT Media\u2019s ownership maintains relationships across India\u2019s political spectrum.',
   },
   'Ecofin Agency': {
     type: 'News agency',
@@ -529,6 +578,30 @@ export const SOURCES: Record<string, SourceInfo> = {
     type: 'Newspaper',
     location: 'Kuala Lumpur, Malaysia',
     description:
-      'Malaysia\u2019s largest English-language newspaper by circulation. Covers politics, business, and regional Southeast Asian affairs.',
+      'Malaysia\u2019s largest English-language newspaper by circulation. Covers politics, business, and regional Southeast Asian affairs. Owned by the Malaysian Chinese Association; reflects a more business-oriented perspective than Malay-language media.',
+  },
+  Rappler: {
+    type: 'Digital media',
+    location: 'Manila, Philippines',
+    description:
+      'Filipino online news outlet co-founded by Maria Ressa, the first journalist to receive the Nobel Peace Prize since 1935. Ressa was convicted of cyber-libel for investigating Duterte\u2019s war on drugs. Known for reporting on extrajudicial killings and disinformation.',
+  },
+  'CBS News': {
+    type: 'Broadcaster',
+    location: 'New York, US',
+    description:
+      'News division of CBS, one of the three major US broadcast networks. Coverage of the Middle East generally reflects US bipartisan consensus, which has historically been supportive of Israel.',
   },
 };
+
+// Case-insensitive lookup — feed names may vary in capitalization
+const _lookup = new Map<string, SourceInfo>();
+for (const [key, val] of Object.entries(_SOURCES)) {
+  _lookup.set(key.toLowerCase(), val);
+}
+
+export const SOURCES: Record<string, SourceInfo> = new Proxy(_SOURCES, {
+  get(target, prop: string) {
+    return target[prop] ?? _lookup.get(prop.toLowerCase());
+  },
+});

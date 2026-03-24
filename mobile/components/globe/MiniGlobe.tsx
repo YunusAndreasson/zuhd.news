@@ -1,6 +1,26 @@
-import { BlurMask, Canvas, Circle, Group, Image, LinearGradient, Path, Rect, Skia, useImage, vec } from '@shopify/react-native-skia';
+import {
+  BlurMask,
+  Canvas,
+  Circle,
+  Group,
+  Image,
+  LinearGradient,
+  Path,
+  Rect,
+  Skia,
+  useImage,
+  vec,
+} from '@shopify/react-native-skia';
 import { geoCircle, geoContains, geoDistance, geoOrthographic, geoPath } from 'd3-geo';
-import { memo, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { StyleSheet } from 'react-native';
 import {
   runOnJS,
@@ -8,9 +28,9 @@ import {
   useAnimatedReaction,
   useSharedValue,
 } from 'react-native-reanimated';
+import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
 import { COLORS } from '../../constants/theme';
 import type { Article } from '../../types';
-import { type CountryData, COUNTRY_DATA } from '../../constants/country-data';
 import { COUNTRY_TZ } from './coordinates';
 import { countries, createSkiaPathContext, land } from './shared';
 import { getCoords } from './storyDots';
@@ -25,11 +45,16 @@ const KNOWN_NEW_MOON = Date.UTC(2025, 0, 29, 12, 36); // Jan 29, 2025 12:36 UTC
 
 function getMoonPhase(): number {
   const days = (Date.now() - KNOWN_NEW_MOON) / 86400000;
-  return ((days % SYNODIC) + SYNODIC) % SYNODIC / SYNODIC; // 0 = new, 0.5 = full
+  return (((days % SYNODIC) + SYNODIC) % SYNODIC) / SYNODIC; // 0 = new, 0.5 = full
 }
 
 // Al-Aqsa / Dome of the Rock — [lng, lat] for d3-geo
-const AL_AQSA = { coords: [35.2354, 31.7761] as [number, number], name: 'Al-Quds', tz: 'Asia/Hebron', country: 'Palestine' };
+const AL_AQSA = {
+  coords: [35.2354, 31.7761] as [number, number],
+  name: 'Al-Quds',
+  tz: 'Asia/Hebron',
+  country: 'Palestine',
+};
 
 // Sun position from UTC time (cached 60s)
 let cachedSunPos: [number, number] = [0, 0];
@@ -61,23 +86,47 @@ function isLocalNight(): boolean {
   return _isNight;
 }
 
+function formatLocalTime(tz: string): string | null {
+  try {
+    return new Date().toLocaleTimeString('en-GB', {
+      timeZone: tz,
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  } catch {
+    return null;
+  }
+}
+
 // Nudge offsets for coastal/border coordinate fallback (0.1° ≈ 11km)
 const NUDGES: [number, number][] = [
   [0, 0],
-  [0.1, 0], [-0.1, 0], [0, 0.1], [0, -0.1],
-  [0.1, 0.1], [-0.1, 0.1], [0.1, -0.1], [-0.1, -0.1],
-  [0.2, 0], [-0.2, 0], [0, 0.2], [0, -0.2],
-  [0.3, 0], [-0.3, 0], [0, 0.3], [0, -0.3],
+  [0.1, 0],
+  [-0.1, 0],
+  [0, 0.1],
+  [0, -0.1],
+  [0.1, 0.1],
+  [-0.1, 0.1],
+  [0.1, -0.1],
+  [-0.1, -0.1],
+  [0.2, 0],
+  [-0.2, 0],
+  [0, 0.2],
+  [0, -0.2],
+  [0.3, 0],
+  [-0.3, 0],
+  [0, 0.3],
+  [0, -0.3],
 ];
 
 // Manual overrides for cities that fall outside their country in 110m TopoJSON
 const COUNTRY_OVERRIDES: Record<string, string> = {
-  'singapore': 'Singapore',
-  'gaza': 'Palestine',
-  'ramallah': 'Palestine',
-  'nablus': 'Palestine',
-  'hebron': 'Palestine',
-  'jenin': 'Palestine',
+  singapore: 'Singapore',
+  gaza: 'Palestine',
+  ramallah: 'Palestine',
+  nablus: 'Palestine',
+  hebron: 'Palestine',
+  jenin: 'Palestine',
   'al-quds': 'Palestine',
 };
 
@@ -159,9 +208,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   // Flat coord array for UI thread interpolation
   const coordsSV = useSharedValue<(number | null)[]>([]);
   useEffect(() => {
-    coordsSV.value = articleGeo.flatMap((g) =>
-      g ? [g.lat, g.lng] : [null, null],
-    );
+    coordsSV.value = articleGeo.flatMap((g) => (g ? [g.lat, g.lng] : [null, null]));
   }, [articleGeo, coordsSV]);
 
   // Projection refs (reused, never reallocated)
@@ -299,15 +346,12 @@ export const MiniGlobe = memo(function MiniGlobe({
           const geoData = articleGeoRef.current[lastSettled.current];
           if (geoData?.countryName) {
             const tz = COUNTRY_TZ[geoData.countryName];
-            let localTime: string | null = null;
-            if (tz) {
-              try {
-                localTime = new Date().toLocaleTimeString('en-GB', {
-                  timeZone: tz, hour: '2-digit', minute: '2-digit',
-                });
-              } catch {}
-            }
-            return { countryName: geoData.countryName, location: geoData.location, localTime, data: COUNTRY_DATA[geoData.countryName] ?? null };
+            return {
+              countryName: geoData.countryName,
+              location: geoData.location,
+              localTime: tz ? formatLocalTime(tz) : null,
+              data: COUNTRY_DATA[geoData.countryName] ?? null,
+            };
           }
         }
       }
@@ -317,13 +361,12 @@ export const MiniGlobe = memo(function MiniGlobe({
         const adx = x - state.aqsa.x;
         const ady = y - state.aqsa.y;
         if (adx * adx + ady * ady <= 3600) {
-          let localTime: string | null = null;
-          try {
-            localTime = new Date().toLocaleTimeString('en-GB', {
-              timeZone: AL_AQSA.tz, hour: '2-digit', minute: '2-digit',
-            });
-          } catch {}
-          return { countryName: AL_AQSA.country, location: AL_AQSA.name, localTime, data: COUNTRY_DATA['Palestine'] ?? null };
+          return {
+            countryName: AL_AQSA.country,
+            location: AL_AQSA.name,
+            localTime: formatLocalTime(AL_AQSA.tz),
+            data: COUNTRY_DATA['Palestine'] ?? null,
+          };
         }
       }
 
@@ -382,7 +425,10 @@ export const MiniGlobe = memo(function MiniGlobe({
     const s: { x: number; y: number; r: number; o: number }[] = [];
     // Seeded pseudo-random for deterministic positions
     let seed = 42;
-    const rand = () => { seed = (seed * 16807 + 0) % 2147483647; return seed / 2147483647; };
+    const rand = () => {
+      seed = (seed * 16807 + 0) % 2147483647;
+      return seed / 2147483647;
+    };
     for (let i = 0; i < 40; i++) {
       const x = rand() * width;
       const y = rand() * height;
@@ -423,13 +469,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             <BlurMask blur={moonR * 0.8} style="solid" />
           </Circle>
           {/* Limb glow — bright ring right at the disk edge */}
-          <Circle
-            cx={moonX}
-            cy={moonY}
-            r={moonR}
-            color={COLORS.accent}
-            opacity={0.15}
-          >
+          <Circle cx={moonX} cy={moonY} r={moonR} color={COLORS.accent} opacity={0.15}>
             <BlurMask blur={moonR * 0.25} style="outer" />
           </Circle>
           {/* Moon texture — full disk */}
@@ -447,17 +487,22 @@ export const MiniGlobe = memo(function MiniGlobe({
           {/* Gradient shadow — gradual terminator falloff */}
           <Group clip={moonClip}>
             <BlurMask blur={moonR * 0.04} style="normal" />
-            <Rect
-              x={moonX - moonR}
-              y={moonY - moonR}
-              width={moonR * 2}
-              height={moonR * 2}
-            >
+            <Rect x={moonX - moonR} y={moonY - moonR} width={moonR * 2} height={moonR * 2}>
               <LinearGradient
                 start={vec(moonPhase < 0.5 ? moonX + moonR : moonX - moonR, moonY)}
                 end={vec(moonPhase < 0.5 ? moonX - moonR : moonX + moonR, moonY)}
-                colors={['rgba(20,20,20,0)', 'rgba(20,20,20,0)', 'rgba(20,20,20,0.85)', 'rgba(20,20,20,0.95)']}
-                positions={[0, Math.max(0, Math.abs(Math.cos(moonPhase * 2 * Math.PI)) * 0.5), Math.min(1, 0.5 + Math.abs(Math.cos(moonPhase * 2 * Math.PI)) * 0.35), 1]}
+                colors={[
+                  'rgba(20,20,20,0)',
+                  'rgba(20,20,20,0)',
+                  'rgba(20,20,20,0.85)',
+                  'rgba(20,20,20,0.95)',
+                ]}
+                positions={[
+                  0,
+                  Math.max(0, Math.abs(Math.cos(moonPhase * 2 * Math.PI)) * 0.5),
+                  Math.min(1, 0.5 + Math.abs(Math.cos(moonPhase * 2 * Math.PI)) * 0.35),
+                  1,
+                ]}
               />
             </Rect>
           </Group>
@@ -473,9 +518,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       <Path path={state.landPath} color={COLORS.rule} opacity={0.4} />
 
       {/* Night shadow — darker overlay on the unlit hemisphere */}
-      {state.nightPath && (
-        <Path path={state.nightPath} color={COLORS.black} opacity={0.15} />
-      )}
+      {state.nightPath && <Path path={state.nightPath} color={COLORS.black} opacity={0.15} />}
 
       {/* Country highlight */}
       {state.countryPath && (
@@ -485,13 +528,11 @@ export const MiniGlobe = memo(function MiniGlobe({
           </Path>
           <Path
             path={state.countryPath}
-            color={COLORS.textSecondary}
+            color={COLORS.accent}
             style="stroke"
-            strokeWidth={0.8}
-            opacity={0.4}
-          >
-            <BlurMask blur={0.8} style="normal" />
-          </Path>
+            strokeWidth={1}
+            opacity={0.55}
+          />
         </>
       )}
 

@@ -1,21 +1,35 @@
 import { Ionicons } from '@expo/vector-icons';
-import { BottomSheetBackdrop, type BottomSheetBackdropProps, BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
+import {
+  BottomSheetBackdrop,
+  type BottomSheetBackdropProps,
+  BottomSheetModal,
+  BottomSheetView,
+} from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
-import { Activity, createRef, useCallback, useEffect, useRef, useState, useTransition } from 'react';
+import {
+  Activity,
+  createRef,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useTransition,
+} from 'react';
 import { type LayoutChangeEvent, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
-import type { TapResult } from '../components/globe/MiniGlobe';
 import { CategoryBar } from '../components/CategoryBar';
+import type { TapResult } from '../components/globe/MiniGlobe';
 import { Toast, type ToastRef } from '../components/Toast';
 import { SOURCES } from '../constants/sources';
 import { CATEGORIES, COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useHaptic } from '../hooks/useHaptic';
+import type { ArticleSource } from '../types';
 
 function KeyStat({ label, value }: { label: string; value: string | null | undefined }) {
   if (!value) return null;
@@ -29,18 +43,43 @@ function KeyStat({ label, value }: { label: string; value: string | null | undef
 
 // Country code → flag emoji + full name
 const CC_NAMES: Record<string, string> = {
-  US: 'United States', GB: 'United Kingdom', QA: 'Qatar', FR: 'France', DE: 'Germany',
-  ZA: 'South Africa', IN: 'India', KR: 'South Korea', NL: 'Netherlands', IL: 'Israel',
-  RU: 'Russia', PK: 'Pakistan', BD: 'Bangladesh', HK: 'Hong Kong', MY: 'Malaysia',
-  ID: 'Indonesia', NG: 'Nigeria', SE: 'Sweden', AR: 'Argentina', UY: 'Uruguay',
-  CA: 'Canada', AU: 'Australia', NZ: 'New Zealand', EG: 'Egypt', TR: 'Türkiye',
-  DZ: 'Algeria', CN: 'China', JP: 'Japan', BR: 'Brazil', MX: 'Mexico', CY: 'Cyprus',
+  US: 'United States',
+  GB: 'United Kingdom',
+  QA: 'Qatar',
+  FR: 'France',
+  DE: 'Germany',
+  ZA: 'South Africa',
+  IN: 'India',
+  KR: 'South Korea',
+  NL: 'Netherlands',
+  IL: 'Israel',
+  RU: 'Russia',
+  PK: 'Pakistan',
+  BD: 'Bangladesh',
+  HK: 'Hong Kong',
+  MY: 'Malaysia',
+  ID: 'Indonesia',
+  NG: 'Nigeria',
+  SE: 'Sweden',
+  AR: 'Argentina',
+  UY: 'Uruguay',
+  CA: 'Canada',
+  AU: 'Australia',
+  NZ: 'New Zealand',
+  EG: 'Egypt',
+  TR: 'Türkiye',
+  DZ: 'Algeria',
+  CN: 'China',
+  JP: 'Japan',
+  BR: 'Brazil',
+  MX: 'Mexico',
+  CY: 'Cyprus',
 };
 
 function ccToFlag(cc: string): string {
-  return cc.toUpperCase().replace(/./g, (c) =>
-    String.fromCodePoint(0x1f1e6 + c.charCodeAt(0) - 65),
-  );
+  return cc
+    .toUpperCase()
+    .replace(/./g, (c) => String.fromCodePoint(0x1f1e6 + c.charCodeAt(0) - 65));
 }
 
 function CountryRow({ label, value }: { label: string; value: string | null | undefined }) {
@@ -56,7 +95,8 @@ function CountryRow({ label, value }: { label: string; value: string | null | un
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
-  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey } = useArticles();
+  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey } =
+    useArticles();
   const { tick: hapticTick, impact } = useHaptic();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
@@ -67,7 +107,7 @@ export default function HomeScreen() {
 
   // Sheet refs
   const sourceSheetRef = useRef<BottomSheetModal>(null);
-  const [sourceSheetSources, setSourceSheetSources] = useState<Array<{name: string; country?: string | null; sentiment?: number | null}>>([]);
+  const [sourceSheetSources, setSourceSheetSources] = useState<ArticleSource[]>([]);
   const [sourceSheetDivergence, setSourceSheetDivergence] = useState<number | null>(null);
   const [expandedSource, setExpandedSource] = useState<number | null>(null);
   const countrySheetRef = useRef<BottomSheetModal>(null);
@@ -86,7 +126,7 @@ export default function HomeScreen() {
   );
 
   const handleSourcePress = useCallback(
-    (_sourceName: string, allSources?: Array<{name: string; country?: string | null; sentiment?: number | null}>, divergence?: number | null) => {
+    (_sourceName: string, allSources?: ArticleSource[], divergence?: number | null) => {
       impact();
       setSourceSheetSources(allSources ?? []);
       setSourceSheetDivergence(divergence ?? null);
@@ -138,13 +178,6 @@ export default function HomeScreen() {
     [pagerOffset],
   );
 
-  const onPageScrollStateChanged = useCallback(
-    (e: { nativeEvent: { pageScrollState: string } }) => {
-      // Reserved for future use (e.g. disabling interactions during swipe)
-    },
-    [],
-  );
-
   const onCategoryPress = useCallback(
     (index: number) => {
       if (index === currentCategory && index < CATEGORIES.length) {
@@ -166,9 +199,8 @@ export default function HomeScreen() {
       const cat = CATEGORIES[catIndex];
       if (!cat) return;
       const count = grouped[cat]?.length ?? 0;
-      toastRef.current?.show(
-        `All ${count} articles \u00B7 tap to scroll up`,
-        () => listRefs[catIndex]?.current?.scrollToTop(),
+      toastRef.current?.show(`All ${count} articles \u00B7 tap to scroll up`, () =>
+        listRefs[catIndex]?.current?.scrollToTop(),
       );
     },
     [grouped],
@@ -227,6 +259,7 @@ export default function HomeScreen() {
       <CategoryBar
         pagerOffset={pagerOffset}
         categoryProgresses={categoryProgresses}
+        currentCategory={currentCategory}
         onCategoryPress={onCategoryPress}
         briefingAvailable={briefing?.available ?? false}
         briefingPlaying={briefingPlayer.playing}
@@ -239,7 +272,6 @@ export default function HomeScreen() {
         initialPage={0}
         onPageSelected={onPageSelected}
         onPageScroll={onPageScroll}
-        onPageScrollStateChanged={onPageScrollStateChanged}
         onLayout={onPagerLayout}
         overdrag
       >
@@ -278,7 +310,11 @@ export default function HomeScreen() {
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
         handleIndicatorStyle={styles.sheetHandle}
-        onDismiss={() => { setSourceSheetSources([]); setSourceSheetDivergence(null); setExpandedSource(null); }}
+        onDismiss={() => {
+          setSourceSheetSources([]);
+          setSourceSheetDivergence(null);
+          setExpandedSource(null);
+        }}
       >
         <BottomSheetView
           style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
@@ -286,18 +322,30 @@ export default function HomeScreen() {
           {sourceSheetSources.length > 0 ? (
             <>
               <Text style={styles.sheetLabel}>
-                {sourceSheetSources.length} SOURCE{sourceSheetSources.length > 1 ? 'S' : ''}
+                {sourceSheetSources.length === 1 ? 'SOURCE' : 'SOURCES'}
               </Text>
+              {sourceSheetDivergence != null &&
+                sourceSheetDivergence >= 0.2 &&
+                sourceSheetSources.length > 1 && (
+                  <Text style={styles.divergenceNote}>
+                    {sourceSheetDivergence >= 0.35
+                      ? 'These sources frame this story very differently.'
+                      : 'These sources frame this story differently.'}
+                  </Text>
+                )}
               {sourceSheetSources.map((s, i) => {
                 const info = SOURCES[s.name];
                 const cc = s.country?.toUpperCase();
-                const countryName = cc ? CC_NAMES[cc] ?? cc : null;
+                const countryName = cc ? (CC_NAMES[cc] ?? cc) : null;
                 const flag = cc ? ccToFlag(cc) : null;
-                const tone = s.sentiment != null
-                  ? s.sentiment > 0.2 ? 'favorable'
-                  : s.sentiment < -0.2 ? 'unfavorable'
-                  : 'neutral'
-                  : null;
+                const tone =
+                  s.sentiment != null
+                    ? s.sentiment > 0.2
+                      ? 'favorable'
+                      : s.sentiment < -0.2
+                        ? 'unfavorable'
+                        : 'neutral'
+                    : null;
                 const isExpanded = expandedSource === i;
                 return (
                   <Pressable
@@ -308,10 +356,13 @@ export default function HomeScreen() {
                     <View style={styles.sourceRowHeader}>
                       <View style={styles.sourceRowLeft}>
                         <Text style={styles.sheetTitle}>
-                          {flag ? `${flag} ` : ''}{s.name}
+                          {flag ? `${flag} ` : ''}
+                          {s.name}
                         </Text>
                         {info && (
-                          <Text style={styles.sourceType}>{info.type} · {info.location}</Text>
+                          <Text style={styles.sourceType}>
+                            {info.type} · {info.location}
+                          </Text>
                         )}
                       </View>
                       <View style={styles.sourceRowRight}>
@@ -325,9 +376,7 @@ export default function HomeScreen() {
                         )}
                       </View>
                     </View>
-                    {isExpanded && info && (
-                      <Text style={styles.sheetBody}>{info.description}</Text>
-                    )}
+                    {isExpanded && info && <Text style={styles.sheetBody}>{info.description}</Text>}
                   </Pressable>
                 );
               })}
@@ -378,20 +427,27 @@ export default function HomeScreen() {
               <CountryRow label="Languages" value={countrySheet.data.languages} />
               <CountryRow
                 label="Currency"
-                value={countrySheet.data.currency
-                  ? `${countrySheet.data.currency}${countrySheet.data.currencySymbol ? ` ${countrySheet.data.currencySymbol}` : ''}`
-                  : null}
+                value={
+                  countrySheet.data.currency
+                    ? `${countrySheet.data.currency}${countrySheet.data.currencySymbol ? ` ${countrySheet.data.currencySymbol}` : ''}`
+                    : null
+                }
               />
               <CountryRow label="Local time" value={countrySheet.localTime} />
               <CountryRow label="Area" value={countrySheet.data.area} />
               <CountryRow label="GDP/capita" value={countrySheet.data.gdpPerCapita} />
               <CountryRow label="Life expectancy" value={countrySheet.data.lifeExpectancy} />
               <CountryRow label="Internet" value={countrySheet.data.internetPct} />
-              <CountryRow label="Region" value={[
-                countrySheet.data.region,
-                countrySheet.data.landlocked ? 'Landlocked' : null,
-                !countrySheet.data.independent ? 'Disputed' : null,
-              ].filter(Boolean).join(' · ')} />
+              <CountryRow
+                label="Region"
+                value={[
+                  countrySheet.data.region,
+                  countrySheet.data.landlocked ? 'Landlocked' : null,
+                  !countrySheet.data.independent ? 'Disputed' : null,
+                ]
+                  .filter(Boolean)
+                  .join(' · ')}
+              />
             </>
           )}
         </BottomSheetView>
@@ -451,6 +507,13 @@ const styles = StyleSheet.create({
     color: COLORS.textSecondary,
     letterSpacing: TYPOGRAPHY.trackingCaps,
     marginBottom: SPACING.sm,
+  },
+  divergenceNote: {
+    fontFamily: FONT.regular,
+    fontSize: TYPOGRAPHY.sizeSm,
+    fontStyle: 'italic' as const,
+    color: COLORS.accent,
+    marginBottom: SPACING.md,
   },
   sheetTitle: {
     fontFamily: FONT.bold,

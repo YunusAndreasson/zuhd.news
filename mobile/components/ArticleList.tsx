@@ -1,10 +1,17 @@
-import { memo, useCallback, useEffect, useEffectEvent, useImperativeHandle, useMemo, useRef, useState } from 'react';
+import {
+  memo,
+  useCallback,
+  useEffect,
+  useEffectEvent,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { Dimensions, RefreshControl, StyleSheet, View } from 'react-native';
 import Animated, {
   runOnJS,
-  runOnUI,
   type SharedValue,
-  scrollTo,
   useAnimatedReaction,
   useAnimatedRef,
   useAnimatedScrollHandler,
@@ -14,7 +21,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATEGORIES, COLORS, LAYOUT } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { saveReadingPosition } from '../lib/storage';
-import type { Article } from '../types';
+import type { Article, SourcePressHandler } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
 
@@ -30,7 +37,7 @@ interface ArticleListProps {
   onRefresh: () => Promise<void>;
   onEndReached?: (catIndex: number) => void;
   onCaughtUp?: () => void;
-  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null; sentiment?: number | null}>, divergence?: number | null) => void;
+  onSourcePress?: SourcePressHandler;
   onCountryPress?: (result: TapResult) => void;
   progressesSV: SharedValue<number[]>;
   tick?: number;
@@ -106,10 +113,8 @@ export const ArticleList = memo(function ArticleList({
   useImperativeHandle(ref, () => ({
     scrollToTop: () => {
       atEndSV.value = false;
-      runOnUI(() => {
-        'worklet';
-        scrollTo(listRef, 0, 0, true);
-      })();
+      overscrollFired.value = false;
+      listRef.current?.scrollToOffset({ offset: 0, animated: true });
     },
   }));
 
@@ -156,7 +161,7 @@ export const ArticleList = memo(function ArticleList({
       }
       setCurrentIndex(idx);
     },
-    [earlierIndex, hapticSnap, hapticComplete],
+    [earlierIndex, hapticSnap, hapticComplete, onCaughtUp],
   );
 
   useAnimatedReaction(

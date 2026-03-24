@@ -11,8 +11,8 @@ export interface Article {
   title: string;
   date: string;
   addedAt: number;
-  source: string | null;      // derived from sources[0].name — used by globe, share
-  sourceUrl: string | null;   // derived from sources[0].url — used by share
+  source: string | null; // derived from sources[0].name — used by globe, share
+  sourceUrl: string | null; // derived from sources[0].url — used by share
   sources: ArticleSource[];
   concepts: string[];
   eventCoverage: number | null;
@@ -34,3 +34,9 @@ export interface FeedResponse {
   categories: Record<Category, Article[]>;
   briefing: { date: string; available: boolean; duration?: number } | null;
 }
+
+export type SourcePressHandler = (
+  sourceName: string,
+  allSources?: ArticleSource[],
+  divergence?: number | null,
+) => void;

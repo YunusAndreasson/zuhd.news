@@ -339,6 +339,7 @@ const apiCategories = Object.fromEntries(
         sources: sources.map(s => ({ name: s.name, country: s.country || null, sentiment: s.sentiment ? Number(s.sentiment) : null })),
         concepts: concepts.map(c => typeof c === 'object' ? c.label : c),
         eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
+        sentimentDivergence: meta.sentimentDivergence ? Number(meta.sentimentDivergence) : null,
         location: meta.location || null,
         lat: meta.lat != null ? Number(meta.lat) : null,
         lng: meta.lng != null ? Number(meta.lng) : null,

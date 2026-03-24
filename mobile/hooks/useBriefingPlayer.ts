@@ -38,7 +38,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
-  const subRef = useRef<any>(null);
+  const subRef = useRef<{ remove(): void } | null>(null);
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
   const preloadedUrl = useRef<string | null>(null);
@@ -48,7 +48,9 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     if (!date) return;
     const url = `${API_BASE}/audio/briefing-${date}.mp3`;
     if (preloadedUrl.current !== url) {
-      try { preload(url); } catch {}
+      try {
+        preload(url);
+      } catch {}
       preloadedUrl.current = url;
     }
   }, [date]);

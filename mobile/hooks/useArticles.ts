@@ -2,6 +2,7 @@ import { useCallback, useEffect, useEffectEvent, useRef, useState } from 'react'
 import { AppState } from 'react-native';
 import { API_BASE } from '../constants/theme';
 import { readFeedCache, writeFeedCache } from '../lib/feed-cache';
+import { fetchWithTimeout } from '../lib/fetch';
 import { getLastSeenAt, resetReadingPositions, saveLastSeenAt } from '../lib/storage';
 import type { Article, Category, FeedResponse } from '../types';
 
@@ -46,7 +47,9 @@ export function useArticles() {
     lastGeneratedRef.current = data.generated;
     setBriefing(data.briefing);
     const newGrouped = { ...emptyGrouped, ...data.categories } as GroupedArticles;
-    const allSlugs = Object.values(newGrouped).flat().map((a) => a.slug);
+    const allSlugs = Object.values(newGrouped)
+      .flat()
+      .map((a) => a.slug);
     const newSlugs = new Set(allSlugs);
     const addedCount = [...newSlugs].filter((s) => !prevSlugsRef.current.has(s)).length;
     prevSlugsRef.current = newSlugs;
@@ -56,27 +59,22 @@ export function useArticles() {
   }, []);
 
   const fetchFeed = useCallback(async (): Promise<number> => {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 10000);
-    const res = await fetch(`${API_BASE}/api/feed.json`, { signal: controller.signal });
-    clearTimeout(timeout);
+    const res = await fetchWithTimeout(`${API_BASE}/api/feed.json`, 10000);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data: FeedResponse = await res.json();
     const addedCount = applyFeed(data);
-    try { writeFeedCache(data); } catch {}
+    try {
+      writeFeedCache(data);
+    } catch {}
     return addedCount;
   }, [applyFeed]);
 
   const hasNewContent = useCallback(async (): Promise<boolean> => {
     if (!lastGeneratedRef.current) return true;
     try {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 5000);
-      const res = await fetch(`${API_BASE}/api/meta.json`, {
-        signal: controller.signal,
+      const res = await fetchWithTimeout(`${API_BASE}/api/meta.json`, 5000, {
         cache: 'no-store',
       });
-      clearTimeout(timeout);
       if (!res.ok) return true;
       const meta = await res.json();
       return meta.generated !== lastGeneratedRef.current;
@@ -128,8 +126,11 @@ export function useArticles() {
           await resetReadingPositions();
           setResetKey((k) => k + 1);
         }
-      } catch {} // silent — existing content is fine
-      finally { refreshingRef.current = false; }
+      } catch {
+      } finally {
+        // silent — existing content is fine
+        refreshingRef.current = false;
+      }
     }
   });
 

@@ -12,10 +12,9 @@ import Animated, {
 import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { renderSentences } from '../lib/markdown';
-
-import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
-import type { Article } from '../types';
+import type { Article, SourcePressHandler } from '../types';
 import { ActionLabel } from './ActionLabel';
+import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const GRADIENT_HEIGHT_TOP = 16;
@@ -26,7 +25,7 @@ interface ArticlePageProps {
   itemHeight: number;
   index: number;
   scrollY: SharedValue<number>;
-  onSourcePress?: (sourceName: string, allSources?: Array<{name: string; country?: string | null; sentiment?: number | null}>, divergence?: number | null) => void;
+  onSourcePress?: SourcePressHandler;
   showEarlierDivider?: boolean;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
@@ -42,20 +41,27 @@ function formatTimeAgo(addedAt: number): string {
   return date.toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 }
 
-function GlobeTapZone({ globeRef, globeYOffset, onTap }: {
+function GlobeTapZone({
+  globeRef,
+  globeYOffset,
+  onTap,
+  impact,
+}: {
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
   onTap?: (result: TapResult) => void;
+  impact: () => void;
 }) {
-  const { impact } = useHaptic();
-
-  const handleTap = useCallback((e: { nativeEvent: { pageX: number; pageY: number } }) => {
-    const yOff = globeYOffset?.current ?? 0;
-    const result = globeRef?.current?.hitTest(e.nativeEvent.pageX, e.nativeEvent.pageY - yOff);
-    if (!result) return;
-    impact();
-    onTap?.(result);
-  }, [impact, globeRef, globeYOffset, onTap]);
+  const handleTap = useCallback(
+    (e: { nativeEvent: { pageX: number; pageY: number } }) => {
+      const yOff = globeYOffset?.current ?? 0;
+      const result = globeRef?.current?.hitTest(e.nativeEvent.pageX, e.nativeEvent.pageY - yOff);
+      if (!result) return;
+      impact();
+      onTap?.(result);
+    },
+    [impact, globeRef, globeYOffset, onTap],
+  );
 
   return <Pressable style={styles.globeTapZone} onPress={handleTap} />;
 }
@@ -99,7 +105,7 @@ export const ArticlePage = memo(function ArticlePage({
     const contentLength = article.title.length * 2 + article.sentences.join(' ').length;
     const threshold = 450;
     if (contentLength <= threshold) return 1;
-    return Math.max(0.85, threshold / contentLength);
+    return Math.max(0.9, threshold / contentLength);
   }, [article.title, article.sentences]);
 
   const titleFontSize = Math.round(TYPOGRAPHY.sizeH1 * fontScale);
@@ -128,7 +134,12 @@ export const ArticlePage = memo(function ArticlePage({
   return (
     <View style={[styles.container, { height: itemHeight }]}>
       {/* Globe tap zone — behind content, full card size */}
-      <GlobeTapZone globeRef={globeRef} globeYOffset={globeYOffset} onTap={onCountryPress} />
+      <GlobeTapZone
+        globeRef={globeRef}
+        globeYOffset={globeYOffset}
+        onTap={onCountryPress}
+        impact={impact}
+      />
 
       {/* Top gradient — dissolves globe into content */}
       <Canvas style={styles.gradientTop} pointerEvents="none">
@@ -168,11 +179,17 @@ export const ArticlePage = memo(function ArticlePage({
               <Text style={styles.metaDim}>{timeAgo}</Text>
             </View>
             <View style={styles.metaGroup}>
-              {article.sources && article.sources.length > 0 ? (
+              {article.sources.length > 0 ? (
                 <ActionLabel
-                  label="sources"
+                  label={article.sources.length === 1 ? 'source' : 'sources'}
                   icon="chevron-down"
-                  onPress={() => onSourcePress?.(article.sources![0]?.name ?? '', article.sources, article.sentimentDivergence)}
+                  onPress={() =>
+                    onSourcePress?.(
+                      article.sources[0]?.name ?? '',
+                      article.sources,
+                      article.sentimentDivergence,
+                    )
+                  }
                 />
               ) : null}
               <ActionLabel label="share" icon="arrow-up-outline" onPress={handleShare} />

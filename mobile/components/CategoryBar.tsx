@@ -15,6 +15,7 @@ interface TabLayout {
 interface CategoryBarProps {
   pagerOffset: SharedValue<number>;
   categoryProgresses: SharedValue<number[]>;
+  currentCategory: number;
   onCategoryPress: (index: number) => void;
   briefingAvailable: boolean;
   briefingPlaying: boolean;
@@ -56,6 +57,7 @@ function TabLabel({
 export function CategoryBar({
   pagerOffset,
   categoryProgresses,
+  currentCategory,
   onCategoryPress,
   briefingAvailable,
   briefingPlaying,
@@ -113,7 +115,7 @@ export function CategoryBar({
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
       <Pressable
-        onPress={() => onCategoryPress(0)}
+        onPress={() => onCategoryPress(currentCategory)}
         style={({ pressed }) => pressed && { opacity: 0.5 }}
       >
         <Text style={styles.wordmark}>
@@ -150,8 +152,8 @@ export function CategoryBar({
           </Pressable>
         )}
 
-        <Animated.View style={[styles.track, trackPos]} />
-        <Animated.View style={[styles.fill, fillPos]} />
+        <Animated.View style={[styles.progressBar, trackPos]} />
+        <Animated.View style={[styles.progressBar, fillPos]} />
       </View>
     </View>
   );
@@ -195,14 +197,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  track: {
-    position: 'absolute',
-    bottom: 0,
-    height: LAYOUT.progressBarHeight,
-    borderRadius: LAYOUT.progressBarHeight,
-    backgroundColor: COLORS.white,
-  },
-  fill: {
+  progressBar: {
     position: 'absolute',
     bottom: 0,
     height: LAYOUT.progressBarHeight,
