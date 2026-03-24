@@ -35,7 +35,7 @@ function groupBySection(timeline: TimelineEntry[]): SectionGroup[] {
   return groups;
 }
 
-function renderEntry(entry: TimelineEntry, i: number) {
+function renderEntry(entry: TimelineEntry, i: number, arr: TimelineEntry[]) {
   if (entry.verse) {
     return (
       <Text key={i} style={styles.verse}>
@@ -43,10 +43,21 @@ function renderEntry(entry: TimelineEntry, i: number) {
       </Text>
     );
   }
+  if (!entry.year) {
+    return (
+      <Text key={i} style={[styles.bodyText, styles.bodySpacing]}>
+        {entry.body}
+      </Text>
+    );
+  }
+  const nextHasYear = arr[i + 1]?.year != null;
   return (
-    <View key={i} style={styles.entry}>
-      {entry.year && <Text style={styles.entryYear}>{entry.year}</Text>}
-      <Text style={styles.bodyText}>{entry.body}</Text>
+    <View key={i} style={[styles.entry, nextHasYear && styles.entryLine]}>
+      <View style={styles.dot} />
+      <View style={styles.entryContent}>
+        <Text style={styles.entryYear}>{entry.year}</Text>
+        <Text style={styles.bodyText}>{entry.body}</Text>
+      </View>
     </View>
   );
 }
@@ -138,7 +149,26 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.sm,
   },
   entry: {
+    flexDirection: 'row',
+    paddingLeft: SPACING.sm,
     marginBottom: SPACING.md,
+  },
+  entryLine: {
+    borderLeftWidth: StyleSheet.hairlineWidth,
+    borderLeftColor: COLORS.rule,
+  },
+  dot: {
+    position: 'absolute',
+    left: -3,
+    top: 6,
+    width: 5,
+    height: 5,
+    borderRadius: 2.5,
+    backgroundColor: COLORS.accent,
+  },
+  entryContent: {
+    flex: 1,
+    paddingLeft: SPACING.sm,
   },
   entryYear: {
     fontFamily: FONT.semiBold,
@@ -149,6 +179,9 @@ const styles = StyleSheet.create({
   },
   bodyText: {
     ...TEXT_STYLES.body,
+  },
+  bodySpacing: {
+    marginBottom: SPACING.sm,
   },
   verse: {
     ...TEXT_STYLES.body,
