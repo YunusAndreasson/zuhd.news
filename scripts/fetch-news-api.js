@@ -272,7 +272,7 @@ async function fetchEvents() {
     categoryUri: INCLUDE_CATEGORIES,
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
     dateStart: new Date().toISOString().slice(0, 10),
-    minArticlesInEvent: 10,
+    minArticlesInEvent: 15,
   })
   return (data.events?.results || []).filter(Boolean)
 }
@@ -382,7 +382,7 @@ function extractConcepts(articles) {
   return [...map.values()]
     .sort((a, b) => (b.score || 0) - (a.score || 0))
     .slice(0, 8)
-    .map(c => c.label?.eng)
+    .map(c => c.uri ? { label: c.label?.eng, uri: c.uri } : c.label?.eng)
     .filter(Boolean)
 }
 
@@ -496,7 +496,7 @@ async function main() {
     const eventConcepts = (event.concepts || [])
       .sort((a, b) => (b.score || 0) - (a.score || 0))
       .slice(0, 8)
-      .map(c => c.label?.eng)
+      .map(c => c.uri ? { label: c.label?.eng, uri: c.uri } : c.label?.eng)
       .filter(Boolean)
     const eventDate = event.eventDate || new Date().toISOString().slice(0, 10)
     const eventCategories = event.categories || []
