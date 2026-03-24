@@ -1,5 +1,23 @@
 {
   "version": 1,
-  "activeExperiment": null,
+  "activeExperiment": {
+    "id": "2026-03-24-min-articles-event",
+    "startDate": "2026-03-24",
+    "evaluateAfter": "2026-03-27",
+    "prNumber": 7,
+    "hypothesis": "Raising minArticlesInEvent from 10 to 15 filters out marginal events that share articles with each other or with standalones, reducing same-URL duplicate articles published per day.",
+    "parameter": "minArticlesInEvent",
+    "file": "scripts/fetch-news-api.js",
+    "oldValue": 10,
+    "newValue": 15,
+    "targetMetric": "duplicates.today.count",
+    "targetDirection": "decrease",
+    "baseline": {
+      "duplicates": 3,
+      "articlesPublished": 179,
+      "sciTechRatio": 45,
+      "uniqueRegions": 6
+    }
+  },
   "history": []
 }
