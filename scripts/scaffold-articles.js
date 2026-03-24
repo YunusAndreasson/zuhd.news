@@ -59,6 +59,30 @@ for (const f of files) {
     changed = true
   }
 
+  // Add sentiment scores to source entries from selection data
+  if (story.sources?.some(s => s.sentiment != null)) {
+    for (const selSrc of story.sources) {
+      if (selSrc.sentiment == null) continue
+      // Find matching source in YAML by name and add sentiment if missing
+      const namePattern = `name: "${selSrc.name}"`
+      const nameIdx = yaml.indexOf(namePattern)
+      if (nameIdx === -1) continue
+      // Check if sentiment already exists for this source
+      const nextSourceIdx = yaml.indexOf('  - name:', nameIdx + 1)
+      const block = nextSourceIdx === -1 ? yaml.slice(nameIdx) : yaml.slice(nameIdx, nextSourceIdx)
+      if (block.includes('sentiment:')) continue
+      // Find the last property of this source entry and add sentiment after it
+      const countryLine = block.match(/\n\s+country:.*/)
+      const urlLine = block.match(/\n\s+url:.*/)
+      const insertAfter = countryLine ? countryLine[0] : (urlLine ? urlLine[0] : null)
+      if (insertAfter) {
+        const insertIdx = yaml.indexOf(insertAfter, nameIdx) + insertAfter.length
+        yaml = yaml.slice(0, insertIdx) + `\n    sentiment: ${selSrc.sentiment.toFixed(2)}` + yaml.slice(insertIdx)
+        changed = true
+      }
+    }
+  }
+
   // Fill empty sources array from selection
   if (yaml.includes('sources: []') && story.sources?.length > 0) {
     const sourcesYaml = 'sources:\n' + story.sources.map(s => {
