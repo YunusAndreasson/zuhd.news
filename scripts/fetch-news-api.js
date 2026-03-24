@@ -249,13 +249,13 @@ const GAP_COUNTRIES = [
 async function fetchEvents() {
   const data = await apiPost('event/getEvents', {
     resultType: 'events',
-    eventsCount: 40,
+    eventsCount: 50,
     eventsSortBy: 'size',
     lang: 'eng',
     categoryUri: INCLUDE_CATEGORIES,
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
     dateStart: new Date().toISOString().slice(0, 10),
-    minArticlesInEvent: 15,
+    minArticlesInEvent: 10,
   })
   return (data.events?.results || []).filter(Boolean)
 }
@@ -482,7 +482,7 @@ async function main() {
 
   let added = 0
   for (const a of allCandidates) {
-    if (added >= 15) break
+    if (added >= 25) break
     const fp = a.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)
     if (storyFingerprints.has(fp)) continue
     const srcName = a.source?.title || '?'
