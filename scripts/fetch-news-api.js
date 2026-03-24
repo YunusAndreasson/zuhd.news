@@ -211,17 +211,19 @@ const CURATED_SOURCES = [
   // Muslim world + Middle East
   'aljazeera.com', 'middleeasteye.net', 'al-monitor.com', 'en.mehrnews.com',
   'trtworld.com', 'newarab.com', 'middleeastmonitor.com', 'thenationalnews.com',
+  // Israel (critical domestic voice)
+  'haaretz.com',
   // South + East Asia
   'dawn.com', 'scmp.com', 'antaranews.com', 'caixinglobal.com',
   'rappler.com', 'asia.nikkei.com', 'irrawaddy.com',
   // Russia
-  'tass.com', 'haaretz.com',
+  'tass.com',
   // Africa + Latin America
   'dailymaverick.co.za', 'premiumtimesng.com', 'dabangasudan.org', 'techcabal.com',
   // Science + Tech
   'restofworld.org', 'statnews.com', 'newscientist.com', 'nature.com',
   'arstechnica.com', 'technologyreview.com', 'coindesk.com',
-  'carbonbrief.org', 'quantamagazine.org', 'grist.org',
+  'carbonbrief.org', 'quantamagazine.org',
   // Niche regional + moved from RSS (indexed in API)
   'eurasianet.org', 'insightcrime.org', 'sixthtone.com',
   'occrp.org', 'wamda.com',
