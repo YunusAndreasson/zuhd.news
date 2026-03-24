@@ -54,7 +54,11 @@ Frame this from the perspective of a Muslim reader where the history naturally i
 
 ## Grounding rule
 
-Every date and fact must come from the provided Wikipedia extracts. If a fact isn't in the extracts, don't include it. This is not creative writing — it is sourced summarization with editorial selection.
+Use the Wikipedia extracts as your scaffold — they set the scope and ensure you have the key entities right. But you are not limited to what appears in the extracts. If a well-established historical fact is essential to telling the story properly, include it.
+
+The test: would a knowledgeable reader notice its absence? If yes, it belongs. Trust your own knowledge of history — the extracts are a starting point, not a ceiling.
+
+What you must NOT do: speculate, editorialize beyond framing, or invent recent events. Stick to verifiable historical facts and the current situation as described in the thread metadata.
 
 ## Quality
 
