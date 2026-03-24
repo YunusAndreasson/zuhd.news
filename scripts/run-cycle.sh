@@ -146,6 +146,9 @@ else
   # Save the list so the editor checks only this batch (not all untracked files)
   echo "$NEW_ARTICLES" > /tmp/zuhd-new-articles.txt
 
+  # Stage 2.5: Scaffold — enrich frontmatter with data from selection (no LLM needed)
+  node scripts/scaffold-articles.js 2>&1 | tee -a "$LOG_FILE"
+
   # Stage 3: Editor — check only this cycle's articles against style rules
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3: Editor ---" | tee -a "$LOG_FILE"

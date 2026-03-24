@@ -63,9 +63,7 @@ One paragraph, exactly 3 sentences. No line breaks within the body. No source at
 - Never list a source you didn't read
 - For single-source stories (e.g., Hacker News, 404 Media), use a one-element array
 
-**`eventCoverage`**: copy the number from the selection JSON unchanged. Omit for single-source stories.
-
-**`concepts`**: REQUIRED. Copy the top 3-5 concepts from the selection JSON's `concepts` array. If the selection has no concepts, extract the 3 most important entities (people, organizations, locations) from the article you wrote. Never leave concepts empty.
+**`eventCoverage`** and **`concepts`**: a post-writer script copies these automatically from the selection JSON. You may include them if convenient, but they are not required — the scaffold script will fill them in.
 
 For Hacker News stories: set `sources` to `[{name: "Hacker News", url: "...", country: "US"}]`, set `category` to "tech".
 
