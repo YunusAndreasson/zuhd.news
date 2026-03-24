@@ -44,7 +44,9 @@ import { SOURCES } from '../constants/sources';
 import {
   CATEGORIES,
   COLORS,
+  EDITORIAL,
   FONT,
+  LAYOUT,
   PRESSED_STYLE,
   SPACING,
   TEXT_STYLES,
@@ -116,7 +118,7 @@ export default function HomeScreen() {
         disappearsOnIndex={-1}
         appearsOnIndex={0}
         pressBehavior="close"
-        opacity={0.3}
+        opacity={LAYOUT.backdropOpacity}
       />
     ),
     [],
@@ -231,7 +233,7 @@ export default function HomeScreen() {
         const words = allArticles
           .filter((a) => a.addedAt > lastSeenAt)
           .reduce((sum, a) => sum + a.sentences.join(' ').split(/\s+/).length, 0);
-        const mins = Math.max(1, Math.ceil(words / 238));
+        const mins = Math.max(1, Math.ceil(words / EDITORIAL.readingWpm));
         toastRef.current?.show(`${n} new · ~${mins} min read`, undefined, 'top');
         // Scroll to top so new/breaking articles are visible
         listRefs[currentCategory]?.current?.scrollToTop();
@@ -319,7 +321,7 @@ export default function HomeScreen() {
       <BottomSheetModal
         ref={sourceSheetRef}
         enableDynamicSizing
-        maxDynamicContentSize={Dimensions.get('window').height * 0.7}
+        maxDynamicContentSize={Dimensions.get('window').height * LAYOUT.sheetMaxFraction}
         enablePanDownToClose
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
@@ -341,9 +343,9 @@ export default function HomeScreen() {
             <>
               <Text style={styles.coverageHeading}>
                 {sourceSheetDivergence != null &&
-                sourceSheetDivergence >= 0.2 &&
+                sourceSheetDivergence >= EDITORIAL.divergenceModerate &&
                 sourceSheetSources.length > 1
-                  ? sourceSheetDivergence >= 0.35
+                  ? sourceSheetDivergence >= EDITORIAL.divergenceHigh
                     ? 'These sources frame this story very differently.'
                     : 'These sources frame this story differently.'
                   : 'How this story is covered'}
@@ -354,9 +356,9 @@ export default function HomeScreen() {
                 const flag = cc ? ccToFlag(cc) : null;
                 const tone =
                   s.sentiment != null
-                    ? s.sentiment > 0.2
+                    ? s.sentiment > EDITORIAL.sentimentPositive
                       ? 'favorable'
-                      : s.sentiment < -0.2
+                      : s.sentiment < EDITORIAL.sentimentNegative
                         ? 'unfavorable'
                         : 'neutral'
                     : null;
@@ -395,7 +397,7 @@ export default function HomeScreen() {
                         )}
                         <Ionicons
                           name={isExpanded ? 'chevron-up' : 'chevron-down'}
-                          size={14}
+                          size={LAYOUT.iconSm}
                           color={COLORS.accent}
                         />
                       </View>
@@ -426,7 +428,7 @@ export default function HomeScreen() {
       <BottomSheetModal
         ref={countrySheetRef}
         enableDynamicSizing
-        maxDynamicContentSize={Dimensions.get('window').height * 0.7}
+        maxDynamicContentSize={Dimensions.get('window').height * LAYOUT.sheetMaxFraction}
         enablePanDownToClose
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
@@ -612,8 +614,8 @@ const styles = StyleSheet.create({
   },
   tonePill: {
     paddingHorizontal: SPACING.sm,
-    paddingVertical: 2,
-    borderRadius: 3,
+    paddingVertical: LAYOUT.pillPaddingV,
+    borderRadius: LAYOUT.pillRadius,
   },
   tonePillText: {
     fontFamily: FONT.semiBold,
@@ -656,7 +658,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   countryFlag: {
-    fontSize: 36,
+    fontSize: TYPOGRAPHY.sizeH1 * 1.3,
   },
   countryLocation: {
     fontFamily: FONT.bold,

@@ -59,6 +59,27 @@ export const SPACING = {
 
 export const LAYOUT = {
   progressBarHeight: 2,
+  sheetMaxFraction: 0.7,
+  backdropOpacity: 0.3,
+  iconSm: 14,
+  timelineDot: 5,
+  timelineLineWidth: 1,
+  pillPaddingV: 2,
+  pillRadius: 3,
+} as const;
+
+/** Editorial thresholds — not layout, but shared across components */
+export const EDITORIAL = {
+  /** Sentiment score above this is "favorable" */
+  sentimentPositive: 0.2,
+  /** Sentiment score below negative of this is "unfavorable" */
+  sentimentNegative: -0.2,
+  /** Source divergence threshold for "differently" note */
+  divergenceModerate: 0.2,
+  /** Source divergence threshold for "very differently" note */
+  divergenceHigh: 0.35,
+  /** Average words per minute for read-time estimates */
+  readingWpm: 238,
 } as const;
 
 export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech'];

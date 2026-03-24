@@ -2,7 +2,7 @@ import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { memo, useCallback } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
-import { COLORS, FONT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
+import { COLORS, FONT, LAYOUT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
 import type { ContextBrief, TimelineEntry } from '../types';
 import { SheetHandle } from './SheetHandle';
 
@@ -10,7 +10,7 @@ function SheetContainer({ children }: { children?: React.ReactNode }) {
   return <FullWindowOverlay>{children}</FullWindowOverlay>;
 }
 
-const MAX_SHEET_HEIGHT = Dimensions.get('window').height * 0.7;
+const MAX_SHEET_HEIGHT = Dimensions.get('window').height * LAYOUT.sheetMaxFraction;
 
 interface ContextSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
@@ -117,16 +117,16 @@ const styles = StyleSheet.create({
     paddingBottom: SPACING.md,
   },
   entryLine: {
-    borderLeftWidth: 1,
+    borderLeftWidth: LAYOUT.timelineLineWidth,
     borderLeftColor: COLORS.rule,
   },
   dot: {
     position: 'absolute',
-    left: -3,
-    top: 6,
-    width: 5,
-    height: 5,
-    borderRadius: 2.5,
+    left: -(LAYOUT.timelineDot / 2) - LAYOUT.timelineLineWidth / 2,
+    top: TYPOGRAPHY.sizeXs * 0.55,
+    width: LAYOUT.timelineDot,
+    height: LAYOUT.timelineDot,
+    borderRadius: LAYOUT.timelineDot / 2,
     backgroundColor: COLORS.accent,
   },
   entryContent: {
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizeXs,
     color: COLORS.accent,
     letterSpacing: TYPOGRAPHY.trackingCaps,
-    marginBottom: 2,
+    marginBottom: SPACING.xs / 2,
   },
   bodyText: {
     ...TEXT_STYLES.body,
