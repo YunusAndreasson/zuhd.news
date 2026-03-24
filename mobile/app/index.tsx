@@ -338,15 +338,15 @@ export default function HomeScreen() {
         >
           {sourceSheetSources.length > 0 ? (
             <>
-              {sourceSheetDivergence != null &&
+              <Text style={styles.coverageHeading}>
+                {sourceSheetDivergence != null &&
                 sourceSheetDivergence >= 0.2 &&
-                sourceSheetSources.length > 1 && (
-                  <Text style={styles.divergenceNote}>
-                    {sourceSheetDivergence >= 0.35
-                      ? 'These sources frame this story very differently.'
-                      : 'These sources frame this story differently.'}
-                  </Text>
-                )}
+                sourceSheetSources.length > 1
+                  ? sourceSheetDivergence >= 0.35
+                    ? 'These sources frame this story very differently.'
+                    : 'These sources frame this story differently.'
+                  : 'How this story is covered'}
+              </Text>
               {sourceSheetSources.map((s, i) => {
                 const info = SOURCES[s.name];
                 const cc = s.country?.toUpperCase();
@@ -371,12 +371,7 @@ export default function HomeScreen() {
                 return (
                   <Pressable
                     key={i}
-                    style={[
-                      styles.sourceRow,
-                      tone === 'favorable' && styles.borderFavorable,
-                      tone === 'unfavorable' && styles.borderUnfavorable,
-                      tone === 'neutral' && styles.borderNeutral,
-                    ]}
+                    style={styles.sourceRow}
                     onPress={() => setExpandedSource(isExpanded ? null : i)}
                   >
                     <View style={styles.sourceRowHeader}>
@@ -384,18 +379,21 @@ export default function HomeScreen() {
                         {flag ? `${flag} ` : ''}
                         {s.name}
                       </Text>
-                      {toneWord && (
-                        <Text
-                          style={[
-                            styles.toneWord,
-                            tone === 'favorable' && styles.toneFavorable,
-                            tone === 'unfavorable' && styles.toneUnfavorable,
-                            tone === 'neutral' && styles.toneNeutral,
-                          ]}
-                        >
-                          {toneWord}
-                        </Text>
-                      )}
+                      <View style={styles.sourceRowRight}>
+                        {toneWord && (
+                          <View
+                            style={[
+                              styles.tonePill,
+                              tone === 'favorable' && styles.pillFavorable,
+                              tone === 'unfavorable' && styles.pillUnfavorable,
+                              tone === 'neutral' && styles.pillNeutral,
+                            ]}
+                          >
+                            <Text style={styles.tonePillText}>{toneWord}</Text>
+                          </View>
+                        )}
+                        <Text style={styles.expandHint}>{isExpanded ? '\u25B4' : '\u25BE'}</Text>
+                      </View>
                     </View>
                     {isExpanded && info && (
                       <>
@@ -562,7 +560,7 @@ const styles = StyleSheet.create({
     color: COLORS.textSecondary,
     marginBottom: SPACING.sm,
   },
-  divergenceNote: {
+  coverageHeading: {
     fontFamily: FONT.regular,
     fontSize: TYPOGRAPHY.sizeSm,
     fontStyle: 'italic',
@@ -587,47 +585,52 @@ const styles = StyleSheet.create({
   },
   sourceRow: {
     paddingBottom: SPACING.md,
-    borderLeftWidth: 2,
-    borderLeftColor: 'transparent',
-    paddingLeft: SPACING.sm,
   },
   sourceRowHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    gap: SPACING.sm,
+  },
+  sourceRowRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.xs,
+  },
+  expandHint: {
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.accent,
   },
   sourceName: {
     fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeSm,
+    fontSize: TYPOGRAPHY.sizeBase,
     color: COLORS.text,
     flex: 1,
   },
-  toneWord: {
-    ...TEXT_STYLES.smallCapsXs,
-    marginLeft: SPACING.sm,
+  tonePill: {
+    paddingHorizontal: SPACING.sm,
+    paddingVertical: 2,
+    borderRadius: 3,
+  },
+  tonePillText: {
+    fontFamily: FONT.semiBold,
+    fontSize: TYPOGRAPHY.sizeXs,
+    color: COLORS.bg,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+  },
+  pillFavorable: {
+    backgroundColor: COLORS.toneFavorable,
+  },
+  pillUnfavorable: {
+    backgroundColor: COLORS.toneUnfavorable,
+  },
+  pillNeutral: {
+    backgroundColor: COLORS.toneNeutral,
   },
   sourceType: {
     ...TEXT_STYLES.smallCapsXs,
     marginTop: SPACING.sm,
     marginBottom: SPACING.xs,
-  },
-  toneFavorable: {
-    color: COLORS.toneFavorable,
-  },
-  toneUnfavorable: {
-    color: COLORS.toneUnfavorable,
-  },
-  toneNeutral: {
-    color: COLORS.toneNeutral,
-  },
-  borderFavorable: {
-    borderLeftColor: COLORS.toneFavorable,
-  },
-  borderUnfavorable: {
-    borderLeftColor: COLORS.toneUnfavorable,
-  },
-  borderNeutral: {
-    borderLeftColor: COLORS.toneNeutral,
   },
   hotspotSection: {
     paddingBottom: SPACING.md,
