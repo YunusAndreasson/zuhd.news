@@ -3,7 +3,15 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CATEGORIES, COLORS, FONT, LAYOUT, PRESSED_STYLE, SPACING, TYPOGRAPHY } from '../constants/theme';
+import {
+  CATEGORIES,
+  COLORS,
+  FONT,
+  LAYOUT,
+  PRESSED_STYLE,
+  SPACING,
+  TYPOGRAPHY,
+} from '../constants/theme';
 
 const TAB_LABELS = CATEGORIES.map((c) => c.toUpperCase());
 

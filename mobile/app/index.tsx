@@ -22,16 +22,24 @@ import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
 import { CategoryBar } from '../components/CategoryBar';
-import type { TapResult } from '../components/globe/MiniGlobe';
 import { ContextSheet } from '../components/ContextSheet';
+import type { TapResult } from '../components/globe/MiniGlobe';
 import { SheetHandle } from '../components/SheetHandle';
 import { Toast, type ToastRef } from '../components/Toast';
 import { SOURCES } from '../constants/sources';
-import { CATEGORIES, COLORS, FONT, PRESSED_STYLE, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
+import {
+  CATEGORIES,
+  COLORS,
+  FONT,
+  PRESSED_STYLE,
+  SPACING,
+  TEXT_STYLES,
+  TYPOGRAPHY,
+} from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useContextBrief } from '../hooks/useContextBrief';
-import { useHaptic } from '../hooks/useHaptic';
+import { hapticImpact, hapticTick } from '../lib/haptics';
 import type { ArticleSource } from '../types';
 
 function KeyStat({ label, value }: { label: string; value: string | null | undefined }) {
@@ -100,7 +108,6 @@ const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 export default function HomeScreen() {
   const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey } =
     useArticles();
-  const { tick: hapticTick, impact } = useHaptic();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
   const briefingPlayer = useBriefingPlayer(
@@ -116,7 +123,11 @@ export default function HomeScreen() {
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
   const contextSheetRef = useRef<BottomSheetModal>(null);
-  const { brief: contextBrief, loading: contextLoading, fetchBrief: fetchContext } = useContextBrief();
+  const {
+    brief: contextBrief,
+    loading: contextLoading,
+    fetchBrief: fetchContext,
+  } = useContextBrief();
   const [contextThreadLabel, setContextThreadLabel] = useState<string | undefined>();
 
   const renderBackdrop = useCallback(
@@ -136,17 +147,17 @@ export default function HomeScreen() {
 
   const handleSourcePress = useCallback(
     (_sourceName: string, allSources?: ArticleSource[], divergence?: number | null) => {
-      impact();
+      hapticImpact();
       setSourceSheetSources(allSources ?? []);
       setSourceSheetDivergence(divergence ?? null);
       sourceSheetRef.current?.present();
     },
-    [impact],
+    [],
   );
 
   const handleContextPress = useCallback(
     (threadId: string) => {
-      impact();
+      hapticImpact();
       // Find the thread label from any article in the current view
       const allArticles = Object.values(grouped).flat();
       const match = allArticles.find((a) => a.threadId === threadId);
@@ -154,23 +165,20 @@ export default function HomeScreen() {
       fetchContext(threadId);
       contextSheetRef.current?.present();
     },
-    [impact, grouped, fetchContext],
+    [grouped, fetchContext],
   );
 
-  const handleCountryPress = useCallback(
-    (result: TapResult) => {
-      impact();
-      // Direct hotspot-glow tap (no country data) → toast
-      if (result.hotspotLabels?.length && !result.data) {
-        toastRef.current?.show(result.hotspotLabels[0]!);
-        return;
-      }
-      // Country tap (may include hotspot labels) → sheet
-      setCountrySheet(result);
-      countrySheetRef.current?.present();
-    },
-    [impact],
-  );
+  const handleCountryPress = useCallback((result: TapResult) => {
+    hapticImpact();
+    // Direct hotspot-glow tap (no country data) → toast
+    if (result.hotspotLabels?.length && !result.data) {
+      toastRef.current?.show(result.hotspotLabels[0]!);
+      return;
+    }
+    // Country tap (may include hotspot labels) → sheet
+    setCountrySheet(result);
+    countrySheetRef.current?.present();
+  }, []);
 
   const pagerRef = useRef<PagerView>(null);
   const toastRef = useRef<ToastRef>(null);
@@ -196,7 +204,7 @@ export default function HomeScreen() {
         setCurrentCategory(page);
       });
     },
-    [hapticTick, pagerOffset, startTransition],
+    [pagerOffset, startTransition],
   );
 
   const onPageScroll = useCallback(
@@ -213,9 +221,9 @@ export default function HomeScreen() {
       } else {
         pagerRef.current?.setPage(index);
       }
-      impact();
+      hapticImpact();
     },
-    [impact, currentCategory],
+    [currentCategory],
   );
 
   const handleCaughtUp = useCallback(() => {
@@ -253,7 +261,7 @@ export default function HomeScreen() {
     } catch {
       toastRef.current?.show('Could not refresh', undefined, 'top');
     }
-  }, [hapticTick, refresh, grouped, lastSeenAt, currentCategory]);
+  }, [refresh, grouped, lastSeenAt, currentCategory]);
 
   useEffect(() => {
     if (!loading) SplashScreen.hideAsync();
@@ -271,11 +279,7 @@ export default function HomeScreen() {
         <Text style={styles.errorHint}>
           {offline ? 'Connect to the internet and reopen.' : error}
         </Text>
-        <Pressable
-          onPress={retry}
-          style={({ pressed }) => pressed && PRESSED_STYLE}
-          hitSlop={12}
-        >
+        <Pressable onPress={retry} style={({ pressed }) => pressed && PRESSED_STYLE} hitSlop={12}>
           <Text style={styles.retryText}>Try again</Text>
         </Pressable>
       </View>
@@ -405,15 +409,19 @@ export default function HomeScreen() {
                       )}
                     </View>
                     {tone && (
-                      <Text style={[
-                        styles.toneText,
-                        tone === 'favorable' && styles.toneFavorable,
-                        tone === 'unfavorable' && styles.toneUnfavorable,
-                        tone === 'neutral' && styles.toneNeutral,
-                      ]}>
-                        {tone === 'favorable' ? 'Covers this story favorably'
-                          : tone === 'unfavorable' ? 'Covers this story critically'
-                          : 'Neutral coverage'}
+                      <Text
+                        style={[
+                          styles.toneText,
+                          tone === 'favorable' && styles.toneFavorable,
+                          tone === 'unfavorable' && styles.toneUnfavorable,
+                          tone === 'neutral' && styles.toneNeutral,
+                        ]}
+                      >
+                        {tone === 'favorable'
+                          ? 'Covers this story favorably'
+                          : tone === 'unfavorable'
+                            ? 'Covers this story critically'
+                            : 'Neutral coverage'}
                       </Text>
                     )}
                     {isExpanded && info && <Text style={styles.sheetBody}>{info.description}</Text>}
@@ -572,7 +580,7 @@ const styles = StyleSheet.create({
   divergenceNote: {
     fontFamily: FONT.regular,
     fontSize: TYPOGRAPHY.sizeSm,
-    fontStyle: 'italic' as const,
+    fontStyle: 'italic',
     color: COLORS.accent,
     marginBottom: SPACING.md,
   },
@@ -586,7 +594,7 @@ const styles = StyleSheet.create({
     ...TEXT_STYLES.smallCapsXs,
     color: COLORS.textSecondary,
     marginTop: SPACING.lg,
-    textDecorationLine: 'underline' as const,
+    textDecorationLine: 'underline',
   },
   sheetBody: {
     ...TEXT_STYLES.body,
@@ -628,10 +636,6 @@ const styles = StyleSheet.create({
   },
   borderNeutral: {
     borderLeftColor: COLORS.toneNeutral,
-  },
-  sourceCountry: {
-    ...TEXT_STYLES.smallCapsXs,
-    marginBottom: SPACING.xs,
   },
   hotspotSection: {
     paddingBottom: SPACING.md,

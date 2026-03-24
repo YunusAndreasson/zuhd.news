@@ -1,6 +1,6 @@
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo } from 'react';
-import { Dimensions, Pressable, Share, StyleSheet, Text, View } from 'react-native';
+import { Pressable, Share, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -10,19 +10,19 @@ import Animated, {
   useReducedMotion,
 } from 'react-native-reanimated';
 import { COLORS, FONT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
-import { useHaptic } from '../hooks/useHaptic';
+import { hapticImpact } from '../lib/haptics';
 import { renderSentences } from '../lib/markdown';
 import type { Article, ContextPressHandler, SourcePressHandler } from '../types';
 import { ActionLabel } from './ActionLabel';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
 const GRADIENT_HEIGHT_TOP = 16;
 const GRADIENT_HEIGHT_BOTTOM = 40;
 
 interface ArticlePageProps {
   article: Article;
   itemHeight: number;
+  screenWidth: number;
   index: number;
   scrollY: SharedValue<number>;
   onSourcePress?: SourcePressHandler;
@@ -70,6 +70,7 @@ function GlobeTapZone({
 export const ArticlePage = memo(function ArticlePage({
   article,
   itemHeight,
+  screenWidth,
   index,
   scrollY,
   onSourcePress,
@@ -79,7 +80,6 @@ export const ArticlePage = memo(function ArticlePage({
   globeYOffset,
   onCountryPress,
 }: ArticlePageProps) {
-  const { impact } = useHaptic();
   const timeAgo = formatTimeAgo(article.addedAt);
   const pageStart = index * itemHeight;
   const reduceMotion = useReducedMotion();
@@ -127,11 +127,11 @@ export const ArticlePage = memo(function ArticlePage({
   );
 
   const handleShare = useCallback(() => {
-    impact();
+    hapticImpact();
     Share.share({
       message: `${article.title}\n\nhttps://zuhd.news/a/${article.slug}`,
     }).catch(() => {});
-  }, [impact, article.title, article.slug]);
+  }, [article.title, article.slug]);
 
   return (
     <View style={[styles.container, { height: itemHeight }]}>
@@ -140,12 +140,12 @@ export const ArticlePage = memo(function ArticlePage({
         globeRef={globeRef}
         globeYOffset={globeYOffset}
         onTap={onCountryPress}
-        impact={impact}
+        impact={hapticImpact}
       />
 
       {/* Top gradient — dissolves globe into content */}
-      <Canvas style={styles.gradientTop} pointerEvents="none">
-        <Rect x={0} y={0} width={SCREEN_WIDTH} height={GRADIENT_HEIGHT_TOP}>
+      <Canvas style={[styles.gradientTop, { width: screenWidth }]} pointerEvents="none">
+        <Rect x={0} y={0} width={screenWidth} height={GRADIENT_HEIGHT_TOP}>
           <LinearGradient
             start={vec(0, 0)}
             end={vec(0, GRADIENT_HEIGHT_TOP)}
@@ -177,10 +177,7 @@ export const ArticlePage = memo(function ArticlePage({
             </View>
             <View style={styles.metaGroup}>
               {article.threadId && onContextPress && (
-                <ActionLabel
-                  label="context"
-                  onPress={() => onContextPress(article.threadId!)}
-                />
+                <ActionLabel label="context" onPress={() => onContextPress(article.threadId!)} />
               )}
               {article.sources.length > 0 ? (
                 <ActionLabel
@@ -202,8 +199,8 @@ export const ArticlePage = memo(function ArticlePage({
 
       {/* Gradient dissolves content into globe — fades with body */}
       <Animated.View style={fadeStyle} pointerEvents="none">
-        <Canvas style={styles.gradientBottom}>
-          <Rect x={0} y={0} width={SCREEN_WIDTH} height={GRADIENT_HEIGHT_BOTTOM}>
+        <Canvas style={[styles.gradientBottom, { width: screenWidth }]}>
+          <Rect x={0} y={0} width={screenWidth} height={GRADIENT_HEIGHT_BOTTOM}>
             <LinearGradient
               start={vec(0, 0)}
               end={vec(0, GRADIENT_HEIGHT_BOTTOM)}
@@ -226,11 +223,9 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.bg,
   },
   gradientTop: {
-    width: SCREEN_WIDTH,
     height: GRADIENT_HEIGHT_TOP,
   },
   gradientBottom: {
-    width: SCREEN_WIDTH,
     height: GRADIENT_HEIGHT_BOTTOM,
   },
   earlierDivider: {

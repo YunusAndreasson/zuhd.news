@@ -1,14 +1,13 @@
 import {
   memo,
   useCallback,
-  useEffect,
   useEffectEvent,
   useImperativeHandle,
   useMemo,
   useRef,
   useState,
 } from 'react';
-import { Dimensions, RefreshControl, StyleSheet, View } from 'react-native';
+import { RefreshControl, StyleSheet, useWindowDimensions, View } from 'react-native';
 import Animated, {
   runOnJS,
   type SharedValue,
@@ -18,9 +17,8 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CATEGORIES, COLORS, LAYOUT } from '../constants/theme';
-import { useHaptic } from '../hooks/useHaptic';
-import { saveReadingPosition } from '../lib/storage';
+import { COLORS } from '../constants/theme';
+import { hapticNotification, hapticTick } from '../lib/haptics';
 import type { Article, ContextPressHandler, SourcePressHandler } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
@@ -63,7 +61,7 @@ export const ArticleList = memo(function ArticleList({
   ref,
 }: ArticleListProps) {
   const insets = useSafeAreaInsets();
-  const { tick: hapticSnap, notification: hapticComplete } = useHaptic();
+  const { width: screenWidth } = useWindowDimensions();
   // Breaking stories (100+ worldwide coverage) float to top, rest chronological
   const sortedArticles = useMemo(() => {
     const BREAKING_THRESHOLD = 100;
@@ -74,14 +72,10 @@ export const ArticleList = memo(function ArticleList({
     return [...breaking, ...rest];
   }, [articles]);
   const articleCount = sortedArticles.length;
-  const itemHeight = viewportHeight - LAYOUT.peekHeight;
-  const contentStyle = useMemo(
-    () => ({ paddingBottom: LAYOUT.peekHeight + insets.bottom }),
-    [insets.bottom],
-  );
+  const itemHeight = viewportHeight;
+  const contentStyle = useMemo(() => ({ paddingBottom: insets.bottom }), [insets.bottom]);
   const scrollY = useSharedValue(0);
   const listRef = useAnimatedRef<Animated.FlatList<Article>>();
-  const atEndSV = useSharedValue(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const globeRef = useRef<MiniGlobeRef>(null);
   const containerRef = useRef<View>(null);
@@ -97,12 +91,6 @@ export const ArticleList = memo(function ArticleList({
   });
   const [localRefreshing, setLocalRefreshing] = useState(false);
 
-  // Persist reading position on scroll
-  useEffect(() => {
-    const cat = CATEGORIES[catIndex];
-    if (cat && currentIndex > 0) saveReadingPosition(cat, currentIndex);
-  }, [currentIndex, catIndex]);
-
   const handleRefresh = useCallback(async () => {
     setLocalRefreshing(true);
     try {
@@ -114,7 +102,6 @@ export const ArticleList = memo(function ArticleList({
 
   useImperativeHandle(ref, () => ({
     scrollToTop: () => {
-      atEndSV.value = false;
       overscrollFired.value = false;
       listRef.current?.scrollToOffset({ offset: 0, animated: true });
     },
@@ -136,7 +123,7 @@ export const ArticleList = memo(function ArticleList({
       const maxScroll = (articleCount - 1) * itemHeight;
       if (event.contentOffset.y > maxScroll + 15 && !overscrollFired.value) {
         overscrollFired.value = true;
-        runOnJS(hapticComplete)();
+        runOnJS(hapticNotification)();
         runOnJS(fireEndReached)();
         // Reset after bounce-back settles
         runOnJS(resetOverscroll)();
@@ -156,14 +143,14 @@ export const ArticleList = memo(function ArticleList({
     (idx: number) => {
       if (earlierIndex > 0 && idx === earlierIndex - 1 && !caughtUpFired.current) {
         caughtUpFired.current = true;
-        hapticComplete();
+        hapticNotification();
         onCaughtUp?.();
       } else {
-        hapticSnap();
+        hapticTick();
       }
       setCurrentIndex(idx);
     },
-    [earlierIndex, hapticSnap, hapticComplete, onCaughtUp],
+    [earlierIndex, onCaughtUp],
   );
 
   useAnimatedReaction(
@@ -171,13 +158,6 @@ export const ArticleList = memo(function ArticleList({
     (idx, prev) => {
       if (prev !== null && idx !== prev) {
         runOnJS(handleSnap)(idx);
-        if (idx === articleCount - 1 && !atEndSV.value) {
-          atEndSV.value = true;
-          runOnJS(hapticComplete)();
-          runOnJS(fireEndReached)();
-        } else if (idx < articleCount - 1 && atEndSV.value) {
-          atEndSV.value = false;
-        }
       }
     },
   );
@@ -196,6 +176,7 @@ export const ArticleList = memo(function ArticleList({
       <ArticlePage
         article={item}
         itemHeight={itemHeight}
+        screenWidth={screenWidth}
         index={index}
         scrollY={scrollY}
         onSourcePress={onSourcePress}
@@ -206,7 +187,7 @@ export const ArticleList = memo(function ArticleList({
         onCountryPress={onCountryPress}
       />
     ),
-    [itemHeight, scrollY, onSourcePress, onContextPress, onCountryPress, earlierIndex],
+    [itemHeight, screenWidth, scrollY, onSourcePress, onContextPress, onCountryPress, earlierIndex],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);
@@ -228,7 +209,7 @@ export const ArticleList = memo(function ArticleList({
         articles={sortedArticles}
         scrollY={scrollY}
         itemHeight={itemHeight}
-        width={Dimensions.get('window').width}
+        width={screenWidth}
         height={viewportHeight}
       />
       <Animated.FlatList

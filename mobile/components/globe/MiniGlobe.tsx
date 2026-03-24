@@ -29,7 +29,7 @@ import {
   useSharedValue,
 } from 'react-native-reanimated';
 import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
-import { COLORS, bgAlpha } from '../../constants/theme';
+import { bgAlpha, COLORS } from '../../constants/theme';
 import type { Article } from '../../types';
 import { COUNTRY_TZ } from './coordinates';
 import { countries, createSkiaPathContext, land } from './shared';
@@ -49,7 +49,17 @@ interface GlowLayer {
 }
 
 /** Concentric circle glow — data-driven layers with optional blur */
-function Glow({ x, y, color, layers }: { x: number; y: number; color: string; layers: GlowLayer[] }) {
+function Glow({
+  x,
+  y,
+  color,
+  layers,
+}: {
+  x: number;
+  y: number;
+  color: string;
+  layers: GlowLayer[];
+}) {
   return (
     <>
       {layers.map((l, i) => (
@@ -621,12 +631,7 @@ export const MiniGlobe = memo(function MiniGlobe({
               <LinearGradient
                 start={vec(moonPhase < 0.5 ? moonX + moonR : moonX - moonR, moonY)}
                 end={vec(moonPhase < 0.5 ? moonX - moonR : moonX + moonR, moonY)}
-                colors={[
-                  bgAlpha(0),
-                  bgAlpha(0),
-                  bgAlpha(0.85),
-                  bgAlpha(0.95),
-                ]}
+                colors={[bgAlpha(0), bgAlpha(0), bgAlpha(0.85), bgAlpha(0.95)]}
                 positions={[
                   0,
                   Math.max(0, Math.abs(Math.cos(moonPhase * 2 * Math.PI)) * 0.5),
@@ -652,10 +657,16 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Coverage hotspot ambient glows — top coverage hotspots */}
       {state.hotspotGlows.map((z, i) => (
-        <Glow key={i} x={z.x} y={z.y} color={COLORS.text} layers={[
-          { r: 16 + z.intensity * 18, opacity: 0.02 + z.intensity * 0.04, blur: 12 },
-          { r: 5 + z.intensity * 8, opacity: 0.03 + z.intensity * 0.06, blur: 4 },
-        ]} />
+        <Glow
+          key={i}
+          x={z.x}
+          y={z.y}
+          color={COLORS.text}
+          layers={[
+            { r: 16 + z.intensity * 18, opacity: 0.02 + z.intensity * 0.04, blur: 12 },
+            { r: 5 + z.intensity * 8, opacity: 0.03 + z.intensity * 0.06, blur: 4 },
+          ]}
+        />
       ))}
 
       {/* Country highlight */}
@@ -676,22 +687,32 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Al-Aqsa — golden reference point */}
       {state.aqsa && (
-        <Glow x={state.aqsa.x} y={state.aqsa.y} color={COLORS.dome} layers={[
-          { r: 12, opacity: 0.03, blur: 8 },
-          { r: 5, opacity: 0.08, blur: 3 },
-          { r: 2.5, opacity: 0.2, blur: 1.5 },
-          { r: 1.2, opacity: 0.7 },
-        ]} />
+        <Glow
+          x={state.aqsa.x}
+          y={state.aqsa.y}
+          color={COLORS.dome}
+          layers={[
+            { r: 12, opacity: 0.03, blur: 8 },
+            { r: 5, opacity: 0.08, blur: 3 },
+            { r: 2.5, opacity: 0.2, blur: 1.5 },
+            { r: 1.2, opacity: 0.7 },
+          ]}
+        />
       )}
 
       {/* Story dot */}
       {state.dot && (
-        <Glow x={state.dot.x} y={state.dot.y} color={COLORS.text} layers={[
-          { r: 14, opacity: 0.04, blur: 10 },
-          { r: 7, opacity: 0.12, blur: 5 },
-          { r: 3.5, opacity: 0.3, blur: 2 },
-          { r: 2, opacity: 1 },
-        ]} />
+        <Glow
+          x={state.dot.x}
+          y={state.dot.y}
+          color={COLORS.text}
+          layers={[
+            { r: 14, opacity: 0.04, blur: 10 },
+            { r: 7, opacity: 0.12, blur: 5 },
+            { r: 3.5, opacity: 0.3, blur: 2 },
+            { r: 2, opacity: 1 },
+          ]}
+        />
       )}
     </Canvas>
   );

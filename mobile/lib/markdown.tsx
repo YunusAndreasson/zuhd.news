@@ -69,7 +69,11 @@ function renderSegments(segments: Segment[]): ReactNode[] {
   });
 }
 
-export function renderSentences(sentences: string[], fontSize?: number, location?: string | null): ReactNode[] {
+export function renderSentences(
+  sentences: string[],
+  fontSize?: number,
+  location?: string | null,
+): ReactNode[] {
   const size = fontSize ?? TYPOGRAPHY.sizeBase;
   const sizeStyle = fontSize
     ? {

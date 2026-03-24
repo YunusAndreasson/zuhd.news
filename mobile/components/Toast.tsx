@@ -33,7 +33,9 @@ export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
     opacity.value = withTiming(0, { duration: 200 }, (finished) => {
       if (finished) runOnJS(setVisible)(false);
     });
-    translateY.value = withTiming(pos === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET, { duration: 200 });
+    translateY.value = withTiming(pos === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET, {
+      duration: 200,
+    });
   }, [opacity, translateY, pos]);
 
   useImperativeHandle(ref, () => ({
@@ -53,7 +55,10 @@ export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
         opacity.value = withTiming(0, { duration: 200 }, (finished) => {
           if (finished) runOnJS(setVisible)(false);
         });
-        translateY.value = withTiming(position === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET, { duration: 200 });
+        translateY.value = withTiming(
+          position === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET,
+          { duration: 200 },
+        );
       }, TOAST_VISIBLE_MS);
     },
   }));
@@ -68,16 +73,19 @@ export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
     transform: [{ translateY: translateY.value }],
   }));
 
-  const positionStyle = pos === 'top'
-    ? { top: insets.top + SPACING.xl }
-    : { bottom: insets.bottom + SPACING.xl };
+  const positionStyle =
+    pos === 'top' ? { top: insets.top + SPACING.xl } : { bottom: insets.bottom + SPACING.xl };
 
   return (
     <Animated.View
       style={[styles.container, positionStyle, animatedStyle]}
       pointerEvents={visible ? 'auto' : 'none'}
     >
-      <Pressable onPress={handlePress} hitSlop={12} style={({ pressed }) => pressed && { opacity: 0.5 }}>
+      <Pressable
+        onPress={handlePress}
+        hitSlop={12}
+        style={({ pressed }) => pressed && { opacity: 0.5 }}
+      >
         <Text style={styles.text}>{message}</Text>
       </Pressable>
     </Animated.View>

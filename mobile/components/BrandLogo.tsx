@@ -9,7 +9,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { COLORS, PRESSED_STYLE, SPACING } from '../constants/theme';
-import { useHaptic } from '../hooks/useHaptic';
+import { hapticNotification } from '../lib/haptics';
 
 const logo = require('../assets/icon.png');
 
@@ -27,7 +27,6 @@ function playRotation(rotation: { value: number }) {
 }
 
 export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
-  const { notification } = useHaptic();
   const rotation = useSharedValue(0);
 
   useEffect(() => {
@@ -35,9 +34,9 @@ export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
   }, [autoPlay, rotation]);
 
   const onPress = useCallback(() => {
-    notification();
+    hapticNotification();
     playRotation(rotation);
-  }, [notification, rotation]);
+  }, [rotation]);
 
   const logoStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${rotation.value}deg` }],

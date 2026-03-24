@@ -60,7 +60,7 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
     internetPct: '83%',
   },
   Algeria: {
-    official: 'People\'s Democratic Republic of Algeria',
+    official: "People's Democratic Republic of Algeria",
     flag: '🇩🇿',
     capital: 'Algiers',
     region: 'Northern Africa',
@@ -231,7 +231,7 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
     internetPct: '95%',
   },
   Bangladesh: {
-    official: 'People\'s Republic of Bangladesh',
+    official: "People's Republic of Bangladesh",
     flag: '🇧🇩',
     capital: 'Dhaka',
     region: 'Southern Asia',
@@ -575,7 +575,7 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
   Chad: {
     official: 'Republic of Chad',
     flag: '🇹🇩',
-    capital: 'N\'Djamena',
+    capital: "N'Djamena",
     region: 'Middle Africa',
     languages: 'Arabic, French',
     currency: 'Central African CFA franc',
@@ -611,7 +611,7 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
     internetPct: '94%',
   },
   China: {
-    official: 'People\'s Republic of China',
+    official: "People's Republic of China",
     flag: '🇨🇳',
     capital: 'Beijing',
     region: 'Eastern Asia',
@@ -763,7 +763,7 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
     internetPct: '86%',
   },
   "Côte d'Ivoire": {
-    official: 'Republic of Côte d\'Ivoire',
+    official: "Republic of Côte d'Ivoire",
     flag: '🇨🇮',
     capital: 'Yamoussoukro',
     region: 'Western Africa',
@@ -1637,7 +1637,7 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
     internetPct: '88%',
   },
   Laos: {
-    official: 'Lao People\'s Democratic Republic',
+    official: "Lao People's Democratic Republic",
     flag: '🇱🇦',
     capital: 'Vientiane',
     region: 'South-Eastern Asia',
@@ -2207,7 +2207,7 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
     internetPct: '39%',
   },
   'North Korea': {
-    official: 'Democratic People\'s Republic of Korea',
+    official: "Democratic People's Republic of Korea",
     flag: '🇰🇵',
     capital: 'Pyongyang',
     region: 'Eastern Asia',
@@ -3201,7 +3201,7 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
     region: 'Central Asia',
     languages: 'Russian, Uzbek',
     currency: 'Uzbekistani soʻm',
-    currencySymbol: 'so\'m',
+    currencySymbol: "so'm",
     population: '38M',
     area: '447K km²',
     landlocked: true,
@@ -3292,7 +3292,7 @@ export const COUNTRY_DATA: Record<string, CountryData> = {
   Yemen: {
     official: 'Republic of Yemen',
     flag: '🇾🇪',
-    capital: 'Sana\'a',
+    capital: "Sana'a",
     region: 'Western Asia',
     languages: 'Arabic',
     currency: 'Yemeni rial',

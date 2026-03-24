@@ -3,7 +3,7 @@ import { AppState } from 'react-native';
 import { API_BASE } from '../constants/theme';
 import { readFeedCache, writeFeedCache } from '../lib/feed-cache';
 import { fetchWithTimeout } from '../lib/fetch';
-import { getLastSeenAt, resetReadingPositions, saveLastSeenAt } from '../lib/storage';
+import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import type { Article, Category, FeedResponse } from '../types';
 
 type GroupedArticles = Record<Category, Article[]>;
@@ -96,7 +96,6 @@ export function useArticles() {
           const changed = await hasNewContent();
           if (changed) {
             await fetchFeed();
-            await resetReadingPositions();
             setResetKey((k) => k + 1);
           }
         } catch {} // cached data is fine
@@ -106,7 +105,7 @@ export function useArticles() {
       try {
         await fetchFeed();
       } catch (e: unknown) {
-        setError((e as Error)?.message ?? 'Unknown error');
+        setError(e instanceof Error ? e.message : 'Unknown error');
       } finally {
         setLoading(false);
       }
@@ -123,7 +122,6 @@ export function useArticles() {
         const changed = await hasNewContent();
         if (changed) {
           await fetchFeed();
-          await resetReadingPositions();
           setResetKey((k) => k + 1);
         }
       } catch {
@@ -165,7 +163,7 @@ export function useArticles() {
     try {
       await fetchFeed();
     } catch (e: unknown) {
-      setError((e as Error)?.message ?? 'Unknown error');
+      setError(e instanceof Error ? e.message : 'Unknown error');
     } finally {
       setLoading(false);
     }

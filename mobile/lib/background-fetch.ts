@@ -3,7 +3,6 @@ import * as TaskManager from 'expo-task-manager';
 import { API_BASE } from '../constants/theme';
 import { readCachedGenerated, writeFeedCache } from './feed-cache';
 import { fetchWithTimeout } from './fetch';
-import { resetReadingPositions } from './storage';
 
 const TASK_NAME = 'ZUHD_BACKGROUND_FETCH';
 
@@ -26,7 +25,6 @@ export async function fetchAndCacheIfNew(): Promise<boolean> {
     if (!res.ok) return false;
     const feed = await res.json();
     writeFeedCache(feed);
-    await resetReadingPositions();
     return true;
   } catch {
     return false;
