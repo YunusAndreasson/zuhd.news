@@ -123,8 +123,10 @@ async function main() {
   console.error(`Fetching ${SOURCES.length} RSS niche sources...`)
 
   const results = await Promise.all(SOURCES.map(fetchSource))
-  const allItems = results.flat()
-  console.error(`Raw items: ${allItems.length}`)
+  // Cap per source to prevent any single feed from dominating the candidate pool
+  const MAX_PER_SOURCE = 10
+  const allItems = results.flatMap(items => items.slice(0, MAX_PER_SOURCE))
+  console.error(`Raw items: ${allItems.length} (capped at ${MAX_PER_SOURCE}/source)`)
 
   // Dedup against existing articles
   const existingTitles = getExistingTitles()

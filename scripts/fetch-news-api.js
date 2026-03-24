@@ -2,14 +2,19 @@
 // Fetches news from NewsAPI.ai (Event Registry).
 // Strategy: events endpoint for story discovery + article queries for source diversity.
 // Output: /tmp/zuhd-feed-api.json
-import { writeFileSync } from 'fs'
+import { writeFileSync, unlinkSync } from 'fs'
 import { slugify, zuhdCategory } from './lib/utils.js'
 
 const API_KEY = process.env.NEWSAPI_KEY
-if (!API_KEY) { console.error('NEWSAPI_KEY not set'); process.exit(1) }
+const OUTPUT = '/tmp/zuhd-feed-api.json'
+if (!API_KEY) {
+  console.error('NEWSAPI_KEY not set')
+  // Write empty feed so merge-feeds.js doesn't use stale data
+  writeFileSync(OUTPUT, JSON.stringify({ fetchedAt: new Date().toISOString(), events: 0, stories: [] }))
+  process.exit(1)
+}
 
 const API_BASE = 'https://eventregistry.org/api/v1'
-const OUTPUT = '/tmp/zuhd-feed-api.json'
 const MAX_BODY = 3000
 
 // ── Category filter ─────────────────────────────────────────────────
