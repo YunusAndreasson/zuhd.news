@@ -5,8 +5,8 @@
       "id": "iran-us-israel-war",
       "label": "Iran-US-Israel war: Gulf states weigh military entry, Hormuz blockade tightens",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-24T23:30:00Z",
-      "coverageCount": 340,
+      "lastCovered": "2026-03-25T00:00:00Z",
+      "coverageCount": 341,
       "category": "politics",
       "importance": 5,
       "arc": "ongoing",
@@ -178,9 +178,10 @@
         "2026-03-24-iran-irgc-blocks-container-ship-hormuz-strait",
         "2026-03-24-sindh-smart-lockdown-fuel-conservation-iran-war",
         "2026-03-24-clerics-pakistan-afghanistan-extend-pause-eid",
-        "2026-03-24-trump-iran-prize-hormuz-vague-deal-claim"
+        "2026-03-24-trump-iran-prize-hormuz-vague-deal-claim",
+        "2026-03-24-saudi-mbs-pushes-trump-regime-change-iran-nyt"
       ],
-      "summary": "Trump claims Iran gave unspecified 'prize' on Hormuz. Pakistani/Afghan clerics call to extend pause to Eid al-Adha. Diplomatic signals increasingly contradictory."
+      "summary": "NYT: MBS privately pushing Trump for regime change and ground operations in Iran. 15-point US plan transmitted via Pakistan. Trump swings between escalation and deal talk. Contradictory signals intensifying."
     },
     {
       "id": "ftc-cvs-pbm-insulin",
@@ -626,6 +627,89 @@
       ],
       "eventUri": "por-1233572",
       "summary": "Study of hundreds of thousands of Finns: hospital-treated cystitis, pneumonia, or tooth decay significantly increased dementia risk within years. Chronic inflammation may cross blood-brain barrier."
+    },
+    {
+      "id": "eu-mercosur-trade-deal",
+      "label": "EU-Mercosur trade deal starts May 1 — Commission bypasses parliament",
+      "firstSeen": "2026-03-25T00:00:00Z",
+      "lastCovered": "2026-03-25T00:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-eu-mercosur-trade-deal-may-1-democratic-bypass"
+      ],
+      "eventUri": "spa-4146070",
+      "summary": "EU-Mercosur deal provisionally applied from May 1 despite pending ECJ review. 25 years of negotiation, 700M people, 25% of global GDP. Commission sidestepped European Parliament. France calls it 'a bad surprise.' EU racing to diversify from US/China amid Iran war trade disruption.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Mercosur",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/European_Commission",
+        "http://en.wikipedia.org/wiki/Paraguay",
+        "http://en.wikipedia.org/wiki/Argentina",
+        "http://en.wikipedia.org/wiki/Brazil",
+        "http://en.wikipedia.org/wiki/Uruguay"
+      ]
+    },
+    {
+      "id": "openai-sora-shutdown",
+      "label": "OpenAI kills Sora, Disney $1B deal collapses",
+      "firstSeen": "2026-03-25T00:00:00Z",
+      "lastCovered": "2026-03-25T00:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-openai-kills-sora-disney-deal-collapses-ip-wars-won"
+      ],
+      "eventUri": "eng-11509265",
+      "summary": "OpenAI discontinues Sora video generator after 15 months. Disney exits $1B investment. IP/copyright battles from Hollywood, SAG-AFTRA, Japan proved decisive. OpenAI pivots to business/productivity.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/The_Walt_Disney_Company",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence"
+      ]
+    },
+    {
+      "id": "eff-leadership-transition",
+      "label": "EFF's Cohn departs after 26 years as ICE surveillance proves fears right",
+      "firstSeen": "2026-03-25T00:00:00Z",
+      "lastCovered": "2026-03-25T00:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-eff-cohn-departing-ice-surveillance-ai-age-digital-rights"
+      ],
+      "eventUri": null,
+      "summary": "Cindy Cohn steps down from EFF after 26 years. New director Nicole Ozer plans social movement against AI-powered government surveillance. Communities tearing down Flock cameras. DHS trying to unmask ICE critics on social media.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Electronic_Frontier_Foundation",
+        "http://en.wikipedia.org/wiki/Surveillance"
+      ]
+    },
+    {
+      "id": "scotus-asylum-metering",
+      "label": "SCOTUS likely to greenlight border asylum metering under Trump",
+      "firstSeen": "2026-03-25T00:00:00Z",
+      "lastCovered": "2026-03-25T00:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-scotus-asylum-metering-border-arrival-ruling"
+      ],
+      "eventUri": "eng-11508132",
+      "summary": "Supreme Court 6-3 conservative majority appears ready to rule that stopping asylum seekers at the Mexican side of the border does not constitute 'arrival in the United States.' Could permanently close legal pathway for land-border asylum.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Right_of_asylum",
+        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Mexico%E2%80%93United_States_border"
+      ]
     }
   ]
 }
