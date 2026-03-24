@@ -1,5 +1,5 @@
 import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
 import { COLORS, FONT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
 import type { ContextBrief, TimelineEntry } from '../types';
@@ -17,24 +17,6 @@ interface ContextSheetProps {
   onDismiss: () => void;
 }
 
-interface SectionGroup {
-  heading: string;
-  entries: TimelineEntry[];
-}
-
-function groupBySection(timeline: TimelineEntry[]): SectionGroup[] {
-  const groups: SectionGroup[] = [];
-  for (const entry of timeline) {
-    const last = groups[groups.length - 1];
-    if (last && last.heading === entry.section) {
-      last.entries.push(entry);
-    } else {
-      groups.push({ heading: entry.section, entries: [entry] });
-    }
-  }
-  return groups;
-}
-
 function renderEntry(entry: TimelineEntry, i: number, arr: TimelineEntry[]) {
   if (entry.verse) {
     return (
@@ -43,19 +25,12 @@ function renderEntry(entry: TimelineEntry, i: number, arr: TimelineEntry[]) {
       </Text>
     );
   }
-  if (!entry.year) {
-    return (
-      <Text key={i} style={[styles.bodyText, styles.bodySpacing]}>
-        {entry.body}
-      </Text>
-    );
-  }
-  const nextHasYear = arr[i + 1]?.year != null;
+  const isLast = i === arr.length - 1 || arr[i + 1]?.verse;
   return (
-    <View key={i} style={[styles.entry, nextHasYear && styles.entryLine]}>
+    <View key={i} style={[styles.entry, !isLast && styles.entryLine]}>
       <View style={styles.dot} />
       <View style={styles.entryContent}>
-        <Text style={styles.entryYear}>{entry.year}</Text>
+        {entry.year && <Text style={styles.entryYear}>{entry.year}</Text>}
         <Text style={styles.bodyText}>{entry.body}</Text>
       </View>
     </View>
@@ -71,11 +46,8 @@ export const ContextSheet = memo(function ContextSheet({
   renderBackdrop,
   onDismiss,
 }: ContextSheetProps) {
-  const sections = useMemo(
-    () => (brief?.timeline ? groupBySection(brief.timeline) : []),
-    [brief],
-  );
   const label = brief?.label ?? threadLabel;
+  const timeline = brief?.timeline ?? [];
   const ContextHandle = useCallback(() => <SheetHandle title="context" />, []);
 
   return (
@@ -102,14 +74,7 @@ export const ContextSheet = memo(function ContextSheet({
 
         {loading && !brief && <ActivityIndicator color={COLORS.accent} style={styles.loader} />}
 
-        {sections.map((section, si) => (
-          <View key={si} style={si === 0 ? undefined : styles.sectionSpacing}>
-            <Text style={styles.heading}>
-              {section.heading}
-            </Text>
-            {section.entries.map(renderEntry)}
-          </View>
-        ))}
+        {timeline.map(renderEntry)}
       </BottomSheetScrollView>
     </BottomSheetModal>
   );
@@ -139,14 +104,6 @@ const styles = StyleSheet.create({
   },
   loader: {
     marginTop: SPACING.lg,
-  },
-  sectionSpacing: {
-    marginTop: SPACING.lg,
-  },
-  heading: {
-    ...TEXT_STYLES.smallCaps,
-    color: COLORS.textEmphasis,
-    marginBottom: SPACING.sm,
   },
   entry: {
     flexDirection: 'row',
@@ -180,13 +137,11 @@ const styles = StyleSheet.create({
   bodyText: {
     ...TEXT_STYLES.body,
   },
-  bodySpacing: {
-    marginBottom: SPACING.sm,
-  },
   verse: {
     ...TEXT_STYLES.body,
     fontStyle: 'italic',
     color: COLORS.dome,
+    marginTop: SPACING.md,
     marginBottom: SPACING.xs,
   },
 });
