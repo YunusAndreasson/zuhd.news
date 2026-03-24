@@ -63,9 +63,9 @@ One paragraph, exactly 3 sentences. No line breaks within the body. No source at
 - Never list a source you didn't read
 - For single-source stories (e.g., Hacker News, 404 Media), use a one-element array
 
-**`eventCoverage`**: copy from the selection JSON (total articles covering this event globally). Omit for single-source stories.
+**`eventCoverage`**: copy the number from the selection JSON unchanged. Omit for single-source stories.
 
-**`concepts`**: copy the top 3-5 from the selection JSON. These are key entities (people, organizations, locations) for reader context.
+**`concepts`**: REQUIRED. Copy the top 3-5 concepts from the selection JSON's `concepts` array. If the selection has no concepts, extract the 3 most important entities (people, organizations, locations) from the article you wrote. Never leave concepts empty.
 
 For Hacker News stories: set `sources` to `[{name: "Hacker News", url: "...", country: "US"}]`, set `category` to "tech".
 
