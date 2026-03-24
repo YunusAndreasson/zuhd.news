@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import {
   BottomSheetBackdrop,
   type BottomSheetBackdropProps,
@@ -65,41 +64,6 @@ function KeyStat({ label, value }: { label: string; value: string | null | undef
     </View>
   );
 }
-
-// Country code → flag emoji + full name
-const CC_NAMES: Record<string, string> = {
-  US: 'United States',
-  GB: 'United Kingdom',
-  QA: 'Qatar',
-  FR: 'France',
-  DE: 'Germany',
-  ZA: 'South Africa',
-  IN: 'India',
-  KR: 'South Korea',
-  NL: 'Netherlands',
-  IL: 'Israel',
-  RU: 'Russia',
-  PK: 'Pakistan',
-  BD: 'Bangladesh',
-  HK: 'Hong Kong',
-  MY: 'Malaysia',
-  ID: 'Indonesia',
-  NG: 'Nigeria',
-  SE: 'Sweden',
-  AR: 'Argentina',
-  UY: 'Uruguay',
-  CA: 'Canada',
-  AU: 'Australia',
-  NZ: 'New Zealand',
-  EG: 'Egypt',
-  TR: 'Türkiye',
-  DZ: 'Algeria',
-  CN: 'China',
-  JP: 'Japan',
-  BR: 'Brazil',
-  MX: 'Mexico',
-  CY: 'Cyprus',
-};
 
 function ccToFlag(cc: string): string {
   return cc
@@ -386,7 +350,6 @@ export default function HomeScreen() {
               {sourceSheetSources.map((s, i) => {
                 const info = SOURCES[s.name];
                 const cc = s.country?.toUpperCase();
-                const countryName = cc ? (CC_NAMES[cc] ?? cc) : null;
                 const flag = cc ? ccToFlag(cc) : null;
                 const tone =
                   s.sentiment != null
@@ -396,6 +359,14 @@ export default function HomeScreen() {
                         ? 'unfavorable'
                         : 'neutral'
                     : null;
+                const toneWord =
+                  tone === 'favorable'
+                    ? 'favorably'
+                    : tone === 'unfavorable'
+                      ? 'critically'
+                      : tone === 'neutral'
+                        ? 'neutral'
+                        : null;
                 const isExpanded = expandedSource === i;
                 return (
                   <Pressable
@@ -409,42 +380,31 @@ export default function HomeScreen() {
                     onPress={() => setExpandedSource(isExpanded ? null : i)}
                   >
                     <View style={styles.sourceRowHeader}>
-                      <View style={styles.sourceRowLeft}>
-                        <Text style={styles.sheetTitle}>
-                          {flag ? `${flag} ` : ''}
-                          {s.name}
+                      <Text style={styles.sourceName} numberOfLines={1}>
+                        {flag ? `${flag} ` : ''}
+                        {s.name}
+                      </Text>
+                      {toneWord && (
+                        <Text
+                          style={[
+                            styles.toneWord,
+                            tone === 'favorable' && styles.toneFavorable,
+                            tone === 'unfavorable' && styles.toneUnfavorable,
+                            tone === 'neutral' && styles.toneNeutral,
+                          ]}
+                        >
+                          {toneWord}
                         </Text>
-                        {info && (
-                          <Text style={styles.sourceType}>
-                            {info.type} · {info.location}
-                          </Text>
-                        )}
-                      </View>
-                      {info && (
-                        <Ionicons
-                          name={isExpanded ? 'chevron-up' : 'chevron-down'}
-                          size={16}
-                          color={COLORS.accent}
-                        />
                       )}
                     </View>
-                    {tone && (
-                      <Text
-                        style={[
-                          styles.toneText,
-                          tone === 'favorable' && styles.toneFavorable,
-                          tone === 'unfavorable' && styles.toneUnfavorable,
-                          tone === 'neutral' && styles.toneNeutral,
-                        ]}
-                      >
-                        {tone === 'favorable'
-                          ? 'Covers this story favorably'
-                          : tone === 'unfavorable'
-                            ? 'Covers this story critically'
-                            : 'Neutral coverage'}
-                      </Text>
+                    {isExpanded && info && (
+                      <>
+                        <Text style={styles.sourceType}>
+                          {info.type} · {info.location}
+                        </Text>
+                        <Text style={styles.sheetBody}>{info.description}</Text>
+                      </>
                     )}
-                    {isExpanded && info && <Text style={styles.sheetBody}>{info.description}</Text>}
                   </Pressable>
                 );
               })}
@@ -613,7 +573,7 @@ const styles = StyleSheet.create({
     fontFamily: FONT.bold,
     fontSize: TYPOGRAPHY.sizeBase,
     color: COLORS.text,
-    marginBottom: SPACING.sm,
+    marginBottom: SPACING.xs,
   },
   correctionLink: {
     ...TEXT_STYLES.smallCapsXs,
@@ -625,9 +585,8 @@ const styles = StyleSheet.create({
     ...TEXT_STYLES.body,
     color: COLORS.accent,
   },
-  sourceType: TEXT_STYLES.smallCapsXs,
   sourceRow: {
-    marginBottom: SPACING.md,
+    paddingBottom: SPACING.md,
     borderLeftWidth: 2,
     borderLeftColor: 'transparent',
     paddingLeft: SPACING.sm,
@@ -637,12 +596,20 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  sourceRowLeft: {
+  sourceName: {
+    fontFamily: FONT.semiBold,
+    fontSize: TYPOGRAPHY.sizeSm,
+    color: COLORS.text,
     flex: 1,
   },
-  toneText: {
+  toneWord: {
     ...TEXT_STYLES.smallCapsXs,
-    marginTop: SPACING.xs,
+    marginLeft: SPACING.sm,
+  },
+  sourceType: {
+    ...TEXT_STYLES.smallCapsXs,
+    marginTop: SPACING.sm,
+    marginBottom: SPACING.xs,
   },
   toneFavorable: {
     color: COLORS.toneFavorable,
