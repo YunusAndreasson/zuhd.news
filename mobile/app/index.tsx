@@ -4,10 +4,15 @@ import {
   type BottomSheetBackdropProps,
   BottomSheetModal,
   BottomSheetScrollView,
-  BottomSheetView,
 } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
+import { FullWindowOverlay } from 'react-native-screens';
+
+function SheetContainer({ children }: { children?: React.ReactNode }) {
+  return <FullWindowOverlay>{children}</FullWindowOverlay>;
+}
+
 import {
   Activity,
   createRef,
@@ -146,6 +151,7 @@ export default function HomeScreen() {
         disappearsOnIndex={-1}
         appearsOnIndex={0}
         pressBehavior="close"
+        opacity={0.3}
       />
     ),
     [],
@@ -348,18 +354,23 @@ export default function HomeScreen() {
       <BottomSheetModal
         ref={sourceSheetRef}
         enableDynamicSizing
+        maxDynamicContentSize={Dimensions.get('window').height * 0.7}
         enablePanDownToClose
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
         handleComponent={SourceHandle}
+        containerComponent={SheetContainer}
         onDismiss={() => {
           setSourceSheetSources([]);
           setSourceSheetDivergence(null);
           setExpandedSource(null);
         }}
       >
-        <BottomSheetView
-          style={[styles.sheetContent, { paddingBottom: insets.bottom + SPACING.lg }]}
+        <BottomSheetScrollView
+          contentContainerStyle={[
+            styles.sheetContent,
+            { paddingBottom: insets.bottom + SPACING.lg },
+          ]}
         >
           {sourceSheetSources.length > 0 ? (
             <>
@@ -445,7 +456,7 @@ export default function HomeScreen() {
               </Text>
             </>
           ) : null}
-        </BottomSheetView>
+        </BottomSheetScrollView>
       </BottomSheetModal>
 
       {/* Country sheet */}
@@ -457,6 +468,7 @@ export default function HomeScreen() {
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
         handleComponent={CountryHandle}
+        containerComponent={SheetContainer}
         onDismiss={() => setCountrySheet(null)}
       >
         <BottomSheetScrollView

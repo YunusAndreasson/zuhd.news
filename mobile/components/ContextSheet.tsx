@@ -1,9 +1,14 @@
 import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { memo, useCallback } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
+import { FullWindowOverlay } from 'react-native-screens';
 import { COLORS, FONT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
 import type { ContextBrief, TimelineEntry } from '../types';
 import { SheetHandle } from './SheetHandle';
+
+function SheetContainer({ children }: { children?: React.ReactNode }) {
+  return <FullWindowOverlay>{children}</FullWindowOverlay>;
+}
 
 const MAX_SHEET_HEIGHT = Dimensions.get('window').height * 0.7;
 
@@ -59,6 +64,7 @@ export const ContextSheet = memo(function ContextSheet({
       backdropComponent={renderBackdrop}
       backgroundStyle={styles.sheetBg}
       handleComponent={ContextHandle}
+      containerComponent={SheetContainer}
       onDismiss={onDismiss}
     >
       <BottomSheetScrollView
