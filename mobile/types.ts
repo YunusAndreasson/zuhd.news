@@ -29,11 +29,26 @@ export interface Article {
   sentences: string[];
 }
 
+export interface ContextIndexEntry {
+  label: string;
+  category: Category;
+  articleCount: number;
+  generatedAt: string;
+}
+
+export interface ContextBrief extends ContextIndexEntry {
+  id: string;
+  brief: string;
+}
+
 export interface FeedResponse {
   generated: string;
   categories: Record<Category, Article[]>;
   briefing: { date: string; available: boolean; duration?: number } | null;
+  contexts?: Record<string, ContextIndexEntry>;
 }
+
+export type ContextPressHandler = (threadId: string) => void;
 
 export type SourcePressHandler = (
   sourceName: string,

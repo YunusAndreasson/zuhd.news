@@ -12,7 +12,7 @@ import Animated, {
 import { COLORS, FONT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { renderSentences } from '../lib/markdown';
-import type { Article, SourcePressHandler } from '../types';
+import type { Article, ContextPressHandler, SourcePressHandler } from '../types';
 import { ActionLabel } from './ActionLabel';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 
@@ -26,6 +26,7 @@ interface ArticlePageProps {
   index: number;
   scrollY: SharedValue<number>;
   onSourcePress?: SourcePressHandler;
+  onContextPress?: ContextPressHandler;
   showEarlierDivider?: boolean;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
@@ -72,6 +73,7 @@ export const ArticlePage = memo(function ArticlePage({
   index,
   scrollY,
   onSourcePress,
+  onContextPress,
   showEarlierDivider,
   globeRef,
   globeYOffset,
@@ -171,18 +173,18 @@ export const ArticlePage = memo(function ArticlePage({
           {/* Meta — status left, actions right */}
           <View style={styles.meta}>
             <View style={styles.metaGroup}>
-              {article.eventCoverage != null && article.eventCoverage >= 100 && (
-                <View style={styles.breakingPill}>
-                  <Text style={styles.breakingText}>breaking</Text>
-                </View>
-              )}
               <Text style={styles.metaDim}>{timeAgo}</Text>
             </View>
             <View style={styles.metaGroup}>
+              {article.threadId && onContextPress && (
+                <ActionLabel
+                  label="context"
+                  onPress={() => onContextPress(article.threadId!)}
+                />
+              )}
               {article.sources.length > 0 ? (
                 <ActionLabel
                   label={article.sources.length === 1 ? 'source' : 'sources'}
-                  icon="chevron-down"
                   onPress={() =>
                     onSourcePress?.(
                       article.sources[0]?.name ?? '',
@@ -192,7 +194,7 @@ export const ArticlePage = memo(function ArticlePage({
                   }
                 />
               ) : null}
-              <ActionLabel label="share" icon="arrow-up-outline" onPress={handleShare} />
+              <ActionLabel label="share" onPress={handleShare} />
             </View>
           </View>
         </Animated.View>
@@ -255,16 +257,6 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.md,
     fontVariant: ['oldstyle-nums'],
   },
-  breakingPill: {
-    backgroundColor: COLORS.text,
-    borderRadius: 3,
-    paddingHorizontal: 6,
-    paddingVertical: 2,
-  },
-  breakingText: {
-    ...TEXT_STYLES.smallCapsXs,
-    color: COLORS.bg,
-  },
   meta: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -274,7 +266,7 @@ const styles = StyleSheet.create({
   metaGroup: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: SPACING.sm,
+    gap: SPACING.xs,
   },
   metaDim: {
     ...TEXT_STYLES.smallCaps,

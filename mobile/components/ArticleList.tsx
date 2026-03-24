@@ -21,7 +21,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { CATEGORIES, COLORS, LAYOUT } from '../constants/theme';
 import { useHaptic } from '../hooks/useHaptic';
 import { saveReadingPosition } from '../lib/storage';
-import type { Article, SourcePressHandler } from '../types';
+import type { Article, ContextPressHandler, SourcePressHandler } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
 
@@ -38,6 +38,7 @@ interface ArticleListProps {
   onEndReached?: (catIndex: number) => void;
   onCaughtUp?: () => void;
   onSourcePress?: SourcePressHandler;
+  onContextPress?: ContextPressHandler;
   onCountryPress?: (result: TapResult) => void;
   progressesSV: SharedValue<number[]>;
   tick?: number;
@@ -51,6 +52,7 @@ export const ArticleList = memo(function ArticleList({
   catIndex,
   lastSeenAt,
   onSourcePress,
+  onContextPress,
   onCountryPress,
   onRefresh,
   onEndReached,
@@ -197,13 +199,14 @@ export const ArticleList = memo(function ArticleList({
         index={index}
         scrollY={scrollY}
         onSourcePress={onSourcePress}
+        onContextPress={onContextPress}
         showEarlierDivider={index === earlierIndex}
         globeRef={globeRef}
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
       />
     ),
-    [itemHeight, scrollY, onSourcePress, onCountryPress, earlierIndex],
+    [itemHeight, scrollY, onSourcePress, onContextPress, onCountryPress, earlierIndex],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);

@@ -19,6 +19,9 @@ export const COLORS = {
   black: '#000000',
   atmosphere: '#334455',
   shadow: 'rgba(0,0,0,0.6)',
+  toneFavorable: '#6b8f71',   // muted sage
+  toneUnfavorable: '#8f6b6b', // muted rose
+  toneNeutral: '#6b7f8f',     // muted slate
 } as const;
 
 /** bg (#141414 = rgb(20,20,20)) at a given alpha — keeps gradient stops in sync with bg */

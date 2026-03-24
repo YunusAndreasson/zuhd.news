@@ -23,11 +23,14 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
 import { CategoryBar } from '../components/CategoryBar';
 import type { TapResult } from '../components/globe/MiniGlobe';
+import { ContextSheet } from '../components/ContextSheet';
+import { SheetHandle } from '../components/SheetHandle';
 import { Toast, type ToastRef } from '../components/Toast';
 import { SOURCES } from '../constants/sources';
 import { CATEGORIES, COLORS, FONT, PRESSED_STYLE, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
+import { useContextBrief } from '../hooks/useContextBrief';
 import { useHaptic } from '../hooks/useHaptic';
 import type { ArticleSource } from '../types';
 
@@ -112,6 +115,9 @@ export default function HomeScreen() {
   const [expandedSource, setExpandedSource] = useState<number | null>(null);
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
+  const contextSheetRef = useRef<BottomSheetModal>(null);
+  const { brief: contextBrief, loading: contextLoading, fetchBrief: fetchContext } = useContextBrief();
+  const [contextThreadLabel, setContextThreadLabel] = useState<string | undefined>();
 
   const renderBackdrop = useCallback(
     (props: BottomSheetBackdropProps) => (
@@ -125,6 +131,9 @@ export default function HomeScreen() {
     [],
   );
 
+  const SourceHandle = useCallback(() => <SheetHandle title="sources" />, []);
+  const CountryHandle = useCallback(() => <SheetHandle />, []);
+
   const handleSourcePress = useCallback(
     (_sourceName: string, allSources?: ArticleSource[], divergence?: number | null) => {
       impact();
@@ -133,6 +142,19 @@ export default function HomeScreen() {
       sourceSheetRef.current?.present();
     },
     [impact],
+  );
+
+  const handleContextPress = useCallback(
+    (threadId: string) => {
+      impact();
+      // Find the thread label from any article in the current view
+      const allArticles = Object.values(grouped).flat();
+      const match = allArticles.find((a) => a.threadId === threadId);
+      setContextThreadLabel(match?.threadLabel);
+      fetchContext(threadId);
+      contextSheetRef.current?.present();
+    },
+    [impact, grouped, fetchContext],
   );
 
   const handleCountryPress = useCallback(
@@ -295,6 +317,7 @@ export default function HomeScreen() {
                   onEndReached={handleEndReached}
                   onCaughtUp={handleCaughtUp}
                   onSourcePress={handleSourcePress}
+                  onContextPress={handleContextPress}
                   onCountryPress={handleCountryPress}
                   progressesSV={categoryProgresses}
                   tick={tick}
@@ -315,7 +338,7 @@ export default function HomeScreen() {
         enablePanDownToClose
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
-        handleIndicatorStyle={styles.sheetHandle}
+        handleComponent={SourceHandle}
         onDismiss={() => {
           setSourceSheetSources([]);
           setSourceSheetDivergence(null);
@@ -327,9 +350,6 @@ export default function HomeScreen() {
         >
           {sourceSheetSources.length > 0 ? (
             <>
-              <Text style={styles.sheetLabel}>
-                {sourceSheetSources.length === 1 ? 'SOURCE' : 'SOURCES'}
-              </Text>
               {sourceSheetDivergence != null &&
                 sourceSheetDivergence >= 0.2 &&
                 sourceSheetSources.length > 1 && (
@@ -356,7 +376,12 @@ export default function HomeScreen() {
                 return (
                   <Pressable
                     key={i}
-                    style={styles.sourceRow}
+                    style={[
+                      styles.sourceRow,
+                      tone === 'favorable' && styles.borderFavorable,
+                      tone === 'unfavorable' && styles.borderUnfavorable,
+                      tone === 'neutral' && styles.borderNeutral,
+                    ]}
                     onPress={() => setExpandedSource(isExpanded ? null : i)}
                   >
                     <View style={styles.sourceRowHeader}>
@@ -371,17 +396,26 @@ export default function HomeScreen() {
                           </Text>
                         )}
                       </View>
-                      <View style={styles.sourceRowRight}>
-                        {tone && <Text style={styles.toneLabel}>{tone}</Text>}
-                        {info && (
-                          <Ionicons
-                            name={isExpanded ? 'chevron-up' : 'chevron-down'}
-                            size={16}
-                            color={COLORS.accent}
-                          />
-                        )}
-                      </View>
+                      {info && (
+                        <Ionicons
+                          name={isExpanded ? 'chevron-up' : 'chevron-down'}
+                          size={16}
+                          color={COLORS.accent}
+                        />
+                      )}
                     </View>
+                    {tone && (
+                      <Text style={[
+                        styles.toneText,
+                        tone === 'favorable' && styles.toneFavorable,
+                        tone === 'unfavorable' && styles.toneUnfavorable,
+                        tone === 'neutral' && styles.toneNeutral,
+                      ]}>
+                        {tone === 'favorable' ? 'Covers this story favorably'
+                          : tone === 'unfavorable' ? 'Covers this story critically'
+                          : 'Neutral coverage'}
+                      </Text>
+                    )}
                     {isExpanded && info && <Text style={styles.sheetBody}>{info.description}</Text>}
                   </Pressable>
                 );
@@ -404,7 +438,7 @@ export default function HomeScreen() {
         enablePanDownToClose
         backdropComponent={renderBackdrop}
         backgroundStyle={styles.sheetBg}
-        handleIndicatorStyle={styles.sheetHandle}
+        handleComponent={CountryHandle}
         onDismiss={() => setCountrySheet(null)}
       >
         <BottomSheetView
@@ -474,6 +508,17 @@ export default function HomeScreen() {
           )}
         </BottomSheetView>
       </BottomSheetModal>
+
+      {/* Context sheet */}
+      <ContextSheet
+        sheetRef={contextSheetRef}
+        brief={contextBrief}
+        loading={contextLoading}
+        threadLabel={contextThreadLabel}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
+        onDismiss={() => setContextThreadLabel(undefined)}
+      />
     </View>
   );
 }
@@ -516,10 +561,6 @@ const styles = StyleSheet.create({
   sheetBg: {
     backgroundColor: COLORS.sheetBg,
   },
-  sheetHandle: {
-    backgroundColor: COLORS.rule,
-    width: 36,
-  },
   sheetContent: {
     padding: SPACING.screenPadding,
   },
@@ -554,24 +595,39 @@ const styles = StyleSheet.create({
   sourceType: TEXT_STYLES.smallCapsXs,
   sourceRow: {
     marginBottom: SPACING.md,
+    borderLeftWidth: 2,
+    borderLeftColor: 'transparent',
+    paddingLeft: SPACING.sm,
   },
   sourceRowHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
+    alignItems: 'center',
   },
   sourceRowLeft: {
     flex: 1,
   },
-  sourceRowRight: {
-    alignItems: 'flex-end',
-    gap: SPACING.xs,
-    paddingLeft: SPACING.md,
-  },
-  toneLabel: {
+  toneText: {
     ...TEXT_STYLES.smallCapsXs,
-    color: COLORS.textSecondary,
-    opacity: 0.6,
+    marginTop: SPACING.xs,
+  },
+  toneFavorable: {
+    color: COLORS.toneFavorable,
+  },
+  toneUnfavorable: {
+    color: COLORS.toneUnfavorable,
+  },
+  toneNeutral: {
+    color: COLORS.toneNeutral,
+  },
+  borderFavorable: {
+    borderLeftColor: COLORS.toneFavorable,
+  },
+  borderUnfavorable: {
+    borderLeftColor: COLORS.toneUnfavorable,
+  },
+  borderNeutral: {
+    borderLeftColor: COLORS.toneNeutral,
   },
   sourceCountry: {
     ...TEXT_STYLES.smallCapsXs,
