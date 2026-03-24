@@ -24,9 +24,15 @@ Output only a selection file — a separate writer drafts the articles.
 
    For API stories (origin: 'api'), the writer will synthesize all sources in the `sources` array. For RSS stories (origin: 'rss'), the writer uses a single source. Pass the `sources`, `eventUri`, `eventCoverage`, `sentimentDivergence`, and `concepts` fields through to the selection output unchanged.
 
-   **Important constraints:**
-   - **Never select stories with an empty `sources` array** (`sources: []`). The writer cannot write an article without source text.
-   - **Include at least 6 multi-source API stories per cycle** (stories with `sources.length > 1`). These are the highest-quality candidates because they include perspectives from multiple countries. Multi-source stories are what makes zuhd.news unique — they should be the majority of each cycle, not a minority. Fill remaining slots with niche RSS stories for editorial diversity.
+   **Important: the feed has two sections.**
+   - `multiSourceStories`: stories with 2-5 sources from different countries. These are the premium product — multi-perspective synthesis that no other news service offers.
+   - `nicheStories`: single-source stories from specialist outlets (404 Media, Nature, OCCRP, etc.). These are the editorial taste that makes zuhd.news interesting.
+
+   **Selection structure (mandatory):**
+   1. First, select your **6 best stories from `multiSourceStories`**. Never select a story with empty `sources`.
+   2. Then, fill the remaining **6-7 slots from `nicheStories`** — the most surprising, specific, reader-aligned picks.
+
+   This structure is not a suggestion. The reader expects multi-perspective reporting on the biggest global stories AND niche specialist coverage. Both halves are required.
 5. Select 12 to 13 stories, distributed across categories (see category minimums below)
    — The cycle runs 10x per 24 hours. Select more than you think you need: 2-4 stories will typically be filtered as duplicates of recent cycles or fail to fetch. Prefer quality, but volume is needed to hit target publish counts.
 6. Save the selection as JSON to `/tmp/zuhd-selection.json` (schema below)

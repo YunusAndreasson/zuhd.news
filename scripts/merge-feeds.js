@@ -35,11 +35,17 @@ for (const s of rss) {
   }
 }
 
+// Split into multi-source and niche for the selector
+const multiSource = stories.filter(s => (s.sources || []).length > 1)
+const niche = stories.filter(s => (s.sources || []).length <= 1)
+
 const output = {
   fetchedAt: new Date().toISOString(),
   apiStories: api.length,
   rssStories: rss.length,
-  stories,
+  multiSourceStories: multiSource,
+  nicheStories: niche,
+  stories, // flat list for backward compat
 }
 
 writeFileSync('/tmp/zuhd-feed.json', JSON.stringify(output, null, 2))
