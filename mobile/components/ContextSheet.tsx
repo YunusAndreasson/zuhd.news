@@ -18,12 +18,19 @@ interface ContextSheetProps {
 }
 
 function renderEntry(entry: TimelineEntry, i: number, arr: TimelineEntry[]) {
-  const isLast = i === arr.length - 1;
+  if (!entry.year) {
+    return (
+      <Text key={i} style={[styles.bodyText, styles.bodySpacing]}>
+        {entry.body}
+      </Text>
+    );
+  }
+  const nextHasYear = arr[i + 1]?.year != null;
   return (
-    <View key={i} style={[styles.entry, !isLast && styles.entryLine]}>
+    <View key={i} style={[styles.entry, nextHasYear && styles.entryLine]}>
       <View style={styles.dot} />
       <View style={styles.entryContent}>
-        {entry.year && <Text style={styles.entryYear}>{entry.year}</Text>}
+        <Text style={styles.entryYear}>{entry.year}</Text>
         <Text style={styles.bodyText}>{entry.body}</Text>
       </View>
     </View>
@@ -101,10 +108,10 @@ const styles = StyleSheet.create({
   entry: {
     flexDirection: 'row',
     paddingLeft: SPACING.sm,
-    marginBottom: SPACING.md,
+    paddingBottom: SPACING.md,
   },
   entryLine: {
-    borderLeftWidth: StyleSheet.hairlineWidth,
+    borderLeftWidth: 1,
     borderLeftColor: COLORS.rule,
   },
   dot: {
@@ -129,5 +136,8 @@ const styles = StyleSheet.create({
   },
   bodyText: {
     ...TEXT_STYLES.body,
+  },
+  bodySpacing: {
+    marginBottom: SPACING.sm,
   },
 });
