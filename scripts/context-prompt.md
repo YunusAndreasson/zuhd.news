@@ -11,10 +11,12 @@ You will receive:
 ## Output format
 
 Output a JSON array of timeline entries. Each entry has:
-- `section` (string) — ALL CAPS heading (e.g., ORIGINS, ESCALATION, RESISTANCE, NOW, THE STRAIT, WHY IT MATTERS)
+- `section` (string) — ALL CAPS heading (e.g., ORIGINS, ESCALATION, RESISTANCE, THE STRAIT, WHY IT MATTERS)
 - `year` (string, optional) — year or year range (e.g., "1953", "1980–1988"). Omit for thematic entries.
 - `body` (string) — one sentence. No markdown, no formatting.
-- `verse` (boolean, optional) — true only for Quranic verse/tafsir lines in the ISLAMIC CONTEXT section.
+- `verse` (boolean, optional) — true only for a Quranic verse line in the ISLAMIC CONTEXT section.
+
+**Do NOT include a NOW section.** The context brief provides historical background only — the reader already has the current article. End the timeline where the history meets the present.
 
 Output ONLY the JSON array — no commentary, no wrapping object, no markdown fences.
 
@@ -26,9 +28,7 @@ Output ONLY the JSON array — no commentary, no wrapping object, no markdown fe
   {"section":"ORIGINS","year":"1979","body":"Iranian Revolution toppled the Shah; the Islamic Republic severed all ties with both the United States and Israel."},
   {"section":"THE STRAIT","body":"The Strait of Hormuz is 104 miles long and as narrow as 24 miles, connecting the Persian Gulf to the Gulf of Oman."},
   {"section":"THE STRAIT","body":"Every tanker leaving the Gulf must pass through it — whoever controls the strait controls the flow."},
-  {"section":"NOW","year":"2026","body":"IRGC turns back a container ship as Gulf states declare highest air defense alert."},
-  {"section":"ISLAMIC CONTEXT","verse":true,"body":"\"And if they incline to peace, then incline to it [also] and rely upon Allah.\" — Quran 8:61"},
-  {"section":"ISLAMIC CONTEXT","verse":true,"body":"Ibn Kathir: This verse commands acceptance of genuine peace overtures, citing the Prophet's acceptance of the Treaty of Hudaybiyah."}
+  {"section":"ISLAMIC CONTEXT","verse":true,"body":"\"And if they incline to peace, then incline to it [also] and rely upon Allah.\" — Quran 8:61"}
 ]
 ```
 
@@ -66,30 +66,13 @@ Don't compress to fit a token budget. If a conflict needs 15 entries to tell the
 
 ## Quranic anchoring (optional)
 
-Some context briefs have a natural connection to Quranic principles — oppression, justice, patience, stewardship. When the connection is genuine, include verse entries at the end in an ISLAMIC CONTEXT section.
+When a context brief has a genuine connection to Quranic principles — oppression, justice, patience, stewardship — include a single verse as the last entry in an ISLAMIC CONTEXT section.
 
 **Rules:**
-- If a Quranic principle genuinely illuminates this history, include ONE verse at the end
-- Do NOT force it — most briefs will not have one. Tech, economic, or secular topics should not have a verse.
-- The verse must be well-known and uncontroversial in its application to the theme
-
-**When you propose a verse**, use the Tarteel MCP tools to validate:
-1. Call `ayah_translation` with the surah and ayah number to get the exact Saheeh International translation and Arabic text
-2. Call `ayah_tafsir` with source `en-tafsir-ibn-kathir` to get the scholarly commentary
-3. Read the tafsir (it returns thematic verse groups, not single verses — this is useful for checking context)
-4. If the tafsir supports the connection, include the verse. If not, drop it silently.
-
-**Format as two entries with `"verse": true`:**
-- First: `"[English translation from Saheeh International]" — Quran [surah:ayah]`
-- Second: `Ibn Kathir: [One sentence summarizing the relevant tafsir insight]`
-
-**Examples of natural fits:**
-- Israel-Palestine / oppression → 2:191 — "fitnah is worse than killing"
-- Self-determination → 13:11 — "God does not change a people until they change themselves"
-- Justice → 4:135 — "Stand firmly for justice, even against yourselves"
+- ONE verse only, well-known and uncontroversial in its application
+- Do NOT force it — most briefs will not have one
+- Use the Saheeh International translation
+- Format as a single entry: `{"section":"ISLAMIC CONTEXT","verse":true,"body":"\"[translation]\" — Quran [surah:ayah]"}`
 
 **Examples where it should NOT fire:**
-- Tech antitrust rulings
-- Central bank rate decisions
-- Space exploration milestones
-- European economic crises (unless they directly involve Muslim lands)
+- Tech antitrust rulings, central bank rate decisions, space exploration, secular economic crises

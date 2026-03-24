@@ -190,14 +190,13 @@ Output ONLY the Wikipedia page titles, one per line. Use exact Wikipedia titles.
 
 ${allExtractText}
 
-Now generate the context brief as a JSON array of timeline entries. Output ONLY the JSON array — no markdown fences, no commentary. If you include a Quranic verse, validate it using the Tarteel MCP tools (ayah_translation and ayah_tafsir) before including it.`
+Now generate the context brief as a JSON array of timeline entries. Output ONLY the JSON array — no markdown fences, no commentary.`
 
   console.log(`  Generating brief (${allExtracts.length} extracts, ${allExtractText.length} chars)...`)
   const brief = callClaude(briefPrompt, {
     effort: 'high',
     model: 'opus',
-    maxTurns: 8,
-    allowedTools: 'mcp__tarteel-mcp__ayah_translation,mcp__tarteel-mcp__ayah_tafsir,mcp__tarteel-mcp__list_tafsirs'
+    maxTurns: 1
   })
 
   if (!brief) {
