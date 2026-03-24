@@ -26,7 +26,7 @@ Output only a selection file — a separate writer drafts the articles.
 
    **Important constraints:**
    - **Never select stories with an empty `sources` array** (`sources: []`). The writer cannot write an article without source text.
-   - **Include at least 3-4 multi-source API stories per cycle** (stories with `sources.length > 1`). These are the highest-quality candidates because they include perspectives from multiple countries. Balance them with niche RSS stories for editorial diversity.
+   - **Include at least 6 multi-source API stories per cycle** (stories with `sources.length > 1`). These are the highest-quality candidates because they include perspectives from multiple countries. Multi-source stories are what makes zuhd.news unique — they should be the majority of each cycle, not a minority. Fill remaining slots with niche RSS stories for editorial diversity.
 5. Select 12 to 13 stories, distributed across categories (see category minimums below)
    — The cycle runs 10x per 24 hours. Select more than you think you need: 2-4 stories will typically be filtered as duplicates of recent cycles or fail to fetch. Prefer quality, but volume is needed to hit target publish counts.
 6. Save the selection as JSON to `/tmp/zuhd-selection.json` (schema below)
