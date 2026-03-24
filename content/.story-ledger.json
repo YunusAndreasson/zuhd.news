@@ -5,8 +5,8 @@
       "id": "iran-us-israel-war",
       "label": "Iran-US-Israel war: Pentagon $200bn request, Saudi threatens action",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-24T18:00:00Z",
-      "coverageCount": 334,
+      "lastCovered": "2026-03-24T19:00:00Z",
+      "coverageCount": 335,
       "category": "politics",
       "importance": 7,
       "arc": "ongoing",
@@ -172,25 +172,10 @@
         "2026-03-24-india-us-hormuz-energy-security-diplomacy",
         "2026-03-24-philippines-energy-emergency-iran-war-oil-shock",
         "2026-03-24-afghanistan-taliban-releases-us-citizen-iran-war-leverage",
-        "2026-03-24-india-gas-shortage-hormuz-modi-trump-energy-crisis"
+        "2026-03-24-india-gas-shortage-hormuz-modi-trump-energy-crisis",
+        "2026-03-24-global-fuel-emergency-no-flights-no-lights"
       ],
-      "summary": "India faces acute gas shortage as Hormuz disrupted. Modi-Trump call signals India being forced off its fence. War economic damage spreading to non-combatant nations."
-    },
-    {
-      "id": "chad-rsf-munitions-cross-border",
-      "label": "Bellingcat links RSF munitions to deadly Chad airstrike",
-      "firstSeen": "2026-03-24T11:30:00Z",
-      "lastCovered": "2026-03-24T11:30:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-chad-strike-munitions-rsf-weapons-bellingcat",
-        "2026-03-24-bellingcat-chad-strike-munitions-match-rsf-weapons"
-      ],
-      "eventUri": null,
-      "summary": "Bellingcat forensically matches munition remnants from deadly Chad strike in Tine to weapons previously used by RSF in Sudan. Smoking gun for cross-border RSF operations."
+      "summary": "Global fuel emergency: Sri Lanka turns off street lights, airlines cancel routes. War energy shock visible in daily life across non-combatant nations. Import-dependent countries in Africa and Asia bear the cost."
     },
     {
       "id": "europe-stagflation-iran-war",
@@ -199,7 +184,7 @@
       "lastCovered": "2026-03-24T18:00:00Z",
       "coverageCount": 5,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-24-europe-stagflation-iran-war-pmi",
@@ -218,7 +203,7 @@
       "lastCovered": "2026-03-24T18:00:00Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-24-bitcoin-stability-2023-cost-basis-wartime-stress-test",
@@ -231,17 +216,18 @@
       "id": "lebanon-expels-iran-ambassador",
       "label": "Israel declares south Lebanon control zone; Lebanon diplomatic rupture with Iran",
       "firstSeen": "2026-03-24T12:30:00Z",
-      "lastCovered": "2026-03-24T14:30:00Z",
-      "coverageCount": 2,
+      "lastCovered": "2026-03-24T19:00:00Z",
+      "coverageCount": 3,
       "category": "politics",
-      "importance": 4,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-24-lebanon-expels-iranian-ambassador-persona-non-grata",
-        "2026-03-24-israel-declares-control-south-lebanon-security-zone"
+        "2026-03-24-israel-declares-control-south-lebanon-security-zone",
+        "2026-03-24-irgc-hezbollah-lebanon-political-rupture"
       ],
       "eventUri": "eng-11507631",
-      "summary": "Israel declared military control south of Litani -- de facto occupation zone echoing 1978-2000. Lebanon expelled Iranian ambassador under military pressure. 300K+ displaced, no end date."
+      "summary": "Lebanon PM publicly accuses IRGC of controlling Hezbollah operations. Follows ambassador expulsion. Decades-long state-within-a-state arrangement fracturing under Israeli military pressure and Iranian overreach."
     },
     {
       "id": "russia-ukraine-moldova-energy",
@@ -250,7 +236,7 @@
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-24-russia-strikes-ukraine-moldova-energy-damage",
@@ -266,7 +252,7 @@
       "lastCovered": "2026-03-24T17:30:00Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-24-pakistan-stock-exchange-rallies-eid-ceasefire-hopes",
@@ -276,43 +262,13 @@
       "summary": "PM Sharif publicly offers to host US-Iran negotiations in Islamabad. Escalation from army chief Trump call. Markets rallied on diplomatic positioning."
     },
     {
-      "id": "cloud-infrastructure-war-disruption",
-      "label": "AWS Bahrain disrupted by war, Pakistani fintech goes offline",
-      "firstSeen": "2026-03-24T14:30:00Z",
-      "lastCovered": "2026-03-24T14:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-sadapay-aws-bahrain-war-fintech-disruption"
-      ],
-      "eventUri": "eng-11506519",
-      "summary": "SadaPay offline after AWS Bahrain datacenter disrupted by Iran war. Cloud dependency creates financial fragility for non-combatant countries."
-    },
-    {
-      "id": "orbital-data-centers",
-      "label": "Ars Technica deep-dive: are orbital data centers economically viable?",
-      "firstSeen": "2026-03-24T14:30:00Z",
-      "lastCovered": "2026-03-24T14:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-24-orbital-data-centers-economics-ars-technica"
-      ],
-      "eventUri": null,
-      "summary": "Space-based computing economics shifting: Starlink-era manufacturing costs change assumptions. Cooling and power advantages in orbit may offset launch costs."
-    },
-    {
       "id": "open-source-malware-iran-wiper",
       "label": "Self-propagating malware poisons open source, deploys Iran-targeting wiper",
       "firstSeen": "2026-03-24T14:30:00Z",
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 3,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-24-malware-open-source-supply-chain-iran-wiper",
@@ -322,104 +278,14 @@
       "summary": "AI supply chain under active attack: LiteLLM compromised (second incident after Iran-targeting wiper). Dependency chains becoming attack surfaces."
     },
     {
-      "id": "zoom-ai-podcast-surveillance",
-      "label": "WebinarTV secretly converts 200K Zoom calls into AI podcasts",
-      "firstSeen": "2026-03-24T14:30:00Z",
-      "lastCovered": "2026-03-24T14:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-24-zoom-meetings-secretly-turned-ai-podcasts-webinartv"
-      ],
-      "eventUri": null,
-      "summary": "WebinarTV turning 200,000 Zoom calls into AI podcasts without participant consent. Hosts opt in but attendees never told."
-    },
-    {
-      "id": "ai-chatbot-delusion-research",
-      "label": "Stanford: first systematic study of AI-reinforced delusional thinking",
-      "firstSeen": "2026-03-24T14:30:00Z",
-      "lastCovered": "2026-03-24T14:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-24-stanford-ai-chatbot-delusions-research-openai-microsoft"
-      ],
-      "eventUri": null,
-      "summary": "Stanford transcript analysis: chatbots amplify delusional thinking by never pushing back or expressing doubt. OpenAI admits Microsoft AI products pose existential business risk."
-    },
-    {
-      "id": "cern-antimatter-transport",
-      "label": "CERN transports antimatter by road for first time",
-      "firstSeen": "2026-03-24T17:00:00Z",
-      "lastCovered": "2026-03-24T17:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-cern-antimatter-road-transport-first-time"
-      ],
-      "eventUri": "deu-2098735",
-      "summary": "CERN transported 92 antiprotons by road in portable magnetic bottle. Proof-of-concept for antimatter delivery service enabling hospitals/labs worldwide."
-    },
-    {
-      "id": "prefrontal-leadership-neurons",
-      "label": "Nature Neuroscience: prefrontal neurons govern group leadership dynamics",
-      "firstSeen": "2026-03-24T17:00:00Z",
-      "lastCovered": "2026-03-24T17:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-24-prefrontal-neurons-leadership-group-dynamics-nature"
-      ],
-      "eventUri": null,
-      "summary": "Mapped specific neurons determining who leads/follows in real-time group behavior. Leadership is dynamic negotiation, not fixed trait."
-    },
-    {
-      "id": "ai-physics-methodology-shift",
-      "label": "AI reshaping physics methodology at APS summit",
-      "firstSeen": "2026-03-24T17:00:00Z",
-      "lastCovered": "2026-03-24T17:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "fading",
-      "articles": [
-        "2026-03-24-ai-disrupts-physics-aps-meeting-methodology"
-      ],
-      "eventUri": null,
-      "summary": "AI generating hypotheses, designing experiments, writing indistinguishable abstracts at world's largest physics meeting. Debate shifted from 'should AI be here' to 'who controls it'."
-    },
-    {
-      "id": "deepfake-medical-imaging",
-      "label": "Radiologists cannot detect deepfake X-rays",
-      "firstSeen": "2026-03-24T17:00:00Z",
-      "lastCovered": "2026-03-24T17:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-deepfake-xrays-radiologists-cant-detect"
-      ],
-      "eventUri": null,
-      "summary": "STAT: radiologists fail to distinguish AI-generated X-rays from real ones. Telehealth expansion increases risk of fraud and fabricated diagnoses."
-    },
-    {
       "id": "tether-big-four-audit",
       "label": "Tether hires Big Four firm for first full audit",
       "firstSeen": "2026-03-24T17:00:00Z",
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-tether-usdt-big-four-audit-stablecoin"
       ],
@@ -448,7 +314,7 @@
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-palestinian-journalist-hossam-shabat-assassination-anniversary"
@@ -463,7 +329,7 @@
       "lastCovered": "2026-03-24T17:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-philippines-energy-emergency-iran-war-oil-shock"
@@ -478,8 +344,8 @@
       "lastCovered": "2026-03-24T17:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-tesla-sales-rebound-europe-after-slump"
       ],
@@ -493,8 +359,8 @@
       "lastCovered": "2026-03-24T17:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-arizona-groundwater-climate-depletion-nature-study"
       ],
@@ -508,7 +374,7 @@
       "lastCovered": "2026-03-24T17:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-bilirubin-ripk3-new-cell-death-pathway-jaundice"
@@ -523,7 +389,7 @@
       "lastCovered": "2026-03-24T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-24-adb-support-package-developing-states-iran-war"
@@ -538,8 +404,8 @@
       "lastCovered": "2026-03-24T17:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-parafi-125m-crypto-fund-kkr-market-downturn"
       ],
@@ -553,7 +419,7 @@
       "lastCovered": "2026-03-24T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-maternal-health-africa-policy-funding-gaps"
@@ -568,7 +434,7 @@
       "lastCovered": "2026-03-24T17:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-colombian-pmcs-american-contractors-ukraine"
@@ -583,7 +449,7 @@
       "lastCovered": "2026-03-24T17:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-24-missile-defense-np-complete-proof"
@@ -598,8 +464,8 @@
       "lastCovered": "2026-03-24T17:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
+      "importance": 1,
+      "arc": "fading",
       "articles": [
         "2026-03-24-microsoft-windows-11-fix-gaslighting-backlash"
       ],
@@ -613,7 +479,7 @@
       "lastCovered": "2026-03-24T17:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-uae-sovereign-financial-cloud-data-sovereignty"
@@ -628,7 +494,7 @@
       "lastCovered": "2026-03-24T18:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-24-us-visa-bonds-15000-global-south-exclusion"
@@ -643,7 +509,7 @@
       "lastCovered": "2026-03-24T18:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-trump-mail-ballot-fraud-claims-hypocrisy"
@@ -658,7 +524,7 @@
       "lastCovered": "2026-03-24T18:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-24-india-asiya-andrabi-kashmir-life-sentence-uapa"
@@ -673,7 +539,7 @@
       "lastCovered": "2026-03-24T18:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-24-efcc-seizes-malami-ex-ag-nigeria-accountability"
@@ -685,16 +551,17 @@
       "id": "tsa-ice-dhs-shutdown",
       "label": "TSA workers unpaid in second shutdown as ICE militarizes airports",
       "firstSeen": "2026-03-24T18:00:00Z",
-      "lastCovered": "2026-03-24T18:00:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-24T19:00:00Z",
+      "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
+      "importance": 5,
+      "arc": "developing",
       "articles": [
-        "2026-03-24-tsa-workers-unpaid-ice-airports-dhs-shutdown"
+        "2026-03-24-tsa-workers-unpaid-ice-airports-dhs-shutdown",
+        "2026-03-24-tsa-shutdown-delayed-laguardia-crash-investigation"
       ],
       "eventUri": "eng-11502976",
-      "summary": "TSA screeners working without pay during second DHS shutdown. ICE flooding airports. Budget used as political weapon."
+      "summary": "NTSB chair says TSA security chaos delayed investigators reaching LaGuardia crash site. Government shutdown degraded safety investigation. Concrete consequence of budget weaponization."
     },
     {
       "id": "uae-banking-war-stress",
@@ -703,7 +570,7 @@
       "lastCovered": "2026-03-24T18:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-24-uae-central-bank-liquidity-war-banking-stress"
@@ -718,7 +585,7 @@
       "lastCovered": "2026-03-24T18:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-24-forest-roads-fire-usda-contradiction-science"
@@ -733,7 +600,7 @@
       "lastCovered": "2026-03-24T18:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-24-tb-vaccine-cd8-cells-nature-world-tb-day"
@@ -748,7 +615,7 @@
       "lastCovered": "2026-03-24T18:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-phosphorus-mass-extinction-ocean-dead-zones-nature"
@@ -763,13 +630,148 @@
       "lastCovered": "2026-03-24T18:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-24-where-are-ai-apps-answer-ai-hype-gap"
       ],
       "eventUri": null,
       "summary": "Jeremy Howard lab asks where AI apps are. Bottleneck shifted from model capability to application design. Most apps are thin API wrappers."
+    },
+    {
+      "id": "oil-insider-trading-trump-post",
+      "label": "FT: $580M oil bets placed before Trump Iran post",
+      "firstSeen": "2026-03-24T19:00:00Z",
+      "lastCovered": "2026-03-24T19:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-oil-insider-trading-580m-trump-iran-post"
+      ],
+      "eventUri": "eng-11506600",
+      "summary": "$580M in concentrated Brent/WTI futures placed minutes before Trump posted about Iran. Potential insider knowledge of presidential communications moving commodity markets."
+    },
+    {
+      "id": "settler-outposts-areas-b-a",
+      "label": "Investigation: settlers expanding into West Bank Areas B and A",
+      "firstSeen": "2026-03-24T19:00:00Z",
+      "lastCovered": "2026-03-24T19:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-settler-outposts-west-bank-areas-b-a-expansion"
+      ],
+      "eventUri": null,
+      "summary": "Joint investigation reveals settler outposts crossing into Areas B and A -- Oslo's last legal boundaries. Annexation by settlement displacing communities under PA jurisdiction."
+    },
+    {
+      "id": "palestinian-prison-wartime-lockdown",
+      "label": "Palestinian prisoners cut off from lawyers under Iran war lockdown",
+      "firstSeen": "2026-03-24T19:00:00Z",
+      "lastCovered": "2026-03-24T19:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-palestinian-prisoner-lawyer-blocked-iran-war-lockdown"
+      ],
+      "eventUri": null,
+      "summary": "Israel locked down prisons at start of Iran war, barring lawyer visits. Palestinian woman detainee has no legal contact. War providing cover for detention rights erosion."
+    },
+    {
+      "id": "t-rex-apex-predator-overturned",
+      "label": "Fossil reanalysis challenges T. rex as apex predator",
+      "firstSeen": "2026-03-24T19:00:00Z",
+      "lastCovered": "2026-03-24T19:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-t-rex-not-apex-predator-fossil-reanalysis"
+      ],
+      "eventUri": null,
+      "summary": "New Scientist: controversial fossils reanalyzed, overturning assumption T. rex was unchallenged apex predator of late Cretaceous."
+    },
+    {
+      "id": "fda-immunitybio-false-claims",
+      "label": "FDA publicly rebukes ImmunityBio/Soon-Shiong for false drug claims",
+      "firstSeen": "2026-03-24T19:00:00Z",
+      "lastCovered": "2026-03-24T19:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-fda-slams-immunitybio-false-drug-claims"
+      ],
+      "eventUri": "eng-11508514",
+      "summary": "FDA extraordinary public rebuke of billionaire Patrick Soon-Shiong (also LA Times owner) for false and misleading drug claims. Rare regulatory transparency."
+    },
+    {
+      "id": "india-glp1-regulatory-crackdown",
+      "label": "India tightens surveillance on GLP-1 weight loss drugs",
+      "firstSeen": "2026-03-24T19:00:00Z",
+      "lastCovered": "2026-03-24T19:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-india-glp1-weight-loss-drug-regulatory-crackdown"
+      ],
+      "eventUri": "eng-11506715",
+      "summary": "India's drug regulator intensifies GLP-1 oversight amid counterfeit and off-label concerns. World's pharmacy tightening controls with global supply chain implications."
+    },
+    {
+      "id": "nigeria-tb-grassroots-testing",
+      "label": "Nigeria Anambra deploys tricycles for grassroots TB testing",
+      "firstSeen": "2026-03-24T19:00:00Z",
+      "lastCovered": "2026-03-24T19:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-nigeria-anambra-tricycle-tb-testing-grassroots"
+      ],
+      "eventUri": "zho-2000743",
+      "summary": "World TB Day: Anambra state deploys tricycles to bring testing to rural communities. Low-tech innovation reaching people hospitals cannot."
+    },
+    {
+      "id": "ai-wealth-inequality-bridge",
+      "label": "HN debate: AI pulling up the bridge to wealth",
+      "firstSeen": "2026-03-24T19:00:00Z",
+      "lastCovered": "2026-03-24T19:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-ai-wealth-bridge-pulled-up-inequality"
+      ],
+      "eventUri": null,
+      "summary": "Thesis that AI automates the skill-building path from middle class to wealth before next generation can cross. Tech community self-examining their industry's impact."
+    },
+    {
+      "id": "tradfi-staked-ether-adoption",
+      "label": "Institutional TradFi adopting staked ether as yield asset",
+      "firstSeen": "2026-03-24T19:00:00Z",
+      "lastCovered": "2026-03-24T19:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-tradfi-staked-ether-institutional-crypto-adoption"
+      ],
+      "eventUri": null,
+      "summary": "Insurance and pension funds adopting staked ETH as institutional yield. Regulated benchmarks making crypto staking look like bonds. Risk-averse firms driving adoption during drawdown."
     }
   ]
 }
