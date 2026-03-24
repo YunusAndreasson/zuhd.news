@@ -138,12 +138,12 @@ export default function HomeScreen() {
   const handleCountryPress = useCallback(
     (result: TapResult) => {
       impact();
-      // Direct crisis-glow tap (no country data) → toast
-      if (result.crisisLabel && !result.data) {
-        toastRef.current?.show(result.crisisLabel);
+      // Direct hotspot-glow tap (no country data) → toast
+      if (result.hotspotLabels?.length && !result.data) {
+        toastRef.current?.show(result.hotspotLabels[0]!);
         return;
       }
-      // Country tap (may include crisisLabel) → sheet
+      // Country tap (may include hotspot labels) → sheet
       setCountrySheet(result);
       countrySheetRef.current?.present();
     },
@@ -428,11 +428,19 @@ export default function HomeScreen() {
                 <KeyStat label="military spend" value={countrySheet.data.military} />
               </View>
 
-              {/* Active crisis — shown when a crisis zone overlaps this country */}
-              {countrySheet.crisisLabel && (
-                <View style={styles.crisisSection}>
-                  <Text style={styles.sheetLabel}>ACTIVE CRISIS</Text>
-                  <Text style={styles.crisisValue}>{countrySheet.crisisLabel}</Text>
+              {/* Developing stories — shown when coverage hotspots overlap this country */}
+              {countrySheet.hotspotLabels && countrySheet.hotspotLabels.length > 0 && (
+                <View style={styles.hotspotSection}>
+                  <Text style={styles.sheetLabel}>
+                    {countrySheet.hotspotLabels.length === 1
+                      ? 'DEVELOPING STORY'
+                      : 'DEVELOPING STORIES'}
+                  </Text>
+                  {countrySheet.hotspotLabels.map((label, i) => (
+                    <Text key={i} style={styles.hotspotValue}>
+                      {label}
+                    </Text>
+                  ))}
                 </View>
               )}
 
@@ -585,13 +593,13 @@ const styles = StyleSheet.create({
     color: COLORS.accent,
     marginBottom: SPACING.xs,
   },
-  crisisSection: {
+  hotspotSection: {
     paddingBottom: SPACING.md,
     marginBottom: SPACING.sm,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: COLORS.rule,
   },
-  crisisValue: {
+  hotspotValue: {
     fontFamily: FONT.regular,
     fontSize: TYPOGRAPHY.sizeSm,
     color: COLORS.text,

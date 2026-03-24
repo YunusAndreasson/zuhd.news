@@ -151,7 +151,7 @@ export interface TapResult {
   location: string | null;
   localTime: string | null;
   data: CountryData | null;
-  crisisLabel?: string;
+  hotspotLabels?: string[];
 }
 
 export interface MiniGlobeRef {
@@ -167,7 +167,7 @@ interface MiniGlobeProps {
   ref?: React.Ref<MiniGlobeRef>;
 }
 
-interface CrisisZone {
+interface Hotspot {
   lat: number;
   lng: number;
   intensity: number; // 0–1 log-normalized
@@ -181,7 +181,7 @@ interface GlobeState {
   nightPath: ReturnType<typeof Skia.Path.Make> | null;
   dot: { x: number; y: number } | null;
   aqsa: { x: number; y: number } | null;
-  crisisGlows: {
+  hotspotGlows: {
     x: number;
     y: number;
     intensity: number;
@@ -208,7 +208,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     nightPath: null,
     dot: null,
     aqsa: null,
-    crisisGlows: [],
+    hotspotGlows: [],
   });
 
   // Precompute per-article: coords + country feature + names
@@ -222,8 +222,8 @@ export const MiniGlobe = memo(function MiniGlobe({
     });
   }, [articles]);
 
-  // Cluster articles by location, rank by total eventCoverage → top 5 crisis zones
-  const crisisZones = useMemo((): CrisisZone[] => {
+  // Cluster articles by location, rank by total eventCoverage → top 5 coverage hotspots
+  const hotspots = useMemo((): Hotspot[] => {
     const clusters = new Map<
       string,
       {
@@ -293,8 +293,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   // Keep closure dependencies in refs so the reproject callback stays stable
   const articleGeoRef = useRef(articleGeo);
   articleGeoRef.current = articleGeo;
-  const crisisZonesRef = useRef(crisisZones);
-  crisisZonesRef.current = crisisZones;
+  const hotspotsRef = useRef(hotspots);
+  hotspotsRef.current = hotspots;
   const layoutRef = useRef({ globeRadius, cx, cy });
   layoutRef.current = { globeRadius, cx, cy };
 
@@ -358,14 +358,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (pt) aqsa = { x: pt[0], y: pt[1] };
     }
 
-    // Crisis zone glows — project visible zones onto the front hemisphere
-    const crisisGlows: GlobeState['crisisGlows'] = [];
-    for (const zone of crisisZonesRef.current) {
+    // Coverage hotspot glows — project visible zones onto the front hemisphere
+    const hotspotGlows: GlobeState['hotspotGlows'] = [];
+    for (const zone of hotspotsRef.current) {
       const zoneCoords: [number, number] = [zone.lng, zone.lat];
       if (geoDistance(zoneCoords, [-lng, -lat]) < HALF_PI) {
         const pt = proj(zoneCoords);
         if (pt)
-          crisisGlows.push({
+          hotspotGlows.push({
             x: pt[0],
             y: pt[1],
             intensity: zone.intensity,
@@ -375,7 +375,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
     }
 
-    setState({ landPath, countryPath, nightPath, dot, aqsa, crisisGlows });
+    setState({ landPath, countryPath, nightPath, dot, aqsa, hotspotGlows });
   }, []);
 
   // Throttle reprojection to 32ms (~30fps), skip throttle on first call
@@ -428,9 +428,11 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   useImperativeHandle(ref, () => ({
     hitTest(x: number, y: number): TapResult | null {
-      // Find crisis label matching a country name (used to enrich country results)
-      const crisisFor = (name: string) =>
-        state.crisisGlows.find((z) => z.countryName === name)?.label;
+      // Collect all hotspot labels matching a country (a country may have multiple)
+      const hotspotsFor = (name: string) => {
+        const labels = state.hotspotGlows.filter((z) => z.countryName === name).map((z) => z.label);
+        return labels.length > 0 ? labels : undefined;
+      };
 
       // Check article dot first — news takes precedence
       const dot = state.dot;
@@ -446,7 +448,7 @@ export const MiniGlobe = memo(function MiniGlobe({
               location: geoData.location,
               localTime: tz ? formatLocalTime(tz) : null,
               data: COUNTRY_DATA[geoData.countryName] ?? null,
-              crisisLabel: crisisFor(geoData.countryName),
+              hotspotLabels: hotspotsFor(geoData.countryName),
             };
           }
         }
@@ -462,13 +464,13 @@ export const MiniGlobe = memo(function MiniGlobe({
             location: AL_AQSA.name,
             localTime: formatLocalTime(AL_AQSA.tz),
             data: COUNTRY_DATA['Palestine'] ?? null,
-            crisisLabel: crisisFor('Palestine'),
+            hotspotLabels: hotspotsFor('Palestine'),
           };
         }
       }
 
-      // Then check crisis zone glows directly
-      for (const z of state.crisisGlows) {
+      // Then check hotspot glows directly
+      for (const z of state.hotspotGlows) {
         const cdx = x - z.x;
         const cdy = y - z.y;
         if (cdx * cdx + cdy * cdy <= 900) {
@@ -477,7 +479,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             location: null,
             localTime: null,
             data: null,
-            crisisLabel: z.label,
+            hotspotLabels: [z.label],
           };
         }
       }
@@ -632,8 +634,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Night shadow — darker overlay on the unlit hemisphere */}
       {state.nightPath && <Path path={state.nightPath} color={COLORS.black} opacity={0.15} />}
 
-      {/* Crisis zone ambient glows — top coverage hotspots */}
-      {state.crisisGlows.map((z, i) => (
+      {/* Coverage hotspot ambient glows — top coverage hotspots */}
+      {state.hotspotGlows.map((z, i) => (
         <Group key={i}>
           <Circle
             cx={z.x}
