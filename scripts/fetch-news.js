@@ -124,7 +124,7 @@ async function main() {
 
   const results = await Promise.all(SOURCES.map(fetchSource))
   // Cap per source to prevent any single feed from dominating the candidate pool
-  const MAX_PER_SOURCE = 10
+  const MAX_PER_SOURCE = 5
   const allItems = results.flatMap(items => items.slice(0, MAX_PER_SOURCE))
   console.error(`Raw items: ${allItems.length} (capped at ${MAX_PER_SOURCE}/source)`)
 
