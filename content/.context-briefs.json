@@ -219,5 +219,125 @@
     "label": "US expands visa bonds to 50 countries — financial barrier to Global South travel",
     "category": "politics",
     "articleCount": 3
+  },
+  "2026-03-25-benzene-gas-cookers-leaking-cancer-europe-homes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MOLECULE",
+        "body": "Benzene is a flat, perfectly symmetrical ring of six carbon atoms with delocalized electrons shared across the entire structure. This stability is exactly what makes it dangerous — the body cannot easily break it down, and its metabolites bind directly to DNA."
+      },
+      {
+        "body": "The liver converts benzene into benzene oxide and other reactive metabolites. These attack bone marrow stem cells, disrupting hematopoiesis — the production of blood cells. The result is not a tumor at the exposure site but leukemia, a cancer of the blood-forming system itself."
+      },
+      {
+        "heading": "WHY GAS STOVES PRODUCE IT",
+        "body": "Natural gas is primarily methane, but any hydrocarbon flame that burns incompletely can synthesize benzene. When combustion temperatures are high enough to break C-H bonds but oxygen supply is insufficient for complete oxidation, carbon fragments reassemble into aromatic rings. A gas stove burner running normally produces benzene at every ignition."
+      },
+      {
+        "body": "The World Health Organization classifies benzene as a Group 1 carcinogen with no safe threshold. Unlike most toxins where dose determines harm, benzene's DNA-binding mechanism means any exposure carries nonzero risk — risk is cumulative over a lifetime, not gated by a minimum concentration."
+      },
+      {
+        "heading": "THE INDOOR PROBLEM",
+        "body": "Outdoor benzene disperses. Indoor benzene accumulates. A kitchen with a gas stove and closed windows can reach benzene concentrations 5-15 times higher than outdoors. Modern homes, built airtight for energy efficiency, make this worse — the same insulation that keeps heat in keeps combustion byproducts in."
+      },
+      {
+        "body": "Benzene was so common in the early 20th century that lab chemists used it as a general-purpose solvent and mechanics washed engine parts with it bare-handed. Its carcinogenicity was not established until epidemiological studies of shoe factory workers in the 1970s traced their unusually high leukemia rates to benzene-based adhesives."
+      }
+    ],
+    "generatedAt": "2026-03-25T09:58:11.360Z",
+    "label": "Benzene and Combustion Chemistry",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-03-25-heat-fewer-male-births-africa-climate-pregnancy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASELINE",
+        "body": "The human sex ratio at birth is not 50:50. Roughly 105 males are born for every 100 females in most populations. This slight male excess compensates for higher male mortality at every subsequent age — by reproductive years, the ratio is close to even."
+      },
+      {
+        "body": "In reptiles, incubation temperature directly determines sex — no sex chromosomes involved. Mammals use the XX/XY chromosome system, so temperature cannot flip genetic sex. But temperature can change which pregnancies survive to delivery."
+      },
+      {
+        "heading": "THE MECHANISM",
+        "body": "Male embryos grow faster and have higher metabolic demands than female embryos from the earliest cell divisions. This makes them disproportionately vulnerable to maternal stress. Heat stress triggers inflammatory responses and cortisol spikes that preferentially cause spontaneous loss of male pregnancies."
+      },
+      {
+        "body": "This is not theory — it has been measured after discrete stressors. Studies following the Kobe earthquake, the September 11 attacks, and the Finnish famine of 1866-1868 all documented temporary drops in the male-to-female birth ratio nine months after the event."
+      },
+      {
+        "heading": "THE PRINCIPLE",
+        "body": "The Trivers-Willard hypothesis, proposed in 1973, predicts that when conditions are harsh, mothers who invest in female offspring achieve greater reproductive success. Female mammals in poor condition produce fewer sons. The mechanism is not conscious — it operates through differential embryo survival under stress."
+      },
+      {
+        "body": "Chronic heat exposure differs from acute shocks. A single stressful event creates a brief, measurable dip. Sustained high temperatures across an entire pregnancy create a persistent selection pressure. As baseline temperatures rise across equatorial Africa, the effect compounds over every reproductive cycle."
+      }
+    ],
+    "generatedAt": "2026-03-25T09:58:11.363Z",
+    "label": "Temperature and Human Sex Ratios",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-03-25-turboquant-google-ai-compression-efficiency": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COST PROBLEM",
+        "body": "A neural network's weights are just numbers — typically stored as 32-bit floating point values. A 70-billion-parameter model requires 280 GB of memory for weights alone, before accounting for activations, gradients, or the KV cache during inference. This is why large models need multiple GPUs just to load."
+      },
+      {
+        "body": "Quantization reduces the precision of each weight: 32-bit to 16-bit halves memory, 16-bit to 8-bit halves it again, 8-bit to 4-bit again. At 4-bit precision, that 70B model fits in approximately 35 GB — a single consumer GPU."
+      },
+      {
+        "heading": "WHY IT WORKS",
+        "body": "Neural networks are massively over-parameterized. The weight distribution in a trained model is approximately Gaussian, clustered tightly around zero. Information theory sets the floor: if the actual information content per weight is 3-4 bits, storing it in 32 bits wastes 28 bits of precision that contribute nothing to the model's outputs."
+      },
+      {
+        "body": "The critical insight behind modern quantization is that not all weights are equal. A tiny fraction of outlier weights — unusually large values — carry disproportionate importance. Methods like GPTQ and AWQ identify these outliers and preserve their precision while aggressively compressing the vast majority of near-zero weights."
+      },
+      {
+        "heading": "THE TRADEOFF",
+        "body": "Quantization is lossy compression applied to learned representations. At 8-bit, quality loss is nearly undetectable on benchmarks. At 4-bit, measurable degradation appears in reasoning-heavy tasks. Below 4-bit, models begin to hallucinate more and lose coherence on long sequences — the information floor starts binding."
+      },
+      {
+        "body": "The practical consequence is a democratization gradient. FP16 inference requires data-center hardware. INT8 runs on a workstation GPU. INT4 fits on a laptop. Each step down in precision puts the same model in the hands of more people — trading marginal quality for orders-of-magnitude wider access."
+      }
+    ],
+    "generatedAt": "2026-03-25T09:58:11.363Z",
+    "label": "Neural Network Quantization",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-03-25-vitruvianos-desktop-linux-beos-inspired": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL",
+        "body": "BeOS was built from scratch in 1991 by Jean-Louis Gassée, a former Apple executive, with one radical premise: pervasive multithreading from the kernel up. Every window, scroll bar, and menu ran in its own thread. On mid-1990s hardware, BeOS could play eight video streams simultaneously while the rest of the system stayed perfectly responsive."
+      },
+      {
+        "body": "BeOS used a 64-bit journaling file system called BFS — in 1998, years before mainstream adoption. BFS supported live queries: saved searches that automatically updated their results as files were created, modified, or deleted. The file system was treated as a database, not a hierarchy."
+      },
+      {
+        "heading": "THE DECISION THAT CHANGED COMPUTING",
+        "body": "In 1996, Apple needed a modern OS to replace the aging Mac OS. BeOS was the leading candidate. Gassée reportedly demanded $300 million. Apple walked away and acquired NeXT instead for $429 million — bringing Steve Jobs back to Apple. The iPhone, macOS, and iOS all descend from NeXT's operating system."
+      },
+      {
+        "body": "Be Inc. shipped BeOS on standard x86 PCs in 1998 and alleged that Microsoft pressured OEM manufacturers not to dual-boot BeOS alongside Windows. The antitrust suit settled in 2003 for $23.25 million — but Be had already ceased operations in 2001."
+      },
+      {
+        "heading": "WHY IT STILL RESONATES",
+        "body": "Most desktop operating systems today carry architectural decisions made in the 1980s or early 1990s. Linux inherits Unix's process model from 1969. Windows NT's architecture dates to 1993. BeOS proved that a clean-sheet design, unburdened by backward compatibility, could achieve responsiveness that retrofitted systems still struggle to match."
+      },
+      {
+        "body": "Haiku OS, the open-source project to recreate BeOS's architecture, has been in continuous development since 2001 — a 25-year community effort. The persistence reflects a real gap: no mainstream OS has replicated BeOS's combination of pervasive threading, a database-like file system, and sub-millisecond UI responsiveness."
+      }
+    ],
+    "generatedAt": "2026-03-25T09:58:11.363Z",
+    "label": "BeOS and Desktop OS Architecture",
+    "category": "tech",
+    "articleCount": 1
   }
 }
