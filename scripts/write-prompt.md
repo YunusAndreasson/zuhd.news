@@ -31,8 +31,8 @@ A separate editor reviews output — focus on writing, not checking.
 title: "3-5 word headline"
 date: "ISO 8601 from pubDate"
 category: "politics|economy|science|tech"
-location: "Sovereign country name (e.g. 'Iran', 'United States', 'Kenya' — never a city, region, or body of water)"
-lat: decimal
+location: "City or country (matches dateline)"
+lat: decimal (must be on land — use city center, not offshore)
 lng: decimal
 sources:
   - name: "Source Name"
@@ -72,7 +72,7 @@ Every article follows a 3-sentence arc:
 
 **Economy.** Drop filler ("In a significant development"), hedging ("could reshape"), and speculation ("is poised to"). Start with the fact. Each sentence must introduce new information — if S3 restates S2 with different words, rewrite S3 with what happens next.
 
-**Dateline.** Every article opens with country + em dash: `Iran — `, `Lebanon — `, `Indonesia — `. The location must be a sovereign country name that maps to a 2-letter ISO code. Never use cities, regions, or bodies of water. For stories spanning borders, use the most affected country.
+**Dateline.** Every article opens with location + em dash: `Tehran — `, `Gaza — `, `Jakarta — `. Use the most specific meaningful location. Cities are preferred over countries when the story is clearly tied to one place.
 
 **Headlines.** 3-5 words. Subject + verb. Drop articles. Spell out names (only US, UK, EU, UN, WHO, NATO, ISIS need no expansion).
 
@@ -85,7 +85,7 @@ Every article follows a 3-sentence arc:
 title: "UK Blames Russia for Navalny"
 date: "2026-02-14T15:58:00Z"
 category: "politics"
-location: "United Kingdom"
+location: "London"
 lat: 51.51
 lng: -0.13
 sources:
@@ -101,7 +101,7 @@ concepts:
   - "Russia"
 ---
 
-United Kingdom — Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. They are now reporting Russia to the chemical weapons watchdog.
+London — Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. They are now reporting Russia to the chemical weapons watchdog.
 </example>
 
 <example>
@@ -109,7 +109,7 @@ United Kingdom — Dart frog toxin killed Alexei Navalny. 5 European governments
 title: "Gaza Hospitals Run Out of Fuel"
 date: "2026-02-14T12:00:00Z"
 category: "politics"
-location: "Palestine"
+location: "Gaza"
 lat: 31.50
 lng: 34.47
 sources:
@@ -118,7 +118,7 @@ sources:
     country: "QA"
 ---
 
-Palestine — 4 hospitals shut down this week. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
+Gaza — 4 hospitals shut down this week. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
 </example>
 
 <example>
@@ -126,7 +126,7 @@ Palestine — 4 hospitals shut down this week. Israel blocked aid convoys for a 
 title: "Vietnam Licenses Starlink"
 date: "2026-02-15T10:31:31Z"
 category: "tech"
-location: "Vietnam"
+location: "Hanoi"
 lat: 21.03
 lng: 105.85
 sources:
@@ -135,7 +135,7 @@ sources:
     country: "MY"
 ---
 
-Vietnam — 600,000 Starlink terminals are now legal. The radio frequency authority licensed 4 gateway stations, covering 20 million people without internet access. Starlink will compete with state-backed carriers that control terrestrial infrastructure.
+Hanoi — 600,000 Starlink terminals are now legal. The radio frequency authority licensed 4 gateway stations, covering 20 million people without internet access. Starlink will compete with state-backed carriers that control terrestrial infrastructure.
 </example>
 
 <example>
@@ -143,7 +143,7 @@ Vietnam — 600,000 Starlink terminals are now legal. The radio frequency author
 title: "Iran War Downs Pakistani Fintech"
 date: "2026-03-24T12:00:00Z"
 category: "economy"
-location: "Pakistan"
+location: "Karachi"
 lat: 24.86
 lng: 67.01
 sources:
@@ -152,7 +152,7 @@ sources:
     country: "PK"
 ---
 
-Pakistan — SadaPay collapsed after Gulf strikes. Pakistan's digital banking routes through AWS Bahrain, disrupted since March 1 drone strikes affecting 3 million users. The outage exposed Gulf cloud infrastructure as a single point of failure for South Asian fintech.
+Karachi — SadaPay collapsed after Gulf strikes. Pakistan's digital banking routes through AWS Bahrain, disrupted since March 1 drone strikes affecting 3 million users. The outage exposed Gulf cloud infrastructure as a single point of failure for South Asian fintech.
 </example>
 
 </examples>
