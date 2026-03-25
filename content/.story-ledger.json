@@ -2,13 +2,86 @@
   "version": 1,
   "stories": [
     {
+      "id": "us-iran-15-point-ceasefire",
+      "label": "US sends 15-point ceasefire plan to Iran; Tehran's military rejects talks",
+      "firstSeen": "2026-03-25T04:44:00Z",
+      "lastCovered": "2026-03-25T12:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 8,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-us-15-point-ceasefire-iran-rejects-82nd-airborne"
+      ],
+      "eventUri": "eng-11509977",
+      "summary": "US sends 15-point ceasefire via Pakistan including nuclear dismantlement and Hormuz reopening. 82nd Airborne deploying 1,000+ troops simultaneously. Iran military spokesman: 'Don't dress up your defeat as an agreement.'",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz"
+      ]
+    },
+    {
+      "id": "bellingcat-chad-rsf-munitions",
+      "label": "Bellingcat: Chad strike munitions match Chinese-made bombs used by RSF",
+      "firstSeen": "2026-03-24T10:44:00Z",
+      "lastCovered": "2026-03-25T12:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-bellingcat-chad-munitions-rsf-uae-chinese-bombs"
+      ],
+      "eventUri": null,
+      "summary": "Bellingcat identifies Chinese-made GB25A/GB50A bomb remnants at Tiné, Chad strike site (17 killed). Amnesty linked GB50A to RSF via UAE re-export. Proves RSF strikes beyond Sudan.",
+      "conceptUris": []
+    },
+    {
+      "id": "ecb-lagarde-rate-hikes-2026",
+      "label": "ECB Lagarde signals rate hikes possible for Iran war inflation overshoot",
+      "firstSeen": "2026-03-25T09:12:00Z",
+      "lastCovered": "2026-03-25T12:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-ecb-lagarde-rate-hikes-iran-war-inflation-shock"
+      ],
+      "eventUri": "eng-11510783",
+      "summary": "Lagarde: ECB could tighten even for 'not-too-persistent' inflation from Iran war energy shock. Markets price 2-3 hikes in 2026. Firms may pass costs faster because 2022 inflation changed behavior.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/European_Central_Bank",
+        "http://en.wikipedia.org/wiki/Christine_Lagarde",
+        "http://en.wikipedia.org/wiki/Inflation"
+      ]
+    },
+    {
+      "id": "iran-internet-blackout-600h",
+      "label": "Iran internet at 1% for 600+ hours — 26 days of near-total blackout",
+      "firstSeen": "2026-03-25T11:30:00Z",
+      "lastCovered": "2026-03-25T12:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-iran-internet-blackout-600-hours-88-million"
+      ],
+      "eventUri": null,
+      "summary": "NetBlocks: Iran 1% connectivity for 600+ hours (26 days). Longest sustained national internet shutdown in a warzone. 88 million people digitally isolated.",
+      "conceptUris": []
+    },
+    {
       "id": "baltic-drone-incursions",
       "label": "Drones from Russia hit Estonian power plant, enter Latvian airspace",
       "firstSeen": "2026-03-25T08:30:00Z",
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-25-drones-baltic-estonia-power-plant-nato-airspace"
@@ -23,13 +96,77 @@
       ]
     },
     {
+      "id": "pakistan-fuel-quota-app",
+      "label": "Pakistan builds app-based fuel rationing for motorcycles/rickshaws",
+      "firstSeen": "2026-03-25T10:48:00Z",
+      "lastCovered": "2026-03-25T12:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-pakistan-fuel-quota-app-motorcycles-rationing"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan finalizing CNIC-linked mobile app for fuel quotas on 2/3-wheelers. Rs70bn cost of holding prices for two weeks. Kerosene +128%, jet fuel +150% since war.",
+      "conceptUris": []
+    },
+    {
+      "id": "gold-losing-streak-century",
+      "label": "Gold worst losing streak since 1920; bitcoin outperforms as wartime hedge",
+      "firstSeen": "2026-03-25T10:37:00Z",
+      "lastCovered": "2026-03-25T12:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-gold-century-losing-streak-bitcoin-outperforms-war"
+      ],
+      "eventUri": null,
+      "summary": "Gold 10-day losing streak (worst since Feb 1920), down 27% from ATH to $4,090. Bitcoin holds $70k+, BTC/gold ratio up 30%. Bitcoin ETFs +$2.5B March inflows vs gold ETF outflows.",
+      "conceptUris": []
+    },
+    {
+      "id": "icml-ai-peer-review-rejection",
+      "label": "ICML rejects 497 papers after catching AI-generated peer reviews via watermarks",
+      "firstSeen": "2026-03-25T11:57:00Z",
+      "lastCovered": "2026-03-25T12:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-icml-497-papers-rejected-ai-peer-review-watermarks"
+      ],
+      "eventUri": null,
+      "summary": "ICML caught 506 reviewers using LLMs via hidden watermarks in papers (170k phrase library). 497 papers rejected. First conference to offer opt-in LLM streams; cheating happened in no-LLM stream.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-heat-deaths-2050",
+      "label": "Pakistan cities projected for 1/3 of global urban heat deaths by 2050",
+      "firstSeen": "2026-03-25T10:31:00Z",
+      "lastCovered": "2026-03-25T12:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-pakistan-cities-heat-deaths-2050-faisalabad-climate"
+      ],
+      "eventUri": "eng-11510906",
+      "summary": "Climate Impact Lab: Faisalabad +9,400 heat deaths/yr by 2050 (vs Phoenix 600, Madrid 525). 8 Pakistani cities in global top 15. 10x more deaths in low-income vs high-income countries.",
+      "conceptUris": []
+    },
+    {
       "id": "iran-vance-negotiation",
       "label": "Iran demands Vance as interlocutor, rejects Kushner and Witkoff",
       "firstSeen": "2026-03-25T05:01:00Z",
       "lastCovered": "2026-03-25T08:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-25-iran-vance-negotiation-rejects-kushner-witkoff"
@@ -50,7 +187,7 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-25-us-visa-bonds-15000-fifty-countries-global-south",
@@ -73,7 +210,7 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-25-sde-teiman-charges-dropped-israel-military-justice"
@@ -89,7 +226,7 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-25-meta-instagram-dm-encryption-removed-wana-risk"
@@ -99,13 +236,77 @@
       "conceptUris": []
     },
     {
+      "id": "merck-terns-leukemia",
+      "label": "Merck acquires Terns Pharmaceuticals for $6.7B (leukemia drug TERN-701)",
+      "firstSeen": "2026-03-25T11:46:00Z",
+      "lastCovered": "2026-03-25T12:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-merck-terns-67b-leukemia-keytruda-patent-cliff"
+      ],
+      "eventUri": "eng-11510285",
+      "summary": "Merck paying $6.7B for Terns Pharma and TERN-701 leukemia drug. Terns stock 6x'd in 6 months. Merck building pipeline as Keytruda patent cliff approaches.",
+      "conceptUris": []
+    },
+    {
+      "id": "gulf-war-toxic-fallout",
+      "label": "Bombing Gulf oil facilities causing environmental contamination lasting decades",
+      "firstSeen": "2026-03-23T03:31:00Z",
+      "lastCovered": "2026-03-25T12:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-toxic-fallout-gulf-war-oil-contamination-decades"
+      ],
+      "eventUri": null,
+      "summary": "SciDev: bombing of Gulf oil facilities contaminating air, soil and water systems. Environmental damage could persist for decades.",
+      "conceptUris": []
+    },
+    {
+      "id": "lebanon-telecom-preparedness",
+      "label": "Lebanon has no telecom emergency plan 15 months after 2024 war",
+      "firstSeen": "2026-03-19T11:57:00Z",
+      "lastCovered": "2026-03-25T12:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-lebanon-telecom-no-emergency-plan-war-smex"
+      ],
+      "eventUri": null,
+      "summary": "SMEX: Lebanon telecom ministry has no emergency connectivity plan. Southern networks still unrepaired. Government fast-tracked Starlink for select entities only.",
+      "conceptUris": []
+    },
+    {
+      "id": "israel-qr-code-leaflets-lebanon",
+      "label": "Israeli QR code propaganda leaflets harvest Lebanese device data",
+      "firstSeen": "2026-03-13T14:48:00Z",
+      "lastCovered": "2026-03-25T12:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-israeli-qr-code-leaflets-lebanon-surveillance-smex"
+      ],
+      "eventUri": null,
+      "summary": "Israeli aircraft dropping leaflets in Lebanon with QR codes that harvest device data and expose WhatsApp numbers to intelligence. SMEX published technical breakdown.",
+      "conceptUris": []
+    },
+    {
       "id": "niger-state-press-freedom",
       "label": "Man arrested for shouting \"No water, no light\" at Niger State governor",
       "firstSeen": "2026-03-25T08:30:00Z",
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-niger-state-man-arrested-no-water-no-light-governor"
@@ -121,7 +322,7 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-uk-inflation-3-percent-pre-war-baseline-rate-hikes"
@@ -140,7 +341,7 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-crypto-oil-trading-wti-cfd-wintermute-war-gap"
@@ -156,7 +357,7 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-hiv-tb-donor-cuts-nigeria-domestic-financing-gap"
@@ -172,7 +373,7 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-benzene-gas-cookers-leaking-cancer-europe-homes"
@@ -188,7 +389,7 @@
       "lastCovered": "2026-03-25T08:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-25-telegram-drug-king-park-extradited-korea-philippines"
@@ -209,7 +410,7 @@
       "lastCovered": "2026-03-25T08:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-25-k-electric-electrocution-compensation-karachi-negligence"
@@ -225,7 +426,7 @@
       "lastCovered": "2026-03-25T08:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-25-ripple-rlusd-singapore-mas-sandbox-trade-finance"
@@ -241,7 +442,7 @@
       "lastCovered": "2026-03-25T05:04:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-25-molefe-eskom-slush-fund-atm-forensics-state-capture"
@@ -260,7 +461,7 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-25-heat-fewer-male-births-africa-climate-pregnancy"
@@ -276,7 +477,7 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-25-turboquant-google-ai-compression-efficiency"
@@ -292,7 +493,7 @@
       "lastCovered": "2026-03-25T08:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-25-ionic-bonding-thermoelectrics-waste-heat-nature"
@@ -308,393 +509,13 @@
       "lastCovered": "2026-03-25T08:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-25-oncology-ml-drug-indication-matching-nature"
       ],
       "eventUri": null,
       "summary": "Nature Precision Oncology: representation learning on real-world data predicts which cancer indications best match a drug mechanism.",
-      "conceptUris": []
-    },
-    {
-      "id": "youth-hockey-collision-ai",
-      "label": "Deep learning detects collision events in youth ice hockey video",
-      "firstSeen": "2026-03-25T00:00:00Z",
-      "lastCovered": "2026-03-25T08:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-youth-hockey-collision-detection-deep-learning-nature"
-      ],
-      "eventUri": null,
-      "summary": "Scientific Reports: YOLO-based pipeline detects physical contact events in youth hockey from single-camera footage for concussion tracking.",
-      "conceptUris": []
-    },
-    {
-      "id": "rfk-malone-quits-cdc",
-      "label": "RFK Jr anti-vaccine ally Malone rage-quits CDC advisory panel",
-      "firstSeen": "2026-03-25T05:04:00Z",
-      "lastCovered": "2026-03-25T05:04:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-rfk-jr-anti-vaccine-ally-malone-quits-cdc-panel"
-      ],
-      "eventUri": null,
-      "summary": "Robert Malone, hand-picked by RFK Jr for CDC ACIP panel, resigned citing drama. Anti-vax movement fracturing within federal health institutions.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Advisory_Committee_on_Immunization_Practices",
-        "http://en.wikipedia.org/wiki/Centers_for_Disease_Control_and_Prevention"
-      ]
-    },
-    {
-      "id": "denmark-election-2026",
-      "label": "Denmark election: Frederiksen bruised, coalition talks loom",
-      "firstSeen": "2026-03-25T05:04:00Z",
-      "lastCovered": "2026-03-25T05:04:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-denmark-election-frederiksen-coalition-trump-era"
-      ],
-      "eventUri": null,
-      "summary": "Frederiksen Social Democrats lost seats but remain largest party. First NATO-ally election post-Iran-war.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Mette_Frederiksen",
-        "http://en.wikipedia.org/wiki/Denmark"
-      ]
-    },
-    {
-      "id": "mohenjo-daro-3300bc",
-      "label": "Radiocarbon dating pushes Mohenjo Daro urban roots to 3300 BC",
-      "firstSeen": "2026-03-25T05:04:00Z",
-      "lastCovered": "2026-03-25T05:04:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-mohenjo-daro-radiocarbon-3300-bc-indus-valley"
-      ],
-      "eventUri": null,
-      "summary": "New radiocarbon dates confirm Mohenjo Daro urban occupation during Kot Diji Phase (3300-2600 BC), 700 years earlier than mature Indus phase.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Mohenjo-daro",
-        "http://en.wikipedia.org/wiki/Indus_Valley_Civilisation"
-      ]
-    },
-    {
-      "id": "data-centers-ac-dc-transition",
-      "label": "Data centers transitioning from AC to DC power distribution",
-      "firstSeen": "2026-03-25T05:04:00Z",
-      "lastCovered": "2026-03-25T05:04:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-data-centers-ac-dc-transition-edison-revenge"
-      ],
-      "eventUri": null,
-      "summary": "IEEE Spectrum: data centers switching AC to DC power, saving 10-20% energy. Driven by AI cluster demands exceeding 100MW.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-us-israel-war",
-      "label": "Iran-US-Israel war: Gulf states weigh military entry, Hormuz blockade tightens",
-      "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-25T08:30:00Z",
-      "coverageCount": 345,
-      "category": "politics",
-      "importance": 3,
-      "arc": "ongoing",
-      "articles": [
-        "2026-03-01-us-israel-attacks-iran-retaliation-regional-war",
-        "2026-03-08-iran-war-day-12-1300-killed-100000-displaced",
-        "2026-03-09-trump-says-iran-war-almost-over",
-        "2026-03-09-us-israel-diverge-iran-war-goals",
-        "2026-03-10-hegseth-most-intense-strikes-iran-day-15",
-        "2026-03-10-trump-kharg-island-seizure-iran",
-        "2026-03-10-trump-us-troops-deployment-iran-senator-warning",
-        "2026-03-11-iran-dissent-crackdown-airstrikes-day-16-war",
-        "2026-03-11-israel-switches-regime-targets-iran-war-haaretz",
-        "2026-03-11-israel-privately-admits-no-certainty-iran-regime-collapse",
-        "2026-03-12-trump-we-won-iran-war-wont-leave-early-day-18",
-        "2026-03-12-iran-war-cost-eleven-billion-six-days-pentagon",
-        "2026-03-12-iran-32-million-displaced-us-israeli-attacks-un",
-        "2026-03-12-iran-no-collapse-us-intelligence-war-failure",
-        "2026-03-15-trump-kharg-island-just-for-fun",
-        "2026-03-15-french-spies-undercover-iran",
-        "2026-03-15-zelenskyy-ukraine-us-backing-iran-war",
-        "2026-03-15-iran-arrests-informants-israel-intelligence-war",
-        "2026-03-15-iran-hypersonic-missiles-technology",
-        "2026-03-15-pope-leo-xiv-demands-ceasefire-middle-east-war",
-        "2026-03-15-israel-bombing-expands-western-iran-third-week",
-        "2026-03-15-us-10m-reward-iran-supreme-leader-irgc",
-        "2026-03-15-iraq-warns-kurds-iran-war",
-        "2026-03-15-nepali-guard-killed-abu-dhabi-migrant-workers-iran-war",
-        "2026-03-15-pti-oic-emergency-session-iran-war-muslim-silence",
-        "2026-03-15-bahrain-337-intercepts-small-gulf-state-war-burden",
-        "2026-03-15-bellingcat-satellite-imagery-iran-police-stations-strikes",
-        "2026-03-15-iran-denies-saudi-oil-attacks-war-containment",
-        "2026-03-15-russia-strikes-kyiv-energy-iran-war-shadow",
-        "2026-03-15-iran-brics-india-chairmanship-silence-war",
-        "2026-03-15-india-iran-hormuz-diplomacy-vs-us-military-escort",
-        "2026-03-16-iranian-missile-fragment-us-consul-israel",
-        "2026-03-16-iran-captain-asylum-dropped-wartime-returns",
-        "2026-03-16-iran-israel-environmental-crimes-tehran-war",
-        "2026-03-16-trump-us-israel-shared-war-objectives",
-        "2026-03-16-london-thousands-protest-war-iran-despite-bans",
-        "2026-03-16-war-environmental-damage-carbon-toxins-middle-east",
-        "2026-03-16-abu-dhabi-missile-civilian-car-killed",
-        "2026-03-16-us-israeli-strike-school-iran-day-24",
-        "2026-03-16-us-strikes-chabahar-india-port-iran",
-        "2026-03-16-netanyahu-ignored-trump-warning-oil-depots-strike",
-        "2026-03-16-uk-starmer-rules-out-iran-war-hormuz-coalition-fails",
-        "2026-03-16-hamas-trump-board-talks-iran-war-gaza",
-        "2026-03-16-amnesty-us-tomahawk-minab-school-170-children-killed",
-        "2026-03-16-iran-heritage-sites-devastated-us-israeli-strikes",
-        "2026-03-16-reza-pahlavi-supporters-iran-turning-against",
-        "2026-03-16-uae-missiles-drones-iran-gulf-campaign",
-        "2026-03-16-iranian-families-bury-war-dead-tehran",
-        "2026-03-16-us-centcom-7000-targets-struck-iran-24-days",
-        "2026-03-16-baghdad-green-zone-drone-rockets-war-spreads-iraq",
-        "2026-03-17-iran-us-direct-contact-backchannel-war",
-        "2026-03-17-uae-shah-gas-field-suspended-iranian-drone-attack",
-        "2026-03-17-iran-navy-deadly-retaliation-dena-sinking",
-        "2026-03-17-uae-fujairah-oil-zone-fire-drone-strike",
-        "2026-03-17-trump-allies-ingratitude-hormuz-coalition-refuses",
-        "2026-03-17-jeffries-reckless-war-choice-first-democratic-opposition",
-        "2026-03-17-tehran-12000-buildings-damaged-25-days-bombing",
-        "2026-03-17-three-day-old-infant-family-killed-arak-strike",
-        "2026-03-17-israel-kills-larijani-iran-security-chief",
-        "2026-03-17-us-embassy-baghdad-attacked-iraq-war-spreads",
-        "2026-03-17-third-pakistani-killed-uae-debris-migrant-war",
-        "2026-03-17-eu-kallas-calls-us-israel-end-iran-war",
-        "2026-03-17-us-counterterrorism-chief-resigns-iran-no-threat",
-        "2026-03-17-israel-assessed-iranians-slaughtered-uprising",
-        "2026-03-17-uk-official-iran-no-nuclear-threat-war",
-        "2026-03-17-eu-face-saving-exit-iran-war",
-        "2026-03-18-iran-basij-commander-killed-israel-targets-supreme-leader",
-        "2026-03-18-bushehr-nuclear-plant-projectile-iran-war",
-        "2026-03-16-russian-consulate-isfahan-closes-war",
-        "2026-03-16-trump-hormuz-nato-threat-global-backing",
-        "2026-03-18-ukraine-drone-experts-gulf-iran-war",
-        "2026-03-18-irgc-tel-aviv-missiles-revenge-larijani",
-        "2026-03-18-larijani-son-aide-killed-israeli-strike-tehran",
-        "2026-03-18-larijani-death-iran-leadership-crisis-succession",
-        "2026-03-18-china-gulf-iran-balancing-act-war-test",
-        "2026-03-18-iran-nuclear-doctrine-restraint-bushehr-strike",
-        "2026-03-18-uss-gerald-ford-fire-docks-iran-war",
-        "2026-03-18-rosatom-condemns-bushehr-nuclear-plant-strike",
-        "2026-03-18-iran-war-brics-fault-lines-bloc-failure",
-        "2026-03-18-riyadh-regional-fms-meeting-iran-war-diplomacy",
-        "2026-03-18-iran-intelligence-minister-khatib-killed-airstrike",
-        "2026-03-18-saudi-arabia-intercepts-missiles-riyadh-alerts",
-        "2026-03-18-iaea-bushehr-damage-not-significant-nuclear",
-        "2026-03-18-gabbard-accused-omitting-iran-intel-trump",
-        "2026-03-18-gabbard-iran-government-intact-decapitation-failed",
-        "2026-03-18-who-worst-case-nuclear-incident-iran-war",
-        "2026-03-18-gabbard-not-her-job-threat-assessment-dni",
-        "2026-03-18-tehran-grand-bazaar-war-prices-shops-shut",
-        "2026-03-16-russian-consulate-isfahan-closes-war",
-        "2026-03-16-trump-hormuz-nato-threat-global-backing",
-        "2026-03-19-pentagon-200bn-iran-war-congress-bad-guys",
-        "2026-03-20-eid-mourning-migrant-workers-killed-iran-war-gulf",
-        "2026-03-20-netanyahu-israel-acted-alone-iran-gas-field",
-        "2026-03-20-idf-90-percent-iran-missiles-intercepted",
-        "2026-03-20-uae-saudi-kuwait-air-defense-alerts-iran-war-gulf",
-        "2026-03-20-us-16bn-arms-gulf-iran-zero-restraint",
-        "2026-03-20-gulf-eid-prayers-restricted-iran-war",
-        "2026-03-20-kuwait-refinery-fire-bahrain-blaze-gulf-infrastructure",
-        "2026-03-20-cyberattack-mossad-official-documents-leaked",
-        "2026-03-20-switzerland-halts-arms-exports-us-iran-neutrality",
-        "2026-03-20-netherlands-security-iranian-dissidents-shooting",
-        "2026-03-20-iran-warns-us-israeli-personnel-not-safe-worldwide",
-        "2026-03-20-nato-withdraws-iraq-troops-europe-iran-war",
-        "2026-03-20-iran-arrests-97-accused-israeli-spies-wartime-crackdown",
-        "2026-03-20-iran-denies-striking-turkey-oman-blames-israel",
-        "2026-03-20-iranian-arrested-uk-nuclear-missile-base",
-        "2026-03-20-trump-no-iranian-leaders-left-war-diplomacy-closed",
-        "2026-03-21-us-ground-troops-plan-iran-invasion",
-        "2026-03-21-saudi-uae-inch-closer-supporting-us-israeli-war-iran",
-        "2026-03-21-us-israel-strike-natanz-nuclear-facility-iran",
-        "2026-03-21-syria-vows-neutrality-iran-war-fragile-government",
-        "2026-03-21-drone-strike-iraqi-intelligence-hq-baghdad-war-spreads",
-        "2026-03-21-jerusalem-old-city-iranian-projectile-sacred-site",
-        "2026-03-21-uk-bases-iran-war-diego-garcia-missiles",
-        "2026-03-21-bahrain-patriot-intercept-drone-civilian-homes",
-        "2026-03-21-iran-war-5-million-tonnes-emissions-climate-cost",
-        "2026-03-21-jerusalem-old-city-iranian-projectile-sacred-site",
-        "2026-03-21-iranian-missile-dimona-nuclear-town-escalation",
-        "2026-03-21-trump-winding-down-iran-war-no-ceasefire",
-        "2026-03-21-joe-kent-resigns-counterterrorism-iran-war-dissent",
-        "2026-03-22-british-nationals-mass-exodus-gulf-uae-attacks",
-        "2026-03-22-patriot-missile-bahrain-blast-us-operated-analysis",
-        "2026-03-21-iranian-missile-dimona-nuclear-town-escalation",
-        "2026-03-21-trump-winding-down-iran-war-no-ceasefire",
-        "2026-03-21-joe-kent-resigns-counterterrorism-iran-war-dissent",
-        "2026-03-22-democrats-war-powers-push-iran-oversight",
-        "2026-03-22-iran-81000-civilian-units-damaged-red-crescent",
-        "2026-03-22-us-treasury-plenty-of-funds-iran-war-200bn-request",
-        "2026-03-22-iran-threatens-all-infrastructure-retaliation-power-plants",
-        "2026-03-22-patriot-bahrain-blast-us-operated-reuters-analysis",
-        "2026-03-22-british-pm-emergency-cabinet-mideast",
-        "2026-03-23-tehran-struck-khorramabad-blackout-infrastructure-war",
-        "2026-03-23-us-strikes-qom-engine-factory-iran-manufacturing",
-        "2026-03-23-iran-condemns-jordan-un-us-attacks-facilitation",
-        "2026-03-23-israeli-poll-90-percent-support-iran-war",
-        "2026-03-23-trump-weekend-pivot-domestic-iran-war-attention",
-        "2026-03-23-trump-halts-iran-strikes-five-day-pause-talks",
-        "2026-03-23-congress-war-powers-push-curb-trump-iran",
-        "2026-03-23-turkey-off-ramp-iran-war-fidan-diplomacy",
-        "2026-03-23-nato-cannot-confirm-iran-diego-garcia-attack",
-        "2026-03-23-pakistan-egypt-turkey-backchannel-iran-us-mediation",
-        "2026-03-24-us-israeli-strikes-iran-energy-infrastructure-isfahan",
-        "2026-03-23-iran-denies-trump-direct-talks-market-manipulation",
-        "2026-03-19-hezbollah-khiam-taybeh-israel-southern-lebanon-encirclement",
-        "2026-03-24-grieving-parents-iran-minab-school-strike",
-        "2026-03-24-house-iran-wpr-vote-democrats-delay",
-        "2026-03-24-toxic-fallout-gulf-war-decades-contamination",
-        "2026-03-20-house-iran-wpr-vote-democrats-delay",
-        "2026-03-18-grieving-parents-iran-minab-school-strike",
-        "2026-03-24-iran-strikes-continue-despite-trump-pause-khorramshahr",
-        "2026-03-24-pakistan-army-chief-trump-call-iran-peace-broker",
-        "2026-03-24-house-wpr-vote-pro-israel-democrats-delay-tactics",
-        "2026-03-24-israel-kills-two-beirut-intensifies-lebanon-attacks",
-        "2026-03-24-lebanon-expels-iranian-ambassador-persona-non-grata",
-        "2026-03-24-iran-war-economic-consequences-outlast-fighting",
-        "2026-03-24-german-president-iran-war-disastrous-mistake-trump-rebuke",
-        "2026-03-24-zolghadr-replaces-larijani-iran-security-chief-irgc",
-        "2026-03-24-french-military-us-unpredictability-europe-security",
-        "2026-03-24-india-us-hormuz-energy-security-diplomacy",
-        "2026-03-24-philippines-energy-emergency-iran-war-oil-shock",
-        "2026-03-24-afghanistan-taliban-releases-us-citizen-iran-war-leverage",
-        "2026-03-24-india-gas-shortage-hormuz-modi-trump-energy-crisis",
-        "2026-03-24-global-fuel-emergency-no-flights-no-lights",
-        "2026-03-24-gulf-states-weigh-military-entry-iran-war",
-        "2026-03-24-iran-irgc-blocks-container-ship-hormuz-strait",
-        "2026-03-24-sindh-smart-lockdown-fuel-conservation-iran-war",
-        "2026-03-24-clerics-pakistan-afghanistan-extend-pause-eid",
-        "2026-03-24-trump-iran-prize-hormuz-vague-deal-claim",
-        "2026-03-24-saudi-mbs-pushes-trump-regime-change-iran-nyt",
-        "2026-03-25-islamabad-offers-host-us-iran-talks-mediation",
-        "2026-03-25-trump-15-point-ceasefire-plan-iran-pakistan-mediator",
-        "2026-03-25-iranian-drone-strikes-kuwait-airport-fuel-tanks",
-        "2026-03-25-iran-biological-materials-war-biosecurity-threat"
-      ],
-      "summary": "Day 25+. STAT raises biosecurity angle: Iran likely has biological weapons capability, strikes may have scattered materials from IRGC-linked facilities. 345 articles."
-    },
-    {
-      "id": "vitruvianos-beos-linux",
-      "label": "VitruvianOS: desktop Linux inspired by BeOS design philosophy",
-      "firstSeen": "2026-03-25T08:30:00Z",
-      "lastCovered": "2026-03-25T08:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-vitruvianos-desktop-linux-beos-inspired"
-      ],
-      "eventUri": null,
-      "summary": "New desktop Linux distribution inspired by BeOS — clean architecture, pervasive multithreading, media-first design. 118 HN points.",
-      "conceptUris": []
-    },
-    {
-      "id": "nasa-artemis-ii-launch",
-      "label": "NASA Artemis II: first crewed lunar mission in 53 years targets April 1",
-      "firstSeen": "2026-03-25T01:00:00Z",
-      "lastCovered": "2026-03-25T04:00:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-25-nasa-artemis-ii-crewed-moon-mission-april",
-        "2026-03-25-nasa-artemis-ii-april-launch-moon"
-      ],
-      "eventUri": "eng-11476892",
-      "summary": "Artemis II crewed lunar flyby scheduled for April 1, 2026. First humans beyond LEO since Apollo 17 (1972). Four astronauts, SLS/Orion stack.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/NASA",
-        "http://en.wikipedia.org/wiki/Artemis_2",
-        "http://en.wikipedia.org/wiki/Space_Launch_System",
-        "http://en.wikipedia.org/wiki/Orion_(spacecraft)"
-      ]
-    },
-    {
-      "id": "sudan-rsf-bara-kordofan",
-      "label": "RSF retakes Bara, war spills into Chad with drone strike on funeral",
-      "firstSeen": "2026-03-25T01:00:00Z",
-      "lastCovered": "2026-03-25T04:00:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-25-sudan-rsf-bara-kordofan-darfur-advances",
-        "2026-03-25-sudan-rsf-seizes-bara-darfur-chad-border"
-      ],
-      "eventUri": null,
-      "summary": "RSF recaptured Bara 10 days after SAF retook it. Drone strike hit funeral in Chad (15 killed), 123 wounded crossed into Chad in one day. Burhan courting revolutionary forces after US designated Sudanese Muslim Brotherhood as terrorist org."
-    },
-    {
-      "id": "pakistan-cardiac-surgery-programme",
-      "label": "Punjab approves Rs3bn annual cardiac surgery programme",
-      "firstSeen": "2026-03-25T05:04:00Z",
-      "lastCovered": "2026-03-25T05:04:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-pakistan-punjab-cardiac-surgery-programme-3bn"
-      ],
-      "eventUri": null,
-      "summary": "Punjab government approves Rs3bn annual cardiac surgery programme in Lahore. First at this scale in Pakistan.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Punjab,_Pakistan",
-        "http://en.wikipedia.org/wiki/Cardiac_surgery"
-      ]
-    },
-    {
-      "id": "parkinsons-physiotherapy-nature",
-      "label": "Nature meta-analysis: physiotherapy protocols for Parkinson balance",
-      "firstSeen": "2026-03-25T05:04:00Z",
-      "lastCovered": "2026-03-25T05:04:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-parkinsons-balance-physiotherapy-nature-meta-analysis"
-      ],
-      "eventUri": null,
-      "summary": "Meta-analysis identifies evidence-based physiotherapy interventions for Parkinson balance impairments with dose recommendations.",
-      "conceptUris": []
-    },
-    {
-      "id": "vertical-saas-domain-expertise",
-      "label": "Developer takes technician job before building pest control SaaS",
-      "firstSeen": "2026-03-25T05:04:00Z",
-      "lastCovered": "2026-03-25T05:04:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-vertical-saas-pest-control-technician-job-domain"
-      ],
-      "eventUri": null,
-      "summary": "Developer worked as pest control technician to understand domain before building vertical SaaS. Domain-driven entrepreneurship.",
       "conceptUris": []
     }
   ]
