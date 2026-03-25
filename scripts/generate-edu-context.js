@@ -98,9 +98,9 @@ const env = { ...process.env }
 delete env.CLAUDECODE
 const args = [
   '--model', 'opus',
-  '--effort', 'high',
+  '--effort', 'medium',
   '--no-session-persistence',
-  '--max-turns', '1',
+  '--max-turns', '5',
   '-p', fullPrompt,
 ]
 const result = spawnSync('claude', args, {

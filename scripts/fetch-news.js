@@ -98,7 +98,7 @@ function isRelevant(item) {
   return true
 }
 
-async function fetchSource(source) {
+async function fetchSource(source, retries = 1) {
   try {
     const res = await fetch(source.url, { signal: AbortSignal.timeout(10000) })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
@@ -112,6 +112,10 @@ async function fetchSource(source) {
 
     return rawItems.map(raw => normalizeItem(raw, source)).filter(Boolean).filter(isRelevant)
   } catch (err) {
+    if (retries > 0) {
+      await new Promise(r => setTimeout(r, 10000))
+      return fetchSource(source, retries - 1)
+    }
     console.error(`  ✗ ${source.name}: ${err.message}`)
     return []
   }
