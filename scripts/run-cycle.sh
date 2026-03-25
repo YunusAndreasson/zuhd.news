@@ -12,6 +12,11 @@ LOG_DIR="$PROJECT_DIR/logs"
 exec 200>/tmp/zuhd-cycle.lock
 flock -n 200 || { echo "Cycle already running — exiting"; exit 0; }
 
+# Load environment secrets (NEWSAPI_KEY etc.) — not in systemd, not in git
+if [ -f "$PROJECT_DIR/.env" ]; then
+  set -a; source "$PROJECT_DIR/.env"; set +a
+fi
+
 # Ensure mise-managed tools are on PATH (systemd doesn't source shell profiles)
 export HOME="${HOME:-/root}"
 MISE_BIN="${MISE_BIN:-$HOME/.local/bin/mise}"
