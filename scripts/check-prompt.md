@@ -24,7 +24,7 @@ Check in this order.
 <engagement>
 - **Hook test:** Does sentence 1 make the reader stop? It needs a concrete detail — a number, a surprising fact, a vivid consequence. Rewrite generic hooks ("faces criticism," "announces plan") with the most striking detail from the article.
 - **Learning test:** Does the context sentence teach *how* or *why*? If it merely restates the hook with more detail, rewrite to illuminate a mechanism or cause.
-- **Tension test:** Does the final sentence create forward pull? Rewrite flat endings with what's unresolved. Watch for the "with no [X]" formula — absence is not tension. Name who must act, what deadline looms, or what breaks.
+- **Tension test:** Does the final sentence create forward pull? Rewrite flat endings with what's unresolved. Watch for the "with no [X]" formula — absence is not tension. Watch for "X must now Y" — prescription is not tension either. Name who must act, what deadline looms, or what breaks.
 </engagement>
 
 <structure>

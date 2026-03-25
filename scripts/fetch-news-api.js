@@ -272,7 +272,7 @@ async function fetchEvents() {
     categoryUri: INCLUDE_CATEGORIES,
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
     dateStart: new Date().toISOString().slice(0, 10),
-    minArticlesInEvent: 15,
+    minArticlesInEvent: 10,
   })
   return (data.events?.results || []).filter(Boolean)
 }
@@ -441,7 +441,7 @@ async function main() {
   // Per-event fetch: for the top 5 events, directly fetch 15 diverse articles
   // This guarantees multi-source panels — the Q2-Q5 matching often misses.
   // Cost: ~2 tokens per event (info check + article fetch) = ~10 tokens/cycle
-  const TOP_EVENTS_TO_FETCH = 5
+  const TOP_EVENTS_TO_FETCH = 8
   const topEvents = events.slice(0, TOP_EVENTS_TO_FETCH)
   let perEventFetched = 0
   for (const event of topEvents) {

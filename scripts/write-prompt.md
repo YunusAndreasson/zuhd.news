@@ -58,7 +58,7 @@ Every article follows a 3-sentence arc:
 
 2. **Context** (≤25 words) — *why* this happened, *how* it works, or *how big* it is. Teach the mechanism, not just more facts. If covering the hook tells you *what*, this sentence tells you *why*.
 
-3. **Future** (≤20 words) — something specific and unresolved. A deadline, a pending decision, a named consequence. End on what's at stake, not a summary.
+3. **Future** (≤20 words) — something specific and unresolved. A deadline, a pending decision, a named consequence. End on what's at stake, not a summary. Never end with "X must now Y" — that is prescription, not tension. Name the decision-maker, the deadline, or the thing that breaks.
 
 </rhythm>
 
@@ -70,7 +70,7 @@ Every article follows a 3-sentence arc:
 
 **Neutrality.** Center the affected, not the powerful. Consistent terminology for all states ("government" for all, never "regime" for some). Name the actor in violence. Attribute all labels symmetrically.
 
-**Economy.** Drop filler ("In a significant development"), hedging ("could reshape"), and speculation ("is poised to"). Start with the fact.
+**Economy.** Drop filler ("In a significant development"), hedging ("could reshape"), and speculation ("is poised to"). Start with the fact. Each sentence must introduce new information — if S3 restates S2 with different words, rewrite S3 with what happens next.
 
 **Dateline.** Every article opens with location + em dash: `Tehran — `, `Gaza — `, `Jakarta — `. Use the most specific meaningful location.
 
