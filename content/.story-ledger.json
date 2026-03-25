@@ -2,13 +2,105 @@
   "version": 1,
   "stories": [
     {
+      "id": "molefe-eskom-atm-forensics",
+      "label": "ATM geolocation links R11m cash deposits to ex-Eskom boss Molefe",
+      "firstSeen": "2026-03-25T05:04:00Z",
+      "lastCovered": "2026-03-25T05:04:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-molefe-eskom-slush-fund-atm-forensics-state-capture"
+      ],
+      "eventUri": null,
+      "summary": "Daily Maverick investigation: ATM data links R11m in cash deposits to ex-Eskom/Transnet boss Brian Molefe properties. State capture forensics.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Eskom",
+        "http://en.wikipedia.org/wiki/Transnet"
+      ]
+    },
+    {
+      "id": "rfk-malone-quits-cdc",
+      "label": "RFK Jr anti-vaccine ally Malone rage-quits CDC advisory panel",
+      "firstSeen": "2026-03-25T05:04:00Z",
+      "lastCovered": "2026-03-25T05:04:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-rfk-jr-anti-vaccine-ally-malone-quits-cdc-panel"
+      ],
+      "eventUri": null,
+      "summary": "Robert Malone, hand-picked by RFK Jr for CDC ACIP panel, resigned citing drama. Anti-vax movement fracturing within federal health institutions.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Advisory_Committee_on_Immunization_Practices",
+        "http://en.wikipedia.org/wiki/Centers_for_Disease_Control_and_Prevention"
+      ]
+    },
+    {
+      "id": "denmark-election-2026",
+      "label": "Denmark election: Frederiksen bruised, coalition talks loom",
+      "firstSeen": "2026-03-25T05:04:00Z",
+      "lastCovered": "2026-03-25T05:04:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-denmark-election-frederiksen-coalition-trump-era"
+      ],
+      "eventUri": null,
+      "summary": "Frederiksen Social Democrats lost seats but remain largest party. First NATO-ally election post-Iran-war.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Mette_Frederiksen",
+        "http://en.wikipedia.org/wiki/Denmark"
+      ]
+    },
+    {
+      "id": "mohenjo-daro-3300bc",
+      "label": "Radiocarbon dating pushes Mohenjo Daro urban roots to 3300 BC",
+      "firstSeen": "2026-03-25T05:04:00Z",
+      "lastCovered": "2026-03-25T05:04:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-mohenjo-daro-radiocarbon-3300-bc-indus-valley"
+      ],
+      "eventUri": null,
+      "summary": "New radiocarbon dates confirm Mohenjo Daro urban occupation during Kot Diji Phase (3300-2600 BC), 700 years earlier than mature Indus phase.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Mohenjo-daro",
+        "http://en.wikipedia.org/wiki/Indus_Valley_Civilisation"
+      ]
+    },
+    {
+      "id": "data-centers-ac-dc-transition",
+      "label": "Data centers transitioning from AC to DC power distribution",
+      "firstSeen": "2026-03-25T05:04:00Z",
+      "lastCovered": "2026-03-25T05:04:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-data-centers-ac-dc-transition-edison-revenge"
+      ],
+      "eventUri": null,
+      "summary": "IEEE Spectrum: data centers switching AC to DC power, saving 10-20% energy. Driven by AI cluster demands exceeding 100MW.",
+      "conceptUris": []
+    },
+    {
       "id": "nasa-artemis-ii-launch",
       "label": "NASA Artemis II: first crewed lunar mission in 53 years targets April 1",
       "firstSeen": "2026-03-25T01:00:00Z",
       "lastCovered": "2026-03-25T04:00:00Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-25-nasa-artemis-ii-crewed-moon-mission-april",
@@ -30,7 +122,7 @@
       "lastCovered": "2026-03-25T04:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-25-sudan-rsf-bara-kordofan-darfur-advances",
@@ -40,190 +132,13 @@
       "summary": "RSF recaptured Bara 10 days after SAF retook it. Drone strike hit funeral in Chad (15 killed), 123 wounded crossed into Chad in one day. Burhan courting revolutionary forces after US designated Sudanese Muslim Brotherhood as terrorist org."
     },
     {
-      "id": "eu-shelves-russian-oil-ban",
-      "label": "EU shelves Russian oil ban as Iran war disrupts energy markets",
-      "firstSeen": "2026-03-25T08:00:00Z",
-      "lastCovered": "2026-03-25T08:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-eu-shelves-russian-oil-ban-iran-war-energy"
-      ],
-      "eventUri": "eng-11508084",
-      "summary": "EU shelves REPowerEU plan to fully ban Russian oil by 2027 as Iran war disrupts energy markets. Russia benefits from war it did not start.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
-      "id": "us-visa-bonds-global-south",
-      "label": "US expands visa bonds to 50 countries — financial barrier to Global South travel",
-      "firstSeen": "2026-03-25T01:00:00Z",
-      "lastCovered": "2026-03-25T04:00:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-25-us-visa-bonds-15000-fifty-countries-global-south",
-        "2026-03-25-us-visa-bonds-50-countries-global-south-mobility"
-      ],
-      "eventUri": "eng-11491709",
-      "summary": "Visa bond programme expanded to 50 countries (mostly African). $5k-$15k per applicant. 97% compliance undermines overstay justification.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Travel_visa",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_State",
-        "http://en.wikipedia.org/wiki/Ethiopia",
-        "http://en.wikipedia.org/wiki/Cambodia"
-      ]
-    },
-    {
-      "id": "meta-child-exploitation-verdict",
-      "label": "Jury finds Meta liable for child sexual exploitation on platforms",
-      "firstSeen": "2026-03-25T04:00:00Z",
-      "lastCovered": "2026-03-25T04:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-meta-liable-child-exploitation-new-mexico-jury"
-      ],
-      "eventUri": null,
-      "summary": "New Mexico jury found Meta liable for enabling child sexual exploitation via algorithmic amplification. First state-level trial verdict. Follows $1.4B Texas settlement. Section 230 shield cracking at state level."
-    },
-    {
-      "id": "india-parliament-iran-war-debate",
-      "label": "India all-party meet on Iran war, Opposition demands debate",
-      "firstSeen": "2026-03-25T04:00:00Z",
-      "lastCovered": "2026-03-25T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-india-all-party-meet-west-asia-opposition-debate"
-      ],
-      "eventUri": "eng-11507084",
-      "summary": "India convenes all-party meeting on Iran war. Opposition leader Kharge demands full parliamentary debate.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Western_Asia",
-        "http://en.wikipedia.org/wiki/India"
-      ]
-    },
-    {
-      "id": "bangladesh-1971-genocide-recognition",
-      "label": "Bangladesh marks Genocide Day, US Congress weighs 1971 recognition",
-      "firstSeen": "2026-03-25T08:00:00Z",
-      "lastCovered": "2026-03-25T08:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-bangladesh-genocide-day-1971-pakistan-us-congress"
-      ],
-      "eventUri": "eng-11509051",
-      "summary": "Bangladesh PM marks Genocide Day. US Congress considering formal 1971 genocide recognition. Pakistan has never acknowledged Operation Searchlight atrocities.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Genocide",
-        "http://en.wikipedia.org/wiki/Bangladesh",
-        "http://en.wikipedia.org/wiki/Bangladesh_Liberation_War",
-        "http://en.wikipedia.org/wiki/Operation_Searchlight",
-        "http://en.wikipedia.org/wiki/Pakistan"
-      ]
-    },
-    {
-      "id": "iberian-blackout-2025-analysis",
-      "label": "Final analysis: 2025 Iberian blackout caused by renewable transition policy gaps",
-      "firstSeen": "2026-03-25T08:00:00Z",
-      "lastCovered": "2026-03-25T08:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-iberian-blackout-2025-analysis-grid-policy-renewables"
-      ],
-      "eventUri": null,
-      "summary": "Final report: Spain-Portugal blackout caused by retiring conventional plants without replacing grid inertia. Cautionary tale for rapid renewable deployment."
-    },
-    {
-      "id": "eu-mercosur-trade-deal",
-      "label": "EU-Mercosur trade deal starts May 1 — Commission bypasses parliament",
-      "firstSeen": "2026-03-25T00:00:00Z",
-      "lastCovered": "2026-03-25T00:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-eu-mercosur-trade-deal-may-1-democratic-bypass"
-      ],
-      "eventUri": "spa-4146070",
-      "summary": "EU-Mercosur deal provisionally applied from May 1 despite pending ECJ review. 25 years of negotiation, 700M people, 25% of global GDP. Commission sidestepped European Parliament. France calls it 'a bad surprise.' EU racing to diversify from US/China amid Iran war trade disruption.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Mercosur",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/European_Commission",
-        "http://en.wikipedia.org/wiki/Paraguay",
-        "http://en.wikipedia.org/wiki/Argentina",
-        "http://en.wikipedia.org/wiki/Brazil",
-        "http://en.wikipedia.org/wiki/Uruguay"
-      ]
-    },
-    {
-      "id": "florida-dem-flip-mar-a-lago",
-      "label": "Democrat flips Florida seat in Trump Mar-a-Lago district",
-      "firstSeen": "2026-03-25T04:00:00Z",
-      "lastCovered": "2026-03-25T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-florida-democrat-flips-mar-a-lago-seat-backlash"
-      ],
-      "eventUri": "eng-11509499",
-      "summary": "Emily Gregory flips GOP-held Florida state House seat in Palm Beach. Continues Dem special election surge into Trump heartland.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
-        "http://en.wikipedia.org/wiki/Palm_Beach,_Florida"
-      ]
-    },
-    {
-      "id": "resolution-copper-apache-land",
-      "label": "Rio Tinto Resolution Copper on Apache land mid-2030s",
-      "firstSeen": "2026-03-25T04:00:00Z",
-      "lastCovered": "2026-03-25T04:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-rio-tinto-resolution-copper-arizona-apache-land"
-      ],
-      "eventUri": "eng-11508283",
-      "summary": "World largest untapped copper deposit on Apache sacred land. Rio Tinto targets mid-2030s. Copper critical for energy transition vs Indigenous rights.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Rio_Tinto_(corporation)",
-        "http://en.wikipedia.org/wiki/Copper",
-        "http://en.wikipedia.org/wiki/Resolution_Copper"
-      ]
-    },
-    {
       "id": "iran-us-israel-war",
       "label": "Iran-US-Israel war: Gulf states weigh military entry, Hormuz blockade tightens",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-25T08:00:00Z",
-      "coverageCount": 342,
+      "lastCovered": "2026-03-25T05:04:00Z",
+      "coverageCount": 344,
       "category": "politics",
-      "importance": 3,
+      "importance": 4,
       "arc": "ongoing",
       "articles": [
         "2026-03-01-us-israel-attacks-iran-retaliation-regional-war",
@@ -395,9 +310,239 @@
         "2026-03-24-clerics-pakistan-afghanistan-extend-pause-eid",
         "2026-03-24-trump-iran-prize-hormuz-vague-deal-claim",
         "2026-03-24-saudi-mbs-pushes-trump-regime-change-iran-nyt",
-        "2026-03-25-islamabad-offers-host-us-iran-talks-mediation"
+        "2026-03-25-islamabad-offers-host-us-iran-talks-mediation",
+        "2026-03-25-trump-15-point-ceasefire-plan-iran-pakistan-mediator",
+        "2026-03-25-iranian-drone-strikes-kuwait-airport-fuel-tanks"
       ],
       "summary": "Day 25+. Trump 5-day strike pause theater. Pakistan offers Islamabad as venue for US-Iran talks, competing with Turkey/Oman. 342 articles."
+    },
+    {
+      "id": "pakistan-cardiac-surgery-programme",
+      "label": "Punjab approves Rs3bn annual cardiac surgery programme",
+      "firstSeen": "2026-03-25T05:04:00Z",
+      "lastCovered": "2026-03-25T05:04:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-pakistan-punjab-cardiac-surgery-programme-3bn"
+      ],
+      "eventUri": null,
+      "summary": "Punjab government approves Rs3bn annual cardiac surgery programme in Lahore. First at this scale in Pakistan.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Punjab,_Pakistan",
+        "http://en.wikipedia.org/wiki/Cardiac_surgery"
+      ]
+    },
+    {
+      "id": "parkinsons-physiotherapy-nature",
+      "label": "Nature meta-analysis: physiotherapy protocols for Parkinson balance",
+      "firstSeen": "2026-03-25T05:04:00Z",
+      "lastCovered": "2026-03-25T05:04:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-parkinsons-balance-physiotherapy-nature-meta-analysis"
+      ],
+      "eventUri": null,
+      "summary": "Meta-analysis identifies evidence-based physiotherapy interventions for Parkinson balance impairments with dose recommendations.",
+      "conceptUris": []
+    },
+    {
+      "id": "vertical-saas-domain-expertise",
+      "label": "Developer takes technician job before building pest control SaaS",
+      "firstSeen": "2026-03-25T05:04:00Z",
+      "lastCovered": "2026-03-25T05:04:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-vertical-saas-pest-control-technician-job-domain"
+      ],
+      "eventUri": null,
+      "summary": "Developer worked as pest control technician to understand domain before building vertical SaaS. Domain-driven entrepreneurship.",
+      "conceptUris": []
+    },
+    {
+      "id": "eu-shelves-russian-oil-ban",
+      "label": "EU shelves Russian oil ban as Iran war disrupts energy markets",
+      "firstSeen": "2026-03-25T08:00:00Z",
+      "lastCovered": "2026-03-25T08:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-eu-shelves-russian-oil-ban-iran-war-energy"
+      ],
+      "eventUri": "eng-11508084",
+      "summary": "EU shelves REPowerEU plan to fully ban Russian oil by 2027 as Iran war disrupts energy markets. Russia benefits from war it did not start.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
+      "id": "us-visa-bonds-global-south",
+      "label": "US expands visa bonds to 50 countries — financial barrier to Global South travel",
+      "firstSeen": "2026-03-25T01:00:00Z",
+      "lastCovered": "2026-03-25T04:00:00Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-25-us-visa-bonds-15000-fifty-countries-global-south",
+        "2026-03-25-us-visa-bonds-50-countries-global-south-mobility"
+      ],
+      "eventUri": "eng-11491709",
+      "summary": "Visa bond programme expanded to 50 countries (mostly African). $5k-$15k per applicant. 97% compliance undermines overstay justification.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Travel_visa",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_State",
+        "http://en.wikipedia.org/wiki/Ethiopia",
+        "http://en.wikipedia.org/wiki/Cambodia"
+      ]
+    },
+    {
+      "id": "meta-child-exploitation-verdict",
+      "label": "Jury finds Meta liable for child sexual exploitation on platforms",
+      "firstSeen": "2026-03-25T04:00:00Z",
+      "lastCovered": "2026-03-25T04:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-meta-liable-child-exploitation-new-mexico-jury"
+      ],
+      "eventUri": null,
+      "summary": "New Mexico jury found Meta liable for enabling child sexual exploitation via algorithmic amplification. First state-level trial verdict. Follows $1.4B Texas settlement. Section 230 shield cracking at state level."
+    },
+    {
+      "id": "india-parliament-iran-war-debate",
+      "label": "India all-party meet on Iran war, Opposition demands debate",
+      "firstSeen": "2026-03-25T04:00:00Z",
+      "lastCovered": "2026-03-25T04:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-india-all-party-meet-west-asia-opposition-debate"
+      ],
+      "eventUri": "eng-11507084",
+      "summary": "India convenes all-party meeting on Iran war. Opposition leader Kharge demands full parliamentary debate.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Western_Asia",
+        "http://en.wikipedia.org/wiki/India"
+      ]
+    },
+    {
+      "id": "bangladesh-1971-genocide-recognition",
+      "label": "Bangladesh marks Genocide Day, US Congress weighs 1971 recognition",
+      "firstSeen": "2026-03-25T08:00:00Z",
+      "lastCovered": "2026-03-25T08:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-bangladesh-genocide-day-1971-pakistan-us-congress"
+      ],
+      "eventUri": "eng-11509051",
+      "summary": "Bangladesh PM marks Genocide Day. US Congress considering formal 1971 genocide recognition. Pakistan has never acknowledged Operation Searchlight atrocities.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Genocide",
+        "http://en.wikipedia.org/wiki/Bangladesh",
+        "http://en.wikipedia.org/wiki/Bangladesh_Liberation_War",
+        "http://en.wikipedia.org/wiki/Operation_Searchlight",
+        "http://en.wikipedia.org/wiki/Pakistan"
+      ]
+    },
+    {
+      "id": "iberian-blackout-2025-analysis",
+      "label": "Final analysis: 2025 Iberian blackout caused by renewable transition policy gaps",
+      "firstSeen": "2026-03-25T08:00:00Z",
+      "lastCovered": "2026-03-25T08:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-iberian-blackout-2025-analysis-grid-policy-renewables"
+      ],
+      "eventUri": null,
+      "summary": "Final report: Spain-Portugal blackout caused by retiring conventional plants without replacing grid inertia. Cautionary tale for rapid renewable deployment."
+    },
+    {
+      "id": "eu-mercosur-trade-deal",
+      "label": "EU-Mercosur trade deal starts May 1 — Commission bypasses parliament",
+      "firstSeen": "2026-03-25T00:00:00Z",
+      "lastCovered": "2026-03-25T00:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-eu-mercosur-trade-deal-may-1-democratic-bypass"
+      ],
+      "eventUri": "spa-4146070",
+      "summary": "EU-Mercosur deal provisionally applied from May 1 despite pending ECJ review. 25 years of negotiation, 700M people, 25% of global GDP. Commission sidestepped European Parliament. France calls it 'a bad surprise.' EU racing to diversify from US/China amid Iran war trade disruption.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Mercosur",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/European_Commission",
+        "http://en.wikipedia.org/wiki/Paraguay",
+        "http://en.wikipedia.org/wiki/Argentina",
+        "http://en.wikipedia.org/wiki/Brazil",
+        "http://en.wikipedia.org/wiki/Uruguay"
+      ]
+    },
+    {
+      "id": "florida-dem-flip-mar-a-lago",
+      "label": "Democrat flips Florida seat in Trump Mar-a-Lago district",
+      "firstSeen": "2026-03-25T04:00:00Z",
+      "lastCovered": "2026-03-25T04:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-florida-democrat-flips-mar-a-lago-seat-backlash"
+      ],
+      "eventUri": "eng-11509499",
+      "summary": "Emily Gregory flips GOP-held Florida state House seat in Palm Beach. Continues Dem special election surge into Trump heartland.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/Palm_Beach,_Florida"
+      ]
+    },
+    {
+      "id": "resolution-copper-apache-land",
+      "label": "Rio Tinto Resolution Copper on Apache land mid-2030s",
+      "firstSeen": "2026-03-25T04:00:00Z",
+      "lastCovered": "2026-03-25T04:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-rio-tinto-resolution-copper-arizona-apache-land"
+      ],
+      "eventUri": "eng-11508283",
+      "summary": "World largest untapped copper deposit on Apache sacred land. Rio Tinto targets mid-2030s. Copper critical for energy transition vs Indigenous rights.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Rio_Tinto_(corporation)",
+        "http://en.wikipedia.org/wiki/Copper",
+        "http://en.wikipedia.org/wiki/Resolution_Copper"
+      ]
     },
     {
       "id": "vizio-walmart-surveillance-tv",
@@ -406,7 +551,7 @@
       "lastCovered": "2026-03-25T08:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-vizio-walmart-account-required-smart-tv-surveillance"
@@ -421,232 +566,13 @@
       "lastCovered": "2026-03-25T08:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-mozilla-cq-stack-overflow-for-ai-agents"
       ],
       "eventUri": null,
       "summary": "Mozilla developer launches cq: curated Q&A for AI agents to address hallucination on deprecated APIs."
-    },
-    {
-      "id": "ftc-cvs-pbm-insulin",
-      "label": "FTC settles with CVS Caremark over insulin price manipulation",
-      "firstSeen": "2026-03-24T23:30:00Z",
-      "lastCovered": "2026-03-24T23:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-ftc-cvs-pbm-insulin-price-manipulation-settlement"
-      ],
-      "eventUri": "eng-11509053",
-      "summary": "FTC proposed settlement with CVS Caremark over PBM insulin price manipulation. Federal enforcement validates state-level legislative efforts."
-    },
-    {
-      "id": "us-south-africa-trade-coercion",
-      "label": "Trump escalates trade pressure on South Africa: 30% tariff + forced labour probe",
-      "firstSeen": "2026-03-24T23:30:00Z",
-      "lastCovered": "2026-03-24T23:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-us-forced-labour-investigation-south-africa-tariffs"
-      ],
-      "eventUri": null,
-      "summary": "Forced labour investigation layered on 30% tariff (highest in Africa). Pattern of trade coercion targeting BRICS-aligned states."
-    },
-    {
-      "id": "fcc-foreign-router-ban",
-      "label": "FCC bans foreign-made consumer Wi-Fi routers",
-      "firstSeen": "2026-03-24T23:30:00Z",
-      "lastCovered": "2026-03-24T23:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-fcc-bans-foreign-wifi-routers-tp-link-protectionism"
-      ],
-      "eventUri": "eng-11506135",
-      "summary": "FCC stops approving consumer routers made outside US. TP-Link (65% market share) primary target. Hardware protectionism via security framing."
-    },
-    {
-      "id": "openai-sora-shutdown",
-      "label": "OpenAI kills Sora, Disney $1B deal collapses",
-      "firstSeen": "2026-03-25T00:00:00Z",
-      "lastCovered": "2026-03-25T00:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-openai-kills-sora-disney-deal-collapses-ip-wars-won"
-      ],
-      "eventUri": "eng-11509265",
-      "summary": "OpenAI discontinues Sora video generator after 15 months. Disney exits $1B investment. IP/copyright battles from Hollywood, SAG-AFTRA, Japan proved decisive. OpenAI pivots to business/productivity.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/The_Walt_Disney_Company",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence"
-      ]
-    },
-    {
-      "id": "scotus-asylum-metering",
-      "label": "SCOTUS likely to greenlight border asylum metering under Trump",
-      "firstSeen": "2026-03-25T00:00:00Z",
-      "lastCovered": "2026-03-25T00:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-scotus-asylum-metering-border-arrival-ruling"
-      ],
-      "eventUri": "eng-11508132",
-      "summary": "Supreme Court 6-3 conservative majority appears ready to rule that stopping asylum seekers at the Mexican side of the border does not constitute 'arrival in the United States.' Could permanently close legal pathway for land-border asylum.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Right_of_asylum",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
-        "http://en.wikipedia.org/wiki/Mexico%E2%80%93United_States_border"
-      ]
-    },
-    {
-      "id": "el-rufai-corruption-trial",
-      "label": "ICPC arraigns former Kaduna governor El-Rufai on 10 corruption counts",
-      "firstSeen": "2026-03-25T01:00:00Z",
-      "lastCovered": "2026-03-25T01:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-el-rufai-icpc-corruption-kaduna-governor"
-      ],
-      "eventUri": null,
-      "summary": "ICPC alleges El-Rufai pocketed N289m + $797,900 while Kaduna governor. 10 counts including money laundering. Previously seen as reformist — accountability testing political heavyweights."
-    },
-    {
-      "id": "nigeria-ne-terrorism-alarm",
-      "label": "Senator warns troops outgunned in NE Nigeria, military dismisses",
-      "firstSeen": "2026-03-25T01:00:00Z",
-      "lastCovered": "2026-03-25T01:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-nigeria-northeast-terrorism-troops-outgunned-ndume"
-      ],
-      "eventUri": null,
-      "summary": "Sen. Ndume (Borno South) says troops overwhelmed by terrorist firepower. DHQ dismisses alarm. Institutional tension between elected representatives and military establishment on security transparency."
-    },
-    {
-      "id": "uae-banking-stress-iran-war",
-      "label": "UAE central bank eases liquidity rules amid Iran war banking stress",
-      "firstSeen": "2026-03-25T01:00:00Z",
-      "lastCovered": "2026-03-25T01:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-uae-central-bank-liquidity-iran-war-banking"
-      ],
-      "eventUri": null,
-      "summary": "UAE central bank loosening liquidity requirements — early signal of Iran war straining Gulf financial system. Watch for deposit flight or interbank stress."
-    },
-    {
-      "id": "abc-australia-strike",
-      "label": "ABC Australia 24-hour strike: 2000 journalists walk off",
-      "firstSeen": "2026-03-25T04:00:00Z",
-      "lastCovered": "2026-03-25T04:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-abc-australia-strike-bbc-public-media-crisis"
-      ],
-      "eventUri": "eng-11503277",
-      "summary": "2000+ ABC staff strike for 24 hours over funding cuts. Public broadcaster switches to BBC World Service.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Australian_Broadcasting_Corporation",
-        "http://en.wikipedia.org/wiki/BBC_World_Service"
-      ]
-    },
-    {
-      "id": "prayagraj-cold-storage-blast",
-      "label": "Prayagraj cold storage collapse: ammonia blast, owner arrested",
-      "firstSeen": "2026-03-25T04:00:00Z",
-      "lastCovered": "2026-03-25T04:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-prayagraj-cold-storage-ammonia-blast-india-safety"
-      ],
-      "eventUri": "eng-11506883",
-      "summary": "Ammonia blast collapsed cold storage in Prayagraj, UP. Owner and son arrested. India cold chain infrastructure gap.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Prayagraj",
-        "http://en.wikipedia.org/wiki/Ammonia"
-      ]
-    },
-    {
-      "id": "arm-holdings-sell-own-chips",
-      "label": "Arm pivots: selling own chips + new AGI CPU architecture for AI inference",
-      "firstSeen": "2026-03-24T22:00:00Z",
-      "lastCovered": "2026-03-24T23:30:00Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-arm-holdings-sell-own-chips-semiconductor-shift",
-        "2026-03-24-arm-agi-cpu-ai-inference-architecture"
-      ],
-      "eventUri": "eng-11508779",
-      "summary": "Arm announces AGI CPU core architecture for AI inference workloads, compounding earlier decision to sell own chips. Moving from pure IP licensing to vertically integrated AI silicon."
-    },
-    {
-      "id": "cuba-aid-flotilla-energy-crisis",
-      "label": "Aid flotilla reaches Cuba amid US-driven energy crisis",
-      "firstSeen": "2026-03-24T23:30:00Z",
-      "lastCovered": "2026-03-24T23:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-aid-flotilla-cuba-energy-crisis-sanctions"
-      ],
-      "eventUri": "spa-4147342",
-      "summary": "Humanitarian flotilla with food, medicine, solar panels reaches Havana as Cuba faces rolling blackouts under tightened US sanctions.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Cuba",
-        "http://en.wikipedia.org/wiki/Havana",
-        "http://en.wikipedia.org/wiki/Humanitarian_aid"
-      ]
-    },
-    {
-      "id": "sa-fishers-totalenergies-court",
-      "label": "SA fishers challenge TotalEnergies offshore exploration in court",
-      "firstSeen": "2026-03-24T23:30:00Z",
-      "lastCovered": "2026-03-24T23:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-south-africa-fishers-totalenergies-offshore-exploration-court"
-      ],
-      "eventUri": null,
-      "summary": "Artisanal fishers challenge TotalEnergies exploration permits in Western Cape High Court. Constitutional standing vs corporate extraction."
     },
     {
       "id": "tsa-ice-dhs-shutdown",
@@ -695,6 +621,87 @@
       ],
       "eventUri": "eng-11506387",
       "summary": "Alexia Moore arrested for taking abortion pills at 22-24 weeks. Judge called murder charge extremely problematic, set $1 bail. DA says police did not consult his office. First known murder charge under Georgia heartbeat law."
+    },
+    {
+      "id": "ftc-cvs-pbm-insulin",
+      "label": "FTC settles with CVS Caremark over insulin price manipulation",
+      "firstSeen": "2026-03-24T23:30:00Z",
+      "lastCovered": "2026-03-24T23:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-ftc-cvs-pbm-insulin-price-manipulation-settlement"
+      ],
+      "eventUri": "eng-11509053",
+      "summary": "FTC proposed settlement with CVS Caremark over PBM insulin price manipulation. Federal enforcement validates state-level legislative efforts."
+    },
+    {
+      "id": "us-south-africa-trade-coercion",
+      "label": "Trump escalates trade pressure on South Africa: 30% tariff + forced labour probe",
+      "firstSeen": "2026-03-24T23:30:00Z",
+      "lastCovered": "2026-03-24T23:30:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-us-forced-labour-investigation-south-africa-tariffs"
+      ],
+      "eventUri": null,
+      "summary": "Forced labour investigation layered on 30% tariff (highest in Africa). Pattern of trade coercion targeting BRICS-aligned states."
+    },
+    {
+      "id": "fcc-foreign-router-ban",
+      "label": "FCC bans foreign-made consumer Wi-Fi routers",
+      "firstSeen": "2026-03-24T23:30:00Z",
+      "lastCovered": "2026-03-24T23:30:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-fcc-bans-foreign-wifi-routers-tp-link-protectionism"
+      ],
+      "eventUri": "eng-11506135",
+      "summary": "FCC stops approving consumer routers made outside US. TP-Link (65% market share) primary target. Hardware protectionism via security framing."
+    },
+    {
+      "id": "arm-holdings-sell-own-chips",
+      "label": "Arm pivots: selling own chips + new AGI CPU architecture for AI inference",
+      "firstSeen": "2026-03-24T22:00:00Z",
+      "lastCovered": "2026-03-24T23:30:00Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 1,
+      "arc": "developing",
+      "articles": [
+        "2026-03-24-arm-holdings-sell-own-chips-semiconductor-shift",
+        "2026-03-24-arm-agi-cpu-ai-inference-architecture"
+      ],
+      "eventUri": "eng-11508779",
+      "summary": "Arm announces AGI CPU core architecture for AI inference workloads, compounding earlier decision to sell own chips. Moving from pure IP licensing to vertically integrated AI silicon."
+    },
+    {
+      "id": "cuba-aid-flotilla-energy-crisis",
+      "label": "Aid flotilla reaches Cuba amid US-driven energy crisis",
+      "firstSeen": "2026-03-24T23:30:00Z",
+      "lastCovered": "2026-03-24T23:30:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-aid-flotilla-cuba-energy-crisis-sanctions"
+      ],
+      "eventUri": "spa-4147342",
+      "summary": "Humanitarian flotilla with food, medicine, solar panels reaches Havana as Cuba faces rolling blackouts under tightened US sanctions.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Cuba",
+        "http://en.wikipedia.org/wiki/Havana",
+        "http://en.wikipedia.org/wiki/Humanitarian_aid"
+      ]
     }
   ]
 }
