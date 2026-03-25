@@ -151,65 +151,45 @@
     "timeline": [
       {
         "year": "1882",
-        "body": "The first federal Immigration Act excluded anyone deemed likely to become a \"public charge\" — a financial burden on the state — establishing the principle that personal wealth determines who is welcome."
-      },
-      {
-        "year": "1882",
-        "body": "Congress passed the Chinese Exclusion Act, the first US law to ban an entire nationality from immigration, setting the precedent that race and national origin could be legal grounds for exclusion."
+        "body": "The Chinese Exclusion Act barred all Chinese laborers from the US — the first federal law to restrict immigration by nationality, establishing the principle that entry could be rationed by origin."
       },
       {
         "year": "1917",
-        "body": "The Asiatic Barred Zone Act drew a line on a map from the Arabian Peninsula through Southeast Asia and banned nearly all immigration from within it — over half the world's population lived inside that line."
+        "body": "Congress drew an \"Asiatic Barred Zone\" across the map from the Bosporus to the Pacific, banning immigration from nearly all of Asia and the Middle East."
       },
       {
         "year": "1924",
-        "body": "The Johnson-Reed Act created the consular visa system still in use today: for the first time, travelers needed advance permission from a US official abroad before they could board a ship."
-      },
-      {
-        "year": "1924",
-        "body": "The same act pegged immigration quotas to the 1890 census — before the Southern and Eastern European wave — allocating 86% of slots to Northern and Western Europeans by design."
-      },
-      {
-        "year": "1929",
-        "body": "Visa requirements introduced as a temporary wartime measure during World War I were made permanent, embedding what had been emergency surveillance into the routine of international travel."
+        "body": "The Johnson-Reed Act required for the first time that travelers obtain a visa from a US consulate before departure, and set national-origin quotas reserving 86% of annual slots for Northern and Western Europeans."
       },
       {
         "year": "1952",
-        "body": "The McCarran-Walter Act codified Section 221(g) of the Immigration and Nationality Act, giving consular officers power to demand cash bonds from any visa applicant they judged likely to overstay — a provision that would sit mostly dormant for decades."
+        "body": "The McCarran-Walter Act codified the modern visa system and granted consular officers discretionary power to require cash bonds from applicants they deemed likely to overstay — a tool that went largely unused for decades."
       },
       {
         "year": "1965",
-        "body": "The Hart-Celler Act abolished racial quotas but introduced per-country caps of 20,000 that created decades-long backlogs for high-population countries like India, the Philippines, and Mexico while leaving European slots perpetually unfilled."
+        "body": "The Hart-Celler Act abolished racial quotas but capped every country at the same number regardless of population, creating decade-long visa backlogs for India, Mexico, and the Philippines while European allocations went unfilled."
       },
       {
         "year": "1986",
-        "body": "The Visa Waiver Program launched with eight countries — all Western European — allowing their citizens to enter the US without a visa while nationals of the rest of the world still queued at consulates."
+        "body": "Reagan signed the Visa Waiver Program into law for eight countries — all Western European plus Japan — allowing their citizens to visit the US without applying for a visa at all."
+      },
+      {
+        "body": "The Visa Waiver Program now covers 41 countries; not one is in Africa, the Middle East, South Asia, or Latin America."
       },
       {
         "year": "1996",
-        "body": "The Illegal Immigration Reform and Immigrant Responsibility Act imposed automatic 3-year and 10-year re-entry bars on anyone who overstayed a visa, turning minor paperwork lapses into years-long exiles that disproportionately trapped people from countries with the longest processing delays."
-      },
-      {
-        "year": "2001",
-        "body": "After September 11, the National Security Entry-Exit Registration System required men from 25 countries — 24 of them Muslim-majority — to report to immigration offices for fingerprinting, photographs, and interrogation."
-      },
-      {
-        "year": "2002",
-        "body": "The Enhanced Border Security Act mandated biometric passports and machine-readable travel documents, requirements that effectively locked out nationals of countries too resource-poor to upgrade their passport infrastructure on Washington's timeline."
+        "body": "The Illegal Immigration Reform and Immigrant Responsibility Act made consular visa decisions virtually unreviewable by any court, meaning an applicant required to post a bond has no practical legal avenue to challenge it."
       },
       {
         "year": "2017",
-        "body": "Executive Order 13769 banned nationals of seven Muslim-majority countries from entering the United States one week into Trump's first term, stranding thousands of valid visa holders mid-journey and triggering protests at airports worldwide."
+        "body": "Trump's first executive order banned entry from seven Muslim-majority countries — the broadest nationality-based entry restriction since the Asiatic Barred Zone was repealed in 1952."
       },
       {
-        "body": "The Visa Waiver Program now covers 42 countries — not one is in Africa, South Asia, or the Middle East, meaning over four billion people live in nations where a US consular officer must personally approve their travel."
-      },
-      {
-        "year": "2024",
-        "body": "The State Department began requiring visa bonds of $5,000 to $10,000 from applicants in select countries, reviving the dormant McCarran-Walter provision at a scale not seen in modern immigration enforcement."
+        "year": "2018",
+        "body": "The Supreme Court upheld the travel ban in Trump v. Hawaii, ruling 5–4 that immigration policy falls within near-absolute presidential authority — the same plenary power doctrine the Court first articulated to defend Chinese exclusion in 1889."
       }
     ],
-    "generatedAt": "2026-03-25T17:27:04.097Z",
+    "generatedAt": "2026-03-25T22:33:41.141Z",
     "label": "US expands visa bonds to 50 countries — financial barrier to Global South travel",
     "category": "politics",
     "articleCount": 3
@@ -456,6 +436,93 @@
     "generatedAt": "2026-03-25T12:30:43.589Z",
     "label": "Pharmaceutical Patent Cliffs",
     "category": "economy",
+    "articleCount": 1
+  },
+  "2026-03-25-brain-connectivity-atlas-lifespan-nature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FUNCTIONAL CONNECTIVITY IS",
+        "body": "When two brain regions consistently activate together during a task — or even at rest — neuroscientists say they are functionally connected. This is measured by correlating blood-oxygen signals in fMRI, not by tracing physical wires between neurons."
+      },
+      {
+        "heading": "THE DISTINCTION THAT MATTERS",
+        "body": "Structural connectivity is the physical wiring (axon bundles). Functional connectivity is the correlated activity. Two regions can be structurally connected but functionally silent, or functionally coupled through indirect relay chains. The map of activity does not equal the map of anatomy."
+      },
+      {
+        "heading": "WHY LIFESPAN DATA IS HARD",
+        "body": "Scanning a 2-year-old's brain requires them to hold still for 20+ minutes inside a loud metal tube. Scanning an 80-year-old means correcting for brain atrophy that changes the geometry. Harmonizing data across ages requires solving both problems and normalizing to a common coordinate space."
+      },
+      {
+        "heading": "THE DEVELOPMENTAL ARC",
+        "body": "At birth, the brain is mostly locally connected — nearby regions talk to each other. Long-range connections between distant regions strengthen through childhood and peak in early adulthood. In neurodegeneration, the pattern reverses: long-range connections fail first, mirroring development in reverse."
+      },
+      {
+        "heading": "WHY ATLASES CHANGE EVERYTHING",
+        "body": "A reference atlas lets clinicians compare one patient's connectivity to thousands of healthy brains at the same age. Without a baseline, a scan is just a pretty picture. With one, the same scan becomes a diagnostic deviation map."
+      }
+    ],
+    "generatedAt": "2026-03-25T22:34:20.707Z",
+    "label": "Brain Connectivity Mapping",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-03-25-wmo-climate-report-energy-imbalance-record": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUDGET",
+        "body": "Earth absorbs about 240 watts per square meter from the sun and radiates roughly the same back to space as infrared. The difference between incoming and outgoing — currently about 1.9 W/m² — is the energy imbalance. It sounds tiny. It is not."
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "1.9 W/m² across Earth's entire surface equals roughly 970 trillion watts of excess heat accumulating continuously. That is equivalent to detonating about five Hiroshima bombs per second, every second, with no pause."
+      },
+      {
+        "heading": "WHERE THE HEAT GOES",
+        "body": "The ocean absorbs over 90% of the excess energy. The atmosphere gets about 1%, ice and land split the rest. This is why surface air temperature is a lagging, incomplete measure of warming — the real accumulation is underwater."
+      },
+      {
+        "heading": "THE MEASUREMENT",
+        "body": "Scientists track the imbalance two ways: satellites measure radiation at the top of the atmosphere (CERES instruments), and Argo floats measure ocean heat content from below. When both methods converge on the same number, confidence is high."
+      },
+      {
+        "heading": "WHY IT MATTERS MORE THAN TEMPERATURE",
+        "body": "Global average temperature fluctuates year to year with El Niño and volcanic eruptions. The energy imbalance is the forcing underneath — the rate at which Earth is banking heat. Temperature is the weather report. The imbalance is the trajectory."
+      }
+    ],
+    "generatedAt": "2026-03-25T22:34:20.708Z",
+    "label": "Earth's Energy Budget",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-03-25-nasa-moon-base-lunar-viceroy-10b-plan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GRAVITY TAX",
+        "body": "Escaping Earth's gravity costs about 9.4 km/s of velocity change. Escaping the Moon costs 2.4 km/s. A permanent lunar base turns the Moon into a low-cost launchpad — fuel, materials, and vehicles manufactured there are dramatically cheaper to move through space."
+      },
+      {
+        "heading": "THE GATEWAY DEBATE",
+        "body": "Lunar Gateway is a small space station orbiting the Moon, originally designed as a staging post for surface missions. Critics argue it adds complexity and cost to every landing. Advocates say it enables reusable landers and serves as a refueling depot. The debate is really about whether you optimize for the first mission or the hundredth."
+      },
+      {
+        "heading": "THE WATER QUESTION",
+        "body": "In 2009, LCROSS crashed a rocket into a permanently shadowed crater and detected water ice in the debris plume. If that ice exists in minable quantities, it changes everything — water means drinking water, breathable oxygen, and rocket fuel (hydrogen + oxygen), all from local resources."
+      },
+      {
+        "heading": "THE DUST PROBLEM",
+        "body": "Lunar regolith is not like earthly dust. With no wind or water to erode it, each grain is a jagged glass shard that clings to everything via electrostatic charge. Apollo astronauts reported it shredding seals, clogging mechanisms, and irritating lungs within hours. No one has solved this for long-duration stays."
+      },
+      {
+        "heading": "WHY $10B IS AGGRESSIVE",
+        "body": "Apollo cost roughly $200 billion in today's dollars to put 12 people on the surface for a combined 12.5 days. A permanent base with power, habitat, and life support is a fundamentally harder problem. The $10B figure implies either radical cost reduction through commercial partnerships or a very minimal initial footprint."
+      }
+    ],
+    "generatedAt": "2026-03-25T22:34:20.709Z",
+    "label": "Lunar Base Architecture",
+    "category": "science",
     "articleCount": 1
   }
 }
