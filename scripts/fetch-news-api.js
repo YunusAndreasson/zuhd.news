@@ -187,13 +187,15 @@ async function apiPost(endpoint, params) {
 }
 
 // ── Shared article query defaults ────────────────────────────────────
+// Look back 1 day for articles — catches late-indexed content from previous cycle windows
+const YESTERDAY = new Date(Date.now() - 86400000).toISOString().slice(0, 10)
 const ARTICLE_DEFAULTS = {
   resultType: 'articles',
   articlesCount: 100,
   lang: 'eng',
   dataType: ['news'],
   isDuplicateFilter: 'skipDuplicates',
-  dateStart: new Date().toISOString().slice(0, 10),
+  dateStart: YESTERDAY,
   articleBodyLen: -1,
   includeArticleConcepts: true,
   includeArticleCategories: true,
