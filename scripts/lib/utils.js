@@ -25,7 +25,7 @@ export function zuhdCategory(categories, title = '', description = '') {
 
   const text = (title + ' ' + description).toLowerCase()
   if (/\b(study|research|climate|vaccine|species|quantum|genome|crispr)\b/.test(text)) return 'science'
-  if (/\b(ai|startup|crypto|bitcoin|software|hack|data breach|algorithm|llm|chatbot)\b/.test(text)) return 'tech'
-  if (/\b(gdp|inflation|market|trade|tariff|oil price|currency|imf)\b/.test(text)) return 'economy'
+  if (/\b(ai|startup|software|hack|data breach|algorithm|llm|chatbot)\b/.test(text)) return 'tech'
+  if (/\b(gdp|inflation|market|trade|tariff|oil price|currency|imf|crypto|bitcoin|fintech)\b/.test(text)) return 'economy'
   return 'politics'
 }
