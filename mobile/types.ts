@@ -30,6 +30,7 @@ export interface Article {
 }
 
 export interface ContextIndexEntry {
+  type?: 'edu' | 'thread';
   label: string;
   category: Category;
   articleCount: number;
@@ -38,6 +39,7 @@ export interface ContextIndexEntry {
 
 export interface TimelineEntry {
   year?: string;
+  heading?: string;
   body: string;
 }
 

@@ -14,7 +14,9 @@ const contextToHtml = (timeline) => {
   if (!Array.isArray(timeline) || timeline.length === 0) return ''
   let html = ''
   for (const entry of timeline) {
-    if (entry.year) {
+    if (entry.heading) {
+      html += `<p class="context-heading">${entry.heading}</p><p>${entry.body}</p>`
+    } else if (entry.year) {
       html += `<p><strong class="context-year">${entry.year}</strong> ${entry.body}</p>`
     } else {
       html += `<p>${entry.body}</p>`
@@ -241,6 +243,26 @@ if (existsSync(ledgerPath)) {
   console.log(`  Ledger: ${threadLookup.size} articles mapped to ${ledger.stories.filter(s => s.arc !== 'fading' && s.importance >= 2).length} threads (${briefCount} context briefs)`)
 }
 
+// Edu context: articles with slug-keyed briefs get context without needing a thread
+let eduCount = 0
+for (const [id, brief] of Object.entries(contextBriefs)) {
+  if (brief.type !== 'edu') continue
+  const existing = threadLookup.get(id)
+  if (existing?.threadContext) continue // already has thread context — skip
+  threadLookup.set(id, {
+    ...(existing || {}),
+    threadId: id,
+    threadLabel: existing?.threadLabel || brief.label,
+    threadArc: existing?.threadArc || null,
+    threadSummary: existing?.threadSummary || null,
+    threadDay: existing?.threadDay || null,
+    threadArticleCount: existing?.threadArticleCount || null,
+    threadContext: brief.timeline,
+  })
+  eduCount++
+}
+if (eduCount > 0) console.log(`  Edu context: ${eduCount} articles with educational briefs`)
+
 const articles = readdirSync(CONTENT_DIR)
   .filter(f => f.endsWith('.md') && f !== 'example.md')
   .map(file => {
@@ -357,6 +379,7 @@ for (const [id, brief] of Object.entries(contextBriefs)) {
   if (!brief?.timeline) continue
   const payload = {
     id,
+    type: brief.type || 'thread',
     label: brief.label,
     category: brief.category,
     articleCount: brief.articleCount,
@@ -364,7 +387,7 @@ for (const [id, brief] of Object.entries(contextBriefs)) {
     timeline: brief.timeline,
   }
   writeFileSync(join(DIST_DIR, 'api', 'context', `${id}.json`), JSON.stringify(payload))
-  contextIndex[id] = { label: brief.label, category: brief.category, articleCount: brief.articleCount, generatedAt: brief.generatedAt }
+  contextIndex[id] = { type: brief.type || 'thread', label: brief.label, category: brief.category, articleCount: brief.articleCount, generatedAt: brief.generatedAt }
 }
 if (Object.keys(contextIndex).length > 0) {
   console.log(`  Built: api/context/ (${Object.keys(contextIndex).length} briefs)`)

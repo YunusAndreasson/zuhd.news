@@ -178,6 +178,14 @@ $ARTICLE_LIST
   CONTEXT_EXIT=$?
   echo "Context exit: $CONTEXT_EXIT — $((SECONDS - T35))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.6: Educational context — generate explainers for standalone articles
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.6: Educational context ---" | tee -a "$LOG_FILE"
+  T36=$SECONDS
+  timeout 300 node scripts/generate-edu-context.js 2>&1 | tee -a "$LOG_FILE"
+  EDU_EXIT=$?
+  echo "Edu context exit: $EDU_EXIT — $((SECONDS - T36))s" | tee -a "$LOG_FILE"
+
   # Stage 3b: Build and deploy — always runs, even if editor timed out
   # This ensures articles get published regardless of editor success
   echo "" | tee -a "$LOG_FILE"

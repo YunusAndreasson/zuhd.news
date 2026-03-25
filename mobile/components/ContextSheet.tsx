@@ -22,7 +22,7 @@ interface ContextSheetProps {
   onDismiss: () => void;
 }
 
-function renderEntry(entry: TimelineEntry, i: number, arr: TimelineEntry[]) {
+function renderTimelineEntry(entry: TimelineEntry, i: number, arr: TimelineEntry[]) {
   if (!entry.year) {
     return (
       <Text key={i} style={[styles.bodyText, styles.bodySpacing]}>
@@ -42,6 +42,15 @@ function renderEntry(entry: TimelineEntry, i: number, arr: TimelineEntry[]) {
   );
 }
 
+function renderEduEntry(entry: TimelineEntry, i: number) {
+  return (
+    <View key={i}>
+      {entry.heading && <Text style={styles.sectionHeading}>{entry.heading}</Text>}
+      <Text style={[styles.bodyText, styles.bodySpacing]}>{entry.body}</Text>
+    </View>
+  );
+}
+
 export const ContextSheet = memo(function ContextSheet({
   sheetRef,
   brief,
@@ -53,6 +62,7 @@ export const ContextSheet = memo(function ContextSheet({
 }: ContextSheetProps) {
   const label = brief?.label ?? threadLabel;
   const timeline = brief?.timeline ?? [];
+  const isEdu = brief?.type === 'edu';
   const ContextHandle = useCallback(() => <SheetHandle title="context" />, []);
 
   return (
@@ -71,7 +81,7 @@ export const ContextSheet = memo(function ContextSheet({
         contentContainerStyle={[styles.content, { paddingBottom: bottomInset + SPACING.xl }]}
       >
         {label && <Text style={styles.title}>{label}</Text>}
-        {brief && (
+        {brief && !isEdu && (
           <Text style={styles.meta}>
             {brief.articleCount} article{brief.articleCount === 1 ? '' : 's'} in this thread
           </Text>
@@ -80,7 +90,9 @@ export const ContextSheet = memo(function ContextSheet({
 
         {loading && !brief && <ActivityIndicator color={COLORS.accent} style={styles.loader} />}
 
-        {timeline.map(renderEntry)}
+        {isEdu
+          ? timeline.map(renderEduEntry)
+          : timeline.map(renderTimelineEntry)}
       </BottomSheetScrollView>
     </BottomSheetModal>
   );
@@ -145,5 +157,12 @@ const styles = StyleSheet.create({
   },
   bodySpacing: {
     marginBottom: SPACING.sm,
+  },
+  sectionHeading: {
+    ...TEXT_STYLES.smallCapsXs,
+    color: COLORS.accent,
+    fontFamily: FONT.semiBold,
+    marginTop: SPACING.md,
+    marginBottom: SPACING.xs,
   },
 });
