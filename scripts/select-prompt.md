@@ -69,6 +69,7 @@ Before writing the selection, verify:
 - Category counts meet the floors (state them: `politics:X economy:X science:X tech:X`).
 - No arc has more than 3 selections.
 - At least 6 stories come from `multiSourceStories`.
+- No two selections are about the same company, institution, or event — consolidate into one entry with the richest angle.
 - If science < 3, scan Nature, Quanta, New Scientist, STAT News, SciDev.Net, Carbon Brief again.
 </pre_check>
 
