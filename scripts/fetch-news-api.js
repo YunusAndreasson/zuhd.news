@@ -262,6 +262,14 @@ const GAP_COUNTRIES = [
   'http://en.wikipedia.org/wiki/Malaysia',
   'http://en.wikipedia.org/wiki/Bangladesh',
   'http://en.wikipedia.org/wiki/United_Arab_Emirates',
+  // Muslim-majority nations underrepresented in Western wire services
+  'http://en.wikipedia.org/wiki/Egypt',
+  'http://en.wikipedia.org/wiki/Algeria',
+  'http://en.wikipedia.org/wiki/Morocco',
+  'http://en.wikipedia.org/wiki/Iraq',
+  'http://en.wikipedia.org/wiki/Yemen',
+  'http://en.wikipedia.org/wiki/Somalia',
+  'http://en.wikipedia.org/wiki/Afghanistan',
 ]
 
 // Q1: Event discovery (5 tokens)
