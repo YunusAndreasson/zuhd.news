@@ -159,13 +159,31 @@ else
   T3=$SECONDS
   CHECK_PROMPT=$(cat scripts/check-prompt.md)
   ARTICLE_LIST=$(cat /tmp/zuhd-new-articles.txt)
+  # Measure body character counts — gives the editor exact data on which articles need trimming
+  BODY_LENGTHS=$(node -e "
+    const fs = require('fs');
+    const lines = fs.readFileSync('/tmp/zuhd-new-articles.txt','utf8').trim().split('\n');
+    for (const f of lines) {
+      try {
+        const txt = fs.readFileSync(f,'utf8');
+        const body = txt.split('---').slice(2).join('---').trim();
+        const len = body.length;
+        const flag = len > 350 ? 'OVER' : 'ok';
+        console.log(flag + ' ' + len + ' chars  ' + f);
+      } catch {}
+    }
+  " 2>/dev/null)
   EDITOR_ADDENDUM="
 
 IMPORTANT: Only check the files listed in <files> below (this cycle's batch). Do NOT scan for other untracked files.
 
 <files>
 $ARTICLE_LIST
-</files>"
+</files>
+
+<body-lengths>
+$BODY_LENGTHS
+</body-lengths>"
   timeout 1800 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_EDITOR --max-turns 50 -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT — $((SECONDS - T3))s" | tee -a "$LOG_FILE"

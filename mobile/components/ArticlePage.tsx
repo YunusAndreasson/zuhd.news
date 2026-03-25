@@ -107,7 +107,7 @@ export const ArticlePage = memo(function ArticlePage({
     const contentLength = article.title.length * 2 + article.sentences.join(' ').length;
     const threshold = 450;
     if (contentLength <= threshold) return 1;
-    return Math.max(0.9, threshold / contentLength);
+    return Math.max(0.95, threshold / contentLength);
   }, [article.title, article.sentences]);
 
   const titleFontSize = Math.round(TYPOGRAPHY.sizeH1 * fontScale);

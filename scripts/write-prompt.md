@@ -43,7 +43,7 @@ concepts:
   - "Key Entity"
 ---
 
-One paragraph. Exactly 3 sentences. Under 55 words total.
+One paragraph. Exactly 3 sentences. 40-50 words total (body text only, excluding frontmatter). Follow the per-sentence word limits in `<rhythm>` strictly — they are the budget.
 ```
 
 List all sources you used. `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing.
@@ -54,11 +54,11 @@ List all sources you used. `eventCoverage` and `concepts` are filled automatical
 
 Every article follows a 3-sentence arc:
 
-1. **Hook** (≤9 words) — the most arresting concrete detail. A number, a name, a consequence. Not the title restated. Not background that could have been written last week.
+1. **Hook** (≤8 words) — the most arresting concrete detail. A number, a name, a consequence. Not the title restated. Not background that could have been written last week.
 
-2. **Context** (≤25 words) — *why* this happened, *how* it works, or *how big* it is. Teach the mechanism, not just more facts. If covering the hook tells you *what*, this sentence tells you *why*.
+2. **Context** (≤22 words) — *why* this happened, *how* it works, or *how big* it is. Teach the mechanism, not just more facts. If covering the hook tells you *what*, this sentence tells you *why*.
 
-3. **Future** (≤20 words) — something specific and unresolved. A deadline, a pending decision, a named consequence. End on what's at stake, not a summary. Never end with "X must now Y" — that is prescription, not tension. Name the decision-maker, the deadline, or the thing that breaks.
+3. **Future** (≤18 words) — something specific and unresolved. A deadline, a pending decision, a named consequence. End on what's at stake, not a summary. Never end with "X must now Y" — that is prescription, not tension. Name the decision-maker, the deadline, or the thing that breaks.
 
 </rhythm>
 
@@ -135,7 +135,7 @@ sources:
     country: "MY"
 ---
 
-Hanoi — 600,000 satellite terminals can now operate in Vietnam. The radio frequency authority granted Starlink a licence for 4 gateway stations, covering 20 million people who lack internet access. Starlink will compete with state-backed carriers that tightly control terrestrial infrastructure.
+Hanoi — 600,000 Starlink terminals are now legal. The radio frequency authority licensed 4 gateway stations, covering 20 million people without internet access. Starlink will compete with state-backed carriers that control terrestrial infrastructure.
 </example>
 
 <example>
@@ -152,7 +152,7 @@ sources:
     country: "PK"
 ---
 
-Karachi — Pakistan's SadaPay collapsed after drone strikes hit AWS Bahrain. Pakistan's digital banking routes through Gulf datacenters; AWS Bahrain has been disrupted since March 1 drone strikes, affecting 3 million SadaPay users. The outage exposed how Gulf cloud infrastructure is a single point of failure for South Asian fintech.
+Karachi — SadaPay collapsed after Gulf strikes. Pakistan's digital banking routes through AWS Bahrain, disrupted since March 1 drone strikes affecting 3 million users. The outage exposed Gulf cloud infrastructure as a single point of failure for South Asian fintech.
 </example>
 
 </examples>

@@ -29,9 +29,10 @@ Check in this order.
 
 <structure>
 - Title: 3-5 words. Subject + verb. No articles, no filler, no abbreviations (only US, UK, EU, UN, WHO, NATO, ISIS unexpanded).
-- Body: one paragraph, exactly 3 sentences. Hook (≤9 words) → Context → Future. If out of order, reorder. If 4+ sentences, cut to 3.
+- Body: one paragraph, exactly 3 sentences, 40-50 words total. Hook (≤8 words) → Context (≤22 words) → Future (≤18 words). If out of order, reorder. If 4+ sentences, cut to 3.
 - Every sentence serves the headline. Cut unrelated facts, people, or asides.
 - No source attribution in the body — sources are in frontmatter.
+- **Length (CRITICAL):** Body text (everything after the closing `---`) must be ≤350 characters. If a `<body-lengths>` block is appended below, every article flagged OVER **must** be rewritten shorter — this is not optional. Cut adjectives, compress clauses, shorten proper nouns ("the US health department" → "HHS"), drop the weakest detail. Never drop a whole sentence. After trimming, verify the result still has exactly 3 sentences and reads naturally.
 </structure>
 
 <clarity>
