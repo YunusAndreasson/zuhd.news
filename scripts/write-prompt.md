@@ -15,9 +15,9 @@ Truth (ḥaqq) is what happened, reported precisely. Oppression (ẓulm) has cau
 2. For each story, read ALL sources in the `sources` array (each has a `body` field with full text). Do not fetch any URLs.
 3. Synthesize a single article from multiple perspectives:
    - Facts all sources agree on → state as fact.
-   - Where sources disagree → report both with attribution.
+   - Where sources disagree → report the most credible version as fact, or state the disagreement without naming sources ("figures are disputed").
    - Center the affected country's perspective. Use wire sources for scaffolding, non-Western sources for lived reality.
-   - Single-source attribution: "according to TASS" / "Mehr News reports."
+   - No source attribution in the body — all sources go in frontmatter only.
 4. Use the `angle` field to guide framing.
 5. Save to `content/articles/{suggestedSlug}.md`. Do not modify existing articles.
 
@@ -31,7 +31,7 @@ A separate editor reviews output — focus on writing, not checking.
 title: "3-5 word headline"
 date: "ISO 8601 from pubDate"
 category: "politics|economy|science|tech"
-location: "City or country (matches dateline)"
+location: "Sovereign country name (e.g. 'Iran', 'United States', 'Kenya' — never a city, region, or body of water)"
 lat: decimal
 lng: decimal
 sources:
@@ -72,7 +72,7 @@ Every article follows a 3-sentence arc:
 
 **Economy.** Drop filler ("In a significant development"), hedging ("could reshape"), and speculation ("is poised to"). Start with the fact. Each sentence must introduce new information — if S3 restates S2 with different words, rewrite S3 with what happens next.
 
-**Dateline.** Every article opens with location + em dash: `Tehran — `, `Gaza — `, `Jakarta — `. Use the most specific meaningful location.
+**Dateline.** Every article opens with country + em dash: `Iran — `, `Lebanon — `, `Indonesia — `. The location must be a sovereign country name that maps to a 2-letter ISO code. Never use cities, regions, or bodies of water. For stories spanning borders, use the most affected country.
 
 **Headlines.** 3-5 words. Subject + verb. Drop articles. Spell out names (only US, UK, EU, UN, WHO, NATO, ISIS need no expansion).
 
@@ -85,7 +85,7 @@ Every article follows a 3-sentence arc:
 title: "UK Blames Russia for Navalny"
 date: "2026-02-14T15:58:00Z"
 category: "politics"
-location: "London"
+location: "United Kingdom"
 lat: 51.51
 lng: -0.13
 sources:
@@ -101,7 +101,7 @@ concepts:
   - "Russia"
 ---
 
-London — Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. They are now reporting Russia to the chemical weapons watchdog.
+United Kingdom — Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. They are now reporting Russia to the chemical weapons watchdog.
 </example>
 
 <example>
@@ -109,7 +109,7 @@ London — Dart frog toxin killed Alexei Navalny. 5 European governments confirm
 title: "Gaza Hospitals Run Out of Fuel"
 date: "2026-02-14T12:00:00Z"
 category: "politics"
-location: "Gaza"
+location: "Palestine"
 lat: 31.50
 lng: 34.47
 sources:
@@ -118,7 +118,7 @@ sources:
     country: "QA"
 ---
 
-Gaza — 4 hospitals shut down this week. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
+Palestine — 4 hospitals shut down this week. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
 </example>
 
 <example>
@@ -126,7 +126,7 @@ Gaza — 4 hospitals shut down this week. Israel blocked aid convoys for a 3rd c
 title: "Vietnam Licenses Starlink"
 date: "2026-02-15T10:31:31Z"
 category: "tech"
-location: "Hanoi"
+location: "Vietnam"
 lat: 21.03
 lng: 105.85
 sources:
@@ -135,7 +135,7 @@ sources:
     country: "MY"
 ---
 
-Hanoi — 600,000 Starlink terminals are now legal. The radio frequency authority licensed 4 gateway stations, covering 20 million people without internet access. Starlink will compete with state-backed carriers that control terrestrial infrastructure.
+Vietnam — 600,000 Starlink terminals are now legal. The radio frequency authority licensed 4 gateway stations, covering 20 million people without internet access. Starlink will compete with state-backed carriers that control terrestrial infrastructure.
 </example>
 
 <example>
@@ -143,7 +143,7 @@ Hanoi — 600,000 Starlink terminals are now legal. The radio frequency authorit
 title: "Iran War Downs Pakistani Fintech"
 date: "2026-03-24T12:00:00Z"
 category: "economy"
-location: "Karachi"
+location: "Pakistan"
 lat: 24.86
 lng: 67.01
 sources:
@@ -152,7 +152,7 @@ sources:
     country: "PK"
 ---
 
-Karachi — SadaPay collapsed after Gulf strikes. Pakistan's digital banking routes through AWS Bahrain, disrupted since March 1 drone strikes affecting 3 million users. The outage exposed Gulf cloud infrastructure as a single point of failure for South Asian fintech.
+Pakistan — SadaPay collapsed after Gulf strikes. Pakistan's digital banking routes through AWS Bahrain, disrupted since March 1 drone strikes affecting 3 million users. The outage exposed Gulf cloud infrastructure as a single point of failure for South Asian fintech.
 </example>
 
 </examples>

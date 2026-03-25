@@ -32,6 +32,7 @@ Check in this order.
 - Body: one paragraph, exactly 3 sentences, 40-50 words total. Hook (≤8 words) → Context (≤22 words) → Future (≤18 words). If out of order, reorder. If 4+ sentences, cut to 3.
 - Every sentence serves the headline. Cut unrelated facts, people, or asides.
 - No source attribution in the body — sources are in frontmatter.
+- `location` in frontmatter and the dateline must be a sovereign country name (e.g. "Iran", "Pakistan", "United States"). If it's a city, region, or body of water, replace with the country.
 - **Length (CRITICAL):** Body text (everything after the closing `---`) must be ≤350 characters. If a `<body-lengths>` block is appended below, every article flagged OVER **must** be rewritten shorter — this is not optional. Cut adjectives, compress clauses, shorten proper nouns ("the US health department" → "HHS"), drop the weakest detail. Never drop a whole sentence. After trimming, verify the result still has exactly 3 sentences and reads naturally.
 </structure>
 
