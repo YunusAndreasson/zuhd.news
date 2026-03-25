@@ -718,7 +718,7 @@
       "lastCovered": "2026-03-25T01:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-25-us-visa-bonds-15000-fifty-countries-global-south"
@@ -734,15 +734,16 @@
     },
     {
       "id": "nasa-artemis-ii-launch",
-      "label": "NASA Artemis II: first crewed lunar mission in 53 years",
+      "label": "NASA Artemis II: first crewed lunar mission in 53 years targets April 1",
       "firstSeen": "2026-03-25T01:00:00Z",
-      "lastCovered": "2026-03-25T01:00:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-25T04:00:00Z",
+      "coverageCount": 2,
       "category": "science",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
-        "2026-03-25-nasa-artemis-ii-crewed-moon-mission-april"
+        "2026-03-25-nasa-artemis-ii-crewed-moon-mission-april",
+        "2026-03-25-nasa-artemis-ii-april-launch-moon"
       ],
       "eventUri": "eng-11476892",
       "summary": "Artemis II crewed lunar flyby scheduled for April 1, 2026. First humans beyond LEO since Apollo 17 (1972). Four astronauts, SLS/Orion stack.",
@@ -760,7 +761,7 @@
       "lastCovered": "2026-03-25T01:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-el-rufai-icpc-corruption-kaduna-governor"
@@ -775,7 +776,7 @@
       "lastCovered": "2026-03-25T01:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-nigeria-northeast-terrorism-troops-outgunned-ndume"
@@ -785,18 +786,19 @@
     },
     {
       "id": "sudan-rsf-bara-kordofan",
-      "label": "RSF retakes Bara, advances in Kordofan and North Darfur",
+      "label": "RSF retakes Bara, war spills into Chad with drone strike on funeral",
       "firstSeen": "2026-03-25T01:00:00Z",
-      "lastCovered": "2026-03-25T01:00:00Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-03-25T04:00:00Z",
+      "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
+      "importance": 7,
+      "arc": "developing",
       "articles": [
-        "2026-03-25-sudan-rsf-bara-kordofan-darfur-advances"
+        "2026-03-25-sudan-rsf-bara-kordofan-darfur-advances",
+        "2026-03-25-sudan-rsf-seizes-bara-darfur-chad-border"
       ],
       "eventUri": null,
-      "summary": "RSF recaptured Bara just 10 days after SAF retook it. Gains across Kordofan and North Darfur. Burhan seeking political cover from revolutionary forces. Civilian casualties mounting."
+      "summary": "RSF recaptured Bara 10 days after SAF retook it. Drone strike hit funeral in Chad (15 killed), 123 wounded crossed into Chad in one day. Burhan courting revolutionary forces after US designated Sudanese Muslim Brotherhood as terrorist org."
     },
     {
       "id": "uae-banking-stress-iran-war",
@@ -805,7 +807,7 @@
       "lastCovered": "2026-03-25T01:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-uae-central-bank-liquidity-iran-war-banking"
@@ -842,6 +844,21 @@
       ],
       "eventUri": null,
       "summary": "GitHub down again, 314 HN points. Microsoft-owned platform hosts 100M+ developers. Recurring outages highlight single-point-of-failure in global software supply chain."
+    },
+    {
+      "id": "meta-child-exploitation-verdict",
+      "label": "Jury finds Meta liable for child sexual exploitation on platforms",
+      "firstSeen": "2026-03-25T04:00:00Z",
+      "lastCovered": "2026-03-25T04:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-meta-liable-child-exploitation-new-mexico-jury"
+      ],
+      "eventUri": null,
+      "summary": "New Mexico jury found Meta liable for enabling child sexual exploitation via algorithmic amplification. First state-level trial verdict. Follows $1.4B Texas settlement. Section 230 shield cracking at state level."
     }
   ]
 }
