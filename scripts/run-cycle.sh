@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# zuhd.news editorial cycle — runs 10x daily via systemd timer
+# zuhd.news editorial cycle — runs 5x daily via systemd timer (04, 08, 12, 17, 22 UTC)
 # Three-stage pipeline: selector picks stories, writer drafts articles, editor checks and deploys
 
 set -uo pipefail
@@ -52,12 +52,24 @@ LOG_FILE="$LOG_DIR/cycle-$TIMESTAMP.log"
 
 cleanup() {
   echo "" | tee -a "$LOG_FILE"
+  # Funnel summary — one glance to see where stories were gained or lost
+  echo "=== Funnel ===" | tee -a "$LOG_FILE"
+  echo "Feed:      ${FUNNEL_FEED:-?}" | tee -a "$LOG_FILE"
+  echo "Selected:  ${FUNNEL_SELECTED:-0}" | tee -a "$LOG_FILE"
+  echo "Deduped:   ${FUNNEL_DEDUPED:-0}${FUNNEL_DEDUP_NOTE:+ ($FUNNEL_DEDUP_NOTE)}" | tee -a "$LOG_FILE"
+  echo "Written:   ${FUNNEL_WRITTEN:-0}" | tee -a "$LOG_FILE"
+  echo "Validated: ${FUNNEL_VALIDATED:-0}${FUNNEL_VALID_NOTE:+ ($FUNNEL_VALID_NOTE)}" | tee -a "$LOG_FILE"
+  echo "Published: ${FUNNEL_PUBLISHED:-0}" | tee -a "$LOG_FILE"
+  echo "" | tee -a "$LOG_FILE"
   echo "Finished: $(date) — total ${SECONDS}s" | tee -a "$LOG_FILE"
   find "$LOG_DIR" -name "cycle-*.log" -mtime +7 -delete 2>/dev/null || true
 }
 trap cleanup EXIT
 
 cd "$PROJECT_DIR"
+
+# Capture start hour for stage gates (Stage 4/5/6 check this, not wall clock after 20+ min of processing)
+START_HOUR=$(date -u +%H)
 
 echo "=== zuhd.news editorial cycle ===" | tee "$LOG_FILE"
 echo "Started: $(date)" | tee -a "$LOG_FILE"
@@ -83,6 +95,7 @@ echo "RSS fetch: ${RSS_STATS} stories" | tee -a "$LOG_FILE"
 # Step 3: Merge into unified feed
 node scripts/merge-feeds.js 2>>"$LOG_FILE"
 FEED_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed.json'));console.log((d.multiSourceStories?.length||0)+' multi + '+(d.nicheStories?.length||0)+' niche')}catch{console.log('failed')}" 2>/dev/null)
+FUNNEL_FEED="$FEED_STATS"
 echo "Merged feed: $FEED_STATS — $((SECONDS - T0))s" | tee -a "$LOG_FILE"
 
 # Stage 1: Selector — read pre-fetched feed, pick stories, save selection
@@ -123,8 +136,19 @@ if [ "$SELECTION_COUNT" -eq 0 ]; then
   echo "Selection is empty (0 stories) — skipping writer and editor" | tee -a "$LOG_FILE"
   exit 0
 fi
+FUNNEL_SELECTED=$SELECTION_COUNT
 echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
 
+# Stage 1.5: Remove already-published stories from selection (deterministic, no LLM)
+node scripts/dedup-selection.js 2>&1 | tee -a "$LOG_FILE"
+SELECTION_COUNT=$(node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/zuhd-selection.json','utf8'));console.log(Array.isArray(s)?s.length:0)" 2>/dev/null || echo 0)
+FUNNEL_DEDUPED=$SELECTION_COUNT
+DEDUP_DROPPED=$((FUNNEL_SELECTED - FUNNEL_DEDUPED))
+[ "$DEDUP_DROPPED" -gt 0 ] && FUNNEL_DEDUP_NOTE="${DEDUP_DROPPED} already published"
+if [ "$SELECTION_COUNT" -eq 0 ]; then
+  echo "All selections already published — skipping writer and editor" | tee -a "$LOG_FILE"
+  exit 0
+fi
 
 # Stage 2: Writer — read selection (with pre-loaded article bodies), draft markdown
 echo "" | tee -a "$LOG_FILE"
@@ -145,6 +169,7 @@ if [ -z "$NEW_ARTICLES" ]; then
   echo "No new articles — skipping editor and deploy" | tee -a "$LOG_FILE"
 else
   NEW_COUNT=$(echo "$NEW_ARTICLES" | wc -l)
+  FUNNEL_WRITTEN=$NEW_COUNT
   echo "Found $NEW_COUNT new/modified articles" | tee -a "$LOG_FILE"
 
   # Save the list so the editor checks only this batch (not all untracked files)
@@ -211,6 +236,10 @@ $BODY_LENGTHS
 
   # Validate new articles — move malformed ones aside so they don't get deployed
   node scripts/validate-articles.js 2>&1 | tee -a "$LOG_FILE"
+  # Count surviving articles (validated = written - .bad files)
+  BAD_COUNT=$(find content/articles -name '*.bad' -newer "$LOG_FILE" 2>/dev/null | wc -l)
+  FUNNEL_VALIDATED=$((NEW_COUNT - BAD_COUNT))
+  [ "$BAD_COUNT" -gt 0 ] && FUNNEL_VALID_NOTE="${BAD_COUNT} removed"
 
   # Write .last-cycle.json from validated articles (not raw selection)
   # This ensures the selector next cycle only skips stories that were actually published
@@ -231,15 +260,16 @@ $BODY_LENGTHS
     npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
     DEPLOY_EXIT=$?
     echo "Deploy exit: $DEPLOY_EXIT" | tee -a "$LOG_FILE"
+    [ "$DEPLOY_EXIT" -eq 0 ] && FUNNEL_PUBLISHED=$FUNNEL_VALIDATED
   else
     echo "Build failed — skipping deploy" | tee -a "$LOG_FILE"
   fi
 fi
 
-# Stage 4: Audio briefing — generate at 05:00 UTC only (morning for GCC→India)
-# (cycle schedule: 00:00, 02:30, 05:00, 07:30... — 05:00 is the first morning cycle)
+# Stage 4: Audio briefing — generate at 04:00 UTC cycle only (morning for GCC→India)
+# Timer schedule: 04, 08, 12, 17, 22 UTC — check start hour, not current hour
 HOUR_UTC=$(date -u +%H)
-if [ "$HOUR_UTC" = "05" ]; then
+if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 4: Audio briefing ---" | tee -a "$LOG_FILE"
   timeout 900 node scripts/generate-briefing.js 2>&1 | tee -a "$LOG_FILE"
@@ -254,12 +284,12 @@ if [ "$HOUR_UTC" = "05" ]; then
   fi
 else
   echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 4: Audio briefing (skipped — $HOUR_UTC:xx UTC, runs at 05:00 only) ---" | tee -a "$LOG_FILE"
+  echo "--- Stage 4: Audio briefing (skipped — ${START_HOUR:-$HOUR_UTC}:xx UTC, runs at 04:00 only) ---" | tee -a "$LOG_FILE"
 fi
 
 # Stage 5: Weekly reflection — runs Sunday 22:30 UTC only (last cycle of the week)
 DAY_OF_WEEK=$(date -u +%u)
-if [ "$DAY_OF_WEEK" = "7" ] && [ "$HOUR_UTC" = "22" ]; then
+if [ "$DAY_OF_WEEK" = "7" ] && [ "$START_HOUR" = "22" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 5: Weekly reflection ---" | tee -a "$LOG_FILE"
   REFLECT_PROMPT=$(cat scripts/reflect-prompt.md)
@@ -269,13 +299,13 @@ if [ "$DAY_OF_WEEK" = "7" ] && [ "$HOUR_UTC" = "22" ]; then
   # Failure here doesn't affect publishing — the cycle is already complete
 else
   echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 5: Weekly reflection (skipped — day $DAY_OF_WEEK $HOUR_UTC:00 UTC, runs Sunday 22:00 only) ---" | tee -a "$LOG_FILE"
+  echo "--- Stage 5: Weekly reflection (skipped — day $DAY_OF_WEEK $START_HOUR:00 UTC, runs Sunday 22:00 only) ---" | tee -a "$LOG_FILE"
 fi
 
 # Stage 6: Daily tuning — runs at last cycle of each day (22:30 UTC)
 # Computes metrics, evaluates experiments, proposes bounded parameter changes
-TOOLS_TUNE="Read,Edit,Glob,Grep,Bash"
-if [ "$HOUR_UTC" = "22" ]; then
+TOOLS_TUNE="Read,Write,Edit,Glob,Grep,Bash"
+if [ "$START_HOUR" = "22" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 6: Daily tuning ---" | tee -a "$LOG_FILE"
   T6=$SECONDS
@@ -300,5 +330,5 @@ if [ "$HOUR_UTC" = "22" ]; then
   fi
 else
   echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 6: Daily tuning (skipped — $HOUR_UTC:xx UTC, runs at 22:00 only) ---" | tee -a "$LOG_FILE"
+  echo "--- Stage 6: Daily tuning (skipped — $START_HOUR:xx UTC, runs at 22:00 only) ---" | tee -a "$LOG_FILE"
 fi

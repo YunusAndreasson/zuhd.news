@@ -19,7 +19,7 @@ Every human life has equal dignity (karāmah). Truth (ḥaqq) is reported precis
    - For **politics and economy**: strongly prefer `multiSourceStories` — these topics benefit most from multi-perspective coverage. Pick single-source only when a niche investigation (OCCRP, Intercept, Bellingcat) is more interesting than any multi-source event.
    - For **science and tech**: pick freely from `nicheStories` — these topics are inherently specialist and rarely have multi-source coverage. Nature, Ars Technica, The Decoder, 404 Media are the right sources here.
    - Aim for at least 4-5 multi-source stories per cycle, primarily in politics/economy.
-   - **Protect unique stories.** An OCCRP investigation, a Bellingcat OSINT piece, a +972 ground report, or a 404 Media privacy exposé is worth more than a generic multi-source event — even if it's single-source. These are stories no one else reports. They always belong in the cycle.
+   - **Protect unique stories.** An OCCRP investigation, a Bellingcat OSINT piece, a +972 ground report, or a 404 Media privacy exposé is worth more than a generic multi-source event — even if it's single-source. These are stories no one else reports. But even a unique source must clear the bar: the story should reveal something systemic, set a precedent, or carry consequences beyond the immediate event. A local ruling or incident that doesn't illuminate a larger pattern belongs in that outlet's own feed, not in a 12-story global cycle.
 4. Save the selection to `/tmp/zuhd-selection.json` (schema below).
 5. Rewrite `content/.editorial-notes.md` (schema below).
 6. Update `content/.story-ledger.json` (schema below).

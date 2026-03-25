@@ -101,7 +101,9 @@ function computeDiversity(articles) {
   const uniqueRegions = Object.keys(regions).filter(r => r !== 'unknown').length
   const scienceSources = [...new Set(articles.filter(a => a.category === 'science').flatMap(a => a.sources))]
 
-  return { categories, sources, regions, uniqueSources, uniqueRegions, scienceSources }
+  const multiSource = articles.filter(a => a.sources.length > 1).length
+
+  return { categories, sources, regions, uniqueSources, uniqueRegions, scienceSources, multiSource }
 }
 
 // ── Educational Value ────────────────────────────────────────────────
