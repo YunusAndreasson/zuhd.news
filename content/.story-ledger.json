@@ -8,7 +8,7 @@
       "lastCovered": "2026-03-25T04:00:00Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-25-nasa-artemis-ii-crewed-moon-mission-april",
@@ -30,7 +30,7 @@
       "lastCovered": "2026-03-25T04:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-25-sudan-rsf-bara-kordofan-darfur-advances",
@@ -40,13 +40,34 @@
       "summary": "RSF recaptured Bara 10 days after SAF retook it. Drone strike hit funeral in Chad (15 killed), 123 wounded crossed into Chad in one day. Burhan courting revolutionary forces after US designated Sudanese Muslim Brotherhood as terrorist org."
     },
     {
+      "id": "eu-shelves-russian-oil-ban",
+      "label": "EU shelves Russian oil ban as Iran war disrupts energy markets",
+      "firstSeen": "2026-03-25T08:00:00Z",
+      "lastCovered": "2026-03-25T08:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-eu-shelves-russian-oil-ban-iran-war-energy"
+      ],
+      "eventUri": "eng-11508084",
+      "summary": "EU shelves REPowerEU plan to fully ban Russian oil by 2027 as Iran war disrupts energy markets. Russia benefits from war it did not start.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
       "id": "us-visa-bonds-global-south",
       "label": "US expands visa bonds to 50 countries — financial barrier to Global South travel",
       "firstSeen": "2026-03-25T01:00:00Z",
       "lastCovered": "2026-03-25T04:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-25-us-visa-bonds-15000-fifty-countries-global-south",
@@ -68,7 +89,7 @@
       "lastCovered": "2026-03-25T04:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-meta-liable-child-exploitation-new-mexico-jury"
@@ -83,7 +104,7 @@
       "lastCovered": "2026-03-25T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-india-all-party-meet-west-asia-opposition-debate"
@@ -96,13 +117,50 @@
       ]
     },
     {
+      "id": "bangladesh-1971-genocide-recognition",
+      "label": "Bangladesh marks Genocide Day, US Congress weighs 1971 recognition",
+      "firstSeen": "2026-03-25T08:00:00Z",
+      "lastCovered": "2026-03-25T08:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-bangladesh-genocide-day-1971-pakistan-us-congress"
+      ],
+      "eventUri": "eng-11509051",
+      "summary": "Bangladesh PM marks Genocide Day. US Congress considering formal 1971 genocide recognition. Pakistan has never acknowledged Operation Searchlight atrocities.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Genocide",
+        "http://en.wikipedia.org/wiki/Bangladesh",
+        "http://en.wikipedia.org/wiki/Bangladesh_Liberation_War",
+        "http://en.wikipedia.org/wiki/Operation_Searchlight",
+        "http://en.wikipedia.org/wiki/Pakistan"
+      ]
+    },
+    {
+      "id": "iberian-blackout-2025-analysis",
+      "label": "Final analysis: 2025 Iberian blackout caused by renewable transition policy gaps",
+      "firstSeen": "2026-03-25T08:00:00Z",
+      "lastCovered": "2026-03-25T08:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-iberian-blackout-2025-analysis-grid-policy-renewables"
+      ],
+      "eventUri": null,
+      "summary": "Final report: Spain-Portugal blackout caused by retiring conventional plants without replacing grid inertia. Cautionary tale for rapid renewable deployment."
+    },
+    {
       "id": "eu-mercosur-trade-deal",
       "label": "EU-Mercosur trade deal starts May 1 — Commission bypasses parliament",
       "firstSeen": "2026-03-25T00:00:00Z",
       "lastCovered": "2026-03-25T00:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-24-eu-mercosur-trade-deal-may-1-democratic-bypass"
@@ -126,7 +184,7 @@
       "lastCovered": "2026-03-25T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-25-florida-democrat-flips-mar-a-lago-seat-backlash"
@@ -145,7 +203,7 @@
       "lastCovered": "2026-03-25T04:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-25-rio-tinto-resolution-copper-arizona-apache-land"
@@ -162,8 +220,8 @@
       "id": "iran-us-israel-war",
       "label": "Iran-US-Israel war: Gulf states weigh military entry, Hormuz blockade tightens",
       "firstSeen": "2026-03-01T11:00:00Z",
-      "lastCovered": "2026-03-25T00:00:00Z",
-      "coverageCount": 341,
+      "lastCovered": "2026-03-25T08:00:00Z",
+      "coverageCount": 342,
       "category": "politics",
       "importance": 3,
       "arc": "ongoing",
@@ -336,9 +394,40 @@
         "2026-03-24-sindh-smart-lockdown-fuel-conservation-iran-war",
         "2026-03-24-clerics-pakistan-afghanistan-extend-pause-eid",
         "2026-03-24-trump-iran-prize-hormuz-vague-deal-claim",
-        "2026-03-24-saudi-mbs-pushes-trump-regime-change-iran-nyt"
+        "2026-03-24-saudi-mbs-pushes-trump-regime-change-iran-nyt",
+        "2026-03-25-islamabad-offers-host-us-iran-talks-mediation"
       ],
-      "summary": "NYT: MBS privately pushing Trump for regime change and ground operations in Iran. 15-point US plan transmitted via Pakistan. Trump swings between escalation and deal talk. Contradictory signals intensifying."
+      "summary": "Day 25+. Trump 5-day strike pause theater. Pakistan offers Islamabad as venue for US-Iran talks, competing with Turkey/Oman. 342 articles."
+    },
+    {
+      "id": "vizio-walmart-surveillance-tv",
+      "label": "Walmart requires account to use Vizio smart TV features",
+      "firstSeen": "2026-03-25T08:00:00Z",
+      "lastCovered": "2026-03-25T08:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-vizio-walmart-account-required-smart-tv-surveillance"
+      ],
+      "eventUri": "eng-11505602",
+      "summary": "Walmart requires account for Vizio smart TV features. Hardware-as-hostage for ad-targeting after $2.3B acquisition."
+    },
+    {
+      "id": "mozilla-cq-agent-knowledge",
+      "label": "Mozilla dev builds Stack Overflow for AI coding agents",
+      "firstSeen": "2026-03-25T08:00:00Z",
+      "lastCovered": "2026-03-25T08:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-24-mozilla-cq-stack-overflow-for-ai-agents"
+      ],
+      "eventUri": null,
+      "summary": "Mozilla developer launches cq: curated Q&A for AI agents to address hallucination on deprecated APIs."
     },
     {
       "id": "ftc-cvs-pbm-insulin",
@@ -347,7 +436,7 @@
       "lastCovered": "2026-03-24T23:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-ftc-cvs-pbm-insulin-price-manipulation-settlement"
@@ -362,7 +451,7 @@
       "lastCovered": "2026-03-24T23:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-us-forced-labour-investigation-south-africa-tariffs"
@@ -377,7 +466,7 @@
       "lastCovered": "2026-03-24T23:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-fcc-bans-foreign-wifi-routers-tp-link-protectionism"
@@ -392,7 +481,7 @@
       "lastCovered": "2026-03-25T00:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-openai-kills-sora-disney-deal-collapses-ip-wars-won"
@@ -412,7 +501,7 @@
       "lastCovered": "2026-03-25T00:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-24-scotus-asylum-metering-border-arrival-ruling"
@@ -432,7 +521,7 @@
       "lastCovered": "2026-03-25T01:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-25-el-rufai-icpc-corruption-kaduna-governor"
@@ -447,7 +536,7 @@
       "lastCovered": "2026-03-25T01:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-25-nigeria-northeast-terrorism-troops-outgunned-ndume"
@@ -462,7 +551,7 @@
       "lastCovered": "2026-03-25T01:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-25-uae-central-bank-liquidity-iran-war-banking"
@@ -477,7 +566,7 @@
       "lastCovered": "2026-03-25T04:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-25-abc-australia-strike-bbc-public-media-crisis"
@@ -496,7 +585,7 @@
       "lastCovered": "2026-03-25T04:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-25-prayagraj-cold-storage-ammonia-blast-india-safety"
@@ -515,7 +604,7 @@
       "lastCovered": "2026-03-24T23:30:00Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-03-24-arm-holdings-sell-own-chips-semiconductor-shift",
@@ -531,7 +620,7 @@
       "lastCovered": "2026-03-24T23:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-24-aid-flotilla-cuba-energy-crisis-sanctions"
@@ -551,7 +640,7 @@
       "lastCovered": "2026-03-24T23:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-24-south-africa-fishers-totalenergies-offshore-exploration-court"
@@ -566,7 +655,7 @@
       "lastCovered": "2026-03-24T23:00:00Z",
       "coverageCount": 4,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-03-24-tsa-workers-unpaid-ice-airports-dhs-shutdown",
@@ -584,7 +673,7 @@
       "lastCovered": "2026-03-24T23:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-24-darfur-camp-fire-kills-child-900-homes-tawila"
@@ -599,378 +688,13 @@
       "lastCovered": "2026-03-24T23:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-24-georgia-abortion-murder-charge-dollar-bail"
       ],
       "eventUri": "eng-11506387",
       "summary": "Alexia Moore arrested for taking abortion pills at 22-24 weeks. Judge called murder charge extremely problematic, set $1 bail. DA says police did not consult his office. First known murder charge under Georgia heartbeat law."
-    },
-    {
-      "id": "trump-china-bilateral-visit",
-      "label": "Trump to visit China March 31 -- first bilateral since 2017",
-      "firstSeen": "2026-03-24T22:00:00Z",
-      "lastCovered": "2026-03-24T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-trump-china-visit-bilateral-trade-iran-war"
-      ],
-      "eventUri": "eng-11417770",
-      "summary": "Trump scheduled to visit China March 31-April 2. First bilateral since 2017, during active Iran war. China's neutral stance on Iran plus cheap crude stockpiling gives Xi leverage."
-    },
-    {
-      "id": "icd-azerbaijan-islamic-finance",
-      "label": "ICD finances Azerbaijan SMEs as Islamic finance diversifies geographically",
-      "firstSeen": "2026-03-25T01:00:00Z",
-      "lastCovered": "2026-03-25T01:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-azerbaijan-turan-bank-icd-islamic-finance-smes"
-      ],
-      "eventUri": null,
-      "summary": "$15m ICD financing to Turan Bank for SME lending. Islamic finance expanding into Caucasus while Gulf banking under war stress."
-    },
-    {
-      "id": "github-outage-supply-chain",
-      "label": "GitHub recurring outages: software supply chain concentration risk",
-      "firstSeen": "2026-03-25T01:00:00Z",
-      "lastCovered": "2026-03-25T01:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-github-outage-infrastructure-dependency"
-      ],
-      "eventUri": null,
-      "summary": "GitHub down again, 314 HN points. Microsoft-owned platform hosts 100M+ developers. Recurring outages highlight single-point-of-failure in global software supply chain."
-    },
-    {
-      "id": "vertical-saas-domain-immersion",
-      "label": "HN: developer takes technician job to build vertical SaaS",
-      "firstSeen": "2026-03-25T04:00:00Z",
-      "lastCovered": "2026-03-25T04:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-vertical-saas-pest-control-domain-immersion"
-      ],
-      "eventUri": null,
-      "summary": "Developer took pest control technician job before building industry SaaS. Domain immersion methodology. 183 HN points."
-    },
-    {
-      "id": "bny-mellon-crypto-institutional",
-      "label": "BNY Mellon CEO: crypto future runs through big banks",
-      "firstSeen": "2026-03-24T23:30:00Z",
-      "lastCovered": "2026-03-24T23:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-bny-mellon-crypto-big-banks-institutional-custody"
-      ],
-      "eventUri": null,
-      "summary": "Oldest US bank positions as bridge between DeFi and TradFi. Institutional capture of crypto infrastructure."
-    },
-    {
-      "id": "hypura-llm-apple-silicon",
-      "label": "Hypura: storage-tier-aware LLM scheduler for Apple Silicon",
-      "firstSeen": "2026-03-24T23:30:00Z",
-      "lastCovered": "2026-03-24T23:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-hypura-llm-inference-scheduler-apple-silicon"
-      ],
-      "eventUri": null,
-      "summary": "Open-source scheduler pages LLM layers between unified memory and SSD on Apple Silicon, enabling models larger than RAM."
-    },
-    {
-      "id": "sudan-water-crisis-east",
-      "label": "Eastern Sudan historic drinking water crisis as war budgets consume infrastructure",
-      "firstSeen": "2026-03-24T23:00:00Z",
-      "lastCovered": "2026-03-24T23:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-sudan-water-crisis-el-gedaref-kassala-war-budgets"
-      ],
-      "eventUri": null,
-      "summary": "El Gedaref water project 90% complete but frozen — contractor owed 7M+, budgets redirected to war. Kassala wells drying. Recurring seasonal crisis now compounded by civil war resource diversion."
-    },
-    {
-      "id": "india-sc-conversion-caste-ruling",
-      "label": "India SC: religious conversion strips Scheduled Caste status",
-      "firstSeen": "2026-03-24T22:00:00Z",
-      "lastCovered": "2026-03-24T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-india-supreme-court-conversion-caste-status-ruling"
-      ],
-      "eventUri": "eng-11506842",
-      "summary": "Supreme Court of India upholds that voluntary religious conversion results in loss of Scheduled Caste benefits. Creates de facto economic penalty for Dalit conversion to Islam or Christianity. Affects 200M+ people."
-    },
-    {
-      "id": "rothschild-epstein-search",
-      "label": "French prosecutors search Rothschild bank over Epstein ties",
-      "firstSeen": "2026-03-24T22:00:00Z",
-      "lastCovered": "2026-03-24T22:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-rothschild-paris-offices-epstein-search"
-      ],
-      "eventUri": "fra-1288602",
-      "summary": "French financial prosecutors searched Edmond de Rothschild Paris offices over former employee linked to Jeffrey Epstein. First criminal search of a Rothschild entity. Following financial enablers."
-    },
-    {
-      "id": "eff-leadership-transition",
-      "label": "EFF's Cohn departs after 26 years as ICE surveillance proves fears right",
-      "firstSeen": "2026-03-25T00:00:00Z",
-      "lastCovered": "2026-03-25T00:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-eff-cohn-departing-ice-surveillance-ai-age-digital-rights"
-      ],
-      "eventUri": null,
-      "summary": "Cindy Cohn steps down from EFF after 26 years. New director Nicole Ozer plans social movement against AI-powered government surveillance. Communities tearing down Flock cameras. DHS trying to unmask ICE critics on social media.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Electronic_Frontier_Foundation",
-        "http://en.wikipedia.org/wiki/Surveillance"
-      ]
-    },
-    {
-      "id": "nigeria-judiciary-capacity",
-      "label": "Retired appeal court president: Nigerian judiciary weakened by bad appointments, not corruption",
-      "firstSeen": "2026-03-24T23:00:00Z",
-      "lastCovered": "2026-03-24T23:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-nigeria-judiciary-appointments-salami-critique"
-      ],
-      "eventUri": "eng-11508926",
-      "summary": "Justice Salami (Wole Soyinka award recipient) says magistrate-to-High Court promotions without broader legal exposure is weakening judiciary. Systemic capacity issue."
-    },
-    {
-      "id": "wine-11-kernel-rewrite",
-      "label": "Wine 11: kernel-level rewrite for Linux gaming",
-      "firstSeen": "2026-03-24T23:00:00Z",
-      "lastCovered": "2026-03-24T23:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-wine-11-kernel-rewrite-linux-gaming"
-      ],
-      "eventUri": null,
-      "summary": "Wine 11 rewrites Windows-to-Linux translation at kernel level after 31 years of user-space emulation. Major speed gains for gaming."
-    },
-    {
-      "id": "apple-maps-ads",
-      "label": "Apple Maps to show ads this summer as Services revenue pressure grows",
-      "firstSeen": "2026-03-24T23:00:00Z",
-      "lastCovered": "2026-03-24T23:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-apple-maps-ads-summer-services-revenue"
-      ],
-      "eventUri": "eng-11505509",
-      "summary": "Apple confirms paid search ads in Maps for US/Canada this summer. Part of Apple Business enterprise platform launch April 14."
-    },
-    {
-      "id": "android-automotive-sdv",
-      "label": "Google pushes Android Automotive beyond infotainment into vehicle control",
-      "firstSeen": "2026-03-24T23:00:00Z",
-      "lastCovered": "2026-03-24T23:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-android-automotive-vehicle-control-google"
-      ],
-      "eventUri": "eng-11505702",
-      "summary": "Google wants AAOS to control climate, locks, keys — not just infotainment. Automakers resist because vehicle data is valuable. Platform war moves to cars."
-    },
-    {
-      "id": "erdogan-turkey-iran-mediator",
-      "label": "Erdogan: Israel must not derail Iran settlement, Turkey mediates",
-      "firstSeen": "2026-03-24T22:30:00Z",
-      "lastCovered": "2026-03-24T22:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-erdogan-israel-derail-iran-settlement-turkey-mediator"
-      ],
-      "eventUri": null,
-      "summary": "Erdogan frames conflict as 'Israel's war, world pays price.' Turkey positioning alongside Pakistan/Egypt as alternative diplomatic track."
-    },
-    {
-      "id": "apple-business-platform",
-      "label": "Apple launches all-in-one business platform",
-      "firstSeen": "2026-03-24T22:30:00Z",
-      "lastCovered": "2026-03-24T22:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-apple-business-platform-enterprise-launch"
-      ],
-      "eventUri": null,
-      "summary": "Apple enters enterprise tools market with Apple Business. Challenges MS 365/Google Workspace."
-    },
-    {
-      "id": "chad-rsf-munitions-cross-border",
-      "label": "Bellingcat: RSF munitions matched to deadly Chad strike",
-      "firstSeen": "2026-03-24T22:00:00Z",
-      "lastCovered": "2026-03-24T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-bellingcat-chad-strike-munition-rsf-match"
-      ],
-      "eventUri": null,
-      "summary": "Munition remnants at Chad strike (17 killed in Tine) match RSF weapons. Sudan war spilling across borders."
-    },
-    {
-      "id": "nasa-lunar-gateway-cancelled",
-      "label": "NASA ditches Lunar Gateway for surface base",
-      "firstSeen": "2026-03-24T22:00:00Z",
-      "lastCovered": "2026-03-24T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-nasa-ditches-lunar-gateway-surface-base"
-      ],
-      "eventUri": "spa-4147375",
-      "summary": "NASA cancels Gateway orbital station for surface base. Strands ESA/JAXA partnership contributions mid-build."
-    },
-    {
-      "id": "tonga-earthquake-76",
-      "label": "7.6 magnitude earthquake strikes Tonga Neiafu region",
-      "firstSeen": "2026-03-24T22:00:00Z",
-      "lastCovered": "2026-03-24T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-tonga-earthquake-76-neiafu-tsunami-pacific"
-      ],
-      "eventUri": "eng-11506719",
-      "summary": "7.6 quake near Neiafu, Tonga. Tsunami assessment triggered across Pacific. Strongest regional quake since 2022 Hunga eruption. Pacific Islands seismically exposed with fragile infrastructure."
-    },
-    {
-      "id": "tezgam-derailment-bahawalpur",
-      "label": "Tezgam Express derails near Bahawalpur — casualties feared",
-      "firstSeen": "2026-03-24T22:00:00Z",
-      "lastCovered": "2026-03-24T22:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-tezgam-express-derails-bahawalpur"
-      ],
-      "eventUri": null,
-      "summary": "Karachi-bound Tezgam Express derailed in Punjab. Same route as 2019 fire that killed 74. Pakistan rail infrastructure deteriorating under fiscal pressure from Iran war energy shock."
-    },
-    {
-      "id": "pakistan-tezgam-derailment",
-      "label": "Tezgam Express derails near Bahawalpur — same train as 2019 fire",
-      "firstSeen": "2026-03-24T22:30:00Z",
-      "lastCovered": "2026-03-24T22:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-tezgam-express-derails-bahawalpur-pakistan-rail-infrastructure"
-      ],
-      "eventUri": null,
-      "summary": "Tezgam Express (74 killed in 2019 fire) derails near Bahawalpur. Pakistan rail crumbling during fuel crisis."
-    },
-    {
-      "id": "fifa-world-cup-hosting-crisis",
-      "label": "FIFA cancels 2,000+ hotel rooms ahead of US World Cup",
-      "firstSeen": "2026-03-24T22:30:00Z",
-      "lastCovered": "2026-03-24T22:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-fifa-cancels-2000-hotel-rooms-world-cup-us-hosting"
-      ],
-      "eventUri": null,
-      "summary": "FIFA cancels 2,000+ Philadelphia hotel rooms with no explanation. US hosting environment deteriorating amid visa bonds and DHS shutdown."
-    },
-    {
-      "id": "africa-climate-finance-gap",
-      "label": "Africa gets 3% of global climate finance despite highest vulnerability",
-      "firstSeen": "2026-03-24T22:30:00Z",
-      "lastCovered": "2026-03-24T22:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 0,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-24-africa-climate-finance-gap-energy-transition-justice"
-      ],
-      "eventUri": null,
-      "summary": "Climate diplomacy generates statements but negligible money for Africa. Structural exclusion by neglect."
-    },
-    {
-      "id": "infections-dementia-link",
-      "label": "Finnish study: common infections trigger dementia within years",
-      "firstSeen": "2026-03-24T22:30:00Z",
-      "lastCovered": "2026-03-24T22:00:00Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 0,
-      "arc": "developing",
-      "articles": [
-        "2026-03-24-infections-dementia-link-finnish-study-inflammation",
-        "2026-03-24-infection-dementia-cystitis-finland-study"
-      ],
-      "eventUri": "por-1233572",
-      "summary": "Study of hundreds of thousands of Finns: hospital-treated cystitis, pneumonia, or tooth decay significantly increased dementia risk within years. Chronic inflammation may cross blood-brain barrier."
     }
   ]
 }
