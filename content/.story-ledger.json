@@ -2,13 +2,56 @@
   "version": 1,
   "stories": [
     {
+      "id": "iran-cruise-missiles-lincoln",
+      "label": "Iran fires cruise missiles at USS Abraham Lincoln carrier group",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-25T17:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 9,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-iran-cruise-missiles-uss-abraham-lincoln"
+      ],
+      "eventUri": "eng-11511156",
+      "summary": "Iran claims Qader anti-ship cruise missiles forced USS Lincoln to reposition. No US confirmation. Comes as 82nd Airborne deploys 1,000+ troops.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Aircraft_carrier",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/USS_Abraham_Lincoln_(CVN-72)",
+        "http://en.wikipedia.org/wiki/Cruise_missile"
+      ]
+    },
+    {
+      "id": "iran-rejects-ceasefire-conditions",
+      "label": "Iran formally rejects 15-point US ceasefire, issues 5 counter-demands",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-25T17:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 9,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-iran-rejects-ceasefire-five-conditions"
+      ],
+      "eventUri": "eng-11511911",
+      "summary": "Tehran rejects US ceasefire plan via Press TV. 5 conditions: halt aggression, guarantees against resumption, reparations, end all fronts, Hormuz sovereignty. No talks until conditions accepted.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Pakistan"
+      ]
+    },
+    {
       "id": "us-iran-15-point-ceasefire",
       "label": "US sends 15-point ceasefire plan to Iran; Tehran's military rejects talks",
       "firstSeen": "2026-03-25T04:44:00Z",
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "breaking",
       "articles": [
         "2026-03-25-us-15-point-ceasefire-iran-rejects-82nd-airborne"
@@ -23,13 +66,85 @@
       ]
     },
     {
+      "id": "spain-iran-war-resistance",
+      "label": "Spain PM calls Iran war absolute disaster, refuses US base access",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-25T17:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-spain-sanchez-iran-war-worse-than-iraq"
+      ],
+      "eventUri": "spa-4148281",
+      "summary": "Sanchez tells parliament Iran war is far worse than Iraq 2003. Refuses US base access despite Trump trade threats. 53% of Spaniards support. 5bn euro domestic shield.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Spain",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Pedro_S%C3%A1nchez",
+        "http://en.wikipedia.org/wiki/Iraq_War"
+      ]
+    },
+    {
+      "id": "settler-outposts-west-bank-b-a",
+      "label": "Israeli settlers expanding into West Bank Areas B and A, erasing Oslo lines",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-25T17:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-settler-outposts-west-bank-areas-b-a-972"
+      ],
+      "eventUri": null,
+      "summary": "+972 joint investigation: settlers expanding beyond Area C into PA-jurisdiction zones. De facto annexation without declaration, accelerating under Iran war cover.",
+      "conceptUris": []
+    },
+    {
+      "id": "meta-child-safety-verdict",
+      "label": "Meta loses child safety trial: $375M verdict, Operation MetaPhile evidence",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-25T17:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-meta-loses-child-safety-trial-375m"
+      ],
+      "eventUri": "eng-11505988",
+      "summary": "NM jury awards 375M after one day deliberation. Zuckerberg testified harms inevitable. Operation MetaPhile: cops posed as children, inundated by predators. AI moderation produced junk reports. Two more trials pending.",
+      "conceptUris": []
+    },
+    {
+      "id": "anthropic-pentagon-ai-weapons",
+      "label": "Judge signals Anthropic may win injunction against Pentagon supply chain risk label",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-25T17:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-anthropic-pentagon-ai-weapons-regulation"
+      ],
+      "eventUri": "eng-11511239",
+      "summary": "Judge Lin: Pentagon designation looks like attempt to cripple Anthropic. OpenAI/Google engineers filed briefs supporting regulation. First US company designated supply chain risk. 69% Americans want more AI regulation.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/The_Pentagon",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence"
+      ]
+    },
+    {
       "id": "bellingcat-chad-rsf-munitions",
       "label": "Bellingcat: Chad strike munitions match Chinese-made bombs used by RSF",
       "firstSeen": "2026-03-24T10:44:00Z",
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-25-bellingcat-chad-munitions-rsf-uae-chinese-bombs"
@@ -45,7 +160,7 @@
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-25-ecb-lagarde-rate-hikes-iran-war-inflation-shock"
@@ -65,7 +180,7 @@
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-25-iran-internet-blackout-600-hours-88-million"
@@ -75,13 +190,71 @@
       "conceptUris": []
     },
     {
+      "id": "uk-crypto-donation-ban",
+      "label": "UK bans crypto donations to political parties, caps overseas gifts",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-25T17:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-uk-bans-crypto-donations-political-parties"
+      ],
+      "eventUri": "eng-11511289",
+      "summary": "UK imposes immediate moratorium on all crypto donations plus 100k/yr overseas cap. Targets Reform UK donor Harborne (12m from Thailand). Triggered by Rycroft review into foreign interference.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Cryptocurrency",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Reform_UK",
+        "http://en.wikipedia.org/wiki/Nigel_Farage"
+      ]
+    },
+    {
+      "id": "trump-tech-council-ai",
+      "label": "Trump appoints Zuckerberg, Huang, Brin, Ellison to AI tech council",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-25T17:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-trump-tech-council-zuckerberg-huang-andreessen"
+      ],
+      "eventUri": "eng-11511822",
+      "summary": "Presidential tech council co-chaired by AI/crypto czar Sacks. Members include major Trump donors. FT: Andreessen gave 2.5m to Trump PAC. Comes as Anthropic fights Pentagon supply chain risk designation.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Mark_Zuckerberg",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Nvidia"
+      ]
+    },
+    {
+      "id": "antimatter-transported-cern",
+      "label": "CERN transports antimatter for first time",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-25T17:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-antimatter-transported-first-time-cern"
+      ],
+      "eventUri": null,
+      "summary": "First successful transport of antimatter, opening path to precision tests of fundamental physics including antimatter gravity experiments.",
+      "conceptUris": []
+    },
+    {
       "id": "baltic-drone-incursions",
       "label": "Drones from Russia hit Estonian power plant, enter Latvian airspace",
       "firstSeen": "2026-03-25T08:30:00Z",
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-25-drones-baltic-estonia-power-plant-nato-airspace"
@@ -102,7 +275,7 @@
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-25-pakistan-fuel-quota-app-motorcycles-rationing"
@@ -118,7 +291,7 @@
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-25-gold-century-losing-streak-bitcoin-outperforms-war"
@@ -134,7 +307,7 @@
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-25-icml-497-papers-rejected-ai-peer-review-watermarks"
@@ -150,7 +323,7 @@
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-25-pakistan-cities-heat-deaths-2050-faisalabad-climate"
@@ -160,13 +333,61 @@
       "conceptUris": []
     },
     {
+      "id": "testosterone-brain-tumor-boys",
+      "label": "Androgens drive male bias in deadly childhood brain tumor (Nature)",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-25T17:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-testosterone-brain-tumor-boys-nature"
+      ],
+      "eventUri": null,
+      "summary": "Nature: androgens not sex chromosomes drive PFA ependymoma male bias. Anti-androgen drugs shrank tumors in vitro. Four core genotypes model conclusive. Onset age ~3 years.",
+      "conceptUris": []
+    },
+    {
+      "id": "fda-hunter-syndrome-denali",
+      "label": "FDA approves Denali drug for Hunter syndrome amid tougher rare disease stance",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-25T17:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-fda-approves-denali-hunter-syndrome-drug"
+      ],
+      "eventUri": null,
+      "summary": "FDA approves Avlayah for Hunter syndrome. Significant because agency just rejected competing Regenxbio gene therapy, signaling tougher rare disease standards.",
+      "conceptUris": []
+    },
+    {
+      "id": "scotus-cox-copyright-isp",
+      "label": "Supreme Court sides with Cox ISP in music copyright fight",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-25T17:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-25-scotus-cox-copyright-isp-piracy"
+      ],
+      "eventUri": null,
+      "summary": "SCOTUS limits music industry ability to extract massive damages from ISPs for user piracy. Landmark ruling on vicarious liability for infrastructure providers.",
+      "conceptUris": []
+    },
+    {
       "id": "iran-vance-negotiation",
       "label": "Iran demands Vance as interlocutor, rejects Kushner and Witkoff",
       "firstSeen": "2026-03-25T05:01:00Z",
       "lastCovered": "2026-03-25T08:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-iran-vance-negotiation-rejects-kushner-witkoff"
@@ -187,7 +408,7 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-25-us-visa-bonds-15000-fifty-countries-global-south",
@@ -210,7 +431,7 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-sde-teiman-charges-dropped-israel-military-justice"
@@ -226,7 +447,7 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-meta-instagram-dm-encryption-removed-wana-risk"
@@ -242,7 +463,7 @@
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-merck-terns-67b-leukemia-keytruda-patent-cliff"
@@ -258,7 +479,7 @@
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-toxic-fallout-gulf-war-oil-contamination-decades"
@@ -274,7 +495,7 @@
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-lebanon-telecom-no-emergency-plan-war-smex"
@@ -290,7 +511,7 @@
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-25-israeli-qr-code-leaflets-lebanon-surveillance-smex"
@@ -306,216 +527,13 @@
       "lastCovered": "2026-03-25T08:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-25-niger-state-man-arrested-no-water-no-light-governor"
       ],
       "eventUri": "eng-11510586",
       "summary": "Hamisu Abdullahi arrested for 5 days after shouting about lack of basic services during Governor Bago Eid visit. IPI lists Bago in Book of Infamy.",
-      "conceptUris": []
-    },
-    {
-      "id": "uk-inflation-pre-war",
-      "label": "UK inflation 3% in February — last clean reading before Iran war shock",
-      "firstSeen": "2026-03-25T08:30:00Z",
-      "lastCovered": "2026-03-25T08:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-uk-inflation-3-percent-pre-war-baseline-rate-hikes"
-      ],
-      "eventUri": "eng-11509807",
-      "summary": "UK CPI held at 3% in February. BoE now expects 3.5% by Q3 from Iran war energy shock. Markets flipped from rate cuts to rate hikes.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Consumer_price_index"
-      ]
-    },
-    {
-      "id": "crypto-oil-trading",
-      "label": "Crypto exchanges launch 24/7 oil trading as wartime gaps exposed",
-      "firstSeen": "2026-03-25T08:30:00Z",
-      "lastCovered": "2026-03-25T08:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-crypto-oil-trading-wti-cfd-wintermute-war-gap"
-      ],
-      "eventUri": null,
-      "summary": "Wintermute launched OTC crude oil CFDs. Crypto filling tradfi gaps when markets closed during Iran war weekends.",
-      "conceptUris": []
-    },
-    {
-      "id": "nigeria-hiv-tb-funding",
-      "label": "AHF warns donor withdrawal threatens Nigeria HIV/TB treatment",
-      "firstSeen": "2026-03-25T08:30:00Z",
-      "lastCovered": "2026-03-25T08:30:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-hiv-tb-donor-cuts-nigeria-domestic-financing-gap"
-      ],
-      "eventUri": null,
-      "summary": "AIDS Healthcare Foundation warns international donor pullback threatens HIV/TB gains. Nigeria must build domestic health financing.",
-      "conceptUris": []
-    },
-    {
-      "id": "benzene-gas-cookers",
-      "label": "Benzene leaking from gas cookers in 10% of European homes tested",
-      "firstSeen": "2026-03-25T08:30:00Z",
-      "lastCovered": "2026-03-25T08:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-benzene-gas-cookers-leaking-cancer-europe-homes"
-      ],
-      "eventUri": "eng-11510520",
-      "summary": "Study: 10% of homes tested in UK, NL, Italy had benzene leaks from gas cookers exceeding safety limits. Levels 66x higher than US in Netherlands.",
-      "conceptUris": []
-    },
-    {
-      "id": "telegram-drug-king-extradition",
-      "label": "Telegram Drug King Park extradited from Philippines to South Korea",
-      "firstSeen": "2026-03-25T01:22:00Z",
-      "lastCovered": "2026-03-25T08:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-telegram-drug-king-park-extradited-korea-philippines"
-      ],
-      "eventUri": "eng-11509731",
-      "summary": "Park Wang-yeol (48), who ran Telegram-based meth empire from Philippine prison and murdered 3 Koreans, extradited to South Korea.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/Philippines",
-        "http://en.wikipedia.org/wiki/Extradition",
-        "http://en.wikipedia.org/wiki/Illegal_drug_trade"
-      ]
-    },
-    {
-      "id": "k-electric-electrocution-compensation",
-      "label": "Karachi court orders K-Electric to pay Rs50.6m for electrocution deaths",
-      "firstSeen": "2026-03-25T01:55:00Z",
-      "lastCovered": "2026-03-25T08:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-k-electric-electrocution-compensation-karachi-negligence"
-      ],
-      "eventUri": null,
-      "summary": "Court directed K-Electric to pay Rs50.6m to heirs of father and son who died from electrocution in 2006. 20 years from negligence to compensation.",
-      "conceptUris": []
-    },
-    {
-      "id": "ripple-rlusd-singapore-sandbox",
-      "label": "Ripple tests RLUSD stablecoin trade finance in Singapore MAS sandbox",
-      "firstSeen": "2026-03-25T05:13:00Z",
-      "lastCovered": "2026-03-25T08:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-ripple-rlusd-singapore-mas-sandbox-trade-finance"
-      ],
-      "eventUri": null,
-      "summary": "Ripple entered Singapore MAS BLOOM sandbox to test RLUSD stablecoin for trade finance settlement.",
-      "conceptUris": []
-    },
-    {
-      "id": "molefe-eskom-atm-forensics",
-      "label": "ATM geolocation links R11m cash deposits to ex-Eskom boss Molefe",
-      "firstSeen": "2026-03-25T05:04:00Z",
-      "lastCovered": "2026-03-25T05:04:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-molefe-eskom-slush-fund-atm-forensics-state-capture"
-      ],
-      "eventUri": null,
-      "summary": "Daily Maverick investigation: ATM data links R11m in cash deposits to ex-Eskom/Transnet boss Brian Molefe properties. State capture forensics.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Eskom",
-        "http://en.wikipedia.org/wiki/Transnet"
-      ]
-    },
-    {
-      "id": "heat-male-births-africa",
-      "label": "Heat in early pregnancy linked to fewer male births across Africa",
-      "firstSeen": "2026-03-25T08:30:00Z",
-      "lastCovered": "2026-03-25T08:30:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-heat-fewer-male-births-africa-climate-pregnancy"
-      ],
-      "eventUri": null,
-      "summary": "Study finds warmer temperatures during first trimester in Africa selectively harm male fetuses, shifting population sex ratios.",
-      "conceptUris": []
-    },
-    {
-      "id": "turboquant-ai-compression",
-      "label": "Google TurboQuant: extreme AI model compression for edge hardware",
-      "firstSeen": "2026-03-25T08:30:00Z",
-      "lastCovered": "2026-03-25T08:30:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-turboquant-google-ai-compression-efficiency"
-      ],
-      "eventUri": null,
-      "summary": "Google Research TurboQuant achieves extreme quantization, making large AI models viable on constrained hardware.",
-      "conceptUris": []
-    },
-    {
-      "id": "ionic-thermoelectrics-nature",
-      "label": "Chemical bonding manipulation unlocks ionic thermoelectrics",
-      "firstSeen": "2026-03-25T05:30:00Z",
-      "lastCovered": "2026-03-25T08:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-ionic-bonding-thermoelectrics-waste-heat-nature"
-      ],
-      "eventUri": null,
-      "summary": "Nature Communications: manipulating chemical bonding character makes ionic-bonded materials viable thermoelectrics for waste heat recovery.",
-      "conceptUris": []
-    },
-    {
-      "id": "oncology-ml-indication-matching",
-      "label": "ML model predicts best cancer types for drug mechanisms",
-      "firstSeen": "2026-03-25T05:19:00Z",
-      "lastCovered": "2026-03-25T08:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-25-oncology-ml-drug-indication-matching-nature"
-      ],
-      "eventUri": null,
-      "summary": "Nature Precision Oncology: representation learning on real-world data predicts which cancer indications best match a drug mechanism.",
       "conceptUris": []
     }
   ]
