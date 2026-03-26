@@ -448,9 +448,9 @@ async function main() {
     }
   }
 
-  // Per-event fetch: for the top 5 events, directly fetch 15 diverse articles
+  // Per-event fetch: for the top 8 events, directly fetch 15 diverse articles
   // This guarantees multi-source panels — the Q2-Q5 matching often misses.
-  // Cost: ~2 tokens per event (info check + article fetch) = ~10 tokens/cycle
+  // Cost: ~1 token per event = ~8 tokens/cycle (skipped events with 3+ articles)
   const TOP_EVENTS_TO_FETCH = 8
   const topEvents = events.slice(0, TOP_EVENTS_TO_FETCH)
   let perEventFetched = 0
@@ -459,13 +459,10 @@ async function main() {
     // Skip if we already have 3+ articles from Q2-Q5
     if ((articlesByEvent.get(uri) || []).length >= 3) continue
 
-    // Check for URI redirect
-    const infoData = await apiPost('event/getEvent', { eventUri: uri, resultType: 'info' })
-    const actualUri = infoData[uri]?.newEventUri || uri
-
-    // Fetch articles for this event
+    // Fetch articles for this event (skip info/redirect check — saves 1 token per event;
+    // if the URI was redirected the query returns empty and we move on)
     const artData = await apiPost('event/getEvent', {
-      eventUri: actualUri,
+      eventUri: uri,
       resultType: 'articles',
       articlesCount: 15,
       articlesLang: 'eng',
@@ -478,7 +475,7 @@ async function main() {
       includeArticleLocation: true,
     })
 
-    const fetchedArts = artData[actualUri]?.articles?.results || []
+    const fetchedArts = artData[uri]?.articles?.results || []
     if (fetchedArts.length > 0) {
       // Annotate and add to the event's article pool
       for (const a of fetchedArts) {
