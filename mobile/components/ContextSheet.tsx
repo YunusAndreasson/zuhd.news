@@ -25,7 +25,7 @@ interface ContextSheetProps {
 function renderTimelineEntry(entry: TimelineEntry, i: number, arr: TimelineEntry[]) {
   if (!entry.year) {
     return (
-      <Text key={i} style={[styles.bodyText, styles.bodySpacing]}>
+      <Text key={i} selectable style={[styles.bodyText, styles.bodySpacing]}>
         {entry.body}
       </Text>
     );
@@ -35,8 +35,8 @@ function renderTimelineEntry(entry: TimelineEntry, i: number, arr: TimelineEntry
     <View key={i} style={[styles.entry, nextHasYear && styles.entryLine]}>
       <View style={styles.dot} />
       <View style={styles.entryContent}>
-        <Text style={styles.entryYear}>{entry.year}</Text>
-        <Text style={styles.bodyText}>{entry.body}</Text>
+        <Text selectable style={styles.entryYear}>{entry.year}</Text>
+        <Text selectable style={styles.bodyText}>{entry.body}</Text>
       </View>
     </View>
   );
@@ -45,8 +45,8 @@ function renderTimelineEntry(entry: TimelineEntry, i: number, arr: TimelineEntry
 function renderEduEntry(entry: TimelineEntry, i: number) {
   return (
     <View key={i}>
-      {entry.heading && <Text style={styles.sectionHeading}>{entry.heading}</Text>}
-      <Text style={[styles.bodyText, styles.bodySpacing]}>{entry.body}</Text>
+      {entry.heading && <Text selectable style={styles.sectionHeading}>{entry.heading}</Text>}
+      <Text selectable style={[styles.bodyText, styles.bodySpacing]}>{entry.body}</Text>
     </View>
   );
 }
@@ -80,7 +80,7 @@ export const ContextSheet = memo(function ContextSheet({
       <BottomSheetScrollView
         contentContainerStyle={[styles.content, { paddingBottom: bottomInset + SPACING.xl }]}
       >
-        {label && <Text style={styles.title}>{label}</Text>}
+        {label && <Text selectable style={styles.title}>{label}</Text>}
         {brief && !isEdu && (
           <Text style={styles.meta}>
             {brief.articleCount} article{brief.articleCount === 1 ? '' : 's'} in this thread

@@ -10,6 +10,7 @@ import {
 import { getItemAsync, setItemAsync } from 'expo-secure-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { API_BASE } from '../constants/theme';
+import { hapticImpact } from '../lib/haptics';
 
 const POSITION_KEY = 'zuhd_briefing_pos';
 const DATE_KEY = 'zuhd_briefing_date';
@@ -42,6 +43,8 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
   const preloadedUrl = useRef<string | null>(null);
+  // Suppress listener-driven setPlaying briefly after user taps toggle
+  const userToggleAt = useRef(0);
 
   // Preload audio as soon as we know the briefing date
   useEffect(() => {
@@ -98,6 +101,9 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const toggle = useCallback(async () => {
     if (!date) return;
 
+    hapticImpact();
+    userToggleAt.current = Date.now();
+
     try {
       // Resume/pause existing player
       if (playerRef.current) {
@@ -126,6 +132,13 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       // Sync play/pause state + elapsed from player events
       // This handles lock screen controls, headphone controls, interruptions
       const eventSub = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
+        // Skip transient playing states shortly after user tap to avoid icon flash
+        const sinceToggle = Date.now() - userToggleAt.current;
+        if (sinceToggle < 500 && !status.didJustFinish) {
+          // Still update elapsed time, just don't flip the play/pause icon
+          if (status.currentTime > 0) setElapsed(Math.floor(status.currentTime));
+          return;
+        }
         setPlaying(status.playing);
         if (status.currentTime > 0) {
           setElapsed(Math.floor(status.currentTime));
@@ -134,15 +147,14 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
           setPlaying(false);
           setElapsed(0);
           setItemAsync(POSITION_KEY, '0');
+          // Seek back to start so the player is ready for replay —
+          // don't destroy it or deactivate the audio session, as iOS
+          // can refuse to reactivate, requiring a force-kill.
+          player.seekTo(0);
           try {
             player.clearLockScreenControls();
           } catch {}
-          eventSub.remove();
-          player.remove();
-          subRef.current = null;
-          playerRef.current = null;
           lockScreenActive.current = false;
-          setIsAudioActiveAsync(false);
         }
       });
 

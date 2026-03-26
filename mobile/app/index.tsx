@@ -62,8 +62,8 @@ function KeyStat({ label, value }: { label: string; value: string | null | undef
   if (!value) return null;
   return (
     <View style={styles.keyStat}>
-      <Text style={styles.keyStatValue}>{value}</Text>
-      <Text style={styles.keyStatLabel}>{label}</Text>
+      <Text selectable style={styles.keyStatValue}>{value}</Text>
+      <Text selectable style={styles.keyStatLabel}>{label}</Text>
     </View>
   );
 }
@@ -78,8 +78,8 @@ function CountryRow({ label, value }: { label: string; value: string | null | un
   if (!value) return null;
   return (
     <View style={styles.countryRow}>
-      <Text style={styles.countryRowLabel}>{label}</Text>
-      <Text style={styles.countryRowValue}>{value}</Text>
+      <Text selectable style={styles.countryRowLabel}>{label}</Text>
+      <Text selectable style={styles.countryRowValue}>{value}</Text>
     </View>
   );
 }
@@ -124,7 +124,10 @@ export default function HomeScreen() {
     [],
   );
 
-  const SourceHandle = useCallback(() => <SheetHandle title="sources" />, []);
+  const SourceHandle = useCallback(
+    () => <SheetHandle title={sourceSheetSources.length === 1 ? 'source' : 'sources'} />,
+    [sourceSheetSources.length],
+  );
   const CountryHandle = useCallback(() => <SheetHandle />, []);
 
   const handleSourcePress = useCallback(
@@ -412,10 +415,10 @@ export default function HomeScreen() {
                     </View>
                     {isExpanded && info && (
                       <>
-                        <Text style={styles.sourceType}>
+                        <Text selectable style={styles.sourceType}>
                           {info.type} · {info.location}
                         </Text>
-                        <Text style={styles.sheetBody}>{info.description}</Text>
+                        <Text selectable style={styles.sheetBody}>{info.description}</Text>
                       </>
                     )}
                   </Pressable>
@@ -455,8 +458,8 @@ export default function HomeScreen() {
               {/* Identity — city + country hero */}
               <View style={styles.countryIdentity}>
                 <View style={styles.countryIdentityText}>
-                  <Text style={styles.countryLocation}>{countrySheet.countryName}</Text>
-                  <Text style={styles.countryName}>{countrySheet.data.official}</Text>
+                  <Text selectable style={styles.countryLocation}>{countrySheet.countryName}</Text>
+                  <Text selectable style={styles.countryName}>{countrySheet.data.official}</Text>
                 </View>
                 <Text style={styles.countryFlag}>{countrySheet.data.flag}</Text>
               </View>
@@ -477,7 +480,7 @@ export default function HomeScreen() {
                       : 'DEVELOPING STORIES'}
                   </Text>
                   {countrySheet.hotspotLabels.map((label, i) => (
-                    <Text key={i} style={styles.hotspotValue}>
+                    <Text key={i} selectable style={styles.hotspotValue}>
                       {label}
                     </Text>
                   ))}

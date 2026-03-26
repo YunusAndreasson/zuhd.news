@@ -169,7 +169,7 @@ export const ArticlePage = memo(function ArticlePage({
           </View>
         )}
         <Animated.View style={fadeStyle}>
-          <Text style={[styles.title, titleSizeStyle]} numberOfLines={3}>
+          <Text selectable style={[styles.title, titleSizeStyle]} numberOfLines={3}>
             {article.title}
           </Text>
           {body}
