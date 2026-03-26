@@ -55,6 +55,10 @@ export interface FeedResponse {
   contexts?: Record<string, ContextIndexEntry>;
 }
 
+export interface MetaResponse {
+  generated: string;
+}
+
 export type ContextPressHandler = (threadId: string) => void;
 
 export type SourcePressHandler = (

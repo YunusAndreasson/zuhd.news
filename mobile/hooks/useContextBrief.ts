@@ -4,6 +4,7 @@ import { fetchWithTimeout } from '../lib/fetch';
 import type { ContextBrief } from '../types';
 
 const cache = new Map<string, ContextBrief>();
+const MAX_CACHE = 50;
 
 export function useContextBrief() {
   const [brief, setBrief] = useState<ContextBrief | null>(null);
@@ -26,6 +27,10 @@ export function useContextBrief() {
       const res = await fetchWithTimeout(`${API_BASE}/api/context/${threadId}.json`, 5000);
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data: ContextBrief = await res.json();
+      if (cache.size >= MAX_CACHE) {
+        const oldest = cache.keys().next().value;
+        if (oldest !== undefined) cache.delete(oldest);
+      }
       cache.set(threadId, data);
       if (activeId.current === threadId) {
         setBrief(data);

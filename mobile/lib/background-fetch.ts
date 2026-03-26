@@ -1,6 +1,7 @@
 import * as BackgroundTask from 'expo-background-task';
 import * as TaskManager from 'expo-task-manager';
 import { API_BASE } from '../constants/theme';
+import type { FeedResponse, MetaResponse } from '../types';
 import { readCachedGenerated, writeFeedCache } from './feed-cache';
 import { fetchWithTimeout } from './fetch';
 
@@ -13,7 +14,7 @@ export async function fetchAndCacheIfNew(): Promise<boolean> {
       cache: 'no-store',
     });
     if (!res.ok) return false;
-    const meta = await res.json();
+    const meta: MetaResponse = await res.json();
     const cached = readCachedGenerated();
     if (cached === meta.generated) return false;
   } catch {
@@ -23,7 +24,7 @@ export async function fetchAndCacheIfNew(): Promise<boolean> {
   try {
     const res = await fetchWithTimeout(`${API_BASE}/api/feed.json`, 10000);
     if (!res.ok) return false;
-    const feed = await res.json();
+    const feed: FeedResponse = await res.json();
     writeFeedCache(feed);
     return true;
   } catch {

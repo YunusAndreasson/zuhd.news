@@ -1,4 +1,4 @@
-import { BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import { type BottomSheetBackdropProps, BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import { memo, useCallback } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
@@ -18,7 +18,7 @@ interface ContextSheetProps {
   loading: boolean;
   threadLabel?: string;
   bottomInset: number;
-  renderBackdrop: any;
+  renderBackdrop: React.FC<BottomSheetBackdropProps>;
   onDismiss: () => void;
 }
 

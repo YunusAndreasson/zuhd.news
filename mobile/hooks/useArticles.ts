@@ -4,7 +4,7 @@ import { API_BASE } from '../constants/theme';
 import { readFeedCache, writeFeedCache } from '../lib/feed-cache';
 import { fetchWithTimeout } from '../lib/fetch';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
-import type { Article, Category, FeedResponse } from '../types';
+import type { Article, Category, FeedResponse, MetaResponse } from '../types';
 
 type GroupedArticles = Record<Category, Article[]>;
 
@@ -76,7 +76,7 @@ export function useArticles() {
         cache: 'no-store',
       });
       if (!res.ok) return true;
-      const meta = await res.json();
+      const meta: MetaResponse = await res.json();
       return meta.generated !== lastGeneratedRef.current;
     } catch {
       return true;
@@ -96,7 +96,8 @@ export function useArticles() {
           const changed = await hasNewContent();
           if (changed) {
             await fetchFeed();
-            setResetKey((k) => k + 1);
+            // No resetKey bump — user is already at scroll position 0 on fresh launch,
+            // and applyFeed already updated grouped data so FlatList re-renders in place.
           }
         } catch {} // cached data is fine
         return;
