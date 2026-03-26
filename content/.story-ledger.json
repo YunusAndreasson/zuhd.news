@@ -8,7 +8,7 @@
       "lastCovered": "2026-03-26T08:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 9,
+      "importance": 8,
       "arc": "developing",
       "articles": [
         "2026-03-26-iran-hormuz-friendly-nations-china-india-russia",
@@ -32,7 +32,7 @@
       "lastCovered": "2026-03-26T08:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 9,
+      "importance": 8,
       "arc": "breaking",
       "articles": [
         "2026-03-26-us-troops-kharg-island-ground-attack-iran"
@@ -52,7 +52,7 @@
       "lastCovered": "2026-03-26T08:00:00Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "developing",
       "articles": [
         "2026-03-25-iran-rejects-ceasefire-five-conditions",
@@ -75,7 +75,7 @@
       "lastCovered": "2026-03-26T08:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "breaking",
       "articles": [
         "2026-03-26-un-minab-school-massacre-investigation"
@@ -89,13 +89,29 @@
       ]
     },
     {
+      "id": "gcc-subsea-cables-hormuz",
+      "label": "GCC states racing to build subsea cable routes bypassing Hormuz after AWS strikes",
+      "firstSeen": "2026-03-26T12:00:00Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 7,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-26-gcc-subsea-cables-hormuz-bypass-iran-war"
+      ],
+      "eventUri": null,
+      "summary": "Six GCC-funded projects racing to reroute subsea cables around Hormuz after Iranian strikes hit AWS data centers in UAE and Bahrain. Digital infrastructure now a war front.",
+      "conceptUris": []
+    },
+    {
       "id": "iran-ghalibaf-island-threat",
       "label": "Iran warns of enemy island occupation attempt, threatens regional infrastructure",
       "firstSeen": "2026-03-26T08:00:00Z",
       "lastCovered": "2026-03-26T08:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-26-iran-ghalibaf-island-occupation-threat-infrastructure"
@@ -116,7 +132,7 @@
       "lastCovered": "2026-03-26T08:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 7,
+      "importance": 6,
       "arc": "breaking",
       "articles": [
         "2026-03-26-iran-hormuz-toll-law-shipping-sovereignty"
@@ -130,13 +146,45 @@
       ]
     },
     {
+      "id": "meta-instagram-e2ee-removal",
+      "label": "Meta removes E2EE from Instagram DMs, WANA users at risk",
+      "firstSeen": "2026-03-19T13:35:20Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-26-meta-instagram-e2ee-removed-wana-privacy-risk"
+      ],
+      "eventUri": null,
+      "summary": "Meta removing end-to-end encryption from Instagram DMs May 8. SMEX warns WANA users face public shaming and arrest risk from exposed messages.",
+      "conceptUris": []
+    },
+    {
+      "id": "halal-slaughter-bans-spreading",
+      "label": "European halal/kosher slaughter bans may spread to other Western economies",
+      "firstSeen": "2026-03-26T12:00:00Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-26-halal-slaughter-bans-europe-western-economies"
+      ],
+      "eventUri": null,
+      "summary": "European bans on unstunned religious slaughter could expand to other Western markets. $2.3 trillion halal economy faces regulatory constriction.",
+      "conceptUris": []
+    },
+    {
       "id": "iran-cruise-missiles-lincoln",
       "label": "Iran fires cruise missiles at USS Abraham Lincoln carrier group",
       "firstSeen": "2026-03-25T17:00:00Z",
       "lastCovered": "2026-03-25T17:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-25-iran-cruise-missiles-uss-abraham-lincoln"
@@ -158,7 +206,7 @@
       "lastCovered": "2026-03-25T22:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-25-trump-xi-summit-may-14-trade-iran-delay"
@@ -179,7 +227,7 @@
       "lastCovered": "2026-03-25T22:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-25-zelenskyy-us-security-donbas-condition"
@@ -200,7 +248,7 @@
       "lastCovered": "2026-03-26T04:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-26-eu-mercosur-trade-deal-may-1-parliament-bypassed"
@@ -222,7 +270,7 @@
       "lastCovered": "2026-03-26T04:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-26-no-kings-march-28-largest-us-protest"
@@ -242,7 +290,7 @@
       "lastCovered": "2026-03-26T04:30:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-26-polymarket-iran-war-bets-knesset-death-penalty"
@@ -258,7 +306,7 @@
       "lastCovered": "2026-03-26T04:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-26-google-q-day-2029-quantum-encryption-broken"
@@ -274,7 +322,7 @@
       "lastCovered": "2026-03-26T04:30:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-26-disney-sora-openai-billion-dollar-failure"
@@ -290,7 +338,7 @@
       "lastCovered": "2026-03-26T04:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-26-hezbollah-khiam-guerrilla-defense-israel-stalemate"
@@ -306,7 +354,7 @@
       "lastCovered": "2026-03-26T08:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-26-bhutan-bitcoin-selloff-gelephu-pledge-broken"
@@ -325,7 +373,7 @@
       "lastCovered": "2026-03-26T08:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-26-wildlife-trafficking-coded-language-facebook-indonesia"
@@ -341,7 +389,7 @@
       "lastCovered": "2026-03-26T08:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-26-streameast-piracy-egypt-raid-billion-visits"
@@ -351,13 +399,61 @@
       "conceptUris": []
     },
     {
+      "id": "academic-fraud-no-corrections",
+      "label": "Widely-cited business school paper has false claims, journal refuses corrections",
+      "firstSeen": "2026-03-26T12:00:00Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-26-false-claims-business-paper-no-corrections"
+      ],
+      "eventUri": null,
+      "summary": "Published paper in business school journal contains demonstrably false claims. No corrections, no consequences. 286 HN points.",
+      "conceptUris": []
+    },
+    {
+      "id": "heat-male-births-africa",
+      "label": "Heat stress in early pregnancy reducing male births across Africa",
+      "firstSeen": "2026-03-20T12:17:53Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-26-heat-fewer-male-births-africa-climate"
+      ],
+      "eventUri": null,
+      "summary": "Study finds warmer temperatures during first trimester selectively affect male fetuses in Africa, altering sex ratios. Climate change with measurable demographic consequence.",
+      "conceptUris": []
+    },
+    {
+      "id": "turkcell-murabaha-5g",
+      "label": "Turkcell secures $1bn Islamic finance facility for 5G infrastructure",
+      "firstSeen": "2026-03-25T12:28:42Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-26-turkcell-1bn-murabaha-5g-islamic-finance"
+      ],
+      "eventUri": null,
+      "summary": "Turkey largest mobile operator funds 5G buildout via $1B Murabaha facility. One of the largest Islamic finance telecom deals.",
+      "conceptUris": []
+    },
+    {
       "id": "palestinian-prisoner-lawyer-barred",
       "label": "Israel locks down prisons during Iran war, bars lawyer visits to Palestinian detainees",
       "firstSeen": "2026-03-23T23:54:00Z",
       "lastCovered": "2026-03-26T04:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-26-palestinian-woman-israeli-prison-lawyer-barred"
@@ -373,7 +469,7 @@
       "lastCovered": "2026-03-26T04:30:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-26-toxic-fallout-gulf-war-decades-contamination"
@@ -389,7 +485,7 @@
       "lastCovered": "2026-03-26T04:30:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-26-border-patrol-agents-tracked-bellingcat-osint"
@@ -405,7 +501,7 @@
       "lastCovered": "2026-03-26T08:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-26-india-fir-x-corp-ai-deepfake-modi-elections"
@@ -424,7 +520,7 @@
       "lastCovered": "2026-03-25T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-25-us-15-point-ceasefire-iran-rejects-82nd-airborne"
@@ -445,7 +541,7 @@
       "lastCovered": "2026-03-25T17:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-25-spain-sanchez-iran-war-worse-than-iraq"
@@ -457,112 +553,6 @@
         "http://en.wikipedia.org/wiki/Iran",
         "http://en.wikipedia.org/wiki/Pedro_S%C3%A1nchez",
         "http://en.wikipedia.org/wiki/Iraq_War"
-      ]
-    },
-    {
-      "id": "settler-outposts-west-bank-b-a",
-      "label": "Israeli settlers expanding into West Bank Areas B and A, erasing Oslo lines",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-25-settler-outposts-west-bank-areas-b-a-972"
-      ],
-      "eventUri": null,
-      "summary": "+972 joint investigation: settlers expanding beyond Area C into PA-jurisdiction zones. De facto annexation without declaration.",
-      "conceptUris": []
-    },
-    {
-      "id": "meta-child-safety-verdict",
-      "label": "Meta loses child safety trial: $375M verdict, Operation MetaPhile evidence",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-25-meta-loses-child-safety-trial-375m"
-      ],
-      "eventUri": "eng-11505988",
-      "summary": "NM jury awards 375M. Zuckerberg testified harms inevitable. Two more trials pending. LA jury also finds Meta+Google liable for $3M in separate addiction case.",
-      "conceptUris": []
-    },
-    {
-      "id": "anthropic-pentagon-ai-weapons",
-      "label": "Judge signals Anthropic may win injunction against Pentagon supply chain risk label",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-25-anthropic-pentagon-ai-weapons-regulation"
-      ],
-      "eventUri": "eng-11511239",
-      "summary": "Judge Lin: Pentagon designation looks like attempt to cripple Anthropic. 69% Americans want more AI regulation.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/The_Pentagon",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence"
-      ]
-    },
-    {
-      "id": "raskin-trump-classified-docs",
-      "label": "Accidentally released Smith memo reveals Trump kept docs tied to business interests",
-      "firstSeen": "2026-03-25T20:08:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-25-raskin-trump-classified-docs-business-motive"
-      ],
-      "eventUri": "eng-11510841",
-      "summary": "Jack Smith memo (accidentally released by DOJ) shows Trump kept documents 'only 6 people had access to,' pertinent to business interests. Aide uploaded scans to cloud. Wiles witnessed plane incident.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Jamie_Raskin",
-        "http://en.wikipedia.org/wiki/Classified_information"
-      ]
-    },
-    {
-      "id": "sa-police-masemola-charges",
-      "label": "South Africa police commissioner Masemola faces criminal charges in R360M tender",
-      "firstSeen": "2026-03-25T21:03:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-25-sa-police-commissioner-masemola-criminal-charges"
-      ],
-      "eventUri": "eng-11512038",
-      "summary": "National Commissioner Masemola served court notice for April 21. Connected to R360M Medicare 24 tender via 'Cat' Matlala. 12 officers arrested. Third SA police boss to face charges. Factional war inside SAPS between rival narratives.",
-      "conceptUris": []
-    },
-    {
-      "id": "wmo-climate-energy-imbalance",
-      "label": "WMO: Earth's energy imbalance highest in 65 years, 11 hottest years in a row",
-      "firstSeen": "2026-03-25T17:09:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "developing",
-      "articles": [
-        "2026-03-25-wmo-climate-report-energy-imbalance-record"
-      ],
-      "eventUri": "eng-11503489",
-      "summary": "State of Global Climate 2025: first time energy imbalance included. Highest in 65 years. 90%+ excess heat absorbed by oceans (record 2025). Guterres: 'Every indicator flashing red.'",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/World_Meteorological_Organization",
-        "http://en.wikipedia.org/wiki/Earth's_energy_budget"
       ]
     }
   ]

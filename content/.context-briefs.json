@@ -640,50 +640,50 @@
   "iran-rejects-ceasefire-conditions": {
     "timeline": [
       {
-        "body": "The Strait of Hormuz narrows to 24 miles between Iran and Oman — roughly one-fifth of the world's daily oil supply transits through it, giving whoever controls the Iranian shore effective veto power over the global economy."
+        "body": "The Strait of Hormuz narrows to 24 miles between Iran and Oman — roughly one-fifth of the world's daily oil supply passes through it, and Iran's coastline commands the entire northern shore."
       },
       {
         "year": "1953",
-        "body": "The CIA and MI6 overthrew Iran's elected PM Mossadegh after he nationalized the Anglo-Iranian Oil Company, reinstalling the Shah and seeding the distrust of Western intentions that still drives Iranian strategic thinking."
+        "body": "The CIA and MI6 overthrew Iran's elected PM Mossadegh after he nationalized the oil industry, installing the Shah and poisoning Iranian trust in Western deal-making for generations."
       },
       {
         "year": "1979",
-        "body": "The Iranian Revolution replaced the Shah with an Islamic republic and created the Revolutionary Guard Corps — a parallel military answering directly to the Supreme Leader, which today operates its own navy in the Persian Gulf separate from the regular armed forces."
+        "body": "The Iranian Revolution established an Islamic republic under Khomeini, who created the Revolutionary Guard Corps with a dedicated naval branch tasked specifically with controlling the Persian Gulf."
       },
       {
         "year": "1980–1988",
-        "body": "Iraq invaded Iran with American satellite intelligence and tacit Western support, launching an eight-year war that killed hundreds of thousands and hardened Tehran's conviction that the international order would never protect it."
-      },
-      {
-        "year": "1987",
-        "body": "The US Navy launched Operation Earnest Will to escort Kuwaiti tankers through the Gulf — the operation that established America's self-appointed role as guarantor of free navigation through Hormuz."
+        "body": "Iraq invaded Iran with Western and Gulf Arab backing, launching an eight-year war that killed over a million people and taught Tehran that no outside power — not even fellow Muslim states — would come to its defense."
       },
       {
         "year": "1988",
-        "body": "The USS Vincennes shot down Iran Air Flight 655 over the strait, killing all 290 civilians aboard; the US never formally apologized, and later awarded the ship's captain a Legion of Merit."
+        "body": "The US Navy sank or crippled much of Iran's operational fleet in a single afternoon during Operation Praying Mantis, convincing Tehran that conventional naval power was a dead end and asymmetric control of the Strait was its only viable deterrent."
       },
       {
         "year": "2003",
-        "body": "The US invasion of Iraq removed Iran's primary military rival and installed a Shia-majority government in Baghdad — Iraq's inclusion in Iran's 'friendly nations' list today is a direct consequence."
+        "body": "The US invasion of Iraq removed Saddam — Iran's primary military counterweight — and inadvertently handed Tehran deep influence over Iraq's new Shia-majority government."
       },
       {
         "year": "2015",
-        "body": "Iran signed the JCPOA nuclear deal with six world powers, accepting strict limits on uranium enrichment in exchange for sanctions relief — the closest Washington and Tehran had come to a diplomatic framework since 1979."
+        "body": "Iran signed the JCPOA nuclear deal with six world powers, agreeing to limit enrichment in exchange for sanctions relief — the closest Washington and Tehran had come to a diplomatic framework since 1979."
       },
       {
         "year": "2018",
-        "body": "Trump withdrew from the JCPOA and reimposed maximum-pressure sanctions, collapsing the deal and accelerating Iran's strategic pivot toward China and Russia as primary economic partners."
+        "body": "Trump withdrew from the JCPOA and reimposed maximum-pressure sanctions, collapsing the deal and accelerating Iran's pivot toward China, Russia, and India as alternative economic partners."
+      },
+      {
+        "year": "2019",
+        "body": "IRGC naval forces seized a British-flagged tanker in the Strait of Hormuz, demonstrating Iran's willingness and ability to selectively enforce passage through the waterway."
       },
       {
         "year": "2021",
-        "body": "Iran and China signed a 25-year strategic cooperation agreement covering energy, infrastructure, and military ties — the economic architecture behind the 'friendly nations' framework Iran now applies to Hormuz transit."
+        "body": "Iran and China signed a 25-year strategic cooperation agreement worth an estimated $400 billion, making China Iran's largest trade partner and primary buyer of sanctioned crude."
       },
       {
-        "year": "2023",
-        "body": "Iran became a full member of the Shanghai Cooperation Organisation alongside China, Russia, India, and Pakistan — the exact coalition now granted preferential passage through the strait."
+        "year": "2024",
+        "body": "Iran and Israel launched direct military strikes against each other's territory for the first time, ending four decades of shadow war and crossing a threshold neither side had previously been willing to breach."
       }
     ],
-    "generatedAt": "2026-03-26T08:27:20.630Z",
+    "generatedAt": "2026-03-26T11:17:34.174Z",
     "label": "Iran formally rejects 15-point US ceasefire, issues 5 counter-demands",
     "category": "politics",
     "articleCount": 3
@@ -765,6 +765,93 @@
     "generatedAt": "2026-03-26T08:28:13.612Z",
     "label": "Kharg Island",
     "category": "politics",
+    "articleCount": 1
+  },
+  "2026-03-26-gcc-subsea-cables-hormuz-bypass-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW THE INTERNET ACTUALLY TRAVELS",
+        "body": "99% of intercontinental data moves through undersea fiber-optic cables, not satellites. About 600 cables crisscross the ocean floor, most thinner than a garden hose. A single cable carries tens of terabits per second — orders of magnitude more than any satellite constellation."
+      },
+      {
+        "heading": "WHY CHOKEPOINTS FORM",
+        "body": "Cables must come ashore, and geography funnels them. The Strait of Hormuz (54 km wide), the Suez Canal, the Strait of Malacca, and a handful of landing stations in Marseille, Mumbai, and Singapore carry disproportionate shares of global traffic. Redundancy is expensive; geography is fixed."
+      },
+      {
+        "heading": "THE HORMUZ PROBLEM",
+        "body": "The Strait of Hormuz carries roughly 20% of global oil — but it also carries nearly all internet traffic between the Gulf states and the outside world. The same narrow waterway that makes Gulf energy vulnerable makes Gulf connectivity vulnerable. Anchors, earthquakes, and military action all threaten cables on the seabed."
+      },
+      {
+        "heading": "THE SURVEILLANCE TRADEOFF",
+        "body": "Every cable landing station is a potential interception point. Signals must be converted from optical to electrical at shore — the moment data is most accessible. Governments that host landing stations can compel operators to install monitoring equipment. Routing around one chokepoint often means routing through another country's jurisdiction."
+      },
+      {
+        "heading": "WHY NEW ROUTES MATTER",
+        "body": "Overland or alternative-route cables reduce single-point-of-failure risk but create new dependencies. The countries the cable passes through gain leverage — legal jurisdiction over the traffic, the ability to cut it, and the intelligence value of tapping it. Infrastructure sovereignty and data sovereignty are inseparable."
+      }
+    ],
+    "generatedAt": "2026-03-26T11:18:20.606Z",
+    "label": "Submarine Cable Chokepoints",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-03-26-heat-fewer-male-births-africa-climate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASELINE",
+        "body": "Humans produce roughly 105 male births per 100 female births. This slight excess compensates for higher male mortality at every age — by reproductive years, the ratio is close to 1:1. The mechanism that produces this 105:100 ratio is still debated."
+      },
+      {
+        "heading": "WHY MALE EMBRYOS ARE FRAGILE",
+        "body": "Male embryos (XY) have only one X chromosome, so any recessive X-linked defect is fully expressed. Female embryos (XX) carry a backup copy. This makes male embryos more vulnerable to environmental stress — toxins, malnutrition, extreme heat — particularly in the first trimester when organ systems are forming."
+      },
+      {
+        "heading": "THE PATTERN IS NOT NEW",
+        "body": "Japan's sex ratio dipped after the 1966 Hinoeuma superstition year and again after the 1995 Kobe earthquake. Finland's male birth rate dropped during the 1868 famine. Stressors — psychological, nutritional, thermal — consistently reduce male births. Heat is the variable now scaling globally."
+      },
+      {
+        "heading": "FIRST TRIMESTER IS THE WINDOW",
+        "body": "Most selective fetal loss happens before week 12, often before the pregnancy is clinically recognized. Studies estimate 10-20% of conceptions end in early miscarriage; the true rate may be higher. Environmental stress during this window disproportionately affects male embryos, shifting the sex ratio at birth."
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Sub-Saharan Africa contributes about 4% of cumulative global CO2 emissions. It is also warming 1.5x faster than the global average in some regions. The populations least responsible for emissions are experiencing the earliest and most direct biological consequences."
+      }
+    ],
+    "generatedAt": "2026-03-26T11:18:20.606Z",
+    "label": "Temperature and Sex Ratios",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-03-26-meta-instagram-e2ee-removed-wana-privacy-risk": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT E2EE ACTUALLY DOES",
+        "body": "End-to-end encryption means the message is encrypted on your device and only decrypted on the recipient's device. The server in between sees ciphertext — it can store and forward it, but cannot read it. Not even the company that runs the service can access the content."
+      },
+      {
+        "heading": "WHAT REMOVING IT MEANS",
+        "body": "Without E2EE, the platform can read every message. This means it can be compelled to hand messages to governments via court orders, subpoenas, or informal law enforcement requests. In jurisdictions without strong due process, the barrier to accessing private conversations drops to a single government request."
+      },
+      {
+        "heading": "THE LEGAL EXPOSURE",
+        "body": "Most countries require platforms to comply with local law enforcement data requests. Meta's transparency reports show it complied with over 80% of government requests in recent years. Without E2EE, every DM becomes a record that can be subpoenaed — retroactively, for messages sent years earlier."
+      },
+      {
+        "heading": "WHY METADATA MATTERS TOO",
+        "body": "Even with E2EE, platforms can see who messaged whom, when, how often, and from where. This metadata alone has been used to identify journalists' sources, map activist networks, and establish association. Removing E2EE exposes content on top of metadata — the full picture."
+      },
+      {
+        "heading": "THE WANA CONTEXT",
+        "body": "At least 14 countries in West Asia and North Africa criminalize speech that would be protected in other jurisdictions — blasphemy, lèse-majesté, criticism of government. Private messages have been used as evidence in prosecutions across the region. The stakes of unencrypted DMs are not theoretical."
+      }
+    ],
+    "generatedAt": "2026-03-26T11:18:20.606Z",
+    "label": "End-to-End Encryption",
+    "category": "tech",
     "articleCount": 1
   }
 }
