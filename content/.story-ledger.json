@@ -2,270 +2,337 @@
   "version": 1,
   "stories": [
     {
-      "id": "iran-cruise-missiles-lincoln",
-      "label": "Iran fires cruise missiles at USS Abraham Lincoln carrier group",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
-      "articles": ["2026-03-25-iran-cruise-missiles-uss-abraham-lincoln"],
-      "eventUri": "eng-11511156",
-      "summary": "Iran claims Qader anti-ship cruise missiles forced USS Lincoln to reposition. No US confirmation. Comes as 82nd Airborne deploys 1,000+ troops.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Aircraft_carrier",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/USS_Abraham_Lincoln_(CVN-72)",
-        "http://en.wikipedia.org/wiki/Cruise_missile"
-      ]
-    },
-    {
-      "id": "iran-rejects-ceasefire-conditions",
-      "label": "Iran formally rejects 15-point US ceasefire, issues 5 counter-demands",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 8,
-      "arc": "breaking",
-      "articles": ["2026-03-25-iran-rejects-ceasefire-five-conditions"],
-      "eventUri": "eng-11511911",
-      "summary": "Tehran rejects US ceasefire plan via Press TV. 5 conditions: halt aggression, guarantees against resumption, reparations, end all fronts, Hormuz sovereignty.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Pakistan"
-      ]
-    },
-    {
-      "id": "us-iran-15-point-ceasefire",
-      "label": "US sends 15-point ceasefire plan to Iran; Tehran's military rejects talks",
-      "firstSeen": "2026-03-25T04:44:00Z",
-      "lastCovered": "2026-03-25T12:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "developing",
-      "articles": ["2026-03-25-us-15-point-ceasefire-iran-rejects-82nd-airborne"],
-      "eventUri": "eng-11509977",
-      "summary": "US sends 15-point ceasefire via Pakistan including nuclear dismantlement and Hormuz reopening. 82nd Airborne deploying 1,000+ troops simultaneously.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz"
-      ]
-    },
-    {
-      "id": "spain-iran-war-resistance",
-      "label": "Spain PM calls Iran war absolute disaster, refuses US base access",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": ["2026-03-25-spain-sanchez-iran-war-worse-than-iraq"],
-      "eventUri": "spa-4148281",
-      "summary": "Sanchez tells parliament Iran war is far worse than Iraq 2003. Refuses US base access despite Trump trade threats.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Spain",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Pedro_S%C3%A1nchez",
-        "http://en.wikipedia.org/wiki/Iraq_War"
-      ]
-    },
-    {
-      "id": "settler-outposts-west-bank-b-a",
-      "label": "Israeli settlers expanding into West Bank Areas B and A, erasing Oslo lines",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": ["2026-03-25-settler-outposts-west-bank-areas-b-a-972"],
-      "eventUri": null,
-      "summary": "+972 joint investigation: settlers expanding beyond Area C into PA-jurisdiction zones. De facto annexation without declaration.",
-      "conceptUris": []
-    },
-    {
-      "id": "meta-child-safety-verdict",
-      "label": "Meta loses child safety trial: $375M verdict, Operation MetaPhile evidence",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": ["2026-03-25-meta-loses-child-safety-trial-375m"],
-      "eventUri": "eng-11505988",
-      "summary": "NM jury awards 375M. Zuckerberg testified harms inevitable. Two more trials pending. LA jury also finds Meta+Google liable for $3M in separate addiction case.",
-      "conceptUris": []
-    },
-    {
-      "id": "anthropic-pentagon-ai-weapons",
-      "label": "Judge signals Anthropic may win injunction against Pentagon supply chain risk label",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": ["2026-03-25-anthropic-pentagon-ai-weapons-regulation"],
-      "eventUri": "eng-11511239",
-      "summary": "Judge Lin: Pentagon designation looks like attempt to cripple Anthropic. 69% Americans want more AI regulation.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/The_Pentagon",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence"
-      ]
-    },
-    {
-      "id": "bellingcat-chad-rsf-munitions",
-      "label": "Bellingcat: Chad strike munitions match Chinese-made bombs used by RSF",
-      "firstSeen": "2026-03-24T10:44:00Z",
-      "lastCovered": "2026-03-25T12:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-03-25-bellingcat-chad-munitions-rsf-uae-chinese-bombs"],
-      "eventUri": null,
-      "summary": "Chinese-made GB25A/GB50A bomb remnants at Tiné, Chad strike site. Amnesty linked GB50A to RSF via UAE re-export.",
-      "conceptUris": []
-    },
-    {
-      "id": "ecb-lagarde-rate-hikes-2026",
-      "label": "ECB Lagarde signals rate hikes possible for Iran war inflation overshoot",
-      "firstSeen": "2026-03-25T09:12:00Z",
-      "lastCovered": "2026-03-25T12:00:00Z",
+      "id": "moodys-recession-50pct",
+      "label": "Moody's recession probability crosses 50% on oil spike",
+      "firstSeen": "2026-03-26T12:00:00Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 7,
       "arc": "developing",
-      "articles": ["2026-03-25-ecb-lagarde-rate-hikes-iran-war-inflation-shock"],
-      "eventUri": "eng-11510783",
-      "summary": "Lagarde: ECB could tighten even for 'not-too-persistent' inflation from Iran war energy shock.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/European_Central_Bank",
-        "http://en.wikipedia.org/wiki/Christine_Lagarde",
-        "http://en.wikipedia.org/wiki/Inflation"
-      ]
-    },
-    {
-      "id": "iran-internet-blackout-600h",
-      "label": "Iran internet at 1% for 600+ hours — 26 days of near-total blackout",
-      "firstSeen": "2026-03-25T11:30:00Z",
-      "lastCovered": "2026-03-25T12:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "developing",
-      "articles": ["2026-03-25-iran-internet-blackout-600-hours-88-million"],
-      "eventUri": null,
-      "summary": "NetBlocks: Iran 1% connectivity for 600+ hours. 88 million people digitally isolated.",
+      "articles": [
+        "2026-03-26-moodys-recession-probability-50-percent-oil-spike"
+      ],
+      "eventUri": "eng-11510674",
+      "summary": "Moody's recession indicator crosses 50%, correctly predicted 2020/2007/2001 recessions. US lost 92K jobs Feb, unemployment 4.4%, GDP revised to 0.7%.",
       "conceptUris": []
     },
     {
-      "id": "uk-crypto-donation-ban",
-      "label": "UK bans crypto donations to political parties, caps overseas gifts",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
+      "id": "taiwan-14b-arms-deal",
+      "label": "Taiwan $14B arms deal on track despite Trump-Xi May summit",
+      "firstSeen": "2026-03-26T12:00:00Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
       "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": ["2026-03-25-uk-bans-crypto-donations-political-parties"],
-      "eventUri": "eng-11511289",
-      "summary": "UK imposes immediate moratorium on all crypto donations plus 100k/yr overseas cap. Targets Reform UK.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Cryptocurrency",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Reform_UK",
-        "http://en.wikipedia.org/wiki/Nigel_Farage"
-      ]
-    },
-    {
-      "id": "trump-tech-council-ai",
-      "label": "Trump appoints Zuckerberg, Huang, Brin, Ellison to AI tech council",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": ["2026-03-25-trump-tech-council-zuckerberg-huang-andreessen"],
-      "eventUri": "eng-11511822",
-      "summary": "Presidential tech council co-chaired by AI/crypto czar Sacks. Members include major Trump donors.",
+      "category": "politics",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-taiwan-14b-arms-deal-trump-xi-iran-delay"
+      ],
+      "eventUri": "spa-4149093",
+      "summary": "Taiwan confirms $14B US arms package on track after receiving letter of guarantee. Deal includes advanced interceptor missiles. Xi warned Trump to handle carefully. Iran war delayed Trump-Xi summit to May 14-15.",
       "conceptUris": [
         "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Mark_Zuckerberg",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Nvidia"
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_States"
       ]
     },
     {
-      "id": "antimatter-transported-cern",
-      "label": "CERN transports antimatter for first time",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
+      "id": "philippines-energy-emergency",
+      "label": "Philippines declares first national energy emergency from Iran war",
+      "firstSeen": "2026-03-26T12:00:00Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-philippines-transport-strike-fuel-iran-war-energy-emergency"
+      ],
+      "eventUri": null,
+      "summary": "Philippines first country to declare national energy emergency. Fuel prices doubled. Transport workers strike in Manila. Government imposed 4-day work week for civil servants.",
+      "conceptUris": []
+    },
+    {
+      "id": "un-slave-trade-reparations",
+      "label": "UN votes 123-3 to declare slave trade gravest crime against humanity",
+      "firstSeen": "2026-03-26T12:00:00Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-un-slave-trade-crime-against-humanity-reparations-vote"
+      ],
+      "eventUri": "eng-11503116",
+      "summary": "UNGA voted 123-3 (US, Israel, Argentina against; UK/Portugal/Spain abstained) to declare transatlantic slave trade gravest crime against humanity. Ghana-led resolution demands reparations fund.",
+      "conceptUris": []
+    },
+    {
+      "id": "settler-outposts-west-bank-expansion",
+      "label": "Israeli settlers expanding into Areas B and A of West Bank",
+      "firstSeen": "2026-03-26T12:00:00Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-03-24-settler-outposts-expanding-west-bank-areas-b-a"
+      ],
+      "eventUri": null,
+      "summary": "+972 joint investigation: settlers expanding beyond Area C into Areas B and A (PA jurisdiction). Displacing Palestinian communities under cover of Iran war.",
+      "conceptUris": []
+    },
+    {
+      "id": "eu-mercosur-may-1",
+      "label": "EU-Mercosur trade deal goes live May 1, bypassing European Parliament",
+      "firstSeen": "2026-03-26T08:00:00Z",
+      "lastCovered": "2026-03-26T08:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-eu-mercosur-trade-deal-may-1-bypasses-parliament"
+      ],
+      "eventUri": "spa-4146070",
+      "summary": "EU activates Mercosur deal May 1, world's largest free trade zone (700M+ people, 30% GDP). France lost blocking effort.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Mercosur",
+        "http://en.wikipedia.org/wiki/European_Union"
+      ]
+    },
+    {
+      "id": "google-q-day-2029",
+      "label": "Google estimates quantum computers break encryption by 2029",
+      "firstSeen": "2026-03-26T08:00:00Z",
+      "lastCovered": "2026-03-26T08:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-google-q-day-2029-quantum-encryption-broken"
+      ],
+      "eventUri": null,
+      "summary": "Google revised Q Day estimate to 2029. Most banks, crypto, messaging haven't migrated to post-quantum cryptography.",
+      "conceptUris": []
+    },
+    {
+      "id": "zelenskyy-donbas-cession",
+      "label": "Zelenskyy: US conditioning security guarantees on ceding Donbas",
+      "firstSeen": "2026-03-26T08:00:00Z",
+      "lastCovered": "2026-03-26T08:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-zelenskyy-us-demands-donbas-cession-security-guarantees"
+      ],
+      "eventUri": "eng-11513180",
+      "summary": "Zelenskyy tells Reuters US pressuring Ukraine to surrender Donbas for security guarantees. Iran war giving Trump leverage.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/Donbas"
+      ]
+    },
+    {
+      "id": "halal-slaughter-western-bans",
+      "label": "Western economies weighing bans on religious slaughter",
+      "firstSeen": "2026-03-26T12:00:00Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-25-halal-slaughter-bans-western-economies-europe"
+      ],
+      "eventUri": null,
+      "summary": "European religious slaughter bans expanding. Question whether other Western economies will follow. Impacts halal supply chains globally.",
+      "conceptUris": []
+    },
+    {
+      "id": "kras-degrader-cancer",
+      "label": "Small-molecule degrader targets undruggable KRAS cancer mutations",
+      "firstSeen": "2026-03-26T12:00:00Z",
+      "lastCovered": "2026-03-26T12:00:00Z",
       "coverageCount": 1,
       "category": "science",
       "importance": 5,
-      "arc": "breaking",
-      "articles": ["2026-03-25-antimatter-transported-first-time-cern"],
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-kras-small-molecule-degrader-cancer-undruggable"
+      ],
       "eventUri": null,
-      "summary": "First successful transport of antimatter, opening path to precision fundamental physics tests.",
+      "summary": "Nature Comms: Small-molecule degrader DJX-A-KM destroys KRAS protein via ubiquitin-proteasome, works across multiple mutations.",
       "conceptUris": []
     },
     {
-      "id": "us-visa-bonds-global-south",
-      "label": "US expands visa bonds to 50 countries — financial barrier to Global South travel",
-      "firstSeen": "2026-03-25T01:00:00Z",
-      "lastCovered": "2026-03-25T08:30:00Z",
-      "coverageCount": 3,
-      "category": "politics",
-      "importance": 3,
+      "id": "artemis-ii-april-launch",
+      "label": "NASA Artemis II targets April 1 for first crewed Moon mission in 53 years",
+      "firstSeen": "2026-03-26T08:00:00Z",
+      "lastCovered": "2026-03-26T08:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
       "arc": "developing",
-      "articles": ["2026-03-25-us-visa-bonds-15000-fifty-countries-global-south", "2026-03-25-us-visa-bonds-50-countries-global-south-mobility", "2026-03-25-us-visa-bonds-15k-50-countries-global-south"],
-      "eventUri": "eng-11491709",
-      "summary": "50 countries now require bonds up to $15k for US tourist/business visas. Mostly African/Global South nations.",
+      "articles": [
+        "2026-03-26-artemis-ii-first-crewed-moon-mission-april-1-launch"
+      ],
+      "eventUri": "eng-11476892",
+      "summary": "First crewed lunar mission since Apollo 17. First woman, first person of color on Moon mission. $44B spent.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/Travel_visa",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_State",
-        "http://en.wikipedia.org/wiki/Ethiopia",
-        "http://en.wikipedia.org/wiki/Cambodia"
+        "http://en.wikipedia.org/wiki/NASA",
+        "http://en.wikipedia.org/wiki/Artemis_2"
       ]
     },
     {
-      "id": "scotus-cox-copyright-isp",
-      "label": "Supreme Court sides with Cox ISP in music copyright fight",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-25T17:00:00Z",
+      "id": "cuba-blackout-satellite",
+      "label": "Cuba nationwide blackout visible from satellite, oil crisis deepens",
+      "firstSeen": "2026-03-26T08:00:00Z",
+      "lastCovered": "2026-03-26T08:00:00Z",
       "coverageCount": 1,
-      "category": "tech",
+      "category": "economy",
       "importance": 4,
-      "arc": "breaking",
-      "articles": ["2026-03-25-scotus-cox-copyright-isp-piracy"],
-      "eventUri": null,
-      "summary": "SCOTUS limits music industry ability to extract massive damages from ISPs for user piracy.",
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-cuba-blackout-satellite-dark-oil-sanctions-crisis"
+      ],
+      "eventUri": "eng-11508788",
+      "summary": "NASA satellite shows Cuba going dark. Oil = 83% of electricity. Venezuelan shipments collapsed, US sanctions + Iran war compounding.",
       "conceptUris": []
     },
     {
-      "id": "trump-xi-summit-may",
-      "label": "Trump-Xi summit rescheduled to May 14-15, trade and Iran war on agenda",
-      "firstSeen": "2026-03-25T20:20:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
+      "id": "hungary-gas-ukraine-druzhba",
+      "label": "Hungary cuts gas to Ukraine over Druzhba oil pipeline dispute",
+      "firstSeen": "2026-03-26T04:00:00Z",
+      "lastCovered": "2026-03-26T04:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 8,
-      "arc": "breaking",
-      "articles": ["2026-03-25-trump-xi-summit-may-14-trade-iran-delay"],
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-hungary-orban-gas-cutoff-ukraine-druzhba-oil-energy-weapon"
+      ],
+      "eventUri": "eng-11510974",
+      "summary": "Orban announces Hungary will phase out gas deliveries to Ukraine until Russian oil flows resume through Druzhba pipeline. Third retaliatory measure after diesel cutoff and EU loan veto.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Hungary",
+        "http://en.wikipedia.org/wiki/Viktor_Orbán",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Natural_gas"
+      ]
+    },
+    {
+      "id": "iran-war-toxic-fallout",
+      "label": "Toxic environmental fallout from Iran strikes could last decades",
+      "firstSeen": "2026-03-26T08:00:00Z",
+      "lastCovered": "2026-03-26T08:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-iran-war-toxic-fallout-environmental-contamination-decades"
+      ],
+      "eventUri": null,
+      "summary": "Destroyed refineries and chemical plants releasing heavy metals and carcinogens. Environmental contamination may persist decades.",
+      "conceptUris": []
+    },
+    {
+      "id": "no-kings-march-28",
+      "label": "No Kings protest March 28: potentially largest US demonstration in history",
+      "firstSeen": "2026-03-26T08:00:00Z",
+      "lastCovered": "2026-03-26T08:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-no-kings-protest-march-28-largest-us-history"
+      ],
+      "eventUri": "eng-11505825",
+      "summary": "3,000+ events planned across all 50 states for March 28. Organizers expect to surpass 7M participants from October.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Democracy"
+      ]
+    },
+    {
+      "id": "rothschild-epstein-raid",
+      "label": "Rothschild Paris offices raided over Epstein-linked diplomat",
+      "firstSeen": "2026-03-26T08:00:00Z",
+      "lastCovered": "2026-03-26T08:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-rothschild-epstein-paris-raid-un-diplomat-corruption"
+      ],
+      "eventUri": "fra-1288602",
+      "summary": "French investigators raided Edmond de Rothschild offices. Diplomat sent 200+ emails including UN Security Council briefings to Epstein.",
+      "conceptUris": []
+    },
+    {
+      "id": "raskin-classified-docs",
+      "label": "Raskin reveals new details on Trump classified documents — 6-person access level",
+      "firstSeen": "2026-03-26T04:00:00Z",
+      "lastCovered": "2026-03-26T04:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-raskin-trump-classified-docs-six-people-access-business-motive"
+      ],
+      "eventUri": "eng-11510841",
+      "summary": "Raskin letter: Trump stole documents accessible to only 6 people in government, showed classified map on private plane. Aide uploaded scans to cloud. Demands DOJ answers by March 31.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Jamie_Raskin",
+        "http://en.wikipedia.org/wiki/Classified_information",
+        "http://en.wikipedia.org/wiki/Jack_Smith_(lawyer)"
+      ]
+    },
+    {
+      "id": "rsf-munitions-chad-cross-border",
+      "label": "Bellingcat: RSF munitions match deadly Chad strike, Sudan war crosses borders",
+      "firstSeen": "2026-03-25T20:02:00Z",
+      "lastCovered": "2026-03-25T20:02:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-03-25-bellingcat-chad-strike-rsf-munitions-sudan-cross-border"
+      ],
+      "eventUri": null,
+      "summary": "Bellingcat OSINT: munition fragments at Tine, Chad strike (17 killed) match weapons previously used by Sudan's RSF. First forensic proof of cross-border RSF strikes.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-xi-beijing-may",
+      "label": "Trump-Xi Beijing summit rescheduled for May after Iran war delay",
+      "firstSeen": "2026-03-26T04:00:00Z",
+      "lastCovered": "2026-03-26T04:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-trump-xi-beijing-may-visit-iran-delay-china-diplomacy"
+      ],
       "eventUri": "eng-11512594",
-      "summary": "Summit delayed from March to May 14-15 because of Iran war. Trade tariffs (Section 301 replacing IEEPA after SCOTUS), Hormuz closure, and China's 1.38M barrels/day Iranian crude loss on agenda.",
+      "summary": "Trump to visit Beijing in May for first China trip in 8 years. Trip delayed by Iran war. Signals possible Chinese mediation role.",
       "conceptUris": [
         "http://en.wikipedia.org/wiki/Donald_Trump",
         "http://en.wikipedia.org/wiki/China",
@@ -274,248 +341,163 @@
       ]
     },
     {
-      "id": "zelenskyy-donbas-security-condition",
-      "label": "Zelenskyy: US conditions security guarantees on Ukraine giving up Donbas",
-      "firstSeen": "2026-03-25T21:17:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
+      "id": "southern-lebanon-ground-war",
+      "label": "Hezbollah guerrilla defense stalls Israeli advance at Khiam and Taybeh",
+      "firstSeen": "2026-03-26T17:00:00Z",
+      "lastCovered": "2026-03-26T17:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 8,
+      "importance": 7,
       "arc": "breaking",
-      "articles": ["2026-03-25-zelenskyy-us-security-donbas-condition"],
-      "eventUri": "eng-11512685",
-      "summary": "Zelenskyy tells Reuters the US will only finalize security guarantees once Ukraine withdraws from Donbas. Russia betting US will lose interest. Iran war consuming US diplomatic bandwidth.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Donald_Trump"
-      ]
+      "articles": [
+        "2026-03-26-hezbollah-khiam-taybeh-guerrilla-stalemate-southern-lebanon"
+      ],
+      "eventUri": null,
+      "summary": "Israel surrounded Khiam on 3 sides but cannot take the hilltop center. Hezbollah 'kill pockets' stall armored advance. Khiam controls routes to Beqaa Valley — capture would isolate all of southern Lebanon. Retired Lebanese general describes tactical stalemate.",
+      "conceptUris": []
     },
     {
-      "id": "raskin-trump-classified-docs",
-      "label": "Accidentally released Smith memo reveals Trump kept docs tied to business interests",
-      "firstSeen": "2026-03-25T20:08:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
+      "id": "palestinian-prisoners-war-lockdown",
+      "label": "Palestinian prisoners cut off from lawyers under Iran war lockdown",
+      "firstSeen": "2026-03-26T17:00:00Z",
+      "lastCovered": "2026-03-26T17:00:00Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 6,
       "arc": "breaking",
-      "articles": ["2026-03-25-raskin-trump-classified-docs-business-motive"],
-      "eventUri": "eng-11510841",
-      "summary": "Jack Smith memo (accidentally released by DOJ) shows Trump kept documents 'only 6 people had access to,' pertinent to business interests. Aide uploaded scans to cloud. Wiles witnessed plane incident.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Jamie_Raskin",
-        "http://en.wikipedia.org/wiki/Classified_information"
-      ]
-    },
-    {
-      "id": "sa-police-masemola-charges",
-      "label": "South Africa police commissioner Masemola faces criminal charges in R360M tender",
-      "firstSeen": "2026-03-25T21:03:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": ["2026-03-25-sa-police-commissioner-masemola-criminal-charges"],
-      "eventUri": "eng-11512038",
-      "summary": "National Commissioner Masemola served court notice for April 21. Connected to R360M Medicare 24 tender via 'Cat' Matlala. 12 officers arrested. Third SA police boss to face charges. Factional war inside SAPS between rival narratives.",
-      "conceptUris": []
-    },
-    {
-      "id": "bellingcat-wildlife-trafficking-facebook",
-      "label": "Bellingcat: 9 Facebook groups with 70k members trafficking protected wildlife in Indonesia",
-      "firstSeen": "2026-03-19T09:24:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": ["2026-03-25-bellingcat-wildlife-trafficking-facebook-coded-language"],
+      "articles": [
+        "2026-03-26-palestinian-prisoner-lawyer-blocked-iran-war-prison-lockdown"
+      ],
       "eventUri": null,
-      "summary": "Bellingcat/Mongabay traced 9 Facebook groups back to single Jakarta broker. Endangered species (silvery gibbons, rhinoceros hornbills) traded openly for years despite Meta's ban. Coded language evades detection.",
+      "summary": "Israel locked down prisons at start of Iran war, barring almost all lawyer visits. Thousands of Palestinian prisoners in administrative detention now have zero outside contact.",
       "conceptUris": []
     },
     {
-      "id": "egypt-harassment-acquittal",
-      "label": "Egyptian court acquits documented bus harasser; EIPR calls for appeal",
-      "firstSeen": "2026-03-25T16:48:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": ["2026-03-25-egypt-eipr-bus-harassment-acquittal-appeal"],
-      "eventUri": null,
-      "summary": "Moqattam court acquitted man despite prosecution confirming repeated harassment of Mariam Shawky. EIPR: verdict tells women 'confronting assault will not get them anywhere.' Only state prosecutor can appeal.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-petroleum-dealers-strike",
-      "label": "Pakistan petroleum dealers postpone strike amid war fuel crisis",
-      "firstSeen": "2026-03-25T18:54:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
+      "id": "islamic-finance-expansion-caucasus",
+      "label": "Islamic finance expands into Caucasus — ICD funds Azerbaijan SME lending",
+      "firstSeen": "2026-03-26T17:00:00Z",
+      "lastCovered": "2026-03-26T17:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
-      "articles": ["2026-03-25-pakistan-petroleum-dealers-postpone-strike-war"],
+      "articles": [
+        "2026-03-26-azerbaijan-turan-bank-icd-islamic-finance-sme-caucasus"
+      ],
       "eventUri": null,
-      "summary": "PPDA called off planned March 26 strike (demanding 8% margin from 2.59%) because war escalation could cause supply crisis. Kerosene +128%, jet fuel +150%.",
-      "conceptUris": []
-    },
-    {
-      "id": "brain-connectivity-atlas",
-      "label": "First brain connectivity atlas maps development from infancy to 100 years",
-      "firstSeen": "2026-03-25T00:00:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": ["2026-03-25-brain-connectivity-atlas-lifespan-nature"],
-      "eventUri": null,
-      "summary": "Nature: 3,556 people scanned (16 days to 100 years). Three functional connectivity axes tracked across full lifespan for first time. Sensory-to-association axis peaks at age 19.",
-      "conceptUris": []
-    },
-    {
-      "id": "nasa-moon-base-plan",
-      "label": "NASA cancels Gateway, appoints 'Lunar Viceroy' for surface base",
-      "firstSeen": "2026-03-25T19:21:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": ["2026-03-25-nasa-moon-base-lunar-viceroy-10b-plan"],
-      "eventUri": null,
-      "summary": "Garcia-Galan named program executive for Moon base. $10B per phase. Two landings/year target. Prioritizing supply chain chokehold identification over fancy hardware.",
-      "conceptUris": []
-    },
-    {
-      "id": "wmo-climate-energy-imbalance",
-      "label": "WMO: Earth's energy imbalance highest in 65 years, 11 hottest years in a row",
-      "firstSeen": "2026-03-25T17:09:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": ["2026-03-25-wmo-climate-report-energy-imbalance-record"],
-      "eventUri": "eng-11503489",
-      "summary": "State of Global Climate 2025: first time energy imbalance included. Highest in 65 years. 90%+ excess heat absorbed by oceans (record 2025). Guterres: 'Every indicator flashing red.'",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/World_Meteorological_Organization",
-        "http://en.wikipedia.org/wiki/Earth's_energy_budget"
-      ]
-    },
-    {
-      "id": "brinc-police-drone-starlink",
-      "label": "BRINC launches Starlink-connected police drone: 60mph, 130dB, 640x zoom",
-      "firstSeen": "2026-03-25T21:12:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": ["2026-03-25-brinc-police-drone-starlink-vehicle-chase"],
-      "eventUri": "eng-11509380",
-      "summary": "First commercially available drone with built-in Starlink. 900+ US cities already using BRINC. Guardian model: 60mph vehicle pursuit, 130dB siren, hour flight time.",
+      "summary": "ICD extends $15M to Azerbaijan's Turan Bank for SME lending. Part of broader Islamic finance geographic expansion: Turkcell $1B murabaha (Turkey), now Caucasus.",
       "conceptUris": []
     },
     {
       "id": "streameast-piracy-egypt",
-      "label": "StreamEast: World's largest piracy network traced to two men in Egypt",
-      "firstSeen": "2026-03-20T08:27:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
+      "label": "World's largest pirated sports streaming network taken down in Egypt",
+      "firstSeen": "2026-03-26T17:00:00Z",
+      "lastCovered": "2026-03-26T17:00:00Z",
       "coverageCount": 1,
-      "category": "tech",
+      "category": "economy",
       "importance": 5,
       "arc": "breaking",
-      "articles": ["2026-03-25-streameast-piracy-network-egypt-takedown"],
+      "articles": [
+        "2026-03-26-streameast-piracy-egypt-raid-1-6-billion-visits-iptv"
+      ],
       "eventUri": null,
-      "summary": "1.6B visits/year, 136M/month. Operated from Sheikh Zayed, Giza. LeBron James spotted watching StreamEast courtside. ACE coalition (50 companies) + Egyptian authorities took it down.",
+      "summary": "Two men in Sheikh Zayed, Egypt ran StreamEast — 1.6B visits/year, 136M/month. 22-officer raid. Mada Masr obtained case files. LeBron James caught watching it courtside.",
       "conceptUris": []
     },
     {
-      "id": "meta-horizon-worlds-shutdown",
-      "label": "Meta shutting down Horizon Worlds, communities abandoned",
-      "firstSeen": "2026-03-25T13:47:00Z",
-      "lastCovered": "2026-03-25T22:00:00Z",
+      "id": "academic-fraud-no-consequences",
+      "label": "False claims in widely-cited business paper — no corrections, no consequences",
+      "firstSeen": "2026-03-26T17:00:00Z",
+      "lastCovered": "2026-03-26T17:00:00Z",
       "coverageCount": 1,
-      "category": "tech",
+      "category": "science",
       "importance": 5,
       "arc": "breaking",
-      "articles": ["2026-03-25-meta-horizon-worlds-shutdown-communities-abandoned"],
+      "articles": [
+        "2026-03-26-false-claims-business-school-paper-no-corrections-academia"
+      ],
       "eventUri": null,
-      "summary": "Meta announced Horizon Worlds shutdown, partially walked back to 'foreseeable future.' AA meetings, churches, art communities face abandonment. Former Meta VR dev: 'psychological torture from corporate neglect.'",
+      "summary": "Columbia statistician documents provably false claims in heavily-cited business school paper. Peer review failed, journal didn't act, institution didn't investigate. 252 HN points.",
       "conceptUris": []
     },
     {
-      "id": "iran-vance-negotiation",
-      "label": "Iran demands Vance as interlocutor, rejects Kushner and Witkoff",
-      "firstSeen": "2026-03-25T05:01:00Z",
-      "lastCovered": "2026-03-25T08:00:00Z",
+      "id": "dengue-global-observatory",
+      "label": "Global dengue observatory launches with 88-country surveillance",
+      "firstSeen": "2026-03-26T17:00:00Z",
+      "lastCovered": "2026-03-26T17:00:00Z",
       "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": ["2026-03-25-iran-vance-negotiation-rejects-kushner-witkoff"],
-      "eventUri": "eng-11509858",
-      "summary": "Iran informed Trump administration it prefers JD Vance as negotiating counterpart.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Jared_Kushner",
-        "http://en.wikipedia.org/wiki/Tehran"
-      ]
-    },
-    {
-      "id": "baltic-drone-incursions",
-      "label": "Drones from Russia hit Estonian power plant, enter Latvian airspace",
-      "firstSeen": "2026-03-25T08:30:00Z",
-      "lastCovered": "2026-03-25T08:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
+      "category": "science",
       "importance": 4,
-      "arc": "developing",
-      "articles": ["2026-03-25-drones-baltic-estonia-power-plant-nato-airspace"],
-      "eventUri": "deu-2099899",
-      "summary": "Russian drones entered Estonian and Latvian airspace, one hitting Auvere power plant. Third Baltic incident in a week.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Estonia",
-        "http://en.wikipedia.org/wiki/Latvia"
-      ]
-    },
-    {
-      "id": "sde-teiman-charges-dropped",
-      "label": "Israel drops all charges against Sde Teiman soldiers who abused Palestinian detainee",
-      "firstSeen": "2026-03-25T08:30:00Z",
-      "lastCovered": "2026-03-25T08:30:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "developing",
-      "articles": ["2026-03-25-sde-teiman-charges-dropped-israel-military-justice"],
+      "arc": "breaking",
+      "articles": [
+        "2026-03-26-dengue-observatory-88-countries-global-surveillance-climate"
+      ],
       "eventUri": null,
-      "summary": "Israel dropped all charges against soldiers filmed abusing Palestinian detainee at Sde Teiman.",
+      "summary": "New global dengue observatory collects real-time data from 88 countries. First coordinated planetary-scale vector disease surveillance as dengue expands into temperate zones.",
       "conceptUris": []
     },
     {
-      "id": "meta-instagram-e2ee-removal",
-      "label": "Meta drops E2EE from Instagram DMs, WANA users at highest risk",
-      "firstSeen": "2026-03-25T08:30:00Z",
-      "lastCovered": "2026-03-25T08:30:00Z",
+      "id": "sperm-aging-fertility",
+      "label": "Oxford meta-analysis: stored sperm deteriorates with intergenerational effects",
+      "firstSeen": "2026-03-26T17:00:00Z",
+      "lastCovered": "2026-03-26T17:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-26-sperm-aging-oxford-meta-analysis-fertility-embryo-viability"
+      ],
+      "eventUri": null,
+      "summary": "Oxford meta-analysis of 55,000 men and 30 species: stored sperm shows DNA damage, reduced motility, and reduced embryo viability. Published in Proceedings of the Royal Society B.",
+      "conceptUris": []
+    },
+    {
+      "id": "tesla-salvage-hacking",
+      "label": "Security researcher boots Tesla compute unit from crashed car parts",
+      "firstSeen": "2026-03-26T17:00:00Z",
+      "lastCovered": "2026-03-26T17:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
-      "arc": "developing",
-      "articles": ["2026-03-25-meta-instagram-dm-encryption-removed-wana-risk"],
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-26-tesla-model-3-computer-desk-crashed-cars-security-research"
+      ],
       "eventUri": null,
-      "summary": "Meta removes E2EE from Instagram DMs effective May 8. SMEX warns acute risk for West Asia/North Africa users.",
+      "summary": "Security researcher reconstructed Tesla Model 3 compute unit from salvage parts, booted full system on desk. 568 HN points. Reveals vehicle data persistence after crash.",
+      "conceptUris": []
+    },
+    {
+      "id": "lebanon-telecom-war-failure",
+      "label": "Lebanon's telecom has no emergency plan 15 months after 2024 war",
+      "firstSeen": "2026-03-26T17:00:00Z",
+      "lastCovered": "2026-03-26T17:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-26-lebanon-telecom-war-preparedness-no-plan-starlink-selective"
+      ],
+      "eventUri": null,
+      "summary": "Southern Lebanon network still unrepaired 15 months after 2024 war. No emergency connectivity plan. Government fast-tracked Starlink for select entities only, not civilians.",
+      "conceptUris": []
+    },
+    {
+      "id": "israeli-qr-leaflets-surveillance",
+      "label": "Israeli QR code leaflets in Lebanon double as surveillance tools",
+      "firstSeen": "2026-03-26T17:00:00Z",
+      "lastCovered": "2026-03-26T17:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-26-israeli-qr-code-leaflets-lebanon-surveillance-device-fingerprint"
+      ],
+      "eventUri": null,
+      "summary": "Israeli aircraft dropped leaflets with QR codes linking to WhatsApp/Facebook. SMEX analysis: scanning exposes phone number, device fingerprint, network info to Israeli intelligence. Dual-purpose: psyops + surveillance.",
       "conceptUris": []
     }
   ]

@@ -95,6 +95,11 @@ const AL_AQSA = {
 // Sun position from UTC time (cached 60s)
 let cachedSunPos: [number, number] = [0, 0];
 let sunPosTs = 0;
+/** Bust sun/night caches so the next call recalculates immediately. */
+function invalidateSunCaches() {
+  sunPosTs = 0;
+  _nightTs = 0;
+}
 function getSunPosition(): [number, number] {
   const now = Date.now();
   if (now - sunPosTs < 60000) return cachedSunPos;
@@ -200,6 +205,7 @@ interface MiniGlobeProps {
   itemHeight: number;
   width: number;
   height: number;
+  tick?: number;
   ref?: React.Ref<MiniGlobeRef>;
 }
 
@@ -232,6 +238,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   itemHeight,
   width,
   height,
+  tick: _tick,
   ref,
 }: MiniGlobeProps) {
   const globeRadius = width * 0.9;
@@ -320,6 +327,11 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   const cachedCountryRef = useRef<GeoJSON.Feature | null>(null);
 
+  // Reusable Skia path objects — reset each frame instead of allocating new ones
+  const landPathRef = useRef(Skia.Path.Make());
+  const countryPathRef = useRef(Skia.Path.Make());
+  const nightPathRef = useRef(Skia.Path.Make());
+
   // Keep closure dependencies in refs so the reproject callback stays stable
   const articlesRef = useRef(articles);
   articlesRef.current = articles;
@@ -349,8 +361,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       pg.projection(proj);
     }
 
-    // Land
-    const landPath = Skia.Path.Make();
+    // Land — reuse path object to avoid native memory accumulation
+    const landPath = landPathRef.current;
+    landPath.reset();
     skiaCtx.setPath(landPath);
     pg.context(skiaCtx as any)(land);
 
@@ -368,18 +381,20 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (pt) dot = { x: pt[0], y: pt[1] };
     }
 
-    // Country highlight — single feature, cheap to project every frame
+    // Country highlight — reuse path object
     let countryPath: ReturnType<typeof Skia.Path.Make> | null = null;
     if (cachedCountryRef.current) {
-      countryPath = Skia.Path.Make();
+      countryPath = countryPathRef.current;
+      countryPath.reset();
       skiaCtx.setPath(countryPath);
       pg.context(skiaCtx as any)(cachedCountryRef.current);
     }
 
-    // Night shadow
+    // Night shadow — reuse path object
     const [sunLng, sunLat] = getSunPosition();
     const nightGeo = nightCircleGen.center([sunLng + 180, -sunLat]).radius(80)();
-    const nightPath = Skia.Path.Make();
+    const nightPath = nightPathRef.current;
+    nightPath.reset();
     skiaCtx.setPath(nightPath);
     pg.context(skiaCtx as any)(nightGeo);
 
@@ -458,6 +473,23 @@ export const MiniGlobe = memo(function MiniGlobe({
     },
   );
 
+  // On app resume, invalidate sun/night caches and reproject the globe
+  useEffect(() => {
+    if (!_tick) return; // skip initial render
+    invalidateSunCaches();
+    const coords = coordsSV.value;
+    const articleCount = coords.length / 2;
+    if (articleCount === 0) return;
+    const rawIndex = Math.max(0, scrollY.value / itemHeight);
+    const idx = Math.min(Math.round(rawIndex), articleCount - 1);
+    const lat = coords[idx * 2];
+    const lng = coords[idx * 2 + 1];
+    if (lat != null && lng != null) {
+      callReproject(lng, -lat, idx);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [_tick]);
+
   useImperativeHandle(ref, () => ({
     hitTest(x: number, y: number): TapResult | null {
       // Collect all unique developing-story labels for a country from the full article set
@@ -524,7 +556,8 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   // Moon — NASA texture with phase shadow
   const moonTexture = useImage(require('../../assets/moon.png'));
-  const moonPhase = getMoonPhase();
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- _tick forces recalc on app resume
+  const moonPhase = useMemo(() => getMoonPhase(), [_tick]);
   const moonR = globeRadius * 0.05;
   const moonX = cx;
   const moonY = cy - globeRadius - moonR * 5;

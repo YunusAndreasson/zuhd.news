@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -34,15 +34,17 @@ function TabLabel({
   label,
   index,
   pagerOffset,
-  onPress,
+  onCategoryPress,
   onLayout,
 }: {
   label: string;
   index: number;
   pagerOffset: SharedValue<number>;
-  onPress: () => void;
+  onCategoryPress: (index: number) => void;
   onLayout: (e: LayoutChangeEvent) => void;
 }) {
+  const handlePress = useCallback(() => onCategoryPress(index), [onCategoryPress, index]);
+
   const animatedStyle = useAnimatedStyle(() => {
     'worklet';
     const distance = Math.abs(pagerOffset.value - index);
@@ -52,7 +54,7 @@ function TabLabel({
 
   return (
     <Pressable
-      onPress={onPress}
+      onPress={handlePress}
       onLayout={onLayout}
       hitSlop={12}
       style={({ pressed }) => pressed && PRESSED_STYLE}
@@ -62,7 +64,7 @@ function TabLabel({
   );
 }
 
-export function CategoryBar({
+export const CategoryBar = memo(function CategoryBar({
   pagerOffset,
   categoryProgresses,
   currentCategory,
@@ -139,7 +141,7 @@ export function CategoryBar({
             label={label}
             index={i}
             pagerOffset={pagerOffset}
-            onPress={() => onCategoryPress(i)}
+            onCategoryPress={onCategoryPress}
             onLayout={tabLayoutHandlers[i]!}
           />
         ))}
@@ -165,7 +167,7 @@ export function CategoryBar({
       </View>
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {

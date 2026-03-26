@@ -9,7 +9,7 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { COLORS, FONT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
+import { COLORS, FONT, LAYOUT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
 import { hapticImpact } from '../lib/haptics';
 import { renderSentences } from '../lib/markdown';
 import type { Article, ContextPressHandler, SourcePressHandler } from '../types';
@@ -31,6 +31,8 @@ interface ArticlePageProps {
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
   onCountryPress?: (result: TapResult) => void;
+  tick?: number;
+  isBreaking?: boolean;
 }
 
 function formatTimeAgo(addedAt: number): string {
@@ -79,6 +81,8 @@ export const ArticlePage = memo(function ArticlePage({
   globeRef,
   globeYOffset,
   onCountryPress,
+  tick: _tick,
+  isBreaking,
 }: ArticlePageProps) {
   const timeAgo = formatTimeAgo(article.addedAt);
   const pageStart = index * itemHeight;
@@ -173,7 +177,13 @@ export const ArticlePage = memo(function ArticlePage({
           {/* Meta — status left, actions right */}
           <View style={styles.meta}>
             <View style={styles.metaGroup}>
-              <Text style={styles.metaDim}>{timeAgo}</Text>
+              {isBreaking ? (
+                <View style={styles.breakingBadge}>
+                  <Text style={styles.breakingText}>breaking</Text>
+                </View>
+              ) : (
+                <Text style={styles.metaDim}>{timeAgo}</Text>
+              )}
             </View>
             <View style={styles.metaGroup}>
               {article.threadId && onContextPress && (
@@ -266,6 +276,18 @@ const styles = StyleSheet.create({
   metaDim: {
     ...TEXT_STYLES.smallCaps,
     ...TEXT_STYLES.textShadow,
+  },
+  breakingBadge: {
+    backgroundColor: COLORS.textEmphasis,
+    paddingHorizontal: SPACING.sm,
+    paddingVertical: LAYOUT.pillPaddingV,
+    borderRadius: LAYOUT.pillRadius,
+  },
+  breakingText: {
+    fontFamily: FONT.smallCaps,
+    fontSize: TYPOGRAPHY.sizeSm,
+    letterSpacing: TYPOGRAPHY.trackingCaps,
+    color: COLORS.bg,
   },
   globeTapZone: {
     ...StyleSheet.absoluteFillObject,

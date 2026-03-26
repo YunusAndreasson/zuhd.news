@@ -1,4 +1,4 @@
-import { useCallback, useImperativeHandle, useRef, useState } from 'react';
+import { useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import Animated, {
   runOnJS,
@@ -28,6 +28,12 @@ export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
   const translateY = useSharedValue<number>(TOAST_SLIDE_OFFSET);
 
   const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   const dismiss = useCallback(() => {
     opacity.value = withTiming(0, { duration: 200 }, (finished) => {

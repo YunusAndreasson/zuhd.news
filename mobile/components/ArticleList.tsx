@@ -1,6 +1,7 @@
 import {
   memo,
   useCallback,
+  useEffect,
   useEffectEvent,
   useImperativeHandle,
   useMemo,
@@ -63,8 +64,8 @@ export const ArticleList = memo(function ArticleList({
   const insets = useSafeAreaInsets();
   const { width: screenWidth } = useWindowDimensions();
   // Breaking stories (100+ worldwide coverage) float to top, rest chronological
+  const BREAKING_THRESHOLD = 100;
   const sortedArticles = useMemo(() => {
-    const BREAKING_THRESHOLD = 100;
     const breaking = articles.filter((a) => (a.eventCoverage ?? 0) >= BREAKING_THRESHOLD);
     const rest = articles.filter((a) => (a.eventCoverage ?? 0) < BREAKING_THRESHOLD);
     // Breaking sorted by coverage (highest first), rest keeps API order (chronological)
@@ -81,11 +82,18 @@ export const ArticleList = memo(function ArticleList({
   const containerRef = useRef<View>(null);
   const containerTopRef = useRef(0);
   const overscrollFired = useSharedValue(false);
+  const overscrollTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const resetOverscroll = useCallback(() => {
-    setTimeout(() => {
+    if (overscrollTimer.current) clearTimeout(overscrollTimer.current);
+    overscrollTimer.current = setTimeout(() => {
       overscrollFired.value = false;
     }, 800);
   }, [overscrollFired]);
+  useEffect(() => {
+    return () => {
+      if (overscrollTimer.current) clearTimeout(overscrollTimer.current);
+    };
+  }, []);
   const fireEndReached = useEffectEvent(() => {
     onEndReached?.(catIndex);
   });
@@ -185,9 +193,20 @@ export const ArticleList = memo(function ArticleList({
         globeRef={globeRef}
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
+        tick={tick}
+        isBreaking={(item.eventCoverage ?? 0) >= BREAKING_THRESHOLD}
       />
     ),
-    [itemHeight, screenWidth, scrollY, onSourcePress, onContextPress, onCountryPress, earlierIndex],
+    [
+      itemHeight,
+      screenWidth,
+      scrollY,
+      onSourcePress,
+      onContextPress,
+      onCountryPress,
+      earlierIndex,
+      tick,
+    ],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);
@@ -211,6 +230,7 @@ export const ArticleList = memo(function ArticleList({
         itemHeight={itemHeight}
         width={screenWidth}
         height={viewportHeight}
+        tick={tick}
       />
       <Animated.FlatList
         key={resetKey}

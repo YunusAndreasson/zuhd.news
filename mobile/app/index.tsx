@@ -141,13 +141,13 @@ export default function HomeScreen() {
     (threadId: string) => {
       hapticImpact();
       // Find the thread label from any article in the current view
-      const allArticles = Object.values(grouped).flat();
+      const allArticles = Object.values(groupedRef.current).flat();
       const match = allArticles.find((a) => a.threadId === threadId);
       setContextThreadLabel(match?.threadLabel);
       fetchContext(threadId);
       contextSheetRef.current?.present();
     },
-    [grouped, fetchContext],
+    [fetchContext],
   );
 
   const handleCountryPress = useCallback((result: TapResult) => {
@@ -166,6 +166,14 @@ export default function HomeScreen() {
   const toastRef = useRef<ToastRef>(null);
 
   const [currentCategory, setCurrentCategory] = useState(0);
+
+  // Refs for values used inside stable callbacks — avoids breaking downstream memos
+  const groupedRef = useRef(grouped);
+  groupedRef.current = grouped;
+  const lastSeenAtRef = useRef(lastSeenAt);
+  lastSeenAtRef.current = lastSeenAt;
+  const currentCategoryRef = useRef(currentCategory);
+  currentCategoryRef.current = currentCategory;
 
   const [pagerHeight, setPagerHeight] = useState(0);
   const onPagerLayout = useCallback((e: LayoutChangeEvent) => {
@@ -216,12 +224,12 @@ export default function HomeScreen() {
     (catIndex: number) => {
       const cat = CATEGORIES[catIndex];
       if (!cat) return;
-      const count = grouped[cat]?.length ?? 0;
+      const count = groupedRef.current[cat]?.length ?? 0;
       toastRef.current?.show(`All ${count} articles \u00B7 tap to scroll up`, () =>
         listRefs[catIndex]?.current?.scrollToTop(),
       );
     },
-    [grouped],
+    [],
   );
 
   const handleRefresh = useCallback(async () => {
@@ -229,21 +237,21 @@ export default function HomeScreen() {
     try {
       const n = await refresh();
       if (n > 0) {
-        const allArticles = Object.values(grouped).flat();
+        const allArticles = Object.values(groupedRef.current).flat();
         const words = allArticles
-          .filter((a) => a.addedAt > lastSeenAt)
+          .filter((a) => a.addedAt > lastSeenAtRef.current)
           .reduce((sum, a) => sum + a.sentences.join(' ').split(/\s+/).length, 0);
         const mins = Math.max(1, Math.ceil(words / EDITORIAL.readingWpm));
         toastRef.current?.show(`${n} new · ~${mins} min read`, undefined, 'top');
         // Scroll to top so new/breaking articles are visible
-        listRefs[currentCategory]?.current?.scrollToTop();
+        listRefs[currentCategoryRef.current]?.current?.scrollToTop();
       } else {
         toastRef.current?.show('Already up to date', undefined, 'top');
       }
     } catch {
       toastRef.current?.show('Could not refresh', undefined, 'top');
     }
-  }, [refresh, grouped, lastSeenAt, currentCategory]);
+  }, [refresh]);
 
   useEffect(() => {
     if (!loading) SplashScreen.hideAsync();

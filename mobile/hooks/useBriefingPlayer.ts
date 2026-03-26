@@ -59,7 +59,14 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     return () => {
       savePosition();
       subRef.current?.remove();
+      try {
+        playerRef.current?.clearLockScreenControls();
+      } catch {}
       playerRef.current?.remove();
+      playerRef.current = null;
+      subRef.current = null;
+      lockScreenActive.current = false;
+      setIsAudioActiveAsync(false);
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -135,6 +142,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
           subRef.current = null;
           playerRef.current = null;
           lockScreenActive.current = false;
+          setIsAudioActiveAsync(false);
         }
       });
 
