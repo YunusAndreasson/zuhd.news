@@ -72,4 +72,5 @@ export interface HeatmapPoint {
   lng: number;
   c: number; // eventCoverage (0 if null)
   t: number; // addedAt timestamp ms
+  l: string; // story label (threadLabel prefix or title)
 }

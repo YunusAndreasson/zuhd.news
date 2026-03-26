@@ -157,12 +157,13 @@ export default function HomeScreen() {
 
   const handleCountryPress = useCallback((result: TapResult) => {
     hapticImpact();
-    // Direct hotspot-glow tap (no country data) → toast
-    if (result.hotspotLabels?.length && !result.data) {
-      toastRef.current?.show(result.hotspotLabels[0]!);
+    // Hotspot glow tap → toast (event label or country name)
+    if (result.isHotspot) {
+      const label = result.hotspotLabels?.[0] ?? result.countryName;
+      if (label) toastRef.current?.show(label);
       return;
     }
-    // Country tap (may include hotspot labels) → sheet
+    // Country/dot tap → sheet
     setCountrySheet(result);
     countrySheetRef.current?.present();
   }, []);

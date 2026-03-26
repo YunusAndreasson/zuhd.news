@@ -428,12 +428,16 @@ const HEATMAP_WINDOW_MS = 72 * 60 * 60 * 1000
 const heatmapCutoff = Date.now() - HEATMAP_WINDOW_MS
 const heatmapPoints = sorted
   .filter(a => a.addedAt >= heatmapCutoff && a.meta.lat != null && a.meta.lng != null)
-  .map(a => ({
-    lat: Number(a.meta.lat),
-    lng: Number(a.meta.lng),
-    c: Number(a.meta.eventCoverage) || 0,
-    t: Math.round(a.addedAt),
-  }))
+  .map(a => {
+    const tl = a.meta.threadLabel
+    return {
+      lat: Number(a.meta.lat),
+      lng: Number(a.meta.lng),
+      c: Number(a.meta.eventCoverage) || 0,
+      t: Math.round(a.addedAt),
+      l: tl ? (tl.includes(':') ? tl.slice(0, tl.indexOf(':')) : tl) : (a.meta.title || ''),
+    }
+  })
 writeFileSync(join(DIST_DIR, 'api', 'heatmap.json'),
   JSON.stringify({ generated, points: heatmapPoints }))
 console.log(`  Built: api/heatmap.json (${heatmapPoints.length} points, 72h)`)

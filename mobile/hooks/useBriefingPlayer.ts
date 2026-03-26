@@ -9,6 +9,7 @@ import {
 } from 'expo-audio';
 import { getItemAsync, setItemAsync } from 'expo-secure-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { AppState, type AppStateStatus } from 'react-native';
 import { API_BASE } from '../constants/theme';
 import { hapticImpact } from '../lib/haptics';
 
@@ -45,6 +46,21 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const preloadedUrl = useRef<string | null>(null);
   // Suppress listener-driven setPlaying briefly after user taps toggle
   const userToggleAt = useRef(0);
+
+  // Re-sync state when app returns from background
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', async (state: AppStateStatus) => {
+      if (state === 'active' && playerRef.current) {
+        // Re-activate audio session — iOS may have deactivated it during background
+        try {
+          await setIsAudioActiveAsync(true);
+        } catch {}
+        // Sync React playing state with native player
+        setPlaying(playerRef.current.playing);
+      }
+    });
+    return () => sub.remove();
+  }, []);
 
   // Preload audio as soon as we know the briefing date
   useEffect(() => {
@@ -112,6 +128,10 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
           playerRef.current.pause();
           setPlaying(false);
         } else {
+          // Re-activate audio session in case iOS deactivated it (e.g. after background)
+          try {
+            await setIsAudioActiveAsync(true);
+          } catch {}
           playerRef.current.play();
           setPlaying(true);
         }

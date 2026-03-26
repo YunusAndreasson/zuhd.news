@@ -193,6 +193,7 @@ export interface TapResult {
   localTime: string | null;
   data: CountryData | null;
   hotspotLabels?: string[];
+  isHotspot?: boolean;
 }
 
 export interface MiniGlobeRef {
@@ -294,7 +295,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     }
 
     const now = Date.now();
-    const clusters = new Map<string, { lat: number; lng: number; total: number }>();
+    const clusters = new Map<string, { lat: number; lng: number; total: number; labels: Set<string> }>();
 
     for (const pt of heatmapPoints) {
       const ageHours = (now - pt.t) / 3_600_000;
@@ -307,8 +308,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       const existing = clusters.get(key);
       if (existing) {
         existing.total += weight;
+        if (pt.l) existing.labels.add(pt.l);
       } else {
-        clusters.set(key, { lat: pt.lat, lng: pt.lng, total: weight });
+        const labels = new Set<string>();
+        if (pt.l) labels.add(pt.l);
+        clusters.set(key, { lat: pt.lat, lng: pt.lng, total: weight, labels });
       }
     }
 
@@ -322,7 +326,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         lat: z.lat,
         lng: z.lng,
         intensity: Math.log(z.total + 1) / logMax,
-        labels: [], // labels resolved by storiesFor() in hitTest
+        labels: [...z.labels],
         countryName: (country?.properties as any)?.name ?? null,
       };
     });
@@ -356,7 +360,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   const layoutRef = useRef({ globeRadius, cx, cy });
   layoutRef.current = { globeRadius, cx, cy };
 
-  const callReproject = useCallback((lng: number, lat: number, settledIndex: number) => {
+  const callReproject = useCallback((geoLng: number, geoLat: number, settledIndex: number) => {
     const { globeRadius: r, cx: centerX, cy: centerY } = layoutRef.current;
     const geoData = articleGeoRef.current;
 
@@ -365,7 +369,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       proj = geoOrthographic().clipAngle(90).precision(8);
       projRef.current = proj;
     }
-    proj.rotate([-lng, lat, 0]).scale(r).translate([centerX, centerY]);
+    proj.rotate([-geoLng, -geoLat, 0]).scale(r).translate([centerX, centerY]);
 
     let pg = pgRef.current;
     if (!pg) {
@@ -414,7 +418,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
     // Al-Aqsa — golden reference point
     let aqsa: { x: number; y: number } | null = null;
-    if (geoDistance(AL_AQSA.coords, [-lng, -lat]) < HALF_PI) {
+    if (geoDistance(AL_AQSA.coords, [geoLng, geoLat]) < HALF_PI) {
       const pt = proj(AL_AQSA.coords);
       if (pt) aqsa = { x: pt[0], y: pt[1] };
     }
@@ -423,7 +427,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     const hotspotGlows: GlobeState['hotspotGlows'] = [];
     for (const zone of hotspotsRef.current) {
       const zoneCoords: [number, number] = [zone.lng, zone.lat];
-      if (geoDistance(zoneCoords, [-lng, -lat]) < HALF_PI) {
+      if (geoDistance(zoneCoords, [geoLng, geoLat]) < HALF_PI) {
         const pt = proj(zoneCoords);
         if (pt)
           hotspotGlows.push({
@@ -483,7 +487,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       const settled = Math.min(Math.round(rawIndex), articleCount - 1);
 
-      runOnJS(callReproject)(lng, -lat, settled);
+      runOnJS(callReproject)(lng, lat, settled);
     },
   );
 
@@ -499,14 +503,29 @@ export const MiniGlobe = memo(function MiniGlobe({
     const lat = coords[idx * 2];
     const lng = coords[idx * 2 + 1];
     if (lat != null && lng != null) {
-      callReproject(lng, -lat, idx);
+      callReproject(lng, lat, idx);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_tick]);
 
+  // Re-project when hotspot data changes (e.g. heatmap fetch after app resume)
+  useEffect(() => {
+    const coords = coordsSV.value;
+    const articleCount = coords.length / 2;
+    if (articleCount === 0) return;
+    const rawIndex = Math.max(0, scrollY.value / itemHeight);
+    const idx = Math.min(Math.round(rawIndex), articleCount - 1);
+    const lat = coords[idx * 2];
+    const lng = coords[idx * 2 + 1];
+    if (lat != null && lng != null) {
+      callReproject(lng, lat, idx);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hotspots]);
+
   useImperativeHandle(ref, () => ({
     hitTest(x: number, y: number): TapResult | null {
-      // Collect all unique developing-story labels for a country from the full article set
+      // Collect unique story labels (or titles) for a country from the current article set
       const storiesFor = (name: string) => {
         const seen = new Set<string>();
         const geoArr = articleGeoRef.current;
@@ -515,16 +534,36 @@ export const MiniGlobe = memo(function MiniGlobe({
           const geo = geoArr[i];
           if (!geo || geo.countryName !== name) continue;
           const a = artArr[i];
-          if (!a?.threadLabel) continue;
-          const label = a.threadLabel.includes(':')
-            ? a.threadLabel.slice(0, a.threadLabel.indexOf(':'))
-            : a.threadLabel;
-          seen.add(label);
+          if (!a) continue;
+          if (a.threadLabel) {
+            const label = a.threadLabel.includes(':')
+              ? a.threadLabel.slice(0, a.threadLabel.indexOf(':'))
+              : a.threadLabel;
+            seen.add(label);
+          } else if (a.title) {
+            seen.add(a.title);
+          }
         }
         return seen.size > 0 ? [...seen] : undefined;
       };
 
-      // Check article dot first — news takes precedence
+      // Check hotspot glows first — tight hit area (r²=900) signals precise intent
+      for (const z of state.hotspotGlows) {
+        if (isNear(x, y, z.x, z.y, 900)) {
+          const name = z.countryName ?? '';
+          const tz = name ? COUNTRY_TZ[name] : undefined;
+          return {
+            countryName: name,
+            location: null,
+            localTime: tz ? formatLocalTime(tz) : null,
+            data: name ? COUNTRY_DATA[name] ?? null : null,
+            hotspotLabels: z.labels.length > 0 ? z.labels : undefined,
+            isHotspot: true,
+          };
+        }
+      }
+
+      // Then article dot (wider catch zone)
       const dot = state.dot;
       if (dot && isNear(x, y, dot.x, dot.y, 3600)) {
         const geoData = articleGeoRef.current[lastSettled.current];
@@ -540,7 +579,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      // Then check Al-Aqsa
+      // Then Al-Aqsa
       if (state.aqsa && isNear(x, y, state.aqsa.x, state.aqsa.y, 3600)) {
         return {
           countryName: AL_AQSA.country,
@@ -549,21 +588,6 @@ export const MiniGlobe = memo(function MiniGlobe({
           data: COUNTRY_DATA['Palestine'] ?? null,
           hotspotLabels: storiesFor('Palestine'),
         };
-      }
-
-      // Then check hotspot glows directly
-      for (const z of state.hotspotGlows) {
-        if (isNear(x, y, z.x, z.y, 900)) {
-          const name = z.countryName ?? '';
-          const tz = name ? COUNTRY_TZ[name] : undefined;
-          return {
-            countryName: name,
-            location: null,
-            localTime: tz ? formatLocalTime(tz) : null,
-            data: name ? COUNTRY_DATA[name] ?? null : null,
-            hotspotLabels: name ? storiesFor(name) : z.labels,
-          };
-        }
       }
 
       return null;
