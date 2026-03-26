@@ -524,5 +524,117 @@
     "label": "Lunar Base Architecture",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-03-26-iran-hormuz-friendly-nations-china-india-russia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption."
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The strait sits between Iran and Oman, not Iran and any Arab Gulf state. Iran's coastline runs along the entire northern edge. The deepest shipping channel hugs the Iranian side, which is why Iranian naval positioning matters disproportionately."
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia built the East-West Pipeline (5 million bbl/day capacity) partly as a Hormuz hedge, and the UAE built the Habshan-Fujairah pipeline. Together they could reroute maybe a third of Gulf exports. The rest has no alternative route."
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain."
+      },
+      {
+        "heading": "THE INSURANCE MECHANISM",
+        "body": "When tensions rise, Lloyd's of London reclassifies the Gulf as a war-risk zone. Insurance premiums on tankers can jump from 0.03% to 3% of cargo value overnight — effectively a tax on global oil that kicks in before a single shot is fired."
+      }
+    ],
+    "generatedAt": "2026-03-26T04:27:13.539Z",
+    "label": "The Strait of Hormuz",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-03-26-google-q-day-2029-quantum-encryption-broken": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT Q DAY MEANS",
+        "body": "Q Day is the hypothetical date a quantum computer can break RSA-2048 or equivalent public-key encryption in hours rather than billions of years. It is not about breaking all encryption — symmetric ciphers like AES-256 only lose half their effective key length against quantum attacks, which still leaves them secure."
+      },
+      {
+        "heading": "THE ALGORITHM",
+        "body": "Shor's algorithm (1994) factors large numbers exponentially faster than any known classical method. RSA, Diffie-Hellman, and elliptic curve cryptography all rely on factoring or related problems being hard. Shor turns them from intractable to trivial — given a big enough quantum computer."
+      },
+      {
+        "heading": "HARVEST NOW, DECRYPT LATER",
+        "body": "Intelligence agencies are assumed to be recording encrypted traffic today, waiting for quantum computers to decrypt it later. This means secrets with a shelf life longer than the time to Q Day — diplomatic cables, medical records, trade secrets — are already at risk even though no quantum computer can break them yet."
+      },
+      {
+        "heading": "THE NIST RESPONSE",
+        "body": "In 2024, NIST finalized three post-quantum encryption standards based on lattice problems and hash functions — mathematical structures that resist both classical and quantum attack. The migration is straightforward in principle but enormous in practice: every TLS certificate, VPN, messaging app, and firmware update channel needs to switch."
+      },
+      {
+        "heading": "THE REAL BOTTLENECK",
+        "body": "Shor's algorithm needs roughly 20 million physical qubits to break RSA-2048 (with error correction). The largest quantum computers today have around 1,000. The gap is not just engineering — each physical qubit needs cryogenic cooling to 15 millikelvins, colder than outer space."
+      }
+    ],
+    "generatedAt": "2026-03-26T04:27:13.540Z",
+    "label": "Post-Quantum Cryptography",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-03-26-polymarket-iran-war-bets-knesset-death-penalty": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IDEA",
+        "body": "Prediction markets let people buy contracts that pay $1 if an event happens and $0 if it doesn't. The market price becomes a real-time probability estimate. A contract trading at $0.30 means the market collectively assigns a 30% chance."
+      },
+      {
+        "heading": "WHY THEY WORK",
+        "body": "Hayek's 1945 insight: prices aggregate dispersed knowledge that no single person holds. Prediction markets apply this to events. Someone with insider knowledge has a financial incentive to trade on it, which moves the price toward truth without anyone needing to identify who knows what."
+      },
+      {
+        "heading": "THE MANIPULATION PROBLEM",
+        "body": "Attempts to manipulate prediction markets are well-studied. The empirical finding is counterintuitive: manipulation attempts usually improve accuracy, because they create profit opportunities for informed traders who push the price back. The manipulator loses money; the market self-corrects."
+      },
+      {
+        "heading": "THE LEGAL DISTINCTION",
+        "body": "US law distinguishes gambling (paying for entertainment risk) from derivatives (paying to hedge real-world exposure). Prediction markets sit awkwardly between the two. The CFTC has allowed some event contracts while blocking others — the line is whether the contract serves a hedging or price-discovery function versus pure speculation on human suffering."
+      },
+      {
+        "heading": "THE INSIDER TRADING QUESTION",
+        "body": "Traditional insider trading law applies to securities — stocks, bonds, derivatives on them. Prediction markets on geopolitical events exist in a legal gray zone because there is no underlying security and no issuing company. Someone trading on advance knowledge of a military strike is not clearly violating any existing statute, which is precisely why it is alarming."
+      }
+    ],
+    "generatedAt": "2026-03-26T04:27:13.540Z",
+    "label": "Prediction Markets",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-03-26-border-patrol-agents-tracked-bellingcat-osint": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT OSINT IS",
+        "body": "Open-source intelligence uses publicly available data — social media posts, flight trackers, satellite imagery, corporate registries, ship transponders — to reconstruct events. The discipline predates the internet: the BBC Monitoring Service has tracked foreign broadcasts since 1939."
+      },
+      {
+        "heading": "THE PHONE PROBLEM",
+        "body": "Modern smartphones broadcast constant location signals: GPS pings to apps, Wi-Fi probe requests, cell tower connections, and Bluetooth beacons. Data brokers aggregate this into movement profiles sold as anonymized advertising data — but a device that travels between a specific home and a specific workplace every day is trivially re-identifiable."
+      },
+      {
+        "heading": "THE MOSAIC EFFECT",
+        "body": "No single piece of public data is sensitive. But combining a LinkedIn profile, a Strava run, a Venmo transaction, and a property record creates a detailed dossier. Intelligence analysts call this the mosaic theory: individually innocuous tiles form a revealing picture when assembled."
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Governments spent decades and billions building classified intelligence capabilities. OSINT democratized much of that capacity. Bellingcat identified the Russian military unit behind the MH17 shootdown using geolocated social media posts — an investigation that paralleled the work of national intelligence agencies using classified signals intercepts."
+      }
+    ],
+    "generatedAt": "2026-03-26T04:27:13.540Z",
+    "label": "Open-Source Intelligence",
+    "category": "politics",
+    "articleCount": 1
   }
 }

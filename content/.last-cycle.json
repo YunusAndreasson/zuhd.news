@@ -1,71 +1,83 @@
 {
-  "timestamp": "2026-03-25T22:34:20.836Z",
+  "timestamp": "2026-03-26T04:27:13.684Z",
   "articles": [
     {
-      "slug": "2026-03-25-trump-xi-summit-may-14-trade-iran-delay",
-      "title": "Trump to Travel to China on May 14-15 for Summit With Xi",
+      "slug": "2026-03-26-eu-mercosur-trade-deal-may-1-parliament-bypassed",
+      "title": "EU-Mercosur trade deal to apply provisionally from May 1",
       "category": "economy",
-      "source": "Al Jazeera Online"
+      "source": "RTE.ie"
     },
     {
-      "slug": "2026-03-25-zelenskyy-us-security-donbas-condition",
-      "title": "Exclusive-US links security guarantees to Ukraine giving up Donbas, Zelenskiy says",
+      "slug": "2026-03-26-iran-hormuz-friendly-nations-china-india-russia",
+      "title": "Hormuz route opened for India: Iran FM Araghchi",
       "category": "politics",
-      "source": "Yahoo News UK"
+      "source": "Hindustan Times"
     },
     {
-      "slug": "2026-03-25-raskin-trump-classified-docs-business-motive",
-      "title": "Democrat alleges Trump 'sold out' US security in classified documents case",
+      "slug": "2026-03-26-no-kings-march-28-largest-us-protest",
+      "title": "\"No Kings\" rally in Philadelphia to shut down city streets on March 28",
       "category": "politics",
-      "source": "Al Jazeera Online"
+      "source": "CBS News"
     },
     {
-      "slug": "2026-03-25-sa-police-commissioner-masemola-criminal-charges",
-      "title": "Factions shred democratic SA's police as Masemola now faces criminal charges tied to Matlala",
+      "slug": "2026-03-26-palestinian-woman-israeli-prison-lawyer-barred",
+      "title": "I represent a Palestinian woman in Israeli prison. Now I can’t reach her",
       "category": "politics",
+      "source": "+972 Magazine"
+    },
+    {
+      "slug": "2026-03-26-polymarket-iran-war-bets-knesset-death-penalty",
+      "title": "Suspicious market bets on the Iran war; Knesset advances bill to execute Palestinians accused of “terrorism”; Trump sends 15-point proposal to Iran",
+      "category": "economy",
+      "source": "Drop Site News"
+    },
+    {
+      "slug": "2026-03-26-petrosa-1-2bn-gas-deal-corruption-south-africa",
+      "title": "Delinquent soccer club boss seeks to revive $1.2bn gas deal with PetroSA",
+      "category": "economy",
       "source": "Daily Maverick"
     },
     {
-      "slug": "2026-03-25-egypt-eipr-bus-harassment-acquittal-appeal",
-      "title": "EIPR calls on prosecution to appeal acquittal of 'bus harassment' defendant",
+      "slug": "2026-03-26-toxic-fallout-gulf-war-decades-contamination",
+      "title": "Toxic fallout from Gulf war ‘could last decades’",
+      "category": "science",
+      "source": "SciDev.Net"
+    },
+    {
+      "slug": "2026-03-26-google-q-day-2029-quantum-encryption-broken",
+      "title": "Google bumps up Q Day estimate to 2029, far sooner than previously...",
+      "category": "science",
+      "source": "Ars Technica"
+    },
+    {
+      "slug": "2026-03-26-dengue-observatory-88-countries-global-surveillance",
+      "title": "Dengue observatory eyes global disease surveillance",
+      "category": "science",
+      "source": "SciDev.Net"
+    },
+    {
+      "slug": "2026-03-26-disney-sora-openai-billion-dollar-failure",
+      "title": "Disney's Sora Disaster Shows AI Will Not Revolutionize Hollywood",
+      "category": "tech",
+      "source": "404 Media"
+    },
+    {
+      "slug": "2026-03-26-tesla-model-3-computer-desk-crashed-car-parts",
+      "title": "Running Tesla Model 3's computer on my desk using parts from crashed cars",
+      "category": "tech",
+      "source": "Hacker News"
+    },
+    {
+      "slug": "2026-03-26-hezbollah-khiam-guerrilla-defense-israel-stalemate",
+      "title": "Hezbollah holds off advances at Khiam, Taybeh as Israel pushes to cut off southern towns",
       "category": "politics",
       "source": "Mada Masr"
     },
     {
-      "slug": "2026-03-25-pakistan-petroleum-dealers-postpone-strike-war",
-      "title": "Petroleum dealers postpone strike in light of Middle East conflict",
-      "category": "economy",
-      "source": "Dawn"
-    },
-    {
-      "slug": "2026-03-25-brain-connectivity-atlas-lifespan-nature",
-      "title": "First atlas of brain organization shows development over a lifetime",
-      "category": "science",
-      "source": "Nature"
-    },
-    {
-      "slug": "2026-03-25-nasa-moon-base-lunar-viceroy-10b-plan",
-      "title": "We got an audience with the \"Lunar Viceroy\" to talk how NASA will build a Moon base",
-      "category": "science",
-      "source": "Ars Technica"
-    },
-    {
-      "slug": "2026-03-25-wmo-climate-report-energy-imbalance-record",
-      "title": "Earth's Climate 'Out Of Balance' As Heat Surges",
-      "category": "science",
-      "source": "The Weather Channel"
-    },
-    {
-      "slug": "2026-03-25-brinc-police-drone-starlink-vehicle-chase",
-      "title": "BRINC's new police drone uses Starlink, carries Narcan, chases vehicles at 60mph",
-      "category": "tech",
-      "source": "Ars Technica"
-    },
-    {
-      "slug": "2026-03-25-meta-horizon-worlds-shutdown-communities-abandoned",
-      "title": "The People Left Behind by the Metaverse",
-      "category": "tech",
-      "source": "404 Media"
+      "slug": "2026-03-26-border-patrol-agents-tracked-bellingcat-osint",
+      "title": "Agents of Chaos: Unpacking the Actions of Border Patrol Agents Across the US",
+      "category": "politics",
+      "source": "Bellingcat"
     }
   ],
   "categories": [
@@ -75,14 +87,17 @@
     "tech"
   ],
   "sources": [
-    "Al Jazeera Online",
-    "Yahoo News UK",
+    "RTE.ie",
+    "Hindustan Times",
+    "CBS News",
+    "+972 Magazine",
+    "Drop Site News",
     "Daily Maverick",
-    "Mada Masr",
-    "Dawn",
-    "Nature",
+    "SciDev.Net",
     "Ars Technica",
-    "The Weather Channel",
-    "404 Media"
+    "404 Media",
+    "Hacker News",
+    "Mada Masr",
+    "Bellingcat"
   ]
 }
