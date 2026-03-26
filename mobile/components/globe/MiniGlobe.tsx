@@ -30,7 +30,7 @@ import {
 } from 'react-native-reanimated';
 import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
 import { bgAlpha, COLORS } from '../../constants/theme';
-import type { Article } from '../../types';
+import type { Article, HeatmapPoint } from '../../types';
 import { COUNTRY_TZ } from './coordinates';
 import { countries, createSkiaPathContext, land } from './shared';
 import { getCoords } from './storyDots';
@@ -201,6 +201,7 @@ export interface MiniGlobeRef {
 
 interface MiniGlobeProps {
   articles: Article[];
+  heatmapPoints?: HeatmapPoint[];
   scrollY: SharedValue<number>;
   itemHeight: number;
   width: number;
@@ -234,6 +235,7 @@ interface GlobeState {
 
 export const MiniGlobe = memo(function MiniGlobe({
   articles,
+  heatmapPoints,
   scrollY,
   itemHeight,
   width,
@@ -265,54 +267,66 @@ export const MiniGlobe = memo(function MiniGlobe({
     });
   }, [articles]);
 
-  // Cluster articles by location, rank by total eventCoverage → top 5 coverage hotspots
+  // Cluster heatmap points with 18h half-life time-decay → top 8 coverage hotspots
+  const DECAY_LAMBDA = Math.LN2 / 18; // 18h half-life
   const hotspots = useMemo((): Hotspot[] => {
-    const clusters = new Map<
-      string,
-      {
-        lat: number;
-        lng: number;
-        total: number;
-        labels: Set<string>;
-        countryName: string | null;
+    // Fallback to article-based clustering when heatmap data unavailable
+    if (!heatmapPoints || heatmapPoints.length === 0) {
+      const clusters = new Map<string, { lat: number; lng: number; total: number; countryName: string | null }>();
+      for (let i = 0; i < articles.length; i++) {
+        const geo = articleGeo[i];
+        if (!geo) continue;
+        const coverage = articles[i]!.eventCoverage ?? 0;
+        if (coverage <= 0) continue;
+        const key = `${Math.round(geo.lat * 2) / 2},${Math.round(geo.lng * 2) / 2}`;
+        const existing = clusters.get(key);
+        if (existing) existing.total += coverage;
+        else clusters.set(key, { lat: geo.lat, lng: geo.lng, total: coverage, countryName: geo.countryName });
       }
-    >();
-    for (let i = 0; i < articles.length; i++) {
-      const geo = articleGeo[i];
-      if (!geo) continue;
-      const a = articles[i]!;
-      const coverage = a.eventCoverage ?? 0;
-      if (coverage <= 0) continue;
-      // threadLabel before the colon is the story name (e.g. "Iran-US-Israel war")
-      const raw = a.threadLabel ?? a.title;
-      const label = raw.includes(':') ? raw.slice(0, raw.indexOf(':')) : raw;
-      // 0.5° grid (~55km) merges nearby datelines (e.g. Gaza + Ramallah)
-      const key = `${Math.round(geo.lat * 2) / 2},${Math.round(geo.lng * 2) / 2}`;
+      const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 5);
+      if (sorted.length === 0) return [];
+      const logMax = Math.log(sorted[0]!.total + 1);
+      return sorted.map((z) => ({
+        lat: z.lat, lng: z.lng,
+        intensity: Math.log(z.total + 1) / logMax,
+        labels: [], countryName: z.countryName,
+      }));
+    }
+
+    const now = Date.now();
+    const clusters = new Map<string, { lat: number; lng: number; total: number }>();
+
+    for (const pt of heatmapPoints) {
+      const ageHours = (now - pt.t) / 3_600_000;
+      const decay = Math.exp(-DECAY_LAMBDA * ageHours);
+      const weight = Math.max(pt.c, 1) * decay;
+      if (weight < 0.05) continue;
+
+      // 0.5° grid (~55km) merges nearby datelines
+      const key = `${Math.round(pt.lat * 2) / 2},${Math.round(pt.lng * 2) / 2}`;
       const existing = clusters.get(key);
       if (existing) {
-        existing.total += coverage;
-        existing.labels.add(label);
+        existing.total += weight;
       } else {
-        clusters.set(key, {
-          lat: geo.lat,
-          lng: geo.lng,
-          total: coverage,
-          labels: new Set([label]),
-          countryName: geo.countryName,
-        });
+        clusters.set(key, { lat: pt.lat, lng: pt.lng, total: weight });
       }
     }
-    const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 5);
+
+    // Resolve country names only for top clusters
+    const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 8);
     if (sorted.length === 0) return [];
     const logMax = Math.log(sorted[0]!.total + 1);
-    return sorted.map((z) => ({
-      lat: z.lat,
-      lng: z.lng,
-      intensity: Math.log(z.total + 1) / logMax,
-      labels: [...z.labels],
-      countryName: z.countryName,
-    }));
-  }, [articles, articleGeo]);
+    return sorted.map((z) => {
+      const country = findCountry(z.lat, z.lng);
+      return {
+        lat: z.lat,
+        lng: z.lng,
+        intensity: Math.log(z.total + 1) / logMax,
+        labels: [], // labels resolved by storiesFor() in hitTest
+        countryName: (country?.properties as any)?.name ?? null,
+      };
+    });
+  }, [heatmapPoints, articles, articleGeo]);
 
   // Flat coord array for UI thread interpolation
   const coordsSV = useSharedValue<(number | null)[]>([]);
@@ -540,12 +554,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Then check hotspot glows directly
       for (const z of state.hotspotGlows) {
         if (isNear(x, y, z.x, z.y, 900)) {
+          const name = z.countryName ?? '';
+          const tz = name ? COUNTRY_TZ[name] : undefined;
           return {
-            countryName: '',
+            countryName: name,
             location: null,
-            localTime: null,
-            data: null,
-            hotspotLabels: z.labels,
+            localTime: tz ? formatLocalTime(tz) : null,
+            data: name ? COUNTRY_DATA[name] ?? null : null,
+            hotspotLabels: name ? storiesFor(name) : z.labels,
           };
         }
       }

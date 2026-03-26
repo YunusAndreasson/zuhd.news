@@ -20,7 +20,7 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS } from '../constants/theme';
 import { hapticNotification, hapticTick } from '../lib/haptics';
-import type { Article, ContextPressHandler, SourcePressHandler } from '../types';
+import type { Article, ContextPressHandler, HeatmapPoint, SourcePressHandler } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
 
@@ -30,6 +30,7 @@ export interface ArticleListRef {
 
 interface ArticleListProps {
   articles: Article[];
+  heatmapPoints?: HeatmapPoint[];
   viewportHeight: number;
   catIndex: number;
   lastSeenAt: number;
@@ -47,6 +48,7 @@ interface ArticleListProps {
 
 export const ArticleList = memo(function ArticleList({
   articles,
+  heatmapPoints,
   viewportHeight,
   catIndex,
   lastSeenAt,
@@ -226,6 +228,7 @@ export const ArticleList = memo(function ArticleList({
       <MiniGlobe
         ref={globeRef}
         articles={sortedArticles}
+        heatmapPoints={heatmapPoints}
         scrollY={scrollY}
         itemHeight={itemHeight}
         width={screenWidth}

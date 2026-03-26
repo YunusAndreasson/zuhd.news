@@ -66,3 +66,10 @@ export type SourcePressHandler = (
   allSources?: ArticleSource[],
   divergence?: number | null,
 ) => void;
+
+export interface HeatmapPoint {
+  lat: number;
+  lng: number;
+  c: number; // eventCoverage (0 if null)
+  t: number; // addedAt timestamp ms
+}

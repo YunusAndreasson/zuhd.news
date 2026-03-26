@@ -30,6 +30,7 @@ export function useArticles() {
   const [error, setError] = useState<string | null>(null);
   const [lastSeenAt, setLastSeenAt] = useState(0);
   const prevSlugsRef = useRef<Set<string>>(new Set());
+  const [generated, setGenerated] = useState<string | null>(null);
   const lastGeneratedRef = useRef<string | null>(null);
   const refreshingRef = useRef(false);
   const lastActiveRef = useRef(Date.now());
@@ -45,6 +46,7 @@ export function useArticles() {
 
   const applyFeed = useCallback((data: FeedResponse): number => {
     lastGeneratedRef.current = data.generated;
+    setGenerated(data.generated);
     setBriefing(data.briefing);
     const newGrouped = { ...emptyGrouped, ...data.categories } as GroupedArticles;
     const allSlugs = Object.values(newGrouped)
@@ -170,5 +172,5 @@ export function useArticles() {
     }
   }, [fetchFeed]);
 
-  return { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey };
+  return { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey, generated };
 }

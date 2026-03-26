@@ -55,6 +55,7 @@ import {
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useContextBrief } from '../hooks/useContextBrief';
+import { useHeatmap } from '../hooks/useHeatmap';
 import { hapticImpact, hapticTick } from '../lib/haptics';
 import type { ArticleSource } from '../types';
 
@@ -87,8 +88,9 @@ function CountryRow({ label, value }: { label: string; value: string | null | un
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
-  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey } =
+  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey, generated } =
     useArticles();
+  const heatmapPoints = useHeatmap(generated);
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
   const briefingPlayer = useBriefingPlayer(
@@ -307,6 +309,7 @@ export default function HomeScreen() {
                 <ArticleList
                   ref={listRefs[catIndex]}
                   articles={grouped[cat]}
+                  heatmapPoints={heatmapPoints}
                   viewportHeight={pagerHeight}
                   catIndex={catIndex}
                   lastSeenAt={lastSeenAt}

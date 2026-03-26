@@ -423,6 +423,21 @@ writeFileSync(join(DIST_DIR, 'api', 'feed.json'), JSON.stringify({
 }))
 console.log(`  Built: api/feed.json (${apiArticles.length} articles, pre-grouped)`)
 
+// Heatmap endpoint — 72h of geo-located article points for globe time-decay rendering
+const HEATMAP_WINDOW_MS = 72 * 60 * 60 * 1000
+const heatmapCutoff = Date.now() - HEATMAP_WINDOW_MS
+const heatmapPoints = sorted
+  .filter(a => a.addedAt >= heatmapCutoff && a.meta.lat != null && a.meta.lng != null)
+  .map(a => ({
+    lat: Number(a.meta.lat),
+    lng: Number(a.meta.lng),
+    c: Number(a.meta.eventCoverage) || 0,
+    t: Math.round(a.addedAt),
+  }))
+writeFileSync(join(DIST_DIR, 'api', 'heatmap.json'),
+  JSON.stringify({ generated, points: heatmapPoints }))
+console.log(`  Built: api/heatmap.json (${heatmapPoints.length} points, 72h)`)
+
 // Atom feed for RSS readers
 const escXml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 const feedArticles = sorted.filter(a => a.addedAt >= cutoff).slice(0, 30)
