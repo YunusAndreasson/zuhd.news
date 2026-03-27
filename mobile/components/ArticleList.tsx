@@ -1,7 +1,6 @@
 import {
   memo,
   useCallback,
-  useEffect,
   useEffectEvent,
   useImperativeHandle,
   useMemo,
@@ -15,10 +14,10 @@ import Animated, {
   useAnimatedReaction,
   useAnimatedRef,
   useAnimatedScrollHandler,
-  useSharedValue,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { COLORS } from '../constants/theme';
+import { useScrollState } from '../hooks/useScrollState';
 import { hapticNotification, hapticTick } from '../lib/haptics';
 import type { Article, ContextPressHandler, HeatmapPoint, SourcePressHandler } from '../types';
 import { ArticlePage } from './ArticlePage';
@@ -77,25 +76,18 @@ export const ArticleList = memo(function ArticleList({
   const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight;
   const contentStyle = useMemo(() => ({ paddingBottom: insets.bottom }), [insets.bottom]);
-  const scrollY = useSharedValue(0);
+  const { scrollY, currentIndex, setCurrentIndex, overscrollFired, caughtUpFired, overscrollTimer } =
+    useScrollState(resetKey, catIndex, progressesSV);
   const listRef = useAnimatedRef<Animated.FlatList<Article>>();
-  const [currentIndex, setCurrentIndex] = useState(0);
   const globeRef = useRef<MiniGlobeRef>(null);
   const containerRef = useRef<View>(null);
   const containerTopRef = useRef(0);
-  const overscrollFired = useSharedValue(false);
-  const overscrollTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const resetOverscroll = useCallback(() => {
     if (overscrollTimer.current) clearTimeout(overscrollTimer.current);
     overscrollTimer.current = setTimeout(() => {
       overscrollFired.value = false;
     }, 800);
-  }, [overscrollFired]);
-  useEffect(() => {
-    return () => {
-      if (overscrollTimer.current) clearTimeout(overscrollTimer.current);
-    };
-  }, []);
+  }, [overscrollFired, overscrollTimer]);
   const fireEndReached = useEffectEvent(() => {
     onEndReached?.(catIndex);
   });
@@ -148,7 +140,6 @@ export const ArticleList = memo(function ArticleList({
     return idx > 0 ? idx : -1;
   }, [sortedArticles, lastSeenAt]);
 
-  const caughtUpFired = useRef(false);
   const handleSnap = useCallback(
     (idx: number) => {
       if (earlierIndex > 0 && idx === earlierIndex - 1 && !caughtUpFired.current) {

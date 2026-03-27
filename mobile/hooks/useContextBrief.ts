@@ -32,13 +32,17 @@ export function useContextBrief() {
         if (oldest !== undefined) cache.delete(oldest);
       }
       cache.set(threadId, data);
-      if (activeId.current === threadId) {
+      if (activeId.current === threadId || activeId.current === null) {
         setBrief(data);
       }
     } catch {
-      // Sheet stays open with loading state cleared; user can dismiss and retry
-    } finally {
+      // Active request failed — clear activeId so a pending successful
+      // response (from a previous request) can still be applied
       if (activeId.current === threadId) {
+        activeId.current = null;
+      }
+    } finally {
+      if (activeId.current === threadId || activeId.current === null) {
         setLoading(false);
       }
     }

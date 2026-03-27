@@ -9,7 +9,15 @@ export function getCoords(article: Article): [number, number] | null {
 
   // 2. Dateline: "Tehran — ..." in the first sentence
   const first = article.sentences[0] ?? '';
-  const dashIdx = first.indexOf(' \u2014 ');
+  const dashPatterns = [' \u2014 ', ' \u2013 ', ' --- ', ' -- '];
+  let dashIdx = -1;
+  for (const pat of dashPatterns) {
+    const idx = first.indexOf(pat);
+    if (idx > 0 && idx < 40) {
+      dashIdx = idx;
+      break;
+    }
+  }
   if (dashIdx > 0 && dashIdx < 40) {
     const city = first.slice(0, dashIdx).toLowerCase().trim();
     const c = CITY_COORDS[city];

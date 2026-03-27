@@ -2,9 +2,9 @@ import type { ReactNode } from 'react';
 import { Linking, StyleSheet, Text } from 'react-native';
 import { COLORS, FONT, TYPOGRAPHY } from '../constants/theme';
 
-type Segment = { type: 'text' | 'bold' | 'italic' | 'link'; text: string; url?: string };
+export type Segment = { type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link'; text: string; url?: string };
 
-function smartTypography(s: string): string {
+export function smartTypography(s: string): string {
   return s
     .replace(/(\s|^)"(\S)/g, '$1\u201c$2') // opening double quote
     .replace(/"/g, '\u201d') // closing double quote
@@ -20,7 +20,7 @@ function smartTypography(s: string): string {
     .replace(/\b2\/3\b/g, '\u2154'); // ⅔
 }
 
-function parseInline(line: string): Segment[] {
+export function parseInline(line: string): Segment[] {
   const segments: Segment[] = [];
   const regex = /\*\*(.+?)\*\*|\*(.+?)\*|\[([^\]]+)\]\(([^)]+)\)/g;
   let lastIndex = 0;
@@ -30,7 +30,26 @@ function parseInline(line: string): Segment[] {
     if (match.index > lastIndex) {
       segments.push({ type: 'text', text: smartTypography(line.slice(lastIndex, match.index)) });
     }
-    if (match[1]) segments.push({ type: 'bold', text: smartTypography(match[1]) });
+    if (match[1]) {
+      // Parse nested italic (*...*) within bold content
+      const boldContent = match[1];
+      const italicRe = /\*(.+?)\*/g;
+      let bLast = 0;
+      let im;
+      let hasNested = false;
+      while ((im = italicRe.exec(boldContent)) !== null) {
+        hasNested = true;
+        if (im.index > bLast)
+          segments.push({ type: 'bold', text: smartTypography(boldContent.slice(bLast, im.index)) });
+        segments.push({ type: 'boldItalic', text: smartTypography(im[1]!) });
+        bLast = italicRe.lastIndex;
+      }
+      if (!hasNested) {
+        segments.push({ type: 'bold', text: smartTypography(boldContent) });
+      } else if (bLast < boldContent.length) {
+        segments.push({ type: 'bold', text: smartTypography(boldContent.slice(bLast)) });
+      }
+    }
     else if (match[2]) segments.push({ type: 'italic', text: smartTypography(match[2]) });
     else if (match[3])
       segments.push({ type: 'link', text: smartTypography(match[3]), url: match[4] });
@@ -54,6 +73,12 @@ function renderSegments(segments: Segment[]): ReactNode[] {
       case 'italic':
         return (
           <Text key={j} style={styles.italic}>
+            {seg.text}
+          </Text>
+        );
+      case 'boldItalic':
+        return (
+          <Text key={j} style={styles.boldItalic}>
             {seg.text}
           </Text>
         );
@@ -119,6 +144,10 @@ const styles = StyleSheet.create({
     fontFamily: FONT.bold,
   },
   italic: {
+    fontStyle: 'italic',
+  },
+  boldItalic: {
+    fontFamily: FONT.bold,
     fontStyle: 'italic',
   },
   link: {

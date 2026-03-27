@@ -10,6 +10,7 @@ import Animated, {
   useReducedMotion,
 } from 'react-native-reanimated';
 import { COLORS, FONT, LAYOUT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
+import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact } from '../lib/haptics';
 import { renderSentences } from '../lib/markdown';
 import type { Article, ContextPressHandler, SourcePressHandler } from '../types';
@@ -33,15 +34,6 @@ interface ArticlePageProps {
   onCountryPress?: (result: TapResult) => void;
   tick?: number;
   isBreaking?: boolean;
-}
-
-function formatTimeAgo(addedAt: number): string {
-  const ms = Date.now() - addedAt;
-  const hours = Math.floor(ms / 3600000);
-  if (hours < 1) return 'just now';
-  if (hours < 24) return `${hours}h ago`;
-  const date = new Date(addedAt);
-  return date.toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 }
 
 function GlobeTapZone({
@@ -107,12 +99,10 @@ export const ArticlePage = memo(function ArticlePage({
   });
 
   // Scale fonts down for long articles so content fits the snap viewport.
-  const fontScale = useMemo(() => {
-    const contentLength = article.title.length * 2 + article.sentences.join(' ').length;
-    const threshold = 450;
-    if (contentLength <= threshold) return 1;
-    return Math.max(0.95, threshold / contentLength);
-  }, [article.title, article.sentences]);
+  const fontScale = useMemo(
+    () => computeFontScale(article.title, article.sentences),
+    [article.title, article.sentences],
+  );
 
   const titleFontSize = Math.round(TYPOGRAPHY.sizeH1 * fontScale);
   const bodyFontSize = fontScale < 1 ? Math.round(TYPOGRAPHY.sizeBase * fontScale) : undefined;
