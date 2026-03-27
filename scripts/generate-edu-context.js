@@ -100,7 +100,8 @@ const args = [
   '--model', 'opus',
   '--effort', 'medium',
   '--no-session-persistence',
-  '--max-turns', '5',
+  '--max-turns', '3',
+  '--output-format', 'json',
   '-p', fullPrompt,
 ]
 const result = spawnSync('claude', args, {
@@ -115,23 +116,35 @@ if (result.status !== 0) {
   process.exit(1)
 }
 
-const output = result.stdout?.trim()
-if (!output) {
+const raw = result.stdout?.trim()
+if (!raw) {
   console.log('  Empty response — skipping.')
   process.exit(0)
 }
 
-// --- Parse JSON ---
+// --- Parse JSON (--output-format json returns {type:"result", result:"..."} envelope) ---
 let parsed
 try {
-  const jsonStr = output.replace(/^```json\s*\n?/m, '').replace(/\n?```\s*$/m, '').trim()
-  const start = jsonStr.indexOf('{')
-  const end = jsonStr.lastIndexOf('}')
-  if (start === -1 || end === -1) throw new Error('No JSON object found')
-  parsed = JSON.parse(jsonStr.slice(start, end + 1))
+  const outer = JSON.parse(raw)
+  if (outer.type === 'result') {
+    // Envelope — extract inner result
+    if (outer.result == null) throw new Error('Claude returned no text result (tool use may have exhausted max-turns)')
+    const text = String(outer.result)
+    try {
+      parsed = JSON.parse(text)
+    } catch {
+      const start = text.indexOf('{')
+      const end = text.lastIndexOf('}')
+      if (start === -1 || end === -1) throw new Error('No JSON object found in result')
+      parsed = JSON.parse(text.slice(start, end + 1))
+    }
+  } else {
+    // No envelope — raw output is the parsed data
+    parsed = outer
+  }
 } catch (e) {
   console.log(`  Failed to parse JSON: ${e.message}`)
-  console.log(`  Raw output (first 300 chars): ${output.slice(0, 300)}`)
+  console.log(`  Raw output (first 300 chars): ${raw.slice(0, 300)}`)
   process.exit(1)
 }
 

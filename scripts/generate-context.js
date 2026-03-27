@@ -51,7 +51,7 @@ if (qualifying.length === 0) {
 console.log(`=== Context generation: ${qualifying.length} thread(s) qualifying ===`)
 
 // --- Helper: call Claude CLI ---
-function callClaude(prompt, { maxTurns = 1, effort = 'high', model = 'opus', allowedTools = null } = {}) {
+function callClaude(prompt, { maxTurns = 1, effort = 'high', model = 'opus', allowedTools = null, outputFormat = null } = {}) {
   const env = { ...process.env }
   delete env.CLAUDECODE
   const args = [
@@ -61,6 +61,7 @@ function callClaude(prompt, { maxTurns = 1, effort = 'high', model = 'opus', all
     '--max-turns', String(maxTurns),
   ]
   if (allowedTools) args.push('--allowedTools', allowedTools)
+  if (outputFormat) args.push('--output-format', outputFormat)
   args.push('-p', prompt)
   const result = spawnSync('claude', args, { encoding: 'utf-8', timeout: 300_000, maxBuffer: 2 * 1024 * 1024, env })
 
@@ -68,7 +69,18 @@ function callClaude(prompt, { maxTurns = 1, effort = 'high', model = 'opus', all
     console.error('Claude CLI error:', result.stderr?.slice(0, 500))
     return null
   }
-  return result.stdout?.trim() || null
+  const raw = result.stdout?.trim() || null
+  if (raw && outputFormat === 'json') {
+    try {
+      const outer = JSON.parse(raw)
+      if (outer.type === 'result') {
+        if (outer.result == null) { console.error('Claude returned no text result'); return null }
+        return outer.result
+      }
+      return raw // not an envelope — return as-is
+    } catch { return raw }
+  }
+  return raw
 }
 
 // --- Helper: gather Wikipedia titles for a thread ---
@@ -196,7 +208,8 @@ Now generate the context brief as a JSON array of timeline entries. Output ONLY 
   const brief = callClaude(briefPrompt, {
     effort: 'high',
     model: 'opus',
-    maxTurns: 1
+    maxTurns: 1,
+    outputFormat: 'json'
   })
 
   if (!brief) {
@@ -204,19 +217,22 @@ Now generate the context brief as a JSON array of timeline entries. Output ONLY 
     continue
   }
 
-  // Parse JSON timeline from output — strip markdown fences if present
+  // Parse JSON timeline from output — try direct parse, fall back to bracket extraction
   let timeline
   try {
-    const jsonStr = brief.replace(/^```json\s*\n?/m, '').replace(/\n?```\s*$/m, '').trim()
-    // Find first [ and last ] to extract the array
-    const start = jsonStr.indexOf('[')
-    const end = jsonStr.lastIndexOf(']')
-    if (start === -1 || end === -1) throw new Error('No JSON array found')
-    timeline = JSON.parse(jsonStr.slice(start, end + 1))
+    const text = String(brief)
+    try {
+      timeline = JSON.parse(text)
+    } catch {
+      const start = text.indexOf('[')
+      const end = text.lastIndexOf(']')
+      if (start === -1 || end === -1) throw new Error('No JSON array found')
+      timeline = JSON.parse(text.slice(start, end + 1))
+    }
     if (!Array.isArray(timeline)) throw new Error('Not an array')
   } catch (e) {
     console.log(`  Failed to parse JSON: ${e.message} — skipping.`)
-    console.log(`  Raw output (first 300 chars): ${brief.slice(0, 300)}`)
+    console.log(`  Raw output (first 300 chars): ${String(brief).slice(0, 300)}`)
     continue
   }
 

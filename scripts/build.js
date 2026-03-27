@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, existsSync, rmSync, statSync } from 'fs'
 import { join, basename } from 'path'
 import { parseFrontmatter } from './lib/frontmatter.js'
+import { splitSentences as splitBodySentencesShared } from './lib/sentences.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -64,7 +65,7 @@ const markdownToHtml = (md) => {
   return result.join('\n')
 }
 
-const ABBREVS = /(?:St|Mr|Mrs|Ms|Dr|Jr|Sr|vs|Gen|Gov|Sgt|Col|Cpl|Pvt|Prof|Rev|Rep|Sen|Inc|Ltd|Corp|Dept|Univ|Est|approx|[A-Z])\.\s+/g
+const ABBREVS = /(?:St|Mr|Mrs|Ms|Dr|Jr|Sr|vs|Gen|Gov|Sgt|Col|Cpl|Pvt|Prof|Rev|Rep|Sen|Inc|Ltd|Corp|Dept|Univ|Est|approx|No|[A-Z])\.\s+/g
 const splitSentences = (html) =>
   html.replace(/<p>([\s\S]*?)<\/p>/g, (match, inner) => {
     const masked = inner.replace(ABBREVS, m => m.replace('. ', '.\x00'))
@@ -325,11 +326,8 @@ const lastCycleTs = existsSync(lastCyclePath)
   ? (JSON.parse(readFileSync(lastCyclePath, 'utf-8')).timestamp ?? '')
   : ''
 
-// Split body into sentences — same logic as web's .s { display: block }
-const splitBodySentences = (text) => {
-  const masked = text.trim().replace(ABBREVS, m => m.replace('. ', '.\x00'))
-  return masked.split(/(?<=[.!?])\s+(?=[A-Z])/).map(s => s.replace(/\.\x00/g, '. ')).filter(Boolean)
-}
+// Split body into sentences — shared with validate-articles.js
+const splitBodySentences = splitBodySentencesShared
 
 // (threadLookup moved above buildArticle calls)
 

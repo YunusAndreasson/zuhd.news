@@ -130,6 +130,11 @@ try {
   process.exit(1)
 }
 
+// Strip markdown fences in case Claude wraps output in ```xml or ```ssml
+claudeOutput = claudeOutput
+  .replace(/^```(?:xml|ssml)?\s*\n?/m, '')
+  .replace(/\n?```\s*$/m, '')
+
 // Extract SSML from output — greedy match to capture the last </speak> in case
 // Claude wraps output in extra tags that contain inner </speak>-like sequences
 let ssml

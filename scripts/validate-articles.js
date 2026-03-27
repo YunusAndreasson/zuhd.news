@@ -3,8 +3,7 @@
 // Moves malformed files to .bad so they don't get deployed.
 import { readFileSync, existsSync, renameSync } from 'fs'
 import { resolve } from 'path'
-
-const SENTENCE_RE = /(?<=[.!?][\u201C\u201D\u2018\u2019"']?)\s+(?=[A-Z\u00C0-\u024F])/
+import { splitSentences } from './lib/sentences.js'
 
 const files = readFileSync('/tmp/zuhd-new-articles.txt', 'utf8').trim().split('\n').filter(Boolean)
 let bad = 0
@@ -29,7 +28,7 @@ for (const f of files) {
   }
 
   const body = raw.replace(/^---[\s\S]*?---\s*/, '').trim()
-  const sentences = body.split(SENTENCE_RE).filter(s => s.length > 5)
+  const sentences = splitSentences(body).filter(s => s.length > 5)
   if (sentences.length < 2 || sentences.length > 5) {
     console.log(`SKIP (${sentences.length} sentences): ` + f)
     renameSync(full, full + '.bad'); bad++; continue
