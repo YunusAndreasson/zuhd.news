@@ -7,19 +7,9 @@ export function getCoords(article: Article): [number, number] | null {
     return [article.lat, article.lng];
   }
 
-  // 2. Dateline: "Tehran — ..." in the first sentence
-  const first = article.sentences[0] ?? '';
-  const dashPatterns = [' \u2014 ', ' \u2013 ', ' --- ', ' -- '];
-  let dashIdx = -1;
-  for (const pat of dashPatterns) {
-    const idx = first.indexOf(pat);
-    if (idx > 0 && idx < 40) {
-      dashIdx = idx;
-      break;
-    }
-  }
-  if (dashIdx > 0 && dashIdx < 40) {
-    const city = first.slice(0, dashIdx).toLowerCase().trim();
+  // 2. Location field from frontmatter
+  if (article.location) {
+    const city = article.location.toLowerCase().trim();
     const c = CITY_COORDS[city];
     if (c) return c;
   }

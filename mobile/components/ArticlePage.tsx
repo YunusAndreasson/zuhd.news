@@ -191,7 +191,7 @@ export const ArticlePage = memo(function ArticlePage({
                   }
                 />
               ) : null}
-              <ActionLabel label="share" onPress={handleShare} />
+              <ActionLabel label="share" onPress={handleShare} icon="share-outline" />
             </View>
           </View>
         </Animated.View>

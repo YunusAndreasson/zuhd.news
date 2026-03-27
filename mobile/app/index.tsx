@@ -20,7 +20,6 @@ import {
   useEffect,
   useRef,
   useState,
-  useTransition,
 } from 'react';
 import {
   Dimensions,
@@ -189,18 +188,15 @@ export default function HomeScreen() {
   const pagerOffset = useSharedValue(0);
   const categoryProgresses = useSharedValue([0, 0, 0, 0]);
 
-  const [, startTransition] = useTransition();
 
   const onPageSelected = useCallback(
     (e: PagerViewOnPageSelectedEvent) => {
       const page = e.nativeEvent.position;
       pagerOffset.value = page;
       hapticTick();
-      startTransition(() => {
-        setCurrentCategory(page);
-      });
+      setCurrentCategory(page);
     },
-    [pagerOffset, startTransition],
+    [pagerOffset],
   );
 
   const onPageScroll = useCallback(
@@ -653,15 +649,15 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.sm,
   },
   hotspotSection: {
-    paddingBottom: SPACING.md,
-    marginBottom: SPACING.sm,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: COLORS.rule,
+    marginBottom: SPACING.md,
   },
   hotspotValue: {
     fontFamily: FONT.regular,
     fontSize: TYPOGRAPHY.sizeSm,
     color: COLORS.text,
+    paddingVertical: SPACING.sm,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: COLORS.rule,
   },
   countryIdentity: {
     flexDirection: 'row',

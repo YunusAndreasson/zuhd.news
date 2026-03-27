@@ -7,7 +7,7 @@ lat: 38.90
 lng: -77.04
 sources:
   - name: "STAT"
-    url: "https://www.statnews.com/2026/03/25/iran-biological-materials-bioweapon-surveillance/",
+    url: "https://www.statnews.com/2026/03/25/iran-biological-materials-bioweapon-surveillance/"
     country: "US"
 eventCoverage: null
 concepts:

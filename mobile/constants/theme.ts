@@ -19,6 +19,8 @@ export const COLORS = {
   black: '#000000',
   atmosphere: '#334455',
   shadow: 'rgba(0,0,0,0.6)',
+  toastBg: 'rgba(48,48,48,0.92)',
+  toastBorder: 'rgba(255,255,255,0.08)',
   toneFavorable: '#6b8f71', // muted sage
   toneUnfavorable: '#8f6b6b', // muted rose
   toneNeutral: '#6b7f8f', // muted slate

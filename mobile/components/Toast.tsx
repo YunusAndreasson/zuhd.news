@@ -1,13 +1,14 @@
-import { useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import Animated, {
+  Easing,
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { COLORS, FONT, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { COLORS, FONT, PRESSED_STYLE, SPACING, TYPOGRAPHY } from '../constants/theme';
 
 type ToastPosition = 'top' | 'bottom';
 
@@ -17,13 +18,16 @@ export interface ToastRef {
 
 const TOAST_VISIBLE_MS = 4000;
 const TOAST_SLIDE_OFFSET = SPACING.xxl;
+const EASE_IN = { duration: 200, easing: Easing.in(Easing.ease) };
+const EASE_OUT = { duration: 250, easing: Easing.out(Easing.ease) };
 
-export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
+export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
   const insets = useSafeAreaInsets();
   const [message, setMessage] = useState('');
   const [pos, setPos] = useState<ToastPosition>('bottom');
   const [visible, setVisible] = useState(false);
   const onPressRef = useRef<(() => void) | undefined>(undefined);
+  const posRef = useRef<ToastPosition>('bottom');
   const opacity = useSharedValue(0);
   const translateY = useSharedValue<number>(TOAST_SLIDE_OFFSET);
 
@@ -36,36 +40,27 @@ export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
   }, []);
 
   const dismiss = useCallback(() => {
-    opacity.value = withTiming(0, { duration: 200 }, (finished) => {
+    const offset = posRef.current === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET;
+    opacity.value = withTiming(0, EASE_IN, (finished) => {
       if (finished) runOnJS(setVisible)(false);
     });
-    translateY.value = withTiming(pos === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET, {
-      duration: 200,
-    });
-  }, [opacity, translateY, pos]);
+    translateY.value = withTiming(offset, EASE_IN);
+  }, [opacity, translateY]);
 
   useImperativeHandle(ref, () => ({
     show: (msg: string, onPress?: () => void, position: ToastPosition = 'bottom') => {
       if (timerRef.current) clearTimeout(timerRef.current);
       setMessage(msg);
       setPos(position);
+      posRef.current = position;
       setVisible(true);
       onPressRef.current = onPress;
 
-      // Start off-screen in the correct direction
       translateY.value = position === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET;
-      opacity.value = withTiming(1, { duration: 200 });
-      translateY.value = withTiming(0, { duration: 250 });
+      opacity.value = withTiming(1, EASE_OUT);
+      translateY.value = withTiming(0, EASE_OUT);
 
-      timerRef.current = setTimeout(() => {
-        opacity.value = withTiming(0, { duration: 200 }, (finished) => {
-          if (finished) runOnJS(setVisible)(false);
-        });
-        translateY.value = withTiming(
-          position === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET,
-          { duration: 200 },
-        );
-      }, TOAST_VISIBLE_MS);
+      timerRef.current = setTimeout(dismiss, TOAST_VISIBLE_MS);
     },
   }));
 
@@ -90,13 +85,13 @@ export function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
       <Pressable
         onPress={handlePress}
         hitSlop={12}
-        style={({ pressed }) => pressed && { opacity: 0.5 }}
+        style={({ pressed }) => pressed && PRESSED_STYLE}
       >
         <Text style={styles.text}>{message}</Text>
       </Pressable>
     </Animated.View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -106,10 +101,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.md,
-    backgroundColor: COLORS.sheetBg,
+    backgroundColor: COLORS.toastBg,
     borderRadius: SPACING.sm,
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: COLORS.rule,
+    borderColor: COLORS.toastBorder,
     zIndex: 100,
   },
   text: {
