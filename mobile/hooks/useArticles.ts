@@ -61,7 +61,7 @@ export function useArticles() {
   }, []);
 
   const fetchFeed = useCallback(async (): Promise<number> => {
-    const res = await fetchWithTimeout(`${API_BASE}/api/feed.json`, 10000);
+    const res = await fetchWithTimeout(`${API_BASE}/api/feed.json`, 10000, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data: FeedResponse = await res.json();
     const addedCount = applyFeed(data);
@@ -172,5 +172,16 @@ export function useArticles() {
     }
   }, [fetchFeed]);
 
-  return { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey, generated };
+  return {
+    grouped,
+    briefing,
+    loading,
+    error,
+    lastSeenAt,
+    refresh,
+    retry,
+    tick,
+    resetKey,
+    generated,
+  };
 }

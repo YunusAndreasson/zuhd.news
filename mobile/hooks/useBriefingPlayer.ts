@@ -81,7 +81,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       try {
         playerRef.current?.clearLockScreenControls();
       } catch {}
-      playerRef.current?.remove();
+      playerRef.current?.release();
       playerRef.current = null;
       subRef.current = null;
       lockScreenActive.current = false;
@@ -206,7 +206,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       // Clean up partially-created player on failure
       subRef.current?.remove();
       subRef.current = null;
-      playerRef.current?.remove();
+      playerRef.current?.release();
       playerRef.current = null;
     }
   }, [date, savePosition, activateLockScreen]);

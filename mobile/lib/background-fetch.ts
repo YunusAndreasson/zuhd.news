@@ -22,7 +22,7 @@ export async function fetchAndCacheIfNew(): Promise<boolean> {
   }
 
   try {
-    const res = await fetchWithTimeout(`${API_BASE}/api/feed.json`, 10000);
+    const res = await fetchWithTimeout(`${API_BASE}/api/feed.json`, 10000, { cache: 'no-store' });
     if (!res.ok) return false;
     const feed: FeedResponse = await res.json();
     writeFeedCache(feed);
