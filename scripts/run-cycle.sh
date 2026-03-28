@@ -38,7 +38,7 @@ export ZUHD_MODEL="$CLAUDE_MODEL"
 # Tool whitelist for Claude CLI (--dangerously-skip-permissions is blocked as root)
 # Stage-specific tool sets: narrower access = fewer wrong turns
 # Selector no longer needs Bash — RSS feed is pre-fetched to /tmp/zuhd-feed.json before session starts
-TOOLS_SELECTOR="Read,Write,Edit,Glob,Grep"
+TOOLS_SELECTOR="Read,Write,Glob,Grep"
 TOOLS_WRITER="Read,Write"
 TOOLS_EDITOR="Read,Edit,Glob,Grep"
 TOOLS_REFLECT="Read,Write,Glob,Grep"
@@ -139,7 +139,12 @@ fi
 FUNNEL_SELECTED=$SELECTION_COUNT
 echo "Selection contains $SELECTION_COUNT stories" | tee -a "$LOG_FILE"
 
+# Stage 1.3: Enrich selection with full article bodies from /tmp/zuhd-feed.json
+# (selector reads slim feed without bodies to save tokens; bodies restored here for the writer)
+node scripts/enrich-selection.js 2>&1 | tee -a "$LOG_FILE"
+
 # Stage 1.5: Remove already-published stories from selection (deterministic, no LLM)
+# Runs BEFORE ledger update so only genuinely new stories enter the ledger
 node scripts/dedup-selection.js 2>&1 | tee -a "$LOG_FILE"
 SELECTION_COUNT=$(node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/zuhd-selection.json','utf8'));console.log(Array.isArray(s)?s.length:0)" 2>/dev/null || echo 0)
 FUNNEL_DEDUPED=$SELECTION_COUNT
@@ -149,6 +154,10 @@ if [ "$SELECTION_COUNT" -eq 0 ]; then
   echo "All selections already published — skipping writer and editor" | tee -a "$LOG_FILE"
   exit 0
 fi
+
+# Stage 1.6: Update story ledger deterministically (moved out of selector LLM to save turns)
+# Runs after dedup so only genuinely new stories get added to the ledger
+node scripts/update-ledger.js 2>&1 | tee -a "$LOG_FILE"
 
 # Stage 2: Writer — read selection (with pre-loaded article bodies), draft markdown
 echo "" | tee -a "$LOG_FILE"

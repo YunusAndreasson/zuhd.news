@@ -12,7 +12,7 @@ Every human life has equal dignity (karāmah). Truth (ḥaqq) is reported precis
 
 <task>
 1. Read `content/.last-cycle.json`, `content/.editorial-notes.md`, and `content/.story-ledger.json` (if they exist) for cycle context.
-2. Read `/tmp/zuhd-feed.json` — today's stories. The feed has two sections:
+2. Read `/tmp/zuhd-feed-slim.json` — today's stories (metadata only, bodies stripped). The feed has two sections:
    - `multiSourceStories`: 2-5 sources from different countries per story. These are the premium product — multi-perspective synthesis.
    - `nicheStories`: single-source stories from specialist outlets (404 Media, Nature, OCCRP, etc.). These provide editorial taste and dominate science/tech coverage.
 3. Select 12-13 stories from BOTH sections:
@@ -21,12 +21,12 @@ Every human life has equal dignity (karāmah). Truth (ḥaqq) is reported precis
    - Aim for at least 4-5 multi-source stories per cycle, primarily in politics/economy.
    - **Protect unique stories.** An OCCRP investigation, a Bellingcat OSINT piece, a +972 ground report, or a 404 Media privacy exposé is worth more than a generic multi-source event — even if it's single-source. These are stories no one else reports. But even a unique source must clear the bar: the story should reveal something systemic, set a precedent, or carry consequences beyond the immediate event. A local ruling or incident that doesn't illuminate a larger pattern belongs in that outlet's own feed, not in a 12-story global cycle.
 4. Save the selection to `/tmp/zuhd-selection.json` (schema below).
-5. Rewrite `content/.editorial-notes.md` (schema below).
-6. Update `content/.story-ledger.json` (schema below).
 
-Each story has: `title`, `description`, `link`, `pubDate`, `category`, `source`, `suggestedSlug`, `sources` (array with `name`, `url`, `country`, `body`), `eventUri`, `eventCoverage`, `concepts` (array of strings or `{label, uri}` objects), `sentimentDivergence`, `origin` ('api' or 'rss').
+Note: The story ledger and editorial notes are updated by a separate pipeline step after selection. You only need to read them for context — do not write to them.
 
-**Critical: copy `sources`, `eventUri`, `eventCoverage`, `sentimentDivergence`, and `concepts` from the feed entry to the selection entry exactly as they appear.** The `sources` array contains full article text the writer needs. If you reconstruct the JSON instead of copying, the writer gets empty bodies and cannot write the article.
+Each story has: `title`, `description`, `link`, `pubDate`, `category`, `source`, `suggestedSlug`, `sources` (array with `name`, `url`, `country`), `eventUri`, `eventCoverage`, `concepts` (array of strings or `{label, uri}` objects), `sentimentDivergence`, `origin` ('api' or 'rss').
+
+**Critical: copy `sources`, `eventUri`, `eventCoverage`, `sentimentDivergence`, and `concepts` from the feed entry to the selection entry exactly as they appear.**
 </task>
 
 <selection_criteria>
@@ -87,7 +87,7 @@ Save to `/tmp/zuhd-selection.json`:
     "category": "politics|economy|science|tech",
     "angle": "1-2 sentences: who is affected, what's surprising, what mechanism to highlight",
     "suggestedSlug": "YYYY-MM-DD-slug-words",
-    "sources": [{ "name": "...", "url": "...", "country": "IR", "body": "..." }],
+    "sources": [{ "name": "...", "url": "...", "country": "IR" }],
     "eventUri": "eng-12345678 or null",
     "eventCoverage": 268,
     "concepts": [{"label": "Iran", "uri": "http://en.wikipedia.org/wiki/Iran"}, {"label": "Strait of Hormuz", "uri": "http://en.wikipedia.org/wiki/Strait_of_Hormuz"}]
@@ -112,7 +112,7 @@ Good selection entry — multi-source, strong angle:
   "category": "economy",
   "angle": "SadaPay collapsed because its cloud infrastructure runs through AWS Bahrain, which drone strikes disrupted March 1. The angle: a fintech that serves 3 million Pakistanis went dark because of a war 2,000km away. Lead with the infrastructure dependency — tech readers will grasp the systemic risk immediately.",
   "suggestedSlug": "2026-03-24-sadapay-aws-bahrain-war-fintech",
-  "sources": [{"name": "Dawn", "url": "...", "country": "PK", "body": "..."}],
+  "sources": [{"name": "Dawn", "url": "...", "country": "PK"}],
   "eventUri": null,
   "eventCoverage": null,
   "concepts": ["SadaPay", "AWS", "Bahrain"]
@@ -131,7 +131,7 @@ Good selection entry — niche, specific:
   "category": "tech",
   "angle": "An open-source worm compromised 28 npm packages in 60 seconds, wiping machines geolocated in Iran. Lead with the 60-second propagation — this is supply chain warfare, not just malware. The reader is a developer who uses npm daily.",
   "suggestedSlug": "2026-03-24-supply-chain-worm-npm-iran",
-  "sources": [{"name": "Ars Technica", "url": "...", "country": "US", "body": "..."}],
+  "sources": [{"name": "Ars Technica", "url": "...", "country": "US"}],
   "eventUri": null,
   "eventCoverage": null,
   "concepts": ["npm", "supply chain attack", "Iran"]
@@ -141,46 +141,3 @@ Good selection entry — niche, specific:
 
 </examples>
 
-<editorial_notes_schema>
-
-Rewrite `content/.editorial-notes.md` after selection. Max 20 lines:
-
-```markdown
-## Watching
-- Ongoing stories worth following up (2-5 items)
-
-## Coverage gaps
-- Underrepresented regions or categories (1-3 items)
-
-## Context
-- Key background for ongoing stories (2-5 items)
-```
-
-</editorial_notes_schema>
-
-<story_ledger_schema>
-
-Update `content/.story-ledger.json`. Keep `version` at 1. Each story:
-
-```json
-{
-  "id": "slug-identifier",
-  "label": "Short label",
-  "firstSeen": "ISO 8601",
-  "lastCovered": "ISO 8601",
-  "coverageCount": 4,
-  "category": "politics|economy|science|tech",
-  "importance": 8,
-  "arc": "breaking|developing|ongoing|fading",
-  "articles": ["2026-03-24-slug"],
-  "eventUri": "eng-12345678",
-  "summary": "1-2 sentence current state",
-  "conceptUris": ["http://en.wikipedia.org/wiki/Iran"]
-}
-```
-
-When a selection entry's `concepts` array contains objects with `uri` fields, collect those URIs into the story's `conceptUris` array (deduplicate, keep up to 10). These URIs point to Wikipedia pages used for context generation. Do not modify `context` or `contextGeneratedAt` fields if they exist — those are managed by a separate pipeline stage.
-
-Use `eventUri` to match stories across cycles when available. New stories start as `breaking`. Arc progression: breaking → developing (2+ cycles) → ongoing (5+ cycles) → fading. Decay uncovered stories' importance by 1 each cycle. Keep 15-30 active entries.
-
-</story_ledger_schema>

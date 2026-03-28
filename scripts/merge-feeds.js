@@ -50,4 +50,20 @@ const output = {
 }
 
 writeFileSync('/tmp/zuhd-feed.json', JSON.stringify(output, null, 2))
+
+// Slim feed for selector: strip article bodies to reduce token count (~75K → ~18K tokens)
+// Selector only needs title/description/metadata for editorial decisions; writer gets full feed
+function stripBodies(stories) {
+  return stories.map(s => ({
+    ...s,
+    sources: (s.sources || []).map(({ body, ...rest }) => rest),
+  }))
+}
+const slimOutput = {
+  ...output,
+  multiSourceStories: stripBodies(multiSourceStories),
+  nicheStories: stripBodies(nicheStories),
+}
+writeFileSync('/tmp/zuhd-feed-slim.json', JSON.stringify(slimOutput, null, 2))
+
 console.log(`${multiSourceStories.length} multi + ${nicheStories.length} niche (${dropped} headline-only dropped)`)
