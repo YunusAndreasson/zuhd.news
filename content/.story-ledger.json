@@ -2,49 +2,435 @@
   "version": 1,
   "stories": [
     {
-      "id": "iran-rejects-ceasefire-conditions",
-      "label": "Iran formally rejects 15-point US ceasefire, issues 5 counter-demands",
-      "firstSeen": "2026-03-25T17:00:00Z",
-      "lastCovered": "2026-03-27T09:10:00Z",
-      "coverageCount": 4,
+      "id": "houthis-enter-iran-war-missiles-israel-red-sea",
+      "label": "Houthis vow to continue strikes 'in coming days' in Iran war",
+      "firstSeen": "2026-03-28T22:12:17.174Z",
+      "lastCovered": "2026-03-28T22:12:17.174Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-28-houthis-enter-iran-war-missiles-israel-red-sea"
+      ],
+      "eventUri": "eng-11516498",
+      "summary": "Houthis held fire for 4 weeks, now firing missiles at Israel — opening a second front in the Iran war. Lead with the timing: why did they wait, and what changed? The Red Sea shipping disruption from 2024 is back, but now with an active Iran-US war as backdrop. The reader tracks oil and shipping — show how this reopens the Red Sea chokepoint alongside Hormuz.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Yemen",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Houthi_movement",
+        "http://en.wikipedia.org/wiki/Red_Sea",
+        "http://en.wikipedia.org/wiki/Missile",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces"
+      ]
+    },
+    {
+      "id": "israeli-strike-kills-journalists-lebanon-press-vehicle",
+      "label": "'Blatant crime': Israeli strike kills at least 2 journalists in southern Lebanon",
+      "firstSeen": "2026-03-28T22:12:17.174Z",
+      "lastCovered": "2026-03-28T22:12:17.174Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-28-israeli-strike-kills-journalists-lebanon-press-vehicle"
+      ],
+      "eventUri": "eng-11521407",
+      "summary": "Israeli airstrike hit a clearly marked press vehicle near Jezzine, killing Al Mayadeen's Fatima Ftouni and her brother Mohammed, plus Al-Manar's Ali Shuaib, and a paramedic. Lead with the 'clearly marked' detail — this is targeted killing of journalists, not collateral. The reader follows press freedom; connect to the pattern of journalist killings across Gaza, Lebanon, and now the wider war. CPJ count if available.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Hezbollah",
+        "http://en.wikipedia.org/wiki/Al-Manar",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
+        "http://en.wikipedia.org/wiki/Southern_Lebanon",
+        "http://en.wikipedia.org/wiki/Journalist",
+        "http://en.wikipedia.org/wiki/Al_Mayadeen"
+      ]
+    },
+    {
+      "id": "pakistan-hosts-saudi-turkey-egypt-fms-iran-mediation",
+      "label": "PM Shehbaz apprises Iranian president of diplomatic outreach efforts in over hour-long conversation",
+      "firstSeen": "2026-03-28T22:12:17.174Z",
+      "lastCovered": "2026-03-28T22:12:17.174Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-28-pakistan-hosts-saudi-turkey-egypt-fms-iran-mediation"
+      ],
+      "eventUri": "eng-11520931",
+      "summary": "Pakistan hosting Saudi, Turkish, and Egyptian foreign ministers for Iran war talks — Islamabad positioning itself as the Muslim world's mediator. Lead with the lineup: SA + Turkey + Egypt converging on Pakistan is unprecedented. Shehbaz spoke with Iran's president for over an hour. The reader follows Pakistan closely — show how this triangulates between Pakistan's fuel crisis, its GSP+ trade fears, and now diplomatic leverage.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/President_of_Iran",
+        "http://en.wikipedia.org/wiki/Shehbaz_Sharif",
+        "http://en.wikipedia.org/wiki/Masoud_Pezeshkian",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Prime_Minister_of_Pakistan",
+        "http://en.wikipedia.org/wiki/Islamabad"
+      ]
+    },
+    {
+      "id": "russia-strikes-ukraine-maternity-hospital-odesa-iran-distraction",
+      "label": "Russian strikes on Ukraine kill 4 as deal to end war dims",
+      "firstSeen": "2026-03-28T22:12:17.174Z",
+      "lastCovered": "2026-03-28T22:12:17.174Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-03-28-russia-strikes-ukraine-maternity-hospital-odesa-iran-distraction",
+        "2026-03-28-russia-gasoline-export-ban-ukraine-refinery-strikes-iran-war"
+      ],
+      "eventUri": "eng-11520661",
+      "summary": "Russian drones destroyed a maternity hospital full of newborns in Kryvyi Rih, also hit Odesa port infrastructure. Lead with the maternity hospital — newborns evacuated from rubble. The structural story: world's attention has shifted entirely to Iran, and Russia is exploiting the distraction to intensify strikes on civilian infrastructure with near-zero international response.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Odesa",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Port",
+        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
+        "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
+        "http://en.wikipedia.org/wiki/President_of_Ukraine",
+        "http://en.wikipedia.org/wiki/Gasoline",
+        "http://en.wikipedia.org/wiki/Alexander_Novak"
+      ]
+    },
+    {
+      "id": "paris-bank-of-america-attempted-attack-terror-probe",
+      "label": "Paris foils 'terror attack' on Bank of America",
+      "firstSeen": "2026-03-28T22:12:17.174Z",
+      "lastCovered": "2026-03-28T22:12:17.174Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-28-paris-bank-of-america-attempted-attack-terror-probe"
+      ],
+      "eventUri": "fra-1290083",
+      "summary": "Man arrested trying to ignite an explosive outside Bank of America in Paris; second suspect fled. French terrorism prosecutors opened investigation. Lead with the target — not a random building but a symbol of American financial power, during an active US war. Context: anti-American sentiment rising in Europe as Iran war and Hormuz closure hit European economies.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Paris",
+        "http://en.wikipedia.org/wiki/Bank_of_America",
+        "http://en.wikipedia.org/wiki/Explosive",
+        "http://en.wikipedia.org/wiki/Terrorism",
+        "http://en.wikipedia.org/wiki/France",
+        "http://en.wikipedia.org/wiki/Police",
+        "http://en.wikipedia.org/wiki/Counterterrorism",
+        "http://en.wikipedia.org/wiki/Snapchat"
+      ]
+    },
+    {
+      "id": "israel-litani-push-hezbollah-losses-lebanon-ground-invasion",
+      "label": "Israel's push for gateway to Litani opens forces to fierce fighting as Hezbollah inflicts losses on multiple fronts",
+      "firstSeen": "2026-03-28T22:12:17.174Z",
+      "lastCovered": "2026-03-28T22:12:17.174Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-28-israel-litani-push-hezbollah-losses-lebanon-ground-invasion"
+      ],
+      "eventUri": null,
+      "summary": "Israeli forces opened passage through Taybeh toward Qantara — the gateway to the Litani River — but Hezbollah ambushes are inflicting heavy losses. Lead with the geographic advance and its cost. This fills the Lebanon coverage gap. The reader follows military strategy; show how the ground invasion is expanding even as the Iran air war dominates headlines.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Hezbollah",
+        "http://en.wikipedia.org/wiki/Litani_River"
+      ]
+    },
+    {
+      "id": "uae-aluminium-ega-iranian-attack-gulf-industry-damage",
+      "label": "UAE aluminium firm reports damage and injuries from Iranian attack",
+      "firstSeen": "2026-03-28T22:12:17.174Z",
+      "lastCovered": "2026-03-28T22:12:17.174Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-28-uae-aluminium-ega-iranian-attack-gulf-industry-damage"
+      ],
+      "eventUri": "eng-11521539",
+      "summary": "Emirates Global Aluminium's Al Taweelah site in Khalifa Economic Zone sustained significant damage from Iranian missile and drone attacks — injuries reported. Lead with EGA being the world's largest premium aluminium producer. This is Iran retaliating against Gulf states hosting US forces. The reader follows supply chains — aluminium feeds into everything from construction to electronics. War hitting industrial infrastructure, not just oil.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Aluminium",
+        "http://en.wikipedia.org/wiki/Abu_Dhabi",
+        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Emirates_Global_Aluminium"
+      ]
+    },
+    {
+      "id": "cosmic-ray-cavity-earth-magnetic-field-astronaut-radiation",
+      "label": "Scientists Discover Giant 'Cavity' Beyond Earth That Isn't Supposed to Exist",
+      "firstSeen": "2026-03-28T22:12:17.174Z",
+      "lastCovered": "2026-03-28T22:12:17.174Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-28-cosmic-ray-cavity-earth-magnetic-field-astronaut-radiation"
+      ],
+      "eventUri": null,
+      "summary": "Earth's magnetic field has carved out a huge void of galactic cosmic rays in space — a feature models didn't predict. Lead with the surprise: a cavity that 'isn't supposed to exist.' Practical implications for astronaut radiation protection on long-duration missions. The reader is a hacker who appreciates systems that behave differently than their models predict.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Cosmic_ray",
+        "http://en.wikipedia.org/wiki/Magnetic_field",
+        "http://en.wikipedia.org/wiki/Earth",
+        "http://en.wikipedia.org/wiki/Astronaut"
+      ]
+    },
+    {
+      "id": "quantum-mechanics-causality-formal-proof-entanglement",
+      "label": "Getting formal about quantum mechanics' lack of causality",
+      "firstSeen": "2026-03-28T22:12:17.174Z",
+      "lastCovered": "2026-03-28T22:12:17.174Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-28-quantum-mechanics-causality-formal-proof-entanglement"
+      ],
+      "eventUri": null,
+      "summary": "Researchers have formalized a proof that quantum mechanics genuinely lacks causality — entangled photons' behavior cannot be explained by any causal model, even allowing for hidden variables. Lead with what it settles: the century-old question of whether quantum weirdness is 'real' or just apparent now has a mathematical answer. The reader appreciates formal proofs and clean abstractions.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Quantum_mechanics",
+        "http://en.wikipedia.org/wiki/Photon",
+        "http://en.wikipedia.org/wiki/Quantum_superposition",
+        "http://en.wikipedia.org/wiki/Bell%27s_theorem",
+        "http://en.wikipedia.org/wiki/Causality"
+      ]
+    },
+    {
+      "id": "giant-insects-oxygen-hypothesis-overturned-paleozoic",
+      "label": "Leading explanation for ancient giant, flying insects gets squashed",
+      "firstSeen": "2026-03-28T22:12:17.174Z",
+      "lastCovered": "2026-03-28T22:12:17.174Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-28-giant-insects-oxygen-hypothesis-overturned-paleozoic"
+      ],
+      "eventUri": "eng-11512832",
+      "summary": "The oxygen hypothesis for why 300-million-year-old insects grew to 70cm wingspans has been overturned — tracheal diffusion models show oxygen alone can't explain the size. Lead with Meganeuropsis permiana: a dragonfly-like predator weighing 100g. Something else drove gigantism and we don't know what. The reader appreciates when elegant explanations collapse under new data.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Insect",
+        "http://en.wikipedia.org/wiki/Dragonfly",
+        "http://en.wikipedia.org/wiki/Diffusion",
+        "http://en.wikipedia.org/wiki/Paleozoic"
+      ]
+    },
+    {
+      "id": "white-house-app-decompiled-reverse-engineering",
+      "label": "I decompiled the White House's new app",
+      "firstSeen": "2026-03-28T22:12:17.174Z",
+      "lastCovered": "2026-03-28T22:12:17.174Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-28-white-house-app-decompiled-reverse-engineering"
+      ],
+      "eventUri": null,
+      "summary": "A developer reverse-engineered the White House's new app and published findings — 289 points on HN, 106 comments. Lead with what the decompilation revealed about security practices, data collection, and third-party dependencies. The reader is a developer who decompiles things for fun. This is accountability through technical literacy — the hacker ethos applied to government software.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/White_House",
+        "http://en.wikipedia.org/wiki/Reverse_engineering",
+        "http://en.wikipedia.org/wiki/Mobile_app"
+      ]
+    },
+    {
+      "id": "iran-ai-slop-propaganda-war-information-warfare",
+      "label": "Iran Is Winning the AI Slop Propaganda War",
+      "firstSeen": "2026-03-28T22:12:17.174Z",
+      "lastCovered": "2026-03-28T22:12:17.174Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-28-iran-ai-slop-propaganda-war-information-warfare"
+      ],
+      "eventUri": null,
+      "summary": "Both sides are flooding social media with AI-generated propaganda, but Iran's resonates more because it documents real destruction while US content looks like 'group-chat in-jokes.' Lead with the asymmetry: AI slop works differently for the side with actual footage of bombed schools vs the side making memes. The reader builds AI systems — show how the same tools produce radically different information warfare outcomes depending on ground truth.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Propaganda",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Information_warfare"
+      ]
+    },
+    {
+      "id": "hormuz-fertilizer-food-inflation",
+      "label": "Hormuz closure disrupts fertilizer supply, food prices spiking globally",
+      "firstSeen": "2026-03-27T17:00:00Z",
+      "lastCovered": "2026-03-27T17:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-27-hormuz-fertilizer-food-inflation-war-supply-chain"
+      ],
+      "eventUri": "eng-11517121",
+      "summary": "Hormuz closure disrupting urea and phosphate fertilizer supplies. Food prices spiking as nitrogen fertilizer depends on same gas infrastructure being bombed. War-to-food pipeline activating.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Fertilizer",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Agriculture",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
+      "id": "no-kings-protests",
+      "label": "No Kings protests March 28: 3,100+ events, potentially largest US protest in history",
+      "firstSeen": "2026-03-27T12:00:00Z",
+      "lastCovered": "2026-03-27T17:00:00Z",
+      "coverageCount": 2,
       "category": "politics",
       "importance": 5,
       "arc": "developing",
       "articles": [
-        "2026-03-25-iran-rejects-ceasefire-five-conditions",
-        "2026-03-26-iran-hormuz-friendly-nations-china-india-russia",
-        "2026-03-26-pakistan-mediator-irgc-power-shift-iran",
-        "2026-03-27-trump-10-day-pause-iran-energy-strikes-hormuz-tankers"
+        "2026-03-27-no-kings-protests-march-28-largest-us-history",
+        "2026-03-27-no-kings-protests-march-28-scale-turnout"
       ],
-      "eventUri": "eng-11511911",
-      "summary": "Trump extends energy strike pause to April 6. IRGC declared Hormuz fully closed and turned back 3 container ships March 27. Iran banned all shipping to/from ally ports. Pakistan mediating indirectly.",
+      "eventUri": "eng-11505825",
+      "summary": "Third No Kings protest March 28 with 3,100+ events across all 50 states. October drew 7M. Iran war, ICE enforcement, and two activist deaths driving turnout. May 1 general strike planned.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Democracy",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
+      "id": "india-fuel-panic-hormuz",
+      "label": "South Asia fuel crisis: India excise cuts, Pakistan app-based rationing",
+      "firstSeen": "2026-03-26T20:05:00Z",
+      "lastCovered": "2026-03-27T17:00:00Z",
+      "coverageCount": 3,
+      "category": "economy",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-india-fuel-panic-lpg-shortage-hormuz-oil-ministry",
+        "2026-03-27-india-fuel-tax-revenue-hit-excise-cut-iran-war",
+        "2026-03-27-pakistan-fuel-quota-app-motorcycles-rickshaws-rationing"
+      ],
+      "eventUri": "eng-11514530",
+      "summary": "Pakistan rolling out app-based fuel quota system for motorcycles/rickshaws. India already slashed excise duties. 40% of crude from Gulf. War ripple effects hitting street level.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Liquefied_petroleum_gas",
         "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
         "http://en.wikipedia.org/wiki/Pakistan"
       ]
     },
     {
-      "id": "trump-china-visit-may",
-      "label": "Trump rescheduled China visit to May 14-15, delayed by Iran war",
-      "firstSeen": "2026-03-27T12:00:00Z",
-      "lastCovered": "2026-03-27T12:00:00Z",
+      "id": "pakistan-gsp-plus-threat",
+      "label": "Pakistan GSP+ EU trade status under threat from political statements",
+      "firstSeen": "2026-03-27T17:00:00Z",
+      "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
-      "category": "politics",
+      "category": "economy",
       "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-03-27-trump-china-visit-may-xi-iran-war-delay"
+        "2026-03-27-pakistan-gsp-plus-eu-trade-status-threat"
       ],
-      "eventUri": "eng-11512594",
-      "summary": "Trump will visit Beijing May 14-15, first US presidential visit in 8 years. China hasn't confirmed dates. Supreme Court curtailed tariff powers. Trump needs China's help on Hormuz oil flows but has been rebuffed.",
+      "eventUri": "eng-11514656",
+      "summary": "Pakistan business community panicking after politicians made inflammatory statements jeopardizing EU GSP+ status worth billions in preferential tariffs. 78% of exports to EU covered.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Xi_Jinping",
-        "http://en.wikipedia.org/wiki/Iran"
+        "http://en.wikipedia.org/wiki/Generalized_System_of_Preferences",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/European_Union"
       ]
+    },
+    {
+      "id": "nih-foreign-grant-restrictions",
+      "label": "NIH restricting grants to foreign institutions, cutting global science ties",
+      "firstSeen": "2026-03-27T17:00:00Z",
+      "lastCovered": "2026-03-27T17:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-27-nih-foreign-institution-grants-restrictions-science"
+      ],
+      "eventUri": null,
+      "summary": "NIH restricting grants to foreign institutions. $1.2B in international grants at risk. Quietly defunding global health research collaboration.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/National_Institutes_of_Health"
+      ]
+    },
+    {
+      "id": "russia-sovereign-satellite",
+      "label": "Russia launches sovereign internet satellite constellation rivaling Starlink",
+      "firstSeen": "2026-03-27T17:00:00Z",
+      "lastCovered": "2026-03-27T17:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-27-russia-sovereign-satellite-constellation-starlink-rival"
+      ],
+      "eventUri": "eng-11516392",
+      "summary": "Russia launched first satellite in sovereign internet constellation. Direct Starlink competitor to avoid Western-controlled orbital communications.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Starlink"
+      ]
+    },
+    {
+      "id": "apple-fbi-hide-my-email",
+      "label": "Apple gave FBI real name behind Hide My Email privacy alias",
+      "firstSeen": "2026-03-27T17:00:00Z",
+      "lastCovered": "2026-03-27T17:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-27-apple-fbi-hide-my-email-privacy-broken-promise"
+      ],
+      "eventUri": null,
+      "summary": "Apple handed FBI the real name behind a user's Hide My Email alias. Privacy feature doesn't protect from law enforcement requests.",
+      "conceptUris": []
+    },
+    {
+      "id": "meta-instagram-encryption-rollback",
+      "label": "Meta rolling back Instagram DM encryption, WANA users at highest risk",
+      "firstSeen": "2026-03-27T17:00:00Z",
+      "lastCovered": "2026-03-27T17:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-27-meta-instagram-dms-encryption-rollback-wana-risk"
+      ],
+      "eventUri": null,
+      "summary": "Meta removing E2EE from Instagram DMs. WANA region activists and journalists at highest risk — governments have documented history of prosecuting based on private messages.",
+      "conceptUris": []
     },
     {
       "id": "china-us-trade-probes",
@@ -53,7 +439,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-27-china-trade-probes-us-supply-chain-green-products"
@@ -74,7 +460,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-27-ukraine-saudi-defence-deal-anti-drone-iran-war"
@@ -89,34 +475,13 @@
       ]
     },
     {
-      "id": "no-kings-protests",
-      "label": "No Kings protests March 28: 3,100+ events, potentially largest US protest in history",
-      "firstSeen": "2026-03-27T12:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 6,
-      "arc": "developing",
-      "articles": [
-        "2026-03-27-no-kings-protests-march-28-largest-us-history",
-        "2026-03-27-no-kings-protests-march-28-scale-turnout"
-      ],
-      "eventUri": "eng-11505825",
-      "summary": "Third No Kings protest March 28 with 3,100+ events across all 50 states. October drew 7M. Iran war, ICE enforcement, and two activist deaths driving turnout. May 1 general strike planned.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Democracy",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
       "id": "west-bank-settler-surge",
       "label": "West Bank settler attacks surge to 25+ per weekend under Iran war cover",
       "firstSeen": "2026-03-27T12:00:00Z",
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-27-west-bank-settler-attacks-surge-iran-war-cover"
@@ -132,7 +497,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-03-26-sudan-kurmuk-rsf-eid-drone-massacre-medicine-crisis",
@@ -147,13 +512,109 @@
       ]
     },
     {
+      "id": "prague-russian-centre-firebomb",
+      "label": "Molotov cocktail attack on Russian cultural centre in Prague",
+      "firstSeen": "2026-03-27T17:00:00Z",
+      "lastCovered": "2026-03-27T17:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-27-prague-firebomb-russian-cultural-centre-czech"
+      ],
+      "eventUri": "rus-2044798",
+      "summary": "Unknown attacker threw Molotov cocktails at Russian House in Prague. Czech police investigating. Anti-Russian sentiment escalating from diplomatic to physical in Eastern Europe.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Prague",
+        "http://en.wikipedia.org/wiki/Czech_Republic",
+        "http://en.wikipedia.org/wiki/Russia"
+      ]
+    },
+    {
+      "id": "nyse-polymarket-investment",
+      "label": "NYSE parent ICE invests $600M in Polymarket prediction market",
+      "firstSeen": "2026-03-27T17:00:00Z",
+      "lastCovered": "2026-03-27T17:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-27-nyse-ice-polymarket-600m-prediction-markets"
+      ],
+      "eventUri": "eng-11505108",
+      "summary": "Intercontinental Exchange invested $600M in Polymarket at $4B+ valuation. NYSE parent betting prediction markets are future of price discovery.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Intercontinental_Exchange",
+        "http://en.wikipedia.org/wiki/Prediction_market",
+        "http://en.wikipedia.org/wiki/New_York_Stock_Exchange"
+      ]
+    },
+    {
+      "id": "climate-crop-pest-expansion",
+      "label": "Climate change expanding destructive root-knot nematode range globally",
+      "firstSeen": "2026-03-27T17:00:00Z",
+      "lastCovered": "2026-03-27T17:00:00Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-27-climate-nematode-crop-pest-expansion-food-security"
+      ],
+      "eventUri": null,
+      "summary": "Climate change expanding range of root-knot nematodes into new agricultural regions. $100B+ in annual crop losses. Invisible belowground threat to food security.",
+      "conceptUris": []
+    },
+    {
+      "id": "data-center-electricity-monitoring",
+      "label": "US senators propose tracking data center electricity usage for AI energy",
+      "firstSeen": "2026-03-27T17:00:00Z",
+      "lastCovered": "2026-03-27T17:00:00Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-27-senators-data-center-electricity-monitoring-ai-energy"
+      ],
+      "eventUri": "eng-11512593",
+      "summary": "Senators introduced bill requiring EIA to track data center electricity. Data centers consume more power than many countries but usage is untracked. AI training exacerbating.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Data_center",
+        "http://en.wikipedia.org/wiki/Energy_Information_Administration"
+      ]
+    },
+    {
+      "id": "trump-china-visit-may",
+      "label": "Trump rescheduled China visit to May 14-15, delayed by Iran war",
+      "firstSeen": "2026-03-27T12:00:00Z",
+      "lastCovered": "2026-03-27T12:00:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-27-trump-china-visit-may-xi-iran-war-delay"
+      ],
+      "eventUri": "eng-11512594",
+      "summary": "Trump will visit Beijing May 14-15, first US presidential visit in 8 years. China hasn't confirmed dates. Supreme Court curtailed tariff powers. Trump needs China's help on Hormuz oil flows but has been rebuffed.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
       "id": "eu-mercosur-trade-deal",
       "label": "EU-Mercosur trade deal activates May 1, bypassing parliament",
       "firstSeen": "2026-03-27T12:00:00Z",
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-27-eu-mercosur-trade-deal-may-1-parliament-bypass"
@@ -169,33 +630,13 @@
       ]
     },
     {
-      "id": "italy-lvmh-minors-probe",
-      "label": "Italy probes LVMH/Sephora for marketing skincare to girls as young as 10",
-      "firstSeen": "2026-03-27T12:00:00Z",
-      "lastCovered": "2026-03-27T12:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-italy-lvmh-sephora-cosmeticorexia-minors-probe"
-      ],
-      "eventUri": "fra-1289678",
-      "summary": "Italy's antitrust authority raided Sephora and Benefit offices. Probe finds micro-influencer marketing pushed anti-ageing products to girls 10-12. Medical literature now recognizes 'cosmeticorexia.' LVMH faces up to 6% global revenue in fines.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Sephora",
-        "http://en.wikipedia.org/wiki/LVMH",
-        "http://en.wikipedia.org/wiki/Italy"
-      ]
-    },
-    {
       "id": "toxic-fallout-gulf-war",
       "label": "Bombing of Gulf oil facilities contaminating air, soil, water for decades",
       "firstSeen": "2026-03-27T12:00:00Z",
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-27-toxic-fallout-gulf-war-decades-oil-contamination"
@@ -211,7 +652,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-27-wikipedia-bans-ai-generated-content-llm-policy"
@@ -221,24 +662,25 @@
       "conceptUris": []
     },
     {
-      "id": "india-fuel-panic-hormuz",
-      "label": "South Asia fuel crisis: India excise cuts, Pakistan app-based rationing",
-      "firstSeen": "2026-03-26T20:05:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 3,
-      "category": "economy",
-      "importance": 6,
+      "id": "iran-rejects-ceasefire-conditions",
+      "label": "Iran formally rejects 15-point US ceasefire, issues 5 counter-demands",
+      "firstSeen": "2026-03-25T17:00:00Z",
+      "lastCovered": "2026-03-27T09:10:00Z",
+      "coverageCount": 4,
+      "category": "politics",
+      "importance": 4,
       "arc": "developing",
       "articles": [
-        "2026-03-26-india-fuel-panic-lpg-shortage-hormuz-oil-ministry",
-        "2026-03-27-india-fuel-tax-revenue-hit-excise-cut-iran-war",
-        "2026-03-27-pakistan-fuel-quota-app-motorcycles-rickshaws-rationing"
+        "2026-03-25-iran-rejects-ceasefire-five-conditions",
+        "2026-03-26-iran-hormuz-friendly-nations-china-india-russia",
+        "2026-03-26-pakistan-mediator-irgc-power-shift-iran",
+        "2026-03-27-trump-10-day-pause-iran-energy-strikes-hormuz-tankers"
       ],
-      "eventUri": "eng-11514530",
-      "summary": "Pakistan rolling out app-based fuel quota system for motorcycles/rickshaws. India already slashed excise duties. 40% of crude from Gulf. War ripple effects hitting street level.",
+      "eventUri": "eng-11511911",
+      "summary": "Trump extends energy strike pause to April 6. IRGC declared Hormuz fully closed and turned back 3 container ships March 27. Iran banned all shipping to/from ally ports. Pakistan mediating indirectly.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Liquefied_petroleum_gas",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Ceasefire",
         "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
         "http://en.wikipedia.org/wiki/Pakistan"
       ]
@@ -250,7 +692,7 @@
       "lastCovered": "2026-03-27T09:10:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-26-un-minab-school-massacre-investigation",
@@ -271,7 +713,7 @@
       "lastCovered": "2026-03-26T20:05:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-26-bellingcat-us-gator-mines-kafari-village-iran-civilians"
@@ -281,13 +723,33 @@
       "conceptUris": []
     },
     {
+      "id": "italy-lvmh-minors-probe",
+      "label": "Italy probes LVMH/Sephora for marketing skincare to girls as young as 10",
+      "firstSeen": "2026-03-27T12:00:00Z",
+      "lastCovered": "2026-03-27T12:00:00Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-27-italy-lvmh-sephora-cosmeticorexia-minors-probe"
+      ],
+      "eventUri": "fra-1289678",
+      "summary": "Italy's antitrust authority raided Sephora and Benefit offices. Probe finds micro-influencer marketing pushed anti-ageing products to girls 10-12. Medical literature now recognizes 'cosmeticorexia.' LVMH faces up to 6% global revenue in fines.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Sephora",
+        "http://en.wikipedia.org/wiki/LVMH",
+        "http://en.wikipedia.org/wiki/Italy"
+      ]
+    },
+    {
       "id": "black-sea-tanker-attack",
       "label": "Ukrainian drones hit Russian oil tanker Altura near Bosphorus",
       "firstSeen": "2026-03-26T20:05:00Z",
       "lastCovered": "2026-03-27T09:10:00Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-26-black-sea-tanker-altura-ukraine-drone-bosphorus-oil",
@@ -309,7 +771,7 @@
       "lastCovered": "2026-03-27T09:10:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-27-us-visa-bonds-15000-fifty-countries-africa-global-south"
@@ -329,7 +791,7 @@
       "lastCovered": "2026-03-27T09:10:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-27-house-war-powers-vote-stalled-dems-amodei-anthropic"
@@ -345,7 +807,7 @@
       "lastCovered": "2026-03-26T20:05:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-26-south-africa-g7-disinvite-us-pressure-france"
@@ -366,7 +828,7 @@
       "lastCovered": "2026-03-26T20:05:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-26-cuba-raul-castro-us-talks-oil-blockade-humanitarian"
@@ -385,7 +847,7 @@
       "lastCovered": "2026-03-26T20:05:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-26-oecd-global-growth-slashed-iran-war-inflation-shock"
@@ -405,7 +867,7 @@
       "lastCovered": "2026-03-26T08:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-26-us-troops-kharg-island-ground-attack-iran"
@@ -419,29 +881,13 @@
       ]
     },
     {
-      "id": "ethiopia-nile-hydropower",
-      "label": "Ethiopia announces 3 new Blue Nile dams, stoking Egypt tensions",
-      "firstSeen": "2026-03-26T20:05:00Z",
-      "lastCovered": "2026-03-26T20:05:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-26-ethiopia-blue-nile-cascade-three-dams-egypt-tensions"
-      ],
-      "eventUri": null,
-      "summary": "Ethiopia Water Ministry announced Blue Nile Cascade: 3 new dams, $10.5B investment. Aims to become East African energy hub.",
-      "conceptUris": []
-    },
-    {
       "id": "medical-school-dei-rollback",
       "label": "LCME drops health equity teaching requirement under political pressure",
       "firstSeen": "2026-03-27T09:10:00Z",
       "lastCovered": "2026-03-27T09:10:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-27-medical-school-health-equity-lcme-drops-requirement"
@@ -451,13 +897,29 @@
       "conceptUris": []
     },
     {
+      "id": "ethiopia-nile-hydropower",
+      "label": "Ethiopia announces 3 new Blue Nile dams, stoking Egypt tensions",
+      "firstSeen": "2026-03-26T20:05:00Z",
+      "lastCovered": "2026-03-26T20:05:00Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-26-ethiopia-blue-nile-cascade-three-dams-egypt-tensions"
+      ],
+      "eventUri": null,
+      "summary": "Ethiopia Water Ministry announced Blue Nile Cascade: 3 new dams, $10.5B investment. Aims to become East African energy hub.",
+      "conceptUris": []
+    },
+    {
       "id": "sycophantic-ai-judgment",
       "label": "Science study: sycophantic AI chatbots erode human judgment",
       "firstSeen": "2026-03-26T20:05:00Z",
       "lastCovered": "2026-03-26T20:05:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-26-sycophantic-ai-undermines-judgment-science-study"
@@ -476,7 +938,7 @@
       "lastCovered": "2026-03-26T14:22:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-26-paraguay-scheme-mossad-gaza-deportation-1970s"
@@ -487,191 +949,6 @@
         "http://en.wikipedia.org/wiki/Mossad",
         "http://en.wikipedia.org/wiki/Gaza_Strip",
         "http://en.wikipedia.org/wiki/Paraguay"
-      ]
-    },
-    {
-      "id": "prague-russian-centre-firebomb",
-      "label": "Molotov cocktail attack on Russian cultural centre in Prague",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-prague-firebomb-russian-cultural-centre-czech"
-      ],
-      "eventUri": "rus-2044798",
-      "summary": "Unknown attacker threw Molotov cocktails at Russian House in Prague. Czech police investigating. Anti-Russian sentiment escalating from diplomatic to physical in Eastern Europe.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Prague",
-        "http://en.wikipedia.org/wiki/Czech_Republic",
-        "http://en.wikipedia.org/wiki/Russia"
-      ]
-    },
-    {
-      "id": "hormuz-fertilizer-food-inflation",
-      "label": "Hormuz closure disrupts fertilizer supply, food prices spiking globally",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 7,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-hormuz-fertilizer-food-inflation-war-supply-chain"
-      ],
-      "eventUri": "eng-11517121",
-      "summary": "Hormuz closure disrupting urea and phosphate fertilizer supplies. Food prices spiking as nitrogen fertilizer depends on same gas infrastructure being bombed. War-to-food pipeline activating.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Fertilizer",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Agriculture",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
-      "id": "nyse-polymarket-investment",
-      "label": "NYSE parent ICE invests $600M in Polymarket prediction market",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-nyse-ice-polymarket-600m-prediction-markets"
-      ],
-      "eventUri": "eng-11505108",
-      "summary": "Intercontinental Exchange invested $600M in Polymarket at $4B+ valuation. NYSE parent betting prediction markets are future of price discovery.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Intercontinental_Exchange",
-        "http://en.wikipedia.org/wiki/Prediction_market",
-        "http://en.wikipedia.org/wiki/New_York_Stock_Exchange"
-      ]
-    },
-    {
-      "id": "pakistan-gsp-plus-threat",
-      "label": "Pakistan GSP+ EU trade status under threat from political statements",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-pakistan-gsp-plus-eu-trade-status-threat"
-      ],
-      "eventUri": "eng-11514656",
-      "summary": "Pakistan business community panicking after politicians made inflammatory statements jeopardizing EU GSP+ status worth billions in preferential tariffs. 78% of exports to EU covered.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Generalized_System_of_Preferences",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/European_Union"
-      ]
-    },
-    {
-      "id": "nih-foreign-grant-restrictions",
-      "label": "NIH restricting grants to foreign institutions, cutting global science ties",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-nih-foreign-institution-grants-restrictions-science"
-      ],
-      "eventUri": null,
-      "summary": "NIH restricting grants to foreign institutions. $1.2B in international grants at risk. Quietly defunding global health research collaboration.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/National_Institutes_of_Health"
-      ]
-    },
-    {
-      "id": "russia-sovereign-satellite",
-      "label": "Russia launches sovereign internet satellite constellation rivaling Starlink",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-russia-sovereign-satellite-constellation-starlink-rival"
-      ],
-      "eventUri": "eng-11516392",
-      "summary": "Russia launched first satellite in sovereign internet constellation. Direct Starlink competitor to avoid Western-controlled orbital communications.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Starlink"
-      ]
-    },
-    {
-      "id": "climate-crop-pest-expansion",
-      "label": "Climate change expanding destructive root-knot nematode range globally",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-climate-nematode-crop-pest-expansion-food-security"
-      ],
-      "eventUri": null,
-      "summary": "Climate change expanding range of root-knot nematodes into new agricultural regions. $100B+ in annual crop losses. Invisible belowground threat to food security.",
-      "conceptUris": []
-    },
-    {
-      "id": "apple-fbi-hide-my-email",
-      "label": "Apple gave FBI real name behind Hide My Email privacy alias",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-apple-fbi-hide-my-email-privacy-broken-promise"
-      ],
-      "eventUri": null,
-      "summary": "Apple handed FBI the real name behind a user's Hide My Email alias. Privacy feature doesn't protect from law enforcement requests.",
-      "conceptUris": []
-    },
-    {
-      "id": "meta-instagram-encryption-rollback",
-      "label": "Meta rolling back Instagram DM encryption, WANA users at highest risk",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-meta-instagram-dms-encryption-rollback-wana-risk"
-      ],
-      "eventUri": null,
-      "summary": "Meta removing E2EE from Instagram DMs. WANA region activists and journalists at highest risk — governments have documented history of prosecuting based on private messages.",
-      "conceptUris": []
-    },
-    {
-      "id": "data-center-electricity-monitoring",
-      "label": "US senators propose tracking data center electricity usage for AI energy",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-senators-data-center-electricity-monitoring-ai-energy"
-      ],
-      "eventUri": "eng-11512593",
-      "summary": "Senators introduced bill requiring EIA to track data center electricity. Data centers consume more power than many countries but usage is untracked. AI training exacerbating.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Data_center",
-        "http://en.wikipedia.org/wiki/Energy_Information_Administration"
       ]
     }
   ]
