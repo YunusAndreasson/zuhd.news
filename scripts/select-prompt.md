@@ -51,7 +51,7 @@ Prioritize stories that reveal, surprise, or teach. Balance across these dimensi
 **Constraints:**
 - Max 3 stories from the same source.
 - Max 3 stories per story-ledger arc.
-- Prefer stories < 12 hours old. Do not select stories > 48 hours old. (The pipeline runs 5×/day — stale stories have already had multiple chances.)
+- Prefer the freshest stories. The feed is pre-filtered to <48 hours, and the pipeline runs 5×/day — anything from a previous cycle has already had its chance.
 - Skip opinion, features, listicles, liveblog entries.
 - Category floors: politics 2, economy 2, science 3, tech 2.
 

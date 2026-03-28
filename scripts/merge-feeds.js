@@ -35,11 +35,20 @@ for (const s of rss) {
   }
 }
 
+// Drop stories older than 48h — with 5 cycles/day, stale stories have had plenty of chances
+const MAX_AGE_MS = 48 * 60 * 60 * 1000
+const now = Date.now()
+const fresh = stories.filter(s => {
+  const age = now - new Date(s.pubDate).getTime()
+  return !isNaN(age) && age < MAX_AGE_MS
+})
+const stale = stories.length - fresh.length
+
 // Split into multi-source and niche — no flat list, forces selector to use both sections
-const multiSourceStories = stories.filter(s => (s.sources || []).length > 1)
-const nicheStories = stories.filter(s => (s.sources || []).length === 1)
+const multiSourceStories = fresh.filter(s => (s.sources || []).length > 1)
+const nicheStories = fresh.filter(s => (s.sources || []).length === 1)
 // Drop stories with empty sources — headline-only, writer can't use them
-const dropped = stories.filter(s => (s.sources || []).length === 0).length
+const dropped = fresh.filter(s => (s.sources || []).length === 0).length
 
 const output = {
   fetchedAt: new Date().toISOString(),
@@ -66,4 +75,4 @@ const slimOutput = {
 }
 writeFileSync('/tmp/zuhd-feed-slim.json', JSON.stringify(slimOutput, null, 2))
 
-console.log(`${multiSourceStories.length} multi + ${nicheStories.length} niche (${dropped} headline-only dropped)`)
+console.log(`${multiSourceStories.length} multi + ${nicheStories.length} niche (${dropped} headline-only, ${stale} stale >48h dropped)`)
