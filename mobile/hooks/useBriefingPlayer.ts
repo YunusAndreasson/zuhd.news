@@ -46,18 +46,48 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const preloadedUrl = useRef<string | null>(null);
   // Suppress listener-driven setPlaying briefly after user taps toggle
   const userToggleAt = useRef(0);
+  const backgroundAt = useRef<number>(0);
+  const verifyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Re-sync state when app returns from background
+  // Tear down stale player when app returns from extended background.
+  // iOS reclaims native audio resources after ~30s of suspension — the JS
+  // playerRef stays non-null but play() silently does nothing.
+  // By releasing here, the next toggle() hits the fresh-creation path.
   useEffect(() => {
     const sub = AppState.addEventListener('change', async (state: AppStateStatus) => {
-      if (state === 'active' && playerRef.current) {
-        // Re-activate audio session — iOS may have deactivated it during background
-        try {
-          await setIsAudioActiveAsync(true);
-        } catch {}
-        // Sync React playing state with native player
-        setPlaying(playerRef.current.playing);
+      if (state !== 'active') {
+        backgroundAt.current = Date.now();
+        return;
       }
+      if (!playerRef.current) return;
+
+      const bgDuration = Date.now() - backgroundAt.current;
+
+      // Short background — player is likely still alive, just re-sync
+      if (bgDuration < 30_000) {
+        if (playerRef.current.playing) {
+          try { await setIsAudioActiveAsync(true); } catch {}
+        }
+        setPlaying(playerRef.current.playing);
+        return;
+      }
+
+      // Extended background or player was paused — save position, tear down
+      // so next toggle creates a fresh player with working native resources.
+      try {
+        const pos = playerRef.current.currentTime;
+        if (pos > 0 && savedDate.current) {
+          await setItemAsync(POSITION_KEY, String(Math.floor(pos)));
+          await setItemAsync(DATE_KEY, savedDate.current);
+        }
+      } catch {}
+      subRef.current?.remove();
+      try { playerRef.current.clearLockScreenControls(); } catch {}
+      playerRef.current.release();
+      playerRef.current = null;
+      subRef.current = null;
+      lockScreenActive.current = false;
+      setPlaying(false);
     });
     return () => sub.remove();
   }, []);
@@ -76,6 +106,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
 
   useEffect(() => {
     return () => {
+      if (verifyTimer.current) clearTimeout(verifyTimer.current);
       savePosition();
       subRef.current?.remove();
       try {
@@ -128,12 +159,23 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
           playerRef.current.pause();
           setPlaying(false);
         } else {
-          // Re-activate audio session in case iOS deactivated it (e.g. after background)
-          try {
-            await setIsAudioActiveAsync(true);
-          } catch {}
+          try { await setIsAudioActiveAsync(true); } catch {}
           playerRef.current.play();
           setPlaying(true);
+          // Verify the player actually started — if native resources
+          // were reclaimed, playing will still be false after a tick.
+          verifyTimer.current = setTimeout(() => {
+            if (playerRef.current && !playerRef.current.playing) {
+              // Native player is dead — tear down so next tap recreates
+              subRef.current?.remove();
+              try { playerRef.current.clearLockScreenControls(); } catch {}
+              playerRef.current.release();
+              playerRef.current = null;
+              subRef.current = null;
+              lockScreenActive.current = false;
+              setPlaying(false);
+            }
+          }, 300);
         }
         return;
       }

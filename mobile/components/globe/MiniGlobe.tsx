@@ -74,6 +74,7 @@ function Glow({
 const skiaCtx = createSkiaPathContext();
 const nightCircleGen = geoCircle();
 const HALF_PI = Math.PI / 2;
+const DECAY_LAMBDA = Math.LN2 / 18; // 18h half-life
 
 // Moon phase — synodic period from known new moon
 const SYNODIC = 29.53059;
@@ -234,6 +235,50 @@ interface GlobeState {
   }[];
 }
 
+const EMPTY_GLOBE: GlobeState = {
+  landPath: null, countryPath: null, nightPath: null,
+  dot: null, aqsa: null, hotspotGlows: [],
+};
+
+/** Pure projection — creates fresh Skia paths, no shared mutable state. */
+function projectInitial(
+  geo: { lat: number; lng: number; country: GeoJSON.Feature | null },
+  r: number, centerX: number, centerY: number,
+): GlobeState {
+  const proj = geoOrthographic().clipAngle(90).precision(8)
+    .rotate([-geo.lng, -geo.lat, 0]).scale(r).translate([centerX, centerY]);
+  const pg = geoPath(proj);
+  const ctx = createSkiaPathContext();
+
+  const lp = Skia.Path.Make();
+  ctx.setPath(lp);
+  pg.context(ctx as any)(land);
+
+  let cp: ReturnType<typeof Skia.Path.Make> | null = null;
+  if (geo.country) {
+    cp = Skia.Path.Make();
+    ctx.setPath(cp);
+    pg.context(ctx as any)(geo.country);
+  }
+
+  const [sunLng, sunLat] = getSunPosition();
+  const np = Skia.Path.Make();
+  ctx.setPath(np);
+  pg.context(ctx as any)(nightCircleGen.center([sunLng + 180, -sunLat]).radius(80)());
+
+  let dot: GlobeState['dot'] = null;
+  const pt = proj([geo.lng, geo.lat]);
+  if (pt) dot = { x: pt[0], y: pt[1] };
+
+  let aqsa: GlobeState['aqsa'] = null;
+  if (geoDistance(AL_AQSA.coords, [geo.lng, geo.lat]) < HALF_PI) {
+    const ap = proj(AL_AQSA.coords);
+    if (ap) aqsa = { x: ap[0], y: ap[1] };
+  }
+
+  return { landPath: lp, countryPath: cp, nightPath: np, dot, aqsa, hotspotGlows: [] };
+}
+
 export const MiniGlobe = memo(function MiniGlobe({
   articles,
   heatmapPoints,
@@ -248,16 +293,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   const cx = width / 2;
   const cy = height * 0.75;
 
-  const [state, setState] = useState<GlobeState>({
-    landPath: null,
-    countryPath: null,
-    nightPath: null,
-    dot: null,
-    aqsa: null,
-    hotspotGlows: [],
-  });
-
-  // Precompute per-article: coords + country feature + names
+  // Precompute per-article: coords + country feature + names (before useState so initializer can use it)
   const articleGeo = useMemo(() => {
     return articles.map((a) => {
       const coords = getCoords(a);
@@ -268,8 +304,15 @@ export const MiniGlobe = memo(function MiniGlobe({
     });
   }, [articles]);
 
+  // Eager initial state — project synchronously on mount so the Canvas + Skia shaders
+  // are warm before the first swipe (avoids useEffect → reaction → runOnJS lag)
+  const [state, setState] = useState<GlobeState>(() => {
+    const firstGeo = articleGeo.find((g) => g != null);
+    if (!firstGeo) return EMPTY_GLOBE;
+    return projectInitial(firstGeo, globeRadius, cx, cy);
+  });
+
   // Cluster heatmap points with 18h half-life time-decay → top 8 coverage hotspots
-  const DECAY_LAMBDA = Math.LN2 / 18; // 18h half-life
   const hotspots = useMemo((): Hotspot[] => {
     // Fallback to article-based clustering when heatmap data unavailable
     if (!heatmapPoints || heatmapPoints.length === 0) {
@@ -338,10 +381,11 @@ export const MiniGlobe = memo(function MiniGlobe({
     coordsSV.value = articleGeo.flatMap((g) => (g ? [g.lat, g.lng] : [null, null]));
   }, [articleGeo, coordsSV]);
 
-  // Projection refs (reused, never reallocated)
-  const projRef = useRef<ReturnType<typeof geoOrthographic> | null>(null);
-  const pgRef = useRef<ReturnType<typeof geoPath> | null>(null);
+  // Projection + path generator — created eagerly so the first scroll frame is warm
+  const projRef = useRef(geoOrthographic().clipAngle(90).precision(8));
+  const pgRef = useRef(geoPath(projRef.current));
   const lastSettled = useRef(-1);
+  const lastSettledSlug = useRef<string | null>(null);
 
   const cachedCountryRef = useRef<GeoJSON.Feature | null>(null);
 
@@ -364,20 +408,11 @@ export const MiniGlobe = memo(function MiniGlobe({
     const { globeRadius: r, cx: centerX, cy: centerY } = layoutRef.current;
     const geoData = articleGeoRef.current;
 
-    let proj = projRef.current;
-    if (!proj) {
-      proj = geoOrthographic().clipAngle(90).precision(8);
-      projRef.current = proj;
-    }
+    const proj = projRef.current;
     proj.rotate([-geoLng, -geoLat, 0]).scale(r).translate([centerX, centerY]);
 
-    let pg = pgRef.current;
-    if (!pg) {
-      pg = geoPath(proj);
-      pgRef.current = pg;
-    } else {
-      pg.projection(proj);
-    }
+    const pg = pgRef.current;
+    pg.projection(proj);
 
     // Land — reuse path object to avoid native memory accumulation
     const landPath = landPathRef.current;
@@ -385,10 +420,14 @@ export const MiniGlobe = memo(function MiniGlobe({
     skiaCtx.setPath(landPath);
     pg.context(skiaCtx as any)(land);
 
-    // Update which country to highlight when settled changes
+    // Update which country to highlight when settled article changes.
+    // Compare both index AND article slug — index alone misses category
+    // switches where scroll resets to 0 but the article is different.
     const geo = geoData[settledIndex];
-    if (settledIndex !== lastSettled.current) {
+    const slug = articlesRef.current[settledIndex]?.slug ?? null;
+    if (settledIndex !== lastSettled.current || slug !== lastSettledSlug.current) {
       lastSettled.current = settledIndex;
+      lastSettledSlug.current = slug;
       cachedCountryRef.current = geo?.country ?? null;
     }
 
@@ -667,8 +706,6 @@ export const MiniGlobe = memo(function MiniGlobe({
     return s;
   }, [width, height, cx, cy, globeRadius]);
 
-  if (!state.landPath) return null;
-
   return (
     <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
       {/* Stars — tiny fixed points */}
@@ -731,7 +768,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       </Circle>
 
       {/* Land silhouette */}
-      <Path path={state.landPath} color={COLORS.rule} opacity={0.4} />
+      {state.landPath && <Path path={state.landPath} color={COLORS.rule} opacity={0.4} />}
 
       {/* Night shadow — darker overlay on the unlit hemisphere */}
       {state.nightPath && <Path path={state.nightPath} color={COLORS.black} opacity={0.15} />}

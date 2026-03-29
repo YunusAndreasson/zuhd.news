@@ -14,6 +14,7 @@
     "test:ios": "./scripts/release.sh test ios",
     "test:android": "./scripts/release.sh test android",
     "release:ios": "./scripts/release.sh release ios",
+    "release:android": "./scripts/release.sh release android",
     "release:all": "./scripts/release.sh release all"
   },
   "dependencies": {
@@ -36,7 +37,7 @@
     "expo-task-manager": "~55.0.10",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "react-native": "0.83.2",
+    "react-native": "0.83.4",
     "react-native-gesture-handler": "~2.30.1",
     "react-native-pager-view": "8.0.0",
     "react-native-reanimated": "4.2.1",
