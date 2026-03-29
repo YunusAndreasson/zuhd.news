@@ -2,13 +2,239 @@
   "version": 1,
   "stories": [
     {
+      "id": "drones-crash-finland-nato-russia-territorial-violation",
+      "label": "Drones crash in NATO territory",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-drones-crash-finland-nato-russia-territorial-violation"
+      ],
+      "eventUri": "eng-11522824",
+      "summary": "Two drones crashed near Kouvola in southeast Finland on Sunday — a suspected Russian territorial violation that forced Finnish fighter jets to scramble. Finland's PM Petteri Orpo confirmed the incident. The angle: while the world's attention is fixed on Iran, Russia is testing NATO's newest member's airspace. Finland joined NATO specifically to prevent this kind of incursion. Lead with the territorial violation and Finland's military response. The reader tracks geopolitical systems; show how the Iran war creates windows of distraction that other actors exploit. Multi-source with divergent framing: UK tabloid Express plays up WW3 fears, Newsweek is measured, Indian and Singaporean outlets highlight the NATO dimension.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Finland",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Kouvola",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Yle",
+        "http://en.wikipedia.org/wiki/Petteri_Orpo",
+        "http://en.wikipedia.org/wiki/Fighter_aircraft"
+      ]
+    },
+    {
+      "id": "pentagon-kharg-island-raids-islamabad-mediation-iran",
+      "label": "Iran says its forces 'waiting' as US troops arrive in region",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-pentagon-kharg-island-raids-islamabad-mediation-iran"
+      ],
+      "eventUri": "eng-11522122",
+      "summary": "The Washington Post revealed Pentagon plans for limited ground operations including raids on Kharg Island — Iran's main oil export terminal. Simultaneously, regional foreign ministers from Saudi Arabia, Turkey, and Egypt are meeting in Islamabad to mediate direct US-Iran talks. The angle: the US is preparing to seize Iran's economic jugular (Kharg handles 90% of Iranian oil exports) while Pakistan hosts a peace summit in the same news cycle. Lead with the Kharg Island detail — the reader tracks energy infrastructure and will grasp immediately why this target changes the war's economic calculus. The Islamabad mediation is the diplomatic track running in parallel; show the contradiction. This advances the ground operations arc with genuinely new specifics.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/The_Pentagon",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/The_Washington_Post",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz"
+      ]
+    },
+    {
+      "id": "iran-own-peace-terms-drop-site-witkoff-negotiation",
+      "label": "Iran Rejects U.S. Narrative That It Must Adhere to Trump's 'Disingenuous' Negotiation Framework",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-iran-own-peace-terms-drop-site-witkoff-negotiation"
+      ],
+      "eventUri": null,
+      "summary": "A senior Iranian official told Drop Site News that Tehran put forward its own ceasefire terms — contradicting the US claim that Iran hasn't responded to Trump's framework. The angle: two parallel narratives about who is blocking peace. Washington says Iran is silent; Tehran says it proposed terms and was ignored. Lead with the specific claim — Iran says it presented counter-terms through Witkoff's channel. The reader follows power dynamics and information asymmetry; show how the 'who won't negotiate' framing is itself a weapon in the war. This is accountability journalism from an independent outlet doing what legacy media hasn't: calling the Iranian foreign ministry directly.",
+      "conceptUris": []
+    },
+    {
+      "id": "sudan-south-kordofan-delling-blue-nile-displacement",
+      "label": "Sudan army claims gains in South Kordofan, 'displacement rises in Blue Nile'",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-sudan-south-kordofan-delling-blue-nile-displacement"
+      ],
+      "eventUri": null,
+      "summary": "The RSF and SPLM-N (Abdelaziz El Hilu's faction) launched a major assault on Delling in South Kordofan — the SAF says it repelled the attack but local sources describe the situation as critical. Meanwhile displacement surges in Blue Nile state. The angle: the war is opening new fronts while the world focuses on food prices in El Gezira (covered last cycle). Lead with the geographic expansion — South Kordofan and Blue Nile are new theaters that show the conflict metastasizing beyond the Khartoum-Darfur-Gezira corridor. The reader followed the Kurmuk massacre and crop price surge; this is the military story underneath the humanitarian one.",
+      "conceptUris": []
+    },
+    {
+      "id": "islamabad-katchi-abadi-evictions-hrcp-pakistan",
+      "label": "HRCP, civil society organisations demand immediate halt to eviction operations in Islamabad's katchi abadis",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-islamabad-katchi-abadi-evictions-hrcp-pakistan"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's Human Rights Commission and civil society are demanding a halt to forced evictions of katchi abadis (informal settlements) in Islamabad — bulldozing the homes of the poorest while the country simultaneously rations fuel via app, faces medicine shortages, and hosts Iran mediation talks. The angle: the state's priorities are visible in what it demolishes and what it protects. Lead with the juxtaposition — the same government managing a wartime fuel crisis is also displacing its most vulnerable citizens. The reader followed Pakistan's cascade of war ripple effects; this is the domestic governance failure underneath the geopolitical crisis.",
+      "conceptUris": []
+    },
+    {
+      "id": "fed-rate-hike-expectations-iran-war-inflation-bitcoin",
+      "label": "Here is why traders are pricing in a rate hike and how it impacts bitcoin",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-fed-rate-hike-expectations-iran-war-inflation-bitcoin"
+      ],
+      "eventUri": null,
+      "summary": "Markets have done a complete 180: traders who expected multiple Fed rate CUTS are now pricing in rate HIKES as Iran war-driven oil prices feed inflation expectations. CME futures show the shift. The angle: the war didn't just disrupt energy markets — it reversed the entire monetary policy trajectory. Lead with the reversal: from expecting cuts to pricing hikes in under a month. The reader tracks macro and bitcoin; show how the Hormuz closure → oil spike → inflation expectations → rate hike pricing chain works, and why bitcoin has outperformed equities in the very short term despite this. Gold is falling (margin calls) while oil surges — the normal crisis playbook is broken.",
+      "conceptUris": []
+    },
+    {
+      "id": "clarity-act-defi-stablecoin-regulation-circle",
+      "label": "CRCL, COIN, AAVE news: Crypto's CLARITY Act could be a headwind for DeFi tokens, benefit Circle",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-clarity-act-defi-stablecoin-regulation-circle"
+      ],
+      "eventUri": null,
+      "summary": "The latest CLARITY Act draft ring-fences yield-generating activities in DeFi, effectively treating them like money market funds under SEC jurisdiction. This benefits regulated stablecoin issuers like Circle (CRCL) while creating existential headwinds for DeFi protocols (AAVE, COIN exposure). The angle: the US is writing crypto regulation that picks winners — and the winners are the entities closest to traditional finance. Lead with the stablecoin rules and who benefits. The reader uses DeFi and holds crypto; show how this bill would restructure which protocols survive and which get regulated into irrelevance.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-facial-recognition-wrongful-arrest-angela-lipps",
+      "label": "Police used AI facial recognition to wrongly arrest TN woman for crimes in ND",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-ai-facial-recognition-wrongful-arrest-angela-lipps"
+      ],
+      "eventUri": null,
+      "summary": "Angela Lipps, a Tennessee woman, was wrongly arrested for crimes committed in North Dakota based on an AI facial recognition match — despite never having visited the state. 111 HN points, 49 comments. The angle: the algorithm was confident and wrong, and the police department treated the match as probable cause. Lead with the geographic absurdity: arrested for crimes 1,500 miles away based on a machine's confidence score. The reader builds with AI and understands false positive rates; show how facial recognition's accuracy degrades across demographics and lighting conditions, yet police departments deploy it as if it were fingerprint-level reliable. This is the polygraph story from last cycle's Ars Technica piece playing out with a different technology — institutional faith in a tool that doesn't work as advertised.",
+      "conceptUris": []
+    },
+    {
+      "id": "club-med-shark-nets-greenwashing-south-africa",
+      "label": "Club Med's green image challenged by shark control controversy",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-club-med-shark-nets-greenwashing-south-africa"
+      ],
+      "eventUri": null,
+      "summary": "Club Med is building a R2-billion resort on South Africa's KZN coast marketed as 'sustainable tourism' while planning to install shark nets (gillnets) known to kill endangered loggerhead sea turtles, dolphins, and whale sharks as bycatch. The angle: greenwashing with a body count. South Africa has decades of data showing shark nets are indiscriminate — they kill more non-target species than sharks. Lead with the contradiction between the sustainability branding and the gillnet science. The reader values evidence over marketing; show how the term 'sustainable' has been hollowed out when a resort can use it while deploying technology proven to kill endangered marine species.",
+      "conceptUris": []
+    },
+    {
+      "id": "gastric-cancer-blood-biomarkers-cxcl12-eotaxin",
+      "label": "CXCL12 and eotaxin are independent prognostic serum biomarkers in gastric cancer - Scientific Reports",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-gastric-cancer-blood-biomarkers-cxcl12-eotaxin"
+      ],
+      "eventUri": null,
+      "summary": "Two blood proteins — CXCL12 and eotaxin — can independently predict gastric cancer outcomes from a simple blood draw, potentially replacing invasive tissue biopsies for prognosis. Gastric cancer is the 5th most common cancer and 5th leading cause of cancer death worldwide. The angle: a cheap blood test that could change how the most common cancers in the Global South are managed. Lead with the clinical implication — serum biomarkers are accessible in resource-limited settings where tissue biopsy infrastructure doesn't exist. The reader appreciates engineering solutions that scale; show how moving cancer prognosis from tissue to blood democratizes access to precision medicine.",
+      "conceptUris": []
+    },
+    {
+      "id": "palantir-europe-petition-surveillance-sovereignty",
+      "label": "Say No to Palantir in Europe",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-palantir-europe-petition-surveillance-sovereignty"
+      ],
+      "eventUri": null,
+      "summary": "A European petition to block Palantir from government contracts has hit 382 HN points and 76 comments. Palantir — the surveillance company co-founded by Peter Thiel — is expanding aggressively into European defense and intelligence contracts. The angle: Europe is deciding whether to hand its most sensitive government data to a US surveillance contractor with deep ties to US intelligence. Lead with the sovereignty question: can European governments outsource their intelligence infrastructure to a company that reports to US jurisdiction? The reader works in tech and understands vendor lock-in at the infrastructure level; show how Palantir's government contracts create dependency that outlasts any single policy decision.",
+      "conceptUris": []
+    },
+    {
+      "id": "miasma-ai-scraper-trap-poison-data",
+      "label": "Miasma: A tool to trap AI web scrapers in an endless poison pit",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-miasma-ai-scraper-trap-poison-data"
+      ],
+      "eventUri": null,
+      "summary": "Miasma generates infinite, plausible-looking but poisoned web pages to trap AI training crawlers in an endless pit of bad data. 185 HN points, 133 comments. The angle: this is the arms race between AI companies that scrape the web without consent and website operators who want to fight back. Lead with the mechanism — Miasma exploits the fact that crawlers follow links and ingest content indiscriminately, so it creates a tarpit of procedurally generated pages that waste compute and corrupt training data. The reader is a hacker who appreciates asymmetric defense tools; show how one developer's open-source project weaponizes the web's link structure against the companies that are strip-mining it.",
+      "conceptUris": []
+    },
+    {
+      "id": "bittensor-tao-1-5b-decentralized-ai-compute",
+      "label": "Bittensor ecosystem tokens' value hits $1.5 billion as TAO rockets 90% in March",
+      "firstSeen": "2026-03-29T17:08:10.371Z",
+      "lastCovered": "2026-03-29T17:08:10.371Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-bittensor-tao-1-5b-decentralized-ai-compute"
+      ],
+      "eventUri": null,
+      "summary": "Bittensor's TAO token surged 90% in March, pushing its subnet ecosystem to $1.5B in value — fueled partly by Jensen Huang's endorsement of decentralized AI compute. Subnet tokens act as leveraged bets on the main network via automated market makers backed by staked TAO. The angle: decentralized AI training is becoming a real market, not just a whitepaper. Lead with the $1.5B number and the Huang endorsement — when NVIDIA's CEO validates decentralized compute, it signals that centralized GPU monopolies may not be the only path to training competitive models. The reader works in AI and follows crypto; show how Bittensor's subnet architecture lets anyone contribute GPU power and earn tokens, creating a market for AI compute that no single company controls.",
+      "conceptUris": []
+    },
+    {
       "id": "brent-crude-51-percent-monthly-surge-record-gold-crash",
       "label": "Oil on track for record monthly surge as Iran war disrupts markets",
       "firstSeen": "2026-03-29T12:12:38.164Z",
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-brent-crude-51-percent-monthly-surge-record-gold-crash"
@@ -29,7 +255,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-pia-shutdown-threat-150-percent-jet-fuel-hike-iran-war"
@@ -48,7 +274,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-sudan-el-gezira-crop-prices-surge-food-crisis"
@@ -69,7 +295,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-dagestan-flooding-emergency-500k-without-power"
@@ -91,7 +317,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-polygraph-pseudoscience-fbi-cia-security-clearance"
@@ -112,7 +338,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-pakistan-medicine-prices-supply-chain-drap-denial"
@@ -132,7 +358,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-android-sideload-settings-persist-device-migration"
@@ -148,7 +374,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-mcdonalds-robots-shanghai-fast-food-automation"
@@ -168,7 +394,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-irgc-threatens-american-universities-neighbors-escalation"
@@ -190,7 +416,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-hamas-rejects-board-of-peace-reconstruction-disarmament"
@@ -206,7 +432,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-west-bank-protective-presence-broken-solidarity-model"
@@ -222,7 +448,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-uk-spycops-undercover-officer-assault-deception-inquiry"
@@ -244,7 +470,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-wto-mc14-north-south-faultlines-subsidies-software"
@@ -266,7 +492,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-gulf-renewables-iran-conflict-energy-security"
@@ -282,7 +508,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-india-remittances-rupee-fiscal-triple-threat-iran-war"
@@ -304,7 +530,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-alzheimers-taxi-ambulance-drivers-bmj-spatial-navigation"
@@ -320,7 +546,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-australia-blood-red-sky-cyclone-narelle-dust-atmospheric-optics"
@@ -342,7 +568,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-css-doom-3d-rendering-no-javascript"
@@ -358,7 +584,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-deepseek-ai-chatbot-murder-planning-safety-failures"
@@ -380,7 +606,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-28-cosmic-ray-cavity-earth-magnetic-field-astronaut-radiation",
@@ -402,7 +628,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-iran-npt-exit-nuclear-treaty-parliament"
@@ -424,7 +650,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-bellingcat-iran-school-strike-two-waves-geolocation"
@@ -440,7 +666,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-north-korea-icbm-engine-test-solid-fuel"
@@ -462,7 +688,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-sri-lanka-india-emergency-fuel-38000mt-iran-war"
@@ -483,7 +709,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-us-gasoline-prices-dollar-spike-iran-war"
@@ -503,7 +729,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-pakistan-sukuk-auction-rs118bn-islamic-finance"
@@ -519,7 +745,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-marmoset-otof-gene-deafness-model-hearing"
@@ -541,7 +767,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-south-korea-solar-panels-parking-lots-mandate"
@@ -557,7 +783,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-egypt-drug-tracking-counterfeit-medicine-system"
@@ -573,7 +799,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-27-west-bank-settler-attacks-surge-iran-war-cover",
@@ -590,7 +816,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-28-houthis-enter-iran-war-missiles-israel-red-sea"
@@ -615,7 +841,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-28-israeli-strike-kills-journalists-lebanon-press-vehicle"
@@ -640,7 +866,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-28-pakistan-hosts-saudi-turkey-egypt-fms-iran-mediation"
@@ -665,7 +891,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-28-russia-strikes-ukraine-maternity-hospital-odesa-iran-distraction",
@@ -693,7 +919,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-28-paris-bank-of-america-attempted-attack-terror-probe"
@@ -718,7 +944,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-28-israel-litani-push-hezbollah-losses-lebanon-ground-invasion"
@@ -739,7 +965,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-28-uae-aluminium-ega-iranian-attack-gulf-industry-damage"
@@ -762,7 +988,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-28-quantum-mechanics-causality-formal-proof-entanglement"
@@ -784,7 +1010,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-28-giant-insects-oxygen-hypothesis-overturned-paleozoic"
@@ -805,7 +1031,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-28-white-house-app-decompiled-reverse-engineering"
@@ -825,7 +1051,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-28-iran-ai-slop-propaganda-war-information-warfare"
@@ -846,7 +1072,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-27-hormuz-fertilizer-food-inflation-war-supply-chain"
@@ -867,7 +1093,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-03-26-us-troops-kharg-island-ground-attack-iran",
@@ -896,7 +1122,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 5,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "ongoing",
       "articles": [
         "2026-03-25-iran-rejects-ceasefire-five-conditions",
@@ -921,7 +1147,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-03-27-no-kings-protests-march-28-largest-us-history",
@@ -942,7 +1168,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 3,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-03-26-india-fuel-panic-lpg-shortage-hormuz-oil-ministry",
@@ -965,7 +1191,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-pakistan-gsp-plus-eu-trade-status-threat"
@@ -985,7 +1211,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-nih-foreign-institution-grants-restrictions-science"
@@ -1003,7 +1229,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-russia-sovereign-satellite-constellation-starlink-rival"
@@ -1022,7 +1248,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-apple-fbi-hide-my-email-privacy-broken-promise"
@@ -1038,7 +1264,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-meta-instagram-dms-encryption-rollback-wana-risk"
@@ -1054,7 +1280,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-china-trade-probes-us-supply-chain-green-products"
@@ -1075,7 +1301,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-ukraine-saudi-defence-deal-anti-drone-iran-war"
@@ -1096,7 +1322,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-03-26-sudan-kurmuk-rsf-eid-drone-massacre-medicine-crisis",
@@ -1109,193 +1335,6 @@
         "http://en.wikipedia.org/wiki/Blue_Nile_(state)",
         "http://en.wikipedia.org/wiki/Darfur"
       ]
-    },
-    {
-      "id": "prague-russian-centre-firebomb",
-      "label": "Molotov cocktail attack on Russian cultural centre in Prague",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-prague-firebomb-russian-cultural-centre-czech"
-      ],
-      "eventUri": "rus-2044798",
-      "summary": "Unknown attacker threw Molotov cocktails at Russian House in Prague. Czech police investigating. Anti-Russian sentiment escalating from diplomatic to physical in Eastern Europe.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Prague",
-        "http://en.wikipedia.org/wiki/Czech_Republic",
-        "http://en.wikipedia.org/wiki/Russia"
-      ]
-    },
-    {
-      "id": "nyse-polymarket-investment",
-      "label": "NYSE parent ICE invests $600M in Polymarket prediction market",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-nyse-ice-polymarket-600m-prediction-markets"
-      ],
-      "eventUri": "eng-11505108",
-      "summary": "Intercontinental Exchange invested $600M in Polymarket at $4B+ valuation. NYSE parent betting prediction markets are future of price discovery.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Intercontinental_Exchange",
-        "http://en.wikipedia.org/wiki/Prediction_market",
-        "http://en.wikipedia.org/wiki/New_York_Stock_Exchange"
-      ]
-    },
-    {
-      "id": "climate-crop-pest-expansion",
-      "label": "Climate change expanding destructive root-knot nematode range globally",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-climate-nematode-crop-pest-expansion-food-security"
-      ],
-      "eventUri": null,
-      "summary": "Climate change expanding range of root-knot nematodes into new agricultural regions. $100B+ in annual crop losses. Invisible belowground threat to food security.",
-      "conceptUris": []
-    },
-    {
-      "id": "data-center-electricity-monitoring",
-      "label": "US senators propose tracking data center electricity usage for AI energy",
-      "firstSeen": "2026-03-27T17:00:00Z",
-      "lastCovered": "2026-03-27T17:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-senators-data-center-electricity-monitoring-ai-energy"
-      ],
-      "eventUri": "eng-11512593",
-      "summary": "Senators introduced bill requiring EIA to track data center electricity. Data centers consume more power than many countries but usage is untracked. AI training exacerbating.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Data_center",
-        "http://en.wikipedia.org/wiki/Energy_Information_Administration"
-      ]
-    },
-    {
-      "id": "trump-china-visit-may",
-      "label": "Trump rescheduled China visit to May 14-15, delayed by Iran war",
-      "firstSeen": "2026-03-27T12:00:00Z",
-      "lastCovered": "2026-03-27T12:00:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-trump-china-visit-may-xi-iran-war-delay"
-      ],
-      "eventUri": "eng-11512594",
-      "summary": "Trump will visit Beijing May 14-15, first US presidential visit in 8 years. China hasn't confirmed dates. Supreme Court curtailed tariff powers. Trump needs China's help on Hormuz oil flows but has been rebuffed.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Xi_Jinping",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
-      "id": "eu-mercosur-trade-deal",
-      "label": "EU-Mercosur trade deal activates May 1, bypassing parliament",
-      "firstSeen": "2026-03-27T12:00:00Z",
-      "lastCovered": "2026-03-27T12:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-eu-mercosur-trade-deal-may-1-parliament-bypass"
-      ],
-      "eventUri": "spa-4146070",
-      "summary": "EU activating Mercosur trade deal May 1 via provisional application, sidestepping European Parliament's pending court challenge. World's largest free trade zone linking 700M people. Driven by need to diversify from US/China during Iran war.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Mercosur",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/European_Commission",
-        "http://en.wikipedia.org/wiki/Brazil",
-        "http://en.wikipedia.org/wiki/Argentina"
-      ]
-    },
-    {
-      "id": "toxic-fallout-gulf-war",
-      "label": "Bombing of Gulf oil facilities contaminating air, soil, water for decades",
-      "firstSeen": "2026-03-27T12:00:00Z",
-      "lastCovered": "2026-03-27T12:00:00Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-toxic-fallout-gulf-war-decades-oil-contamination"
-      ],
-      "eventUri": null,
-      "summary": "Experts warn bombing of Gulf oil facilities is contaminating air, soil, and water systems with effects that could persist for decades. Environmental dimension of Iran war largely uncovered.",
-      "conceptUris": []
-    },
-    {
-      "id": "wikipedia-ai-ban",
-      "label": "Wikipedia bans LLM-generated article content after editor vote",
-      "firstSeen": "2026-03-27T12:00:00Z",
-      "lastCovered": "2026-03-27T12:00:00Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-wikipedia-bans-ai-generated-content-llm-policy"
-      ],
-      "eventUri": null,
-      "summary": "Wikipedia editors voted March 20 to ban LLM-generated article content. First major knowledge platform to draw this institutional line. Editors were being overwhelmed by AI-related administrative reports.",
-      "conceptUris": []
-    },
-    {
-      "id": "un-minab-school-massacre",
-      "label": "UNHRC approves emergency debate on Minab school massacre (168 girls killed)",
-      "firstSeen": "2026-03-26T08:00:00Z",
-      "lastCovered": "2026-03-27T09:10:00Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-03-26-un-minab-school-massacre-investigation",
-        "2026-03-27-unsc-closed-session-iran-civilian-sites-russia-request"
-      ],
-      "eventUri": "eng-11507758",
-      "summary": "UN rights chief Volker Turk demanded US conclude investigation into Minab school bombing and publish findings. Called for 'justice for the terrible harm done.' UNSC closed session held March 27.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_Nations_Human_Rights_Council",
-        "http://en.wikipedia.org/wiki/Minab_County",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
-      "id": "us-mines-iranian-village",
-      "label": "Bellingcat confirms US Gator mines scattered over Iranian civilian village",
-      "firstSeen": "2026-03-26T20:05:00Z",
-      "lastCovered": "2026-03-26T20:05:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-26-bellingcat-us-gator-mines-kafari-village-iran-civilians"
-      ],
-      "eventUri": null,
-      "summary": "Bellingcat + 3 weapons experts confirm US Gator scatterable mines deployed over Kafari village near Shiraz. Civilians killed. US never signed Ottawa Treaty.",
-      "conceptUris": []
     }
   ]
 }
