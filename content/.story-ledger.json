@@ -2,13 +2,173 @@
   "version": 1,
   "stories": [
     {
+      "id": "brent-crude-51-percent-monthly-surge-record-gold-crash",
+      "label": "Oil on track for record monthly surge as Iran war disrupts markets",
+      "firstSeen": "2026-03-29T12:12:38.164Z",
+      "lastCovered": "2026-03-29T12:12:38.164Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-brent-crude-51-percent-monthly-surge-record-gold-crash"
+      ],
+      "eventUri": "eng-11517742",
+      "summary": "Brent crude has climbed 51% since March 1 — the largest monthly gain on record. Gold is suffering its 5th-largest monthly fall in 50 years as investors liquidate safe havens to cover margin calls. The angle: the war has broken the normal crisis playbook where oil and gold rise together. Lead with the 51% number — it's historic. The reader tracks macro and will immediately grasp what this means for inflation, central bank policy, and the real economy. This is the month the war repriced everything.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Price_of_oil",
+        "http://en.wikipedia.org/wiki/Brent_Crude",
+        "http://en.wikipedia.org/wiki/Gold",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
+      "id": "pia-shutdown-threat-150-percent-jet-fuel-hike-iran-war",
+      "label": "PIA could be 'forced to shut down' due to 150pc jet fuel rate hikes: Arif Habib",
+      "firstSeen": "2026-03-29T12:12:38.164Z",
+      "lastCovered": "2026-03-29T12:12:38.164Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-pia-shutdown-threat-150-percent-jet-fuel-hike-iran-war"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's national airline faces existential collapse from a 150% jet fuel price hike driven by the Iran war. PIA consortium chairman Arif Habib warns the airline 'could be forced to shut down.' The angle: a war 1,500km away is about to ground a country's flag carrier. Lead with the 150% number and the shutdown warning. The reader already tracked Pakistan's fuel rationing app and GSP+ trade threat — this is the third domino falling. Show the cascade: Hormuz → fuel prices → national infrastructure collapse.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pakistan_International_Airlines",
+        "http://en.wikipedia.org/wiki/Jet_fuel"
+      ]
+    },
+    {
+      "id": "sudan-el-gezira-crop-prices-surge-food-crisis",
+      "label": "Crop prices surge in Sudan's El Gezira as cultivated land shrinks",
+      "firstSeen": "2026-03-29T12:12:38.164Z",
+      "lastCovered": "2026-03-29T12:12:38.164Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-sudan-el-gezira-crop-prices-surge-food-crisis"
+      ],
+      "eventUri": null,
+      "summary": "Sorghum and wheat prices are spiking in Sudan's El Gezira state as cultivated land shrinks dramatically amid ongoing conflict. El Gezira was Sudan's breadbasket — the Gezira Scheme is one of the largest irrigation projects in the world. The angle: when war destroys agricultural infrastructure, hunger follows on a lag. Lead with the price data and the shrinkage of cultivated land. The reader followed the Kurmuk RSF massacre last cycle; this is the slow-motion food crisis underneath the headline violence.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Gezira_(state)",
+        "http://en.wikipedia.org/wiki/Sudan",
+        "http://en.wikipedia.org/wiki/Sorghum",
+        "http://en.wikipedia.org/wiki/Wheat"
+      ]
+    },
+    {
+      "id": "dagestan-flooding-emergency-500k-without-power",
+      "label": "Russian North Caucasus Region Declares Emergency Amid Flooding",
+      "firstSeen": "2026-03-29T12:12:38.164Z",
+      "lastCovered": "2026-03-29T12:12:38.164Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-dagestan-flooding-emergency-500k-without-power"
+      ],
+      "eventUri": "rus-2045599",
+      "summary": "Dagestan — Russia's largest Muslim-majority republic — declared a state of emergency after flooding left up to 500,000 people without power. Emergency crews are working a second day to restore electricity in Makhachkala and surrounding areas. The angle: extreme weather hitting a region Russia's federal government chronically underinvests in. Lead with the 500,000 without power number and the emergency declaration. The reader follows infrastructure failures; this is about which populations bear the cost when climate events hit neglected regions.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Dagestan",
+        "http://en.wikipedia.org/wiki/Makhachkala",
+        "http://en.wikipedia.org/wiki/State_of_emergency",
+        "http://en.wikipedia.org/wiki/Flood",
+        "http://en.wikipedia.org/wiki/Russia"
+      ]
+    },
+    {
+      "id": "polygraph-pseudoscience-fbi-cia-security-clearance",
+      "label": "Polygraphs have major flaws. Are there better options?",
+      "firstSeen": "2026-03-29T12:12:38.164Z",
+      "lastCovered": "2026-03-29T12:12:38.164Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-polygraph-pseudoscience-fbi-cia-security-clearance"
+      ],
+      "eventUri": null,
+      "summary": "The FBI and CIA still use polygraphs for security clearances despite decades of evidence they're pseudoscience. George Maschke held a clearance for 11 years, then a polygraph destroyed his FBI application — a machine overruling institutional trust. The angle: a discredited technology persists because institutions need the theater of certainty more than actual accuracy. Lead with the false-positive problem and the human cost. The reader is a hacker who distrusts institutional black boxes; this is about the gap between what a system claims to measure and what it actually does.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Polygraph",
+        "http://en.wikipedia.org/wiki/False_positives_and_false_negatives",
+        "http://en.wikipedia.org/wiki/Security_clearance",
+        "http://en.wikipedia.org/wiki/False_confession"
+      ]
+    },
+    {
+      "id": "pakistan-medicine-prices-supply-chain-drap-denial",
+      "label": "Drap dismisses reports of essential medicine price hikes amid global supply chain uncertainty",
+      "firstSeen": "2026-03-29T12:12:38.164Z",
+      "lastCovered": "2026-03-29T12:12:38.164Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-pakistan-medicine-prices-supply-chain-drap-denial"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's Drug Regulatory Authority denies medicine price hikes even as stakeholders report unprecedented increases driven by global supply chain disruption from the Iran war. The angle: the state denies what the market confirms. Lead with the contradiction — DRAP says 'no upward revision' while pharmacists and distributors report shortages and price spikes. The reader followed Pakistan's fuel rationing; this is the same supply chain shock hitting a different essential: medicine. When API imports from China and India are disrupted by shipping route closures, 240 million people feel it at the pharmacy counter.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Supply_chain",
+        "http://en.wikipedia.org/wiki/Medicine"
+      ]
+    },
+    {
+      "id": "android-sideload-settings-persist-device-migration",
+      "label": "Android's new sideload settings will carry over to new devices",
+      "firstSeen": "2026-03-29T12:12:38.164Z",
+      "lastCovered": "2026-03-29T12:12:38.164Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-android-sideload-settings-persist-device-migration"
+      ],
+      "eventUri": null,
+      "summary": "Google is making Android sideloading permissions persistent across device migrations — once you enable installing from unknown sources, the setting carries to your next phone. 104 HN points, 147 comments. The angle: Google quietly conceding ground on user control after years of tightening the sideloading experience. Lead with the practical change and what it signals about the right-to-install fight. The reader sideloads apps and cares about platform control; this is a small but meaningful shift in the power balance between platform and user.",
+      "conceptUris": []
+    },
+    {
+      "id": "mcdonalds-robots-shanghai-fast-food-automation",
+      "label": "Are robots coming to a McDonald's near you?",
+      "firstSeen": "2026-03-29T12:12:38.164Z",
+      "lastCovered": "2026-03-29T12:12:38.164Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-29-mcdonalds-robots-shanghai-fast-food-automation"
+      ],
+      "eventUri": "eng-11521110",
+      "summary": "McDonald's deployed commercial service robots at a Shanghai location — not a research demo, an actual operating restaurant. The angle: China is deploying food-service automation commercially while the West still debates AI governance frameworks. Lead with the deployment gap between Chinese implementation speed and Western caution. The reader works in tech and tracks the automation frontier; this is the moment fast-food robotics moved from lab to counter, and it happened in Shanghai first.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Robotics",
+        "http://en.wikipedia.org/wiki/McDonald%27s",
+        "http://en.wikipedia.org/wiki/Robot"
+      ]
+    },
+    {
       "id": "irgc-threatens-american-universities-neighbors-escalation",
       "label": "Iran warns of attacks on American universities as U.S. prepares ground troops",
       "firstSeen": "2026-03-29T08:11:10.293Z",
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-irgc-threatens-american-universities-neighbors-escalation"
@@ -30,7 +190,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-hamas-rejects-board-of-peace-reconstruction-disarmament"
@@ -46,7 +206,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-west-bank-protective-presence-broken-solidarity-model"
@@ -62,7 +222,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-uk-spycops-undercover-officer-assault-deception-inquiry"
@@ -84,7 +244,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-wto-mc14-north-south-faultlines-subsidies-software"
@@ -106,7 +266,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-gulf-renewables-iran-conflict-energy-security"
@@ -122,7 +282,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-india-remittances-rupee-fiscal-triple-threat-iran-war"
@@ -144,7 +304,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-alzheimers-taxi-ambulance-drivers-bmj-spatial-navigation"
@@ -160,7 +320,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-australia-blood-red-sky-cyclone-narelle-dust-atmospheric-optics"
@@ -182,7 +342,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-css-doom-3d-rendering-no-javascript"
@@ -198,7 +358,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-29-deepseek-ai-chatbot-murder-planning-safety-failures"
@@ -220,7 +380,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-28-cosmic-ray-cavity-earth-magnetic-field-astronaut-radiation",
@@ -242,7 +402,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-iran-npt-exit-nuclear-treaty-parliament"
@@ -264,7 +424,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-bellingcat-iran-school-strike-two-waves-geolocation"
@@ -280,7 +440,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-north-korea-icbm-engine-test-solid-fuel"
@@ -302,7 +462,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-sri-lanka-india-emergency-fuel-38000mt-iran-war"
@@ -323,7 +483,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-us-gasoline-prices-dollar-spike-iran-war"
@@ -343,7 +503,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-pakistan-sukuk-auction-rs118bn-islamic-finance"
@@ -359,7 +519,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-marmoset-otof-gene-deafness-model-hearing"
@@ -381,7 +541,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-south-korea-solar-panels-parking-lots-mandate"
@@ -397,7 +557,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-egypt-drug-tracking-counterfeit-medicine-system"
@@ -413,7 +573,7 @@
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-27-west-bank-settler-attacks-surge-iran-war-cover",
@@ -430,7 +590,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-28-houthis-enter-iran-war-missiles-israel-red-sea"
@@ -455,7 +615,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-28-israeli-strike-kills-journalists-lebanon-press-vehicle"
@@ -480,7 +640,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-28-pakistan-hosts-saudi-turkey-egypt-fms-iran-mediation"
@@ -505,7 +665,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-03-28-russia-strikes-ukraine-maternity-hospital-odesa-iran-distraction",
@@ -533,7 +693,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-28-paris-bank-of-america-attempted-attack-terror-probe"
@@ -558,7 +718,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-28-israel-litani-push-hezbollah-losses-lebanon-ground-invasion"
@@ -579,7 +739,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-28-uae-aluminium-ega-iranian-attack-gulf-industry-damage"
@@ -602,7 +762,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-28-quantum-mechanics-causality-formal-proof-entanglement"
@@ -624,7 +784,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-28-giant-insects-oxygen-hypothesis-overturned-paleozoic"
@@ -645,7 +805,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-28-white-house-app-decompiled-reverse-engineering"
@@ -665,7 +825,7 @@
       "lastCovered": "2026-03-28T22:12:17.174Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-28-iran-ai-slop-propaganda-war-information-warfare"
@@ -686,7 +846,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-27-hormuz-fertilizer-food-inflation-war-supply-chain"
@@ -701,13 +861,42 @@
       ]
     },
     {
+      "id": "us-ground-troops-iran",
+      "label": "US deploys Marines + 82nd Airborne, Kharg Island seizure scenario live",
+      "firstSeen": "2026-03-26T08:00:00Z",
+      "lastCovered": "2026-03-29T12:12:38.164Z",
+      "coverageCount": 3,
+      "category": "politics",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-03-26-us-troops-kharg-island-ground-attack-iran",
+        "2026-03-29-us-ground-operations-iran-pentagon-weeks",
+        "2026-03-29-iran-speaker-warns-us-ground-assault-negotiation-duplicity"
+      ],
+      "eventUri": "eng-11505751",
+      "summary": "Pentagon ordered two Marine Expeditionary Units plus 1,000 82nd Airborne to Gulf. Three scenarios: seize Kharg Island, capture nuclear material, or break Hormuz.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kharg_Island",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/The_Pentagon",
+        "http://en.wikipedia.org/wiki/The_Washington_Post",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine",
+        "http://en.wikipedia.org/wiki/United_States_Marine_Corps",
+        "http://en.wikipedia.org/wiki/Infantry"
+      ]
+    },
+    {
       "id": "iran-rejects-ceasefire-conditions",
       "label": "Iran formally rejects 15-point US ceasefire, issues 5 counter-demands",
       "firstSeen": "2026-03-25T17:00:00Z",
       "lastCovered": "2026-03-29T04:12:52.669Z",
       "coverageCount": 5,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "ongoing",
       "articles": [
         "2026-03-25-iran-rejects-ceasefire-five-conditions",
@@ -732,7 +921,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-27-no-kings-protests-march-28-largest-us-history",
@@ -753,7 +942,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 3,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-26-india-fuel-panic-lpg-shortage-hormuz-oil-ministry",
@@ -776,7 +965,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-27-pakistan-gsp-plus-eu-trade-status-threat"
@@ -796,7 +985,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-27-nih-foreign-institution-grants-restrictions-science"
@@ -814,7 +1003,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-27-russia-sovereign-satellite-constellation-starlink-rival"
@@ -833,7 +1022,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-27-apple-fbi-hide-my-email-privacy-broken-promise"
@@ -849,7 +1038,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-27-meta-instagram-dms-encryption-rollback-wana-risk"
@@ -865,7 +1054,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-27-china-trade-probes-us-supply-chain-green-products"
@@ -886,7 +1075,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-27-ukraine-saudi-defence-deal-anti-drone-iran-war"
@@ -907,7 +1096,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-03-26-sudan-kurmuk-rsf-eid-drone-massacre-medicine-crisis",
@@ -922,41 +1111,13 @@
       ]
     },
     {
-      "id": "us-ground-troops-iran",
-      "label": "US deploys Marines + 82nd Airborne, Kharg Island seizure scenario live",
-      "firstSeen": "2026-03-26T08:00:00Z",
-      "lastCovered": "2026-03-29T04:12:52.669Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 2,
-      "arc": "developing",
-      "articles": [
-        "2026-03-26-us-troops-kharg-island-ground-attack-iran",
-        "2026-03-29-us-ground-operations-iran-pentagon-weeks"
-      ],
-      "eventUri": "eng-11505751",
-      "summary": "Pentagon ordered two Marine Expeditionary Units plus 1,000 82nd Airborne to Gulf. Three scenarios: seize Kharg Island, capture nuclear material, or break Hormuz.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Kharg_Island",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/The_Pentagon",
-        "http://en.wikipedia.org/wiki/The_Washington_Post",
-        "http://en.wikipedia.org/wiki/Middle_East",
-        "http://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine",
-        "http://en.wikipedia.org/wiki/United_States_Marine_Corps",
-        "http://en.wikipedia.org/wiki/Infantry"
-      ]
-    },
-    {
       "id": "prague-russian-centre-firebomb",
       "label": "Molotov cocktail attack on Russian cultural centre in Prague",
       "firstSeen": "2026-03-27T17:00:00Z",
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-prague-firebomb-russian-cultural-centre-czech"
@@ -976,7 +1137,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-nyse-ice-polymarket-600m-prediction-markets"
@@ -996,7 +1157,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-climate-nematode-crop-pest-expansion-food-security"
@@ -1012,7 +1173,7 @@
       "lastCovered": "2026-03-27T17:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-senators-data-center-electricity-monitoring-ai-energy"
@@ -1031,7 +1192,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-trump-china-visit-may-xi-iran-war-delay"
@@ -1052,7 +1213,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-eu-mercosur-trade-deal-may-1-parliament-bypass"
@@ -1074,7 +1235,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-toxic-fallout-gulf-war-decades-oil-contamination"
@@ -1090,7 +1251,7 @@
       "lastCovered": "2026-03-27T12:00:00Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-27-wikipedia-bans-ai-generated-content-llm-policy"
@@ -1106,7 +1267,7 @@
       "lastCovered": "2026-03-27T09:10:00Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-03-26-un-minab-school-massacre-investigation",
@@ -1127,7 +1288,7 @@
       "lastCovered": "2026-03-26T20:05:00Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-26-bellingcat-us-gator-mines-kafari-village-iran-civilians"
@@ -1135,144 +1296,6 @@
       "eventUri": null,
       "summary": "Bellingcat + 3 weapons experts confirm US Gator scatterable mines deployed over Kafari village near Shiraz. Civilians killed. US never signed Ottawa Treaty.",
       "conceptUris": []
-    },
-    {
-      "id": "italy-lvmh-minors-probe",
-      "label": "Italy probes LVMH/Sephora for marketing skincare to girls as young as 10",
-      "firstSeen": "2026-03-27T12:00:00Z",
-      "lastCovered": "2026-03-27T12:00:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-italy-lvmh-sephora-cosmeticorexia-minors-probe"
-      ],
-      "eventUri": "fra-1289678",
-      "summary": "Italy's antitrust authority raided Sephora and Benefit offices. Probe finds micro-influencer marketing pushed anti-ageing products to girls 10-12. Medical literature now recognizes 'cosmeticorexia.' LVMH faces up to 6% global revenue in fines.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Sephora",
-        "http://en.wikipedia.org/wiki/LVMH",
-        "http://en.wikipedia.org/wiki/Italy"
-      ]
-    },
-    {
-      "id": "black-sea-tanker-attack",
-      "label": "Ukrainian drones hit Russian oil tanker Altura near Bosphorus",
-      "firstSeen": "2026-03-26T20:05:00Z",
-      "lastCovered": "2026-03-27T09:10:00Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-03-26-black-sea-tanker-altura-ukraine-drone-bosphorus-oil",
-        "2026-03-27-bitcoin-macro-risks-ukraine-black-sea-oil-hormuz-dual-squeeze"
-      ],
-      "eventUri": "eng-11514023",
-      "summary": "Ukraine Black Sea tanker attacks complicating Trump's oil stabilization. Dual chokepoint squeeze (Hormuz + Black Sea) driving macro uncertainty.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Black_Sea",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Turkey",
-        "http://en.wikipedia.org/wiki/Bosporus"
-      ]
-    },
-    {
-      "id": "us-visa-bonds-global-south",
-      "label": "US expands $15K visa bonds to 50 countries, mostly African nations",
-      "firstSeen": "2026-03-19T02:40:00Z",
-      "lastCovered": "2026-03-27T09:10:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-us-visa-bonds-15000-fifty-countries-africa-global-south"
-      ],
-      "eventUri": "eng-11491709",
-      "summary": "US State Dept requires $5K-$15K bonds from 50 countries' visa applicants. Most targets are African nations. 97% compliance rate undermines overstay justification.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Travel_visa",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_State",
-        "http://en.wikipedia.org/wiki/Ethiopia"
-      ]
-    },
-    {
-      "id": "house-war-powers-iran",
-      "label": "House War Powers vote stalled by Democrats before 2-week recess",
-      "firstSeen": "2026-03-27T09:10:00Z",
-      "lastCovered": "2026-03-27T09:10:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-27-house-war-powers-vote-stalled-dems-amodei-anthropic"
-      ],
-      "eventUri": null,
-      "summary": "House has 24 hours to vote on War Powers Resolution before 2-week recess. Democrats stalling. No vote means no congressional check on war authority until mid-April.",
-      "conceptUris": []
-    },
-    {
-      "id": "south-africa-g7-disinvite",
-      "label": "US pressured France to revoke South Africa's G7 summit invitation",
-      "firstSeen": "2026-03-26T20:05:00Z",
-      "lastCovered": "2026-03-26T20:05:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-26-south-africa-g7-disinvite-us-pressure-france"
-      ],
-      "eventUri": "eng-11514969",
-      "summary": "France withdrew SA's G7 invitation under US pressure. Punishment for ICJ genocide case, Iran/Russia ties.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/South_Africa",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/G20"
-      ]
-    },
-    {
-      "id": "cuba-oil-blockade-talks",
-      "label": "Cuba 3 months without fuel, Raul Castro guiding US talks",
-      "firstSeen": "2026-03-26T20:05:00Z",
-      "lastCovered": "2026-03-26T20:05:00Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-26-cuba-raul-castro-us-talks-oil-blockade-humanitarian"
-      ],
-      "eventUri": "eng-11513444",
-      "summary": "Cuba has not received fuel for 3 months under Trump oil blockade. Nationwide blackouts, WHO warns of humanitarian collapse.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Cuba",
-        "http://en.wikipedia.org/wiki/Donald_Trump"
-      ]
-    },
-    {
-      "id": "oecd-iran-war-growth",
-      "label": "OECD slashes global growth to 2.9%, US inflation 4.2% from Iran war",
-      "firstSeen": "2026-03-26T20:05:00Z",
-      "lastCovered": "2026-03-26T20:05:00Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-26-oecd-global-growth-slashed-iran-war-inflation-shock"
-      ],
-      "eventUri": "eng-11514526",
-      "summary": "OECD: global growth 2.9%, UK 0.7%, US inflation 4.2% (highest G7). Downside: oil $135/barrel.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/OECD",
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
     }
   ]
 }
