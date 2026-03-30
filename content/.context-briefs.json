@@ -1461,5 +1461,121 @@
     "label": "How Stablecoins Work",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-03-30-bpa-depression-molecular-pathway-nature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROBLEM WITH OBSERVATIONAL STUDIES",
+        "body": "People exposed to more BPA might also eat more processed food, exercise less, or live in poorer neighborhoods. Any correlation between BPA and depression could be caused by a hundred confounders you didn't measure. Epidemiology has been stuck on this for decades."
+      },
+      {
+        "heading": "THE TRICK",
+        "body": "Mendelian randomization exploits a loophole: your genes are assigned at conception, effectively at random. If a genetic variant makes you metabolize BPA more slowly (higher lifetime exposure), and that same variant correlates with depression, confounders can't explain it — your neighborhood didn't choose your alleles."
+      },
+      {
+        "heading": "WHY IT WORKS",
+        "body": "It's the logic of a randomized controlled trial without actually running one. Genes are the instrument — they affect the outcome only through the exposure you're studying. The technique was named in 1986 but only became powerful when genome-wide association studies gave researchers thousands of genetic variants to use as instruments."
+      },
+      {
+        "heading": "THE LIMIT",
+        "body": "If the genetic variant affects depression through some pathway other than BPA exposure — called pleiotropy — the whole logic collapses. Every MR study lives or dies on this assumption, and it can never be fully proven, only stress-tested."
+      },
+      {
+        "heading": "BPA SPECIFICALLY",
+        "body": "Bisphenol A mimics estrogen closely enough to bind estrogen receptors in the brain. It was first synthesized in 1891 and was actually considered as a pharmaceutical estrogen before being repurposed as a plastics hardener in the 1950s. The entire world's food-contact plastic supply was built on a known endocrine disruptor."
+      }
+    ],
+    "generatedAt": "2026-03-30T04:21:39.468Z",
+    "label": "Mendelian Randomization",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-03-30-kuwait-desalination-plant-iran-strike-gcc-escalation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE",
+        "body": "Kuwait has no rivers and almost no groundwater. Desalination supplies over 90% of its freshwater. The country would face a humanitarian crisis within days — not weeks — if its desalination capacity were knocked offline."
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Nearly all Gulf Arab desalination plants sit on the coast, often co-located with power stations in massive water-and-electricity complexes. These dual-purpose facilities are the single most critical infrastructure in every GCC state — lose them and you lose both water and power simultaneously."
+      },
+      {
+        "heading": "HOW DESALINATION WORKS",
+        "body": "The Gulf primarily uses two methods. Multi-stage flash distillation boils seawater in a chain of chambers at decreasing pressures — each stage 'flashes' more vapor into freshwater. Reverse osmosis forces seawater through a membrane at 55-80 bar pressure, filtering out salt molecules. RO uses roughly half the energy but the membranes foul faster in the Gulf's warm, saline water."
+      },
+      {
+        "heading": "THE VULNERABILITY",
+        "body": "Desalination plants are large, stationary, coastal, and irreplaceable on any short timeline. A single plant can serve a million people. There is no backup — strategic water reserves in the Gulf typically cover 2-7 days of consumption. Military planners have understood this asymmetry for decades."
+      },
+      {
+        "heading": "THE SALINITY PROBLEM",
+        "body": "The Persian Gulf is already one of the saltiest bodies of water on Earth — nearly twice the global ocean average in some areas. Brine discharge from desalination plants is raising local salinity further, which in turn increases the energy cost of desalination. The Gulf is slowly making its own water supply harder to produce."
+      }
+    ],
+    "generatedAt": "2026-03-30T04:21:39.471Z",
+    "label": "Gulf Desalination Dependency",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-03-30-rbi-dollar-cap-rupee-recovery-war-speculation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IMPOSSIBLE TRINITY",
+        "body": "A country can have at most two of three things: free capital movement, an independent monetary policy, and a fixed exchange rate. India wants all three and gets none perfectly — the RBI constantly intervenes to manage the tension, which is why its toolkit keeps expanding."
+      },
+      {
+        "heading": "HOW CURRENCY DEFENSE WORKS",
+        "body": "When speculators sell rupees, the RBI buys rupees with its dollar reserves, absorbing sell pressure. But reserves are finite. Every dollar spent defending the currency is a dollar unavailable for import cover or debt service. India's reserves (~$600B) sound enormous until you realize daily forex turnover in rupees exceeds $30B."
+      },
+      {
+        "heading": "THE SPECULATOR'S GAME",
+        "body": "Forward contracts let traders bet on future exchange rates without holding the currency. A 'dollar cap' limits the size of these positions, making it expensive to build large directional bets. It doesn't stop speculation — it raises the cost of being wrong, which thins out the weakest hands."
+      },
+      {
+        "heading": "WHY WARS MOVE CURRENCIES",
+        "body": "Oil is priced in dollars. When conflict threatens supply, oil prices rise, and every oil-importing country suddenly needs more dollars to pay the same fuel bill. India imports over 80% of its crude. A $10/barrel price spike costs India roughly $15 billion per year in additional dollar outflows — direct downward pressure on the rupee."
+      },
+      {
+        "heading": "THE CARRY TRADE CONNECTION",
+        "body": "India's interest rates are higher than America's, so global funds borrow cheap dollars and park them in rupee bonds for the yield difference. When geopolitical risk spikes, this 'carry trade' unwinds fast — everyone sells rupees to repay dollar loans simultaneously, amplifying the very depreciation they're fleeing."
+      }
+    ],
+    "generatedAt": "2026-03-30T04:21:39.471Z",
+    "label": "Currency Defense",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-03-30-co2-capture-amino-acid-activated-carbon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASIC PROBLEM",
+        "body": "Flue gas from a power plant is about 10-15% CO2 by volume, mixed with nitrogen, water vapor, and trace pollutants. Capturing CO2 means selectively grabbing one molecule out of every seven to ten while letting the rest pass through — at enormous flow rates, continuously, for decades."
+      },
+      {
+        "heading": "THE CURRENT STANDARD",
+        "body": "Most commercial carbon capture uses amine scrubbing: flue gas bubbles through a liquid amine solution that chemically binds CO2. To release the captured CO2 and reuse the solvent, you heat it to 120-150°C. That regeneration step alone consumes 25-40% of the power plant's energy output — which is why carbon capture has struggled economically."
+      },
+      {
+        "heading": "WHY AMINO ACIDS",
+        "body": "Glycine is the simplest amino acid — two carbons, one amine group. That amine group reacts with CO2 the same way industrial amines do, forming a carbamate. But glycine is non-toxic, biodegradable, and costs almost nothing to produce. The chemistry is identical; the economics and safety profile are radically better."
+      },
+      {
+        "heading": "WHY ACTIVATED CARBON",
+        "body": "Activated carbon has a surface area of 500-3000 square meters per gram — a teaspoon contains the surface area of a football field. Impregnating it with glycine puts CO2-grabbing amine groups across that vast surface. The solid sorbent avoids the liquid handling, corrosion, and pumping costs that plague amine scrubbing."
+      },
+      {
+        "heading": "THE ENERGY PENALTY",
+        "body": "Every carbon capture method faces the same thermodynamic floor: separating a mixed gas requires energy proportional to the entropy of mixing. You cannot capture CO2 for free — physics forbids it. The entire field is an engineering race to approach that thermodynamic minimum while keeping hardware costs down."
+      }
+    ],
+    "generatedAt": "2026-03-30T04:21:39.471Z",
+    "label": "Carbon Capture Chemistry",
+    "category": "science",
+    "articleCount": 1
   }
 }
