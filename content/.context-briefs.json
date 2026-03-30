@@ -1864,5 +1864,121 @@
     "label": "Dollar Purchasing Power",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-03-30-pdneuram-memristor-neuromorphic-computing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FOURTH ELEMENT",
+        "body": "Resistors, capacitors, and inductors link voltage, current, charge, and flux in pairs. In 1971, Leon Chua proved mathematically that a fourth passive element must exist — one linking charge to flux. He called it the memristor. HP Labs built the first confirmed one in 2008."
+      },
+      {
+        "heading": "WHAT IT REMEMBERS",
+        "body": "A memristor's resistance depends on how much charge has flowed through it. Cut the power and the resistance stays. This is physical memory with no refresh needed — unlike DRAM, which forgets 64 times per second."
+      },
+      {
+        "heading": "WHY BRAINS CARE",
+        "body": "A biological synapse strengthens when it fires repeatedly. A memristor strengthens (lowers resistance) when current flows repeatedly. This is not a metaphor — it is the same input-output relationship, which makes memristors natural building blocks for neuromorphic chips that compute the way brains do."
+      },
+      {
+        "heading": "THE FORMING PROBLEM",
+        "body": "Most memristors need an initial high-voltage zap called electroforming to create a conductive filament inside the oxide layer. This is violent, unpredictable, and different for every device — which makes mass manufacturing nearly impossible. A forming-free memristor skips this step entirely."
+      },
+      {
+        "heading": "THE VON NEUMANN BOTTLENECK",
+        "body": "Conventional computers shuttle data between separate memory and processor chips billions of times per second. This bus is the bottleneck. Memristors compute where the data already lives, eliminating the trip. For neural-network workloads, this alone can cut energy use by orders of magnitude."
+      }
+    ],
+    "generatedAt": "2026-03-30T22:31:55.117Z",
+    "label": "Memristors",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-03-30-msf-gilead-hiv-drug-refusal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARITHMETIC",
+        "body": "Developing a new drug costs roughly $1–2 billion. Manufacturing a generic copy of that same drug costs pennies per dose. Patents exist to bridge this gap — 20 years of monopoly pricing to recoup R&D. The question is what happens in countries where monopoly pricing means people die."
+      },
+      {
+        "heading": "TRIPS AND THE EXCEPTION",
+        "body": "The WTO's 1994 TRIPS agreement forced every member nation to honor pharmaceutical patents. But the 2001 Doha Declaration carved out an exception: countries facing public health emergencies can issue compulsory licenses to manufacture generics without the patent holder's consent."
+      },
+      {
+        "heading": "WHY COMPANIES STILL CONTROL ACCESS",
+        "body": "Compulsory licensing requires manufacturing capacity most affected countries lack. Voluntary licensing — where the patent holder selects which generic makers in which countries get permission — has become the dominant model. The patent holder decides who makes it, where, and for whom."
+      },
+      {
+        "heading": "THE MSF MODEL",
+        "body": "Médecins Sans Frontières operates in 70+ countries and buys drugs in bulk for field hospitals. It cannot use national compulsory licenses because it purchases across borders. This makes it uniquely dependent on either the originator's willingness to sell or the existence of a voluntary license that covers its suppliers."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "In the early 2000s, first-line HIV treatment cost $10,000/year per patient. Indian generic manufacturers, operating before India's 2005 patent law, drove the price below $100. That single fact — a 99% price drop — is why most HIV patients alive today are alive."
+      }
+    ],
+    "generatedAt": "2026-03-30T22:31:55.117Z",
+    "label": "Drug Access & Patents",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-03-30-meta-scotus-piracy-ruling-ai-training-data": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOCTRINE",
+        "body": "You do not have to copy a single byte to be liable for copyright infringement. If you materially contribute to someone else's infringement and know about it, you are a contributory infringer. This doctrine predates the internet — it was built for landlords who rented space to bootleggers."
+      },
+      {
+        "heading": "THE SONY SAFE HARBOR",
+        "body": "In Sony v. Universal (1984), the Supreme Court ruled that selling VCRs was not contributory infringement because VCRs had substantial non-infringing uses. This 'capable of substantial noninfringing use' test is the reason general-purpose technologies — from photocopiers to cloud storage — are legal at all."
+      },
+      {
+        "heading": "THE GROKSTER TWIST",
+        "body": "In MGM v. Grokster (2005), the Supreme Court added a second path to liability: if you actively induce infringement — marketing your product as a piracy tool, building your business model around it — the Sony safe harbor does not protect you, even if your technology has legitimate uses."
+      },
+      {
+        "heading": "THE AI QUESTION",
+        "body": "Training a model on copyrighted text may or may not be fair use — courts have not decided. But the upstream question is different: if the training data was assembled through infringement (mass scraping, pirated datasets), does the model maker face contributory liability for using it? That theory does not require proving the AI output itself infringes."
+      },
+      {
+        "heading": "FAIR USE IS NOT A RIGHT",
+        "body": "Fair use is an affirmative defense — you admit you copied, then argue it was justified. The four factors (purpose, nature, amount, market effect) are weighed together by a judge. There is no bright-line rule. A use can be transformative and still lose on market harm."
+      }
+    ],
+    "generatedAt": "2026-03-30T22:31:55.117Z",
+    "label": "Contributory Infringement",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-03-30-prediction-markets-insider-bets-military": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "A prediction market sells contracts that pay $1 if an event happens and $0 if it does not. If a contract trades at $0.73, the market collectively estimates a 73% probability. This is not a metaphor — under certain conditions, market prices are mathematically the best available probability estimate."
+      },
+      {
+        "heading": "WHY THEY WORK",
+        "body": "Hayek's 1945 insight: prices aggregate dispersed private information that no single person holds. Prediction markets apply this to events instead of goods. Traders with better information buy in and move the price, effectively donating their knowledge to the public signal."
+      },
+      {
+        "heading": "THE INSIDER PROBLEM",
+        "body": "In stock markets, insider trading is illegal because it undermines the level playing field that makes markets function. In prediction markets, insiders trading on private knowledge is the entire point — their bets are what make the prices accurate. This creates a fundamental tension when the events being predicted are government decisions."
+      },
+      {
+        "heading": "THE PENTAGON PRECEDENT",
+        "body": "In 2003, DARPA proposed the Policy Analysis Market — a prediction market on Middle East geopolitical events, explicitly designed to surface intelligence community knowledge. Congress killed it in 48 hours after senators called it a 'terrorism futures market.' The information-aggregation argument lost to the optics argument."
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "The CFTC regulates futures markets. The SEC regulates securities. Prediction market contracts on geopolitical events fit neither category cleanly. Kalshi and Polymarket operate under different regulatory theories — one with CFTC approval, the other offshore. There is no settled law on whether betting on government action by government employees constitutes a conflict of interest."
+      }
+    ],
+    "generatedAt": "2026-03-30T22:31:55.117Z",
+    "label": "Prediction Markets",
+    "category": "economy",
+    "articleCount": 1
   }
 }
