@@ -1577,5 +1577,105 @@
     "label": "Carbon Capture Chemistry",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-03-30-iran-hormuz-strait-toll-law-blockade": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each way with a 3 km buffer. Every tanker transiting is essentially single-file. There is no alternative route for most Gulf oil — pipelines exist but carry a fraction of seaborne volume."
+      },
+      {
+        "heading": "THE LAW OF THE SEA",
+        "body": "UNCLOS Article 38 guarantees \"transit passage\" through international straits — ships pass freely, and the bordering state cannot suspend passage or impose fees. Iran ratified UNCLOS's predecessor but never ratified UNCLOS itself, which it calls a Western instrument. This is the legal gap the toll law exploits."
+      },
+      {
+        "heading": "THE PRECEDENT PROBLEM",
+        "body": "Denmark collected tolls on the Danish Straits for over 400 years until 1857, when major trading nations paid a lump sum to abolish them. The Ottoman Empire taxed the Bosphorus. Strait tolling is historically normal — its abolition is the modern exception, not the default."
+      },
+      {
+        "heading": "THE LEVERAGE MATH",
+        "body": "About 21 million barrels per day transit Hormuz. Even a nominal $1/barrel toll would generate ~$7.7 billion annually — roughly 5% of Iran's GDP. The toll doesn't need to be large to matter; the precedent of sovereign pricing power over transit is the real asset."
+      }
+    ],
+    "generatedAt": "2026-03-30T08:20:06.167Z",
+    "label": "Strait of Hormuz",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-03-30-hyperliquid-tokyo-latency-defi-arbitrage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PHYSICS",
+        "body": "Light in fiber travels at about 200,000 km/s — two-thirds of vacuum speed. London to Tokyo is 9,500 km of cable, so a round trip takes ~95 ms minimum. No software optimization can beat the speed of light; geography is destiny."
+      },
+      {
+        "heading": "THE TRADFI PARALLEL",
+        "body": "In 2010, Spread Networks spent $300 million boring a straighter fiber route from Chicago to New Jersey, shaving 3 milliseconds off the round trip. Firms paid millions per year to use it. When microwave relay towers cut another millisecond, the fiber became obsolete overnight."
+      },
+      {
+        "heading": "WHY CO-LOCATION EXISTS",
+        "body": "Exchanges solved geographic arbitrage by selling rack space inside the data center that runs the matching engine. Equal cable length to the server means equal latency. It is a physical fairness guarantee — and it only works when the exchange admits the problem exists."
+      },
+      {
+        "heading": "THE DECENTRALIZATION TENSION",
+        "body": "A blockchain's validators are its matching engine. If all validators sit in one rack, co-location is free for locals and impossible for everyone else. Geographic distribution of validators is not ideological — it is the DeFi equivalent of exchange co-location rules."
+      }
+    ],
+    "generatedAt": "2026-03-30T08:20:06.168Z",
+    "label": "Latency Arbitrage",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-03-30-mars-missing-water-mystery-hydrology": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EVIDENCE FOR WATER",
+        "body": "Mars has valley networks carved by sustained flow, mineral deposits (clays, sulfates) that only form in liquid water, and polar ice caps. The surface geology screams \"ocean\" — the atmosphere says otherwise."
+      },
+      {
+        "heading": "THREE LOSS MECHANISMS",
+        "body": "Water escapes a planet three ways: solar wind strips ions from the upper atmosphere (measured by MAVEN), UV light splits water and hydrogen escapes to space (photodissociation), and water reacts with rock and gets locked in minerals (hydration). Mars has done all three — and the books still don't balance."
+      },
+      {
+        "heading": "WHY MARS LOST ITS SHIELD",
+        "body": "Mars's core cooled and its dynamo died roughly 4 billion years ago, killing the global magnetic field. Without that shield, solar wind directly erodes the atmosphere. Earth's core is still liquid and convecting — that magnetic field is why we kept our oceans."
+      },
+      {
+        "heading": "THE NOACHIAN PERIOD",
+        "body": "Mars's wet era is named after Noachis Terra, a heavily cratered southern highland. The Noachian ended about 3.7 billion years ago. Most of Mars's water features date to this period — meaning the planet went from wet to dry in its first billion years, then stayed dry for the next three."
+      }
+    ],
+    "generatedAt": "2026-03-30T08:20:06.168Z",
+    "label": "Planetary Water Loss",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-03-30-plant-milk-physics-non-newtonian-fluid": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SPLIT",
+        "body": "Newton assumed viscosity is a fixed property — push water twice as hard, it flows twice as fast. Fluids that obey this are Newtonian (water, honey, dairy milk). Fluids that don't are non-Newtonian, and they are everywhere: blood, paint, toothpaste, magma."
+      },
+      {
+        "heading": "SHEAR THINNING",
+        "body": "Ketchup and oat milk are shear-thinning: their viscosity drops under force. Long polymer chains or suspended particles normally tangle together at rest, resisting flow. Apply shear stress and they align in the flow direction, suddenly offering less resistance. This is why ketchup pours in a rush after you shake the bottle."
+      },
+      {
+        "heading": "WHY IT MATTERS FOR COFFEE",
+        "body": "Steaming milk requires stable foam — air bubbles trapped in a viscous matrix. Dairy's constant viscosity makes foam predictable. A shear-thinning milk changes viscosity as the steam wand forces it, so bubble size and stability shift mid-process. Matching dairy's foam means engineering the polymer network, not just the flavor."
+      },
+      {
+        "heading": "THE ADDITIVE",
+        "body": "Gellan gum, at concentrations as low as 0.01%, prevents plant milk from separating on the shelf. It forms a weak gel network that holds particles in suspension at rest but yields instantly under pouring force — a deliberately engineered shear-thinning response."
+      }
+    ],
+    "generatedAt": "2026-03-30T08:20:06.168Z",
+    "label": "Non-Newtonian Fluids",
+    "category": "science",
+    "articleCount": 1
   }
 }

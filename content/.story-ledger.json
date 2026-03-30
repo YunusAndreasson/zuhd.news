@@ -2,13 +2,200 @@
   "version": 1,
   "stories": [
     {
+      "id": "myanmar-clears-path-for-junta-leader-to-become-president",
+      "label": "Myanmar clears path for junta leader to become president",
+      "firstSeen": "2026-03-30T08:09:21.188Z",
+      "lastCovered": "2026-03-30T08:09:21.188Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-30-myanmar-clears-path-for-junta-leader-to-become-president"
+      ],
+      "eventUri": "eng-11524021",
+      "summary": "Min Aung Hlaing — the general who seized power in the 2021 coup — is being installed as civilian president through a choreographed nomination process. Lead with the transformation: a coup leader laundering military rule into constitutional legitimacy. The reader knows Myanmar's resistance movement is still fighting; this move is the junta declaring victory. Show how the mechanism works: replace yourself as military commander, get nominated as VP, ascend to presidency — all in one parliamentary session. Aung San Suu Kyi remains detained. Three sources from Turkey, Germany, and France frame this consistently as democratic regression.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Myanmar",
+        "http://en.wikipedia.org/wiki/Min_Aung_Hlaing",
+        "http://en.wikipedia.org/wiki/Military_dictatorship",
+        "http://en.wikipedia.org/wiki/Lower_house",
+        "http://en.wikipedia.org/wiki/Vice_President_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Parliament",
+        "http://en.wikipedia.org/wiki/Aung_San_Suu_Kyi",
+        "http://en.wikipedia.org/wiki/Coup_d'état"
+      ]
+    },
+    {
+      "id": "saudi-turkey-egypt-urge-dialogue-after-pakistan-hosted-talks",
+      "label": "Saudi, Turkey, Egypt urge dialogue after Pakistan-hosted talks",
+      "firstSeen": "2026-03-30T08:09:21.188Z",
+      "lastCovered": "2026-03-30T08:09:21.188Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-30-saudi-turkey-egypt-urge-dialogue-after-pakistan-hosted-talks"
+      ],
+      "eventUri": "eng-11523887",
+      "summary": "Four Muslim-majority states — Saudi Arabia, Turkey, Egypt, and Pakistan — issued a joint statement calling for structured US-Iran negotiations and an immediate ceasefire. Lead with who was NOT in the room: neither the US nor Iran attended. The reader tracks the Islamabad mediation arc; this advances it from bilateral contacts to a formal multilateral readout. The sentiment divergence (0.36) is telling: Dawn frames Pakistan as diplomatic leader, Middle East Eye frames it as a call into the void. Show the structural tension: these four countries represent 600 million Muslims and significant economic weight, but the two parties actually fighting were absent.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Islamabad",
+        "http://en.wikipedia.org/wiki/Egypt",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/Minister_for_Foreign_Affairs_(Germany)",
+        "http://en.wikipedia.org/wiki/Ishaq_Dar"
+      ]
+    },
+    {
+      "id": "iran-hormuz-strait-toll-law-blockade",
+      "label": "Passage through Strait of Hormuz to become tolled after Iran adopts new law",
+      "firstSeen": "2026-03-30T08:09:21.188Z",
+      "lastCovered": "2026-03-30T08:09:21.188Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-30-iran-hormuz-strait-toll-law-blockade"
+      ],
+      "eventUri": null,
+      "summary": "Iran's parliament is drafting a law to impose tolls on ships transiting the Strait of Hormuz — turning a wartime blockade into permanent revenue infrastructure. Lead with what this means: Iran is legislating the blockade, not just enforcing it. A toll implies sovereignty claims over international waters that 20% of global oil passes through. The reader tracks energy markets; show the escalation ladder: from naval harassment, to physical blockade (March 27), to legal framework for permanent extraction. MP Boroujerdi frames it as 'security and services' — the reader will see it as protection money. Connect to $116 Brent: every new Hormuz escalation reprices global energy.",
+      "conceptUris": []
+    },
+    {
+      "id": "plateau-state-attack-curfew-jos-nigeria",
+      "label": "Many killed in Plateau attack, govt imposes curfew",
+      "firstSeen": "2026-03-30T08:09:21.188Z",
+      "lastCovered": "2026-03-30T08:09:21.188Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-30-plateau-state-attack-curfew-jos-nigeria"
+      ],
+      "eventUri": "eng-11524063",
+      "summary": "An attack on the Angwan Rukuba community in Jos North killed an unconfirmed number of residents, triggering a 48-hour curfew across the area and heavy security deployment. Lead with the human cost: people killed in their homes on a Sunday. Plateau State sits on Nigeria's Middle Belt fault line between Muslim-majority north and Christian-majority south — recurring violence here reflects deeper failures of governance and intercommunal justice. The university rescheduled exams, showing how violence disrupts civilian life beyond the immediate casualties. The reader may not follow Nigerian internal security; frame this as a pattern: state curfews as the default response to mass violence.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-stock-crash-dalal-street-iran-war",
+      "label": "Stock market crash: Investors lose Rs 6.4 lakh crore as volatility hits Dalal Street",
+      "firstSeen": "2026-03-30T08:09:21.188Z",
+      "lastCovered": "2026-03-30T08:09:21.188Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-30-india-stock-crash-dalal-street-iran-war"
+      ],
+      "eventUri": "eng-11524002",
+      "summary": "Indian investors lost Rs 6.4 lakh crore (~$76 billion) in a single Monday session as the Sensex plunged on war escalation fears. Lead with the number: $76 billion wiped in hours. Last cycle covered the rupee intervention; this is the equity market reckoning. India imports 80% of its crude — at $116 Brent, the math breaks. The reader tracks macro; show how India's market is the canary for oil-dependent emerging economies. Connect to the RBI dollar cap story: the central bank is fighting on two fronts (currency and equities) simultaneously.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/BSE_SENSEX",
+        "http://en.wikipedia.org/wiki/Indian_rupee",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Stock",
+        "http://en.wikipedia.org/wiki/Price_of_oil",
+        "http://en.wikipedia.org/wiki/Crore",
+        "http://en.wikipedia.org/wiki/Stock_market",
+        "http://en.wikipedia.org/wiki/Western_Asia"
+      ]
+    },
+    {
+      "id": "mars-missing-water-mystery-hydrology",
+      "label": "Why the lack of water on Mars is so mysterious",
+      "firstSeen": "2026-03-30T08:09:21.188Z",
+      "lastCovered": "2026-03-30T08:09:21.188Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-30-mars-missing-water-mystery-hydrology"
+      ],
+      "eventUri": null,
+      "summary": "Planetary scientists have done a full accounting of Mars's water budget — how much should have existed, how much escaped to space, how much is locked in ice and minerals — and the numbers don't add up. A significant fraction of Mars's ancient water is simply missing. Lead with the discrepancy: we thought we understood where Mars's water went, but the math leaves a gap. The reader is a hacker who appreciates systems thinking; frame this as a debugging problem — the inputs and outputs don't balance, which means our model of Martian hydrology has a fundamental flaw.",
+      "conceptUris": []
+    },
+    {
+      "id": "covid-ba32-cicada-variant-vaccine-efficacy",
+      "label": "Is your Covid shot still effective against new BA.3.2 variant?",
+      "firstSeen": "2026-03-30T08:09:21.188Z",
+      "lastCovered": "2026-03-30T08:09:21.188Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-30-covid-ba32-cicada-variant-vaccine-efficacy"
+      ],
+      "eventUri": "spa-4150564",
+      "summary": "The BA.3.2 'Cicada' variant — now in 23 countries — carries ~75 mutations and raises questions about current vaccine efficacy. Lead with the mutation count: 75 changes to the spike protein is an evolutionary leap, not a drift. The nickname 'Cicada' evokes emergence after long dormancy. The reader is a tech worker in shared office spaces; make the personal risk concrete. Frame the science: why so many mutations at once, and what this means for the immune evasion arms race between SARS-CoV-2 and updated boosters.",
+      "conceptUris": []
+    },
+    {
+      "id": "plant-milk-physics-non-newtonian-fluid",
+      "label": "The weird physics of plant-based milks is only just coming to light",
+      "firstSeen": "2026-03-30T08:09:21.188Z",
+      "lastCovered": "2026-03-30T08:09:21.188Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-30-plant-milk-physics-non-newtonian-fluid"
+      ],
+      "eventUri": null,
+      "summary": "Researchers at University of Illinois Chicago found that plant milks exhibit complex non-Newtonian fluid behavior — they flow and drip differently than dairy milk in ways physicists hadn't characterized until now. Lead with the everyday surprise: the oat milk in your coffee behaves like a shear-thinning polymer, not a simple liquid. The reader pours plant milk daily; show them the physics they've been drinking. The practical payoff: understanding these flow properties could lead to plant milks that foam, steam, and pour like dairy — solving the barista problem through fluid dynamics rather than additives.",
+      "conceptUris": []
+    },
+    {
+      "id": "copilot-ad-injection-pull-request-trust",
+      "label": "Copilot edited an ad into my PR",
+      "firstSeen": "2026-03-30T08:09:21.188Z",
+      "lastCovered": "2026-03-30T08:09:21.188Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-30-copilot-ad-injection-pull-request-trust"
+      ],
+      "eventUri": null,
+      "summary": "A developer discovered that GitHub Copilot inserted an advertisement into a pull request — not a hallucinated code suggestion, but an actual product promotion embedded in generated code. 406 HN points and 132 comments signal this hit a nerve. Lead with the trust violation: developers delegate code review to AI tools, and the tool is now a vector for ads. The reader uses Copilot or similar tools daily; this is their supply chain. Frame the structural problem: when your code assistant has a business model conflict with your interests, every suggestion becomes suspect. Connect to the ChatGPT/Cloudflare surveillance story from last cycle — AI tools as trojan horses.",
+      "conceptUris": []
+    },
+    {
+      "id": "hyperliquid-tokyo-latency-defi-arbitrage",
+      "label": "Hyperliquid traders in Tokyo get 200-millisecond edge, Glassnode research shows",
+      "firstSeen": "2026-03-30T08:09:21.188Z",
+      "lastCovered": "2026-03-30T08:09:21.188Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-30-hyperliquid-tokyo-latency-defi-arbitrage"
+      ],
+      "eventUri": null,
+      "summary": "Glassnode research reveals that Hyperliquid traders colocated near Tokyo AWS servers get a 200-millisecond latency advantage — recreating the same geographic arbitrage that traditional finance spent decades trying to eliminate. Lead with the irony: DeFi promised to democratize finance, but its largest perpetual futures exchange has the same physics problem as the NYSE. Unlike traditional venues that use speed bumps and cable equalization, decentralized finance has no comparable safeguards. The reader builds software on AWS and understands latency intuitively; show them how the same infrastructure they deploy on is being weaponized for financial edge.",
+      "conceptUris": []
+    },
+    {
       "id": "kuwait-desalination-plant-iran-strike-gcc-escalation",
       "label": "Kuwait power and desalination plant hit in Iranian strike",
       "firstSeen": "2026-03-30T04:08:52.024Z",
       "lastCovered": "2026-03-30T04:08:52.024Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-30-kuwait-desalination-plant-iran-strike-gcc-escalation"
@@ -33,7 +220,7 @@
       "lastCovered": "2026-03-30T04:08:52.024Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-30-mojtaba-khamenei-absent-iraq-thanks-iran-leadership"
@@ -55,7 +242,7 @@
       "lastCovered": "2026-03-30T04:08:52.024Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-30-syria-sharaa-germany-visit-reconstruction-refugees"
@@ -77,7 +264,7 @@
       "lastCovered": "2026-03-30T04:08:52.024Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-30-oil-115-asia-stocks-slide-iran-kuwait-escalation"
@@ -99,7 +286,7 @@
       "lastCovered": "2026-03-30T04:08:52.024Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-30-rbi-dollar-cap-rupee-recovery-war-speculation"
@@ -121,7 +308,7 @@
       "lastCovered": "2026-03-30T04:08:52.024Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-30-bpa-depression-molecular-pathway-nature"
@@ -137,7 +324,7 @@
       "lastCovered": "2026-03-30T04:08:52.024Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-30-co2-capture-amino-acid-activated-carbon"
@@ -153,7 +340,7 @@
       "lastCovered": "2026-03-30T04:08:52.024Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-30-ai-soil-classification-offshore-wind-incomplete-data"
@@ -169,7 +356,7 @@
       "lastCovered": "2026-03-30T04:08:52.024Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-30-philadelphia-courts-ban-smart-glasses-ai-surveillance"
@@ -185,7 +372,7 @@
       "lastCovered": "2026-03-30T04:08:52.024Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-30-coding-agents-free-software-revival"
@@ -201,7 +388,7 @@
       "lastCovered": "2026-03-30T04:08:52.024Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-30-apple-silicon-m4-m5-hidpi-4k-limitation"
@@ -217,7 +404,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-03-29-pentagon-kharg-island-raids-islamabad-mediation-iran",
@@ -244,7 +431,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-netanyahu-expands-israeli-control-south-lebanon"
@@ -269,7 +456,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-jerusalem-catholic-patriarch-blocked-holy-sepulchre-palm-sunday"
@@ -291,7 +478,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-kano-cleric-kabara-blasphemy-death-sentence-petition"
@@ -311,7 +498,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-south-africa-khampepe-commission-arms-deal-justice-blocked"
@@ -333,7 +520,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-reeves-g7-clean-energy-hormuz-defense"
@@ -355,7 +542,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-sandf-audit-military-assets-untracked-deployment"
@@ -375,7 +562,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-stablecoin-invisible-payments-southeast-asia-straitsx"
@@ -397,7 +584,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-insilico-lilly-275b-ai-drug-deal"
@@ -416,7 +603,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-breast-cancer-brain-metastases-immune-profiling"
@@ -438,7 +625,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-chatgpt-cloudflare-turnstile-react-state-surveillance"
@@ -454,7 +641,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-29-cpp26-finalized-iso-standards-meeting"
@@ -470,7 +657,7 @@
       "lastCovered": "2026-03-29T17:08:10.371Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-drones-crash-finland-nato-russia-territorial-violation"
@@ -495,7 +682,7 @@
       "lastCovered": "2026-03-29T17:08:10.371Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-iran-own-peace-terms-drop-site-witkoff-negotiation"
@@ -511,7 +698,7 @@
       "lastCovered": "2026-03-29T17:08:10.371Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-sudan-south-kordofan-delling-blue-nile-displacement"
@@ -527,7 +714,7 @@
       "lastCovered": "2026-03-29T17:08:10.371Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-islamabad-katchi-abadi-evictions-hrcp-pakistan"
@@ -543,7 +730,7 @@
       "lastCovered": "2026-03-29T17:08:10.371Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-fed-rate-hike-expectations-iran-war-inflation-bitcoin"
@@ -559,7 +746,7 @@
       "lastCovered": "2026-03-29T17:08:10.371Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-clarity-act-defi-stablecoin-regulation-circle"
@@ -575,7 +762,7 @@
       "lastCovered": "2026-03-29T17:08:10.371Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-ai-facial-recognition-wrongful-arrest-angela-lipps"
@@ -591,7 +778,7 @@
       "lastCovered": "2026-03-29T17:08:10.371Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-club-med-shark-nets-greenwashing-south-africa"
@@ -607,7 +794,7 @@
       "lastCovered": "2026-03-29T17:08:10.371Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-gastric-cancer-blood-biomarkers-cxcl12-eotaxin"
@@ -623,7 +810,7 @@
       "lastCovered": "2026-03-29T17:08:10.371Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-palantir-europe-petition-surveillance-sovereignty"
@@ -639,7 +826,7 @@
       "lastCovered": "2026-03-29T17:08:10.371Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-miasma-ai-scraper-trap-poison-data"
@@ -655,7 +842,7 @@
       "lastCovered": "2026-03-29T17:08:10.371Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-29-bittensor-tao-1-5b-decentralized-ai-compute"
@@ -671,7 +858,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-29-brent-crude-51-percent-monthly-surge-record-gold-crash"
@@ -692,7 +879,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-29-pia-shutdown-threat-150-percent-jet-fuel-hike-iran-war"
@@ -711,7 +898,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-29-sudan-el-gezira-crop-prices-surge-food-crisis"
@@ -732,7 +919,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-29-dagestan-flooding-emergency-500k-without-power"
@@ -754,7 +941,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-29-polygraph-pseudoscience-fbi-cia-security-clearance"
@@ -775,7 +962,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-29-pakistan-medicine-prices-supply-chain-drap-denial"
@@ -795,7 +982,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-29-android-sideload-settings-persist-device-migration"
@@ -811,7 +998,7 @@
       "lastCovered": "2026-03-29T12:12:38.164Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-29-mcdonalds-robots-shanghai-fast-food-automation"
@@ -831,7 +1018,7 @@
       "lastCovered": "2026-03-29T22:10:20.543Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-03-28-cosmic-ray-cavity-earth-magnetic-field-astronaut-radiation",
@@ -854,7 +1041,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-29-irgc-threatens-american-universities-neighbors-escalation"
@@ -876,7 +1063,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-29-hamas-rejects-board-of-peace-reconstruction-disarmament"
@@ -892,7 +1079,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-29-west-bank-protective-presence-broken-solidarity-model"
@@ -908,7 +1095,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-29-uk-spycops-undercover-officer-assault-deception-inquiry"
@@ -930,7 +1117,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-29-wto-mc14-north-south-faultlines-subsidies-software"
@@ -952,7 +1139,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-29-gulf-renewables-iran-conflict-energy-security"
@@ -968,7 +1155,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-29-india-remittances-rupee-fiscal-triple-threat-iran-war"
@@ -990,7 +1177,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-29-alzheimers-taxi-ambulance-drivers-bmj-spatial-navigation"
@@ -1006,7 +1193,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-29-australia-blood-red-sky-cyclone-narelle-dust-atmospheric-optics"
@@ -1028,7 +1215,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-29-css-doom-3d-rendering-no-javascript"
@@ -1044,7 +1231,7 @@
       "lastCovered": "2026-03-29T08:11:10.293Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-29-deepseek-ai-chatbot-murder-planning-safety-failures"
@@ -1058,177 +1245,6 @@
         "http://en.wikipedia.org/wiki/School_shooting",
         "http://en.wikipedia.org/wiki/Artificial_intelligence"
       ]
-    },
-    {
-      "id": "iran-npt-exit-nuclear-treaty-parliament",
-      "label": "Iranian politicians push for nuclear treaty exit: What lies ahead in the process",
-      "firstSeen": "2026-03-29T04:12:52.669Z",
-      "lastCovered": "2026-03-29T04:12:52.669Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-29-iran-npt-exit-nuclear-treaty-parliament"
-      ],
-      "eventUri": "eng-11516206",
-      "summary": "Iranian MPs introduced a bill to withdraw from the NPT — the treaty that separates nuclear-power states from weapons states. Lead with the consequence: if Iran exits, IAEA inspectors lose access, and the path to a weapon shortens from months to weeks. This is the most consequential card Iran holds. The war is pushing Tehran toward the nuclear threshold that decades of diplomacy tried to prevent. The reader understands technical leverage and deterrence theory; show how the bombing campaign is producing the exact outcome it claimed to prevent.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Treaty_on_the_Non-Proliferation_of_Nuclear_Weapons",
-        "http://en.wikipedia.org/wiki/Islamic_Consultative_Assembly",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Treaty",
-        "http://en.wikipedia.org/wiki/Israel"
-      ]
-    },
-    {
-      "id": "bellingcat-iran-school-strike-two-waves-geolocation",
-      "label": "Two Waves of Bombing: New Videos Reveal Further Details About Iran School Strike",
-      "firstSeen": "2026-03-29T04:12:52.669Z",
-      "lastCovered": "2026-03-29T04:12:52.669Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-29-bellingcat-iran-school-strike-two-waves-geolocation"
-      ],
-      "eventUri": null,
-      "summary": "Bellingcat geolocated and verified new videos — released by Iran's Foreign Ministry — showing TWO separate waves of missiles hitting the Minab IRGC compound and its adjacent girls' school. Lead with the double-tap: the second wave struck after first responders arrived. The Pentagon called this 'a legitimate military target' — the OSINT evidence shows a school was within the blast radius and hit in both waves. The reader values evidence chains and verification methodology; show how open-source intelligence holds power accountable when official narratives diverge from footage.",
-      "conceptUris": []
-    },
-    {
-      "id": "north-korea-icbm-engine-test-solid-fuel",
-      "label": "North Korea conducts high-thrust engine test for missile capable of targeting US mainland",
-      "firstSeen": "2026-03-29T04:12:52.669Z",
-      "lastCovered": "2026-03-29T04:12:52.669Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-29-north-korea-icbm-engine-test-solid-fuel"
-      ],
-      "eventUri": "eng-11522040",
-      "summary": "Kim Jong Un observed a high-thrust solid-fuel ICBM engine test — solid fuel means faster launch preparation, harder to detect and preempt. Lead with the timing: while the world watches Iran, North Korea is quietly upgrading its nuclear delivery capability. KCNA hailed it as boosting 'strategic military capability.' The reader understands deterrence logic; show how the Iran war creates a window for every nuclear aspirant to advance their programs while great-power attention is elsewhere.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Kim_Jong_Un",
-        "http://en.wikipedia.org/wiki/Korean_Central_News_Agency",
-        "http://en.wikipedia.org/wiki/North_Korea",
-        "http://en.wikipedia.org/wiki/Solid-propellant_rocket",
-        "http://en.wikipedia.org/wiki/TNT_equivalent"
-      ]
-    },
-    {
-      "id": "sri-lanka-india-emergency-fuel-38000mt-iran-war",
-      "label": "Sri Lanka Thanks India For 38,000 MT Emergency Fuel Aid",
-      "firstSeen": "2026-03-29T04:12:52.669Z",
-      "lastCovered": "2026-03-29T04:12:52.669Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-29-sri-lanka-india-emergency-fuel-38000mt-iran-war"
-      ],
-      "eventUri": "eng-11514912",
-      "summary": "Sri Lanka — still recovering from its 2022 economic collapse — received 38,000 metric tonnes of emergency petroleum from India after Iran war disrupted Hormuz supplies. Lead with the cascade: an island nation that imports 100% of its fuel is one chokepoint closure away from relapse into crisis. Modi and Dissanayake coordinated the delivery. The reader tracks supply chains; show how the war's second-order effects hit the most fragile economies first, and how India is positioning itself as the regional fuel backstop.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Sri_Lanka",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Anura_Kumara_Dissanayaka",
-        "http://en.wikipedia.org/wiki/President_of_Sri_Lanka"
-      ]
-    },
-    {
-      "id": "us-gasoline-prices-dollar-spike-iran-war",
-      "label": "US gasoline prices jump about $1 since Iran conflict escalation",
-      "firstSeen": "2026-03-29T04:12:52.669Z",
-      "lastCovered": "2026-03-29T04:12:52.669Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-29-us-gasoline-prices-dollar-spike-iran-war"
-      ],
-      "eventUri": null,
-      "summary": "Regular gasoline in Washington DC averaged $4.14/gallon on March 28 — up roughly $1 in one month since Iran escalation. Lead with the speed: $1/gallon in 30 days is the fastest spike since 2008. Hormuz closure + Russia's gasoline export ban (covered last cycle) create a dual supply squeeze. The war that was supposed to be 'over there' is now at every American gas pump. Source is TASS citing AAA data — the numbers are independently verifiable. The reader tracks macro; connect this to the oil-Hormuz-refinery chain covered in previous cycles.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Gasoline",
-        "http://en.wikipedia.org/wiki/American_Automobile_Association",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "pakistan-sukuk-auction-rs118bn-islamic-finance",
-      "label": "Pakistan raises Rs118bn in Sukuk auction",
-      "firstSeen": "2026-03-29T04:12:52.669Z",
-      "lastCovered": "2026-03-29T04:12:52.669Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-29-pakistan-sukuk-auction-rs118bn-islamic-finance"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan raised Rs118 billion (~$420M) through Sukuk — Islamic bonds — during the fuel crisis. Lead with the instrument and the timing: while conventional bond markets freeze under war uncertainty, Pakistan taps Sharia-compliant debt infrastructure to fund its way through the crisis. The reader follows both macro-finance and the Muslim world; show how Islamic finance instruments become crisis-financing tools when Western credit markets hesitate. Context: Pakistan is simultaneously rationing fuel via app and hosting Iran mediation talks.",
-      "conceptUris": []
-    },
-    {
-      "id": "marmoset-otof-gene-deafness-model-hearing",
-      "label": "Generation of marmoset monkeys with a non-mosaic disruption of the OTOF gene as a model of human deafness",
-      "firstSeen": "2026-03-29T04:12:52.669Z",
-      "lastCovered": "2026-03-29T04:12:52.669Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-29-marmoset-otof-gene-deafness-model-hearing"
-      ],
-      "eventUri": null,
-      "summary": "Researchers created gene-edited marmosets with clean, non-mosaic OTOF gene disruption — the first primate deafness model where every cell carries the edit. Lead with the precision: previous primate gene edits produced mosaics (mixed edited/unedited cells), making results unreliable. Otoferlin is essential for transmitting sound signals at cochlear synapses. Practical implication: gene therapy for congenital deafness can now be tested in an animal whose auditory processing mirrors humans. The reader appreciates clean engineering; show how eliminating mosaicism is the difference between a research tool and a research artifact.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Hearing_loss",
-        "http://en.wikipedia.org/wiki/Synapse",
-        "http://en.wikipedia.org/wiki/Otoferlin",
-        "http://en.wikipedia.org/wiki/Cochlea",
-        "http://en.wikipedia.org/wiki/Gene"
-      ]
-    },
-    {
-      "id": "south-korea-solar-panels-parking-lots-mandate",
-      "label": "South Korea Mandates Solar Panels for Public Parking Lots",
-      "firstSeen": "2026-03-29T04:12:52.669Z",
-      "lastCovered": "2026-03-29T04:12:52.669Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-29-south-korea-solar-panels-parking-lots-mandate"
-      ],
-      "eventUri": null,
-      "summary": "South Korea now requires solar panels on all public parking lots — turning dead asphalt into generation capacity without consuming new land. Lead with the dual utility: shade for cars, power for the grid, zero new land use. 236 HN points and 127 comments — the engineering community sees this as elegant policy design. In the context of the Iran war spiking fossil fuel prices, countries that can deploy renewables on existing infrastructure gain energy independence faster. The reader cares about systems that solve two problems at once.",
-      "conceptUris": []
-    },
-    {
-      "id": "egypt-drug-tracking-counterfeit-medicine-system",
-      "label": "A 'birth certificate' for every medicine: Egypt launches drug tracking system, yet gaps remain",
-      "firstSeen": "2026-03-29T04:12:52.669Z",
-      "lastCovered": "2026-03-29T04:12:52.669Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-29-egypt-drug-tracking-counterfeit-medicine-system"
-      ],
-      "eventUri": null,
-      "summary": "Egypt launched a track-and-trace system giving every medicine a unique digital 'birth certificate' — from factory to pharmacy shelf. Lead with the stakes: counterfeit drugs kill hundreds of thousands across Africa annually. But Mada Masr reports critical gaps — the system can't reach informally distributed drugs that dominate Egypt's market. The reader builds systems; show both the engineering achievement (unique serialization at national scale) and the classic gap between digital tracking and physical reality in a country where informal markets handle a significant share of pharmaceutical distribution.",
-      "conceptUris": []
     }
   ]
 }
