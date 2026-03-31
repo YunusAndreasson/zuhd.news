@@ -2,13 +2,266 @@
   "version": 1,
   "stories": [
     {
+      "id": "china-pakistan-ceasefire-plan-hormuz",
+      "label": "Qatar says Iran's attacks on neighbours crossed 'many red lines'",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-china-pakistan-ceasefire-plan-hormuz"
+      ],
+      "eventUri": "eng-11528986",
+      "summary": "China and Pakistan issued a joint 5-point plan calling for an immediate ceasefire and reopening of the Strait of Hormuz — the first formal peace framework from non-Western powers. The angle: while the US bombs and Europe dithers, Beijing and Islamabad are writing the diplomatic playbook. Lead with the 5-point plan specifics and that Bloomberg, Al Jazeera, and MEE all covered it — rare convergence. Qatar simultaneously warned Iran's attacks on neighbors crossed 'many red lines,' showing Gulf states caught between the belligerents. The reader should see: the post-war order is being drafted in Beijing, not Washington.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Turkey"
+      ]
+    },
+    {
+      "id": "hegseth-defense-etf-insider-trading-allegation",
+      "label": "Pentagon rejects claims of Hegseth alleged defense ETF inquiry",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-hegseth-defense-etf-insider-trading-allegation"
+      ],
+      "eventUri": "eng-11526837",
+      "summary": "The Pentagon demanded retraction of a report that Defence Secretary Hegseth's broker tried to make a large investment in weapons companies before the Iran war began. Four sources across four countries (QA, GB, IN, KR) covered the story. The angle: whether or not the trade happened, the fact that the Pentagon's response was 'demand retraction' rather than 'release records' tells the reader everything about accountability norms in this administration. Lead with the specific allegation — a defense ETF inquiry timed to the pre-war period — and the Pentagon's combative response. The reader who tracks markets will understand what front-running a war looks like.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/BlackRock",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Financial_Times",
+        "http://en.wikipedia.org/wiki/Morgan_Stanley",
+        "http://en.wikipedia.org/wiki/The_Pentagon",
+        "http://en.wikipedia.org/wiki/Pete_Hegseth",
+        "http://en.wikipedia.org/wiki/United_States_Secretary_of_Defense",
+        "http://en.wikipedia.org/wiki/Exchange-traded_fund"
+      ]
+    },
+    {
+      "id": "hungary-russia-leaked-audio-eu-sanctions",
+      "label": "EU state's foreign minister discussed lifting sanctions with Russia",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-hungary-russia-leaked-audio-eu-sanctions"
+      ],
+      "eventUri": "rus-2046427",
+      "summary": "Leaked audio recordings reveal Hungary's FM Szijjártó discussing lifting EU sanctions with Russia's Lavrov — while Budapest allegedly passes closed-door EU intelligence to Moscow. Four sources from four countries (UA, GB, IN, RU) with high sentiment divergence. Lead with the audio leak itself: a sitting EU foreign minister caught on tape coordinating sanctions relief with the country the sanctions target. The reader should see: this isn't just Hungary being contrarian — it's an active intelligence breach inside the EU's decision-making structure. RT's coverage (framing it positively) vs Ukrainian Pravda (framing it as espionage) shows the information war in real time.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Hungary",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Sergey_Lavrov",
+        "http://en.wikipedia.org/wiki/Budapest",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Péter_Szijjártó",
+        "http://en.wikipedia.org/wiki/Slovakia"
+      ]
+    },
+    {
+      "id": "sudan-professors-strike-arrests-civil-war",
+      "label": "Sudan professors' strike enters third day as more arrests reported",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-sudan-professors-strike-arrests-civil-war"
+      ],
+      "eventUri": null,
+      "summary": "Sudanese university professors entered a third day of an open-ended nationwide strike, with security forces arresting academics and dispersing protests. Lead with the detail that this is a civil resistance action during an active civil war — professors choosing collective action while their country burns. The arrests are the story: a military government so threatened by intellectual dissent that it detains professors mid-strike. Connects to the existing Sudan arc (MSF sexual violence coverage) but this is a new dimension — organized civilian resistance, not just victimhood.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-lpg-35-percent-hike-hormuz-war",
+      "label": "Ogra notifies 35pc increase in LPG rates for April",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-pakistan-lpg-35-percent-hike-hormuz-war"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's oil regulator jacked up LPG prices 35% for April — an 11.8kg domestic cylinder rises Rs924 — as global energy markets convulse from the Hormuz blockade. Lead with the cylinder price: this is what 240 million Pakistanis cook with. The war is 2,000km away but it's now in every kitchen in Lahore and Karachi. Connects to the editorial watch on Pakistan dual pressure (fuel rationing, GSP+ threat) and the existing smart lockdown/austerity arc, but this is a new concrete data point — the price tag on a household cooking cylinder.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-24-pharma-facilities-struck-medical-supply",
+      "label": "Israel, US carry out strikes on 24 pharmaceutical industry facilities — Iranian minister",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-iran-24-pharma-facilities-struck-medical-supply"
+      ],
+      "eventUri": null,
+      "summary": "US and Israel have struck 24 Iranian pharmaceutical production facilities since February 28, severely damaging medical equipment manufacturing and supply chains for 88 million people. Lead with the number — 24 pharma factories — and the deputy health minister's statement that medical supply chains are 'seriously damaged.' The reader should see the Geneva Convention dimension: pharmaceutical production is civilian infrastructure. This is economic warfare targeting health. Pairs with the 39,500 civilian facilities damaged in Tehran province (same TASS cycle) to paint the full picture of infrastructure destruction.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-tinubu-6b-loans-uae-uk-debt",
+      "label": "Tinubu seeks Senate's approval for fresh $6bn loans from UAE, UK",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-nigeria-tinubu-6b-loans-uae-uk-debt"
+      ],
+      "eventUri": "eng-11528686",
+      "summary": "Nigeria's President Tinubu is asking the Senate to approve $6 billion in new foreign loans from the UAE and UK — to fund infrastructure and refinance existing debt. Lead with the amount and the lenders: a $6B loan from Abu Dhabi and London to Africa's largest economy. The reader should see the debt dependency cycle: borrowing from Gulf petrostates and former colonial powers to refinance previous borrowing. This is how sovereignty erodes — not through invasion but through compound interest. Nigeria's debt-to-GDP ratio is already at historic highs.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bola_Tinubu",
+        "http://en.wikipedia.org/wiki/United_States_Senate",
+        "http://en.wikipedia.org/wiki/Godswill_Akpabio",
+        "http://en.wikipedia.org/wiki/Nigeria",
+        "http://en.wikipedia.org/wiki/President_of_the_Senate_of_Nigeria",
+        "http://en.wikipedia.org/wiki/Citibank",
+        "http://en.wikipedia.org/wiki/Port",
+        "http://en.wikipedia.org/wiki/Abu_Dhabi"
+      ]
+    },
+    {
+      "id": "robot-scientists-yeast-gene-characterization",
+      "label": "Investigating uncharacterised genes in Saccharomyces cerevisiae using robot scientists",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-robot-scientists-yeast-gene-characterization"
+      ],
+      "eventUri": null,
+      "summary": "An automated lab platform — a 'robot scientist' — systematically characterized unknown yeast genes by designing and running its own experiments, then interpreting results. Out of ~6,000 yeast genes, 880 remain uncharacterized; this system tackled them at a pace no human lab could match. Lead with the automation: a robot that forms hypotheses, runs experiments, and publishes results. The reader who builds software will recognize the pattern — this is CI/CD for biology. The broader implication: if 15% of genes in the best-studied organism on Earth are still unknown, automated science isn't a luxury, it's a necessity.",
+      "conceptUris": []
+    },
+    {
+      "id": "aircraft-evacuation-computational-modeling-faa",
+      "label": "What's the best cabin layout for aircraft evacuation?",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-aircraft-evacuation-computational-modeling-faa"
+      ],
+      "eventUri": "eng-11529245",
+      "summary": "Researchers built a multi-scale computational model — combining macroscopic crowd dynamics with microscopic individual behavior — to optimize aircraft cabin layouts for the FAA's 90-second evacuation requirement. Lead with the tension: the 90-second rule was designed when passengers were younger and lighter, but average passenger age and size have both increased. The model found that current layouts fail the requirement under realistic conditions. The reader who flies regularly should feel the gap between regulation and physics — the math says we can't evacuate modern planes in time.",
+      "conceptUris": []
+    },
+    {
+      "id": "nvidia-marvell-2b-silicon-photonics-ai",
+      "label": "Nvidia invests $2bn in chipmaker Marvell to boost AI networking",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-nvidia-marvell-2b-silicon-photonics-ai"
+      ],
+      "eventUri": "eng-11528589",
+      "summary": "Nvidia is investing $2 billion in Marvell to develop silicon photonics — replacing copper interconnects with light to connect AI chips across data centers. Lead with the physics: light travels faster than electrons and generates less heat, but fabricating photonic circuits on silicon wafers is an unsolved manufacturing problem. This $2B bet says Nvidia believes the bottleneck in AI scaling has shifted from compute to interconnect. The reader building AI infrastructure should see: the next constraint isn't GPU FLOPS, it's the speed of light between them.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Nvidia",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Marvell_Technology",
+        "http://en.wikipedia.org/wiki/NVLink",
+        "http://en.wikipedia.org/wiki/Silicon_photonics",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Silicon",
+        "http://en.wikipedia.org/wiki/United_States_dollar"
+      ]
+    },
+    {
+      "id": "oracle-30000-layoffs-ai-pivot",
+      "label": "Oracle slashes 30k jobs",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-oracle-30000-layoffs-ai-pivot"
+      ],
+      "eventUri": null,
+      "summary": "Oracle is cutting 30,000 jobs — one of the largest tech layoffs this year. The story hit #1 on Hacker News with 523 points and 404 comments. Lead with the number: 30,000 people. The reader works in tech and should see the pattern — enterprise software companies are shedding headcount to fund AI infrastructure pivots. Oracle's cloud and AI ambitions (they just signed massive data center deals) are being funded by eliminating the human workforce that built the previous generation of products.",
+      "conceptUris": []
+    },
+    {
+      "id": "thomson-reuters-ice-palantir-surveillance-data",
+      "label": "How Thomson Reuters Powers ICE and Palantir",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-thomson-reuters-ice-palantir-surveillance-data"
+      ],
+      "eventUri": null,
+      "summary": "404 Media investigation into how Thomson Reuters' data — including people's addresses and ethnicity details — feeds directly into tools used by ICE and Palantir for immigration enforcement. Lead with the data pipeline: a company most people know as a news wire is actually a surveillance data broker whose products power deportation operations. The reader who builds software should see the supply chain: their Reuters terminal at work is made by the same company feeding addresses to ICE. This is accountability journalism about tech infrastructure enabling state violence.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-bjp-ai-anti-muslim-hate-speech-bellingcat",
+      "label": "How India's Ruling Party is Using AI to Boost Hate Speech in States Near Bangladesh",
+      "firstSeen": "2026-03-31T17:10:17.425Z",
+      "lastCovered": "2026-03-31T17:10:17.425Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-03-31-india-bjp-ai-anti-muslim-hate-speech-bellingcat"
+      ],
+      "eventUri": null,
+      "summary": "Bellingcat investigation: India's ruling BJP is using AI-generated content to amplify anti-Muslim hate speech in northeastern states bordering Bangladesh — including a video showing Assam's chief minister shooting images of men in Muslim skull caps. Lead with the video: a state official depicted shooting Muslims, captioned 'foreigner-free Assam,' produced and distributed by the ruling party's official state branch. The reader should see the intersection of AI tools and state-sponsored Islamophobia — this isn't fringe content, it's the governing party's media operation. Connects to broader patterns of AI-enabled political violence.",
+      "conceptUris": []
+    },
+    {
       "id": "italy-denies-us-sigonella-base-iran",
       "label": "Italy denies US use of Sigonella air base: report",
       "firstSeen": "2026-03-31T12:09:28.807Z",
       "lastCovered": "2026-03-31T12:09:28.807Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-31-italy-denies-us-sigonella-base-iran"
@@ -33,7 +286,7 @@
       "lastCovered": "2026-03-31T12:09:28.807Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-31-japan-deploys-first-long-range-missiles-counterstrike"
@@ -58,7 +311,7 @@
       "lastCovered": "2026-03-31T12:09:28.807Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-31-three-thousand-vessels-blocked-hormuz-transport-costs-200-percent"
@@ -74,7 +327,7 @@
       "lastCovered": "2026-03-31T12:09:28.807Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-31-uae-fuel-prices-surge-70-percent-april"
@@ -90,7 +343,7 @@
       "lastCovered": "2026-03-31T12:09:28.807Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-31-eli-lilly-centessa-6b-narcolepsy-pharma-dealmaking"
@@ -106,7 +359,7 @@
       "lastCovered": "2026-03-31T12:09:28.807Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-31-openfx-94m-stablecoin-cross-border-payments"
@@ -122,7 +375,7 @@
       "lastCovered": "2026-03-31T12:09:28.807Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-31-dna-methylation-atlas-brain-structure-mental-health"
@@ -138,7 +391,7 @@
       "lastCovered": "2026-03-31T12:09:28.807Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-31-pakistan-ndma-glof-landslides-gilgit-baltistan-april"
@@ -154,7 +407,7 @@
       "lastCovered": "2026-03-31T12:09:28.807Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-31-quantum-computing-risk-bitcoin-cryptography"
@@ -170,7 +423,7 @@
       "lastCovered": "2026-03-31T12:09:28.807Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-31-claude-code-source-leaked-npm-map-file"
@@ -186,7 +439,7 @@
       "lastCovered": "2026-03-31T12:09:28.807Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-03-31-google-timesfm-time-series-foundation-model"
@@ -202,7 +455,7 @@
       "lastCovered": "2026-03-31T08:11:07.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-31-us-strikes-isfahan-ammunition-bunkers-secondary-explosions"
@@ -227,7 +480,7 @@
       "lastCovered": "2026-03-31T08:11:07.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-31-sudan-msf-sexual-violence-everyday-life-civil-war"
@@ -248,7 +501,7 @@
       "lastCovered": "2026-03-31T08:11:07.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-31-land-day-50-years-palestinians-israel-confiscation"
@@ -264,7 +517,7 @@
       "lastCovered": "2026-03-31T08:11:07.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-31-punjab-defamation-act-lahore-high-court-press-freedom"
@@ -286,7 +539,7 @@
       "lastCovered": "2026-03-31T08:11:07.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-31-eu-kyiv-bucha-massacre-anniversary-kallas"
@@ -309,7 +562,7 @@
       "lastCovered": "2026-03-31T08:11:07.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-31-iran-cuts-oil-discount-war-pricing-power"
@@ -330,7 +583,7 @@
       "lastCovered": "2026-03-31T08:11:07.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-31-egypt-tomato-crisis-food-fragility-upper-egypt"
@@ -346,7 +599,7 @@
       "lastCovered": "2026-03-31T08:11:07.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-31-bitcoin-selloff-real-interest-rates-surge-etf-cooling"
@@ -366,7 +619,7 @@
       "lastCovered": "2026-03-31T08:11:07.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-31-india-semiconductor-10b-programme-micron-gujarat"
@@ -389,7 +642,7 @@
       "lastCovered": "2026-03-31T08:11:07.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-31-mlb-ai-strike-zone-automated-umpiring-television"
@@ -405,7 +658,7 @@
       "lastCovered": "2026-03-31T08:11:07.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-31-uranium-finance-50m-defi-hack-charged-maryland"
@@ -427,7 +680,7 @@
       "lastCovered": "2026-03-31T08:11:07.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-03-31-dubai-residents-reporting-drone-photos-group-chats"
@@ -449,7 +702,7 @@
       "lastCovered": "2026-03-31T04:08:37.923Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-31-kuwaiti-tanker-ablaze-dubai-port-iran-attack"
@@ -465,7 +718,7 @@
       "lastCovered": "2026-03-31T04:08:37.923Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-31-trump-mulling-ending-iran-war-wsj"
@@ -490,7 +743,7 @@
       "lastCovered": "2026-03-31T04:08:37.923Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-31-india-draft-it-rules-expand-censorship-powers"
@@ -506,7 +759,7 @@
       "lastCovered": "2026-03-31T04:08:37.923Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-31-malaysia-raises-growth-forecast-war-resilience"
@@ -531,7 +784,7 @@
       "lastCovered": "2026-03-31T04:08:37.923Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-31-pakistan-public-debt-surges-80-trillion"
@@ -547,7 +800,7 @@
       "lastCovered": "2026-03-31T04:08:37.923Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-31-australia-abolishes-junior-pay-rates-young-workers"
@@ -563,7 +816,7 @@
       "lastCovered": "2026-03-31T04:08:37.923Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-31-plantclr-self-supervised-crop-disease-detection"
@@ -579,7 +832,7 @@
       "lastCovered": "2026-03-31T04:08:37.923Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-31-silver-nanoparticles-plant-extract-antibiotic-resistance"
@@ -595,7 +848,7 @@
       "lastCovered": "2026-03-31T04:08:37.923Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-31-zac-channel-cryo-em-brain-zinc-signaling"
@@ -611,7 +864,7 @@
       "lastCovered": "2026-03-31T04:08:37.923Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-31-india-subsea-internet-cables-iran-war-risk"
@@ -627,7 +880,7 @@
       "lastCovered": "2026-03-31T04:08:37.923Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-31-android-developer-verification-google-id-requirement"
@@ -643,7 +896,7 @@
       "lastCovered": "2026-03-31T04:08:37.923Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-03-31-australia-social-media-ban-compliance-investigation"
@@ -659,7 +912,7 @@
       "lastCovered": "2026-03-30T22:18:20.531Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-30-unifil-peacekeepers-killed-lebanon-israel"
@@ -684,7 +937,7 @@
       "lastCovered": "2026-03-30T22:18:20.531Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-30-israel-death-penalty-law-palestinians"
@@ -709,7 +962,7 @@
       "lastCovered": "2026-03-30T22:18:20.531Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-30-india-false-flag-pakistani-prisoners"
@@ -725,7 +978,7 @@
       "lastCovered": "2026-03-30T22:18:20.531Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-30-msf-gilead-hiv-drug-refusal"
@@ -741,7 +994,7 @@
       "lastCovered": "2026-03-30T22:18:20.531Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-30-prediction-markets-insider-bets-military"
@@ -763,7 +1016,7 @@
       "lastCovered": "2026-03-30T22:18:20.531Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-30-pai1-ptsd-blood-biomarker"
@@ -779,7 +1032,7 @@
       "lastCovered": "2026-03-30T22:18:20.531Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-30-pdneuram-memristor-neuromorphic-computing"
@@ -795,7 +1048,7 @@
       "lastCovered": "2026-03-30T22:18:20.531Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-30-artemis-ii-crewed-moon-mission"
@@ -811,7 +1064,7 @@
       "lastCovered": "2026-03-30T22:18:20.531Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-30-fedware-white-house-app-huawei-spyware"
@@ -827,7 +1080,7 @@
       "lastCovered": "2026-03-30T22:18:20.531Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-03-30-meta-scotus-piracy-ruling-ai-training-data"
@@ -843,7 +1096,7 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-us-reopens-embassy-in-venezuela"
@@ -863,7 +1116,7 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-nato-intercepts-fourth-iranian-missile-turkey"
@@ -883,7 +1136,7 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-israel-assassinates-journalists-lebanon-press-freedom"
@@ -899,7 +1152,7 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-pakistan-smart-lockdown-wartime-austerity"
@@ -919,7 +1172,7 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-food-shock-iran-war-fertilizer-crisis"
@@ -935,7 +1188,7 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-trump-god-squad-endangered-species-oil"
@@ -951,7 +1204,7 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-dollar-purchasing-power-four-episodes"
@@ -967,7 +1220,7 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-microbial-dormancy-alpine-soil-carbon"
@@ -983,7 +1236,7 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-ai-health-tools-validation-gap"
@@ -999,7 +1252,7 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-bellingcat-weapons-misinformation-guide"
@@ -1015,7 +1268,7 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-pentagon-anthropic-culture-war-backfire"
@@ -1031,7 +1284,7 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-ai-agent-wikipedia-ban-angry-blogs"
@@ -1047,277 +1300,13 @@
       "lastCovered": "2026-03-30T17:06:53.063Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-30-bitcoin-hashrate-drops-miners-pivot-ai"
       ],
       "eventUri": "eng-11521637",
       "summary": "Bitcoin's hashrate posted its first quarterly decline in six years as mining companies redirect GPU capital to AI inference infrastructure. Lead with the structural shift: the same hardware that secures Bitcoin is now more profitable running AI workloads. CoinDesk quantifies the capital migration. The reader tracks both crypto and AI — this is where those two worlds collide, and it reveals which compute market is winning the capital allocation war.",
-      "conceptUris": []
-    },
-    {
-      "id": "trump-threatens-seize-kharg-island-oil-iran",
-      "label": "Donald Trump threatens to 'take the oil' in Iran",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-trump-threatens-seize-kharg-island-oil-iran"
-      ],
-      "eventUri": "eng-11522730",
-      "summary": "Trump told the Financial Times he wants to seize Kharg Island — the terminal that handles 90% of Iran's oil exports — and called American opponents of the plan 'stupid people.' Lead with the resource seizure: this isn't a sanctions threat, it's an announced intent to physically take another country's energy infrastructure. The reader tracks the Kharg raids arc; this escalates from strikes to occupation. Al Jazeera, Middle East Eye, RT, and Times of India frame it consistently as imperial overreach. Straits Times and BusinessLine add the Asian energy market angle — every barrel through Kharg is priced into India and Singapore's fuel costs.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Kharg_Island",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "spain-closes-airspace-us-war-planes-iran",
-      "label": "Spain closes airspace to US planes involved in Iran war",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-spain-closes-airspace-us-war-planes-iran"
-      ],
-      "eventUri": "eng-11524519",
-      "summary": "Spain has closed its airspace to all US-linked aircraft involved in the Iran war — the first NATO member to actively block American war logistics. Deputy PM Carlos Cuerpo framed it as refusing to participate in a war 'begun unilaterally and in violation of international law.' Lead with the NATO fracture: a US ally is physically obstructing US military operations. The reader tracks European resistance; this is a concrete escalation from diplomatic statements to operational denial. Tehran calling Trump's peace demands 'excessive' provides the other side of the frame — even as allies defect, the US is demanding more.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Spain",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Airspace",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "russia-expels-british-diplomat-espionage",
-      "label": "Russia expels senior British diplomat over 'intelligence activities'",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-russia-expels-british-diplomat-espionage"
-      ],
-      "eventUri": "eng-11524354",
-      "summary": "Russia's FSB expelled a named British diplomat — Albertus Gerardus Jansen — for 'intelligence and subversive activities,' the most specific espionage accusation Moscow has made against a Western diplomat in years. The sentiment divergence is 0.52: RT frames it as catching a spy red-handed, BBC frames it as diplomatic harassment. Lead with the naming — usually expelled diplomats are anonymous. The reader should see the escalation pattern: intelligence operations are being made public as political weapons. Al Jazeera and TRT provide non-aligned framing.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Federal_Security_Service",
-        "http://en.wikipedia.org/wiki/Moscow"
-      ]
-    },
-    {
-      "id": "china-sanctions-japanese-lawmaker-taiwan-ties",
-      "label": "China sanctions Japanese lawmaker over Taiwan ties",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-china-sanctions-japanese-lawmaker-taiwan-ties"
-      ],
-      "eventUri": "zho-2004762",
-      "summary": "Beijing sanctioned Keiji Furuya — a lawmaker close to PM Takaichi — for 'colluding with Taiwan independence forces,' the most targeted Chinese action against a Japanese politician in recent memory. The 0.57 sentiment divergence tells the story: Global Times frames it as justified countermeasure, SCMP frames it as escalation, Mainichi adds the domestic Japanese angle. Lead with the personal targeting — this isn't a trade tariff, it's China naming individual lawmakers as enemies for their Taiwan contacts. The reader tracks great-power competition; this is the Taiwan Strait pressure moving from military to political warfare.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Keiji_Furuya",
-        "http://en.wikipedia.org/wiki/Taiwan_independence_movement",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Japan"
-      ]
-    },
-    {
-      "id": "iran-confirms-irgc-navy-commander-tangsiri-death",
-      "label": "Iran confirms death of IRGC Navy Commander Rear Admiral Tangsiri",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-iran-confirms-irgc-navy-commander-tangsiri-death"
-      ],
-      "eventUri": "eng-11524480",
-      "summary": "Iran has officially confirmed that Rear Admiral Alireza Tangsiri — commander of the IRGC Navy that enforced the Hormuz blockade — was killed, four days after Israel claimed the kill. Lead with the delay: Iran waited until after the Hormuz toll law passed parliament to confirm the death of the man who ran the blockade. The reader tracks the Hormuz arc; Tangsiri's death removes the operational commander but the institution (IRGC Navy) has already legislated its position. Show the succession question: who commands the strait now?",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Alireza_Tangsiri"
-      ]
-    },
-    {
-      "id": "israel-knesset-budget-netanyahu-avoids-elections",
-      "label": "Israel Parliament passes budget allowing Netanyahu to avoid early elections",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-israel-knesset-budget-netanyahu-avoids-elections"
-      ],
-      "eventUri": "eng-11523777",
-      "summary": "Israel's Knesset passed its budget in a marathon overnight session just before the April 1 deadline — the only thing that could have triggered early elections and unseated Netanyahu. Lead with the timing: a wartime prime minister facing ICC arrest warrants just locked in power through fall 2026. The budget itself is secondary; the story is that Israel's political system has no mechanism to challenge a leader during a war he chose to escalate. The Haredi draft exemption buried in the budget adds a domestic accountability angle.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Haredi_Judaism",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
-      "id": "australia-halves-fuel-tax-iran-energy-crisis",
-      "label": "Australia to halve fuel tax as global energy crisis deepens",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-australia-halves-fuel-tax-iran-energy-crisis"
-      ],
-      "eventUri": "eng-11523654",
-      "summary": "Australia is halving its fuel excise tax as Brent crude tops $116 — the first Western government to cut consumer fuel taxes in direct response to the Iran war energy shock. Lead with the policy mechanism: Albanese is subsidizing drivers rather than pressuring the US to end the war that caused the price spike. The reader tracks oil markets; show the fiscal cost — Australia's fuel excise raises ~A$13B/year, so halving it is a A$6.5B bet that the war won't end soon. Compare to the fertilizer/food pipeline: fuel tax cuts address pump prices but not the agricultural inflation coming in 2-3 months.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Australia",
-        "http://en.wikipedia.org/wiki/Anthony_Albanese",
-        "http://en.wikipedia.org/wiki/Gasoline"
-      ]
-    },
-    {
-      "id": "eu-no-plan-b-90bn-ukraine-loan-hungary-blocks",
-      "label": "EU still has no 'Plan B' for €90bn loan to Ukraine",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-eu-no-plan-b-90bn-ukraine-loan-hungary-blocks"
-      ],
-      "eventUri": "eng-11524918",
-      "summary": "Hungary is single-handedly blocking a €90 billion EU loan to Ukraine, and Brussels has no workaround. Lead with the structural vulnerability: one member state with veto power can defund an entire country's war effort. Zelenskyy is publicly demanding a 'Plan B' that doesn't exist. The reader tracks power structures; show how Orban's leverage works — unanimity rules in EU lending mean Hungary doesn't need to persuade anyone, just refuse. The frozen Russian assets that were supposed to backstop this loan add another layer: the money exists but the mechanism to release it doesn't.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Hungary",
-        "http://en.wikipedia.org/wiki/Viktor_Orb%C3%A1n"
-      ]
-    },
-    {
-      "id": "brainless-human-clones-startup-r3-bio",
-      "label": "Inside the stealthy startup that pitched brainless human clones",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-brainless-human-clones-startup-r3-bio"
-      ],
-      "eventUri": null,
-      "summary": "A startup called R3 Bio pitched investors on growing brainless human clones as organ farms — with the first batch to be carried by paid surrogates, since artificial wombs don't exist. Lead with the business model: a company tried to commercialize human cloning by arguing the clones wouldn't be 'people' because they'd lack brains. The reader is a hacker who thinks about ethics in technical systems; this is the biological equivalent of training AI on scraped data and calling it 'transformative use.' Show the founder's logic and where it breaks down. MIT Technology Review's investigation is the definitive source.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Cloning",
-        "http://en.wikipedia.org/wiki/Human_cloning",
-        "http://en.wikipedia.org/wiki/Artificial_womb"
-      ]
-    },
-    {
-      "id": "neonatal-brain-injury-biomarker-hypoxanthine",
-      "label": "Hypoxanthine as early biomarker of outcomes in neonatal hypoxic-ischemic encephalopathy",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-neonatal-brain-injury-biomarker-hypoxanthine"
-      ],
-      "eventUri": null,
-      "summary": "Researchers identified hypoxanthine — a simple blood metabolite — as an early predictor of brain damage severity in newborns who suffered oxygen deprivation at birth. Lead with the stakes: birth asphyxia kills 900,000 newborns annually, disproportionately in the Global South where neonatal ICU access is limited. A cheap blood test that predicts which babies need aggressive intervention versus which will recover could redirect scarce resources where they matter most. The study is in an ovine model but the biomarker pathway is conserved in humans.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Hypoxanthine",
-        "http://en.wikipedia.org/wiki/Neonatal_intensive_care_unit",
-        "http://en.wikipedia.org/wiki/Birth_asphyxia"
-      ]
-    },
-    {
-      "id": "pediatric-brain-tumor-tumoroids-drug-screening",
-      "label": "Patient-derived ependymoma and medulloblastoma tumoroids for drug screening",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-pediatric-brain-tumor-tumoroids-drug-screening"
-      ],
-      "eventUri": null,
-      "summary": "Researchers published the first protocol for growing miniature tumors from actual pediatric brain cancer patients — enabling personalized drug testing for ependymoma and medulloblastoma, two of the deadliest childhood cancers. Lead with why this matters: these cancers have had almost no new treatments in decades because there was no way to test drugs on realistic tumor models. Now oncologists can grow a child's specific tumor in a dish and screen hundreds of compounds. The protocol covers generation, long-term banking, and systematic drug screening — a full pipeline from biopsy to candidate therapy.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Medulloblastoma",
-        "http://en.wikipedia.org/wiki/Ependymoma",
-        "http://en.wikipedia.org/wiki/Pediatrics"
-      ]
-    },
-    {
-      "id": "mistral-ai-830m-debt-paris-data-center",
-      "label": "Mistral AI borrows 830 million dollars to operate a new data center near Paris",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-mistral-ai-830m-debt-paris-data-center"
-      ],
-      "eventUri": "eng-11524253",
-      "summary": "Mistral AI took on $830 million in debt — not equity — to build a data center at Bruyeres-le-Chatel near Paris, choosing massive financial risk over diluting French ownership of Europe's leading AI company. Lead with the financing structure: in a market where every AI startup raises equity rounds, Mistral borrowed. The reader is a hacker who understands capital structure; show the trade-off — Mistral keeps sovereignty over its model weights and board but now carries debt service that could crush it if revenue doesn't scale. This is Europe's bet on owning its own AI infrastructure.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Data_center",
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/Nvidia"
-      ]
-    },
-    {
-      "id": "webminal-15-years-one-server-500k-users",
-      "label": "15 years, one server, 8GB RAM and 500k users – how Webminal refuses to die",
-      "firstSeen": "2026-03-30T12:11:20.242Z",
-      "lastCovered": "2026-03-30T12:11:20.242Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-30-webminal-15-years-one-server-500k-users"
-      ],
-      "eventUri": null,
-      "summary": "Webminal — a free online Linux terminal used by 500,000 people to learn the command line — has run for 15 years on a single server with 8GB of RAM. Lead with the anti-pattern: in an industry that raises billions for GPU clusters, one developer kept half a million learners online with hardware most companies would throw away. The reader is a hacker who appreciates craft and constraint; this is a story about what's possible when you optimize for users instead of investors. 140 HN points signals strong community resonance.",
       "conceptUris": []
     }
   ]

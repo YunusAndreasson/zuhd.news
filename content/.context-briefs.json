@@ -2250,5 +2250,88 @@
     "label": "Japan's Pacifist Constitution",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-03-31-aircraft-evacuation-computational-modeling-faa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RULE",
+        "body": "FAR 25.803 requires every commercial aircraft to demonstrate full evacuation in 90 seconds using half the exits. The number comes from fire research in the 1960s: after 90 seconds, cabin flashover makes survival unlikely."
+      },
+      {
+        "heading": "HOW IT'S TESTED",
+        "body": "Manufacturers run a single live trial with real volunteers — but the FAA forbids telling participants which exits will be blocked. The test happens once per aircraft type. The A320's certification test was run in 1984 with a younger, fitter volunteer pool than today's flying public."
+      },
+      {
+        "heading": "THE CROWD DYNAMICS PROBLEM",
+        "body": "Evacuation is not a flow problem, it is a clogging problem. When more than ~3 people per second converge on an exit, an arch of bodies forms in the doorway and throughput drops to near zero. Wider aisles help less than you'd expect; exit width and crew commands matter more."
+      },
+      {
+        "heading": "WHY SEATS KEEP SHRINKING",
+        "body": "The FAA regulates exit count and aisle width but not seat pitch. Airlines have dropped pitch from 34 inches (1980s average) to 28-29 inches on some carriers. Each lost inch means more rows between a passenger and an exit, but no new evacuation test is required."
+      },
+      {
+        "heading": "THE SIMULATION GAP",
+        "body": "Agent-based models can run thousands of evacuation scenarios in hours. A live test produces one data point under artificial conditions. The FAA still accepts only the live test for certification."
+      }
+    ],
+    "generatedAt": "2026-03-31T17:28:02.530Z",
+    "label": "The 90-Second Rule",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-03-31-nvidia-marvell-2b-silicon-photonics-ai": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "A modern GPU cluster spends roughly 40% of its training time waiting for data to move between chips. The compute is fast; the wiring between chips is the constraint. This is the interconnect bottleneck."
+      },
+      {
+        "heading": "WHY COPPER FAILS",
+        "body": "Electrical signals in copper lose energy as heat, and the loss grows with distance and frequency. Above ~50 Gbps per lane over a few meters, you need so much power for signal conditioning that the cable itself becomes a cooling problem."
+      },
+      {
+        "heading": "WHAT PHOTONICS CHANGES",
+        "body": "Light in a waveguide loses almost no energy over datacenter distances. A single optical fiber can carry hundreds of wavelengths simultaneously — each an independent data channel. This is wavelength-division multiplexing, and it is why one fiber replaces bundles of copper."
+      },
+      {
+        "heading": "THE SILICON PART",
+        "body": "Silicon photonics means building optical components — lasers, modulators, detectors — directly on standard silicon wafers using existing chip fabs. The promise is cost at scale. The difficulty is that silicon is a poor light emitter, so the laser source still requires exotic materials like indium phosphide bonded onto the chip."
+      },
+      {
+        "heading": "THE SCALE PROBLEM",
+        "body": "Photonic circuits work in labs. Manufacturing them with the yield and reliability of electronic chips — billions of identical components, every one functional — is unsolved. This is the gap between a $2bn bet and a shipping product."
+      }
+    ],
+    "generatedAt": "2026-03-31T17:28:02.531Z",
+    "label": "Silicon Photonics",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-03-31-robot-scientists-yeast-gene-characterization": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY YEAST",
+        "body": "Saccharomyces cerevisiae has about 6,000 genes and was the first eukaryote fully sequenced (1996). Roughly 30% of its genes have human counterparts. It grows fast, costs almost nothing to maintain, and its genetics are among the best-understood of any organism — which is exactly why the remaining unknowns are so puzzling."
+      },
+      {
+        "heading": "SEQUENCED ≠ UNDERSTOOD",
+        "body": "Sequencing a genome tells you the letters. Functional genomics asks what each gene actually does in a living cell. For yeast — the most-studied eukaryote on Earth — about 15% of genes still have no confirmed function. For humans, the fraction is far higher."
+      },
+      {
+        "heading": "THE OPEN READING FRAME PROBLEM",
+        "body": "An open reading frame is a DNA stretch that could encode a protein. Yeast has ~6,000 confirmed ORFs, but proving what each protein does requires experiments: knock the gene out, stress the cell, measure what changes. This is slow, expensive, and hard to automate — which is exactly what robot scientists attempt."
+      },
+      {
+        "heading": "WHAT A ROBOT SCIENTIST IS",
+        "body": "Robot Eve is not a chatbot. It is a physical lab system that forms hypotheses, designs experiments, operates liquid-handling robots, runs mass spectrometry, and interprets results — a closed loop from question to evidence. The original Robot Adam (2009) was the first machine to independently discover new scientific knowledge."
+      }
+    ],
+    "generatedAt": "2026-03-31T17:28:02.531Z",
+    "label": "Model Organisms & Functional Genomics",
+    "category": "science",
+    "articleCount": 1
   }
 }
