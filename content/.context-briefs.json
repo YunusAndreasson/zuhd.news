@@ -1980,5 +1980,92 @@
     "label": "Prediction Markets",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-03-31-india-subsea-internet-cables-iran-war-risk": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PHYSICAL INTERNET",
+        "body": "Over 95% of intercontinental data travels through roughly 550 undersea fiber-optic cables, some thinner than a garden hose. Satellites handle less than 5% — they lack the bandwidth. The cloud is, physically, a network of glass threads on the ocean floor."
+      },
+      {
+        "heading": "THE CHOKEPOINTS",
+        "body": "Cables follow shipping lanes because those routes were surveyed first — for telegraph cables in the 1850s. This means they cluster through the same narrow straits (Hormuz, Bab el-Mandeb, Malacca, Suez) that concentrate naval and commercial traffic, and conflict."
+      },
+      {
+        "heading": "WHY THEY BREAK",
+        "body": "About 100-150 cable faults occur per year, mostly from fishing trawlers and ship anchors. Repairs require specialized ships — fewer than 60 exist worldwide — and take weeks. A single cut rarely kills connectivity because traffic reroutes, but multiple simultaneous cuts in a chokepoint can degrade an entire region."
+      },
+      {
+        "heading": "THE LATENCY TAX",
+        "body": "Rerouting traffic from a severed Red Sea cable means packets travel thousands of extra kilometers, adding 50-100ms of latency. For browsing, that is invisible. For real-time trading, cloud computing, and video calls, it is a measurable economic cost."
+      },
+      {
+        "heading": "INDIA'S EXPOSURE",
+        "body": "India's westbound cables to Europe and the Middle East funnel through two of the world's most contested waterways. There is no overland alternative with comparable bandwidth — fiber through Central Asia exists but carries a fraction of the capacity."
+      }
+    ],
+    "generatedAt": "2026-03-31T04:22:57.920Z",
+    "label": "Subsea Cable Infrastructure",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-03-31-pakistan-public-debt-surges-80-trillion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RATIO",
+        "body": "Debt-to-GDP ratio is the standard measure of sovereign fiscal health — not the absolute number. A country owing $1 trillion with $20 trillion GDP (5%) is healthier than one owing $100 billion with $120 billion GDP (83%). The ratio captures repayment capacity."
+      },
+      {
+        "heading": "THE TRAP",
+        "body": "When interest rates exceed GDP growth, debt-to-GDP rises even with a balanced budget. The government must run a primary surplus — spending less than it collects before interest — just to stop the ratio from climbing. This is the arithmetic trap most heavily indebted countries face."
+      },
+      {
+        "heading": "PRIMARY SURPLUS, STILL SINKING",
+        "body": "A primary surplus means the government collects more tax than it spends on services. Pakistan achieved this. But interest on existing debt consumed more than the surplus generated, so total debt still grew. The surplus signals fiscal effort; the rising debt signals that effort is insufficient."
+      },
+      {
+        "heading": "FISCAL RULES AND CREDIBILITY",
+        "body": "Many countries legislate debt ceilings or deficit limits to signal discipline to bond markets. The power of a fiscal rule lies entirely in enforcement. A ceiling breached every year becomes a ceiling in name only — it no longer constrains borrowing costs because lenders stop believing it."
+      },
+      {
+        "heading": "THE DENOMINATION PROBLEM",
+        "body": "Pakistan borrows in both rupees and dollars. Rupee debt can theoretically be inflated away, but that destroys domestic purchasing power. Dollar debt cannot be inflated away at all — a falling rupee makes each dollar of debt more expensive to service, creating a vicious cycle during currency crises."
+      }
+    ],
+    "generatedAt": "2026-03-31T04:22:57.925Z",
+    "label": "Sovereign Debt Mechanics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-03-31-zac-channel-cryo-em-brain-zinc-signaling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REVOLUTION",
+        "body": "Before cryo-EM, solving a protein structure meant growing crystals — a process that could take years and often failed for membrane proteins entirely. Cryo-EM flash-freezes proteins in solution and images them with electron beams, bypassing crystallization. It won the 2017 Nobel Prize and has since resolved thousands of previously intractable structures."
+      },
+      {
+        "heading": "RESOLUTION",
+        "body": "2.62 Å (angstroms) means individual amino acid side chains are visible. Below ~3.5 Å, you can reliably identify where a drug molecule would dock. Above ~4 Å, you see the overall shape but not the chemistry. This resolution is precise enough to design drugs atom by atom."
+      },
+      {
+        "heading": "WHAT ION CHANNELS DO",
+        "body": "Ion channels are protein tunnels in cell membranes that open and close to let specific ions through. They are the basis of all electrical signaling in the body — every nerve impulse, heartbeat, and thought depends on ions flowing through channels in the right sequence."
+      },
+      {
+        "heading": "ZINC IN THE BRAIN",
+        "body": "Zinc is the second most abundant trace metal in the brain after iron. Neurons package free zinc into synaptic vesicles and release it alongside neurotransmitters. It modulates receptors, influences memory formation, and is dysregulated in Alzheimer's and epilepsy — yet the channels it activates were among the least understood until now."
+      },
+      {
+        "heading": "WHY STRUCTURE ENABLES DRUGS",
+        "body": "Knowing a channel's 3D shape at atomic resolution reveals pockets where small molecules can bind to lock the channel open or shut. Without the structure, drug discovery is trial and error against a black box. With it, chemists can computationally screen millions of compounds before synthesizing a single one."
+      }
+    ],
+    "generatedAt": "2026-03-31T04:22:57.925Z",
+    "label": "Cryo-EM and Ion Channels",
+    "category": "science",
+    "articleCount": 1
   }
 }
