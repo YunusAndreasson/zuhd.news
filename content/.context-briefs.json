@@ -2146,5 +2146,109 @@
     "label": "The Strait of Hormuz",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-03-31-dna-methylation-atlas-brain-structure-mental-health": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "DNA methylation attaches a methyl group (CH₃) to cytosine bases in your genome. This doesn't change the genetic code — it changes which genes get read. A methylated gene is effectively silenced, like a book still on the shelf but with its cover glued shut."
+      },
+      {
+        "heading": "WHY BLOOD PREDICTS BRAIN",
+        "body": "Every cell in your body carries the same DNA but different methylation patterns — that's what makes a neuron different from a skin cell. But some methylation changes are systemic: inflammation, stress hormones, and metabolic shifts leave the same marks across tissues. A blood draw captures signatures that also appear in the brain."
+      },
+      {
+        "heading": "THE CLOCK INSIDE YOUR CELLS",
+        "body": "Steve Horvath showed in 2013 that methylation patterns predict biological age within 3.6 years. Psychiatric conditions, trauma, and chronic stress accelerate this clock — your cells can be measurably older than your birth certificate says."
+      },
+      {
+        "heading": "REVERSIBILITY",
+        "body": "Unlike mutations, methylation is chemically reversible. Drugs called DNMT inhibitors can strip methyl groups off DNA. Two (azacitidine, decitabine) are already approved for blood cancers. Whether this principle extends to psychiatric prevention is the open question."
+      }
+    ],
+    "generatedAt": "2026-03-31T12:22:37.824Z",
+    "label": "DNA Methylation",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-03-31-three-thousand-vessels-blocked-hormuz-transport-costs-200-percent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Hormuz is 33 km wide at its narrowest. Shipping lanes are just 3 km wide in each direction, separated by a 3 km buffer. Every tanker passing through is within range of shore-based missiles on both the Iranian and Omani coasts."
+      },
+      {
+        "heading": "THE VOLUME",
+        "body": "Roughly 21 million barrels of oil pass through Hormuz daily — about 21% of global consumption. No other chokepoint carries this concentration. The Suez Canal moves about 5 million barrels; Malacca about 16 million, but in a much wider strait."
+      },
+      {
+        "heading": "WHY ALTERNATIVES ARE LIMITED",
+        "body": "Saudi Arabia's East-West Pipeline can bypass Hormuz but carries only 5 million barrels/day. The UAE's Habshan-Fujairah pipeline adds 1.5 million. Together they replace roughly a third of Hormuz flow. There is no pipeline solution for Qatar's LNG — the world's largest LNG exporter has no route that avoids the strait."
+      },
+      {
+        "heading": "THE INSURANCE MECHANISM",
+        "body": "When Hormuz risk rises, Lloyd's of London reprices war-risk premiums for every vessel transiting the Persian Gulf. These premiums can jump from 0.05% to over 1% of hull value overnight — on a $100M tanker, that's $1M per transit, passed directly to fuel buyers worldwide."
+      }
+    ],
+    "generatedAt": "2026-03-31T12:22:37.827Z",
+    "label": "The Strait of Hormuz",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-03-31-quantum-computing-risk-bitcoin-cryptography": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT BITCOIN ACTUALLY USES",
+        "body": "Bitcoin relies on ECDSA (Elliptic Curve Digital Signature Algorithm) over the secp256k1 curve. Your private key is a 256-bit number; your public key is a point on an elliptic curve derived from it. The security assumption: you cannot work backwards from the public key to the private key."
+      },
+      {
+        "heading": "WHY QUANTUM BREAKS IT",
+        "body": "Shor's algorithm (1994) solves the elliptic curve discrete logarithm problem in polynomial time on a quantum computer. A sufficiently large quantum computer could derive any private key from its public key. Classical computers would need longer than the age of the universe for the same calculation."
+      },
+      {
+        "heading": "THE EXPOSURE WINDOW",
+        "body": "Modern Bitcoin wallets hash the public key (using SHA-256 + RIPEMD-160) and only reveal the actual public key when spending. But legacy wallets and reused addresses have their public keys exposed on-chain permanently. Those keys are attackable the moment a capable quantum computer exists — no transaction needed."
+      },
+      {
+        "heading": "THE QUBIT GAP",
+        "body": "Breaking secp256k1 requires roughly 2,500 error-corrected logical qubits. Current machines have physical qubits with high error rates — you need roughly 1,000 physical qubits per logical qubit with today's error correction. That puts the real requirement around 2.5 million physical qubits. The largest machines today have around 1,200."
+      },
+      {
+        "heading": "POST-QUANTUM ALTERNATIVES EXIST",
+        "body": "NIST standardized three post-quantum algorithms in 2024: CRYSTALS-Dilithium, CRYSTALS-Kyber, and SPHINCS+. These resist both classical and quantum attacks. Bitcoin could adopt them via a soft fork, but migrating billions in legacy wallets requires every holder to actively move their coins — a coordination problem, not a cryptography problem."
+      }
+    ],
+    "generatedAt": "2026-03-31T12:22:37.827Z",
+    "label": "Elliptic Curve Cryptography",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-03-31-japan-deploys-first-long-range-missiles-counterstrike": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ARTICLE 9",
+        "body": "Japan's 1947 constitution, drafted under US occupation, contains the most radical anti-war clause ever written into national law. Article 9 renounces war as a sovereign right and prohibits maintaining 'war potential.' No other major power has anything like it."
+      },
+      {
+        "heading": "THE REINTERPRETATION GAME",
+        "body": "Japan has maintained one of the world's largest militaries for decades by calling it a Self-Defense Force and interpreting Article 9 to permit defensive capability. Each generation of hardware gets justified as 'exclusively defensive' — until the next generation arrives and the line moves again."
+      },
+      {
+        "heading": "THE 2022 BREAK",
+        "body": "Japan's 2022 National Security Strategy explicitly adopted 'counterstrike capability' — the ability to hit enemy bases pre-emptively. This broke a 75-year taboo. The doctrinal shift was not a constitutional amendment (which requires a two-thirds supermajority plus referendum) but a cabinet reinterpretation."
+      },
+      {
+        "heading": "THE 1% CEILING",
+        "body": "From 1976 to 2022, Japan informally capped defense spending at 1% of GDP. The 2022 strategy doubled this to 2%, making Japan the world's third-largest military spender in absolute terms by 2027 — behind only the US and China."
+      }
+    ],
+    "generatedAt": "2026-03-31T12:22:37.827Z",
+    "label": "Japan's Pacifist Constitution",
+    "category": "politics",
+    "articleCount": 1
   }
 }
