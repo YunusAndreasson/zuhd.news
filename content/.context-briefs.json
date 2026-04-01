@@ -2512,5 +2512,121 @@
     "label": "Mobile SDK Supply Chains",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-01-irgc-de-facto-control-iran-government-deadlock": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO GOVERNMENTS",
+        "body": "Iran has an elected government (president, parliament) and an unelected one (Supreme Leader, Guardian Council, IRGC). The constitution gives the unelected layer veto power over the elected one. The president runs ministries; the IRGC runs foreign policy, nuclear development, and internal security."
+      },
+      {
+        "heading": "THE IRGC IS NOT A NORMAL MILITARY",
+        "body": "Founded in 1979 as a ideological counterweight to the regular army, the IRGC has its own ground forces, navy, air force, and intelligence service — plus the Basij militia (~1 million mobilizable). It also controls an estimated 20-40% of Iran's economy through construction, telecom, and energy conglomerates."
+      },
+      {
+        "heading": "THE QUDS FORCE",
+        "body": "The IRGC's external operations arm projects power through proxy relationships — Hezbollah, Iraqi militias, Houthis — rather than conventional deployment. This lets Iran fight at strategic depth without exposing its own territory, a model sometimes called 'forward defense.'"
+      },
+      {
+        "heading": "WHY THE PRESIDENT IS WEAK",
+        "body": "The Guardian Council pre-screens all candidates, filtering out anyone who challenges the system's axioms. The Supreme Leader directly appoints the heads of the judiciary, state media, and armed forces. The president controls fiscal policy and diplomacy but lacks command authority over the security apparatus that enforces domestic order."
+      },
+      {
+        "heading": "SUCCESSION",
+        "body": "The Supreme Leader is chosen by the Assembly of Experts — 88 clerics who are themselves filtered by the Guardian Council, whose members are appointed by the Supreme Leader. The system is designed to be self-reproducing."
+      }
+    ],
+    "generatedAt": "2026-04-01T08:20:38.305Z",
+    "label": "Iran's Parallel State",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-01-neanderthals-knife-edge-350k-years-fragile-survival": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "EFFECTIVE POPULATION SIZE",
+        "body": "Geneticists don't count heads — they measure 'effective population size' (Ne), the number of individuals who actually contribute genes to the next generation. Ne is always smaller than the census count, often dramatically so. A population of 10,000 with skewed reproduction might have an Ne of 1,000."
+      },
+      {
+        "heading": "THE BOTTLENECK SIGNATURE",
+        "body": "When a population crashes, surviving genomes carry the scar forever: reduced heterozygosity, long runs of homozygosity where both chromosome copies are identical. Paleogenomics can read these scars in ancient DNA extracted from bone, detecting crashes that happened tens of thousands of years before the individual died."
+      },
+      {
+        "heading": "WHY SMALL POPULATIONS DIE",
+        "body": "Below ~1,000 effective individuals, harmful mutations accumulate faster than selection can remove them — a process called mutational meltdown. Inbreeding depression compounds it: immune genes (MHC) lose diversity, making the whole group vulnerable to a single pathogen."
+      },
+      {
+        "heading": "THE NEANDERTHAL PUZZLE",
+        "body": "Neanderthal genomes consistently show Ne estimates of 1,000-5,000, far below contemporaneous Homo sapiens (~10,000-30,000). They survived in small, fragmented groups across Ice Age Europe for 350,000 years — an unexpectedly long run for a species living so close to the extinction threshold."
+      },
+      {
+        "heading": "WHAT ANCIENT DNA CHANGED",
+        "body": "Before paleogenomics, population history came from fossils and stone tools — presence/absence in a layer of dirt. Ancient DNA, first extracted from Neanderthal bone in 1997, revealed that populations that looked stable in the fossil record were genetically collapsing."
+      }
+    ],
+    "generatedAt": "2026-04-01T08:20:38.306Z",
+    "label": "Population Genetics",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-01-russia-ai-drones-gps-denied-visual-navigation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GPS FAILS IN WAR",
+        "body": "GPS signals arrive at ground level with roughly the power of a car headlight seen from 20,000 km away. A $50 jammer broadcasting on the same frequency can drown out that signal across a city-sized area. Every modern military assumes GPS denial in contested airspace."
+      },
+      {
+        "heading": "THE ALTERNATIVE: TERRAIN MATCHING",
+        "body": "The Tomahawk cruise missile solved this in 1983 with TERCOM — a radar altimeter compares terrain elevation profiles against stored maps. No external signal needed. The limitation: it works over varied terrain but fails over flat ground or water."
+      },
+      {
+        "heading": "VISUAL-INERTIAL ODOMETRY",
+        "body": "A camera tracks visual features (edges, corners) frame-to-frame to estimate movement. Combined with an accelerometer, this gives continuous position updates without any external signal. It is how your phone tracks your hand in AR. The catch: errors accumulate over time — 'drift' — so it needs periodic correction."
+      },
+      {
+        "heading": "SLAM",
+        "body": "Simultaneous Localization and Mapping builds a map of the environment while tracking position within it. A drone running SLAM doesn't need a pre-loaded map — it constructs one in real time. This is the core algorithm behind autonomous robot navigation, from warehouse robots to self-driving cars."
+      },
+      {
+        "heading": "THE HARD PROBLEM",
+        "body": "Visual navigation breaks when the scene lacks distinctive features (snow, desert, open water) or changes rapidly (seasons, bomb damage). Matching a camera image to a satellite photo taken months earlier under different lighting is an unsolved problem at military reliability standards."
+      }
+    ],
+    "generatedAt": "2026-04-01T08:20:38.307Z",
+    "label": "Visual Navigation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-01-iran-strikes-qatar-tanker-kuwait-airport-gulf-blitz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "The Strait of Hormuz is 33 km wide at its narrowest. Shipping lanes are 3 km wide in each direction, separated by a 3 km buffer. Roughly 20% of the world's oil passes through this gap daily — about 21 million barrels."
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia has the only significant alternative: the East-West Pipeline to the Red Sea, capacity ~5 million barrels/day. The UAE built a pipeline to Fujairah (1.5 million b/d) specifically to reduce Hormuz dependence. Combined, these bypass less than a third of the strait's flow."
+      },
+      {
+        "heading": "IRAN'S ASYMMETRIC ADVANTAGE",
+        "body": "Iran's coastline runs along the entire northern shore of the strait. Its military doctrine emphasizes small fast-attack boats, anti-ship missiles, and sea mines — weapons that cost thousands but can threaten tankers worth hundreds of millions. The US Navy calls this an anti-access/area-denial problem."
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "During the Iran-Iraq War (1984-1988), both sides attacked oil tankers in the Gulf. 451 ships were hit. Oil prices spiked but didn't collapse global supply — because attacks damaged ships without fully closing the strait. The lesson: disruption and closure are very different things."
+      },
+      {
+        "heading": "INSURANCE AS WEAPON",
+        "body": "When the risk rating for a waterway rises, marine war-risk insurance premiums spike — sometimes from 0.05% to 5% of hull value overnight. A single missile strike can make transit uneconomical for commercial shippers even if the strait remains physically open."
+      }
+    ],
+    "generatedAt": "2026-04-01T08:20:38.307Z",
+    "label": "The Strait of Hormuz",
+    "category": "politics",
+    "articleCount": 1
   }
 }
