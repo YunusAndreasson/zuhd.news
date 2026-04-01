@@ -1,25 +1,29 @@
 {
   "version": 1,
-  "activeExperiment": {
-    "id": "2026-03-29-standalone-cap",
-    "startDate": "2026-03-29",
-    "evaluateAfter": "2026-04-01",
-    "prNumber": null,
-    "hypothesis": "Reducing standalone article cap from 30 to 25 trims the tail of older/less-fresh standalone articles, modestly improving freshness median toward the ≤ 1.0 day target.",
-    "parameter": "Standalone total cap",
-    "file": "scripts/fetch-news-api.js",
-    "oldValue": 30,
-    "newValue": 25,
-    "targetMetric": "freshness.today.median",
-    "targetDirection": "decrease",
-    "baseline": {
-      "freshnessMedian": 1.1,
-      "sciTechRatio": 41,
-      "multiSource": 4,
-      "uniqueRegions": 6
-    }
-  },
+  "activeExperiment": null,
   "history": [
+    {
+      "id": "2026-03-29-standalone-cap",
+      "startDate": "2026-03-29",
+      "evaluateAfter": "2026-04-01",
+      "prNumber": null,
+      "hypothesis": "Reducing standalone article cap from 30 to 25 trims the tail of older/less-fresh standalone articles, modestly improving freshness median toward the ≤ 1.0 day target.",
+      "parameter": "Standalone total cap",
+      "file": "scripts/fetch-news-api.js",
+      "oldValue": 30,
+      "newValue": 25,
+      "targetMetric": "freshness.today.median",
+      "targetDirection": "decrease",
+      "baseline": {
+        "freshnessMedian": 1.1,
+        "sciTechRatio": 41,
+        "multiSource": 4,
+        "uniqueRegions": 6
+      },
+      "result": "kept",
+      "evaluatedOn": "2026-04-01",
+      "notes": "Target metric freshness.today.median improved from 1.1 → 0.2 (well under ≤1.0 target). No other metric degraded >20%: sciTechRatio 41→40 (-2%), multiSource 4→10 (improved), uniqueRegions 6→6 (unchanged). Keeping cap at 25."
+    },
     {
       "id": "2026-03-24-min-articles-event",
       "startDate": "2026-03-24",
