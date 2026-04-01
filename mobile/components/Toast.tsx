@@ -81,11 +81,14 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
     <Animated.View
       style={[styles.container, positionStyle, animatedStyle]}
       pointerEvents={visible ? 'auto' : 'none'}
+      accessibilityLiveRegion="polite"
     >
       <Pressable
         onPress={handlePress}
         hitSlop={12}
         style={({ pressed }) => pressed && PRESSED_STYLE}
+        accessibilityRole="alert"
+        accessibilityLabel={message}
       >
         <Text style={styles.text}>{message}</Text>
       </Pressable>

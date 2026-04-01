@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
@@ -25,9 +24,6 @@ interface CategoryBarProps {
   categoryProgresses: SharedValue<number[]>;
   currentCategory: number;
   onCategoryPress: (index: number) => void;
-  briefingAvailable: boolean;
-  briefingPlaying: boolean;
-  onBriefingPress: () => void;
 }
 
 function TabLabel({
@@ -58,6 +54,8 @@ function TabLabel({
       onLayout={onLayout}
       hitSlop={12}
       style={({ pressed }) => pressed && PRESSED_STYLE}
+      accessibilityRole="tab"
+      accessibilityLabel={label}
     >
       <Animated.Text style={[styles.tabLabel, animatedStyle]}>{label}</Animated.Text>
     </Pressable>
@@ -69,9 +67,6 @@ export const CategoryBar = memo(function CategoryBar({
   categoryProgresses,
   currentCategory,
   onCategoryPress,
-  briefingAvailable,
-  briefingPlaying,
-  onBriefingPress,
 }: CategoryBarProps) {
   const insets = useSafeAreaInsets();
   const [tabLayouts, setTabLayouts] = useState<TabLayout[]>([]);
@@ -127,6 +122,8 @@ export const CategoryBar = memo(function CategoryBar({
       <Pressable
         onPress={() => onCategoryPress(currentCategory)}
         style={({ pressed }) => pressed && PRESSED_STYLE}
+        accessibilityRole="button"
+        accessibilityLabel="zuhd.news, scroll to top"
       >
         <Text style={styles.wordmark}>
           <Text style={styles.wordmarkName}>zuhd</Text>
@@ -145,23 +142,6 @@ export const CategoryBar = memo(function CategoryBar({
             onLayout={tabLayoutHandlers[i]!}
           />
         ))}
-        {briefingAvailable && (
-          <Pressable
-            onPress={onBriefingPress}
-            hitSlop={12}
-            style={({ pressed }) => pressed && PRESSED_STYLE}
-          >
-            <View style={styles.tabIcon}>
-              <Ionicons
-                name={briefingPlaying ? 'pause' : 'play'}
-                size={TYPOGRAPHY.sizeSm}
-                color={COLORS.text}
-                style={{ opacity: briefingPlaying ? 1 : 0.4 }}
-              />
-            </View>
-          </Pressable>
-        )}
-
         <Animated.View style={[styles.progressBar, trackPos]} />
         <Animated.View style={[styles.progressBar, fillPos]} />
       </View>
@@ -202,10 +182,6 @@ const styles = StyleSheet.create({
     fontFamily: FONT.semiBold,
     fontSize: TYPOGRAPHY.sizeXs,
     letterSpacing: TYPOGRAPHY.trackingCaps,
-  },
-  tabIcon: {
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   progressBar: {
     position: 'absolute',

@@ -48,45 +48,14 @@ describe('getCoords', () => {
     expect(getCoords(a)).toEqual([0, 0]);
   });
 
-  it('extracts city from dateline with em dash', () => {
-    const a = makeArticle({ sentences: ['Tehran \u2014 The government announced...'] });
-    const coords = getCoords(a);
-    expect(coords).not.toBeNull();
-    expect(coords![0]).toBeCloseTo(35.69, 1); // Tehran lat
-  });
+  // Dateline parsing was removed from getCoords — it now uses article.location instead.
+  // Tests for dateline extraction were removed as they tested a deprecated code path.
 
-  it('handles dateline case-insensitively', () => {
-    const a = makeArticle({ sentences: ['LONDON \u2014 Markets rallied today...'] });
-    const coords = getCoords(a);
-    expect(coords).not.toBeNull();
-    expect(coords![0]).toBeCloseTo(51.51, 1); // London lat
-  });
-
-  it('matches dateline with ASCII double-dash', () => {
-    const a = makeArticle({ sentences: ['Tehran -- The government announced...'] });
+  it('resolves location field to coords', () => {
+    const a = makeArticle({ location: 'Tehran' });
     const coords = getCoords(a);
     expect(coords).not.toBeNull();
     expect(coords![0]).toBeCloseTo(35.69, 1);
-  });
-
-  it('matches dateline with ASCII triple-dash', () => {
-    const a = makeArticle({ sentences: ['Tehran --- The government announced...'] });
-    const coords = getCoords(a);
-    expect(coords).not.toBeNull();
-    expect(coords![0]).toBeCloseTo(35.69, 1);
-  });
-
-  it('matches dateline with en dash', () => {
-    const a = makeArticle({ sentences: ['Tehran \u2013 The government announced...'] });
-    const coords = getCoords(a);
-    expect(coords).not.toBeNull();
-    expect(coords![0]).toBeCloseTo(35.69, 1);
-  });
-
-  it('skips dateline if dash is at position >= 40', () => {
-    const longCity = 'A'.repeat(41);
-    const a = makeArticle({ sentences: [`${longCity} \u2014 text`] });
-    expect(getCoords(a)).toBeNull();
   });
 
   it('falls through to source when city is not in CITY_COORDS', () => {

@@ -11,11 +11,12 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
-      "buildNumber": "89",
+      "buildNumber": "90",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
           "audio",
+          "fetch",
           "processing"
         ]
       }
@@ -57,7 +58,8 @@
         }
       ],
       "expo-asset",
-      "expo-background-task"
+      "expo-background-task",
+      "react-native-spotlight-search"
     ],
     "extra": {
       "router": {},

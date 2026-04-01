@@ -47,6 +47,8 @@ export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
       onPress={onPress}
       hitSlop={SPACING.md}
       style={({ pressed }) => pressed && PRESSED_STYLE}
+      accessibilityRole="button"
+      accessibilityLabel="zuhd.news logo"
     >
       <Animated.View style={logoStyle}>
         <Image source={logo} style={[styles.logo, { width: size, height: size }]} />

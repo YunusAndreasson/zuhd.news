@@ -1,18 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
 import {
   BottomSheetBackdrop,
   type BottomSheetBackdropProps,
   BottomSheetModal,
-  BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
-import { FullWindowOverlay } from 'react-native-screens';
-
-function SheetContainer({ children }: { children?: React.ReactNode }) {
-  return <FullWindowOverlay>{children}</FullWindowOverlay>;
-}
-
 import {
   Activity,
   createRef,
@@ -21,25 +13,18 @@ import {
   useRef,
   useState,
 } from 'react';
-import {
-  Dimensions,
-  type LayoutChangeEvent,
-  Linking,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
+import { BriefingBar } from '../components/BriefingBar';
 import { CategoryBar } from '../components/CategoryBar';
 import { ContextSheet } from '../components/ContextSheet';
+import { CountrySheet } from '../components/CountrySheet';
 import type { TapResult } from '../components/globe/MiniGlobe';
-import { SheetHandle } from '../components/SheetHandle';
+import { SourceSheet } from '../components/SourceSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import { SOURCES } from '../constants/sources';
 import {
   CATEGORIES,
   COLORS,
@@ -48,7 +33,6 @@ import {
   LAYOUT,
   PRESSED_STYLE,
   SPACING,
-  TEXT_STYLES,
   TYPOGRAPHY,
 } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
@@ -57,32 +41,6 @@ import { useContextBrief } from '../hooks/useContextBrief';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { hapticImpact, hapticTick } from '../lib/haptics';
 import type { ArticleSource } from '../types';
-
-function KeyStat({ label, value }: { label: string; value: string | null | undefined }) {
-  if (!value) return null;
-  return (
-    <View style={styles.keyStat}>
-      <Text selectable style={styles.keyStatValue}>{value}</Text>
-      <Text selectable style={styles.keyStatLabel}>{label}</Text>
-    </View>
-  );
-}
-
-function ccToFlag(cc: string): string {
-  return cc
-    .toUpperCase()
-    .replace(/./g, (c) => String.fromCodePoint(0x1f1e6 + c.charCodeAt(0) - 65));
-}
-
-function CountryRow({ label, value }: { label: string; value: string | null | undefined }) {
-  if (!value) return null;
-  return (
-    <View style={styles.countryRow}>
-      <Text selectable style={styles.countryRowLabel}>{label}</Text>
-      <Text selectable style={styles.countryRowValue}>{value}</Text>
-    </View>
-  );
-}
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
@@ -101,7 +59,6 @@ export default function HomeScreen() {
   const sourceSheetRef = useRef<BottomSheetModal>(null);
   const [sourceSheetSources, setSourceSheetSources] = useState<ArticleSource[]>([]);
   const [sourceSheetDivergence, setSourceSheetDivergence] = useState<number | null>(null);
-  const [expandedSource, setExpandedSource] = useState<number | null>(null);
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
   const contextSheetRef = useRef<BottomSheetModal>(null);
@@ -125,12 +82,6 @@ export default function HomeScreen() {
     [],
   );
 
-  const SourceHandle = useCallback(
-    () => <SheetHandle title={sourceSheetSources.length === 1 ? 'source' : 'sources'} />,
-    [sourceSheetSources.length],
-  );
-  const CountryHandle = useCallback(() => <SheetHandle />, []);
-
   const handleSourcePress = useCallback(
     (_sourceName: string, allSources?: ArticleSource[], divergence?: number | null) => {
       hapticImpact();
@@ -153,6 +104,11 @@ export default function HomeScreen() {
     },
     [fetchContext],
   );
+
+  const handleBreakingPress = useCallback((coverage: number) => {
+    hapticImpact();
+    toastRef.current?.show(`${coverage}+ sources reporting`);
+  }, []);
 
   const handleCountryPress = useCallback((result: TapResult) => {
     hapticImpact();
@@ -187,7 +143,6 @@ export default function HomeScreen() {
 
   const pagerOffset = useSharedValue(0);
   const categoryProgresses = useSharedValue([0, 0, 0, 0]);
-
 
   const onPageSelected = useCallback(
     (e: PagerViewOnPageSelectedEvent) => {
@@ -271,7 +226,7 @@ export default function HomeScreen() {
         <Text style={styles.errorHint}>
           {offline ? 'Connect to the internet and reopen.' : error}
         </Text>
-        <Pressable onPress={retry} style={({ pressed }) => pressed && PRESSED_STYLE} hitSlop={12}>
+        <Pressable onPress={retry} style={({ pressed }) => pressed && PRESSED_STYLE} hitSlop={12} accessibilityRole="button" accessibilityLabel="Try again">
           <Text style={styles.retryText}>Try again</Text>
         </Pressable>
       </View>
@@ -285,9 +240,6 @@ export default function HomeScreen() {
         categoryProgresses={categoryProgresses}
         currentCategory={currentCategory}
         onCategoryPress={onCategoryPress}
-        briefingAvailable={briefing?.available ?? false}
-        briefingPlaying={briefingPlayer.playing}
-        onBriefingPress={briefingPlayer.toggle}
       />
 
       <PagerView
@@ -316,6 +268,7 @@ export default function HomeScreen() {
                   onSourcePress={handleSourcePress}
                   onContextPress={handleContextPress}
                   onCountryPress={handleCountryPress}
+                  onBreakingPress={handleBreakingPress}
                   progressesSV={categoryProgresses}
                   tick={tick}
                   resetKey={resetKey}
@@ -328,197 +281,37 @@ export default function HomeScreen() {
 
       <Toast ref={toastRef} />
 
-      {/* Source sheet */}
-      <BottomSheetModal
-        ref={sourceSheetRef}
-        enableDynamicSizing
-        maxDynamicContentSize={Dimensions.get('window').height * LAYOUT.sheetMaxFraction}
-        enablePanDownToClose
-        backdropComponent={renderBackdrop}
-        backgroundStyle={styles.sheetBg}
-        handleComponent={SourceHandle}
-        containerComponent={SheetContainer}
+      {briefing?.available && briefing.date && (
+        <BriefingBar
+          playing={briefingPlayer.playing}
+          elapsed={briefingPlayer.elapsed}
+          duration={briefingPlayer.duration}
+          date={briefing.date}
+          onToggle={briefingPlayer.toggle}
+          onSeek={briefingPlayer.seek}
+        />
+      )}
+
+      <SourceSheet
+        sheetRef={sourceSheetRef}
+        sources={sourceSheetSources}
+        divergence={sourceSheetDivergence}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
         onDismiss={() => {
           setSourceSheetSources([]);
           setSourceSheetDivergence(null);
-          setExpandedSource(null);
         }}
-      >
-        <BottomSheetScrollView
-          contentContainerStyle={[
-            styles.sheetContent,
-            { paddingBottom: insets.bottom + SPACING.lg },
-          ]}
-        >
-          {sourceSheetSources.length > 0 ? (
-            <>
-              <Text style={styles.coverageHeading}>
-                {sourceSheetDivergence != null &&
-                sourceSheetDivergence >= EDITORIAL.divergenceModerate &&
-                sourceSheetSources.length > 1
-                  ? sourceSheetDivergence >= EDITORIAL.divergenceHigh
-                    ? 'These sources frame this story very differently.'
-                    : 'These sources frame this story differently.'
-                  : 'How this story is covered'}
-              </Text>
-              {sourceSheetSources.map((s, i) => {
-                const info = SOURCES[s.name];
-                const cc = s.country?.toUpperCase();
-                const flag = cc ? ccToFlag(cc) : null;
-                const tone =
-                  s.sentiment != null
-                    ? s.sentiment > EDITORIAL.sentimentPositive
-                      ? 'favorable'
-                      : s.sentiment < EDITORIAL.sentimentNegative
-                        ? 'unfavorable'
-                        : 'neutral'
-                    : null;
-                const toneWord =
-                  tone === 'favorable'
-                    ? 'favorably'
-                    : tone === 'unfavorable'
-                      ? 'critically'
-                      : tone === 'neutral'
-                        ? 'neutral'
-                        : null;
-                const isExpanded = expandedSource === i;
-                return (
-                  <Pressable
-                    key={i}
-                    style={styles.sourceRow}
-                    onPress={() => setExpandedSource(isExpanded ? null : i)}
-                  >
-                    <View style={styles.sourceRowHeader}>
-                      <Text style={styles.sourceName} numberOfLines={1}>
-                        {flag ? `${flag} ` : ''}
-                        {s.name}
-                      </Text>
-                      <View style={styles.sourceRowRight}>
-                        {toneWord && (
-                          <View
-                            style={[
-                              styles.tonePill,
-                              tone === 'favorable' && styles.pillFavorable,
-                              tone === 'unfavorable' && styles.pillUnfavorable,
-                              tone === 'neutral' && styles.pillNeutral,
-                            ]}
-                          >
-                            <Text style={styles.tonePillText}>{toneWord}</Text>
-                          </View>
-                        )}
-                        <Ionicons
-                          name={isExpanded ? 'chevron-up' : 'chevron-down'}
-                          size={LAYOUT.iconSm}
-                          color={COLORS.accent}
-                        />
-                      </View>
-                    </View>
-                    {isExpanded && info && (
-                      <>
-                        <Text selectable style={styles.sourceType}>
-                          {info.type} · {info.location}
-                        </Text>
-                        <Text selectable style={styles.sheetBody}>{info.description}</Text>
-                      </>
-                    )}
-                  </Pressable>
-                );
-              })}
-              <Text
-                style={styles.correctionLink}
-                onPress={() => Linking.openURL('mailto:yunus@edenmind.com?subject=Correction')}
-              >
-                Submit a correction
-              </Text>
-            </>
-          ) : null}
-        </BottomSheetScrollView>
-      </BottomSheetModal>
+      />
 
-      {/* Country sheet */}
-      <BottomSheetModal
-        ref={countrySheetRef}
-        enableDynamicSizing
-        maxDynamicContentSize={Dimensions.get('window').height * LAYOUT.sheetMaxFraction}
-        enablePanDownToClose
-        backdropComponent={renderBackdrop}
-        backgroundStyle={styles.sheetBg}
-        handleComponent={CountryHandle}
-        containerComponent={SheetContainer}
+      <CountrySheet
+        sheetRef={countrySheetRef}
+        country={countrySheet}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
         onDismiss={() => setCountrySheet(null)}
-      >
-        <BottomSheetScrollView
-          contentContainerStyle={[
-            styles.sheetContent,
-            { paddingBottom: insets.bottom + SPACING.lg },
-          ]}
-        >
-          {countrySheet?.data && (
-            <>
-              {/* Identity — city + country hero */}
-              <View style={styles.countryIdentity}>
-                <View style={styles.countryIdentityText}>
-                  <Text selectable style={styles.countryLocation}>{countrySheet.countryName}</Text>
-                  <Text selectable style={styles.countryName}>{countrySheet.data.official}</Text>
-                </View>
-                <Text style={styles.countryFlag}>{countrySheet.data.flag}</Text>
-              </View>
+      />
 
-              {/* Key stats — at-a-glance numbers */}
-              <View style={styles.countryKeyStats}>
-                <KeyStat label="population" value={countrySheet.data.population} />
-                <KeyStat label="gdp" value={countrySheet.data.gdp} />
-                <KeyStat label="military spend" value={countrySheet.data.military} />
-              </View>
-
-              {/* Developing stories — shown when coverage hotspots overlap this country */}
-              {countrySheet.hotspotLabels && countrySheet.hotspotLabels.length > 0 && (
-                <View style={styles.hotspotSection}>
-                  <Text style={styles.sheetLabel}>
-                    {countrySheet.hotspotLabels.length === 1
-                      ? 'DEVELOPING STORY'
-                      : 'DEVELOPING STORIES'}
-                  </Text>
-                  {countrySheet.hotspotLabels.map((label, i) => (
-                    <Text key={i} selectable style={styles.hotspotValue}>
-                      {label}
-                    </Text>
-                  ))}
-                </View>
-              )}
-
-              {/* Detail rows — ordered by user interest */}
-              <CountryRow label="Capital" value={countrySheet.data.capital} />
-              <CountryRow label="Languages" value={countrySheet.data.languages} />
-              <CountryRow
-                label="Currency"
-                value={
-                  countrySheet.data.currency
-                    ? `${countrySheet.data.currency}${countrySheet.data.currencySymbol ? ` ${countrySheet.data.currencySymbol}` : ''}`
-                    : null
-                }
-              />
-              <CountryRow label="Local time" value={countrySheet.localTime} />
-              <CountryRow label="Area" value={countrySheet.data.area} />
-              <CountryRow label="GDP/capita" value={countrySheet.data.gdpPerCapita} />
-              <CountryRow label="Life expectancy" value={countrySheet.data.lifeExpectancy} />
-              <CountryRow label="Internet" value={countrySheet.data.internetPct} />
-              <CountryRow
-                label="Region"
-                value={[
-                  countrySheet.data.region,
-                  countrySheet.data.landlocked ? 'Landlocked' : null,
-                  !countrySheet.data.independent ? 'Disputed' : null,
-                ]
-                  .filter(Boolean)
-                  .join(' · ')}
-              />
-            </>
-          )}
-        </BottomSheetScrollView>
-      </BottomSheetModal>
-
-      {/* Context sheet */}
       <ContextSheet
         sheetRef={contextSheetRef}
         brief={contextBrief}
@@ -565,159 +358,5 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizeSm,
     color: COLORS.text,
     marginTop: SPACING.lg,
-  },
-  // Bottom sheets
-  sheetBg: {
-    backgroundColor: COLORS.sheetBg,
-  },
-  sheetContent: {
-    padding: SPACING.screenPadding,
-  },
-  sheetLabel: {
-    ...TEXT_STYLES.smallCapsXs,
-    color: COLORS.textSecondary,
-    marginBottom: SPACING.sm,
-  },
-  coverageHeading: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeSm,
-    fontStyle: 'italic',
-    color: COLORS.accent,
-    marginBottom: SPACING.md,
-  },
-  sheetTitle: {
-    fontFamily: FONT.bold,
-    fontSize: TYPOGRAPHY.sizeBase,
-    color: COLORS.text,
-    marginBottom: SPACING.xs,
-  },
-  correctionLink: {
-    ...TEXT_STYLES.smallCapsXs,
-    color: COLORS.textSecondary,
-    marginTop: SPACING.lg,
-    textDecorationLine: 'underline',
-  },
-  sheetBody: {
-    ...TEXT_STYLES.body,
-    color: COLORS.accent,
-  },
-  sourceRow: {
-    paddingVertical: SPACING.md,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: COLORS.rule,
-  },
-  sourceRowHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    gap: SPACING.sm,
-  },
-  sourceRowRight: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.xs,
-  },
-  sourceName: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeBase,
-    color: COLORS.text,
-    flex: 1,
-  },
-  tonePill: {
-    paddingHorizontal: SPACING.sm,
-    paddingVertical: LAYOUT.pillPaddingV,
-    borderRadius: LAYOUT.pillRadius,
-  },
-  tonePillText: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeXs,
-    color: COLORS.bg,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-  },
-  pillFavorable: {
-    backgroundColor: COLORS.toneFavorable,
-  },
-  pillUnfavorable: {
-    backgroundColor: COLORS.toneUnfavorable,
-  },
-  pillNeutral: {
-    backgroundColor: COLORS.toneNeutral,
-  },
-  sourceType: {
-    ...TEXT_STYLES.smallCapsXs,
-    marginTop: SPACING.sm,
-    marginBottom: SPACING.sm,
-  },
-  hotspotSection: {
-    marginBottom: SPACING.md,
-  },
-  hotspotValue: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeSm,
-    color: COLORS.text,
-    paddingVertical: SPACING.sm,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: COLORS.rule,
-  },
-  countryIdentity: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.md,
-    marginBottom: SPACING.md,
-  },
-  countryIdentityText: {
-    flex: 1,
-  },
-  countryFlag: {
-    fontSize: TYPOGRAPHY.sizeH1 * 1.3,
-  },
-  countryLocation: {
-    fontFamily: FONT.bold,
-    fontSize: TYPOGRAPHY.sizeH1 * 0.75,
-    lineHeight: TYPOGRAPHY.sizeH1 * 0.75 * TYPOGRAPHY.leadingHeading,
-    color: COLORS.textEmphasis,
-  },
-  countryName: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeSm,
-    color: COLORS.textSecondary,
-  },
-  countryKeyStats: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: SPACING.lg,
-    paddingBottom: SPACING.md,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: COLORS.rule,
-  },
-  keyStat: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  keyStatValue: {
-    fontFamily: FONT.bold,
-    fontSize: TYPOGRAPHY.sizeBase,
-    color: COLORS.textEmphasis,
-    marginBottom: 2,
-  },
-  keyStatLabel: {
-    ...TEXT_STYLES.smallCapsXs,
-    color: COLORS.textSecondary,
-  },
-  countryRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: SPACING.xs,
-  },
-  countryRowLabel: {
-    ...TEXT_STYLES.smallCaps,
-    flex: 1,
-  },
-  countryRowValue: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeSm,
-    color: COLORS.text,
-    textAlign: 'right',
-    flex: 1,
   },
 });

@@ -11,7 +11,7 @@ import { getItemAsync, setItemAsync } from 'expo-secure-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { API_BASE } from '../constants/theme';
-import { hapticImpact } from '../lib/haptics';
+import { hapticImpact, hapticTick } from '../lib/haptics';
 
 const POSITION_KEY = 'zuhd_briefing_pos';
 const DATE_KEY = 'zuhd_briefing_date';
@@ -24,6 +24,7 @@ interface BriefingPlayer {
   elapsed: number;
   duration: number;
   toggle: () => void;
+  seek: (seconds: number) => void;
 }
 
 // createAudioPlayer may throw in Expo Go when native module is outdated.
@@ -48,6 +49,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const userToggleAt = useRef(0);
   const backgroundAt = useRef<number>(0);
   const verifyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const devMockActive = useRef(false);
 
   // Tear down stale player when app returns from extended background.
   // iOS reclaims native audio resources after ~30s of suspension — the JS
@@ -152,6 +154,14 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     userToggleAt.current = Date.now();
 
     try {
+      // Dev mock — no native player, just toggle UI state
+      if (__DEV__ && !playerRef.current && devMockActive.current) {
+        devMockActive.current = false;
+        setPlaying(false);
+        setElapsed(0);
+        return;
+      }
+
       // Resume/pause existing player
       if (playerRef.current) {
         if (playerRef.current.playing) {
@@ -181,15 +191,25 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       }
 
       // First play — create player
-      await setAudioModeAsync({
-        playsInSilentMode: true,
-        shouldPlayInBackground: true,
-        interruptionMode: 'doNotMix',
-      });
-      await setIsAudioActiveAsync(true);
+      try {
+        await setAudioModeAsync({
+          playsInSilentMode: true,
+          shouldPlayInBackground: true,
+          interruptionMode: 'doNotMix',
+        });
+        await setIsAudioActiveAsync(true);
+      } catch {} // May fail in Expo Go
 
       const player = safeCreatePlayer(`${API_BASE}/audio/briefing-${date}.mp3`);
-      if (!player) return; // Native module unavailable (Expo Go)
+      if (!player) {
+        // Native module unavailable (Expo Go) — fake expand for UI preview
+        if (__DEV__) {
+          devMockActive.current = true;
+          setPlaying(true);
+          setElapsed(272);
+        }
+        return;
+      }
 
       // Sync play/pause state + elapsed from player events
       // This handles lock screen controls, headphone controls, interruptions
@@ -253,5 +273,16 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     }
   }, [date, savePosition, activateLockScreen]);
 
-  return { playing, elapsed, duration: feedDuration ?? 0, toggle };
+  const seek = useCallback((seconds: number) => {
+    if (!playerRef.current) return;
+    const clamped = Math.max(0, Math.min(seconds, playerRef.current.duration || Infinity));
+    playerRef.current.seekTo(clamped);
+    setElapsed(Math.floor(clamped));
+    hapticTick();
+  }, []);
+
+  // In dev without a native player, provide a mock duration so the bar renders properly
+  const effectiveDuration = feedDuration || (__DEV__ && !playerRef.current && elapsed > 0 ? 720 : 0);
+
+  return { playing, elapsed, duration: effectiveDuration, toggle, seek };
 }
