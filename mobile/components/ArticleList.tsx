@@ -16,12 +16,15 @@ import Animated, {
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { COLORS } from '../constants/theme';
 import { useScrollState } from '../hooks/useScrollState';
+import { useTheme } from '../hooks/useTheme';
 import { hapticNotification, hapticTick } from '../lib/haptics';
+import { formatTimeAgo } from '../lib/article-utils';
 import type { Article, ContextPressHandler, HeatmapPoint, SourcePressHandler } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
+
+const BREAKING_THRESHOLD = 100;
 
 export interface ArticleListRef {
   scrollToTop: () => void;
@@ -39,6 +42,7 @@ interface ArticleListProps {
   onSourcePress?: SourcePressHandler;
   onContextPress?: ContextPressHandler;
   onCountryPress?: (result: TapResult) => void;
+  onBreakingPress?: (coverage: number) => void;
   progressesSV: SharedValue<number[]>;
   tick?: number;
   resetKey?: number;
@@ -54,6 +58,7 @@ export const ArticleList = memo(function ArticleList({
   onSourcePress,
   onContextPress,
   onCountryPress,
+  onBreakingPress,
   onRefresh,
   onEndReached,
   onCaughtUp,
@@ -62,16 +67,23 @@ export const ArticleList = memo(function ArticleList({
   resetKey,
   ref,
 }: ArticleListProps) {
+  const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const { width: screenWidth } = useWindowDimensions();
-  // Breaking stories (100+ worldwide coverage) float to top, rest chronological
-  const BREAKING_THRESHOLD = 100;
+  // Chronological sort, but within the same time bucket (e.g. all "1h ago")
+  // breaking stories (eventCoverage >= 100) float to top of their bucket
   const sortedArticles = useMemo(() => {
-    const breaking = articles.filter((a) => (a.eventCoverage ?? 0) >= BREAKING_THRESHOLD);
-    const rest = articles.filter((a) => (a.eventCoverage ?? 0) < BREAKING_THRESHOLD);
-    // Breaking sorted by coverage (highest first), rest keeps API order (chronological)
-    breaking.sort((a, b) => (b.eventCoverage ?? 0) - (a.eventCoverage ?? 0));
-    return [...breaking, ...rest];
+    // Pre-bucket once so the comparator is pure (no Date.now() per comparison)
+    const buckets = new Map<Article, string>();
+    for (const a of articles) buckets.set(a, formatTimeAgo(a.addedAt));
+    return [...articles].sort((a, b) => {
+      if (buckets.get(a) === buckets.get(b)) {
+        const aBreaking = (a.eventCoverage ?? 0) >= BREAKING_THRESHOLD ? 1 : 0;
+        const bBreaking = (b.eventCoverage ?? 0) >= BREAKING_THRESHOLD ? 1 : 0;
+        if (bBreaking !== aBreaking) return bBreaking - aBreaking;
+      }
+      return b.addedAt - a.addedAt;
+    });
   }, [articles]);
   const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight;
@@ -186,6 +198,7 @@ export const ArticleList = memo(function ArticleList({
         globeRef={globeRef}
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
+        onBreakingPress={onBreakingPress}
         tick={tick}
         isBreaking={(item.eventCoverage ?? 0) >= BREAKING_THRESHOLD}
       />
@@ -197,6 +210,7 @@ export const ArticleList = memo(function ArticleList({
       onSourcePress,
       onContextPress,
       onCountryPress,
+      onBreakingPress,
       earlierIndex,
       tick,
     ],
@@ -249,9 +263,9 @@ export const ArticleList = memo(function ArticleList({
             refreshing={localRefreshing}
             onRefresh={currentIndex === 0 ? handleRefresh : undefined}
             enabled={currentIndex === 0}
-            tintColor={COLORS.textSecondary}
-            progressBackgroundColor={COLORS.bg}
-            colors={[COLORS.textSecondary]}
+            tintColor={colors.textSecondary}
+            progressBackgroundColor={colors.bg}
+            colors={[colors.textSecondary]}
           />
         }
       />

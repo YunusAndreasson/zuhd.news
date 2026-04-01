@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import Animated, { FadeIn, FadeOut, LinearTransition } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { COLORS, FONT, PRESSED_STYLE, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
 
 const BAR_MARGIN = SPACING.md;
 const BAR_RADIUS = 14;
@@ -39,6 +40,7 @@ export const BriefingBar = memo(function BriefingBar({
   onToggle,
   onSeek,
 }: BriefingBarProps) {
+  const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
   const barWidth = useRef(0);
   const expanded = playing || elapsed > 0;
@@ -79,18 +81,18 @@ export const BriefingBar = memo(function BriefingBar({
     >
       {expanded ? (
         /* ── Expanded: full player ── */
-        <View style={styles.bar} onLayout={onBarLayout}>
+        <View style={[styles.bar, { backgroundColor: colors.sheetBg, shadowColor: colors.black }]} onLayout={onBarLayout}>
           <View style={styles.row}>
             <View style={styles.info}>
-              <Text style={styles.title} numberOfLines={1}>
+              <Text style={[styles.title, { fontFamily: font.semiBold, fontSize: typography.sizeSm, color: colors.textEmphasis }]} numberOfLines={1}>
                 Daily Briefing
-                <Text style={styles.dateDim}> · {dateLabel}</Text>
+                <Text style={[styles.dateDim, { fontFamily: font.regular, color: colors.textSecondary }]}> · {dateLabel}</Text>
               </Text>
             </View>
 
-            <Text style={styles.time}>
+            <Text style={[styles.time, { fontFamily: font.regular, fontSize: typography.sizeXs, color: colors.textEmphasis }]}>
               {formatTime(elapsed)}
-              <Text style={styles.timeDim}> / {formatTime(duration)}</Text>
+              <Text style={{ color: colors.textSecondary }}> / {formatTime(duration)}</Text>
             </Text>
 
             <Pressable
@@ -103,7 +105,7 @@ export const BriefingBar = memo(function BriefingBar({
               <Ionicons
                 name={playing ? 'pause' : 'play'}
                 size={20}
-                color={COLORS.textEmphasis}
+                color={colors.textEmphasis}
               />
             </Pressable>
           </View>
@@ -114,8 +116,8 @@ export const BriefingBar = memo(function BriefingBar({
             accessibilityRole="adjustable"
             accessibilityLabel={`Briefing progress, ${formatTime(elapsed)} of ${formatTime(duration)}`}
           >
-            <View style={styles.progressTrack}>
-              <View style={[styles.progressFill, { width: `${progress * 100}%` }]} />
+            <View style={[styles.progressTrack, { backgroundColor: colors.rule }]}>
+              <View style={[styles.progressFill, { width: `${progress * 100}%`, backgroundColor: colors.textSecondary }]} />
             </View>
           </Pressable>
         </View>
@@ -123,12 +125,12 @@ export const BriefingBar = memo(function BriefingBar({
         /* ── Collapsed: play button ── */
         <Pressable
           onPress={onToggle}
-          style={({ pressed }) => [styles.pill, pressed && PRESSED_STYLE]}
+          style={({ pressed }) => [styles.pill, { backgroundColor: colors.sheetBg, shadowColor: colors.black }, pressed && PRESSED_STYLE]}
           accessibilityRole="button"
           accessibilityLabel="Play daily briefing"
         >
-          <Ionicons name="play" size={14} color={COLORS.textEmphasis} />
-          <Text style={styles.pillText}>Briefing</Text>
+          <Ionicons name="play" size={14} color={colors.textEmphasis} />
+          <Text style={[styles.pillText, { fontFamily: font.semiBold, fontSize: typography.sizeSm, color: colors.textEmphasis }]}>Briefing</Text>
         </Pressable>
       )}
     </Animated.View>
@@ -147,12 +149,10 @@ const styles = StyleSheet.create({
   /* ── Expanded bar ── */
   bar: {
     width: '100%',
-    backgroundColor: COLORS.sheetBg,
     borderRadius: BAR_RADIUS,
     paddingTop: SPACING.sm + 2,
     paddingHorizontal: SPACING.md,
     overflow: 'hidden',
-    shadowColor: COLORS.black,
     shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 0.4,
     shadowRadius: 8,
@@ -167,23 +167,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  title: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeSm,
-    color: COLORS.textEmphasis,
-  },
-  dateDim: {
-    fontFamily: FONT.regular,
-    color: COLORS.textSecondary,
-  },
+  title: {},
+  dateDim: {},
   time: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeXs,
-    color: COLORS.textEmphasis,
     fontVariant: ['tabular-nums'],
-  },
-  timeDim: {
-    color: COLORS.textSecondary,
   },
   progressTouch: {
     paddingTop: SPACING.sm,
@@ -194,33 +181,25 @@ const styles = StyleSheet.create({
   progressTrack: {
     height: PROGRESS_HEIGHT,
     borderRadius: PROGRESS_HEIGHT,
-    backgroundColor: COLORS.rule,
     overflow: 'hidden',
   },
   progressFill: {
     height: PROGRESS_HEIGHT,
     borderRadius: PROGRESS_HEIGHT,
-    backgroundColor: COLORS.textSecondary,
   },
   /* ── Collapsed pill ── */
   pill: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.xs + 2,
-    backgroundColor: COLORS.sheetBg,
     borderRadius: BAR_RADIUS,
     paddingVertical: SPACING.sm,
     paddingLeft: SPACING.sm + 2,
     paddingRight: SPACING.md,
-    shadowColor: COLORS.black,
     shadowOffset: { width: 0, height: -2 },
     shadowOpacity: 0.4,
     shadowRadius: 8,
     elevation: 8,
   },
-  pillText: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeSm,
-    color: COLORS.textEmphasis,
-  },
+  pillText: {},
 });

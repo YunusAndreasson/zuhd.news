@@ -4,7 +4,8 @@ import { memo, useCallback, useState } from 'react';
 import { Dimensions, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 import { SOURCES } from '../constants/sources';
-import { COLORS, EDITORIAL, FONT, LAYOUT, SHEET_STYLES, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
+import { EDITORIAL, LAYOUT, SPACING } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
 import type { ArticleSource } from '../types';
 import { SheetHandle } from './SheetHandle';
 
@@ -37,6 +38,7 @@ export const SourceSheet = memo(function SourceSheet({
   renderBackdrop,
   onDismiss,
 }: SourceSheetProps) {
+  const { colors, font, typography, textStyles, sheetStyles } = useTheme();
   const [expandedSource, setExpandedSource] = useState<number | null>(null);
 
   const SourceHandle = useCallback(
@@ -56,17 +58,17 @@ export const SourceSheet = memo(function SourceSheet({
       maxDynamicContentSize={MAX_SHEET_HEIGHT}
       enablePanDownToClose
       backdropComponent={renderBackdrop}
-      backgroundStyle={SHEET_STYLES.bg}
+      backgroundStyle={sheetStyles.bg}
       handleComponent={SourceHandle}
       containerComponent={SheetContainer}
       onDismiss={handleDismiss}
     >
       <BottomSheetScrollView
-        contentContainerStyle={[SHEET_STYLES.content, { paddingBottom: bottomInset + SPACING.lg }]}
+        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
       >
         {sources.length > 0 ? (
           <>
-            <Text style={styles.coverageHeading}>
+            <Text style={[styles.coverageHeading, { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.accent }]}>
               {divergence != null &&
               divergence >= EDITORIAL.divergenceModerate &&
               sources.length > 1
@@ -99,14 +101,14 @@ export const SourceSheet = memo(function SourceSheet({
               return (
                 <Pressable
                   key={i}
-                  style={styles.sourceRow}
+                  style={[styles.sourceRow, { borderBottomColor: colors.rule }]}
                   onPress={() => setExpandedSource(isExpanded ? null : i)}
                   accessibilityRole="button"
                   accessibilityLabel={s.name}
                   accessibilityState={{ expanded: isExpanded }}
                 >
                   <View style={styles.sourceRowHeader}>
-                    <Text style={styles.sourceName} numberOfLines={1}>
+                    <Text style={[styles.sourceName, { fontFamily: font.semiBold, fontSize: typography.sizeBase, color: colors.text }]} numberOfLines={1}>
                       {flag ? `${flag} ` : ''}
                       {s.name}
                     </Text>
@@ -115,34 +117,34 @@ export const SourceSheet = memo(function SourceSheet({
                         <View
                           style={[
                             styles.tonePill,
-                            tone === 'favorable' && styles.pillFavorable,
-                            tone === 'unfavorable' && styles.pillUnfavorable,
-                            tone === 'neutral' && styles.pillNeutral,
+                            tone === 'favorable' && { backgroundColor: colors.toneFavorable },
+                            tone === 'unfavorable' && { backgroundColor: colors.toneUnfavorable },
+                            tone === 'neutral' && { backgroundColor: colors.toneNeutral },
                           ]}
                         >
-                          <Text style={styles.tonePillText}>{toneWord}</Text>
+                          <Text style={[styles.tonePillText, { fontFamily: font.semiBold, fontSize: typography.sizeXs, color: colors.bg, letterSpacing: typography.trackingCaps }]}>{toneWord}</Text>
                         </View>
                       )}
                       <Ionicons
                         name={isExpanded ? 'chevron-up' : 'chevron-down'}
                         size={LAYOUT.iconSm}
-                        color={COLORS.accent}
+                        color={colors.accent}
                       />
                     </View>
                   </View>
                   {isExpanded && info && (
                     <>
-                      <Text selectable style={styles.sourceType}>
+                      <Text selectable style={[styles.sourceType, textStyles.smallCapsXs]}>
                         {info.type} · {info.location}
                       </Text>
-                      <Text selectable style={styles.sheetBody}>{info.description}</Text>
+                      <Text selectable style={[styles.sheetBody, textStyles.body, { color: colors.accent }]}>{info.description}</Text>
                     </>
                   )}
                 </Pressable>
               );
             })}
             <Text
-              style={styles.correctionLink}
+              style={[styles.correctionLink, textStyles.smallCapsXs, { color: colors.textSecondary }]}
               onPress={() => Linking.openURL('mailto:yunus@edenmind.com?subject=Correction')}
               accessibilityRole="link"
               accessibilityLabel="Submit a correction"
@@ -158,26 +160,17 @@ export const SourceSheet = memo(function SourceSheet({
 
 const styles = StyleSheet.create({
   coverageHeading: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeSm,
     fontStyle: 'italic',
-    color: COLORS.accent,
     marginBottom: SPACING.md,
   },
   correctionLink: {
-    ...TEXT_STYLES.smallCapsXs,
-    color: COLORS.textSecondary,
     marginTop: SPACING.lg,
     textDecorationLine: 'underline',
   },
-  sheetBody: {
-    ...TEXT_STYLES.body,
-    color: COLORS.accent,
-  },
+  sheetBody: {},
   sourceRow: {
     paddingVertical: SPACING.md,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: COLORS.rule,
   },
   sourceRowHeader: {
     flexDirection: 'row',
@@ -191,9 +184,6 @@ const styles = StyleSheet.create({
     gap: SPACING.xs,
   },
   sourceName: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeBase,
-    color: COLORS.text,
     flex: 1,
   },
   tonePill: {
@@ -201,23 +191,8 @@ const styles = StyleSheet.create({
     paddingVertical: LAYOUT.pillPaddingV,
     borderRadius: LAYOUT.pillRadius,
   },
-  tonePillText: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeXs,
-    color: COLORS.bg,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-  },
-  pillFavorable: {
-    backgroundColor: COLORS.toneFavorable,
-  },
-  pillUnfavorable: {
-    backgroundColor: COLORS.toneUnfavorable,
-  },
-  pillNeutral: {
-    backgroundColor: COLORS.toneNeutral,
-  },
+  tonePillText: {},
   sourceType: {
-    ...TEXT_STYLES.smallCapsXs,
     marginTop: SPACING.sm,
     marginBottom: SPACING.sm,
   },

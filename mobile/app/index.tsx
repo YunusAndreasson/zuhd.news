@@ -22,20 +22,19 @@ import { BriefingBar } from '../components/BriefingBar';
 import { CategoryBar } from '../components/CategoryBar';
 import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
+import { SettingsSheet } from '../components/SettingsSheet';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { SourceSheet } from '../components/SourceSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import {
   CATEGORIES,
-  COLORS,
   EDITORIAL,
-  FONT,
   LAYOUT,
   PRESSED_STYLE,
   SPACING,
-  TYPOGRAPHY,
 } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
+import { useTheme } from '../hooks/useTheme';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useContextBrief } from '../hooks/useContextBrief';
 import { useHeatmap } from '../hooks/useHeatmap';
@@ -45,6 +44,7 @@ import type { ArticleSource } from '../types';
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
+  const { colors, font, typography } = useTheme();
   const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey, generated } =
     useArticles();
   const heatmapPoints = useHeatmap(generated);
@@ -61,6 +61,7 @@ export default function HomeScreen() {
   const [sourceSheetDivergence, setSourceSheetDivergence] = useState<number | null>(null);
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
+  const settingsSheetRef = useRef<BottomSheetModal>(null);
   const contextSheetRef = useRef<BottomSheetModal>(null);
   const {
     brief: contextBrief,
@@ -81,6 +82,11 @@ export default function HomeScreen() {
     ),
     [],
   );
+
+  const handleSettingsPress = useCallback(() => {
+    hapticImpact();
+    settingsSheetRef.current?.present();
+  }, []);
 
   const handleSourcePress = useCallback(
     (_sourceName: string, allSources?: ArticleSource[], divergence?: number | null) => {
@@ -219,27 +225,28 @@ export default function HomeScreen() {
   if (error && Object.values(grouped).every((a) => a.length === 0)) {
     const offline = network.isInternetReachable === false;
     return (
-      <View style={styles.center}>
-        <Text style={styles.errorText}>
+      <View style={[styles.center, { backgroundColor: colors.bg }]}>
+        <Text style={[styles.errorText, { fontFamily: font.regular, fontSize: typography.sizeBase, color: colors.text }]}>
           {offline ? 'No connection.' : 'Could not load articles.'}
         </Text>
-        <Text style={styles.errorHint}>
+        <Text style={[styles.errorHint, { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.textSecondary }]}>
           {offline ? 'Connect to the internet and reopen.' : error}
         </Text>
         <Pressable onPress={retry} style={({ pressed }) => pressed && PRESSED_STYLE} hitSlop={12} accessibilityRole="button" accessibilityLabel="Try again">
-          <Text style={styles.retryText}>Try again</Text>
+          <Text style={[styles.retryText, { fontFamily: font.semiBold, fontSize: typography.sizeSm, color: colors.text }]}>Try again</Text>
         </Pressable>
       </View>
     );
   }
 
   return (
-    <View style={styles.screen}>
+    <View style={[styles.screen, { backgroundColor: colors.bg }]}>
       <CategoryBar
         pagerOffset={pagerOffset}
         categoryProgresses={categoryProgresses}
         currentCategory={currentCategory}
         onCategoryPress={onCategoryPress}
+        onSettingsPress={handleSettingsPress}
       />
 
       <PagerView
@@ -321,6 +328,13 @@ export default function HomeScreen() {
         renderBackdrop={renderBackdrop}
         onDismiss={() => setContextThreadLabel(undefined)}
       />
+
+      <SettingsSheet
+        sheetRef={settingsSheetRef}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
+        onDismiss={() => {}}
+      />
     </View>
   );
 }
@@ -328,35 +342,24 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: COLORS.bg,
   },
   pager: {
     flex: 1,
   },
   center: {
     flex: 1,
-    backgroundColor: COLORS.bg,
     alignItems: 'center',
     justifyContent: 'center',
     padding: SPACING.xl,
   },
   errorText: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeBase,
-    color: COLORS.text,
     textAlign: 'center',
     marginBottom: SPACING.sm,
   },
   errorHint: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeSm,
-    color: COLORS.textSecondary,
     textAlign: 'center',
   },
   retryText: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeSm,
-    color: COLORS.text,
     marginTop: SPACING.lg,
   },
 });

@@ -1,16 +1,15 @@
+import { Ionicons } from '@expo/vector-icons';
 import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   CATEGORIES,
-  COLORS,
-  FONT,
   LAYOUT,
   PRESSED_STYLE,
   SPACING,
-  TYPOGRAPHY,
 } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
 
 const TAB_LABELS = CATEGORIES.map((c) => c.toUpperCase());
 
@@ -24,18 +23,25 @@ interface CategoryBarProps {
   categoryProgresses: SharedValue<number[]>;
   currentCategory: number;
   onCategoryPress: (index: number) => void;
+  onSettingsPress: () => void;
 }
 
 function TabLabel({
   label,
   index,
   pagerOffset,
+  textColor,
+  fontFamily,
+  fontSize,
   onCategoryPress,
   onLayout,
 }: {
   label: string;
   index: number;
   pagerOffset: SharedValue<number>;
+  textColor: string;
+  fontFamily: string | undefined;
+  fontSize: number;
   onCategoryPress: (index: number) => void;
   onLayout: (e: LayoutChangeEvent) => void;
 }) {
@@ -45,7 +51,7 @@ function TabLabel({
     'worklet';
     const distance = Math.abs(pagerOffset.value - index);
     const opacity = interpolate(distance, [0, 1], [1, 0.4], 'clamp');
-    return { color: COLORS.text, opacity };
+    return { color: textColor, opacity };
   });
 
   return (
@@ -57,7 +63,11 @@ function TabLabel({
       accessibilityRole="tab"
       accessibilityLabel={label}
     >
-      <Animated.Text style={[styles.tabLabel, animatedStyle]}>{label}</Animated.Text>
+      <Animated.Text
+        style={[styles.tabLabel, { fontFamily, fontSize }, animatedStyle]}
+      >
+        {label}
+      </Animated.Text>
     </Pressable>
   );
 }
@@ -67,7 +77,9 @@ export const CategoryBar = memo(function CategoryBar({
   categoryProgresses,
   currentCategory,
   onCategoryPress,
+  onSettingsPress,
 }: CategoryBarProps) {
+  const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
   const [tabLayouts, setTabLayouts] = useState<TabLayout[]>([]);
   const layoutsRef = useRef<(TabLayout | null)[]>(new Array(TAB_LABELS.length).fill(null));
@@ -118,18 +130,29 @@ export const CategoryBar = memo(function CategoryBar({
   });
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
-      <Pressable
-        onPress={() => onCategoryPress(currentCategory)}
-        style={({ pressed }) => pressed && PRESSED_STYLE}
-        accessibilityRole="button"
-        accessibilityLabel="zuhd.news, scroll to top"
-      >
-        <Text style={styles.wordmark}>
-          <Text style={styles.wordmarkName}>zuhd</Text>
-          <Text style={styles.wordmarkDim}>.news</Text>
-        </Text>
-      </Pressable>
+    <View style={[styles.container, { paddingTop: insets.top, backgroundColor: colors.bg }]}>
+      <View style={styles.wordmarkRow}>
+        <Pressable
+          onPress={() => onCategoryPress(currentCategory)}
+          style={({ pressed }) => pressed && PRESSED_STYLE}
+          accessibilityRole="button"
+          accessibilityLabel="zuhd.news, scroll to top"
+        >
+          <Text style={[styles.wordmark, { letterSpacing: typography.trackingWordmark }]}>
+            <Text style={{ fontFamily: font.bold, fontSize: typography.sizeWordmark, color: colors.textSecondary }}>zuhd</Text>
+            <Text style={{ fontFamily: font.regular, fontSize: typography.sizeWordmark, color: colors.accent }}>.news</Text>
+          </Text>
+        </Pressable>
+        <Pressable
+          onPress={onSettingsPress}
+          hitSlop={12}
+          style={({ pressed }) => pressed && PRESSED_STYLE}
+          accessibilityRole="button"
+          accessibilityLabel="Settings"
+        >
+          <Ionicons name="settings-sharp" size={LAYOUT.iconSm} color={colors.textSecondary} />
+        </Pressable>
+      </View>
 
       <View style={styles.tabRow}>
         {TAB_LABELS.map((label, i) => (
@@ -138,12 +161,15 @@ export const CategoryBar = memo(function CategoryBar({
             label={label}
             index={i}
             pagerOffset={pagerOffset}
+            textColor={colors.text}
+            fontFamily={font.semiBold}
+            fontSize={typography.sizeXs}
             onCategoryPress={onCategoryPress}
             onLayout={tabLayoutHandlers[i]!}
           />
         ))}
-        <Animated.View style={[styles.progressBar, trackPos]} />
-        <Animated.View style={[styles.progressBar, fillPos]} />
+        <Animated.View style={[styles.progressBar, { backgroundColor: colors.textEmphasis }, trackPos]} />
+        <Animated.View style={[styles.progressBar, { backgroundColor: colors.textEmphasis }, fillPos]} />
       </View>
     </View>
   );
@@ -151,25 +177,18 @@ export const CategoryBar = memo(function CategoryBar({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.bg,
     zIndex: 10,
     paddingBottom: SPACING.sm,
   },
-  wordmark: {
+  wordmarkRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: SPACING.screenPadding,
     paddingTop: SPACING.xs,
     marginBottom: SPACING.sm,
-    letterSpacing: TYPOGRAPHY.trackingWordmark,
   },
-  wordmarkName: {
-    fontFamily: FONT.bold,
-    fontSize: TYPOGRAPHY.sizeWordmark,
-    color: COLORS.textSecondary,
-  },
-  wordmarkDim: {
-    fontFamily: FONT.regular,
-    fontSize: TYPOGRAPHY.sizeWordmark,
-    color: COLORS.accent,
+  wordmark: {
   },
   tabRow: {
     flexDirection: 'row',
@@ -179,15 +198,12 @@ const styles = StyleSheet.create({
     paddingBottom: SPACING.xs,
   },
   tabLabel: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeXs,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
+    letterSpacing: 1.2,
   },
   progressBar: {
     position: 'absolute',
     bottom: 0,
     height: LAYOUT.progressBarHeight,
     borderRadius: LAYOUT.progressBarHeight,
-    backgroundColor: COLORS.textEmphasis,
   },
 });

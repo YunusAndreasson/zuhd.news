@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import { memo } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { COLORS, PRESSED_STYLE, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
+import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
 
 interface ActionLabelProps {
   label: string;
@@ -10,10 +11,11 @@ interface ActionLabelProps {
 }
 
 export const ActionLabel = memo(function ActionLabel({ label, onPress, icon = 'chevron-down' }: ActionLabelProps) {
+  const { colors, typography, textStyles } = useTheme();
   return (
     <Pressable onPress={onPress} hitSlop={12} style={({ pressed }) => pressed && PRESSED_STYLE} accessibilityRole="button" accessibilityLabel={label}>
-      <Text style={styles.label}>
-        {label} <Ionicons name={icon} size={TYPOGRAPHY.sizeXs} color={COLORS.accent} />
+      <Text style={[styles.label, textStyles.smallCaps, textStyles.textShadow]}>
+        {label} <Ionicons name={icon} size={typography.sizeXs} color={colors.accent} />
       </Text>
     </Pressable>
   );
@@ -21,8 +23,6 @@ export const ActionLabel = memo(function ActionLabel({ label, onPress, icon = 'c
 
 const styles = StyleSheet.create({
   label: {
-    ...TEXT_STYLES.smallCaps,
-    ...TEXT_STYLES.textShadow,
     paddingLeft: SPACING.sm,
     paddingVertical: SPACING.xs,
   },

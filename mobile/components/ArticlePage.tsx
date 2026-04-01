@@ -10,10 +10,11 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { COLORS, FONT, LAYOUT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
+import { LAYOUT, SPACING } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
 import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact } from '../lib/haptics';
-import { renderSentences } from '../lib/markdown';
+import { makeMarkdownStyles, renderSentences } from '../lib/markdown';
 import type { Article, ContextPressHandler, SourcePressHandler } from '../types';
 import { ActionLabel } from './ActionLabel';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
@@ -79,6 +80,7 @@ export const ArticlePage = memo(function ArticlePage({
   isBreaking,
   onBreakingPress,
 }: ArticlePageProps) {
+  const { colors, font, typography, textStyles } = useTheme();
   const timeAgo = formatTimeAgo(article.addedAt);
   const pageStart = index * itemHeight;
   const reduceMotion = useReducedMotion();
@@ -107,20 +109,25 @@ export const ArticlePage = memo(function ArticlePage({
     [article.title, article.sentences],
   );
 
-  const titleFontSize = Math.round(TYPOGRAPHY.sizeH1 * fontScale);
-  const bodyFontSize = fontScale < 1 ? Math.round(TYPOGRAPHY.sizeBase * fontScale) : undefined;
+  const titleFontSize = Math.round(typography.sizeH1 * fontScale);
+  const bodyFontSize = fontScale < 1 ? Math.round(typography.sizeBase * fontScale) : undefined;
 
   const titleSizeStyle =
     fontScale < 1
       ? {
           fontSize: titleFontSize,
-          lineHeight: titleFontSize * TYPOGRAPHY.leadingHeading,
+          lineHeight: titleFontSize * typography.leadingHeading,
         }
       : null;
 
+  const mdStyles = useMemo(
+    () => makeMarkdownStyles(colors, font, typography),
+    [colors, font, typography],
+  );
+
   const body = useMemo(
-    () => renderSentences(article.sentences, bodyFontSize, article.location),
-    [article.sentences, bodyFontSize, article.location],
+    () => renderSentences(article.sentences, mdStyles, typography, bodyFontSize, article.location),
+    [article.sentences, mdStyles, typography, bodyFontSize, article.location],
   );
 
   const handleShare = useCallback(() => {
@@ -146,23 +153,23 @@ export const ArticlePage = memo(function ArticlePage({
           <LinearGradient
             start={vec(0, 0)}
             end={vec(0, GRADIENT_HEIGHT_TOP)}
-            colors={[`${COLORS.bg}00`, `${COLORS.bg}66`, `${COLORS.bg}CC`, COLORS.bg]}
+            colors={[`${colors.bg}00`, `${colors.bg}66`, `${colors.bg}CC`, colors.bg]}
             positions={[0, 0.3, 0.7, 1]}
           />
         </Rect>
       </Canvas>
 
       {/* Content zone — title, body, meta all grouped together */}
-      <View style={styles.content}>
+      <View style={[styles.content, { backgroundColor: colors.bg }]}>
         {showEarlierDivider && (
           <View style={styles.earlierDivider}>
-            <View style={styles.earlierLine} />
-            <Text style={styles.earlierLabel}>caught up</Text>
-            <View style={styles.earlierLine} />
+            <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
+            <Text style={[styles.earlierLabel, textStyles.smallCaps, { fontSize: typography.sizeBase }]}>caught up</Text>
+            <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
           </View>
         )}
         <Animated.View style={fadeStyle}>
-          <Text selectable style={[styles.title, titleSizeStyle]} numberOfLines={3}>
+          <Text selectable style={[styles.title, { fontFamily: font.bold, fontSize: typography.sizeH1, lineHeight: typography.sizeH1 * typography.leadingHeading, color: colors.textEmphasis }, titleSizeStyle]} numberOfLines={3}>
             {article.title}
           </Text>
           {body}
@@ -172,10 +179,10 @@ export const ArticlePage = memo(function ArticlePage({
             <View style={styles.metaGroup}>
               {isBreaking && (
                 <Pressable onPress={() => onBreakingPress?.(article.eventCoverage ?? 0)} hitSlop={8} accessibilityRole="button" accessibilityLabel="Breaking news indicator">
-                  <Ionicons name="flame" size={TYPOGRAPHY.sizeSm} color={COLORS.textSecondary} />
+                  <Ionicons name="flame" size={typography.sizeSm} color={colors.textSecondary} />
                 </Pressable>
               )}
-              <Text style={styles.metaDim}>{timeAgo}</Text>
+              <Text style={[styles.metaDim, textStyles.smallCaps, textStyles.textShadow]}>{timeAgo}</Text>
             </View>
             <View style={styles.metaGroup}>
               {article.threadId && onContextPress && (
@@ -206,7 +213,7 @@ export const ArticlePage = memo(function ArticlePage({
             <LinearGradient
               start={vec(0, 0)}
               end={vec(0, GRADIENT_HEIGHT_BOTTOM)}
-              colors={[COLORS.bg, `${COLORS.bg}CC`, `${COLORS.bg}66`, `${COLORS.bg}00`]}
+              colors={[colors.bg, `${colors.bg}CC`, `${colors.bg}66`, `${colors.bg}00`]}
               positions={[0, 0.3, 0.7, 1]}
             />
           </Rect>
@@ -222,7 +229,6 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: SPACING.screenPadding,
-    backgroundColor: COLORS.bg,
   },
   gradientTop: {
     height: GRADIENT_HEIGHT_TOP,
@@ -240,17 +246,10 @@ const styles = StyleSheet.create({
   earlierLine: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: COLORS.accent,
   },
   earlierLabel: {
-    ...TEXT_STYLES.smallCaps,
-    fontSize: TYPOGRAPHY.sizeBase,
   },
   title: {
-    fontFamily: FONT.bold,
-    fontSize: TYPOGRAPHY.sizeH1,
-    lineHeight: TYPOGRAPHY.sizeH1 * TYPOGRAPHY.leadingHeading,
-    color: COLORS.textEmphasis,
     marginBottom: SPACING.md,
     fontVariant: ['oldstyle-nums'],
   },
@@ -266,8 +265,6 @@ const styles = StyleSheet.create({
     gap: SPACING.xs,
   },
   metaDim: {
-    ...TEXT_STYLES.smallCaps,
-    ...TEXT_STYLES.textShadow,
   },
   globeTapZone: {
     ...StyleSheet.absoluteFillObject,

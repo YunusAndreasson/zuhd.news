@@ -29,7 +29,7 @@ import {
   useSharedValue,
 } from 'react-native-reanimated';
 import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
-import { bgAlpha, COLORS } from '../../constants/theme';
+import { useTheme } from '../../hooks/useTheme';
 import type { Article, HeatmapPoint } from '../../types';
 import { COUNTRY_TZ } from './coordinates';
 import { countries, createSkiaPathContext, land } from './shared';
@@ -289,6 +289,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   tick: _tick,
   ref,
 }: MiniGlobeProps) {
+  const { colors, bgAlpha } = useTheme();
   const globeRadius = width * 0.9;
   const cx = width / 2;
   const cy = height * 0.75;
@@ -710,7 +711,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
       {/* Stars — tiny fixed points */}
       {stars.map((s, i) => (
-        <Circle key={i} cx={s.x} cy={s.y} r={s.r} color={COLORS.accent} opacity={s.o} />
+        <Circle key={i} cx={s.x} cy={s.y} r={s.r} color={colors.accent} opacity={s.o} />
       ))}
 
       {/* Moon — NASA texture with phase shadow */}
@@ -721,13 +722,13 @@ export const MiniGlobe = memo(function MiniGlobe({
             cx={moonX + (moonPhase < 0.5 ? moonR * 0.3 : -moonR * 0.3)}
             cy={moonY}
             r={moonR * 1.8}
-            color={COLORS.accent}
+            color={colors.accent}
             opacity={0.025}
           >
             <BlurMask blur={moonR * 0.8} style="solid" />
           </Circle>
           {/* Limb glow — bright ring right at the disk edge */}
-          <Circle cx={moonX} cy={moonY} r={moonR} color={COLORS.accent} opacity={0.15}>
+          <Circle cx={moonX} cy={moonY} r={moonR} color={colors.accent} opacity={0.15}>
             <BlurMask blur={moonR * 0.25} style="outer" />
           </Circle>
           {/* Moon texture — full disk */}
@@ -763,15 +764,15 @@ export const MiniGlobe = memo(function MiniGlobe({
       )}
 
       {/* Atmospheric halo — thin glow at the globe's edge */}
-      <Circle cx={cx} cy={cy} r={globeRadius * 1.03} color={COLORS.atmosphere} opacity={0.08}>
+      <Circle cx={cx} cy={cy} r={globeRadius * 1.03} color={colors.atmosphere} opacity={0.08}>
         <BlurMask blur={globeRadius * 0.04} style="solid" />
       </Circle>
 
       {/* Land silhouette */}
-      {state.landPath && <Path path={state.landPath} color={COLORS.rule} opacity={0.4} />}
+      {state.landPath && <Path path={state.landPath} color={colors.rule} opacity={0.4} />}
 
       {/* Night shadow — darker overlay on the unlit hemisphere */}
-      {state.nightPath && <Path path={state.nightPath} color={COLORS.black} opacity={0.15} />}
+      {state.nightPath && <Path path={state.nightPath} color={colors.black} opacity={0.15} />}
 
       {/* Coverage hotspot ambient glows — top coverage hotspots */}
       {state.hotspotGlows.map((z, i) => (
@@ -779,7 +780,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           key={i}
           x={z.x}
           y={z.y}
-          color={COLORS.text}
+          color={colors.text}
           layers={[
             { r: 16 + z.intensity * 18, opacity: 0.02 + z.intensity * 0.04, blur: 12 },
             { r: 5 + z.intensity * 8, opacity: 0.03 + z.intensity * 0.06, blur: 4 },
@@ -790,12 +791,12 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Country highlight */}
       {state.countryPath && (
         <>
-          <Path path={state.countryPath} color={COLORS.sheetBg} opacity={0.8}>
+          <Path path={state.countryPath} color={colors.sheetBg} opacity={0.8}>
             <BlurMask blur={0.5} style="normal" />
           </Path>
           <Path
             path={state.countryPath}
-            color={COLORS.accent}
+            color={colors.accent}
             style="stroke"
             strokeWidth={1}
             opacity={0.55}
@@ -808,7 +809,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         <Glow
           x={state.aqsa.x}
           y={state.aqsa.y}
-          color={COLORS.dome}
+          color={colors.dome}
           layers={[
             { r: 12, opacity: 0.03, blur: 8 },
             { r: 5, opacity: 0.08, blur: 3 },
@@ -823,7 +824,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         <Glow
           x={state.dot.x}
           y={state.dot.y}
-          color={COLORS.text}
+          color={colors.text}
           layers={[
             { r: 14, opacity: 0.04, blur: 10 },
             { r: 7, opacity: 0.12, blur: 5 },

@@ -8,7 +8,8 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import { COLORS, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
 import { hapticNotification } from '../lib/haptics';
 
 const logo = require('../assets/icon.png');
@@ -27,6 +28,7 @@ function playRotation(rotation: { value: number }) {
 }
 
 export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
+  const { colors } = useTheme();
   const rotation = useSharedValue(0);
 
   useEffect(() => {
@@ -51,7 +53,7 @@ export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
       accessibilityLabel="zuhd.news logo"
     >
       <Animated.View style={logoStyle}>
-        <Image source={logo} style={[styles.logo, { width: size, height: size }]} />
+        <Image source={logo} style={[styles.logo, { width: size, height: size, backgroundColor: colors.bg }]} />
       </Animated.View>
     </Pressable>
   );
@@ -60,6 +62,5 @@ export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
 const styles = StyleSheet.create({
   logo: {
     borderRadius: 8,
-    backgroundColor: COLORS.bg,
   },
 });
