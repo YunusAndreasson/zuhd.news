@@ -2,13 +2,172 @@
   "version": 1,
   "stories": [
     {
+      "id": "iran-denies-ceasefire-request-framing-war",
+      "label": "Iran denies Trump's claim Iranian president requested ceasefire",
+      "firstSeen": "2026-04-01T22:09:00.380Z",
+      "lastCovered": "2026-04-01T22:09:00.380Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-01-iran-denies-ceasefire-request-framing-war"
+      ],
+      "eventUri": "eng-11532191",
+      "summary": "Iran publicly denied Trump's claim that Pezeshkian requested a ceasefire — a framing battle over who blinked first. The angle: Trump needs to claim Iran capitulated, Iran needs to claim defiance. Neither version may be true. Lead with the information war running parallel to the shooting war. The reader tracking ceasefire talks should see this alongside today's Pezeshkian letter to Americans — Iran is conducting two diplomatic tracks, one through back channels and one through public messaging.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Masoud_Pezeshkian"
+      ]
+    },
+    {
+      "id": "ukraine-denies-russia-luhansk-capture-claim",
+      "label": "Ukraine denies Russia's claims of fully capturing Luhansk Oblast",
+      "firstSeen": "2026-04-01T22:09:00.380Z",
+      "lastCovered": "2026-04-01T22:09:00.380Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-01-ukraine-denies-russia-luhansk-capture-claim"
+      ],
+      "eventUri": "eng-11531709",
+      "summary": "Russia claimed full control of Luhansk Oblast — Ukraine says a small parcel of territory remains under its control. The angle: Russia is declaring victory over a region it has largely held since 2022, but the timing matters — this looks like manufactured progress to offset stalled advances elsewhere and to pressure Ukraine ahead of any ceasefire talks. Lead with what Russia gains by claiming this now, not the territorial reality.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Luhansk",
+        "http://en.wikipedia.org/wiki/Ministry_of_Defence_(Russia)"
+      ]
+    },
+    {
+      "id": "us-drops-venezuela-sanctions-rodriguez-oil",
+      "label": "US Drops Sanctions on Venezuela's Rodríguez as Ties Improve",
+      "firstSeen": "2026-04-01T22:09:00.380Z",
+      "lastCovered": "2026-04-01T22:09:00.380Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-01-us-drops-venezuela-sanctions-rodriguez-oil"
+      ],
+      "eventUri": "spa-4156253",
+      "summary": "The US lifted sanctions on Venezuela's acting leader Delcy Rodríguez after Maduro's capture in a US-backed operation. The angle: Washington is rebuilding ties with the oil-rich country it destabilized — the same pattern as Iraq and Libya, but faster. Lead with the oil motive: with Hormuz closed, Venezuelan crude is suddenly strategic again. The reader should see the sanctions-to-engagement pipeline for what it is.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Venezuela",
+        "http://en.wikipedia.org/wiki/Delcy_Rodríguez",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Nicolás_Maduro"
+      ]
+    },
+    {
+      "id": "nigeria-plateau-violence-curfew-fails",
+      "label": "Fresh violence erupts in Plateau communities as government relaxes curfew",
+      "firstSeen": "2026-04-01T22:09:00.380Z",
+      "lastCovered": "2026-04-01T22:09:00.380Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-01-nigeria-plateau-violence-curfew-fails"
+      ],
+      "eventUri": null,
+      "summary": "At least 27 people were killed in Jos North, Plateau State, and fresh violence erupted the moment the government relaxed a 48-hour curfew. The angle: the curfew was the lid, not the solution — communal violence in Nigeria's middle belt has structural drivers (land, religion, ethnicity) that a 48-hour pause cannot address. Lead with the timing: violence resumed within hours of the curfew lifting. The reader should see how governance-by-curfew substitutes for addressing root causes.",
+      "conceptUris": []
+    },
+    {
+      "id": "al-shifa-babies-returned-gaza-two-years",
+      "label": "Premature Babies Evacuated After Israeli Attack on Al-Shifa Returned to Gaza After More Than Two Years",
+      "firstSeen": "2026-04-01T22:09:00.380Z",
+      "lastCovered": "2026-04-01T22:09:00.380Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-01-al-shifa-babies-returned-gaza-two-years"
+      ],
+      "eventUri": null,
+      "summary": "Premature babies evacuated from Al-Shifa hospital after Israel's 2024 attack have been returned to Gaza more than two years later — parents are meeting children they've never held. The angle: this is the human residue of a military operation that destroyed Gaza's largest hospital. Lead with the parent quote: 'I am meeting my daughter for the first time.' The reader tracking Gaza should see: the war's consequences are measured in years, not news cycles. These children were born into a siege, evacuated into exile, and returned to rubble.",
+      "conceptUris": []
+    },
+    {
+      "id": "sa-post-office-liquidation-edge",
+      "label": "SA Post Office on borrowed time -- funding gaps push it closer to the edge",
+      "firstSeen": "2026-04-01T22:09:00.380Z",
+      "lastCovered": "2026-04-01T22:09:00.380Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-01-sa-post-office-liquidation-edge"
+      ],
+      "eventUri": null,
+      "summary": "South Africa's Post Office faces liquidation after years in business rescue, with repeated funding promises unfulfilled. The angle: this is what happens when a state-owned enterprise is kept alive by narrative rather than capital — 'turnaround plans' that never arrive while the institution hollows out. Lead with the gap between promise and reality. The reader should see the pattern: post offices worldwide are dying, but in the Global South, they're also the last physical infrastructure connecting rural populations to government services.",
+      "conceptUris": []
+    },
+    {
+      "id": "tobacco-plant-engineered-psychedelics-biosynthesis",
+      "label": "Scientists Create Plant That Produces Ayahuasca, Shrooms, and Toad Psychedelics All At Once",
+      "firstSeen": "2026-04-01T22:09:00.380Z",
+      "lastCovered": "2026-04-01T22:09:00.380Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-01-tobacco-plant-engineered-psychedelics-biosynthesis"
+      ],
+      "eventUri": null,
+      "summary": "Researchers engineered a tobacco plant to produce psilocybin, DMT, and other psychedelic compounds simultaneously — a proof-of-concept for biosynthetic production that could ease pressure on wild species and preserve Indigenous traditions. The angle: synthetic biology meeting ethnobotany. Lead with the engineering: one plant, multiple psychoactive pathways, all expressed in tobacco leaves. The reader who follows biotech should see the dual implications — pharmaceutical access AND conservation of species currently overharvested.",
+      "conceptUris": []
+    },
+    {
+      "id": "rho-kinase-inhibitor-schizophrenia-new-mechanism",
+      "label": "Antipsychotic-like effects of the selective Rho-kinase 2 inhibitor KD025 in genetic and pharmacological mouse models of schizophrenia",
+      "firstSeen": "2026-04-01T22:09:00.380Z",
+      "lastCovered": "2026-04-01T22:09:00.380Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-01-rho-kinase-inhibitor-schizophrenia-new-mechanism"
+      ],
+      "eventUri": null,
+      "summary": "A Rho-kinase 2 inhibitor (KD025) showed antipsychotic effects in mouse models of schizophrenia — a completely new mechanism of action distinct from the dopamine-blocking drugs that have dominated treatment since the 1950s. The angle: every existing antipsychotic works on the same pathway; this is the first credible alternative in 70 years. Lead with what's broken about current drugs (severe metabolic side effects, movement disorders) and why a new mechanism matters for 24 million people worldwide.",
+      "conceptUris": []
+    },
+    {
+      "id": "solana-drift-defi-exploit-deposits-halted",
+      "label": "Solana (SOL) DeFi platform Drift investigates suspicious activity, tells users to halt deposits",
+      "firstSeen": "2026-04-01T22:09:00.380Z",
+      "lastCovered": "2026-04-01T22:09:00.380Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-01-solana-drift-defi-exploit-deposits-halted"
+      ],
+      "eventUri": "eng-11533523",
+      "summary": "Solana's largest DeFi derivatives platform Drift is investigating a potential exploit, telling users to halt deposits. Helius CEO says it 'might be getting exploited.' The angle: Solana's DeFi resurgence is being stress-tested — a confirmed breach would undermine the ecosystem's credibility just as institutional players are entering crypto markets. Lead with the user impact: deposits frozen, funds potentially at risk. The reader following crypto should see the pattern: DeFi's permissionless design means exploits move faster than governance.",
+      "conceptUris": []
+    },
+    {
       "id": "israeli-anti-war-protests-police-suppression",
       "label": "Israeli police are violently suppressing our growing anti-war protests",
       "firstSeen": "2026-04-01T17:08:48.503Z",
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-01-israeli-anti-war-protests-police-suppression"
@@ -28,7 +187,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-01-us-iran-ceasefire-hormuz-talks"
@@ -49,7 +208,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-01-egypt-military-trial-price-control-bluff"
@@ -70,7 +229,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-01-stellantis-700k-hybrid-recall-fire-risk"
@@ -95,7 +254,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-01-intel-14b-ireland-fab-buyback-apollo"
@@ -119,7 +278,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-01-istanbul-rail-2b-world-bank-bosphorus"
@@ -142,7 +301,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-01-black-hole-mergers-pair-instability-supernovae"
@@ -163,7 +322,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-01-ipcc-ar7-timeline-deadlock-bangkok"
@@ -183,7 +342,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-01-baidu-robotaxi-outage-wuhan-stranded"
@@ -204,7 +363,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-01-ai-content-scanners-book-banning"
@@ -224,7 +383,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-01-claude-freebsd-kernel-rce-cve-2026-4747"
@@ -239,13 +398,30 @@
       ]
     },
     {
+      "id": "qatar-backs-banks-war-financial-stability",
+      "label": "Qatar backs lenders as regional war threatens stability",
+      "firstSeen": "2026-04-01T08:09:57.416Z",
+      "lastCovered": "2026-04-01T22:09:00.380Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-04-01-qatar-backs-banks-war-financial-stability",
+        "2026-04-01-qatar-backs-lenders-war-financial-stress"
+      ],
+      "eventUri": null,
+      "summary": "Qatar is injecting capital into its banking sector as the Iran war threatens Gulf financial stability — a sovereign backstop to prevent the war from triggering a banking crisis. Lead with the mechanism: a petrostate using its reserves to keep lenders solvent while its neighbors get bombed. The reader tracking Islamic finance should see: Qatar is betting it can ride out the war with money, but if Hormuz stays closed, even sovereign wealth funds have limits.",
+      "conceptUris": []
+    },
+    {
       "id": "trump-nato-withdrawal-paper-tiger",
       "label": "Trump indicates he'll try to pull U.S. out of NATO",
       "firstSeen": "2026-04-01T12:08:31.389Z",
       "lastCovered": "2026-04-01T12:08:31.389Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-01-trump-nato-withdrawal-paper-tiger"
@@ -270,7 +446,7 @@
       "lastCovered": "2026-04-01T12:08:31.389Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-01-scotus-birthright-citizenship-14th-amendment"
@@ -295,7 +471,7 @@
       "lastCovered": "2026-04-01T12:08:31.389Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-01-uk-35-country-hormuz-talks-without-us"
@@ -317,7 +493,7 @@
       "lastCovered": "2026-04-01T12:08:31.389Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-01-scotus-conversion-therapy-ban-struck-down"
@@ -336,7 +512,7 @@
       "lastCovered": "2026-04-01T12:08:31.389Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-01-karachi-ride-hailing-fuel-costs-war"
@@ -356,7 +532,7 @@
       "lastCovered": "2026-04-01T12:08:31.389Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-01-brazil-b3-bitcoin-derivatives-tokenization"
@@ -376,7 +552,7 @@
       "lastCovered": "2026-04-01T12:08:31.389Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-01-change6-lunar-copper-far-side-moon"
@@ -396,7 +572,7 @@
       "lastCovered": "2026-04-01T12:08:31.389Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-01-organic-phosphorescence-physical-encryption"
@@ -415,7 +591,7 @@
       "lastCovered": "2026-04-01T12:08:31.389Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-01-gig-workers-training-humanoid-robots-global-south"
@@ -435,7 +611,7 @@
       "lastCovered": "2026-04-01T08:09:57.416Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-01-iran-strikes-qatar-tanker-kuwait-airport-gulf-blitz"
@@ -460,7 +636,7 @@
       "lastCovered": "2026-04-01T08:09:57.416Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-01-irgc-de-facto-control-iran-government-deadlock"
@@ -482,7 +658,7 @@
       "lastCovered": "2026-04-01T08:09:57.416Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-01-nigerian-prisons-500-percent-capacity-human-warehouses"
@@ -498,7 +674,7 @@
       "lastCovered": "2026-04-01T08:09:57.416Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-01-pakistan-manufacturing-slows-inflation-19-month-high"
@@ -523,7 +699,7 @@
       "lastCovered": "2026-04-01T08:09:57.416Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-01-russia-manufacturing-contracts-sharpest-2026"
@@ -545,7 +721,7 @@
       "lastCovered": "2026-04-01T08:09:57.416Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-01-australia-crypto-licensing-law-first-framework"
@@ -555,29 +731,13 @@
       "conceptUris": []
     },
     {
-      "id": "qatar-backs-banks-war-financial-stability",
-      "label": "Qatar backs lenders as regional war threatens stability",
-      "firstSeen": "2026-04-01T08:09:57.416Z",
-      "lastCovered": "2026-04-01T08:09:57.416Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-qatar-backs-banks-war-financial-stability"
-      ],
-      "eventUri": null,
-      "summary": "Qatar is injecting capital into its banking sector as the Iran war threatens Gulf financial stability — a sovereign backstop to prevent the war from triggering a banking crisis. Lead with the mechanism: a petrostate using its reserves to keep lenders solvent while its neighbors get bombed. The reader tracking Islamic finance should see: Qatar is betting it can ride out the war with money, but if Hormuz stays closed, even sovereign wealth funds have limits.",
-      "conceptUris": []
-    },
-    {
       "id": "neanderthals-knife-edge-350k-years-fragile-survival",
       "label": "Neanderthals survived on a knife's edge for 350k years",
       "firstSeen": "2026-04-01T08:09:57.416Z",
       "lastCovered": "2026-04-01T08:09:57.416Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-01-neanderthals-knife-edge-350k-years-fragile-survival"
@@ -593,7 +753,7 @@
       "lastCovered": "2026-04-01T08:09:57.416Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-01-nicu-racial-structural-disparities-family-presence"
@@ -609,7 +769,7 @@
       "lastCovered": "2026-04-01T08:09:57.416Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-01-claude-code-source-leak-visual-guide-unpacked"
@@ -625,7 +785,7 @@
       "lastCovered": "2026-04-01T08:09:57.416Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-01-russia-ai-drones-gps-denied-visual-navigation"
@@ -641,7 +801,7 @@
       "lastCovered": "2026-04-01T04:09:56.845Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-haiti-gang-massacre-70-artibonite-breadbasket"
@@ -657,7 +817,7 @@
       "lastCovered": "2026-04-01T04:09:56.845Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-russian-military-plane-crash-29-dead-crimea"
@@ -673,7 +833,7 @@
       "lastCovered": "2026-04-01T04:09:56.845Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-uae-military-option-hormuz-unsc-resolution"
@@ -698,7 +858,7 @@
       "lastCovered": "2026-04-01T04:09:56.845Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-india-jet-fuel-doubled-lpg-hiked-hormuz"
@@ -723,7 +883,7 @@
       "lastCovered": "2026-04-01T04:09:56.845Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-iranian-rial-fourfold-rupee-war-speculation"
@@ -739,7 +899,7 @@
       "lastCovered": "2026-04-01T04:09:56.845Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-nasa-military-moon-space-force-artemis"
@@ -755,7 +915,7 @@
       "lastCovered": "2026-04-01T04:09:56.845Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-endangered-species-exemption-oil-national-security"
@@ -771,7 +931,7 @@
       "lastCovered": "2026-04-01T04:09:56.845Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-chiang-mai-haze-air-pollution-families-flee"
@@ -787,7 +947,7 @@
       "lastCovered": "2026-04-01T04:09:56.845Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-google-family-banned-gemini-live-account-lockout"
@@ -803,7 +963,7 @@
       "lastCovered": "2026-04-01T04:09:56.845Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-fifa-uefa-israel-icc-complaint-football-violations"
@@ -819,7 +979,7 @@
       "lastCovered": "2026-03-31T22:08:44.334Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-03-31-thomson-reuters-ice-palantir-surveillance-data",
@@ -836,7 +996,7 @@
       "lastCovered": "2026-03-31T22:08:44.334Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-31-b52-bombers-iran-air-supremacy"
@@ -861,7 +1021,7 @@
       "lastCovered": "2026-03-31T22:08:44.334Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-31-iraq-journalist-kidnapped-baghdad"
@@ -886,7 +1046,7 @@
       "lastCovered": "2026-03-31T22:08:44.334Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-31-npr-pbs-injunction-trump-funding"
@@ -911,7 +1071,7 @@
       "lastCovered": "2026-03-31T22:08:44.334Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-31-trump-allies-get-your-own-oil-hormuz"
@@ -936,7 +1096,7 @@
       "lastCovered": "2026-03-31T22:08:44.334Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-31-wto-digital-trade-collapse-cameroon"
@@ -961,7 +1121,7 @@
       "lastCovered": "2026-03-31T22:08:44.334Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-31-pakistan-lng-force-majeure-power-crisis"
@@ -977,7 +1137,7 @@
       "lastCovered": "2026-03-31T22:08:44.334Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-31-arabian-peninsula-wind-energy-mapping"
@@ -993,7 +1153,7 @@
       "lastCovered": "2026-03-31T22:08:44.334Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-31-china-soybean-crisis-food-security"
@@ -1009,7 +1169,7 @@
       "lastCovered": "2026-03-31T22:08:44.334Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-31-space-reproduction-microgravity-hurdles"
@@ -1025,250 +1185,13 @@
       "lastCovered": "2026-03-31T22:08:44.334Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-03-31-openai-122b-funding-round-ipo"
       ],
       "eventUri": null,
       "summary": "OpenAI closed a $122 billion funding round — the largest private raise in history — with IPO plans attached. Lead with the number: $122B dwarfs the GDP of most countries the reader cares about. This is more capital than the entire venture industry deployed in 2024. The HN discussion (159 points, 146 comments) splits on whether this is justified investment or a bubble peak. The reader building AI should see the concentration risk: one company absorbing this much capital reshapes the entire ecosystem — compute costs, talent markets, and competitive dynamics all bend around OpenAI's gravity.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-pakistan-ceasefire-plan-hormuz",
-      "label": "Qatar says Iran's attacks on neighbours crossed 'many red lines'",
-      "firstSeen": "2026-03-31T17:10:17.425Z",
-      "lastCovered": "2026-03-31T17:10:17.425Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-31-china-pakistan-ceasefire-plan-hormuz"
-      ],
-      "eventUri": "eng-11528986",
-      "summary": "China and Pakistan issued a joint 5-point plan calling for an immediate ceasefire and reopening of the Strait of Hormuz — the first formal peace framework from non-Western powers. The angle: while the US bombs and Europe dithers, Beijing and Islamabad are writing the diplomatic playbook. Lead with the 5-point plan specifics and that Bloomberg, Al Jazeera, and MEE all covered it — rare convergence. Qatar simultaneously warned Iran's attacks on neighbors crossed 'many red lines,' showing Gulf states caught between the belligerents. The reader should see: the post-war order is being drafted in Beijing, not Washington.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Middle_East",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Turkey"
-      ]
-    },
-    {
-      "id": "hegseth-defense-etf-insider-trading-allegation",
-      "label": "Pentagon rejects claims of Hegseth alleged defense ETF inquiry",
-      "firstSeen": "2026-03-31T17:10:17.425Z",
-      "lastCovered": "2026-03-31T17:10:17.425Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-31-hegseth-defense-etf-insider-trading-allegation"
-      ],
-      "eventUri": "eng-11526837",
-      "summary": "The Pentagon demanded retraction of a report that Defence Secretary Hegseth's broker tried to make a large investment in weapons companies before the Iran war began. Four sources across four countries (QA, GB, IN, KR) covered the story. The angle: whether or not the trade happened, the fact that the Pentagon's response was 'demand retraction' rather than 'release records' tells the reader everything about accountability norms in this administration. Lead with the specific allegation — a defense ETF inquiry timed to the pre-war period — and the Pentagon's combative response. The reader who tracks markets will understand what front-running a war looks like.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/BlackRock",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Financial_Times",
-        "http://en.wikipedia.org/wiki/Morgan_Stanley",
-        "http://en.wikipedia.org/wiki/The_Pentagon",
-        "http://en.wikipedia.org/wiki/Pete_Hegseth",
-        "http://en.wikipedia.org/wiki/United_States_Secretary_of_Defense",
-        "http://en.wikipedia.org/wiki/Exchange-traded_fund"
-      ]
-    },
-    {
-      "id": "hungary-russia-leaked-audio-eu-sanctions",
-      "label": "EU state's foreign minister discussed lifting sanctions with Russia",
-      "firstSeen": "2026-03-31T17:10:17.425Z",
-      "lastCovered": "2026-03-31T17:10:17.425Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-31-hungary-russia-leaked-audio-eu-sanctions"
-      ],
-      "eventUri": "rus-2046427",
-      "summary": "Leaked audio recordings reveal Hungary's FM Szijjártó discussing lifting EU sanctions with Russia's Lavrov — while Budapest allegedly passes closed-door EU intelligence to Moscow. Four sources from four countries (UA, GB, IN, RU) with high sentiment divergence. Lead with the audio leak itself: a sitting EU foreign minister caught on tape coordinating sanctions relief with the country the sanctions target. The reader should see: this isn't just Hungary being contrarian — it's an active intelligence breach inside the EU's decision-making structure. RT's coverage (framing it positively) vs Ukrainian Pravda (framing it as espionage) shows the information war in real time.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Hungary",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Sergey_Lavrov",
-        "http://en.wikipedia.org/wiki/Budapest",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Péter_Szijjártó",
-        "http://en.wikipedia.org/wiki/Slovakia"
-      ]
-    },
-    {
-      "id": "sudan-professors-strike-arrests-civil-war",
-      "label": "Sudan professors' strike enters third day as more arrests reported",
-      "firstSeen": "2026-03-31T17:10:17.425Z",
-      "lastCovered": "2026-03-31T17:10:17.425Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-31-sudan-professors-strike-arrests-civil-war"
-      ],
-      "eventUri": null,
-      "summary": "Sudanese university professors entered a third day of an open-ended nationwide strike, with security forces arresting academics and dispersing protests. Lead with the detail that this is a civil resistance action during an active civil war — professors choosing collective action while their country burns. The arrests are the story: a military government so threatened by intellectual dissent that it detains professors mid-strike. Connects to the existing Sudan arc (MSF sexual violence coverage) but this is a new dimension — organized civilian resistance, not just victimhood.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-lpg-35-percent-hike-hormuz-war",
-      "label": "Ogra notifies 35pc increase in LPG rates for April",
-      "firstSeen": "2026-03-31T17:10:17.425Z",
-      "lastCovered": "2026-03-31T17:10:17.425Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-31-pakistan-lpg-35-percent-hike-hormuz-war"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's oil regulator jacked up LPG prices 35% for April — an 11.8kg domestic cylinder rises Rs924 — as global energy markets convulse from the Hormuz blockade. Lead with the cylinder price: this is what 240 million Pakistanis cook with. The war is 2,000km away but it's now in every kitchen in Lahore and Karachi. Connects to the editorial watch on Pakistan dual pressure (fuel rationing, GSP+ threat) and the existing smart lockdown/austerity arc, but this is a new concrete data point — the price tag on a household cooking cylinder.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-24-pharma-facilities-struck-medical-supply",
-      "label": "Israel, US carry out strikes on 24 pharmaceutical industry facilities — Iranian minister",
-      "firstSeen": "2026-03-31T17:10:17.425Z",
-      "lastCovered": "2026-03-31T17:10:17.425Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-31-iran-24-pharma-facilities-struck-medical-supply"
-      ],
-      "eventUri": null,
-      "summary": "US and Israel have struck 24 Iranian pharmaceutical production facilities since February 28, severely damaging medical equipment manufacturing and supply chains for 88 million people. Lead with the number — 24 pharma factories — and the deputy health minister's statement that medical supply chains are 'seriously damaged.' The reader should see the Geneva Convention dimension: pharmaceutical production is civilian infrastructure. This is economic warfare targeting health. Pairs with the 39,500 civilian facilities damaged in Tehran province (same TASS cycle) to paint the full picture of infrastructure destruction.",
-      "conceptUris": []
-    },
-    {
-      "id": "nigeria-tinubu-6b-loans-uae-uk-debt",
-      "label": "Tinubu seeks Senate's approval for fresh $6bn loans from UAE, UK",
-      "firstSeen": "2026-03-31T17:10:17.425Z",
-      "lastCovered": "2026-03-31T17:10:17.425Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-31-nigeria-tinubu-6b-loans-uae-uk-debt"
-      ],
-      "eventUri": "eng-11528686",
-      "summary": "Nigeria's President Tinubu is asking the Senate to approve $6 billion in new foreign loans from the UAE and UK — to fund infrastructure and refinance existing debt. Lead with the amount and the lenders: a $6B loan from Abu Dhabi and London to Africa's largest economy. The reader should see the debt dependency cycle: borrowing from Gulf petrostates and former colonial powers to refinance previous borrowing. This is how sovereignty erodes — not through invasion but through compound interest. Nigeria's debt-to-GDP ratio is already at historic highs.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bola_Tinubu",
-        "http://en.wikipedia.org/wiki/United_States_Senate",
-        "http://en.wikipedia.org/wiki/Godswill_Akpabio",
-        "http://en.wikipedia.org/wiki/Nigeria",
-        "http://en.wikipedia.org/wiki/President_of_the_Senate_of_Nigeria",
-        "http://en.wikipedia.org/wiki/Citibank",
-        "http://en.wikipedia.org/wiki/Port",
-        "http://en.wikipedia.org/wiki/Abu_Dhabi"
-      ]
-    },
-    {
-      "id": "robot-scientists-yeast-gene-characterization",
-      "label": "Investigating uncharacterised genes in Saccharomyces cerevisiae using robot scientists",
-      "firstSeen": "2026-03-31T17:10:17.425Z",
-      "lastCovered": "2026-03-31T17:10:17.425Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-31-robot-scientists-yeast-gene-characterization"
-      ],
-      "eventUri": null,
-      "summary": "An automated lab platform — a 'robot scientist' — systematically characterized unknown yeast genes by designing and running its own experiments, then interpreting results. Out of ~6,000 yeast genes, 880 remain uncharacterized; this system tackled them at a pace no human lab could match. Lead with the automation: a robot that forms hypotheses, runs experiments, and publishes results. The reader who builds software will recognize the pattern — this is CI/CD for biology. The broader implication: if 15% of genes in the best-studied organism on Earth are still unknown, automated science isn't a luxury, it's a necessity.",
-      "conceptUris": []
-    },
-    {
-      "id": "aircraft-evacuation-computational-modeling-faa",
-      "label": "What's the best cabin layout for aircraft evacuation?",
-      "firstSeen": "2026-03-31T17:10:17.425Z",
-      "lastCovered": "2026-03-31T17:10:17.425Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-31-aircraft-evacuation-computational-modeling-faa"
-      ],
-      "eventUri": "eng-11529245",
-      "summary": "Researchers built a multi-scale computational model — combining macroscopic crowd dynamics with microscopic individual behavior — to optimize aircraft cabin layouts for the FAA's 90-second evacuation requirement. Lead with the tension: the 90-second rule was designed when passengers were younger and lighter, but average passenger age and size have both increased. The model found that current layouts fail the requirement under realistic conditions. The reader who flies regularly should feel the gap between regulation and physics — the math says we can't evacuate modern planes in time.",
-      "conceptUris": []
-    },
-    {
-      "id": "nvidia-marvell-2b-silicon-photonics-ai",
-      "label": "Nvidia invests $2bn in chipmaker Marvell to boost AI networking",
-      "firstSeen": "2026-03-31T17:10:17.425Z",
-      "lastCovered": "2026-03-31T17:10:17.425Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-31-nvidia-marvell-2b-silicon-photonics-ai"
-      ],
-      "eventUri": "eng-11528589",
-      "summary": "Nvidia is investing $2 billion in Marvell to develop silicon photonics — replacing copper interconnects with light to connect AI chips across data centers. Lead with the physics: light travels faster than electrons and generates less heat, but fabricating photonic circuits on silicon wafers is an unsolved manufacturing problem. This $2B bet says Nvidia believes the bottleneck in AI scaling has shifted from compute to interconnect. The reader building AI infrastructure should see: the next constraint isn't GPU FLOPS, it's the speed of light between them.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nvidia",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Marvell_Technology",
-        "http://en.wikipedia.org/wiki/NVLink",
-        "http://en.wikipedia.org/wiki/Silicon_photonics",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/Silicon",
-        "http://en.wikipedia.org/wiki/United_States_dollar"
-      ]
-    },
-    {
-      "id": "oracle-30000-layoffs-ai-pivot",
-      "label": "Oracle slashes 30k jobs",
-      "firstSeen": "2026-03-31T17:10:17.425Z",
-      "lastCovered": "2026-03-31T17:10:17.425Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-31-oracle-30000-layoffs-ai-pivot"
-      ],
-      "eventUri": null,
-      "summary": "Oracle is cutting 30,000 jobs — one of the largest tech layoffs this year. The story hit #1 on Hacker News with 523 points and 404 comments. Lead with the number: 30,000 people. The reader works in tech and should see the pattern — enterprise software companies are shedding headcount to fund AI infrastructure pivots. Oracle's cloud and AI ambitions (they just signed massive data center deals) are being funded by eliminating the human workforce that built the previous generation of products.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-bjp-ai-anti-muslim-hate-speech-bellingcat",
-      "label": "How India's Ruling Party is Using AI to Boost Hate Speech in States Near Bangladesh",
-      "firstSeen": "2026-03-31T17:10:17.425Z",
-      "lastCovered": "2026-03-31T17:10:17.425Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-03-31-india-bjp-ai-anti-muslim-hate-speech-bellingcat"
-      ],
-      "eventUri": null,
-      "summary": "Bellingcat investigation: India's ruling BJP is using AI-generated content to amplify anti-Muslim hate speech in northeastern states bordering Bangladesh — including a video showing Assam's chief minister shooting images of men in Muslim skull caps. Lead with the video: a state official depicted shooting Muslims, captioned 'foreigner-free Assam,' produced and distributed by the ruling party's official state branch. The reader should see the intersection of AI tools and state-sponsored Islamophobia — this isn't fringe content, it's the governing party's media operation. Connects to broader patterns of AI-enabled political violence.",
       "conceptUris": []
     }
   ]
