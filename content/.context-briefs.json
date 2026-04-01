@@ -2408,5 +2408,109 @@
     "label": "Gravity and Reproduction",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-01-uae-military-option-hormuz-unsc-resolution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two one-way channels separated by a 3 km buffer. Every tanker transiting the strait passes within easy range of the Iranian coastline."
+      },
+      {
+        "heading": "THE VOLUME",
+        "body": "About 20% of the world's oil passes through Hormuz daily. No other chokepoint carries as much energy — Malacca is second at roughly 16%. There is no pipeline bypass with enough capacity to replace it."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Iran mined the strait during the 1980-88 Tanker War. The US responded with Operation Earnest Will — reflagging Kuwaiti tankers under the American flag to invoke naval protection. It was the largest naval convoy operation since World War II."
+      },
+      {
+        "heading": "THE UAE EXPOSURE",
+        "body": "UAE exports nearly all its oil through Hormuz. Unlike Saudi Arabia, which has the East-West pipeline to the Red Sea, the UAE has no operational bypass. A prolonged closure is an existential economic threat, which explains Abu Dhabi's willingness to commit its own forces."
+      },
+      {
+        "heading": "THE LEGAL FRAMEWORK",
+        "body": "Under UNCLOS, straits used for international navigation have a right of transit passage that the bordering state cannot suspend — even during wartime. Iran ratified neither UNCLOS nor the 1958 Convention, but customary international law still applies."
+      }
+    ],
+    "generatedAt": "2026-04-01T04:30:28.411Z",
+    "label": "The Strait of Hormuz",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-01-iranian-rial-fourfold-rupee-war-speculation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "When a country faces war or severe sanctions, holders of its currency rush to convert to anything stable — dollars, gold, foreign goods. This sell pressure compounds: each drop in value triggers more selling, creating a self-reinforcing spiral."
+      },
+      {
+        "heading": "THE DUAL RATE",
+        "body": "Iran has maintained an official exchange rate and a bazaar (black market) rate since the 1979 revolution. The gap between them functions as a real-time measure of how much the government's economic narrative diverges from reality."
+      },
+      {
+        "heading": "THE BORDER CHANNEL",
+        "body": "Pakistan and Iran share a 959 km border through Balochistan. Cross-border trade — mostly Iranian fuel for Pakistani goods — runs on informal hawala networks and cash exchanges, not bank wires. These channels are where currency stress shows up first."
+      },
+      {
+        "heading": "THE PASS-THROUGH",
+        "body": "Currency collapse does not stay contained. When importers pay 4x more rials for the same barrel, they pass that cost forward. Pakistan's domestic fuel prices absorb Iran's currency crisis even though the rupee itself is stable against the dollar."
+      }
+    ],
+    "generatedAt": "2026-04-01T04:30:28.413Z",
+    "label": "Wartime Currency Collapse",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-01-chiang-mai-haze-air-pollution-families-flee": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SOURCE",
+        "body": "Most of the haze comes from agricultural burning in Myanmar, Laos, and northern Thailand itself. Farmers burn fields after harvest to clear stubble cheaply — a single lighter replaces days of manual labor. No single government controls all three source countries."
+      },
+      {
+        "heading": "WHAT PM2.5 ACTUALLY IS",
+        "body": "Particulate matter under 2.5 micrometres — about 30 times thinner than a human hair. At that size, particles bypass the nose and throat and lodge deep in the alveoli, entering the bloodstream directly. This is why PM2.5 causes cardiovascular disease, not just respiratory symptoms."
+      },
+      {
+        "heading": "THE INVERSION TRAP",
+        "body": "Chiang Mai sits in a river basin ringed by mountains on three sides. During the dry season, temperature inversions form a lid of warm air that traps pollutants at ground level. The city's geography turns regional burning into a concentrated local health crisis."
+      },
+      {
+        "heading": "THE ECONOMICS",
+        "body": "Alternatives to burning — like zero-till farming or biomass collection — cost money the farmers do not have. Thailand subsidizes rice prices but not the transition away from burning. Until the economics change, the fires will not stop, regardless of air quality laws."
+      }
+    ],
+    "generatedAt": "2026-04-01T04:30:28.413Z",
+    "label": "Transboundary Crop Burning",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-01-white-house-app-77-percent-third-party-traffic": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW IT WORKS",
+        "body": "Mobile apps embed third-party SDKs — pre-built code libraries for analytics, crash reporting, and ads. Each SDK opens its own network connections to its own servers. The app developer may not know exactly what data each SDK collects or where it sends it."
+      },
+      {
+        "heading": "THE RATIO PROBLEM",
+        "body": "A typical free app makes 5-15 third-party network calls for every 1 call to its own backend. Most users assume their traffic goes to the app maker. In practice, the majority goes to companies they have never heard of — data brokers, analytics firms, ad networks."
+      },
+      {
+        "heading": "THE LEGAL GAP",
+        "body": "The US has no federal law equivalent to GDPR governing what data third-party SDKs can collect from app users. App store review processes check for malware, not for excessive data collection. The SDK supply chain operates in a regulatory vacuum."
+      },
+      {
+        "heading": "THE TRUST INVERSION",
+        "body": "Government apps carry implicit authority — citizens install them expecting higher privacy standards than commercial apps. When a government app runs the same adtech stack as a free game, it undermines the assumption that official software is trustworthy by default."
+      }
+    ],
+    "generatedAt": "2026-04-01T04:30:28.413Z",
+    "label": "Mobile SDK Supply Chains",
+    "category": "tech",
+    "articleCount": 1
   }
 }
