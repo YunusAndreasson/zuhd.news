@@ -2628,5 +2628,105 @@
     "label": "The Strait of Hormuz",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-01-scotus-birthright-citizenship-14th-amendment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO SYSTEMS",
+        "body": "The world splits into jus soli (right of the soil — citizenship by birth location) and jus sanguinis (right of the blood — citizenship by parentage). The US, Canada, and most of the Americas use jus soli. Most of Europe and Asia use jus sanguinis. The divide traces back to whether a country needed to absorb immigrants or preserve ethnic nationhood."
+      },
+      {
+        "heading": "THE CLAUSE",
+        "body": "The 14th Amendment (1868) says: 'All persons born or naturalized in the United States, and subject to the jurisdiction thereof, are citizens.' The entire legal battle turns on five words: 'subject to the jurisdiction thereof.' The original meaning excluded diplomats and enemy soldiers — people outside US legal authority. Whether it also excludes undocumented residents is the question SCOTUS has never directly answered."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "United States v. Wong Kim Ark (1898) is the closest the Court has come. Wong Kim Ark was born in San Francisco to Chinese parents who were legally barred from ever becoming citizens. The Court ruled 6-2 he was a citizen at birth. But his parents were legal residents — the opinion deliberately left open whether the same applies to unauthorized immigrants."
+      },
+      {
+        "heading": "WHAT STATELESSNESS MEANS",
+        "body": "If a child born on US soil is denied US citizenship, and their parents' home country uses jus soli too (or won't grant citizenship to children born abroad), the child belongs to no nation. Stateless people cannot get passports, often cannot work legally anywhere, and have no government obligated to protect them. UNHCR estimates 4.4 million stateless people exist worldwide."
+      }
+    ],
+    "generatedAt": "2026-04-01T12:18:47.432Z",
+    "label": "Birthright Citizenship",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-01-organic-phosphorescence-physical-encryption": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "FLUORESCENCE VS PHOSPHORESCENCE",
+        "body": "Both are light re-emitted after absorption, but fluorescence stops within nanoseconds — the electron drops back immediately. Phosphorescence persists for milliseconds to hours because the electron gets trapped in a 'forbidden' quantum state (a triplet state) and has to tunnel out slowly. That afterglow is the delay."
+      },
+      {
+        "heading": "WHY ORGANIC MATTERS",
+        "body": "Most phosphorescent materials use heavy metals like iridium or platinum, whose large nuclei enable spin-orbit coupling — the quantum trick that populates the triplet state. Achieving room-temperature phosphorescence with only carbon, hydrogen, nitrogen, and oxygen is difficult precisely because these light atoms couple weakly. Purely organic phosphors are cheaper, less toxic, and biologically compatible."
+      },
+      {
+        "heading": "PHYSICAL VS COMPUTATIONAL ENCRYPTION",
+        "body": "Standard encryption relies on mathematical hardness — factoring large primes, discrete logarithms. An attacker with enough compute can break it. Physical encryption encodes information in a material property (emission color, decay lifetime, spatial pattern) that can only be read by possessing the object. There is no ciphertext to intercept and no key to brute-force."
+      },
+      {
+        "heading": "THE CONCEPT: PUFs",
+        "body": "Physical Unclonable Functions exploit manufacturing randomness — the exact defect pattern in a chip, the precise molecular arrangement in a crystal — to create identifiers that cannot be copied because recreating the same randomness is physically impossible. A phosphor whose glow pattern depends on crystal structure is the molecular version of this idea."
+      }
+    ],
+    "generatedAt": "2026-04-01T12:18:47.433Z",
+    "label": "Phosphorescence",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-01-change6-lunar-copper-far-side-moon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ONE SIDE",
+        "body": "The Moon is tidally locked — its rotation period exactly matches its orbital period, so the same face always points at Earth. This is not coincidence. Earth's gravity created tidal bulges in the early Moon, and friction from those bulges gradually slowed the Moon's spin until it synchronized. Every large moon in the solar system eventually locks to its planet."
+      },
+      {
+        "heading": "THE BASIN",
+        "body": "South Pole-Aitken is the largest confirmed impact structure in the solar system: 2,500 km across and 8 km deep. The collision that formed it ~4.3 billion years ago excavated material from deep in the lunar mantle, making it the best natural drill hole into the Moon's interior. Every sample from this basin is a window into composition that the near side cannot provide."
+      },
+      {
+        "heading": "WHY METALLIC COPPER IS SURPRISING",
+        "body": "The Moon is extremely dry and reducing (low oxygen), but copper on Earth almost always appears bonded to sulfur or oxygen in mineral ores. Finding native metallic copper means the impact was energetic enough to vaporize sulfide minerals and then the copper recondensed in pure metallic form — a process that reveals the temperature and chemistry of the ancient impact event."
+      },
+      {
+        "heading": "THE FAR-SIDE COMMUNICATION PROBLEM",
+        "body": "Radio signals cannot pass through the Moon. Any lander on the far side is cut off from Earth unless a relay satellite sits at the Earth-Moon L2 Lagrange point, 65,000 km behind the Moon. China launched Queqiao-2 specifically for this purpose. This relay requirement is why no other country has landed on the far side — it demands an entire extra mission before the science even begins."
+      }
+    ],
+    "generatedAt": "2026-04-01T12:18:47.433Z",
+    "label": "Lunar Far Side",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-01-gig-workers-training-humanoid-robots-global-south": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ROBOTS NEED HUMAN DATA",
+        "body": "A robot arm can be programmed for one motion in a fixed factory. A humanoid robot in an unstructured environment — folding laundry, loading a dishwasher — must handle infinite variation. The current approach is imitation learning: record thousands of humans doing the task, then train a neural policy to generalize from those demonstrations."
+      },
+      {
+        "heading": "THE TELEOPERATION BOTTLENECK",
+        "body": "Early training data came from researchers physically puppeteering robot arms in labs — expensive, slow, and limited to institutions with hardware. The breakthrough was decoupling collection from the robot: have humans wear motion-capture suits or record video of tasks, then transfer the movement data to any robot body. This turned data collection into a gig-economy task."
+      },
+      {
+        "heading": "THE ECONOMICS",
+        "body": "Training data for large language models was labeled by workers in Kenya and the Philippines at $1-2/hour. Robotics data follows the same pattern: the work requires no special education, only a body and a camera, so it flows to the lowest-cost labor markets. The wage is set by global competition among workers, not by the value of the data to the company."
+      },
+      {
+        "heading": "THE PARADOX HAS A NAME",
+        "body": "Moravec's Paradox (1988): reasoning and chess are computationally easy for machines; walking, grasping, and folding towels are extraordinarily hard. This is why physical-task AI is decades behind language AI — and why it still needs millions of hours of human demonstration data to learn what every toddler figures out by age three."
+      }
+    ],
+    "generatedAt": "2026-04-01T12:18:47.433Z",
+    "label": "Robot Training Data",
+    "category": "tech",
+    "articleCount": 1
   }
 }
