@@ -3078,5 +3078,121 @@
     "label": "Linux Gaming's Translation Layer",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-02-ibm-arm-enterprise-computing-collaboration": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO PHILOSOPHIES",
+        "body": "CISC (Complex Instruction Set Computing) packs hundreds of powerful instructions into the chip — one instruction might move a whole block of memory. RISC (Reduced Instruction Set Computing) uses simple instructions that each execute in one clock cycle. Arm is RISC. IBM's Power and x86 are CISC. The bet is which approach wastes less energy per unit of useful work."
+      },
+      {
+        "heading": "WHY ARM WON MOBILE",
+        "body": "Arm does not manufacture chips. It licenses designs. This meant any phone maker could customize an Arm core for their exact power budget. By 2012, virtually every smartphone on Earth ran Arm — not because it was fastest, but because it was most adaptable."
+      },
+      {
+        "heading": "THE ENTERPRISE BARRIER",
+        "body": "Datacenters ran x86 for decades not because the chips were better, but because the software ecosystem assumed x86. Enterprise software is compiled, tested, and certified for a specific architecture. Switching CPUs means revalidating every binary — a cost measured in years, not dollars."
+      },
+      {
+        "heading": "WHAT CHANGED",
+        "body": "Cloud computing broke the lock-in. When you rent compute by the hour, you do not care what chip runs underneath — the cloud provider abstracts it. AWS proved this with Graviton (custom Arm) in 2018: same workloads, 40% less energy. That made the enterprise Arm case economic, not just technical."
+      },
+      {
+        "heading": "IBM'S POSITION",
+        "body": "IBM has built its own RISC chips (POWER) since 1990 and designed mainframe processors since the 1960s. It understands high-reliability computing at a level few companies match. The strategic question is whether IBM brings its reliability engineering to Arm, or brings Arm's energy economics to its enterprise clients — or both."
+      }
+    ],
+    "generatedAt": "2026-04-02T12:23:50.220Z",
+    "label": "CPU Architecture Wars",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-02-rna-viral-vector-programmable-cell-targeting": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORE PROBLEM",
+        "body": "Getting a therapeutic gene into the right cells is harder than designing the gene itself. DNA does not cross cell membranes on its own. You need a delivery vehicle — and viruses are evolution's answer to exactly this problem, perfected over billions of years."
+      },
+      {
+        "heading": "HOW VIRAL VECTORS WORK",
+        "body": "Engineers gut a virus of its disease-causing genes and replace them with therapeutic cargo. The viral shell still knows how to enter cells and deliver its payload, but it can no longer replicate. The virus becomes a biological FedEx truck."
+      },
+      {
+        "heading": "THE TARGETING PROBLEM",
+        "body": "Most viral vectors infect many cell types indiscriminately. AAV9, the workhorse of gene therapy, crosses the blood-brain barrier but also hits the liver heavily. If your therapy is meant for neurons, liver accumulation is not just wasteful — it can be toxic."
+      },
+      {
+        "heading": "WHAT CONDITIONAL LOGIC MEANS HERE",
+        "body": "Classical gene therapy is always-on: if the vector enters a cell, the gene expresses. Conditional logic means the cargo includes a molecular IF statement — express only if the cell contains a specific marker. This is the difference between a drug that floods the body and one that activates only where needed."
+      },
+      {
+        "heading": "WHY RNA MATTERS",
+        "body": "DNA-based vectors integrate into the genome permanently — powerful but irreversible. RNA-based payloads are transient by nature: they do their work and degrade. For therapies that need a temporary effect or a safety valve, RNA gives you an off-switch that DNA cannot."
+      }
+    ],
+    "generatedAt": "2026-04-02T12:23:50.221Z",
+    "label": "Viral Vectors & Gene Delivery",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-02-plastics-supply-chain-hormuz-petrochemical-crisis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "PLASTICS ARE FOSSIL FUELS",
+        "body": "About 8-10% of global oil production becomes plastic, not fuel. The feedstock is naphtha — a light fraction from crude oil distillation that sits between gasoline and kerosene. When oil stops flowing, it is not just cars and heating that suffer."
+      },
+      {
+        "heading": "THE CRACKING STEP",
+        "body": "Naphtha enters a steam cracker at 850°C and breaks into ethylene, propylene, and other building blocks in under a second. These monomers then polymerize into polyethylene (bags, bottles), polypropylene (packaging, car parts), and PVC (pipes, cables). Nearly everything plastic traces back to this one thermal process."
+      },
+      {
+        "heading": "THE GULF'S ROLE",
+        "body": "Saudi Arabia, the UAE, and Qatar collectively produce roughly 15-20% of global petrochemicals. Their advantage is not just oil — it is cheap ethane from natural gas, which cracks more efficiently than naphtha. Hormuz disruptions hit both the naphtha flowing out and the finished polymers flowing to Asia."
+      },
+      {
+        "heading": "WHY SUBSTITUTION IS SLOW",
+        "body": "Plastics are not one material — they are thousands of formulations tuned to specific tolerances. Medical-grade polypropylene for syringes cannot be swapped for a different polymer without years of recertification. Supply shocks do not just raise prices; they create hard shortages in sectors that cannot substitute."
+      },
+      {
+        "heading": "THE CONCENTRATION RISK",
+        "body": "Global petrochemical capacity clusters around four zones: the US Gulf Coast, the Arabian Gulf, Northeast Asia, and Northwest Europe. A disruption in any one zone cannot be fully offset by the others because crackers run at 85-95% utilization. There is almost no spare capacity in the system."
+      }
+    ],
+    "generatedAt": "2026-04-02T12:23:50.222Z",
+    "label": "Petrochemicals & Plastics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-02-email-obfuscation-what-works-2026": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL ARMS RACE",
+        "body": "In the early web, spammers wrote simple regex crawlers: find anything matching name@domain.tld and add it to a list. Site owners responded by writing 'name [at] domain [dot] tld' or encoding addresses as HTML entities. This worked because crawlers were pattern matchers with no understanding."
+      },
+      {
+        "heading": "WHY OBFUSCATION WORKED FOR 25 YEARS",
+        "body": "Harvesting was a volume game — billions of pages, fractions of a cent per address. Spending compute to decode obfuscated emails was not worth it when millions of plaintext addresses existed elsewhere. Economics, not technology, protected obfuscated addresses."
+      },
+      {
+        "heading": "WHAT LLMS CHANGE",
+        "body": "A language model does not match patterns — it understands intent. It reads 'john (at) example (dot) com' the same way a human does, because it learned from text written by humans who understood these conventions. Every obfuscation scheme that a human can decode, an LLM can decode, at crawler-scale cost."
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Obfuscation is a one-shot defense: you choose a scheme and publish it. The attacker can test every scheme offline against a model before crawling. The defender cannot update deployed pages in response. This is a structurally losing position — the same asymmetry that doomed CAPTCHAs."
+      },
+      {
+        "heading": "WHAT ACTUALLY WORKS",
+        "body": "Server-side approaches — rendering the address only after JavaScript execution, requiring authentication, or using contact forms that never expose the address — survive because they never put the email in the HTML. The principle: if it is in the source, assume it is readable."
+      }
+    ],
+    "generatedAt": "2026-04-02T12:23:50.222Z",
+    "label": "Email Harvesting & Obfuscation",
+    "category": "tech",
+    "articleCount": 1
   }
 }
