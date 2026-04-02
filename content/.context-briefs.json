@@ -2878,5 +2878,105 @@
     "label": "Strait of Hormuz Economics",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-02-dram-pricing-killing-hobbyist-sbc-market": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THREE COMPANIES, ALL THE MEMORY",
+        "body": "Samsung, SK Hynix, and Micron produce 95% of all DRAM on Earth. This consolidation is not accidental — fabricating DRAM requires sub-10nm lithography and billions in capital per fab, a barrier that eliminated every other competitor over four decades."
+      },
+      {
+        "heading": "WHY DRAM IS NOT LIKE OTHER CHIPS",
+        "body": "A CPU design can be manufactured at multiple foundries. DRAM is different: the product is the process. Each company's memory cells are inseparable from their proprietary fabrication steps, so there is no TSMC-for-DRAM that newcomers can outsource to."
+      },
+      {
+        "heading": "THE COMMODITY TRAP",
+        "body": "DRAM is a commodity — one company's 16GB DDR5 module is interchangeable with another's. In theory, this should drive prices to cost. In practice, the triopoly has been convicted of price-fixing three times (2002, 2005, 2018) across US, EU, and Chinese courts."
+      },
+      {
+        "heading": "HBM CHANGED THE ECONOMICS",
+        "body": "High Bandwidth Memory stacks DRAM dies vertically using through-silicon vias, multiplying bandwidth for AI workloads. HBM yields are low and margins are 5-10x higher than commodity DRAM, so fabs prioritize it. Every wafer allocated to HBM is a wafer not making the cheap DDR4 that hobbyist boards need."
+      }
+    ],
+    "generatedAt": "2026-04-02T04:19:46.330Z",
+    "label": "The DRAM Oligopoly",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-02-artemis-ii-crew-launches-moon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "FREE-RETURN TRAJECTORY",
+        "body": "Artemis II follows a free-return path: if every engine fails after the trans-lunar injection burn, the Moon's gravity alone slings the crew back to Earth. Apollo 13 survived because it was on exactly this kind of trajectory. It is the only responsible choice for a first crewed flight."
+      },
+      {
+        "heading": "WHY 252,000 MILES MATTERS",
+        "body": "Low Earth orbit is 250 miles up. The Moon is 239,000 miles away — a thousand times farther. Beyond about 600 miles, Earth's magnetic field no longer shields astronauts from solar particle events. Artemis II will spend 8 days outside that shield, the longest human exposure since Apollo 17 in 1972."
+      },
+      {
+        "heading": "THE 54-YEAR GAP",
+        "body": "Apollo ended not because the technology failed but because the budget did. Each Saturn V cost $1.5 billion in today's dollars and was expendable. NASA's post-Apollo strategy bet everything on the reusable Shuttle, which could only reach low orbit. No heavy-lift Moon rocket existed again until SLS."
+      },
+      {
+        "heading": "SLS VS SATURN V",
+        "body": "SLS Block 1 produces 8.8 million pounds of thrust at liftoff — about 15% more than the Saturn V. But Saturn V's upper stages were more powerful, so its total payload to the Moon was actually higher. SLS compensates by using the lighter Orion capsule instead of the heavier Apollo stack."
+      }
+    ],
+    "generatedAt": "2026-04-02T04:19:46.331Z",
+    "label": "Lunar Trajectories",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-02-egypt-egx-listings-fake-privatization": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW IMF LOANS ACTUALLY WORK",
+        "body": "The IMF does not hand over a lump sum. It disburses in tranches, each unlocked by a review confirming the borrower met specific conditions. Miss a condition, lose the next tranche. This gives the Fund leverage — but only if it enforces."
+      },
+      {
+        "heading": "THE LETTER VS. THE SPIRIT",
+        "body": "Conditions are written as measurable benchmarks: 'list state enterprises on the exchange.' A government can satisfy the letter — put names on a board — without satisfying the spirit — actually sell shares to private buyers. This gap between formal compliance and real reform is the oldest game in IMF politics."
+      },
+      {
+        "heading": "WHY EGYPT CANNOT SELL",
+        "body": "The Egyptian military controls an estimated 25-40% of GDP through companies in cement, construction, food, and hospitality. Genuine privatization would require the military to surrender profitable assets. Every Egyptian government since Mubarak has promised reform and found reasons to delay."
+      },
+      {
+        "heading": "THE IMF'S DILEMMA",
+        "body": "If the Fund rejects cosmetic compliance, it withholds funds from a country of 110 million people already in a currency crisis. If it accepts, it rewards the performance and undermines its own conditionality framework for every other borrower. Egypt has bet — repeatedly and correctly — that geopolitical importance buys tolerance."
+      }
+    ],
+    "generatedAt": "2026-04-02T04:19:46.331Z",
+    "label": "IMF Conditionality",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-02-trump-100-percent-tariff-imported-drugs": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHERE DRUGS ARE ACTUALLY MADE",
+        "body": "About 87% of active pharmaceutical ingredients for the US market are manufactured abroad — primarily in India, China, and Ireland. India alone supplies over 40% of US generic finished doses. This dependency built up over 30 years as manufacturers chased lower production costs and looser environmental rules."
+      },
+      {
+        "heading": "SECTION 232",
+        "body": "Section 232 of the Trade Expansion Act of 1962 lets the president impose tariffs on imports that threaten national security — without Congressional approval. It was designed for steel and oil during the Cold War. Its use for pharmaceuticals would be a novel legal theory, stretching 'national security' to mean 'domestic health supply.'"
+      },
+      {
+        "heading": "WHY YOU CANNOT RESHORING DRUG MANUFACTURING QUICKLY",
+        "body": "A pharmaceutical plant takes 3-5 years to build, validate, and receive FDA approval. Active ingredient synthesis requires specialized chemical engineering talent that the US has offshored for decades. Even with unlimited money, the labor and regulatory pipeline cannot be compressed below about 3 years."
+      },
+      {
+        "heading": "THE GENERIC MATH",
+        "body": "Generic drugs are 90% of US prescriptions but only 18% of drug spending. Their margins are already razor-thin — often 2-5%. A 100% tariff on imported generics cannot be absorbed; it passes directly to patients or triggers shortages when manufacturers exit unprofitable products."
+      }
+    ],
+    "generatedAt": "2026-04-02T04:19:46.331Z",
+    "label": "Pharmaceutical Supply Chains",
+    "category": "economy",
+    "articleCount": 1
   }
 }
