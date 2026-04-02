@@ -2,13 +2,239 @@
   "version": 1,
   "stories": [
     {
+      "id": "austria-rejects-us-airspace-iran-neutrality",
+      "label": "Austria rejects US request to use airspace for Iran operations",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-austria-rejects-us-airspace-iran-neutrality"
+      ],
+      "eventUri": "eng-11536022",
+      "summary": "Austria invoked its constitutional neutrality to refuse 'several' US requests for overflight rights for Iran operations. The angle: a neutral European country is drawing a legal line against the US war machine — the same neutrality doctrine that kept Austria out of NATO. Lead with the constitutional mechanism and the word 'several' (repeated requests imply escalating pressure). The reader tracking the war's diplomatic fallout should see this as a fracture in the Western consensus: not every US ally is compliant. TRT World and MEE diverge on framing — compare the sovereignty vs alliance angles.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Austria",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Airspace",
+        "http://en.wikipedia.org/wiki/Neutral_country",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/ORF_(broadcaster)",
+        "http://en.wikipedia.org/wiki/Neutrality_(philosophy)",
+        "http://en.wikipedia.org/wiki/NATO"
+      ]
+    },
+    {
+      "id": "bellingcat-uae-rewrites-iranian-strike-damage",
+      "label": "The War You're Not Allowed to See: How the UAE Rewrites the Story of Iranian Strikes",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-bellingcat-uae-rewrites-iranian-strike-damage"
+      ],
+      "eventUri": null,
+      "summary": "Bellingcat used open-source satellite imagery and social media to identify multiple incidents where UAE authorities downplayed damage, mischaracterised interceptions, or failed to acknowledge successful Iranian drone strikes. The angle: a Gulf state is running an information war alongside the military war — and OSINT can prove it. Lead with the gap between official UAE statements and observable reality. The reader tracking the war should see how information control shapes perception of who is 'winning.' This is the kind of accountability journalism only OSINT can deliver when states control the narrative.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-israeli-strikes-iran-healthcare-system",
+      "label": "U.S.-Israeli strikes target Iran's healthcare system",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-us-israeli-strikes-iran-healthcare-system"
+      ],
+      "eventUri": null,
+      "summary": "Drop Site reports that US-Israeli strikes are hitting Iran's healthcare infrastructure — hospitals, clinics, supply chains. The angle: targeting healthcare is a potential war crime under international humanitarian law, and it compounds the suffering of 88 million Iranian civilians already under wartime stress. Lead with the healthcare infrastructure being destroyed — the reader who saw the BBC testimony of desperate Iranians should now see the structural mechanism causing that desperation. This is accountability reporting: name the actors, name the targets, name the law.",
+      "conceptUris": []
+    },
+    {
+      "id": "israeli-settler-violence-condemnations-smokescreen",
+      "label": "Israeli leaders are condemning settler attacks. It's a smokescreen",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-israeli-settler-violence-condemnations-smokescreen"
+      ],
+      "eventUri": null,
+      "summary": "+972 argues that the recent wave of denunciations of settler violence from Israeli ministers, army chiefs, and right-wing pundits is a deliberate smokescreen to obscure that settler violence IS state policy. The angle: when the powerful condemn their own tools, ask what they're distracting from. Lead with the paradox — the same government that arms and protects settlers is now 'condemning' them. The reader should see the structural pattern: performative condemnation as cover for continued dispossession. This is a ground-level analysis from journalists living under the system they're reporting on.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-10000-displaced-nine-states-nhrc",
+      "label": "Nine states record over 10,000 IDPs in two months — NHRC",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-nigeria-10000-displaced-nine-states-nhrc"
+      ],
+      "eventUri": null,
+      "summary": "Nigeria's National Human Rights Commission reports 10,884 people displaced across 9 states in just January-February 2026, calling it a 'persistent and growing protection crisis.' The angle: internal displacement in Nigeria is accelerating but invisible — no international headlines, no emergency summits. Lead with the number and the speed (10,000+ in 60 days). Benue and Borno states are the worst hit. The reader should see the pattern: when the world's attention is consumed by Iran and Hormuz, Africa's displacement crises deepen in silence.",
+      "conceptUris": []
+    },
+    {
+      "id": "tesla-q1-deliveries-miss-expectations",
+      "label": "Tesla Q1 deliveries miss Wall Street expectations despite bounce-back hopes",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-tesla-q1-deliveries-miss-expectations"
+      ],
+      "eventUri": "eng-11535271",
+      "summary": "Tesla delivered 358,023 vehicles in Q1 — down 14.4% from Q4 and below analyst expectations — as the expiry of US EV tax credits hit demand. Shares slid on the news. The angle: the world's most politically connected CEO (DOGE, White House access) can't translate political power into sales. Lead with the 14.4% quarter-over-quarter decline and the tax credit expiry. Europe and China are both weakening for Tesla. The reader tracking Musk's dual role in government and business should see the accountability dimension: market consequences catch up even when political protection doesn't.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tesla,_Inc.",
+        "http://en.wikipedia.org/wiki/Elon_Musk",
+        "http://en.wikipedia.org/wiki/Electric_vehicle",
+        "http://en.wikipedia.org/wiki/Tesla_Model_Y",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/Electric_car",
+        "http://en.wikipedia.org/wiki/Tesla_Model_S"
+      ]
+    },
+    {
+      "id": "walmart-recession-signal-2008-crisis-levels",
+      "label": "Walmart Recession Signal at highest since 2008 financial crisis",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-walmart-recession-signal-2008-crisis-levels"
+      ],
+      "eventUri": "eng-11529032",
+      "summary": "The Walmart Recession Signal (WRS) — which tracks the gap between Walmart's stock performance and the broader market as a proxy for consumer downtrading — has surged to levels last seen during the 2008 financial crisis. The angle: when consumers flee to Walmart, it means middle-class purchasing power is collapsing. Lead with the 2008 comparison and explain the mechanism: Walmart outperforming the market is a sign of distress, not health. The reader tracking Hormuz-driven inflation and the war economy should see this as the domestic consumer signal confirming what oil prices already suggest.",
+      "conceptUris": []
+    },
+    {
+      "id": "drift-exploit-north-korea-elliptic-attribution",
+      "label": "Elliptic flags $285 million Drift exploit as likely North Korea-linked operation",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-drift-exploit-north-korea-elliptic-attribution"
+      ],
+      "eventUri": null,
+      "summary": "Blockchain forensics firm Elliptic has attributed the $285M Drift Protocol exploit — the largest DeFi hack of 2026 — to North Korean state hackers, based on laundering patterns matching Lazarus Group tactics. This advances the existing Drift story with the critical 'who': a sanctioned state using Solana's fragmented account model to fund weapons programs. Lead with the NK attribution and the laundering methodology — cross-chain mixing that exploits Solana's architecture. The reader who tracks both crypto and geopolitics should see the convergence: DeFi vulnerabilities are now a national security issue.",
+      "conceptUris": []
+    },
+    {
+      "id": "diamond-graphene-electromagnetic-wave-absorption",
+      "label": "Heterostructure-engineered diamond-graphene composites for high-performance electromagnetic wave absorption",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-diamond-graphene-electromagnetic-wave-absorption"
+      ],
+      "eventUri": null,
+      "summary": "Researchers created a diamond-graphene heterostructure that simultaneously delivers strong electromagnetic wave attenuation and survives extreme environments — cracking a long-standing trade-off in stealth/radar-absorbing materials. The angle: this is materials science with immediate defense and aerospace applications. Current stealth coatings degrade under heat and stress; this composite doesn't. Lead with the dual breakthrough (absorbs radar + survives harsh conditions) and the defense implication. The reader who builds things will appreciate the engineering elegance of solving a decades-old materials trade-off.",
+      "conceptUris": []
+    },
+    {
+      "id": "google-gemma-4-apache-2-open-ai-models",
+      "label": "Google announces Gemma 4 open AI models, switches to Apache 2.0 license",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-google-gemma-4-apache-2-open-ai-models"
+      ],
+      "eventUri": "eng-11536397",
+      "summary": "Google released Gemma 4, its open-weight AI model family, and switched from a restrictive custom license to Apache 2.0 — the gold standard for open source. The angle: this is Google conceding that open-source AI needs to be actually open to compete. Lead with the license change (Apache 2.0 means anyone can use, modify, and commercialize) and the competitive pressure from Meta's Llama and Alibaba's Qwen. HN discussion (183 points, 30 comments) signals developer enthusiasm. The reader who builds with AI should see the strategic shift: Google is betting that ecosystem adoption matters more than control.",
+      "conceptUris": []
+    },
+    {
+      "id": "teleguard-encryption-meaningless-private-keys",
+      "label": "A Secure Chat App's Encryption Is So Bad It Is 'Meaningless'",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-teleguard-encryption-meaningless-private-keys"
+      ],
+      "eventUri": null,
+      "summary": "TeleGuard, a 'secure' messaging app with over a million downloads, uploads users' private keys to the company's server — making its end-to-end encryption completely meaningless. The angle: people in high-risk environments (journalists, activists, dissidents) may be trusting their safety to an app that is architecturally incapable of protecting them. Lead with the private key upload — any developer will immediately understand the severity. The reader who uses encrypted messaging daily should see the structural lesson: marketing 'security' is trivial, verifying it requires reading the code.",
+      "conceptUris": []
+    },
+    {
+      "id": "journalist-sues-faa-drone-no-fly-zone-ice",
+      "label": "Journalist Sues FAA Over Drone No Fly Zone Designed to Prevent Filming ICE",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-journalist-sues-faa-drone-no-fly-zone-ice"
+      ],
+      "eventUri": null,
+      "summary": "A Minnesota journalist is suing the FAA over a 3,000-foot no-fly zone around DHS/ICE assets, arguing it was designed specifically to prevent drone journalism of immigration enforcement. The angle: the government is using airspace regulation as a censorship tool — a First Amendment challenge to the surveillance state's attempt to operate without witnesses. Lead with the 3,000-foot restriction and its targeted purpose. The reader who follows both press freedom and surveillance tech should see the pattern: when the state doesn't want to be watched, it doesn't ban cameras — it bans the sky.",
+      "conceptUris": []
+    },
+    {
+      "id": "qwen-3-6-plus-alibaba-ai-agents",
+      "label": "Qwen3.6-Plus: Towards Real World Agents",
+      "firstSeen": "2026-04-02T17:10:08.994Z",
+      "lastCovered": "2026-04-02T17:10:08.994Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-02-qwen-3-6-plus-alibaba-ai-agents"
+      ],
+      "eventUri": null,
+      "summary": "Alibaba's Qwen team released Qwen 3.6-Plus, positioning it as an AI model specifically designed for real-world agent tasks — autonomous tool use, multi-step reasoning, and environment interaction. The angle: China's open-weight AI models are now competing directly with Google's Gemma 4 (released the same day) on the frontier of AI agents. Lead with the timing: two major open AI model releases on the same day, from the US and China. HN discussion (185 points, 66 comments) shows developer community taking Chinese models seriously. The reader building with AI should see the geopolitical dimension: the AI agent race is now a two-front competition.",
+      "conceptUris": []
+    },
+    {
       "id": "iran-missiles-israel-gulf-trump-winding-down",
       "label": "Iran fires missiles at Israel and Gulf neighbors as Trump talks of winding down Mideast war",
       "firstSeen": "2026-04-02T12:05:07.758Z",
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-iran-missiles-israel-gulf-trump-winding-down"
@@ -33,7 +259,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-iran-bilateral-hormuz-deals-india-bypass-coalition"
@@ -58,7 +284,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-pakistan-supreme-court-halts-terrorism-charges-journalist"
@@ -74,7 +300,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-italy-fines-revolut-misleading-fees"
@@ -99,7 +325,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-france-lise-first-onchain-ipo-europe"
@@ -115,7 +341,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-plastics-supply-chain-hormuz-petrochemical-crisis"
@@ -131,7 +357,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-cdc-stops-rabies-pox-virus-testing"
@@ -147,7 +373,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-rna-viral-vector-programmable-cell-targeting"
@@ -163,7 +389,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-snakebite-self-immunization-neglected-tropical-disease"
@@ -179,7 +405,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-ibm-arm-enterprise-computing-collaboration"
@@ -195,7 +421,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-email-obfuscation-what-works-2026"
@@ -211,7 +437,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-04-02-israel-death-penalty-law-palestinian-prisoners",
@@ -239,7 +465,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-indonesia-7-4-earthquake-tsunami-threat"
@@ -264,7 +490,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-ukraine-drones-ufa-oil-refinery-fire"
@@ -289,7 +515,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-trump-ukraine-weapons-hormuz-coalition-threat"
@@ -305,7 +531,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-india-petrochemical-import-tax-abolished-iran-war"
@@ -330,7 +556,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-south-korea-save-fuel-iran-crisis"
@@ -355,7 +581,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-gulf-states-oil-pipelines-bypass-hormuz"
@@ -371,7 +597,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-masdar-totalenergies-2-2bn-renewable-jv"
@@ -396,7 +622,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-bitcoin-hormuz-real-signals-trump-noise"
@@ -412,7 +638,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-russia-gasoline-export-ban-extended-producers"
@@ -428,7 +654,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-steam-linux-5-percent-milestone"
@@ -444,7 +670,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-subscription-bombing-signup-form-weapon"
@@ -460,7 +686,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-sa-minister-tolashe-missing-suvs-chinese-gifts"
@@ -480,7 +706,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-croatia-football-gambling-sponsor-fake-name"
@@ -500,7 +726,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-trump-100-percent-tariff-imported-drugs"
@@ -521,7 +747,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-spacex-ipo-filing-musk"
@@ -537,7 +763,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-australia-693m-fuel-loans-iran-war"
@@ -558,7 +784,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-egypt-egx-listings-fake-privatization"
@@ -574,7 +800,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-artemis-ii-crew-launches-moon"
@@ -597,7 +823,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-china-pollution-carbon-mitigation-health-cobenefits"
@@ -617,7 +843,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-mohmand-marble-industry-environmental-crisis"
@@ -637,7 +863,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-dram-pricing-killing-hobbyist-sbc-market"
@@ -653,7 +879,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-ai-warps-truth-middle-east-war-deepfakes"
@@ -674,7 +900,7 @@
       "lastCovered": "2026-04-01T22:09:00.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-iran-denies-ceasefire-request-framing-war"
@@ -695,7 +921,7 @@
       "lastCovered": "2026-04-01T22:09:00.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-ukraine-denies-russia-luhansk-capture-claim"
@@ -716,7 +942,7 @@
       "lastCovered": "2026-04-01T22:09:00.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-us-drops-venezuela-sanctions-rodriguez-oil"
@@ -737,7 +963,7 @@
       "lastCovered": "2026-04-01T22:09:00.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-nigeria-plateau-violence-curfew-fails"
@@ -753,7 +979,7 @@
       "lastCovered": "2026-04-01T22:09:00.380Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-al-shifa-babies-returned-gaza-two-years"
@@ -769,7 +995,7 @@
       "lastCovered": "2026-04-01T22:09:00.380Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-sa-post-office-liquidation-edge"
@@ -785,7 +1011,7 @@
       "lastCovered": "2026-04-01T22:09:00.380Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-tobacco-plant-engineered-psychedelics-biosynthesis"
@@ -801,7 +1027,7 @@
       "lastCovered": "2026-04-01T22:09:00.380Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-rho-kinase-inhibitor-schizophrenia-new-mechanism"
@@ -817,7 +1043,7 @@
       "lastCovered": "2026-04-01T22:09:00.380Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-01-solana-drift-defi-exploit-deposits-halted"
@@ -833,7 +1059,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-01-israeli-anti-war-protests-police-suppression"
@@ -853,7 +1079,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-01-us-iran-ceasefire-hormuz-talks"
@@ -874,7 +1100,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-01-egypt-military-trial-price-control-bluff"
@@ -895,7 +1121,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-01-stellantis-700k-hybrid-recall-fire-risk"
@@ -920,7 +1146,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-01-intel-14b-ireland-fab-buyback-apollo"
@@ -944,7 +1170,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-01-istanbul-rail-2b-world-bank-bosphorus"
@@ -967,7 +1193,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-01-black-hole-mergers-pair-instability-supernovae"
@@ -988,7 +1214,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-01-ipcc-ar7-timeline-deadlock-bangkok"
@@ -1008,7 +1234,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-01-baidu-robotaxi-outage-wuhan-stranded"
@@ -1029,7 +1255,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-01-ai-content-scanners-book-banning"
@@ -1049,7 +1275,7 @@
       "lastCovered": "2026-04-01T17:08:48.503Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-01-claude-freebsd-kernel-rce-cve-2026-4747"
@@ -1061,213 +1287,6 @@
         "http://en.wikipedia.org/wiki/Exploit_(computer_security)",
         "http://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures",
         "http://en.wikipedia.org/wiki/Artificial_intelligence"
-      ]
-    },
-    {
-      "id": "qatar-backs-banks-war-financial-stability",
-      "label": "Qatar backs lenders as regional war threatens stability",
-      "firstSeen": "2026-04-01T08:09:57.416Z",
-      "lastCovered": "2026-04-01T22:09:00.380Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-01-qatar-backs-banks-war-financial-stability",
-        "2026-04-01-qatar-backs-lenders-war-financial-stress"
-      ],
-      "eventUri": null,
-      "summary": "Qatar is injecting capital into its banking sector as the Iran war threatens Gulf financial stability — a sovereign backstop to prevent the war from triggering a banking crisis. Lead with the mechanism: a petrostate using its reserves to keep lenders solvent while its neighbors get bombed. The reader tracking Islamic finance should see: Qatar is betting it can ride out the war with money, but if Hormuz stays closed, even sovereign wealth funds have limits.",
-      "conceptUris": []
-    },
-    {
-      "id": "trump-nato-withdrawal-paper-tiger",
-      "label": "Trump indicates he'll try to pull U.S. out of NATO",
-      "firstSeen": "2026-04-01T12:08:31.389Z",
-      "lastCovered": "2026-04-01T12:08:31.389Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-trump-nato-withdrawal-paper-tiger"
-      ],
-      "eventUri": "eng-11531502",
-      "summary": "Trump told the Telegraph he could terminate US membership in NATO — the alliance Washington built 75 years ago. This isn't posturing: Rubio backed it hours later, calling NATO a 'paper tiger' over Iran. Lead with the timing: the US is threatening to leave NATO while fighting a war that its NATO allies refuse to join. Three sources from three countries (US, SG, IN) with divergent sentiment — The Hindu frames it as abandonment, Yahoo as leverage. The reader should see the structural shift: the US built the post-WWII order and is now dismantling it from within.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/NATO",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Marco_Rubio",
-        "http://en.wikipedia.org/wiki/The_Daily_Telegraph",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Europe"
-      ]
-    },
-    {
-      "id": "scotus-birthright-citizenship-14th-amendment",
-      "label": "Born American",
-      "firstSeen": "2026-04-01T12:08:31.389Z",
-      "lastCovered": "2026-04-01T12:08:31.389Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-scotus-birthright-citizenship-14th-amendment"
-      ],
-      "eventUri": "eng-11530716",
-      "summary": "The Supreme Court hears arguments today on Trump's executive order to end birthright citizenship — a direct challenge to the 14th Amendment's guarantee that anyone born on US soil is a citizen. Lead with the constitutional stakes: this is the first time SCOTUS has been asked to narrow jus soli since the amendment was ratified in 1868. Trump plans to attend in person. Three sources (NYT, The Hindu, Al Jazeera) — Al Jazeera frames it through the lens of immigration enforcement, The Hindu through the impact on diaspora families. The reader should see: if the court sides with Trump, millions of children born to non-citizen parents lose their legal identity.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
-        "http://en.wikipedia.org/wiki/Citizenship",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Fourteenth_Amendment_to_the_United_States_Constitution",
-        "http://en.wikipedia.org/wiki/Executive_order_(United_States)",
-        "http://en.wikipedia.org/wiki/White_House",
-        "http://en.wikipedia.org/wiki/Jus_soli"
-      ]
-    },
-    {
-      "id": "uk-35-country-hormuz-talks-without-us",
-      "label": "Britain to host 35 countries for strait of Hormuz talks, says Starmer",
-      "firstSeen": "2026-04-01T12:08:31.389Z",
-      "lastCovered": "2026-04-01T12:08:31.389Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-uk-35-country-hormuz-talks-without-us"
-      ],
-      "eventUri": "eng-11531944",
-      "summary": "The UK will convene 35 countries — excluding the US — to explore reopening the Strait of Hormuz. Lead with the exclusion: the country that started the war is not invited to the table where its consequences are being managed. Starmer is positioning Britain as diplomatic broker after Trump told allies to 'go get your own oil.' This is the post-American moment materializing in real time — a multilateral coalition forming around US absence. The reader tracking Hormuz should see: the diplomatic track is now running parallel to the military one (UAE UNSC push), and the US is absent from both.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Keir_Starmer",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom"
-      ]
-    },
-    {
-      "id": "scotus-conversion-therapy-ban-struck-down",
-      "label": "Supreme Court rules against conversion therapy ban",
-      "firstSeen": "2026-04-01T12:08:31.389Z",
-      "lastCovered": "2026-04-01T12:08:31.389Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-scotus-conversion-therapy-ban-struck-down"
-      ],
-      "eventUri": null,
-      "summary": "The Supreme Court struck down a conversion therapy ban — ruling that states cannot prohibit practitioners from offering discredited treatments that attempt to change sexual orientation or gender identity. Lead with the medical consensus: every major medical body considers conversion therapy harmful and ineffective, and the court just overruled them. This is the same court hearing birthright citizenship today — two rulings in one term that redefine who gets state protection and who doesn't. The reader should see the pattern: rights are being narrowed at the highest judicial level.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Conversion_therapy",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States"
-      ]
-    },
-    {
-      "id": "karachi-ride-hailing-fuel-costs-war",
-      "label": "Off the road: How rising fuel costs are pushing ride-hailing captains to the brink",
-      "firstSeen": "2026-04-01T12:08:31.389Z",
-      "lastCovered": "2026-04-01T12:08:31.389Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-karachi-ride-hailing-fuel-costs-war"
-      ],
-      "eventUri": null,
-      "summary": "Ride-hailing drivers in Karachi are abandoning their cars as fuel costs make the gig economy unworkable — the Iran war is reshaping how a city of 16 million moves. Lead with Amjad Ali Khan, 27, who left Umerkot for Karachi and built a life on ride-hailing, now watching it collapse. Previous cycles covered Pakistan's macro data (PMI, LPG prices, force majeure). This is the ground-level view: what a supply shock feels like when you're a gig worker filling your tank. The reader who uses ride-hailing apps should feel the connection between their screen and someone else's survival.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Karachi",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Ridesharing_company"
-      ]
-    },
-    {
-      "id": "brazil-b3-bitcoin-derivatives-tokenization",
-      "label": "Brazil's B3 stock exchange to launch bitcoin-linked 'event contracts'",
-      "firstSeen": "2026-04-01T12:08:31.389Z",
-      "lastCovered": "2026-04-01T12:08:31.389Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-brazil-b3-bitcoin-derivatives-tokenization"
-      ],
-      "eventUri": null,
-      "summary": "Brazil's main stock exchange B3 will offer bitcoin-linked derivatives from April 27 — and is building its own tokenization platform and stablecoin. Lead with the institutional convergence: a major Latin American exchange is merging traditional derivatives with crypto infrastructure, not as a sidecar product but as core business. Last cycle covered Australia's licensing framework; Brazil is the second G20 economy in a week to formalize crypto into its financial plumbing. The reader tracking crypto/macro should see: regulation is no longer the enemy, it's the on-ramp.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/B3_(stock_exchange)",
-        "http://en.wikipedia.org/wiki/Derivative_(finance)",
-        "http://en.wikipedia.org/wiki/Brazil"
-      ]
-    },
-    {
-      "id": "change6-lunar-copper-far-side-moon",
-      "label": "Impact-induced high-temperature formation of metallic copper and bornite in Chang'e-6 lunar soils - npj Space Exploration",
-      "firstSeen": "2026-04-01T12:08:31.389Z",
-      "lastCovered": "2026-04-01T12:08:31.389Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-change6-lunar-copper-far-side-moon"
-      ],
-      "eventUri": null,
-      "summary": "Analysis of Chang'e-6 lunar samples — the first ever returned from the Moon's far side — reveals metallic copper and bornite formed by ancient impacts in the South Pole-Aitken basin. Lead with the provenance: China landed where no one else has and brought back 1,935 grams of material that rewrites what we know about lunar mineral formation. The copper finding matters because impact-generated metals could be resources for future lunar operations. The reader should see: China's lunar program is producing science that NASA's sample return missions haven't matched in scope.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Chang'e_6",
-        "http://en.wikipedia.org/wiki/Moon",
-        "http://en.wikipedia.org/wiki/South_Pole%E2%80%93Aitken_basin"
-      ]
-    },
-    {
-      "id": "organic-phosphorescence-physical-encryption",
-      "label": "Reversible color switching of bright phosphorescence in purely organic materials for advanced data encryption - Nature Communications",
-      "firstSeen": "2026-04-01T12:08:31.389Z",
-      "lastCovered": "2026-04-01T12:08:31.389Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-organic-phosphorescence-physical-encryption"
-      ],
-      "eventUri": null,
-      "summary": "Researchers built a data encryption platform using purely organic materials that glow and switch colors reversibly — no rare metals, no electronics, just molecules that encode information in light. Lead with the mechanism: apply solvent, the material glows one color; apply heat, it switches. The encryption is physical, not computational — you can't brute-force a molecule. The reader who builds software should see the contrast: in a world of quantum computing threats to digital encryption, this is encryption that lives in chemistry, not math.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Phosphorescence",
-        "http://en.wikipedia.org/wiki/Encryption"
-      ]
-    },
-    {
-      "id": "gig-workers-training-humanoid-robots-global-south",
-      "label": "The gig workers who are training humanoid robots at home",
-      "firstSeen": "2026-04-01T12:08:31.389Z",
-      "lastCovered": "2026-04-01T12:08:31.389Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-gig-workers-training-humanoid-robots-global-south"
-      ],
-      "eventUri": null,
-      "summary": "Gig workers in Nigeria and the Philippines are wearing motion-capture suits at home to generate training data for Tesla, Figure AI, and Agility Robotics humanoid robots. Lead with the labor geography: the robots that will replace warehouse workers are being trained by gig workers in the Global South earning per-task rates. Micro1 in Palo Alto is the intermediary — a data broker for robot bodies. The reader who builds software should recognize the pattern from AI data labeling: the humans who train the machines are the first ones the machines replace.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Robotics",
-        "http://en.wikipedia.org/wiki/Tesla,_Inc.",
-        "http://en.wikipedia.org/wiki/Nigeria"
       ]
     }
   ]

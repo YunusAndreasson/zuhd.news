@@ -3194,5 +3194,117 @@
     "label": "Email Harvesting & Obfuscation",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-02-teleguard-encryption-meaningless-private-keys": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WHOLE POINT",
+        "body": "End-to-end encryption means only the sender and recipient hold decryption keys. The server carries ciphertext it cannot read. If the server can derive your private key, you do not have end-to-end encryption — you have a trust-me promise with extra steps."
+      },
+      {
+        "heading": "WHAT A PRIVATE KEY IS",
+        "body": "In asymmetric cryptography, your private key is a number only you possess. Your public key is derived from it mathematically. Anyone can encrypt a message with your public key; only your private key can decrypt it. The entire security model collapses if anyone else holds that number."
+      },
+      {
+        "heading": "SALT AND NONCE",
+        "body": "A salt is random data mixed into key derivation so identical passwords produce different keys. A nonce (number used once) ensures the same plaintext encrypts differently each time. Hardcoding either one is a textbook failure — it means every user's key derivation follows the same path, making bulk decryption trivial."
+      },
+      {
+        "heading": "WHY THIS KEEPS HAPPENING",
+        "body": "Building a messenger is easy. Building the cryptography correctly is extraordinarily hard. Signal's protocol took years of peer review. Apps that roll their own crypto or misuse primitives routinely ship encryption that looks real in a feature list but provides zero actual protection."
+      },
+      {
+        "heading": "THE AUDIT TEST",
+        "body": "The single most important question about any encrypted messenger: has the cryptographic implementation been independently audited, and is the report public? If the answer is no, the encryption claim is unverified marketing."
+      }
+    ],
+    "generatedAt": "2026-04-02T17:22:58.131Z",
+    "label": "End-to-End Encryption",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-02-austria-rejects-us-airspace-iran-neutrality": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "NOT JUST A PREFERENCE",
+        "body": "Austrian neutrality is constitutional law, not foreign policy. The 1955 Federal Constitutional Law on Neutrality prohibits joining military alliances and forbids foreign military bases on Austrian soil. Violating it requires a two-thirds parliamentary supermajority — the same threshold as amending the constitution itself."
+      },
+      {
+        "heading": "THE DEAL",
+        "body": "Austria's neutrality was the price of sovereignty. The Soviet Union agreed to withdraw occupation forces in 1955 only after Austria committed to permanent neutrality modeled on Switzerland. Without this guarantee, Austria would have been partitioned like Germany."
+      },
+      {
+        "heading": "WHAT PERMANENT MEANS",
+        "body": "Five countries hold permanent neutral status recognized in international law: Switzerland, Austria, Ireland, Finland, and Turkmenistan. Unlike situational neutrality (choosing not to fight in a specific war), permanent neutrality is a standing legal obligation that applies to all conflicts."
+      },
+      {
+        "heading": "THE AIRSPACE QUESTION",
+        "body": "Overflight rights are not a technicality. Granting military overflight to a belligerent is an act of non-neutrality under the 1907 Hague Convention. Neutral states must deny transit to all belligerents equally — permitting one side's flights while blocking the other's would void the neutral status entirely."
+      }
+    ],
+    "generatedAt": "2026-04-02T17:22:58.133Z",
+    "label": "Permanent Neutrality",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-02-diamond-graphene-electromagnetic-wave-absorption": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW RADAR SEES",
+        "body": "Radar fires electromagnetic pulses and listens for reflections. A metal aircraft reflects strongly because free electrons in the metal oscillate with the incoming wave and re-radiate it. Stealth means either deflecting that reflection away from the receiver or converting it to heat before it bounces back."
+      },
+      {
+        "heading": "THE CLASSIC TRADE-OFF",
+        "body": "Conventional radar-absorbing materials use carbon or iron particles suspended in polymer matrices. They absorb well in a narrow frequency band, but degrade above 300°C. Leading edges of supersonic aircraft exceed that easily — so the surfaces that need absorption most are the ones where coatings fail first."
+      },
+      {
+        "heading": "WHY GRAPHENE",
+        "body": "Graphene is a single atom thick sheet of carbon with extraordinary electrical conductivity. When electromagnetic waves hit it, the free electrons dissipate the wave energy as heat across the lattice. The absorption bandwidth can be tuned by stacking layers or adjusting defects — something bulk materials cannot do."
+      },
+      {
+        "heading": "WHAT DECIBELS MEAN HERE",
+        "body": "Radar absorption is measured in negative decibels: −10 dB means 90% absorbed, −20 dB means 99%, −60 dB means 99.9999%. Each −10 dB reduces the reflected signal by a factor of ten. At −60 dB, an aircraft's radar signature shrinks to roughly that of an insect."
+      },
+      {
+        "heading": "THE DIAMOND ROLE",
+        "body": "Diamond has the highest thermal conductivity of any natural material — five times copper. In a composite, it acts as a heat sink: graphene converts radar energy to heat, diamond conducts that heat away before it damages the coating. The combination solves the thermal-vs-absorption trade-off that has limited stealth coatings for decades."
+      }
+    ],
+    "generatedAt": "2026-04-02T17:22:58.133Z",
+    "label": "Radar Absorption",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-02-drift-exploit-north-korea-elliptic-attribution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRANSPARENCY PARADOX",
+        "body": "Every blockchain transaction is public and permanent. Pseudonymous addresses provide privacy, but the transaction graph — who sent what to whom — is visible to everyone. This makes cryptocurrency simultaneously the easiest financial system to use anonymously and the easiest to trace forensically."
+      },
+      {
+        "heading": "HOW ATTRIBUTION WORKS",
+        "body": "Firms like Elliptic and Chainalysis maintain labeled databases of wallet addresses: known exchanges, mixers, sanctioned entities. When stolen funds move, analysts trace the chain of transfers and match patterns — timing, amounts, splitting behavior — against known laundering signatures."
+      },
+      {
+        "heading": "CROSS-CHAIN LAUNDERING",
+        "body": "Stolen tokens are swapped across blockchains using bridges or decentralized exchanges to break the trail. Each hop adds noise, but also leaves a new set of on-chain footprints. The cat-and-mouse game is whether the attacker can reach a no-KYC off-ramp before analysts flag the funds."
+      },
+      {
+        "heading": "LAZARUS GROUP'S PATTERN",
+        "body": "North Korea's Lazarus Group has a distinctive fingerprint: they target DeFi protocols with smart contract exploits, move funds through specific mixing services, and convert to stablecoins in characteristic batch sizes. This behavioral signature is now so well-documented that attribution often happens within hours of a theft."
+      },
+      {
+        "heading": "WHY NORTH KOREA",
+        "body": "UN sanctions cut North Korea off from the global financial system. The regime generates hard currency through counterfeiting, arms sales, and — since 2017 — cryptocurrency theft. The UN Panel of Experts estimated DPRK cyber operations funded roughly 40% of the weapons program as of 2023."
+      }
+    ],
+    "generatedAt": "2026-04-02T17:22:58.133Z",
+    "label": "Blockchain Forensics",
+    "category": "economy",
+    "articleCount": 1
   }
 }
