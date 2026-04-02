@@ -2978,5 +2978,105 @@
     "label": "Pharmaceutical Supply Chains",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-02-gulf-states-oil-pipelines-bypass-hormuz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The Strait of Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two one-way channels separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption."
+      },
+      {
+        "heading": "WHY PIPELINES DON'T ALREADY EXIST",
+        "body": "They partly do. The UAE's Habshan-Fujairah pipeline (2012) can move 1.5 million barrels/day to a port on the Gulf of Oman, bypassing the strait entirely. Saudi Arabia's East-West pipeline to the Red Sea handles another 5 million. But combined, these cover less than a third of the strait's throughput."
+      },
+      {
+        "heading": "THE TANKER ECONOMICS",
+        "body": "Pipelines cost $1-3 per barrel to operate. Tankers through Hormuz cost around $0.50. In peacetime, the strait is simply cheaper — which is why bypass capacity stays underbuilt despite decades of threat."
+      },
+      {
+        "heading": "THE INSURANCE SIGNAL",
+        "body": "War risk premiums on tanker insurance are the market's real-time fear gauge for Hormuz. When premiums spike from 0.05% to 1-2% of cargo value, it adds $1-3 per barrel overnight — enough to flip the pipeline economics completely."
+      }
+    ],
+    "generatedAt": "2026-04-02T08:21:46.593Z",
+    "label": "The Hormuz Chokepoint",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-02-indonesia-7-4-earthquake-tsunami-threat": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ANOMALY",
+        "body": "The Molucca Sea is the only place on Earth where two tectonic plates subduct toward each other simultaneously. The Philippine Sea Plate dives west while the Eurasian Plate dives east, with the Molucca Sea Plate being consumed from both sides. It is the last remnant of a vanishing ocean plate."
+      },
+      {
+        "heading": "MAGNITUDE VS ENERGY",
+        "body": "The Richter scale is logarithmic in amplitude but exponential in energy. A 7.4 quake releases roughly 11 times more energy than a 6.4, and 1,000 times more than a 5.4. This is why the jump from 'felt it' to 'catastrophic' happens across just two magnitude points."
+      },
+      {
+        "heading": "HOW TSUNAMIS FORM",
+        "body": "Only vertical seafloor displacement generates tsunamis. A strike-slip quake (plates sliding past each other) of the same magnitude typically does not. The fault geometry matters more than the number on the scale."
+      },
+      {
+        "heading": "THE SPEED PROBLEM",
+        "body": "A tsunami crosses open ocean at 700-800 km/h — jet aircraft speed — but stands only 30-60 cm tall, invisible to ships. It slows to 30-50 km/h in shallow coastal water, where the energy compresses vertically into destructive wave heights. Coastal cities near the epicenter may have under 15 minutes."
+      }
+    ],
+    "generatedAt": "2026-04-02T08:21:46.596Z",
+    "label": "Molucca Sea Tectonics",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-02-subscription-bombing-signup-form-weapon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "Most signup forms send a confirmation email automatically — no authentication required. An attacker scripts thousands of signups using a target's email address. The target's inbox fills with legitimate confirmation emails from legitimate services, each one individually harmless."
+      },
+      {
+        "heading": "WHY IT WORKS",
+        "body": "The emails are not spam in the traditional sense. They come from real companies, pass SPF/DKIM/DMARC authentication, and contain genuine opt-in requests. Spam filters are designed to catch forgery and bulk sends from single senders — not a distributed flood of authentic one-off messages."
+      },
+      {
+        "heading": "THE REAL DANGER",
+        "body": "Volume is the distraction, not the goal. Attackers use subscription bombing to bury a genuine security alert — a password reset, a bank login notification, a two-factor code — under hundreds of irrelevant emails. The target never sees the one message that matters."
+      },
+      {
+        "heading": "THE DEFENSE GAP",
+        "body": "Rate limiting helps but is per-service. No single service knows that 400 other services also just emailed this address. There is no cross-platform protocol for detecting coordinated signup abuse — each form operator sees exactly one request."
+      }
+    ],
+    "generatedAt": "2026-04-02T08:21:46.596Z",
+    "label": "Subscription Bombing",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-02-steam-linux-5-percent-milestone": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLD BARRIER",
+        "body": "Games are written against Win32 and DirectX — Microsoft's proprietary OS and graphics APIs. Running them on Linux required either a native port (expensive, rare) or Wine, which reimplements Win32 call-by-call. For years, Wine's DirectX translation was too slow and too incomplete for modern games."
+      },
+      {
+        "heading": "WHAT PROTON ACTUALLY DOES",
+        "body": "Valve's Proton wraps Wine with DXVK, which translates DirectX 9/10/11 calls to Vulkan in real time. Vulkan runs natively on Linux. The trick is that GPU-side work is already platform-agnostic — the translation overhead is almost entirely on the CPU setup calls, which are a small fraction of frame time."
+      },
+      {
+        "heading": "THE STEAM DECK EFFECT",
+        "body": "Valve shipped the Steam Deck (2022) running Arch Linux, not Windows. Every compatibility bug reported by millions of Deck owners feeds directly into Proton fixes. Hardware created the install base that justified the software investment — a bootstrapping problem solved by selling the hardware at near cost."
+      },
+      {
+        "heading": "THE 5% NUMBER IN CONTEXT",
+        "body": "Desktop Linux hovered at 1-2% for two decades — a figure so stable it became a running joke. The jump to 5% on Steam is driven almost entirely by one product (Steam Deck) and one compatibility layer (Proton). It is a case study in how a single committed vendor can move a number that an entire open-source ecosystem could not."
+      }
+    ],
+    "generatedAt": "2026-04-02T08:21:46.596Z",
+    "label": "Linux Gaming's Translation Layer",
+    "category": "tech",
+    "articleCount": 1
   }
 }
