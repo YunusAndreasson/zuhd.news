@@ -22,7 +22,13 @@ import {
   type Typography,
 } from '../constants/theme';
 import { setHapticsEnabled } from '../lib/haptics';
-import { disableNotifications, enableNotifications, ensureScheduled } from '../lib/notifications';
+import {
+  disableNotifications,
+  enableNotifications,
+  ensureScheduled,
+  registerPushToken,
+  unregisterPushToken,
+} from '../lib/notifications';
 import { getPreferences, savePreferences } from '../lib/storage';
 
 // ---------------------------------------------------------------------------
@@ -75,7 +81,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const initialPrefs = use(prefsPromise);
   const [prefs, setPrefs] = useState<Preferences>(() => {
     setHapticsEnabled(initialPrefs.haptics);
-    if (initialPrefs.notifications) ensureScheduled();
+    if (initialPrefs.notifications) {
+      ensureScheduled();
+      registerPushToken();
+    }
     return initialPrefs;
   });
   const systemScheme = useColorScheme();
@@ -109,8 +118,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       if (v) {
         const granted = await enableNotifications();
         if (!granted) return;
+        registerPushToken();
       } else {
         await disableNotifications();
+        unregisterPushToken();
       }
       persist({ ...prefs, notifications: v });
     },

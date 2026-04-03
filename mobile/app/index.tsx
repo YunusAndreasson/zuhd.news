@@ -30,6 +30,7 @@ import { useHeatmap } from '../hooks/useHeatmap';
 import { useTheme } from '../hooks/useTheme';
 import { toggle as toggleBookmark } from '../lib/bookmark-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
+import { get as getPendingSlug, clear as clearPendingSlug } from '../lib/pending-notification';
 import type { Article, ArticleSource, Category } from '../types';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
@@ -249,6 +250,26 @@ export default function HomeScreen() {
   useEffect(() => {
     if (!loading) SplashScreen.hideAsync();
   }, [loading]);
+
+  // Navigate to article from push notification tap
+  useEffect(() => {
+    if (loading) return;
+    const slug = getPendingSlug();
+    if (!slug) return;
+    clearPendingSlug();
+    // Find which category has this article
+    for (const cat of CATEGORIES) {
+      const found = grouped[cat]?.some((a) => a.slug === slug);
+      if (found) {
+        setTimeout(() => {
+          const catIndex = CATEGORIES.indexOf(cat);
+          pagerRef.current?.setPage(catIndex);
+          setTimeout(() => listRefs[catIndex]?.current?.scrollToSlug?.(slug), 150);
+        }, 100);
+        break;
+      }
+    }
+  }, [loading, grouped]);
 
   if (loading) return null;
 

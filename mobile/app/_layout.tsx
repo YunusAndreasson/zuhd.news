@@ -11,6 +11,7 @@ import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-rean
 import { DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
+import { set as setPendingSlug } from '../lib/pending-notification';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
 
@@ -48,7 +49,10 @@ export default function RootLayout() {
 
   useEffect(() => {
     registerBackgroundTask();
-    const sub = Notifications.addNotificationResponseReceivedListener(() => {});
+    const sub = Notifications.addNotificationResponseReceivedListener((response) => {
+      const slug = response.notification.request.content.data?.slug;
+      if (typeof slug === 'string') setPendingSlug(slug);
+    });
     return () => sub.remove();
   }, []);
 

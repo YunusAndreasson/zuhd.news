@@ -1,5 +1,7 @@
 import * as Notifications from 'expo-notifications';
+import { getItemAsync, setItemAsync, deleteItemAsync } from 'expo-secure-store';
 import { Platform } from 'react-native';
+import { API_BASE } from '../constants/theme';
 
 const IDENTIFIER = 'zuhd-daily-briefing';
 const CHANNEL_ID = 'briefing';
@@ -26,6 +28,11 @@ async function setupChannel() {
     name: 'Daily Briefing',
     importance: Notifications.AndroidImportance.DEFAULT,
     description: 'Morning briefing reminder',
+  });
+  await Notifications.setNotificationChannelAsync('breaking', {
+    name: 'Breaking News',
+    importance: Notifications.AndroidImportance.HIGH,
+    description: 'Breaking news alerts',
   });
 }
 
@@ -87,5 +94,39 @@ export async function ensureScheduled(): Promise<void> {
     if (scheduled.some((n) => n.identifier === IDENTIFIER)) return;
     await setupChannel();
     await scheduleDailyBriefing();
+  } catch {}
+}
+
+// ---------------------------------------------------------------------------
+// Push token registration (for breaking news)
+// ---------------------------------------------------------------------------
+
+const TOKEN_KEY = 'zuhd_pushToken';
+const PROJECT_ID = '14c4589a-a039-41ad-b3f6-23cff746c7a8';
+
+/** Register Expo push token with the backend. Idempotent. */
+export async function registerPushToken(): Promise<void> {
+  try {
+    const { data: token } = await Notifications.getExpoPushTokenAsync({ projectId: PROJECT_ID });
+    await fetch(`${API_BASE}/api/tokens`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token }),
+    });
+    await setItemAsync(TOKEN_KEY, token);
+  } catch {}
+}
+
+/** Unregister push token from the backend. */
+export async function unregisterPushToken(): Promise<void> {
+  try {
+    const token = await getItemAsync(TOKEN_KEY);
+    if (!token) return;
+    await fetch(`${API_BASE}/api/tokens`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token }),
+    });
+    await deleteItemAsync(TOKEN_KEY);
   } catch {}
 }
