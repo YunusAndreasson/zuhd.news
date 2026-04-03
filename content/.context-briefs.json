@@ -3310,46 +3310,46 @@
   "australia-693m-fuel-loans-iran-war": {
     "timeline": [
       {
-        "body": "The Strait of Hormuz narrows to 24 miles between Iran and Oman — roughly one-fifth of the world's daily oil supply passes through it, and the Asian refineries that supply most of Australia's fuel depend on crude shipped through this single chokepoint."
+        "body": "The Strait of Hormuz narrows to 24 miles between Iran and Oman — roughly one-fifth of the world's daily oil supply passes through it, and nearly all of Australia's Middle Eastern crude imports travel this route before crossing the Indian Ocean."
+      },
+      {
+        "year": "1953",
+        "body": "The CIA and MI6 overthrew Iran's elected PM Mossadegh after he nationalized the oil industry, installing a dependence on Western-aligned Gulf oil flows that countries like Australia would build their entire energy infrastructure around."
       },
       {
         "year": "1965",
-        "body": "Geologists struck oil in Australia's Bass Strait, launching three decades of near self-sufficiency in crude that led policymakers to treat fuel security as someone else's problem."
+        "body": "BHP and Esso struck oil in the Bass Strait off Victoria's coast, giving Australia enough domestic crude to make it functionally self-sufficient in petroleum for the next three decades."
       },
       {
-        "year": "1974",
-        "body": "Australia co-founded the International Energy Agency after the OPEC shock, pledging to hold 90 days of net oil imports in strategic reserve — a commitment it has not met in over a decade."
+        "year": "1973",
+        "body": "The first oil crisis quadrupled global prices overnight, but Australia barely flinched — Bass Strait was pumping at full capacity, and the comfort of domestic supply killed any serious conversation about long-term fuel security planning."
       },
       {
-        "year": "1984–1988",
-        "body": "Iran and Iraq attacked over 400 oil tankers in the Persian Gulf during the Tanker War, establishing that Iran would weaponize commercial shipping lanes when it felt strategically cornered."
+        "year": "1979",
+        "body": "The Iranian Revolution toppled the Shah and triggered a second global oil shock, doubling prices — but again Australia's domestic production cushioned the blow, reinforcing the dangerous assumption that the country was insulated from Middle Eastern turmoil."
       },
       {
         "year": "2000",
-        "body": "Bass Strait oil production fell below half its 1985 peak, tipping Australia into permanent net dependence on imported crude and refined fuel."
+        "body": "Bass Strait production entered irreversible decline and Australia quietly became a net oil importer for the first time, shifting from energy independence to importing over 60% of its fuel with almost no public debate."
       },
       {
-        "year": "2003–2015",
-        "body": "Four of Australia's eight oil refineries shut down as operators decided importing refined fuel from Singapore and South Korea was cheaper than processing crude domestically."
-      },
-      {
-        "year": "2018",
-        "body": "Trump withdrew from the Iran nuclear deal and reimposed sanctions, collapsing the diplomatic framework that had kept Tehran's threats to close Hormuz largely rhetorical."
+        "year": "2012–2021",
+        "body": "Six of Australia's eight oil refineries closed as operators judged it cheaper to import refined fuel from Asian mega-refineries, leaving a continent of 26 million people with just two domestic refineries — Lytton in Brisbane and Geelong in Victoria."
       },
       {
         "year": "2021",
-        "body": "BP Kwinana and ExxonMobil Altona closed in the same year, leaving Australia with just two operating refineries; the Morrison government offered emergency subsidies to prevent those last two from following."
+        "body": "The Morrison government introduced emergency subsidies to prevent the last two refineries from shutting down, after modelling showed Australia held barely 50 days of fuel reserves — well below the 90-day minimum it had committed to as an IEA member and had never once met."
       },
       {
-        "year": "2023",
-        "body": "Government data showed Australia holding roughly 50 days of fuel reserves — barely half the IEA's 90-day obligation — with diesel stocks so thin that a single disrupted shipping route could trigger shortages within weeks."
+        "year": "2024",
+        "body": "Iran and Israel struck each other's territory directly for the first time, and Australian defence analysts warned that any disruption to Hormuz would expose the country's fuel supply chain within weeks — a warning the government acknowledged but did not act on."
       },
       {
-        "year": "2025",
-        "body": "Over 80 percent of Australia's refined fuel was imported, most of it from refineries in Singapore, South Korea, and Japan that themselves depend on Middle Eastern crude shipped through the Strait of Hormuz."
+        "year": "2026",
+        "body": "Iran's closure of the Strait of Hormuz sent global oil prices surging nearly 30%, and within days Australia — a wealthy G20 nation that imports over 80% of its fuel — saw panic buying empty petrol stations in Sydney and Melbourne."
       }
     ],
-    "generatedAt": "2026-04-02T22:34:54.594Z",
+    "generatedAt": "2026-04-03T08:28:52.787Z",
     "label": "Australia to offer businesses $693 million in cheap loans to ease fuel cost pressure",
     "category": "economy",
     "articleCount": 3
@@ -3463,6 +3463,106 @@
     ],
     "generatedAt": "2026-04-02T22:35:53.818Z",
     "label": "Civilian Control of the Military",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-03-iran-aws-data-centers-cloud-warfare-first-strike": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONCENTRATION",
+        "body": "Three companies — AWS, Azure, Google Cloud — run roughly 65% of global cloud computing. A single availability zone in Bahrain or UAE may host banking, healthcare, logistics, and government services for an entire country. Physical redundancy exists across zones; geographic redundancy across regions is rarer and more expensive."
+      },
+      {
+        "heading": "WHAT A DATA CENTER ACTUALLY IS",
+        "body": "A warehouse of servers drawing 20-100+ megawatts of power, cooled by industrial chillers consuming millions of gallons of water. The building is easy to find — thermal signatures, fiber-optic trunk lines, and power substations all point to it. The myth of the cloud is that it is nowhere; the reality is that it is a very specific building with a very specific address."
+      },
+      {
+        "heading": "WHY THIS IS NEW",
+        "body": "Traditional military doctrine distinguishes military from civilian infrastructure. Cloud data centers blur this completely — the same rack may serve a bank, a hospital, a defense contractor, and a streaming service. Attacking one target hits all of them simultaneously. No existing law of armed conflict cleanly addresses this."
+      },
+      {
+        "heading": "THE RECOVERY PROBLEM",
+        "body": "Destroying a data center does not destroy the data — that exists in replicated backups. But it destroys the compute layer: the running applications, active sessions, real-time transaction processing. Failover to another region takes hours to days and assumes the customer paid for multi-region architecture. Most did not."
+      }
+    ],
+    "generatedAt": "2026-04-03T08:29:50.283Z",
+    "label": "Cloud Infrastructure as Military Target",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-03-myanmar-junta-chief-min-aung-hlaing-elected-president": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSTITUTION TRICK",
+        "body": "Myanmar's 2008 constitution reserves 25% of all parliamentary seats for active military officers appointed by the commander-in-chief. Constitutional amendments require more than 75% approval. The math is simple: the military has a permanent veto over any change to the system that gives it a permanent veto."
+      },
+      {
+        "heading": "THE TATMADAW",
+        "body": "Myanmar's military has run the country for 51 of the 78 years since independence from Britain in 1948. It controls its own budget, appoints its own successor leadership, and operates a vast network of businesses — from banks to beer to gemstones — that make it financially independent of any civilian government."
+      },
+      {
+        "heading": "THE 2021 COUP",
+        "body": "The military allowed elections in 2015 and 2020. Aung San Suu Kyi's NLD won landslides both times. After the 2020 result, the military claimed fraud, detained the civilian leadership, and seized power on February 1, 2021 — the morning the new parliament was set to convene."
+      },
+      {
+        "heading": "WHY 'ELECTION' MEANS SOMETHING DIFFERENT HERE",
+        "body": "The junta's proxy party, USDP, won almost every seat in the 2025 election. Turnout figures are unverifiable. The NLD was dissolved by court order in 2023. International observers were not admitted. The word 'elected' in this context describes a procedural formality, not a contested choice."
+      }
+    ],
+    "generatedAt": "2026-04-03T08:29:50.284Z",
+    "label": "Myanmar's Military State",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-03-kuwait-mina-al-ahmadi-refinery-iranian-drone-strike": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "REFINERY VS. WELLHEAD",
+        "body": "Crude oil in the ground is useless. A refinery converts it into gasoline, diesel, jet fuel, and petrochemical feedstocks through distillation and cracking at 400-500°C. Destroying a wellhead stops extraction; destroying a refinery stops the entire value chain downstream even if every well keeps pumping."
+      },
+      {
+        "heading": "THE RESTART PROBLEM",
+        "body": "A modern refinery runs continuously — shutting one down and restarting it takes 2-6 weeks and costs tens of millions of dollars. Catalysts must be regenerated, pressure vessels re-tested, furnaces slowly brought to temperature. An unplanned shutdown from a strike is worse: damaged equipment must be assessed before restart even begins."
+      },
+      {
+        "heading": "MINA AL-AHMADI",
+        "body": "Built in 1949, it is Kuwait's largest refinery at 466,000 barrels per day — roughly one-third of the country's total refining capacity. It sits on the coast 40 km south of Kuwait City, originally positioned for tanker access. That coastal exposure is now a vulnerability."
+      },
+      {
+        "heading": "THE HORMUZ FACTOR",
+        "body": "About 20% of the world's traded oil passes through the Strait of Hormuz, a channel 33 km wide at its narrowest. When refinery attacks combine with shipping-lane threats, markets price in not just lost supply but the risk of lost supply — which is why crude prices overshoot the actual disruption."
+      }
+    ],
+    "generatedAt": "2026-04-03T08:29:50.284Z",
+    "label": "Oil Refinery Economics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-03-cuba-pardons-2010-prisoners-us-pressure-holy-week": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATTERN",
+        "body": "Cuba has released prisoners as diplomatic currency at least five times since 1978. Each release coincided with a specific negotiation: Carter-era family reunification, the 1984 immigration accord, the 1998 papal visit, the 2010 church-mediated release, and the 2014 Obama normalization. The gesture is never unprompted."
+      },
+      {
+        "heading": "THE VATICAN CHANNEL",
+        "body": "The Catholic Church has mediated Cuban prisoner releases since John Paul II's 1998 visit secured the release of 300 detainees. Cuba is officially secular since 1992 but 60% of the population is baptized Catholic. The Vatican offers something no government can: a framing of mercy that lets both sides claim the high ground."
+      },
+      {
+        "heading": "HOLY WEEK TIMING",
+        "body": "Releasing prisoners during Holy Week invokes the ancient Christian tradition of paschal clemency — Roman governors freed prisoners at Passover (the Gospel accounts of Barabbas reflect this custom). Cuba has used religious timing before: the 2010 releases were negotiated through Havana's Archbishop."
+      },
+      {
+        "heading": "SOVEREIGN ACT VS. CONCESSION",
+        "body": "The language matters. Cuba frames every release as a sovereign humanitarian gesture, never as a condition met. The US frames every release as a precondition satisfied. Both narratives must survive domestically for the diplomacy to work — which is why the two governments can announce the same event and describe it in contradictory terms."
+      }
+    ],
+    "generatedAt": "2026-04-03T08:29:50.284Z",
+    "label": "Prisoner Releases as Diplomacy",
     "category": "politics",
     "articleCount": 1
   }

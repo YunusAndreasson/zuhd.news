@@ -2,13 +2,244 @@
   "version": 1,
   "stories": [
     {
+      "id": "myanmar-junta-chief-min-aung-hlaing-elected-president",
+      "label": "Myanmar junta chief elected as president",
+      "firstSeen": "2026-04-03T08:11:58.029Z",
+      "lastCovered": "2026-04-03T08:11:58.029Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-myanmar-junta-chief-min-aung-hlaing-elected-president"
+      ],
+      "eventUri": "eng-11537704",
+      "summary": "Min Aung Hlaing — the general who seized power in a 2021 coup, crushed protests that killed thousands, and is accused of war crimes — just had a parliament he controls 'elect' him president with 429 of 584 votes. The Irrawaddy calls him 'accused war criminal'; Bloomberg calls it an 'election.' Sentiment divergence is 0.71 — the widest in this feed — because the framing gap between Myanmar's critical press and international wire services is the story itself. Lead with the vote count and the word 'elected' in quotes. Aung San Suu Kyi remains detained. 55 million people now live under a coup leader with a constitutional title. The reader should see how military juntas launder power through institutional capture.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Min_Aung_Hlaing",
+        "http://en.wikipedia.org/wiki/Myanmar",
+        "http://en.wikipedia.org/wiki/Military_dictatorship",
+        "http://en.wikipedia.org/wiki/Parliament",
+        "http://en.wikipedia.org/wiki/Aung_San_Suu_Kyi",
+        "http://en.wikipedia.org/wiki/Military",
+        "http://en.wikipedia.org/wiki/Commander-in-chief",
+        "http://en.wikipedia.org/wiki/Coup_d'état"
+      ]
+    },
+    {
+      "id": "cuba-pardons-2010-prisoners-us-pressure-holy-week",
+      "label": "Cuba pardons 2,010 prisoners amid US pressure",
+      "firstSeen": "2026-04-03T08:11:58.029Z",
+      "lastCovered": "2026-04-03T08:11:58.029Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-cuba-pardons-2010-prisoners-us-pressure-holy-week"
+      ],
+      "eventUri": "spa-4157187",
+      "summary": "Cuba is releasing 2,010 prisoners — the second mass amnesty this year — framed as a 'Holy Week humanitarian gesture' but timed precisely with ongoing US-Cuba negotiations. The sovereignty framing is the key: Granma calls it a 'sovereign act,' not a concession. SCMP and ThePrint diverge from US outlets on whether this is compliance or defiance (sentimentDivergence 0.38). Lead with the 2,010 number and the Vatican angle — Pope Francis reportedly urged the releases. The reader should see the pattern: small states under US pressure perform concessions they can frame as autonomy. The 'who blinks first' dynamic between Havana and Washington is the structural story.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Cuba",
+        "http://en.wikipedia.org/wiki/Pardon",
+        "http://en.wikipedia.org/wiki/Holy_Week",
+        "http://en.wikipedia.org/wiki/Havana",
+        "http://en.wikipedia.org/wiki/Vatican_City",
+        "http://en.wikipedia.org/wiki/Sovereignty",
+        "http://en.wikipedia.org/wiki/Delict",
+        "http://en.wikipedia.org/wiki/Donald_Trump"
+      ]
+    },
+    {
+      "id": "trump-threatens-iran-civilian-infrastructure-targets",
+      "label": "Donald Trump announces next two Iran targets",
+      "firstSeen": "2026-04-03T08:11:58.029Z",
+      "lastCovered": "2026-04-03T08:11:58.029Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-trump-threatens-iran-civilian-infrastructure-targets"
+      ],
+      "eventUri": "eng-11537765",
+      "summary": "Five weeks into the war, Trump posted on Truth Social that the US 'hasn't even started destroying what's left in Iran' and named two specific targets — both civilian infrastructure near Karaj and Tehran. This crosses a threshold: explicitly telegraphing strikes on civilian targets on social media. Middle East Eye frames this as escalation; Newsweek's sentiment is positive (0.16). The sentimentDivergence (0.41) reveals how normalized wartime rhetoric has become in some US outlets. Lead with the Truth Social post and the civilian nature of the targets. The reader tracking the Iran war should see this as a shift from military to punitive infrastructure destruction — the Iraq playbook.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
+        "http://en.wikipedia.org/wiki/Truth_Social",
+        "http://en.wikipedia.org/wiki/Karaj",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Strike_action"
+      ]
+    },
+    {
+      "id": "south-africa-g7-disinvitation-france-brics",
+      "label": "What South Africa's G7 disinvitation could mean",
+      "firstSeen": "2026-04-03T08:11:58.029Z",
+      "lastCovered": "2026-04-03T08:11:58.029Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-south-africa-g7-disinvitation-france-brics"
+      ],
+      "eventUri": null,
+      "summary": "France withdrew South Africa's G7 invitation — one that Macron personally extended during last year's G20. The timing matters: this follows South Africa's genocide case against Israel at the ICJ and its BRICS chairmanship. Lead with the personal invitation/disinvitation contrast — Macron invited Ramaphosa face-to-face, then his government reversed it. The reader should see this as the G7 disciplining a Global South nation for challenging the Western order. Premium Times (Nigeria) frames this as African agency being punished; the Western framing will be 'diplomatic recalibration.' The ICJ case and BRICS alignment are the unspoken reasons.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/G20",
+        "http://en.wikipedia.org/wiki/Cyril_Ramaphosa",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/South_Africa"
+      ]
+    },
+    {
+      "id": "el-rufai-corruption-bail-hearing-kaduna-nigeria",
+      "label": "El-Rufai arrives court for bail hearing",
+      "firstSeen": "2026-04-03T08:11:58.029Z",
+      "lastCovered": "2026-04-03T08:11:58.029Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-el-rufai-corruption-bail-hearing-kaduna-nigeria"
+      ],
+      "eventUri": "eng-11529401",
+      "summary": "Former Kaduna governor Nasir El-Rufai — once one of Nigeria's most powerful politicians — is in court facing corruption charges from the Independent Corrupt Practices Commission. Three Nigerian sources cover it (Punch, Sahara Reporters, Vanguard) with contrasting tones: Punch is neutral-procedural, Sahara Reporters frames it as overdue accountability. Lead with the power reversal: a governor who wielded enormous authority over Kaduna State now arriving in court under the public gaze. The reader tracking accountability in Africa should see this as a test of whether Nigeria's anti-corruption institutions can actually convict the powerful, not just charge them.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bail",
+        "http://en.wikipedia.org/wiki/Governor",
+        "http://en.wikipedia.org/wiki/Kaduna",
+        "http://en.wikipedia.org/wiki/Kaduna_State",
+        "http://en.wikipedia.org/wiki/Nasir_El-Rufai",
+        "http://en.wikipedia.org/wiki/High_Court_of_Justice",
+        "http://en.wikipedia.org/wiki/Independent_Corrupt_Practices_Commission",
+        "http://en.wikipedia.org/wiki/Corruption"
+      ]
+    },
+    {
+      "id": "kuwait-mina-al-ahmadi-refinery-iranian-drone-strike",
+      "label": "Kuwait refinery on fire after another Iranian drone attack",
+      "firstSeen": "2026-04-03T08:11:58.029Z",
+      "lastCovered": "2026-04-03T08:11:58.029Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-kuwait-mina-al-ahmadi-refinery-iranian-drone-strike"
+      ],
+      "eventUri": "eng-11537909",
+      "summary": "Iranian drones struck Kuwait's Mina al-Ahmadi refinery — a different facility from the desalination plant hit earlier — triggering fires at one of the Gulf's key oil processing sites. The word 'another' in the headline tells the story: Iran is systematically expanding its target set across Gulf oil infrastructure. Lead with the facility name and the pattern — this is the second type of Kuwaiti infrastructure hit, showing Iran is escalating from water to oil. Kuwait Petroleum Corporation confirmed no injuries but operations are under threat. The reader tracking Gulf energy should see the economic consequence: every refinery strike reduces the Gulf's ability to process crude even if extraction continues.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Oil_refinery",
+        "http://en.wikipedia.org/wiki/Kuwait",
+        "http://en.wikipedia.org/wiki/Al_Ahmadi,_Kuwait",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Kuwait_Petroleum_Corporation",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Kuwait_News_Agency"
+      ]
+    },
+    {
+      "id": "kerala-state-microbe-microbiome-hub-farming-health",
+      "label": "Q&A: Kerala taps microbe for health, farming gains",
+      "firstSeen": "2026-04-03T08:11:58.029Z",
+      "lastCovered": "2026-04-03T08:11:58.029Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-kerala-state-microbe-microbiome-hub-farming-health"
+      ],
+      "eventUri": null,
+      "summary": "Kerala became the first Indian state to designate a 'state microbe' and is building a microbiome research hub to develop sustainable solutions for health and agriculture. Lead with the novelty: a subnational government treating its microbial ecosystem as a strategic asset, the way states designate official birds or flowers but with actual scientific infrastructure behind it. The reader who thinks about food systems and biotech should see the connection to the fertilizer crisis — microbiome-based farming reduces dependence on synthetic inputs whose supply chains the Hormuz blockade is disrupting. This is Global South science governance innovation, not just academic research.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Microbiome",
+        "http://en.wikipedia.org/wiki/Kerala",
+        "http://en.wikipedia.org/wiki/Agriculture",
+        "http://en.wikipedia.org/wiki/India"
+      ]
+    },
+    {
+      "id": "deep-learning-biofilm-graph-antimicrobial-resistance",
+      "label": "Deep learning-based high-information-content graph representation of early stage bacterial biofilms",
+      "firstSeen": "2026-04-03T08:11:58.029Z",
+      "lastCovered": "2026-04-03T08:11:58.029Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-deep-learning-biofilm-graph-antimicrobial-resistance"
+      ],
+      "eventUri": null,
+      "summary": "Researchers built a deep learning system that maps the 3D architecture of bacterial biofilms during their earliest, most vulnerable formation stage — the moment when antibiotics could actually work. Biofilms are how bacteria become unkillable: they build communal structures that shrug off drugs. Lead with the timing angle: catching biofilms early is the difference between a treatable infection and a chronic one. The graph-based representation captures spatial relationships between individual bacteria, revealing the organizational logic of resistance. The reader who builds software should appreciate the approach: treating a biological colony as a graph problem, where nodes are bacteria and edges are their spatial relationships.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Biofilm",
+        "http://en.wikipedia.org/wiki/Antimicrobial_resistance",
+        "http://en.wikipedia.org/wiki/Graph_(discrete_mathematics)",
+        "http://en.wikipedia.org/wiki/Deep_learning"
+      ]
+    },
+    {
+      "id": "gas-sensor-uav-pollution-plume-tracking-dataset",
+      "label": "High-Resolution Wind Tunnel Dataset of Gas Sensor Responses to Vapor Plumes in Scale Model Landscapes",
+      "firstSeen": "2026-04-03T08:11:58.029Z",
+      "lastCovered": "2026-04-03T08:11:58.029Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-gas-sensor-uav-pollution-plume-tracking-dataset"
+      ],
+      "eventUri": null,
+      "summary": "Researchers released the first high-resolution dataset of how gas sensors on mobile robots and UAVs respond to pollutant plumes in realistic terrain — wind tunnel experiments with scale-model landscapes that simulate real-world pollution tracking. Lead with the application: autonomous robots that can find pollution sources without human guidance. The dataset bridges the gap between lab sensor performance and field deployment. The reader who works with hardware should see the engineering problem: gas sensors on drones behave differently in turbulent air over hills than in a flat lab, and until now there was no data to train algorithms on realistic conditions.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Gas_detector",
+        "http://en.wikipedia.org/wiki/Mobile_robot",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Particulates"
+      ]
+    },
+    {
+      "id": "iran-aws-data-centers-cloud-warfare-first-strike",
+      "label": "Explained: Why Iran hit Amazon's data centres in Bahrain and what it signals for the future of warfare",
+      "firstSeen": "2026-04-03T08:11:58.029Z",
+      "lastCovered": "2026-04-03T08:11:58.029Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-iran-aws-data-centers-cloud-warfare-first-strike"
+      ],
+      "eventUri": "eng-11527715",
+      "summary": "On March 1, Iranian Shahed drones struck two AWS data centers in the UAE and a third in Bahrain — the first time any country has deliberately targeted civilian cloud computing infrastructure in a military conflict. This Hindustan Times analysis explains the targeting logic: cloud infrastructure is dual-use (it runs both military C2 and civilian services), making it a legal gray zone under international humanitarian law. Lead with the historic first and the dual-use dilemma. A third of the region's cloud capacity went offline, affecting everything from banking to hospital records. The reader who builds on AWS should see the systemic risk: their infrastructure is now a military target because the same data centers serve both Pentagon contracts and consumer apps.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Amazon_Web_Services",
+        "http://en.wikipedia.org/wiki/Data_center",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Cloud_computing"
+      ]
+    },
+    {
       "id": "hegseth-ousts-army-chief-randy-george-wartime",
       "label": "Hegseth ousts Army Chief of Staff Gen. Randy George",
       "firstSeen": "2026-04-02T22:15:35.340Z",
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-hegseth-ousts-army-chief-randy-george-wartime"
@@ -33,7 +264,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-trump-fires-bondi-attorney-general-epstein"
@@ -58,7 +289,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-starmer-40-nation-hormuz-coalition-without-us"
@@ -83,7 +314,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-pakistan-peacemaker-bombing-afghan-border"
@@ -99,7 +330,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-israel-ethnic-cleansing-southern-lebanon-shia"
@@ -115,7 +346,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-trump-50-percent-tariffs-steel-aluminum-copper"
@@ -140,7 +371,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-spacex-amazon-satellite-altitude-fcc-debris"
@@ -156,7 +387,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-terahertz-metamaterial-absorber-water-pyramid"
@@ -172,7 +403,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-soil-health-biochar-soybean-fertilizer-independence"
@@ -188,7 +419,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-perplexity-incognito-sham-google-meta-data"
@@ -204,7 +435,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-02-cursor-3-ai-coding-editor-launch"
@@ -220,7 +451,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-austria-rejects-us-airspace-iran-neutrality"
@@ -245,7 +476,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-bellingcat-uae-rewrites-iranian-strike-damage"
@@ -261,7 +492,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-us-israeli-strikes-iran-healthcare-system"
@@ -277,7 +508,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-israeli-settler-violence-condemnations-smokescreen"
@@ -293,7 +524,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-nigeria-10000-displaced-nine-states-nhrc"
@@ -309,7 +540,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-tesla-q1-deliveries-miss-expectations"
@@ -334,7 +565,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-walmart-recession-signal-2008-crisis-levels"
@@ -350,7 +581,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-drift-exploit-north-korea-elliptic-attribution"
@@ -366,7 +597,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-diamond-graphene-electromagnetic-wave-absorption"
@@ -382,7 +613,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-google-gemma-4-apache-2-open-ai-models"
@@ -398,7 +629,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-teleguard-encryption-meaningless-private-keys"
@@ -414,7 +645,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-journalist-sues-faa-drone-no-fly-zone-ice"
@@ -430,7 +661,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-02-qwen-3-6-plus-alibaba-ai-agents"
@@ -446,7 +677,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-iran-missiles-israel-gulf-trump-winding-down"
@@ -471,7 +702,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-iran-bilateral-hormuz-deals-india-bypass-coalition"
@@ -496,7 +727,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-pakistan-supreme-court-halts-terrorism-charges-journalist"
@@ -512,7 +743,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-italy-fines-revolut-misleading-fees"
@@ -537,7 +768,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-france-lise-first-onchain-ipo-europe"
@@ -553,7 +784,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-plastics-supply-chain-hormuz-petrochemical-crisis"
@@ -569,7 +800,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-cdc-stops-rabies-pox-virus-testing"
@@ -585,7 +816,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-rna-viral-vector-programmable-cell-targeting"
@@ -601,7 +832,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-snakebite-self-immunization-neglected-tropical-disease"
@@ -617,7 +848,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-ibm-arm-enterprise-computing-collaboration"
@@ -633,7 +864,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-email-obfuscation-what-works-2026"
@@ -643,13 +874,39 @@
       "conceptUris": []
     },
     {
+      "id": "artemis-ii-crew-launches-moon",
+      "label": "Four astronauts depart for the Moon with a fiery send-off from Cape Canaveral",
+      "firstSeen": "2026-04-02T04:09:19.813Z",
+      "lastCovered": "2026-04-03T08:11:58.029Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-04-02-artemis-ii-crew-launches-moon",
+        "2026-04-03-artemis-ii-astronauts-microsoft-outlook-bug-moon"
+      ],
+      "eventUri": "eng-11527414",
+      "summary": "Artemis II launched — three Americans and one Canadian aboard the most powerful rocket ever ridden by humans, on the first crewed lunar mission in 54 years. Victor Glover becomes the first Black astronaut to fly to the Moon. Lead with the human milestone: the last time anyone did this, Nixon was president. But also note the context the reader cares about: this mission launches while NASA faces budget cuts, the Space Force plans to follow, and SpaceX just filed to go public. The Moon race is resuming as a multi-actor contest, not an Apollo reprise.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artemis_2",
+        "http://en.wikipedia.org/wiki/Space_Launch_System",
+        "http://en.wikipedia.org/wiki/Orion_(spacecraft)",
+        "http://en.wikipedia.org/wiki/NASA",
+        "http://en.wikipedia.org/wiki/Moon",
+        "http://en.wikipedia.org/wiki/Victor_J._Glover",
+        "http://en.wikipedia.org/wiki/Artemis_program",
+        "http://en.wikipedia.org/wiki/Microsoft_Outlook"
+      ]
+    },
+    {
       "id": "australia-693m-fuel-loans-iran-war",
       "label": "Australia to offer businesses $693 million in cheap loans to ease fuel cost pressure",
       "firstSeen": "2026-04-02T04:09:19.813Z",
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 3,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-02-australia-693m-fuel-loans-iran-war",
@@ -672,7 +929,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-02-israel-death-penalty-law-palestinian-prisoners",
@@ -700,7 +957,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-indonesia-7-4-earthquake-tsunami-threat"
@@ -725,7 +982,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-ukraine-drones-ufa-oil-refinery-fire"
@@ -750,7 +1007,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-trump-ukraine-weapons-hormuz-coalition-threat"
@@ -766,7 +1023,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-india-petrochemical-import-tax-abolished-iran-war"
@@ -791,7 +1048,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-south-korea-save-fuel-iran-crisis"
@@ -816,7 +1073,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-gulf-states-oil-pipelines-bypass-hormuz"
@@ -832,7 +1089,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-masdar-totalenergies-2-2bn-renewable-jv"
@@ -857,7 +1114,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-bitcoin-hormuz-real-signals-trump-noise"
@@ -873,7 +1130,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-russia-gasoline-export-ban-extended-producers"
@@ -889,7 +1146,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-steam-linux-5-percent-milestone"
@@ -905,7 +1162,7 @@
       "lastCovered": "2026-04-02T08:09:06.542Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-subscription-bombing-signup-form-weapon"
@@ -921,7 +1178,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-sa-minister-tolashe-missing-suvs-chinese-gifts"
@@ -941,7 +1198,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-croatia-football-gambling-sponsor-fake-name"
@@ -961,7 +1218,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-trump-100-percent-tariff-imported-drugs"
@@ -982,7 +1239,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-spacex-ipo-filing-musk"
@@ -998,7 +1255,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-egypt-egx-listings-fake-privatization"
@@ -1008,36 +1265,13 @@
       "conceptUris": []
     },
     {
-      "id": "artemis-ii-crew-launches-moon",
-      "label": "Four astronauts depart for the Moon with a fiery send-off from Cape Canaveral",
-      "firstSeen": "2026-04-02T04:09:19.813Z",
-      "lastCovered": "2026-04-02T04:09:19.813Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-artemis-ii-crew-launches-moon"
-      ],
-      "eventUri": "eng-11527414",
-      "summary": "Artemis II launched — three Americans and one Canadian aboard the most powerful rocket ever ridden by humans, on the first crewed lunar mission in 54 years. Victor Glover becomes the first Black astronaut to fly to the Moon. Lead with the human milestone: the last time anyone did this, Nixon was president. But also note the context the reader cares about: this mission launches while NASA faces budget cuts, the Space Force plans to follow, and SpaceX just filed to go public. The Moon race is resuming as a multi-actor contest, not an Apollo reprise.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artemis_2",
-        "http://en.wikipedia.org/wiki/Space_Launch_System",
-        "http://en.wikipedia.org/wiki/Orion_(spacecraft)",
-        "http://en.wikipedia.org/wiki/NASA",
-        "http://en.wikipedia.org/wiki/Moon",
-        "http://en.wikipedia.org/wiki/Victor_J._Glover"
-      ]
-    },
-    {
       "id": "china-pollution-carbon-mitigation-health-cobenefits",
       "label": "Integrated pollution and carbon mitigation delivers major health and economic co-benefits in China",
       "firstSeen": "2026-04-02T04:09:19.813Z",
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-china-pollution-carbon-mitigation-health-cobenefits"
@@ -1057,7 +1291,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-mohmand-marble-industry-environmental-crisis"
@@ -1077,7 +1311,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-dram-pricing-killing-hobbyist-sbc-market"
@@ -1093,7 +1327,7 @@
       "lastCovered": "2026-04-02T04:09:19.813Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-ai-warps-truth-middle-east-war-deepfakes"
@@ -1106,165 +1340,6 @@
         "http://en.wikipedia.org/wiki/Artificial_intelligence",
         "http://en.wikipedia.org/wiki/Middle_East"
       ]
-    },
-    {
-      "id": "iran-denies-ceasefire-request-framing-war",
-      "label": "Iran denies Trump's claim Iranian president requested ceasefire",
-      "firstSeen": "2026-04-01T22:09:00.380Z",
-      "lastCovered": "2026-04-01T22:09:00.380Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-iran-denies-ceasefire-request-framing-war"
-      ],
-      "eventUri": "eng-11532191",
-      "summary": "Iran publicly denied Trump's claim that Pezeshkian requested a ceasefire — a framing battle over who blinked first. The angle: Trump needs to claim Iran capitulated, Iran needs to claim defiance. Neither version may be true. Lead with the information war running parallel to the shooting war. The reader tracking ceasefire talks should see this alongside today's Pezeshkian letter to Americans — Iran is conducting two diplomatic tracks, one through back channels and one through public messaging.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Masoud_Pezeshkian"
-      ]
-    },
-    {
-      "id": "ukraine-denies-russia-luhansk-capture-claim",
-      "label": "Ukraine denies Russia's claims of fully capturing Luhansk Oblast",
-      "firstSeen": "2026-04-01T22:09:00.380Z",
-      "lastCovered": "2026-04-01T22:09:00.380Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-ukraine-denies-russia-luhansk-capture-claim"
-      ],
-      "eventUri": "eng-11531709",
-      "summary": "Russia claimed full control of Luhansk Oblast — Ukraine says a small parcel of territory remains under its control. The angle: Russia is declaring victory over a region it has largely held since 2022, but the timing matters — this looks like manufactured progress to offset stalled advances elsewhere and to pressure Ukraine ahead of any ceasefire talks. Lead with what Russia gains by claiming this now, not the territorial reality.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Luhansk",
-        "http://en.wikipedia.org/wiki/Ministry_of_Defence_(Russia)"
-      ]
-    },
-    {
-      "id": "us-drops-venezuela-sanctions-rodriguez-oil",
-      "label": "US Drops Sanctions on Venezuela's Rodríguez as Ties Improve",
-      "firstSeen": "2026-04-01T22:09:00.380Z",
-      "lastCovered": "2026-04-01T22:09:00.380Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-us-drops-venezuela-sanctions-rodriguez-oil"
-      ],
-      "eventUri": "spa-4156253",
-      "summary": "The US lifted sanctions on Venezuela's acting leader Delcy Rodríguez after Maduro's capture in a US-backed operation. The angle: Washington is rebuilding ties with the oil-rich country it destabilized — the same pattern as Iraq and Libya, but faster. Lead with the oil motive: with Hormuz closed, Venezuelan crude is suddenly strategic again. The reader should see the sanctions-to-engagement pipeline for what it is.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Venezuela",
-        "http://en.wikipedia.org/wiki/Delcy_Rodríguez",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Nicolás_Maduro"
-      ]
-    },
-    {
-      "id": "nigeria-plateau-violence-curfew-fails",
-      "label": "Fresh violence erupts in Plateau communities as government relaxes curfew",
-      "firstSeen": "2026-04-01T22:09:00.380Z",
-      "lastCovered": "2026-04-01T22:09:00.380Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-nigeria-plateau-violence-curfew-fails"
-      ],
-      "eventUri": null,
-      "summary": "At least 27 people were killed in Jos North, Plateau State, and fresh violence erupted the moment the government relaxed a 48-hour curfew. The angle: the curfew was the lid, not the solution — communal violence in Nigeria's middle belt has structural drivers (land, religion, ethnicity) that a 48-hour pause cannot address. Lead with the timing: violence resumed within hours of the curfew lifting. The reader should see how governance-by-curfew substitutes for addressing root causes.",
-      "conceptUris": []
-    },
-    {
-      "id": "al-shifa-babies-returned-gaza-two-years",
-      "label": "Premature Babies Evacuated After Israeli Attack on Al-Shifa Returned to Gaza After More Than Two Years",
-      "firstSeen": "2026-04-01T22:09:00.380Z",
-      "lastCovered": "2026-04-01T22:09:00.380Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-al-shifa-babies-returned-gaza-two-years"
-      ],
-      "eventUri": null,
-      "summary": "Premature babies evacuated from Al-Shifa hospital after Israel's 2024 attack have been returned to Gaza more than two years later — parents are meeting children they've never held. The angle: this is the human residue of a military operation that destroyed Gaza's largest hospital. Lead with the parent quote: 'I am meeting my daughter for the first time.' The reader tracking Gaza should see: the war's consequences are measured in years, not news cycles. These children were born into a siege, evacuated into exile, and returned to rubble.",
-      "conceptUris": []
-    },
-    {
-      "id": "sa-post-office-liquidation-edge",
-      "label": "SA Post Office on borrowed time -- funding gaps push it closer to the edge",
-      "firstSeen": "2026-04-01T22:09:00.380Z",
-      "lastCovered": "2026-04-01T22:09:00.380Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-sa-post-office-liquidation-edge"
-      ],
-      "eventUri": null,
-      "summary": "South Africa's Post Office faces liquidation after years in business rescue, with repeated funding promises unfulfilled. The angle: this is what happens when a state-owned enterprise is kept alive by narrative rather than capital — 'turnaround plans' that never arrive while the institution hollows out. Lead with the gap between promise and reality. The reader should see the pattern: post offices worldwide are dying, but in the Global South, they're also the last physical infrastructure connecting rural populations to government services.",
-      "conceptUris": []
-    },
-    {
-      "id": "tobacco-plant-engineered-psychedelics-biosynthesis",
-      "label": "Scientists Create Plant That Produces Ayahuasca, Shrooms, and Toad Psychedelics All At Once",
-      "firstSeen": "2026-04-01T22:09:00.380Z",
-      "lastCovered": "2026-04-01T22:09:00.380Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-tobacco-plant-engineered-psychedelics-biosynthesis"
-      ],
-      "eventUri": null,
-      "summary": "Researchers engineered a tobacco plant to produce psilocybin, DMT, and other psychedelic compounds simultaneously — a proof-of-concept for biosynthetic production that could ease pressure on wild species and preserve Indigenous traditions. The angle: synthetic biology meeting ethnobotany. Lead with the engineering: one plant, multiple psychoactive pathways, all expressed in tobacco leaves. The reader who follows biotech should see the dual implications — pharmaceutical access AND conservation of species currently overharvested.",
-      "conceptUris": []
-    },
-    {
-      "id": "rho-kinase-inhibitor-schizophrenia-new-mechanism",
-      "label": "Antipsychotic-like effects of the selective Rho-kinase 2 inhibitor KD025 in genetic and pharmacological mouse models of schizophrenia",
-      "firstSeen": "2026-04-01T22:09:00.380Z",
-      "lastCovered": "2026-04-01T22:09:00.380Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-rho-kinase-inhibitor-schizophrenia-new-mechanism"
-      ],
-      "eventUri": null,
-      "summary": "A Rho-kinase 2 inhibitor (KD025) showed antipsychotic effects in mouse models of schizophrenia — a completely new mechanism of action distinct from the dopamine-blocking drugs that have dominated treatment since the 1950s. The angle: every existing antipsychotic works on the same pathway; this is the first credible alternative in 70 years. Lead with what's broken about current drugs (severe metabolic side effects, movement disorders) and why a new mechanism matters for 24 million people worldwide.",
-      "conceptUris": []
-    },
-    {
-      "id": "solana-drift-defi-exploit-deposits-halted",
-      "label": "Solana (SOL) DeFi platform Drift investigates suspicious activity, tells users to halt deposits",
-      "firstSeen": "2026-04-01T22:09:00.380Z",
-      "lastCovered": "2026-04-01T22:09:00.380Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-01-solana-drift-defi-exploit-deposits-halted"
-      ],
-      "eventUri": "eng-11533523",
-      "summary": "Solana's largest DeFi derivatives platform Drift is investigating a potential exploit, telling users to halt deposits. Helius CEO says it 'might be getting exploited.' The angle: Solana's DeFi resurgence is being stress-tested — a confirmed breach would undermine the ecosystem's credibility just as institutional players are entering crypto markets. Lead with the user impact: deposits frozen, funds potentially at risk. The reader following crypto should see the pattern: DeFi's permissionless design means exploits move faster than governance.",
-      "conceptUris": []
     }
   ]
 }
