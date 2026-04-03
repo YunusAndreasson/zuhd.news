@@ -2,13 +2,255 @@
   "version": 1,
   "stories": [
     {
+      "id": "iran-downs-us-f15e-first-manned-aircraft-loss",
+      "label": "US confirms downed aircraft is F-15E",
+      "firstSeen": "2026-04-03T17:08:03.981Z",
+      "lastCovered": "2026-04-03T17:08:03.981Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-iran-downs-us-f15e-first-manned-aircraft-loss"
+      ],
+      "eventUri": "eng-11529485",
+      "summary": "Iran's air defenses shot down a US F-15E Strike Eagle — the first confirmed loss of a manned US combat aircraft in the 35-day war. One crew member rescued, one still missing. IRGC initially claimed an F-35; Pentagon confirmed the cheaper, older F-15E. The distinction matters: if Iran can down even non-stealth aircraft with regularity, sortie rates drop. The reader tracking military capability should see that Iran's integrated air defense — Russian S-300s plus indigenous systems — is performing better than pre-war assessments suggested. Sentiment divergence (0.39) shows TASS and TRT framing this as Iranian success while TimesNow plays it as a rescue story.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Fighter_aircraft",
+        "http://en.wikipedia.org/wiki/Lockheed_Martin_F-35_Lightning_II",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
+        "http://en.wikipedia.org/wiki/Aircraft_pilot",
+        "http://en.wikipedia.org/wiki/McDonnell_Douglas_F-15E_Strike_Eagle",
+        "http://en.wikipedia.org/wiki/Jet_aircraft"
+      ]
+    },
+    {
+      "id": "uk-deploys-rapid-sentry-kuwait-iran-drone-defense",
+      "label": "UK deploys 'Rapid Sentry' air defense system to Kuwait",
+      "firstSeen": "2026-04-03T17:08:03.981Z",
+      "lastCovered": "2026-04-03T17:08:03.981Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-uk-deploys-rapid-sentry-kuwait-iran-drone-defense"
+      ],
+      "eventUri": "eng-11538505",
+      "summary": "After Iranian drones hit Kuwait's Mina al-Ahmadi refinery and a desalination plant, the UK deployed its Rapid Sentry counter-drone system — a system barely known outside defense circles. Starmer called the strikes 'reckless' while condemning them. Lead with the infrastructure vulnerability: Kuwait's desalination plant provides drinking water for millions. Iran is targeting water and oil in Gulf states that host US forces, forcing Western allies to choose between protecting their own assets and supporting the US war. The UK is now a belligerent by defense deployment if not by offensive action.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kuwait",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Oil_refinery",
+        "http://en.wikipedia.org/wiki/Anti-aircraft_warfare",
+        "http://en.wikipedia.org/wiki/Keir_Starmer",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Downing_Street"
+      ]
+    },
+    {
+      "id": "fao-food-price-index-24-percent-rise-iran-war-energy",
+      "label": "U.N.: Iran war drives 2.4% increase in world food prices",
+      "firstSeen": "2026-04-03T17:08:03.981Z",
+      "lastCovered": "2026-04-03T17:08:03.981Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-fao-food-price-index-24-percent-rise-iran-war-energy"
+      ],
+      "eventUri": "eng-11538206",
+      "summary": "The FAO Food Price Index rose 2.4% in March — the second consecutive monthly increase — driven by energy costs from the Iran war flowing into cereal, sugar, and vegetable oil prices. This is the first official UN measurement of the war's food price impact. Lead with the 2.4% and what it means for the 735 million people already facing food insecurity: energy→fertilizer→food is the transmission chain the editorial notes flagged weeks ago, and now it has an official number. Five sources across four countries frame this differently: FAO is clinical, Breitbart politicizes it, Anadolu contextualizes it for Turkey.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Food_and_Agriculture_Organization",
+        "http://en.wikipedia.org/wiki/Fertilizer",
+        "http://en.wikipedia.org/wiki/Cereal",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/Commodity",
+        "http://en.wikipedia.org/wiki/Sugar",
+        "http://en.wikipedia.org/wiki/Food_prices",
+        "http://en.wikipedia.org/wiki/United_Nations"
+      ]
+    },
+    {
+      "id": "trump-1-5-trillion-defense-budget-40-percent-increase-iran",
+      "label": "White House seeks $1.5tr defence budget as war on Iran drives costs",
+      "firstSeen": "2026-04-03T17:08:03.981Z",
+      "lastCovered": "2026-04-03T17:08:03.981Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-trump-1-5-trillion-defense-budget-40-percent-increase-iran"
+      ],
+      "eventUri": "eng-11537307",
+      "summary": "Trump's 2027 budget proposes $1.5 trillion for defense — a 40% single-year increase — while cutting everything else by 10%. The Iran war is the justification. Lead with the 40% increase and the trade-off: $445 billion more for the Pentagon means deep cuts to health, education, and domestic programs. Dawn frames this through the lens of a country (Pakistan) bearing the war's economic costs without the military spending; The Guardian frames it as congressional theater. The reader should see the fiscal architecture of permanent war being built in real time.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_States_Congress",
+        "http://en.wikipedia.org/wiki/White_House"
+      ]
+    },
+    {
+      "id": "pakistan-provinces-fuel-subsidies-43-percent-petrol-hike",
+      "label": "Provinces take the lead in doling out fuel subsidies following petrol price shock",
+      "firstSeen": "2026-04-03T17:08:03.981Z",
+      "lastCovered": "2026-04-03T17:08:03.981Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-pakistan-provinces-fuel-subsidies-43-percent-petrol-hike"
+      ],
+      "eventUri": null,
+      "summary": "After an unprecedented 43% petrol price hike, Pakistan's provinces — not the federal government — are now administering Rs65-70 billion/month in subsidized fuel quotas to motorcyclists, farmers, and transporters. Lead with the 43% overnight price shock and the improvised provincial response: this is what war-driven fuel inflation looks like at the household level for 240 million people. The federal government says it has 'nothing to do with it' (Sanaullah's words). The reader tracking Pakistan's dual economic pressure should see the institutional buck-passing — provinces absorb the political cost while Islamabad blames the Middle East.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Province",
+        "http://en.wikipedia.org/wiki/Punjab,_Pakistan",
+        "http://en.wikipedia.org/wiki/Government_of_Pakistan",
+        "http://en.wikipedia.org/wiki/Subsidy",
+        "http://en.wikipedia.org/wiki/Motorcycle"
+      ]
+    },
+    {
+      "id": "irgc-amazon-data-center-strike-us-destroys-iran-bridge",
+      "label": "IRGC claims strike on Amazon data center; US destroys major bridge in Iran",
+      "firstSeen": "2026-04-03T17:08:03.981Z",
+      "lastCovered": "2026-04-03T17:08:03.981Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-irgc-amazon-data-center-strike-us-destroys-iran-bridge"
+      ],
+      "eventUri": null,
+      "summary": "Two infrastructure developments in one day: the IRGC claims it struck an Amazon Web Services data center (location unspecified but likely Gulf region), while the US destroyed a major bridge in Iran. Lead with the Amazon data center claim — if confirmed, this is the first deliberate military strike on cloud infrastructure in history. The reader who builds on AWS should recall the SadaPay/AWS Bahrain story from week one: cloud infrastructure is now a military target. The bridge destruction shows the US escalating from military to civilian infrastructure, the Iraq playbook the editorial notes flagged.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Amazon_Web_Services",
+        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Cloud_computing",
+        "http://en.wikipedia.org/wiki/Infrastructure"
+      ]
+    },
+    {
+      "id": "trump-budget-12-percent-hhs-cut-nih-cdc-fda",
+      "label": "White House proposes 12% cut to federal health agencies in 2027 budget request",
+      "firstSeen": "2026-04-03T17:08:03.981Z",
+      "lastCovered": "2026-04-03T17:08:03.981Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-trump-budget-12-percent-hhs-cut-nih-cdc-fda"
+      ],
+      "eventUri": null,
+      "summary": "The same budget that adds $445 billion for defense cuts HHS by 12% — including NIH, CDC, and FDA. Lead with the inverse: for every dollar added to the Pentagon, health research loses proportionally. STAT contextualizes this as 'broadly similar' to last year's proposal, but last year Congress rejected the cuts. This year, with war spending as political cover, the cuts may stick. The reader who tracks science funding should see the structural defunding of public health research accelerating under wartime fiscal pressure.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Health_and_Human_Services",
+        "http://en.wikipedia.org/wiki/United_States_federal_budget",
+        "http://en.wikipedia.org/wiki/National_Institutes_of_Health",
+        "http://en.wikipedia.org/wiki/White_House"
+      ]
+    },
+    {
+      "id": "psilocybin-longevity-mouse-results-dont-translate-humans",
+      "label": "Psilocybin and human longevity",
+      "firstSeen": "2026-04-03T17:08:03.981Z",
+      "lastCovered": "2026-04-03T17:08:03.981Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-psilocybin-longevity-mouse-results-dont-translate-humans"
+      ],
+      "eventUri": null,
+      "summary": "After psilocybin extended lifespan in aged mice, researchers checked whether prominent psychedelic advocates who used psilocybin actually lived longer — they didn't. The study compared 11 known psychedelic users with cancer researchers and general population controls, finding no longevity benefit. Lead with the deflation: mouse results don't translate, and the media hype around psilocybin-as-longevity-drug has outrun the evidence. The reader who follows biotech should see this as a methodological reality check on translating animal models to human outcomes.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Psychedelic_drug",
+        "http://en.wikipedia.org/wiki/Psilocybin",
+        "http://en.wikipedia.org/wiki/Longevity"
+      ]
+    },
+    {
+      "id": "solar-batteries-can-power-world-technical-analysis",
+      "label": "Solar and batteries can power the world",
+      "firstSeen": "2026-04-03T17:08:03.981Z",
+      "lastCovered": "2026-04-03T17:08:03.981Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-solar-batteries-can-power-world-technical-analysis"
+      ],
+      "eventUri": null,
+      "summary": "A technical analysis showing solar photovoltaics plus battery storage can meet global energy demand — with current technology, no breakthroughs needed. 169 HN points and 241 comments. Lead with the timing: as the Iran war demonstrates the catastrophic fragility of fossil fuel supply chains (Hormuz blockade, $115 oil, 43% fuel hikes in Pakistan), the technical case for solar+battery independence is already closed. The debate is no longer whether renewables can scale — it's why fossil fuel dependency persists when the alternative is cheaper and available. The reader building in energy should see this as the infrastructure argument the war makes undeniable.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Solar_energy",
+        "http://en.wikipedia.org/wiki/Battery_storage_power_station",
+        "http://en.wikipedia.org/wiki/Renewable_energy"
+      ]
+    },
+    {
+      "id": "blogosphere-frontpage-personal-blogs-indie-web",
+      "label": "Show HN: I built a frontpage for personal blogs",
+      "firstSeen": "2026-04-03T17:08:03.981Z",
+      "lastCovered": "2026-04-03T17:08:03.981Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-blogosphere-frontpage-personal-blogs-indie-web"
+      ],
+      "eventUri": null,
+      "summary": "A curated frontpage aggregating recent posts from personal blogs across categories — an HN-inspired minimal version and a rich version. 340 points and 116 comments. Lead with the indie web thesis: as AI-generated content floods platforms and social media algorithms optimize for engagement over substance, personal blogs are the last medium where a human writes for humans without intermediation. The reader who builds software should see this as infrastructure for the open web — a discovery layer that doesn't require algorithmic approval.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Blog",
+        "http://en.wikipedia.org/wiki/World_Wide_Web"
+      ]
+    },
+    {
+      "id": "ev-adoption-surge-iran-war-gasoline-price-shock",
+      "label": "EV adoption in America: Who's winning, who's losing?",
+      "firstSeen": "2026-04-03T17:08:03.981Z",
+      "lastCovered": "2026-04-03T17:08:03.981Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-ev-adoption-surge-iran-war-gasoline-price-shock"
+      ],
+      "eventUri": "eng-11531760",
+      "summary": "US gasoline prices are up $1/gallon (25%) since the Iran war started — and EV sales are surging as a direct consequence. Ars Technica maps the winners and losers: Tesla is losing share despite the tailwind, while Chinese-designed EVs and hybrids gain. Lead with the $1/gallon figure and the behavioral shift it's triggering: the war is doing more for EV adoption than a decade of subsidies. The reader who follows both energy and tech should see the structural irony — a war partly about oil control is accelerating the transition away from oil.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tesla,_Inc.",
+        "http://en.wikipedia.org/wiki/Electric_vehicle",
+        "http://en.wikipedia.org/wiki/Electric_battery",
+        "http://en.wikipedia.org/wiki/Pickup_truck",
+        "http://en.wikipedia.org/wiki/SUV"
+      ]
+    },
+    {
       "id": "iran-retains-half-missile-launchers-us-intel-contradicts-trump",
       "label": "Iran still has 50% of missile launchers and thousands of drones",
       "firstSeen": "2026-04-03T12:14:00.239Z",
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-iran-retains-half-missile-launchers-us-intel-contradicts-trump"
@@ -33,7 +275,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-french-vessel-crosses-hormuz-blockade-cma-cgm"
@@ -58,7 +300,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-zarif-urges-iran-declare-victory-strike-deal-us"
@@ -83,7 +325,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-burkina-faso-traore-forget-democracy-sahel-authoritarianism"
@@ -108,7 +350,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-france-bans-muslim-gathering-security-islamophobia"
@@ -124,7 +366,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-sweden-seizes-russian-shadow-fleet-tanker-oil-spill-baltic"
@@ -149,7 +391,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-greek-pm-reshuffle-eu-farm-fraud-accountability"
@@ -165,7 +407,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-t-cell-exhaustion-obesity-diabetes-immune-mechanism"
@@ -181,7 +423,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-brain-coupling-student-teacher-predicts-academic-performance"
@@ -197,7 +439,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-proton-meet-privacy-claims-debunked-encryption"
@@ -213,7 +455,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-european-alternatives-us-apps-digital-sovereignty"
@@ -229,7 +471,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-myanmar-junta-chief-min-aung-hlaing-elected-president"
@@ -254,7 +496,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-cuba-pardons-2010-prisoners-us-pressure-holy-week"
@@ -279,7 +521,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-trump-threatens-iran-civilian-infrastructure-targets"
@@ -304,7 +546,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-south-africa-g7-disinvitation-france-brics"
@@ -325,7 +567,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-el-rufai-corruption-bail-hearing-kaduna-nigeria"
@@ -350,7 +592,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-kuwait-mina-al-ahmadi-refinery-iranian-drone-strike"
@@ -375,7 +617,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-kerala-state-microbe-microbiome-hub-farming-health"
@@ -396,7 +638,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-deep-learning-biofilm-graph-antimicrobial-resistance"
@@ -417,7 +659,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-gas-sensor-uav-pollution-plume-tracking-dataset"
@@ -438,7 +680,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-iran-aws-data-centers-cloud-warfare-first-strike"
@@ -460,7 +702,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-hegseth-ousts-army-chief-randy-george-wartime"
@@ -485,7 +727,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-trump-fires-bondi-attorney-general-epstein"
@@ -510,7 +752,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-starmer-40-nation-hormuz-coalition-without-us"
@@ -535,7 +777,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-pakistan-peacemaker-bombing-afghan-border"
@@ -551,7 +793,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-israel-ethnic-cleansing-southern-lebanon-shia"
@@ -567,7 +809,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-trump-50-percent-tariffs-steel-aluminum-copper"
@@ -592,7 +834,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-spacex-amazon-satellite-altitude-fcc-debris"
@@ -608,7 +850,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-terahertz-metamaterial-absorber-water-pyramid"
@@ -624,7 +866,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-soil-health-biochar-soybean-fertilizer-independence"
@@ -640,7 +882,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-perplexity-incognito-sham-google-meta-data"
@@ -656,7 +898,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-02-cursor-3-ai-coding-editor-launch"
@@ -672,7 +914,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-austria-rejects-us-airspace-iran-neutrality"
@@ -697,7 +939,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-bellingcat-uae-rewrites-iranian-strike-damage"
@@ -713,7 +955,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-us-israeli-strikes-iran-healthcare-system"
@@ -729,7 +971,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-israeli-settler-violence-condemnations-smokescreen"
@@ -745,7 +987,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-nigeria-10000-displaced-nine-states-nhrc"
@@ -761,7 +1003,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-tesla-q1-deliveries-miss-expectations"
@@ -786,7 +1028,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-walmart-recession-signal-2008-crisis-levels"
@@ -802,7 +1044,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-drift-exploit-north-korea-elliptic-attribution"
@@ -818,7 +1060,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-diamond-graphene-electromagnetic-wave-absorption"
@@ -834,7 +1076,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-google-gemma-4-apache-2-open-ai-models"
@@ -850,7 +1092,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-teleguard-encryption-meaningless-private-keys"
@@ -866,7 +1108,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-journalist-sues-faa-drone-no-fly-zone-ice"
@@ -882,7 +1124,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-qwen-3-6-plus-alibaba-ai-agents"
@@ -898,7 +1140,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-iran-missiles-israel-gulf-trump-winding-down"
@@ -923,7 +1165,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-iran-bilateral-hormuz-deals-india-bypass-coalition"
@@ -948,7 +1190,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-pakistan-supreme-court-halts-terrorism-charges-journalist"
@@ -964,7 +1206,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-italy-fines-revolut-misleading-fees"
@@ -989,7 +1231,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-france-lise-first-onchain-ipo-europe"
@@ -1005,7 +1247,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-plastics-supply-chain-hormuz-petrochemical-crisis"
@@ -1021,7 +1263,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-cdc-stops-rabies-pox-virus-testing"
@@ -1037,7 +1279,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-rna-viral-vector-programmable-cell-targeting"
@@ -1053,7 +1295,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-snakebite-self-immunization-neglected-tropical-disease"
@@ -1069,7 +1311,7 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-ibm-arm-enterprise-computing-collaboration"
@@ -1085,311 +1327,13 @@
       "lastCovered": "2026-04-02T12:05:07.758Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-email-obfuscation-what-works-2026"
       ],
       "eventUri": null,
       "summary": "A systematic study of which email obfuscation techniques actually prevent harvesting by bots in 2026 — testing CSS tricks, JavaScript encoding, SVG rendering, and more against modern scrapers and LLM-powered crawlers. The angle: the arms race between spam harvesters and obfuscation has a new player — AI crawlers that can 'read' obfuscated emails the way humans do. Lead with what's changed: techniques that worked in 2020 are broken because LLM-powered bots understand context. HN discussion (172 points, 50 comments) shows developers are actively rethinking a problem they thought was solved.",
-      "conceptUris": []
-    },
-    {
-      "id": "artemis-ii-crew-launches-moon",
-      "label": "Four astronauts depart for the Moon with a fiery send-off from Cape Canaveral",
-      "firstSeen": "2026-04-02T04:09:19.813Z",
-      "lastCovered": "2026-04-03T08:11:58.029Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-02-artemis-ii-crew-launches-moon",
-        "2026-04-03-artemis-ii-astronauts-microsoft-outlook-bug-moon"
-      ],
-      "eventUri": "eng-11527414",
-      "summary": "Artemis II launched — three Americans and one Canadian aboard the most powerful rocket ever ridden by humans, on the first crewed lunar mission in 54 years. Victor Glover becomes the first Black astronaut to fly to the Moon. Lead with the human milestone: the last time anyone did this, Nixon was president. But also note the context the reader cares about: this mission launches while NASA faces budget cuts, the Space Force plans to follow, and SpaceX just filed to go public. The Moon race is resuming as a multi-actor contest, not an Apollo reprise.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artemis_2",
-        "http://en.wikipedia.org/wiki/Space_Launch_System",
-        "http://en.wikipedia.org/wiki/Orion_(spacecraft)",
-        "http://en.wikipedia.org/wiki/NASA",
-        "http://en.wikipedia.org/wiki/Moon",
-        "http://en.wikipedia.org/wiki/Victor_J._Glover",
-        "http://en.wikipedia.org/wiki/Artemis_program",
-        "http://en.wikipedia.org/wiki/Microsoft_Outlook"
-      ]
-    },
-    {
-      "id": "australia-693m-fuel-loans-iran-war",
-      "label": "Australia to offer businesses $693 million in cheap loans to ease fuel cost pressure",
-      "firstSeen": "2026-04-02T04:09:19.813Z",
-      "lastCovered": "2026-04-02T22:15:35.340Z",
-      "coverageCount": 3,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-02-australia-693m-fuel-loans-iran-war",
-        "2026-04-02-egypt-fertilizer-export-quota-iran-war-fuel",
-        "2026-04-02-amazon-fuel-surcharge-sellers-iran-war"
-      ],
-      "eventUri": "eng-11534261",
-      "summary": "Australia imports 80%+ of its fuel and the Iran war has triggered panic buying despite government assurances. Albanese announces $693M in cheap loans for businesses plus a GST deal knocking 32 cents off petrol. Lead with the dependency: a wealthy G20 nation is scrambling because it outsourced its energy security. The reader tracking Hormuz ripple effects should see: Australia is the first Western country to deploy fiscal stimulus specifically to manage the Iran war's fuel shock. Previous cycles covered Pakistan and India's fuel crises — this is the rich-country version.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Australia",
-        "http://en.wikipedia.org/wiki/Panic_buying",
-        "http://en.wikipedia.org/wiki/Anthony_Albanese",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
-      "id": "israel-death-penalty-law-palestinian-prisoners",
-      "label": "'They already shoot us for no reason. Now they have a death penalty'",
-      "firstSeen": "2026-04-02T04:09:19.813Z",
-      "lastCovered": "2026-04-02T12:05:07.758Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-02-israel-death-penalty-law-palestinian-prisoners",
-        "2026-04-02-muslim-countries-condemn-israel-death-penalty-palestinians"
-      ],
-      "eventUri": null,
-      "summary": "Israel's parliament passed a law mandating the death penalty exclusively for Palestinian prisoners convicted of lethal attacks labeled 'terrorism' — with no possibility of pardon or commutation. Amnesty International calls it 'one of the world's most extreme death penalty laws.' Lead with the exclusivity: only Palestinians face capital punishment under this law. A tribunal for Oct. 7 convictions is next. The reader tracking Palestine should see: the legal architecture of occupation is hardening — this isn't martial law improvisation, it's statutory permanence. Two independent outlets (+972 ground reporting, Mada Masr legal analysis) confirm the details.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Capital_punishment",
-        "http://en.wikipedia.org/wiki/Palestinian_prisoners_of_Israel",
-        "http://en.wikipedia.org/wiki/Amnesty_International",
-        "http://en.wikipedia.org/wiki/Palestinians",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
-        "http://en.wikipedia.org/wiki/Qatar",
-        "http://en.wikipedia.org/wiki/Jordan",
-        "http://en.wikipedia.org/wiki/Egypt"
-      ]
-    },
-    {
-      "id": "indonesia-7-4-earthquake-tsunami-threat",
-      "label": "Map: 7.4-Magnitude Earthquake Strikes in Indonesia",
-      "firstSeen": "2026-04-02T08:09:06.542Z",
-      "lastCovered": "2026-04-02T08:09:06.542Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-indonesia-7-4-earthquake-tsunami-threat"
-      ],
-      "eventUri": "eng-11533954",
-      "summary": "A 7.4-magnitude quake struck the Molucca Sea, triggering tsunami warnings for Indonesia, the Philippines, and Malaysia. The epicenter near Ternate puts one of Indonesia's most volcanically active regions on alert. Lead with the scale and the cascading risk — tsunami + aftershocks in a region of 270 million people. The structural why: Indonesia sits on the Ring of Fire, and its early warning systems were rebuilt after the 2004 disaster but remain uneven across the eastern archipelago.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Indonesia",
-        "http://en.wikipedia.org/wiki/Earthquake",
-        "http://en.wikipedia.org/wiki/Tsunami",
-        "http://en.wikipedia.org/wiki/Molucca_Sea",
-        "http://en.wikipedia.org/wiki/United_States_Geological_Survey",
-        "http://en.wikipedia.org/wiki/Epicenter",
-        "http://en.wikipedia.org/wiki/Moment_magnitude_scale",
-        "http://en.wikipedia.org/wiki/Ternate"
-      ]
-    },
-    {
-      "id": "ukraine-drones-ufa-oil-refinery-fire",
-      "label": "Drones hit oil refinery in Russia's Ufa, large-scale fire breaks out",
-      "firstSeen": "2026-04-02T08:09:06.542Z",
-      "lastCovered": "2026-04-02T08:09:06.542Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-ukraine-drones-ufa-oil-refinery-fire"
-      ],
-      "eventUri": "rus-2047345",
-      "summary": "Ukrainian drones struck an oil refinery in Ufa — over 1,200km from the frontline — setting off a large-scale fire. Air defense intercepted 147 drones overnight but couldn't stop the refinery hit. Lead with the range: Ufa is deep in Bashkortostan, not a border region. This shows Ukraine's deep-strike drone capability now reaches Russia's industrial heartland. The reader should see the energy angle: Russia's refining capacity is being systematically degraded while it extends its own gasoline export ban.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Ufa",
-        "http://en.wikipedia.org/wiki/Bashkortostan",
-        "http://en.wikipedia.org/wiki/Radiy_Khabirov",
-        "http://en.wikipedia.org/wiki/Majit_Gafuri",
-        "http://en.wikipedia.org/wiki/Conflagration",
-        "http://en.wikipedia.org/wiki/Oil_refinery",
-        "http://en.wikipedia.org/wiki/Combustion"
-      ]
-    },
-    {
-      "id": "trump-ukraine-weapons-hormuz-coalition-threat",
-      "label": "Trump 'threatened to stop supplying weapons for Ukraine'",
-      "firstSeen": "2026-04-02T08:09:06.542Z",
-      "lastCovered": "2026-04-02T08:09:06.542Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-trump-ukraine-weapons-hormuz-coalition-threat"
-      ],
-      "eventUri": "rus-2047251",
-      "summary": "Trump threatened to cut Ukraine's weapons supply unless European nations join a coalition to reopen the Strait of Hormuz. Lead with the linkage: two separate wars are now being traded against each other as bargaining chips. Ukraine's survival is being used as leverage for Hormuz. The reader should see the power dynamic: the US is the only country supplying Ukraine at scale, and Trump is weaponizing that dependency to recruit a reluctant Europe into the Iran conflict.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-petrochemical-import-tax-abolished-iran-war",
-      "label": "India ends import tax on petrochemicals to help local industry",
-      "firstSeen": "2026-04-02T08:09:06.542Z",
-      "lastCovered": "2026-04-02T08:09:06.542Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-india-petrochemical-import-tax-abolished-iran-war"
-      ],
-      "eventUri": "eng-11534350",
-      "summary": "India invoked emergency powers to abolish import duties on petrochemicals after diverting domestic chemicals to cooking gas production due to Iran war shortages. This affects plastics, pharmaceuticals, and textiles for 1.4 billion people. Lead with the emergency powers: a G20 nation is restructuring its chemical supply chain mid-crisis because the Iran war redirected feedstock. The reader tracking Hormuz ripple effects should see the cascade: war → fuel shortage → chemical diversion → import duty removal → dependency on foreign petrochemicals.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Petrochemical",
-        "http://en.wikipedia.org/wiki/Tariff",
-        "http://en.wikipedia.org/wiki/Western_Asia",
-        "http://en.wikipedia.org/wiki/Raw_material",
-        "http://en.wikipedia.org/wiki/Plastic",
-        "http://en.wikipedia.org/wiki/Textile",
-        "http://en.wikipedia.org/wiki/Supply_chain",
-        "http://en.wikipedia.org/wiki/Chemical_substance"
-      ]
-    },
-    {
-      "id": "south-korea-save-fuel-iran-crisis",
-      "label": "Save 'Every Drop of Fuel' South Korea Urges, as Iran Crisis Hits",
-      "firstSeen": "2026-04-02T08:09:06.542Z",
-      "lastCovered": "2026-04-02T08:09:06.542Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-south-korea-save-fuel-iran-crisis"
-      ],
-      "eventUri": "eng-11534549",
-      "summary": "South Korea's president told the National Assembly to 'save every drop of fuel' as the Iran war squeezes the world's 5th-largest oil importer. Korea imports nearly all its energy. Lead with the image: the president of a $1.7T economy is asking citizens to conserve fuel — a wartime austerity signal from a country not at war. The reader should see: this is the East Asian version of Pakistan's rationing and Australia's fuel loans. The Hormuz closure is creating a rolling crisis across every import-dependent economy.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Middle_East",
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/National_Assembly_(France)",
-        "http://en.wikipedia.org/wiki/Seoul",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Yonhap_News_Agency",
-        "http://en.wikipedia.org/wiki/President_of_South_Korea",
-        "http://en.wikipedia.org/wiki/Energy_security"
-      ]
-    },
-    {
-      "id": "gulf-states-oil-pipelines-bypass-hormuz",
-      "label": "Gulf countries considering new oil export routes  --  FT",
-      "firstSeen": "2026-04-02T08:09:06.542Z",
-      "lastCovered": "2026-04-02T08:09:06.542Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-gulf-states-oil-pipelines-bypass-hormuz"
-      ],
-      "eventUri": null,
-      "summary": "Gulf states are discussing pipeline expansion to bypass the Strait of Hormuz, including expanding Saudi Arabia's East-West pipeline. The FT reports this as the first serious infrastructure pivot since the blockade began. Lead with the strategic shift: if producers build around Hormuz, Iran's leverage over global oil flows diminishes permanently. This is the long-term play — not a diplomatic resolution but a physical rerouting of the world's energy arteries.",
-      "conceptUris": []
-    },
-    {
-      "id": "masdar-totalenergies-2-2bn-renewable-jv",
-      "label": "Masdar and TotalEnergies to form $2.2bn joint renewable energy venture",
-      "firstSeen": "2026-04-02T08:09:06.542Z",
-      "lastCovered": "2026-04-02T08:09:06.542Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-masdar-totalenergies-2-2bn-renewable-jv"
-      ],
-      "eventUri": "eng-11534592",
-      "summary": "Abu Dhabi's Masdar and France's TotalEnergies are merging their Asian and Central Asian renewable portfolios into a $2.2 billion JV covering Japan, Indonesia, and Azerbaijan. Lead with the timing: two fossil-fuel-adjacent giants are pooling $2.2B in clean energy while the world scrambles for oil because of the Hormuz blockade. The reader should see the hedge: Gulf states aren't just planning pipeline bypasses — they're accelerating the post-oil transition in the same week.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Joint_venture",
-        "http://en.wikipedia.org/wiki/Asia",
-        "http://en.wikipedia.org/wiki/TotalEnergies",
-        "http://en.wikipedia.org/wiki/Masdar",
-        "http://en.wikipedia.org/wiki/Renewable_energy",
-        "http://en.wikipedia.org/wiki/Japan",
-        "http://en.wikipedia.org/wiki/Indonesia",
-        "http://en.wikipedia.org/wiki/Azerbaijan"
-      ]
-    },
-    {
-      "id": "bitcoin-hormuz-real-signals-trump-noise",
-      "label": "Attention bitcoin traders. These indicators matter more than what Trump says about Iran",
-      "firstSeen": "2026-04-02T08:09:06.542Z",
-      "lastCovered": "2026-04-02T08:09:06.542Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-bitcoin-hormuz-real-signals-trump-noise"
-      ],
-      "eventUri": null,
-      "summary": "Ship insurance premiums for Hormuz transits and collapsed tanker traffic are the real indicators — not Trump's statements. Bitcoin at $66,481 is reacting to political noise while the physical blockade data shows the route remains unsafe. Lead with the divergence: markets chase tweets while shipping data tells the real story. The reader who trades crypto and follows oil futures needs the signal-vs-noise framing: insurance premiums and AIS vessel tracking are the leading indicators, not presidential rhetoric.",
-      "conceptUris": []
-    },
-    {
-      "id": "russia-gasoline-export-ban-extended-producers",
-      "label": "Ban on gasoline exports from Russia extended to producers of petroleum products",
-      "firstSeen": "2026-04-02T08:09:06.542Z",
-      "lastCovered": "2026-04-02T08:09:06.542Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-russia-gasoline-export-ban-extended-producers"
-      ],
-      "eventUri": null,
-      "summary": "Russia extended its gasoline export ban through July 2026 and widened it to include direct producers — not just traders. Lead with what changed: the ban now covers producers themselves, meaning Russia's refiners can't sell a drop abroad. Read alongside the Ufa refinery strike: Ukraine is destroying Russia's refining capacity while Russia simultaneously hoards what remains for domestic consumption. The war is creating two simultaneous fuel crises — one external (Hormuz), one internal (Russian refining).",
-      "conceptUris": []
-    },
-    {
-      "id": "steam-linux-5-percent-milestone",
-      "label": "Steam on Linux Use Skyrocketed Above 5% in March",
-      "firstSeen": "2026-04-02T08:09:06.542Z",
-      "lastCovered": "2026-04-02T08:09:06.542Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-steam-linux-5-percent-milestone"
-      ],
-      "eventUri": null,
-      "summary": "Steam's Linux user share crossed 5% for the first time in March — up from under 1% five years ago. 259 HN points. Lead with the trajectory: Linux gaming went from joke to 1-in-20 Steam users, driven by the Steam Deck and Proton compatibility layer. The reader is a hacker who cares about open platforms — this is validation that the desktop Linux ecosystem is reaching critical mass in the one domain (gaming) that always held it back.",
-      "conceptUris": []
-    },
-    {
-      "id": "subscription-bombing-signup-form-weapon",
-      "label": "Subscription bombing and how to mitigate it",
-      "firstSeen": "2026-04-02T08:09:06.542Z",
-      "lastCovered": "2026-04-02T08:09:06.542Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-subscription-bombing-signup-form-weapon"
-      ],
-      "eventUri": null,
-      "summary": "Your signup form is a weapon: attackers use subscription bombing to flood a target's inbox with thousands of confirmation emails from legitimate services, burying real messages. 114 HN points, 79 comments. Lead with the mechanism: no exploit is needed — the attacker just submits the victim's email to every newsletter signup they can find. The reader who builds web apps should see the defense gap: most signup forms lack rate limiting or confirmation delays that would stop this.",
       "conceptUris": []
     }
   ]
