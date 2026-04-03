@@ -2,13 +2,150 @@
   "version": 1,
   "stories": [
     {
+      "id": "trump-take-oil-iran-war-aim",
+      "label": "Trump says with more time, US can 'take the oil' in Iran",
+      "firstSeen": "2026-04-03T22:08:15.359Z",
+      "lastCovered": "2026-04-03T22:08:15.359Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-trump-take-oil-iran-war-aim"
+      ],
+      "eventUri": "eng-11538817",
+      "summary": "Trump posted that 'with a little more time, we can easily OPEN THE HORMUZ STRAIT, TAKE THE OIL, & MAKE A FORTUNE.' The angle: this is the quiet part said loud — resource seizure as explicit war aim. Lead with the direct quote and what it means legally (pillage of natural resources violates the Fourth Geneva Convention). The reader tracking the war's economic logic should see the mask coming off.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Truth_Social",
+        "http://en.wikipedia.org/wiki/Belgium",
+        "http://en.wikipedia.org/wiki/Strait",
+        "http://en.wikipedia.org/wiki/Information_technology"
+      ]
+    },
+    {
+      "id": "pakistan-repays-uae-3-5-billion-debt-dignity",
+      "label": "Pakistan to return $3.5bn UAE debt before month end: official",
+      "firstSeen": "2026-04-03T22:08:15.359Z",
+      "lastCovered": "2026-04-03T22:08:15.359Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-pakistan-repays-uae-3-5-billion-debt-dignity"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan is repaying $3.5B to the UAE before month-end, framed as 'national dignity' — even as it's about to sign a new IMF program and its population faces 43% fuel price hikes. The angle: a country choosing sovereignty signaling over economic relief for 240 million people. Lead with the tension: $3.5B flowing out to Abu Dhabi while provinces scramble fuel subsidies at home. What triggered the UAE's demand? The reader tracking Pakistan's war-era economy should see the geopolitics underneath the financial decision.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-hormuz-three-tier-shipping-system",
+      "label": "Iran divides countries into three categories based on use of Strait of Hormuz",
+      "firstSeen": "2026-04-03T22:08:15.359Z",
+      "lastCovered": "2026-04-03T22:08:15.359Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-iran-hormuz-three-tier-shipping-system"
+      ],
+      "eventUri": null,
+      "summary": "Iran has formalized a three-tier system for Hormuz transit: hostile, neutral, and friendly nations get different treatment. The angle: the blockade is evolving from blunt denial to managed access — Iran is building a toll-booth on the world's most important oil chokepoint. Lead with the categorization system itself. The reader tracking Hormuz should see that this transforms a military blockade into a geopolitical sorting mechanism. Which countries fall where, and what does passage cost?",
+      "conceptUris": []
+    },
+    {
+      "id": "polyphenols-microplastic-immune-human-trial",
+      "label": "Composite polyphenols mitigate microplastic exposure-related immune disturbances: a two-phase population trial",
+      "firstSeen": "2026-04-03T22:08:15.359Z",
+      "lastCovered": "2026-04-03T22:08:15.359Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-polyphenols-microplastic-immune-human-trial"
+      ],
+      "eventUri": null,
+      "summary": "First human trial showing that plant polyphenols can reduce microplastic-driven immune disruption. A two-phase trial (n=151 pilot, n=98 RCT) measured blood microplastic levels, immune markers, and gut inflammation. The angle: microplastics are in everyone's blood, and this is the first evidence that a dietary intervention actually works. Lead with the trial design — this isn't a mouse study, it's a randomized controlled trial in humans. The reader who tracks environmental health should see the shift from 'microplastics are everywhere' to 'here's what you can do.'",
+      "conceptUris": []
+    },
+    {
+      "id": "artemis-ii-earth-photograph-lunar-orbit",
+      "label": "Artemis II crew take 'spectacular' image of Earth",
+      "firstSeen": "2026-04-03T22:08:15.359Z",
+      "lastCovered": "2026-04-03T22:08:15.359Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-artemis-ii-earth-photograph-lunar-orbit"
+      ],
+      "eventUri": null,
+      "summary": "The Artemis II crew — the first humans beyond low Earth orbit since Apollo 17 in 1972 — have captured a new full-Earth photograph. The angle: after 54 years, humans are far enough from Earth to see it whole again. Lead with the image and what it represents — this isn't just a photo op, it's the first crewed lunar mission photograph of the modern era. HN had 214 points and 106 comments, signaling genuine reader excitement.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-users-surrender-cognition-llm-research",
+      "label": "Research finds AI users scarily willing to \"surrender\" their cognition to LLMs",
+      "firstSeen": "2026-04-03T22:08:15.359Z",
+      "lastCovered": "2026-04-03T22:08:15.359Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-ai-users-surrender-cognition-llm-research"
+      ],
+      "eventUri": null,
+      "summary": "New research categorizes LLM users into two types: those who treat AI as a faulty tool needing oversight, and those who surrender critical thinking entirely. The angle: cognitive outsourcing is the real AI risk — not sentience, not job loss, but the voluntary abandonment of reasoning. Lead with the research finding and what 'surrender' looks like in practice. The reader who uses AI tools daily should feel the mirror being held up.",
+      "conceptUris": []
+    },
+    {
+      "id": "oracle-h1b-petitions-mass-layoffs",
+      "label": "Oracle Files H-1B Visa Petitions Amid Mass Layoffs",
+      "firstSeen": "2026-04-03T22:08:15.359Z",
+      "lastCovered": "2026-04-03T22:08:15.359Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-oracle-h1b-petitions-mass-layoffs"
+      ],
+      "eventUri": null,
+      "summary": "Oracle is filing thousands of H-1B visa petitions while simultaneously conducting mass layoffs. The angle: the visa system is being used not to fill talent gaps but to replace higher-cost workers with lower-cost visa holders who are tied to their employer. Lead with the contradiction — layoffs and hiring happening in parallel at the same company. HN readers (162 points, 81 comments) are the workers this directly affects.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-tariffs-sabotage-ai-data-center-buildout",
+      "label": "Trump ignores biggest reasons his AI data center buildout is failing",
+      "firstSeen": "2026-04-03T22:08:15.359Z",
+      "lastCovered": "2026-04-03T22:08:15.359Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-03-trump-tariffs-sabotage-ai-data-center-buildout"
+      ],
+      "eventUri": "eng-11533427",
+      "summary": "Trump's executive orders prioritized rapid AI data center construction to beat China, but his own tariffs on Chinese-made transformers, copper, and steel are the main obstacle. The angle: the AI race is being sabotaged by the trade war — the same administration that declared data centers a national priority is making them unaffordable to build. Lead with the self-defeating loop. The reader building or deploying on cloud infrastructure should see the supply chain implications.",
+      "conceptUris": []
+    },
+    {
       "id": "iran-downs-us-f15e-first-manned-aircraft-loss",
       "label": "US confirms downed aircraft is F-15E",
       "firstSeen": "2026-04-03T17:08:03.981Z",
       "lastCovered": "2026-04-03T17:08:03.981Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-iran-downs-us-f15e-first-manned-aircraft-loss"
@@ -33,7 +170,7 @@
       "lastCovered": "2026-04-03T17:08:03.981Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-uk-deploys-rapid-sentry-kuwait-iran-drone-defense"
@@ -58,7 +195,7 @@
       "lastCovered": "2026-04-03T17:08:03.981Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-fao-food-price-index-24-percent-rise-iran-war-energy"
@@ -83,7 +220,7 @@
       "lastCovered": "2026-04-03T17:08:03.981Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-trump-1-5-trillion-defense-budget-40-percent-increase-iran"
@@ -104,7 +241,7 @@
       "lastCovered": "2026-04-03T17:08:03.981Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-pakistan-provinces-fuel-subsidies-43-percent-petrol-hike"
@@ -126,7 +263,7 @@
       "lastCovered": "2026-04-03T17:08:03.981Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-irgc-amazon-data-center-strike-us-destroys-iran-bridge"
@@ -148,7 +285,7 @@
       "lastCovered": "2026-04-03T17:08:03.981Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-trump-budget-12-percent-hhs-cut-nih-cdc-fda"
@@ -169,7 +306,7 @@
       "lastCovered": "2026-04-03T17:08:03.981Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-psilocybin-longevity-mouse-results-dont-translate-humans"
@@ -189,7 +326,7 @@
       "lastCovered": "2026-04-03T17:08:03.981Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-solar-batteries-can-power-world-technical-analysis"
@@ -209,7 +346,7 @@
       "lastCovered": "2026-04-03T17:08:03.981Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-blogosphere-frontpage-personal-blogs-indie-web"
@@ -228,7 +365,7 @@
       "lastCovered": "2026-04-03T17:08:03.981Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-03-ev-adoption-surge-iran-war-gasoline-price-shock"
@@ -244,13 +381,35 @@
       ]
     },
     {
+      "id": "kerala-state-microbe-microbiome-hub-farming-health",
+      "label": "Q&A: Kerala taps microbe for health, farming gains",
+      "firstSeen": "2026-04-03T08:11:58.029Z",
+      "lastCovered": "2026-04-03T22:08:15.359Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-04-03-kerala-state-microbe-microbiome-hub-farming-health",
+        "2026-04-03-kerala-state-microbe-microbiome-hub"
+      ],
+      "eventUri": null,
+      "summary": "Kerala became the first Indian state to designate a 'state microbe' and is building a microbiome research hub to develop sustainable solutions for health and agriculture. Lead with the novelty: a subnational government treating its microbial ecosystem as a strategic asset, the way states designate official birds or flowers but with actual scientific infrastructure behind it. The reader who thinks about food systems and biotech should see the connection to the fertilizer crisis — microbiome-based farming reduces dependence on synthetic inputs whose supply chains the Hormuz blockade is disrupting. This is Global South science governance innovation, not just academic research.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Microbiome",
+        "http://en.wikipedia.org/wiki/Kerala",
+        "http://en.wikipedia.org/wiki/Agriculture",
+        "http://en.wikipedia.org/wiki/India"
+      ]
+    },
+    {
       "id": "iran-retains-half-missile-launchers-us-intel-contradicts-trump",
       "label": "Iran still has 50% of missile launchers and thousands of drones",
       "firstSeen": "2026-04-03T12:14:00.239Z",
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-iran-retains-half-missile-launchers-us-intel-contradicts-trump"
@@ -275,7 +434,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-french-vessel-crosses-hormuz-blockade-cma-cgm"
@@ -300,7 +459,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-zarif-urges-iran-declare-victory-strike-deal-us"
@@ -325,7 +484,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-burkina-faso-traore-forget-democracy-sahel-authoritarianism"
@@ -350,7 +509,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-france-bans-muslim-gathering-security-islamophobia"
@@ -366,7 +525,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-sweden-seizes-russian-shadow-fleet-tanker-oil-spill-baltic"
@@ -391,7 +550,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-greek-pm-reshuffle-eu-farm-fraud-accountability"
@@ -407,7 +566,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-t-cell-exhaustion-obesity-diabetes-immune-mechanism"
@@ -423,7 +582,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-brain-coupling-student-teacher-predicts-academic-performance"
@@ -439,7 +598,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-proton-meet-privacy-claims-debunked-encryption"
@@ -455,7 +614,7 @@
       "lastCovered": "2026-04-03T12:14:00.239Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-03-european-alternatives-us-apps-digital-sovereignty"
@@ -471,7 +630,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-03-myanmar-junta-chief-min-aung-hlaing-elected-president"
@@ -496,7 +655,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-03-cuba-pardons-2010-prisoners-us-pressure-holy-week"
@@ -521,7 +680,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-03-trump-threatens-iran-civilian-infrastructure-targets"
@@ -546,7 +705,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-03-south-africa-g7-disinvitation-france-brics"
@@ -567,7 +726,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-03-el-rufai-corruption-bail-hearing-kaduna-nigeria"
@@ -592,7 +751,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-03-kuwait-mina-al-ahmadi-refinery-iranian-drone-strike"
@@ -611,34 +770,13 @@
       ]
     },
     {
-      "id": "kerala-state-microbe-microbiome-hub-farming-health",
-      "label": "Q&A: Kerala taps microbe for health, farming gains",
-      "firstSeen": "2026-04-03T08:11:58.029Z",
-      "lastCovered": "2026-04-03T08:11:58.029Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-03-kerala-state-microbe-microbiome-hub-farming-health"
-      ],
-      "eventUri": null,
-      "summary": "Kerala became the first Indian state to designate a 'state microbe' and is building a microbiome research hub to develop sustainable solutions for health and agriculture. Lead with the novelty: a subnational government treating its microbial ecosystem as a strategic asset, the way states designate official birds or flowers but with actual scientific infrastructure behind it. The reader who thinks about food systems and biotech should see the connection to the fertilizer crisis — microbiome-based farming reduces dependence on synthetic inputs whose supply chains the Hormuz blockade is disrupting. This is Global South science governance innovation, not just academic research.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Microbiome",
-        "http://en.wikipedia.org/wiki/Kerala",
-        "http://en.wikipedia.org/wiki/Agriculture",
-        "http://en.wikipedia.org/wiki/India"
-      ]
-    },
-    {
       "id": "deep-learning-biofilm-graph-antimicrobial-resistance",
       "label": "Deep learning-based high-information-content graph representation of early stage bacterial biofilms",
       "firstSeen": "2026-04-03T08:11:58.029Z",
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-03-deep-learning-biofilm-graph-antimicrobial-resistance"
@@ -659,7 +797,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-03-gas-sensor-uav-pollution-plume-tracking-dataset"
@@ -680,7 +818,7 @@
       "lastCovered": "2026-04-03T08:11:58.029Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-03-iran-aws-data-centers-cloud-warfare-first-strike"
@@ -702,7 +840,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-hegseth-ousts-army-chief-randy-george-wartime"
@@ -727,7 +865,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-trump-fires-bondi-attorney-general-epstein"
@@ -752,7 +890,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-starmer-40-nation-hormuz-coalition-without-us"
@@ -777,7 +915,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-pakistan-peacemaker-bombing-afghan-border"
@@ -793,7 +931,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-israel-ethnic-cleansing-southern-lebanon-shia"
@@ -809,7 +947,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-trump-50-percent-tariffs-steel-aluminum-copper"
@@ -834,7 +972,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-spacex-amazon-satellite-altitude-fcc-debris"
@@ -850,7 +988,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-terahertz-metamaterial-absorber-water-pyramid"
@@ -866,7 +1004,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-soil-health-biochar-soybean-fertilizer-independence"
@@ -882,7 +1020,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-perplexity-incognito-sham-google-meta-data"
@@ -898,7 +1036,7 @@
       "lastCovered": "2026-04-02T22:15:35.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-02-cursor-3-ai-coding-editor-launch"
@@ -914,7 +1052,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-austria-rejects-us-airspace-iran-neutrality"
@@ -939,7 +1077,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-bellingcat-uae-rewrites-iranian-strike-damage"
@@ -955,7 +1093,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-us-israeli-strikes-iran-healthcare-system"
@@ -971,7 +1109,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-israeli-settler-violence-condemnations-smokescreen"
@@ -987,7 +1125,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-nigeria-10000-displaced-nine-states-nhrc"
@@ -1003,7 +1141,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-tesla-q1-deliveries-miss-expectations"
@@ -1028,7 +1166,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-walmart-recession-signal-2008-crisis-levels"
@@ -1044,7 +1182,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-drift-exploit-north-korea-elliptic-attribution"
@@ -1060,7 +1198,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-diamond-graphene-electromagnetic-wave-absorption"
@@ -1076,7 +1214,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-google-gemma-4-apache-2-open-ai-models"
@@ -1092,7 +1230,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-teleguard-encryption-meaningless-private-keys"
@@ -1108,7 +1246,7 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-journalist-sues-faa-drone-no-fly-zone-ice"
@@ -1124,216 +1262,13 @@
       "lastCovered": "2026-04-02T17:10:08.994Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-02-qwen-3-6-plus-alibaba-ai-agents"
       ],
       "eventUri": null,
       "summary": "Alibaba's Qwen team released Qwen 3.6-Plus, positioning it as an AI model specifically designed for real-world agent tasks — autonomous tool use, multi-step reasoning, and environment interaction. The angle: China's open-weight AI models are now competing directly with Google's Gemma 4 (released the same day) on the frontier of AI agents. Lead with the timing: two major open AI model releases on the same day, from the US and China. HN discussion (185 points, 66 comments) shows developer community taking Chinese models seriously. The reader building with AI should see the geopolitical dimension: the AI agent race is now a two-front competition.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-missiles-israel-gulf-trump-winding-down",
-      "label": "Iran fires missiles at Israel and Gulf neighbors as Trump talks of winding down Mideast war",
-      "firstSeen": "2026-04-02T12:05:07.758Z",
-      "lastCovered": "2026-04-02T12:05:07.758Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-iran-missiles-israel-gulf-trump-winding-down"
-      ],
-      "eventUri": "deu-2103838",
-      "summary": "Iran launched another wave of missiles at Israel and Gulf Arab states on Day 28 of the war — even as Trump claimed the threat was 'nearly eliminated.' The angle: the gap between Washington's victory narrative and Tehran's demonstrated strike capability. Lead with the continued strikes on Gulf neighbors, not just Israel — the reader tracking Hormuz should see that the war zone is expanding, not contracting. This undercuts the UK Hormuz conference happening the same day.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/White_House"
-      ]
-    },
-    {
-      "id": "iran-bilateral-hormuz-deals-india-bypass-coalition",
-      "label": "'In safe hands': Iran reassures 'Indian friends' on passage through Strait of Hormuz",
-      "firstSeen": "2026-04-02T12:05:07.758Z",
-      "lastCovered": "2026-04-02T12:05:07.758Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-iran-bilateral-hormuz-deals-india-bypass-coalition"
-      ],
-      "eventUri": "rus-2047455",
-      "summary": "Iran is offering bilateral Hormuz passage agreements to European, Asian, and Arab countries — bypassing the US-led coalition framework entirely. The angle: Tehran is splitting the Western bloc by offering a diplomatic alternative to military escort. India is the first named partner. Lead with the geopolitical judo: while the UK convenes 30+ nations for a coalition, Iran is offering individual deals that make a coalition unnecessary for any country willing to negotiate directly. The reader tracking Hormuz should see the fracture lines forming.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Arab_world",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Asia",
-        "http://en.wikipedia.org/wiki/Marco_Rubio"
-      ]
-    },
-    {
-      "id": "pakistan-supreme-court-halts-terrorism-charges-journalist",
-      "label": "SC halts anti-terrorism court from framing charges against journalist Matiullah Jan",
-      "firstSeen": "2026-04-02T12:05:07.758Z",
-      "lastCovered": "2026-04-02T12:05:07.758Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-pakistan-supreme-court-halts-terrorism-charges-journalist"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's Supreme Court blocked an anti-terrorism court from framing charges against veteran journalist Matiullah Jan, directing the Islamabad High Court to expedite its challenge to the terrorism charges. The angle: a journalist is being prosecuted under anti-terror laws — the same legal architecture meant for armed militants is being turned on press critics. Lead with the legal mechanism: terrorism charges against a journalist, and a Supreme Court that intervened. The reader should see the press freedom dimension in a country already under dual pressure from the Iran war's economic ripple effects.",
-      "conceptUris": []
-    },
-    {
-      "id": "italy-fines-revolut-misleading-fees",
-      "label": "Italy fines Revolut over misleading fees and terms details",
-      "firstSeen": "2026-04-02T12:05:07.758Z",
-      "lastCovered": "2026-04-02T12:05:07.758Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-italy-fines-revolut-misleading-fees"
-      ],
-      "eventUri": "ita-891352",
-      "summary": "Italy's competition watchdog fined Revolut €11.5mn for advertising '0% commission' trading while burying real costs in fine print. The angle: Europe's most valuable fintech startup (valued at $45bn) is being held accountable by a regulator in a market where it's aggressively expanding. Lead with the '0% commission' lie — the reader who uses fintech daily will recognize the pattern. The structural point: EU regulators are testing whether fintech companies face the same consumer protection standards as traditional banks.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Revolut",
-        "http://en.wikipedia.org/wiki/Euro",
-        "http://en.wikipedia.org/wiki/Bank",
-        "http://en.wikipedia.org/wiki/Investment",
-        "http://en.wikipedia.org/wiki/Company",
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/Fintech",
-        "http://en.wikipedia.org/wiki/Competition_(economics)"
-      ]
-    },
-    {
-      "id": "france-lise-first-onchain-ipo-europe",
-      "label": "RWA news: France's tokenized stock exchange Lise poised for first onchain IPO in Europe",
-      "firstSeen": "2026-04-02T12:05:07.758Z",
-      "lastCovered": "2026-04-02T12:05:07.758Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-france-lise-first-onchain-ipo-europe"
-      ],
-      "eventUri": null,
-      "summary": "France's Lightning Stock Exchange (Lise) is preparing Europe's first fully onchain IPO — listing aerospace firm ST Group on a blockchain-native exchange operating within EU regulatory frameworks. The angle: this isn't crypto-native speculation, it's a regulated stock market built on blockchain rails. Lead with the precedent: if it works, smaller European firms get a cheaper, faster path to public markets without the overhead of traditional exchanges. The reader tracking tokenization (after Brazil's B3 bitcoin derivatives) should see the pattern: traditional finance is absorbing blockchain infrastructure, not the other way around.",
-      "conceptUris": []
-    },
-    {
-      "id": "plastics-supply-chain-hormuz-petrochemical-crisis",
-      "label": "Fuel prices are soaring. Plastic could be next.",
-      "firstSeen": "2026-04-02T12:05:07.758Z",
-      "lastCovered": "2026-04-02T12:05:07.758Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-plastics-supply-chain-hormuz-petrochemical-crisis"
-      ],
-      "eventUri": null,
-      "summary": "The Hormuz bottleneck is now hitting petrochemical feedstock for plastics — which account for 5% of global CO2 emissions and touch everything from medical devices to food packaging. The angle: this is the next cascade after fuel. India already invoked emergency powers to restructure its chemical supply chain (covered yesterday). Lead with the universality: plastic is in everything, and its precursors flow through the same choke point as oil. The reader tracking Hormuz ripple effects should see the supply chain extending from fuel → petrochemicals → plastics → consumer goods.",
-      "conceptUris": []
-    },
-    {
-      "id": "cdc-stops-rabies-pox-virus-testing",
-      "label": "CDC stops testing for rabies, pox viruses",
-      "firstSeen": "2026-04-02T12:05:07.758Z",
-      "lastCovered": "2026-04-02T12:05:07.758Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-cdc-stops-rabies-pox-virus-testing"
-      ],
-      "eventUri": null,
-      "summary": "The CDC has halted testing for rabies and pox viruses — diseases with near-100% fatality rates if untreated. The angle: this isn't budget trimming, it's eliminating the diagnostic capacity for lethal pathogens. Rabies kills ~60,000 people globally per year; the US is the reference lab for much of the Western Hemisphere. Lead with the fatality rate and the diagnostic monopoly: if the CDC stops testing, who does? The reader should see this as infrastructure decay in real time — the same pattern as the DOGE-era NIH grant cuts.",
-      "conceptUris": []
-    },
-    {
-      "id": "rna-viral-vector-programmable-cell-targeting",
-      "label": "Engineering multiple levels of specificity in an RNA viral vector - Nature Communications",
-      "firstSeen": "2026-04-02T12:05:07.758Z",
-      "lastCovered": "2026-04-02T12:05:07.758Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-rna-viral-vector-programmable-cell-targeting"
-      ],
-      "eventUri": null,
-      "summary": "Researchers engineered an RNA-based viral vector (derived from rabies virus) that can be programmed to target only specific cell types — stacking multiple layers of specificity so the therapeutic payload activates only in diseased cells. The angle: this is programmable medicine at the delivery level. Current gene therapies are blunt instruments; this adds an 'if-then' logic layer to the vehicle itself. Lead with the precision: a virus that infects only the cells you want, and only activates its cargo when it confirms it's in the right place. The reader who builds software will recognize the pattern — conditional execution, but in biology.",
-      "conceptUris": []
-    },
-    {
-      "id": "snakebite-self-immunization-neglected-tropical-disease",
-      "label": "I have been bitten by more than 200 snakes - on purpose",
-      "firstSeen": "2026-04-02T12:05:07.758Z",
-      "lastCovered": "2026-04-02T12:05:07.758Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-snakebite-self-immunization-neglected-tropical-disease"
-      ],
-      "eventUri": "eng-11524941",
-      "summary": "Tim Friede has intentionally subjected himself to 200+ venomous snake bites to develop self-immunization against snakebite — a neglected tropical disease that kills 138,000 and disables 400,000 people per year, mostly in rural Africa and South Asia. The angle: the world's most neglected medical crisis (WHO's own label) has so little funding that a single self-experimenter has become a significant research subject. Lead with the 5 million bites per year and the funding gap — then the man who made himself the experiment. The reader should see the structural failure: Big Pharma won't invest because the victims are poor.",
-      "conceptUris": []
-    },
-    {
-      "id": "ibm-arm-enterprise-computing-collaboration",
-      "label": "IBM Announces Strategic Collaboration with Arm",
-      "firstSeen": "2026-04-02T12:05:07.758Z",
-      "lastCovered": "2026-04-02T12:05:07.758Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-ibm-arm-enterprise-computing-collaboration"
-      ],
-      "eventUri": null,
-      "summary": "IBM and Arm announced a strategic collaboration to bring Arm-based processors into enterprise computing — a domain that has been x86 territory for decades. The angle: this is the server architecture shift reaching its endgame. Apple moved to Arm in 2020; cloud providers followed with Graviton and Ampere; now IBM is bringing its enterprise middleware stack (WebSphere, Db2, the mainframe ecosystem) to Arm. Lead with what changes: the last bastion of x86 dominance — mission-critical enterprise workloads — is being contested. HN discussion (100+ points, 54 comments) signals the developer community sees this as significant.",
-      "conceptUris": []
-    },
-    {
-      "id": "email-obfuscation-what-works-2026",
-      "label": "Email obfuscation: What works in 2026?",
-      "firstSeen": "2026-04-02T12:05:07.758Z",
-      "lastCovered": "2026-04-02T12:05:07.758Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-02-email-obfuscation-what-works-2026"
-      ],
-      "eventUri": null,
-      "summary": "A systematic study of which email obfuscation techniques actually prevent harvesting by bots in 2026 — testing CSS tricks, JavaScript encoding, SVG rendering, and more against modern scrapers and LLM-powered crawlers. The angle: the arms race between spam harvesters and obfuscation has a new player — AI crawlers that can 'read' obfuscated emails the way humans do. Lead with what's changed: techniques that worked in 2020 are broken because LLM-powered bots understand context. HN discussion (172 points, 50 comments) shows developers are actively rethinking a problem they thought was solved.",
       "conceptUris": []
     }
   ]
