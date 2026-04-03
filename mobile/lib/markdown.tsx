@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import { Linking, StyleSheet, Text, type TextStyle } from 'react-native';
+import { StyleSheet, Text, type TextStyle } from 'react-native';
+import * as WebBrowser from 'expo-web-browser';
 import type { ColorPalette, FontSet, Typography } from '../constants/theme';
 
 export type Segment = { type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link'; text: string; url?: string };
@@ -129,7 +130,7 @@ function renderSegments(segments: Segment[], mdStyles: MarkdownStyles): ReactNod
         );
       case 'link':
         return (
-          <Text key={j} style={mdStyles.link} onPress={() => Linking.openURL(seg.url!)}>
+          <Text key={j} style={mdStyles.link} onPress={() => WebBrowser.openBrowserAsync(seg.url!)}>
             {seg.text}
           </Text>
         );

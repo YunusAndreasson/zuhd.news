@@ -5,7 +5,7 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useState } from 'react';
-import { Linking, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 import { SOURCES } from '../constants/sources';
 import { EDITORIAL, LAYOUT, SPACING } from '../constants/theme';
@@ -182,29 +182,6 @@ export const SourceSheet = memo(function SourceSheet({
                 </Pressable>
               );
             })}
-            <Text
-              style={[
-                styles.correctionLink,
-                textStyles.smallCapsXs,
-                { color: colors.textSecondary },
-              ]}
-            >
-              <Text
-                onPress={() => Linking.openURL('mailto:yunus@edenmind.com?subject=Correction')}
-                accessibilityRole="link"
-                accessibilityLabel="Submit a correction"
-              >
-                correction
-              </Text>
-              {'  ·  '}
-              <Text
-                onPress={() => Linking.openURL('https://zuhd.news/sources')}
-                accessibilityRole="link"
-                accessibilityLabel="All sources"
-              >
-                all sources
-              </Text>
-            </Text>
           </>
         ) : null}
       </BottomSheetScrollView>
@@ -216,10 +193,6 @@ const styles = StyleSheet.create({
   coverageHeading: {
     fontStyle: 'italic',
     marginBottom: SPACING.md,
-  },
-  correctionLink: {
-    marginTop: SPACING.lg,
-    textDecorationLine: 'underline',
   },
   sheetBody: {},
   sourceRow: {

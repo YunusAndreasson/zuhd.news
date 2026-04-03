@@ -5,6 +5,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
+import * as WebBrowser from 'expo-web-browser';
 import { memo, useCallback } from 'react';
 import { Linking, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
@@ -105,6 +106,16 @@ const FONT_FAMILY_OPTIONS: { value: FontFamily; label: string }[] = [
   { value: 'system', label: 'system' },
 ];
 
+const HAPTICS_OPTIONS: { value: 'on' | 'off'; label: string }[] = [
+  { value: 'on', label: 'on' },
+  { value: 'off', label: 'off' },
+];
+
+const NOTIFICATION_OPTIONS: { value: 'on' | 'off'; label: string }[] = [
+  { value: 'on', label: 'on' },
+  { value: 'off', label: 'off' },
+];
+
 const APPEARANCE_OPTIONS: { value: AppearanceMode; label: string }[] = [
   { value: 'dark', label: 'dark' },
   { value: 'system', label: 'system' },
@@ -127,8 +138,18 @@ export const SettingsSheet = memo(function SettingsSheet({
     setFontSize,
     setFontFamily,
     setAppearance,
+    setHaptics,
+    setNotifications,
   } = useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
+
+  const openUrl = useCallback(
+    (url: string) => {
+      sheetRef.current?.dismiss();
+      setTimeout(() => WebBrowser.openBrowserAsync(url), 300);
+    },
+    [sheetRef],
+  );
 
   const SettingsHandle = useCallback(() => <SheetHandle title="settings" />, []);
 
@@ -195,6 +216,38 @@ export const SettingsSheet = memo(function SettingsSheet({
 
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
+        {/* Haptics */}
+        <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>haptics</Text>
+        <View style={styles.sectionBody}>
+          <OptionRow
+            options={HAPTICS_OPTIONS}
+            selected={preferences.haptics ? 'on' : 'off'}
+            onSelect={(v) => setHaptics(v === 'on')}
+            textColor={colors.text}
+            dimColor={colors.textSecondary}
+            fontFamily={font.semiBold}
+            fontSize={typography.sizeSm}
+          />
+        </View>
+
+        <View style={[styles.divider, { backgroundColor: colors.rule }]} />
+
+        {/* Daily briefing notification */}
+        <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>daily briefing</Text>
+        <View style={styles.sectionBody}>
+          <OptionRow
+            options={NOTIFICATION_OPTIONS}
+            selected={preferences.notifications ? 'on' : 'off'}
+            onSelect={(v) => setNotifications(v === 'on')}
+            textColor={colors.text}
+            dimColor={colors.textSecondary}
+            fontFamily={font.semiBold}
+            fontSize={typography.sizeSm}
+          />
+        </View>
+
+        <View style={[styles.divider, { backgroundColor: colors.rule }]} />
+
         <View style={styles.sectionBody}>
           <Text
             style={{
@@ -214,7 +267,7 @@ export const SettingsSheet = memo(function SettingsSheet({
             }}
           >
             <Text
-              onPress={() => Linking.openURL('https://zuhd.news/about')}
+              onPress={() => openUrl('https://zuhd.news/about')}
               accessibilityRole="link"
               accessibilityLabel="About zuhd.news"
               style={{ color: colors.accent }}
@@ -232,7 +285,7 @@ export const SettingsSheet = memo(function SettingsSheet({
             </Text>
             {'  ·  '}
             <Text
-              onPress={() => Linking.openURL('https://zuhd.news/privacy')}
+              onPress={() => openUrl('https://zuhd.news/privacy')}
               accessibilityRole="link"
               accessibilityLabel="Privacy policy"
               style={{ color: colors.accent }}

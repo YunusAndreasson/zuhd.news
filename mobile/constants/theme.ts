@@ -13,12 +13,16 @@ export interface Preferences {
   fontSize: FontSize;
   fontFamily: FontFamily;
   appearance: AppearanceMode;
+  haptics: boolean;
+  notifications: boolean;
 }
 
 export const DEFAULT_PREFS: Preferences = {
   fontSize: 'default',
   fontFamily: 'source',
   appearance: 'dark',
+  haptics: true,
+  notifications: false,
 };
 
 // ---------------------------------------------------------------------------

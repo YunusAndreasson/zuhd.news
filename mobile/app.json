@@ -59,7 +59,9 @@
       ],
       "expo-asset",
       "expo-background-task",
-      "react-native-spotlight-search"
+      "react-native-spotlight-search",
+      "expo-web-browser",
+      ["expo-notifications", { "icon": "./assets/android-icon-monochrome.png", "color": "#141414" }]
     ],
     "extra": {
       "router": {},

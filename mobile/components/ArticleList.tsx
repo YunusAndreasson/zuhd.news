@@ -21,7 +21,7 @@ import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { hapticNotification, hapticTick } from '../lib/haptics';
 import { maybeRequestReview } from '../lib/store-review';
-import type { Article, ContextPressHandler, HeatmapPoint } from '../types';
+import type { Article, ContextPressHandler, HeatmapPoint, SourcePressHandler } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
 
@@ -41,6 +41,7 @@ interface ArticleListProps {
   onRefresh: () => Promise<void>;
   onEndReached?: (catIndex: number) => void;
   onCaughtUp?: () => void;
+  onSourcePress?: SourcePressHandler;
   onContextPress?: ContextPressHandler;
   onCountryPress?: (result: TapResult) => void;
   onBookmarkPress?: (article: Article) => void;
@@ -57,6 +58,7 @@ export const ArticleList = memo(function ArticleList({
   viewportHeight,
   catIndex,
   lastSeenAt,
+  onSourcePress,
   onContextPress,
   onCountryPress,
   onBookmarkPress,
@@ -207,6 +209,7 @@ export const ArticleList = memo(function ArticleList({
         screenWidth={screenWidth}
         index={index}
         scrollY={scrollY}
+        onSourcePress={onSourcePress}
         onContextPress={onContextPress}
         onBookmarkPress={onBookmarkPress}
         showEarlierDivider={index === earlierIndex}
@@ -222,6 +225,7 @@ export const ArticleList = memo(function ArticleList({
       itemHeight,
       screenWidth,
       scrollY,
+      onSourcePress,
       onContextPress,
       onCountryPress,
       onBookmarkPress,

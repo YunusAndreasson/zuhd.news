@@ -1,4 +1,5 @@
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import * as Notifications from 'expo-notifications';
 import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
@@ -12,6 +13,15 @@ import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowBanner: true,
+    shouldShowList: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({ fade: true, duration: 250 });
@@ -38,6 +48,8 @@ export default function RootLayout() {
 
   useEffect(() => {
     registerBackgroundTask();
+    const sub = Notifications.addNotificationResponseReceivedListener(() => {});
+    return () => sub.remove();
   }, []);
 
   if (!fontsLoaded) return null;

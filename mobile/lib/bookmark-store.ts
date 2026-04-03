@@ -62,14 +62,6 @@ export function toggle(article: Article, category: Category): boolean {
   return true; // added
 }
 
-export function isBookmarked(slug: string): boolean {
-  return bookmarks.some((b) => b.article.slug === slug);
-}
-
-export function getAll(): Bookmark[] {
-  return bookmarks;
-}
-
 // ---------------------------------------------------------------------------
 // useSyncExternalStore interface
 // ---------------------------------------------------------------------------

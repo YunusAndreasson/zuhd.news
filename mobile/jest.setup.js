@@ -102,6 +102,10 @@ jest.mock('expo-haptics', () => ({
   NotificationFeedbackType: { Success: 'success', Warning: 'warning', Error: 'error' },
 }));
 
+jest.mock('expo-web-browser', () => ({
+  openBrowserAsync: jest.fn(),
+}));
+
 // ---------------------------------------------------------------------------
 // @shopify/react-native-skia mock
 // ---------------------------------------------------------------------------

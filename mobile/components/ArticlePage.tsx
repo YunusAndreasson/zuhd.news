@@ -15,7 +15,7 @@ import { useTheme } from '../hooks/useTheme';
 import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact } from '../lib/haptics';
 import { makeMarkdownStyles, renderSentences } from '../lib/markdown';
-import type { Article, ContextPressHandler } from '../types';
+import type { Article, ContextPressHandler, SourcePressHandler } from '../types';
 import { ActionLabel } from './ActionLabel';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 
@@ -28,6 +28,7 @@ interface ArticlePageProps {
   screenWidth: number;
   index: number;
   scrollY: SharedValue<number>;
+  onSourcePress?: SourcePressHandler;
   onContextPress?: ContextPressHandler;
   onBookmarkPress?: (article: Article) => void;
   showEarlierDivider?: boolean;
@@ -77,6 +78,7 @@ export const ArticlePage = memo(function ArticlePage({
   screenWidth,
   index,
   scrollY,
+  onSourcePress,
   onContextPress,
   onBookmarkPress,
   showEarlierDivider,
@@ -137,12 +139,12 @@ export const ArticlePage = memo(function ArticlePage({
     [article.sentences, mdStyles, typography, bodyFontSize, article.location],
   );
 
+  const articleUrl = `https://zuhd.news/a/${article.slug}`;
+
   const handleShare = useCallback(() => {
     hapticImpact();
-    Share.share({
-      message: `${article.title}\n\nhttps://zuhd.news/a/${article.slug}`,
-    }).catch(() => {});
-  }, [article.title, article.slug]);
+    Share.share({ message: `${article.title}\n\n${articleUrl}` }).catch(() => {});
+  }, [article.title, articleUrl]);
 
   const handleLongPress = useCallback(() => {
     onBookmarkPress?.(article);
@@ -227,6 +229,18 @@ export const ArticlePage = memo(function ArticlePage({
               {article.threadId && onContextPress && (
                 <ActionLabel label="context" onPress={() => onContextPress(article.threadId!)} />
               )}
+              {article.sources.length > 0 ? (
+                <ActionLabel
+                  label={article.sources.length === 1 ? 'source' : 'sources'}
+                  onPress={() =>
+                    onSourcePress?.(
+                      article.sources[0]?.name ?? '',
+                      article.sources,
+                      article.sentimentDivergence,
+                    )
+                  }
+                />
+              ) : null}
               <ActionLabel label="share" onPress={handleShare} icon="share-outline" />
             </View>
           </View>

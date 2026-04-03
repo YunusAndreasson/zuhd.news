@@ -21,6 +21,8 @@ import {
   type TextStyles,
   type Typography,
 } from '../constants/theme';
+import { setHapticsEnabled } from '../lib/haptics';
+import { disableNotifications, enableNotifications, ensureScheduled } from '../lib/notifications';
 import { getPreferences, savePreferences } from '../lib/storage';
 
 // ---------------------------------------------------------------------------
@@ -40,6 +42,8 @@ export interface Theme {
   setFontSize: (v: FontSize) => void;
   setFontFamily: (v: FontFamily) => void;
   setAppearance: (v: AppearanceMode) => void;
+  setHaptics: (v: boolean) => void;
+  setNotifications: (v: boolean) => void;
 }
 
 // ---------------------------------------------------------------------------
@@ -69,7 +73,11 @@ export { ThemeContext };
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const initialPrefs = use(prefsPromise);
-  const [prefs, setPrefs] = useState<Preferences>(initialPrefs);
+  const [prefs, setPrefs] = useState<Preferences>(() => {
+    setHapticsEnabled(initialPrefs.haptics);
+    if (initialPrefs.notifications) ensureScheduled();
+    return initialPrefs;
+  });
   const systemScheme = useColorScheme();
 
   const persist = useCallback((next: Preferences) => {
@@ -87,6 +95,25 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   );
   const setAppearance = useCallback(
     (v: AppearanceMode) => persist({ ...prefs, appearance: v }),
+    [prefs, persist],
+  );
+  const setHaptics = useCallback(
+    (v: boolean) => {
+      setHapticsEnabled(v);
+      persist({ ...prefs, haptics: v });
+    },
+    [prefs, persist],
+  );
+  const setNotifications = useCallback(
+    async (v: boolean) => {
+      if (v) {
+        const granted = await enableNotifications();
+        if (!granted) return;
+      } else {
+        await disableNotifications();
+      }
+      persist({ ...prefs, notifications: v });
+    },
     [prefs, persist],
   );
 
@@ -118,8 +145,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       setFontSize,
       setFontFamily,
       setAppearance,
+      setHaptics,
+      setNotifications,
     };
-  }, [prefs, systemScheme, setFontSize, setFontFamily, setAppearance]);
+  }, [prefs, systemScheme, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications]);
 
   return <ThemeContext value={theme}>{children}</ThemeContext>;
 }
