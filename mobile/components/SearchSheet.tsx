@@ -4,14 +4,14 @@ import {
   BottomSheetModal,
   BottomSheetTextInput,
 } from '@gorhom/bottom-sheet';
-import { memo, useCallback, useDeferredValue, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, StyleSheet, Text, View } from 'react-native';
 import type { TextInput } from 'react-native-gesture-handler';
 import { FullWindowOverlay } from 'react-native-screens';
 import { CATEGORIES, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { Article, Category } from '../types';
-import { ArticleRow, type ArticleRowItem } from './ArticleRow';
+import { ArticleRow } from './ArticleRow';
 import { SheetHandle } from './SheetHandle';
 
 function SheetContainer({ children }: { children?: React.ReactNode }) {
@@ -71,14 +71,16 @@ export const SearchSheet = memo(function SearchSheet({
 
   const results = useMemo(() => searchArticles(grouped, deferredQuery), [grouped, deferredQuery]);
 
-  // Announce result count changes for VoiceOver
+  // Announce result count changes for VoiceOver (in effect, not render)
   const resultCount = results.length;
-  if (deferredQuery && resultCount !== prevCountRef.current) {
+  useEffect(() => {
+    if (!deferredQuery) return;
+    if (resultCount === prevCountRef.current) return;
     prevCountRef.current = resultCount;
     AccessibilityInfo.announceForAccessibility(
       resultCount === 0 ? 'No results' : `${resultCount} result${resultCount === 1 ? '' : 's'}`,
     );
-  }
+  }, [deferredQuery, resultCount]);
 
   const SearchHandle = useCallback(() => <SheetHandle title="search" />, []);
 
@@ -88,15 +90,24 @@ export const SearchSheet = memo(function SearchSheet({
     onDismiss();
   }, [onDismiss]);
 
-  const handleChange = useCallback((index: number) => {
-    // Auto-focus input when sheet first appears
-    if (index === 0) {
-      setTimeout(() => inputRef.current?.focus(), 100);
+  const handleAnimate = useCallback((_from: number, to: number) => {
+    // Focus input after the opening animation settles
+    if (to === 0) {
+      setTimeout(() => inputRef.current?.focus(), 350);
     }
   }, []);
 
   const renderItem = useCallback(
-    ({ item }: { item: ArticleRowItem }) => <ArticleRow item={item} onPress={onSelectArticle} />,
+    ({ item }: { item: SearchResult }) => (
+      <ArticleRow
+        slug={item.slug}
+        title={item.title}
+        addedAt={item.addedAt}
+        category={item.category}
+        location={item.location}
+        onPress={onSelectArticle}
+      />
+    ),
     [onSelectArticle],
   );
 
@@ -105,14 +116,14 @@ export const SearchSheet = memo(function SearchSheet({
   return (
     <BottomSheetModal
       ref={sheetRef}
-      snapPoints={['50%', '85%']}
+      snapPoints={['85%']}
       enablePanDownToClose
       backdropComponent={renderBackdrop}
       backgroundStyle={sheetStyles.bg}
       handleComponent={SearchHandle}
       containerComponent={SheetContainer}
       onDismiss={handleDismiss}
-      onChange={handleChange}
+      onAnimate={handleAnimate}
       keyboardBehavior="extend"
       keyboardBlurBehavior="none"
       android_keyboardInputMode="adjustResize"

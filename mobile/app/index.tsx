@@ -20,7 +20,6 @@ import { CountrySheet } from '../components/CountrySheet';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { SearchSheet } from '../components/SearchSheet';
 import { SettingsSheet } from '../components/SettingsSheet';
-import { SourceSheet } from '../components/SourceSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import { CATEGORIES, EDITORIAL, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
@@ -30,7 +29,7 @@ import { useHeatmap } from '../hooks/useHeatmap';
 import { useTheme } from '../hooks/useTheme';
 import { toggle as toggleBookmark } from '../lib/bookmark-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
-import type { Article, ArticleSource, Category } from '../types';
+import type { Article, Category } from '../types';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
@@ -57,9 +56,6 @@ export default function HomeScreen() {
   );
 
   // Sheet refs
-  const sourceSheetRef = useRef<BottomSheetModal>(null);
-  const [sourceSheetSources, setSourceSheetSources] = useState<ArticleSource[]>([]);
-  const [sourceSheetDivergence, setSourceSheetDivergence] = useState<number | null>(null);
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
   const searchSheetRef = useRef<BottomSheetModal>(null);
@@ -120,16 +116,6 @@ export default function HomeScreen() {
     hapticImpact();
     settingsSheetRef.current?.present();
   }, []);
-
-  const handleSourcePress = useCallback(
-    (_sourceName: string, allSources?: ArticleSource[], divergence?: number | null) => {
-      hapticImpact();
-      setSourceSheetSources(allSources ?? []);
-      setSourceSheetDivergence(divergence ?? null);
-      sourceSheetRef.current?.present();
-    },
-    [],
-  );
 
   const handleContextPress = useCallback(
     (threadId: string) => {
@@ -325,7 +311,6 @@ export default function HomeScreen() {
                   onRefresh={handleRefresh}
                   onEndReached={handleEndReached}
                   onCaughtUp={handleCaughtUp}
-                  onSourcePress={handleSourcePress}
                   onContextPress={handleContextPress}
                   onBookmarkPress={handleArticleBookmark}
                   onCountryPress={handleCountryPress}
@@ -361,18 +346,6 @@ export default function HomeScreen() {
           <ActionButtons onSearchPress={handleSearchPress} onBookmarkPress={handleBookmarkPress} />
         </View>
       )}
-
-      <SourceSheet
-        sheetRef={sourceSheetRef}
-        sources={sourceSheetSources}
-        divergence={sourceSheetDivergence}
-        bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
-        onDismiss={() => {
-          setSourceSheetSources([]);
-          setSourceSheetDivergence(null);
-        }}
-      />
 
       <CountrySheet
         sheetRef={countrySheetRef}

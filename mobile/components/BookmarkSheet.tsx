@@ -8,23 +8,14 @@ import { StyleSheet, Text, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { type Bookmark, getSnapshot, subscribe } from '../lib/bookmark-store';
+import { type Bookmark, getSnapshot, subscribe, toggle } from '../lib/bookmark-store';
+import { hapticNotification } from '../lib/haptics';
 import type { Category } from '../types';
-import { ArticleRow, type ArticleRowItem } from './ArticleRow';
+import { ArticleRow } from './ArticleRow';
 import { SheetHandle } from './SheetHandle';
 
 function SheetContainer({ children }: { children?: React.ReactNode }) {
   return <FullWindowOverlay>{children}</FullWindowOverlay>;
-}
-
-function toRowItem(b: Bookmark): ArticleRowItem {
-  return {
-    slug: b.article.slug,
-    title: b.article.title,
-    addedAt: b.article.addedAt,
-    category: b.category,
-    location: b.article.location,
-  };
 }
 
 interface BookmarkSheetProps {
@@ -46,6 +37,14 @@ export const BookmarkSheet = memo(function BookmarkSheet({
   const bookmarks = useSyncExternalStore(subscribe, getSnapshot);
 
   const BookmarkHandle = useCallback(() => <SheetHandle title="saved" />, []);
+
+  const handleRemove = useCallback((slug: string) => {
+    const bookmark = bookmarks.find((b) => b.article.slug === slug);
+    if (bookmark) {
+      toggle(bookmark.article, bookmark.category);
+      hapticNotification();
+    }
+  }, [bookmarks]);
 
   return (
     <BottomSheetModal
@@ -75,7 +74,16 @@ export const BookmarkSheet = memo(function BookmarkSheet({
           </View>
         ) : (
           bookmarks.map((b) => (
-            <ArticleRow key={b.article.slug} item={toRowItem(b)} onPress={onSelectArticle} />
+            <ArticleRow
+              key={b.article.slug}
+              slug={b.article.slug}
+              title={b.article.title}
+              addedAt={b.article.addedAt}
+              category={b.category}
+              location={b.article.location}
+              onPress={onSelectArticle}
+              onLongPress={handleRemove}
+            />
           ))
         )}
       </BottomSheetScrollView>

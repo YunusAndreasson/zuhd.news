@@ -33,10 +33,15 @@ function emit() {
   for (const fn of listeners) fn();
 }
 
+let persistTimer: ReturnType<typeof setTimeout> | null = null;
+
 function persist() {
-  try {
-    BOOKMARKS_FILE.write(JSON.stringify(bookmarks));
-  } catch {}
+  if (persistTimer) clearTimeout(persistTimer);
+  persistTimer = setTimeout(() => {
+    try {
+      BOOKMARKS_FILE.write(JSON.stringify(bookmarks));
+    } catch {}
+  }, 100);
 }
 
 // ---------------------------------------------------------------------------

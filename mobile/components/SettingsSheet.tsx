@@ -4,6 +4,7 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import Constants from 'expo-constants';
+import * as StoreReview from 'expo-store-review';
 import { memo, useCallback } from 'react';
 import { Linking, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
@@ -194,8 +195,6 @@ export const SettingsSheet = memo(function SettingsSheet({
 
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        {/* About */}
-        <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>about</Text>
         <View style={styles.sectionBody}>
           <Text
             style={{
@@ -215,6 +214,15 @@ export const SettingsSheet = memo(function SettingsSheet({
             }}
           >
             <Text
+              onPress={() => Linking.openURL('https://zuhd.news/about')}
+              accessibilityRole="link"
+              accessibilityLabel="About zuhd.news"
+              style={{ color: colors.accent }}
+            >
+              about
+            </Text>
+            {'  ·  '}
+            <Text
               onPress={() => Linking.openURL('mailto:yunus@edenmind.com')}
               accessibilityRole="link"
               accessibilityLabel="Contact us by email"
@@ -230,6 +238,15 @@ export const SettingsSheet = memo(function SettingsSheet({
               style={{ color: colors.accent }}
             >
               privacy
+            </Text>
+            {'  ·  '}
+            <Text
+              onPress={() => StoreReview.requestReview()}
+              accessibilityRole="link"
+              accessibilityLabel="Rate this app"
+              style={{ color: colors.accent }}
+            >
+              rate
             </Text>
           </Text>
         </View>
