@@ -1,52 +1,53 @@
 import {
   BottomSheetBackdrop,
   type BottomSheetBackdropProps,
-  BottomSheetModal,
+  type BottomSheetModal,
 } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
-import {
-  Activity,
-  createRef,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { Activity, createRef, useCallback, useEffect, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ActionButtons } from '../components/ActionButtons';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
+import { BookmarkSheet } from '../components/BookmarkSheet';
 import { BriefingBar } from '../components/BriefingBar';
 import { CategoryBar } from '../components/CategoryBar';
 import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
-import { SettingsSheet } from '../components/SettingsSheet';
 import type { TapResult } from '../components/globe/MiniGlobe';
+import { SearchSheet } from '../components/SearchSheet';
+import { SettingsSheet } from '../components/SettingsSheet';
 import { SourceSheet } from '../components/SourceSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import {
-  CATEGORIES,
-  EDITORIAL,
-  LAYOUT,
-  PRESSED_STYLE,
-  SPACING,
-} from '../constants/theme';
+import { CATEGORIES, EDITORIAL, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
-import { useTheme } from '../hooks/useTheme';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useContextBrief } from '../hooks/useContextBrief';
 import { useHeatmap } from '../hooks/useHeatmap';
-import { hapticImpact, hapticTick } from '../lib/haptics';
-import type { ArticleSource } from '../types';
+import { useTheme } from '../hooks/useTheme';
+import { toggle as toggleBookmark } from '../lib/bookmark-store';
+import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
+import type { Article, ArticleSource, Category } from '../types';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
   const { colors, font, typography } = useTheme();
-  const { grouped, briefing, loading, error, lastSeenAt, refresh, retry, tick, resetKey, generated } =
-    useArticles();
+  const {
+    grouped,
+    briefing,
+    loading,
+    error,
+    lastSeenAt,
+    refresh,
+    retry,
+    tick,
+    resetKey,
+    generated,
+  } = useArticles();
   const heatmapPoints = useHeatmap(generated);
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
@@ -61,6 +62,8 @@ export default function HomeScreen() {
   const [sourceSheetDivergence, setSourceSheetDivergence] = useState<number | null>(null);
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
+  const searchSheetRef = useRef<BottomSheetModal>(null);
+  const bookmarkSheetRef = useRef<BottomSheetModal>(null);
   const settingsSheetRef = useRef<BottomSheetModal>(null);
   const contextSheetRef = useRef<BottomSheetModal>(null);
   const {
@@ -82,6 +85,36 @@ export default function HomeScreen() {
     ),
     [],
   );
+
+  const handleSearchPress = useCallback(() => {
+    hapticImpact();
+    searchSheetRef.current?.present();
+  }, []);
+
+  const handleSelectArticle = useCallback((slug: string, category: Category) => {
+    searchSheetRef.current?.dismiss();
+    bookmarkSheetRef.current?.dismiss();
+    const catIndex = CATEGORIES.indexOf(category);
+    if (catIndex < 0) return;
+    pagerRef.current?.setPage(catIndex);
+    // Wait for pager to settle, then scroll to the article
+    setTimeout(() => {
+      listRefs[catIndex]?.current?.scrollToSlug?.(slug);
+    }, 150);
+  }, []);
+
+  const handleBookmarkPress = useCallback(() => {
+    hapticImpact();
+    bookmarkSheetRef.current?.present();
+  }, []);
+
+  const handleArticleBookmark = useCallback((article: Article) => {
+    const catIndex = currentCategoryRef.current;
+    const category = CATEGORIES[catIndex] ?? 'politics';
+    const added = toggleBookmark(article, category);
+    hapticNotification();
+    toastRef.current?.show(added ? 'Saved' : 'Removed');
+  }, []);
 
   const handleSettingsPress = useCallback(() => {
     hapticImpact();
@@ -183,17 +216,14 @@ export default function HomeScreen() {
     toastRef.current?.show('Caught up', undefined, 'top');
   }, []);
 
-  const handleEndReached = useCallback(
-    (catIndex: number) => {
-      const cat = CATEGORIES[catIndex];
-      if (!cat) return;
-      const count = groupedRef.current[cat]?.length ?? 0;
-      toastRef.current?.show(`All ${count} articles \u00B7 tap to scroll up`, () =>
-        listRefs[catIndex]?.current?.scrollToTop(),
-      );
-    },
-    [],
-  );
+  const handleEndReached = useCallback((catIndex: number) => {
+    const cat = CATEGORIES[catIndex];
+    if (!cat) return;
+    const count = groupedRef.current[cat]?.length ?? 0;
+    toastRef.current?.show(`All ${count} articles \u00B7 tap to scroll up`, () =>
+      listRefs[catIndex]?.current?.scrollToTop(),
+    );
+  }, []);
 
   const handleRefresh = useCallback(async () => {
     hapticTick();
@@ -226,14 +256,37 @@ export default function HomeScreen() {
     const offline = network.isInternetReachable === false;
     return (
       <View style={[styles.center, { backgroundColor: colors.bg }]}>
-        <Text style={[styles.errorText, { fontFamily: font.regular, fontSize: typography.sizeBase, color: colors.text }]}>
+        <Text
+          style={[
+            styles.errorText,
+            { fontFamily: font.regular, fontSize: typography.sizeBase, color: colors.text },
+          ]}
+        >
           {offline ? 'No connection.' : 'Could not load articles.'}
         </Text>
-        <Text style={[styles.errorHint, { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.textSecondary }]}>
+        <Text
+          style={[
+            styles.errorHint,
+            { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.textSecondary },
+          ]}
+        >
           {offline ? 'Connect to the internet and reopen.' : error}
         </Text>
-        <Pressable onPress={retry} style={({ pressed }) => pressed && PRESSED_STYLE} hitSlop={12} accessibilityRole="button" accessibilityLabel="Try again">
-          <Text style={[styles.retryText, { fontFamily: font.semiBold, fontSize: typography.sizeSm, color: colors.text }]}>Try again</Text>
+        <Pressable
+          onPress={retry}
+          style={({ pressed }) => pressed && PRESSED_STYLE}
+          hitSlop={12}
+          accessibilityRole="button"
+          accessibilityLabel="Try again"
+        >
+          <Text
+            style={[
+              styles.retryText,
+              { fontFamily: font.semiBold, fontSize: typography.sizeSm, color: colors.text },
+            ]}
+          >
+            Try again
+          </Text>
         </Pressable>
       </View>
     );
@@ -274,6 +327,7 @@ export default function HomeScreen() {
                   onCaughtUp={handleCaughtUp}
                   onSourcePress={handleSourcePress}
                   onContextPress={handleContextPress}
+                  onBookmarkPress={handleArticleBookmark}
                   onCountryPress={handleCountryPress}
                   onBreakingPress={handleBreakingPress}
                   progressesSV={categoryProgresses}
@@ -288,7 +342,7 @@ export default function HomeScreen() {
 
       <Toast ref={toastRef} />
 
-      {briefing?.available && briefing.date && (
+      {briefing?.available && briefing.date ? (
         <BriefingBar
           playing={briefingPlayer.playing}
           elapsed={briefingPlayer.elapsed}
@@ -296,7 +350,16 @@ export default function HomeScreen() {
           date={briefing.date}
           onToggle={briefingPlayer.toggle}
           onSeek={briefingPlayer.seek}
+          onSearchPress={handleSearchPress}
+          onBookmarkPress={handleBookmarkPress}
         />
+      ) : (
+        <View
+          style={[styles.bottomActions, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
+          pointerEvents="box-none"
+        >
+          <ActionButtons onSearchPress={handleSearchPress} onBookmarkPress={handleBookmarkPress} />
+        </View>
       )}
 
       <SourceSheet
@@ -327,6 +390,23 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => setContextThreadLabel(undefined)}
+      />
+
+      <BookmarkSheet
+        sheetRef={bookmarkSheetRef}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
+        onSelectArticle={handleSelectArticle}
+        onDismiss={() => {}}
+      />
+
+      <SearchSheet
+        sheetRef={searchSheetRef}
+        grouped={grouped}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
+        onSelectArticle={handleSelectArticle}
+        onDismiss={() => {}}
       />
 
       <SettingsSheet
@@ -361,5 +441,13 @@ const styles = StyleSheet.create({
   },
   retryText: {
     marginTop: SPACING.lg,
+  },
+  bottomActions: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    flexDirection: 'row',
+    gap: SPACING.sm,
+    paddingHorizontal: SPACING.md,
   },
 });

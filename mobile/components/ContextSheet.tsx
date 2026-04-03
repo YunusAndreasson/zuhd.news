@@ -1,6 +1,10 @@
-import { type BottomSheetBackdropProps, BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import {
+  type BottomSheetBackdropProps,
+  BottomSheetModal,
+  BottomSheetScrollView,
+} from '@gorhom/bottom-sheet';
 import { memo, useCallback } from 'react';
-import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 import { LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -11,7 +15,9 @@ function SheetContainer({ children }: { children?: React.ReactNode }) {
   return <FullWindowOverlay>{children}</FullWindowOverlay>;
 }
 
-const MAX_SHEET_HEIGHT = Dimensions.get('window').height * LAYOUT.sheetMaxFraction;
+function useMaxSheetHeight() {
+  return useWindowDimensions().height * LAYOUT.sheetMaxFraction;
+}
 
 interface ContextSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
@@ -33,6 +39,7 @@ export const ContextSheet = memo(function ContextSheet({
   onDismiss,
 }: ContextSheetProps) {
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
+  const MAX_SHEET_HEIGHT = useMaxSheetHeight();
   const label = brief?.label ?? threadLabel;
   const timeline = brief?.timeline ?? [];
   const isEdu = brief?.type === 'edu';
@@ -48,11 +55,31 @@ export const ContextSheet = memo(function ContextSheet({
     }
     const nextHasYear = arr[i + 1]?.year != null;
     return (
-      <View key={i} style={[styles.entry, nextHasYear && [styles.entryLine, { borderLeftColor: colors.rule }]]}>
-        <View style={[styles.dot, { top: typography.sizeXs * 0.55, backgroundColor: colors.accent }]} />
+      <View
+        key={i}
+        style={[styles.entry, nextHasYear && [styles.entryLine, { borderLeftColor: colors.rule }]]}
+      >
+        <View
+          style={[styles.dot, { top: typography.sizeXs * 0.55, backgroundColor: colors.accent }]}
+        />
         <View style={styles.entryContent}>
-          <Text selectable style={[styles.entryYear, { fontFamily: font.semiBold, fontSize: typography.sizeXs, color: colors.accent, letterSpacing: typography.trackingCaps }]}>{entry.year}</Text>
-          <Text selectable style={[styles.bodyText, textStyles.body]}>{entry.body}</Text>
+          <Text
+            selectable
+            style={[
+              styles.entryYear,
+              {
+                fontFamily: font.semiBold,
+                fontSize: typography.sizeXs,
+                color: colors.accent,
+                letterSpacing: typography.trackingCaps,
+              },
+            ]}
+          >
+            {entry.year}
+          </Text>
+          <Text selectable style={[styles.bodyText, textStyles.body]}>
+            {entry.body}
+          </Text>
         </View>
       </View>
     );
@@ -61,8 +88,21 @@ export const ContextSheet = memo(function ContextSheet({
   const renderEduEntry = (entry: TimelineEntry, i: number) => {
     return (
       <View key={i}>
-        {entry.heading && <Text selectable style={[styles.sectionHeading, textStyles.smallCapsXs, { color: colors.accent, fontFamily: font.semiBold }]}>{entry.heading}</Text>}
-        <Text selectable style={[styles.bodyText, textStyles.body, styles.bodySpacing]}>{entry.body}</Text>
+        {entry.heading && (
+          <Text
+            selectable
+            style={[
+              styles.sectionHeading,
+              textStyles.smallCapsXs,
+              { color: colors.accent, fontFamily: font.semiBold },
+            ]}
+          >
+            {entry.heading}
+          </Text>
+        )}
+        <Text selectable style={[styles.bodyText, textStyles.body, styles.bodySpacing]}>
+          {entry.body}
+        </Text>
       </View>
     );
   };
@@ -82,7 +122,17 @@ export const ContextSheet = memo(function ContextSheet({
       <BottomSheetScrollView
         contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
       >
-        {label && <Text selectable style={[styles.title, { fontFamily: font.bold, fontSize: typography.sizeBase, color: colors.text }]}>{label}</Text>}
+        {label && (
+          <Text
+            selectable
+            style={[
+              styles.title,
+              { fontFamily: font.bold, fontSize: typography.sizeBase, color: colors.text },
+            ]}
+          >
+            {label}
+          </Text>
+        )}
         {brief && !isEdu && (
           <Text style={[styles.meta, textStyles.smallCapsXs, { color: colors.textSecondary }]}>
             {brief.articleCount} article{brief.articleCount === 1 ? '' : 's'} in this thread
@@ -92,9 +142,7 @@ export const ContextSheet = memo(function ContextSheet({
 
         {loading && !brief && <ActivityIndicator color={colors.accent} style={styles.loader} />}
 
-        {isEdu
-          ? timeline.map(renderEduEntry)
-          : timeline.map(renderTimelineEntry)}
+        {isEdu ? timeline.map(renderEduEntry) : timeline.map(renderTimelineEntry)}
       </BottomSheetScrollView>
     </BottomSheetModal>
   );

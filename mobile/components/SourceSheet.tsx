@@ -1,7 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
-import { type BottomSheetBackdropProps, BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import {
+  type BottomSheetBackdropProps,
+  BottomSheetModal,
+  BottomSheetScrollView,
+} from '@gorhom/bottom-sheet';
 import { memo, useCallback, useState } from 'react';
-import { Dimensions, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Linking, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 import { SOURCES } from '../constants/sources';
 import { EDITORIAL, LAYOUT, SPACING } from '../constants/theme';
@@ -13,7 +17,9 @@ function SheetContainer({ children }: { children?: React.ReactNode }) {
   return <FullWindowOverlay>{children}</FullWindowOverlay>;
 }
 
-const MAX_SHEET_HEIGHT = Dimensions.get('window').height * LAYOUT.sheetMaxFraction;
+function useMaxSheetHeight() {
+  return useWindowDimensions().height * LAYOUT.sheetMaxFraction;
+}
 
 function ccToFlag(cc: string): string {
   return cc
@@ -39,6 +45,7 @@ export const SourceSheet = memo(function SourceSheet({
   onDismiss,
 }: SourceSheetProps) {
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
+  const MAX_SHEET_HEIGHT = useMaxSheetHeight();
   const [expandedSource, setExpandedSource] = useState<number | null>(null);
 
   const SourceHandle = useCallback(
@@ -68,7 +75,12 @@ export const SourceSheet = memo(function SourceSheet({
       >
         {sources.length > 0 ? (
           <>
-            <Text style={[styles.coverageHeading, { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.accent }]}>
+            <Text
+              style={[
+                styles.coverageHeading,
+                { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.accent },
+              ]}
+            >
               {divergence != null &&
               divergence >= EDITORIAL.divergenceModerate &&
               sources.length > 1
@@ -100,7 +112,7 @@ export const SourceSheet = memo(function SourceSheet({
               const isExpanded = expandedSource === i;
               return (
                 <Pressable
-                  key={i}
+                  key={s.name}
                   style={[styles.sourceRow, { borderBottomColor: colors.rule }]}
                   onPress={() => setExpandedSource(isExpanded ? null : i)}
                   accessibilityRole="button"
@@ -108,7 +120,17 @@ export const SourceSheet = memo(function SourceSheet({
                   accessibilityState={{ expanded: isExpanded }}
                 >
                   <View style={styles.sourceRowHeader}>
-                    <Text style={[styles.sourceName, { fontFamily: font.semiBold, fontSize: typography.sizeBase, color: colors.text }]} numberOfLines={1}>
+                    <Text
+                      style={[
+                        styles.sourceName,
+                        {
+                          fontFamily: font.semiBold,
+                          fontSize: typography.sizeBase,
+                          color: colors.text,
+                        },
+                      ]}
+                      numberOfLines={1}
+                    >
                       {flag ? `${flag} ` : ''}
                       {s.name}
                     </Text>
@@ -122,7 +144,19 @@ export const SourceSheet = memo(function SourceSheet({
                             tone === 'neutral' && { backgroundColor: colors.toneNeutral },
                           ]}
                         >
-                          <Text style={[styles.tonePillText, { fontFamily: font.semiBold, fontSize: typography.sizeXs, color: colors.bg, letterSpacing: typography.trackingCaps }]}>{toneWord}</Text>
+                          <Text
+                            style={[
+                              styles.tonePillText,
+                              {
+                                fontFamily: font.semiBold,
+                                fontSize: typography.sizeXs,
+                                color: colors.bg,
+                                letterSpacing: typography.trackingCaps,
+                              },
+                            ]}
+                          >
+                            {toneWord}
+                          </Text>
                         </View>
                       )}
                       <Ionicons
@@ -137,19 +171,39 @@ export const SourceSheet = memo(function SourceSheet({
                       <Text selectable style={[styles.sourceType, textStyles.smallCapsXs]}>
                         {info.type} · {info.location}
                       </Text>
-                      <Text selectable style={[styles.sheetBody, textStyles.body, { color: colors.accent }]}>{info.description}</Text>
+                      <Text
+                        selectable
+                        style={[styles.sheetBody, textStyles.body, { color: colors.accent }]}
+                      >
+                        {info.description}
+                      </Text>
                     </>
                   )}
                 </Pressable>
               );
             })}
             <Text
-              style={[styles.correctionLink, textStyles.smallCapsXs, { color: colors.textSecondary }]}
-              onPress={() => Linking.openURL('mailto:yunus@edenmind.com?subject=Correction')}
-              accessibilityRole="link"
-              accessibilityLabel="Submit a correction"
+              style={[
+                styles.correctionLink,
+                textStyles.smallCapsXs,
+                { color: colors.textSecondary },
+              ]}
             >
-              Submit a correction
+              <Text
+                onPress={() => Linking.openURL('mailto:yunus@edenmind.com?subject=Correction')}
+                accessibilityRole="link"
+                accessibilityLabel="Submit a correction"
+              >
+                correction
+              </Text>
+              {'  ·  '}
+              <Text
+                onPress={() => Linking.openURL('https://zuhd.news/sources')}
+                accessibilityRole="link"
+                accessibilityLabel="All sources"
+              >
+                all sources
+              </Text>
             </Text>
           </>
         ) : null}

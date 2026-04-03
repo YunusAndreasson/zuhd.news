@@ -18,8 +18,8 @@ import Animated, {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
-import { hapticNotification, hapticTick } from '../lib/haptics';
 import { formatTimeAgo } from '../lib/article-utils';
+import { hapticNotification, hapticTick } from '../lib/haptics';
 import type { Article, ContextPressHandler, HeatmapPoint, SourcePressHandler } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
@@ -28,6 +28,7 @@ const BREAKING_THRESHOLD = 100;
 
 export interface ArticleListRef {
   scrollToTop: () => void;
+  scrollToSlug: (slug: string) => void;
 }
 
 interface ArticleListProps {
@@ -42,6 +43,7 @@ interface ArticleListProps {
   onSourcePress?: SourcePressHandler;
   onContextPress?: ContextPressHandler;
   onCountryPress?: (result: TapResult) => void;
+  onBookmarkPress?: (article: Article) => void;
   onBreakingPress?: (coverage: number) => void;
   progressesSV: SharedValue<number[]>;
   tick?: number;
@@ -58,6 +60,7 @@ export const ArticleList = memo(function ArticleList({
   onSourcePress,
   onContextPress,
   onCountryPress,
+  onBookmarkPress,
   onBreakingPress,
   onRefresh,
   onEndReached,
@@ -88,8 +91,14 @@ export const ArticleList = memo(function ArticleList({
   const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight;
   const contentStyle = useMemo(() => ({ paddingBottom: insets.bottom }), [insets.bottom]);
-  const { scrollY, currentIndex, setCurrentIndex, overscrollFired, caughtUpFired, overscrollTimer } =
-    useScrollState(resetKey, catIndex, progressesSV);
+  const {
+    scrollY,
+    currentIndex,
+    setCurrentIndex,
+    overscrollFired,
+    caughtUpFired,
+    overscrollTimer,
+  } = useScrollState(resetKey, catIndex, progressesSV);
   const listRef = useAnimatedRef<Animated.FlatList<Article>>();
   const globeRef = useRef<MiniGlobeRef>(null);
   const containerRef = useRef<View>(null);
@@ -118,6 +127,12 @@ export const ArticleList = memo(function ArticleList({
     scrollToTop: () => {
       overscrollFired.value = false;
       listRef.current?.scrollToOffset({ offset: 0, animated: true });
+    },
+    scrollToSlug: (slug: string) => {
+      const idx = sortedArticles.findIndex((a) => a.slug === slug);
+      if (idx >= 0) {
+        listRef.current?.scrollToOffset({ offset: idx * itemHeight, animated: true });
+      }
     },
   }));
 
@@ -194,6 +209,7 @@ export const ArticleList = memo(function ArticleList({
         scrollY={scrollY}
         onSourcePress={onSourcePress}
         onContextPress={onContextPress}
+        onBookmarkPress={onBookmarkPress}
         showEarlierDivider={index === earlierIndex}
         globeRef={globeRef}
         globeYOffset={containerTopRef}
@@ -210,6 +226,7 @@ export const ArticleList = memo(function ArticleList({
       onSourcePress,
       onContextPress,
       onCountryPress,
+      onBookmarkPress,
       onBreakingPress,
       earlierIndex,
       tick,

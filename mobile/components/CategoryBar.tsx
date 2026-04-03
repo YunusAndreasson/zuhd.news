@@ -3,12 +3,7 @@ import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import {
-  CATEGORIES,
-  LAYOUT,
-  PRESSED_STYLE,
-  SPACING,
-} from '../constants/theme';
+import { CATEGORIES, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 const TAB_LABELS = CATEGORIES.map((c) => c.toUpperCase());
@@ -63,9 +58,7 @@ function TabLabel({
       accessibilityRole="tab"
       accessibilityLabel={label}
     >
-      <Animated.Text
-        style={[styles.tabLabel, { fontFamily, fontSize }, animatedStyle]}
-      >
+      <Animated.Text style={[styles.tabLabel, { fontFamily, fontSize }, animatedStyle]}>
         {label}
       </Animated.Text>
     </Pressable>
@@ -139,8 +132,24 @@ export const CategoryBar = memo(function CategoryBar({
           accessibilityLabel="zuhd.news, scroll to top"
         >
           <Text style={[styles.wordmark, { letterSpacing: typography.trackingWordmark }]}>
-            <Text style={{ fontFamily: font.bold, fontSize: typography.sizeWordmark, color: colors.textSecondary }}>zuhd</Text>
-            <Text style={{ fontFamily: font.regular, fontSize: typography.sizeWordmark, color: colors.accent }}>.news</Text>
+            <Text
+              style={{
+                fontFamily: font.bold,
+                fontSize: typography.sizeWordmark,
+                color: colors.textSecondary,
+              }}
+            >
+              zuhd
+            </Text>
+            <Text
+              style={{
+                fontFamily: font.regular,
+                fontSize: typography.sizeWordmark,
+                color: colors.accent,
+              }}
+            >
+              .news
+            </Text>
           </Text>
         </Pressable>
         <Pressable
@@ -168,8 +177,12 @@ export const CategoryBar = memo(function CategoryBar({
             onLayout={tabLayoutHandlers[i]!}
           />
         ))}
-        <Animated.View style={[styles.progressBar, { backgroundColor: colors.textEmphasis }, trackPos]} />
-        <Animated.View style={[styles.progressBar, { backgroundColor: colors.textEmphasis }, fillPos]} />
+        <Animated.View
+          style={[styles.progressBar, { backgroundColor: colors.textEmphasis }, trackPos]}
+        />
+        <Animated.View
+          style={[styles.progressBar, { backgroundColor: colors.textEmphasis }, fillPos]}
+        />
       </View>
     </View>
   );
@@ -188,8 +201,7 @@ const styles = StyleSheet.create({
     paddingTop: SPACING.xs,
     marginBottom: SPACING.sm,
   },
-  wordmark: {
-  },
+  wordmark: {},
   tabRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',

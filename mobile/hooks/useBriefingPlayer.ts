@@ -68,7 +68,9 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       // Short background — player is likely still alive, just re-sync
       if (bgDuration < 30_000) {
         if (playerRef.current.playing) {
-          try { await setIsAudioActiveAsync(true); } catch {}
+          try {
+            await setIsAudioActiveAsync(true);
+          } catch {}
         }
         setPlaying(playerRef.current.playing);
         return;
@@ -84,8 +86,10 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         }
       } catch {}
       subRef.current?.remove();
-      try { playerRef.current.clearLockScreenControls(); } catch {}
-      playerRef.current.release();
+      try {
+        playerRef.current.clearLockScreenControls();
+      } catch {}
+      playerRef.current.remove();
       playerRef.current = null;
       subRef.current = null;
       lockScreenActive.current = false;
@@ -114,7 +118,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       try {
         playerRef.current?.clearLockScreenControls();
       } catch {}
-      playerRef.current?.release();
+      playerRef.current?.remove();
       playerRef.current = null;
       subRef.current = null;
       lockScreenActive.current = false;
@@ -169,7 +173,9 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
           playerRef.current.pause();
           setPlaying(false);
         } else {
-          try { await setIsAudioActiveAsync(true); } catch {}
+          try {
+            await setIsAudioActiveAsync(true);
+          } catch {}
           playerRef.current.play();
           setPlaying(true);
           // Verify the player actually started — if native resources
@@ -178,8 +184,10 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
             if (playerRef.current && !playerRef.current.playing) {
               // Native player is dead — tear down so next tap recreates
               subRef.current?.remove();
-              try { playerRef.current.clearLockScreenControls(); } catch {}
-              playerRef.current.release();
+              try {
+                playerRef.current.clearLockScreenControls();
+              } catch {}
+              playerRef.current.remove();
               playerRef.current = null;
               subRef.current = null;
               lockScreenActive.current = false;
@@ -268,7 +276,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       // Clean up partially-created player on failure
       subRef.current?.remove();
       subRef.current = null;
-      playerRef.current?.release();
+      playerRef.current?.remove();
       playerRef.current = null;
     }
   }, [date, savePosition, activateLockScreen]);
@@ -282,7 +290,8 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   }, []);
 
   // In dev without a native player, provide a mock duration so the bar renders properly
-  const effectiveDuration = feedDuration || (__DEV__ && !playerRef.current && elapsed > 0 ? 720 : 0);
+  const effectiveDuration =
+    feedDuration || (__DEV__ && !playerRef.current && elapsed > 0 ? 720 : 0);
 
   return { playing, elapsed, duration: effectiveDuration, toggle, seek };
 }

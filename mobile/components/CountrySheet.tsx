@@ -1,6 +1,10 @@
-import { type BottomSheetBackdropProps, BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import {
+  type BottomSheetBackdropProps,
+  BottomSheetModal,
+  BottomSheetScrollView,
+} from '@gorhom/bottom-sheet';
 import { memo, useCallback } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 import { LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -11,15 +15,30 @@ function SheetContainer({ children }: { children?: React.ReactNode }) {
   return <FullWindowOverlay>{children}</FullWindowOverlay>;
 }
 
-const MAX_SHEET_HEIGHT = Dimensions.get('window').height * LAYOUT.sheetMaxFraction;
+function useMaxSheetHeight() {
+  return useWindowDimensions().height * LAYOUT.sheetMaxFraction;
+}
 
 function KeyStat({ label, value }: { label: string; value: string | null | undefined }) {
   const { colors, font, typography, textStyles } = useTheme();
   if (!value) return null;
   return (
     <View style={styles.keyStat}>
-      <Text selectable style={[styles.keyStatValue, { fontFamily: font.bold, fontSize: typography.sizeBase, color: colors.textEmphasis }]}>{value}</Text>
-      <Text selectable style={[styles.keyStatLabel, textStyles.smallCapsXs, { color: colors.textSecondary }]}>{label}</Text>
+      <Text
+        selectable
+        style={[
+          styles.keyStatValue,
+          { fontFamily: font.bold, fontSize: typography.sizeBase, color: colors.textEmphasis },
+        ]}
+      >
+        {value}
+      </Text>
+      <Text
+        selectable
+        style={[styles.keyStatLabel, textStyles.smallCapsXs, { color: colors.textSecondary }]}
+      >
+        {label}
+      </Text>
     </View>
   );
 }
@@ -29,8 +48,18 @@ function CountryRow({ label, value }: { label: string; value: string | null | un
   if (!value) return null;
   return (
     <View style={styles.countryRow}>
-      <Text selectable style={[styles.countryRowLabel, textStyles.smallCaps]}>{label}</Text>
-      <Text selectable style={[styles.countryRowValue, { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.text }]}>{value}</Text>
+      <Text selectable style={[styles.countryRowLabel, textStyles.smallCaps]}>
+        {label}
+      </Text>
+      <Text
+        selectable
+        style={[
+          styles.countryRowValue,
+          { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.text },
+        ]}
+      >
+        {value}
+      </Text>
     </View>
   );
 }
@@ -51,6 +80,7 @@ export const CountrySheet = memo(function CountrySheet({
   onDismiss,
 }: CountrySheetProps) {
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
+  const MAX_SHEET_HEIGHT = useMaxSheetHeight();
   const CountryHandle = useCallback(() => <SheetHandle />, []);
 
   return (
@@ -73,10 +103,37 @@ export const CountrySheet = memo(function CountrySheet({
             {/* Identity — city + country hero */}
             <View style={styles.countryIdentity}>
               <View style={styles.countryIdentityText}>
-                <Text selectable style={[styles.countryLocation, { fontFamily: font.bold, fontSize: typography.sizeH1 * 0.75, lineHeight: typography.sizeH1 * 0.75 * typography.leadingHeading, color: colors.textEmphasis }]}>{country.countryName}</Text>
-                <Text selectable style={[styles.countryName, { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.textSecondary }]}>{country.data.official}</Text>
+                <Text
+                  selectable
+                  style={[
+                    styles.countryLocation,
+                    {
+                      fontFamily: font.bold,
+                      fontSize: typography.sizeH1 * 0.75,
+                      lineHeight: typography.sizeH1 * 0.75 * typography.leadingHeading,
+                      color: colors.textEmphasis,
+                    },
+                  ]}
+                >
+                  {country.countryName}
+                </Text>
+                <Text
+                  selectable
+                  style={[
+                    styles.countryName,
+                    {
+                      fontFamily: font.regular,
+                      fontSize: typography.sizeSm,
+                      color: colors.textSecondary,
+                    },
+                  ]}
+                >
+                  {country.data.official}
+                </Text>
               </View>
-              <Text style={[styles.countryFlag, { fontSize: typography.sizeH1 * 1.3 }]}>{country.data.flag}</Text>
+              <Text style={[styles.countryFlag, { fontSize: typography.sizeH1 * 1.3 }]}>
+                {country.data.flag}
+              </Text>
             </View>
 
             {/* Key stats — at-a-glance numbers */}
@@ -89,13 +146,29 @@ export const CountrySheet = memo(function CountrySheet({
             {/* Developing stories — shown when coverage hotspots overlap this country */}
             {country.hotspotLabels && country.hotspotLabels.length > 0 && (
               <View style={styles.hotspotSection}>
-                <Text style={[styles.sheetLabel, textStyles.smallCapsXs, { color: colors.textSecondary }]}>
-                  {country.hotspotLabels.length === 1
-                    ? 'DEVELOPING STORY'
-                    : 'DEVELOPING STORIES'}
+                <Text
+                  style={[
+                    styles.sheetLabel,
+                    textStyles.smallCapsXs,
+                    { color: colors.textSecondary },
+                  ]}
+                >
+                  {country.hotspotLabels.length === 1 ? 'DEVELOPING STORY' : 'DEVELOPING STORIES'}
                 </Text>
                 {country.hotspotLabels.map((label, i) => (
-                  <Text key={i} selectable style={[styles.hotspotValue, { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.text, borderBottomColor: colors.rule }]}>
+                  <Text
+                    key={i}
+                    selectable
+                    style={[
+                      styles.hotspotValue,
+                      {
+                        fontFamily: font.regular,
+                        fontSize: typography.sizeSm,
+                        color: colors.text,
+                        borderBottomColor: colors.rule,
+                      },
+                    ]}
+                  >
                     {label}
                   </Text>
                 ))}

@@ -1,5 +1,5 @@
-import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import { Ionicons } from '@expo/vector-icons';
+import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo } from 'react';
 import { Pressable, Share, StyleSheet, Text, View } from 'react-native';
 import Animated, {
@@ -30,6 +30,7 @@ interface ArticlePageProps {
   scrollY: SharedValue<number>;
   onSourcePress?: SourcePressHandler;
   onContextPress?: ContextPressHandler;
+  onBookmarkPress?: (article: Article) => void;
   showEarlierDivider?: boolean;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
@@ -61,7 +62,14 @@ function GlobeTapZone({
     [impact, globeRef, globeYOffset, onTap],
   );
 
-  return <Pressable style={styles.globeTapZone} onPress={handleTap} accessibilityRole="button" accessibilityLabel="Tap map to view country" />;
+  return (
+    <Pressable
+      style={styles.globeTapZone}
+      onPress={handleTap}
+      accessibilityRole="button"
+      accessibilityLabel="Tap map to view country"
+    />
+  );
 }
 
 export const ArticlePage = memo(function ArticlePage({
@@ -72,6 +80,7 @@ export const ArticlePage = memo(function ArticlePage({
   scrollY,
   onSourcePress,
   onContextPress,
+  onBookmarkPress,
   showEarlierDivider,
   globeRef,
   globeYOffset,
@@ -137,6 +146,10 @@ export const ArticlePage = memo(function ArticlePage({
     }).catch(() => {});
   }, [article.title, article.slug]);
 
+  const handleLongPress = useCallback(() => {
+    onBookmarkPress?.(article);
+  }, [article, onBookmarkPress]);
+
   return (
     <View style={[styles.container, { height: itemHeight }]}>
       {/* Globe tap zone — behind content, full card size */}
@@ -160,16 +173,37 @@ export const ArticlePage = memo(function ArticlePage({
       </Canvas>
 
       {/* Content zone — title, body, meta all grouped together */}
-      <View style={[styles.content, { backgroundColor: colors.bg }]}>
+      <Pressable
+        style={[styles.content, { backgroundColor: colors.bg }]}
+        onLongPress={handleLongPress}
+        delayLongPress={400}
+      >
         {showEarlierDivider && (
           <View style={styles.earlierDivider}>
             <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
-            <Text style={[styles.earlierLabel, textStyles.smallCaps, { fontSize: typography.sizeBase }]}>caught up</Text>
+            <Text
+              style={[styles.earlierLabel, textStyles.smallCaps, { fontSize: typography.sizeBase }]}
+            >
+              caught up
+            </Text>
             <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
           </View>
         )}
         <Animated.View style={fadeStyle}>
-          <Text selectable style={[styles.title, { fontFamily: font.bold, fontSize: typography.sizeH1, lineHeight: typography.sizeH1 * typography.leadingHeading, color: colors.textEmphasis }, titleSizeStyle]} numberOfLines={3}>
+          <Text
+            selectable
+            style={[
+              styles.title,
+              {
+                fontFamily: font.bold,
+                fontSize: typography.sizeH1,
+                lineHeight: typography.sizeH1 * typography.leadingHeading,
+                color: colors.textEmphasis,
+              },
+              titleSizeStyle,
+            ]}
+            numberOfLines={3}
+          >
             {article.title}
           </Text>
           {body}
@@ -178,11 +212,18 @@ export const ArticlePage = memo(function ArticlePage({
           <View style={styles.meta}>
             <View style={styles.metaGroup}>
               {isBreaking && (
-                <Pressable onPress={() => onBreakingPress?.(article.eventCoverage ?? 0)} hitSlop={8} accessibilityRole="button" accessibilityLabel="Breaking news indicator">
+                <Pressable
+                  onPress={() => onBreakingPress?.(article.eventCoverage ?? 0)}
+                  hitSlop={8}
+                  accessibilityRole="button"
+                  accessibilityLabel="Breaking news indicator"
+                >
                   <Ionicons name="flame" size={typography.sizeSm} color={colors.textSecondary} />
                 </Pressable>
               )}
-              <Text style={[styles.metaDim, textStyles.smallCaps, textStyles.textShadow]}>{timeAgo}</Text>
+              <Text style={[styles.metaDim, textStyles.smallCaps, textStyles.textShadow]}>
+                {timeAgo}
+              </Text>
             </View>
             <View style={styles.metaGroup}>
               {article.threadId && onContextPress && (
@@ -204,7 +245,7 @@ export const ArticlePage = memo(function ArticlePage({
             </View>
           </View>
         </Animated.View>
-      </View>
+      </Pressable>
 
       {/* Gradient dissolves content into globe — fades with body */}
       <Animated.View style={fadeStyle} pointerEvents="none">
@@ -247,8 +288,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: StyleSheet.hairlineWidth,
   },
-  earlierLabel: {
-  },
+  earlierLabel: {},
   title: {
     marginBottom: SPACING.md,
     fontVariant: ['oldstyle-nums'],
@@ -264,8 +304,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: SPACING.xs,
   },
-  metaDim: {
-  },
+  metaDim: {},
   globeTapZone: {
     ...StyleSheet.absoluteFillObject,
   },

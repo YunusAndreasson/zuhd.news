@@ -1,14 +1,19 @@
-import { type BottomSheetBackdropProps, BottomSheetModal, BottomSheetScrollView } from '@gorhom/bottom-sheet';
+import {
+  type BottomSheetBackdropProps,
+  BottomSheetModal,
+  BottomSheetScrollView,
+} from '@gorhom/bottom-sheet';
+import Constants from 'expo-constants';
 import { memo, useCallback } from 'react';
-import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Linking, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 import {
-  LAYOUT,
-  PRESSED_STYLE,
-  SPACING,
   type AppearanceMode,
   type FontFamily,
   type FontSize,
+  LAYOUT,
+  PRESSED_STYLE,
+  SPACING,
 } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { hapticTick } from '../lib/haptics';
@@ -18,7 +23,9 @@ function SheetContainer({ children }: { children?: React.ReactNode }) {
   return <FullWindowOverlay>{children}</FullWindowOverlay>;
 }
 
-const MAX_SHEET_HEIGHT = Dimensions.get('window').height * LAYOUT.sheetMaxFraction;
+function useMaxSheetHeight() {
+  return useWindowDimensions().height * LAYOUT.sheetMaxFraction;
+}
 
 // ---------------------------------------------------------------------------
 // Option row — plain text selectors, zuhd-style
@@ -120,6 +127,7 @@ export const SettingsSheet = memo(function SettingsSheet({
     setFontFamily,
     setAppearance,
   } = useTheme();
+  const MAX_SHEET_HEIGHT = useMaxSheetHeight();
 
   const SettingsHandle = useCallback(() => <SheetHandle title="settings" />, []);
 
@@ -182,6 +190,48 @@ export const SettingsSheet = memo(function SettingsSheet({
             fontFamily={font.semiBold}
             fontSize={typography.sizeSm}
           />
+        </View>
+
+        <View style={[styles.divider, { backgroundColor: colors.rule }]} />
+
+        {/* About */}
+        <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>about</Text>
+        <View style={styles.sectionBody}>
+          <Text
+            style={{
+              fontFamily: font.regular,
+              fontSize: typography.sizeXs,
+              color: colors.textSecondary,
+            }}
+          >
+            zuhd.news · {Constants.expoConfig?.version ?? ''}
+          </Text>
+          <Text
+            style={{
+              fontFamily: font.regular,
+              fontSize: typography.sizeXs,
+              color: colors.textSecondary,
+              marginTop: SPACING.xs,
+            }}
+          >
+            <Text
+              onPress={() => Linking.openURL('mailto:yunus@edenmind.com')}
+              accessibilityRole="link"
+              accessibilityLabel="Contact us by email"
+              style={{ color: colors.accent }}
+            >
+              contact
+            </Text>
+            {'  ·  '}
+            <Text
+              onPress={() => Linking.openURL('https://zuhd.news/privacy')}
+              accessibilityRole="link"
+              accessibilityLabel="Privacy policy"
+              style={{ color: colors.accent }}
+            >
+              privacy
+            </Text>
+          </Text>
         </View>
       </BottomSheetScrollView>
     </BottomSheetModal>
