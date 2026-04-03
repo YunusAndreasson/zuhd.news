@@ -1,19 +1,43 @@
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import * as Notifications from 'expo-notifications';
 import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { Suspense, useEffect } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
-import { COLORS } from '../constants/theme';
+import { DARK_COLORS } from '../constants/theme';
+import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
+import { set as setPendingSlug } from '../lib/pending-notification';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
 
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowBanner: true,
+    shouldShowList: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
+
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({ fade: true, duration: 250 });
+
+function ThemedShell() {
+  const { colors, resolvedAppearance } = useTheme();
+  return (
+    <>
+      <StatusBar style={resolvedAppearance === 'dark' ? 'light' : 'dark'} />
+      <View style={[styles.root, { backgroundColor: colors.bg }]}>
+        <Slot />
+      </View>
+    </>
+  );
+}
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -25,16 +49,24 @@ export default function RootLayout() {
 
   useEffect(() => {
     registerBackgroundTask();
+    const sub = Notifications.addNotificationResponseReceivedListener((response) => {
+      const slug = response.notification.request.content.data?.slug;
+      if (typeof slug === 'string') setPendingSlug(slug);
+    });
+    return () => sub.remove();
   }, []);
 
   if (!fontsLoaded) return null;
 
   return (
     <GestureHandlerRootView style={styles.root}>
-      <BottomSheetModalProvider>
-        <StatusBar style="light" />
-        <Slot />
-      </BottomSheetModalProvider>
+      <Suspense fallback={<View style={styles.root} />}>
+        <ThemeProvider>
+          <BottomSheetModalProvider>
+            <ThemedShell />
+          </BottomSheetModalProvider>
+        </ThemeProvider>
+      </Suspense>
     </GestureHandlerRootView>
   );
 }
@@ -42,6 +74,6 @@ export default function RootLayout() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: COLORS.bg,
+    backgroundColor: DARK_COLORS.bg,
   },
 });

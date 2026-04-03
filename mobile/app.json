@@ -2,20 +2,21 @@
   "expo": {
     "name": "zuhd.news",
     "slug": "zuhd-news",
-    "version": "1447.10.43",
+    "version": "1447.10.45",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "dark",
+    "userInterfaceStyle": "automatic",
     "scheme": "zuhd-news",
     "owner": "edenmind",
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
-      "buildNumber": "86",
+      "buildNumber": "91",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
           "audio",
+          "fetch",
           "processing"
         ]
       }
@@ -28,7 +29,7 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "versionCode": 88,
+      "versionCode": 91,
       "permissions": [
         "android.permission.FOREGROUND_SERVICE",
         "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
@@ -57,7 +58,10 @@
         }
       ],
       "expo-asset",
-      "expo-background-task"
+      "expo-background-task",
+      "react-native-spotlight-search",
+      "expo-web-browser",
+      ["expo-notifications", { "icon": "./assets/android-icon-monochrome.png", "color": "#141414" }]
     ],
     "extra": {
       "router": {},

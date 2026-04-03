@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo } from 'react';
 import { Pressable, Share, StyleSheet, Text, View } from 'react-native';
@@ -9,10 +10,11 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { COLORS, FONT, LAYOUT, SPACING, TEXT_STYLES, TYPOGRAPHY } from '../constants/theme';
+import { LAYOUT, SPACING } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
 import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact } from '../lib/haptics';
-import { renderSentences } from '../lib/markdown';
+import { makeMarkdownStyles, renderSentences } from '../lib/markdown';
 import type { Article, ContextPressHandler, SourcePressHandler } from '../types';
 import { ActionLabel } from './ActionLabel';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
@@ -28,12 +30,14 @@ interface ArticlePageProps {
   scrollY: SharedValue<number>;
   onSourcePress?: SourcePressHandler;
   onContextPress?: ContextPressHandler;
+  onBookmarkPress?: (article: Article) => void;
   showEarlierDivider?: boolean;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
   onCountryPress?: (result: TapResult) => void;
   tick?: number;
   isBreaking?: boolean;
+  onBreakingPress?: (coverage: number) => void;
 }
 
 function GlobeTapZone({
@@ -58,7 +62,14 @@ function GlobeTapZone({
     [impact, globeRef, globeYOffset, onTap],
   );
 
-  return <Pressable style={styles.globeTapZone} onPress={handleTap} />;
+  return (
+    <Pressable
+      style={styles.globeTapZone}
+      onPress={handleTap}
+      accessibilityRole="button"
+      accessibilityLabel="Tap map to view country"
+    />
+  );
 }
 
 export const ArticlePage = memo(function ArticlePage({
@@ -69,13 +80,16 @@ export const ArticlePage = memo(function ArticlePage({
   scrollY,
   onSourcePress,
   onContextPress,
+  onBookmarkPress,
   showEarlierDivider,
   globeRef,
   globeYOffset,
   onCountryPress,
   tick: _tick,
   isBreaking,
+  onBreakingPress,
 }: ArticlePageProps) {
+  const { colors, font, typography, textStyles } = useTheme();
   const timeAgo = formatTimeAgo(article.addedAt);
   const pageStart = index * itemHeight;
   const reduceMotion = useReducedMotion();
@@ -104,28 +118,37 @@ export const ArticlePage = memo(function ArticlePage({
     [article.title, article.sentences],
   );
 
-  const titleFontSize = Math.round(TYPOGRAPHY.sizeH1 * fontScale);
-  const bodyFontSize = fontScale < 1 ? Math.round(TYPOGRAPHY.sizeBase * fontScale) : undefined;
+  const titleFontSize = Math.round(typography.sizeH1 * fontScale);
+  const bodyFontSize = fontScale < 1 ? Math.round(typography.sizeBase * fontScale) : undefined;
 
   const titleSizeStyle =
     fontScale < 1
       ? {
           fontSize: titleFontSize,
-          lineHeight: titleFontSize * TYPOGRAPHY.leadingHeading,
+          lineHeight: titleFontSize * typography.leadingHeading,
         }
       : null;
 
-  const body = useMemo(
-    () => renderSentences(article.sentences, bodyFontSize, article.location),
-    [article.sentences, bodyFontSize, article.location],
+  const mdStyles = useMemo(
+    () => makeMarkdownStyles(colors, font, typography),
+    [colors, font, typography],
   );
+
+  const body = useMemo(
+    () => renderSentences(article.sentences, mdStyles, typography, bodyFontSize, article.location),
+    [article.sentences, mdStyles, typography, bodyFontSize, article.location],
+  );
+
+  const articleUrl = `https://zuhd.news/a/${article.slug}`;
 
   const handleShare = useCallback(() => {
     hapticImpact();
-    Share.share({
-      message: `${article.title}\n\nhttps://zuhd.news/a/${article.slug}`,
-    }).catch(() => {});
-  }, [article.title, article.slug]);
+    Share.share({ message: `${article.title}\n\n${articleUrl}` }).catch(() => {});
+  }, [article.title, articleUrl]);
+
+  const handleLongPress = useCallback(() => {
+    onBookmarkPress?.(article);
+  }, [article, onBookmarkPress]);
 
   return (
     <View style={[styles.container, { height: itemHeight }]}>
@@ -143,23 +166,44 @@ export const ArticlePage = memo(function ArticlePage({
           <LinearGradient
             start={vec(0, 0)}
             end={vec(0, GRADIENT_HEIGHT_TOP)}
-            colors={[`${COLORS.bg}00`, `${COLORS.bg}66`, `${COLORS.bg}CC`, COLORS.bg]}
+            colors={[`${colors.bg}00`, `${colors.bg}66`, `${colors.bg}CC`, colors.bg]}
             positions={[0, 0.3, 0.7, 1]}
           />
         </Rect>
       </Canvas>
 
       {/* Content zone — title, body, meta all grouped together */}
-      <View style={styles.content}>
+      <Pressable
+        style={[styles.content, { backgroundColor: colors.bg }]}
+        onLongPress={handleLongPress}
+        delayLongPress={400}
+      >
         {showEarlierDivider && (
           <View style={styles.earlierDivider}>
-            <View style={styles.earlierLine} />
-            <Text style={styles.earlierLabel}>caught up</Text>
-            <View style={styles.earlierLine} />
+            <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
+            <Text
+              style={[styles.earlierLabel, textStyles.smallCaps, { fontSize: typography.sizeBase }]}
+            >
+              caught up
+            </Text>
+            <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
           </View>
         )}
         <Animated.View style={fadeStyle}>
-          <Text selectable style={[styles.title, titleSizeStyle]} numberOfLines={3}>
+          <Text
+            selectable
+            style={[
+              styles.title,
+              {
+                fontFamily: font.bold,
+                fontSize: typography.sizeH1,
+                lineHeight: typography.sizeH1 * typography.leadingHeading,
+                color: colors.textEmphasis,
+              },
+              titleSizeStyle,
+            ]}
+            numberOfLines={3}
+          >
             {article.title}
           </Text>
           {body}
@@ -167,13 +211,19 @@ export const ArticlePage = memo(function ArticlePage({
           {/* Meta — status left, actions right */}
           <View style={styles.meta}>
             <View style={styles.metaGroup}>
-              {isBreaking ? (
-                <View style={styles.breakingBadge}>
-                  <Text style={styles.breakingText}>breaking</Text>
-                </View>
-              ) : (
-                <Text style={styles.metaDim}>{timeAgo}</Text>
+              {isBreaking && (
+                <Pressable
+                  onPress={() => onBreakingPress?.(article.eventCoverage ?? 0)}
+                  hitSlop={8}
+                  accessibilityRole="button"
+                  accessibilityLabel="Breaking news indicator"
+                >
+                  <Ionicons name="flame" size={typography.sizeSm} color={colors.textSecondary} />
+                </Pressable>
               )}
+              <Text style={[styles.metaDim, textStyles.smallCaps, textStyles.textShadow]}>
+                {timeAgo}
+              </Text>
             </View>
             <View style={styles.metaGroup}>
               {article.threadId && onContextPress && (
@@ -195,7 +245,7 @@ export const ArticlePage = memo(function ArticlePage({
             </View>
           </View>
         </Animated.View>
-      </View>
+      </Pressable>
 
       {/* Gradient dissolves content into globe — fades with body */}
       <Animated.View style={fadeStyle} pointerEvents="none">
@@ -204,7 +254,7 @@ export const ArticlePage = memo(function ArticlePage({
             <LinearGradient
               start={vec(0, 0)}
               end={vec(0, GRADIENT_HEIGHT_BOTTOM)}
-              colors={[COLORS.bg, `${COLORS.bg}CC`, `${COLORS.bg}66`, `${COLORS.bg}00`]}
+              colors={[colors.bg, `${colors.bg}CC`, `${colors.bg}66`, `${colors.bg}00`]}
               positions={[0, 0.3, 0.7, 1]}
             />
           </Rect>
@@ -220,7 +270,6 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: SPACING.screenPadding,
-    backgroundColor: COLORS.bg,
   },
   gradientTop: {
     height: GRADIENT_HEIGHT_TOP,
@@ -238,17 +287,9 @@ const styles = StyleSheet.create({
   earlierLine: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: COLORS.accent,
   },
-  earlierLabel: {
-    ...TEXT_STYLES.smallCaps,
-    fontSize: TYPOGRAPHY.sizeBase,
-  },
+  earlierLabel: {},
   title: {
-    fontFamily: FONT.bold,
-    fontSize: TYPOGRAPHY.sizeH1,
-    lineHeight: TYPOGRAPHY.sizeH1 * TYPOGRAPHY.leadingHeading,
-    color: COLORS.textEmphasis,
     marginBottom: SPACING.md,
     fontVariant: ['oldstyle-nums'],
   },
@@ -263,22 +304,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: SPACING.xs,
   },
-  metaDim: {
-    ...TEXT_STYLES.smallCaps,
-    ...TEXT_STYLES.textShadow,
-  },
-  breakingBadge: {
-    backgroundColor: COLORS.textEmphasis,
-    paddingHorizontal: SPACING.sm,
-    paddingVertical: LAYOUT.pillPaddingV,
-    borderRadius: LAYOUT.pillRadius,
-  },
-  breakingText: {
-    fontFamily: FONT.smallCaps,
-    fontSize: TYPOGRAPHY.sizeSm,
-    letterSpacing: TYPOGRAPHY.trackingCaps,
-    color: COLORS.bg,
-  },
+  metaDim: {},
   globeTapZone: {
     ...StyleSheet.absoluteFillObject,
   },

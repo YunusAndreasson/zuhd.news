@@ -16,15 +16,20 @@ import Animated, {
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { COLORS } from '../constants/theme';
 import { useScrollState } from '../hooks/useScrollState';
+import { useTheme } from '../hooks/useTheme';
+import { formatTimeAgo } from '../lib/article-utils';
 import { hapticNotification, hapticTick } from '../lib/haptics';
+import { maybeRequestReview } from '../lib/store-review';
 import type { Article, ContextPressHandler, HeatmapPoint, SourcePressHandler } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
 
+const BREAKING_THRESHOLD = 100;
+
 export interface ArticleListRef {
   scrollToTop: () => void;
+  scrollToSlug: (slug: string) => void;
 }
 
 interface ArticleListProps {
@@ -39,6 +44,8 @@ interface ArticleListProps {
   onSourcePress?: SourcePressHandler;
   onContextPress?: ContextPressHandler;
   onCountryPress?: (result: TapResult) => void;
+  onBookmarkPress?: (article: Article) => void;
+  onBreakingPress?: (coverage: number) => void;
   progressesSV: SharedValue<number[]>;
   tick?: number;
   resetKey?: number;
@@ -54,6 +61,8 @@ export const ArticleList = memo(function ArticleList({
   onSourcePress,
   onContextPress,
   onCountryPress,
+  onBookmarkPress,
+  onBreakingPress,
   onRefresh,
   onEndReached,
   onCaughtUp,
@@ -62,22 +71,35 @@ export const ArticleList = memo(function ArticleList({
   resetKey,
   ref,
 }: ArticleListProps) {
+  const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const { width: screenWidth } = useWindowDimensions();
-  // Breaking stories (100+ worldwide coverage) float to top, rest chronological
-  const BREAKING_THRESHOLD = 100;
+  // Chronological sort, but within the same time bucket (e.g. all "1h ago")
+  // breaking stories (eventCoverage >= 100) float to top of their bucket
   const sortedArticles = useMemo(() => {
-    const breaking = articles.filter((a) => (a.eventCoverage ?? 0) >= BREAKING_THRESHOLD);
-    const rest = articles.filter((a) => (a.eventCoverage ?? 0) < BREAKING_THRESHOLD);
-    // Breaking sorted by coverage (highest first), rest keeps API order (chronological)
-    breaking.sort((a, b) => (b.eventCoverage ?? 0) - (a.eventCoverage ?? 0));
-    return [...breaking, ...rest];
+    // Pre-bucket once so the comparator is pure (no Date.now() per comparison)
+    const buckets = new Map<Article, string>();
+    for (const a of articles) buckets.set(a, formatTimeAgo(a.addedAt));
+    return [...articles].sort((a, b) => {
+      if (buckets.get(a) === buckets.get(b)) {
+        const aBreaking = (a.eventCoverage ?? 0) >= BREAKING_THRESHOLD ? 1 : 0;
+        const bBreaking = (b.eventCoverage ?? 0) >= BREAKING_THRESHOLD ? 1 : 0;
+        if (bBreaking !== aBreaking) return bBreaking - aBreaking;
+      }
+      return b.addedAt - a.addedAt;
+    });
   }, [articles]);
   const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight;
   const contentStyle = useMemo(() => ({ paddingBottom: insets.bottom }), [insets.bottom]);
-  const { scrollY, currentIndex, setCurrentIndex, overscrollFired, caughtUpFired, overscrollTimer } =
-    useScrollState(resetKey, catIndex, progressesSV);
+  const {
+    scrollY,
+    currentIndex,
+    setCurrentIndex,
+    overscrollFired,
+    caughtUpFired,
+    overscrollTimer,
+  } = useScrollState(resetKey, catIndex, progressesSV);
   const listRef = useAnimatedRef<Animated.FlatList<Article>>();
   const globeRef = useRef<MiniGlobeRef>(null);
   const containerRef = useRef<View>(null);
@@ -106,6 +128,12 @@ export const ArticleList = memo(function ArticleList({
     scrollToTop: () => {
       overscrollFired.value = false;
       listRef.current?.scrollToOffset({ offset: 0, animated: true });
+    },
+    scrollToSlug: (slug: string) => {
+      const idx = sortedArticles.findIndex((a) => a.slug === slug);
+      if (idx >= 0) {
+        listRef.current?.scrollToOffset({ offset: idx * itemHeight, animated: true });
+      }
     },
   }));
 
@@ -150,6 +178,7 @@ export const ArticleList = memo(function ArticleList({
         hapticTick();
       }
       setCurrentIndex(idx);
+      maybeRequestReview();
     },
     [earlierIndex, onCaughtUp],
   );
@@ -182,10 +211,12 @@ export const ArticleList = memo(function ArticleList({
         scrollY={scrollY}
         onSourcePress={onSourcePress}
         onContextPress={onContextPress}
+        onBookmarkPress={onBookmarkPress}
         showEarlierDivider={index === earlierIndex}
         globeRef={globeRef}
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
+        onBreakingPress={onBreakingPress}
         tick={tick}
         isBreaking={(item.eventCoverage ?? 0) >= BREAKING_THRESHOLD}
       />
@@ -197,6 +228,8 @@ export const ArticleList = memo(function ArticleList({
       onSourcePress,
       onContextPress,
       onCountryPress,
+      onBookmarkPress,
+      onBreakingPress,
       earlierIndex,
       tick,
     ],
@@ -249,9 +282,9 @@ export const ArticleList = memo(function ArticleList({
             refreshing={localRefreshing}
             onRefresh={currentIndex === 0 ? handleRefresh : undefined}
             enabled={currentIndex === 0}
-            tintColor={COLORS.textSecondary}
-            progressBackgroundColor={COLORS.bg}
-            colors={[COLORS.textSecondary]}
+            tintColor={colors.textSecondary}
+            progressBackgroundColor={colors.bg}
+            colors={[colors.textSecondary]}
           />
         }
       />

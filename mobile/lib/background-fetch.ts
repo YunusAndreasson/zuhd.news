@@ -34,10 +34,8 @@ export async function fetchAndCacheIfNew(): Promise<boolean> {
 
 // Must be called at module top level before React renders
 TaskManager.defineTask(TASK_NAME, async () => {
-  const updated = await fetchAndCacheIfNew();
-  return updated
-    ? BackgroundTask.BackgroundTaskResult.Success
-    : BackgroundTask.BackgroundTaskResult.Failed;
+  await fetchAndCacheIfNew();
+  return BackgroundTask.BackgroundTaskResult.Success;
 });
 
 export async function registerBackgroundTask(): Promise<void> {

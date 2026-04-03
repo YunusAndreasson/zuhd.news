@@ -269,7 +269,29 @@ $BODY_LENGTHS
     npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
     DEPLOY_EXIT=$?
     echo "Deploy exit: $DEPLOY_EXIT" | tee -a "$LOG_FILE"
-    [ "$DEPLOY_EXIT" -eq 0 ] && FUNNEL_PUBLISHED=$FUNNEL_VALIDATED
+    if [ "$DEPLOY_EXIT" -eq 0 ]; then
+      FUNNEL_PUBLISHED=$FUNNEL_VALIDATED
+
+      # Push notifications for breaking stories
+      BREAKING_JSON=$(node -e "
+        const ledger = JSON.parse(require('fs').readFileSync('content/.story-ledger.json','utf8'));
+        const cycle = JSON.parse(require('fs').readFileSync('content/.last-cycle.json','utf8'));
+        const slugs = new Set(cycle.articles.map(a => a.slug));
+        const breaking = ledger.stories
+          .filter(s => s.arc === 'breaking' && s.coverageCount === 1)
+          .flatMap(s => (s.articles || []).filter(sl => slugs.has(sl)).map(sl => ({
+            slug: sl, title: cycle.articles.find(a => a.slug === sl)?.title || s.label
+          })));
+        if (breaking.length) console.log(JSON.stringify({ articles: breaking }));
+      ")
+      if [ -n "$BREAKING_JSON" ] && [ -n "$PUSH_SECRET" ]; then
+        echo "Pushing breaking news: $BREAKING_JSON" | tee -a "$LOG_FILE"
+        curl -s -X POST "https://zuhd.news/api/push" \
+          -H "Authorization: Bearer $PUSH_SECRET" \
+          -H "Content-Type: application/json" \
+          -d "$BREAKING_JSON" 2>&1 | tee -a "$LOG_FILE"
+      fi
+    fi
   else
     echo "Build failed — skipping deploy" | tee -a "$LOG_FILE"
   fi

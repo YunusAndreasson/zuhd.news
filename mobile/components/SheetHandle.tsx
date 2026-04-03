@@ -1,16 +1,18 @@
 import { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { COLORS, SPACING, TEXT_STYLES } from '../constants/theme';
+import { SPACING } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
 
 interface SheetHandleProps {
   title?: string;
 }
 
 export const SheetHandle = memo(function SheetHandle({ title }: SheetHandleProps) {
+  const { colors, textStyles } = useTheme();
   return (
     <View style={styles.container}>
-      <View style={styles.indicator} />
-      {title && <Text style={styles.title}>{title}</Text>}
+      <View style={[styles.indicator, { backgroundColor: colors.rule }]} />
+      {title && <Text style={[styles.title, textStyles.smallCaps, { color: colors.textSecondary }]}>{title}</Text>}
     </View>
   );
 });
@@ -25,11 +27,8 @@ const styles = StyleSheet.create({
     width: 36,
     height: 4,
     borderRadius: 2,
-    backgroundColor: COLORS.rule,
   },
   title: {
-    ...TEXT_STYLES.smallCaps,
-    color: COLORS.textSecondary,
     marginTop: SPACING.sm,
   },
 });

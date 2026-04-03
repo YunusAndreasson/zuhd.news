@@ -8,7 +8,8 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { COLORS, FONT, PRESSED_STYLE, SPACING, TYPOGRAPHY } from '../constants/theme';
+import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
 
 type ToastPosition = 'top' | 'bottom';
 
@@ -22,6 +23,7 @@ const EASE_IN = { duration: 200, easing: Easing.in(Easing.ease) };
 const EASE_OUT = { duration: 250, easing: Easing.out(Easing.ease) };
 
 export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
+  const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
   const [message, setMessage] = useState('');
   const [pos, setPos] = useState<ToastPosition>('bottom');
@@ -79,15 +81,18 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
 
   return (
     <Animated.View
-      style={[styles.container, positionStyle, animatedStyle]}
+      style={[styles.container, { backgroundColor: colors.toastBg, borderColor: colors.toastBorder }, positionStyle, animatedStyle]}
       pointerEvents={visible ? 'auto' : 'none'}
+      accessibilityLiveRegion="polite"
     >
       <Pressable
         onPress={handlePress}
         hitSlop={12}
         style={({ pressed }) => pressed && PRESSED_STYLE}
+        accessibilityRole="alert"
+        accessibilityLabel={message}
       >
-        <Text style={styles.text}>{message}</Text>
+        <Text style={[styles.text, { fontFamily: font.semiBold, fontSize: typography.sizeSm, color: colors.text }]}>{message}</Text>
       </Pressable>
     </Animated.View>
   );
@@ -101,15 +106,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.md,
-    backgroundColor: COLORS.toastBg,
     borderRadius: SPACING.sm,
     borderWidth: StyleSheet.hairlineWidth,
-    borderColor: COLORS.toastBorder,
     zIndex: 100,
   },
-  text: {
-    fontFamily: FONT.semiBold,
-    fontSize: TYPOGRAPHY.sizeSm,
-    color: COLORS.text,
-  },
+  text: {},
 });
