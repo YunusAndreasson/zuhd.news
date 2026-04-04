@@ -4174,5 +4174,117 @@
     "label": "Wood as a Filter",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-04-bushehr-nuclear-plant-strike-iaea-confirms": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BUSHEHR MATTERS",
+        "body": "Bushehr is Iran's only operational nuclear power plant — a 1,000-megawatt pressurized water reactor built by Russia's Rosatom. Its spent fuel is shipped back to Russia under a bilateral agreement specifically designed to prevent plutonium diversion."
+      },
+      {
+        "heading": "THE IAEA'S ACTUAL ROLE",
+        "body": "The IAEA does not enforce anything. It verifies. Inspectors place tamper-evident seals on fuel assemblies, install cameras, and take environmental swab samples that can detect undeclared isotopes at parts-per-trillion. If a seal is broken or a sample is anomalous, the Board of Governors is notified — but the IAEA itself has no authority to act."
+      },
+      {
+        "heading": "WHAT A STRIKE DOES NOT DO",
+        "body": "A military strike on an operating reactor does not produce a nuclear explosion — the physics are completely different. Reactor-grade uranium is enriched to 3-5%, far below the 90%+ needed for a weapon. The danger is dispersal of radioactive inventory: a breached containment vessel releases cesium-137 and iodine-131 into the environment."
+      },
+      {
+        "heading": "THE CONTAINMENT QUESTION",
+        "body": "Bushehr uses a VVER-1000 design with a reinforced concrete containment dome rated for aircraft impact. But 'rated for' assumes a specific mass, speed, and angle. No civilian reactor containment has ever been tested against precision-guided munitions, because the design assumption was always accidental impact, not deliberate attack."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Israel struck Iraq's Osirak reactor in 1981 and Syria's Al-Kibar reactor in 2007 — both before fueling. Striking after fueling is a different calculation entirely because of fallout risk. The 1977 Additional Protocol I to the Geneva Conventions prohibits attacks on installations containing 'dangerous forces,' including nuclear plants, but the provision has never been tested in international courts."
+      }
+    ],
+    "generatedAt": "2026-04-04T17:29:51.798Z",
+    "label": "Nuclear Power Plant Strikes",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-04-cancer-long-range-co-expression-loss-systems-biology": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASELINE",
+        "body": "In healthy cells, thousands of genes are co-expressed — turned on and off together in coordinated programs. These aren't random correlations. They reflect shared transcription factor binding, chromatin accessibility, and physical proximity on the chromosome."
+      },
+      {
+        "heading": "WHAT CO-EXPRESSION MEANS PHYSICALLY",
+        "body": "Genes that sit far apart on the same chromosome — or even on different chromosomes — can be co-regulated because the genome folds into three-dimensional structures called topologically associating domains (TADs). Genes in the same TAD share regulatory elements and tend to fire together."
+      },
+      {
+        "heading": "THE CANCER SIGNATURE",
+        "body": "Cancer doesn't just mutate individual genes. It disrupts the coordination between them. When long-range co-expression breaks down, genes that should be activated together start firing independently — like an orchestra where every musician still plays, but nobody follows the conductor."
+      },
+      {
+        "heading": "WHY THIS IS HARD TO SEE",
+        "body": "Traditional cancer genomics looks for mutations in specific genes — the 'driver mutation' model. Co-expression loss is invisible to that approach because no single gene is necessarily broken. The dysfunction is in the relationships between genes, not in the genes themselves. You need network-level analysis to detect it."
+      },
+      {
+        "heading": "THE IMPLICATION",
+        "body": "If cancer is partly a disease of lost coordination rather than just broken parts, then targeting individual oncogenes may be treating symptoms. The deeper question is what maintains — or restores — the coherence of gene networks across the genome."
+      }
+    ],
+    "generatedAt": "2026-04-04T17:29:51.799Z",
+    "label": "Gene Co-expression Networks",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-04-russia-vpn-crackdown-banking-outage-telegram-durov": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW CENSORSHIP ACTUALLY WORKS",
+        "body": "Russia's internet censorship runs through TSPU — boxes installed at ISPs by the state telecom regulator Roskomnadzor. These are deep packet inspection (DPI) devices that sit inline on network links, examining every packet's contents, not just its destination address."
+      },
+      {
+        "heading": "WHAT DPI CAN SEE",
+        "body": "Even with HTTPS encryption, DPI can identify the protocol being used by its traffic signature — packet size, timing, handshake patterns. A VPN connection looks different from a web request even when both are encrypted. This is called traffic fingerprinting, and it's how China's Great Firewall and Russia's TSPU block VPNs without needing to decrypt anything."
+      },
+      {
+        "heading": "WHY BANKS BROKE",
+        "body": "Modern banking infrastructure uses the same protocols and IP ranges as consumer VPNs and cloud services. When DPI devices block traffic by protocol signature rather than by specific destination, they cannot distinguish a VPN tunnel carrying banned content from an encrypted connection between a bank branch and its data center. The collateral damage is structural, not accidental."
+      },
+      {
+        "heading": "THE WHACK-A-MOLE",
+        "body": "VPN protocols evolve to disguise their traffic signatures — a technique called obfuscation or domain fronting. Censors respond with more aggressive fingerprinting. Each escalation increases false positives, which means more legitimate services get caught in the filter. This is the fundamental tradeoff of protocol-level blocking: precision and coverage are inversely related."
+      }
+    ],
+    "generatedAt": "2026-04-04T17:29:51.800Z",
+    "label": "Deep Packet Inspection",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-04-pakistan-extreme-precipitation-cmip6-flood-risk": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PAKISTAN SPECIFICALLY",
+        "body": "Pakistan sits at the collision point of three water systems: the South Asian monsoon from the southeast, westerly disturbances from the Mediterranean, and glacial melt from the Karakoram and Hindu Kush. When two or three of these peak simultaneously — as in 2022 — the Indus basin has nowhere to send the water."
+      },
+      {
+        "heading": "THE CLAUSIUS-CLAPEYRON RELATION",
+        "body": "For every 1°C of warming, the atmosphere holds about 7% more water vapor. This is basic thermodynamics, not a model prediction. It means warmer air doesn't just rain more — it stores more water between rain events, then releases it in more intense bursts. Extreme precipitation scales faster than average precipitation."
+      },
+      {
+        "heading": "WHAT CMIP6 IS",
+        "body": "CMIP6 is not a single model. It's a framework where 50+ modeling centers worldwide run their own climate simulations under shared scenarios. When the paper says 'CMIP6 projects doubling,' it means multiple independent models, built on different assumptions, converge on similar results — which is how climate science builds confidence."
+      },
+      {
+        "heading": "THE RESOLUTION PROBLEM",
+        "body": "Global climate models run at 50-100 km grid cells. Pakistan's flood dynamics depend on topography that changes over hundreds of meters — mountain valleys, river gorges, floodplain gradients. Downscaling from 100 km to local impact is where the largest uncertainties live, and where most projections for South Asia diverge."
+      },
+      {
+        "heading": "THE INDUS PARADOX",
+        "body": "The Indus basin irrigates 90% of Pakistan's agriculture. The same geography that makes Pakistan one of the world's most flood-vulnerable countries also makes it one of the most water-dependent. You cannot solve one problem without affecting the other."
+      }
+    ],
+    "generatedAt": "2026-04-04T17:29:51.800Z",
+    "label": "Monsoon Physics & Climate Models",
+    "category": "science",
+    "articleCount": 1
   }
 }
