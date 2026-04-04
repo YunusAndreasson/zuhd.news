@@ -3867,5 +3867,121 @@
     "label": "Bilateral Deposit Diplomacy",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-04-ice-age-dice-native-american-probability-12000-years": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASSUMPTION",
+        "body": "The standard history credits Blaise Pascal and Pierre de Fermat with inventing probability theory in 1654, through letters about a gambling dispute. This framing treats mathematical reasoning about chance as a European Enlightenment product."
+      },
+      {
+        "heading": "THE OBJECT",
+        "body": "Dice are deceptively sophisticated devices. A fair die is a uniform density convex polyhedron where every face has equal area and equal probability of landing. Achieving this requires either extraordinary intuition about symmetry or iterative empirical testing — both are mathematical reasoning."
+      },
+      {
+        "heading": "THE DEEPER PATTERN",
+        "body": "Astragali — knucklebones from sheep or goats — were the dominant randomization devices for at least 8,000 years across Mesopotamia, Egypt, and Rome. They have four landable faces with unequal probabilities. Ancient players knew which faces were rare — they assigned them higher point values. That is frequentist probability, without the notation."
+      },
+      {
+        "heading": "WHAT MAKES A DIE FAIR",
+        "body": "Symmetry is necessary but not sufficient. A cube with uniform density is fair because it belongs to the isohedral class — every face is geometrically equivalent under rotation. The five Platonic solids (d4, d6, d8, d12, d20) are all isohedral, which is why modern RPG dice converged on exactly those shapes."
+      },
+      {
+        "heading": "THE DISTINCTION",
+        "body": "There is a difference between using probability and formalizing it. Formalizing it lets you build insurance markets and nuclear reactors. But the cognitive act — estimating likelihoods, adjusting bets, recognizing that some outcomes are rarer than others — appears wherever humans play."
+      }
+    ],
+    "generatedAt": "2026-04-04T04:24:26.550Z",
+    "label": "The Deep History of Probability",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-04-quantum-bitcoin-9-minutes-private-key-derivation-google": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LOCK",
+        "body": "Bitcoin uses elliptic curve cryptography (secp256k1). Your private key is a 256-bit integer. Your public key is that integer multiplied by a generator point on the curve. Multiplication is easy; reversing it — the elliptic curve discrete logarithm problem — is computationally intractable for classical machines."
+      },
+      {
+        "heading": "THE TRAPDOOR",
+        "body": "This is a one-way function: going forward (private key to public key) takes microseconds, going backward would take a classical supercomputer longer than the age of the universe. All public-key cryptography relies on some version of this asymmetry."
+      },
+      {
+        "heading": "WHY QUANTUM BREAKS IT",
+        "body": "Shor's algorithm (1994) solves the discrete logarithm problem in polynomial time on a quantum computer. It exploits quantum superposition to test exponentially many possibilities simultaneously through interference. The hard direction of the trapdoor becomes easy."
+      },
+      {
+        "heading": "THE GAP",
+        "body": "Breaking secp256k1 requires roughly 2,500 error-corrected logical qubits. Current machines have over 1,000 physical qubits but fewer than 10 logical ones — physical qubits must be combined at ratios of 1,000-to-1 or worse to produce reliable logical qubits. The gap is still enormous, but it is shrinking on a known trajectory."
+      },
+      {
+        "heading": "THE REAL VULNERABILITY",
+        "body": "Bitcoin addresses that have never spent funds only expose a hash of the public key, not the key itself. But the moment you broadcast a transaction, your public key is visible in the mempool before confirmation. A sufficiently fast quantum computer could derive the private key and sign a competing transaction during that window."
+      },
+      {
+        "heading": "THE DEFENSE",
+        "body": "Post-quantum cryptography uses mathematical problems that remain hard for quantum computers — lattice problems, hash-based signatures. NIST standardized the first post-quantum algorithms in 2024. Bitcoin could adopt them via soft fork, but migrating billions in value across millions of wallets is a coordination problem, not a cryptography problem."
+      }
+    ],
+    "generatedAt": "2026-04-04T04:24:26.551Z",
+    "label": "Why Quantum Threatens Bitcoin",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-04-zimbabwe-hiv-lenacapavir-us-funding-cuts-drug-resistance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ENGINE",
+        "body": "HIV reverse transcriptase makes roughly one error per 10,000 nucleotides copied — and the HIV genome is about 10,000 nucleotides long. Every single new virus particle is, on average, a mutant. This is not a bug in the virus; it is the evolutionary strategy."
+      },
+      {
+        "heading": "WHY COMBINATION THERAPY",
+        "body": "A single drug creates a binary filter: any mutant that resists it survives and multiplies. With three drugs hitting three different targets, a virus would need three simultaneous resistance mutations — a probability near one in a billion per replication cycle. This is why triple therapy transformed HIV from a death sentence into a manageable condition."
+      },
+      {
+        "heading": "WHAT LENACAPAVIR DOES DIFFERENTLY",
+        "body": "Most HIV drugs target enzymes (reverse transcriptase, protease, integrase). Lenacapavir targets the capsid — the protein shell that shuttles viral DNA into the cell nucleus. It interferes with capsid assembly, disassembly, and nuclear import simultaneously. Attacking a structural protein at multiple stages makes resistance much harder to evolve."
+      },
+      {
+        "heading": "THE PHARMACOLOGY",
+        "body": "Lenacapavir is injected subcutaneously every six months. It forms a drug depot that dissolves slowly into the bloodstream. For comparison, daily oral pills achieve about 70% real-world adherence; long-acting injectables approach 100% because the patient makes one decision instead of 365."
+      },
+      {
+        "heading": "WHY FUNDING GAPS CAUSE RESISTANCE",
+        "body": "Interrupted drug supply does not just pause treatment — it actively breeds resistance. Sub-therapeutic drug levels create exactly the selection pressure that evolves resistant strains. Those strains spread. A funding cut in Zimbabwe becomes a drug-resistance problem everywhere."
+      }
+    ],
+    "generatedAt": "2026-04-04T04:24:26.551Z",
+    "label": "How HIV Evades Drugs",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-04-trump-dhs-pay-directive-bypasses-congress-shutdown": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CLAUSE",
+        "body": "Article I, Section 9 of the Constitution: 'No Money shall be drawn from the Treasury, but in Consequence of Appropriations made by Law.' This gives Congress — not the President — exclusive control over federal spending. The Founders considered it the legislature's most important check on executive power."
+      },
+      {
+        "heading": "THE STATUTE",
+        "body": "The Antideficiency Act (1870, strengthened 1950) makes it a federal crime for any official to spend money Congress has not appropriated. Violations carry fines, suspension, and up to two years imprisonment. It exists because 19th-century agencies routinely overspent their budgets and then demanded Congress cover the shortfall."
+      },
+      {
+        "heading": "THE LOOPHOLES",
+        "body": "The executive has limited workarounds: the Feed and Forage Act (1799) lets the military procure necessities before appropriation. Transfer authority lets agencies move small percentages between accounts. Emergency declarations unlock specific pre-authorized funds. Each is narrow by design."
+      },
+      {
+        "heading": "THE PATTERN",
+        "body": "Every modern spending dispute follows the same structure: the President claims inherent authority or emergency powers, Congress claims the Appropriations Clause is absolute, and the courts decide years later. Meanwhile the money has already been spent — the constitutional design assumes good faith compliance, not post-hoc judicial enforcement."
+      }
+    ],
+    "generatedAt": "2026-04-04T04:24:26.551Z",
+    "label": "The Power of the Purse",
+    "category": "politics",
+    "articleCount": 1
   }
 }
