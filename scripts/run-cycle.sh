@@ -280,8 +280,12 @@ $BODY_LENGTHS
         const breaking = ledger.stories
           .filter(s => s.arc === 'breaking' && s.coverageCount === 1)
           .flatMap(s => (s.articles || []).filter(sl => slugs.has(sl)).map(sl => ({
-            slug: sl, title: cycle.articles.find(a => a.slug === sl)?.title || s.label
-          })));
+            slug: sl, title: cycle.articles.find(a => a.slug === sl)?.title || s.label,
+            idx: cycle.articles.findIndex(a => a.slug === sl)
+          })))
+          .sort((a, b) => a.idx - b.idx)
+          .slice(0, 1)
+          .map(({ slug, title }) => ({ slug, title }));
         if (breaking.length) console.log(JSON.stringify({ articles: breaking }));
       ")
       if [ -n "$BREAKING_JSON" ] && [ -n "$PUSH_SECRET" ]; then
