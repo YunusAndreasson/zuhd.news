@@ -1,14 +1,23 @@
 #!/usr/bin/env node
 // Outputs a compact topic-grouped coverage map of articles published in the last 24 hours.
-// Uses file mtime — no UTC date boundary, so context survives midnight without resetting.
-import { readdirSync, statSync } from 'fs'
+// Uses frontmatter date (not mtime — git ops change mtime, breaking the window).
+import { readdirSync, readFileSync } from 'fs'
+import { parseFrontmatter } from './lib/frontmatter.js'
 
 const cutoff = Date.now() - 24 * 60 * 60 * 1000
 
 let slugs = []
 try {
   slugs = readdirSync('content/articles')
-    .filter(f => f.endsWith('.md') && statSync(`content/articles/${f}`).mtimeMs >= cutoff)
+    .filter(f => {
+      if (!f.endsWith('.md')) return false
+      try {
+        const content = readFileSync(`content/articles/${f}`, 'utf-8')
+        const { meta } = parseFrontmatter(content)
+        const date = meta.date ? new Date(meta.date).getTime() : 0
+        return date >= cutoff
+      } catch { return false }
+    })
     .map(f => f.slice(11, -3)) // strip YYYY-MM-DD- prefix and .md suffix
 } catch {}
 if (!slugs.length) process.exit(0)

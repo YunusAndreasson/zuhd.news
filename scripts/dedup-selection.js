@@ -8,6 +8,7 @@
 // 3. Fuzzy title match — title word overlap ≥ 60% with a recent article's slug
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs'
 import { join } from 'path'
+import { parseFrontmatter } from './lib/frontmatter.js'
 
 const SELECTION = '/tmp/zuhd-selection.json'
 if (!existsSync(SELECTION)) process.exit(0)
@@ -15,13 +16,20 @@ if (!existsSync(SELECTION)) process.exit(0)
 const selection = JSON.parse(readFileSync(SELECTION, 'utf-8'))
 const before = selection.length
 
-// Load published slugs from last 48 hours (by mtime)
+// Load published slugs from last 48 hours (by frontmatter date, not mtime — git ops change mtime)
 const cutoff = Date.now() - 48 * 60 * 60 * 1000
 let recentSlugs = []
 try {
-  const { statSync } = await import('fs')
   recentSlugs = readdirSync('content/articles')
-    .filter(f => f.endsWith('.md') && statSync(join('content/articles', f)).mtimeMs >= cutoff)
+    .filter(f => {
+      if (!f.endsWith('.md')) return false
+      try {
+        const content = readFileSync(join('content/articles', f), 'utf-8')
+        const { meta } = parseFrontmatter(content)
+        const date = meta.date ? new Date(meta.date).getTime() : 0
+        return date >= cutoff
+      } catch { return false }
+    })
     .map(f => f.replace('.md', ''))
 } catch {}
 
@@ -89,4 +97,14 @@ if (filtered.length < before) {
   console.log(`Deduped selection: ${before} → ${filtered.length} (${before - filtered.length} duplicates removed)`)
 } else {
   console.log(`Dedup check: all ${before} stories are new`)
+}
+
+// Post-dedup category floor check — warn if dedup broke a minimum
+const floors = { politics: 2, economy: 2, science: 3, tech: 2 }
+const catCounts = {}
+for (const s of filtered) catCounts[s.category] = (catCounts[s.category] || 0) + 1
+for (const [cat, min] of Object.entries(floors)) {
+  if ((catCounts[cat] || 0) < min) {
+    console.log(`WARNING: post-dedup floor violation — ${cat}: ${catCounts[cat] || 0} < ${min}`)
+  }
 }
