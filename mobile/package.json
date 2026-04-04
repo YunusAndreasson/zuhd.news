@@ -1,6 +1,6 @@
 {
   "name": "mobile",
-  "version": "1447.10.53+104",
+  "version": "1447.10.54+107",
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
@@ -75,5 +75,15 @@
       "./jest.setup.js"
     ]
   },
-  "private": true
+  "private": true,
+  "expo": {
+    "autolinking": {
+      "exclude": [
+        "expo-glass-effect",
+        "@expo/dom-webview",
+        "expo-symbols",
+        "expo-web-browser"
+      ]
+    }
+  }
 }
