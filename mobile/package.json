@@ -1,6 +1,6 @@
 {
   "name": "mobile",
-  "version": "1447.10.51+100",
+  "version": "1447.10.52+102",
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
@@ -26,6 +26,7 @@
     "expo-audio": "^55.0.11",
     "expo-background-task": "~55.0.12",
     "expo-constants": "~55.0.11",
+    "expo-file-system": "~55.0.14",
     "expo-font": "~55.0.6",
     "expo-haptics": "~55.0.11",
     "expo-linking": "~55.0.11",
