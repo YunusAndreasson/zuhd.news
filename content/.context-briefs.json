@@ -4788,5 +4788,121 @@
     "label": "Mediterranean Sea Crossings",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-05-graphene-waveguide-modulator-amplitude-phase": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY LIGHT NEEDS MODULATING",
+        "body": "Fiber optics carry data as light pulses. To encode information, you must change the light's properties — its brightness (amplitude) or the timing of its wave peaks (phase). Every internet connection you use depends on modulators doing this billions of times per second."
+      },
+      {
+        "heading": "THE SILICON PROBLEM",
+        "body": "Silicon is terrible at modulating light. It has no native electro-optic effect, so silicon photonic modulators use carrier injection — flooding the waveguide with electrons to change its refractive index. This is slow, power-hungry, and couples amplitude and phase changes together. You cannot change one without disturbing the other."
+      },
+      {
+        "heading": "WHY INDEPENDENT CONTROL MATTERS",
+        "body": "Advanced modulation formats like QAM encode data in both amplitude and phase simultaneously — the same trick your Wi-Fi router uses. If your modulator entangles the two, you need complex external compensation circuits. Independent control means denser encoding with simpler hardware."
+      },
+      {
+        "heading": "WHAT MAKES GRAPHENE DIFFERENT",
+        "body": "Graphene has zero bandgap — its electrons behave like massless particles that respond to electric fields almost instantly. A single atom-thick layer absorbs exactly 2.3% of light passing through it, and this absorption can be switched on and off electrically in picoseconds. That gives you amplitude control. Phase control comes from graphene's tunable refractive index, which shifts through a different physical mechanism (the Pauli blocking effect) and can therefore be adjusted independently."
+      },
+      {
+        "heading": "THE SCALE QUESTION",
+        "body": "Graphene modulators have been demonstrated in labs since 2011. The persistent obstacle is not physics but manufacturing: depositing uniform single-layer graphene onto photonic chips at wafer scale with consistent quality. Every few years a group claims to solve this. The field advances in millimeters."
+      }
+    ],
+    "generatedAt": "2026-04-05T22:22:40.331Z",
+    "label": "Electro-Optic Modulation",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-05-hormuz-shipping-collapsed-138-to-8-ships-daily": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOMETRY",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two one-way corridors separated by a 3 km buffer. Every tanker follows the same path. There is no alternative route from the Persian Gulf to open ocean."
+      },
+      {
+        "heading": "WHAT FLOWS THROUGH",
+        "body": "Roughly 20% of the world's oil and 25% of its liquefied natural gas pass through Hormuz on a normal day. Saudi Arabia, Iraq, Kuwait, Qatar, and the UAE all depend on it. Iran sits on both sides of the narrowest point."
+      },
+      {
+        "heading": "WHY THERE IS NO PLAN B",
+        "body": "Saudi Arabia has a pipeline to the Red Sea (East-West Pipeline, 5 million barrels/day capacity), and the UAE built one to Fujairah on the Gulf of Oman. Together they could bypass about 6.5 million barrels/day — roughly a third of normal Hormuz flow. Everything else is stranded."
+      },
+      {
+        "heading": "THE INSURANCE MECHANISM",
+        "body": "Marine war risk insurance premiums are what actually halt shipping. When insurers reclassify a strait as a war zone, premiums can jump from 0.05% to 5% of cargo value overnight. A single supertanker carries $150 million in crude. At 5%, the insurance alone costs $7.5 million per transit. Shipping companies do not need to be attacked — they just need to believe they might be."
+      },
+      {
+        "heading": "THE HISTORICAL PATTERN",
+        "body": "Iran has never fully closed Hormuz, not even during the 1980-88 Tanker War when both Iran and Iraq attacked each other's oil shipments. Over 400 vessels were hit, 259 sailors killed — and traffic continued. The threat of closure has always been more powerful than closure itself, because Iran's own oil exports must pass through the same strait."
+      }
+    ],
+    "generatedAt": "2026-04-05T22:22:40.331Z",
+    "label": "The Strait of Hormuz",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-05-pakistan-first-shariah-credit-guarantee": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROHIBITION",
+        "body": "Riba (interest) is forbidden in the Quran in absolute terms — four separate passages, the strongest language reserved for any economic prohibition. This is not a technicality Islamic finance works around; it is the axiom the entire system is built from."
+      },
+      {
+        "heading": "HOW LENDING WORKS WITHOUT INTEREST",
+        "body": "Islamic finance replaces debt relationships with trade and partnership relationships. In murabaha, the bank buys the asset and resells it to you at a disclosed markup. In musharakah, the bank co-owns the asset with you and you gradually buy out their share. The returns may look similar to interest, but the legal and risk structure is fundamentally different: the bank must own the asset and bear real risk."
+      },
+      {
+        "heading": "THE CREDIT GUARANTEE PROBLEM",
+        "body": "A conventional credit guarantee is simple: a guarantor promises to pay the lender if the borrower defaults. The guarantor charges a fee — which is effectively interest on a contingent loan. In Islamic finance, a guarantee (kafalah) can be provided but classical scholars held it must be gratuitous. Charging for kafalah is the single most contested question in modern Islamic commercial law."
+      },
+      {
+        "heading": "THE WORKAROUND",
+        "body": "Most Islamic credit guarantee schemes charge an administrative fee (ujrah) rather than a risk-based premium. The Shariah compliance argument: you are paying for the service of administering the guarantee, not for the guarantee itself. Critics argue this is a distinction without a meaningful difference. Supporters counter that capping fees at actual administrative cost, rather than scaling them to risk, is precisely the difference."
+      },
+      {
+        "heading": "WHY IT MATTERS FOR SMEs",
+        "body": "Small businesses in Muslim-majority countries face a double exclusion: too risky for banks, and conventional guarantee schemes are not Shariah-compliant. Pakistan has 5.2 million SMEs contributing 40% of GDP, but only 8% of bank lending goes to them. A Shariah-compliant guarantee scheme does not just add an Islamic option — it potentially unlocks a market segment that conventional finance structurally underserves."
+      }
+    ],
+    "generatedAt": "2026-04-05T22:22:40.331Z",
+    "label": "Islamic Finance Mechanics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-05-tail-call-interpreter-nightly-rust": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STACK PROBLEM",
+        "body": "Every function call pushes a frame onto the call stack — return address, local variables, saved registers. A recursive function that calls itself 10 million times needs 10 million frames. Most systems allocate 1-8 MB for the stack. Overflow it and your program dies instantly."
+      },
+      {
+        "heading": "THE INSIGHT",
+        "body": "If a function's very last action is calling another function, the caller's stack frame is dead weight — it will never be used again. Tail call optimization reuses that frame instead of pushing a new one. Recursion becomes a loop in disguise, using constant stack space regardless of depth."
+      },
+      {
+        "heading": "WHY MOST LANGUAGES DO NOT GUARANTEE IT",
+        "body": "C and C++ treat tail call optimization as a compiler hint, not a guarantee. The compiler may or may not do it depending on optimization level, calling convention, and platform. This means you cannot write a recursive algorithm and trust it will run in constant space. Scheme (1975) was the first language to mandate it; JavaScript specified it in ES6 but only Safari actually implements it."
+      },
+      {
+        "heading": "WHY INTERPRETERS CARE MOST",
+        "body": "Bytecode interpreters are typically one giant function with a switch statement dispatching each instruction. Each case often calls functions that need to return to the dispatch loop. Without guaranteed tail calls, these inner calls consume stack frames on every instruction. An interpreter processing millions of bytecodes can exhaust the stack. Tail calls let the dispatch loop run forever in constant space."
+      },
+      {
+        "heading": "THE RUST CONTEXT",
+        "body": "Rust's ownership model complicates tail calls because destructors (drop glue) may need to run after a function's last call, turning what looks like a tail position into a non-tail position. Guaranteeing tail calls in Rust requires the compiler to prove no destructors remain, which is why the feature has been discussed since 2013 but is only now reaching nightly."
+      }
+    ],
+    "generatedAt": "2026-04-05T22:22:40.331Z",
+    "label": "Tail Call Optimization",
+    "category": "tech",
+    "articleCount": 1
   }
 }
