@@ -274,18 +274,38 @@ $BODY_LENGTHS
 
       # Push notifications for breaking stories
       BREAKING_JSON=$(node -e "
-        const ledger = JSON.parse(require('fs').readFileSync('content/.story-ledger.json','utf8'));
-        const cycle = JSON.parse(require('fs').readFileSync('content/.last-cycle.json','utf8'));
+        const fs = require('fs');
+        const ledger = JSON.parse(fs.readFileSync('content/.story-ledger.json','utf8'));
+        const cycle = JSON.parse(fs.readFileSync('content/.last-cycle.json','utf8'));
         const slugs = new Set(cycle.articles.map(a => a.slug));
+        // Read clean title + category from article markdown frontmatter
+        function readFrontmatter(slug) {
+          try {
+            const md = fs.readFileSync('content/articles/' + slug + '.md', 'utf8');
+            const m = md.match(/^---\n([\s\S]*?)\n---/);
+            if (!m) return {};
+            const fm = {};
+            for (const line of m[1].split('\n')) {
+              const kv = line.match(/^(\w+):\s*\"?([^\"]+)\"?/);
+              if (kv) fm[kv[1]] = kv[2].trim();
+            }
+            return fm;
+          } catch { return {}; }
+        }
         const breaking = ledger.stories
           .filter(s => s.arc === 'breaking' && s.coverageCount === 1)
-          .flatMap(s => (s.articles || []).filter(sl => slugs.has(sl)).map(sl => ({
-            slug: sl, title: cycle.articles.find(a => a.slug === sl)?.title || s.label,
-            idx: cycle.articles.findIndex(a => a.slug === sl)
-          })))
-          .sort((a, b) => a.idx - b.idx)
+          .flatMap(s => (s.articles || []).filter(sl => slugs.has(sl)).map(sl => {
+            const fm = readFrontmatter(sl);
+            return {
+              slug: sl,
+              title: fm.title || s.label,
+              category: fm.category || s.category || 'news',
+              eventCoverage: parseInt(fm.eventCoverage) || 0
+            };
+          }))
+          .sort((a, b) => b.eventCoverage - a.eventCoverage)
           .slice(0, 1)
-          .map(({ slug, title }) => ({ slug, title }));
+          .map(({ slug, title, category }) => ({ slug, title, category }));
         if (breaking.length) console.log(JSON.stringify({ articles: breaking }));
       ")
       if [ -n "$BREAKING_JSON" ] && [ -n "$PUSH_SECRET" ]; then
