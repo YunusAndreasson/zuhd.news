@@ -2,13 +2,194 @@
   "version": 1,
   "stories": [
     {
+      "id": "afghan-mother-seeks-justice-pakistani-bombing-kabul",
+      "label": "Afghan mother seeks justice after Pakistani bombing kills hundreds",
+      "firstSeen": "2026-04-05T04:11:03.602Z",
+      "lastCovered": "2026-04-05T04:11:03.602Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-05-afghan-mother-seeks-justice-pakistani-bombing-kabul"
+      ],
+      "eventUri": "eng-11542013",
+      "summary": "Samira Muhammadi is demanding an international investigation after Pakistan bombed Kabul last month, killing her son and hundreds of other Afghans. Lead with the scale — hundreds dead in a foreign bombing of a capital city — and the accountability gap: no international body has opened an investigation. The reader should see the structural impunity: Pakistan strikes Afghan civilians and the world's legal infrastructure does nothing. This is the inverse of the Ali Cherri case we covered — there, a citizen used French courts; here, no court is even available.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-resident-doctors-nationwide-strike",
+      "label": "Resident doctors to begin nationwide strike Tuesday",
+      "firstSeen": "2026-04-05T04:11:03.602Z",
+      "lastCovered": "2026-04-05T04:11:03.602Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-05-nigeria-resident-doctors-nationwide-strike"
+      ],
+      "eventUri": "eng-11541527",
+      "summary": "Nigeria's 40,000+ resident doctors will walk out Tuesday after the government suspended implementation of an agreement on pay and conditions. Lead with what this means for 220 million people who rely on public hospitals — many already understaffed. The pattern: African governments sign agreements with health workers under pressure, then quietly stop implementing them. The reader following Nigeria (we covered Wike's press freedom threats last cycle) should see the governance failure compounding.",
+      "conceptUris": []
+    },
+    {
+      "id": "malaysia-wfh-mandate-fuel-crisis-iran-war",
+      "label": "Another country makes big WFH call",
+      "firstSeen": "2026-04-05T04:11:03.602Z",
+      "lastCovered": "2026-04-05T04:11:03.602Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-05-malaysia-wfh-mandate-fuel-crisis-iran-war"
+      ],
+      "eventUri": "eng-11533929",
+      "summary": "Malaysia's PM Anwar Ibrahim has ordered WFH for all government ministries, agencies, and state-linked companies to conserve fuel amid the Iran war energy crisis. Lead with the mechanism: a Southeast Asian nation 5,000km from the war zone is restructuring how 1.8 million public servants work because of Hormuz disruption. The reader tracking Iran war spillover (Pakistan fuel rationing, EU windfall taxes) should see the expanding radius of economic damage. This is the war reshaping daily life in the Muslim world.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Anwar_Ibrahim",
+        "http://en.wikipedia.org/wiki/Malaysia",
+        "http://en.wikipedia.org/wiki/State-owned_enterprise",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/Remote_work",
+        "http://en.wikipedia.org/wiki/Public_sector",
+        "http://en.wikipedia.org/wiki/Sustainability",
+        "http://en.wikipedia.org/wiki/Price_of_oil"
+      ]
+    },
+    {
+      "id": "tonga-china-debt-volcano-rebuild-blocked",
+      "label": "Tonga's debt to China hinders rebuild four years on from eruption",
+      "firstSeen": "2026-04-05T04:11:03.602Z",
+      "lastCovered": "2026-04-05T04:11:03.602Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-05-tonga-china-debt-volcano-rebuild-blocked"
+      ],
+      "eventUri": "eng-11542028",
+      "summary": "Four years after the most powerful volcanic eruption in modern history, Tonga still can't rebuild because it's servicing a massive Chinese loan. Lead with the structural trap: a Pacific island devastated by a natural disaster is sending reconstruction money to Beijing instead of rebuilding infrastructure. The reader should see the debt-trap mechanism in its purest form — a small nation with no leverage, a creditor with no incentive to restructure, and a disaster that makes the math impossible.",
+      "conceptUris": []
+    },
+    {
+      "id": "un-iran-war-asia-humanitarian-spillover",
+      "label": "'ME war compounds Asia humanitarian crises'",
+      "firstSeen": "2026-04-05T04:11:03.602Z",
+      "lastCovered": "2026-04-05T04:11:03.602Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-05-un-iran-war-asia-humanitarian-spillover"
+      ],
+      "eventUri": null,
+      "summary": "The UN says the Iran war is compounding humanitarian crises across Asia and the Pacific — import-dependent countries face surging fuel, power, and agricultural input costs. UNOCHA is seeking $151M for Pakistan flood response alone. Lead with the UN data on cost transmission: this is the quantified version of what we've been tracking qualitatively (Pakistan rationing, Malaysia WFH). The structural point: countries that didn't start this war are paying for it through food and fuel inflation.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_Nations_Office_for_the_Coordination_of_Humanitarian_Affairs",
+        "http://en.wikipedia.org/wiki/Humanitarian_crisis",
+        "http://en.wikipedia.org/wiki/Asia",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Pakistan"
+      ]
+    },
+    {
+      "id": "single-cell-aging-clock-attention-networks",
+      "label": "scAgeClock: a single-cell transcriptome-based human aging clock model using gated multi-head attention neural networks - npj Aging",
+      "firstSeen": "2026-04-05T04:11:03.602Z",
+      "lastCovered": "2026-04-05T04:11:03.602Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-05-single-cell-aging-clock-attention-networks"
+      ],
+      "eventUri": null,
+      "summary": "Researchers built the first single-cell-resolution aging clock using multi-head attention neural networks — the same architecture behind LLMs, now reading your cells to predict biological age. Lead with the AI connection: transformer attention mechanisms trained on transcriptomes can now measure aging at single-cell granularity, revealing that different tissues and cell types age at different rates. The reader who works in tech will immediately grasp the architectural parallel.",
+      "conceptUris": []
+    },
+    {
+      "id": "gambling-origins-native-american-thousands-years-older",
+      "label": "Gambling Is Thousands of Years Older Than We Thought, Rewriting Human Evolution",
+      "firstSeen": "2026-04-05T04:11:03.602Z",
+      "lastCovered": "2026-04-05T04:11:03.602Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-05-gambling-origins-native-american-thousands-years-older"
+      ],
+      "eventUri": null,
+      "summary": "Native Americans were playing dice and games of chance many millennia before any known cultures elsewhere — pushing the origin of gambling back thousands of years and challenging the assumption that it emerged in the Old World. Lead with the timeline revision: this isn't gambling being slightly older, it's a fundamental rewrite of when humans started reasoning about probability. The reader interested in how systems emerge should see the deeper point: abstract mathematical thinking may have independent origins.",
+      "conceptUris": []
+    },
+    {
+      "id": "chinese-firms-ai-osint-us-troop-tracking",
+      "label": "Chinese companies started trading intelligence about US troops -- newspaper",
+      "firstSeen": "2026-04-05T04:11:03.602Z",
+      "lastCovered": "2026-04-05T04:11:03.602Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-05-chinese-firms-ai-osint-us-troop-tracking"
+      ],
+      "eventUri": null,
+      "summary": "Chinese private firms are combining AI with open-source data to track US troop movements and selling the intelligence commercially — per the Washington Post. Lead with the business model: OSINT-as-a-service for military intelligence, built on the same open data and AI tools the reader uses daily. The structural point: the same capability that lets startups do competitive intelligence now lets private companies do military surveillance. The line between OSINT tooling and espionage infrastructure has dissolved.",
+      "conceptUris": []
+    },
+    {
+      "id": "linux-7-postgresql-performance-halved-aws",
+      "label": "AWS Engineer Reports PostgreSQL Perf Halved by Linux 7.0, Fix May Not Be Easy",
+      "firstSeen": "2026-04-05T04:11:03.602Z",
+      "lastCovered": "2026-04-05T04:11:03.602Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-05-linux-7-postgresql-performance-halved-aws"
+      ],
+      "eventUri": null,
+      "summary": "An AWS engineer discovered that Linux kernel 7.0 halves PostgreSQL performance — and the fix may require rethinking core kernel scheduling. Lead with the number: 50% performance drop on the world's most popular open-source database, running on the world's largest cloud. The reader who deploys on Linux should see the systemic risk: kernel upgrades are supposed to be safe, and this regression slipped through because database workloads weren't in the test matrix. The fix may not be easy because it touches scheduler assumptions that other workloads depend on.",
+      "conceptUris": []
+    },
+    {
+      "id": "bitcoin-quantum-proofing-1-3-trillion-race",
+      "label": "Bitcoin's $1.3 trillion security race: Key initiatives aimed at quantum-proofing the world's largest blockchain",
+      "firstSeen": "2026-04-05T04:11:03.602Z",
+      "lastCovered": "2026-04-05T04:11:03.602Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-05-bitcoin-quantum-proofing-1-3-trillion-race"
+      ],
+      "eventUri": null,
+      "summary": "Multiple proposals are racing to quantum-proof Bitcoin before quantum computers can break its cryptography — including Hourglass V2, which would slow spending of 1.7 million exposed bitcoins including Satoshi's. Lead with the Satoshi detail: the founder's coins are vulnerable because early Bitcoin used exposed public keys, and any quantum migration must decide whether to protect or effectively freeze those coins. The reader who follows crypto should see the governance problem: Bitcoin's decentralized consensus makes upgrading cryptographic primitives extraordinarily slow.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Satoshi_Nakamoto",
+        "http://en.wikipedia.org/wiki/Quantum_computing",
+        "http://en.wikipedia.org/wiki/Blockchain",
+        "http://en.wikipedia.org/wiki/Public-key_cryptography",
+        "http://en.wikipedia.org/wiki/Coin"
+      ]
+    },
+    {
       "id": "iran-fm-araghchi-islamabad-peace-terms",
       "label": "Iranian Foreign Minister calls for 'conclusive and lasting' terms to end war",
       "firstSeen": "2026-04-04T22:13:13.155Z",
       "lastCovered": "2026-04-04T22:13:13.155Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-04-iran-fm-araghchi-islamabad-peace-terms"
@@ -32,7 +213,7 @@
       "lastCovered": "2026-04-04T22:13:13.155Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-04-ali-cherri-sues-israel-french-court-parents-killed-beirut"
@@ -48,7 +229,7 @@
       "lastCovered": "2026-04-04T22:13:13.155Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-04-nigeria-wike-threatens-journalist-press-freedom"
@@ -72,7 +253,7 @@
       "lastCovered": "2026-04-04T22:13:13.155Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-04-uae-embassy-damascus-vandalism-post-assad-syria"
@@ -88,7 +269,7 @@
       "lastCovered": "2026-04-04T22:13:13.155Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-04-pakistan-digital-wallet-fuel-subsidy-transport"
@@ -104,7 +285,7 @@
       "lastCovered": "2026-04-04T22:13:13.155Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-04-colorado-right-to-repair-corporate-lobbying"
@@ -120,7 +301,7 @@
       "lastCovered": "2026-04-04T22:13:13.155Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-04-pharmacogenomics-psychiatric-prescribing-cost-effectiveness"
@@ -136,7 +317,7 @@
       "lastCovered": "2026-04-04T22:13:13.155Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-04-apple-nvidia-egpu-arm-mac-driver"
@@ -152,7 +333,7 @@
       "lastCovered": "2026-04-04T22:13:13.155Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-04-microsoft-copilot-67-products-naming-crisis"
@@ -168,7 +349,7 @@
       "lastCovered": "2026-04-04T22:13:13.155Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-04-ousted-army-chief-george-hegseth-courageous-leaders"
@@ -184,7 +365,7 @@
       "lastCovered": "2026-04-04T22:13:13.155Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-04-build-a-gpu-game-architecture-education"
@@ -200,7 +381,7 @@
       "lastCovered": "2026-04-04T17:13:56.335Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-04-trump-48-hour-iran-ultimatum-graham-massive-operation"
@@ -225,7 +406,7 @@
       "lastCovered": "2026-04-04T17:13:56.335Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-04-bushehr-nuclear-plant-strike-iaea-confirms"
@@ -250,7 +431,7 @@
       "lastCovered": "2026-04-04T17:13:56.335Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-04-us-arrests-soleimani-relatives-green-card-revocation"
@@ -275,7 +456,7 @@
       "lastCovered": "2026-04-04T17:13:56.335Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-04-zelensky-turkey-erdogan-talks-russia-strikes-market"
@@ -300,7 +481,7 @@
       "lastCovered": "2026-04-04T17:13:56.335Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-04-russia-vpn-crackdown-banking-outage-telegram-durov"
@@ -325,7 +506,7 @@
       "lastCovered": "2026-04-04T17:13:56.335Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-04-israel-strikes-tyre-hospital-lebanon-evacuation"
@@ -350,7 +531,7 @@
       "lastCovered": "2026-04-04T17:13:56.335Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-04-eu-fuel-stocks-deplete-april-20-russia-dmitriev"
@@ -366,7 +547,7 @@
       "lastCovered": "2026-04-04T17:13:56.335Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-04-cancer-long-range-co-expression-loss-systems-biology"
@@ -382,7 +563,7 @@
       "lastCovered": "2026-04-04T17:13:56.335Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-04-pakistan-extreme-precipitation-cmip6-flood-risk"
@@ -398,7 +579,7 @@
       "lastCovered": "2026-04-04T17:13:56.335Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-04-endometrial-cancer-ai-foundation-models-real-world"
@@ -414,7 +595,7 @@
       "lastCovered": "2026-04-04T17:13:56.335Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-04-meta-gags-careless-people-author-wynn-williams"
@@ -430,7 +611,7 @@
       "lastCovered": "2026-04-04T12:08:29.712Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-04-india-buys-iranian-oil-seven-year-sanctions-break"
@@ -455,7 +636,7 @@
       "lastCovered": "2026-04-04T12:08:29.712Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-04-eu-five-nations-windfall-tax-energy-iran-war"
@@ -480,7 +661,7 @@
       "lastCovered": "2026-04-04T12:08:29.712Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-04-pakistan-bombs-afghans-while-mediating-iran"
@@ -496,7 +677,7 @@
       "lastCovered": "2026-04-04T12:08:29.712Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-04-hungary-young-voters-orban-election"
@@ -512,7 +693,7 @@
       "lastCovered": "2026-04-04T12:08:29.712Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-04-cuba-russian-oil-tanker-trump-secret-talks"
@@ -528,7 +709,7 @@
       "lastCovered": "2026-04-04T12:08:29.712Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-04-softwood-membrane-nanoplastic-water-filtration"
@@ -544,7 +725,7 @@
       "lastCovered": "2026-04-04T12:08:29.712Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-04-breast-cancer-resistant-targetable-pathways"
@@ -560,7 +741,7 @@
       "lastCovered": "2026-04-04T12:08:29.712Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-04-faa-drone-ban-filming-ice-press-freedom"
@@ -576,7 +757,7 @@
       "lastCovered": "2026-04-04T12:08:29.712Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-04-anthropic-cuts-third-party-tools-claude-demand"
@@ -601,7 +782,7 @@
       "lastCovered": "2026-04-04T08:10:45.647Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-04-us-special-forces-enter-iran-rescue-downed-pilot"
@@ -617,7 +798,7 @@
       "lastCovered": "2026-04-04T08:10:45.647Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-04-sokoto-senator-leaves-apc-bandit-insecurity-nigeria"
@@ -633,7 +814,7 @@
       "lastCovered": "2026-04-04T08:10:45.647Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-04-gold-overtakes-us-treasuries-largest-foreign-reserve"
@@ -649,7 +830,7 @@
       "lastCovered": "2026-04-04T08:10:45.647Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-04-ukraine-drones-strike-russian-chemical-hubs-shipping"
@@ -665,7 +846,7 @@
       "lastCovered": "2026-04-04T08:10:45.647Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-04-human-induced-southern-hemisphere-ocean-wind-changes"
@@ -681,7 +862,7 @@
       "lastCovered": "2026-04-04T08:10:45.647Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-04-gut-bacteria-predict-protein-supplement-failure-elderly"
@@ -697,7 +878,7 @@
       "lastCovered": "2026-04-04T08:10:45.647Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-04-parkinsons-oligodendrocytes-dnajc6-paradigm-shift"
@@ -713,7 +894,7 @@
       "lastCovered": "2026-04-04T08:10:45.647Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-04-delve-removed-y-combinator-startup-accountability"
@@ -729,7 +910,7 @@
       "lastCovered": "2026-04-04T08:10:45.647Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-04-kalshi-nevada-prediction-markets-sports-gambling-ban"
@@ -745,7 +926,7 @@
       "lastCovered": "2026-04-04T22:13:13.155Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-03-artemis-ii-earth-photograph-lunar-orbit",
@@ -769,7 +950,7 @@
       "lastCovered": "2026-04-04T04:08:18.700Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-04-iran-army-warns-larger-tel-aviv-strikes-base-hosts"
@@ -789,7 +970,7 @@
       "lastCovered": "2026-04-04T04:08:18.700Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-04-trump-dhs-pay-directive-bypasses-congress-shutdown"
@@ -809,7 +990,7 @@
       "lastCovered": "2026-04-04T04:08:18.700Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-04-pakistan-fuel-shock-industrial-emergency-export-collapse"
@@ -829,7 +1010,7 @@
       "lastCovered": "2026-04-04T04:08:18.700Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-04-schwab-spot-crypto-trading-11-trillion-retail"
@@ -849,7 +1030,7 @@
       "lastCovered": "2026-04-04T04:08:18.700Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-04-trump-23-percent-nasa-budget-cut-artemis-moon"
@@ -869,7 +1050,7 @@
       "lastCovered": "2026-04-04T04:08:18.700Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-04-zimbabwe-hiv-lenacapavir-us-funding-cuts-drug-resistance"
@@ -885,7 +1066,7 @@
       "lastCovered": "2026-04-04T04:08:18.700Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-04-ice-age-dice-native-american-probability-12000-years"
@@ -905,7 +1086,7 @@
       "lastCovered": "2026-04-04T04:08:18.700Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-04-blood-transfusion-refusal-vaccinated-donors-vanderbilt"
@@ -925,7 +1106,7 @@
       "lastCovered": "2026-04-04T04:08:18.700Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-04-quantum-bitcoin-9-minutes-private-key-derivation-google"
@@ -938,127 +1119,6 @@
         "http://en.wikipedia.org/wiki/Public-key_cryptography",
         "http://en.wikipedia.org/wiki/Google"
       ]
-    },
-    {
-      "id": "trump-take-oil-iran-war-aim",
-      "label": "Trump says with more time, US can 'take the oil' in Iran",
-      "firstSeen": "2026-04-03T22:08:15.359Z",
-      "lastCovered": "2026-04-03T22:08:15.359Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-03-trump-take-oil-iran-war-aim"
-      ],
-      "eventUri": "eng-11538817",
-      "summary": "Trump posted that 'with a little more time, we can easily OPEN THE HORMUZ STRAIT, TAKE THE OIL, & MAKE A FORTUNE.' The angle: this is the quiet part said loud — resource seizure as explicit war aim. Lead with the direct quote and what it means legally (pillage of natural resources violates the Fourth Geneva Convention). The reader tracking the war's economic logic should see the mask coming off.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Truth_Social",
-        "http://en.wikipedia.org/wiki/Belgium",
-        "http://en.wikipedia.org/wiki/Strait",
-        "http://en.wikipedia.org/wiki/Information_technology"
-      ]
-    },
-    {
-      "id": "pakistan-repays-uae-3-5-billion-debt-dignity",
-      "label": "Pakistan to return $3.5bn UAE debt before month end: official",
-      "firstSeen": "2026-04-03T22:08:15.359Z",
-      "lastCovered": "2026-04-03T22:08:15.359Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-03-pakistan-repays-uae-3-5-billion-debt-dignity"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan is repaying $3.5B to the UAE before month-end, framed as 'national dignity' — even as it's about to sign a new IMF program and its population faces 43% fuel price hikes. The angle: a country choosing sovereignty signaling over economic relief for 240 million people. Lead with the tension: $3.5B flowing out to Abu Dhabi while provinces scramble fuel subsidies at home. What triggered the UAE's demand? The reader tracking Pakistan's war-era economy should see the geopolitics underneath the financial decision.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-hormuz-three-tier-shipping-system",
-      "label": "Iran divides countries into three categories based on use of Strait of Hormuz",
-      "firstSeen": "2026-04-03T22:08:15.359Z",
-      "lastCovered": "2026-04-03T22:08:15.359Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-03-iran-hormuz-three-tier-shipping-system"
-      ],
-      "eventUri": null,
-      "summary": "Iran has formalized a three-tier system for Hormuz transit: hostile, neutral, and friendly nations get different treatment. The angle: the blockade is evolving from blunt denial to managed access — Iran is building a toll-booth on the world's most important oil chokepoint. Lead with the categorization system itself. The reader tracking Hormuz should see that this transforms a military blockade into a geopolitical sorting mechanism. Which countries fall where, and what does passage cost?",
-      "conceptUris": []
-    },
-    {
-      "id": "polyphenols-microplastic-immune-human-trial",
-      "label": "Composite polyphenols mitigate microplastic exposure-related immune disturbances: a two-phase population trial",
-      "firstSeen": "2026-04-03T22:08:15.359Z",
-      "lastCovered": "2026-04-03T22:08:15.359Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-03-polyphenols-microplastic-immune-human-trial"
-      ],
-      "eventUri": null,
-      "summary": "First human trial showing that plant polyphenols can reduce microplastic-driven immune disruption. A two-phase trial (n=151 pilot, n=98 RCT) measured blood microplastic levels, immune markers, and gut inflammation. The angle: microplastics are in everyone's blood, and this is the first evidence that a dietary intervention actually works. Lead with the trial design — this isn't a mouse study, it's a randomized controlled trial in humans. The reader who tracks environmental health should see the shift from 'microplastics are everywhere' to 'here's what you can do.'",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-users-surrender-cognition-llm-research",
-      "label": "Research finds AI users scarily willing to \"surrender\" their cognition to LLMs",
-      "firstSeen": "2026-04-03T22:08:15.359Z",
-      "lastCovered": "2026-04-03T22:08:15.359Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-03-ai-users-surrender-cognition-llm-research"
-      ],
-      "eventUri": null,
-      "summary": "New research categorizes LLM users into two types: those who treat AI as a faulty tool needing oversight, and those who surrender critical thinking entirely. The angle: cognitive outsourcing is the real AI risk — not sentience, not job loss, but the voluntary abandonment of reasoning. Lead with the research finding and what 'surrender' looks like in practice. The reader who uses AI tools daily should feel the mirror being held up.",
-      "conceptUris": []
-    },
-    {
-      "id": "oracle-h1b-petitions-mass-layoffs",
-      "label": "Oracle Files H-1B Visa Petitions Amid Mass Layoffs",
-      "firstSeen": "2026-04-03T22:08:15.359Z",
-      "lastCovered": "2026-04-03T22:08:15.359Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-03-oracle-h1b-petitions-mass-layoffs"
-      ],
-      "eventUri": null,
-      "summary": "Oracle is filing thousands of H-1B visa petitions while simultaneously conducting mass layoffs. The angle: the visa system is being used not to fill talent gaps but to replace higher-cost workers with lower-cost visa holders who are tied to their employer. Lead with the contradiction — layoffs and hiring happening in parallel at the same company. HN readers (162 points, 81 comments) are the workers this directly affects.",
-      "conceptUris": []
-    },
-    {
-      "id": "trump-tariffs-sabotage-ai-data-center-buildout",
-      "label": "Trump ignores biggest reasons his AI data center buildout is failing",
-      "firstSeen": "2026-04-03T22:08:15.359Z",
-      "lastCovered": "2026-04-03T22:08:15.359Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-03-trump-tariffs-sabotage-ai-data-center-buildout"
-      ],
-      "eventUri": "eng-11533427",
-      "summary": "Trump's executive orders prioritized rapid AI data center construction to beat China, but his own tariffs on Chinese-made transformers, copper, and steel are the main obstacle. The angle: the AI race is being sabotaged by the trade war — the same administration that declared data centers a national priority is making them unaffordable to build. Lead with the self-defeating loop. The reader building or deploying on cloud infrastructure should see the supply chain implications.",
-      "conceptUris": []
     }
   ]
 }

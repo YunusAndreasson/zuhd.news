@@ -4402,5 +4402,109 @@
     "label": "Fuel Subsidy Economics",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-05-bitcoin-quantum-proofing-1-3-trillion-race": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LOCK AND THE KEY",
+        "body": "Bitcoin addresses use elliptic curve cryptography. Your private key is a 256-bit number; your public key is a point on a curve derived from it. Going private→public takes nanoseconds. Going public→private would take classical computers longer than the age of the universe."
+      },
+      {
+        "heading": "WHY QUANTUM BREAKS THIS",
+        "body": "Shor's algorithm (1994) solves the elliptic curve discrete logarithm problem in polynomial time. A sufficiently large quantum computer could reverse public→private in minutes. This doesn't break all cryptography — just the math Bitcoin chose."
+      },
+      {
+        "heading": "THE EXPOSURE WINDOW",
+        "body": "Modern Bitcoin addresses hash the public key, so it stays hidden until you spend. But legacy P2PK addresses (including Satoshi's coins) publish the raw public key permanently. Once exposed, the key sits on-chain waiting for a quantum attacker with no time limit."
+      },
+      {
+        "heading": "THE GOVERNANCE WALL",
+        "body": "Bitcoin changes require a BIP (Bitcoin Improvement Proposal) ratified by node operators worldwide. There is no CEO, no board vote. The last major upgrade (Taproot, 2021) took four years from proposal to activation. Quantum-safe migration means moving every coin to new address types — a coordination problem harder than the cryptography itself."
+      },
+      {
+        "heading": "POST-QUANTUM ALTERNATIVES",
+        "body": "Lattice-based schemes like CRYSTALS-Dilithium replace elliptic curves with problems quantum computers also can't solve efficiently. The tradeoff: signatures balloon from 64 bytes to ~2.4 kilobytes, which matters when every byte competes for block space."
+      }
+    ],
+    "generatedAt": "2026-04-05T04:30:53.424Z",
+    "label": "Public-Key Cryptography",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-05-malaysia-wfh-mandate-fuel-crisis-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "The Strait of Hormuz is 33 km wide at its narrowest. Roughly 20% of the world's oil passes through it daily — about 21 million barrels. There is no pipeline alternative for most Gulf producers."
+      },
+      {
+        "heading": "WHY ASIA FEELS IT FIRST",
+        "body": "Over 75% of Hormuz oil flows east to Asia. Japan, South Korea, India, and China have minimal domestic production. Malaysia imports over 60% of its petroleum — Hormuz disruptions propagate through its economy within weeks, not months."
+      },
+      {
+        "heading": "THE SUBSIDY TRAP",
+        "body": "Fuel subsidies fix pump prices below market rates. Governments absorb the gap. When import costs spike, the subsidy bill can double overnight, forcing an impossible choice: blow the budget or raise prices on a population that planned around the old number."
+      },
+      {
+        "heading": "MALAYSIA'S SPECIFIC BIND",
+        "body": "Malaysia is both an oil producer and a net petroleum importer — it exports crude but imports refined products. Petronas revenues rise with oil prices, but the government's subsidy obligations rise faster, because Malaysia consumes more refined fuel than it produces domestically."
+      }
+    ],
+    "generatedAt": "2026-04-05T04:30:53.425Z",
+    "label": "The Strait of Hormuz",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-05-tonga-china-debt-volcano-rebuild-blocked": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE PROBLEM",
+        "body": "Tonga's entire GDP is about $500 million — smaller than a mid-size American hospital's annual revenue. A single infrastructure loan that would be a rounding error for Indonesia becomes an existential fiscal commitment for Tonga."
+      },
+      {
+        "heading": "HOW EXIM BANK LENDING WORKS",
+        "body": "China's Export-Import Bank lends at commercial or near-commercial rates (typically 2-3%) for infrastructure projects, often built by Chinese contractors using Chinese materials. The borrower gets a road or a port. The loan repayments flow back to Beijing regardless of whether the project generates revenue."
+      },
+      {
+        "heading": "WHY RESTRUCTURING IS RARE",
+        "body": "China is not a member of the Paris Club, the informal group of creditor nations that coordinates debt relief. Beijing negotiates bilaterally, case by case, with no public framework. This gives China maximum leverage and borrowers minimum predictability."
+      },
+      {
+        "heading": "THE VOLCANO'S COST",
+        "body": "The 2022 Hunga Tonga eruption was the most powerful explosion recorded by modern instruments — equivalent to hundreds of Hiroshimas. It destroyed undersea cables, blanketed islands in ash, and caused an estimated $90 million in damage in a country whose annual budget is a fraction of that."
+      }
+    ],
+    "generatedAt": "2026-04-05T04:30:53.426Z",
+    "label": "Small-State Debt Mechanics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-05-single-cell-aging-clock-attention-networks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISTINCTION",
+        "body": "Chronological age counts years since birth. Biological age measures accumulated cellular damage. Two 50-year-olds can differ by a decade in biological age depending on genetics, environment, and disease burden."
+      },
+      {
+        "heading": "THE FIRST CLOCKS",
+        "body": "Steve Horvath's 2013 epigenetic clock measured DNA methylation — chemical tags that accumulate on genes over time — across bulk tissue samples. It predicted chronological age within 3.6 years. But bulk tissue averages millions of cells, hiding which specific cell types are aging fastest."
+      },
+      {
+        "heading": "WHY SINGLE-CELL MATTERS",
+        "body": "A liver biopsy contains hepatocytes, immune cells, stellate cells, and endothelial cells aging at different rates. Bulk clocks return one number for the whole sample. Single-cell clocks return a separate age for each cell type, revealing which populations are driving organ decline."
+      },
+      {
+        "heading": "THE TUMOR PARADOX",
+        "body": "Cancer cells divide rapidly and accumulate mutations, yet aging clocks consistently read them as biologically younger than surrounding tissue. Uncontrolled proliferation resets certain age-associated markers — the cell trades long-term stability for short-term vitality. This gap between tumor age and host age is now a measurable quantity."
+      }
+    ],
+    "generatedAt": "2026-04-05T04:30:53.426Z",
+    "label": "Biological Aging Clocks",
+    "category": "science",
+    "articleCount": 1
   }
 }
