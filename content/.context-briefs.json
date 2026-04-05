@@ -4506,5 +4506,121 @@
     "label": "Biological Aging Clocks",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-05-solid-state-battery-halide-cathode-manufacturing-challenge": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SOLID-STATE",
+        "body": "Conventional lithium-ion batteries use a liquid electrolyte — flammable organic solvent that can ignite if the cell is punctured. Replace the liquid with a solid and you eliminate the fire risk, enable lithium-metal anodes, and roughly double energy density."
+      },
+      {
+        "heading": "THE HALIDE ADVANTAGE",
+        "body": "Halide electrolytes (compounds of chlorine, bromine, or iodine with lithium and a metal) conduct lithium ions fast and remain stable at high voltages. This makes them the leading candidate for the cathode side of the cell, where oxide and sulfide alternatives corrode or decompose."
+      },
+      {
+        "heading": "THE MANUFACTURING WALL",
+        "body": "Liquid-electrolyte batteries are easy to assemble: pour the electrolyte in and it wets every pore of the cathode. Solid electrolytes cannot flow. You must infiltrate them into the cathode's porous structure using a solvent carrier — then evaporate the solvent away."
+      },
+      {
+        "heading": "THE CATCH",
+        "body": "Halides dissolve in most polar solvents. The very liquid meant to carry the electrolyte into the cathode destroys it on contact, killing ionic conductivity. This is not an engineering optimization problem — it is a fundamental chemistry compatibility constraint."
+      },
+      {
+        "heading": "WHY IT MATTERS FOR SCALE",
+        "body": "Lab cells can be dry-pressed in small batches. Factory-scale electrode coating requires slurry processing — mixing, casting, drying — all solvent-dependent. Until someone finds a solvent that dissolves the binder but not the halide, these batteries cannot leave the lab."
+      }
+    ],
+    "generatedAt": "2026-04-05T08:29:27.006Z",
+    "label": "Solid-State Batteries",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-05-german-eidas-digital-id-apple-google-dependency": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT eIDAS IS",
+        "body": "The EU regulation that makes a digital identity wallet issued by any member state legally equivalent to a physical ID card across all 27 countries. eIDAS 2.0 (2024) requires every member state to offer one by 2026."
+      },
+      {
+        "heading": "THE ATTESTATION PROBLEM",
+        "body": "A digital ID is worthless if the verifier cannot confirm it is running on a real, uncompromised device. Device attestation is the cryptographic proof that the hardware and OS have not been tampered with — it is what stops someone from running a fake wallet on an emulator."
+      },
+      {
+        "heading": "WHO HOLDS THE KEYS",
+        "body": "Apple's App Attest and Google's Play Integrity are the only attestation services that cover 99% of smartphones. Both require an active account with the platform vendor. There is no open standard, no third-party alternative, and no way to verify a device without asking Apple or Google."
+      },
+      {
+        "heading": "THE SOVEREIGNTY PARADOX",
+        "body": "eIDAS was designed to give Europe digital sovereignty — citizens prove identity without relying on foreign corporations. But the identity proof itself depends on attestation infrastructure owned by two American companies, neither of which is subject to EU operational control."
+      },
+      {
+        "heading": "WHY THERE IS NO EASY FIX",
+        "body": "Attestation requires a hardware root of trust burned into the chip at manufacturing. Building an alternative means controlling the silicon supply chain, the OS, and the app ecosystem. No European entity currently does all three."
+      }
+    ],
+    "generatedAt": "2026-04-05T08:29:27.006Z",
+    "label": "Device Attestation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-05-us-jassm-er-missile-inventory-depleted-iran": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT JASSM-ER IS",
+        "body": "Joint Air-to-Surface Standoff Missile, Extended Range. A stealthy cruise missile launched from fighters or bombers that flies 575+ miles at low altitude to strike hardened targets. It is the US Air Force's primary tool for destroying air defenses on the first night of a war."
+      },
+      {
+        "heading": "WHY PRODUCTION IS SLOW",
+        "body": "Each JASSM-ER costs roughly $1.5 million and contains precision components — infrared seekers, terrain-matching navigation, low-observable airframes — built on dedicated production lines. Lockheed Martin's facility in Troy, Alabama produces about 400 per year. Doubling output requires new tooling, workforce training, and supplier qualification that takes 2-3 years."
+      },
+      {
+        "heading": "THE MAGAZINE DEPTH PROBLEM",
+        "body": "Modern air defenses force attackers to use standoff weapons — missiles launched from outside the defender's engagement zone. This means munitions are expended faster than in previous wars. The US military calls this 'magazine depth': you can only fight as long as your stockpile lasts."
+      },
+      {
+        "heading": "THE REPLACEMENT MATH",
+        "body": "If a conflict consumes munitions faster than industry can replace them, the military faces a readiness gap measured in years, not months. This is not a budget problem — even unlimited funding cannot accelerate production beyond the physical constraints of the supply chain."
+      },
+      {
+        "heading": "THE STRATEGIC TRADEOFF",
+        "body": "Every JASSM-ER fired in one theatre is one unavailable for another. US war planning assumes the ability to fight in two theatres near-simultaneously. A depleted stockpile forces an explicit choice between commitments that defense planners prefer to keep ambiguous."
+      }
+    ],
+    "generatedAt": "2026-04-05T08:29:27.006Z",
+    "label": "Cruise Missile Economics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-05-patient-specific-coagulation-modeling-stroke-prediction": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CASCADE",
+        "body": "Blood clotting is not a single reaction. It is a chain of 13 protein activations called the coagulation cascade, where each enzyme activates the next. The cascade has two entry points (intrinsic and extrinsic pathways) that converge on a common final step: converting fibrinogen into fibrin threads that form the clot scaffold."
+      },
+      {
+        "heading": "WHY LOCATION MATTERS",
+        "body": "Arteries are not uniform pipes. They branch, narrow, and curve. At each bend, blood flow creates regions of high shear stress and low-flow recirculation zones. Clots preferentially form in these stagnant pockets, which is why strokes cluster at specific anatomical locations like the carotid bifurcation."
+      },
+      {
+        "heading": "WHAT CFD ADDS",
+        "body": "Computational fluid dynamics solves the Navier-Stokes equations for blood flow through a patient's actual artery geometry, reconstructed from imaging. This reveals exactly where flow stagnates and where shear forces activate platelets — information invisible to any blood test alone."
+      },
+      {
+        "heading": "THE MISSING LINK",
+        "body": "Until now, flow simulations and coagulation chemistry were modeled separately. Coupling them means the simulation knows both where clots are likely to form (from flow patterns) and how fast this specific patient's blood will clot there (from their coagulation assay). The combination is patient-specific in a way neither model is alone."
+      },
+      {
+        "heading": "THE GAP TO CLINICAL USE",
+        "body": "Validated on retrospective patient data is not the same as prospectively tested. The model must prove it changes outcomes — that doctors acting on its predictions prevent more strokes than current risk scoring — before it can guide treatment. That requires randomized trials, which take years."
+      }
+    ],
+    "generatedAt": "2026-04-05T08:29:27.007Z",
+    "label": "Blood Clotting Physics",
+    "category": "science",
+    "articleCount": 1
   }
 }
