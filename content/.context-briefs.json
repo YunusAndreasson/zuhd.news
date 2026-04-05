@@ -4622,5 +4622,84 @@
     "label": "Blood Clotting Physics",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-05-il11-esophageal-cancer-convergent-pathway": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT IL-11 DOES",
+        "body": "Interleukin-11 is a signaling protein originally studied for its role in blood platelet production. It turns out to also drive fibrosis and inflammation — and cancers hijack it to promote their own survival and spread."
+      },
+      {
+        "heading": "THE STAT3 BOTTLENECK",
+        "body": "STAT3 is a transcription factor — a protein that switches genes on. When IL-11 binds its receptor, it activates JAK kinases, which phosphorylate STAT3, which then enters the nucleus and turns on genes for cell survival, proliferation, and immune evasion. Block any step in this chain and the downstream effects collapse."
+      },
+      {
+        "heading": "WHY CONVERGENCE MATTERS",
+        "body": "Esophageal squamous cell carcinoma (common in East Asia, driven by alcohol and tobacco) and adenocarcinoma (common in the West, driven by acid reflux) arise from different cell types with different mutations. When two biologically distinct cancers converge on the same signaling axis, it suggests that axis is not incidental but structurally necessary for the tumor's survival — making it a high-value drug target."
+      },
+      {
+        "heading": "THE DRUGGABILITY QUESTION",
+        "body": "Transcription factors like STAT3 were long considered 'undruggable' because they lack the deep binding pockets that small molecules need. Targeting the upstream signal — the IL-11 ligand or its receptor — is pharmacologically easier, which is why IL-11 antibodies are now in clinical trials for fibrosis and cancer."
+      }
+    ],
+    "generatedAt": "2026-04-05T12:24:45.066Z",
+    "label": "Cancer Signaling Pathways",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-05-lisette-language-rust-inspired-compiles-to-go": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FUNDAMENTAL PROBLEM",
+        "body": "When two parts of a program hold references to the same memory, who is responsible for freeing it? Free too early and you get a use-after-free bug (security vulnerability). Free never and you leak memory. Free twice and you corrupt the heap. Every language is, at bottom, an answer to this question."
+      },
+      {
+        "heading": "GARBAGE COLLECTION",
+        "body": "Go, Java, and Python let a runtime periodically scan memory to find objects nothing points to anymore, then free them. This eliminates manual errors but introduces pauses (GC stops the world briefly) and uses more memory — the collector needs headroom to work efficiently, typically 2x the live data set."
+      },
+      {
+        "heading": "OWNERSHIP",
+        "body": "Rust's alternative: every value has exactly one owner. When ownership moves, the old variable becomes invalid at compile time. Borrowing lets you lend references with strict rules — one mutable reference OR many immutable ones, never both. The compiler enforces this statically, so there is zero runtime cost."
+      },
+      {
+        "heading": "THE TRADEOFF RUST ACTUALLY MADE",
+        "body": "Ownership does not just prevent memory bugs — it prevents data races in concurrent code, because the borrow rules make it impossible for two threads to mutate the same data simultaneously. The cost is developer friction: Rust code that fights the borrow checker is often code with a genuinely ambiguous ownership structure that other languages would let you write and debug later."
+      },
+      {
+        "heading": "TRANSPILATION LIMITS",
+        "body": "Compiling language A to language B's runtime means you inherit B's execution model. If Go's runtime already includes a garbage collector, bolting ownership semantics on top does not remove it — it adds a second layer of memory reasoning on a runtime that was not designed for it."
+      }
+    ],
+    "generatedAt": "2026-04-05T12:24:45.067Z",
+    "label": "Memory Ownership Models",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-05-masculine-depression-externalized-symptoms-nature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW DEPRESSION IS DEFINED",
+        "body": "The DSM-5 criteria for major depressive disorder center on persistent sadness, loss of interest, sleep and appetite changes, and feelings of worthlessness. These criteria were validated primarily on female-majority clinical samples in the 1970s and 1980s — a baseline that shaped which symptoms count as 'real' depression."
+      },
+      {
+        "heading": "THE EXTERNALIZING GAP",
+        "body": "Psychologists distinguish internalizing symptoms (sadness, withdrawal, guilt) from externalizing symptoms (irritability, aggression, substance use, risk-taking). Standard screening tools like the PHQ-9 measure almost exclusively internalizing symptoms. A patient whose depression manifests as rage or reckless driving scores low and walks out undiagnosed."
+      },
+      {
+        "heading": "THE EPIDEMIOLOGICAL PUZZLE",
+        "body": "Women are diagnosed with depression at roughly twice the rate of men, but men die by suicide at 3-4x the rate of women across almost every country studied. This gap has driven the hypothesis that male depression is not less common — it is less detected."
+      },
+      {
+        "heading": "MEASUREMENT SHAPES REALITY",
+        "body": "The Gotland Male Depression Scale, developed in the 1990s after a Swedish island study, adds items for aggression, stress intolerance, and alcohol use. When researchers apply it alongside standard tools, the gender gap in depression prevalence narrows substantially — the disorder did not change, the instrument did."
+      }
+    ],
+    "generatedAt": "2026-04-05T12:24:45.067Z",
+    "label": "Depression Diagnostics",
+    "category": "science",
+    "articleCount": 1
   }
 }
