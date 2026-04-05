@@ -53,10 +53,9 @@ export async function onRequestPost({ request, env }) {
   // Send pushes in batches
   let totalSent = 0
   for (const article of toPush) {
-    const category = (article.category || 'news').replace(/^\w/, c => c.toUpperCase())
     const messages = tokens.map(token => ({
       to: token,
-      title: `${category}: ${article.title}`,
+      title: article.title,
       body: article.body || article.title,
       data: { slug: article.slug, url: `https://zuhd.news/${article.slug}` },
       sound: 'default',
