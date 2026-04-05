@@ -278,8 +278,8 @@ $BODY_LENGTHS
         const ledger = JSON.parse(fs.readFileSync('content/.story-ledger.json','utf8'));
         const cycle = JSON.parse(fs.readFileSync('content/.last-cycle.json','utf8'));
         const slugs = new Set(cycle.articles.map(a => a.slug));
-        // Read clean title + category from article markdown frontmatter
-        function readFrontmatter(slug) {
+        // Read frontmatter + lead paragraph from article markdown
+        function readArticle(slug) {
           try {
             const md = fs.readFileSync('content/articles/' + slug + '.md', 'utf8');
             const m = md.match(/^---\n([\s\S]*?)\n---/);
@@ -289,23 +289,28 @@ $BODY_LENGTHS
               const kv = line.match(/^(\w+):\s*\"?([^\"]+)\"?/);
               if (kv) fm[kv[1]] = kv[2].trim();
             }
+            // First non-empty paragraph after frontmatter
+            const body = md.slice(m[0].length).trim().split(/\n\n/)[0] || '';
+            // Strip location prefix (e.g. 'Washington — ') and truncate
+            fm.lead = body.replace(/^[A-Za-z\s,]+\s—\s/, '').slice(0, 178);
             return fm;
           } catch { return {}; }
         }
         const breaking = ledger.stories
           .filter(s => s.arc === 'breaking' && s.coverageCount === 1)
           .flatMap(s => (s.articles || []).filter(sl => slugs.has(sl)).map(sl => {
-            const fm = readFrontmatter(sl);
+            const fm = readArticle(sl);
             return {
               slug: sl,
               title: fm.title || s.label,
               category: fm.category || s.category || 'news',
+              body: fm.lead || '',
               eventCoverage: parseInt(fm.eventCoverage) || 0
             };
           }))
           .sort((a, b) => b.eventCoverage - a.eventCoverage)
           .slice(0, 1)
-          .map(({ slug, title, category }) => ({ slug, title, category }));
+          .map(({ slug, title, category, body }) => ({ slug, title, category, body }));
         if (breaking.length) console.log(JSON.stringify({ articles: breaking }));
       ")
       if [ -n "$BREAKING_JSON" ] && [ -n "$PUSH_SECRET" ]; then
