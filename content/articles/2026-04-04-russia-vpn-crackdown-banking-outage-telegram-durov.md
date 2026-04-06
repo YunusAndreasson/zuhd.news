@@ -1,5 +1,5 @@
 ---
-title: "Russia's VPN Ban Broke Its Banks"
+title: "Russia's VPN Block Crashed Its Banks"
 date: "2026-04-04T12:07:17Z"
 category: "tech"
 location: "Moscow"
@@ -14,13 +14,9 @@ sources:
     url: "https://www.trtworld.com/article/94f55a5767bd"
     country: "TR"
     sentiment: -0.10
-  - name: "Economic Times"
-    url: "https://economictimes.indiatimes.com/tech/technology/telegrams-durov-says-russia-triggered-payment-system-problem-by-blocking-vpns/articleshow/130022990.cms"
-    country: "IN"
-    sentiment: -0.24
-eventCoverage: 30
+eventCoverage: 32
 concepts:
-  - "Telegram (messaging service)"
+  - "Telegram"
   - "Virtual private network"
   - "Russia"
   - "Pavel Durov"
@@ -28,4 +24,4 @@ concepts:
 sentimentDivergence: 0.31
 ---
 
-Moscow — Russia's VPN crackdown crashed its national payment system. Russia's internet regulator overloaded packet filters trying to block VPNs, crashing Sberbank and forcing Moscow Metro turnstiles open. Telegram founder Durov named Russia as the cause; a VPN traffic fee takes effect April 15.
+Moscow — Russia's VPN crackdown crashed its own banking system. 65 million Russians use Telegram daily via VPN; Friday's filtering system overload made cash the only payment method nationwide. Authorities plan to charge fees for VPN use if international data traffic exceeds a threshold, beginning April 15.
