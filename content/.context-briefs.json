@@ -4904,5 +4904,121 @@
     "label": "Tail Call Optimization",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-06-google-quantum-computing-crypto-encryption-threat": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VULNERABILITY",
+        "body": "Bitcoin and most internet encryption rely on one assumption: factoring large numbers is practically impossible for classical computers. A 2048-bit RSA key would take a classical machine longer than the age of the universe to crack. Shor's algorithm, running on a sufficiently powerful quantum computer, does it in hours."
+      },
+      {
+        "heading": "HOW SHOR'S WORKS",
+        "body": "Peter Shor showed in 1994 that quantum superposition lets you test exponentially many factor candidates simultaneously. The algorithm converts factoring into a period-finding problem, then uses the quantum Fourier transform to extract the period — and with it, the factors."
+      },
+      {
+        "heading": "THE QUBIT GAP",
+        "body": "Breaking a 256-bit elliptic curve key (what Bitcoin uses) requires roughly 2,500 error-corrected logical qubits. Each logical qubit needs ~1,000 physical qubits for error correction. So you need about 2.5 million physical qubits. The largest machines today have around 1,000."
+      },
+      {
+        "heading": "WHY BITCOIN IS ESPECIALLY EXPOSED",
+        "body": "Bitcoin publishes raw public keys on the blockchain whenever coins move. Coins sitting in old-format addresses (pay-to-public-key) have their keys permanently visible. A quantum attacker doesn't need to break the key in real time — those keys are already public, waiting."
+      },
+      {
+        "heading": "THE DEFENSE EXISTS BUT ISN'T DEPLOYED",
+        "body": "Post-quantum cryptography standards (lattice-based schemes like CRYSTALS-Kyber) were finalized by NIST in 2024. TLS and Signal have already migrated. Bitcoin hasn't, because changing its signature scheme requires consensus across a decentralized network — a governance problem, not a math problem."
+      }
+    ],
+    "generatedAt": "2026-04-06T04:29:21.242Z",
+    "label": "Shor's Algorithm & Cryptography",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-06-tiny-llm-9m-params-130-lines-pytorch-demystify": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORE IDEA",
+        "body": "A transformer predicts the next token by letting every token in the sequence look at every previous token and decide how much to attend to each one. That's it. Everything else is engineering around this one operation."
+      },
+      {
+        "heading": "ATTENTION IN ONE SENTENCE",
+        "body": "Each token produces three vectors — a query (what am I looking for?), a key (what do I contain?), and a value (what do I offer?). The dot product of query and key determines how much each value contributes to the output. This is the entire mechanism behind 'understanding context.'"
+      },
+      {
+        "heading": "WHY PARAMETERS MATTER LESS THAN YOU THINK",
+        "body": "GPT-2 had 1.5 billion parameters and wrote coherent paragraphs. A 9-million-parameter model can still learn grammar and simple patterns. Parameters are just the entries in the weight matrices — more of them means more nuance in the attention patterns, not a fundamentally different process."
+      },
+      {
+        "heading": "THE TRAINING LOOP",
+        "body": "Feed in a sequence, mask the future tokens so the model can't cheat, compare its prediction to the actual next token, compute the loss, backpropagate. A 130-line implementation can do this because PyTorch handles the calculus — the architecture itself is remarkably simple."
+      },
+      {
+        "heading": "WHAT SCALE ACTUALLY BUYS",
+        "body": "Scaling laws (Kaplan et al., 2020) showed that model performance improves as a smooth power law of parameter count, dataset size, and compute. A tiny model isn't qualitatively different from GPT-4 — it's the same math at a different point on the curve."
+      }
+    ],
+    "generatedAt": "2026-04-06T04:29:21.244Z",
+    "label": "How Transformers Work",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-06-fungicide-seed-treatments-marginal-soybean-yield-nature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATTERN",
+        "body": "Agrochemical companies fund field trials showing their products boost yield. Independent meta-analyses repeatedly find the effect is smaller or absent. This isn't fraud — it's a methodological gap that favors the seller."
+      },
+      {
+        "heading": "OBSERVATIONAL VS. EXPERIMENTAL",
+        "body": "Most pesticide efficacy data comes from observational studies: fields that used the product vs. fields that didn't. But farmers who buy fungicide treatments also tend to farm better soil, use better seeds, and manage more carefully. The treatment gets credit for the farmer."
+      },
+      {
+        "heading": "WHY RCTS ARE RARE IN AGRICULTURE",
+        "body": "Randomized controlled trials require planting treated and untreated seed in randomized plots on the same farm, then measuring the difference. This is expensive, slow, and — critically — of no commercial interest to the company selling the treatment."
+      },
+      {
+        "heading": "THE MONTE CARLO CHECK",
+        "body": "Monte Carlo simulation generates thousands of synthetic datasets by randomly resampling real data. If the observed effect disappears when you simulate the experiment many times, the original result was likely noise. It's a way to stress-test a finding without running a new trial."
+      },
+      {
+        "heading": "THE ECONOMIC TRAP",
+        "body": "Seed treatments cost $5-15 per acre. A marginal yield boost of 1-2% on soybeans at typical prices barely covers the cost. But the treatment is bundled into the seed purchase — farmers never see a separate line item, so the cost-benefit calculation never happens."
+      }
+    ],
+    "generatedAt": "2026-04-06T04:29:21.244Z",
+    "label": "Why Farm Studies Mislead",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-06-diamer-bhasha-dam-displaced-block-karakoram-highway": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE",
+        "body": "Diamer-Bhasha will be 272 meters tall — among the highest dams on Earth. Its reservoir will flood 40 km of the Indus River valley in Gilgit-Baltistan, submerging villages that have existed since before Pakistan itself."
+      },
+      {
+        "heading": "THE HIGHWAY THEY'RE BLOCKING",
+        "body": "The Karakoram Highway is the highest paved international road in the world, crossing the Kunjerab Pass at 4,693 meters. It is the only land link between Pakistan and China, and the physical backbone of CPEC. Blocking it is not a traffic disruption — it is a geopolitical chokepoint."
+      },
+      {
+        "heading": "THE DISPLACEMENT PATTERN",
+        "body": "The World Commission on Dams (2000) found that large dams have displaced 40-80 million people worldwide. Compensation is almost universally inadequate: displaced communities lose not just land but social networks, ancestral ties, and subsistence economies that cash payments cannot replace."
+      },
+      {
+        "heading": "WHY PAKISTAN WANTS IT ANYWAY",
+        "body": "Pakistan's per-capita water storage is about 150 cubic meters — India has 200, the US has 5,000. Diamer-Bhasha would add 8.1 million acre-feet of storage and 4,500 MW of hydropower. For a country facing genuine water scarcity and chronic power shortages, the arithmetic is hard to argue with."
+      },
+      {
+        "heading": "THE FUNDING HISTORY",
+        "body": "The dam was first proposed in 1984. The World Bank declined to fund it partly because of unresolved territorial disputes — Gilgit-Baltistan is claimed by India as part of Kashmir. Pakistan is self-financing the $14 billion project, making it the most expensive infrastructure project the country has ever attempted alone."
+      }
+    ],
+    "generatedAt": "2026-04-06T04:29:21.244Z",
+    "label": "Megadams & Displacement",
+    "category": "politics",
+    "articleCount": 1
   }
 }
