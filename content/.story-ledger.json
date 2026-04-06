@@ -2,13 +2,232 @@
   "version": 1,
   "stories": [
     {
+      "id": "israel-strikes-iran-south-pars-petrochemical",
+      "label": "Israel says it struck Iran's largest petrochemical site",
+      "firstSeen": "2026-04-06T17:10:23.042Z",
+      "lastCovered": "2026-04-06T17:10:23.042Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-06-israel-strikes-iran-south-pars-petrochemical"
+      ],
+      "eventUri": "spa-4159238",
+      "summary": "Israel struck South Pars — Iran's largest petrochemical complex and a pillar of its non-oil export economy. This is economic warfare, not just military targeting. The reader tracking Hormuz should see the escalation ladder: first shipping blockade, now destruction of refining capacity. Lead with what South Pars produces (40% of Iran's petrochemical output) and who buys it (China, India, Turkey). Multi-source coverage from Israel (ToI), India (NDTV), Nigeria (Punch) and US (Aol) shows global attention.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Petrochemistry",
+        "http://en.wikipedia.org/wiki/Natural_gas",
+        "http://en.wikipedia.org/wiki/Asaluyeh",
+        "http://en.wikipedia.org/wiki/Petrochemical",
+        "http://en.wikipedia.org/wiki/Fars_province",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces"
+      ]
+    },
+    {
+      "id": "supreme-court-bannon-conviction-erased-doj",
+      "label": "Supreme Court Clears Path for DOJ to Erase Bannon Conviction",
+      "firstSeen": "2026-04-06T17:10:23.042Z",
+      "lastCovered": "2026-04-06T17:10:23.042Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-06-supreme-court-bannon-conviction-erased-doj"
+      ],
+      "eventUri": "eng-11544846",
+      "summary": "The Supreme Court vacated Bannon's contempt-of-Congress conviction at the joint request of Bannon and the DOJ — the same DOJ that prosecuted him. Lead with the mechanism: the executive branch is now using courts to retroactively erase accountability for defying the legislature. This isn't a pardon (which admits guilt); it's an erasure. The reader should see the constitutional architecture being quietly dismantled. France 24 coverage provides the external perspective.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Steve_Bannon",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+        "http://en.wikipedia.org/wiki/Contempt_of_Congress",
+        "http://en.wikipedia.org/wiki/United_States_Congress",
+        "http://en.wikipedia.org/wiki/Subpoena",
+        "http://en.wikipedia.org/wiki/United_States_Capitol"
+      ]
+    },
+    {
+      "id": "sudan-april-6-anniversary-war-civilian-rule",
+      "label": "Sudan marks April 6 anniversary with renewed calls to end war and restore civilian rule",
+      "firstSeen": "2026-04-06T17:10:23.042Z",
+      "lastCovered": "2026-04-06T17:10:23.042Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-06-sudan-april-6-anniversary-war-civilian-rule"
+      ],
+      "eventUri": null,
+      "summary": "Seven years after the mass sit-in that toppled al-Bashir, Sudanese civil forces mark April 6 amid a war that has displaced 12 million people and killed tens of thousands. Lead with the bitter irony: the revolution succeeded, then the generals who hijacked it started the worst war in Africa. The reader following Sudan should see the civilian democratic movement is still alive — calling for ceasefire and civilian rule — even as RSF and SAF fight over the corpse of the state. Coverage gap: Sudan has been absent from recent cycles.",
+      "conceptUris": []
+    },
+    {
+      "id": "dimon-five-risks-jpmorgan-tokenization-iran",
+      "label": "Five Risks Jamie Dimon Is Worried About in 2026",
+      "firstSeen": "2026-04-06T17:10:23.042Z",
+      "lastCovered": "2026-04-06T17:10:23.042Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-06-dimon-five-risks-jpmorgan-tokenization-iran"
+      ],
+      "eventUri": "eng-11543425",
+      "summary": "JPMorgan's CEO names the Iran war, loss of government trust, EU dysfunction, Chinese competition, and tokenization disruption as his five systemic risks. Lead with the tokenization angle — CoinDesk reports JPMorgan is accelerating its own blockchain infrastructure, meaning Dimon sees crypto-native finance as an existential competitive threat, not a fad. The reader who tracks both macro and crypto should see the convergence: the largest US bank is war-planning against DeFi while hedging wartime oil exposure.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Jamie_Dimon",
+        "http://en.wikipedia.org/wiki/JPMorgan_Chase",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Shareholder",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Interest_rate"
+      ]
+    },
+    {
+      "id": "used-ev-sales-spike-gas-prices-war",
+      "label": "Used EV sales spike alongside gas prices",
+      "firstSeen": "2026-04-06T17:10:23.042Z",
+      "lastCovered": "2026-04-06T17:10:23.042Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-06-used-ev-sales-spike-gas-prices-war"
+      ],
+      "eventUri": "eng-11538381",
+      "summary": "Used EV sales jumped 12% YoY and 17% QoQ as petrol prices surge from the Hormuz disruption. The war is inadvertently accelerating the energy transition — not through policy, but through pain at the pump. Lead with the price arbitrage: a used EV now costs less to own per mile than a new ICE car at $5+/gallon gas. The reader who tracks both Hormuz ripple effects and tech adoption should see the unintended consequence.",
+      "conceptUris": []
+    },
+    {
+      "id": "kalshi-sports-prediction-markets-court-ruling",
+      "label": "Appeals court blocks New Jersey from shutting down Kalshi's sports markets",
+      "firstSeen": "2026-04-06T17:10:23.042Z",
+      "lastCovered": "2026-04-06T17:10:23.042Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-06-kalshi-sports-prediction-markets-court-ruling"
+      ],
+      "eventUri": "eng-11544934",
+      "summary": "A federal appeals court ruled that Kalshi's CFTC-registered sports prediction contracts are presumptively legal because the CFTC hasn't acted against them — effectively legalizing sports betting through the regulatory backdoor of derivatives law. Lead with the legal mechanism: states that banned sports gambling now face federally-approved prediction markets doing the same thing under a different name. The reader who followed Polymarket's $4B valuation should see the regulatory moat forming around prediction markets.",
+      "conceptUris": []
+    },
+    {
+      "id": "ocean-human-chemistry-permanent-contamination",
+      "label": "The ocean is no longer pure: scientists find human chemistry woven into the seas",
+      "firstSeen": "2026-04-06T17:10:23.042Z",
+      "lastCovered": "2026-04-06T17:10:23.042Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-06-ocean-human-chemistry-permanent-contamination"
+      ],
+      "eventUri": null,
+      "summary": "Researchers at Rhodes University (South Africa) found synthetic chemicals — pharmaceuticals, plasticizers, PFAS — have become structurally integrated into ocean biochemistry, not just floating on top. Lead with the finding that an alien probe would detect unnatural chemistry in every ocean sample. This isn't pollution you can clean up; it's a permanent chemical signature of human civilization woven into marine systems. Geographic diversity: South African research institution.",
+      "conceptUris": []
+    },
+    {
+      "id": "artemis-ii-moon-flyby-far-side",
+      "label": "Video from Artemis II flyby of the Moon will not initially look spectacular",
+      "firstSeen": "2026-04-06T17:10:23.042Z",
+      "lastCovered": "2026-04-06T17:10:23.042Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-06-artemis-ii-moon-flyby-far-side"
+      ],
+      "eventUri": "spa-4157223",
+      "summary": "Four astronauts are spending seven hours observing the Moon's far side today — humanity's first close look in over 50 years. But Orion's cameras weren't designed for cinematic video at lunar distance, so the raw footage will underwhelm. Lead with the tension: the most significant crewed deep-space mission since Apollo 17 will produce imagery that looks worse than a phone camera. The engineering constraints (bandwidth, camera placement, lighting) tell the real story of how hard deep space still is.",
+      "conceptUris": []
+    },
+    {
+      "id": "mct-oil-ptsd-anxiety-ketones-nature",
+      "label": "Oral administration of MCT oil reduces anxiety-like behavior and is associated with differences in serum BDNF responses in a rat model of PTSD",
+      "firstSeen": "2026-04-06T17:10:23.042Z",
+      "lastCovered": "2026-04-06T17:10:23.042Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-06-mct-oil-ptsd-anxiety-ketones-nature"
+      ],
+      "eventUri": null,
+      "summary": "A Nature Scientific Reports study found that medium-chain triglyceride (MCT) oil — cheap, widely available as a dietary supplement — reduced anxiety-like behavior in PTSD model rats by boosting ketone body levels and modulating BDNF. Lead with the accessibility: if this translates to humans, a $15 bottle of MCT oil could supplement PTSD treatment for millions of conflict survivors, veterans, and trauma victims. Early-stage (rat model), but the mechanism (ketone-mediated neuroprotection) is well-established.",
+      "conceptUris": []
+    },
+    {
+      "id": "germany-doxes-revil-gandcrab-ransomware-leader",
+      "label": "Germany Doxes \"UNKN,\" Head of RU Ransomware Gangs REvil, GandCrab",
+      "firstSeen": "2026-04-06T17:10:23.042Z",
+      "lastCovered": "2026-04-06T17:10:23.042Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-06-germany-doxes-revil-gandcrab-ransomware-leader"
+      ],
+      "eventUri": null,
+      "summary": "German authorities publicly identified the leader of REvil and GandCrab — two of the most destructive ransomware operations in history, responsible for billions in damages. Lead with the doxing as a weapon: Germany chose to name him publicly rather than wait for extradition from Russia (which will never happen). This is accountability-by-exposure — the same tactic Bellingcat uses. The reader who is a hacker will appreciate the Krebs investigation and the OPSEC failures that led to identification. 129 points, 53 comments on HN.",
+      "conceptUris": []
+    },
+    {
+      "id": "florida-wildlife-police-flock-cameras-ice",
+      "label": "Wildlife Conservation Police Are Searching Thousands of Flock Cameras for ICE",
+      "firstSeen": "2026-04-06T17:10:23.042Z",
+      "lastCovered": "2026-04-06T17:10:23.042Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-06-florida-wildlife-police-flock-cameras-ice"
+      ],
+      "eventUri": null,
+      "summary": "DeSantis empowered hundreds of Florida wildlife conservation officers to search Flock license plate reader cameras on behalf of ICE — repurposing environmental surveillance infrastructure for immigration enforcement. Lead with the institutional perversion: cameras installed to catch poachers are now hunting people. The reader tracking surveillance infrastructure (after the age verification story) should see the pattern: once a surveillance network exists, its purpose always expands. 404 Media exclusive.",
+      "conceptUris": []
+    },
+    {
+      "id": "altman-superintelligence-warning-regulatory-capture",
+      "label": "OpenAI CEO urges U.S. to prepare for AI 'superintelligence' risks and gains",
+      "firstSeen": "2026-04-06T17:10:23.042Z",
+      "lastCovered": "2026-04-06T17:10:23.042Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-06-altman-superintelligence-warning-regulatory-capture"
+      ],
+      "eventUri": "eng-11544968",
+      "summary": "Altman warns US policymakers that superintelligence is imminent and urges government-tech coordination on cyberattack and bioweapon risks. Lead with the contradiction: the CEO of the company building superintelligence is asking the government to regulate it — while lobbying against the regulations that would actually slow him down. The reader in AI/tech should parse the positioning: Altman wants federal preemption of state AI laws, framed as safety but functioning as regulatory capture.",
+      "conceptUris": []
+    },
+    {
       "id": "pakistan-two-stage-truce-iran-war-hormuz",
       "label": "Pakistan offers two-stage truce plan to end US-Israel war: Report",
       "firstSeen": "2026-04-06T12:08:29.726Z",
       "lastCovered": "2026-04-06T12:08:29.726Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-06-pakistan-two-stage-truce-iran-war-hormuz"
@@ -33,7 +252,7 @@
       "lastCovered": "2026-04-06T12:08:29.726Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-06-russia-general-killed-an26-crash-crimea"
@@ -55,7 +274,7 @@
       "lastCovered": "2026-04-06T12:08:29.726Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-06-iran-wartime-executions-protester-hanged"
@@ -75,7 +294,7 @@
       "lastCovered": "2026-04-06T12:08:29.726Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-06-airasia-x-fares-40-percent-iran-war-fuel"
@@ -97,7 +316,7 @@
       "lastCovered": "2026-04-06T12:08:29.726Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-06-iran-war-india-auto-supply-chain-delays"
@@ -117,7 +336,7 @@
       "lastCovered": "2026-04-06T12:08:29.726Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-06-france-repatriates-gold-us-federal-reserve"
@@ -133,7 +352,7 @@
       "lastCovered": "2026-04-06T12:08:29.726Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-06-alzheimers-brain-waste-glymphatic-ddr2"
@@ -149,7 +368,7 @@
       "lastCovered": "2026-04-06T12:08:29.726Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-06-rosatom-nuclear-fuel-china-xudapu-vver"
@@ -165,7 +384,7 @@
       "lastCovered": "2026-04-06T12:08:29.726Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-06-llm-jailbreaking-hybrid-framework-nature"
@@ -181,7 +400,7 @@
       "lastCovered": "2026-04-06T12:08:29.726Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-06-age-verification-mass-surveillance-infrastructure"
@@ -197,7 +416,7 @@
       "lastCovered": "2026-04-06T12:08:29.726Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-06-open-source-moonbounce-240-antenna-array"
@@ -213,7 +432,7 @@
       "lastCovered": "2026-04-06T08:08:01.144Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-06-russian-strike-odesa-kills-three-including-child"
@@ -238,7 +457,7 @@
       "lastCovered": "2026-04-06T08:08:01.144Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-06-mumbai-sailor-killed-iran-war-35-day-coffin-homecoming"
@@ -260,7 +479,7 @@
       "lastCovered": "2026-04-06T08:08:01.144Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-06-iran-heavy-water-facility-attack-assault-on-science"
@@ -280,7 +499,7 @@
       "lastCovered": "2026-04-06T08:08:01.144Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-06-australia-diesel-shortages-volatile-prices-fuel-tax-relief"
@@ -302,7 +521,7 @@
       "lastCovered": "2026-04-06T08:08:01.144Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-06-rupee-biggest-rally-12-years-rbi-speculation-crackdown"
@@ -327,7 +546,7 @@
       "lastCovered": "2026-04-06T08:08:01.144Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-06-kp-pakistan-fuel-support-programme-rickshaw-motorcycle"
@@ -349,7 +568,7 @@
       "lastCovered": "2026-04-06T08:08:01.144Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-06-graphene-nanoplatelets-concrete-strength-durability"
@@ -365,7 +584,7 @@
       "lastCovered": "2026-04-06T08:08:01.144Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-06-methane-diffusion-metal-organic-framework-gas-storage"
@@ -381,7 +600,7 @@
       "lastCovered": "2026-04-06T08:08:01.144Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-06-gauge-covariant-neural-fields-finite-width-stability"
@@ -397,7 +616,7 @@
       "lastCovered": "2026-04-06T08:08:01.144Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-06-youtube-advanced-search-filters-hacker-news"
@@ -413,7 +632,7 @@
       "lastCovered": "2026-04-06T04:09:55.142Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-06-us-israeli-airstrikes-qom-civilians-killed"
@@ -438,7 +657,7 @@
       "lastCovered": "2026-04-06T04:09:55.142Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-06-us-iran-ceasefire-talks-45-day-mediators"
@@ -460,7 +679,7 @@
       "lastCovered": "2026-04-06T04:09:55.142Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-06-south-korea-president-regrets-drones-north"
@@ -485,7 +704,7 @@
       "lastCovered": "2026-04-06T04:09:55.142Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-06-diamer-bhasha-dam-displaced-block-karakoram-highway"
@@ -501,7 +720,7 @@
       "lastCovered": "2026-04-06T04:09:55.142Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-06-gulf-funds-recalibrating-us-investments-ai-paramount"
@@ -517,7 +736,7 @@
       "lastCovered": "2026-04-06T04:09:55.142Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-06-india-bank-95-billion-rout-rbi-rupee-iran-war"
@@ -539,7 +758,7 @@
       "lastCovered": "2026-04-06T04:09:55.142Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-06-polymarket-removes-iran-rescue-betting-markets"
@@ -555,7 +774,7 @@
       "lastCovered": "2026-04-06T04:09:55.142Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-06-google-quantum-computing-crypto-encryption-threat"
@@ -571,7 +790,7 @@
       "lastCovered": "2026-04-06T04:09:55.142Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-06-fungicide-seed-treatments-marginal-soybean-yield-nature"
@@ -587,7 +806,7 @@
       "lastCovered": "2026-04-06T04:09:55.142Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-06-cyclone-maila-severe-queensland-far-north"
@@ -603,7 +822,7 @@
       "lastCovered": "2026-04-06T04:09:55.142Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-06-employers-personal-data-lowest-salary-algorithm"
@@ -619,7 +838,7 @@
       "lastCovered": "2026-04-06T04:09:55.142Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-06-tiny-llm-9m-params-130-lines-pytorch-demystify"
@@ -635,7 +854,7 @@
       "lastCovered": "2026-04-05T22:08:24.792Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-05-trump-kurds-arms-iran-dissidents-covert"
@@ -660,7 +879,7 @@
       "lastCovered": "2026-04-05T22:08:24.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-05-wheat-cargo-ship-sunk-sea-azov-ukrainian-drones"
@@ -685,7 +904,7 @@
       "lastCovered": "2026-04-05T22:08:24.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-05-nigeria-tinubu-power-sector-debt-clearance"
@@ -710,7 +929,7 @@
       "lastCovered": "2026-04-05T22:08:24.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-05-hormuz-shipping-collapsed-138-to-8-ships-daily"
@@ -726,7 +945,7 @@
       "lastCovered": "2026-04-05T22:08:24.792Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-05-pakistan-first-shariah-credit-guarantee"
@@ -742,7 +961,7 @@
       "lastCovered": "2026-04-05T22:08:24.792Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-05-youth-drinking-mortality-194-countries-nature"
@@ -758,7 +977,7 @@
       "lastCovered": "2026-04-05T22:08:24.792Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-05-graphene-waveguide-modulator-amplitude-phase"
@@ -774,7 +993,7 @@
       "lastCovered": "2026-04-05T22:08:24.792Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-05-gemma-4-runs-locally-iphone-google-ai-edge"
@@ -790,7 +1009,7 @@
       "lastCovered": "2026-04-05T22:08:24.792Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-05-libreoffice-document-foundation-future-speculation"
@@ -806,7 +1025,7 @@
       "lastCovered": "2026-04-05T22:08:24.792Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-05-tail-call-interpreter-nightly-rust"
@@ -822,7 +1041,7 @@
       "lastCovered": "2026-04-05T17:11:07.171Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-05-trump-threatens-civilian-infrastructure-iran-hormuz-deadline"
@@ -847,7 +1066,7 @@
       "lastCovered": "2026-04-05T17:11:07.171Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-05-mediterranean-migrant-boat-capsizes-70-missing-libya"
@@ -872,7 +1091,7 @@
       "lastCovered": "2026-04-05T17:11:07.171Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-05-zelenskyy-damascus-turkey-fidan-drone-air-defense-deal"
@@ -896,7 +1115,7 @@
       "lastCovered": "2026-04-05T17:11:07.171Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-05-sudan-war-women-sexual-violence-rsf-feminist-justice"
@@ -912,7 +1131,7 @@
       "lastCovered": "2026-04-05T17:11:07.171Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-05-lebanon-litani-residents-staying-israeli-invasion"
@@ -928,7 +1147,7 @@
       "lastCovered": "2026-04-05T17:11:07.171Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-05-opec-plus-production-hike-conditional-hormuz-iran-war"
@@ -953,7 +1172,7 @@
       "lastCovered": "2026-04-05T17:11:07.171Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-05-pakistan-balochistan-kp-market-closures-energy-crisis"
@@ -969,7 +1188,7 @@
       "lastCovered": "2026-04-05T17:11:07.171Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-05-bitcoin-front-running-fed-etf-decoupling-monetary-policy"
@@ -985,7 +1204,7 @@
       "lastCovered": "2026-04-05T17:11:07.171Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-05-antibiotic-resistant-bacteria-migratory-birds-china-amr"
@@ -1001,7 +1220,7 @@
       "lastCovered": "2026-04-05T17:11:07.171Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-05-finnish-sauna-immune-cell-response-cytokine-study"
@@ -1017,7 +1236,7 @@
       "lastCovered": "2026-04-05T17:11:07.171Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-05-browserstack-insider-leaking-user-email-addresses"
@@ -1033,232 +1252,13 @@
       "lastCovered": "2026-04-05T17:11:07.171Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-05-ai-crypto-security-hacks-cheaper-ledger-cto"
       ],
       "eventUri": null,
       "summary": "Ledger's CTO Charles Guillemet warns that AI has fundamentally changed the economics of crypto hacking — attacks that required skilled teams now cost a fraction and execute faster. Lead with the cost collapse: AI hasn't created new attack vectors, it has made existing ones cheap enough to deploy at scale. The reader in tech should see the asymmetry: defense costs remain fixed (audits, hardware security) while attack costs are falling exponentially. This is the AI security problem applied to an industry where a single exploit can drain billions and there's no FDIC to make victims whole.",
-      "conceptUris": []
-    },
-    {
-      "id": "easter-empty-holy-sepulchre-israeli-restrictions",
-      "label": "Latin patriarch celebrates Easter mass in largely empty Holy Sepulchre church",
-      "firstSeen": "2026-04-05T12:10:59.380Z",
-      "lastCovered": "2026-04-05T12:10:59.380Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-05-easter-empty-holy-sepulchre-israeli-restrictions"
-      ],
-      "eventUri": "eng-11542383",
-      "summary": "Palestinian Christians marked Easter in a largely empty Church of the Holy Sepulchre. Israeli restrictions have emptied the Old City Christian Quarter. Sentiment divergence 0.71 (Al Jazeera -0.42 vs Times of Israel +0.29). Lead with the emptiness: the holiest site in Christianity, on its holiest day, nearly deserted because of occupation. Cultural suffocation alongside physical siege.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Easter",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Cardinal_(Catholic_Church)",
-        "http://en.wikipedia.org/wiki/Old_City_of_Jerusalem",
-        "http://en.wikipedia.org/wiki/Pierbattista_Pizzaballa",
-        "http://en.wikipedia.org/wiki/Jerusalem",
-        "http://en.wikipedia.org/wiki/Catholic_Church",
-        "http://en.wikipedia.org/wiki/Crucifixion_of_Jesus"
-      ]
-    },
-    {
-      "id": "germany-military-approval-men-travel-abroad",
-      "label": "Uproar in Germany over law requiring men get military approval for long stays abroad",
-      "firstSeen": "2026-04-05T12:10:59.380Z",
-      "lastCovered": "2026-04-05T12:10:59.380Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-05-germany-military-approval-men-travel-abroad"
-      ],
-      "eventUri": "eng-11540981",
-      "summary": "A buried clause in Germany's new military service law requires men under 45 to get armed forces permission before leaving for 3+ months. A NATO democracy gave its military veto power over civilian travel and most Germans did not notice until after it passed. The reader tracking how war footing reshapes civil liberties should see this alongside broader European remilitarization.",
-      "conceptUris": []
-    },
-    {
-      "id": "judge-blocks-trump-race-admissions-data",
-      "label": "Federal judge blocks Trump push to collect race-based admissions data",
-      "firstSeen": "2026-04-05T12:10:59.380Z",
-      "lastCovered": "2026-04-05T12:10:59.380Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-05-judge-blocks-trump-race-admissions-data"
-      ],
-      "eventUri": "eng-11540309",
-      "summary": "A federal judge in Boston blocked Trump's executive order demanding universities hand over race-based admissions data. Judge Saylor granted a preliminary injunction, finding likely constitutional violation. Lead with the judicial check -- accountability working. Courts remain the constraint on executive overreach.",
-      "conceptUris": []
-    },
-    {
-      "id": "serbia-hungary-gas-pipeline-explosives-orban",
-      "label": "Explosives found near Serbia-Hungary gas pipeline, Orban calls defense council",
-      "firstSeen": "2026-04-05T12:10:59.380Z",
-      "lastCovered": "2026-04-05T12:10:59.380Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-05-serbia-hungary-gas-pipeline-explosives-orban"
-      ],
-      "eventUri": "rus-2048755",
-      "summary": "Explosives found near gas infrastructure in Serbia connecting to Hungary. Orban called extraordinary defense council after speaking with Vucic. Someone tried to blow up a gas pipeline feeding a NATO member during a global energy crisis. RT framing as Ukrainian-linked vs Reuters keeping attribution open shows information war dimension. Reader tracking energy infrastructure attacks (Hormuz, Borouge fire, refinery strikes) should see expanding attack surface.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Serbia",
-        "http://en.wikipedia.org/wiki/Hungary",
-        "http://en.wikipedia.org/wiki/Aleksandar_Vučić",
-        "http://en.wikipedia.org/wiki/Viktor_Orbán",
-        "http://en.wikipedia.org/wiki/Explosive",
-        "http://en.wikipedia.org/wiki/Pipeline_transport",
-        "http://en.wikipedia.org/wiki/Prime_minister",
-        "http://en.wikipedia.org/wiki/President_(government_title)"
-      ]
-    },
-    {
-      "id": "russian-oil-refinery-ukrainian-drones-primorsk",
-      "label": "Russian Oil Refinery Hit by Ukrainian Drones",
-      "firstSeen": "2026-04-05T12:10:59.380Z",
-      "lastCovered": "2026-04-05T12:10:59.380Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-05-russian-oil-refinery-ukrainian-drones-primorsk"
-      ],
-      "eventUri": "rus-2048686",
-      "summary": "87 Ukrainian drones hit a Russian oil refinery in Nizhny Novgorod and oil infrastructure near Baltic port Primorsk. Ukraine is now hitting both production (refinery) and export (Baltic port) infrastructure simultaneously. Compounds with Hormuz blockade and Serbia pipeline sabotage -- global oil infrastructure under pressure from multiple conflicts at once.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Primorsk,_Leningrad_Oblast",
-        "http://en.wikipedia.org/wiki/Leningrad_Oblast",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Pipeline_transport",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Aleksandr_Drozdenko",
-        "http://en.wikipedia.org/wiki/Governor"
-      ]
-    },
-    {
-      "id": "iran-war-coal-reliance-energy-crisis",
-      "label": "How Trump's Iran war could make the world more reliant on coal",
-      "firstSeen": "2026-04-05T12:10:59.380Z",
-      "lastCovered": "2026-04-05T12:10:59.380Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-05-iran-war-coal-reliance-energy-crisis"
-      ],
-      "eventUri": "eng-11542551",
-      "summary": "The Iran war energy crisis is pushing countries back to coal, reversing years of energy transition. A war fought over oil infrastructure is making the world dirtier, not cleaner. The reader following Hormuz disruption and fuel rationing (Pakistan, Malaysia) should see the second-order climate consequence.",
-      "conceptUris": []
-    },
-    {
-      "id": "rices-whales-trump-national-security-extinction",
-      "label": "Rice's whales predate modern humans. Now Trump could make them extinct",
-      "firstSeen": "2026-04-05T12:10:59.380Z",
-      "lastCovered": "2026-04-05T12:10:59.380Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-05-rices-whales-trump-national-security-extinction"
-      ],
-      "eventUri": "eng-11540515",
-      "summary": "Only about 50 Rice's whales remain -- a species that predates modern humans. Trump invoked national security to strip endangered protections in the Gulf of Mexico. Lead with the number: 50 individuals, the entire species. If national security can override the Endangered Species Act, any environmental protection can be voided. Precedent-setting abuse of executive authority.",
-      "conceptUris": []
-    },
-    {
-      "id": "masculine-depression-externalized-symptoms-nature",
-      "label": "Masculine depression and acute mental health burden - Scientific Reports",
-      "firstSeen": "2026-04-05T12:10:59.380Z",
-      "lastCovered": "2026-04-05T12:10:59.380Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-05-masculine-depression-externalized-symptoms-nature"
-      ],
-      "eventUri": null,
-      "summary": "A Nature study identifies masculine depression as a distinct clinical phenotype -- characterized by externalization (aggression, substance abuse, risk-taking) rather than sadness/withdrawal. Current screening tools miss depressed men because they look for the wrong symptoms. The reader in tech (an industry with high male burnout) should recognize the pattern.",
-      "conceptUris": []
-    },
-    {
-      "id": "il11-esophageal-cancer-convergent-pathway",
-      "label": "IL-11-IL6ST-STAT3 signaling defines a convergent inflammatory axis in esophageal cancer subtypes - Scientific Reports",
-      "firstSeen": "2026-04-05T12:10:59.380Z",
-      "lastCovered": "2026-04-05T12:10:59.380Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-05-il11-esophageal-cancer-convergent-pathway"
-      ],
-      "eventUri": null,
-      "summary": "Both major subtypes of esophageal cancer -- squamous cell and adenocarcinoma, with different causes and demographics -- converge on the same IL-11/IL6ST/STAT3 inflammatory signaling axis. Two diseases that look different share a single druggable pathway. Esophageal cancer kills 500,000 annually, mostly in East Africa and East Asia, with under 20 percent five-year survival.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-fia-ai-criminal-tracking-surveillance",
-      "label": "FIA to use AI-powered system to track down most wanted criminals",
-      "firstSeen": "2026-04-05T12:10:59.380Z",
-      "lastCovered": "2026-04-05T12:10:59.380Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-05-pakistan-fia-ai-criminal-tracking-surveillance"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's FIA built an AI system that predicts what wanted criminals look like in real time -- age progression, disguise detection. A state agency in a country with weak data protection laws now has AI-powered facial recognition. Tools built for most wanted criminals inevitably expand to political dissidents, journalists, activists. Pakistan's track record with FIA targeting critics makes the concern concrete.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-echocardiography-pediatric-heart-defect-detection",
-      "label": "Real-time deep learning interpretation of echocardiographic video for automated detection of anatomical features associated with tetralogy of fallot in pediatric patients : a feasibility study - Scientific Reports",
-      "firstSeen": "2026-04-05T12:10:59.380Z",
-      "lastCovered": "2026-04-05T12:10:59.380Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-05-ai-echocardiography-pediatric-heart-defect-detection"
-      ],
-      "eventUri": null,
-      "summary": "A deep learning model detects Tetralogy of Fallot -- a complex congenital heart defect -- from echocardiographic video in real time. There is a global shortage of pediatric cardiologists and late diagnosis is fatal. The AI reads moving echo video, not still images, making it deployable in clinics without specialist staff. AI filling a lethal expertise gap, not replacing jobs.",
-      "conceptUris": []
-    },
-    {
-      "id": "lisette-language-rust-inspired-compiles-to-go",
-      "label": "Lisette a little language inspired by Rust that compiles to Go",
-      "firstSeen": "2026-04-05T12:10:59.380Z",
-      "lastCovered": "2026-04-05T12:10:59.380Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-05-lisette-language-rust-inspired-compiles-to-go"
-      ],
-      "eventUri": null,
-      "summary": "Lisette takes Rust's ownership semantics and compiles to Go -- memory safety without Rust's compile times or Go's GC overhead. 101 HN points and 46 comments show genuine community interest. What if you could have Rust's safety guarantees but Go's deployment simplicity? The reader who writes code daily will see the trade-off space being explored.",
       "conceptUris": []
     }
   ]
