@@ -3469,5 +3469,113 @@
     "label": "Osmotic Power",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-06-chemo-heart-damage-alox5-ferroptosis-druggable-target": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "A THIRD WAY TO DIE",
+        "body": "Until 2012, biology recognized two kinds of cell death: apoptosis (orderly self-destruction) and necrosis (chaotic rupture). Ferroptosis is a third form, discovered by Brent Stockwell's lab — death by iron-catalyzed fat oxidation. The cell's lipid membranes rust from the inside out."
+      },
+      {
+        "heading": "WHY IRON",
+        "body": "Iron donates electrons promiscuously. Inside a cell, free iron reacts with hydrogen peroxide to generate hydroxyl radicals (the Fenton reaction, known since 1894). These radicals attack the polyunsaturated fatty acids in cell membranes, creating a chain reaction of lipid peroxidation that shreds the membrane."
+      },
+      {
+        "heading": "THE GUARDIAN",
+        "body": "Cells survive because GPX4, a selenium-dependent enzyme, continuously neutralizes lipid peroxides before they cascade. Knock out GPX4 and the cell dies by ferroptosis within hours. Doxorubicin appears to overwhelm this defense by activating ALOX5, which mass-produces the very lipid peroxides GPX4 is trying to clear."
+      },
+      {
+        "heading": "WHY THE HEART",
+        "body": "Cardiomyocytes are uniquely vulnerable: they are packed with mitochondria (iron-rich), rarely replaced (you lose ~1% per year after age 25), and cannot divide to compensate for losses. A liver cell can be replaced in days. A heart cell lost to ferroptosis is gone for good."
+      },
+      {
+        "heading": "DRUG REPURPOSING LOGIC",
+        "body": "Zileuton already blocks ALOX5 — it has been FDA-approved for asthma since 1996. Repurposing an existing drug skips years of safety testing. The bottleneck is proving it works in human hearts at tolerable doses, not proving it is safe to swallow."
+      }
+    ],
+    "generatedAt": "2026-04-06T22:31:26.569Z",
+    "label": "Ferroptosis",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-06-perovskite-waste-heat-electricity-thermoelectric-lead-free": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SEEBECK EFFECT",
+        "body": "Heat a junction of two different conductors and electrons flow from hot to cold, generating voltage. Thomas Seebeck discovered this in 1821. Every thermoelectric generator exploits this principle — no moving parts, no working fluid, just a temperature difference across a material."
+      },
+      {
+        "heading": "THE FIGURE OF MERIT",
+        "body": "ZT = S²σT/κ. S is the Seebeck coefficient (voltage per degree), σ is electrical conductivity, κ is thermal conductivity, T is temperature. You want electrons to move freely (high σ) while heat does not (low κ). These properties are normally coupled — good electrical conductors are usually good thermal conductors — which is why ZT above 1 has been so hard to reach."
+      },
+      {
+        "heading": "WHY ZT 1 MATTERS",
+        "body": "Below ZT 1, thermoelectric devices convert waste heat at roughly 5-8% efficiency — too low to justify the cost in most applications. At ZT 1 and above, efficiency crosses ~10-15%, which makes industrial waste-heat recovery economically viable. Two-thirds of all energy humanity generates is lost as waste heat."
+      },
+      {
+        "heading": "THE PEROVSKITE TRICK",
+        "body": "Perovskites have an ABX3 crystal structure where the A, B, and X atoms can be swapped almost at will. This tunability lets researchers engineer a lattice that conducts electrons well along one axis while scattering heat-carrying phonons in another — decoupling the two properties that ZT demands be separated."
+      },
+      {
+        "heading": "THE LEAD PROBLEM",
+        "body": "The best bulk thermoelectrics for decades have been lead telluride and bismuth telluride — toxic, scarce, or both. Any commercial waste-heat recovery system needs millions of units. Lead-free alternatives are not just an environmental preference; they are a manufacturing prerequisite for scale."
+      }
+    ],
+    "generatedAt": "2026-04-06T22:31:26.570Z",
+    "label": "Thermoelectric Materials",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-06-orphan-drugs-colorado-pricing-exemption-pharma-patients": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL BARGAIN",
+        "body": "The Orphan Drug Act of 1983 solved a real market failure: diseases affecting fewer than 200,000 Americans could not generate enough revenue to justify R&D costs. Congress offered seven years of market exclusivity, tax credits, and FDA fee waivers. Before the Act, only 38 orphan drugs existed. Over 600 have been approved since."
+      },
+      {
+        "heading": "THE GAMING",
+        "body": "Pharma companies discovered they could slice common diseases into rare subpopulations and claim orphan status for each slice. Humira — the best-selling drug in history — holds orphan designations. Nearly a third of orphan-approved drugs treat conditions that, taken together, affect millions of patients."
+      },
+      {
+        "heading": "WHY PRICES ARE EXTREME",
+        "body": "Orphan drug pricing follows inverse-demand logic: fewer patients means higher price per patient to recoup fixed R&D costs. But the seven-year monopoly removes the competitive pressure that would normally cap prices. The median annual cost of an orphan drug is now above $250,000 — roughly 8x the median for non-orphan specialty drugs."
+      },
+      {
+        "heading": "THE PATIENT-GROUP PARADOX",
+        "body": "Rare-disease patient organizations frequently lobby alongside pharma against price regulation. The logic is rational if fragile: any policy that reduces revenue might cause companies to abandon their disease entirely, since the patient population is too small to attract competitors. Pharma funds many of these advocacy groups, creating an alignment that critics call manufactured but patients experience as survival."
+      }
+    ],
+    "generatedAt": "2026-04-06T22:31:26.570Z",
+    "label": "Orphan Drug Economics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-06-bitcoin-stability-mirage-derivatives-downside-risk": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT IMPLIED VOLATILITY IS",
+        "body": "Options have a known price (what someone paid) and a known model (Black-Scholes). Implied volatility is the number you plug into the model to make it match the market price. It is not a prediction — it is the market's current willingness to pay for protection, expressed as an annualized percentage."
+      },
+      {
+        "heading": "THE SKEW",
+        "body": "If put options (downside protection) cost more than call options (upside bets) at equal distance from the current price, traders are paying a premium for crash insurance. This asymmetry — the volatility skew — reveals fear that spot prices do not. A calm price chart with a steep skew is a market wearing a poker face."
+      },
+      {
+        "heading": "GAMMA AND THE CLIFF",
+        "body": "Market makers who sell options must hedge by buying or selling the underlying asset. As price approaches a strike with heavy open interest, the amount they must trade per dollar of price movement (gamma) increases sharply. If the price breaches the strike, hedging activity amplifies the move — a mechanical feedback loop that turns a decline into a cascade."
+      },
+      {
+        "heading": "WHY DERIVATIVES MARKETS LEAD",
+        "body": "Spot markets show what people did. Derivatives markets show what people expect and fear. Options volume in crypto now regularly exceeds spot volume. When the two markets disagree — calm spot, stressed options — the derivatives market has historically been the better predictor."
+      }
+    ],
+    "generatedAt": "2026-04-06T22:31:26.570Z",
+    "label": "Options & Implied Volatility",
+    "category": "economy",
+    "articleCount": 1
   }
 }
