@@ -5020,5 +5020,121 @@
     "label": "Megadams & Displacement",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-06-iran-heavy-water-facility-attack-assault-on-science": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT HEAVY WATER IS",
+        "body": "Replace hydrogen's single proton with deuterium (one proton + one neutron). The water molecule is chemically identical but 11% heavier. Nature produces it at roughly 1 part in 6,400 — concentrating it requires enormous industrial effort."
+      },
+      {
+        "heading": "WHY IT MATTERS FOR REACTORS",
+        "body": "Ordinary water moderates neutrons but also absorbs them. Heavy water moderates just as well while absorbing far fewer. A heavy-water reactor can sustain fission with natural uranium — no enrichment plant needed."
+      },
+      {
+        "heading": "THE PROLIFERATION LINK",
+        "body": "A heavy-water reactor running natural uranium produces plutonium-239 as a byproduct. This is the path India used for its 1974 nuclear test — the CIRUS reactor was moderated by heavy water supplied by the US and Canada for peaceful purposes."
+      },
+      {
+        "heading": "THE ARAK QUESTION",
+        "body": "Iran's Arak facility was a 40-megawatt heavy-water research reactor capable of producing roughly one bomb's worth of plutonium per year. Under the 2015 JCPOA, Iran agreed to redesign its core to slash plutonium output by 80%."
+      },
+      {
+        "heading": "WHY HEAVY WATER PLANTS ARE VISIBLE",
+        "body": "Production requires massive electrolysis towers or hydrogen sulfide distillation columns — industrial-scale infrastructure that satellite imagery can detect easily. Unlike centrifuge halls, heavy water plants are nearly impossible to hide."
+      }
+    ],
+    "generatedAt": "2026-04-06T08:19:28.947Z",
+    "label": "Heavy Water & Proliferation",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-06-gauge-covariant-neural-fields-finite-width-stability": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT GAUGE SYMMETRY MEANS",
+        "body": "You can relabel your coordinate system differently at every point in space, and the physics doesn't change. Electricity and magnetism, the strong force, and the weak force all work this way. It's the deepest structural principle in modern physics."
+      },
+      {
+        "heading": "THE NEURAL NETWORK ANALOGY",
+        "body": "A neural network's neurons are like coordinates — you can permute, rescale, or rotate internal representations without changing the network's input-output behavior. These are the 'gauge freedoms' of the network."
+      },
+      {
+        "heading": "WHY WIDTH MATTERS",
+        "body": "Infinite-width networks are mathematically clean — they converge to Gaussian processes. Real networks are finite, and finite-width corrections create instabilities that look exactly like perturbative corrections in quantum field theory."
+      },
+      {
+        "heading": "THE LANGEVIN CONNECTION",
+        "body": "Stochastic gradient descent — how networks actually learn — resembles a Langevin equation: a deterministic force (the gradient) plus random noise (from minibatches). Physicists have studied Langevin dynamics since 1908; the entire statistical mechanics toolkit transfers directly."
+      },
+      {
+        "heading": "WHY PHYSICISTS KEEP FINDING PHYSICS IN AI",
+        "body": "Neural networks are high-dimensional dynamical systems with symmetries and noise. Physics spent a century building tools for exactly this class of problem. The correspondence isn't metaphor — it's shared mathematics."
+      }
+    ],
+    "generatedAt": "2026-04-06T08:19:28.948Z",
+    "label": "Gauge Symmetry in Neural Networks",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-06-methane-diffusion-metal-organic-framework-gas-storage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A MOF IS",
+        "body": "Metal ions connected by organic linker molecules, self-assembling into crystalline scaffolds with pores you can engineer at the angstrom level. One gram of MOF can have the internal surface area of a football field."
+      },
+      {
+        "heading": "WHY SURFACE AREA IS EVERYTHING",
+        "body": "Gas molecules stick to surfaces through van der Waals forces — weak individually, overwhelming in aggregate. A material with 7,000 square meters per gram offers so many binding sites that gas concentrates without mechanical compression."
+      },
+      {
+        "heading": "THE METHANE STORAGE PROBLEM",
+        "body": "Methane is the cleanest-burning fossil fuel but a gas at room temperature. Compressing it to useful density requires tanks rated to 250 atmospheres — expensive, heavy, and dangerous. Adsorption in MOFs could store equivalent density at 35-65 bar."
+      },
+      {
+        "heading": "DIFFUSION VS. ADSORPTION",
+        "body": "Getting gas into a MOF is a two-step process: diffusion through the pore channels, then adsorption onto the walls. If pores are too narrow, gas can't enter fast enough. Too wide, and there's not enough surface contact. The geometry is the design problem."
+      },
+      {
+        "heading": "WHY COPPER",
+        "body": "Copper paddle-wheel clusters form open metal sites — exposed copper atoms that grab methane more strongly than the organic linkers alone. These unsaturated coordination sites are the highest-energy binding points in the framework."
+      }
+    ],
+    "generatedAt": "2026-04-06T08:19:28.948Z",
+    "label": "Metal-Organic Frameworks",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-06-rupee-biggest-rally-12-years-rbi-speculation-crackdown": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW CURRENCIES ARE PRICED",
+        "body": "Exchange rates are set in the forex market — $7.5 trillion traded daily, dwarfing all stock markets combined. Most volume is interbank: large institutions swapping currencies in over-the-counter deals, not on any exchange."
+      },
+      {
+        "heading": "WHAT SPECULATION LOOKS LIKE",
+        "body": "A trader borrows rupees, sells them for dollars, waits for the rupee to weaken, buys rupees back cheaper, repays the loan, and pockets the difference. When thousands of traders do this simultaneously, their collective selling pressure causes the very weakness they bet on."
+      },
+      {
+        "heading": "HOW THE RBI INTERVENES",
+        "body": "The Reserve Bank of India holds roughly $650 billion in foreign reserves. To defend the rupee, it sells dollars and buys rupees — soaking up selling pressure with real money. The reserves are the ammunition; when they run low, the market knows."
+      },
+      {
+        "heading": "THE IMPOSSIBLE TRINITY",
+        "body": "A country can have at most two of three things: free capital flows, independent monetary policy, and a fixed exchange rate. India chose the first two, which means the rupee must float — the RBI can smooth movements but cannot permanently fix the rate."
+      },
+      {
+        "heading": "WHY SINGLE-DAY MOVES MATTER",
+        "body": "Corporates hedge future dollar payments based on expected rates. A sudden 1-2% rupee move can blow through hedging bands, triggering margin calls and forced unwinding. The volatility itself becomes a source of instability, separate from the level."
+      }
+    ],
+    "generatedAt": "2026-04-06T08:19:28.948Z",
+    "label": "Currency Markets & Central Bank Intervention",
+    "category": "economy",
+    "articleCount": 1
   }
 }
