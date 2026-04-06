@@ -5136,5 +5136,117 @@
     "label": "Currency Markets & Central Bank Intervention",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-06-alzheimers-brain-waste-glymphatic-ddr2": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISCOVERY",
+        "body": "The brain has no lymph nodes. For a century, neuroscientists assumed it simply lacked a waste-removal system. In 2012, Maiken Nedergaard's lab at Rochester discovered the glymphatic system — cerebrospinal fluid pumps through channels alongside blood vessels, flushing metabolic waste while you sleep."
+      },
+      {
+        "heading": "THE SLEEP CONNECTION",
+        "body": "Glymphatic flow increases 60% during deep sleep. Brain cells physically shrink, widening the interstitial channels. This is likely why chronic sleep deprivation correlates with dementia — the brain never gets a proper rinse."
+      },
+      {
+        "heading": "THE AMYLOID GRAVEYARD",
+        "body": "Since 2003, over a dozen drugs designed to directly remove amyloid plaques have failed Phase III trials. The plaques may be a symptom of poor clearance rather than the disease itself — which is why targeting the drainage system instead of the deposits is a fundamentally different bet."
+      },
+      {
+        "heading": "DDR2 IS NOT WHAT YOU THINK",
+        "body": "Discoidin domain receptor 2 is a collagen-binding receptor on cell surfaces — it has nothing to do with computer memory. When activated, it stiffens the tissue around glymphatic channels, narrowing them. Blocking DDR2 relaxes those walls and restores flow."
+      },
+      {
+        "heading": "THE MOUSE CAVEAT",
+        "body": "Mice clear amyloid far more efficiently than humans, and mouse models of Alzheimer's are engineered approximations — no mouse naturally develops the disease. Roughly 99.6% of Alzheimer's drugs that work in mice fail in human trials."
+      }
+    ],
+    "generatedAt": "2026-04-06T12:22:34.124Z",
+    "label": "The Glymphatic System",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-06-france-repatriates-gold-us-federal-reserve": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY OTHER COUNTRIES' GOLD IS IN NEW YORK",
+        "body": "After WWII, the US held two-thirds of the world's monetary gold. Under Bretton Woods, dollars were convertible to gold at $35/oz, so central banks stored their reserves at the Federal Reserve Bank of New York — right next to the conversion window. The system ended in 1971, but the gold stayed."
+      },
+      {
+        "heading": "THE VAULT",
+        "body": "The New York Fed's vault sits on Manhattan bedrock, 80 feet below street level. It holds roughly 6,000 tonnes of gold belonging to 36 foreign governments — the largest known concentration of monetary gold on Earth. The US charges no storage fee."
+      },
+      {
+        "heading": "WHY REPATRIATE",
+        "body": "Storing gold abroad means trusting that the host country will never freeze, seize, or delay access. After the US and EU froze $300B in Russian central bank assets in 2022, every foreign government with reserves in Western vaults got a concrete demonstration that this risk is not theoretical."
+      },
+      {
+        "heading": "THE LOGISTICS",
+        "body": "Repatriating gold is slow and expensive. Bars must be individually weighed, assayed, insured, and shipped in small batches — typically by unmarked commercial aircraft. Germany's repatriation of 674 tonnes from New York and Paris took four years (2013-2017)."
+      },
+      {
+        "heading": "THE ACCOUNTING TRICK",
+        "body": "Most central banks still value gold at far below market price on their balance sheets. France booking a $15B gain means they revalued at current prices upon repatriation — the gold did not actually appreciate during transit."
+      }
+    ],
+    "generatedAt": "2026-04-06T12:22:34.126Z",
+    "label": "Sovereign Gold Storage",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-06-open-source-moonbounce-240-antenna-array": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRINCIPLE",
+        "body": "The Moon is a 3,474-km rock with no electronics on its near side. Radio waves hit the surface, scatter in all directions, and a tiny fraction bounces back to Earth. The round trip is about 2.5 seconds. No satellite, no relay, no permission required."
+      },
+      {
+        "heading": "THE MATH PROBLEM",
+        "body": "The signal travels 770,000 km round trip and scatters off an irregular surface. Total path loss is around 250-270 dB depending on frequency — meaning the return signal is roughly one septillionth of what was transmitted. This is why moonbounce historically required enormous dishes or military-grade transmitters."
+      },
+      {
+        "heading": "WHY ARRAYS CHANGE THE GAME",
+        "body": "A phased array of many small antennas can match the gain of one massive dish through constructive interference — the signals from each element arrive in phase and add up. Doubling the number of antennas quadruples the effective power. 240 cheap antennas can outperform a single 25-meter dish."
+      },
+      {
+        "heading": "THE FIRST MOONBOUNCE",
+        "body": "The US Army Signal Corps achieved the first EME contact in 1946, just to prove radar could reach the Moon. Ham radio operators replicated it in 1953. During the Cold War, the US Navy ran an operational moonbounce link between Hawaii and Washington DC — completely untappable by the Soviets because you needed a huge antenna pointed at the Moon to intercept it."
+      },
+      {
+        "heading": "WHY IT MATTERS NOW",
+        "body": "EME requires no infrastructure you do not own. No ISP, no satellite provider, no government license beyond a standard amateur radio permit. For anyone thinking about communications that cannot be shut off by a third party, that property is the point."
+      }
+    ],
+    "generatedAt": "2026-04-06T12:22:34.126Z",
+    "label": "Earth-Moon-Earth Communication",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-06-age-verification-mass-surveillance-infrastructure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATTERN",
+        "body": "Surveillance infrastructure built for one purpose always finds a second. The US Social Security Number was created in 1936 solely to track earnings. It is now the de facto national ID, used for credit, taxes, healthcare, and criminal records — a function never intended and never formally authorized."
+      },
+      {
+        "heading": "THE RATCHET",
+        "body": "Identity verification systems are politically easy to build and nearly impossible to dismantle. Each new use case creates a constituency that depends on the system. The UK's 2006 national ID scheme was scrapped, but its biometric passport database — built alongside it — survived and expanded."
+      },
+      {
+        "heading": "THE TECHNICAL REALITY",
+        "body": "Age verification requires proving identity, not just age. There is no widely deployed cryptographic method that confirms 'over 18' without revealing who you are. Every production system today links a real identity to a browsing action, creating a record that exists somewhere."
+      },
+      {
+        "heading": "THE DELETION PROBLEM",
+        "body": "Even when laws mandate data deletion, compliance is unverifiable without auditing every backup, replica, and log. The EU's Right to Erasure under GDPR has been in force since 2018, yet enforcement actions consistently find data retained in systems operators forgot existed."
+      }
+    ],
+    "generatedAt": "2026-04-06T12:22:34.126Z",
+    "label": "Infrastructure Reuse",
+    "category": "tech",
+    "articleCount": 1
   }
 }
