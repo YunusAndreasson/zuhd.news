@@ -3677,5 +3677,105 @@
     "label": "ACIP and the Vaccine Schedule",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-07-jubail-fires-saudi-missile-attack-petrochemical": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CITY THAT DIDN'T EXIST",
+        "body": "Jubail was empty desert until 1975. Saudi Arabia spent $20 billion building it from scratch as a purpose-built industrial megaproject — the largest civil engineering project in modern history at the time. The idea: convert raw crude into higher-value chemicals domestically instead of exporting it cheap."
+      },
+      {
+        "heading": "WHY PETROCHEMICALS MATTER MORE THAN OIL",
+        "body": "Crude oil is a commodity with thin margins. Petrochemicals — plastics, fertilizers, synthetic fibers — are value-added products with 3-5x the margin per barrel of feedstock. Jubail processes roughly 7% of global petrochemical output, making it a single point of failure for supply chains far from the Gulf."
+      },
+      {
+        "heading": "THE CONCENTRATION PROBLEM",
+        "body": "Saudi Arabia, Iran, Qatar, and the UAE together hold over 35% of global petrochemical capacity, nearly all of it clustered along the Persian Gulf coast. A corridor roughly 800km long contains more chemical infrastructure than most continents. Geography made this efficient; geopolitics makes it fragile."
+      },
+      {
+        "heading": "INTERCEPT DEBRIS",
+        "body": "Missile defense systems like Patriot PAC-3 destroy incoming warheads by kinetic impact at high altitude. The debris — spent interceptor, fragmented warhead, unburnt fuel — still falls. In industrial zones, falling debris on pressurized tanks or chemical lines can cause the same fires the intercept was meant to prevent."
+      }
+    ],
+    "generatedAt": "2026-04-07T08:28:28.112Z",
+    "label": "Jubail Industrial City",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-07-sabarimala-women-entry-india-supreme-court": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSTITUTIONAL TENSION",
+        "body": "Article 14 of India's constitution guarantees equality. Articles 25 and 26 guarantee religious freedom and the right of denominations to manage their own affairs. When a religious practice discriminates, these articles collide head-on. The constitution offers no tiebreaker — that job falls to the Supreme Court."
+      },
+      {
+        "heading": "WHY SABARIMALA IS SPECIAL",
+        "body": "Most Hindu temples welcome all devotees. Sabarimala's deity Ayyappan is worshipped as a nityabrahmachari — an eternal celibate. The theological claim is that women of menstruating age (10-50) would disturb his celibacy. This is not a generic patriarchal norm; it is specific to one deity's mythology, which makes the legal question harder."
+      },
+      {
+        "heading": "ESSENTIAL RELIGIOUS PRACTICE",
+        "body": "Indian courts use a doctrine unique in global jurisprudence: only practices deemed 'essential' to a religion receive constitutional protection. Judges — not clergy — decide what counts as essential. Critics call this theological overreach by a secular court; defenders say it prevents any practice from hiding behind the label of religion."
+      },
+      {
+        "heading": "THE NINE-JUDGE BENCH",
+        "body": "India's Supreme Court normally sits in panels of 2-3 judges. A nine-judge bench is reserved for questions of constitutional importance or when smaller benches have reached contradictory conclusions. There have been fewer than 30 nine-judge bench cases in the court's 75-year history."
+      }
+    ],
+    "generatedAt": "2026-04-07T08:28:28.113Z",
+    "label": "Religious Rights vs. Equality in India",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-07-saudi-bahrain-causeway-closed-iran-war-spillover": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "AN ISLAND WITH ONE EXIT",
+        "body": "Bahrain is an archipelago of 33 islands with no natural land connection to anything. The 25km King Fahd Causeway, opened in 1986, is its only surface link to the outside world. All non-air, non-sea freight — food, construction material, consumer goods — crosses this single bridge. Closing it isolates a nation of 1.5 million."
+      },
+      {
+        "heading": "WHY SAUDI ARABIA BUILT IT",
+        "body": "The causeway was a strategic gift. It bound Bahrain — small, Shia-majority, oil-depleting — into Saudi Arabia's security orbit. Saudi troops used it in 2011 to cross into Bahrain and suppress Arab Spring protests. The bridge is infrastructure, but it is also a leash."
+      },
+      {
+        "heading": "THE STRAIT OF HORMUZ",
+        "body": "21% of global oil consumption passes through a waterway 33km wide at its narrowest point. Iran controls the northern shore. Any disruption — mines, anti-ship missiles, even credible threats — spikes global oil prices within hours. The strait is the single most consequential chokepoint in the global economy."
+      },
+      {
+        "heading": "WHY GULF STATES CLUSTER TOGETHER",
+        "body": "Bahrain, Qatar, Kuwait, and the UAE are all within 600km of Iran's coastline. Their combined military spending is high, but their geography is indefensible without external guarantees — small territories, concentrated populations, critical infrastructure on the coast. This is why the US Fifth Fleet is headquartered in Bahrain, not in a larger ally."
+      }
+    ],
+    "generatedAt": "2026-04-07T08:28:28.113Z",
+    "label": "The King Fahd Causeway",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-07-solod-go-subset-translates-to-c": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TRANSPILATION",
+        "body": "Most compilers turn source code into machine code. A transpiler turns one language's source into another language's source, then lets the target language's mature compiler handle the rest. The technique is old — the first C++ compiler (Cfront, 1983) was a transpiler that output C."
+      },
+      {
+        "heading": "WHAT GO'S RUNTIME COSTS YOU",
+        "body": "Go ships a garbage collector, a goroutine scheduler, and a runtime that manages stacks, channels, and memory. A trivial Go binary is ~2MB because the runtime is always linked in. For systems programming — embedded, OS kernels, firmware — that overhead is disqualifying."
+      },
+      {
+        "heading": "THE TRADEOFF",
+        "body": "Stripping Go's garbage collector and goroutines removes the features that make Go productive for server software. What remains is essentially a C-like language with Go's syntax and type system — safer than raw C, but no longer Go in any meaningful runtime sense."
+      },
+      {
+        "heading": "WHY C AS A TARGET",
+        "body": "C compilers exist for virtually every CPU architecture ever manufactured. By targeting C instead of LLVM IR or machine code, a transpiler inherits decades of platform support and optimization work for free. This is why C is sometimes called 'portable assembly.'"
+      }
+    ],
+    "generatedAt": "2026-04-07T08:28:28.114Z",
+    "label": "Source-to-Source Compilation",
+    "category": "tech",
+    "articleCount": 1
   }
 }
