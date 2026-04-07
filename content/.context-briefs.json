@@ -3777,5 +3777,105 @@
     "label": "Source-to-Source Compilation",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-07-fgfr1-ovarian-cancer-sirt3-lactylation-druggable": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WARBURG EFFECT",
+        "body": "Cancer cells ferment glucose into lactate even when oxygen is abundant. Otto Warburg discovered this in 1924. For decades it looked like broken mitochondria, but the real advantage is speed: glycolysis produces ATP faster than oxidative phosphorylation, and the byproducts feed biosynthesis of new cells."
+      },
+      {
+        "heading": "LACTYLATION",
+        "body": "Discovered only in 2019, lactylation is a chemical modification where lactate — long dismissed as metabolic waste — attaches to histone proteins and changes which genes get read. It means a tumor's own metabolic byproduct can directly reprogram gene expression to accelerate growth. This closed a decades-old gap between the Warburg effect and the nucleus."
+      },
+      {
+        "heading": "THE SIRTUIN FAMILY",
+        "body": "Sirtuins are enzymes that remove chemical tags from proteins. SIRT3 operates inside mitochondria and acts as a metabolic brake — stripping acetyl and lactyl groups that would otherwise let the cell run hot. When SIRT3 is lost, the cell loses a key check on runaway metabolism."
+      },
+      {
+        "heading": "WHY RECEPTORS MATTER",
+        "body": "FGFR1 is a receptor tyrosine kinase — a protein that spans the cell membrane, receives a signal outside, and triggers a cascade inside. In most cancers these receptors are overactive and drive growth. Ovarian cancer inverts the pattern: FGFR1 here stabilizes SIRT3, so losing the receptor removes the metabolic brake. The same protein family can be oncogene or tumor suppressor depending on tissue context."
+      }
+    ],
+    "generatedAt": "2026-04-07T12:30:20.800Z",
+    "label": "Lactylation & Cancer Metabolism",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-07-virtual-cell-ai-mechanistic-models-synthetic-biology": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MINIMAL CELL",
+        "body": "In 2016, Craig Venter's team built JCVI-syn3.0: a bacterium with only 473 genes, the smallest genome of any self-replicating organism. They got there by deleting genes one by one from Mycoplasma mycoides until nothing else could be removed without killing the cell. Even in this minimal cell, roughly a third of the genes have unknown functions."
+      },
+      {
+        "heading": "WHY SIMULATION IS HARD",
+        "body": "A single E. coli contains about 4 million protein molecules of roughly 4,000 different types, plus RNA, metabolites, lipids, and water — all interacting simultaneously. Simulating even one cell division means tracking billions of molecular events across a 20-minute timescale. The state space dwarfs weather modeling."
+      },
+      {
+        "heading": "THE TWO CULTURES PROBLEM",
+        "body": "Mechanistic models encode known biochemistry as differential equations — precise but they break when any reaction is missing. Machine learning finds statistical patterns in data — flexible but opaque and unable to explain why. Neither scales alone. The field's central bet is that hybrid models can combine causal reasoning with data-driven gap-filling."
+      },
+      {
+        "heading": "WHAT CHANGES IF IT WORKS",
+        "body": "A complete virtual cell would let you test genetic edits, drug targets, and synthetic pathways computationally before touching a lab bench. Synthetic biology currently relies on build-test-learn cycles that take weeks per iteration. Accurate simulation collapses that to hours."
+      }
+    ],
+    "generatedAt": "2026-04-07T12:30:20.803Z",
+    "label": "Whole-Cell Simulation",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-07-iran-supreme-leader-mojtaba-khamenei-unconscious-qom": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "VELAYAT-E FAQIH",
+        "body": "Iran's system of government is unique in the modern world. Khomeini's doctrine of velayat-e faqih — guardianship of the jurist — holds that a senior cleric must oversee all state affairs until the return of the Twelfth Imam. The Supreme Leader is not just head of state; he is the theological justification for the state itself."
+      },
+      {
+        "heading": "THE ASSEMBLY OF EXPERTS",
+        "body": "88 elected clerics formally choose and can remove the Supreme Leader. In practice, candidates for the Assembly are vetted by the Guardian Council, whose members are appointed by the Supreme Leader — a closed loop that makes genuine oversight nearly impossible."
+      },
+      {
+        "heading": "WHY SUCCESSION IS FRAGILE",
+        "body": "Khomeini's charisma made the system. Khamenei, who lacked senior clerical rank, was elevated in 1989 partly because no grand ayatollah was politically acceptable to all factions. The constitution was amended to lower the religious qualifications. Each succession tests whether the office holds without the founder's authority."
+      },
+      {
+        "heading": "THE SON QUESTION",
+        "body": "Dynastic succession has no precedent in Shia clerical politics. Senior ayatollahs earn authority through decades of scholarship and a following of students. Mojtaba Khamenei, reportedly chosen as successor, holds no senior clerical rank and built his power base through the intelligence apparatus rather than the seminary — a legitimacy gap that Iran's clerical establishment has historically resisted."
+      }
+    ],
+    "generatedAt": "2026-04-07T12:30:20.803Z",
+    "label": "Iran's Supreme Leader System",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-07-manipur-protests-killed-meitei-kuki-ethnic-violence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VALLEY AND THE HILLS",
+        "body": "Manipur's conflict is written into its topography. The Meitei majority occupy the Imphal Valley — 10% of the state's land but 60% of the population. Kuki and Naga tribes control the surrounding hills. The valley is fertile, connected, and politically dominant. The hills are forested, autonomous under Schedule Six protections, and historically governed by tribal councils."
+      },
+      {
+        "heading": "SCHEDULED TRIBE STATUS",
+        "body": "India's constitution grants Scheduled Tribes land protections, reserved government jobs, and educational quotas. Hill tribes in Manipur have this status; valley Meiteis do not. In 2023, a court order recommended granting Meiteis ST status — which would let them buy land in the hills. This was the immediate trigger for the current violence."
+      },
+      {
+        "heading": "THE ARMED FORCES SPECIAL POWERS ACT",
+        "body": "AFSPA gives the Indian military power to search, arrest, and shoot to kill in designated disturbed areas with legal immunity. It has been active in parts of northeast India almost continuously since 1958. Manipur was under AFSPA for decades until it was partially lifted in 2022 — then reimposed in hill districts after the 2023 violence."
+      },
+      {
+        "heading": "CRPF VS ARMY",
+        "body": "The Central Reserve Police Force is a paramilitary force under the Home Ministry, not the Defense Ministry. It is deployed for internal security — riots, insurgencies, elections. In Manipur, CRPF units often operate alongside the Indian Army but under different command structures and rules of engagement, which has repeatedly caused coordination failures during crises."
+      }
+    ],
+    "generatedAt": "2026-04-07T12:30:20.803Z",
+    "label": "Manipur's Ethnic Geography",
+    "category": "politics",
+    "articleCount": 1
   }
 }
