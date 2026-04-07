@@ -3577,5 +3577,105 @@
     "label": "Options & Implied Volatility",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-07-vietnam-to-lam-president-one-man-rule": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DESIGN",
+        "body": "Leninist states split power between the party (which decides policy) and the state (which executes it). The General Secretary runs the party; the President runs the state. Vietnam, unlike China, kept these roles separate after Ho Chi Minh's death in 1969 — a deliberate check against personal rule."
+      },
+      {
+        "heading": "THE LOGIC OF SEPARATION",
+        "body": "Vietnam's collective leadership model required consensus among four pillars: General Secretary, President, Prime Minister, and National Assembly Chair. No single figure could dominate. This made Vietnam slower but more stable — fewer purges, smoother successions than China or the USSR."
+      },
+      {
+        "heading": "THE CHINESE PRECEDENT",
+        "body": "China merged the roles in 1993 when Jiang Zemin became both General Secretary and President. Xi Jinping removed term limits in 2018, making the merger permanent. The pattern is consistent: merging the roles is the structural prerequisite to indefinite personal rule."
+      },
+      {
+        "heading": "WHY IT MATTERS STRUCTURALLY",
+        "body": "When one person holds both roles, the party's internal checks dissolve. The President controls foreign affairs and the military; the General Secretary controls appointments and ideology. Merging them means the leader appoints his own overseers."
+      }
+    ],
+    "generatedAt": "2026-04-07T04:23:26.166Z",
+    "label": "Leninist Party-State Architecture",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-07-india-sitharaman-iran-war-systemic-tremor-global-economy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "The Strait of Hormuz is 21 nautical miles wide at its narrowest. Shipping lanes are two miles wide in each direction, separated by a two-mile buffer. Roughly 20% of the world's oil passes through this gap daily — about 21 million barrels."
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia and the UAE have pipelines that bypass Hormuz, but their combined spare capacity covers only about 6.5 million barrels per day. A full closure leaves roughly 14 million barrels per day with no alternative route. There is no engineering fix for this; the geography is the constraint."
+      },
+      {
+        "heading": "INDIA'S EXPOSURE",
+        "body": "India imports roughly 85% of its crude oil. The Gulf states — Saudi Arabia, Iraq, UAE, Kuwait — supply over 60% of those imports, all routed through or near Hormuz. India's $688 billion in reserves buffer currency shocks, but reserves cannot substitute for physical oil that isn't arriving."
+      },
+      {
+        "heading": "SYSTEMIC VS. REGIONAL",
+        "body": "Economists distinguish regional shocks (one country's GDP falls) from systemic shocks (the transmission mechanism itself breaks). Hormuz closure is systemic because it disrupts the physical infrastructure of global trade — not one economy, but the shipping lane that connects producers to consumers."
+      }
+    ],
+    "generatedAt": "2026-04-07T04:23:26.167Z",
+    "label": "The Strait of Hormuz",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-07-foundation-model-portability-paradox-clinical-ai": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROMISE",
+        "body": "Foundation models learn general patterns from massive datasets, then adapt to specific tasks with minimal retraining. In language, this works: GPT trained on internet text transfers to legal documents. The assumption was medical AI would work the same way."
+      },
+      {
+        "heading": "WHY MEDICINE IS DIFFERENT",
+        "body": "Electronic health records encode not just patient biology but institutional habits — how a specific hospital documents diagnoses, which tests it orders first, how its billing codes map to conditions. A model trained on Hospital A's EHRs learns Hospital A's workflow, not medicine."
+      },
+      {
+        "heading": "THE OVERFITTING TRAP",
+        "body": "Larger models have more capacity to memorize local patterns rather than learn generalizable ones. In clinical AI, scaling up can make portability worse — the model gets better at predicting Hospital A's next order, but that skill is useless at Hospital B where the order protocol differs."
+      },
+      {
+        "heading": "THE COST IMPLICATION",
+        "body": "If every hospital must validate and recalibrate a foundation model before deployment, the efficiency gain over training a smaller local model from scratch disappears. The entire economic case for foundation models rests on train-once-deploy-everywhere — which is exactly what fails here."
+      }
+    ],
+    "generatedAt": "2026-04-07T04:23:26.167Z",
+    "label": "The Portability Problem in Clinical AI",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-07-rfk-jr-cdc-vaccine-panel-charter-rewrite": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ACIP IS",
+        "body": "The Advisory Committee on Immunization Practices is a 15-member panel of physicians and scientists that recommends which vaccines Americans should receive and when. It is the only body whose recommendations automatically trigger insurance coverage mandates under the Affordable Care Act."
+      },
+      {
+        "heading": "THE UNIQUE POWER",
+        "body": "Most federal advisory committees just advise. ACIP's recommendations, once adopted by the CDC director, become the standard of care. Private insurers must cover ACIP-recommended vaccines with zero copay. No other medical advisory committee has this direct regulatory force."
+      },
+      {
+        "heading": "WHY EXPERTISE REQUIREMENTS EXIST",
+        "body": "Federal advisory committees are governed by the Federal Advisory Committee Act of 1972, which requires members to be selected for their scientific expertise and balanced viewpoints. The law exists specifically to prevent agencies from stacking panels with political allies."
+      },
+      {
+        "heading": "THE CHARTER MECHANISM",
+        "body": "Each federal advisory committee operates under a charter that defines its scope, membership criteria, and authority. The sponsoring agency — here, HHS — can amend the charter without congressional approval. This is the structural vulnerability: the rules governing who sits on the panel are set by the same officials the panel is meant to advise independently."
+      }
+    ],
+    "generatedAt": "2026-04-07T04:23:26.167Z",
+    "label": "ACIP and the Vaccine Schedule",
+    "category": "science",
+    "articleCount": 1
   }
 }
