@@ -3877,5 +3877,109 @@
     "label": "Manipur's Ethnic Geography",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-07-desalination-plants-middle-east-war-vulnerable": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEPENDENCY",
+        "body": "Kuwait gets 100% of its drinking water from desalination. The UAE and Qatar exceed 90%. Saudi Arabia operates the largest desalination complex on Earth at Jubail. These are not backup systems — they are the water supply."
+      },
+      {
+        "heading": "HOW IT WORKS",
+        "body": "Most Gulf plants use reverse osmosis: seawater is forced through membranes with pores so small only water molecules pass through. The pressure required — 55 to 80 bar — means these plants are energy-intensive industrial facilities, not simple filters."
+      },
+      {
+        "heading": "THE VULNERABILITY",
+        "body": "A desalination plant cannot be hardened the way a military base can. It needs an open seawater intake, a coastal location, and continuous power. Damage to intake pipes or membranes takes months to repair — you cannot stockpile replacement membranes at scale."
+      },
+      {
+        "heading": "THE STORAGE PROBLEM",
+        "body": "Most Gulf states hold 2-5 days of treated water in reserve. A simultaneous hit to multiple plants creates a humanitarian crisis faster than any supply chain can respond. Bottled water imports cannot substitute for municipal-scale output."
+      },
+      {
+        "heading": "THE BRINE",
+        "body": "For every litre of fresh water, reverse osmosis produces roughly 1.5 litres of hypersaline brine pumped back into the Gulf. The Gulf is already one of the most saline bodies of water on Earth — its single narrow outlet through the Strait of Hormuz limits flushing. War damage that disrupts brine management poisons the very water source the plants depend on."
+      }
+    ],
+    "generatedAt": "2026-04-07T17:28:59.902Z",
+    "label": "Desalination",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-07-bellingcat-satellite-tool-iran-gulf-damage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY NOT JUST USE CAMERAS",
+        "body": "Optical satellites need daylight and clear skies. The Gulf region averages 30-40 dust-haze days per year and war generates smoke. Radar works at night, through clouds, and through smoke — it sends its own microwave signal and reads the reflection."
+      },
+      {
+        "heading": "THE TRICK",
+        "body": "A radar antenna's resolution depends on its physical length. A satellite antenna is a few metres long — useless for detail. Synthetic Aperture Radar exploits the satellite's own motion: as it flies, it takes thousands of readings and computationally combines them into an image as sharp as one from an antenna kilometres wide."
+      },
+      {
+        "heading": "WHAT IT SEES",
+        "body": "SAR does not photograph light — it measures surface roughness, metal content, and geometry. A bombed building looks different from an intact one because rubble scatters radar differently than flat walls. This makes damage assessment possible even without visual confirmation."
+      },
+      {
+        "heading": "THE OSINT SHIFT",
+        "body": "Until roughly 2018, SAR imagery required government-level budgets. Commercial providers like Capella Space and ICEYE now sell sub-metre SAR images to anyone. Bellingcat's damage mapping relies on this commercial access — the same physics governments once monopolised, available on a credit card."
+      }
+    ],
+    "generatedAt": "2026-04-07T17:28:59.904Z",
+    "label": "Synthetic Aperture Radar",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-07-defi-yields-crash-below-savings-accounts": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHERE THE YIELD CAME FROM",
+        "body": "DeFi lending protocols like Aave match depositors to borrowers with no bank in between. Early yields of 8-20% were not returns on productive investment — they were subsidies. Protocols issued their own governance tokens to depositors as a growth incentive, inflating apparent returns."
+      },
+      {
+        "heading": "THE COMPRESSION",
+        "body": "Once subsidies dry up, DeFi lending yields converge toward the actual demand to borrow. If nobody needs to borrow USDC at 8%, the rate falls until someone does. This is the same iron law that governs interbank rates — the subsidy era just obscured it."
+      },
+      {
+        "heading": "THE STABLECOIN PARITY ASSUMPTION",
+        "body": "DeFi yields are denominated in stablecoins like USDC, which are pegged 1:1 to the dollar. But peg maintenance has costs — Circle earns interest on its reserves and passes only a fraction to holders. When bank savings rates rise, the opportunity cost of holding stablecoins rises with them."
+      },
+      {
+        "heading": "THE SMART CONTRACT PREMIUM",
+        "body": "A bank deposit is insured up to $250,000 by the FDIC. A DeFi deposit sits in code that can be exploited. Rational depositors should demand higher yields from DeFi to compensate for smart contract risk. When DeFi yields fall below bank rates, the risk-adjusted return is deeply negative — the market is saying demand to borrow crypto has essentially collapsed."
+      }
+    ],
+    "generatedAt": "2026-04-07T17:28:59.904Z",
+    "label": "DeFi Yield Mechanics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-07-interpretable-ml-stroke-risk-atrial-fibrillation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CHA2DS2-VASc IS",
+        "body": "The standard stroke risk tool for atrial fibrillation patients. Each letter is a risk factor — Congestive heart failure, Hypertension, Age, Diabetes, prior Stroke, Vascular disease, Sex category. You score 0-9 points. Above 1, guidelines say prescribe blood thinners. It fits on a napkin."
+      },
+      {
+        "heading": "WHY NAPKIN SCORES DOMINATE MEDICINE",
+        "body": "Doctors make hundreds of decisions per shift. A score that requires no computer, no login, and no waiting is a score that gets used. CHA2DS2-VASc replaced its predecessor CHADS2 in 2010 and is now embedded in every major cardiology guideline worldwide — not because it is optimal, but because it is usable."
+      },
+      {
+        "heading": "THE CEILING",
+        "body": "Point-based scores assume each factor contributes independently and linearly. But a 75-year-old diabetic with heart failure has compounding risks that simple addition cannot capture. CHA2DS2-VASc misclassifies a meaningful fraction of patients into a grey zone where the treatment decision is essentially a coin flip."
+      },
+      {
+        "heading": "THE INTERPRETABILITY CONSTRAINT",
+        "body": "Regulators and clinicians reject black-box models — a neural network that says 'prescribe' without explanation is legally and ethically unusable. Interpretable ML models (decision trees, logistic regression with interaction terms, attention-weighted features) show their reasoning while still capturing nonlinear risk patterns that point scores miss."
+      }
+    ],
+    "generatedAt": "2026-04-07T17:28:59.904Z",
+    "label": "Clinical Risk Scoring",
+    "category": "science",
+    "articleCount": 1
   }
 }
