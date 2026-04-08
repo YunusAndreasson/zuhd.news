@@ -4321,5 +4321,121 @@
     "label": "Commodity Trading in Conflict",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-08-first-ships-hormuz-strait-ceasefire-reopening": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Every tanker follows the same track through Iranian and Omani territorial waters."
+      },
+      {
+        "heading": "THE VOLUME",
+        "body": "Roughly 21 million barrels of oil pass through daily — about 21% of global consumption. No other transit point comes close. The Suez Canal handles 5-6 million; the Panama Canal handles almost none for oil."
+      },
+      {
+        "heading": "WHY THERE'S NO ALTERNATIVE",
+        "body": "Saudi Arabia has the East-West Pipeline and the UAE has the Habshan-Fujairah line, but combined they can bypass only ~7 million barrels per day. A full Hormuz closure would leave 14 million barrels stranded with no route to market."
+      },
+      {
+        "heading": "THE INSURANCE SIGNAL",
+        "body": "When tensions spike, the first measurable effect is war-risk insurance premiums on tanker hulls. Premiums can jump from 0.05% to 3% of cargo value overnight — adding $3-5 million per voyage. Many shippers simply stop sailing before any shots are fired."
+      },
+      {
+        "heading": "THE DEPTH PROBLEM",
+        "body": "Hormuz is only 60 meters deep in the shipping lanes. Mines are cheap, effective, and nearly impossible to sweep quickly at that depth. Iran demonstrated this in 1988 — a single mine damaged the USS Samuel B. Roberts and shut down convoy operations for weeks."
+      }
+    ],
+    "generatedAt": "2026-04-08T12:33:33.051Z",
+    "label": "The Strait of Hormuz",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-08-parkinsons-striatal-parvalbumin-interneurons-druggable-target": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MISCONCEPTION",
+        "body": "Parkinson's is often described as 'not enough dopamine.' More precisely, dopamine is a gain control signal — it determines which movement plans the striatum lets through and which it suppresses. Losing it doesn't stop movement, it scrambles the filter."
+      },
+      {
+        "heading": "THE CIRCUIT",
+        "body": "The basal ganglia run two parallel pathways: a 'go' path (direct) that enables a selected movement and a 'stop' path (indirect) that inhibits competing movements. Dopamine from the substantia nigra tips the balance toward 'go.' Without it, the stop path dominates."
+      },
+      {
+        "heading": "INTERNEURONS",
+        "body": "The striatum is 95% medium spiny neurons — the main projection cells. The remaining 5% are interneurons that never leave the striatum. Despite their small numbers, they shape the timing and coordination of every signal the projection neurons send."
+      },
+      {
+        "heading": "PARVALBUMIN CELLS",
+        "body": "Parvalbumin-positive interneurons are fast-spiking inhibitory cells. They fire at up to 300 Hz — far faster than most neurons — and can precisely time when neighboring cells are allowed to fire. In cortex, they create the gamma oscillations behind attention and perception."
+      },
+      {
+        "heading": "WHY 'DRUGGABLE' MATTERS",
+        "body": "Current Parkinson's drugs replace dopamine system-wide, causing side effects from nausea to compulsive behavior. A target on a specific interneuron subtype means, in principle, you could modulate the circuit locally — correcting the filter without flooding the whole brain."
+      }
+    ],
+    "generatedAt": "2026-04-08T12:33:33.051Z",
+    "label": "The Basal Ganglia Circuit",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-08-russia-gru-fancy-bear-consumer-routers-dns-hijack": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT DNS ACTUALLY DOES",
+        "body": "Your browser doesn't know where 'bank.com' is. It asks a DNS resolver, which returns an IP address like 93.184.216.34. This lookup happens before any encryption, any certificate check, any security layer. Whoever controls the lookup controls where your traffic goes."
+      },
+      {
+        "heading": "THE ROUTER'S ROLE",
+        "body": "Home routers tell every device on the network which DNS server to use. Change that one setting and every phone, laptop, and smart TV in the house silently starts asking a different resolver — one that can return any IP it wants for any domain."
+      },
+      {
+        "heading": "WHY TLS DOESN'T FULLY SAVE YOU",
+        "body": "HTTPS proves you're talking to whoever holds the certificate for a domain. But if the attacker also proxies the connection or targets sites without HSTS preloading, users see no warning. Even with warnings, most people click through."
+      },
+      {
+        "heading": "THE DEFAULT PASSWORD PROBLEM",
+        "body": "Roughly 70-80% of consumer routers still run factory credentials. Most ISPs ship routers with admin/admin or the password printed on a sticker. Remote management interfaces — meant for ISP support — are often left exposed to the public internet."
+      },
+      {
+        "heading": "SCALE VS. PRECISION",
+        "body": "DNS hijacking at the router level is low-precision but high-scale. You don't pick your targets — you compromise whatever routers are vulnerable. This makes it ideal for intelligence collection: cast a wide net, filter interesting traffic server-side."
+      }
+    ],
+    "generatedAt": "2026-04-08T12:33:33.051Z",
+    "label": "DNS Hijacking",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-08-swiss-banks-ubs-chf-stablecoin-pilot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORE IDEA",
+        "body": "A stablecoin promises 1 token = 1 unit of currency, always redeemable. The question is what backs that promise. Tether holds a mix of Treasuries and commercial paper. A bank-issued stablecoin could be backed by central bank reserves — a fundamentally different guarantee."
+      },
+      {
+        "heading": "WHY BANKS CARE NOW",
+        "body": "Stablecoins currently settle about $10 trillion per year — more than Visa. That volume represents fee revenue banks are not earning and payment rails they do not control. Bank-issued stablecoins are a defensive move: absorb the technology before it absorbs your business."
+      },
+      {
+        "heading": "THE SWISS STRUCTURE",
+        "body": "Switzerland doesn't have deposit insurance the way the US or EU does. Instead, it relies on a depositor preference rule and a CHF 100,000 priority claim in bankruptcy. A Swiss franc stablecoin backed by SNB reserves would actually offer stronger protection than a Swiss bank deposit."
+      },
+      {
+        "heading": "THE MONETARY SOVEREIGNTY QUESTION",
+        "body": "Central banks control money supply by controlling bank reserves. If stablecoins — issued by private banks — become a common medium of exchange, the central bank's transmission mechanism weakens. This is why every major central bank is simultaneously researching CBDCs as a countermove."
+      },
+      {
+        "heading": "PROGRAMMABLE MONEY",
+        "body": "The real disruption isn't the 'stable' part — wire transfers already move francs. It's the 'coin' part: tokens on a blockchain can carry logic. Escrow, automated compliance, instant cross-border settlement, conditional payments — these are impossible with the SWIFT message format that banks currently use."
+      }
+    ],
+    "generatedAt": "2026-04-08T12:33:33.051Z",
+    "label": "Stablecoins & Bank Money",
+    "category": "economy",
+    "articleCount": 1
   }
 }
