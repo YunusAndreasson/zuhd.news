@@ -2,13 +2,166 @@
   "version": 1,
   "stories": [
     {
+      "id": "arms-industry-influence-uk-university-courses",
+      "label": "Arms industry given direct influence over university courses",
+      "firstSeen": "2026-04-08T22:10:00.891Z",
+      "lastCovered": "2026-04-08T22:10:00.891Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-arms-industry-influence-uk-university-courses"
+      ],
+      "eventUri": null,
+      "summary": "Officials from BAE Systems, Leonardo, and Thales sit on advisory committees that oversee the 'strategic direction' of UK academic departments. Lead with the structural capture: arms manufacturers don't just fund universities — they shape what gets taught. During a war that has made these companies billions, their influence over the institutions that produce the next generation of engineers and policymakers is a conflict of interest with curriculum-level consequences.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-50-tariffs-iran-weapon-suppliers",
+      "label": "Trump threatens 50% tariffs on countries supplying Iran with weapons",
+      "firstSeen": "2026-04-08T22:10:00.891Z",
+      "lastCovered": "2026-04-08T22:10:00.891Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-trump-50-tariffs-iran-weapon-suppliers"
+      ],
+      "eventUri": "spa-4161708",
+      "summary": "Hours after agreeing to a ceasefire, Trump announced 50% tariffs with no exemptions on any country supplying Iran with weapons — a threat aimed squarely at China and Russia. Lead with the timing: ceasefire in one hand, tariff weapon in the other. This isn't just Iran policy — it's using the war to reshape global trade flows. The reader tracking both the war and the trade war should see the convergence: military conflict is now inseparable from economic coercion.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Tariff",
+        "http://en.wikipedia.org/wiki/Uranium_enrichment",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Washington,_D.C."
+      ]
+    },
+    {
+      "id": "white-house-foreign-steel-ballroom-tariff-hypocrisy",
+      "label": "White House Secures Foreign Steel for Ballroom Project",
+      "firstSeen": "2026-04-08T22:10:00.891Z",
+      "lastCovered": "2026-04-08T22:10:00.891Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-white-house-foreign-steel-ballroom-tariff-hypocrisy"
+      ],
+      "eventUri": "eng-11551240",
+      "summary": "While Trump champions US steel with tariffs that punish allies, the White House has secured tens of millions of dollars of donated foreign steel for his $400 million ballroom project. Lead with the hypocrisy: the president who imposed steel tariffs to 'protect American workers' is building his vanity project with the exact imports he penalizes others for using. ArcelorMittal is among the donors. The reader who follows trade policy will see the structural corruption — tariffs as leverage, not principle.",
+      "conceptUris": []
+    },
+    {
+      "id": "dangote-afreximbank-100-billion-africa-industrial",
+      "label": "Afreximbank supports Dangote Group amid $100 billion annual revenue target by 2030",
+      "firstSeen": "2026-04-08T22:10:00.891Z",
+      "lastCovered": "2026-04-08T22:10:00.891Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-dangote-afreximbank-100-billion-africa-industrial"
+      ],
+      "eventUri": "eng-11550652",
+      "summary": "Africa's largest conglomerate is targeting $100 billion in annual revenue by 2030, requiring $40 billion in new investment backed by the continent's development bank. Lead with the scale: Dangote is building refining, cement, and fertilizer capacity that would make it a top-20 global industrial group. This is African capital building African infrastructure — the reader who tracks economic sovereignty should see Dangote as the counter-narrative to extractive foreign investment.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-drops-nih-indirect-costs-cap-research",
+      "label": "Trump administration drops court fight to cap NIH payments for research overhead costs",
+      "firstSeen": "2026-04-08T22:10:00.891Z",
+      "lastCovered": "2026-04-08T22:10:00.891Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-trump-drops-nih-indirect-costs-cap-research"
+      ],
+      "eventUri": null,
+      "summary": "The Trump administration will not ask the Supreme Court to reinstate its cap on NIH indirect cost payments — effectively conceding a fight that threatened to defund university research infrastructure. Lead with what was at stake: the cap would have slashed the overhead payments that keep labs open, equipment running, and research staff employed at hundreds of universities. The administration lost in lower courts and has now abandoned the appeal. For the reader who builds things, this is a rare retreat from the war on science.",
+      "conceptUris": []
+    },
+    {
+      "id": "visceral-fat-diabetes-racial-disparities-mesa-study",
+      "label": "Racial and ethnic disparities in type 2 diabetes: does visceral fat play a role? Evidence from the MESA study",
+      "firstSeen": "2026-04-08T22:10:00.891Z",
+      "lastCovered": "2026-04-08T22:10:00.891Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-visceral-fat-diabetes-racial-disparities-mesa-study"
+      ],
+      "eventUri": null,
+      "summary": "The Multi-Ethnic Study of Atherosclerosis reveals that visceral fat distribution varies significantly across racial and ethnic groups — and may partially explain why diabetes prevalence differs so dramatically. Hispanics and South Asians carry more visceral fat; Black Americans carry less but still face higher diabetes rates, suggesting additional biological pathways. Lead with the clinical implication: one-size-fits-all screening misses people. The reader should see this as precision medicine meeting health equity — same disease, different mechanisms, different interventions needed.",
+      "conceptUris": []
+    },
+    {
+      "id": "hypertension-community-team-approach-global-health",
+      "label": "Team approach to lowering high blood pressure worked even in 'a tough landscape'",
+      "firstSeen": "2026-04-08T22:10:00.891Z",
+      "lastCovered": "2026-04-08T22:10:00.891Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-hypertension-community-team-approach-global-health"
+      ],
+      "eventUri": "eng-11547912",
+      "summary": "High blood pressure is the #1 risk factor for the #1 cause of death worldwide, and a community-based team approach — pharmacists, health workers, physicians working together — significantly lowered it even in under-resourced settings. Lead with the simplicity: this isn't a new drug or a breakthrough device, it's an organizational intervention that works. The reader who thinks in systems should see the parallel to engineering — the bottleneck wasn't knowledge, it was coordination.",
+      "conceptUris": []
+    },
+    {
+      "id": "linkedin-browser-extension-scanning-lawsuits",
+      "label": "LinkedIn scanning users' browser extensions sparks controversy and two lawsuits",
+      "firstSeen": "2026-04-08T22:10:00.891Z",
+      "lastCovered": "2026-04-08T22:10:00.891Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-linkedin-browser-extension-scanning-lawsuits"
+      ],
+      "eventUri": "spa-4159427",
+      "summary": "LinkedIn has been scanning users' browsers to fingerprint which extensions they run — and two class action lawsuits were filed the same day. Lead with the mechanism: a professional networking site is inventorying your browser extensions without consent, which can reveal ad blockers, password managers, VPNs, and accessibility tools. For the tech reader, this is browser fingerprinting at scale by a Microsoft subsidiary, and the legal response was immediate.",
+      "conceptUris": []
+    },
+    {
+      "id": "self-doxing-rave-trans-privacy-opsec",
+      "label": "A 'Self-Doxing' Rave Helps Trans People Stay Safe Online",
+      "firstSeen": "2026-04-08T22:10:00.891Z",
+      "lastCovered": "2026-04-08T22:10:00.891Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-self-doxing-rave-trans-privacy-opsec"
+      ],
+      "eventUri": null,
+      "summary": "At a New York event called 'Deadname Not Found,' trans people learned to audit their own digital footprint — searching for themselves the way a hostile actor would, then systematically removing what they find. Lead with the threat model: in a political environment where trans people face doxxing, harassment, and state-level hostility, operational security is no longer optional. The reader who thinks about threat modeling will recognize this as applied infosec for a community under active surveillance.",
+      "conceptUris": []
+    },
+    {
       "id": "uae-kuwait-bahrain-attacks-despite-ceasefire",
       "label": "UAE, Kuwait, Bahrain report attacks despite Iran-US ceasefire",
       "firstSeen": "2026-04-08T17:10:29.942Z",
       "lastCovered": "2026-04-08T17:10:29.942Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-uae-kuwait-bahrain-attacks-despite-ceasefire"
@@ -33,7 +186,7 @@
       "lastCovered": "2026-04-08T17:10:29.942Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-afghanistan-pakistan-china-deescalation-talks"
@@ -49,7 +202,7 @@
       "lastCovered": "2026-04-08T17:10:29.942Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-us-automakers-eu-truck-regulations-trade-war"
@@ -65,7 +218,7 @@
       "lastCovered": "2026-04-08T17:10:29.942Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-amazon-kindles-pre-2013-book-downloads-disabled"
@@ -81,7 +234,7 @@
       "lastCovered": "2026-04-08T17:10:29.942Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-quantum-entanglement-measured-solids-first-time"
@@ -97,7 +250,7 @@
       "lastCovered": "2026-04-08T17:10:29.942Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-megafauna-disappearance-stone-tool-revolution"
@@ -113,7 +266,7 @@
       "lastCovered": "2026-04-08T17:10:29.942Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-turing-pattern-sub-2nm-copper-interconnect-barrier"
@@ -129,7 +282,7 @@
       "lastCovered": "2026-04-08T17:10:29.942Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-microsoft-terminates-veracrypt-account-windows-updates"
@@ -145,7 +298,7 @@
       "lastCovered": "2026-04-08T17:10:29.942Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-ai-nudifying-bots-telegram-abuse-ecosystem"
@@ -170,7 +323,7 @@
       "lastCovered": "2026-04-08T17:10:29.942Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-meta-muse-spark-ai-model-superintelligence-lab"
@@ -180,13 +333,39 @@
       "conceptUris": []
     },
     {
+      "id": "hegseth-misleading-trump-iran-war-position",
+      "label": "Pete Hegseth 'not speaking truth' to Trump about Iran war, administration official says",
+      "firstSeen": "2026-04-08T08:13:39.400Z",
+      "lastCovered": "2026-04-08T22:10:00.891Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-04-08-hegseth-misleading-trump-iran-war-position",
+        "2026-04-08-trump-discusses-leaving-nato-iran-war-pretext"
+      ],
+      "eventUri": "eng-11549234",
+      "summary": "A Trump administration official told the Washington Post that Defense Secretary Pete Hegseth has been misrepresenting the US military position in Iran to the president. Trump has been repeating misleading claims about 'air supremacy' that don't match operational reality. Lead with the specific falsehood — claims of air supremacy that the Pentagon's own assessments contradict. The defense secretary is lying to the commander-in-chief during an active war. The reader should see this as amanah (trust) betrayed at the highest level of wartime command.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/NATO",
+        "http://en.wikipedia.org/wiki/Mark_Rutte",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/White_House",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Washington,_D.C."
+      ]
+    },
+    {
       "id": "israel-accepts-ceasefire-insists-lebanon-operations-continue",
       "label": "Israel accepts Trump's Iran ceasefire but insists Lebanon operations will continue",
       "firstSeen": "2026-04-08T12:14:42.407Z",
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-israel-accepts-ceasefire-insists-lebanon-operations-continue"
@@ -211,7 +390,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-iran-10-demands-ceasefire-terms-sanctions-nuclear"
@@ -236,7 +415,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-north-korea-ballistic-missiles-two-rounds-seoul"
@@ -252,7 +431,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-white-house-iran-war-funding-80-100-billion-cut"
@@ -268,7 +447,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-swiss-banks-ubs-chf-stablecoin-pilot"
@@ -293,7 +472,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-first-ships-hormuz-strait-ceasefire-reopening"
@@ -318,7 +497,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-south-korea-crypto-withdrawal-delays-fraud"
@@ -334,7 +513,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-parkinsons-striatal-parvalbumin-interneurons-druggable-target"
@@ -350,7 +529,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-sstr2-radiohybrid-theranostic-pet-imaging-beta-therapy"
@@ -366,7 +545,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-greece-bans-under-15-social-media-eu-first"
@@ -391,7 +570,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-russia-gru-fancy-bear-consumer-routers-dns-hijack"
@@ -407,7 +586,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-veracrypt-project-update-open-source-encryption"
@@ -423,7 +602,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-quittr-app-security-breach-ignored-warnings-months"
@@ -439,7 +618,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-04-08-china-role-brokering-us-iran-ceasefire",
@@ -461,29 +640,13 @@
       ]
     },
     {
-      "id": "hegseth-misleading-trump-iran-war-position",
-      "label": "Pete Hegseth 'not speaking truth' to Trump about Iran war, administration official says",
-      "firstSeen": "2026-04-08T08:13:39.400Z",
-      "lastCovered": "2026-04-08T08:13:39.400Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-08-hegseth-misleading-trump-iran-war-position"
-      ],
-      "eventUri": "eng-11549234",
-      "summary": "A Trump administration official told the Washington Post that Defense Secretary Pete Hegseth has been misrepresenting the US military position in Iran to the president. Trump has been repeating misleading claims about 'air supremacy' that don't match operational reality. Lead with the specific falsehood — claims of air supremacy that the Pentagon's own assessments contradict. The defense secretary is lying to the commander-in-chief during an active war. The reader should see this as amanah (trust) betrayed at the highest level of wartime command.",
-      "conceptUris": []
-    },
-    {
       "id": "nigeria-civil-society-warns-brink-of-collapse",
       "label": "Groups warn Nigeria 'on brink of collapse' over insecurity, economic strain",
       "firstSeen": "2026-04-08T08:13:39.400Z",
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-nigeria-civil-society-warns-brink-of-collapse"
@@ -499,7 +662,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-shell-trading-profits-soar-iran-war-qatar-gas"
@@ -515,7 +678,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-morgan-stanley-spot-btc-etf-launch"
@@ -531,7 +694,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-iran-hormuz-toll-64-billion-revenue"
@@ -547,7 +710,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-cyclone-maila-cat5-queensland-australia"
@@ -563,7 +726,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-iran-hackers-us-oil-gas-water-fbi-warning"
@@ -579,7 +742,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-smex-rotten-apple-spearphishing-lebanon-civil-society"
@@ -595,7 +758,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-india-election-commission-tmc-clash-bengal"
@@ -620,7 +783,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-08-us-iran-ceasefire-trump-temporary-win-cost"
@@ -642,7 +805,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-08-israel-continues-strikes-iran-despite-ceasefire"
@@ -664,7 +827,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-08-iran-missiles-gulf-states-after-ceasefire"
@@ -686,7 +849,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-08-south-africa-minister-tolashe-defied-ramaphosa"
@@ -706,7 +869,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-08-bitcoin-surges-72k-oil-crashes-iran-ceasefire"
@@ -727,7 +890,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-08-cz-reveals-ftx-collapse-trigger-ellison-mistake"
@@ -749,7 +912,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-08-penpulimab-nasopharyngeal-cancer-china-immunotherapy"
@@ -770,7 +933,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-08-bmx-inhibition-lung-cancer-chemoresistance-druggable"
@@ -791,7 +954,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-08-bitcoin-quantum-computing-threat-timeline"
@@ -812,7 +975,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-08-germany-warns-russian-apt28-fancy-bear-cyber-spying"
@@ -833,7 +996,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-08-openai-gpt2-too-dangerous-2019-retrospective"
@@ -853,7 +1016,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-07-iran-war-200-billion-cost-arab-countries-un",
@@ -870,7 +1033,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-07-trump-civilisation-die-tonight-iran-deadline",
@@ -898,7 +1061,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-china-russia-veto-unsc-hormuz-resolution"
@@ -923,7 +1086,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-israeli-backed-militia-maghazi-refugee-camp-gaza"
@@ -944,7 +1107,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-west-bank-palestinian-travel-ordeal-allenby-bridge"
@@ -964,7 +1127,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-us-journalist-kittleson-released-iraq-kataib-hezbollah"
@@ -989,7 +1152,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-bill-gates-congress-testimony-epstein-investigation"
@@ -1014,7 +1177,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-iea-energy-crisis-iran-war-worse-than-1973-1979-2022"
@@ -1039,7 +1202,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-france-fuel-shortages-iran-war-pump"
@@ -1064,7 +1227,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-trump-world-liberty-financial-sanctioned-network"
@@ -1085,7 +1248,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-anthropic-mythos-project-glasswing-ai-safety"
@@ -1110,7 +1273,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-intel-musk-terafab-orbital-datacenter-semiconductor"
@@ -1127,191 +1290,6 @@
         "http://en.wikipedia.org/wiki/Semiconductor",
         "http://en.wikipedia.org/wiki/Austin,_Texas"
       ]
-    },
-    {
-      "id": "pakistan-condemns-iran-strikes-saudi-energy",
-      "label": "'Dangerous escalation': Pakistan condemns Iranian strikes on Saudi Arabia's energy facilities",
-      "firstSeen": "2026-04-07T17:09:09.719Z",
-      "lastCovered": "2026-04-07T17:09:09.719Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-pakistan-condemns-iran-strikes-saudi-energy"
-      ],
-      "eventUri": "eng-11546890",
-      "summary": "Pakistan formally condemned Iran's missile and drone strikes on Saudi petrochemical facilities — a significant diplomatic break, since Pakistan has been walking a tightrope between its Iranian neighbour and Saudi patron. The FO statement calls it 'a dangerous escalation that undermines regional peace.' The structural story: Iran's war is fracturing Muslim-world solidarity. Pakistan, already rationing fuel via smartphone apps and facing GSP+ trade threats, is being forced to choose sides. Lead with the condemnation and what it costs Pakistan diplomatically.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Jubail",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Petrochemical",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/SABIC",
-        "http://en.wikipedia.org/wiki/Ballistic_missile",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Asaluyeh"
-      ]
-    },
-    {
-      "id": "nigeria-opposes-macky-sall-un-secretary-general",
-      "label": "Nigeria opposes Macky Sall's bid for UN top job, gives reasons",
-      "firstSeen": "2026-04-07T17:09:09.719Z",
-      "lastCovered": "2026-04-07T17:09:09.719Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-nigeria-opposes-macky-sall-un-secretary-general"
-      ],
-      "eventUri": null,
-      "summary": "Nigeria formally blocked former Senegalese president Macky Sall's candidacy for UN Secretary-General, objecting not to Sall personally but to the process — the AU adopted him without proper consultation. The structural story: Africa's largest economy is asserting that the continent's representative to the world's top diplomatic post cannot be decided by backroom consensus. This is about institutional power within the AU, not personality politics. Lead with Nigeria's objection to process over person.",
-      "conceptUris": []
-    },
-    {
-      "id": "bellingcat-satellite-tool-iran-gulf-damage",
-      "label": "When Satellite Imagery Goes Dark: New Tool Shows Damage in Iran and the Gulf",
-      "firstSeen": "2026-04-07T17:09:09.719Z",
-      "lastCovered": "2026-04-07T17:09:09.719Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-bellingcat-satellite-tool-iran-gulf-damage"
-      ],
-      "eventUri": null,
-      "summary": "Iran's internet blackout has choked the flow of ground-level imagery. Bellingcat built a Sentinel satellite tool that uses before/after comparison to assess destruction even when social media and press access are cut off. The angle for the reader: this is OSINT as counter-censorship infrastructure. When states go dark, open-source investigators build new eyes. Lead with what the tool reveals — damage assessments that neither Iran nor the US want public — and the information warfare context.",
-      "conceptUris": []
-    },
-    {
-      "id": "sentry-gadalla-libya-kleptocratic-haftar",
-      "label": "Report: The Sentry spotlights Ahmed Gadalla, architect of kleptocratic rule in eastern Libya",
-      "firstSeen": "2026-04-07T17:09:09.719Z",
-      "lastCovered": "2026-04-07T17:09:09.719Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-sentry-gadalla-libya-kleptocratic-haftar"
-      ],
-      "eventUri": null,
-      "summary": "The Sentry investigation names Ahmed Gadalla as the financial architect behind Khalifa Haftar's eastern Libya — the man who structured the kleptocratic apparatus that funded the 2019 Tripoli offensive. This is accountability journalism with named actors: who built the money machine, how it works, and where the proceeds flow. Lead with Gadalla's role as the invisible hand behind a visible warlord. The reader should see the pattern: every military strongman has a financial engineer.",
-      "conceptUris": []
-    },
-    {
-      "id": "defi-yields-crash-below-savings-accounts",
-      "label": "The era of easy money in crypto is over as DeFi yields are failing to compete with a simple savings account",
-      "firstSeen": "2026-04-07T17:09:09.719Z",
-      "lastCovered": "2026-04-07T17:09:09.719Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-defi-yields-crash-below-savings-accounts"
-      ],
-      "eventUri": null,
-      "summary": "DeFi yields have crashed below traditional savings account rates — the fundamental value proposition of decentralized finance (cut out the bank, earn more) no longer holds. USDC lending on Aave now pays less than a Chase savings account. The structural story: as risk-free rates stay elevated (partly war-driven), DeFi's yield advantage evaporates. The reader who tracks crypto should see this as a regime change, not a dip. Lead with the specific rate comparison.",
-      "conceptUris": []
-    },
-    {
-      "id": "desalination-plants-middle-east-war-vulnerable",
-      "label": "Desalination plants in the Middle East are increasingly vulnerable",
-      "firstSeen": "2026-04-07T17:09:09.719Z",
-      "lastCovered": "2026-04-07T17:09:09.719Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-desalination-plants-middle-east-war-vulnerable"
-      ],
-      "eventUri": "eng-11544235",
-      "summary": "The Iran war is exposing a critical dependency: much of the Gulf's drinking water comes from desalination plants that sit in the blast radius. Iran accused the US of hitting a desalination plant on Qeshm Island. Saudi and UAE facilities are within missile range. The structural story: the region industrialised its water supply, concentrating it in coastal mega-infrastructure that is now a military target. Lead with the Qeshm plant strike and what it means — when you bomb desalination, you bomb the water supply of millions.",
-      "conceptUris": []
-    },
-    {
-      "id": "novo-nordisk-high-dose-wegovy-launch",
-      "label": "Novo Nordisk launches high-dose Wegovy",
-      "firstSeen": "2026-04-07T17:09:09.719Z",
-      "lastCovered": "2026-04-07T17:09:09.719Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-novo-nordisk-high-dose-wegovy-launch"
-      ],
-      "eventUri": null,
-      "summary": "Novo Nordisk is launching a higher-dose version of Wegovy, escalating the GLP-1 arms race that is reshaping healthcare economics globally. The structural story: each dose increase widens the gap between what these drugs can do and who can afford them. The obesity drug market is projected to hit $150B by 2030, but access remains stratified by insurance, geography, and wealth. Lead with the new dose and what it signals about the competitive dynamics between Novo and Eli Lilly.",
-      "conceptUris": []
-    },
-    {
-      "id": "interpretable-ml-stroke-risk-atrial-fibrillation",
-      "label": "Interpretable machine learning models for stroke risk prediction in patients with newly diagnosed atrial fibrillation",
-      "firstSeen": "2026-04-07T17:09:09.719Z",
-      "lastCovered": "2026-04-07T17:09:09.719Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-interpretable-ml-stroke-risk-atrial-fibrillation"
-      ],
-      "eventUri": null,
-      "summary": "Researchers built interpretable ML models that predict 1-year stroke risk in newly diagnosed atrial fibrillation patients using only age, medication, and clinical history — no expensive imaging required. The models outperform the standard CHA₂DS₂-VASc score. The angle for the reader: this is AI that explains itself (interpretable, not black-box) and could democratise stroke risk screening in clinics that can't afford advanced diagnostics. Lead with the performance gap over the current standard and the accessibility implications.",
-      "conceptUris": []
-    },
-    {
-      "id": "maine-datacenter-moratorium-first-us-state",
-      "label": "Maine Is Close to Passing a Moratorium on New Datacenters",
-      "firstSeen": "2026-04-07T17:09:09.719Z",
-      "lastCovered": "2026-04-07T17:09:09.719Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-maine-datacenter-moratorium-first-us-state"
-      ],
-      "eventUri": null,
-      "summary": "Maine is about to pass the first US state moratorium on new datacenter construction — a direct response to AI infrastructure's land, water, and power demands. Similar bills are popping up across the country. The structural story: the AI compute buildout is hitting local resistance the same way fracking and crypto mining did. Lead with 'first of its kind' and the pattern of similar bills elsewhere. The reader building on cloud infrastructure should understand the political backlash forming beneath them.",
-      "conceptUris": []
-    },
-    {
-      "id": "datacenter-lobbyists-right-to-repair-rollback",
-      "label": "Data Center Tech Lobbyists Fearmonger in Attempt to Retroactively Roll Back Right to Repair Law",
-      "firstSeen": "2026-04-07T17:09:09.719Z",
-      "lastCovered": "2026-04-07T17:09:09.719Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-datacenter-lobbyists-right-to-repair-rollback"
-      ],
-      "eventUri": null,
-      "summary": "Cisco, IBM, and major lobbying groups are trying to exempt 'critical infrastructure' — meaning datacenters — from Colorado's existing right-to-repair law. The playbook: declare your equipment too important to let customers fix, then use national security language to gut consumer protections retroactively. Lead with the corporate names and the mechanism (retroactive exemption, not new legislation). The reader as a hacker understands repair rights viscerally — this is the same fight as jailbreaking, just at rack scale.",
-      "conceptUris": []
-    },
-    {
-      "id": "dropping-cloudflare-bunny-net-migration",
-      "label": "Dropping Cloudflare for Bunny.net",
-      "firstSeen": "2026-04-07T17:09:09.719Z",
-      "lastCovered": "2026-04-07T17:09:09.719Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-dropping-cloudflare-bunny-net-migration"
-      ],
-      "eventUri": null,
-      "summary": "A developer documents migrating away from Cloudflare to Bunny.net — with 257 HN points and 119 comments, this is resonating with the technical community. The structural angle: Cloudflare's dominance over web infrastructure (CDN, DNS, DDoS protection) creates a single point of failure and a single point of control. As Cloudflare increasingly mediates what's accessible on the internet, developers are asking whether the convenience is worth the concentration. Lead with what specifically drove the switch and what the HN discussion reveals about infrastructure trust.",
-      "conceptUris": []
     }
   ]
 }

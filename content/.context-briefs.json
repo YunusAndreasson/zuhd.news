@@ -4537,5 +4537,117 @@
     "label": "Digital Ownership",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-08-visceral-fat-diabetes-racial-disparities-mesa-study": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO KINDS OF FAT",
+        "body": "Subcutaneous fat sits under the skin and is relatively inert. Visceral fat wraps around organs inside the abdominal cavity and behaves like an endocrine organ — it secretes inflammatory cytokines, free fatty acids, and hormones that directly impair insulin signaling."
+      },
+      {
+        "heading": "WHY BMI MISSES IT",
+        "body": "BMI divides weight by height squared. It cannot distinguish muscle from fat, let alone where fat is stored. Two people with identical BMIs can have vastly different visceral fat volumes — and vastly different metabolic risk profiles."
+      },
+      {
+        "heading": "THE ETHNIC VARIATION",
+        "body": "At the same BMI, South Asian and Hispanic populations tend to carry more visceral fat than White Europeans, while Black Americans tend to carry more subcutaneous fat. This is why BMI-based screening systematically miscategorizes risk for non-White populations."
+      },
+      {
+        "heading": "THE MEASUREMENT GAP",
+        "body": "CT and MRI can quantify visceral fat precisely, but they cost hundreds of dollars per scan. Waist circumference is a rough proxy — the WHO suggests different thresholds by ethnicity, but most clinical guidelines still use a single universal cutoff."
+      },
+      {
+        "heading": "THE SECOND PATHWAY",
+        "body": "If visceral fat explains Hispanic diabetes risk but not Black American diabetes risk at similar prevalence rates, something else — hepatic fat deposition, skeletal muscle insulin resistance, beta-cell genetics — must be driving a parallel mechanism. The field does not yet know what it is."
+      }
+    ],
+    "generatedAt": "2026-04-08T22:35:17.065Z",
+    "label": "Visceral Fat & Metabolic Risk",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-08-trump-drops-nih-indirect-costs-cap-research": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT INDIRECT COSTS ARE",
+        "body": "When a university wins an NIH grant, part of the money pays for the experiment (reagents, salaries, equipment) and part reimburses the university for overhead — electricity, building maintenance, compliance offices, library access. This second part is the indirect cost rate."
+      },
+      {
+        "heading": "HOW THE RATE IS SET",
+        "body": "Each university negotiates its own rate with the federal government, typically every four years. Rates range from about 30% at small colleges to over 60% at research-intensive universities. Harvard's is 69%. The rate is applied on top of direct costs, so a $1 million grant at 60% overhead actually costs the government $1.6 million."
+      },
+      {
+        "heading": "WHY UNIVERSITIES DEPEND ON IT",
+        "body": "Research universities built their infrastructure — biosafety labs, animal facilities, research computing — on the assumption that federal grants would reimburse overhead. Cutting the rate does not eliminate those costs; it shifts them to tuition revenue or endowment draws."
+      },
+      {
+        "heading": "THE PERVERSE INCENTIVE",
+        "body": "Universities keep overhead revenue centrally while principal investigators control direct costs. This creates a structural incentive for universities to encourage more grant applications regardless of scientific merit — every funded grant is a revenue stream for the institution."
+      },
+      {
+        "heading": "SCALE",
+        "body": "NIH distributes roughly $35 billion annually. About $10-12 billion of that is indirect costs. A cut from 50% to 15% would have redirected billions away from universities — the largest financial threat to American research infrastructure since sequestration in 2013."
+      }
+    ],
+    "generatedAt": "2026-04-08T22:35:17.067Z",
+    "label": "Research Indirect Costs",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-08-trump-discusses-leaving-nato-iran-war-pretext": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ARTICLE 13",
+        "body": "The North Atlantic Treaty includes its own exit clause. Any member may withdraw by giving one year's notice to the US government, which serves as treaty depositary. No other member can block a withdrawal."
+      },
+      {
+        "heading": "THE US CONSTITUTIONAL QUESTION",
+        "body": "The Senate ratified NATO membership by treaty in 1949. Whether a president can withdraw from a ratified treaty without Senate consent is unsettled law. Congress passed a provision in 2024 requiring Senate supermajority approval for NATO withdrawal, but its constitutionality has not been tested in court."
+      },
+      {
+        "heading": "ARTICLE 5 IS NOT AUTOMATIC",
+        "body": "Article 5 says an attack on one is an attack on all — but it does not require a military response. Each member decides individually what action it deems necessary, including non-military measures. It has been invoked exactly once, after September 11, 2001."
+      },
+      {
+        "heading": "THE INFRASTRUCTURE REALITY",
+        "body": "NATO's military value is not just the mutual defense pledge. It is the interoperability: standardized ammunition, shared command structures, joint intelligence pipelines, pre-positioned equipment. Rebuilding bilateral versions of these systems would take European states a decade or more."
+      },
+      {
+        "heading": "THE 2% BENCHMARK",
+        "body": "NATO adopted the 2%-of-GDP defense spending guideline in 2006, reaffirmed it as a commitment in 2014 after Russia annexed Crimea. It was always a political target, not a treaty obligation. As of 2025, roughly two-thirds of members meet or exceed it — up from just three members in 2014."
+      }
+    ],
+    "generatedAt": "2026-04-08T22:35:17.067Z",
+    "label": "NATO Withdrawal Mechanics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-08-linkedin-browser-extension-scanning-lawsuits": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A WEBSITE CAN SEE",
+        "body": "By default, a website cannot see what extensions you have installed. The browser sandboxes that information. But extensions inject code into web pages — and a website can probe for the side effects of that injection to infer which extensions are present."
+      },
+      {
+        "heading": "THE FINGERPRINTING TECHNIQUE",
+        "body": "Extensions modify the DOM, register content scripts, or expose web-accessible resources at predictable URLs. A page can test for these artifacts — checking if a specific CSS rule was injected or if a known extension resource URL resolves — to build a list of installed extensions without any browser API access."
+      },
+      {
+        "heading": "WHY EXTENSIONS ARE SENSITIVE",
+        "body": "Your extension list reveals more than browsing habits. Password managers indicate which services you use. Accessibility tools disclose disabilities. Religious content filters reveal faith. VPNs and privacy tools signal threat model. The combination is a detailed personal profile."
+      },
+      {
+        "heading": "THE LEGAL LANDSCAPE",
+        "body": "US federal law (CFAA, Wiretap Act) and California state law (CIPA, CCPA) restrict unauthorized interception and collection of user data. Extension scanning falls in a gray zone — no court has ruled definitively whether probing for DOM modifications constitutes interception under wiretap statutes."
+      }
+    ],
+    "generatedAt": "2026-04-08T22:35:17.067Z",
+    "label": "Browser Extension Privacy",
+    "category": "tech",
+    "articleCount": 1
   }
 }
