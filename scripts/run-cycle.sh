@@ -291,8 +291,11 @@ $BODY_LENGTHS
             }
             // First non-empty paragraph after frontmatter
             const body = md.slice(m[0].length).trim().split(/\n\n/)[0] || '';
-            // Strip location prefix (e.g. 'Washington — ') and truncate
-            fm.lead = body.replace(/^[A-Za-z\s,]+\s—\s/, '').slice(0, 178);
+            // Strip location prefix (e.g. 'Washington — ') and end at a clean sentence boundary
+            const raw = body.replace(/^[A-Za-z\s,]+\s—\s/, '');
+            const cut = raw.slice(0, 250);
+            const lastDot = cut.lastIndexOf('. ');
+            fm.lead = lastDot > 40 ? cut.slice(0, lastDot + 1) : cut;
             return fm;
           } catch { return {}; }
         }
@@ -314,6 +317,38 @@ $BODY_LENGTHS
         if (breaking.length) console.log(JSON.stringify({ articles: breaking }));
       ")
       if [ -n "$BREAKING_JSON" ] && [ -n "$PUSH_SECRET" ]; then
+        # Craft notification body with Claude — the article lead isn't written for push
+        PUSH_SLUG=$(echo "$BREAKING_JSON" | node -e "const d=JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));console.log(d.articles[0]?.slug||'')")
+        if [ -n "$PUSH_SLUG" ] && [ -f "content/articles/${PUSH_SLUG}.md" ]; then
+          ARTICLE_TEXT=$(cat "content/articles/${PUSH_SLUG}.md")
+          PUSH_NOTIF=$(timeout 30 claude $CLAUDE_FLAGS --model $CLAUDE_MODEL --effort medium --tools "" -p "You are a breaking news editor writing an iOS push notification. The notification appears on a locked iPhone — the reader has 2 seconds to decide whether to tap.
+
+iOS display constraints (Apple HIG):
+- Title: 1 line on lock screen, ~40 characters before truncation
+- Body: 2-4 lines on lock screen, ~90 characters fully visible without expanding
+
+Output exactly two lines:
+Line 1 — title: max 40 characters, the core event in 4-6 words
+Line 2 — body: max 90 characters, one sentence with the single most important fact
+
+Rules:
+- No filler (Breaking, Just in, Reports say, Sources say)
+- No names unless globally recognizable (Trump, Putin, etc.)
+- Front-load: the first 5 words must carry the news
+- Output ONLY the two lines, nothing else
+
+Article:
+$ARTICLE_TEXT" 2>/dev/null)
+          if [ -n "$PUSH_NOTIF" ]; then
+            PUSH_TITLE=$(echo "$PUSH_NOTIF" | head -1)
+            PUSH_BODY=$(echo "$PUSH_NOTIF" | tail -1)
+            BREAKING_JSON=$(TITLE="$PUSH_TITLE" BODY="$PUSH_BODY" node -e "
+              const d=JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
+              if(process.env.TITLE) d.articles[0].title=process.env.TITLE;
+              d.articles[0].body=process.env.BODY;
+              console.log(JSON.stringify(d))" <<< "$BREAKING_JSON" 2>/dev/null || echo "$BREAKING_JSON")
+          fi
+        fi
         echo "Pushing breaking news: $BREAKING_JSON" | tee -a "$LOG_FILE"
         curl -s -X POST "https://zuhd.news/api/push" \
           -H "Authorization: Bearer $PUSH_SECRET" \

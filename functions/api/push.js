@@ -56,6 +56,7 @@ export async function onRequestPost({ request, env }) {
     const messages = tokens.map(token => ({
       to: token,
       title: article.title,
+      subtitle: article.category ? article.category.charAt(0).toUpperCase() + article.category.slice(1) : undefined,
       body: article.body || article.title,
       data: { slug: article.slug, url: `https://zuhd.news/${article.slug}` },
       sound: 'default',

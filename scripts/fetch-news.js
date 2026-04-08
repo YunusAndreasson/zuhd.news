@@ -20,7 +20,6 @@ const SOURCES = [
   { name: 'Bellingcat',     url: 'https://www.bellingcat.com/feed/',            format: 'rss2' },
   { name: 'Mada Masr',      url: 'https://www.madamasr.com/en/feed/',          format: 'rss2' },
   { name: 'Salaam Gateway', url: 'https://salaamgateway.com/feed',             format: 'atom', defaultCategory: 'economy' },
-  { name: '+972 Magazine',  url: 'https://www.972mag.com/feed/',               format: 'rss2' },
   { name: 'Drop Site News', url: 'https://www.dropsitenews.com/feed',          format: 'rss2' },
   { name: 'SMEX',           url: 'https://smex.org/feed/',                     format: 'rss2', defaultCategory: 'tech' },
   { name: 'SciDev.Net',     url: 'https://www.scidev.net/global/global_rss.xml', format: 'rss2', defaultCategory: 'science' },
