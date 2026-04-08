@@ -4437,5 +4437,105 @@
     "label": "Stablecoins & Bank Money",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-08-turing-pattern-sub-2nm-copper-interconnect-barrier": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TURING PATTERNS",
+        "body": "In 1952 Alan Turing published a paper on morphogenesis showing that two chemicals diffusing at different speeds can spontaneously form stable spots, stripes, and spirals. The math explains leopard spots, zebrafish stripes, and sand ripples — all emerge from the same reaction-diffusion equations."
+      },
+      {
+        "heading": "WHY CHIPS NEED BARRIERS",
+        "body": "Copper wires inside chips are surrounded by insulating material. Without a barrier layer, copper atoms drift into the insulator over time, creating short circuits. Every copper interconnect in every modern chip is wrapped in a thin diffusion barrier — typically tantalum nitride."
+      },
+      {
+        "heading": "THE RC DELAY WALL",
+        "body": "Shrinking wires increases their resistance (R) while packing them closer raises capacitance (C). Signal delay is proportional to R times C. Below about 3 nm, the barrier layer itself becomes a significant fraction of the wire's cross-section, strangling conductivity. The barrier that protects the wire is now the thing slowing it down."
+      },
+      {
+        "heading": "THE TRICK",
+        "body": "Self-assembly sidesteps lithography's resolution limits. If you can get barrier material to spontaneously organize into the pattern you need — the way Turing's equations produce regular stripes — you skip the hardest part of nanofabrication: placing atoms exactly where you want them."
+      }
+    ],
+    "generatedAt": "2026-04-08T17:21:23.648Z",
+    "label": "Turing Patterns & Chip Scaling",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-08-megafauna-disappearance-stone-tool-revolution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT COUNTS AS MEGAFAUNA",
+        "body": "Megaherbivores are plant-eaters over 1,000 kg — think straight-tusked elephants, giant aurochs, hippos. They were ecosystem engineers: their feeding kept landscapes open, their dung cycled nutrients, their trails became waterways. Losing them restructured entire biomes."
+      },
+      {
+        "heading": "THE ACHEULEAN HANDAXE",
+        "body": "The large bifacial handaxe dominated hominin toolkits for over a million years — the longest-running technology in human history. It was a butchering tool sized for megafauna carcasses. When the carcasses disappeared, so did the tool."
+      },
+      {
+        "heading": "WHY THE LEVANT",
+        "body": "The narrow corridor between Africa and Eurasia funneled every hominin migration through the same landscapes. Its caves preserve layered deposits spanning hundreds of thousands of years, making it the best-documented region on Earth for tracking the co-evolution of humans and their prey."
+      },
+      {
+        "heading": "THE DEBATE",
+        "body": "Ecological pressure theory says necessity drives invention — remove large prey and hominins must develop new strategies for smaller, faster game. The rival view holds that cognitive advances were already underway and prey shifts were a consequence, not a cause. The Levantine data supports the first model but cannot rule out the second."
+      }
+    ],
+    "generatedAt": "2026-04-08T17:21:23.649Z",
+    "label": "Megafauna & the Levantine Record",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-08-quantum-entanglement-measured-solids-first-time": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ENTANGLEMENT IN ONE LINE",
+        "body": "Two particles are entangled when measuring one instantly constrains what you can learn about the other, regardless of distance. This is not communication — no information travels — but it means their quantum states cannot be described independently."
+      },
+      {
+        "heading": "WHY SOLIDS ARE HARD",
+        "body": "In a gas or a trap, you isolate a handful of particles and verify entanglement by measuring correlations. In a solid, billions of particles interact simultaneously. You cannot track individual pairs, and thermal noise drowns subtle quantum correlations."
+      },
+      {
+        "heading": "THE NEUTRON TRICK",
+        "body": "Neutrons are electrically neutral, so they penetrate deep into solids without being deflected by electron clouds. When a neutron scatters off a nucleus, its change in energy and angle encodes information about the quantum state of the material — including correlations between particles the neutron never directly touched."
+      },
+      {
+        "heading": "WHY IT MATTERS",
+        "body": "Many exotic material behaviors — superconductivity, quantum magnetism, topological phases — are believed to arise from entanglement between electrons in a solid. Until now, that belief rested on theory. A direct measurement tool turns entanglement from an inference into an observable."
+      }
+    ],
+    "generatedAt": "2026-04-08T17:21:23.649Z",
+    "label": "Measuring Entanglement",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-08-amazon-kindles-pre-2013-book-downloads-disabled": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "YOU DO NOT OWN IT",
+        "body": "When you buy a physical book, the first-sale doctrine lets you lend, resell, or donate it. When you buy a Kindle book, you purchase a license to access it through Amazon's platform. The license terms let Amazon revoke access, change delivery methods, or discontinue support."
+      },
+      {
+        "heading": "THE SERVER DEPENDENCY",
+        "body": "E-books are encrypted with DRM tied to your account and device. The device must contact Amazon's servers to verify the license before rendering the file. When Amazon decommissions the server endpoint for older devices, the books become inaccessible even though the files may still exist on the device."
+      },
+      {
+        "heading": "THE PATTERN",
+        "body": "This is not unique to Amazon. Google deleted purchased movies from users' libraries when it lost distribution rights. Apple has removed purchased apps. Microsoft shut down its e-book store and refunded customers. Every major platform has demonstrated that digital purchases are conditional."
+      },
+      {
+        "heading": "THE LEGAL GAP",
+        "body": "US copyright law's first-sale doctrine (Section 109) applies to material objects. Courts have consistently held that digital goods are licensed, not sold, placing them outside first-sale protections. The EU has moved slightly further — a 2012 ruling allowed resale of downloaded software — but even there, e-books remain in legal limbo."
+      }
+    ],
+    "generatedAt": "2026-04-08T17:21:23.649Z",
+    "label": "Digital Ownership",
+    "category": "tech",
+    "articleCount": 1
   }
 }

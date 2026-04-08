@@ -2,13 +2,191 @@
   "version": 1,
   "stories": [
     {
+      "id": "uae-kuwait-bahrain-attacks-despite-ceasefire",
+      "label": "UAE, Kuwait, Bahrain report attacks despite Iran-US ceasefire",
+      "firstSeen": "2026-04-08T17:10:29.942Z",
+      "lastCovered": "2026-04-08T17:10:29.942Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-uae-kuwait-bahrain-attacks-despite-ceasefire"
+      ],
+      "eventUri": "deu-2106242",
+      "summary": "Multiple Gulf states reported incoming Iranian missiles and drones hitting their territories hours after the ceasefire was announced. UAE said air defenses were 'actively engaging' incoming fire; desalination plants appear targeted. Lead with the contradiction: ceasefire declared, but Iran is still striking Gulf infrastructure. The reader tracking the war's ripple effects needs to see that the ceasefire is partial at best — Hormuz reopens while Gulf civilian infrastructure is under attack.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Kuwait",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "http://en.wikipedia.org/wiki/Desalination",
+        "http://en.wikipedia.org/wiki/Military",
+        "http://en.wikipedia.org/wiki/Persian_Gulf"
+      ]
+    },
+    {
+      "id": "afghanistan-pakistan-china-deescalation-talks",
+      "label": "Afghanistan, Pakistan agree to avoid escalation during China-hosted talks: Beijing",
+      "firstSeen": "2026-04-08T17:10:29.942Z",
+      "lastCovered": "2026-04-08T17:10:29.942Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-afghanistan-pakistan-china-deescalation-talks"
+      ],
+      "eventUri": "zho-2010163",
+      "summary": "China quietly hosted a week of informal talks in Urumqi between Afghanistan and Pakistan, producing a de-escalation agreement. Lead with China's expanding diplomatic role: while the US is consumed by Iran, Beijing is brokering peace on its western frontier. The reader tracking Pakistan (already under dual pressure from GSP+ threats and fuel rationing) should see Islamabad hedging — accepting Chinese mediation while mediating the US-Iran ceasefire. Two diplomatic tracks, two patrons.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-automakers-eu-truck-regulations-trade-war",
+      "label": "No F-150 in France? US automakers complain the EU blocks big trucks.",
+      "firstSeen": "2026-04-08T17:10:29.942Z",
+      "lastCovered": "2026-04-08T17:10:29.942Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-us-automakers-eu-truck-regulations-trade-war"
+      ],
+      "eventUri": "eng-11550323",
+      "summary": "As US-EU trade negotiations continue, Detroit is pushing to overturn EU vehicle size and safety regulations that effectively ban American pickup trucks from European roads. Lead with the structural asymmetry: the US calls these 'trade barriers,' but the EU regulations exist to protect pedestrians from vehicles that are statistically deadlier to people outside them. The trade war has a body count — vehicle design standards are public health policy disguised as commerce.",
+      "conceptUris": []
+    },
+    {
+      "id": "amazon-kindles-pre-2013-book-downloads-disabled",
+      "label": "Starting in May, pre-2013 Kindles won't be able to buy or download new books",
+      "firstSeen": "2026-04-08T17:10:29.942Z",
+      "lastCovered": "2026-04-08T17:10:29.942Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-amazon-kindles-pre-2013-book-downloads-disabled"
+      ],
+      "eventUri": "eng-11549513",
+      "summary": "Amazon is remotely disabling the ability to purchase or download books on Kindles made before 2013. Devices people own, books they've paid for — Amazon can simply turn off the tap. Lead with the ownership question: you bought the hardware, you bought the books, and a platform update just revoked both. The reader who builds things will recognize the pattern — digital ownership is a fiction enforced by server-side switches.",
+      "conceptUris": []
+    },
+    {
+      "id": "quantum-entanglement-measured-solids-first-time",
+      "label": "Quantum entanglement can be measured in solids for the first time",
+      "firstSeen": "2026-04-08T17:10:29.942Z",
+      "lastCovered": "2026-04-08T17:10:29.942Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-quantum-entanglement-measured-solids-first-time"
+      ],
+      "eventUri": "eng-11543209",
+      "summary": "Researchers have developed the first method to measure quantum entanglement in solid materials, not just isolated particles. Lead with the practical implication: entanglement has been observed in gases and photons for decades, but measuring it in solids opens a path to room-temperature quantum devices. The reader who follows quantum computing threats to Bitcoin should see this as the enabling science — you can't build practical quantum hardware without understanding entanglement in solid-state systems.",
+      "conceptUris": []
+    },
+    {
+      "id": "megafauna-disappearance-stone-tool-revolution",
+      "label": "Disappearing megafauna may have prompted a stone tool revolution",
+      "firstSeen": "2026-04-08T17:10:29.942Z",
+      "lastCovered": "2026-04-08T17:10:29.942Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-megafauna-disappearance-stone-tool-revolution"
+      ],
+      "eventUri": null,
+      "summary": "200,000 years ago, massive herbivores vanished from the Middle East — and the archaeological record shows humans abandoned heavy-duty stone tools for smaller, lighter toolkits at exactly the same time. Lead with the causal chain: the animals that justified big tools disappeared, so humans miniaturized their technology. The reader who thinks about tooling and adaptation will see the parallel — when the environment shifts, the tools must follow.",
+      "conceptUris": []
+    },
+    {
+      "id": "turing-pattern-sub-2nm-copper-interconnect-barrier",
+      "label": "Turing-patterned Ta2S3 enables sub-2 nm diffusion barrier for advanced Cu interconnects",
+      "firstSeen": "2026-04-08T17:10:29.942Z",
+      "lastCovered": "2026-04-08T17:10:29.942Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-turing-pattern-sub-2nm-copper-interconnect-barrier"
+      ],
+      "eventUri": null,
+      "summary": "Researchers used Turing reaction-diffusion patterns — the same math that generates leopard spots — to create a tantalum sulfide barrier just 1.5nm thick for copper chip interconnects. Current barriers are 3-5nm and consume precious transistor real estate. Lead with the Turing pattern connection: biology's pattern-formation math is now solving semiconductor physics. The reader building on these chips should see this as the next node shrink enabler.",
+      "conceptUris": []
+    },
+    {
+      "id": "microsoft-terminates-veracrypt-account-windows-updates",
+      "label": "Microsoft Abruptly Terminates VeraCrypt Account, Halting Windows Updates",
+      "firstSeen": "2026-04-08T17:10:29.942Z",
+      "lastCovered": "2026-04-08T17:10:29.942Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-microsoft-terminates-veracrypt-account-windows-updates"
+      ],
+      "eventUri": null,
+      "summary": "Microsoft terminated VeraCrypt's developer account without warning, breaking the encryption tool's ability to push Windows updates. VeraCrypt is the most widely used open-source full-disk encryption tool — used by journalists, activists, and security professionals worldwide. Lead with the power asymmetry: one platform decision by Microsoft can cripple the primary encryption tool that people use to protect themselves from state surveillance. The reader who encrypts their drives should feel this one directly.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-nudifying-bots-telegram-abuse-ecosystem",
+      "label": "Nudifying bots, deepfakes, and automated archives: how AI powers a monetized abuse ecosystem on Telegram",
+      "firstSeen": "2026-04-08T17:10:29.942Z",
+      "lastCovered": "2026-04-08T17:10:29.942Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-ai-nudifying-bots-telegram-abuse-ecosystem"
+      ],
+      "eventUri": "fra-1293418",
+      "summary": "Researchers analyzed 2.8 million Telegram messages in Italy and Spain documenting how AI nudifying tools have created a monetized ecosystem of non-consensual intimate imagery. Lead with the scale: 2.8 million messages, automated bot pipelines, and a payment infrastructure — this isn't individual abuse, it's industrialized sexual violence powered by AI. The researchers want nudifying tools banned across the EU and Telegram classified as a Very Large Online Platform under the DSA.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Telegram_(messaging_service)",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Rape",
+        "http://en.wikipedia.org/wiki/Instagram",
+        "http://en.wikipedia.org/wiki/Italy",
+        "http://en.wikipedia.org/wiki/Snapchat",
+        "http://en.wikipedia.org/wiki/TikTok",
+        "http://en.wikipedia.org/wiki/Activism"
+      ]
+    },
+    {
+      "id": "meta-muse-spark-ai-model-superintelligence-lab",
+      "label": "Meta Unveils New A.I. Model, Its First From the Superintelligence Lab",
+      "firstSeen": "2026-04-08T17:10:29.942Z",
+      "lastCovered": "2026-04-08T17:10:29.942Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-meta-muse-spark-ai-model-superintelligence-lab"
+      ],
+      "eventUri": "eng-11546000",
+      "summary": "Meta released Muse Spark, its first AI model built under the revamped superintelligence division Zuckerberg spent billions creating. It outperforms Meta's previous models but lags rivals on coding. Lead with the organizational signal: Meta restructured its entire AI division around 'superintelligence' and this is the first output. The reader tracking the AI arms race should assess whether the billions produced a leap or an increment.",
+      "conceptUris": []
+    },
+    {
       "id": "israel-accepts-ceasefire-insists-lebanon-operations-continue",
       "label": "Israel accepts Trump's Iran ceasefire but insists Lebanon operations will continue",
       "firstSeen": "2026-04-08T12:14:42.407Z",
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-israel-accepts-ceasefire-insists-lebanon-operations-continue"
@@ -33,7 +211,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-iran-10-demands-ceasefire-terms-sanctions-nuclear"
@@ -58,7 +236,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-north-korea-ballistic-missiles-two-rounds-seoul"
@@ -74,7 +252,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-white-house-iran-war-funding-80-100-billion-cut"
@@ -90,7 +268,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-swiss-banks-ubs-chf-stablecoin-pilot"
@@ -115,7 +293,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-first-ships-hormuz-strait-ceasefire-reopening"
@@ -140,7 +318,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-south-korea-crypto-withdrawal-delays-fraud"
@@ -156,7 +334,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-parkinsons-striatal-parvalbumin-interneurons-druggable-target"
@@ -172,7 +350,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-sstr2-radiohybrid-theranostic-pet-imaging-beta-therapy"
@@ -188,7 +366,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-greece-bans-under-15-social-media-eu-first"
@@ -213,7 +391,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-russia-gru-fancy-bear-consumer-routers-dns-hijack"
@@ -229,7 +407,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-veracrypt-project-update-open-source-encryption"
@@ -245,7 +423,7 @@
       "lastCovered": "2026-04-08T12:14:42.407Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-quittr-app-security-breach-ignored-warnings-months"
@@ -261,7 +439,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-04-08-china-role-brokering-us-iran-ceasefire",
@@ -289,7 +467,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-hegseth-misleading-trump-iran-war-position"
@@ -305,7 +483,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-nigeria-civil-society-warns-brink-of-collapse"
@@ -321,7 +499,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-shell-trading-profits-soar-iran-war-qatar-gas"
@@ -337,7 +515,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-morgan-stanley-spot-btc-etf-launch"
@@ -353,7 +531,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-iran-hormuz-toll-64-billion-revenue"
@@ -369,7 +547,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-cyclone-maila-cat5-queensland-australia"
@@ -385,7 +563,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-iran-hackers-us-oil-gas-water-fbi-warning"
@@ -401,7 +579,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-smex-rotten-apple-spearphishing-lebanon-civil-society"
@@ -417,7 +595,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-08-india-election-commission-tmc-clash-bengal"
@@ -442,7 +620,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-us-iran-ceasefire-trump-temporary-win-cost"
@@ -464,7 +642,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-israel-continues-strikes-iran-despite-ceasefire"
@@ -486,7 +664,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-iran-missiles-gulf-states-after-ceasefire"
@@ -508,7 +686,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-south-africa-minister-tolashe-defied-ramaphosa"
@@ -528,7 +706,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-bitcoin-surges-72k-oil-crashes-iran-ceasefire"
@@ -549,7 +727,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-cz-reveals-ftx-collapse-trigger-ellison-mistake"
@@ -571,7 +749,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-penpulimab-nasopharyngeal-cancer-china-immunotherapy"
@@ -592,7 +770,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-bmx-inhibition-lung-cancer-chemoresistance-druggable"
@@ -613,7 +791,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-bitcoin-quantum-computing-threat-timeline"
@@ -634,7 +812,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-germany-warns-russian-apt28-fancy-bear-cyber-spying"
@@ -655,7 +833,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-08-openai-gpt2-too-dangerous-2019-retrospective"
@@ -675,7 +853,7 @@
       "lastCovered": "2026-04-08T08:13:39.400Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-07-iran-war-200-billion-cost-arab-countries-un",
@@ -692,7 +870,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-07-trump-civilisation-die-tonight-iran-deadline",
@@ -720,7 +898,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-china-russia-veto-unsc-hormuz-resolution"
@@ -745,7 +923,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-israeli-backed-militia-maghazi-refugee-camp-gaza"
@@ -766,7 +944,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-west-bank-palestinian-travel-ordeal-allenby-bridge"
@@ -786,7 +964,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-us-journalist-kittleson-released-iraq-kataib-hezbollah"
@@ -811,7 +989,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-bill-gates-congress-testimony-epstein-investigation"
@@ -836,7 +1014,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-iea-energy-crisis-iran-war-worse-than-1973-1979-2022"
@@ -861,7 +1039,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-france-fuel-shortages-iran-war-pump"
@@ -886,7 +1064,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-trump-world-liberty-financial-sanctioned-network"
@@ -907,7 +1085,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-anthropic-mythos-project-glasswing-ai-safety"
@@ -932,7 +1110,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-intel-musk-terafab-orbital-datacenter-semiconductor"
@@ -957,7 +1135,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-pakistan-condemns-iran-strikes-saudi-energy"
@@ -982,7 +1160,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-nigeria-opposes-macky-sall-un-secretary-general"
@@ -998,7 +1176,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-bellingcat-satellite-tool-iran-gulf-damage"
@@ -1014,7 +1192,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-sentry-gadalla-libya-kleptocratic-haftar"
@@ -1030,7 +1208,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-defi-yields-crash-below-savings-accounts"
@@ -1046,7 +1224,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-desalination-plants-middle-east-war-vulnerable"
@@ -1062,7 +1240,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-novo-nordisk-high-dose-wegovy-launch"
@@ -1078,7 +1256,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-interpretable-ml-stroke-risk-atrial-fibrillation"
@@ -1094,7 +1272,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-maine-datacenter-moratorium-first-us-state"
@@ -1110,7 +1288,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-datacenter-lobbyists-right-to-repair-rollback"
@@ -1126,253 +1304,13 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-dropping-cloudflare-bunny-net-migration"
       ],
       "eventUri": null,
       "summary": "A developer documents migrating away from Cloudflare to Bunny.net — with 257 HN points and 119 comments, this is resonating with the technical community. The structural angle: Cloudflare's dominance over web infrastructure (CDN, DNS, DDoS protection) creates a single point of failure and a single point of control. As Cloudflare increasingly mediates what's accessible on the internet, developers are asking whether the convenience is worth the concentration. Lead with what specifically drove the switch and what the HN discussion reveals about infrastructure trust.",
-      "conceptUris": []
-    },
-    {
-      "id": "gunfight-israeli-consulate-istanbul-besiktas",
-      "label": "Gunfight erupts near Israeli consulate in Istanbul  --  RT World News",
-      "firstSeen": "2026-04-07T12:08:44.983Z",
-      "lastCovered": "2026-04-07T12:08:44.983Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-gunfight-israeli-consulate-istanbul-besiktas"
-      ],
-      "eventUri": "eng-11547291",
-      "summary": "Armed attack near the Israeli consulate in Istanbul's Besiktas district — three suspects neutralized, two police officers wounded. The timing matters: this happened hours before Trump's Iran deadline expires, in NATO's only Muslim-majority member state. Five sources from five countries (Turkey, UK, Singapore, Russia, UAE) frame it differently — TRT emphasizes Turkish security response, Daily Mail leads with 'terrorist gunman,' RT focuses on geopolitical context. The reader should see the pattern: as the Iran war escalates, Israeli diplomatic facilities worldwide become flashpoints. Lead with the Besiktas location and the timing against the Trump deadline.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Istanbul",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Turkey",
-        "http://en.wikipedia.org/wiki/Consulate",
-        "http://en.wikipedia.org/wiki/Police",
-        "http://en.wikipedia.org/wiki/Terrorism"
-      ]
-    },
-    {
-      "id": "iran-supreme-leader-mojtaba-khamenei-unconscious-qom",
-      "label": "Iran's new Supreme Leader is 'unconscious' and unable to run country",
-      "firstSeen": "2026-04-07T12:08:44.983Z",
-      "lastCovered": "2026-04-07T12:08:44.983Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-iran-supreme-leader-mojtaba-khamenei-unconscious-qom"
-      ],
-      "eventUri": "eng-11543798",
-      "summary": "Mojtaba Khamenei — who inherited supreme leadership after his father — is reportedly unconscious and being treated in Qom, per US-Israeli intelligence. This is a leadership vacuum during active war: Iran is under bombardment, the Hormuz blockade is physically enforced, and the person nominally in charge may be incapacitated. Lead with the timing — a wartime succession crisis compounds every decision from ceasefire negotiations to military command authority. Three sources (UK, India x2) with cautious framing; Hindustan Times fact-checks a viral video claiming to show him at a command center.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ali_Khamenei",
-        "http://en.wikipedia.org/wiki/Qom",
-        "http://en.wikipedia.org/wiki/Supreme_Leader_of_Iran",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Mojtaba_Khamenei",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "manipur-protests-killed-meitei-kuki-ethnic-violence",
-      "label": "2 killed in protests against boy, infant sister's killing in Manipur",
-      "firstSeen": "2026-04-07T12:08:44.983Z",
-      "lastCovered": "2026-04-07T12:08:44.983Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-manipur-protests-killed-meitei-kuki-ethnic-violence"
-      ],
-      "eventUri": "eng-11546401",
-      "summary": "Security forces allegedly fired on protesters in Manipur after a 5-year-old boy and his 6-month-old sister were killed in ethnic violence — the protesters then stormed a CRPF camp. Two more dead. India's northeast has been in a slow-burn ethnic war between Meitei and Kuki communities since 2023, with over 250 killed and 60,000 displaced, but it rarely makes global news. Lead with the children's ages and the cycle: children killed in ethnic violence → protests → security forces kill protesters. Internet shutdowns imposed again.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Manipur",
-        "http://en.wikipedia.org/wiki/Bishnupur_district",
-        "http://en.wikipedia.org/wiki/Kuki_people",
-        "http://en.wikipedia.org/wiki/Imphal"
-      ]
-    },
-    {
-      "id": "taiwan-kmt-china-peace-mission-defense-freeze",
-      "label": "Taiwan opposition chief arrives for China 'peace' mission, president calls for talks",
-      "firstSeen": "2026-04-07T12:08:44.983Z",
-      "lastCovered": "2026-04-07T12:08:44.983Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-taiwan-kmt-china-peace-mission-defense-freeze"
-      ],
-      "eventUri": "eng-11541965",
-      "summary": "KMT chairwoman Cheng Li-wun flew to Beijing for a 'peace mission' while the opposition-dominated parliament blocks $40 billion in defense spending and China escalates military pressure. The structural tension: Taiwan's opposition party is pursuing its own foreign policy with a hostile power while blocking the elected government's ability to defend the island. Lead with the $40B defense freeze — this is what makes the visit more than symbolic. The reader tracking geopolitical fault lines should see the parallel to democratic capture: when a legislature aligned with an external power can veto national defense.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Cheng_Li-wun",
-        "http://en.wikipedia.org/wiki/Republic_of_China_(Taiwan)",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Kuomintang",
-        "http://en.wikipedia.org/wiki/Parliament"
-      ]
-    },
-    {
-      "id": "egypt-ahmed-douma-detained-false-news-prison-criticism",
-      "label": "State security detains Ahmed Douma on 'false news' charges, questioning him on article criticizing prison system",
-      "firstSeen": "2026-04-07T12:08:44.983Z",
-      "lastCovered": "2026-04-07T12:08:44.983Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-egypt-ahmed-douma-detained-false-news-prison-criticism"
-      ],
-      "eventUri": null,
-      "summary": "Ahmed Douma — activist, writer, and former political prisoner who spent a decade in Egyptian jails — was detained again by State Security Prosecution for criticizing the prison system. The charge: 'publishing false statements with the aim of disturbing public peace.' Lead with the circularity: a man imprisoned for a decade writes about what he saw inside, and is imprisoned again for writing about it. This is Mada Masr's own reporting from inside Egypt's security apparatus — the kind of story that only exists because independent Egyptian journalism still exists, barely.",
-      "conceptUris": []
-    },
-    {
-      "id": "ackman-universal-music-64-billion-delisting",
-      "label": "Bill Ackman's Fund Offers to Buy Universal Music in $64 Billion Deal",
-      "firstSeen": "2026-04-07T12:08:44.983Z",
-      "lastCovered": "2026-04-07T12:08:44.983Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-ackman-universal-music-64-billion-delisting"
-      ],
-      "eventUri": "eng-11546865",
-      "summary": "Bill Ackman's Pershing Square offered a 78% premium to take Universal Music Group private and move its listing from Amsterdam to the US — a $64 billion bet that owning the catalogs of Taylor Swift, Kendrick Lamar, and Bad Bunny is worth more than the entire European music market values them. Lead with the premium size and the delisting: this is capital flight from European markets to US ones, wrapped in a music industry play. The reader tracking power consolidation should see the pattern: activist investors are buying cultural infrastructure the way they bought media companies a decade ago.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Universal_Music_Group",
-        "http://en.wikipedia.org/wiki/Bill_Ackman",
-        "http://en.wikipedia.org/wiki/Taylor_Swift",
-        "http://en.wikipedia.org/wiki/Shareholder",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Record_label"
-      ]
-    },
-    {
-      "id": "adb-pakistan-solar-battery-storage-war-energy",
-      "label": "ADB to support Pakistan's solar transition, power sector reforms",
-      "firstSeen": "2026-04-07T12:08:44.983Z",
-      "lastCovered": "2026-04-07T12:08:44.983Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-adb-pakistan-solar-battery-storage-war-energy"
-      ],
-      "eventUri": null,
-      "summary": "The Asian Development Bank is backing Pakistan's pivot from imported fossil fuels to solar+battery storage — at exactly the moment the Iran war has made fuel imports existentially risky. Pakistan is rationing fuel via smartphone apps for 240 million people; this ADB commitment signals that the energy transition is no longer just climate policy, it's wartime survival infrastructure. Lead with the war context: the Hormuz closure turned Pakistan's energy dependence from a policy problem into a crisis, and ADB is responding with solar/battery money. The reader tracking Pakistan's dual pressure should see this as the structural response.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Asian_Development_Bank",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Energy_storage",
-        "http://en.wikipedia.org/wiki/Battery_storage_power_station"
-      ]
-    },
-    {
-      "id": "virtual-cell-ai-mechanistic-models-synthetic-biology",
-      "label": "Minimal life by computer - Nature Biotechnology",
-      "firstSeen": "2026-04-07T12:08:44.983Z",
-      "lastCovered": "2026-04-07T12:08:44.983Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-virtual-cell-ai-mechanistic-models-synthetic-biology"
-      ],
-      "eventUri": null,
-      "summary": "Nature Biotechnology reports on the quest to build a 'virtual cell' — a computational model that reproduces living behavior from molecular dynamics up. The key tension: AI can find patterns in biological data but can't explain causation, while mechanistic models can explain causation but can't scale. Uniting both is the path to simulating life. Lead with the ambition: decades of work toward simulating a complete living cell, and the realization that neither AI nor traditional biology can do it alone. The reader who builds software should recognize the architecture problem — it's the biology equivalent of needing both ML and deterministic logic.",
-      "conceptUris": []
-    },
-    {
-      "id": "fgfr1-ovarian-cancer-sirt3-lactylation-druggable",
-      "label": "FGFR1 suppresses ovarian cancer progression by modulating SIRT3-dependent lactylation and metabolic reprogramming - Cell Death Discovery",
-      "firstSeen": "2026-04-07T12:08:44.983Z",
-      "lastCovered": "2026-04-07T12:08:44.983Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-fgfr1-ovarian-cancer-sirt3-lactylation-druggable"
-      ],
-      "eventUri": null,
-      "summary": "A Nature study identifies FGFR1 as a tumor suppressor in ovarian cancer that works through an unexpected mechanism: it regulates SIRT3-dependent lactylation, a form of protein modification driven by lactate (the metabolic byproduct cancer cells overproduce). The druggable insight: SIRT3 activators could potentially slow ovarian cancer progression by restoring the metabolic brake that tumors disable. Lead with the mechanism inversion — a growth factor receptor that suppresses rather than promotes cancer — and the therapeutic implication for a cancer with poor survival rates.",
-      "conceptUris": []
-    },
-    {
-      "id": "russia-china-chang-e-7-lunar-dust-space-partnership",
-      "label": "Russian-made device for analyzing Lunar dust arrives in China ahead of space mission",
-      "firstSeen": "2026-04-07T12:08:44.983Z",
-      "lastCovered": "2026-04-07T12:08:44.983Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-russia-china-chang-e-7-lunar-dust-space-partnership"
-      ],
-      "eventUri": null,
-      "summary": "Russia delivered a lunar dust monitoring device to China for the Chang'e-7 mission launching next fall — part of a growing Russia-China space partnership that now includes shared instruments and a planned 2028-2029 joint mission. Lead with the geopolitical dimension: while the US-led Artemis program faces delays, Russia and China are building an alternative lunar infrastructure with shared instrumentation. The reader tracking geopolitical bifurcation should see space as the next domain where the US-led order and China-Russia axis are building parallel systems.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russian_language",
-        "http://en.wikipedia.org/wiki/Spaceflight",
-        "http://en.wikipedia.org/wiki/Plasma_(physics)"
-      ]
-    },
-    {
-      "id": "bitcoin-software-stocks-correlation-collapse-iran-war",
-      "label": "Bitcoin up, software stocks down since the war began",
-      "firstSeen": "2026-04-07T12:08:44.983Z",
-      "lastCovered": "2026-04-07T12:08:44.983Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-bitcoin-software-stocks-correlation-collapse-iran-war"
-      ],
-      "eventUri": null,
-      "summary": "Bitcoin and software stocks were nearly perfectly correlated (0.97) before the Iran war. Since Feb 28, correlation collapsed to 0.13 — Bitcoin rose as a war hedge while software equities fell on energy cost fears and supply chain disruption. Lead with the correlation collapse: the number tells the story. War broke the assumption that crypto and tech move together. The reader who watches both markets should see the structural divergence: Bitcoin benefits from dollar uncertainty and energy disruption (miners aside), while software companies eat the costs.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bitcoin",
-        "http://en.wikipedia.org/wiki/Exchange-traded_fund",
-        "http://en.wikipedia.org/wiki/Software",
-        "http://en.wikipedia.org/wiki/Stock"
-      ]
-    },
-    {
-      "id": "every-gpu-that-mattered-data-visualization",
-      "label": "Every GPU That Mattered",
-      "firstSeen": "2026-04-07T12:08:44.983Z",
-      "lastCovered": "2026-04-07T12:08:44.983Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-every-gpu-that-mattered-data-visualization"
-      ],
-      "eventUri": null,
-      "summary": "A comprehensive data visualization mapping every GPU that shaped computing — from early 3D accelerators through the AI training revolution. 124 points and 64 comments on HN signals strong reader resonance. Lead with the arc: GPUs went from rendering Quake to training the models that may replace programmers, and this visualization shows every inflection point. The reader who builds on these chips daily will see their own career timeline in the chart.",
       "conceptUris": []
     }
   ]
