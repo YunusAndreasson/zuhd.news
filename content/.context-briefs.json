@@ -4093,5 +4093,125 @@
     "label": "Semiconductor Fabrication",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-08-bitcoin-quantum-computing-threat-timeline": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT BITCOIN ACTUALLY USES",
+        "body": "Bitcoin relies on two cryptographic primitives: SHA-256 for mining and ECDSA (Elliptic Curve Digital Signature Algorithm) for signing transactions. Only ECDSA is threatened by quantum computers. Mining is safe."
+      },
+      {
+        "heading": "WHY ECDSA BREAKS",
+        "body": "ECDSA security rests on the discrete logarithm problem: given a point on an elliptic curve, find the scalar that produced it. Classical computers cannot solve this in useful time. Shor's algorithm (1994) can — it reduces the problem to polynomial time on a sufficiently large quantum machine."
+      },
+      {
+        "heading": "THE KEY EXPOSURE WINDOW",
+        "body": "Your public key is only revealed when you spend from an address. Unspent addresses show only a hash of the public key, which quantum computers cannot reverse. The danger is the window between broadcasting a transaction and its confirmation — an attacker with a quantum computer could extract your private key from the public key in that interval."
+      },
+      {
+        "heading": "HOW MANY QUBITS",
+        "body": "Breaking 256-bit ECDSA requires roughly 2,500 error-corrected logical qubits. Current machines have fewer than 1,500 noisy physical qubits. The gap between physical and logical qubits is enormous — each logical qubit needs thousands of physical ones for error correction."
+      },
+      {
+        "heading": "THE MIGRATION PROBLEM",
+        "body": "Post-quantum signature schemes exist (NIST standardized three in 2024), but their signatures are 10-50x larger than ECDSA's. Bitcoin blocks are capped at 4MB. Migrating means either accepting far fewer transactions per block or redesigning the block structure — a political problem as much as a technical one."
+      },
+      {
+        "heading": "SATOSHI'S COINS",
+        "body": "Roughly 1.1 million early Bitcoin used pay-to-public-key (P2PK), which permanently exposes the public key. These coins — including Satoshi's — cannot be protected by moving to a new address. They are quantum-vulnerable by design, and no one holds the keys to move them preemptively."
+      }
+    ],
+    "generatedAt": "2026-04-08T04:29:34.510Z",
+    "label": "ECDSA and Quantum Risk",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-08-germany-warns-russian-apt28-fancy-bear-cyber-spying": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT APT MEANS",
+        "body": "Advanced Persistent Threat is a classification, not a technology. It describes a threat actor with state-level resources, long-term objectives, and the patience to maintain access for months or years rather than smash-and-grab."
+      },
+      {
+        "heading": "GRU UNIT 26165",
+        "body": "Fancy Bear is the industry name for GRU Military Unit 26165, part of Russia's military intelligence directorate. Unlike the SVR (foreign intelligence) or FSB (domestic security), the GRU is military — its cyber operations tend to be more aggressive and less concerned with staying hidden."
+      },
+      {
+        "heading": "THE TWO BEARS",
+        "body": "Russia operates at least two major cyber units that are often confused. Fancy Bear (GRU) is military and aggressive — DNC hack, Olympic doping leaks, NotPetya. Cozy Bear (SVR) is intelligence-focused and stealthier — SolarWinds. Different chains of command, different tradecraft, occasionally competing for the same targets."
+      },
+      {
+        "heading": "THE PLAYBOOK",
+        "body": "APT28's signature technique is credential phishing through near-perfect login page replicas, combined with zero-day exploits for initial access. Once inside, they use legitimate system administration tools already present on the target network — a technique called living off the land — making detection extremely difficult."
+      },
+      {
+        "heading": "WHY GERMANY SPECIFICALLY",
+        "body": "Germany hosts the largest concentration of NATO military infrastructure in continental Europe, including Ramstein Air Base (US drone operations command) and EUCOM forward headquarters. Its political parties, defense contractors, and research institutions are persistent GRU targets — not because of what Germany says publicly, but because of what its networks carry."
+      }
+    ],
+    "generatedAt": "2026-04-08T04:29:34.512Z",
+    "label": "State Cyber Espionage Units",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-08-bmx-inhibition-lung-cancer-chemoresistance-druggable": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX OF CHEMO",
+        "body": "Chemotherapy often works brilliantly at first, then stops. The initial response kills 99% of tumor cells, but the surviving 1% are not random — they carry mutations or activate pathways that neutralize the drug. Treatment itself selects for resistance."
+      },
+      {
+        "heading": "SMALL-CELL LUNG CANCER",
+        "body": "SCLC is the most aggressive common lung cancer — it doubles in weeks, responds dramatically to initial chemo, then rebounds within months. The five-year survival rate is around 7%. It is almost exclusively caused by smoking, and its biology is dominated by the loss of two tumor suppressors: p53 and Rb."
+      },
+      {
+        "heading": "WHAT E2F1 DOES",
+        "body": "E2F1 is a transcription factor that controls whether a cell divides. Normally, the Rb protein keeps E2F1 locked down. When Rb is lost — as in virtually all SCLC — E2F1 runs unchecked, driving both proliferation and, paradoxically, survival pathways that protect the cell from chemotherapy damage."
+      },
+      {
+        "heading": "THE KINASE CASCADE",
+        "body": "BMX is a tyrosine kinase — an enzyme that activates other proteins by attaching phosphate groups. In resistant SCLC cells, BMX phosphorylates and stabilizes proteins in the survival cascade, essentially telling the cell to ignore the damage signals that chemo relies on to trigger cell death."
+      },
+      {
+        "heading": "WHY 'DRUGGABLE' MATTERS",
+        "body": "Most cancer targets are transcription factors or protein-protein interactions — biochemically difficult to block with small molecules. Kinases like BMX have a well-defined ATP-binding pocket that small molecules can occupy. This is why kinase inhibitors are the largest class of targeted cancer drugs: the lock already has a keyhole."
+      }
+    ],
+    "generatedAt": "2026-04-08T04:29:34.512Z",
+    "label": "How Cancer Resists Chemotherapy",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-08-penpulimab-nasopharyngeal-cancer-china-immunotherapy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VIRUS CONNECTION",
+        "body": "Nasopharyngeal carcinoma is one of the clearest examples of virus-caused cancer. Epstein-Barr virus infects over 90% of humans, usually harmlessly. But in combination with genetic susceptibility and environmental factors (salted fish, wood dust), it transforms epithelial cells in the nasopharynx. The cancer is rare globally but endemic in southern China and Southeast Asia."
+      },
+      {
+        "heading": "WHY EBV MAKES IT IMMUNOTHERAPY-FRIENDLY",
+        "body": "Virus-driven cancers carry foreign viral proteins on their cell surfaces — molecular flags the immune system can recognize. This makes them inherently more visible to T cells than cancers driven purely by random mutations. It also makes them unusually responsive to checkpoint inhibitors that unleash the immune system."
+      },
+      {
+        "heading": "WHAT PD-1 ACTUALLY IS",
+        "body": "PD-1 is an off-switch on T cells. When a T cell detects a target, PD-1 checks for a matching PD-L1 signal — if present, the T cell stands down. This prevents autoimmune damage in healthy tissue. Tumors hijack this system by expressing PD-L1, essentially holding up a fake badge that tells attacking T cells to back off."
+      },
+      {
+        "heading": "THE CHECKPOINT INSIGHT",
+        "body": "The 2018 Nobel Prize in Medicine went to Tasuku Honjo and James Allison for discovering that blocking these off-switches releases the immune system to attack cancer. The drugs do not target the tumor at all — they target the patient's own immune cells, removing the brakes."
+      },
+      {
+        "heading": "WHY CHINA LEADS HERE",
+        "body": "Nasopharyngeal carcinoma is 20-30 times more common in southern China than in Western countries. Chinese institutions can recruit large clinical trials that would take decades elsewhere. This geographic concentration of disease has made China the global center for NPC research and the first to develop targeted therapies for it."
+      }
+    ],
+    "generatedAt": "2026-04-08T04:29:34.513Z",
+    "label": "Virus-Driven Cancer and Checkpoint Therapy",
+    "category": "science",
+    "articleCount": 1
   }
 }
