@@ -4,20 +4,12 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback } from 'react';
-import { ActivityIndicator, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { FullWindowOverlay } from 'react-native-screens';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { ContextBrief, TimelineEntry } from '../types';
 import { SheetHandle } from './SheetHandle';
-
-function SheetContainer({ children }: { children?: React.ReactNode }) {
-  return <FullWindowOverlay>{children}</FullWindowOverlay>;
-}
-
-function useMaxSheetHeight() {
-  return useWindowDimensions().height * LAYOUT.sheetMaxFraction;
-}
+import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
 
 interface ContextSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;

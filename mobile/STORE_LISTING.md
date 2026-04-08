@@ -34,7 +34,7 @@ News (primary)
 Everyone / 4+
 
 ## Privacy Policy URL
-https://zuhd.news/about
+https://zuhd.news/privacy
 
 ## Screenshots Needed
 - iPhone 6.7" (1290×2796) — iPhone 15 Pro Max

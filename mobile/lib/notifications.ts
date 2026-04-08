@@ -114,7 +114,18 @@ export async function registerPushToken(): Promise<void> {
       body: JSON.stringify({ token }),
     });
     await setItemAsync(TOKEN_KEY, token);
-  } catch {}
+  } catch (e) {
+    console.warn('Push token registration failed:', e);
+  }
+}
+
+/** Get stored push token (for debugging). */
+export async function getStoredPushToken(): Promise<string | null> {
+  try {
+    return await getItemAsync(TOKEN_KEY);
+  } catch {
+    return null;
+  }
 }
 
 /** Unregister push token from the backend. */

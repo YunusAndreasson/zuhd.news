@@ -75,8 +75,6 @@ const prefsPromise = getPreferences();
 // Provider
 // ---------------------------------------------------------------------------
 
-export { ThemeContext };
-
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const initialPrefs = use(prefsPromise);
   const [prefs, setPrefs] = useState<Preferences>(() => {

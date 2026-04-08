@@ -2,6 +2,7 @@ import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import * as Notifications from 'expo-notifications';
 import { useFonts } from 'expo-font';
 import { Slot } from 'expo-router';
+import * as SecureStore from 'expo-secure-store';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { Suspense, useEffect } from 'react';
@@ -11,7 +12,9 @@ import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-rean
 import { DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
+import { enableNotifications, registerPushToken } from '../lib/notifications';
 import { set as setPendingSlug } from '../lib/pending-notification';
+import { getPreferences, savePreferences } from '../lib/storage';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
 
@@ -53,6 +56,25 @@ export default function RootLayout() {
       const slug = response.notification.request.content.data?.slug;
       if (typeof slug === 'string') setPendingSlug(slug);
     });
+
+    // Prompt notification permission on first launch so reviewers see native dialog
+    const ASKED_KEY = 'zuhd_notif_asked';
+    (async () => {
+      try {
+        const asked = await SecureStore.getItemAsync(ASKED_KEY);
+        if (asked) return;
+        await SecureStore.setItemAsync(ASKED_KEY, '1');
+        // Small delay so the app is visible before the dialog appears
+        await new Promise((r) => setTimeout(r, 1500));
+        const granted = await enableNotifications();
+        if (granted) {
+          registerPushToken();
+          const prefs = await getPreferences();
+          await savePreferences({ ...prefs, notifications: true });
+        }
+      } catch {}
+    })();
+
     return () => sub.remove();
   }, []);
 

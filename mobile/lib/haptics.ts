@@ -7,34 +7,27 @@ export function setHapticsEnabled(v: boolean) {
   enabled = v;
 }
 
+function fire(android: Haptics.AndroidHaptics, ios: () => Promise<void>) {
+  if (!enabled) return;
+  (Platform.OS === 'android'
+    ? Haptics.performAndroidHapticsAsync(android)
+    : ios()
+  ).catch(() => {});
+}
+
 /** Softest — high-frequency: article swipe, category swipe */
 export function hapticTick() {
-  if (!enabled) return;
-  if (Platform.OS === 'android') {
-    Haptics.performAndroidHapticsAsync(Haptics.AndroidHaptics.Segment_Frequent_Tick).catch(
-      () => {},
-    );
-  } else {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft).catch(() => {});
-  }
+  fire(Haptics.AndroidHaptics.Segment_Frequent_Tick, () =>
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft));
 }
 
 /** Medium — deliberate taps: buttons, sheet openers, globe taps */
 export function hapticImpact() {
-  if (!enabled) return;
-  if (Platform.OS === 'android') {
-    Haptics.performAndroidHapticsAsync(Haptics.AndroidHaptics.Clock_Tick).catch(() => {});
-  } else {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
-  }
+  fire(Haptics.AndroidHaptics.Clock_Tick, () =>
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light));
 }
 
 /** Firmest — milestones: caught up, end of list, refresh */
 export function hapticNotification(type = Haptics.NotificationFeedbackType.Success) {
-  if (!enabled) return;
-  if (Platform.OS === 'android') {
-    Haptics.performAndroidHapticsAsync(Haptics.AndroidHaptics.Confirm).catch(() => {});
-  } else {
-    Haptics.notificationAsync(type).catch(() => {});
-  }
+  fire(Haptics.AndroidHaptics.Confirm, () => Haptics.notificationAsync(type));
 }

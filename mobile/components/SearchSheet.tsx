@@ -7,16 +7,12 @@ import {
 import { memo, useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, StyleSheet, Text, View } from 'react-native';
 import type { TextInput } from 'react-native-gesture-handler';
-import { FullWindowOverlay } from 'react-native-screens';
 import { CATEGORIES, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { Article, Category } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { SheetHandle } from './SheetHandle';
-
-function SheetContainer({ children }: { children?: React.ReactNode }) {
-  return <FullWindowOverlay>{children}</FullWindowOverlay>;
-}
+import { SheetContainer } from './SheetPrimitives';
 
 interface SearchResult extends Article {
   category: Category;

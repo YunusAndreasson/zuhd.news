@@ -4,7 +4,7 @@ import { API_BASE } from '../constants/theme';
 import { readFeedCache, writeFeedCache } from '../lib/feed-cache';
 import { fetchWithTimeout } from '../lib/fetch';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
-import { indexArticlesForSpotlight } from '../lib/spotlight';
+
 import type { Article, Category, FeedResponse, MetaResponse } from '../types';
 
 type GroupedArticles = Record<Category, Article[]>;
@@ -58,7 +58,7 @@ export function useArticles() {
     prevSlugsRef.current = newSlugs;
     setGrouped(newGrouped);
     setError(null);
-    indexArticlesForSpotlight(newGrouped);
+
     return addedCount;
   }, []);
 

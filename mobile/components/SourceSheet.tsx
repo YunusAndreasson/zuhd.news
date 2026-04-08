@@ -5,21 +5,13 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useState } from 'react';
-import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { FullWindowOverlay } from 'react-native-screens';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SOURCES } from '../constants/sources';
 import { EDITORIAL, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { ArticleSource } from '../types';
 import { SheetHandle } from './SheetHandle';
-
-function SheetContainer({ children }: { children?: React.ReactNode }) {
-  return <FullWindowOverlay>{children}</FullWindowOverlay>;
-}
-
-function useMaxSheetHeight() {
-  return useWindowDimensions().height * LAYOUT.sheetMaxFraction;
-}
+import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
 
 function ccToFlag(cc: string): string {
   return cc

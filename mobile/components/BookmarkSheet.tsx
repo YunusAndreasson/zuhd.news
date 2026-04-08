@@ -5,7 +5,6 @@ import {
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useSyncExternalStore } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { FullWindowOverlay } from 'react-native-screens';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { type Bookmark, getSnapshot, subscribe, toggle } from '../lib/bookmark-store';
@@ -13,10 +12,7 @@ import { hapticNotification } from '../lib/haptics';
 import type { Category } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { SheetHandle } from './SheetHandle';
-
-function SheetContainer({ children }: { children?: React.ReactNode }) {
-  return <FullWindowOverlay>{children}</FullWindowOverlay>;
-}
+import { SheetContainer } from './SheetPrimitives';
 
 interface BookmarkSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;

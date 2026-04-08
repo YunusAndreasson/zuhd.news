@@ -14,9 +14,9 @@ export async function saveLastSeenAt(ts: number): Promise<void> {
 }
 
 export async function getPreferences(): Promise<Preferences> {
-  const v = await SecureStore.getItemAsync(PREFS_KEY);
-  if (!v) return DEFAULT_PREFS;
   try {
+    const v = await SecureStore.getItemAsync(PREFS_KEY);
+    if (!v) return DEFAULT_PREFS;
     return { ...DEFAULT_PREFS, ...JSON.parse(v) };
   } catch {
     return DEFAULT_PREFS;

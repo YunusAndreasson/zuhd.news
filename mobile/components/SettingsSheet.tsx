@@ -7,27 +7,18 @@ import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
 import * as WebBrowser from 'expo-web-browser';
 import { memo, useCallback } from 'react';
-import { Linking, Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { FullWindowOverlay } from 'react-native-screens';
+import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import {
   type AppearanceMode,
   type FontFamily,
   type FontSize,
-  LAYOUT,
   PRESSED_STYLE,
   SPACING,
 } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { hapticTick } from '../lib/haptics';
 import { SheetHandle } from './SheetHandle';
-
-function SheetContainer({ children }: { children?: React.ReactNode }) {
-  return <FullWindowOverlay>{children}</FullWindowOverlay>;
-}
-
-function useMaxSheetHeight() {
-  return useWindowDimensions().height * LAYOUT.sheetMaxFraction;
-}
+import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
 
 // ---------------------------------------------------------------------------
 // Option row — plain text selectors, zuhd-style
@@ -106,12 +97,7 @@ const FONT_FAMILY_OPTIONS: { value: FontFamily; label: string }[] = [
   { value: 'system', label: 'system' },
 ];
 
-const HAPTICS_OPTIONS: { value: 'on' | 'off'; label: string }[] = [
-  { value: 'on', label: 'on' },
-  { value: 'off', label: 'off' },
-];
-
-const NOTIFICATION_OPTIONS: { value: 'on' | 'off'; label: string }[] = [
+const ON_OFF_OPTIONS: { value: 'on' | 'off'; label: string }[] = [
   { value: 'on', label: 'on' },
   { value: 'off', label: 'off' },
 ];
@@ -220,7 +206,7 @@ export const SettingsSheet = memo(function SettingsSheet({
         <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>haptics</Text>
         <View style={styles.sectionBody}>
           <OptionRow
-            options={HAPTICS_OPTIONS}
+            options={ON_OFF_OPTIONS}
             selected={preferences.haptics ? 'on' : 'off'}
             onSelect={(v) => setHaptics(v === 'on')}
             textColor={colors.text}
@@ -233,10 +219,10 @@ export const SettingsSheet = memo(function SettingsSheet({
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
         {/* Daily briefing notification */}
-        <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>daily briefing</Text>
+        <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>notifications</Text>
         <View style={styles.sectionBody}>
           <OptionRow
-            options={NOTIFICATION_OPTIONS}
+            options={ON_OFF_OPTIONS}
             selected={preferences.notifications ? 'on' : 'off'}
             onSelect={(v) => setNotifications(v === 'on')}
             textColor={colors.text}

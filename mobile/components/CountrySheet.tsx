@@ -4,20 +4,12 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback } from 'react';
-import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import { FullWindowOverlay } from 'react-native-screens';
+import { StyleSheet, Text, View } from 'react-native';
 import { LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { TapResult } from './globe/MiniGlobe';
 import { SheetHandle } from './SheetHandle';
-
-function SheetContainer({ children }: { children?: React.ReactNode }) {
-  return <FullWindowOverlay>{children}</FullWindowOverlay>;
-}
-
-function useMaxSheetHeight() {
-  return useWindowDimensions().height * LAYOUT.sheetMaxFraction;
-}
+import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
 
 function KeyStat({ label, value }: { label: string; value: string | null | undefined }) {
   const { colors, font, typography, textStyles } = useTheme();

@@ -48,7 +48,7 @@ export const BriefingBar = memo(function BriefingBar({
   const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
   const barWidth = useRef(0);
-  const expanded = playing || elapsed > 0;
+  const expanded = playing;
 
   const onBarLayout = useCallback((e: LayoutChangeEvent) => {
     barWidth.current = e.nativeEvent.layout.width;
