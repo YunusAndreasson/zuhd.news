@@ -482,7 +482,7 @@ const homepage = buildHomepage(sorted, cutoff, homepageTemplate)
 writeFileSync(join(DIST_DIR, 'index.html'), homepage)
 console.log(`  Built: index.html (${articles.length} articles)`)
 
-for (const page of ['about', 'sources', 'privacy']) {
+for (const page of ['about', 'contact', 'sources', 'privacy', 'support', 'mcp']) {
   const pagePath = join(ROOT, 'content', `${page}.md`)
   if (!existsSync(pagePath)) continue
   const body = readFileSync(pagePath, 'utf-8')
