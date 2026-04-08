@@ -4213,5 +4213,113 @@
     "label": "Virus-Driven Cancer and Checkpoint Therapy",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-08-iran-hormuz-toll-64-billion-revenue": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Hormuz is 21 nautical miles wide at its narrowest, but the shipping lanes are just 2 miles each way with a 2-mile buffer. Every tanker follows the same corridor — there is no alternative route."
+      },
+      {
+        "heading": "THE VOLUME",
+        "body": "Roughly 21 million barrels of oil pass through daily — about 21% of global consumption. No other single point of failure in the world economy moves this much value this predictably."
+      },
+      {
+        "heading": "WHY THERE'S NO BYPASS",
+        "body": "Saudi Arabia built the East-West Pipeline (5 million bbl/day capacity) partly as a Hormuz hedge. The UAE built the Habshan-Fujairah pipeline for the same reason. Combined, they could replace less than half the strait's throughput. Everyone else — Iraq, Kuwait, Qatar — has no alternative."
+      },
+      {
+        "heading": "THE LEGAL QUESTION",
+        "body": "Under UNCLOS (1982), straits used for international navigation carry a right of 'transit passage' that the bordering state cannot suspend — even in wartime. Iran ratified UNCLOS but has periodically claimed sovereign control over the strait. The tension between treaty law and physical control has never been fully tested."
+      },
+      {
+        "heading": "THE INSURANCE SIGNAL",
+        "body": "War risk premiums on tanker insurance through Hormuz are the market's real-time fear gauge. When premiums spike, shippers reroute or pause — and oil prices move before a single shot is fired."
+      }
+    ],
+    "generatedAt": "2026-04-08T08:25:21.432Z",
+    "label": "The Strait of Hormuz",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-08-iran-hackers-us-oil-gas-water-fbi-warning": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARCHITECTURE PROBLEM",
+        "body": "Power grids, water treatment plants, and pipelines run on industrial control systems (ICS) designed in the 1970s-90s for isolated networks. They use protocols like Modbus and DNP3 that have zero authentication — any device on the network can send commands. They were never meant to touch the internet."
+      },
+      {
+        "heading": "HOW THEY GOT CONNECTED",
+        "body": "In the 2000s, operators connected ICS networks to corporate IT for remote monitoring and cost savings. The air gap disappeared, but the protocols stayed the same. Now internet-facing systems speak to controllers that trust every instruction they receive."
+      },
+      {
+        "heading": "WHY PATCHING IS HARD",
+        "body": "A water treatment PLC might run continuously for years. Rebooting it to apply a patch means shutting down water service. Many ICS devices run obsolete operating systems because the vendor no longer exists. Operators choose known vulnerability over unknown downtime."
+      },
+      {
+        "heading": "THE STUXNET LESSON",
+        "body": "Stuxnet (discovered 2010) proved nation-states could destroy physical equipment through code — it burned out Iranian centrifuges by subtly altering motor speeds while showing normal readings on the operator's screen. Every ICS-targeting operation since has borrowed from its playbook."
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Attacking ICS requires patience but not sophistication. The FBI has documented cases where actors used default passwords on internet-exposed HMIs (human-machine interfaces) to manipulate water treatment chemicals. The barrier is reconnaissance, not capability."
+      }
+    ],
+    "generatedAt": "2026-04-08T08:25:21.433Z",
+    "label": "Industrial Control System Hacking",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-08-morgan-stanley-spot-btc-etf-launch": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "A spot ETF holds the actual asset — in this case bitcoin — in custody. When demand rises, 'authorized participants' (large banks) deliver bitcoin to the fund and receive new shares. When demand falls, they return shares and get bitcoin back. This creation-redemption loop keeps the share price pinned to the asset."
+      },
+      {
+        "heading": "WHY 'SPOT' MATTERS",
+        "body": "Bitcoin futures ETFs existed since 2021, but futures contracts roll monthly, creating drag — the fund constantly sells expiring contracts and buys new ones at different prices. Spot ETFs avoid this. The difference in annual cost can exceed 5-10%."
+      },
+      {
+        "heading": "THE CUSTODY QUESTION",
+        "body": "Whoever holds the private keys holds the bitcoin. Spot ETFs depend on qualified custodians (typically Coinbase Custody) storing keys in air-gapped, geographically distributed hardware. A single custodian failure would be catastrophic — this is a concentration risk the stock market has never carried before."
+      },
+      {
+        "heading": "THE WALL STREET PIPELINE",
+        "body": "Most wealth advisors, pension funds, and retirement accounts cannot buy bitcoin directly — their compliance frameworks only allow regulated securities. A spot ETF converts bitcoin into a ticker symbol on NYSE Arca, unlocking trillions in institutional capital that was structurally locked out."
+      }
+    ],
+    "generatedAt": "2026-04-08T08:25:21.433Z",
+    "label": "How a Spot ETF Works",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-08-shell-trading-profits-soar-iran-war-qatar-gas": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUSINESS",
+        "body": "Shell's trading arm doesn't just sell Shell's own oil and gas. It buys and sells third-party cargoes globally — acting more like a hedge fund than an oil company. The trading division is often more profitable than upstream production."
+      },
+      {
+        "heading": "WHY WAR IS PROFITABLE",
+        "body": "Commodity traders profit from volatility, not direction. When war disrupts supply routes, price spreads widen between regions, delivery dates, and fuel grades. A trader who can move a cargo from where it's cheap to where it's expensive captures the spread — and war makes spreads enormous."
+      },
+      {
+        "heading": "THE LNG ADVANTAGE",
+        "body": "Unlike oil, LNG tankers can be redirected mid-voyage to whichever port is paying the highest price. During supply shocks, the same cargo might be worth $8/MMBtu in Asia and $15/MMBtu in Europe. Companies with large LNG fleets and destination-flexible contracts print money during crises."
+      },
+      {
+        "heading": "THE INFORMATION EDGE",
+        "body": "Major commodity traders operate their own shipping fleets, run refinery operations, and have offices in producing countries. This gives them real-time physical intelligence — which port is congested, which pipeline is down, which refinery needs feedstock — that pure financial traders cannot match."
+      }
+    ],
+    "generatedAt": "2026-04-08T08:25:21.433Z",
+    "label": "Commodity Trading in Conflict",
+    "category": "economy",
+    "articleCount": 1
   }
 }

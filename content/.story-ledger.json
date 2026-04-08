@@ -2,13 +2,194 @@
   "version": 1,
   "stories": [
     {
+      "id": "china-role-brokering-us-iran-ceasefire",
+      "label": "The China Role In US-Iran Ceasefire",
+      "firstSeen": "2026-04-08T04:12:45.670Z",
+      "lastCovered": "2026-04-08T08:13:39.400Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-04-08-china-role-brokering-us-iran-ceasefire",
+        "2026-04-08-pakistan-quiet-mediation-us-iran-ceasefire"
+      ],
+      "eventUri": "eng-11543381",
+      "summary": "China likely brokered the ceasefire by urging Tehran to negotiate through intermediaries. Trump is due to visit Beijing in May to meet Xi Jinping. The angle: after vetoing the Bahraini UNSC resolution just yesterday, China shifted from blocking Western frameworks to offering its own — and it worked. The reader should see this as Beijing's play for mediator status in the post-Hormuz order, following the Saudi-Iran deal model. Lead with the veto-to-mediation pivot and the May summit leverage.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Islamabad"
+      ]
+    },
+    {
+      "id": "hegseth-misleading-trump-iran-war-position",
+      "label": "Pete Hegseth 'not speaking truth' to Trump about Iran war, administration official says",
+      "firstSeen": "2026-04-08T08:13:39.400Z",
+      "lastCovered": "2026-04-08T08:13:39.400Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-hegseth-misleading-trump-iran-war-position"
+      ],
+      "eventUri": "eng-11549234",
+      "summary": "A Trump administration official told the Washington Post that Defense Secretary Pete Hegseth has been misrepresenting the US military position in Iran to the president. Trump has been repeating misleading claims about 'air supremacy' that don't match operational reality. Lead with the specific falsehood — claims of air supremacy that the Pentagon's own assessments contradict. The defense secretary is lying to the commander-in-chief during an active war. The reader should see this as amanah (trust) betrayed at the highest level of wartime command.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-civil-society-warns-brink-of-collapse",
+      "label": "Groups warn Nigeria 'on brink of collapse' over insecurity, economic strain",
+      "firstSeen": "2026-04-08T08:13:39.400Z",
+      "lastCovered": "2026-04-08T08:13:39.400Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-nigeria-civil-society-warns-brink-of-collapse"
+      ],
+      "eventUri": "eng-11548622",
+      "summary": "A coalition of Nigerian civil society organizations — including the Centre for Democracy and Development — issued a joint warning that Africa's most populous nation faces structural collapse from compounding insecurity, inequality, and institutional decay. This isn't one group's press release; it's a coordinated alarm from the organizations that monitor democratic health. Lead with the convergence of crises — security, economic, institutional — happening simultaneously in a 220-million-person country. Nigeria as bellwether for what happens when the state retreats from its obligations.",
+      "conceptUris": []
+    },
+    {
+      "id": "shell-trading-profits-soar-iran-war-qatar-gas",
+      "label": "Shell oil trading profits soar amid Iran war but Qatar strikes hit gas output",
+      "firstSeen": "2026-04-08T08:13:39.400Z",
+      "lastCovered": "2026-04-08T08:13:39.400Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-shell-trading-profits-soar-iran-war-qatar-gas"
+      ],
+      "eventUri": "eng-11550312",
+      "summary": "Shell's commodity trading desks made $200M-$700M in Q1 profit from Iran war volatility — while the same war's strikes on Qatar reduced Shell's LNG output. Lead with the $200M-$700M trading profit range and contrast it with the physical destruction of energy infrastructure. Shell profits from the chaos on one end of the pipeline while losing production on the other. The reader who watches oil futures will see the asymmetry: traders profit from volatility that destroys the assets they trade.",
+      "conceptUris": []
+    },
+    {
+      "id": "morgan-stanley-spot-btc-etf-launch",
+      "label": "Morgan Stanley's spot BTC ETF may begin trading Wednesday",
+      "firstSeen": "2026-04-08T08:13:39.400Z",
+      "lastCovered": "2026-04-08T08:13:39.400Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-morgan-stanley-spot-btc-etf-launch"
+      ],
+      "eventUri": "eng-11548478",
+      "summary": "Morgan Stanley — the first top-10 Wall Street bank — launches a spot bitcoin ETF (ticker: MSBT) on NYSE Arca. With $1.9T in assets under management and $9.3T in client assets, this is institutional crypto adoption crossing a threshold. Lead with the scale: this is not a crypto-native fund but a legacy bank with nearly $10T in client money creating direct BTC exposure. The structural shift: from BlackRock's iShares to a full-service bank that manages wealth for the establishment.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-hormuz-toll-64-billion-revenue",
+      "label": "Iran's revenue from shipping through Strait of Hormuz could top $64 billion",
+      "firstSeen": "2026-04-08T08:13:39.400Z",
+      "lastCovered": "2026-04-08T08:13:39.400Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-iran-hormuz-toll-64-billion-revenue"
+      ],
+      "eventUri": null,
+      "summary": "Iran's deputy head of ports and maritime affairs floated a $2M-per-ship toll on the Strait of Hormuz — 32,000 ships passed through last year, yielding $64B annually. Iran is testing whether the blockade can become permanent revenue infrastructure, not just a wartime weapon. Lead with the $64B number and the fact that an official is openly pricing the strait. The reader tracking Hormuz knows the blockade was supposed to be temporary leverage — this signals Iran may want to keep it as a permanent toll system.",
+      "conceptUris": []
+    },
+    {
+      "id": "cyclone-maila-cat5-queensland-australia",
+      "label": "Severe Tropical Cyclone Maila intensifies to category five ahead of Australian landfall",
+      "firstSeen": "2026-04-08T08:13:39.400Z",
+      "lastCovered": "2026-04-08T08:13:39.400Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-cyclone-maila-cat5-queensland-australia"
+      ],
+      "eventUri": "eng-11550004",
+      "summary": "Cyclone Maila has intensified to category 5 over the Solomon Sea and is heading for far north Queensland — the same coast hit by Severe Tropical Cyclone Narelle just weeks ago. Two Cat-5-level cyclones striking the same coastline in a single season. Lead with the back-to-back hits — infrastructure damaged by Narelle hasn't been rebuilt. Ocean temperatures are fueling rapid intensification. The climate signal: this is what the models predicted, now arriving as lived experience for northern Australia.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-hackers-us-oil-gas-water-fbi-warning",
+      "label": "Iran-Linked Hackers Target US Oil, Gas and Water Facilities; FBI Issues Urgent Warning",
+      "firstSeen": "2026-04-08T08:13:39.400Z",
+      "lastCovered": "2026-04-08T08:13:39.400Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-iran-hackers-us-oil-gas-water-fbi-warning"
+      ],
+      "eventUri": "eng-11548965",
+      "summary": "Iran-linked hackers have successfully disrupted multiple US oil, gas, and water facilities in recent weeks, with the FBI issuing an urgent warning about data-wiping attacks on industrial control systems. Iran's asymmetric cyber strategy is hitting physical infrastructure — not just data theft but operational disruption of critical services. Lead with the scope (oil, gas, AND water) and the data-wiping intent. The reader who works in tech will grasp the ICS/SCADA implications: these aren't ransomware gangs seeking payment, they're state actors seeking destruction.",
+      "conceptUris": []
+    },
+    {
+      "id": "smex-rotten-apple-spearphishing-lebanon-civil-society",
+      "label": "Rotten Apple: An Invasive Threat Actor Targeting Civil Society in Lebanon",
+      "firstSeen": "2026-04-08T08:13:39.400Z",
+      "lastCovered": "2026-04-08T08:13:39.400Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-smex-rotten-apple-spearphishing-lebanon-civil-society"
+      ],
+      "eventUri": null,
+      "summary": "SMEX's Digital Forensic Lab documents a spear-phishing campaign targeting high-profile Lebanese civil society figures. As Lebanon's state collapses and war devastates its south, the surveillance apparatus pivots to digital targeting of the people documenting the destruction. Lead with who was targeted and the sophistication of the attack. The intersection of state collapse and digital authoritarianism: when institutions fail, surveillance fills the vacuum. The reader who follows digital rights in the Muslim world should see this as a pattern — not an isolated incident.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-election-commission-tmc-clash-bengal",
+      "label": "EC-TMC talks end in spat; 'get lost' claim by TMC, EC counters with 'shouting' charge",
+      "firstSeen": "2026-04-08T08:13:39.400Z",
+      "lastCovered": "2026-04-08T08:13:39.400Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-08-india-election-commission-tmc-clash-bengal"
+      ],
+      "eventUri": "eng-11550210",
+      "summary": "India's Election Commission and the opposition Trinamool Congress had an acrimonious meeting ahead of West Bengal state elections, with TMC alleging poll officials have links to the ruling BJP and the EC accusing the delegation of shouting. Mamata Banerjee submitted formal complaints. Lead with the 'get lost' confrontation — this is election integrity being contested in the world's largest democracy. 271 million voters go to polls this month across five states. The story: when the opposition says the referee is compromised, what does free and fair mean?",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Trinamool_Congress",
+        "http://en.wikipedia.org/wiki/Chief_Election_Commissioner_of_India",
+        "http://en.wikipedia.org/wiki/Derek_O'Brien_(politician)",
+        "http://en.wikipedia.org/wiki/Election_Commission_of_India",
+        "http://en.wikipedia.org/wiki/West_Bengal",
+        "http://en.wikipedia.org/wiki/Member_of_parliament",
+        "http://en.wikipedia.org/wiki/New_Delhi",
+        "http://en.wikipedia.org/wiki/Mamata_Banerjee"
+      ]
+    },
+    {
       "id": "us-iran-ceasefire-trump-temporary-win-cost",
       "label": "Iran ceasefire deal a temporary win for Trump - but it comes at a cost",
       "firstSeen": "2026-04-08T04:12:45.670Z",
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-us-iran-ceasefire-trump-temporary-win-cost"
@@ -30,7 +211,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-israel-continues-strikes-iran-despite-ceasefire"
@@ -52,7 +233,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-iran-missiles-gulf-states-after-ceasefire"
@@ -68,37 +249,13 @@
       ]
     },
     {
-      "id": "china-role-brokering-us-iran-ceasefire",
-      "label": "The China Role In US-Iran Ceasefire",
-      "firstSeen": "2026-04-08T04:12:45.670Z",
-      "lastCovered": "2026-04-08T04:12:45.670Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-08-china-role-brokering-us-iran-ceasefire"
-      ],
-      "eventUri": "eng-11543381",
-      "summary": "China likely brokered the ceasefire by urging Tehran to negotiate through intermediaries. Trump is due to visit Beijing in May to meet Xi Jinping. The angle: after vetoing the Bahraini UNSC resolution just yesterday, China shifted from blocking Western frameworks to offering its own — and it worked. The reader should see this as Beijing's play for mediator status in the post-Hormuz order, following the Saudi-Iran deal model. Lead with the veto-to-mediation pivot and the May summit leverage.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Beijing",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Xi_Jinping"
-      ]
-    },
-    {
       "id": "south-africa-minister-tolashe-defied-ramaphosa",
       "label": "How Social Development Minister Sisisi Tolashe defied the President",
       "firstSeen": "2026-04-08T04:12:45.670Z",
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-south-africa-minister-tolashe-defied-ramaphosa"
@@ -118,7 +275,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-bitcoin-surges-72k-oil-crashes-iran-ceasefire"
@@ -139,7 +296,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-cz-reveals-ftx-collapse-trigger-ellison-mistake"
@@ -161,7 +318,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-penpulimab-nasopharyngeal-cancer-china-immunotherapy"
@@ -182,7 +339,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-bmx-inhibition-lung-cancer-chemoresistance-druggable"
@@ -203,7 +360,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-bitcoin-quantum-computing-threat-timeline"
@@ -224,7 +381,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-germany-warns-russian-apt28-fancy-bear-cyber-spying"
@@ -245,7 +402,7 @@
       "lastCovered": "2026-04-08T04:12:45.670Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-08-openai-gpt2-too-dangerous-2019-retrospective"
@@ -259,13 +416,30 @@
       ]
     },
     {
+      "id": "iran-war-200-billion-cost-arab-countries-un",
+      "label": "Iran war may cost Arab countries up to $200 billion, says UN",
+      "firstSeen": "2026-04-07T17:09:09.719Z",
+      "lastCovered": "2026-04-08T08:13:39.400Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-04-07-iran-war-200-billion-cost-arab-countries-un",
+        "2026-04-08-iran-war-cost-arab-countries-200-billion-un"
+      ],
+      "eventUri": null,
+      "summary": "A UN assessment puts the economic cost of the Iran war at up to $200 billion for Arab countries alone — not Iran, not the US, but the neighbours who had no say in the escalation. This quantifies what the editorial notes have been tracking: the fertilizer pipeline, shipping reroutes, fuel rationing. Lead with the $200B number and who bears it — Gulf states whose desalination and petrochemical infrastructure is under direct fire, and import-dependent economies from Egypt to Jordan absorbing price shocks.",
+      "conceptUris": []
+    },
+    {
       "id": "trump-civilisation-die-tonight-iran-deadline",
       "label": "Trump on Iran: 'A whole civilisation will die tonight'",
       "firstSeen": "2026-04-07T17:09:09.719Z",
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-04-07-trump-civilisation-die-tonight-iran-deadline",
@@ -293,7 +467,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-07-china-russia-veto-unsc-hormuz-resolution"
@@ -318,7 +492,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-07-israeli-backed-militia-maghazi-refugee-camp-gaza"
@@ -339,7 +513,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-07-west-bank-palestinian-travel-ordeal-allenby-bridge"
@@ -359,7 +533,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-07-us-journalist-kittleson-released-iraq-kataib-hezbollah"
@@ -384,7 +558,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-07-bill-gates-congress-testimony-epstein-investigation"
@@ -409,7 +583,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-07-iea-energy-crisis-iran-war-worse-than-1973-1979-2022"
@@ -434,7 +608,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-07-france-fuel-shortages-iran-war-pump"
@@ -459,7 +633,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-07-trump-world-liberty-financial-sanctioned-network"
@@ -480,7 +654,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-07-anthropic-mythos-project-glasswing-ai-safety"
@@ -505,7 +679,7 @@
       "lastCovered": "2026-04-07T22:10:10.330Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-07-intel-musk-terafab-orbital-datacenter-semiconductor"
@@ -530,7 +704,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-07-pakistan-condemns-iran-strikes-saudi-energy"
@@ -555,7 +729,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-07-nigeria-opposes-macky-sall-un-secretary-general"
@@ -571,7 +745,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-07-bellingcat-satellite-tool-iran-gulf-damage"
@@ -587,7 +761,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-07-sentry-gadalla-libya-kleptocratic-haftar"
@@ -597,29 +771,13 @@
       "conceptUris": []
     },
     {
-      "id": "iran-war-200-billion-cost-arab-countries-un",
-      "label": "Iran war may cost Arab countries up to $200 billion, says UN",
-      "firstSeen": "2026-04-07T17:09:09.719Z",
-      "lastCovered": "2026-04-07T17:09:09.719Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-iran-war-200-billion-cost-arab-countries-un"
-      ],
-      "eventUri": null,
-      "summary": "A UN assessment puts the economic cost of the Iran war at up to $200 billion for Arab countries alone — not Iran, not the US, but the neighbours who had no say in the escalation. This quantifies what the editorial notes have been tracking: the fertilizer pipeline, shipping reroutes, fuel rationing. Lead with the $200B number and who bears it — Gulf states whose desalination and petrochemical infrastructure is under direct fire, and import-dependent economies from Egypt to Jordan absorbing price shocks.",
-      "conceptUris": []
-    },
-    {
       "id": "defi-yields-crash-below-savings-accounts",
       "label": "The era of easy money in crypto is over as DeFi yields are failing to compete with a simple savings account",
       "firstSeen": "2026-04-07T17:09:09.719Z",
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-07-defi-yields-crash-below-savings-accounts"
@@ -635,7 +793,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-07-desalination-plants-middle-east-war-vulnerable"
@@ -651,7 +809,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-07-novo-nordisk-high-dose-wegovy-launch"
@@ -667,7 +825,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-07-interpretable-ml-stroke-risk-atrial-fibrillation"
@@ -683,7 +841,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-07-maine-datacenter-moratorium-first-us-state"
@@ -699,7 +857,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-07-datacenter-lobbyists-right-to-repair-rollback"
@@ -715,7 +873,7 @@
       "lastCovered": "2026-04-07T17:09:09.719Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-07-dropping-cloudflare-bunny-net-migration"
@@ -731,7 +889,7 @@
       "lastCovered": "2026-04-07T12:08:44.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-gunfight-israeli-consulate-istanbul-besiktas"
@@ -754,7 +912,7 @@
       "lastCovered": "2026-04-07T12:08:44.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-iran-supreme-leader-mojtaba-khamenei-unconscious-qom"
@@ -779,7 +937,7 @@
       "lastCovered": "2026-04-07T12:08:44.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-manipur-protests-killed-meitei-kuki-ethnic-violence"
@@ -800,7 +958,7 @@
       "lastCovered": "2026-04-07T12:08:44.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-taiwan-kmt-china-peace-mission-defense-freeze"
@@ -822,7 +980,7 @@
       "lastCovered": "2026-04-07T12:08:44.983Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-egypt-ahmed-douma-detained-false-news-prison-criticism"
@@ -838,7 +996,7 @@
       "lastCovered": "2026-04-07T12:08:44.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-ackman-universal-music-64-billion-delisting"
@@ -861,7 +1019,7 @@
       "lastCovered": "2026-04-07T12:08:44.983Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-adb-pakistan-solar-battery-storage-war-energy"
@@ -882,7 +1040,7 @@
       "lastCovered": "2026-04-07T12:08:44.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-virtual-cell-ai-mechanistic-models-synthetic-biology"
@@ -898,7 +1056,7 @@
       "lastCovered": "2026-04-07T12:08:44.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-fgfr1-ovarian-cancer-sirt3-lactylation-druggable"
@@ -914,7 +1072,7 @@
       "lastCovered": "2026-04-07T12:08:44.983Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-russia-china-chang-e-7-lunar-dust-space-partnership"
@@ -934,7 +1092,7 @@
       "lastCovered": "2026-04-07T12:08:44.983Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-bitcoin-software-stocks-correlation-collapse-iran-war"
@@ -955,7 +1113,7 @@
       "lastCovered": "2026-04-07T12:08:44.983Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-07-every-gpu-that-mattered-data-visualization"
@@ -971,7 +1129,7 @@
       "lastCovered": "2026-04-07T08:11:50.196Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-saudi-bahrain-causeway-closed-iran-war-spillover"
@@ -996,7 +1154,7 @@
       "lastCovered": "2026-04-07T08:11:50.196Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-sabarimala-women-entry-india-supreme-court"
@@ -1021,7 +1179,7 @@
       "lastCovered": "2026-04-07T08:11:50.196Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-jd-vance-budapest-orban-hungary-election"
@@ -1043,7 +1201,7 @@
       "lastCovered": "2026-04-07T08:11:50.196Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-tiktok-palestinians-israel-organized-crime-972"
@@ -1059,7 +1217,7 @@
       "lastCovered": "2026-04-07T08:11:50.196Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-rawalpindi-section-144-pti-protest-ban-adiala"
@@ -1075,7 +1233,7 @@
       "lastCovered": "2026-04-07T08:11:50.196Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-jubail-fires-saudi-missile-attack-petrochemical"
@@ -1100,7 +1258,7 @@
       "lastCovered": "2026-04-07T08:11:50.196Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-uk-resident-doctors-longest-strike-nhs"
@@ -1122,7 +1280,7 @@
       "lastCovered": "2026-04-07T08:11:50.196Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-bitcoin-miners-ai-power-competition-anthropic"
@@ -1138,7 +1296,7 @@
       "lastCovered": "2026-04-07T08:11:50.196Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-solod-go-subset-translates-to-c"
@@ -1154,239 +1312,13 @@
       "lastCovered": "2026-04-07T08:11:50.196Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-07-google-adsense-20-years-off-web-publishing"
       ],
       "eventUri": null,
       "summary": "A law professor who ran Google AdSense for 20 years finally turned it off — the economics collapsed as ad rates plummeted and Google's quality controls degraded. 180 points and 118 comments on HN. Lead with the two-decade arc: this is a post-mortem on the ad-supported web from someone who lived through the entire cycle. The reader who builds things on the web should see the structural story: Google's ad monopoly degraded the product so badly that even loyal publishers are walking away. The 118-comment HN thread is the real story — it's a collective reckoning with web monetization.",
-      "conceptUris": []
-    },
-    {
-      "id": "vietnam-to-lam-president-one-man-rule",
-      "label": "Vietnam's parliament elects Communist Party chief To Lam president",
-      "firstSeen": "2026-04-07T04:07:02.965Z",
-      "lastCovered": "2026-04-07T04:07:02.965Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-vietnam-to-lam-president-one-man-rule"
-      ],
-      "eventUri": "eng-11544402",
-      "summary": "Vietnam's National Assembly unanimously elected To Lam as both party chief and president — breaking decades of collective leadership where power was split across four pillars. This is a China-style consolidation by a former security chief. Lead with what changed: Vietnam's political system just structurally shifted toward one-man rule. The reader should see the pattern: a security apparatus insider using anti-corruption campaigns to eliminate rivals, then formalizing the power grab constitutionally. Bloomberg and CNBC frame it as market-positive stability; TASS treats it as diplomatic continuity. The real story is 100 million people now governed by a single authority with no institutional check.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Vietnam",
-        "http://en.wikipedia.org/wiki/Tô_Lâm",
-        "http://en.wikipedia.org/wiki/National_Assembly_(France)",
-        "http://en.wikipedia.org/wiki/General_Secretary_of_the_Chinese_Communist_Party",
-        "http://en.wikipedia.org/wiki/Parliament",
-        "http://en.wikipedia.org/wiki/Hanoi",
-        "http://en.wikipedia.org/wiki/Collective_leadership",
-        "http://en.wikipedia.org/wiki/Chinese_Communist_Party_Committee_Secretary"
-      ]
-    },
-    {
-      "id": "ben-roberts-smith-war-crimes-arrest-australia",
-      "label": "Ben Roberts-Smith: Australian soldier arrested over alleged war crimes",
-      "firstSeen": "2026-04-07T04:07:02.965Z",
-      "lastCovered": "2026-04-07T04:07:02.965Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-ben-roberts-smith-war-crimes-arrest-australia"
-      ],
-      "eventUri": null,
-      "summary": "Australia's most-decorated living soldier arrested at Sydney airport over five counts of war crimes in Afghanistan. Roberts-Smith previously won a defamation case against newspapers that reported the allegations — and lost on appeal. Lead with the accountability arc: a Victoria Cross recipient who sued journalists to suppress the truth is now facing criminal charges. The reader should see how military impunity unravels: it took over a decade, a failed defamation suit, and a separate war crimes investigation to reach this point. This is the system working slowly but arriving.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/War_crime",
-        "http://en.wikipedia.org/wiki/Australia",
-        "http://en.wikipedia.org/wiki/Afghanistan",
-        "http://en.wikipedia.org/wiki/Ben_Roberts-Smith",
-        "http://en.wikipedia.org/wiki/Sydney_Airport"
-      ]
-    },
-    {
-      "id": "iran-rejects-ceasefire-counter-proposal-deadline",
-      "label": "Iran Rejects Temporary Ceasefire, Says It Has Already Laid Out Terms for Agreement",
-      "firstSeen": "2026-04-07T04:07:02.965Z",
-      "lastCovered": "2026-04-07T04:07:02.965Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-iran-rejects-ceasefire-counter-proposal-deadline"
-      ],
-      "eventUri": null,
-      "summary": "Iran formally rejected Trump's ceasefire proposal with less than 24 hours until his Hormuz deadline, calling it 'detached from the realities on the ground.' A senior Iranian official told Drop Site that Iran has already laid out its own terms — including permanent end to hostilities, safe Hormuz passage, reconstruction, and lifting of sanctions. Lead with the deadline collision: Trump set a Tuesday ultimatum, Iran just said no, and the gap between the two positions is enormous. The reader tracking the escalation ladder should see this as the moment where diplomacy visibly failed — what comes next is either a dramatic concession or an escalation.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Donald_Trump"
-      ]
-    },
-    {
-      "id": "india-sitharaman-iran-war-systemic-tremor-global-economy",
-      "label": "US-Iran war now a systemic tremor, not just a regional conflict: Nirmala Sitharaman",
-      "firstSeen": "2026-04-07T04:07:02.965Z",
-      "lastCovered": "2026-04-07T04:07:02.965Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-india-sitharaman-iran-war-systemic-tremor-global-economy"
-      ],
-      "eventUri": "eng-11544677",
-      "summary": "India's finance minister publicly reframed the US-Iran war as a 'systemic tremor' threatening the global economic system — not just a regional security issue. This is significant because India is the world's fifth-largest economy and a major Iranian oil buyer. Lead with the language shift: when a G20 finance minister starts using systemic-risk vocabulary about a war, it signals that economic policymakers are preparing for contagion, not just watching from the sidelines. The reader tracking Hormuz supply chain effects should see this as the macro framing catching up to the micro disruptions already reported (fuel rationing, shipping reroutes, fertilizer shortages).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Volatility_(finance)",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Debt-to-GDP_ratio",
-        "http://en.wikipedia.org/wiki/Economic_system",
-        "http://en.wikipedia.org/wiki/Nirmala_Sitharaman"
-      ]
-    },
-    {
-      "id": "sec-regulation-crypto-atkins-framework",
-      "label": "SEC close to putting out 'reg crypto' for fundraising questions, Chair Atkins says",
-      "firstSeen": "2026-04-07T04:07:02.965Z",
-      "lastCovered": "2026-04-07T04:07:02.965Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-sec-regulation-crypto-atkins-framework"
-      ],
-      "eventUri": "eng-11546532",
-      "summary": "SEC Chair Paul Atkins announced the agency is close to proposing 'Regulation Crypto' — a dedicated framework distinguishing which crypto transactions are securities and which aren't. This is the regulatory clarity the industry has demanded for years, arriving under a crypto-friendly chair. Lead with what changes: instead of regulation-by-enforcement (suing projects after the fact), the SEC would define the lines in advance. The reader who follows crypto markets should see the structural shift: this moves crypto from legal gray zone to regulated asset class, which changes everything from fundraising to exchange operations.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/U.S._Securities_and_Exchange_Commission",
-        "http://en.wikipedia.org/wiki/Paul_S._Atkins",
-        "http://en.wikipedia.org/wiki/White_House_Office",
-        "http://en.wikipedia.org/wiki/Tennessee_Supreme_Court",
-        "http://en.wikipedia.org/wiki/Securities_Act_of_1933"
-      ]
-    },
-    {
-      "id": "bangladesh-measles-emergency-100-child-deaths-vaccination",
-      "label": "Bangladesh launches emergency measles-rubella drive after 100+ child deaths",
-      "firstSeen": "2026-04-07T04:07:02.965Z",
-      "lastCovered": "2026-04-07T04:07:02.965Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-bangladesh-measles-emergency-100-child-deaths-vaccination"
-      ],
-      "eventUri": "eng-11542970",
-      "summary": "Over 100 children have died from measles in Bangladesh, triggering an emergency vaccination campaign across 18 high-risk districts with WHO and GAVI support. Lead with the number and the cause: these are preventable deaths from a disease with a cheap, effective vaccine. The campaign targets children 6 months to 5 years and will expand nationwide. The reader should see the structural failure: Bangladesh's routine immunization coverage collapsed during political instability, and children died from a disease that should have been eliminated. This is what happens when public health infrastructure breaks.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Measles",
-        "http://en.wikipedia.org/wiki/Vaccine",
-        "http://en.wikipedia.org/wiki/Bangladesh",
-        "http://en.wikipedia.org/wiki/Vaccination",
-        "http://en.wikipedia.org/wiki/World_Health_Organization"
-      ]
-    },
-    {
-      "id": "rfk-jr-cdc-vaccine-panel-charter-rewrite",
-      "label": "After court loss, RFK Jr. gives himself more power over CDC vaccine panel",
-      "firstSeen": "2026-04-07T04:07:02.965Z",
-      "lastCovered": "2026-04-07T04:07:02.965Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-rfk-jr-cdc-vaccine-panel-charter-rewrite"
-      ],
-      "eventUri": "eng-11543268",
-      "summary": "After a federal court blocked RFK Jr.'s attempt to dissolve the CDC's Advisory Committee on Immunization Practices, he amended the committee's charter to grant himself more power to hand-pick members and loosen expertise requirements. Lead with the sequence: court says you can't abolish the panel, so you rewrite its rules to control it instead. This is institutional capture in real time — the person who built his career opposing vaccines now controls who advises the government on vaccine policy. The reader should see the mechanism: when legal checks block destruction, capture achieves the same goal.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Advisory_Committee_on_Immunization_Practices",
-        "http://en.wikipedia.org/wiki/Vaccine",
-        "http://en.wikipedia.org/wiki/Centers_for_Disease_Control_and_Prevention",
-        "http://en.wikipedia.org/wiki/Vaccine_hesitancy",
-        "http://en.wikipedia.org/wiki/Federal_Register"
-      ]
-    },
-    {
-      "id": "foundation-model-portability-paradox-clinical-ai",
-      "label": "The portability paradox of foundation models for clinical decision support",
-      "firstSeen": "2026-04-07T04:07:02.965Z",
-      "lastCovered": "2026-04-07T04:07:02.965Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-foundation-model-portability-paradox-clinical-ai"
-      ],
-      "eventUri": null,
-      "summary": "Nature study finds that foundation models — the large-scale AI systems the industry is betting everything on — perform worse than simple supervised models when transferred to clinical decision-making tasks. Seven models tested on cervical myelopathy prediction; the simpler, task-specific models won. Lead with the paradox: bigger and more general doesn't mean better when lives are at stake. The reader building with AI should see the warning: the assumption that foundation models generalize to everything is being empirically challenged in the domain where errors kill people.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Electronic_health_record",
-        "http://en.wikipedia.org/wiki/Myelopathy"
-      ]
-    },
-    {
-      "id": "gen-1-robotics-99-percent-reliability-physical-ai",
-      "label": "From folding boxes to fixing vacuums, GEN-1 robotics model hits 99% reliability",
-      "firstSeen": "2026-04-07T04:07:02.965Z",
-      "lastCovered": "2026-04-07T04:07:02.965Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-gen-1-robotics-99-percent-reliability-physical-ai"
-      ],
-      "eventUri": null,
-      "summary": "Generalist's GEN-1 claims 99% reliability across diverse physical manipulation tasks — folding boxes, repairing vacuums, handling objects it wasn't trained on. Lead with the threshold: robotics has been stuck at demo-quality success rates for years; 99% is where manufacturing and logistics actually start deploying. The reader who follows AI should see what's different: this isn't a language model generating text, it's a physical AI system that improvises with real objects. The production-level reliability claim is either a genuine inflection point or the most audacious demo-ware yet.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Robotics",
-        "http://en.wikipedia.org/wiki/Robot"
-      ]
-    },
-    {
-      "id": "anthropic-google-broadcom-custom-ai-compute",
-      "label": "Anthropic expands partnership with Google and Broadcom for next-gen compute",
-      "firstSeen": "2026-04-07T04:07:02.965Z",
-      "lastCovered": "2026-04-07T04:07:02.965Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-anthropic-google-broadcom-custom-ai-compute"
-      ],
-      "eventUri": null,
-      "summary": "Anthropic is deepening its compute partnership with Google Cloud and Broadcom to build custom AI chips — a direct challenge to Nvidia's dominance in AI training hardware. 179 HN points. Lead with the infrastructure play: the company behind Claude is vertically integrating from model to silicon, using Broadcom's custom chip design and Google's TPU ecosystem. The reader should see the industry structure emerging: AI labs that depend on a single GPU supplier are strategically vulnerable, and Anthropic is building an alternative supply chain.",
-      "conceptUris": []
-    },
-    {
-      "id": "ghost-pepper-local-speech-to-text-macos-privacy",
-      "label": "Show HN: Ghost Pepper – Local hold-to-talk speech-to-text for macOS",
-      "firstSeen": "2026-04-07T04:07:02.965Z",
-      "lastCovered": "2026-04-07T04:07:02.965Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-07-ghost-pepper-local-speech-to-text-macos-privacy"
-      ],
-      "eventUri": null,
-      "summary": "A developer built a fully local speech-to-text app for macOS — no data leaves the machine, 100% open source MIT license. 276 HN points, 123 comments. Lead with the privacy architecture: in an era where every voice assistant sends audio to the cloud, this runs entirely on-device using local models. The reader who codes daily should see the practical value: voice-to-text for coding and emails without trusting a third party with every word you say. The 276-point HN reception signals genuine developer demand for local-first voice tools.",
       "conceptUris": []
     }
   ]
