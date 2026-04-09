@@ -4877,5 +4877,92 @@
     "label": "Software Supply Chain Security",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-09-desalination-technology-numbers-water-crisis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PHYSICS",
+        "body": "Seawater contains ~35 grams of salt per liter. Separating salt from water requires a minimum energy set by thermodynamics — about 1 kWh per cubic meter. No engineering trick can beat this floor; real plants use 3-5x the theoretical minimum."
+      },
+      {
+        "heading": "THE BREAKTHROUGH",
+        "body": "Before the 1960s, desalination meant boiling water — thermal distillation at 10-15 kWh/m³. Reverse osmosis membranes cut that to 3-4 kWh/m³ by pushing water through polymer sheets with pores small enough to block salt ions. This single invention made modern Gulf cities possible."
+      },
+      {
+        "heading": "THE BRINE PROBLEM",
+        "body": "Every liter of freshwater produces roughly 1.5 liters of concentrated brine. The Gulf's shallow, enclosed waters already have salinity 20% above the open ocean. Plants discharge brine back into the same sea they draw from, creating a feedback loop that raises intake salinity and energy costs."
+      },
+      {
+        "heading": "THE DEPENDENCY",
+        "body": "Saudi Arabia desalinates 7.5 million cubic meters per day — roughly 60% of municipal supply. A sustained power disruption does not mean water rationing; it means no water. This is why Gulf states treat desalination plants as critical military infrastructure."
+      },
+      {
+        "heading": "THE COST CURVE",
+        "body": "In the 1970s, desalinated water cost $9/m³. Today large RO plants deliver it at $0.50-0.80/m³ — cheaper than trucking freshwater in many arid regions, but still 5-10x the cost of treated river water in places that have it."
+      }
+    ],
+    "generatedAt": "2026-04-09T12:24:00.683Z",
+    "label": "Desalination",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-09-chinese-firm-don-jr-lobbyists-cfius-bypass": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT IT IS",
+        "body": "The Committee on Foreign Investment in the United States is an interagency body — Treasury, Defense, State, and six others — that reviews foreign acquisitions of US companies for national security threats. It can recommend the president block a deal outright."
+      },
+      {
+        "heading": "THE ORIGIN",
+        "body": "Created by executive order in 1975 after Arab oil states began buying US banks and defense contractors. Congress gave it real teeth in 1988 (Exon-Florio) after a Japanese firm bought a semiconductor company that made components for military electronics."
+      },
+      {
+        "heading": "HOW REVIEW WORKS",
+        "body": "Reviews are technically voluntary — but if you skip one, CFIUS can reopen the deal years later and force divestiture. This retroactive power means most significant acquisitions involving foreign buyers file voluntarily. The committee has 45 days to clear, investigate, or escalate."
+      },
+      {
+        "heading": "THE EXPANSION",
+        "body": "Until 2018, CFIUS only reviewed acquisitions — full ownership transfers. The FIRRMA Act expanded jurisdiction to minority stakes, real estate near military bases, and any deal giving foreign parties access to sensitive personal data. The aperture widened dramatically."
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "CFIUS proceedings are classified. The companies involved cannot see the national security analysis. There is no formal appeals process. A negative CFIUS finding effectively kills a deal, because no court will second-guess a classified national security judgment."
+      }
+    ],
+    "generatedAt": "2026-04-09T12:24:00.684Z",
+    "label": "CFIUS",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-09-uk-russian-submarine-undersea-cables-exposed": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE",
+        "body": "Over 550 submarine cables carry 99% of intercontinental data traffic. Satellites handle less than 1%. A single modern cable carries 250 terabits per second — enough to transmit the entire Library of Congress in a fraction of a second."
+      },
+      {
+        "heading": "THE CONSTRUCTION",
+        "body": "A deep-sea cable is about the diameter of a garden hose: fiber-optic strands wrapped in steel wire, copper power conductor, and polyethylene sheathing. Near shore, cables are armored and buried in trenches. In deep ocean, they lie exposed on the seabed."
+      },
+      {
+        "heading": "THE VULNERABILITY",
+        "body": "About 100-150 cable faults occur annually, mostly from ship anchors and fishing trawlers. Repairs require specialized ships — only about 60 exist worldwide — and can take weeks. During that time, traffic reroutes through surviving cables, but redundancy is thinner than most governments admit."
+      },
+      {
+        "heading": "THE CHOKEPOINTS",
+        "body": "Cables cluster through narrow corridors: the Strait of Malacca, the Red Sea, the English Channel, a handful of landing stations on each coast. Severing cables at these bottlenecks could isolate entire regions — a fact that military planners on all sides study carefully."
+      },
+      {
+        "heading": "THE INTELLIGENCE ANGLE",
+        "body": "Tapping a submarine cable requires physical access to the fiber — either at a landing station or via a submarine. The US did this to Soviet military cables in the 1970s (Operation Ivy Bells). The concern about Russian submarine activity near cables is the mirror image of that same Cold War playbook."
+      }
+    ],
+    "generatedAt": "2026-04-09T12:24:00.684Z",
+    "label": "Undersea Cables",
+    "category": "politics",
+    "articleCount": 1
   }
 }
