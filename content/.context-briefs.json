@@ -4964,5 +4964,113 @@
     "label": "Undersea Cables",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-09-fbi-signal-iphone-notification-database-extraction": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARCHITECTURE",
+        "body": "Every push notification on iOS routes through Apple's Push Notification Service (APNs). The app server sends a payload to Apple, Apple wakes the device. This means Apple — and anyone who can compel Apple — has a log of who received what notification and when."
+      },
+      {
+        "heading": "THE TOKEN",
+        "body": "Each app-device pair gets a unique push token. This token links your Signal identity to your Apple ID to your physical device. Signal minimizes notification content, but the metadata — that you received a Signal message at 3:14 AM — still transits Apple's servers."
+      },
+      {
+        "heading": "DELETION IS A UI CONCEPT",
+        "body": "When you delete a message in Signal, the app removes it from its own database. But iOS maintains a separate notification database (push_store.db) that may retain fragments — previews, sender info, timestamps — independently of the app's own storage."
+      },
+      {
+        "heading": "THE FORENSIC EXTRACTION",
+        "body": "Tools like Cellebrite and GrayKey image the full iPhone filesystem, including SQLite databases the user never interacts with. Notification records, keyboard caches, and CoreDuet usage logs can reconstruct conversations the app itself has forgotten."
+      },
+      {
+        "heading": "THE GAP",
+        "body": "End-to-end encryption protects data in transit. It says nothing about data at rest on your device, in backups, or in system databases outside the app's sandbox. The threat model most users imagine and the threat model that actually applies are different things."
+      }
+    ],
+    "generatedAt": "2026-04-09T17:21:57.016Z",
+    "label": "Push Notification Forensics",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-09-bitcoin-72k-divergence-tech-stocks-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CORRELATION MEASURES",
+        "body": "Correlation is just co-movement over a given window. Bitcoin's 90-day correlation with the Nasdaq has swung from 0.9 (moving in lockstep, 2022) to near zero (independent, late 2023) and back. The number describes the past, not the asset's nature."
+      },
+      {
+        "heading": "WHY THEY WERE CORRELATED",
+        "body": "From 2020 to 2022, the same institutions held both. When macro funds de-risked, they sold Bitcoin and tech together. Correlation was not about the assets — it was about who owned them and how they managed drawdowns."
+      },
+      {
+        "heading": "WHAT DECOUPLING MEANS",
+        "body": "When Bitcoin rises while equities fall, the marginal buyer has changed. Decoupling signals a shift in the holder base — from leveraged tech funds to actors with a different thesis, often sovereign or inflation-hedging capital."
+      },
+      {
+        "heading": "THE SAFE HAVEN TEST",
+        "body": "Gold passed this test across two centuries: it reliably rises during equity crashes. Bitcoin has existed through only a handful of major crises and has behaved differently in each. One episode of decoupling does not establish a safe haven — it establishes a data point."
+      }
+    ],
+    "generatedAt": "2026-04-09T17:21:57.017Z",
+    "label": "Asset Correlation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-09-imf-50-billion-middle-east-war-economies": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "The IMF does not give grants. It extends loans in Special Drawing Rights (SDRs) — a synthetic currency basket of dollar, euro, yen, pound, and yuan. Borrowers must repay, usually within 3-5 years, and accept policy conditions as the price of access."
+      },
+      {
+        "heading": "CONDITIONALITY",
+        "body": "Every IMF program comes with structural conditions: cut subsidies, float the currency, open capital markets, reduce public employment. The Fund argues these restore confidence; critics argue they transfer crisis costs onto the poorest citizens. Both are empirically supported."
+      },
+      {
+        "heading": "QUOTA POWER",
+        "body": "Voting power at the IMF is proportional to financial contribution. The US holds 16.5% of votes — and most major decisions require 85% approval. This gives Washington an effective veto over any IMF action, a structural fact unchanged since Bretton Woods in 1944."
+      },
+      {
+        "heading": "POST-CONFLICT LENDING",
+        "body": "War-damaged economies face a specific trap: they need capital to rebuild, but have no functioning institutions to absorb it. The IMF's post-conflict support framework (created 1995) provides smaller, faster loans with lighter conditions — but the absorptive capacity problem remains the binding constraint."
+      },
+      {
+        "heading": "THE $50 BILLION FIGURE",
+        "body": "For scale, the entire Marshall Plan (1948-1952) was $13.3 billion — about $175 billion in today's dollars, spread across 16 countries over four years. A $50 billion estimate for the Middle East signals destruction on a scale that dwarfs normal reconstruction economics."
+      }
+    ],
+    "generatedAt": "2026-04-09T17:21:57.017Z",
+    "label": "How the IMF Works",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-09-us-war-iraq-iran-shadow-drop-site": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGIN",
+        "body": "When ISIS seized Mosul in June 2014, the Iraqi army collapsed. Grand Ayatollah Sistani issued a fatwa calling for volunteer mobilization. Within weeks, tens of thousands formed militias. These became the Popular Mobilization Forces (PMF) — Hashd al-Shaabi in Arabic."
+      },
+      {
+        "heading": "THE DUAL CHAIN",
+        "body": "In 2016, Iraq's parliament legally incorporated the PMF as a state institution under the prime minister's command. But many PMF factions — particularly Kata'ib Hezbollah and Asa'ib Ahl al-Haq — maintain operational ties to Iran's IRGC Quds Force. Iraq's government commands them on paper; Tehran influences them in practice."
+      },
+      {
+        "heading": "THE LEGAL PROBLEM",
+        "body": "The US presence in Iraq rests on an invitation from the Iraqi government. The PMF is legally part of that same government. Striking PMF units means the US is attacking forces formally belonging to its host state — a legal and diplomatic contradiction with no clean resolution."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "State-embedded parallel militaries are not unique to Iraq. Lebanon's Hezbollah holds cabinet seats. Iran's IRGC operates alongside the regular army. Pakistan's ISI cultivated proxy forces for decades. The pattern — armed groups that are simultaneously inside and outside the state — recurs wherever a state is too weak to monopolize force but too functional to collapse entirely."
+      }
+    ],
+    "generatedAt": "2026-04-09T17:21:57.018Z",
+    "label": "Iraq's Parallel Militaries",
+    "category": "politics",
+    "articleCount": 1
   }
 }
