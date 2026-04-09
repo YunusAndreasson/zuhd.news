@@ -140,28 +140,34 @@ function parseLogs(datePrefix) {
     .sort()
     .map(f => {
       const content = readFileSync(join(LOGS_DIR, f), 'utf-8')
+      // Timing
       const totalMatch = content.match(/total (\d+)s/)
-      const fetchMatch = content.match(/Feed fetch done — (\d+)s/)
-      const haikusMatch = content.match(/Haiku dedup: (\d+) checked, (\d+) removed, ([\d.]+)s/)
-      const qualityMatch = content.match(/Haiku quality: (\d+) checked, (\d+) junk, ([\d.]+)s/)
-      const dedupMatch = content.match(/Existing-article dedup: (\d+) url, (\d+) age, (\d+) slug, (\d+) fingerprint/)
-      const freshMatch = content.match(/Fresh stories: (\d+), suspects: (\d+)/)
-      const selectedMatch = content.match(/Selected (\d+) stories/)
+      const feedMatch = content.match(/Merged feed:.*— (\d+)s/)
+      const selectorMatch = content.match(/Selector exit: \d+ — (\d+)s/)
+      const writerMatch = content.match(/Writer exit: \d+ — (\d+)s/)
+      const editorMatch = content.match(/Editor exit: \d+ — (\d+)s/)
+      // Pipeline counts
+      const selectedMatch = content.match(/Selection contains (\d+) stories/)
+      const dedupMatch = content.match(/Deduped selection: (\d+) → (\d+)/)
       const deployMatch = content.match(/Deploy exit: (\d+)/)
-      const articleCount = (content.match(/Built: \d{4}/g) || []).length
+      // Funnel (bottom of log)
+      const funnelSelected = content.match(/Selected:\s+(\d+)/)
+      const funnelWritten = content.match(/Written:\s+(\d+)/)
+      const funnelPublished = content.match(/Published:\s+(\d+)/)
 
       return {
         file: f,
         totalSeconds: totalMatch ? parseInt(totalMatch[1]) : null,
-        fetchSeconds: fetchMatch ? parseInt(fetchMatch[1]) : null,
-        haikuDedup: haikusMatch ? { checked: +haikusMatch[1], removed: +haikusMatch[2], seconds: +haikusMatch[3] } : null,
-        haikuQuality: qualityMatch ? { checked: +qualityMatch[1], junk: +qualityMatch[2], seconds: +qualityMatch[3] } : null,
-        dedup: dedupMatch ? { url: +dedupMatch[1], age: +dedupMatch[2], slug: +dedupMatch[3], fp: +dedupMatch[4] } : null,
-        freshStories: freshMatch ? +freshMatch[1] : null,
-        suspects: freshMatch ? +freshMatch[2] : null,
+        feedSeconds: feedMatch ? parseInt(feedMatch[1]) : null,
+        selectorSeconds: selectorMatch ? parseInt(selectorMatch[1]) : null,
+        writerSeconds: writerMatch ? parseInt(writerMatch[1]) : null,
+        editorSeconds: editorMatch ? parseInt(editorMatch[1]) : null,
         selected: selectedMatch ? +selectedMatch[1] : null,
+        dedupBefore: dedupMatch ? +dedupMatch[1] : null,
+        dedupAfter: dedupMatch ? +dedupMatch[2] : null,
+        written: funnelWritten ? +funnelWritten[1] : null,
+        published: funnelPublished ? +funnelPublished[1] : null,
         deploySuccess: deployMatch ? deployMatch[1] === '0' : null,
-        articlesBuilt: articleCount || null,
       }
     })
 }
@@ -199,8 +205,18 @@ const metrics = {
       avgDuration: todayLogs.length > 0
         ? Math.round(todayLogs.reduce((s, l) => s + (l.totalSeconds || 0), 0) / todayLogs.length)
         : null,
-      haikuDedup: todayLogs.filter(l => l.haikuDedup).map(l => l.haikuDedup),
-      haikuQuality: todayLogs.filter(l => l.haikuQuality).map(l => l.haikuQuality),
+      avgSelectorSeconds: todayLogs.length > 0
+        ? Math.round(todayLogs.reduce((s, l) => s + (l.selectorSeconds || 0), 0) / todayLogs.length)
+        : null,
+      avgWriterSeconds: todayLogs.length > 0
+        ? Math.round(todayLogs.reduce((s, l) => s + (l.writerSeconds || 0), 0) / todayLogs.length)
+        : null,
+      avgEditorSeconds: todayLogs.length > 0
+        ? Math.round(todayLogs.reduce((s, l) => s + (l.editorSeconds || 0), 0) / todayLogs.length)
+        : null,
+      avgPublished: todayLogs.length > 0
+        ? Math.round(todayLogs.reduce((s, l) => s + (l.published || 0), 0) / todayLogs.length)
+        : null,
     },
     yesterday: {
       count: yesterdayLogs.length,

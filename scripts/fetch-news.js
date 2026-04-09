@@ -27,6 +27,9 @@ const SOURCES = [
   { name: 'SMEX',           url: 'https://smex.org/feed/',                     format: 'rss2', defaultCategory: 'tech' },
   { name: 'SciDev.Net',     url: 'https://www.scidev.net/global/global_rss.xml', format: 'rss2', defaultCategory: 'science' },
   { name: 'The Record',     url: 'https://therecord.media/feed',                format: 'rss2', defaultCategory: 'tech' },
+  { name: 'Phys.org',       url: 'https://phys.org/rss-feed/',                  format: 'rss2', defaultCategory: 'science' },
+  { name: 'Quanta Magazine', url: 'https://www.quantamagazine.org/feed/',       format: 'rss2', defaultCategory: 'science' },
+  { name: 'Carbon Brief',   url: 'https://www.carbonbrief.org/feed/',           format: 'rss2', defaultCategory: 'science' },
 ]
 
 const EXCLUDE_RE = /\b(opinion|features|gallery|photos|video|sport|entertainment|culture|food|travel|lifestyle|podcast)\b/i
@@ -103,7 +106,7 @@ function isRelevant(item) {
 
 async function fetchSource(source, retries = 1) {
   try {
-    const res = await fetch(source.url, { signal: AbortSignal.timeout(10000) })
+    const res = await fetch(source.url, { signal: AbortSignal.timeout(10000), headers: { 'User-Agent': 'zuhd-news/1.0 (+https://zuhd.news)' } })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const xml = await res.text()
     const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '@_' })

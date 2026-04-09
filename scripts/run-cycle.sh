@@ -222,21 +222,20 @@ $BODY_LENGTHS
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT — $((SECONDS - T3))s" | tee -a "$LOG_FILE"
 
-  # Stage 3.5: Context briefs — generate background briefs for qualifying threads
+  # Stage 3.5+3.6: Context briefs + Educational context (independent — run in parallel)
   echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 3.5: Context briefs ---" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.5+3.6: Context & Educational briefs (parallel) ---" | tee -a "$LOG_FILE"
   T35=$SECONDS
-  timeout 600 node scripts/generate-context.js 2>&1 | tee -a "$LOG_FILE"
-  CONTEXT_EXIT=$?
-  echo "Context exit: $CONTEXT_EXIT — $((SECONDS - T35))s" | tee -a "$LOG_FILE"
-
-  # Stage 3.6: Educational context — generate explainers for standalone articles
-  echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 3.6: Educational context ---" | tee -a "$LOG_FILE"
-  T36=$SECONDS
-  timeout 300 node scripts/generate-edu-context.js 2>&1 | tee -a "$LOG_FILE"
-  EDU_EXIT=$?
-  echo "Edu context exit: $EDU_EXIT — $((SECONDS - T36))s" | tee -a "$LOG_FILE"
+  timeout 600 node scripts/generate-context.js > /tmp/zuhd-ctx.log 2>&1 &
+  CTX_PID=$!
+  timeout 300 node scripts/generate-edu-context.js > /tmp/zuhd-edu.log 2>&1 &
+  EDU_PID=$!
+  wait $CTX_PID; CONTEXT_EXIT=$?
+  wait $EDU_PID; EDU_EXIT=$?
+  cat /tmp/zuhd-ctx.log >> "$LOG_FILE"
+  cat /tmp/zuhd-edu.log >> "$LOG_FILE"
+  rm -f /tmp/zuhd-ctx.log /tmp/zuhd-edu.log
+  echo "Context exit: $CONTEXT_EXIT, Edu exit: $EDU_EXIT — $((SECONDS - T35))s" | tee -a "$LOG_FILE"
 
   # Stage 3b: Build and deploy — always runs, even if editor timed out
   # This ensures articles get published regardless of editor success
@@ -264,6 +263,7 @@ $BODY_LENGTHS
     git add content/articles/ content/.last-cycle.json content/.editorial-notes.md content/.story-ledger.json content/.context-briefs.json 2>&1 | tee -a "$LOG_FILE"
     CYCLE_TIME=$(date -u +"%Y-%m-%d %H:%M UTC")
     git commit -m "Editorial cycle $CYCLE_TIME: $NEW_COUNT articles" 2>&1 | tee -a "$LOG_FILE"
+    git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
 
     # Deploy
     npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
@@ -378,6 +378,7 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
     node scripts/build.js 2>&1 | tee -a "$LOG_FILE"
     git add content/audio/ 2>&1 | tee -a "$LOG_FILE"
     git commit -m "Audio briefing $(date -u +%Y-%m-%d)" 2>&1 | tee -a "$LOG_FILE"
+    git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
     npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
   fi
 else
@@ -422,6 +423,7 @@ if [ "$START_HOUR" = "22" ]; then
       git add content/.experiments.json content/.daily-audit.md 2>/dev/null
       AUDIT_DATE=$(date -u +%Y-%m-%d)
       git commit -m "Daily audit $AUDIT_DATE" 2>&1 | tee -a "$LOG_FILE"
+      git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
     fi
   else
     echo "Metrics computation failed — skipping tuning" | tee -a "$LOG_FILE"

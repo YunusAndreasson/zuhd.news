@@ -264,8 +264,13 @@ for (const [id, brief] of Object.entries(contextBriefs)) {
 }
 if (eduCount > 0) console.log(`  Edu context: ${eduCount} articles with educational briefs`)
 
+// Only process articles from the last 14 days — older ones don't appear in any output
+// (homepage window is 24h + MIN_PER_CATEGORY backfill, heatmap is 72h, feed is 30 recent)
+const BUILD_WINDOW_DAYS = 14
+const buildCutoffDate = new Date(Date.now() - BUILD_WINDOW_DAYS * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)
+
 const articles = readdirSync(CONTENT_DIR)
-  .filter(f => f.endsWith('.md') && f !== 'example.md')
+  .filter(f => f.endsWith('.md') && f !== 'example.md' && f.slice(0, 10) >= buildCutoffDate)
   .map(file => {
     const article = buildArticle(file)
     console.log(`  Built: ${article.slug}`)
