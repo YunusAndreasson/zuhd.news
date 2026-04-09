@@ -4761,5 +4761,121 @@
     "label": "Right to Repair",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-09-cftc-prediction-markets-sports-betting-finance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORE DISTINCTION",
+        "body": "A derivative is a contract whose value depends on something else — wheat prices, interest rates, whether it rains in Kansas. The CFTC regulates these. A bet is also a contract whose value depends on something else. The legal difference is thinner than regulators like to admit."
+      },
+      {
+        "heading": "WHY THE CFTC EXISTS",
+        "body": "Congress created the CFTC in 1974 after the onion futures scandal — speculators cornered the onion market so completely that a bag of onions cost less than the bag itself. The agency's mandate: prevent manipulation in contracts that reference real-world outcomes."
+      },
+      {
+        "heading": "THE ONION FUTURES BAN",
+        "body": "Onion futures have been illegal since 1958 — the only commodity specifically banned from futures trading by federal law. It remains the purest example of Congress drawing the line at 'this derivative is actually just gambling.'"
+      },
+      {
+        "heading": "THE KALSHI PRECEDENT",
+        "body": "In 2023 a federal judge ruled the CFTC could not block Kalshi's election contracts, finding that prediction markets on political events are not inherently 'gaming.' The ruling cracked open a door the CFTC had kept shut for decades: if election contracts are legal derivatives, why not sports?"
+      },
+      {
+        "heading": "THE ECONOMIC ARGUMENT",
+        "body": "Prediction markets aggregate private information into prices. A farmer hedges crop risk with futures; a hospital could hedge pandemic risk with event contracts. The question is whether that informational function survives when the dominant users are just punting on football."
+      }
+    ],
+    "generatedAt": "2026-04-09T08:23:01.444Z",
+    "label": "Prediction Markets & Derivatives Law",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-09-emergency-waivers-arms-israel-uae-congress-bypass": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEFAULT RULE",
+        "body": "The Arms Export Control Act of 1976 requires the president to notify Congress before any major arms sale — $14M+ for equipment, $50M+ for services. Congress then gets 30 days to pass a joint resolution blocking it. This is the normal process."
+      },
+      {
+        "heading": "THE EMERGENCY CLAUSE",
+        "body": "Section 36(b)(1) lets the president declare an emergency and skip the 30-day review entirely. The statute requires only that the president certify 'an emergency exists which requires the proposed sale in the national security interest.' No definition of emergency is provided."
+      },
+      {
+        "heading": "HOW RARE IT WAS",
+        "body": "Between 1976 and 2019, the emergency waiver was used exactly zero times. In May 2019 it was invoked for the first time — for $8.1 billion in arms to Saudi Arabia and the UAE during the Yemen war. What was designed as a Cold War failsafe became a precedent."
+      },
+      {
+        "heading": "WHY CONGRESS STRUGGLES TO RESPOND",
+        "body": "Even if both chambers pass a resolution blocking a sale, the president can veto it. Overriding requires two-thirds of both houses. In practice, arms sale vetoes have never been overridden. Congressional 'oversight' of arms exports is functionally advisory."
+      },
+      {
+        "heading": "THE LEAHY LAW WRINKLE",
+        "body": "Separate from AECA, the Leahy Law (1997) prohibits military aid to foreign units credibly implicated in gross human rights violations. It has no emergency waiver. But it requires a State Department finding — and the department can simply decline to investigate."
+      }
+    ],
+    "generatedAt": "2026-04-09T08:23:01.445Z",
+    "label": "The Arms Export Control Act",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-09-is-hormuz-open-yet-hacker-news-tracker": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 21 nautical miles wide at its narrowest. Shipping lanes are two miles wide in each direction, separated by a two-mile buffer. One-fifth of the world's oil passes through this 6-mile corridor daily."
+      },
+      {
+        "heading": "WHY THERE IS NO ALTERNATIVE",
+        "body": "Saudi Arabia has the East-West Pipeline (5 million bbl/day capacity) and the UAE has the Habshan-Fujairah line (1.5M bbl/day), but together they cover barely a third of Hormuz's throughput. There is no pipeline from Iraq, Kuwait, or Qatar that bypasses the strait. Geography is destiny."
+      },
+      {
+        "heading": "HOW AIS TRACKING WORKS",
+        "body": "Every commercial vessel over 300 gross tons must broadcast Automatic Identification System signals — position, speed, heading, cargo type — every few seconds. Satellites and coastal receivers collect these. MarineTraffic and similar platforms aggregate the feeds into real-time maps anyone can query."
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "Iran and Iraq attacked each other's oil tankers from 1984 to 1988. Over 400 ships were hit. Global oil prices spiked 30%. The US Navy eventually intervened with Operation Earnest Will — reflagging Kuwaiti tankers as American to grant them military escort. Insurance rates, not ideology, drove the intervention."
+      },
+      {
+        "heading": "THE LNG DIMENSION",
+        "body": "Qatar — the world's largest LNG exporter — ships virtually all of its gas through Hormuz. A closure would not just spike oil prices but cut gas supply to Japan, South Korea, and Europe simultaneously. This is why Qatar maintains cordial relations with Iran regardless of Gulf politics."
+      }
+    ],
+    "generatedAt": "2026-04-09T08:23:01.445Z",
+    "label": "The Strait of Hormuz",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-09-astral-open-source-security-ruff-uv": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ATTACK SURFACE",
+        "body": "When you run pip install, you trust every maintainer of every transitive dependency. A typical Python web app pulls in 50-200 packages. Compromising one maintainer account — or one build server — poisons every downstream project silently."
+      },
+      {
+        "heading": "THE EVENT ZERO",
+        "body": "The SolarWinds attack (2020) injected malicious code into the build pipeline of a trusted IT management tool. 18,000 organizations — including US federal agencies — auto-installed the compromised update. The breach went undetected for 9 months. Supply chain security became a federal priority overnight."
+      },
+      {
+        "heading": "SIGSTORE AND THE TRUST MODEL",
+        "body": "Sigstore (launched 2021, backed by Google and Red Hat) lets maintainers cryptographically sign releases using short-lived certificates tied to their identity. Users can verify that a package was built from the claimed source code by the claimed author — without managing GPG keys."
+      },
+      {
+        "heading": "THE BUILD PROVENANCE PROBLEM",
+        "body": "Signing proves who released a binary. Build provenance proves how it was built — which source commit, which compiler, which CI runner. SLSA (Supply-chain Levels for Software Artifacts) defines four levels of provenance assurance. Most open-source projects today meet Level 0: no provenance at all."
+      },
+      {
+        "heading": "WHY RUST TOOLS MATTER HERE",
+        "body": "Ruff and uv are Python tools written in Rust. They ship as single static binaries with zero Python dependencies — eliminating the transitive dependency tree entirely. The supply chain attack surface shrinks from hundreds of packages to one binary whose build can be independently verified."
+      }
+    ],
+    "generatedAt": "2026-04-09T08:23:01.445Z",
+    "label": "Software Supply Chain Security",
+    "category": "tech",
+    "articleCount": 1
   }
 }
