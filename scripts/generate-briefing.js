@@ -163,16 +163,13 @@ console.log('\n=== Stage 3: Synthesizing audio ===')
 
 mkdirSync(AUDIO_DIR, { recursive: true })
 
-// Pre-recorded audio: intro jingle before the bulletin, transition between sections.
+// Pre-recorded audio: transition between sections, outro after last section.
 // Files must be 24kHz mono MP3 to match TTS output (see public/audio/).
-const INTRO_MP3 = join(ROOT, 'public', 'audio', 'intro.mp3')
 const TRANSITION_MP3 = join(ROOT, 'public', 'audio', 'transition.mp3')
 const OUTRO_MP3 = join(ROOT, 'public', 'audio', 'outro.mp3')
-const hasIntro = existsSync(INTRO_MP3)
 const hasTransition = existsSync(TRANSITION_MP3)
 const hasOutro = existsSync(OUTRO_MP3)
 
-if (hasIntro) console.log('Using intro music (public/audio/intro.mp3)')
 if (hasTransition) console.log('Using transition music between sections (public/audio/transition.mp3)')
 
 // Split SSML into sections at <p> category boundaries.
@@ -188,10 +185,9 @@ if (pBlocks.length === 0) {
   ssmlSections.push({ type: 'intro', ssml: innerSsml })
 } else {
   // Intro+lead: everything before first <p>, strip trailing inter-section break
-  // Prepend 1.5s silence so the voice starts AFTER the intro music crossfade
   const introContent = innerSsml.slice(0, pBlocks[0].index)
     .replace(/\s*<break\s[^>]*\/>\s*$/, '').trim()
-  if (introContent) ssmlSections.push({ type: 'intro', ssml: `<break time="1500ms"/>${introContent}` })
+  if (introContent) ssmlSections.push({ type: 'intro', ssml: introContent })
 
   // Category sections (each <p>...</p> block)
   for (const block of pBlocks) {
@@ -259,11 +255,6 @@ let chunkIdx = 0
 for (let si = 0; si < ssmlSections.length; si++) {
   const section = ssmlSections[si]
 
-  // Intro music before the first section
-  if (si === 0 && hasIntro) {
-    audioParts.push(INTRO_MP3)
-  }
-
   // Transition music between sections (but not before signoff — too short, would feel abrupt)
   if (si > 0 && section.type !== 'signoff' && hasTransition) {
     audioParts.push(TRANSITION_MP3)
@@ -288,29 +279,12 @@ for (let si = 0; si < ssmlSections.length; si++) {
   }
 }
 
-const MUSIC_FILES = new Set([INTRO_MP3, TRANSITION_MP3, OUTRO_MP3])
+const MUSIC_FILES = new Set([TRANSITION_MP3, OUTRO_MP3])
 const musicCount = audioParts.filter(p => MUSIC_FILES.has(p)).length
 console.log(`Total parts: ${audioParts.length} (${audioParts.length - musicCount} TTS, ${musicCount} music)`)
 
-// Crossfade intro into the first TTS chunk: radio tuning fades out, voice fades in
-const CROSSFADE_SEC = 2
-if (audioParts[0] === INTRO_MP3 && audioParts.length > 1 && !MUSIC_FILES.has(audioParts[1])) {
-  const crossfadePath = join(tmpDir, 'crossfade-intro.mp3')
-  const cf = spawnSync('ffmpeg', [
-    '-y', '-i', INTRO_MP3, '-i', audioParts[1],
-    '-filter_complex', `acrossfade=d=${CROSSFADE_SEC}:c1=tri:c2=tri`,
-    '-ar', '24000', '-ac', '1', '-b:a', '64k', crossfadePath
-  ], { encoding: 'utf-8', timeout: 15000 })
-  if (cf.status === 0) {
-    console.log(`Crossfaded intro with first TTS section (${CROSSFADE_SEC}s overlap)`)
-    try { unlinkSync(audioParts[1]) } catch {}
-    audioParts.splice(0, 2, crossfadePath)
-  } else {
-    console.warn('Intro crossfade failed, falling back to simple concat:', cf.stderr?.slice(0, 150))
-  }
-}
-
 // Crossfade last TTS chunk into outro: voice fades out, outro fades in
+const CROSSFADE_SEC = 2
 if (hasOutro && audioParts.length > 0) {
   const lastIdx = audioParts.length - 1
   if (!MUSIC_FILES.has(audioParts[lastIdx])) {

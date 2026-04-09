@@ -321,27 +321,30 @@ $BODY_LENGTHS
         PUSH_SLUG=$(echo "$BREAKING_JSON" | node -e "const d=JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));console.log(d.articles[0]?.slug||'')")
         if [ -n "$PUSH_SLUG" ] && [ -f "content/articles/${PUSH_SLUG}.md" ]; then
           ARTICLE_TEXT=$(cat "content/articles/${PUSH_SLUG}.md")
-          PUSH_NOTIF=$(timeout 30 claude $CLAUDE_FLAGS --model $CLAUDE_MODEL --effort medium --tools "" -p "You are a breaking news editor writing an iOS push notification. The notification appears on a locked iPhone — the reader has 2 seconds to decide whether to tap.
+          PUSH_NOTIF=$(timeout 30 claude $CLAUDE_FLAGS --model $CLAUDE_MODEL --effort medium --tools "" -p "You are a breaking news editor writing an iOS push notification.
 
-iOS display constraints (Apple HIG):
-- Title: 1 line on lock screen, ~40 characters before truncation
-- Body: 2-4 lines on lock screen, ~90 characters fully visible without expanding
+The title is always: Breaking News
+You write ONLY the body — one short line, max 65 characters.
 
-Output exactly two lines:
-Line 1 — title: max 40 characters, the core event in 4-6 words
-Line 2 — body: max 90 characters, one sentence with the single most important fact
+Style: Reuters push alerts. State what happened in the fewest possible words.
+Examples:
+- EU agrees new sanctions package targeting Russian oil revenues
+- Magnitude 7.2 earthquake strikes off Japan coast, tsunami warning issued
+- Fed holds rates steady, signals single cut later this year
 
 Rules:
-- No filler (Breaking, Just in, Reports say, Sources say)
-- No names unless globally recognizable (Trump, Putin, etc.)
-- Front-load: the first 5 words must carry the news
-- Output ONLY the two lines, nothing else
+- One sentence, no period at the end
+- No filler (Just in, Reports say, Sources confirm)
+- Front-load the news — first 4 words must carry the story
+- Max 65 characters total
+
+Output ONLY the body line, nothing else.
 
 Article:
 $ARTICLE_TEXT" 2>/dev/null)
           if [ -n "$PUSH_NOTIF" ]; then
-            PUSH_TITLE=$(echo "$PUSH_NOTIF" | head -1)
-            PUSH_BODY=$(echo "$PUSH_NOTIF" | tail -1)
+            PUSH_TITLE="Breaking News"
+            PUSH_BODY=$(echo "$PUSH_NOTIF" | head -1)
             BREAKING_JSON=$(TITLE="$PUSH_TITLE" BODY="$PUSH_BODY" node -e "
               const d=JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
               if(process.env.TITLE) d.articles[0].title=process.env.TITLE;
