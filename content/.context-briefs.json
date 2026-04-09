@@ -4649,5 +4649,117 @@
     "label": "Browser Extension Privacy",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-09-iran-hormuz-alternative-routes-closure-reversal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two one-way corridors separated by a 3 km buffer. Every tanker transiting is essentially in a single-file line."
+      },
+      {
+        "heading": "THE VOLUME",
+        "body": "Roughly 21 million barrels per day pass through Hormuz — about one-fifth of global oil consumption and one-third of all seaborne-traded oil. No other chokepoint carries this concentration of energy supply."
+      },
+      {
+        "heading": "WHY MINES MATTER",
+        "body": "Naval mines cost a few thousand dollars each and can shut a strait worth billions in daily trade. In 1988 a single Iranian mine nearly sank the USS Samuel B. Roberts. Clearance takes weeks with specialized ships — the asymmetry between laying and clearing is enormous."
+      },
+      {
+        "heading": "THE ALTERNATIVE PROBLEM",
+        "body": "Saudi Arabia's East-West Pipeline and the UAE's Habshan-Fujairah pipeline together can bypass about 6.5 million barrels per day — less than a third of Hormuz traffic. There is no full workaround; the strait's closure is not a problem pipelines can solve at scale."
+      },
+      {
+        "heading": "THE PRICE MECHANISM",
+        "body": "Oil markets price in not just current supply but the probability of future disruption. A credible Hormuz threat adds a 'risk premium' to every barrel globally, even if no oil is actually lost yet. This is why Brent moves on announcements, not tanker counts."
+      }
+    ],
+    "generatedAt": "2026-04-09T04:27:47.054Z",
+    "label": "The Strait of Hormuz",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-09-bitcoin-quantum-resistant-wallet-prototype": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO LOCKS, NOT ONE",
+        "body": "Bitcoin uses two separate cryptographic systems: SHA-256 hashing for mining and proof-of-work, and ECDSA (elliptic curve) signatures for proving wallet ownership. Quantum computing threatens these differently."
+      },
+      {
+        "heading": "THE REAL VULNERABILITY",
+        "body": "SHA-256 is quantum-resistant — Grover's algorithm only halves its effective security, from 256-bit to 128-bit, which is still impractical to break. The danger is ECDSA: Shor's algorithm can derive a private key from a public key in polynomial time."
+      },
+      {
+        "heading": "WHEN KEYS ARE EXPOSED",
+        "body": "A Bitcoin address hashes the public key, hiding it. But the moment you spend from that address, the public key is broadcast to the network. Any address that has ever sent a transaction has its public key exposed permanently on-chain."
+      },
+      {
+        "heading": "THE FROZEN COINS PROBLEM",
+        "body": "Satoshi's estimated 1.1 million BTC, coins from lost wallets, and any address reused for spending all have exposed public keys. These cannot be migrated by their owners. A quantum attacker could claim them, flooding the market."
+      },
+      {
+        "heading": "WHY UPGRADING IS HARD",
+        "body": "Bitcoin has no central authority to mandate a cryptographic migration. Every holder must individually move coins to a new quantum-safe address. Coins belonging to lost keys or deceased holders can never be migrated — they become permanently vulnerable."
+      }
+    ],
+    "generatedAt": "2026-04-09T04:27:47.057Z",
+    "label": "Bitcoin's Cryptographic Exposure",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-09-organic-fertilizer-carbon-cycling-soil-genes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE",
+        "body": "The top metre of Earth's soil holds roughly 2,500 gigatonnes of carbon — more than three times the atmosphere and four times all living vegetation combined. Small percentage shifts in soil carbon dwarf most other climate interventions."
+      },
+      {
+        "heading": "THE TWO DIRECTIONS",
+        "body": "Soil microbes both fix carbon (pulling CO2 into stable organic compounds) and mineralize it (breaking organic matter back into CO2). The net direction depends on which microbial communities dominate — and fertilizer type selects for different communities."
+      },
+      {
+        "heading": "WHY CHEMICAL FERTILIZER RELEASES CARBON",
+        "body": "Synthetic nitrogen feeds fast-growing decomposer bacteria that break down existing soil organic matter to access its energy. This is called the 'priming effect' — adding nitrogen accelerates the loss of carbon that was already stored."
+      },
+      {
+        "heading": "THE METAGENOMICS METHOD",
+        "body": "Rather than growing microbes in a lab (which captures less than 1% of soil species), metagenomics sequences all DNA directly from a soil sample. This reveals the full gene inventory — including which carbon-cycling pathways are active — without needing to culture anything."
+      },
+      {
+        "heading": "THE MODELLING GAP",
+        "body": "Most climate models treat soil as a single carbon pool with fixed decay rates. They do not account for microbial community shifts driven by agricultural practice. If organic fertilizer reliably upregulates fixation genes at scale, current models are systematically underestimating a controllable carbon sink."
+      }
+    ],
+    "generatedAt": "2026-04-09T04:27:47.057Z",
+    "label": "Soil Carbon",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-09-john-deere-99m-right-to-repair-settlement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "Modern tractors run 150+ electronic control units. Deere's software requires dealer-issued authentication tokens to complete many repairs — replacing a sensor is physically simple but digitally locked until a dealer's laptop authorizes the part."
+      },
+      {
+        "heading": "THE LEGAL THEORY",
+        "body": "Manufacturers argue that buyers own the hardware but only license the software. Under the DMCA's Section 1201, circumventing software locks is a federal offense — even on equipment you purchased outright. Repair becomes a copyright issue, not a property issue."
+      },
+      {
+        "heading": "THE PRECEDENT CHAIN",
+        "body": "The doctrine traces to Lexmark v. Impression Products (2017), where the Supreme Court ruled patent rights exhaust at sale — you own what you buy. But copyright is different from patent law, and software licensing has let manufacturers reassert control through a different legal door."
+      },
+      {
+        "heading": "THE AGRICULTURAL STAKES",
+        "body": "A combine harvester earns its cost during a 2-3 week harvest window. A software lock that forces a 48-hour wait for a dealer visit during harvest can cost a farmer tens of thousands in lost crop. The repair restriction is not an inconvenience — it is an existential financial risk timed to maximum leverage."
+      }
+    ],
+    "generatedAt": "2026-04-09T04:27:47.058Z",
+    "label": "Right to Repair",
+    "category": "economy",
+    "articleCount": 1
   }
 }
