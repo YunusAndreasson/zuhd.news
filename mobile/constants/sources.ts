@@ -438,12 +438,6 @@ const _SOURCES: Record<string, SourceInfo> = {
     description:
       'Indian news portal owned by Network18 (Reliance Industries). Covers politics, business, and entertainment. One of the most explicitly pro-BJP outlets in the Network18 stable; frequently amplifies Hindu nationalist talking points.',
   },
-  Bloomberg: {
-    type: 'News agency',
-    location: 'New York, US',
-    description:
-      'Financial news division of Bloomberg LP, founded by Michael Bloomberg. One of the most influential business wire services globally. Bloomberg has donated tens of millions to Israeli causes and was awarded the Genesis Prize for commitment to Jewish values and Israel. Coverage generally reflects US establishment framing on the conflict.',
-  },
   'Game Rant': {
     type: 'Digital media',
     location: 'United States',
@@ -499,43 +493,6 @@ const _SOURCES: Record<string, SourceInfo> = {
       'Covers science and technology for the developing world. Funded by international development agencies. One of the few outlets bridging scientific research and Global South policy.',
   },
 
-  // --- Name variants (same outlets, different feed names) ---
-  'Al Jazeera Online': {
-    type: 'Public broadcaster',
-    location: 'Doha, Qatar',
-    description:
-      'English-language news network funded by the Qatari government. Extensive coverage of the Middle East, Africa, and the Global South. One of the few major international broadcasters with sustained Palestinian perspective. Israel banned Al Jazeera from operating in 2024; at least ten staff journalists and nine freelancers have been killed by Israeli strikes in Gaza. Coverage of Qatari domestic affairs is noticeably limited.',
-  },
-  'Al-Monitor': {
-    type: 'Digital media',
-    location: 'Washington, DC',
-    description:
-      'Covers the Middle East and North Africa with reporting from journalists based in the region. Funded by subscriptions and corporate sponsors. Founded by Jamal Daniel, a Syrian-American businessman.',
-  },
-  'Anadolu Ajansı': {
-    type: 'News agency',
-    location: 'Ankara, T\u00fcrkiye',
-    description:
-      'T\u00fcrkiye\u2019s state-run news agency. Publishes in 13 languages with extensive coverage of the Muslim world, Central Asia, and conflict zones. Photographs and videos widely syndicated by international outlets.',
-  },
-  'Drop Site News': {
-    type: 'Investigative',
-    location: 'United States',
-    description:
-      'Independent investigative outlet founded by journalists Jeremy Scahill and Ryan Grim. Covers national security, foreign policy, and government accountability. Has published detailed reporting on US arms transfers to Israel and their use in Gaza.',
-  },
-  STAT: {
-    type: 'Digital media',
-    location: 'Boston, US',
-    description:
-      'Health and medicine publication owned by Boston Globe Media. Covers pharma, biotech, and public health policy.',
-  },
-  'Premium Times Nigeria': {
-    type: 'Digital media',
-    location: 'Abuja, Nigeria',
-    description:
-      'Nigerian investigative newspaper. Known for corruption investigations and accountability journalism.',
-  },
 
   // --- Sources appearing in feed without prior entries ---
   'TRT World': {
@@ -569,12 +526,6 @@ const _SOURCES: Record<string, SourceInfo> = {
       'Semi-official Iranian news agency whose director is appointed by Iran\u2019s Supreme Leader. Affiliated with the Islamic Development Organization, which also operates the Tehran Times and Tasnim News Agency. Publishes in six languages.',
   },
   Euronews: {
-    type: 'Broadcaster',
-    location: 'Lyon, France',
-    description:
-      'Pan-European multilingual news channel. Since 2022, majority-owned by Alpac Capital, a Portuguese firm with documented ties to Hungarian PM Viktor Orb\u00e1n, who contributed at least a third of the acquisition funding. Mass layoffs eliminated two-thirds of journalists. Editorial independence under serious question.',
-  },
-  'Euronews English': {
     type: 'Broadcaster',
     location: 'Lyon, France',
     description:
@@ -635,25 +586,6 @@ const _SOURCES: Record<string, SourceInfo> = {
       'News division of CBS, one of the three major US broadcast networks. Coverage of the Middle East generally reflects US bipartisan consensus, which has historically been supportive of Israel.',
   },
 
-  // --- Name variants ---
-  'The New York Times': {
-    type: 'Newspaper',
-    location: 'New York, US',
-    description:
-      'American newspaper of record founded in 1851. One of the largest newspaper bureau networks globally. Owned by the Sulzberger family. Criticized by media watchdogs for disproportionate reliance on Israeli military sources and framing that minimizes Palestinian casualties in Gaza coverage.',
-  },
-  'Financial Times News': {
-    type: 'Newspaper',
-    location: 'London, UK',
-    description:
-      'Global business daily owned by Nikkei. Authoritative coverage of finance, economics, and international trade. Reflects the perspective of global financial elites; political coverage generally aligns with Western establishment consensus.',
-  },
-  'Nature npj Digital Medicine': {
-    type: 'Scientific journal',
-    location: 'London, UK',
-    description:
-      'Open-access journal in the Nature portfolio covering digital health, AI in medicine, and clinical informatics. Peer-reviewed under the Nature brand.',
-  },
 
   // --- New sources ---
   'Haberler.com': {
@@ -741,23 +673,226 @@ const _SOURCES: Record<string, SourceInfo> = {
       'Indian business news channel, a joint venture between Network18 (Reliance Industries) and NBCUniversal. Covers Indian markets, corporate news, and economic policy. Operates under the same Reliance ownership structure as MoneyControl and News18.',
   },
 
-  // --- Name variants ---
-  'Yonhap News Agency': {
+  // --- New sources from feed ---
+  AFP: {
     type: 'News agency',
-    location: 'Seoul, South Korea',
+    location: 'Paris, France',
     description:
-      'South Korea\u2019s largest news agency. Primary wire service for Korean news and inter-Korean relations.',
+      'Agence France-Presse, the world\u2019s third-largest wire service after AP and Reuters. Founded in 1835, making it the oldest news agency still in operation. French government-funded but editorially independent by statute since 1957. Wire copy adopted by thousands of outlets globally.',
   },
+  Axios: {
+    type: 'Digital media',
+    location: 'Arlington, US',
+    description:
+      'American news site founded in 2017 by former Politico journalists. Known for bullet-point \u201cSmart Brevity\u201d format. Acquired by Cox Enterprises in 2022. Covers politics, tech, and business with a Washington insider perspective.',
+  },
+  'Business Insider': {
+    type: 'Digital media',
+    location: 'New York, US',
+    description:
+      'Business and tech news site owned by Axel Springer. Rebranded from Business Insider to Insider and back. Covers markets, tech, and corporate news with a mix of reporting and aggregation.',
+  },
+  CNBC: {
+    type: 'Broadcaster',
+    location: 'Englewood Cliffs, US',
+    description:
+      'American business news channel owned by NBCUniversal (Comcast). Primary US channel for real-time market coverage. Editorial perspective reflects Wall Street consensus.',
+  },
+  'Middle East Monitor': {
+    type: 'Digital media',
+    location: 'London, UK',
+    description:
+      'Online news outlet covering the Middle East and North Africa. Editorially sympathetic to Palestinian rights and critical of Israeli policy. Founded in 2009. Critics, particularly pro-Israel groups, accuse it of bias toward Hamas and the Muslim Brotherhood; MEMo describes itself as advocating for press freedom and human rights.',
+  },
+  Mirror: {
+    type: 'Tabloid',
+    location: 'London, UK',
+    description:
+      'British tabloid newspaper owned by Reach plc. Left-leaning editorial stance by tabloid standards. Covers politics, crime, and entertainment.',
+  },
+  'Nature Communications': {
+    type: 'Scientific journal',
+    location: 'London, UK',
+    description:
+      'Open-access multidisciplinary journal in the Nature portfolio. Publishes peer-reviewed research across the natural sciences, including biology, chemistry, physics, and earth sciences.',
+  },
+  'Nature npj Digital Medicine': {
+    type: 'Scientific journal',
+    location: 'London, UK',
+    description:
+      'Open-access journal in the Nature portfolio covering digital health, AI in medicine, and clinical informatics. Peer-reviewed under the Nature brand.',
+  },
+  NDTV: {
+    type: 'Broadcaster',
+    location: 'New Delhi, India',
+    description:
+      'Indian news channel acquired by the Adani Group in 2022. Previously regarded as one of India\u2019s more independent broadcasters. Since the Adani acquisition, staff and media analysts have documented a shift away from critical coverage of the BJP government and Adani business interests.',
+  },
+  Newsweek: {
+    type: 'Magazine',
+    location: 'New York, US',
+    description:
+      'American weekly news magazine founded in 1933. Now primarily digital. Acquired in 2013 by IBT Media, then by Dev Pragad\u2019s group. Editorial direction has shifted rightward under current ownership. Still carries legacy brand recognition.',
+  },
+  NPR: {
+    type: 'Public broadcaster',
+    location: 'Washington, DC',
+    description:
+      'National Public Radio, a nonprofit US media organization. Funded by member stations, corporate sponsors, and listener donations. Coverage of the Middle East has been criticized by internal staff and external watchdogs for systematically underreporting Palestinian casualties.',
+  },
+  'Punch Newspapers': {
+    type: 'Newspaper',
+    location: 'Lagos, Nigeria',
+    description:
+      'Nigeria\u2019s most widely read newspaper. Independent editorial stance with strong coverage of governance, corruption, and social affairs. Has repeatedly clashed with the Nigerian government over press freedom.',
+  },
+  'Sahara Reporters': {
+    type: 'Digital media',
+    location: 'New York / Lagos',
+    description:
+      'Nigerian citizen journalism platform founded by Omoyele Sowore. Covers corruption, human rights abuses, and government accountability. Sowore was detained by Nigeria\u2019s secret police in 2019 after calling for protests.',
+  },
+  'The Financial Express': {
+    type: 'Newspaper',
+    location: 'New Delhi, India',
+    description:
+      'Indian financial daily owned by the Indian Express Group. Covers markets, economic policy, and business. Editorially more independent than the Times Group or Network18 papers.',
+  },
+  'The Irrawaddy': {
+    type: 'Digital media',
+    location: 'Chiang Mai, Thailand',
+    description:
+      'Independent Myanmar news outlet operating in exile from Thailand since 1993. One of the few outlets providing consistent English-language coverage of Myanmar\u2019s military junta, civil resistance, and the Rohingya crisis.',
+  },
+  'The Kyiv Independent': {
+    type: 'Digital media',
+    location: 'Kyiv, Ukraine',
+    description:
+      'English-language Ukrainian news outlet founded in 2021 by journalists who left the Kyiv Post over editorial independence concerns. Primary English-language source on the Russia-Ukraine war from the Ukrainian side. Funded by reader subscriptions and European grants.',
+  },
+  'The Manila Times': {
+    type: 'Newspaper',
+    location: 'Manila, Philippines',
+    description:
+      'One of the oldest newspapers in the Philippines, founded in 1898. Covers politics, business, and regional Southeast Asian affairs.',
+  },
+  'The Straits Times': {
+    type: 'Newspaper',
+    location: 'Singapore',
+    description:
+      'Singapore\u2019s English-language newspaper of record, owned by Singapore Press Holdings. Covers Southeast Asian politics, trade, and regional security. Operates within Singapore\u2019s media environment, which ranks low on press freedom indices due to government licensing controls.',
+  },
+  'The Times of Israel': {
+    type: 'Digital media',
+    location: 'Tel Aviv, Israel',
+    description:
+      'Online newspaper founded in 2012. Covers Israeli news, Middle East affairs, and Jewish world. Broadly Zionist editorial line. Publishes IDF-sourced material, sometimes without independent verification.',
+  },
+  'U.S. News & World Report': {
+    type: 'Digital media',
+    location: 'Washington, DC',
+    description:
+      'American media company best known for its rankings of colleges, hospitals, and cities. News coverage is primarily aggregated. Digital-only since 2010.',
+  },
+  Vanguard: {
+    type: 'Newspaper',
+    location: 'Lagos, Nigeria',
+    description:
+      'Nigerian daily newspaper. Covers politics, business, and security. One of Nigeria\u2019s largest-circulation English-language papers.',
+  },
+  IOL: {
+    type: 'Digital media',
+    location: 'Cape Town, South Africa',
+    description:
+      'South African online news portal owned by Sekunjalo Group. Covers politics, crime, and business. Parent company\u2019s chairman Iqbal Survé has been accused of using the outlet to advance political and business interests.',
+  },
+  LatestLY: {
+    type: 'Digital media',
+    location: 'Mumbai, India',
+    description:
+      'Indian digital news aggregator operated by LatestLY Media. Covers trending news, entertainment, and sports across India.',
+  },
+  'Markets Insider': {
+    type: 'Financial data',
+    location: 'New York, US',
+    description:
+      'Financial markets section of Business Insider, providing real-time stock quotes, market data, and analysis. Owned by Axel Springer.',
+  },
+  'Global Banking & Finance Review': {
+    type: 'Digital media',
+    location: 'London, UK',
+    description:
+      'Online publication covering banking, finance, and financial technology news globally.',
+  },
+  Autocar: {
+    type: 'Magazine',
+    location: 'London, UK',
+    description:
+      'British automotive magazine founded in 1895, the world\u2019s oldest car publication. Covers vehicle reviews, industry news, and the transition to electric vehicles. Owned by Haymarket Media Group.',
+  },
+  'Azeri - Press Informasiya Agentliyi': {
+    type: 'News agency',
+    location: 'Baku, Azerbaijan',
+    description:
+      'Azerbaijan\u2019s state news agency, commonly known as APA. Reflects Azerbaijani government positions on the Nagorno-Karabakh conflict, energy policy, and regional affairs.',
+  },
+  'Al-Ahram': {
+    type: 'Newspaper',
+    location: 'Cairo, Egypt',
+    description:
+      'Egypt\u2019s oldest and most widely circulated newspaper, founded in 1875. State-owned. Editorial line reflects Egyptian government positions. Coverage of Gaza and Palestinian affairs aligns with Cairo\u2019s political stance.',
+  },
+  'Yahoo! Finance': {
+    type: 'Financial data',
+    location: 'Sunnyvale, US',
+    description:
+      'Financial news and data platform under Yahoo. Provides market data, stock quotes, and business news. One of the most-visited financial sites globally.',
+  },
+
 };
 
-// Case-insensitive lookup — feed names may vary in capitalization
-const _lookup = new Map<string, SourceInfo>();
+// Manual aliases for names that can't be derived by normalization (non-Latin script, completely different names)
+const ALIASES: Record<string, string> = {
+  'Anadolu Ajansı': 'Anadolu Agency',
+  'Українська правда': 'Ukrainska Pravda',
+  'جريدة الأهرام': 'Al-Ahram',
+  'Premium Times Nigeria': 'Premium Times',
+  Bloomberg: 'Bloomberg Business',
+};
+
+// Fuzzy lookup: case-insensitive, strips "The " prefix, trailing noise words,
+// and normalizes hyphens to spaces — so "The New York Times" finds "New York Times",
+// "Al-Monitor" finds "Al Monitor", "Drop Site News" finds "Drop Site", etc.
+const NOISE_SUFFIXES = /\s+(Online|English|News|News Agency|Agency)$/i;
+
+function normalize(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/^the\s+/i, '')
+    .replace(NOISE_SUFFIXES, '')
+    .replace(/-/g, ' ')
+    .trim();
+}
+
+const _exact = new Map<string, SourceInfo>();   // lowercased exact keys
+const _fuzzy = new Map<string, SourceInfo>();    // normalized keys
+
 for (const [key, val] of Object.entries(_SOURCES)) {
-  _lookup.set(key.toLowerCase(), val);
+  _exact.set(key.toLowerCase(), val);
+  _fuzzy.set(normalize(key), val);
+}
+for (const [alias, canonical] of Object.entries(ALIASES)) {
+  const target = _exact.get(canonical.toLowerCase());
+  if (target) {
+    _exact.set(alias.toLowerCase(), target);
+    _fuzzy.set(normalize(alias), target);
+  }
 }
 
 export const SOURCES: Record<string, SourceInfo> = new Proxy(_SOURCES, {
   get(target, prop: string) {
-    return target[prop] ?? _lookup.get(prop.toLowerCase());
+    return target[prop]
+      ?? _exact.get(prop.toLowerCase())
+      ?? _fuzzy.get(normalize(prop));
   },
 });
