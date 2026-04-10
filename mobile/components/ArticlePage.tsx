@@ -19,7 +19,7 @@ import type { Article, ContextPressHandler, SourcePressHandler } from '../types'
 import { ActionLabel } from './ActionLabel';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 
-const GRADIENT_HEIGHT_TOP = 16;
+const GRADIENT_HEIGHT_TOP = 28;
 const GRADIENT_HEIGHT_BOTTOM = 40;
 
 interface ArticlePageProps {
@@ -237,7 +237,7 @@ export const ArticlePage = memo(function ArticlePage({
                   }
                 />
               ) : null}
-              <ActionLabel label="share" onPress={handleShare} icon="share-outline" />
+              <ActionLabel label="share" onPress={handleShare} />
             </View>
           </View>
         </Animated.View>
@@ -281,19 +281,19 @@ const styles = StyleSheet.create({
   },
   earlierLabel: {},
   title: {
-    marginBottom: SPACING.md,
+    marginBottom: SPACING.lg,
     fontVariant: ['oldstyle-nums'],
   },
   meta: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: SPACING.md,
+    marginTop: SPACING.lg,
   },
   metaGroup: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: SPACING.xs,
+    gap: SPACING.sm,
   },
   metaDim: {},
   globeTapZone: {

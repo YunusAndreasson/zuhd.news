@@ -19,7 +19,6 @@ import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { SearchSheet } from '../components/SearchSheet';
-import { AboutSheet } from '../components/AboutSheet';
 import { SettingsSheet } from '../components/SettingsSheet';
 import { SourceSheet } from '../components/SourceSheet';
 import { Toast, type ToastRef } from '../components/Toast';
@@ -67,7 +66,6 @@ export default function HomeScreen() {
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
   const searchSheetRef = useRef<BottomSheetModal>(null);
   const bookmarkSheetRef = useRef<BottomSheetModal>(null);
-  const aboutSheetRef = useRef<BottomSheetModal>(null);
   const settingsSheetRef = useRef<BottomSheetModal>(null);
   const contextSheetRef = useRef<BottomSheetModal>(null);
   const {
@@ -131,11 +129,6 @@ export default function HomeScreen() {
     const added = toggleBookmark(article, category);
     hapticNotification();
     toastRef.current?.show(added ? 'Saved' : 'Removed');
-  }, []);
-
-  const handleAboutPress = useCallback(() => {
-    hapticImpact();
-    aboutSheetRef.current?.present();
   }, []);
 
   const handleSettingsPress = useCallback(() => {
@@ -341,7 +334,6 @@ export default function HomeScreen() {
         categoryProgresses={categoryProgresses}
         currentCategory={currentCategory}
         onCategoryPress={onCategoryPress}
-        onAboutPress={handleAboutPress}
         onSettingsPress={handleSettingsPress}
       />
 
@@ -459,12 +451,6 @@ export default function HomeScreen() {
         onDismiss={() => {}}
       />
 
-      <AboutSheet
-        sheetRef={aboutSheetRef}
-        bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
-        onDismiss={() => {}}
-      />
     </View>
   );
 }

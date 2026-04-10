@@ -156,10 +156,10 @@ export const LAYOUT = {
   pillPaddingV: 2,
   pillRadius: 3,
   floatingShadow: {
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.4,
-    shadowRadius: 8,
-    elevation: 8,
+    shadowOffset: { width: 0, height: -1 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+    elevation: 4,
   },
 } as const;
 

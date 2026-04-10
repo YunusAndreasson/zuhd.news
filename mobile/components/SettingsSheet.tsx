@@ -243,6 +243,19 @@ export const SettingsSheet = memo(function SettingsSheet({
 
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
+        {/* About */}
+        <Text
+          style={{
+            fontFamily: font.regular,
+            fontSize: typography.sizeSm,
+            color: colors.textSecondary,
+            lineHeight: typography.sizeSm * 1.5,
+            marginBottom: SPACING.md,
+          }}
+        >
+          What happened, why it matters, what comes next.
+        </Text>
+
         <View style={styles.sectionBody}>
           <Text
             style={{
@@ -262,21 +275,21 @@ export const SettingsSheet = memo(function SettingsSheet({
             }}
           >
             <Text
-              onPress={() => { hapticTick(); openUrl('https://zuhd.news/about'); }}
-              accessibilityRole="link"
-              accessibilityLabel="About zuhd.news"
-              style={{ color: colors.accent }}
-            >
-              about
-            </Text>
-            {'  ·  '}
-            <Text
-              onPress={() => { hapticTick(); Linking.openURL('mailto:yunus@edenmind.com'); }}
+              onPress={() => { hapticTick(); Linking.openURL('mailto:contact@zuhd.news'); }}
               accessibilityRole="link"
               accessibilityLabel="Contact us by email"
               style={{ color: colors.accent }}
             >
               contact
+            </Text>
+            {'  ·  '}
+            <Text
+              onPress={() => { hapticTick(); openUrl('https://zuhd.news/sources'); }}
+              accessibilityRole="link"
+              accessibilityLabel="View sources"
+              style={{ color: colors.accent }}
+            >
+              sources
             </Text>
             {'  ·  '}
             <Text
@@ -286,6 +299,15 @@ export const SettingsSheet = memo(function SettingsSheet({
               style={{ color: colors.accent }}
             >
               privacy
+            </Text>
+            {'  ·  '}
+            <Text
+              onPress={() => { hapticTick(); openUrl('https://zuhd.news/support'); }}
+              accessibilityRole="link"
+              accessibilityLabel="Support"
+              style={{ color: colors.accent }}
+            >
+              support
             </Text>
             {'  ·  '}
             <Text

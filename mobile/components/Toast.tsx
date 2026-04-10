@@ -81,14 +81,18 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
 
   return (
     <Animated.View
-      style={[styles.container, { backgroundColor: colors.toastBg, borderColor: colors.toastBorder }, positionStyle, animatedStyle]}
+      style={[styles.container, positionStyle, animatedStyle]}
       pointerEvents={visible ? 'auto' : 'none'}
       accessibilityLiveRegion="polite"
     >
       <Pressable
         onPress={handlePress}
         hitSlop={12}
-        style={({ pressed }) => pressed && PRESSED_STYLE}
+        style={({ pressed }) => [
+          styles.pill,
+          { backgroundColor: colors.toastBg },
+          pressed && PRESSED_STYLE,
+        ]}
         accessibilityRole="alert"
         accessibilityLabel={message}
       >
@@ -101,14 +105,16 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    left: SPACING.screenPadding,
-    right: SPACING.screenPadding,
+    alignSelf: 'center',
+    left: 0,
+    right: 0,
     alignItems: 'center',
-    paddingVertical: SPACING.sm,
-    paddingHorizontal: SPACING.md,
-    borderRadius: SPACING.sm,
-    borderWidth: StyleSheet.hairlineWidth,
     zIndex: 100,
+  },
+  pill: {
+    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.lg,
+    borderRadius: 14,
   },
   text: {},
 });

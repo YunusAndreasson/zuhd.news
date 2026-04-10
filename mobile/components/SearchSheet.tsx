@@ -184,6 +184,23 @@ export const SearchSheet = memo(function SearchSheet({
           keyExtractor={keyExtractor}
           contentContainerStyle={[styles.listContent, { paddingBottom: bottomInset + SPACING.lg }]}
           keyboardShouldPersistTaps="handled"
+          ListHeaderComponent={
+            results.length > 0 ? (
+              <Text
+                style={[
+                  styles.resultCount,
+                  {
+                    fontFamily: font.smallCaps,
+                    fontSize: typography.sizeXs,
+                    letterSpacing: typography.trackingCaps,
+                    color: colors.textSecondary,
+                  },
+                ]}
+              >
+                {results.length} article{results.length === 1 ? '' : 's'}
+              </Text>
+            ) : null
+          }
         />
       )}
     </BottomSheetModal>
@@ -202,6 +219,10 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingHorizontal: SPACING.screenPadding,
+  },
+  resultCount: {
+    paddingTop: SPACING.md,
+    paddingBottom: SPACING.xs,
   },
   emptyState: {
     alignItems: 'center',

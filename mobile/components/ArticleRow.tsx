@@ -66,7 +66,7 @@ export const ArticleRow = memo(function ArticleRow({
 
 const styles = StyleSheet.create({
   row: {
-    paddingVertical: SPACING.md,
+    paddingVertical: SPACING.md + 4,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });

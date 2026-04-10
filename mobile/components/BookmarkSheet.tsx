@@ -63,7 +63,7 @@ export const BookmarkSheet = memo(function BookmarkSheet({
             <Text
               style={{
                 fontFamily: font.regular,
-                fontSize: typography.sizeSm,
+                fontSize: typography.sizeBase,
                 color: colors.textSecondary,
               }}
             >

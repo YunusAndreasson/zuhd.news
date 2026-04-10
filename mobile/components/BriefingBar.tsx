@@ -182,18 +182,15 @@ export const BriefingBar = memo(function BriefingBar({
             accessibilityRole="button"
             accessibilityLabel="Play daily briefing"
           >
-            <Ionicons name="play" size={LAYOUT.iconSm} color={colors.textEmphasis} />
             <Text
-              style={[
-                styles.pillText,
-                {
-                  fontFamily: font.semiBold,
-                  fontSize: typography.sizeSm,
-                  color: colors.textEmphasis,
-                },
-              ]}
+              style={{
+                fontFamily: font.smallCaps,
+                fontSize: typography.sizeXs,
+                letterSpacing: typography.trackingCaps,
+                color: colors.textEmphasis,
+              }}
             >
-              Briefing
+              briefing
             </Text>
           </Pressable>
         </View>
@@ -258,14 +255,11 @@ const styles = StyleSheet.create({
     gap: SPACING.sm,
   },
   pill: {
-    flexDirection: 'row',
     alignItems: 'center',
-    gap: SPACING.xs + 2,
+    justifyContent: 'center',
     borderRadius: BAR_RADIUS,
     paddingVertical: SPACING.sm,
-    paddingLeft: SPACING.sm + 2,
-    paddingRight: SPACING.md,
+    paddingHorizontal: SPACING.md,
     ...LAYOUT.floatingShadow,
   },
-  pillText: {},
 });

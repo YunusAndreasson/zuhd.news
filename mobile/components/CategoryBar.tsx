@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
@@ -18,7 +17,6 @@ interface CategoryBarProps {
   categoryProgresses: SharedValue<number[]>;
   currentCategory: number;
   onCategoryPress: (index: number) => void;
-  onAboutPress: () => void;
   onSettingsPress: () => void;
 }
 
@@ -73,7 +71,6 @@ export const CategoryBar = memo(function CategoryBar({
   categoryProgresses,
   currentCategory,
   onCategoryPress,
-  onAboutPress,
   onSettingsPress,
 }: CategoryBarProps) {
   const { colors, font, typography } = useTheme();
@@ -156,26 +153,24 @@ export const CategoryBar = memo(function CategoryBar({
             </Text>
           </Text>
         </Pressable>
-        <View style={styles.headerIcons}>
-          <Pressable
-            onPress={onAboutPress}
-            hitSlop={12}
-            style={({ pressed }) => pressed && PRESSED_STYLE}
-            accessibilityRole="button"
-            accessibilityLabel="About"
+        <Pressable
+          onPress={onSettingsPress}
+          hitSlop={12}
+          style={({ pressed }) => pressed && PRESSED_STYLE}
+          accessibilityRole="button"
+          accessibilityLabel="Settings"
+        >
+          <Text
+            style={{
+              fontFamily: font.smallCaps,
+              fontSize: typography.sizeXs,
+              letterSpacing: typography.trackingCaps,
+              color: colors.textSecondary,
+            }}
           >
-            <Ionicons name="information-circle" size={LAYOUT.iconSm} color={colors.textSecondary} />
-          </Pressable>
-          <Pressable
-            onPress={onSettingsPress}
-            hitSlop={12}
-            style={({ pressed }) => pressed && PRESSED_STYLE}
-            accessibilityRole="button"
-            accessibilityLabel="Settings"
-          >
-            <Ionicons name="settings-sharp" size={LAYOUT.iconSm} color={colors.textSecondary} />
-          </Pressable>
-        </View>
+            settings
+          </Text>
+        </Pressable>
       </View>
 
       <View style={styles.tabRow}>
@@ -218,11 +213,6 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.sm,
   },
   wordmark: {},
-  headerIcons: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.md,
-  },
   tabRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',

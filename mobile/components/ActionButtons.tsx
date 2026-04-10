@@ -1,6 +1,5 @@
-import { Ionicons } from '@expo/vector-icons';
 import { memo } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
@@ -9,38 +8,58 @@ interface ActionButtonsProps {
   onBookmarkPress: () => void;
 }
 
+const PILL_RADIUS = 14;
+
 export const ActionButtons = memo(function ActionButtons({
   onSearchPress,
   onBookmarkPress,
 }: ActionButtonsProps) {
-  const { colors } = useTheme();
+  const { colors, font, typography } = useTheme();
   return (
     <View style={styles.row}>
       <Pressable
         onPress={onSearchPress}
         hitSlop={12}
         style={({ pressed }) => [
-          styles.circle,
+          styles.pill,
           { backgroundColor: colors.sheetBg, shadowColor: colors.black },
           pressed && PRESSED_STYLE,
         ]}
         accessibilityRole="button"
         accessibilityLabel="Search"
       >
-        <Ionicons name="search" size={14} color={colors.textEmphasis} />
+        <Text
+          style={{
+            fontFamily: font.smallCaps,
+            fontSize: typography.sizeXs,
+            letterSpacing: typography.trackingCaps,
+            color: colors.textEmphasis,
+          }}
+        >
+          search
+        </Text>
       </Pressable>
       <Pressable
         onPress={onBookmarkPress}
         hitSlop={12}
         style={({ pressed }) => [
-          styles.circle,
+          styles.pill,
           { backgroundColor: colors.sheetBg, shadowColor: colors.black },
           pressed && PRESSED_STYLE,
         ]}
         accessibilityRole="button"
         accessibilityLabel="Saved articles"
       >
-        <Ionicons name="bookmark-outline" size={14} color={colors.textEmphasis} />
+        <Text
+          style={{
+            fontFamily: font.smallCaps,
+            fontSize: typography.sizeXs,
+            letterSpacing: typography.trackingCaps,
+            color: colors.textEmphasis,
+          }}
+        >
+          saved
+        </Text>
       </Pressable>
     </View>
   );
@@ -52,10 +71,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: SPACING.sm,
   },
-  circle: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
+  pill: {
+    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.md,
+    borderRadius: PILL_RADIUS,
     alignItems: 'center',
     justifyContent: 'center',
     ...LAYOUT.floatingShadow,
