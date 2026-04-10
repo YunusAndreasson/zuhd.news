@@ -159,7 +159,10 @@ export const BriefingBar = memo(function BriefingBar({
               <View
                 style={[
                   styles.progressFill,
-                  { width: `${progress * 100}%`, backgroundColor: colors.textSecondary },
+                  {
+                    backgroundColor: colors.textSecondary,
+                    transform: [{ scaleX: progress }],
+                  },
                 ]}
               />
             </View>
@@ -246,8 +249,10 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   progressFill: {
+    width: '100%',
     height: PROGRESS_HEIGHT,
     borderRadius: PROGRESS_HEIGHT,
+    transformOrigin: 'left',
   },
   /* ── Collapsed row ── */
   collapsedRow: {

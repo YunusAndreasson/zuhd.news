@@ -5,7 +5,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import Constants from 'expo-constants';
 import * as WebBrowser from 'expo-web-browser';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useRef } from 'react';
 import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import { PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -29,13 +29,22 @@ export const AboutSheet = memo(function AboutSheet({
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
 
+  const pendingUrl = useRef<string | null>(null);
+
   const openUrl = useCallback(
     (url: string) => {
+      pendingUrl.current = url;
       sheetRef.current?.dismiss();
-      setTimeout(() => WebBrowser.openBrowserAsync(url), 300);
     },
     [sheetRef],
   );
+
+  const handleDismiss = useCallback(() => {
+    const url = pendingUrl.current;
+    pendingUrl.current = null;
+    if (url) WebBrowser.openBrowserAsync(url);
+    onDismiss();
+  }, [onDismiss]);
 
   const AboutHandle = useCallback(() => <SheetHandle title="about" />, []);
 
@@ -49,7 +58,7 @@ export const AboutSheet = memo(function AboutSheet({
       backgroundStyle={sheetStyles.bg}
       handleComponent={AboutHandle}
       containerComponent={SheetContainer}
-      onDismiss={onDismiss}
+      onDismiss={handleDismiss}
     >
       <BottomSheetScrollView
         contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}

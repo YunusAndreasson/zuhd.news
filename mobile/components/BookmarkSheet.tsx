@@ -3,7 +3,7 @@ import {
   BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
-import { memo, useCallback, useSyncExternalStore } from 'react';
+import { memo, useCallback, useRef, useSyncExternalStore } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -31,16 +31,18 @@ export const BookmarkSheet = memo(function BookmarkSheet({
 }: BookmarkSheetProps) {
   const { colors, font, typography, sheetStyles } = useTheme();
   const bookmarks = useSyncExternalStore(subscribe, getSnapshot);
+  const bookmarksRef = useRef(bookmarks);
+  bookmarksRef.current = bookmarks;
 
   const BookmarkHandle = useCallback(() => <SheetHandle title="saved" />, []);
 
   const handleRemove = useCallback((slug: string) => {
-    const bookmark = bookmarks.find((b) => b.article.slug === slug);
+    const bookmark = bookmarksRef.current.find((b) => b.article.slug === slug);
     if (bookmark) {
       toggle(bookmark.article, bookmark.category);
       hapticNotification();
     }
-  }, [bookmarks]);
+  }, []);
 
   return (
     <BottomSheetModal

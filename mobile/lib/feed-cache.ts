@@ -10,8 +10,16 @@ interface CacheMeta {
 }
 
 export function writeFeedCache(feed: FeedResponse): void {
-  FEED_FILE.write(JSON.stringify(feed));
-  META_FILE.write(JSON.stringify({ cachedAt: Date.now(), generated: feed.generated }));
+  // Defer sync write off the current frame to avoid blocking JS thread
+  // during feed apply → UI update. The write is fire-and-forget.
+  const json = JSON.stringify(feed);
+  const meta = JSON.stringify({ cachedAt: Date.now(), generated: feed.generated });
+  setTimeout(() => {
+    try {
+      FEED_FILE.write(json);
+      META_FILE.write(meta);
+    } catch {}
+  }, 0);
 }
 
 export async function readFeedCache(): Promise<FeedResponse | null> {

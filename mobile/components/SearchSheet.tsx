@@ -86,10 +86,10 @@ export const SearchSheet = memo(function SearchSheet({
     onDismiss();
   }, [onDismiss]);
 
-  const handleAnimate = useCallback((_from: number, to: number) => {
-    // Focus input after the opening animation settles
-    if (to === 0) {
-      setTimeout(() => inputRef.current?.focus(), 350);
+  const handleChange = useCallback((index: number) => {
+    // Focus input once the sheet has settled at its snap point
+    if (index === 0) {
+      inputRef.current?.focus();
     }
   }, []);
 
@@ -119,7 +119,7 @@ export const SearchSheet = memo(function SearchSheet({
       handleComponent={SearchHandle}
       containerComponent={SheetContainer}
       onDismiss={handleDismiss}
-      onAnimate={handleAnimate}
+      onChange={handleChange}
       keyboardBehavior="extend"
       keyboardBlurBehavior="none"
       android_keyboardInputMode="adjustResize"

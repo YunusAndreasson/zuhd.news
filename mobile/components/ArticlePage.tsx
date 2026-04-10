@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Canvas, LinearGradient, Rect, vec } from '@shopify/react-native-skia';
+import { LinearGradient } from 'expo-linear-gradient';
 import { memo, useCallback, useMemo } from 'react';
 import { Pressable, Share, StyleSheet, Text, View } from 'react-native';
 import Animated, {
@@ -89,7 +89,7 @@ export const ArticlePage = memo(function ArticlePage({
   isBreaking,
   onBreakingPress,
 }: ArticlePageProps) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors, font, typography, textStyles, bgAlpha } = useTheme();
   const timeAgo = formatTimeAgo(article.addedAt);
   const pageStart = index * itemHeight;
   const reduceMotion = useReducedMotion();
@@ -161,16 +161,12 @@ export const ArticlePage = memo(function ArticlePage({
       />
 
       {/* Top gradient — dissolves globe into content */}
-      <Canvas style={[styles.gradientTop, { width: screenWidth }]} pointerEvents="none">
-        <Rect x={0} y={0} width={screenWidth} height={GRADIENT_HEIGHT_TOP}>
-          <LinearGradient
-            start={vec(0, 0)}
-            end={vec(0, GRADIENT_HEIGHT_TOP)}
-            colors={[`${colors.bg}00`, `${colors.bg}66`, `${colors.bg}CC`, colors.bg]}
-            positions={[0, 0.3, 0.7, 1]}
-          />
-        </Rect>
-      </Canvas>
+      <LinearGradient
+        colors={[bgAlpha(0), bgAlpha(0.4), bgAlpha(0.8), colors.bg]}
+        locations={[0, 0.3, 0.7, 1]}
+        style={[styles.gradientTop, { width: screenWidth }]}
+        pointerEvents="none"
+      />
 
       {/* Content zone — title, body, meta all grouped together */}
       <Pressable
@@ -249,16 +245,11 @@ export const ArticlePage = memo(function ArticlePage({
 
       {/* Gradient dissolves content into globe — fades with body */}
       <Animated.View style={fadeStyle} pointerEvents="none">
-        <Canvas style={[styles.gradientBottom, { width: screenWidth }]}>
-          <Rect x={0} y={0} width={screenWidth} height={GRADIENT_HEIGHT_BOTTOM}>
-            <LinearGradient
-              start={vec(0, 0)}
-              end={vec(0, GRADIENT_HEIGHT_BOTTOM)}
-              colors={[colors.bg, `${colors.bg}CC`, `${colors.bg}66`, `${colors.bg}00`]}
-              positions={[0, 0.3, 0.7, 1]}
-            />
-          </Rect>
-        </Canvas>
+        <LinearGradient
+          colors={[colors.bg, bgAlpha(0.8), bgAlpha(0.4), bgAlpha(0)]}
+          locations={[0, 0.3, 0.7, 1]}
+          style={[styles.gradientBottom, { width: screenWidth }]}
+        />
       </Animated.View>
     </View>
   );
