@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   keyStatValue: {
-    marginBottom: 2,
+    marginBottom: SPACING.xs / 2,
   },
   keyStatLabel: {},
   countryRow: {

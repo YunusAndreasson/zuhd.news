@@ -150,10 +150,17 @@ export const LAYOUT = {
   sheetMaxFraction: 0.7,
   backdropOpacity: 0.3,
   iconSm: 14,
+  iconMd: 20,
   timelineDot: 5,
   timelineLineWidth: 1,
   pillPaddingV: 2,
   pillRadius: 3,
+  floatingShadow: {
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.4,
+    shadowRadius: 8,
+    elevation: 8,
+  },
 } as const;
 
 /** Editorial thresholds — not layout, but shared across components */

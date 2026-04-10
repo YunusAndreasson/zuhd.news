@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Animated, { FadeIn, FadeOut, LinearTransition } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import { LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { ActionButtons } from './ActionButtons';
 
@@ -137,7 +137,7 @@ export const BriefingBar = memo(function BriefingBar({
               accessibilityRole="button"
               accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
             >
-              <Ionicons name={playing ? 'pause' : 'play'} size={20} color={colors.textEmphasis} />
+              <Ionicons name={playing ? 'pause' : 'play'} size={LAYOUT.iconMd} color={colors.textEmphasis} />
             </Pressable>
           </View>
 
@@ -182,7 +182,7 @@ export const BriefingBar = memo(function BriefingBar({
             accessibilityRole="button"
             accessibilityLabel="Play daily briefing"
           >
-            <Ionicons name="play" size={14} color={colors.textEmphasis} />
+            <Ionicons name="play" size={LAYOUT.iconSm} color={colors.textEmphasis} />
             <Text
               style={[
                 styles.pillText,
@@ -218,10 +218,7 @@ const styles = StyleSheet.create({
     paddingTop: SPACING.sm + 2,
     paddingHorizontal: SPACING.md,
     overflow: 'hidden',
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.4,
-    shadowRadius: 8,
-    elevation: 8,
+    ...LAYOUT.floatingShadow,
   },
   row: {
     flexDirection: 'row',
@@ -268,10 +265,7 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.sm,
     paddingLeft: SPACING.sm + 2,
     paddingRight: SPACING.md,
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.4,
-    shadowRadius: 8,
-    elevation: 8,
+    ...LAYOUT.floatingShadow,
   },
   pillText: {},
 });

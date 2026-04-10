@@ -7,7 +7,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { RefreshControl, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { RefreshControl, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import Animated, {
   runOnJS,
   type SharedValue,
@@ -16,6 +16,7 @@ import Animated, {
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SPACING } from '../constants/theme';
 import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
@@ -71,7 +72,7 @@ export const ArticleList = memo(function ArticleList({
   resetKey,
   ref,
 }: ArticleListProps) {
-  const { colors } = useTheme();
+  const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
   const { width: screenWidth } = useWindowDimensions();
   // Chronological sort, but within the same time bucket (e.g. all "1h ago")
@@ -237,7 +238,14 @@ export const ArticleList = memo(function ArticleList({
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);
 
-  if (sortedArticles.length === 0) return <View style={styles.empty} />;
+  if (sortedArticles.length === 0)
+    return (
+      <View style={styles.empty}>
+        <Text style={{ fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.textSecondary }}>
+          No articles yet
+        </Text>
+      </View>
+    );
 
   return (
     <View
@@ -294,5 +302,5 @@ export const ArticleList = memo(function ArticleList({
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  empty: { flex: 1 },
+  empty: { flex: 1, alignItems: 'center', paddingTop: SPACING.xl },
 });

@@ -29,6 +29,7 @@ function TabLabel({
   textColor,
   fontFamily,
   fontSize,
+  letterSpacing,
   onCategoryPress,
   onLayout,
 }: {
@@ -38,6 +39,7 @@ function TabLabel({
   textColor: string;
   fontFamily: string | undefined;
   fontSize: number;
+  letterSpacing: number;
   onCategoryPress: (index: number) => void;
   onLayout: (e: LayoutChangeEvent) => void;
 }) {
@@ -59,7 +61,7 @@ function TabLabel({
       accessibilityRole="tab"
       accessibilityLabel={label}
     >
-      <Animated.Text style={[styles.tabLabel, { fontFamily, fontSize }, animatedStyle]}>
+      <Animated.Text style={[styles.tabLabel, { fontFamily, fontSize, letterSpacing }, animatedStyle]}>
         {label}
       </Animated.Text>
     </Pressable>
@@ -186,6 +188,7 @@ export const CategoryBar = memo(function CategoryBar({
             textColor={colors.text}
             fontFamily={font.semiBold}
             fontSize={typography.sizeXs}
+            letterSpacing={typography.trackingCaps}
             onCategoryPress={onCategoryPress}
             onLayout={tabLayoutHandlers[i]!}
           />
@@ -227,9 +230,7 @@ const styles = StyleSheet.create({
     gap: SPACING.lg,
     paddingBottom: SPACING.xs,
   },
-  tabLabel: {
-    letterSpacing: 1.2,
-  },
+  tabLabel: {},
   progressBar: {
     position: 'absolute',
     bottom: 0,

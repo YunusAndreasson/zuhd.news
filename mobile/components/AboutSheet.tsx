@@ -84,7 +84,7 @@ export const AboutSheet = memo(function AboutSheet({
               hapticTick();
               Linking.openURL('mailto:contact@zuhd.news');
             }}
-            hitSlop={8}
+            hitSlop={12}
             style={({ pressed }) => pressed && PRESSED_STYLE}
             accessibilityRole="link"
             accessibilityLabel="Contact us by email"
@@ -111,7 +111,7 @@ export const AboutSheet = memo(function AboutSheet({
               hapticTick();
               openUrl('https://zuhd.news/sources');
             }}
-            hitSlop={8}
+            hitSlop={12}
             style={({ pressed }) => pressed && PRESSED_STYLE}
             accessibilityRole="link"
             accessibilityLabel="View sources"
@@ -151,6 +151,7 @@ export const AboutSheet = memo(function AboutSheet({
             <Text
               onPress={() => openUrl('https://zuhd.news/privacy')}
               accessibilityRole="link"
+              accessibilityLabel="Privacy policy"
               style={{ color: colors.accent }}
             >
               privacy
@@ -159,6 +160,7 @@ export const AboutSheet = memo(function AboutSheet({
             <Text
               onPress={() => openUrl('https://zuhd.news/support')}
               accessibilityRole="link"
+              accessibilityLabel="Support"
               style={{ color: colors.accent }}
             >
               support

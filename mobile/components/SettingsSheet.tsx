@@ -54,7 +54,7 @@ function OptionRow<T extends string>({
               onSelect(opt.value);
             }
           }}
-          hitSlop={8}
+          hitSlop={12}
           style={({ pressed }) => pressed && PRESSED_STYLE}
           accessibilityRole="radio"
           accessibilityState={{ selected: opt.value === selected }}
@@ -262,7 +262,7 @@ export const SettingsSheet = memo(function SettingsSheet({
             }}
           >
             <Text
-              onPress={() => openUrl('https://zuhd.news/about')}
+              onPress={() => { hapticTick(); openUrl('https://zuhd.news/about'); }}
               accessibilityRole="link"
               accessibilityLabel="About zuhd.news"
               style={{ color: colors.accent }}
@@ -271,7 +271,7 @@ export const SettingsSheet = memo(function SettingsSheet({
             </Text>
             {'  ·  '}
             <Text
-              onPress={() => Linking.openURL('mailto:yunus@edenmind.com')}
+              onPress={() => { hapticTick(); Linking.openURL('mailto:yunus@edenmind.com'); }}
               accessibilityRole="link"
               accessibilityLabel="Contact us by email"
               style={{ color: colors.accent }}
@@ -280,7 +280,7 @@ export const SettingsSheet = memo(function SettingsSheet({
             </Text>
             {'  ·  '}
             <Text
-              onPress={() => openUrl('https://zuhd.news/privacy')}
+              onPress={() => { hapticTick(); openUrl('https://zuhd.news/privacy'); }}
               accessibilityRole="link"
               accessibilityLabel="Privacy policy"
               style={{ color: colors.accent }}
@@ -289,7 +289,7 @@ export const SettingsSheet = memo(function SettingsSheet({
             </Text>
             {'  ·  '}
             <Text
-              onPress={() => StoreReview.requestReview()}
+              onPress={() => { hapticTick(); StoreReview.requestReview(); }}
               accessibilityRole="link"
               accessibilityLabel="Rate this app"
               style={{ color: colors.accent }}

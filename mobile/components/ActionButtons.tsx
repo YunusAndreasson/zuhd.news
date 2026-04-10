@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { memo } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import { LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 interface ActionButtonsProps {
@@ -58,9 +58,6 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowOffset: { width: 0, height: -2 },
-    shadowOpacity: 0.4,
-    shadowRadius: 8,
-    elevation: 8,
+    ...LAYOUT.floatingShadow,
   },
 });
