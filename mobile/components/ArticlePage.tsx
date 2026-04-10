@@ -178,7 +178,7 @@ export const ArticlePage = memo(function ArticlePage({
           <View style={styles.earlierDivider}>
             <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
             <Text
-              style={[styles.earlierLabel, textStyles.smallCaps, { fontSize: typography.sizeBase }]}
+              style={[styles.earlierLabel, textStyles.smallCaps, { fontSize: typography.sizeBase, color: colors.accent }]}
             >
               caught up
             </Text>

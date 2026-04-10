@@ -49,13 +49,13 @@ export const ArticleRow = memo(function ArticleRow({
       accessibilityLabel={title}
     >
       <Text
-        style={{ fontFamily: font.semiBold, fontSize: typography.sizeBase, color: colors.text }}
+        style={{ fontFamily: font.semiBold, fontSize: typography.sizeLg, lineHeight: typography.sizeLg * typography.leadingHeading, color: colors.text }}
         numberOfLines={2}
       >
         {title}
       </Text>
       <Text
-        style={[textStyles.smallCapsXs, { color: colors.textSecondary, marginTop: SPACING.xs }]}
+        style={[textStyles.smallCapsXs, { marginTop: SPACING.xs }]}
       >
         {category} · {formatTimeAgo(addedAt)}
         {location ? ` · ${location}` : ''}

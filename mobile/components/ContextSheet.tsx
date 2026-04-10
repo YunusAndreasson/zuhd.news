@@ -126,7 +126,7 @@ export const ContextSheet = memo(function ContextSheet({
           </Text>
         )}
         {brief && !isEdu && (
-          <Text style={[styles.meta, textStyles.smallCapsXs, { color: colors.textSecondary }]}>
+          <Text style={[styles.meta, textStyles.smallCapsXs]}>
             {brief.articleCount} article{brief.articleCount === 1 ? '' : 's'} in this thread
           </Text>
         )}

@@ -27,7 +27,7 @@ function KeyStat({ label, value }: { label: string; value: string | null | undef
       </Text>
       <Text
         selectable
-        style={[styles.keyStatLabel, textStyles.smallCapsXs, { color: colors.textSecondary }]}
+        style={[styles.keyStatLabel, textStyles.smallCapsXs]}
       >
         {label}
       </Text>
@@ -142,7 +142,6 @@ export const CountrySheet = memo(function CountrySheet({
                   style={[
                     styles.sheetLabel,
                     textStyles.smallCapsXs,
-                    { color: colors.textSecondary },
                   ]}
                 >
                   {country.hotspotLabels.length === 1 ? 'DEVELOPING STORY' : 'DEVELOPING STORIES'}

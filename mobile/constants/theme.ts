@@ -121,6 +121,7 @@ export type FontSet = { regular: string | undefined; semiBold: string | undefine
 export function makeTypography(sizeScale: number = 1) {
   return {
     sizeBase: fs(17, sizeScale),
+    sizeLg: fs(21, sizeScale),
     sizeSm: fs(13, sizeScale),
     sizeXs: fs(11, sizeScale),
     sizeH1: fs(28, sizeScale),
@@ -188,14 +189,16 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
     smallCaps: {
       fontFamily: font.smallCaps,
       fontSize: typography.sizeSm,
+      lineHeight: typography.sizeSm * typography.leadingBody,
       letterSpacing: typography.trackingCaps,
-      color: colors.accent,
+      color: colors.textSecondary,
     } as TextStyle,
     smallCapsXs: {
       fontFamily: font.smallCaps,
       fontSize: typography.sizeXs,
+      lineHeight: typography.sizeXs * typography.leadingBody,
       letterSpacing: typography.trackingCaps,
-      color: colors.accent,
+      color: colors.textSecondary,
     } as TextStyle,
     textShadow: {
       textShadowColor: colors.shadow,

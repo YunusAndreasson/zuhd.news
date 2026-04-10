@@ -74,7 +74,7 @@ export const SearchSheet = memo(function SearchSheet({
   onSelectArticle,
   onDismiss,
 }: SearchSheetProps) {
-  const { colors, font, typography, sheetStyles } = useTheme();
+  const { colors, font, typography, textStyles, sheetStyles } = useTheme();
   const [query, setQuery] = useState('');
   const deferredQuery = useDeferredValue(query.trim());
   const inputRef = useRef<TextInput>(null);
@@ -187,15 +187,7 @@ export const SearchSheet = memo(function SearchSheet({
           ListHeaderComponent={
             results.length > 0 ? (
               <Text
-                style={[
-                  styles.resultCount,
-                  {
-                    fontFamily: font.smallCaps,
-                    fontSize: typography.sizeXs,
-                    letterSpacing: typography.trackingCaps,
-                    color: colors.textSecondary,
-                  },
-                ]}
+                style={[styles.resultCount, textStyles.smallCapsXs]}
               >
                 {results.length} article{results.length === 1 ? '' : 's'}
               </Text>

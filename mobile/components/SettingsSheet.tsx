@@ -5,8 +5,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
-import * as WebBrowser from 'expo-web-browser';
-import { memo, useCallback, useRef } from 'react';
+import { memo, useCallback } from 'react';
 import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import {
   type AppearanceMode,
@@ -15,6 +14,7 @@ import {
   PRESSED_STYLE,
   SPACING,
 } from '../constants/theme';
+import { useSheetUrl } from '../hooks/useSheetUrl';
 import { useTheme } from '../hooks/useTheme';
 import { hapticTick } from '../lib/haptics';
 import { SheetHandle } from './SheetHandle';
@@ -25,53 +25,67 @@ import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
 // ---------------------------------------------------------------------------
 
 interface OptionRowProps<T extends string> {
+  label: string;
   options: { value: T; label: string }[];
   selected: T;
   onSelect: (v: T) => void;
-  textColor: string;
-  dimColor: string;
-  fontFamily: string | undefined;
-  fontSize: number;
 }
 
-function OptionRow<T extends string>({
-  options,
-  selected,
-  onSelect,
-  textColor,
-  dimColor,
-  fontFamily,
-  fontSize,
-}: OptionRowProps<T>) {
+function OptionRow<T extends string>({ label, options, selected, onSelect }: OptionRowProps<T>) {
+  const { colors, font, typography, textStyles } = useTheme();
   return (
-    <View style={styles.optionRow}>
-      {options.map((opt) => (
-        <Pressable
-          key={opt.value}
-          onPress={() => {
-            if (opt.value !== selected) {
-              hapticTick();
-              onSelect(opt.value);
-            }
-          }}
-          hitSlop={12}
-          style={({ pressed }) => pressed && PRESSED_STYLE}
-          accessibilityRole="radio"
-          accessibilityState={{ selected: opt.value === selected }}
-          accessibilityLabel={opt.label}
-        >
-          <Text
-            style={{
-              fontFamily,
-              fontSize,
-              color: opt.value === selected ? textColor : dimColor,
+    <View accessibilityRole="radiogroup" accessibilityLabel={label}>
+      <Text style={textStyles.smallCapsXs}>{label}</Text>
+      <View style={styles.optionRow}>
+        {options.map((opt) => (
+          <Pressable
+            key={opt.value}
+            onPress={() => {
+              if (opt.value !== selected) {
+                hapticTick();
+                onSelect(opt.value);
+              }
             }}
+            hitSlop={12}
+            style={({ pressed }) => pressed && PRESSED_STYLE}
+            accessibilityRole="radio"
+            accessibilityState={{ selected: opt.value === selected }}
+            accessibilityLabel={opt.label}
           >
-            {opt.label}
-          </Text>
-        </Pressable>
-      ))}
+            <Text
+              style={{
+                fontFamily: font.semiBold,
+                fontSize: typography.sizeSm,
+                color: opt.value === selected ? colors.text : colors.textSecondary,
+              }}
+            >
+              {opt.label}
+            </Text>
+          </Pressable>
+        ))}
+      </View>
     </View>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Footer link
+// ---------------------------------------------------------------------------
+
+function FooterLink({ label, onPress }: { label: string; onPress: () => void }) {
+  const { colors, font, typography } = useTheme();
+  return (
+    <Pressable
+      onPress={() => { hapticTick(); onPress(); }}
+      hitSlop={8}
+      style={({ pressed }) => pressed && PRESSED_STYLE}
+      accessibilityRole="link"
+      accessibilityLabel={label}
+    >
+      <Text style={{ fontFamily: font.semiBold, fontSize: typography.sizeSm, color: colors.text }}>
+        {label}
+      </Text>
+    </Pressable>
   );
 }
 
@@ -114,37 +128,10 @@ export const SettingsSheet = memo(function SettingsSheet({
   renderBackdrop,
   onDismiss,
 }: SettingsSheetProps) {
-  const {
-    colors,
-    font,
-    typography,
-    textStyles,
-    sheetStyles,
-    preferences,
-    setFontSize,
-    setFontFamily,
-    setAppearance,
-    setHaptics,
-    setNotifications,
-  } = useTheme();
+  const { colors, font, typography, textStyles, sheetStyles, preferences, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications } =
+    useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
-
-  const pendingUrl = useRef<string | null>(null);
-
-  const openUrl = useCallback(
-    (url: string) => {
-      pendingUrl.current = url;
-      sheetRef.current?.dismiss();
-    },
-    [sheetRef],
-  );
-
-  const handleDismiss = useCallback(() => {
-    const url = pendingUrl.current;
-    pendingUrl.current = null;
-    if (url) WebBrowser.openBrowserAsync(url);
-    onDismiss();
-  }, [onDismiss]);
+  const { openUrl, handleDismiss } = useSheetUrl(sheetRef, onDismiss);
 
   const SettingsHandle = useCallback(() => <SheetHandle title="settings" />, []);
 
@@ -161,165 +148,45 @@ export const SettingsSheet = memo(function SettingsSheet({
       onDismiss={handleDismiss}
     >
       <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
+        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.xxl }]}
       >
-        {/* Font size */}
-        <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>size</Text>
-        <View style={styles.sectionBody}>
-          <OptionRow
-            options={FONT_SIZE_OPTIONS}
-            selected={preferences.fontSize}
-            onSelect={setFontSize}
-            textColor={colors.text}
-            dimColor={colors.textSecondary}
-            fontFamily={font.semiBold}
-            fontSize={typography.sizeSm}
-          />
-        </View>
-
+        <OptionRow label="size" options={FONT_SIZE_OPTIONS} selected={preferences.fontSize} onSelect={setFontSize} />
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        {/* Font family */}
-        <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>font</Text>
-        <View style={styles.sectionBody}>
-          <OptionRow
-            options={FONT_FAMILY_OPTIONS}
-            selected={preferences.fontFamily}
-            onSelect={setFontFamily}
-            textColor={colors.text}
-            dimColor={colors.textSecondary}
-            fontFamily={font.semiBold}
-            fontSize={typography.sizeSm}
-          />
-        </View>
-
+        <OptionRow label="font" options={FONT_FAMILY_OPTIONS} selected={preferences.fontFamily} onSelect={setFontFamily} />
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        {/* Appearance */}
-        <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>appearance</Text>
-        <View style={styles.sectionBody}>
-          <OptionRow
-            options={APPEARANCE_OPTIONS}
-            selected={preferences.appearance}
-            onSelect={setAppearance}
-            textColor={colors.text}
-            dimColor={colors.textSecondary}
-            fontFamily={font.semiBold}
-            fontSize={typography.sizeSm}
-          />
-        </View>
-
+        <OptionRow label="appearance" options={APPEARANCE_OPTIONS} selected={preferences.appearance} onSelect={setAppearance} />
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        {/* Haptics */}
-        <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>haptics</Text>
-        <View style={styles.sectionBody}>
-          <OptionRow
-            options={ON_OFF_OPTIONS}
-            selected={preferences.haptics ? 'on' : 'off'}
-            onSelect={(v) => setHaptics(v === 'on')}
-            textColor={colors.text}
-            dimColor={colors.textSecondary}
-            fontFamily={font.semiBold}
-            fontSize={typography.sizeSm}
-          />
-        </View>
-
+        <OptionRow label="haptics" options={ON_OFF_OPTIONS} selected={preferences.haptics ? 'on' : 'off'} onSelect={(v) => setHaptics(v === 'on')} />
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        {/* Daily briefing notification */}
-        <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>notifications</Text>
-        <View style={styles.sectionBody}>
-          <OptionRow
-            options={ON_OFF_OPTIONS}
-            selected={preferences.notifications ? 'on' : 'off'}
-            onSelect={(v) => setNotifications(v === 'on')}
-            textColor={colors.text}
-            dimColor={colors.textSecondary}
-            fontFamily={font.semiBold}
-            fontSize={typography.sizeSm}
-          />
-        </View>
-
+        <OptionRow label="notifications" options={ON_OFF_OPTIONS} selected={preferences.notifications ? 'on' : 'off'} onSelect={(v) => setNotifications(v === 'on')} />
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
         {/* About */}
+        <Text style={textStyles.smallCapsXs}>about</Text>
+        <View style={styles.footerLinks}>
+            <FooterLink label="contact" onPress={() => Linking.openURL('mailto:contact@zuhd.news')} />
+            <FooterLink label="sources" onPress={() => openUrl('https://zuhd.news/sources')} />
+            <FooterLink label="privacy" onPress={() => openUrl('https://zuhd.news/privacy')} />
+            <FooterLink label="support" onPress={() => openUrl('https://zuhd.news/support')} />
+            <FooterLink label="rate" onPress={() => StoreReview.requestReview()} />
+          </View>
+
         <Text
           style={{
             fontFamily: font.regular,
-            fontSize: typography.sizeSm,
+            fontSize: typography.sizeXs,
             color: colors.textSecondary,
-            lineHeight: typography.sizeSm * 1.5,
-            marginBottom: SPACING.md,
+            opacity: 0.5,
+            marginTop: SPACING.xl,
+            textAlign: 'center',
           }}
         >
-          What happened, why it matters, what comes next.
+          zuhd.news · {Constants.expoConfig?.version ?? ''}
         </Text>
-
-        <View style={styles.sectionBody}>
-          <Text
-            style={{
-              fontFamily: font.regular,
-              fontSize: typography.sizeXs,
-              color: colors.textSecondary,
-            }}
-          >
-            zuhd.news · {Constants.expoConfig?.version ?? ''}
-          </Text>
-          <Text
-            style={{
-              fontFamily: font.regular,
-              fontSize: typography.sizeXs,
-              color: colors.textSecondary,
-              marginTop: SPACING.xs,
-            }}
-          >
-            <Text
-              onPress={() => { hapticTick(); Linking.openURL('mailto:contact@zuhd.news'); }}
-              accessibilityRole="link"
-              accessibilityLabel="Contact us by email"
-              style={{ color: colors.accent }}
-            >
-              contact
-            </Text>
-            {'  ·  '}
-            <Text
-              onPress={() => { hapticTick(); openUrl('https://zuhd.news/sources'); }}
-              accessibilityRole="link"
-              accessibilityLabel="View sources"
-              style={{ color: colors.accent }}
-            >
-              sources
-            </Text>
-            {'  ·  '}
-            <Text
-              onPress={() => { hapticTick(); openUrl('https://zuhd.news/privacy'); }}
-              accessibilityRole="link"
-              accessibilityLabel="Privacy policy"
-              style={{ color: colors.accent }}
-            >
-              privacy
-            </Text>
-            {'  ·  '}
-            <Text
-              onPress={() => { hapticTick(); openUrl('https://zuhd.news/support'); }}
-              accessibilityRole="link"
-              accessibilityLabel="Support"
-              style={{ color: colors.accent }}
-            >
-              support
-            </Text>
-            {'  ·  '}
-            <Text
-              onPress={() => { hapticTick(); StoreReview.requestReview(); }}
-              accessibilityRole="link"
-              accessibilityLabel="Rate this app"
-              style={{ color: colors.accent }}
-            >
-              rate
-            </Text>
-          </Text>
-        </View>
       </BottomSheetScrollView>
     </BottomSheetModal>
   );
@@ -329,12 +196,16 @@ const styles = StyleSheet.create({
   optionRow: {
     flexDirection: 'row',
     gap: SPACING.lg,
-  },
-  sectionBody: {
     marginTop: SPACING.sm,
   },
   divider: {
     height: StyleSheet.hairlineWidth,
     marginVertical: SPACING.md,
+  },
+  footerLinks: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: SPACING.md,
+    marginTop: SPACING.md,
   },
 });
