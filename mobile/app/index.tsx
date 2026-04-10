@@ -29,7 +29,7 @@ import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useContextBrief } from '../hooks/useContextBrief';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { useTheme } from '../hooks/useTheme';
-import { toggle as toggleBookmark } from '../lib/bookmark-store';
+import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { get as getPendingSlug, clear as clearPendingSlug } from '../lib/pending-notification';
 import type { Article, ArticleSource, Category } from '../types';
@@ -49,6 +49,7 @@ export default function HomeScreen() {
     tick,
     resetKey,
     generated,
+    injectArticle,
   } = useArticles();
   const heatmapPoints = useHeatmap(generated);
   const network = useNetworkState();
@@ -99,12 +100,20 @@ export default function HomeScreen() {
     bookmarkSheetRef.current?.dismiss();
     const catIndex = CATEGORIES.indexOf(category);
     if (catIndex < 0) return;
+
+    // If the article rotated out of the feed, inject the bookmarked copy
+    const inFeed = groupedRef.current[category]?.some((a) => a.slug === slug);
+    if (!inFeed) {
+      const bookmark = getBookmarks().find((b) => b.article.slug === slug);
+      if (bookmark) injectArticle(bookmark.article, category);
+    }
+
     pagerRef.current?.setPage(catIndex);
-    // Wait for pager to settle, then scroll to the article
+    // Wait for pager to settle (and state to flush if injected), then scroll
     setTimeout(() => {
       listRefs[catIndex]?.current?.scrollToSlug?.(slug);
-    }, 150);
-  }, []);
+    }, 200);
+  }, [injectArticle]);
 
   const handleBookmarkPress = useCallback(() => {
     hapticImpact();

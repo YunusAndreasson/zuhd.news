@@ -174,6 +174,15 @@ export function useArticles() {
     }
   }, [fetchFeed]);
 
+  /** Inject an article into a category if it's not already present (e.g. bookmarked article that rotated out of the feed). */
+  const injectArticle = useCallback((article: Article, category: Category) => {
+    setGrouped((prev) => {
+      const list = prev[category] ?? [];
+      if (list.some((a) => a.slug === article.slug)) return prev;
+      return { ...prev, [category]: [article, ...list] };
+    });
+  }, []);
+
   return {
     grouped,
     briefing,
@@ -185,5 +194,6 @@ export function useArticles() {
     tick,
     resetKey,
     generated,
+    injectArticle,
   };
 }
