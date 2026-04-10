@@ -7,6 +7,7 @@
     "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
+    "erasableSyntaxOnly": true,
     "paths": {
       "expo-modules-core": ["./node_modules/expo/node_modules/expo-modules-core"]
     }

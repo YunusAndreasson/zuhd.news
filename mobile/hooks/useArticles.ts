@@ -24,7 +24,21 @@ interface BriefingInfo {
 
 const STALE_THRESHOLD = 5 * 60 * 1000; // 5 minutes
 
-export function useArticles() {
+interface ArticlesState {
+  grouped: GroupedArticles;
+  briefing: BriefingInfo | null;
+  loading: boolean;
+  error: string | null;
+  lastSeenAt: number;
+  refresh: () => Promise<number>;
+  retry: () => Promise<void>;
+  tick: number;
+  resetKey: number;
+  generated: string | null;
+  injectArticle: (article: Article, category: Category) => void;
+}
+
+export function useArticles(): ArticlesState {
   const [grouped, setGrouped] = useState<GroupedArticles>(emptyGrouped);
   const [briefing, setBriefing] = useState<BriefingInfo | null>(null);
   const [loading, setLoading] = useState(true);

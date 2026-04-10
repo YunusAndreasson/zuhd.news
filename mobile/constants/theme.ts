@@ -62,7 +62,7 @@ export const DARK_COLORS = {
   toneFavorable: '#6b8f71', // muted sage
   toneUnfavorable: '#8f6b6b', // muted rose
   toneNeutral: '#6b7f8f', // muted slate
-} as const;
+} as const satisfies Record<string, string>;
 
 export const LIGHT_COLORS = {
   bg: '#f5f2ed',
@@ -81,7 +81,7 @@ export const LIGHT_COLORS = {
   toneFavorable: '#6b8f71',
   toneUnfavorable: '#8f6b6b',
   toneNeutral: '#6b7f8f',
-} as const;
+} as const satisfies Record<string, string>;
 
 export type ColorPalette = { [K in keyof typeof DARK_COLORS]: string };
 
@@ -103,7 +103,7 @@ export const FONT_SOURCE = {
   semiBold: 'SourceSans3-SemiBold',
   bold: 'SourceSans3-Bold',
   smallCaps: 'SourceSans3SC-SemiBold',
-} as const;
+} as const satisfies Record<string, string>;
 
 export const FONT_SYSTEM = {
   regular: undefined as string | undefined,
@@ -118,7 +118,7 @@ export type FontSet = { regular: string | undefined; semiBold: string | undefine
 // Typography (can be rebuilt with a size scale)
 // ---------------------------------------------------------------------------
 
-export function makeTypography(sizeScale = 1) {
+export function makeTypography(sizeScale: number = 1) {
   return {
     sizeBase: fs(17, sizeScale),
     sizeSm: fs(13, sizeScale),

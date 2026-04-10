@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import type { RefObject } from 'react';
 import { type SharedValue, useSharedValue } from 'react-native-reanimated';
 
 /**
@@ -9,11 +10,20 @@ import { type SharedValue, useSharedValue } from 'react-native-reanimated';
  * bug was a stale scrollY causing the first article to render at opacity 0
  * after a background refresh.
  */
+interface ScrollState {
+  scrollY: SharedValue<number>;
+  currentIndex: number;
+  setCurrentIndex: (value: number) => void;
+  overscrollFired: SharedValue<boolean>;
+  caughtUpFired: RefObject<boolean>;
+  overscrollTimer: RefObject<ReturnType<typeof setTimeout> | undefined>;
+}
+
 export function useScrollState(
   resetKey: number | undefined,
   catIndex: number,
   progressesSV: SharedValue<number[]>,
-) {
+): ScrollState {
   const scrollY = useSharedValue(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const overscrollFired = useSharedValue(false);

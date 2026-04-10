@@ -1,27 +1,44 @@
 import type { SkPath } from '@shopify/react-native-skia';
 import { feature, mesh } from 'topojson-client';
-import type { Topology } from 'topojson-specification';
+import type { GeometryCollection, Topology } from 'topojson-specification';
 import countriesTopo from '../../data/countries-110m.json';
 import worldTopo from '../../data/world-110m.json';
 
-export const land = feature(worldTopo as unknown as Topology, (worldTopo as any).objects.land);
+interface TopoWithObjects extends Topology {
+  objects: Record<string, GeometryCollection>;
+}
+
+const world = worldTopo as unknown as TopoWithObjects;
+const countriesData = countriesTopo as unknown as TopoWithObjects;
+
+export const land = feature(world, world.objects.land!);
 export const countries = feature(
-  countriesTopo as unknown as Topology,
-  (countriesTopo as any).objects.countries,
+  countriesData,
+  countriesData.objects.countries!,
 ) as unknown as GeoJSON.FeatureCollection;
 
 // Internal borders only (shared edges between countries, no coastlines — land
 // already shows those). Single MultiLineString = much faster to project than
 // 180 separate country polygons.
 export const bordersMesh = mesh(
-  countriesTopo as unknown as Topology,
-  (countriesTopo as any).objects.countries,
+  countriesData,
+  countriesData.objects.countries!,
   (a, b) => a !== b,
 );
 
 const DEG = 180 / Math.PI;
 
-export function createSkiaPathContext() {
+/** d3-geo GeoContext subset — used to bridge Skia paths into d3's .context() API */
+export interface SkiaGeoContext {
+  setPath(p: SkPath): void;
+  beginPath(): void;
+  moveTo(x: number, y: number): void;
+  lineTo(x: number, y: number): void;
+  arc(x: number, y: number, r: number, startAngle: number, endAngle: number): void;
+  closePath(): void;
+}
+
+export function createSkiaPathContext(): SkiaGeoContext {
   let _path: SkPath | null = null;
   return {
     setPath(p: SkPath) {

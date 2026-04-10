@@ -32,6 +32,7 @@ import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
 import { useTheme } from '../../hooks/useTheme';
 import type { Article, HeatmapPoint } from '../../types';
 import { COUNTRY_TZ } from './coordinates';
+import type { GeoContext } from 'd3-geo';
 import { bordersMesh, countries, createSkiaPathContext, land } from './shared';
 import { getCoords } from './storyDots';
 
@@ -175,7 +176,7 @@ function findCountry(lat: number, lng: number, location?: string | null): GeoJSO
   if (location) {
     const override = COUNTRY_OVERRIDES[location.toLowerCase()];
     if (override) {
-      return countries.features.find((f) => (f.properties as any)?.name === override) ?? null;
+      return countries.features.find((f) => f.properties?.name === override) ?? null;
     }
   }
   for (const [dlat, dlng] of NUDGES) {
@@ -253,26 +254,26 @@ function projectInitial(
 
   const lp = Skia.Path.Make();
   ctx.setPath(lp);
-  pg.context(ctx as any)(land);
+  pg.context(ctx as unknown as GeoContext)(land);
 
   // Neighbouring country borders — mesh + no resampling for speed
   proj.precision(0);
   const bp = Skia.Path.Make();
   ctx.setPath(bp);
-  pg.context(ctx as any)(bordersMesh);
+  pg.context(ctx as unknown as GeoContext)(bordersMesh);
   proj.precision(8);
 
   let cp: ReturnType<typeof Skia.Path.Make> | null = null;
   if (geo.country) {
     cp = Skia.Path.Make();
     ctx.setPath(cp);
-    pg.context(ctx as any)(geo.country);
+    pg.context(ctx as unknown as GeoContext)(geo.country);
   }
 
   const [sunLng, sunLat] = getSunPosition();
   const np = Skia.Path.Make();
   ctx.setPath(np);
-  pg.context(ctx as any)(nightCircleGen.center([sunLng + 180, -sunLat]).radius(80)());
+  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center([sunLng + 180, -sunLat]).radius(80)());
 
   let dot: GlobeState['dot'] = null;
   const pt = proj([geo.lng, geo.lat]);
@@ -323,7 +324,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const coords = getCoords(a);
       if (!coords) return null;
       const country = findCountry(coords[0], coords[1], a.location);
-      const countryName = (country?.properties as any)?.name ?? null;
+      const countryName = country?.properties?.name ?? null;
       return { lat: coords[0], lng: coords[1], country, countryName, location: a.location };
     });
   }, [articles]);
@@ -394,7 +395,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         lng: z.lng,
         intensity: Math.log(z.total + 1) / logMax,
         labels: [...z.labels],
-        countryName: (country?.properties as any)?.name ?? null,
+        countryName: country?.properties?.name ?? null,
       };
     });
   }, [heatmapPoints, articles, articleGeo]);
@@ -448,7 +449,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     const landPath = landPathRef.current;
     landPath.reset();
     skiaCtx.setPath(landPath);
-    pg.context(skiaCtx as any)(land);
+    pg.context(skiaCtx as unknown as GeoContext)(land);
 
     // Update which country to highlight when settled article changes.
     // Compare both index AND article slug — index alone misses category
@@ -475,7 +476,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       countryPath = countryPathRef.current;
       countryPath.reset();
       skiaCtx.setPath(countryPath);
-      pg.context(skiaCtx as any)(cachedCountryRef.current);
+      pg.context(skiaCtx as unknown as GeoContext)(cachedCountryRef.current);
     }
 
     // Neighbouring country borders — three optimizations for smooth scroll:
@@ -490,7 +491,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       proj.precision(0);
       bordersPath.reset();
       skiaCtx.setPath(bordersPath);
-      pg.context(skiaCtx as any)(bordersMesh);
+      pg.context(skiaCtx as unknown as GeoContext)(bordersMesh);
       proj.precision(8);
     }
 
@@ -500,7 +501,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     const nightPath = nightPathRef.current;
     nightPath.reset();
     skiaCtx.setPath(nightPath);
-    pg.context(skiaCtx as any)(nightGeo);
+    pg.context(skiaCtx as unknown as GeoContext)(nightGeo);
 
     // Makkah — qibla reference point
     let makkah: { x: number; y: number } | null = null;
@@ -688,7 +689,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (coords) {
           const feature = countries.features.find((f) => geoContains(f, coords));
           if (feature) {
-            const name = (feature.properties as any)?.name ?? '';
+            const name = feature.properties?.name ?? '';
             const tz = name ? COUNTRY_TZ[name] : undefined;
             return {
               countryName: name,

@@ -6,7 +6,13 @@ import type { ContextBrief } from '../types';
 const cache = new Map<string, ContextBrief>();
 const MAX_CACHE = 50;
 
-export function useContextBrief() {
+interface ContextBriefState {
+  brief: ContextBrief | null;
+  loading: boolean;
+  fetchBrief: (threadId: string) => Promise<void>;
+}
+
+export function useContextBrief(): ContextBriefState {
   const [brief, setBrief] = useState<ContextBrief | null>(null);
   const [loading, setLoading] = useState(false);
   const activeId = useRef<string | null>(null);
