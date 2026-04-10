@@ -6,7 +6,7 @@ import {
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { Activity, createRef, useCallback, useEffect, useRef, useState } from 'react';
-import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
+import { InteractionManager, type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -105,14 +105,19 @@ export default function HomeScreen() {
     const inFeed = groupedRef.current[category]?.some((a) => a.slug === slug);
     if (!inFeed) {
       const bookmark = getBookmarks().find((b) => b.article.slug === slug);
-      if (bookmark) injectArticle(bookmark.article, category);
+      if (bookmark) {
+        injectArticle(bookmark.article, category);
+      } else {
+        toastRef.current?.show('Article no longer available');
+        return;
+      }
     }
 
     pagerRef.current?.setPage(catIndex);
-    // Wait for pager to settle (and state to flush if injected), then scroll
-    setTimeout(() => {
+    // Wait for pager animation to complete before scrolling
+    InteractionManager.runAfterInteractions(() => {
       listRefs[catIndex]?.current?.scrollToSlug?.(slug);
-    }, 200);
+    });
   }, [injectArticle]);
 
   const handleBookmarkPress = useCallback(() => {

@@ -79,11 +79,11 @@ export function useArticles() {
       const res = await fetchWithTimeout(`${API_BASE}/api/meta.json`, 5000, {
         cache: 'no-store',
       });
-      if (!res.ok) return true;
+      if (!res.ok) return false; // network issue — cached data is fine
       const meta: MetaResponse = await res.json();
       return meta.generated !== lastGeneratedRef.current;
     } catch {
-      return true;
+      return false; // network error — don't trigger a doomed fetchFeed
     }
   }, []);
 

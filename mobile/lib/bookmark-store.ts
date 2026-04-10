@@ -35,13 +35,17 @@ function emit() {
 
 let persistTimer: ReturnType<typeof setTimeout> | null = null;
 
-function persist() {
+function persistNow() {
   if (persistTimer) clearTimeout(persistTimer);
-  persistTimer = setTimeout(() => {
-    try {
-      BOOKMARKS_FILE.write(JSON.stringify(bookmarks));
-    } catch {}
-  }, 100);
+  persistTimer = null;
+  try {
+    BOOKMARKS_FILE.write(JSON.stringify(bookmarks));
+  } catch {}
+}
+
+function persistDebounced() {
+  if (persistTimer) clearTimeout(persistTimer);
+  persistTimer = setTimeout(persistNow, 100);
 }
 
 // ---------------------------------------------------------------------------
@@ -53,12 +57,12 @@ export function toggle(article: Article, category: Category): boolean {
   if (idx >= 0) {
     bookmarks = bookmarks.filter((_, i) => i !== idx);
     emit();
-    persist();
+    persistDebounced();
     return false; // removed
   }
   bookmarks = [{ article, category, savedAt: Date.now() }, ...bookmarks];
   emit();
-  persist();
+  persistNow(); // write immediately so a crash can't lose the save
   return true; // added
 }
 

@@ -6,6 +6,9 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
     "verbatimModuleSyntax": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "paths": {
+      "expo-modules-core": ["./node_modules/expo/node_modules/expo-modules-core"]
+    }
   }
 }

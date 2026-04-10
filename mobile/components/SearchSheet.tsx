@@ -18,23 +18,38 @@ interface SearchResult extends Article {
   category: Category;
 }
 
-function searchArticles(grouped: Record<Category, Article[]>, query: string): SearchResult[] {
+interface IndexedArticle {
+  article: Article;
+  category: Category;
+  corpus: string; // pre-lowercased searchable text
+}
+
+function buildSearchIndex(grouped: Record<Category, Article[]>): IndexedArticle[] {
+  const index: IndexedArticle[] = [];
+  for (const cat of CATEGORIES) {
+    for (const a of grouped[cat] ?? []) {
+      const corpus = [
+        a.title,
+        a.location ?? '',
+        ...a.concepts,
+        ...a.sentences,
+      ].join('\n').toLowerCase();
+      index.push({ article: a, category: cat, corpus });
+    }
+  }
+  index.sort((a, b) => b.article.addedAt - a.article.addedAt);
+  return index;
+}
+
+function searchArticles(index: IndexedArticle[], query: string): SearchResult[] {
   if (!query) return [];
   const q = query.toLowerCase();
   const results: SearchResult[] = [];
-  for (const cat of CATEGORIES) {
-    for (const a of grouped[cat] ?? []) {
-      if (
-        a.title.toLowerCase().includes(q) ||
-        a.location?.toLowerCase().includes(q) ||
-        a.concepts.some((c) => c.toLowerCase().includes(q)) ||
-        a.sentences.some((s) => s.toLowerCase().includes(q))
-      ) {
-        results.push({ ...a, category: cat });
-      }
+  for (const entry of index) {
+    if (entry.corpus.includes(q)) {
+      results.push({ ...entry.article, category: entry.category });
     }
   }
-  results.sort((a, b) => b.addedAt - a.addedAt);
   return results;
 }
 
@@ -65,7 +80,8 @@ export const SearchSheet = memo(function SearchSheet({
   const inputRef = useRef<TextInput>(null);
   const prevCountRef = useRef(0);
 
-  const results = useMemo(() => searchArticles(grouped, deferredQuery), [grouped, deferredQuery]);
+  const searchIndex = useMemo(() => buildSearchIndex(grouped), [grouped]);
+  const results = useMemo(() => searchArticles(searchIndex, deferredQuery), [searchIndex, deferredQuery]);
 
   // Announce result count changes for VoiceOver (in effect, not render)
   const resultCount = results.length;
