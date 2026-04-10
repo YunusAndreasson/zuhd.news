@@ -5297,5 +5297,84 @@
     "label": "GCC tourism could take $32bn hit from Iran conflict",
     "category": "economy",
     "articleCount": 3
+  },
+  "2026-04-10-european-airports-jet-fuel-shortage-hormuz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY HORMUZ",
+        "body": "The Strait of Hormuz is 33 km wide at its narrowest. Tankers use two 3-km shipping lanes separated by a 3-km buffer. Roughly 20% of the world's oil passes through this corridor daily — not because there is no alternative, but because every alternative is slower, smaller, or both."
+      },
+      {
+        "heading": "WHY JET FUEL IS DIFFERENT",
+        "body": "Cars can switch to electricity. Ships can burn LNG. Planes cannot. Jet fuel (kerosene-type Jet A-1) must meet exact freeze-point, flash-point, and energy-density specs. There is no commercial substitute that works at -55°C and 35,000 feet. Aviation is the last fully oil-dependent transport mode."
+      },
+      {
+        "heading": "THE REFINERY BOTTLENECK",
+        "body": "Crude oil is not jet fuel. A barrel of crude yields only about 10% kerosene after refining. Europe's refining capacity has been declining for a decade — 14 refineries closed since 2009. Even if crude arrives via alternate routes, the continent may lack the refining capacity to turn it into jet fuel fast enough."
+      },
+      {
+        "heading": "THE BUFFER ILLUSION",
+        "body": "Strategic petroleum reserves are designed for crude oil disruptions, not refined product shortages. Most European countries hold 90 days of crude equivalent, but jet fuel stocks at airports typically cover just 2-5 days of operations. The system is optimised for flow, not storage."
+      }
+    ],
+    "generatedAt": "2026-04-10T17:18:31.617Z",
+    "label": "Chokepoint Economics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-10-moderna-mrna-cancer-vaccine-naming-dilemma": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "An mRNA cancer shot does not prevent cancer. It sequences a patient's tumour, identifies mutant proteins (neoantigens) unique to that tumour, encodes up to 34 of them in a single mRNA strand, and injects it. The patient's cells manufacture those proteins, and the immune system learns to hunt cells displaying them."
+      },
+      {
+        "heading": "WHY 'VACCINE' IS TECHNICALLY CORRECT",
+        "body": "Immunologically, it is vaccination: you introduce an antigen to train adaptive immunity. The BCG tuberculosis vaccine has been used therapeutically against bladder cancer since 1976. The word 'vaccine' has never meant 'preventive only' — that is a popular misconception, not a scientific definition."
+      },
+      {
+        "heading": "THE NEOANTIGEN ADVANTAGE",
+        "body": "Traditional cancer drugs attack all fast-dividing cells (chemotherapy) or block growth signals shared by healthy tissue (targeted therapy). Neoantigens exist only on tumour cells — they arise from the tumour's own mutations. This means the immune response has a target that healthy tissue does not present."
+      },
+      {
+        "heading": "THE PERSONALISATION COST",
+        "body": "Each patient's shot is manufactured individually: biopsy, sequencing, antigen selection, mRNA synthesis, lipid nanoparticle encapsulation. This takes 4-6 weeks and has no economies of scale. The entire manufacturing model of vaccines — make millions of identical doses — does not apply here."
+      }
+    ],
+    "generatedAt": "2026-04-10T17:18:31.618Z",
+    "label": "mRNA Cancer Immunotherapy",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-10-secret-project-abc-conjecture-computer-verification": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ABC SAYS",
+        "body": "Take three positive integers a, b, c where a + b = c and they share no common factor. Multiply all their distinct prime factors together — call that the 'radical.' The conjecture says c is almost always smaller than the radical raised to any power greater than 1. It sounds narrow; it is not."
+      },
+      {
+        "heading": "WHY IT MATTERS",
+        "body": "A proof of ABC would immediately imply Fermat's Last Theorem, the Catalan conjecture, and dozens of other results as corollaries. It is a statement about how addition and multiplication interact at the deepest level — how the additive structure of integers constrains their prime factorisations."
+      },
+      {
+        "heading": "THE CONTROVERSY",
+        "body": "Mochizuki's 2012 proof introduced an entirely new mathematical framework (Inter-universal Teichmüller theory) that only he and a handful of collaborators claim to understand. Peter Scholze and Jakob Stix identified what they consider a fundamental gap in 2018. Mochizuki says they misunderstand his framework. Neither side has moved."
+      },
+      {
+        "heading": "WHAT LEAN DOES",
+        "body": "Lean is a proof assistant: software that checks every logical step against formal axioms. A human writes the proof in a precise language; Lean verifies each deduction is valid. It cannot judge whether a proof strategy is promising — but it can confirm, with mathematical certainty, whether each step follows from the last."
+      },
+      {
+        "heading": "WHY FORMALISATION SETTLES DISPUTES",
+        "body": "Mathematical arguments can be ambiguous in natural language. Formalisation eliminates ambiguity entirely — every definition, every inference must be made explicit. If Lean accepts the full proof, the debate is over. If it cannot step past a specific point, that point is precisely where the gap lives."
+      }
+    ],
+    "generatedAt": "2026-04-10T17:18:31.619Z",
+    "label": "The ABC Conjecture",
+    "category": "science",
+    "articleCount": 1
   }
 }
