@@ -2,13 +2,183 @@
   "version": 1,
   "stories": [
     {
+      "id": "iran-lebanon-ceasefire-test-regional-sway",
+      "label": "Iran's insistence on Lebanon ceasefire a test for regional sway",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-iran-lebanon-ceasefire-test-regional-sway"
+      ],
+      "eventUri": null,
+      "summary": "Israel launched its deadliest strikes on Lebanon in years on Wednesday — during a ceasefire supposedly in effect. Iran is demanding Lebanon be included in any peace deal, testing whether its wartime leverage translates into regional diplomatic power. The angle: the ceasefire exists on paper but not in Lebanon, and Iran is using that gap to assert itself as protector of Hezbollah and gatekeeper of any broader settlement. Lead with Netanyahu's assurance of 'full coordination with Israel' while bombs fell on Beirut.",
+      "conceptUris": []
+    },
+    {
+      "id": "south-africa-trc-timol-sabotage-inquiry",
+      "label": "'Deliberate ineptitude' sabotaged TRC cases, nephew of murdered Ahmed Timol tells TRC inquiry",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-south-africa-trc-timol-sabotage-inquiry"
+      ],
+      "eventUri": "eng-11557373",
+      "summary": "Ahmed Timol was the 22nd person to die in South African police detention after 'detention without trial' laws began in 1963. No one has ever been held accountable for his murder. Now his nephew is testifying that prosecutors deliberately sabotaged TRC cases. The angle: apartheid justice isn't delayed — it was actively obstructed from within the system meant to deliver it. Lead with the number: 22nd detainee death, zero prosecutions, 60+ years later.",
+      "conceptUris": []
+    },
+    {
+      "id": "korea-peninsula-security-iran-war-rebalancing",
+      "label": "Kim Jong Un waiting for Trump, but there's a path right in front of him",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-korea-peninsula-security-iran-war-rebalancing"
+      ],
+      "eventUri": null,
+      "summary": "North Korea called South Korea's apology over drone incursions 'sincere and bold' — then immediately walked it back. Meanwhile, US strategic assets have been redeployed from South Korea to the Iran war, exposing a structural vulnerability: Seoul cannot count on permanent US deterrence. The angle: the Iran war is quietly reshaping the Korean Peninsula's security architecture. Lead with the asset redeployment — the reader tracking the Iran war's global ripple effects will see the connection immediately.",
+      "conceptUris": []
+    },
+    {
+      "id": "adb-asia-pacific-growth-iran-war-inflation",
+      "label": "ADB sees subdued PH economic growth in 2026 due to Middle East crisis",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-adb-asia-pacific-growth-iran-war-inflation"
+      ],
+      "eventUri": "eng-11556707",
+      "summary": "The Asian Development Bank warns the Iran war is curbing growth and fanning inflation across Asia-Pacific — from India to the Philippines to South Korea. This is the first major multilateral forecast to quantify the war's economic damage across the region. The angle: the war's cost isn't just in the Middle East. Lead with the ADB's growth downgrades and the inflation mechanism (energy prices → food prices → consumer squeeze). Different from the IMF $50bn estimate which focused on Middle East economies — this is the Asia-Pacific cascade.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Asian_Development_Bank",
+        "http://en.wikipedia.org/wiki/Asia",
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/Economic_growth",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Pacific_Ocean",
+        "http://en.wikipedia.org/wiki/Geopolitics"
+      ]
+    },
+    {
+      "id": "bird-flu-h5n1-dairy-cattle-vaccination-window",
+      "label": "Why experts say now is the time to vaccinate US dairy cattle against bird flu",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-bird-flu-h5n1-dairy-cattle-vaccination-window"
+      ],
+      "eventUri": null,
+      "summary": "H5N1 bird flu has jumped from poultry to dairy cattle in the US, raising concerns about food security, farm worker health, and pandemic preparedness. Experts now argue vaccination is the critical window — before the virus adapts further. The angle: the US has a narrowing opportunity to prevent H5N1 from becoming endemic in its dairy supply. Lead with the cross-species jump (wildlife → poultry → cattle) and the vaccination window argument. The reader who tracks pandemic risk will see the familiar pattern of delay.",
+      "conceptUris": []
+    },
+    {
+      "id": "eth-zurich-17000-qubit-array-fidelity",
+      "label": "ETH Zurich demonstrates 17,000 qubit array with 99.91% fidelity",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-eth-zurich-17000-qubit-array-fidelity"
+      ],
+      "eventUri": null,
+      "summary": "ETH Zurich has demonstrated a 17,000-qubit array operating at 99.91% fidelity — a new trick that brings stability to quantum operations at scale. The angle: the barrier to useful quantum computing has been error rates, not qubit counts. This result suggests the error problem is being solved. Lead with the numbers (17,000 qubits, 99.91% fidelity) and explain why fidelity at scale matters more than raw qubit count. The tech reader will immediately grasp the significance.",
+      "conceptUris": []
+    },
+    {
+      "id": "france-government-linux-desktop-windows-exit",
+      "label": "France Launches Government Linux Desktop Plan as Windows Exit Begins",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-france-government-linux-desktop-windows-exit"
+      ],
+      "eventUri": null,
+      "summary": "France has announced an official plan to migrate government desktops from Windows to Linux, framed as 'digital sovereignty' and reducing dependence on extra-European technology. The angle: this is the first major Western government to commit to a full Windows exit at the desktop level. Lead with the sovereignty framing — this isn't about cost savings, it's about a NATO ally deciding it can't depend on American software for government operations. The HN reader will debate feasibility; the geopolitics reader will see the pattern of decoupling.",
+      "conceptUris": []
+    },
+    {
+      "id": "dutch-hospitals-ransomware-chipsoft-disruption",
+      "label": "Dutch hospitals face disruptions after ransomware attack on software provider ChipSoft",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-dutch-hospitals-ransomware-chipsoft-disruption"
+      ],
+      "eventUri": null,
+      "summary": "A ransomware attack on ChipSoft, a major Dutch healthcare software vendor, has forced hospitals across the Netherlands to disable digital services. The angle: a single vendor compromise cascaded across an entire country's hospital system. Lead with the single-point-of-failure — ChipSoft's market dominance in Dutch healthcare means one ransomware hit disrupts patient care nationally. The tech reader will see the supply-chain risk; the healthcare reader will see the patient safety implications.",
+      "conceptUris": []
+    },
+    {
+      "id": "prosthetic-emg-deep-learning-two-sensors",
+      "label": "Leveraging convolutional sparse autoencoders for robust movement classification from low-density sEMG",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-prosthetic-emg-deep-learning-two-sensors"
+      ],
+      "eventUri": null,
+      "summary": "A Nature study demonstrates accurate prosthetic hand control using just two EMG sensors instead of the dense arrays that make current prosthetics impractical for clinical use. The deep learning framework achieves robust gesture recognition despite high variability between users. The angle: the barrier to usable prosthetics has been the number of sensors needed — this cuts it to two, making myoelectric hands viable for the 40 million amputees worldwide. Lead with the reduction (from dense arrays to 2 channels) and the clinical implication.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-wastewater-drug-resistance-genes-amr",
+      "label": "Indian wastewater rife with drug resistance genes",
+      "firstSeen": "2026-04-10T04:05:18.954Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-04-10-india-wastewater-drug-resistance-genes-amr",
+        "2026-04-10-india-wastewater-antimicrobial-resistance-genes"
+      ],
+      "eventUri": null,
+      "summary": "Scientists found an abundance of genes resistant to common antibiotics in India's urban wastewater — a reservoir that could accelerate antimicrobial resistance globally. Lead with the scale: India's wastewater systems serve hundreds of millions of people and are seeding drug-resistant bacteria into the environment. The reader in tech should see AMR as a systems problem: resistance genes spread like software vulnerabilities, and wastewater is the network. Global South science from SciDev.Net.",
+      "conceptUris": []
+    },
+    {
       "id": "eu-nato-rift-us-military-bases-iran-war",
       "label": "EU countries' refusal to allow US use military bases deepens rift in NATO  --  newspaper",
       "firstSeen": "2026-04-10T08:09:28.322Z",
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-eu-nato-rift-us-military-bases-iran-war"
@@ -24,7 +194,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-japan-missiles-us-china-collision-course"
@@ -40,7 +210,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-34-settlements-west-bank-ceasefire"
@@ -56,7 +226,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-bjp-uniform-civil-code-west-bengal-six-months"
@@ -81,7 +251,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-china-factory-prices-growth-41-month-deflation-ends"
@@ -106,7 +276,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-african-funeral-costs-families-poverty"
@@ -122,7 +292,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-medieval-japanese-poetry-trees-space-weather"
@@ -138,7 +308,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-mcp-over-skills-ai-agent-tooling"
@@ -154,7 +324,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-russia-rfe-journalist-cyberattacks-ukraine-fsb"
@@ -170,7 +340,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-04-09-amazon-mineral-extraction-clean-energy-paradox",
@@ -188,7 +358,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-04-09-sterile-neutrinos-death-knell-experiments",
@@ -205,7 +375,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-khamenei-hormuz-new-phase-ceasefire-iran"
@@ -227,7 +397,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-india-election-adjudication-voter-roll-skew"
@@ -248,7 +418,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-mythos-ai-zero-day-bessent-powell-bank-ceos"
@@ -270,7 +440,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-singapore-air-con-oil-crunch-hormuz-asia"
@@ -286,29 +456,13 @@
       ]
     },
     {
-      "id": "india-wastewater-drug-resistance-genes-amr",
-      "label": "Indian wastewater rife with drug resistance genes",
-      "firstSeen": "2026-04-10T04:05:18.954Z",
-      "lastCovered": "2026-04-10T04:05:18.954Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-india-wastewater-drug-resistance-genes-amr"
-      ],
-      "eventUri": null,
-      "summary": "Scientists found an abundance of genes resistant to common antibiotics in India's urban wastewater — a reservoir that could accelerate antimicrobial resistance globally. Lead with the scale: India's wastewater systems serve hundreds of millions of people and are seeding drug-resistant bacteria into the environment. The reader in tech should see AMR as a systems problem: resistance genes spread like software vulnerabilities, and wastewater is the network. Global South science from SciDev.Net.",
-      "conceptUris": []
-    },
-    {
       "id": "chimps-civil-war-ngogo-scientists",
       "label": "World's Largest Group of Chimps Waging Deadly 'Civil War,' Scientists Discover",
       "firstSeen": "2026-04-10T04:05:18.954Z",
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-chimps-civil-war-ngogo-scientists"
@@ -324,7 +478,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-iran-war-60-nations-energy-crisis-response"
@@ -340,7 +494,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-nasa-orion-leaky-valves-artemis-redesign"
@@ -362,7 +516,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-quantum-safe-bitcoin-no-soft-fork-200-dollars"
@@ -384,7 +538,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-microsoft-dark-patterns-onedrive-storage"
@@ -400,7 +554,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 3,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-04-09-gcc-tourism-32bn-hit-iran-conflict",
@@ -418,7 +572,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-09-smotrich-israel-expand-borders-gaza-lebanon-syria"
@@ -440,7 +594,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-09-venezuelan-cops-block-workers-march-pay-pledge"
@@ -462,7 +616,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-09-israeli-interceptors-dwindled-double-digits"
@@ -478,7 +632,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-09-antarctic-land-claim-abbott-rivada-trump"
@@ -494,7 +648,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-09-sudanese-gold-rsf-volkswagen-supply-chain"
@@ -510,7 +664,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-09-meta-coreweave-35-billion-ai-infrastructure"
@@ -535,7 +689,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-09-emperor-penguin-endangered-iucn-sea-ice"
@@ -560,7 +714,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-09-crispr-gene-editing-beta-thalassaemia-trial"
@@ -576,7 +730,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-09-maine-first-state-ban-data-centers"
@@ -592,7 +746,7 @@
       "lastCovered": "2026-04-09T17:08:54.419Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-09-netanyahu-peace-talks-lebanon-disarmament-strikes"
@@ -617,7 +771,7 @@
       "lastCovered": "2026-04-09T17:08:54.419Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-09-us-war-iraq-iran-shadow-drop-site"
@@ -633,7 +787,7 @@
       "lastCovered": "2026-04-09T17:08:54.419Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-09-who-health-workers-killed-ethiopia-amhara"
@@ -649,7 +803,7 @@
       "lastCovered": "2026-04-09T17:08:54.419Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-09-arms-industry-universities-bae-leonardo-thales"
@@ -665,7 +819,7 @@
       "lastCovered": "2026-04-09T17:08:54.419Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-09-imf-50-billion-middle-east-war-economies"
@@ -681,7 +835,7 @@
       "lastCovered": "2026-04-09T17:08:54.419Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-09-bitcoin-72k-divergence-tech-stocks-war"
@@ -697,7 +851,7 @@
       "lastCovered": "2026-04-09T17:08:54.419Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-09-cdc-covid-vaccine-study-blocked-rfk"
@@ -713,7 +867,7 @@
       "lastCovered": "2026-04-09T17:08:54.419Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-09-fbi-signal-iphone-notification-database-extraction"
@@ -729,7 +883,7 @@
       "lastCovered": "2026-04-09T17:08:54.419Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-09-meta-removes-addiction-litigation-ads-platform-power"
@@ -745,7 +899,7 @@
       "lastCovered": "2026-04-09T17:08:54.419Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-09-hungarian-government-passwords-bellingcat-osint"
@@ -761,7 +915,7 @@
       "lastCovered": "2026-04-09T17:08:54.419Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-09-farmer-arrested-datacenter-town-hall-free-speech"
@@ -777,7 +931,7 @@
       "lastCovered": "2026-04-09T12:11:29.981Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-iran-3000-killed-war-us-israel-body-count"
@@ -802,7 +956,7 @@
       "lastCovered": "2026-04-09T12:11:29.981Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-uk-russian-submarine-undersea-cables-exposed"
@@ -827,7 +981,7 @@
       "lastCovered": "2026-04-09T12:11:29.981Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-uk-nato-expansion-war-russia-declassified"
@@ -843,7 +997,7 @@
       "lastCovered": "2026-04-09T12:11:29.981Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-chinese-firm-don-jr-lobbyists-cfius-bypass"
@@ -859,7 +1013,7 @@
       "lastCovered": "2026-04-09T12:11:29.981Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-indonesia-prabowo-russia-putin-energy-talks"
@@ -875,7 +1029,7 @@
       "lastCovered": "2026-04-09T12:11:29.981Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-desalination-technology-numbers-water-crisis"
@@ -891,7 +1045,7 @@
       "lastCovered": "2026-04-09T12:11:29.981Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-russia-drone-forces-165500-unmanned-systems"
@@ -916,7 +1070,7 @@
       "lastCovered": "2026-04-09T12:11:29.981Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-anthropic-pentagon-blacklist-appeals-court"
@@ -941,191 +1095,13 @@
       "lastCovered": "2026-04-09T12:11:29.981Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-thunderbird-survival-open-source-email"
       ],
       "eventUri": null,
       "summary": "Thunderbird - the last major open-source email client - is asking users for help to survive. 160 points on HN. Lead with what dies if it fails: the only desktop email client not controlled by a surveillance advertising company. In a week where VeraCrypt's Microsoft account was terminated and Kindles lost book access, Thunderbird's survival is part of the same thread - who controls the tools you depend on daily?",
-      "conceptUris": []
-    },
-    {
-      "id": "trump-next-conquest-iran-forces-stay",
-      "label": "Trump says US forces to stay near Iran, ready for 'next conquest'",
-      "firstSeen": "2026-04-09T08:08:27.031Z",
-      "lastCovered": "2026-04-09T08:08:27.031Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-trump-next-conquest-iran-forces-stay"
-      ],
-      "eventUri": "eng-11553446",
-      "summary": "Hours after the ceasefire, Trump posted that all US ships, aircraft, and personnel will remain deployed around Iran with 'additional ammunition' — and threatened 'lethal prosecution and destruction' if Tehran doesn't comply. The word 'next conquest' is the lead: the ceasefire is framed not as peace but as a pause before the next campaign. Asharq Al-Awsat's more cautious framing vs Al Jazeera's alarm captures the Arab media split. The reader tracking US imperial language should note this is occupation rhetoric, not diplomacy.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
-        "http://en.wikipedia.org/wiki/Naval_mine",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Paramilitary",
-        "http://en.wikipedia.org/wiki/Donald_Trump"
-      ]
-    },
-    {
-      "id": "emergency-waivers-arms-israel-uae-congress-bypass",
-      "label": "Emergency waivers move arms for Israel, UAE to speed lane",
-      "firstSeen": "2026-04-09T08:08:27.031Z",
-      "lastCovered": "2026-04-09T08:08:27.031Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-emergency-waivers-arms-israel-uae-congress-bypass"
-      ],
-      "eventUri": null,
-      "summary": "The Trump administration used Arms Export Control Act emergency waivers to bypass Congressional review on $660M in weapons to Israel and $16.5B to UAE, Jordan, and Kuwait. Lead with the mechanism: these weapons won't arrive for months — the 'emergency' isn't speed, it's avoiding scrutiny. Sanders has filed resolutions of disapproval. The Stimson Center expert quote is key: 'Are there simply more emergencies, or are we normalizing this extraordinary power?' UAE arms are significant because the UAE supplies Sudan's RSF.",
-      "conceptUris": []
-    },
-    {
-      "id": "pti-400-activists-booked-imran-sisters-pakistan",
-      "label": "Imran's three sisters among 400 PTI activists booked over protest",
-      "firstSeen": "2026-04-09T08:08:27.031Z",
-      "lastCovered": "2026-04-09T08:08:27.031Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-pti-400-activists-booked-imran-sisters-pakistan"
-      ],
-      "eventUri": null,
-      "summary": "400 PTI activists including three of Imran Khan's sisters were booked on charges ranging from criminal conspiracy to attempted murder under anti-terrorism law — for protesting. Lead with the scale: 400 people charged, family members targeted, anti-terrorism law weaponized against political dissent. Pakistan is hosting Iran-US peace talks while simultaneously criminalizing domestic opposition. The reader tracking democratic backsliding should note the timing.",
-      "conceptUris": []
-    },
-    {
-      "id": "journalist-wishah-killed-israeli-drone-gaza",
-      "label": "Who was Mohammed Wishah, journalist killed in Israeli drone strike in Gaza",
-      "firstSeen": "2026-04-09T08:08:27.031Z",
-      "lastCovered": "2026-04-09T08:08:27.031Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-journalist-wishah-killed-israeli-drone-gaza"
-      ],
-      "eventUri": "eng-11552313",
-      "summary": "Mohammed Wishah, a journalist covering the war in Gaza since October 2023, was killed when an Israeli drone strike hit his car, setting it ablaze. Lead with the number: the Gaza Government Media Office says over 200 journalists have been killed since October 2023. This is systematic targeting of press — not collateral damage. The car was specifically struck. The reader should see the pattern: information control through elimination of witnesses.",
-      "conceptUris": []
-    },
-    {
-      "id": "cuba-us-blockade-strangling-economy-jayapal",
-      "label": "Jayapal: US policy is 'strangling' Cuba",
-      "firstSeen": "2026-04-09T08:08:27.031Z",
-      "lastCovered": "2026-04-09T08:08:27.031Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-cuba-us-blockade-strangling-economy-jayapal"
-      ],
-      "eventUri": null,
-      "summary": "After visiting Cuba, Rep. Jayapal describes an island blacked out 20 hours a day, roads empty because nobody can afford fuel, pharmacies closed. The US fuel blockade — not just the decades-old embargo — has brought 11 million people to a breaking point. Lead with the darkness: 20 hours without power daily. Cuba released 2,000 prisoners and invited the FBI to investigate a shooting — signals of willingness to negotiate that Washington is ignoring. Only 10% of food needs are produced domestically. The reader should see this as sanctions as siege warfare.",
-      "conceptUris": []
-    },
-    {
-      "id": "islamabad-red-zone-sealed-iran-us-talks-pakistan",
-      "label": "Red Zone sealed as capital prepares for high-stakes Iran-US talks",
-      "firstSeen": "2026-04-09T08:08:27.031Z",
-      "lastCovered": "2026-04-09T08:08:27.031Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-islamabad-red-zone-sealed-iran-us-talks-pakistan"
-      ],
-      "eventUri": "eng-11551595",
-      "summary": "Islamabad declared two holidays, sealed the Red Zone, vacated a hotel for delegations, and is likely to close city entry points — all for Iran-US ceasefire talks Pakistan brokered. Vance, Witkoff, and Kushner are participating. Lead with what Pakistan is bearing: a city shut down, businesses closed, the capital converted into a diplomatic fortress. Asim Munir emerged as key link. The reader should see Pakistan's broker role as a shift — a country that's been absorbing the war's economic shocks (PIA, fuel, remittances) now hosts the peace.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Islamabad",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Islamabad_Capital_Territory",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Bras%C3%ADlia",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Sui_Northern_Gas_Pipelines_Limited"
-      ]
-    },
-    {
-      "id": "cftc-prediction-markets-sports-betting-finance",
-      "label": "CFTC presses case that sports betting is finance, seeks to block Arizona enforcement",
-      "firstSeen": "2026-04-09T08:08:27.031Z",
-      "lastCovered": "2026-04-09T08:08:27.031Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-cftc-prediction-markets-sports-betting-finance"
-      ],
-      "eventUri": "eng-11544934",
-      "summary": "The CFTC is arguing that sports betting on platforms like Kalshi is a financial derivative, not gambling — which would put prediction markets under federal jurisdiction instead of state gambling laws. Lead with the regulatory turf war: this court decision could determine whether prediction markets operate nationwide under one framework or face 50 different state regimes. The reader uses prediction markets (Polymarket, Kalshi) and should care that the definition of 'finance' is being redrawn to include betting on sports outcomes.",
-      "conceptUris": []
-    },
-    {
-      "id": "mpox-outbreak-khairpur-pakistan-health",
-      "label": "Alarm raised over outbreak of mpox in Khairpur",
-      "firstSeen": "2026-04-09T08:08:27.031Z",
-      "lastCovered": "2026-04-09T08:08:27.031Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-mpox-outbreak-khairpur-pakistan-health"
-      ],
-      "eventUri": null,
-      "summary": "Mpox has broken out in Khairpur, Pakistan — experts at Aga Khan University Hospital are urging it be treated as an immediate public health concern. Lead with the gap: Pakistan's health system is already strained by Iran war economic fallout, and now a viral outbreak in Sindh province adds pressure. The reader tracking Global South health infrastructure should note this is the kind of outbreak that escalates when systems are already overwhelmed.",
-      "conceptUris": []
-    },
-    {
-      "id": "is-hormuz-open-yet-hacker-news-tracker",
-      "label": "Show HN: Is Hormuz open yet?",
-      "firstSeen": "2026-04-09T08:08:27.031Z",
-      "lastCovered": "2026-04-09T08:08:27.031Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-is-hormuz-open-yet-hacker-news-tracker"
-      ],
-      "eventUri": null,
-      "summary": "A developer built ishormuzopenyet.com to track whether the Strait of Hormuz is open — using MarineTraffic ship data, IMF PortWatch (4-day lag), and considering prediction market feeds. 373 points, 144 comments. Lead with the hacker ethos: when the world's most important oil chokepoint closes, a developer's instinct is to build a dashboard. The constraints are the story — live ship tracking APIs are expensive, government data lags by days, and the answer changes hour by hour. The reader builds things like this.",
-      "conceptUris": []
-    },
-    {
-      "id": "astral-open-source-security-ruff-uv",
-      "label": "Open Source Security at Astral",
-      "firstSeen": "2026-04-09T08:08:27.031Z",
-      "lastCovered": "2026-04-09T08:08:27.031Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-astral-open-source-security-ruff-uv"
-      ],
-      "eventUri": null,
-      "summary": "Astral (makers of ruff and uv — the Python tools that replaced flake8, black, pip, and virtualenv) publishes their security model for open-source supply chain. 140 points. Lead with the stakes: ruff and uv are now in millions of Python projects' CI pipelines. If Astral's build is compromised, the blast radius is enormous. The reader uses these tools daily and should understand how Astral thinks about securing the supply chain they now dominate.",
       "conceptUris": []
     }
   ]
