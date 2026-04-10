@@ -16,7 +16,7 @@ import { enableNotifications, registerPushToken } from '../lib/notifications';
 import { set as setPendingSlug } from '../lib/pending-notification';
 import { getPreferences, savePreferences } from '../lib/storage';
 
-configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
+configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: __DEV__ });
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({

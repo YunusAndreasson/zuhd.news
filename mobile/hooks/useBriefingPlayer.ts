@@ -1,4 +1,7 @@
 import { Asset } from 'expo-asset';
+// Imperative createAudioPlayer (not useAudioPlayer hook) — player is created
+// lazily on first toggle and torn down on background recovery, which the hook
+// doesn't support since it allocates immediately on mount.
 import {
   type AudioPlayer,
   type AudioStatus,
