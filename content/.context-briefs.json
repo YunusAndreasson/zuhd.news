@@ -5159,5 +5159,92 @@
     "label": "Conflict Minerals and Gold",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-10-chimps-civil-war-ngogo-scientists": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "FISSION-FUSION",
+        "body": "Chimpanzees live in fission-fusion societies: a community shares territory but travels in fluid subgroups that merge and split daily. Loyalty is not to a stable band but to a political network — which is why splits, when they happen, are so violent."
+      },
+      {
+        "heading": "WHY CHIMPS KILL",
+        "body": "Lethal aggression in chimpanzees is not random. Males patrol borders in coordinated parties and attack only when they outnumber the target roughly 3-to-1. The logic is imbalance-of-power: kill when it is cheap, avoid fights when it is not."
+      },
+      {
+        "heading": "THE NGOGO ANOMALY",
+        "body": "Most chimpanzee communities number 30-80 individuals. Ngogo reached ~200, making it an order of magnitude larger than typical groups. Large size meant more males, more coalition politics, and eventually an irreconcilable factional split — the dynamics scale like human politics, not like animal herds."
+      },
+      {
+        "heading": "WHAT FISSION LOOKS LIKE",
+        "body": "Community fissions are extraordinarily rare — only a handful have ever been documented. When Gombe's Kasekela group split in 1974, the breakaway males were hunted and killed over four years. Jane Goodall called it the event that destroyed her belief in chimpanzee peacefulness."
+      },
+      {
+        "heading": "THE DEBATE IT SETTLED",
+        "body": "For decades, anthropologists argued whether chimp violence was natural or an artifact of human disturbance — banana provisioning at Gombe, habitat loss elsewhere. Ngogo, deep in intact Kibale Forest with no provisioning, showed that lethal coalitionary violence emerges from chimpanzee social structure itself."
+      }
+    ],
+    "generatedAt": "2026-04-10T04:21:26.279Z",
+    "label": "Chimpanzee Warfare",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-10-quantum-safe-bitcoin-no-soft-fork-200-dollars": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT BITCOIN ACTUALLY RELIES ON",
+        "body": "Bitcoin uses two distinct cryptographic primitives: SHA-256 hashing (for mining and addresses) and ECDSA elliptic-curve signatures (for proving you own coins). Quantum computing threatens only the second one."
+      },
+      {
+        "heading": "WHY ECDSA BREAKS",
+        "body": "ECDSA security rests on the discrete logarithm problem: given a public key, deriving the private key requires trying roughly 2^128 possibilities. Shor's algorithm (1994) solves this in polynomial time on a quantum computer — reducing centuries of work to hours."
+      },
+      {
+        "heading": "WHY SHA-256 SURVIVES",
+        "body": "Grover's algorithm gives quantum computers a square-root speedup against hash functions, cutting SHA-256's security from 256 bits to 128 bits. That is still astronomically hard. Hashing is safe; signatures are not."
+      },
+      {
+        "heading": "THE EXPOSED WINDOW",
+        "body": "Your Bitcoin is vulnerable only when your public key is visible on-chain. Pay-to-public-key-hash (P2PKH) addresses hide the key behind a hash until you spend. But the moment you broadcast a transaction, the public key is exposed in the mempool — a quantum attacker could derive your private key and race to steal your funds before your transaction confirms."
+      },
+      {
+        "heading": "WHY UPGRADES TAKE YEARS",
+        "body": "Bitcoin has no central authority to push updates. Changes require a BIP (Bitcoin Improvement Proposal), rough consensus among developers, miner signaling, and user activation. Segregated Witness took 4 years. Taproot took 7.5. A quantum-safety upgrade touches every wallet and transaction format — the coordination problem dwarfs the cryptography."
+      }
+    ],
+    "generatedAt": "2026-04-10T04:21:26.281Z",
+    "label": "Quantum Threats to Cryptography",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-10-iran-war-60-nations-energy-crisis-response": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "The Strait of Hormuz is 33 km wide at its narrowest, with shipping lanes just 3 km across in each direction. Roughly 20% of the world's oil passes through it daily. There is no comparable chokepoint — even the Suez Canal carries less energy trade."
+      },
+      {
+        "heading": "WHY THERE IS NO DETOUR",
+        "body": "Saudi Arabia and the UAE built pipelines bypassing Hormuz (the East-West Pipeline and the Habshan-Fujairah line), but their combined capacity covers only about a third of the strait's daily flow. For most Gulf producers — Iraq, Kuwait, Qatar — there is no alternative route at all."
+      },
+      {
+        "heading": "STRATEGIC RESERVES",
+        "body": "The IEA was created after the 1973 oil embargo specifically to coordinate emergency stockpile releases. Member nations hold at least 90 days of net imports in reserve. The US Strategic Petroleum Reserve, stored in salt caverns along the Gulf Coast, currently holds roughly 400 million barrels — enough to replace total Hormuz flow for about 20 days."
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Closing a strait is far easier than keeping it open. A few dozen anti-ship missiles, naval mines, or fast-attack boats can halt commercial traffic. Clearing mines alone takes weeks. This is why Hormuz gives Iran leverage wildly disproportionate to its conventional military strength."
+      },
+      {
+        "heading": "WHY PRICE SPIKES OUTLAST DISRUPTIONS",
+        "body": "Oil markets price in future expectations, not just current supply. Even after a disruption ends, prices stay elevated until spare capacity is rebuilt and inventories are restocked — a process that typically takes 6-12 months. The 1990 Gulf War spike took nearly a year to fully unwind."
+      }
+    ],
+    "generatedAt": "2026-04-10T04:21:26.281Z",
+    "label": "The Hormuz Chokepoint",
+    "category": "economy",
+    "articleCount": 1
   }
 }
