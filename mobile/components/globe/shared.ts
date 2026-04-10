@@ -1,5 +1,5 @@
 import type { SkPath } from '@shopify/react-native-skia';
-import { feature } from 'topojson-client';
+import { feature, mesh } from 'topojson-client';
 import type { Topology } from 'topojson-specification';
 import countriesTopo from '../../data/countries-110m.json';
 import worldTopo from '../../data/world-110m.json';
@@ -9,6 +9,15 @@ export const countries = feature(
   countriesTopo as unknown as Topology,
   (countriesTopo as any).objects.countries,
 ) as unknown as GeoJSON.FeatureCollection;
+
+// Internal borders only (shared edges between countries, no coastlines — land
+// already shows those). Single MultiLineString = much faster to project than
+// 180 separate country polygons.
+export const bordersMesh = mesh(
+  countriesTopo as unknown as Topology,
+  (countriesTopo as any).objects.countries,
+  (a, b) => a !== b,
+);
 
 const DEG = 180 / Math.PI;
 

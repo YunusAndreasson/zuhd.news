@@ -11,7 +11,7 @@ import {
   useImage,
   vec,
 } from '@shopify/react-native-skia';
-import { geoCircle, geoContains, geoDistance, geoOrthographic, geoPath } from 'd3-geo';
+import { geoCircle, geoContains, geoDistance, geoInterpolate, geoOrthographic, geoPath } from 'd3-geo';
 import {
   memo,
   useCallback,
@@ -32,7 +32,7 @@ import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
 import { useTheme } from '../../hooks/useTheme';
 import type { Article, HeatmapPoint } from '../../types';
 import { COUNTRY_TZ } from './coordinates';
-import { countries, createSkiaPathContext, land } from './shared';
+import { bordersMesh, countries, createSkiaPathContext, land } from './shared';
 import { getCoords } from './storyDots';
 
 /** Squared-distance hit test */
@@ -76,6 +76,12 @@ const nightCircleGen = geoCircle();
 const HALF_PI = Math.PI / 2;
 const DECAY_LAMBDA = Math.LN2 / 18; // 18h half-life
 
+// Makkah — [lng, lat] for d3-geo (qibla direction reference)
+const MAKKAH = {
+  coords: [39.83, 21.42] as [number, number],
+  name: 'Makkah',
+};
+
 // Moon phase — synodic period from known new moon
 const SYNODIC = 29.53059;
 const KNOWN_NEW_MOON = Date.UTC(2025, 0, 29, 12, 36); // Jan 29, 2025 12:36 UTC
@@ -84,14 +90,6 @@ function getMoonPhase(): number {
   const days = (Date.now() - KNOWN_NEW_MOON) / 86400000;
   return (((days % SYNODIC) + SYNODIC) % SYNODIC) / SYNODIC; // 0 = new, 0.5 = full
 }
-
-// Al-Aqsa / Dome of the Rock — [lng, lat] for d3-geo
-const AL_AQSA = {
-  coords: [35.2354, 31.7761] as [number, number],
-  name: 'Al-Quds',
-  tz: 'Asia/Hebron',
-  country: 'Palestine',
-};
 
 // Sun position from UTC time (cached 60s)
 let cachedSunPos: [number, number] = [0, 0];
@@ -222,10 +220,12 @@ interface Hotspot {
 
 interface GlobeState {
   landPath: ReturnType<typeof Skia.Path.Make> | null;
+  bordersPath: ReturnType<typeof Skia.Path.Make> | null;
   countryPath: ReturnType<typeof Skia.Path.Make> | null;
   nightPath: ReturnType<typeof Skia.Path.Make> | null;
+  qiblaPath: ReturnType<typeof Skia.Path.Make> | null;
   dot: { x: number; y: number } | null;
-  aqsa: { x: number; y: number } | null;
+  makkah: { x: number; y: number } | null;
   hotspotGlows: {
     x: number;
     y: number;
@@ -236,8 +236,9 @@ interface GlobeState {
 }
 
 const EMPTY_GLOBE: GlobeState = {
-  landPath: null, countryPath: null, nightPath: null,
-  dot: null, aqsa: null, hotspotGlows: [],
+  landPath: null, bordersPath: null, countryPath: null, nightPath: null,
+  qiblaPath: null,
+  dot: null, makkah: null, hotspotGlows: [],
 };
 
 /** Pure projection — creates fresh Skia paths, no shared mutable state. */
@@ -253,6 +254,13 @@ function projectInitial(
   const lp = Skia.Path.Make();
   ctx.setPath(lp);
   pg.context(ctx as any)(land);
+
+  // Neighbouring country borders — mesh + no resampling for speed
+  proj.precision(0);
+  const bp = Skia.Path.Make();
+  ctx.setPath(bp);
+  pg.context(ctx as any)(bordersMesh);
+  proj.precision(8);
 
   let cp: ReturnType<typeof Skia.Path.Make> | null = null;
   if (geo.country) {
@@ -270,13 +278,28 @@ function projectInitial(
   const pt = proj([geo.lng, geo.lat]);
   if (pt) dot = { x: pt[0], y: pt[1] };
 
-  let aqsa: GlobeState['aqsa'] = null;
-  if (geoDistance(AL_AQSA.coords, [geo.lng, geo.lat]) < HALF_PI) {
-    const ap = proj(AL_AQSA.coords);
-    if (ap) aqsa = { x: ap[0], y: ap[1] };
+  // Makkah
+  let makkah: GlobeState['makkah'] = null;
+  if (geoDistance(MAKKAH.coords, [geo.lng, geo.lat]) < HALF_PI) {
+    const mp = proj(MAKKAH.coords);
+    if (mp) makkah = { x: mp[0], y: mp[1] };
   }
 
-  return { landPath: lp, countryPath: cp, nightPath: np, dot, aqsa, hotspotGlows: [] };
+  // Qibla arc — great circle from story location to Makkah
+  let qp: ReturnType<typeof Skia.Path.Make> | null = null;
+  if (geoDistance([geo.lng, geo.lat], MAKKAH.coords) > 0.02) {
+    const interp = geoInterpolate([geo.lng, geo.lat], MAKKAH.coords);
+    qp = Skia.Path.Make();
+    let started = false;
+    for (let i = 0; i <= 30; i++) {
+      const p = proj(interp(i / 30));
+      if (!p) { started = false; continue; }
+      if (!started) { qp.moveTo(p[0], p[1]); started = true; }
+      else qp.lineTo(p[0], p[1]);
+    }
+  }
+
+  return { landPath: lp, bordersPath: bp, countryPath: cp, nightPath: np, qiblaPath: qp, dot, makkah, hotspotGlows: [] };
 }
 
 export const MiniGlobe = memo(function MiniGlobe({
@@ -392,8 +415,11 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   // Reusable Skia path objects — reset each frame instead of allocating new ones
   const landPathRef = useRef(Skia.Path.Make());
+  const bordersPathRef = useRef(Skia.Path.Make());
+  const lastBordersRotRef = useRef<[number, number]>([Infinity, Infinity]);
   const countryPathRef = useRef(Skia.Path.Make());
   const nightPathRef = useRef(Skia.Path.Make());
+  const qiblaPathRef = useRef(Skia.Path.Make());
 
   // Keep closure dependencies in refs so the reproject callback stays stable
   const articlesRef = useRef(articles);
@@ -404,8 +430,11 @@ export const MiniGlobe = memo(function MiniGlobe({
   hotspotsRef.current = hotspots;
   const layoutRef = useRef({ globeRadius, cx, cy });
   layoutRef.current = { globeRadius, cx, cy };
+  // Mirror of last reproject args — avoids reading SharedValues outside worklets
+  const lastReprojRef = useRef<{ lng: number; lat: number; idx: number } | null>(null);
 
   const callReproject = useCallback((geoLng: number, geoLat: number, settledIndex: number) => {
+    lastReprojRef.current = { lng: geoLng, lat: geoLat, idx: settledIndex };
     const { globeRadius: r, cx: centerX, cy: centerY } = layoutRef.current;
     const geoData = articleGeoRef.current;
 
@@ -426,7 +455,8 @@ export const MiniGlobe = memo(function MiniGlobe({
     // switches where scroll resets to 0 but the article is different.
     const geo = geoData[settledIndex];
     const slug = articlesRef.current[settledIndex]?.slug ?? null;
-    if (settledIndex !== lastSettled.current || slug !== lastSettledSlug.current) {
+    const settled = settledIndex !== lastSettled.current || slug !== lastSettledSlug.current;
+    if (settled) {
       lastSettled.current = settledIndex;
       lastSettledSlug.current = slug;
       cachedCountryRef.current = geo?.country ?? null;
@@ -448,6 +478,22 @@ export const MiniGlobe = memo(function MiniGlobe({
       pg.context(skiaCtx as any)(cachedCountryRef.current);
     }
 
+    // Neighbouring country borders — three optimizations for smooth scroll:
+    //  1. bordersMesh (topojson.mesh) = single MultiLineString, no duplicate edges
+    //  2. precision(0) = skip adaptive resampling (invisible at 0.5px/0.15 opacity)
+    //  3. Angular cache = skip if globe rotated < 3° since last generation
+    const bordersPath = bordersPathRef.current;
+    const bDx = geoLng - lastBordersRotRef.current[0];
+    const bDy = geoLat - lastBordersRotRef.current[1];
+    if (settled || bDx * bDx + bDy * bDy > 9) {
+      lastBordersRotRef.current = [geoLng, geoLat];
+      proj.precision(0);
+      bordersPath.reset();
+      skiaCtx.setPath(bordersPath);
+      pg.context(skiaCtx as any)(bordersMesh);
+      proj.precision(8);
+    }
+
     // Night shadow — reuse path object
     const [sunLng, sunLat] = getSunPosition();
     const nightGeo = nightCircleGen.center([sunLng + 180, -sunLat]).radius(80)();
@@ -456,11 +502,30 @@ export const MiniGlobe = memo(function MiniGlobe({
     skiaCtx.setPath(nightPath);
     pg.context(skiaCtx as any)(nightGeo);
 
-    // Al-Aqsa — golden reference point
-    let aqsa: { x: number; y: number } | null = null;
-    if (geoDistance(AL_AQSA.coords, [geoLng, geoLat]) < HALF_PI) {
-      const pt = proj(AL_AQSA.coords);
-      if (pt) aqsa = { x: pt[0], y: pt[1] };
+    // Makkah — qibla reference point
+    let makkah: { x: number; y: number } | null = null;
+    if (geoDistance(MAKKAH.coords, [geoLng, geoLat]) < HALF_PI) {
+      const pt = proj(MAKKAH.coords);
+      if (pt) makkah = { x: pt[0], y: pt[1] };
+    }
+
+    // Qibla arc — great circle from story location to Makkah
+    const qiblaP = qiblaPathRef.current;
+    qiblaP.reset();
+    let hasQibla = false;
+    if (geo) {
+      const storyPt: [number, number] = [geo.lng, geo.lat];
+      if (geoDistance(storyPt, MAKKAH.coords) > 0.02) {
+        const interp = geoInterpolate(storyPt, MAKKAH.coords);
+        let started = false;
+        for (let i = 0; i <= 30; i++) {
+          const p = proj(interp(i / 30));
+          if (!p) { started = false; continue; }
+          if (!started) { qiblaP.moveTo(p[0], p[1]); started = true; }
+          else qiblaP.lineTo(p[0], p[1]);
+        }
+        hasQibla = true;
+      }
     }
 
     // Coverage hotspot glows — project visible zones onto the front hemisphere
@@ -480,7 +545,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
     }
 
-    setState({ landPath, countryPath, nightPath, dot, aqsa, hotspotGlows });
+    setState({ landPath, bordersPath, countryPath, nightPath, qiblaPath: hasQibla ? qiblaP : null, dot, makkah, hotspotGlows });
   }, []);
 
   // Throttle reprojection to 32ms (~30fps), skip throttle on first call
@@ -535,31 +600,15 @@ export const MiniGlobe = memo(function MiniGlobe({
   useEffect(() => {
     if (!_tick) return; // skip initial render
     invalidateSunCaches();
-    const coords = coordsSV.value;
-    const articleCount = coords.length / 2;
-    if (articleCount === 0) return;
-    const rawIndex = Math.max(0, scrollY.value / itemHeight);
-    const idx = Math.min(Math.round(rawIndex), articleCount - 1);
-    const lat = coords[idx * 2];
-    const lng = coords[idx * 2 + 1];
-    if (lat != null && lng != null) {
-      callReproject(lng, lat, idx);
-    }
+    const last = lastReprojRef.current;
+    if (last) callReproject(last.lng, last.lat, last.idx);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_tick]);
 
   // Re-project when hotspot data changes (e.g. heatmap fetch after app resume)
   useEffect(() => {
-    const coords = coordsSV.value;
-    const articleCount = coords.length / 2;
-    if (articleCount === 0) return;
-    const rawIndex = Math.max(0, scrollY.value / itemHeight);
-    const idx = Math.min(Math.round(rawIndex), articleCount - 1);
-    const lat = coords[idx * 2];
-    const lng = coords[idx * 2 + 1];
-    if (lat != null && lng != null) {
-      callReproject(lng, lat, idx);
-    }
+    const last = lastReprojRef.current;
+    if (last) callReproject(last.lng, last.lat, last.idx);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hotspots]);
 
@@ -619,15 +668,37 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      // Then Al-Aqsa
-      if (state.aqsa && isNear(x, y, state.aqsa.x, state.aqsa.y, 3600)) {
+      // Then Makkah
+      if (state.makkah && isNear(x, y, state.makkah.x, state.makkah.y, 3600)) {
         return {
-          countryName: AL_AQSA.country,
-          location: AL_AQSA.name,
-          localTime: formatLocalTime(AL_AQSA.tz),
-          data: COUNTRY_DATA['Palestine'] ?? null,
-          hotspotLabels: storiesFor('Palestine'),
+          countryName: 'Saudi Arabia',
+          location: MAKKAH.name,
+          localTime: formatLocalTime('Asia/Riyadh'),
+          data: COUNTRY_DATA['Saudi Arabia'] ?? null,
+          hotspotLabels: storiesFor('Saudi Arabia'),
         };
+      }
+
+      // Full-globe fallback — tap any visible land mass to identify the country
+      const { cx: hitCx, cy: hitCy, globeRadius: hitR } = layoutRef.current;
+      const gdx = x - hitCx;
+      const gdy = y - hitCy;
+      if (gdx * gdx + gdy * gdy <= hitR * hitR) {
+        const coords = projRef.current.invert?.([x, y]);
+        if (coords) {
+          const feature = countries.features.find((f) => geoContains(f, coords));
+          if (feature) {
+            const name = (feature.properties as any)?.name ?? '';
+            const tz = name ? COUNTRY_TZ[name] : undefined;
+            return {
+              countryName: name,
+              location: null,
+              localTime: tz ? formatLocalTime(tz) : null,
+              data: name ? COUNTRY_DATA[name] ?? null : null,
+              hotspotLabels: storiesFor(name),
+            };
+          }
+        }
       }
 
       return null;
@@ -771,8 +842,18 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Land silhouette */}
       {state.landPath && <Path path={state.landPath} color={colors.rule} opacity={0.4} />}
 
+      {/* Neighbouring country borders — visible when scroll is at rest */}
+      {state.bordersPath && (
+        <Path path={state.bordersPath} color={colors.accent} style="stroke" strokeWidth={0.5} opacity={0.22} />
+      )}
+
       {/* Night shadow — darker overlay on the unlit hemisphere */}
       {state.nightPath && <Path path={state.nightPath} color={colors.black} opacity={0.15} />}
+
+      {/* Terminator — thin stroke at the day/night boundary */}
+      {state.nightPath && (
+        <Path path={state.nightPath} color={colors.atmosphere} style="stroke" strokeWidth={0.5} opacity={0.2} />
+      )}
 
       {/* Coverage hotspot ambient glows — top coverage hotspots */}
       {state.hotspotGlows.map((z, i) => (
@@ -804,11 +885,16 @@ export const MiniGlobe = memo(function MiniGlobe({
         </>
       )}
 
-      {/* Al-Aqsa — golden reference point */}
-      {state.aqsa && (
+      {/* Qibla arc — great circle toward Makkah */}
+      {state.qiblaPath && (
+        <Path path={state.qiblaPath} color={colors.dome} style="stroke" strokeWidth={0.8} opacity={0.12} />
+      )}
+
+      {/* Makkah — golden qibla reference point */}
+      {state.makkah && (
         <Glow
-          x={state.aqsa.x}
-          y={state.aqsa.y}
+          x={state.makkah.x}
+          y={state.makkah.y}
           color={colors.dome}
           layers={[
             { r: 12, opacity: 0.03, blur: 8 },
