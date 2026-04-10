@@ -2,13 +2,200 @@
   "version": 1,
   "stories": [
     {
+      "id": "israel-strike-kills-13-members-of-lebanon-state-security",
+      "label": "Israel strike kills 13 members of Lebanon state security",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-israel-strike-kills-13-members-of-lebanon-state-security"
+      ],
+      "eventUri": "eng-11558967",
+      "summary": "Israel killed 13 Lebanese state security personnel in a single airstrike on the Nabatieh Government Complex — the largest number of government employees killed at once since the war began. The angle: this isn't Hezbollah, these are civil servants at a government building. Lead with the distinction between militia and state targets — Israel is now striking the Lebanese government itself. The reader tracking the ceasefire will see that the two-week US-Iran truce has not stopped Israeli operations in Lebanon, which is exactly why Tehran set a Lebanon ceasefire as a precondition for talks.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Hezbollah",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Nabatieh",
+        "http://en.wikipedia.org/wiki/Beirut",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces"
+      ]
+    },
+    {
+      "id": "kurds-refuse-trump-war-bid-iraq-iran",
+      "label": "\"Not Guns for Hire\": Trump's Failure to Trigger a Kurdish Uprising",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-kurds-refuse-trump-war-bid-iraq-iran"
+      ],
+      "eventUri": null,
+      "summary": "The US tried to enlist newly allied Kurdish factions to open a second front against Iran from inside Iraq — and the Kurds refused. The angle: this fills a glaring Iraq coverage gap. Lead with the refusal itself — a US proxy strategy that failed because the proxies had their own calculus. The reader tracking the Iran war will see that US leverage has limits even with allies it just armed, and that Iraq is not a passive theater.",
+      "conceptUris": []
+    },
+    {
+      "id": "sudan-nyala-healthcare-strike-burhan-military-reshuffle",
+      "label": "Sudan Nashra: Nyala healthcare workers on strike | Burhan abolishes deputy, assistant commander-in-chief positions | Sudanese military intelligence head in high-level talks with Tripoli's chief of staff | Military operation to retake Blue Nile's Kurmuk underway",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-sudan-nyala-healthcare-strike-burhan-military-reshuffle"
+      ],
+      "eventUri": null,
+      "summary": "Healthcare workers in Nyala, South Darfur are striking while Burhan consolidates military command by abolishing deputy positions and promoting hardliner Yasser al-Atta to chief of staff. Simultaneously, a military operation to retake Kurmuk on the Blue Nile is underway. The angle: Sudan's civil war is intensifying on multiple fronts — a healthcare collapse in the west, a military offensive in the east, and a command reshuffle that signals Burhan is choosing escalation over negotiation. Lead with the Nyala healthcare strike — civilians are losing medical access in a war zone while the generals restructure for more fighting.",
+      "conceptUris": []
+    },
+    {
+      "id": "doj-scrap-watergate-presidential-records-act",
+      "label": "DOJ wants to scrap Watergate-era rule that makes presidential records public",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-doj-scrap-watergate-presidential-records-act"
+      ],
+      "eventUri": null,
+      "summary": "The Trump DOJ is moving to dismantle the Presidential Records Act — the post-Watergate law that ensures presidential documents become public. The angle: this is accountability infrastructure being dismantled. Lead with what disappears if this succeeds — future historians, journalists, and FOIA requesters lose access to the documentary record of presidential decision-making. The reader who cares about transparency will see this as a structural erosion, not just a Trump story.",
+      "conceptUris": []
+    },
+    {
+      "id": "federal-court-trump-tariffs-ieepa-challenge",
+      "label": "Federal court hears new case against Trump's latest global tariffs",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-federal-court-trump-tariffs-ieepa-challenge"
+      ],
+      "eventUri": "eng-11557649",
+      "summary": "A three-judge panel at the US Court of International Trade heard oral arguments challenging Trump's sweeping global tariffs, with plaintiffs arguing he exceeded emergency powers meant for narrow crises. The angle: this is a constitutional test of whether a president can unilaterally restructure global trade under emergency authority. Lead with the legal mechanism — IEEPA was designed for sanctions on hostile states, not blanket import taxes on allies. The reader tracking trade policy will see this as the strongest legal challenge yet to the tariff regime.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tariff",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Balance_of_trade",
+        "http://en.wikipedia.org/wiki/United_States_Court_of_International_Trade",
+        "http://en.wikipedia.org/wiki/International_Emergency_Economic_Powers_Act",
+        "http://en.wikipedia.org/wiki/Trade_Act_of_1974",
+        "http://en.wikipedia.org/wiki/Balance_of_payments"
+      ]
+    },
+    {
+      "id": "pakistan-diesel-price-cut-rs135-ceasefire",
+      "label": "Govt reduces petrol price by Rs12 per litre, diesel by Rs135",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-pakistan-diesel-price-cut-rs135-ceasefire"
+      ],
+      "eventUri": "eng-11559114",
+      "summary": "Pakistan's PM Shehbaz Sharif announced a Rs135/litre diesel price cut in a televised address he called 'historic.' The angle: this is a massive government intervention — diesel down ~40% — timed to the Iran-US ceasefire and aimed at absorbing the economic shock that has battered Pakistani consumers for a month. Lead with the Rs135 number — it's the largest single fuel price cut in Pakistan's history. The reader tracking the Iran war's economic cascade (PIA, medicine, fuel) will see this as Pakistan desperately trying to stabilize before the Islamabad peace talks begin.",
+      "conceptUris": []
+    },
+    {
+      "id": "white-house-iran-war-insider-trading-warning",
+      "label": "White House warns staff over Iran war bets",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-white-house-iran-war-insider-trading-warning"
+      ],
+      "eventUri": "eng-11556693",
+      "summary": "The White House issued a warning to staff against using insider information on the Iran war to trade on prediction markets and financial markets, after repeated market spikes before major presidential announcements. The angle: the war isn't just geopolitics — it's a trading opportunity for those with advance knowledge of ceasefire announcements and escalation decisions. Lead with the pattern: markets spiked before several Trump announcements, suggesting someone was front-running war decisions. The reader who follows markets will immediately grasp the corruption mechanism.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/White_House",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Prediction_market",
+        "http://en.wikipedia.org/wiki/Insider_trading",
+        "http://en.wikipedia.org/wiki/Futures_contract",
+        "http://en.wikipedia.org/wiki/The_Wall_Street_Journal",
+        "http://en.wikipedia.org/wiki/Email"
+      ]
+    },
+    {
+      "id": "marine-heatwaves-double-cyclone-economic-damage",
+      "label": "Marine heatwaves 'nearly double' the economic damage caused by tropical cyclones",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-marine-heatwaves-double-cyclone-economic-damage"
+      ],
+      "eventUri": null,
+      "summary": "Tropical cyclones that pass over marine heatwaves become 'supercharged,' nearly doubling their economic damage. The angle: climate change isn't just making storms worse in a vague sense — marine heatwaves are a specific, measurable amplifier with a dollar figure attached. Lead with the doubling — this quantifies the climate-disaster feedback loop in a way that connects ocean temperatures directly to insurance losses and rebuilding costs. The reader who thinks in systems will see the compounding mechanism.",
+      "conceptUris": []
+    },
+    {
+      "id": "first-contact-complex-life-stromatolites-shark-bay",
+      "label": "'First contact' that may have led to complex life on Earth finally witnessed by scientists",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-first-contact-complex-life-stromatolites-shark-bay"
+      ],
+      "eventUri": null,
+      "summary": "Scientists in Australia's Shark Bay have for the first time witnessed the interaction between stromatolite microbes and more complex cellular organisms — the kind of 'first contact' thought to have triggered the evolution of complex life on Earth billions of years ago. The angle: this is a living window into one of the biggest transitions in evolutionary history, observed in real time in the same type of environment where it originally happened. Lead with the fact that this process was theorized but never seen — until now.",
+      "conceptUris": []
+    },
+    {
+      "id": "north-korea-drift-crypto-theft-280-million",
+      "label": "'It reads like a spy novel': $280 million theft from Drift involved North Korean fake companies, cutouts",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-north-korea-drift-crypto-theft-280-million"
+      ],
+      "eventUri": null,
+      "summary": "North Korean operatives stole $280 million from crypto platform Drift using fake companies and cutouts — a six-month social engineering operation that started at a conference. The angle: this is how a sanctioned state funds itself. Lead with the tradecraft — fake quant-trading company, conference approach, six months of trust-building before the heist. The reader who builds software will recognize the social engineering pattern; the reader tracking North Korea will see the sanctions-evasion pipeline.",
+      "conceptUris": []
+    },
+    {
       "id": "france-government-linux-desktop-windows-exit",
       "label": "France Launches Government Linux Desktop Plan as Windows Exit Begins",
       "firstSeen": "2026-04-10T12:07:34.166Z",
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-04-10-france-government-linux-desktop-windows-exit",
@@ -25,7 +212,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-bars-spain-gaza-ceasefire-monitoring"
@@ -50,7 +237,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-european-airports-jet-fuel-shortage-hormuz"
@@ -75,7 +262,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-egypt-activist-ahmed-douma-detention-extended"
@@ -91,7 +278,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-hong-kong-stablecoin-licenses-hsbc-stanchart"
@@ -116,7 +303,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-secret-project-abc-conjecture-computer-verification"
@@ -132,7 +319,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-moderna-mrna-cancer-vaccine-naming-dilemma"
@@ -148,7 +335,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-florida-investigates-openai-chatgpt-deadly-shooting"
@@ -164,7 +351,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-04-10-india-wastewater-drug-resistance-genes-amr",
@@ -182,7 +369,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-iran-lebanon-ceasefire-test-regional-sway"
@@ -198,7 +385,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-south-africa-trc-timol-sabotage-inquiry"
@@ -214,7 +401,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-korea-peninsula-security-iran-war-rebalancing"
@@ -230,7 +417,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-adb-asia-pacific-growth-iran-war-inflation"
@@ -255,7 +442,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-bird-flu-h5n1-dairy-cattle-vaccination-window"
@@ -271,7 +458,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-eth-zurich-17000-qubit-array-fidelity"
@@ -287,7 +474,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-dutch-hospitals-ransomware-chipsoft-disruption"
@@ -303,7 +490,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-prosthetic-emg-deep-learning-two-sensors"
@@ -319,7 +506,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-eu-nato-rift-us-military-bases-iran-war"
@@ -335,7 +522,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-japan-missiles-us-china-collision-course"
@@ -351,7 +538,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-34-settlements-west-bank-ceasefire"
@@ -367,7 +554,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-bjp-uniform-civil-code-west-bengal-six-months"
@@ -392,7 +579,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-china-factory-prices-growth-41-month-deflation-ends"
@@ -417,7 +604,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-african-funeral-costs-families-poverty"
@@ -433,7 +620,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-medieval-japanese-poetry-trees-space-weather"
@@ -449,7 +636,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-mcp-over-skills-ai-agent-tooling"
@@ -465,7 +652,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-russia-rfe-journalist-cyberattacks-ukraine-fsb"
@@ -481,7 +668,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-09-amazon-mineral-extraction-clean-energy-paradox",
@@ -499,7 +686,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-09-sterile-neutrinos-death-knell-experiments",
@@ -516,7 +703,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-khamenei-hormuz-new-phase-ceasefire-iran"
@@ -538,7 +725,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-india-election-adjudication-voter-roll-skew"
@@ -559,7 +746,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-mythos-ai-zero-day-bessent-powell-bank-ceos"
@@ -581,7 +768,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-singapore-air-con-oil-crunch-hormuz-asia"
@@ -603,7 +790,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-chimps-civil-war-ngogo-scientists"
@@ -619,7 +806,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-iran-war-60-nations-energy-crisis-response"
@@ -635,7 +822,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-nasa-orion-leaky-valves-artemis-redesign"
@@ -657,7 +844,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-quantum-safe-bitcoin-no-soft-fork-200-dollars"
@@ -679,7 +866,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-microsoft-dark-patterns-onedrive-storage"
@@ -695,7 +882,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 3,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-09-gcc-tourism-32bn-hit-iran-conflict",
@@ -713,7 +900,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-smotrich-israel-expand-borders-gaza-lebanon-syria"
@@ -735,7 +922,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-venezuelan-cops-block-workers-march-pay-pledge"
@@ -757,7 +944,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-israeli-interceptors-dwindled-double-digits"
@@ -773,7 +960,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-antarctic-land-claim-abbott-rivada-trump"
@@ -789,7 +976,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-sudanese-gold-rsf-volkswagen-supply-chain"
@@ -805,7 +992,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-meta-coreweave-35-billion-ai-infrastructure"
@@ -830,7 +1017,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-emperor-penguin-endangered-iucn-sea-ice"
@@ -855,7 +1042,7 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-crispr-gene-editing-beta-thalassaemia-trial"
@@ -871,198 +1058,13 @@
       "lastCovered": "2026-04-09T22:09:22.153Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-maine-first-state-ban-data-centers"
       ],
       "eventUri": null,
       "summary": "Maine is poised to become the first US state to ban major new data centers — a legislative response to the AI infrastructure buildout consuming rural land, water, and power. Lead with the precedent: no state has done this before. The reader who saw the farmer arrested for speaking at a datacenter town hall last cycle now sees the political backlash scaling from individual resistance to state-level policy. 175 points and 231 comments on HN — this is landing with the tech community.",
-      "conceptUris": []
-    },
-    {
-      "id": "netanyahu-peace-talks-lebanon-disarmament-strikes",
-      "label": "Netanyahu: Israel wants to start peace talks with Lebanon 'as soon as possible'",
-      "firstSeen": "2026-04-09T17:08:54.419Z",
-      "lastCovered": "2026-04-09T17:08:54.419Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-netanyahu-peace-talks-lebanon-disarmament-strikes"
-      ],
-      "eventUri": "eng-11555354",
-      "summary": "Netanyahu announces peace talks with Lebanon that include Hezbollah's disarmament — hours after Israel launched over 100 airstrikes across Lebanon killing 250+ people. The lead is the contradiction: you don't propose disarmament while bombing. The 'peace talks' demand is really an ultimatum, framed as diplomacy. Sentiment divergence (0.39) shows Reuters frames it neutrally, Middle East Eye with more skepticism, Indian press coolly. The reader tracking the Iran-US ceasefire should see this as Israel using the pause to consolidate its Lebanon campaign under diplomatic cover.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Hezbollah",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_Israel",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Beirut"
-      ]
-    },
-    {
-      "id": "us-war-iraq-iran-shadow-drop-site",
-      "label": "\"It Seems Like Blind American Ignorance\": The New U.S. War on Iraq",
-      "firstSeen": "2026-04-09T17:08:54.419Z",
-      "lastCovered": "2026-04-09T17:08:54.419Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-us-war-iraq-iran-shadow-drop-site"
-      ],
-      "eventUri": null,
-      "summary": "The US is bombing Iraqi security forces — its own ally — in the shadow of the Iran and Lebanon wars. Lead with the absurdity: Iraq hosts US bases, cooperated on ISIS, and is now being struck by American munitions. This fills a critical coverage gap — editorial notes flag zero Iraq coverage despite Iraq being in the active war theater. The reader should see the pattern: when the US wages war in a region, its 'allies' become targets too. Drop Site investigation with ground sources.",
-      "conceptUris": []
-    },
-    {
-      "id": "who-health-workers-killed-ethiopia-amhara",
-      "label": "WHO condemns killing of health workers in Ethiopia, calls for investigation",
-      "firstSeen": "2026-04-09T17:08:54.419Z",
-      "lastCovered": "2026-04-09T17:08:54.419Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-who-health-workers-killed-ethiopia-amhara"
-      ],
-      "eventUri": null,
-      "summary": "Health workers killed in Ethiopia's Amhara region — WHO Director-General Tedros (himself Ethiopian, himself from a conflict zone) condemns and calls for investigation. Lead with what the killing achieves: when you kill health workers, you don't just kill people, you kill the healthcare system for an entire population. This is part of a broader pattern — attacks on health infrastructure in conflict zones from Gaza to Sudan to Amhara. East Africa coverage has been absent; this is the entry point.",
-      "conceptUris": []
-    },
-    {
-      "id": "arms-industry-universities-bae-leonardo-thales",
-      "label": "Arms industry given direct influence over university courses",
-      "firstSeen": "2026-04-09T17:08:54.419Z",
-      "lastCovered": "2026-04-09T17:08:54.419Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-arms-industry-universities-bae-leonardo-thales"
-      ],
-      "eventUri": null,
-      "summary": "BAE Systems, Leonardo, and Thales officials sit on advisory committees that oversee the 'strategic direction' of university departments — not as donors or guest lecturers, but as curriculum gatekeepers. Lead with the mechanism: the arms industry isn't funding research quietly, it's directly shaping what students learn. During a war where these same companies are supplying weapons, they're also training the next generation of engineers who will build them. Declassified UK investigation.",
-      "conceptUris": []
-    },
-    {
-      "id": "imf-50-billion-middle-east-war-economies",
-      "label": "IMF expects to provide vulnerable economies hit by Middle East war up to $50 billion",
-      "firstSeen": "2026-04-09T17:08:54.419Z",
-      "lastCovered": "2026-04-09T17:08:54.419Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-imf-50-billion-middle-east-war-economies"
-      ],
-      "eventUri": "eng-11545844",
-      "summary": "The IMF is preparing $50 billion in emergency assistance for countries hit by the Middle East war's economic shockwave — and warns the crisis will push 360 million people into hunger through higher fertilizer prices. Lead with the number and the mechanism: this isn't charity, it's triage. The war's economic damage extends far beyond the battlefield through supply chains, energy prices, and food systems. Kristalina Georgieva's warning that effects will be 'lasting' signals this isn't a temporary shock. The reader tracking Iran war economic cascade should see this as the institutional confirmation.",
-      "conceptUris": []
-    },
-    {
-      "id": "bitcoin-72k-divergence-tech-stocks-war",
-      "label": "Bitcoin price news: BTC reverses early loss, rises above $72,000 on Middle East hopes",
-      "firstSeen": "2026-04-09T17:08:54.419Z",
-      "lastCovered": "2026-04-09T17:08:54.419Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-bitcoin-72k-divergence-tech-stocks-war"
-      ],
-      "eventUri": null,
-      "summary": "Bitcoin up 9% over the past month while tech stocks down 12% — the divergence is the story, not the price. Lead with the split: in wartime, crypto is behaving as a safe-haven asset while software companies (dependent on stable geopolitical order) decline. The ceasefire optimism triggered the $72k breakout but the underlying trend is structural. The reader who checks oil futures before prayer will see the parallel: Bitcoin is becoming a war-economy instrument.",
-      "conceptUris": []
-    },
-    {
-      "id": "cdc-covid-vaccine-study-blocked-rfk",
-      "label": "CDC study shows COVID shot benefits; Trump official blocks release",
-      "firstSeen": "2026-04-09T17:08:54.419Z",
-      "lastCovered": "2026-04-09T17:08:54.419Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-cdc-covid-vaccine-study-blocked-rfk"
-      ],
-      "eventUri": "eng-11554740",
-      "summary": "A scientifically vetted CDC study showing significant health benefits from COVID-19 vaccines has been blocked from publication by a Trump administration official under anti-vaccine Health Secretary RFK Jr. Lead with the suppression: the study exists, it passed scientific review, and it's being buried because its findings contradict the administration's political position. This is science censorship in real time — the mechanism is bureaucratic, not dramatic, which makes it harder to fight. The reader who works in tech understands what it means when the people running the system override the people doing the work.",
-      "conceptUris": []
-    },
-    {
-      "id": "fbi-signal-iphone-notification-database-extraction",
-      "label": "FBI Extracts Suspect's Deleted Signal Messages Saved in iPhone Notification Database",
-      "firstSeen": "2026-04-09T17:08:54.419Z",
-      "lastCovered": "2026-04-09T17:08:54.419Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-fbi-signal-iphone-notification-database-extraction"
-      ],
-      "eventUri": null,
-      "summary": "The FBI recovered deleted Signal messages from an iPhone's notification database — messages the user thought were gone. Lead with the technical mechanism: even if you delete messages in Signal, iOS may cache them in a notification SQLite database that forensic tools can extract. This was the first case charging people for alleged 'Antifa' activities after Trump designated the term a terrorist organization. The reader uses Signal daily and needs to understand: the app's encryption doesn't protect you from the operating system underneath it. The threat model just changed.",
-      "conceptUris": []
-    },
-    {
-      "id": "meta-removes-addiction-litigation-ads-platform-power",
-      "label": "Meta removes ads for social media addiction litigation",
-      "firstSeen": "2026-04-09T17:08:54.419Z",
-      "lastCovered": "2026-04-09T17:08:54.419Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-meta-removes-addiction-litigation-ads-platform-power"
-      ],
-      "eventUri": null,
-      "summary": "Meta is removing ads from law firms recruiting plaintiffs for social media addiction lawsuits against Meta itself — using its ad platform to suppress litigation against its own products. Lead with the power: Meta controls the ad infrastructure, so it can simply make ads about its own harm disappear. 292 points on HN, 137 comments. The mechanism is the story: when you're the platform, you can silence your accusers without anyone noticing.",
-      "conceptUris": []
-    },
-    {
-      "id": "hungarian-government-passwords-bellingcat-osint",
-      "label": "'Snoopy', 'Adolf' and 'Password': The Hungarian Government Passwords Exposed Online",
-      "firstSeen": "2026-04-09T17:08:54.419Z",
-      "lastCovered": "2026-04-09T17:08:54.419Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-hungarian-government-passwords-bellingcat-osint"
-      ],
-      "eventUri": null,
-      "summary": "Almost 800 Hungarian government email addresses and passwords from 12 of 13 ministries are circulating online — including ministries handling classified work. Lead with the passwords themselves: 'Snoopy', 'Adolf', 'Password'. This isn't a sophisticated hack; it's basic negligence by a government that positions itself as a security-conscious EU member. Bellingcat OSINT analysis of breach data. The reader who is a hacker in the original sense will appreciate: the weakest link in national security is someone who thought 'Adolf' was a good password.",
-      "conceptUris": []
-    },
-    {
-      "id": "farmer-arrested-datacenter-town-hall-free-speech",
-      "label": "Farmer Arrested for Speaking Too Long at Datacenter Town Hall Vows to Fight",
-      "firstSeen": "2026-04-09T17:08:54.419Z",
-      "lastCovered": "2026-04-09T17:08:54.419Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-farmer-arrested-datacenter-town-hall-free-speech"
-      ],
-      "eventUri": null,
-      "summary": "A farmer went a few seconds over his three-minute speaking limit at a town hall about datacenter construction and was arrested. Lead with the image: a man who works the land, handcuffed for speaking too long about what's being built on it. The datacenters consuming rural land and water are the physical infrastructure behind AI — the reader who builds software should see where the compute they use comes from and what it costs the people who live there. 404 Media investigation.",
       "conceptUris": []
     }
   ]
