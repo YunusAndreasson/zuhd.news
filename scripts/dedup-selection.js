@@ -2,13 +2,12 @@
 // Removes entries from /tmp/zuhd-selection.json whose article already exists.
 // Runs between selector and writer to avoid wasting LLM turns on duplicates.
 //
-// Three dedup layers:
+// Three dedup layers (via shared lib/dedup.js):
 // 1. Exact slug match — article file already exists
 // 2. eventUri match — same event already covered by a published article
 // 3. Fuzzy title match — title word overlap ≥ 60% with a recent article's slug
-import { readFileSync, writeFileSync, existsSync, readdirSync } from 'fs'
-import { join } from 'path'
-import { parseFrontmatter } from './lib/frontmatter.js'
+import { readFileSync, writeFileSync, existsSync } from 'fs'
+import { CATEGORY_FLOORS, loadDedupContext, wouldDedup } from './lib/dedup.js'
 
 const SELECTION = '/tmp/zuhd-selection.json'
 if (!existsSync(SELECTION)) process.exit(0)
@@ -16,79 +15,14 @@ if (!existsSync(SELECTION)) process.exit(0)
 const selection = JSON.parse(readFileSync(SELECTION, 'utf-8'))
 const before = selection.length
 
-// Load published slugs from last 48 hours (by frontmatter date, not mtime — git ops change mtime)
-const cutoff = Date.now() - 48 * 60 * 60 * 1000
-let recentSlugs = []
-try {
-  recentSlugs = readdirSync('content/articles')
-    .filter(f => {
-      if (!f.endsWith('.md')) return false
-      try {
-        const content = readFileSync(join('content/articles', f), 'utf-8')
-        const { meta } = parseFrontmatter(content)
-        const date = meta.date ? new Date(meta.date).getTime() : 0
-        return date >= cutoff
-      } catch { return false }
-    })
-    .map(f => f.replace('.md', ''))
-} catch {}
-
-// Load eventUris from story ledger for eventUri-based dedup
-const ledgerEventUris = new Map() // eventUri → [article slugs]
-try {
-  const ledger = JSON.parse(readFileSync('content/.story-ledger.json', 'utf-8'))
-  for (const story of ledger.stories || []) {
-    if (story.eventUri && story.articles?.length > 0) {
-      ledgerEventUris.set(story.eventUri, story.articles)
-    }
-  }
-} catch {}
-
-// Word set from a slug (strip date prefix)
-function slugWords(slug) {
-  return new Set(slug.replace(/^\d{4}-\d{2}-\d{2}-/, '').split('-').filter(w => w.length > 2))
-}
-
-// Precompute word sets for recent articles
-const recentWordSets = recentSlugs.map(s => ({ slug: s, words: slugWords(s) }))
-
-function fuzzyMatch(candidateSlug) {
-  const candidateWords = slugWords(candidateSlug)
-  if (candidateWords.size === 0) return null
-  for (const { slug, words } of recentWordSets) {
-    const overlap = [...candidateWords].filter(w => words.has(w)).length
-    const ratio = overlap / Math.min(candidateWords.size, words.size)
-    if (ratio >= 0.6 && overlap >= 3) return slug
-  }
-  return null
-}
+const ctx = loadDedupContext()
 
 const filtered = selection.filter(s => {
-  // Layer 1: exact slug match
-  const path = join('content/articles', s.suggestedSlug + '.md')
-  if (existsSync(path)) {
-    console.log(`Removed (exact slug): ${s.suggestedSlug}`)
+  const result = wouldDedup(s, ctx)
+  if (result.deduped) {
+    console.log(`Removed (${result.reason}): ${s.suggestedSlug} — matches ${result.match}`)
     return false
   }
-
-  // Layer 2: eventUri match — same event already has published articles
-  if (s.eventUri && ledgerEventUris.has(s.eventUri)) {
-    const existing = ledgerEventUris.get(s.eventUri)
-    // Only dedup if one of the existing articles is recent (last 48h)
-    const hasRecent = existing.some(a => recentSlugs.some(r => r === a || r.endsWith(a)))
-    if (hasRecent) {
-      console.log(`Removed (eventUri ${s.eventUri}): ${s.suggestedSlug} — already covered by ${existing[existing.length - 1]}`)
-      return false
-    }
-  }
-
-  // Layer 3: fuzzy title/slug match
-  const match = fuzzyMatch(s.suggestedSlug)
-  if (match) {
-    console.log(`Removed (fuzzy match): ${s.suggestedSlug} ≈ ${match}`)
-    return false
-  }
-
   return true
 })
 
@@ -100,10 +34,9 @@ if (filtered.length < before) {
 }
 
 // Post-dedup category floor check — warn if dedup broke a minimum
-const floors = { politics: 2, economy: 2, science: 3, tech: 2 }
 const catCounts = {}
 for (const s of filtered) catCounts[s.category] = (catCounts[s.category] || 0) + 1
-for (const [cat, min] of Object.entries(floors)) {
+for (const [cat, min] of Object.entries(CATEGORY_FLOORS)) {
   if ((catCounts[cat] || 0) < min) {
     console.log(`WARNING: post-dedup floor violation — ${cat}: ${catCounts[cat] || 0} < ${min}`)
   }

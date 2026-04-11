@@ -54,6 +54,24 @@ function decodeEntities(str) {
 
 function stripHtml(str) { return str.replace(/<[^>]*>/g, '') }
 
+async function fetchArticleBody(url) {
+  try {
+    const res = await fetch(url, {
+      signal: AbortSignal.timeout(8000),
+      headers: { 'User-Agent': 'zuhd-news/1.0 (+https://zuhd.news)', Accept: 'text/html' },
+    })
+    if (!res.ok) return null
+    const ct = res.headers.get('content-type') || ''
+    if (!ct.includes('text/html')) return null
+    const html = await res.text()
+    // Try <article>, then <main>, then fall back to nothing
+    const block = (html.match(/<article[^>]*>([\s\S]*?)<\/article>/i) ||
+                   html.match(/<main[^>]*>([\s\S]*?)<\/main>/i) || [])[1]
+    if (!block) return null
+    const text = decodeEntities(stripHtml(block)).replace(/\s+/g, ' ').trim()
+    return text.length >= 200 ? text.slice(0, 5000) : null
+  } catch { return null }
+}
 
 function extractText(val) {
   if (typeof val === 'string') return val
@@ -183,18 +201,22 @@ async function fetchHackerNews() {
 
     console.error(`  HN Algolia: ${filtered.length} stories (${algolia.hits?.length || 0} algolia + ${bestItems.filter(Boolean).length} best, after dedup/filter)`)
 
-    return filtered.map(s => {
-      const domain = new URL(s.url).hostname.replace(/^www\./, '')
-      return {
-        title: s.title,
-        description: `${s.score} points, ${s.comments} comments on Hacker News`,
-        link: s.url,
-        pubDate: new Date(s.time * 1000).toISOString(),
-        category: 'tech',
-        contentText: undefined,
-        source: 'Hacker News',
-      }
-    })
+    // Fetch article bodies for top HN stories (fetch 5; only 3 used, buffer for failures)
+    const toFetch = filtered.slice(0, 5)
+    const bodies = await Promise.all(toFetch.map(s => fetchArticleBody(s.url)))
+    for (let i = 0; i < toFetch.length; i++) toFetch[i].bodyText = bodies[i]
+    const fetched = bodies.filter(Boolean).length
+    console.error(`  HN body fetch: ${fetched}/${toFetch.length} articles had extractable content`)
+
+    return filtered.map(s => ({
+      title: s.title,
+      description: `${s.score} points, ${s.comments} comments on Hacker News`,
+      link: s.url,
+      pubDate: new Date(s.time * 1000).toISOString(),
+      category: 'tech',
+      contentText: s.bodyText || undefined,
+      source: 'Hacker News',
+    }))
   } catch (err) {
     console.error(`  ✗ Hacker News: ${err.message}`)
     return []

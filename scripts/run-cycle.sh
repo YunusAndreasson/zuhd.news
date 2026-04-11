@@ -98,6 +98,9 @@ FEED_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zu
 FUNNEL_FEED="$FEED_STATS"
 echo "Merged feed: $FEED_STATS — $((SECONDS - T0))s" | tee -a "$LOG_FILE"
 
+# Step 4: Pre-filter feed — remove stories that match already-published articles
+node scripts/prefilter-feed.js 2>&1 | tee -a "$LOG_FILE"
+
 # Stage 1: Selector — read pre-fetched feed, pick stories, save selection
 echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 1: Selector ---" | tee -a "$LOG_FILE"
@@ -154,6 +157,10 @@ if [ "$SELECTION_COUNT" -eq 0 ]; then
   echo "All selections already published — skipping writer and editor" | tee -a "$LOG_FILE"
   exit 0
 fi
+
+# Stage 1.55: Backfill selection — replace deduped stories to meet category floors
+node scripts/backfill-selection.js 2>&1 | tee -a "$LOG_FILE"
+SELECTION_COUNT=$(node -e "const s=JSON.parse(require('fs').readFileSync('/tmp/zuhd-selection.json','utf8'));console.log(Array.isArray(s)?s.length:0)" 2>/dev/null || echo 0)
 
 # Stage 1.6: Update story ledger deterministically (moved out of selector LLM to save turns)
 # Runs after dedup so only genuinely new stories get added to the ledger
