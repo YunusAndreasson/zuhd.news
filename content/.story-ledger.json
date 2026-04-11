@@ -2,13 +2,83 @@
   "version": 1,
   "stories": [
     {
+      "id": "bjp-bengal-manifesto-ucc-infiltration",
+      "label": "In Bengal, Amit Shah's 'Na Janata, Na Mamata' Jab At Congress",
+      "firstSeen": "2026-04-11T08:37:57.048Z",
+      "lastCovered": "2026-04-11T08:37:57.048Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-bjp-bengal-manifesto-ucc-infiltration"
+      ],
+      "eventUri": "eng-11556892",
+      "summary": "BJP's West Bengal election manifesto promises Uniform Civil Code within 6 months and 'zero tolerance on infiltration' — code for anti-Muslim, anti-Bangladeshi policy that would affect 200M+ Indian Muslims by overriding Muslim personal law (marriage, inheritance, divorce). Lead with the UCC 6-month deadline: this is the most concrete timeline any Indian governing party has set for dismantling religious personal law. The Rs 3,000 monthly cash transfer to women is the populist cover. The reader tracking the Muslim world should see this as the BJP operationalizing Hindu nationalist policy at the state level — Bengal has 27% Muslim population, the highest of any non-Muslim-majority Indian state.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
+        "http://en.wikipedia.org/wiki/West_Bengal",
+        "http://en.wikipedia.org/wiki/Amit_Shah",
+        "http://en.wikipedia.org/wiki/Minister_of_Home_Affairs_(India)",
+        "http://en.wikipedia.org/wiki/Trinamool_Congress",
+        "http://en.wikipedia.org/wiki/Manifesto",
+        "http://en.wikipedia.org/wiki/Bengal",
+        "http://en.wikipedia.org/wiki/Kolkata"
+      ]
+    },
+    {
+      "id": "marriage-status-cancer-risk-study",
+      "label": "Marriage status has surprising link to cancer risk, study suggests: 'Clear signal'",
+      "firstSeen": "2026-04-11T08:37:57.048Z",
+      "lastCovered": "2026-04-11T08:37:57.048Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-marriage-status-cancer-risk-study"
+      ],
+      "eventUri": "eng-11552502",
+      "summary": "A University of Miami study of 4 million Americans across 12 states found that people who never married are significantly more likely to develop cancer — across nearly every major type, especially preventable cancers. Lead with the scale (4M people, 12 states) and the surprise: marriage itself appears protective, not just wealth or insurance access. The mechanism likely involves screening behaviour, social accountability, and stress buffering. The reader should see the public health implication: isolation is a cancer risk factor, and unmarried populations are growing globally.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Cancer",
+        "http://en.wikipedia.org/wiki/Diagnosis",
+        "http://en.wikipedia.org/wiki/Smoking",
+        "http://en.wikipedia.org/wiki/University_of_Miami"
+      ]
+    },
+    {
+      "id": "pakistan-minister-asif-israel-post-deleted",
+      "label": "'Burn in hell': Pak minister Khwaja Asif deletes post on Jews after Israel hits back",
+      "firstSeen": "2026-04-11T08:37:57.048Z",
+      "lastCovered": "2026-04-11T08:37:57.048Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-pakistan-minister-asif-israel-post-deleted"
+      ],
+      "eventUri": "eng-11556395",
+      "summary": "Pakistan's Defence Minister called Israel a 'cancerous growth' on social media, Israel responded with 'blood libels' accusation, and Asif deleted the post — all while Pakistan is hosting Iran-US peace talks in Islamabad. Lead with the contradiction: the country mediating a ceasefire has its defence minister in a public slanging match with one of the parties' closest allies. The reader should see the impossible position Pakistan occupies — expected to be a neutral broker while its own officials cannot contain their views on the war. Multi-source but all Indian media (Hindustan Times, NDTV, India.com) — note the framing bias; Indian outlets have their own adversarial relationship with Pakistan.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Islamabad",
+        "http://en.wikipedia.org/wiki/Khawaja_Muhammad_Asif",
+        "http://en.wikipedia.org/wiki/Ceasefire"
+      ]
+    },
+    {
       "id": "israel-kills-13-lebanon-state-security-nabatieh",
       "label": "Israel strike kills 13 members of Lebanon state security",
       "firstSeen": "2026-04-10T22:11:50.975Z",
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-israel-kills-13-lebanon-state-security-nabatieh"
@@ -30,7 +100,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-china-russia-rally-cuba-us-sanctions-crisis"
@@ -52,7 +122,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-sudan-healthcare-strike-burhan-consolidates-kurmuk-operation"
@@ -68,7 +138,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-us-82nd-airborne-middle-east-buildup-iran"
@@ -84,7 +154,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-peshawar-court-blocks-afghan-family-deportation-asylum"
@@ -100,7 +170,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-federal-court-trump-tariffs-legal-challenge"
@@ -121,7 +191,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-nigeria-international-breweries-profit-seven-years"
@@ -137,7 +207,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-yellowstone-farallon-plate-not-mantle-plume"
@@ -153,7 +223,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-oobleck-non-newtonian-fluid-new-surprises"
@@ -169,7 +239,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-altman-home-molotov-cocktail-attack-arrested"
@@ -190,7 +260,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-putin-russia-sovereign-llm-development"
@@ -206,7 +276,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-doj-scrap-presidential-records-act-watergate"
@@ -222,7 +292,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-faa-recruits-gamers-air-traffic-controllers"
@@ -238,7 +308,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-iran-demands-lebanon-truce-asset-unfreeze-ahead-of-talks"
@@ -263,7 +333,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-trump-failure-kurdish-uprising-iraq-iran"
@@ -279,7 +349,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-bessent-powell-bank-ceos-anthropic-ai-cybersecurity"
@@ -304,7 +374,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-france-10-billion-electrification-gas-boiler-ban-iran-oil"
@@ -329,7 +399,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-pakistan-diesel-price-cut-rs135-ceasefire-dividend"
@@ -345,7 +415,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-marine-heatwaves-double-cyclone-economic-damage"
@@ -361,7 +431,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-forestation-wind-energy-tradeoff-climate-solutions"
@@ -377,7 +447,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-nigeria-386-terrorism-convictions-four-day-mass-trial"
@@ -393,7 +463,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-approves-34-new-west-bank-settlements"
@@ -409,7 +479,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-expels-spain-gaza-coordination-retaliation"
@@ -434,7 +504,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-vance-pakistan-iran-peace-talks"
@@ -459,7 +529,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-purohit-malegaon-blast-acquitted-promoted-brigadier"
@@ -484,7 +554,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-missile-interceptors-double-digits-depleted"
@@ -500,7 +570,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-us-inflation-3-3-percent-iran-war-energy"
@@ -525,7 +595,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-european-airports-jet-fuel-shortage-hormuz"
@@ -550,7 +620,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-white-house-iran-war-insider-trading-warning"
@@ -575,7 +645,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-artemis-2-splashdown-moon-mission-return"
@@ -600,7 +670,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-moderna-cancer-vaccine-therapy-naming-dilemma"
@@ -616,7 +686,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-indian-wastewater-antibiotic-resistance-genes"
@@ -632,7 +702,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-macos-privacy-security-settings-unreliable"
@@ -648,7 +718,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-wireguard-windows-release-microsoft-signing"
@@ -664,7 +734,7 @@
       "lastCovered": "2026-04-11T03:15:14.127Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-09-israel-death-penalty-iran-comparison",
@@ -681,7 +751,7 @@
       "lastCovered": "2026-04-11T03:15:14.127Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-09-gcc-tourism-32bn-hit-iran-conflict"
@@ -697,7 +767,7 @@
       "lastCovered": "2026-04-11T03:15:14.127Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-09-egypt-lucky-fintech-23m-raise",
@@ -714,7 +784,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-09-inside-idf-propaganda-wing-972-investigation",
@@ -731,7 +801,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-09-ngogo-chimps-civil-war-largest-group",
@@ -748,7 +818,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-09-hungarian-government-passwords-bellingcat",
@@ -765,7 +835,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-09-farmer-arrested-datacenter-town-hall",
@@ -782,7 +852,7 @@
       "lastCovered": "2026-04-09T19:07:45.819Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-uk-russia-submarine-operations-undersea-cables"
@@ -807,7 +877,7 @@
       "lastCovered": "2026-04-09T19:07:45.819Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-us-automated-military-draft-registration"
@@ -832,7 +902,7 @@
       "lastCovered": "2026-04-09T19:07:45.819Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-spain-defies-trump-israel-eu-accord-suspension"
@@ -857,7 +927,7 @@
       "lastCovered": "2026-04-09T19:07:45.819Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-channel-crossing-deaths-calais-migration"
@@ -882,7 +952,7 @@
       "lastCovered": "2026-04-09T19:07:45.819Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-south-africa-survival-mode-cost-of-living"
@@ -898,7 +968,7 @@
       "lastCovered": "2026-04-09T19:07:45.819Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-volkswagen-stops-id4-production-us-atlas-suv"
@@ -914,7 +984,7 @@
       "lastCovered": "2026-04-09T19:07:45.819Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-emperor-penguins-endangered-iucn-sea-ice"
@@ -939,7 +1009,7 @@
       "lastCovered": "2026-04-09T19:07:45.819Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-anthropic-blacklist-trump-judges-refuse-stay"
@@ -964,7 +1034,7 @@
       "lastCovered": "2026-04-09T19:07:45.819Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-eff-leaving-x-digital-rights"
@@ -980,7 +1050,7 @@
       "lastCovered": "2026-04-09T19:07:45.819Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-meta-removes-addiction-litigation-ads"
@@ -996,7 +1066,7 @@
       "lastCovered": "2026-04-09T19:07:45.819Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-vercel-plugin-claude-code-prompt-telemetry"
@@ -1012,93 +1082,13 @@
       "lastCovered": "2026-04-09T19:07:45.819Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-09-state-police-deepfakes-drivers-license-photos"
       ],
       "eventUri": "eng-11553174",
       "summary": "A Pennsylvania state police corporal used AI to generate 3,000+ deepfake pornographic images from driver's license photos he accessed through his law enforcement role — alongside CSAM possession and other crimes. Lead with the access vector: government-issued ID photos, taken under legal compulsion, weaponized by the officer who had database access. The reader should see the systemic risk: every photo in a government database is now potential input for AI-generated abuse material, and the people with access are not adequately screened or monitored. This connects to the Telegram nudifying bots arc — same technology, but wielded by someone with state-granted database access. He pleaded guilty.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-war-on-iraq-shadow-iran-conflict",
-      "label": "\"It Seems Like Blind American Ignorance\": The New U.S. War on Iraq",
-      "firstSeen": "2026-04-09T18:27:38.610Z",
-      "lastCovered": "2026-04-09T18:27:38.610Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-us-war-on-iraq-shadow-iran-conflict"
-      ],
-      "eventUri": null,
-      "summary": "The US has been conducting devastating attacks on Iraqi security forces — its own ally — in the shadow of the Iran and Lebanon wars. Iraq has had zero coverage despite hosting US bases under active attack. Lead with the absurdity: the US is bombing the army it trained and equipped, because Iraqi forces are linked to Iran-backed groups the US is now at war with. The reader should see the structural trap: Iraq is caught between its US security partnership and its Iranian neighbor, and Washington is resolving that tension with airstrikes rather than diplomacy. This fills the Iraq coverage gap flagged in editorial notes.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-us-claim-victory-gcc-biggest-loser",
-      "label": "Iran and US claim victory in a war that hasn't ended. The biggest loser? The GCC",
-      "firstSeen": "2026-04-09T18:27:38.610Z",
-      "lastCovered": "2026-04-09T18:27:38.610Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-iran-us-claim-victory-gcc-biggest-loser"
-      ],
-      "eventUri": null,
-      "summary": "Day 40 of the Iran-US war: both sides claim victory, but the Gulf states absorbed the real damage — closed airspace, targeted infrastructure (Alba smelter), tourism collapse, shipping disruption. Lead with the GCC as collateral damage: countries that didn't choose this war are paying for it. Trump's 'Power Plant Day' and 'Bridge Day' threats to escalate bombing of civilian infrastructure show the war's trajectory. The reader tracking the Iran economic cascade should see: the ceasefire hasn't ended the damage, it's just paused the bombing while the economic destruction compounds.",
-      "conceptUris": []
-    },
-    {
-      "id": "dubai-stock-rally-iran-ceasefire",
-      "label": "Dubai stock market rises on Iran conflict pause",
-      "firstSeen": "2026-04-09T18:27:38.610Z",
-      "lastCovered": "2026-04-09T18:27:38.610Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-dubai-stock-rally-iran-ceasefire"
-      ],
-      "eventUri": null,
-      "summary": "Dubai's stock market rallied on the Iran ceasefire — investors pricing in relief after weeks of conflict-driven sell-offs. Lead with the tension: markets celebrate while the ceasefire hasn't stopped Israel's Lebanon escalation or Iran's Hormuz toll regime. The reader tracking both the war and markets should see the disconnect: financial markets reward a pause, but the underlying economic damage ($32bn tourism hit, shipping disruption, oil infrastructure destroyed) hasn't reversed. A rally on hope, not fundamentals.",
-      "conceptUris": []
-    },
-    {
-      "id": "amazon-mineral-extraction-clean-energy-risk",
-      "label": "Amazon at risk from mineral extraction for clean energy",
-      "firstSeen": "2026-04-09T18:27:38.610Z",
-      "lastCovered": "2026-04-09T18:27:38.610Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-amazon-mineral-extraction-clean-energy-risk"
-      ],
-      "eventUri": null,
-      "summary": "The global energy transition is driving mineral extraction into Amazon territories — the same forests the transition is supposed to protect. Lead with the contradiction: the clean energy supply chain requires lithium, cobalt, and rare earths that sit under some of the most biodiverse land on Earth. The reader in tech should see their own devices and data centers in this story: every battery and server chip traces back to extraction that may be destroying the Amazon. SciDev.Net frames this from the Global South — the communities bearing the cost of the North's green transition.",
-      "conceptUris": []
-    },
-    {
-      "id": "fbi-signal-messages-iphone-notification-database",
-      "label": "FBI Extracts Suspect's Deleted Signal Messages Saved in iPhone Notification Database",
-      "firstSeen": "2026-04-09T18:27:38.610Z",
-      "lastCovered": "2026-04-09T18:27:38.610Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-fbi-signal-messages-iphone-notification-database"
-      ],
-      "eventUri": null,
-      "summary": "The FBI recovered deleted Signal messages from an iPhone's notification database — in the first case where people were charged for alleged 'Antifa' activities after Trump designated it a terrorist organization. Lead with the technical vector: Signal's encryption protects messages in transit, but iOS stores notification previews in a local database that persists after deletion. The reader who uses Signal for privacy should see the gap in their threat model: your secure messenger is only as private as the OS it runs on. The political context — 'Antifa' terrorism charges — shows how this capability is being deployed.",
       "conceptUris": []
     }
   ]
