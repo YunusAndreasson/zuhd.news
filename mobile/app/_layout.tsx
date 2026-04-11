@@ -48,6 +48,8 @@ export default function RootLayout() {
     'SourceSans3-Regular': require('../assets/fonts/SourceSans3-Regular.ttf'),
     'SourceSans3-SemiBold': require('../assets/fonts/SourceSans3-SemiBold.ttf'),
     'SourceSans3-Bold': require('../assets/fonts/SourceSans3-Bold.ttf'),
+    'SourceSans3-Italic': require('../assets/fonts/SourceSans3-Italic.ttf'),
+    'SourceSans3-BoldItalic': require('../assets/fonts/SourceSans3-BoldItalic.ttf'),
     'SourceSans3SC-SemiBold': require('../assets/fonts/SourceSans3SC-SemiBold.ttf'),
   });
 

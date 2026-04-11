@@ -294,7 +294,7 @@ export default function HomeScreen() {
         <Text
           style={[
             styles.errorText,
-            { fontFamily: font.regular, fontSize: typography.sizeBase, color: colors.text },
+            { ...font.regular, fontSize: typography.sizeBase, color: colors.text },
           ]}
         >
           {offline ? 'No connection.' : 'Could not load articles.'}
@@ -302,7 +302,7 @@ export default function HomeScreen() {
         <Text
           style={[
             styles.errorHint,
-            { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.textSecondary },
+            { ...font.regular, fontSize: typography.sizeSm, color: colors.textSecondary },
           ]}
         >
           {offline ? 'Connect to the internet and reopen.' : error}
@@ -317,7 +317,7 @@ export default function HomeScreen() {
           <Text
             style={[
               styles.retryText,
-              { fontFamily: font.semiBold, fontSize: typography.sizeSm, color: colors.text },
+              { ...font.semiBold, fontSize: typography.sizeSm, color: colors.text },
             ]}
           >
             Try again

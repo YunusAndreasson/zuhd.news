@@ -30,7 +30,7 @@ export const ActionButtons = memo(function ActionButtons({
       >
         <Text
           style={{
-            fontFamily: font.smallCaps,
+            ...font.smallCaps,
             fontSize: typography.sizeXs,
             letterSpacing: typography.trackingCaps,
             color: colors.textEmphasis,
@@ -52,7 +52,7 @@ export const ActionButtons = memo(function ActionButtons({
       >
         <Text
           style={{
-            fontFamily: font.smallCaps,
+            ...font.smallCaps,
             fontSize: typography.sizeXs,
             letterSpacing: typography.trackingCaps,
             color: colors.textEmphasis,

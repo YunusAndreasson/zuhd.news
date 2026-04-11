@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { StyleSheet, Text, type TextStyle } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import type { ColorPalette, FontSet, Typography } from '../constants/theme';
+import { Platform } from 'react-native';
 import { displayLocation } from './place-names';
 
 export type Segment = { type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link'; text: string; url?: string };
@@ -77,25 +78,28 @@ export function makeMarkdownStyles(
   font: FontSet,
   typography: Typography,
 ): MarkdownStyles {
+  const androidBase = Platform.OS === 'android'
+    ? { includeFontPadding: false as const, textAlignVertical: 'center' as const }
+    : {};
   return StyleSheet.create({
     sentence: {
-      fontFamily: font.regular,
+      ...font.regular,
+      ...androidBase,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
       color: colors.text,
       marginBottom: typography.sizeBase * 0.5,
       fontVariant: ['oldstyle-nums'],
-      includeFontPadding: false,
-      textAlignVertical: 'center',
     },
     bold: {
-      fontFamily: font.bold,
+      ...font.bold,
     },
     italic: {
+      ...font.italic,
       fontStyle: 'italic',
     },
     boldItalic: {
-      fontFamily: font.bold,
+      ...font.boldItalic,
       fontStyle: 'italic',
     },
     link: {
@@ -103,7 +107,7 @@ export function makeMarkdownStyles(
       textDecorationLine: 'underline',
     },
     dateline: {
-      fontFamily: font.smallCaps,
+      ...font.smallCaps,
     },
   });
 }

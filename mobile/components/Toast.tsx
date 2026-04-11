@@ -96,7 +96,7 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
         accessibilityRole="alert"
         accessibilityLabel={message}
       >
-        <Text style={[styles.text, { fontFamily: font.semiBold, fontSize: typography.sizeSm, color: colors.text }]}>{message}</Text>
+        <Text style={[styles.text, { ...font.semiBold, fontSize: typography.sizeSm, color: colors.text }]}>{message}</Text>
       </Pressable>
     </Animated.View>
   );

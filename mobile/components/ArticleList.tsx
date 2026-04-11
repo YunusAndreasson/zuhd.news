@@ -244,7 +244,7 @@ export const ArticleList = memo(function ArticleList({
   if (sortedArticles.length === 0)
     return (
       <View style={styles.empty}>
-        <Text style={{ fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.textSecondary }}>
+        <Text style={{ ...font.regular, fontSize: typography.sizeSm, color: colors.textSecondary }}>
           No articles yet
         </Text>
       </View>

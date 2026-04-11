@@ -12,7 +12,7 @@ export const SheetHandle = memo(function SheetHandle({ title }: SheetHandleProps
   return (
     <View style={styles.container}>
       <View style={[styles.indicator, { backgroundColor: colors.rule }]} />
-      {title && <Text style={[styles.title, textStyles.smallCaps]}>{title}</Text>}
+      {title && <Text style={[styles.title, textStyles.sheetTitle]}>{title}</Text>}
     </View>
   );
 });

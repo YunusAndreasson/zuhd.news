@@ -20,7 +20,7 @@ function KeyStat({ label, value }: { label: string; value: string | null | undef
         selectable
         style={[
           styles.keyStatValue,
-          { fontFamily: font.bold, fontSize: typography.sizeBase, color: colors.textEmphasis },
+          { ...font.bold, fontSize: typography.sizeBase, color: colors.textEmphasis, fontVariant: ['oldstyle-nums'] as const },
         ]}
       >
         {value}
@@ -47,7 +47,7 @@ function CountryRow({ label, value }: { label: string; value: string | null | un
         selectable
         style={[
           styles.countryRowValue,
-          { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.text },
+          { ...font.regular, fontSize: typography.sizeSm, color: colors.text },
         ]}
       >
         {value}
@@ -82,12 +82,12 @@ export const CountrySheet = memo(function CountrySheet({
         {(flag || name) && (
           <View style={styles.handleRow}>
             {flag && <Text style={styles.handleFlag}>{flag}</Text>}
-            {name && <Text style={[styles.handleTitle, textStyles.smallCaps]}>{name}</Text>}
+            {name && <Text style={[styles.handleTitle, textStyles.sheetTitle]}>{name}</Text>}
           </View>
         )}
       </View>
     ),
-    [flag, name, colors.rule, textStyles.smallCaps],
+    [flag, name, colors.rule, textStyles.sheetTitle],
   );
 
   return (
@@ -132,7 +132,7 @@ export const CountrySheet = memo(function CountrySheet({
                     style={[
                       styles.hotspotValue,
                       {
-                        fontFamily: font.regular,
+                        ...font.regular,
                         fontSize: typography.sizeSm,
                         color: colors.text,
                         borderBottomColor: colors.rule,

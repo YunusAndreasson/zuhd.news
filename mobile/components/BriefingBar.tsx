@@ -94,11 +94,13 @@ export const BriefingBar = memo(function BriefingBar({
     [seekToX],
   );
 
-  // Format date for display: "Mar 31" from "2026-03-31"
+  // Format date for display: "Mar 31 · Shawwal 13" from "2026-03-31"
   const dateLabel = (() => {
     try {
       const d = new Date(date + 'T00:00:00');
-      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const greg = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      const hijri = d.toLocaleDateString('en-u-ca-islamic', { month: 'long', day: 'numeric' });
+      return `${greg} · ${hijri}`;
     } catch {
       return date;
     }
@@ -124,7 +126,7 @@ export const BriefingBar = memo(function BriefingBar({
                 style={[
                   styles.title,
                   {
-                    fontFamily: font.semiBold,
+                    ...font.semiBold,
                     fontSize: typography.sizeSm,
                     color: colors.textEmphasis,
                   },
@@ -135,7 +137,7 @@ export const BriefingBar = memo(function BriefingBar({
                 <Text
                   style={[
                     styles.dateDim,
-                    { fontFamily: font.regular, color: colors.textSecondary },
+                    { ...font.regular, color: colors.textSecondary },
                   ]}
                 >
                   {' '}
@@ -148,7 +150,7 @@ export const BriefingBar = memo(function BriefingBar({
               style={[
                 styles.time,
                 {
-                  fontFamily: font.regular,
+                  ...font.regular,
                   fontSize: typography.sizeXs,
                   color: colors.textEmphasis,
                 },
@@ -211,7 +213,7 @@ export const BriefingBar = memo(function BriefingBar({
           >
             <Text
               style={{
-                fontFamily: font.smallCaps,
+                ...font.smallCaps,
                 fontSize: typography.sizeXs,
                 letterSpacing: typography.trackingCaps,
                 color: colors.textEmphasis,

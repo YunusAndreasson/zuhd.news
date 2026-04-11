@@ -2,7 +2,7 @@ import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CATEGORIES, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { CATEGORIES, type FontEntry, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 const TAB_LABELS = CATEGORIES.map((c) => c.toUpperCase());
@@ -26,7 +26,7 @@ function TabLabel({
   index,
   pagerOffset,
   textColor,
-  fontFamily,
+  fontEntry,
   fontSize,
   letterSpacing,
   onCategoryPress,
@@ -36,7 +36,7 @@ function TabLabel({
   index: number;
   pagerOffset: SharedValue<number>;
   textColor: string;
-  fontFamily: string | undefined;
+  fontEntry: FontEntry;
   fontSize: number;
   letterSpacing: number;
   onCategoryPress: (index: number) => void;
@@ -60,7 +60,7 @@ function TabLabel({
       accessibilityRole="tab"
       accessibilityLabel={label}
     >
-      <Animated.Text style={[styles.tabLabel, { fontFamily, fontSize, letterSpacing }, animatedStyle]}>
+      <Animated.Text style={[styles.tabLabel, fontEntry, { fontSize, letterSpacing }, animatedStyle]}>
         {label}
       </Animated.Text>
     </Pressable>
@@ -135,7 +135,7 @@ export const CategoryBar = memo(function CategoryBar({
           <Text style={[styles.wordmark, { letterSpacing: typography.trackingWordmark }]}>
             <Text
               style={{
-                fontFamily: font.bold,
+                ...font.bold,
                 fontSize: typography.sizeWordmark,
                 color: colors.textSecondary,
               }}
@@ -144,7 +144,7 @@ export const CategoryBar = memo(function CategoryBar({
             </Text>
             <Text
               style={{
-                fontFamily: font.regular,
+                ...font.regular,
                 fontSize: typography.sizeWordmark,
                 color: colors.accent,
               }}
@@ -162,7 +162,7 @@ export const CategoryBar = memo(function CategoryBar({
         >
           <Text
             style={{
-              fontFamily: font.smallCaps,
+              ...font.smallCaps,
               fontSize: typography.sizeXs,
               letterSpacing: typography.trackingCaps,
               color: colors.textSecondary,
@@ -181,7 +181,7 @@ export const CategoryBar = memo(function CategoryBar({
             index={i}
             pagerOffset={pagerOffset}
             textColor={colors.text}
-            fontFamily={font.semiBold}
+            fontEntry={font.semiBold}
             fontSize={typography.sizeXs}
             letterSpacing={typography.trackingCaps}
             onCategoryPress={onCategoryPress}
