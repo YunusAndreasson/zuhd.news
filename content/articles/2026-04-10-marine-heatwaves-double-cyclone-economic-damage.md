@@ -1,14 +1,21 @@
 ---
-title: "Warm Seas Double Cyclone Damage"
+title: "Ocean Heat Doubles Cyclone Damage"
 date: "2026-04-10T18:00:00Z"
 category: "science"
-location: "London"
-lat: 51.51
-lng: -0.13
+location: "Princeton"
+lat: 40.36
+lng: -74.66
 sources:
   - name: "Carbon Brief"
     url: "https://www.carbonbrief.org/marine-heatwaves-nearly-double-the-economic-damage-caused-by-tropical-cyclones/"
     country: "GB"
+eventCoverage: 268
+concepts:
+  - "Marine heatwave"
+  - "Tropical cyclone"
+  - "Rapid intensification"
+  - "Climate change"
+  - "Economic damage"
 ---
 
-London — Marine heatwaves nearly double cyclone economic damage. A Science Advances study of 800 cyclones since 1981 found storm damage jumps 93% when seas are abnormally warm. Heatwaves are intensifying faster than coastal risk models are being updated.
+Princeton — Marine heatwaves make cyclones 93% more destructive. A new study of 789 cyclones finds the damage premium holds after controlling for coastal development — ocean heat is the independent variable. Marine heatwaves are growing more frequent; the north Atlantic and Indian Ocean already trend upward in heatwave-amplified storms.

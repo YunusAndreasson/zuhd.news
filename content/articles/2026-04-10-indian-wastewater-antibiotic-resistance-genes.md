@@ -1,5 +1,5 @@
 ---
-title: "India Wastewater Seeds Drug Resistance"
+title: "India's Sewage Carries Antibiotic Resistance"
 date: "2026-04-09T03:00:21Z"
 category: "science"
 location: "New Delhi"
@@ -11,10 +11,10 @@ sources:
     country: "GB"
 eventCoverage: null
 concepts:
-  - "Antibiotic resistance"
+  - "Antimicrobial resistance"
   - "India"
   - "Wastewater"
-  - "Antimicrobial resistance"
+  - "Antibiotic"
 ---
 
-New Delhi — India's wastewater overflows with antibiotic resistance genes. India produces 20% of global generic antibiotics; pharmaceutical effluent from production cities seeds resistance into urban water systems. Resistance genes spread from effluent to rivers to hospital wards, where common antibiotics are already failing.
+New Delhi — Antibiotic resistance genes pervade India's urban sewage. Hospitals and pharmaceutical factories discharge resistance genes — India makes most of the world's generic antibiotics. AMR already kills 1.3 million yearly and resistant bacteria spread through rivers no treatment plant removes.
