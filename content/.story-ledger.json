@@ -2,13 +2,200 @@
   "version": 1,
   "stories": [
     {
+      "id": "iraq-elects-kurdish-president-amedi",
+      "label": "Iraq parliament elects Kurdish politician Nizar Amedi as president",
+      "firstSeen": "2026-04-11T22:09:08.545Z",
+      "lastCovered": "2026-04-11T22:09:08.545Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-iraq-elects-kurdish-president-amedi"
+      ],
+      "eventUri": "eng-11560962",
+      "summary": "Iraq's parliament broke a months-long deadlock by electing PUK nominee Nizar Amedi with 227 votes — the first step toward forming a government. The angle: Iraq has been without a president while hosting US bases under active attack in the Iran war. Lead with the political paralysis ending while the country sits in the middle of a regional war. The KDP-PUK rivalry and Shia bloc dynamics explain why this took so long. The daily audit flagged zero Iraq coverage — this fills that gap.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iraq",
+        "http://en.wikipedia.org/wiki/Patriotic_Union_of_Kurdistan",
+        "http://en.wikipedia.org/wiki/Parliament",
+        "http://en.wikipedia.org/wiki/Kurds",
+        "http://en.wikipedia.org/wiki/Kurdistan_Democratic_Party",
+        "http://en.wikipedia.org/wiki/President_of_the_Republic",
+        "http://en.wikipedia.org/wiki/Council_of_Representatives_of_Iraq",
+        "http://en.wikipedia.org/wiki/Shia_Islam"
+      ]
+    },
+    {
+      "id": "uk-200-arrested-palestine-action-protest-london",
+      "label": "Massive Attack's Robert Del Naja arrested at Palestine protest",
+      "firstSeen": "2026-04-11T22:09:08.545Z",
+      "lastCovered": "2026-04-11T22:09:08.545Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-uk-200-arrested-palestine-action-protest-london"
+      ],
+      "eventUri": "eng-11560827",
+      "summary": "Over 200 people arrested at Trafalgar Square for defying the UK's ban on Palestine Action — the largest mass arrest at a political protest in recent British history. Lead with the scale: 200+ detained for 'showing support' for a proscribed organisation, including Massive Attack's Del Naja. The mechanism: the UK government proscribed Palestine Action under terrorism legislation, criminalizing solidarity. The question for the reader: when does counter-terrorism law become a tool against dissent?",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Palestine_Action",
+        "http://en.wikipedia.org/wiki/Trafalgar_Square",
+        "http://en.wikipedia.org/wiki/London",
+        "http://en.wikipedia.org/wiki/Genocide",
+        "http://en.wikipedia.org/wiki/Metropolitan_Police",
+        "http://en.wikipedia.org/wiki/Terrorism",
+        "http://en.wikipedia.org/wiki/High_Court_of_Justice",
+        "http://en.wikipedia.org/wiki/Central_London"
+      ]
+    },
+    {
+      "id": "iran-supreme-leader-khamenei-disfigured-us-strikes",
+      "label": "Iran's supreme leader severely disfigured by US strikes: report",
+      "firstSeen": "2026-04-11T22:09:08.545Z",
+      "lastCovered": "2026-04-11T22:09:08.545Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-iran-supreme-leader-khamenei-disfigured-us-strikes"
+      ],
+      "eventUri": "eng-11554596",
+      "summary": "Reuters reports Mojtaba Khamenei suffered severe leg and face injuries from the February US-Israel strikes on Tehran — Hegseth is taunting him publicly as 'not-so-Supreme leader.' Lead with what this means for the Islamabad peace talks happening right now: Iran's supreme leader is physically incapacitated while his negotiators sit across from Vance. The reader needs to know: who is actually making decisions in Tehran? The sentiment divergence (0.16) is low — sources agree on facts, differ on tone. Use Reuters sourcing, not Fox framing.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Ali_Khamenei",
+        "http://en.wikipedia.org/wiki/Supreme_Leader_of_Iran",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Mojtaba_Khamenei",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Washington,_D.C."
+      ]
+    },
+    {
+      "id": "pakistan-family-killed-missile-debris-kuwait",
+      "label": "Relatives seek Pakistani authorities' help after reported killing of family members due to missile debris in Kuwait",
+      "firstSeen": "2026-04-11T22:09:08.545Z",
+      "lastCovered": "2026-04-11T22:09:08.545Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-pakistan-family-killed-missile-debris-kuwait"
+      ],
+      "eventUri": null,
+      "summary": "A Pakistani family in Kuwait has gone missing after missile interception debris struck their area — relatives in Toba Tek Singh are begging authorities for information. Lead with the family: named people, a specific town in Punjab, waiting for word about loved ones 2,000km away in a war they have no part in. The mechanism: Bahrain/Kuwait airspace closed 30+ days, interceptor debris is an unacknowledged civilian hazard. This is the human cost of the Iran war that no one is counting.",
+      "conceptUris": []
+    },
+    {
+      "id": "high-rates-oil-global-debt-trap",
+      "label": "High rates and expensive oil create a global debt trap",
+      "firstSeen": "2026-04-11T22:09:08.545Z",
+      "lastCovered": "2026-04-11T22:09:08.545Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-high-rates-oil-global-debt-trap"
+      ],
+      "eventUri": null,
+      "summary": "Low- and middle-income countries are caught in a pincer: interest rates stayed high because of inflation expectations, and the Iran war spiked oil prices — together creating a debt trap that advanced economies are debating as a 'soft landing.' Lead with the pincer mechanism and name the countries most exposed. The daily audit flagged 'Iran war economic cascade' as a watching brief — this is the structural story behind that cascade. The reader follows macro closely.",
+      "conceptUris": []
+    },
+    {
+      "id": "thailand-asset-seizures-scam-probe-widens",
+      "label": "Thailand Announces Further Asset Seizures in Widening Scam Probe",
+      "firstSeen": "2026-04-11T22:09:08.545Z",
+      "lastCovered": "2026-04-11T22:09:08.545Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-thailand-asset-seizures-scam-probe-widens"
+      ],
+      "eventUri": null,
+      "summary": "Thailand seized assets linked to South African businessman Benjamin Mauerberger's fraud and money laundering network — the probe is widening across SE Asia. Lead with the cross-border mechanism: how a South African-run network used Thai financial infrastructure for laundering, and what the seizures reveal about SE Asia's role as a scam hub. The reader cares about financial accountability and the region's regulatory response.",
+      "conceptUris": []
+    },
+    {
+      "id": "spacex-603m-bitcoin-5b-xai-loss",
+      "label": "Musk's SpaceX holds $603 million in bitcoin despite $5 billion loss stemming from xAI",
+      "firstSeen": "2026-04-11T22:09:08.545Z",
+      "lastCovered": "2026-04-11T22:09:08.545Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-spacex-603m-bitcoin-5b-xai-loss"
+      ],
+      "eventUri": null,
+      "summary": "SpaceX holds 8,285 BTC ($603M) in Coinbase Prime custody — making it the 4th-largest known corporate bitcoin holder — while reporting a $5 billion loss from xAI. Lead with the contrast: Musk's rocket company is sitting on a bitcoin treasury larger than most sovereign funds while his AI company hemorrhages cash. The mechanism: corporate bitcoin as treasury strategy ahead of SpaceX's planned IPO. The reader is technically literate and follows crypto-macro crossover.",
+      "conceptUris": []
+    },
+    {
+      "id": "uruguay-dead-bees-pesticides-agriculture",
+      "label": "Millions of dead bees spark pesticides debate in Uruguay",
+      "firstSeen": "2026-04-11T22:09:08.545Z",
+      "lastCovered": "2026-04-11T22:09:08.545Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-uruguay-dead-bees-pesticides-agriculture"
+      ],
+      "eventUri": null,
+      "summary": "Uruguay's agricultural boom over the past decade has come with a massive rise in agrochemical use — now killing millions of bees and threatening honey producers. Lead with the scale: millions of dead bees, a direct conflict between two agricultural sectors. The mechanism: pesticide regulation lagging behind expansion. Latin America representation in this cycle, and a story about how agricultural 'success' creates hidden casualties.",
+      "conceptUris": []
+    },
+    {
+      "id": "blood-brain-barrier-breakdown-in-traumatic-brain-injury-curr",
+      "label": "Blood-brain barrier breakdown in traumatic brain injury: current insights and future directions - Cancer Gene Therapy",
+      "firstSeen": "2026-04-11T22:09:08.545Z",
+      "lastCovered": "2026-04-11T22:09:08.545Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-blood-brain-barrier-breakdown-in-traumatic-brain-injury-curr"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for science floor] The cellular, structural, and molecular determinants of BBB integrity following TBI\n\nUltrastructural analysis revealed that the BBB is formed by a tightly packed layer of specialized endothelial cells [13]. These endothelial cells are sealed by tight junctions and adherens junctions, and are fortifi",
+      "conceptUris": []
+    },
+    {
+      "id": "the-oldest-octopus-fossil-ever-isn-t-an-octopus-at-all-scien",
+      "label": "The Oldest Octopus Fossil Ever Isn’t An Octopus At All, Scientists Discover",
+      "firstSeen": "2026-04-11T22:09:08.545Z",
+      "lastCovered": "2026-04-11T22:09:08.545Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-the-oldest-octopus-fossil-ever-isn-t-an-octopus-at-all-scien"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] A re-examination of a 300-million-year-old fossil that was long thought to be the earliest octopus revealed that the animal was actually part of the nautilus family.",
+      "conceptUris": []
+    },
+    {
       "id": "uk-shelves-chagos-islands-deal-trump",
       "label": "UK shelves Chagos Islands deal after Trump's criticism",
       "firstSeen": "2026-04-11T17:07:54.686Z",
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-uk-shelves-chagos-islands-deal-trump"
@@ -33,7 +220,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-us-unfreeze-iranian-funds-qatar"
@@ -58,7 +245,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-pakistan-jets-saudi-arabia-defence-pact"
@@ -83,7 +270,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-russia-ukraine-easter-truce-pow-swap"
@@ -99,7 +286,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-lufthansa-pilots-strike-april"
@@ -124,7 +311,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-crypto-perpetuals-wall-street-prediction"
@@ -140,7 +327,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-nigeria-terrorism-financiers-list"
@@ -156,7 +343,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-irish-bog-plant-superbug-antibiotic"
@@ -172,7 +359,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-eff-leaving-x-twitter"
@@ -182,13 +369,30 @@
       "conceptUris": []
     },
     {
+      "id": "uk-ofcom-nudification-jail-threat-grok",
+      "label": "UK government threatens tech bosses with jail time if they do not adequately fight nudification tools",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T22:09:08.545Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-04-11-uk-ofcom-nudification-jail-threat-grok",
+        "2026-04-11-uk-jail-tech-bosses-ai-nudification"
+      ],
+      "eventUri": null,
+      "summary": "UK regulator Ofcom will threaten tech executives with prison if they fail to combat AI nudification tools — a direct response to the Grok scandal that produced millions of deepfake nude images of women and children. Lead with the criminal liability: the UK is making individual executives personally responsible for AI-generated sexual abuse imagery on their platforms. The reader will see the sharpest regulatory response yet to generative AI harms — and the question of whether personal criminal risk changes tech company behavior where fines haven't.",
+      "conceptUris": []
+    },
+    {
       "id": "iran-unable-to-find-mines-in-strait-of-hormuz-us-says",
       "label": "Iran unable to find mines in Strait of Hormuz, US says",
       "firstSeen": "2026-04-11T12:08:36.246Z",
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-iran-unable-to-find-mines-in-strait-of-hormuz-us-says"
@@ -213,7 +417,7 @@
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-polymarket-gamblers-betting-millions-war"
@@ -232,7 +436,7 @@
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-uk-green-energy-surge-iran-war-fuel-prices"
@@ -254,7 +458,7 @@
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-delhi-fossil-fuel-bike-ban-2028-ev-policy"
@@ -279,7 +483,7 @@
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-plastic-burning-indonesia-health-crisis"
@@ -295,7 +499,7 @@
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-majorana-quantum-spin-probes"
@@ -311,7 +515,7 @@
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-senator-csam-inquiry-tech-giants-ai"
@@ -327,7 +531,7 @@
       "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-china-set-to-supply-iran-manpads-arms"
@@ -352,7 +556,7 @@
       "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-mamdani-sewer-socialism-nyc-100-days"
@@ -374,7 +578,7 @@
       "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-bhutan-sells-70-percent-bitcoin-sovereign"
@@ -396,7 +600,7 @@
       "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-egypt-lucky-fintech-23m-credit-expansion"
@@ -412,7 +616,7 @@
       "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-india-withdraws-cop33-bid-energy-crisis"
@@ -428,7 +632,7 @@
       "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-scary-ai-stories-cognitive-science"
@@ -438,29 +642,13 @@
       "conceptUris": []
     },
     {
-      "id": "uk-ofcom-nudification-jail-threat-grok",
-      "label": "UK government threatens tech bosses with jail time if they do not adequately fight nudification tools",
-      "firstSeen": "2026-04-11T08:09:46.711Z",
-      "lastCovered": "2026-04-11T08:09:46.711Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-uk-ofcom-nudification-jail-threat-grok"
-      ],
-      "eventUri": null,
-      "summary": "UK regulator Ofcom will threaten tech executives with prison if they fail to combat AI nudification tools — a direct response to the Grok scandal that produced millions of deepfake nude images of women and children. Lead with the criminal liability: the UK is making individual executives personally responsible for AI-generated sexual abuse imagery on their platforms. The reader will see the sharpest regulatory response yet to generative AI harms — and the question of whether personal criminal risk changes tech company behavior where fines haven't.",
-      "conceptUris": []
-    },
-    {
       "id": "iran-us-islamabad-talks-vance-ghalibaf",
       "label": "Pakistani MFA expects constructive talks between US, Iran",
       "firstSeen": "2026-04-11T04:09:34.088Z",
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-iran-us-islamabad-talks-vance-ghalibaf"
@@ -485,7 +673,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-conscientious-objections-war-surge-us-military"
@@ -501,7 +689,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-los-angeles-schools-strike-85-percent-workers"
@@ -517,7 +705,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-strait-hormuz-gas-prices-iran-talks-oil"
@@ -533,7 +721,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-kalshi-arizona-federal-judge-prediction-market"
@@ -549,7 +737,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-artemis-ii-splashdown-moon-mission"
@@ -565,7 +753,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-ai-drones-climate-resilient-wheat-selection"
@@ -581,7 +769,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-ai-doctor-recording-lawsuit-sutter-abridge"
@@ -597,7 +785,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-strike-kills-13-members-of-lebanon-state-security"
@@ -622,7 +810,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-kurds-refuse-trump-war-bid-iraq-iran"
@@ -638,7 +826,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-sudan-nyala-healthcare-strike-burhan-military-reshuffle"
@@ -654,7 +842,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-doj-scrap-watergate-presidential-records-act"
@@ -670,7 +858,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-federal-court-trump-tariffs-ieepa-challenge"
@@ -695,7 +883,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-pakistan-diesel-price-cut-rs135-ceasefire"
@@ -711,7 +899,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-white-house-iran-war-insider-trading-warning"
@@ -736,7 +924,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-marine-heatwaves-double-cyclone-economic-damage"
@@ -752,7 +940,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-first-contact-complex-life-stromatolites-shark-bay"
@@ -768,169 +956,13 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-north-korea-drift-crypto-theft-280-million"
       ],
       "eventUri": null,
       "summary": "North Korean operatives stole $280 million from crypto platform Drift using fake companies and cutouts — a six-month social engineering operation that started at a conference. The angle: this is how a sanctioned state funds itself. Lead with the tradecraft — fake quant-trading company, conference approach, six months of trust-building before the heist. The reader who builds software will recognize the social engineering pattern; the reader tracking North Korea will see the sanctions-evasion pipeline.",
-      "conceptUris": []
-    },
-    {
-      "id": "france-government-linux-desktop-windows-exit",
-      "label": "France Launches Government Linux Desktop Plan as Windows Exit Begins",
-      "firstSeen": "2026-04-10T12:07:34.166Z",
-      "lastCovered": "2026-04-10T17:05:13.901Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-10-france-government-linux-desktop-windows-exit",
-        "2026-04-10-france-government-windows-linux-digital-sovereignty"
-      ],
-      "eventUri": null,
-      "summary": "France has announced an official plan to migrate government desktops from Windows to Linux, framed as 'digital sovereignty' and reducing dependence on extra-European technology. The angle: this is the first major Western government to commit to a full Windows exit at the desktop level. Lead with the sovereignty framing — this isn't about cost savings, it's about a NATO ally deciding it can't depend on American software for government operations. The HN reader will debate feasibility; the geopolitics reader will see the pattern of decoupling.",
-      "conceptUris": []
-    },
-    {
-      "id": "israel-bars-spain-gaza-ceasefire-monitoring",
-      "label": "Israel bars Spain from US-led Gaza ceasefire monitoring centre",
-      "firstSeen": "2026-04-10T17:05:13.901Z",
-      "lastCovered": "2026-04-10T17:05:13.901Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-israel-bars-spain-gaza-ceasefire-monitoring"
-      ],
-      "eventUri": "spa-4164164",
-      "summary": "Netanyahu expelled Spain from the Gaza ceasefire monitoring centre hours after Madrid recognised Palestine and called for ICJ enforcement. The angle: Israel is systematically punishing states that use international law mechanisms — Spain, South Africa, Ireland, Colombia. Lead with the mechanism: this isn't a bilateral spat, it's a campaign to make the cost of recognising Palestinian rights higher than the cost of silence. The reader tracking accountability will see the pattern.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Spain",
-        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
-        "http://en.wikipedia.org/wiki/Gaza_Strip",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Diplomacy",
-        "http://en.wikipedia.org/wiki/Gaza_City",
-        "http://en.wikipedia.org/wiki/Kiryat_Gat"
-      ]
-    },
-    {
-      "id": "european-airports-jet-fuel-shortage-hormuz",
-      "label": "European Airports Warn of Fuel Shortages if Gulf Supplies Remain Shut",
-      "firstSeen": "2026-04-10T17:05:13.901Z",
-      "lastCovered": "2026-04-10T17:05:13.901Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-european-airports-jet-fuel-shortage-hormuz"
-      ],
-      "eventUri": "ita-893865",
-      "summary": "European airport associations told EU officials that jet fuel shipments through the Strait of Hormuz must restart within three weeks or Europe faces 'systemic' aviation fuel shortages. The angle: the Iran war's economic damage is now threatening to ground flights across Europe. Lead with the 3-week deadline — this is a concrete, ticking clock that makes the abstract Hormuz closure tangible. The reader who tracked the Singapore air-con story will see the cascade widening to Europe's transport infrastructure.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/Airport",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Airplane",
-        "http://en.wikipedia.org/wiki/Financial_Times",
-        "http://en.wikipedia.org/wiki/Motor_fuel",
-        "http://en.wikipedia.org/wiki/Jet_fuel"
-      ]
-    },
-    {
-      "id": "egypt-activist-ahmed-douma-detention-extended",
-      "label": "Court extends Activist Ahmed Douma's remand detention",
-      "firstSeen": "2026-04-10T17:05:13.901Z",
-      "lastCovered": "2026-04-10T17:05:13.901Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-egypt-activist-ahmed-douma-detention-extended"
-      ],
-      "eventUri": null,
-      "summary": "An Egyptian court extended detention of prominent activist and writer Ahmed Douma for 15 more days on charges of 'spreading false news' — despite Douma having been previously granted a pardon. The angle: Egypt's pardon system is a revolving door. The state pardons activists for international optics, then re-arrests them on new charges. Lead with the pardon-then-redetain pattern — it reveals the machinery of controlled dissent. Douma has been a symbol of the 2011 revolution's unfinished promise.",
-      "conceptUris": []
-    },
-    {
-      "id": "hong-kong-stablecoin-licenses-hsbc-stanchart",
-      "label": "Hong Kong Grants First Stablecoin Licenses to HSBC, Standard Chartered-Backed Venture",
-      "firstSeen": "2026-04-10T17:05:13.901Z",
-      "lastCovered": "2026-04-10T17:05:13.901Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-hong-kong-stablecoin-licenses-hsbc-stanchart"
-      ],
-      "eventUri": "eng-11557583",
-      "summary": "Hong Kong issued its first stablecoin licenses to HSBC and a Standard Chartered-backed joint venture, marking a major step in Asia's digital asset regulation. The angle: while the US dithers on crypto regulation, Hong Kong is building the institutional rails. Colonial-era banks HSBC and StanChart are now the licensed issuers of Hong Kong dollar stablecoins — the old financial order absorbing the new. Lead with the institutional weight: these aren't crypto startups, they're the banks that built Asia's trade finance.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Stablecoin",
-        "http://en.wikipedia.org/wiki/Hong_Kong",
-        "http://en.wikipedia.org/wiki/Hong_Kong_Monetary_Authority",
-        "http://en.wikipedia.org/wiki/HSBC",
-        "http://en.wikipedia.org/wiki/Standard_Chartered",
-        "http://en.wikipedia.org/wiki/Digital_asset",
-        "http://en.wikipedia.org/wiki/Joint_venture",
-        "http://en.wikipedia.org/wiki/Hong_Kong_dollar"
-      ]
-    },
-    {
-      "id": "secret-project-abc-conjecture-computer-verification",
-      "label": "The secret project to settle controversial maths proof with a computer",
-      "firstSeen": "2026-04-10T17:05:13.901Z",
-      "lastCovered": "2026-04-10T17:05:13.901Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-secret-project-abc-conjecture-computer-verification"
-      ],
-      "eventUri": null,
-      "summary": "Two secret projects — working independently for over two years — are using formal verification software to settle the ABC conjecture, one of the most bitterly contested proofs in modern mathematics. Shinichi Mochizuki claimed to prove it in 2012; most mathematicians remain unconvinced. The angle: humans couldn't agree on whether the proof is valid, so now machines will arbitrate. Lead with the secrecy and the stakes — this is mathematics as a contact sport, and the computer is the referee neither side asked for.",
-      "conceptUris": []
-    },
-    {
-      "id": "moderna-mrna-cancer-vaccine-naming-dilemma",
-      "label": "What's in a name? Moderna's \"vaccine\" vs. \"therapy\" dilemma",
-      "firstSeen": "2026-04-10T17:05:13.901Z",
-      "lastCovered": "2026-04-10T17:05:13.901Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-moderna-mrna-cancer-vaccine-naming-dilemma"
-      ],
-      "eventUri": null,
-      "summary": "Moderna's personalised mRNA cancer treatment sequences a patient's tumour, identifies unique surface molecules (neoantigens), and trains the immune system to kill cells displaying them. It works like a vaccine — but calling it one triggers anti-vax backlash and regulatory confusion. The angle: the word 'vaccine' has become so politically toxic that it may slow adoption of a breakthrough cancer therapy. Lead with the mechanism (it IS a vaccine, technically) and the naming dilemma — the reader in tech will see the parallels to how framing shapes adoption of any new technology.",
-      "conceptUris": []
-    },
-    {
-      "id": "florida-investigates-openai-chatgpt-deadly-shooting",
-      "label": "Florida investigates OpenAI for role ChatGPT may have played in deadly shooting",
-      "firstSeen": "2026-04-10T17:05:13.901Z",
-      "lastCovered": "2026-04-10T17:05:13.901Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-florida-investigates-openai-chatgpt-deadly-shooting"
-      ],
-      "eventUri": null,
-      "summary": "Florida opened a state investigation into OpenAI after a gunman allegedly communicated extensively with ChatGPT in the days before a deadly shooting. The victim's family is also suing. The angle: this is the first state-level criminal investigation into an AI company's potential role in a killing — a regulatory precedent. Lead with the investigation (not the lawsuit) because state enforcement powers go further than civil liability. The reader building AI products needs to understand: the liability frontier just moved.",
       "conceptUris": []
     }
   ]
