@@ -1,16 +1,15 @@
 import { useCallback, useEffect } from 'react';
 import { Image, Pressable, StyleSheet } from 'react-native';
 import Animated, {
-  Easing,
   useAnimatedStyle,
   useSharedValue,
-  withDelay,
   withSequence,
+  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { hapticNotification } from '../lib/haptics';
+import { hapticImpact } from '../lib/haptics';
 
 const logo = require('../assets/icon.png');
 
@@ -22,8 +21,8 @@ interface BrandLogoProps {
 function playRotation(rotation: { value: number }) {
   rotation.value = withSequence(
     withTiming(0, { duration: 0 }),
-    withDelay(400, withTiming(-90, { duration: 500, easing: Easing.inOut(Easing.ease) })),
-    withDelay(500, withTiming(0, { duration: 500, easing: Easing.inOut(Easing.ease) })),
+    withSpring(-90, { damping: 12, stiffness: 180 }),
+    withSpring(0, { damping: 14, stiffness: 150 }),
   );
 }
 
@@ -36,7 +35,7 @@ export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
   }, [autoPlay, rotation]);
 
   const onPress = useCallback(() => {
-    hapticNotification();
+    hapticImpact();
     playRotation(rotation);
   }, [rotation]);
 

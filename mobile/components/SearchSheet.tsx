@@ -5,6 +5,7 @@ import {
   BottomSheetTextInput,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+
 import { AccessibilityInfo, StyleSheet, Text, View } from 'react-native';
 import type { TextInput } from 'react-native-gesture-handler';
 import { CATEGORIES, SPACING } from '../constants/theme';
@@ -13,6 +14,8 @@ import type { Article, Category } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { SheetHandle } from './SheetHandle';
 import { SheetContainer } from './SheetPrimitives';
+
+const SearchHandle = () => <SheetHandle title="search" />;
 
 interface SearchResult extends Article {
   category: Category;
@@ -94,8 +97,6 @@ export const SearchSheet = memo(function SearchSheet({
     );
   }, [deferredQuery, resultCount]);
 
-  const SearchHandle = useCallback(() => <SheetHandle title="search" />, []);
-
   const handleDismiss = useCallback(() => {
     setQuery('');
     prevCountRef.current = 0;
@@ -138,6 +139,7 @@ export const SearchSheet = memo(function SearchSheet({
       onChange={handleChange}
       keyboardBehavior="extend"
       keyboardBlurBehavior="none"
+      enableBlurKeyboardOnGesture
       android_keyboardInputMode="adjustResize"
     >
       <View style={[styles.inputRow, { borderBottomColor: colors.rule }]}>

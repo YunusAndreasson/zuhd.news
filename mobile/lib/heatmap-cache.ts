@@ -1,5 +1,6 @@
 import { File, Paths } from 'expo-file-system';
 import type { HeatmapPoint } from '../types';
+import { readJsonCache } from './json-cache';
 
 interface HeatmapCache {
   generated: string;
@@ -13,11 +14,5 @@ export function writeHeatmapCache(data: HeatmapCache): void {
 }
 
 export async function readHeatmapCache(): Promise<HeatmapCache | null> {
-  try {
-    if (!HEATMAP_FILE.exists) return null;
-    const text = await HEATMAP_FILE.text();
-    return JSON.parse(text);
-  } catch {
-    return null;
-  }
+  return readJsonCache<HeatmapCache>(HEATMAP_FILE);
 }

@@ -1,16 +1,15 @@
-import { useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
-import { AppState } from 'react-native';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { API_BASE } from '../constants/theme';
 import { fetchWithTimeout } from '../lib/fetch';
 import { readHeatmapCache, writeHeatmapCache } from '../lib/heatmap-cache';
 import type { HeatmapPoint } from '../types';
+import { useAppResume } from './useAppResume';
 
 const STALE_THRESHOLD = 5 * 60 * 1000;
 
 export function useHeatmap(feedGenerated: string | null): HeatmapPoint[] {
   const [points, setPoints] = useState<HeatmapPoint[]>([]);
   const lastGenRef = useRef<string | null>(null);
-  const lastActiveRef = useRef(Date.now());
 
   const fetchHeatmap = useCallback(async () => {
     try {
@@ -48,22 +47,7 @@ export function useHeatmap(feedGenerated: string | null): HeatmapPoint[] {
   }, [feedGenerated, fetchHeatmap]);
 
   // Foreground resume
-  const handleResume = useEffectEvent(() => {
-    const away = Date.now() - lastActiveRef.current;
-    if (away > STALE_THRESHOLD) fetchHeatmap();
-  });
-
-  useEffect(() => {
-    const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'background') {
-        lastActiveRef.current = Date.now();
-      }
-      if (state === 'active') {
-        handleResume();
-      }
-    });
-    return () => sub.remove();
-  }, []);
+  useAppResume(fetchHeatmap, STALE_THRESHOLD);
 
   return points;
 }

@@ -1,5 +1,7 @@
-import { createContext, useCallback, useContext, useMemo, useState, use } from 'react';
-import { useColorScheme } from 'react-native';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, use } from 'react';
+import { Platform, useColorScheme } from 'react-native';
+import * as NavigationBar from 'expo-navigation-bar';
+import * as SystemUI from 'expo-system-ui';
 import {
   BG_RGB,
   DARK_COLORS,
@@ -158,6 +160,16 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       setNotifications,
     };
   }, [prefs, systemScheme, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications]);
+
+  // Sync native system UI (Android nav bar + root background) with theme
+  useEffect(() => {
+    const { colors, resolvedAppearance } = theme;
+    SystemUI.setBackgroundColorAsync(colors.bg).catch(() => {});
+    if (Platform.OS === 'android') {
+      NavigationBar.setBackgroundColorAsync(colors.bg).catch(() => {});
+      NavigationBar.setButtonStyleAsync(resolvedAppearance === 'dark' ? 'light' : 'dark').catch(() => {});
+    }
+  }, [theme.colors.bg, theme.resolvedAppearance]);
 
   return <ThemeContext value={theme}>{children}</ThemeContext>;
 }

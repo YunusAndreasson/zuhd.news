@@ -107,7 +107,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     const url = `${API_BASE}/audio/briefing-${date}.mp3`;
     if (preloadedUrl.current !== url) {
       try {
-        preload(url);
+        preload(url, { preferredForwardBufferDuration: 30 });
       } catch {}
       preloadedUrl.current = url;
     }

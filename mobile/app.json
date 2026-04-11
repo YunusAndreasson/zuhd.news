@@ -11,7 +11,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
-      "buildNumber": "128",
+      "buildNumber": "129",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
@@ -60,6 +60,8 @@
       "expo-asset",
       "expo-background-task",
       "expo-web-browser",
+      "expo-system-ui",
+      "expo-navigation-bar",
       [
         "expo-notifications",
         {

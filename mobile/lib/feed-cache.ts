@@ -1,5 +1,6 @@
 import { File, Paths } from 'expo-file-system';
 import type { FeedResponse } from '../types';
+import { readJsonCache } from './json-cache';
 
 const FEED_FILE = new File(Paths.cache, 'zuhd-feed.json');
 const META_FILE = new File(Paths.cache, 'zuhd-feed-meta.json');
@@ -23,13 +24,7 @@ export function writeFeedCache(feed: FeedResponse): void {
 }
 
 export async function readFeedCache(): Promise<FeedResponse | null> {
-  try {
-    if (!FEED_FILE.exists) return null;
-    const feedText = await FEED_FILE.text();
-    return JSON.parse(feedText);
-  } catch {
-    return null;
-  }
+  return readJsonCache<FeedResponse>(FEED_FILE);
 }
 
 export function readCachedGenerated(): string | null {

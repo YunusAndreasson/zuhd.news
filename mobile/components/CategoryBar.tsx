@@ -6,6 +6,7 @@ import { CATEGORIES, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 const TAB_LABELS = CATEGORIES.map((c) => c.toUpperCase());
+const TAB_INDICES = TAB_LABELS.map((_, i) => i);
 
 interface TabLayout {
   x: number;
@@ -95,16 +96,15 @@ export const CategoryBar = memo(function CategoryBar({
   // Track: interpolated (smooth slide). Fill: snapped (both left + width from same index).
   const trackPos = useAnimatedStyle(() => {
     if (!allMeasured) return { width: 0 };
-    const indices = TAB_LABELS.map((_, i) => i);
     const x = interpolate(
       pagerOffset.value,
-      indices,
+      TAB_INDICES,
       tabLayouts.map((l) => l.x),
       'clamp',
     );
     const w = interpolate(
       pagerOffset.value,
-      indices,
+      TAB_INDICES,
       tabLayouts.map((l) => l.width),
       'clamp',
     );

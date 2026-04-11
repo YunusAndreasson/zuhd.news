@@ -1,14 +1,22 @@
 import { Ionicons } from '@expo/vector-icons';
-import { memo, useCallback, useRef } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import {
-  type GestureResponderEvent,
   type LayoutChangeEvent,
   Pressable,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
-import Animated, { FadeIn, FadeOut, LinearTransition } from 'react-native-reanimated';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import Animated, {
+  FadeIn,
+  FadeOut,
+  LinearTransition,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -54,17 +62,37 @@ export const BriefingBar = memo(function BriefingBar({
     barWidth.current = e.nativeEvent.layout.width;
   }, []);
 
-  const handleProgressPress = useCallback(
-    (e: GestureResponderEvent) => {
+  const progress = duration > 0 ? elapsed / duration : 0;
+  const progressSV = useSharedValue(0);
+  useEffect(() => {
+    progressSV.value = withTiming(progress, { duration: 1000 });
+  }, [progress]);
+  const progressStyle = useAnimatedStyle(() => ({
+    transform: [{ scaleX: progressSV.value }],
+  }));
+
+  const seekToX = useCallback(
+    (x: number) => {
       if (duration <= 0 || barWidth.current <= 0) return;
-      const x = e.nativeEvent.locationX;
       const fraction = Math.max(0, Math.min(1, x / barWidth.current));
+      progressSV.value = fraction;
       onSeek(fraction * duration);
     },
-    [duration, onSeek],
+    [duration, onSeek, progressSV],
   );
 
-  const progress = duration > 0 ? elapsed / duration : 0;
+  const scrubGesture = useMemo(
+    () =>
+      Gesture.Pan()
+        .minDistance(0)
+        .onStart((e) => {
+          runOnJS(seekToX)(e.x);
+        })
+        .onChange((e) => {
+          runOnJS(seekToX)(e.x);
+        }),
+    [seekToX],
+  );
 
   // Format date for display: "Mar 31" from "2026-03-31"
   const dateLabel = (() => {
@@ -141,32 +169,31 @@ export const BriefingBar = memo(function BriefingBar({
             </Pressable>
           </View>
 
-          <Pressable
-            onPress={handleProgressPress}
-            style={styles.progressTouch}
-            accessibilityRole="adjustable"
-            accessibilityLabel={`Briefing progress, ${formatTime(elapsed)} of ${formatTime(duration)}`}
-            accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
-            onAccessibilityAction={(e) => {
-              const step = Math.max(10, duration * 0.05);
-              if (e.nativeEvent.actionName === 'increment')
-                onSeek(Math.min(elapsed + step, duration));
-              else if (e.nativeEvent.actionName === 'decrement')
-                onSeek(Math.max(elapsed - step, 0));
-            }}
-          >
-            <View style={[styles.progressTrack, { backgroundColor: colors.rule }]}>
-              <View
-                style={[
-                  styles.progressFill,
-                  {
-                    backgroundColor: colors.textSecondary,
-                    transform: [{ scaleX: progress }],
-                  },
-                ]}
-              />
+          <GestureDetector gesture={scrubGesture}>
+            <View
+              style={styles.progressTouch}
+              accessibilityRole="adjustable"
+              accessibilityLabel={`Briefing progress, ${formatTime(elapsed)} of ${formatTime(duration)}`}
+              accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
+              onAccessibilityAction={(e) => {
+                const step = Math.max(10, duration * 0.05);
+                if (e.nativeEvent.actionName === 'increment')
+                  onSeek(Math.min(elapsed + step, duration));
+                else if (e.nativeEvent.actionName === 'decrement')
+                  onSeek(Math.max(elapsed - step, 0));
+              }}
+            >
+              <View style={[styles.progressTrack, { backgroundColor: colors.rule }]}>
+                <Animated.View
+                  style={[
+                    styles.progressFill,
+                    { backgroundColor: colors.textSecondary },
+                    progressStyle,
+                  ]}
+                />
+              </View>
             </View>
-          </Pressable>
+          </GestureDetector>
         </View>
       ) : (
         /* ── Collapsed: actions + play button ── */

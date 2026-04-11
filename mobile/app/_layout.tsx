@@ -8,15 +8,16 @@ import { StatusBar } from 'expo-status-bar';
 import { Suspense, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import * as WebBrowser from 'expo-web-browser';
 import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 import { DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
-import { enableNotifications, registerPushToken } from '../lib/notifications';
+import { enableNotifications, ensureScheduled, registerPushToken } from '../lib/notifications';
 import { set as setPendingSlug } from '../lib/pending-notification';
 import { getPreferences, savePreferences } from '../lib/storage';
 
-configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: __DEV__ });
+configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -34,7 +35,7 @@ function ThemedShell() {
   const { colors, resolvedAppearance } = useTheme();
   return (
     <>
-      <StatusBar style={resolvedAppearance === 'dark' ? 'light' : 'dark'} />
+      <StatusBar style={resolvedAppearance === 'dark' ? 'light' : 'dark'} translucent backgroundColor="transparent" />
       <View style={[styles.root, { backgroundColor: colors.bg }]}>
         <Slot />
       </View>
@@ -52,6 +53,8 @@ export default function RootLayout() {
 
   useEffect(() => {
     registerBackgroundTask();
+    WebBrowser.warmUpAsync().catch(() => {});
+    ensureScheduled();
     const sub = Notifications.addNotificationResponseReceivedListener((response) => {
       const slug = response.notification.request.content.data?.slug;
       if (typeof slug === 'string') setPendingSlug(slug);
@@ -75,7 +78,10 @@ export default function RootLayout() {
       } catch {}
     })();
 
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      WebBrowser.coolDownAsync().catch(() => {});
+    };
   }, []);
 
   if (!fontsLoaded) return null;

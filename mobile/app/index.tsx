@@ -5,7 +5,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
-import { Activity, createRef, useCallback, useEffect, useRef, useState } from 'react';
+import { createRef, useCallback, useEffect, useRef, useState } from 'react';
 import { InteractionManager, type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
@@ -222,7 +222,7 @@ export default function HomeScreen() {
       } else {
         pagerRef.current?.setPage(index);
       }
-      hapticImpact();
+      hapticTick();
     },
     [currentCategory],
   );
@@ -241,7 +241,7 @@ export default function HomeScreen() {
   }, []);
 
   const handleRefresh = useCallback(async () => {
-    hapticTick();
+    hapticImpact();
     try {
       const n = await refresh();
       if (n > 0) {
@@ -345,32 +345,31 @@ export default function HomeScreen() {
         onPageScroll={onPageScroll}
         onLayout={onPagerLayout}
         overdrag
+        offscreenPageLimit={1}
       >
         {CATEGORIES.map((cat, catIndex) => (
           <View key={cat} collapsable={false}>
-            <Activity mode={catIndex === currentCategory ? 'visible' : 'hidden'}>
-              {pagerHeight > 0 && (
-                <ArticleList
-                  ref={listRefs[catIndex]}
-                  articles={grouped[cat]}
-                  heatmapPoints={heatmapPoints}
-                  viewportHeight={pagerHeight}
-                  catIndex={catIndex}
-                  lastSeenAt={lastSeenAt}
-                  onRefresh={handleRefresh}
-                  onEndReached={handleEndReached}
-                  onCaughtUp={handleCaughtUp}
-                  onSourcePress={handleSourcePress}
-                  onContextPress={handleContextPress}
-                  onBookmarkPress={handleArticleBookmark}
-                  onCountryPress={handleCountryPress}
-                  onBreakingPress={handleBreakingPress}
-                  progressesSV={categoryProgresses}
-                  tick={tick}
-                  resetKey={resetKey}
-                />
-              )}
-            </Activity>
+            {pagerHeight > 0 && (
+              <ArticleList
+                ref={listRefs[catIndex]}
+                articles={grouped[cat]}
+                heatmapPoints={heatmapPoints}
+                viewportHeight={pagerHeight}
+                catIndex={catIndex}
+                lastSeenAt={lastSeenAt}
+                onRefresh={handleRefresh}
+                onEndReached={handleEndReached}
+                onCaughtUp={handleCaughtUp}
+                onSourcePress={handleSourcePress}
+                onContextPress={handleContextPress}
+                onBookmarkPress={handleArticleBookmark}
+                onCountryPress={handleCountryPress}
+                onBreakingPress={handleBreakingPress}
+                progressesSV={categoryProgresses}
+                tick={tick}
+                resetKey={resetKey}
+              />
+            )}
           </View>
         ))}
       </PagerView>

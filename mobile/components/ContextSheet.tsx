@@ -3,7 +3,7 @@ import {
   BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -35,7 +35,10 @@ export const ContextSheet = memo(function ContextSheet({
   const label = brief?.label ?? threadLabel;
   const timeline = brief?.timeline ?? [];
   const isEdu = brief?.type === 'edu';
-  const ContextHandle = useCallback(() => <SheetHandle title="context" />, []);
+  const ContextHandle = useCallback(() => <SheetHandle title={label} />, [label]);
+  // While loading, use a fixed snap point so the sheet doesn't shrink to spinner size
+  // then jump when content arrives. Once loaded, dynamic sizing takes over.
+  const loadingSnap = useMemo(() => ['40%'], []);
 
   const renderTimelineEntry = (entry: TimelineEntry, i: number, arr: TimelineEntry[]) => {
     if (!entry.year) {
@@ -102,8 +105,9 @@ export const ContextSheet = memo(function ContextSheet({
   return (
     <BottomSheetModal
       ref={sheetRef}
-      enableDynamicSizing
-      maxDynamicContentSize={MAX_SHEET_HEIGHT}
+      {...(brief
+        ? { enableDynamicSizing: true, maxDynamicContentSize: MAX_SHEET_HEIGHT }
+        : { snapPoints: loadingSnap, enableDynamicSizing: false })}
       enablePanDownToClose
       backdropComponent={renderBackdrop}
       backgroundStyle={sheetStyles.bg}
@@ -114,23 +118,11 @@ export const ContextSheet = memo(function ContextSheet({
       <BottomSheetScrollView
         contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
       >
-        {label && (
-          <Text
-            selectable
-            style={[
-              styles.title,
-              { fontFamily: font.bold, fontSize: typography.sizeBase, color: colors.text },
-            ]}
-          >
-            {label}
-          </Text>
-        )}
         {brief && !isEdu && (
           <Text style={[styles.meta, textStyles.smallCapsXs]}>
             {brief.articleCount} article{brief.articleCount === 1 ? '' : 's'} in this thread
           </Text>
         )}
-        <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
         {loading && !brief && <ActivityIndicator color={colors.accent} style={styles.loader} />}
 
@@ -141,14 +133,7 @@ export const ContextSheet = memo(function ContextSheet({
 });
 
 const styles = StyleSheet.create({
-  title: {
-    marginBottom: SPACING.xs,
-  },
   meta: {},
-  divider: {
-    height: StyleSheet.hairlineWidth,
-    marginVertical: SPACING.md,
-  },
   loader: {
     marginTop: SPACING.lg,
   },

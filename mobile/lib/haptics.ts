@@ -18,7 +18,7 @@ function fire(android: Haptics.AndroidHaptics, ios: () => Promise<void>) {
 /** Softest — high-frequency: article swipe, category swipe */
 export function hapticTick(): void {
   fire(Haptics.AndroidHaptics.Segment_Frequent_Tick, () =>
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Soft));
+    Haptics.selectionAsync());
 }
 
 /** Medium — deliberate taps: buttons, sheet openers, globe taps */

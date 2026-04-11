@@ -4,6 +4,7 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useRef, useSyncExternalStore } from 'react';
+
 import { StyleSheet, Text, View } from 'react-native';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -13,6 +14,8 @@ import type { Category } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { SheetHandle } from './SheetHandle';
 import { SheetContainer } from './SheetPrimitives';
+
+const BookmarkHandle = () => <SheetHandle title="saved" />;
 
 interface BookmarkSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
@@ -33,8 +36,6 @@ export const BookmarkSheet = memo(function BookmarkSheet({
   const bookmarks = useSyncExternalStore(subscribe, getSnapshot);
   const bookmarksRef = useRef(bookmarks);
   bookmarksRef.current = bookmarks;
-
-  const BookmarkHandle = useCallback(() => <SheetHandle title="saved" />, []);
 
   const handleRemove = useCallback((slug: string) => {
     const bookmark = bookmarksRef.current.find((b) => b.article.slug === slug);
@@ -81,6 +82,7 @@ export const BookmarkSheet = memo(function BookmarkSheet({
               location={b.article.location}
               onPress={onSelectArticle}
               onLongPress={handleRemove}
+              delayLongPress={600}
             />
           ))
         )}

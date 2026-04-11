@@ -11,7 +11,6 @@ import { RefreshControl, StyleSheet, Text, useWindowDimensions, View } from 'rea
 import Animated, {
   runOnJS,
   type SharedValue,
-  useAnimatedReaction,
   useAnimatedRef,
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
@@ -92,7 +91,10 @@ export const ArticleList = memo(function ArticleList({
   }, [articles]);
   const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight;
-  const contentStyle = useMemo(() => ({ paddingBottom: insets.bottom }), [insets.bottom]);
+  const safeAreaFooter = useMemo(
+    () => <View style={{ height: insets.bottom }} />,
+    [insets.bottom],
+  );
   const {
     scrollY,
     currentIndex,
@@ -101,6 +103,8 @@ export const ArticleList = memo(function ArticleList({
     caughtUpFired,
     overscrollTimer,
   } = useScrollState(resetKey, catIndex, progressesSV);
+  const currentIndexRef = useRef(currentIndex);
+  currentIndexRef.current = currentIndex;
   const listRef = useAnimatedRef<Animated.FlatList<Article>>();
   const globeRef = useRef<MiniGlobeRef>(null);
   const containerRef = useRef<View>(null);
@@ -184,13 +188,12 @@ export const ArticleList = memo(function ArticleList({
     [earlierIndex, onCaughtUp],
   );
 
-  useAnimatedReaction(
-    () => Math.round(scrollY.value / itemHeight),
-    (idx, prev) => {
-      if (prev !== null && idx !== prev) {
-        runOnJS(handleSnap)(idx);
-      }
+  const handleMomentumEnd = useCallback(
+    (e: { nativeEvent: { contentOffset: { y: number } } }) => {
+      const idx = Math.round(e.nativeEvent.contentOffset.y / itemHeight);
+      if (idx !== currentIndexRef.current) handleSnap(idx);
     },
+    [itemHeight, handleSnap],
   );
 
   const getItemLayout = useCallback(
@@ -275,16 +278,15 @@ export const ArticleList = memo(function ArticleList({
         renderItem={renderItem}
         keyExtractor={keyExtractor}
         getItemLayout={getItemLayout}
-        snapToInterval={itemHeight}
-        snapToAlignment="start"
-        decelerationRate="fast"
+        pagingEnabled
         showsVerticalScrollIndicator={false}
         onScroll={scrollHandler}
+        onMomentumScrollEnd={handleMomentumEnd}
         scrollEventThrottle={16}
         initialNumToRender={2}
         maxToRenderPerBatch={2}
         windowSize={3}
-        contentContainerStyle={contentStyle}
+        ListFooterComponent={safeAreaFooter}
         refreshControl={
           <RefreshControl
             refreshing={localRefreshing}
