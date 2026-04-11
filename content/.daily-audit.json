@@ -1,0 +1,33 @@
+{
+  "date": "2026-04-11",
+  "metrics": {
+    "articles": { "value": 53, "detail": "5 cycles completed, 53 total published today" },
+    "freshness": { "median": 0.2, "p90": 0.4, "max": 0.8, "target": 1.0, "met": true },
+    "categories": { "politics": 26, "economy": 12, "science": 9, "tech": 6 },
+    "multiSource": { "value": 15, "target": 4, "met": true },
+    "regions": {
+      "count": 5,
+      "target": 4,
+      "met": true,
+      "breakdown": { "AM": 20, "EU": 9, "AS": 8, "ME": 12, "AF": 4 }
+    },
+    "sciTech": { "ratio": 28, "target": 25, "met": true },
+    "topSourceShare": { "source": "TRT World", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 44,
+    "duplicates": 1,
+    "avgCycleDuration": 815
+  },
+  "experiment": "Skipped — all metrics within targets. Duplicate count (1 today) is a quality concern but below the threshold to warrant a parameter change.",
+  "weakestArea": "Sci-tech ratio fell to 28% today (from 39% yesterday), sitting just 3 points above the 25% floor. Science dropped from 16 to 9 articles as trade-war/tariff news dominated all five cycles and the selector gave politics disproportionate weight. No structural fix needed yet, but worth watching if it persists.",
+  "watching": [
+    "China–Iran MANPADS arms transfer: Bloomberg story was published twice today from the same URL — selector or dedup logic failed to catch it.",
+    "US tariff escalation: dominated today's politics output across all cycles; expect continued coverage pressure through the week.",
+    "Pakistan ceasefire dividend: diesel price cuts and budget relief stories emerging from the India–Pakistan de-escalation track."
+  ],
+  "coverageGaps": [
+    "Oceania absent today (yesterday had 1 article); Pacific/Southeast Asia voices consistently thin.",
+    "Latin America coverage is US-centric (AM region count 20, but most are about Washington policy, not regional affairs in LATAM).",
+    "Africa underrepresented at 4 articles despite Premium Times Nigeria appearing — mostly Nigeria-only, no Francophone or East African perspectives."
+  ],
+  "context": "Trade-war coverage dominated the day following new US tariff announcements, pulling the selector heavily toward Americas/politics and suppressing science/tech picks. The one duplicate (China–Iran MANPADS) appears to be a URL-level dedup failure in the selector, not a feed issue — both articles were written from the same Bloomberg URL. Freshness remains excellent at 0.2 day median; multi-source and source diversity both well above target."
+}
