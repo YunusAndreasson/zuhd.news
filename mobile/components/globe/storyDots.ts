@@ -2,7 +2,7 @@ import type { Article } from '../../types';
 import { CITY_COORDS, SOURCE_COORDS } from './coordinates';
 
 export function getCoords(article: Article): [number, number] | null {
-  // 1. Frontmatter coordinates (most reliable)
+  // 1. Frontmatter coordinates (most reliable — currently always present)
   if (article.lat != null && article.lng != null) {
     return [article.lat, article.lng];
   }

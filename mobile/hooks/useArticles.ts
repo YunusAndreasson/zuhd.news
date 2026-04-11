@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
+import { startTransition, useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
 import { AppState } from 'react-native';
 import { API_BASE } from '../constants/theme';
 import { readFeedCache, writeFeedCache } from '../lib/feed-cache';
@@ -59,10 +59,8 @@ export function useArticles(): ArticlesState {
   // Track foreground returns to refresh time labels
   const [tick, setTick] = useState(0);
 
-  const applyFeed = useCallback((data: FeedResponse): number => {
+  const applyFeed = useEffectEvent((data: FeedResponse): number => {
     lastGeneratedRef.current = data.generated;
-    setGenerated(data.generated);
-    setBriefing(data.briefing);
     const newGrouped = { ...emptyGrouped, ...data.categories } as GroupedArticles;
     const allSlugs = Object.values(newGrouped)
       .flat()
@@ -70,13 +68,18 @@ export function useArticles(): ArticlesState {
     const newSlugs = new Set(allSlugs);
     const addedCount = [...newSlugs].filter((s) => !prevSlugsRef.current.has(s)).length;
     prevSlugsRef.current = newSlugs;
-    setGrouped(newGrouped);
-    setError(null);
+
+    startTransition(() => {
+      setGenerated(data.generated);
+      setBriefing(data.briefing);
+      setGrouped(newGrouped);
+      setError(null);
+    });
 
     return addedCount;
-  }, []);
+  });
 
-  const fetchFeed = useCallback(async (): Promise<number> => {
+  const fetchFeed = useEffectEvent(async (): Promise<number> => {
     const res = await fetchWithTimeout(`${API_BASE}/api/feed.json`, 10000, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data: FeedResponse = await res.json();
@@ -85,9 +88,9 @@ export function useArticles(): ArticlesState {
       writeFeedCache(data);
     } catch {}
     return addedCount;
-  }, [applyFeed]);
+  });
 
-  const hasNewContent = useCallback(async (): Promise<boolean> => {
+  const hasNewContent = useEffectEvent(async (): Promise<boolean> => {
     if (!lastGeneratedRef.current) return true;
     try {
       const res = await fetchWithTimeout(`${API_BASE}/api/meta.json`, 5000, {
@@ -99,7 +102,7 @@ export function useArticles(): ArticlesState {
     } catch {
       return false; // network error — don't trigger a doomed fetchFeed
     }
-  }, []);
+  });
 
   // Cache-first initial load
   useEffect(() => {
@@ -129,7 +132,7 @@ export function useArticles(): ArticlesState {
         setLoading(false);
       }
     })();
-  }, [applyFeed, fetchFeed, hasNewContent]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps — applyFeed/fetchFeed/hasNewContent are stable useEffectEvent refs
 
   // Foreground resume: refresh if away > 5 min
   const handleResume = useEffectEvent(async () => {
@@ -174,7 +177,7 @@ export function useArticles(): ArticlesState {
     } finally {
       refreshingRef.current = false;
     }
-  }, [fetchFeed, hasNewContent]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps — fetchFeed/hasNewContent are stable useEffectEvent refs
 
   const retry = useCallback(async () => {
     setLoading(true);
@@ -186,7 +189,7 @@ export function useArticles(): ArticlesState {
     } finally {
       setLoading(false);
     }
-  }, [fetchFeed]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps — fetchFeed is a stable useEffectEvent ref
 
   /** Inject an article into a category if it's not already present (e.g. bookmarked article that rotated out of the feed). */
   const injectArticle = useCallback((article: Article, category: Category) => {

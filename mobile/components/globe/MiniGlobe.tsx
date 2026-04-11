@@ -6,12 +6,15 @@ import {
   Image,
   LinearGradient,
   Path,
+  Picture,
   Rect,
   Skia,
+  Text as SkiaText,
+  useFont,
   useImage,
   vec,
 } from '@shopify/react-native-skia';
-import { geoCircle, geoContains, geoDistance, geoInterpolate, geoOrthographic, geoPath } from 'd3-geo';
+import { geoCircle, geoContains, geoDistance, geoGraticule, geoInterpolate, geoOrthographic, geoPath } from 'd3-geo';
 import {
   memo,
   useCallback,
@@ -33,7 +36,9 @@ import { useTheme } from '../../hooks/useTheme';
 import type { Article, HeatmapPoint } from '../../types';
 import { COUNTRY_TZ } from './coordinates';
 import type { GeoContext } from 'd3-geo';
-import { bordersMesh, countries, createSkiaPathContext, land } from './shared';
+import { displayLocation } from '../../lib/place-names';
+import { SOURCE_COORDS } from './coordinates';
+import { bordersMesh, countries, countryAreas, countryBboxes, createSkiaPathContext, land } from './shared';
 import { getCoords } from './storyDots';
 
 /** Squared-distance hit test */
@@ -74,8 +79,33 @@ function Glow({
 
 const skiaCtx = createSkiaPathContext();
 const nightCircleGen = geoCircle();
+
+// Equator + polar circles (Arctic 66.5°N, Antarctic 66.5°S)
+const graticuleLines = geoGraticule()
+  .stepMinor([360, 360]) // no minor lines
+  .stepMajor([360, 90])  // only equator
+  ();
+
+const NORTH_POLE: [number, number] = [0, 90];
+const SOUTH_POLE: [number, number] = [0, -90];
+const ARCTIC_CIRCLE = geoCircle().center(NORTH_POLE).radius(90 - 66.5)();
+const ANTARCTIC_CIRCLE = geoCircle().center(SOUTH_POLE).radius(90 - 66.5)();
 const HALF_PI = Math.PI / 2;
 const DECAY_LAMBDA = Math.LN2 / 18; // 18h half-life
+
+const MAKKAH_GLOW_LAYERS: GlowLayer[] = [
+  { r: 12, opacity: 0.03, blur: 8 },
+  { r: 5, opacity: 0.08, blur: 3 },
+  { r: 2.5, opacity: 0.2, blur: 1.5 },
+  { r: 1.2, opacity: 0.7 },
+];
+
+const DOT_GLOW_LAYERS: GlowLayer[] = [
+  { r: 14, opacity: 0.04, blur: 10 },
+  { r: 7, opacity: 0.12, blur: 5 },
+  { r: 3.5, opacity: 0.28, blur: 2 },
+  { r: 2, opacity: 0.8 },
+];
 
 // Makkah — [lng, lat] for d3-geo (qibla direction reference)
 const MAKKAH = {
@@ -180,9 +210,14 @@ function findCountry(lat: number, lng: number, location?: string | null): GeoJSO
     }
   }
   for (const [dlat, dlng] of NUDGES) {
-    const pt: [number, number] = [lng + dlng, lat + dlat];
-    const found = countries.features.find((f) => geoContains(f, pt));
-    if (found) return found;
+    const ptLng = lng + dlng;
+    const ptLat = lat + dlat;
+    const pt: [number, number] = [ptLng, ptLat];
+    for (let i = 0; i < countries.features.length; i++) {
+      const [minLng, minLat, maxLng, maxLat] = countryBboxes[i]!;
+      if (ptLng < minLng || ptLng > maxLng || ptLat < minLat || ptLat > maxLat) continue;
+      if (geoContains(countries.features[i]!, pt)) return countries.features[i]!;
+    }
   }
   return null;
 }
@@ -223,9 +258,16 @@ interface GlobeState {
   landPath: ReturnType<typeof Skia.Path.Make> | null;
   bordersPath: ReturnType<typeof Skia.Path.Make> | null;
   countryPath: ReturnType<typeof Skia.Path.Make> | null;
+  countryName: string | null;
   nightPath: ReturnType<typeof Skia.Path.Make> | null;
+  twilightPath: ReturnType<typeof Skia.Path.Make> | null;
+  graticulePath: ReturnType<typeof Skia.Path.Make> | null;
   qiblaPath: ReturnType<typeof Skia.Path.Make> | null;
+  sourceArcs: ReturnType<typeof Skia.Path.Make> | null;
+  northPole: { x: number; y: number } | null;
+  southPole: { x: number; y: number } | null;
   dot: { x: number; y: number } | null;
+  dotLabel: { text: string; x: number; y: number } | null;
   makkah: { x: number; y: number } | null;
   hotspotGlows: {
     x: number;
@@ -236,19 +278,125 @@ interface GlobeState {
   }[];
 }
 
+/** Memoized moon — skips React reconciliation during scroll since all props are stable. */
+const Moon = memo(function Moon({
+  x,
+  y,
+  r,
+  phase,
+  texture,
+  clip,
+  accentColor,
+  bgAlpha,
+}: {
+  x: number;
+  y: number;
+  r: number;
+  phase: number;
+  texture: ReturnType<typeof useImage>;
+  clip: ReturnType<typeof Skia.Path.Make>;
+  accentColor: string;
+  bgAlpha: (opacity: number) => string;
+}) {
+  if (!texture) return null;
+  return (
+    <>
+      {/* Halo — tight glow around the moon */}
+      <Circle
+        cx={x + (phase < 0.5 ? r * 0.3 : -r * 0.3)}
+        cy={y}
+        r={r * 1.8}
+        color={accentColor}
+        opacity={0.025}
+      >
+        <BlurMask blur={r * 0.8} style="solid" />
+      </Circle>
+      {/* Limb glow — bright ring right at the disk edge */}
+      <Circle cx={x} cy={y} r={r} color={accentColor} opacity={0.15}>
+        <BlurMask blur={r * 0.25} style="outer" />
+      </Circle>
+      {/* Moon texture — full disk */}
+      <Group clip={clip}>
+        <BlurMask blur={r * 0.06} style="normal" />
+        <Image
+          image={texture}
+          x={x - r}
+          y={y - r}
+          width={r * 2}
+          height={r * 2}
+          opacity={0.45}
+        />
+      </Group>
+      {/* Gradient shadow — gradual terminator falloff */}
+      <Group clip={clip}>
+        <BlurMask blur={r * 0.04} style="normal" />
+        <Rect x={x - r} y={y - r} width={r * 2} height={r * 2}>
+          <LinearGradient
+            start={vec(phase < 0.5 ? x + r : x - r, y)}
+            end={vec(phase < 0.5 ? x - r : x + r, y)}
+            colors={[bgAlpha(0), bgAlpha(0), bgAlpha(0.85), bgAlpha(0.95)]}
+            positions={[
+              0,
+              Math.max(0, Math.abs(Math.cos(phase * 2 * Math.PI)) * 0.5),
+              Math.min(1, 0.5 + Math.abs(Math.cos(phase * 2 * Math.PI)) * 0.35),
+              1,
+            ]}
+          />
+        </Rect>
+      </Group>
+    </>
+  );
+});
+
+/** Country highlight — soft glow brighter than surrounding land.
+ *  Small countries get stronger glow so they're visible at globe scale. */
+const CountryHighlight = memo(function CountryHighlight({
+  path: p,
+  countryName,
+  color,
+}: {
+  path: ReturnType<typeof Skia.Path.Make>;
+  countryName: string | null;
+  color: string;
+}) {
+  const area = countryName ? countryAreas[countryName] ?? 0 : 0;
+  const opacity = area < 0.001 ? 0.25 : area < 0.005 ? 0.18 : 0.12;
+  return (
+    <Path path={p} color={color} opacity={opacity}>
+      <BlurMask blur={1} style="solid" />
+    </Path>
+  );
+});
+
 const EMPTY_GLOBE: GlobeState = {
-  landPath: null, bordersPath: null, countryPath: null, nightPath: null,
-  qiblaPath: null,
-  dot: null, makkah: null, hotspotGlows: [],
+  landPath: null, bordersPath: null, countryPath: null, countryName: null,
+  nightPath: null, twilightPath: null, graticulePath: null, qiblaPath: null,
+  sourceArcs: null, northPole: null, southPole: null,
+  dot: null, dotLabel: null, makkah: null, hotspotGlows: [],
 };
+
+/** Clip angle for a country's spherical area — smaller countries get tighter clip (more zoom). */
+function clipAngleForArea(area: number): number {
+  if (area < 0.002) return 25;
+  if (area < 0.03) return 25 + (area - 0.002) / (0.03 - 0.002) * 65;
+  return 90;
+}
+
+/** Clip angle for a country name. */
+function clipAngleForCountry(countryName: string | null): number {
+  const area = countryName ? countryAreas[countryName] ?? 1 : 1;
+  return clipAngleForArea(area);
+}
 
 /** Pure projection — creates fresh Skia paths, no shared mutable state. */
 function projectInitial(
   geo: { lat: number; lng: number; country: GeoJSON.Feature | null },
   r: number, centerX: number, centerY: number,
 ): GlobeState {
-  const proj = geoOrthographic().clipAngle(90).precision(8)
-    .rotate([-geo.lng, -geo.lat, 0]).scale(r).translate([centerX, centerY]);
+  const clipAngle = clipAngleForCountry(geo.country?.properties?.name ?? null);
+  const projScale = r / Math.sin(clipAngle * Math.PI / 180);
+  const proj = geoOrthographic().clipAngle(clipAngle).precision(8)
+    .rotate([-geo.lng, -geo.lat, 0]).scale(projScale).translate([centerX, centerY]);
   const pg = geoPath(proj);
   const ctx = createSkiaPathContext();
 
@@ -271,9 +419,30 @@ function projectInitial(
   }
 
   const [sunLng, sunLat] = getSunPosition();
+  const nightCenter: [number, number] = [sunLng + 180, -sunLat];
   const np = Skia.Path.Make();
   ctx.setPath(np);
-  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center([sunLng + 180, -sunLat]).radius(80)());
+  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(80)());
+
+  // Civil twilight — softer gradient band before full night
+  const tp = Skia.Path.Make();
+  ctx.setPath(tp);
+  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(74)());
+
+  // Equator + polar circles
+  const gp = Skia.Path.Make();
+  ctx.setPath(gp);
+  pg.context(ctx as unknown as GeoContext)(graticuleLines);
+  pg.context(ctx as unknown as GeoContext)(ARCTIC_CIRCLE);
+  pg.context(ctx as unknown as GeoContext)(ANTARCTIC_CIRCLE);
+
+  // Poles
+  let northPole: GlobeState['northPole'] = null;
+  let southPole: GlobeState['southPole'] = null;
+  const npp = proj(NORTH_POLE);
+  if (npp) northPole = { x: npp[0], y: npp[1] };
+  const spp = proj(SOUTH_POLE);
+  if (spp) southPole = { x: spp[0], y: spp[1] };
 
   let dot: GlobeState['dot'] = null;
   const pt = proj([geo.lng, geo.lat]);
@@ -300,7 +469,7 @@ function projectInitial(
     }
   }
 
-  return { landPath: lp, bordersPath: bp, countryPath: cp, nightPath: np, qiblaPath: qp, dot, makkah, hotspotGlows: [] };
+  return { landPath: lp, bordersPath: bp, countryPath: cp, countryName: geo.country?.properties?.name ?? null, nightPath: np, twilightPath: tp, graticulePath: gp, qiblaPath: qp, sourceArcs: null, northPole, southPole, dot, dotLabel: null, makkah, hotspotGlows: [] };
 }
 
 export const MiniGlobe = memo(function MiniGlobe({
@@ -313,10 +482,12 @@ export const MiniGlobe = memo(function MiniGlobe({
   tick: _tick,
   ref,
 }: MiniGlobeProps) {
-  const { colors, bgAlpha } = useTheme();
+  const { colors, bgAlpha, resolvedAppearance } = useTheme();
+  const light = resolvedAppearance === 'light';
   const globeRadius = width * 0.9;
   const cx = width / 2;
   const cy = height * 0.75;
+  const labelFont = useFont(require('../../assets/fonts/SourceSans3-Regular.ttf'), 10);
 
   // Precompute per-article: coords + country feature + names (before useState so initializer can use it)
   const articleGeo = useMemo(() => {
@@ -417,10 +588,12 @@ export const MiniGlobe = memo(function MiniGlobe({
   // Reusable Skia path objects — reset each frame instead of allocating new ones
   const landPathRef = useRef(Skia.Path.Make());
   const bordersPathRef = useRef(Skia.Path.Make());
-  const lastBordersRotRef = useRef<[number, number]>([Infinity, Infinity]);
   const countryPathRef = useRef(Skia.Path.Make());
   const nightPathRef = useRef(Skia.Path.Make());
+  const twilightPathRef = useRef(Skia.Path.Make());
+  const graticulePathRef = useRef(Skia.Path.Make());
   const qiblaPathRef = useRef(Skia.Path.Make());
+  const sourceArcsRef = useRef(Skia.Path.Make());
 
   // Keep closure dependencies in refs so the reproject callback stays stable
   const articlesRef = useRef(articles);
@@ -434,22 +607,10 @@ export const MiniGlobe = memo(function MiniGlobe({
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
   const lastReprojRef = useRef<{ lng: number; lat: number; idx: number } | null>(null);
 
-  const callReproject = useCallback((geoLng: number, geoLat: number, settledIndex: number) => {
+  const callReproject = useCallback((geoLng: number, geoLat: number, settledIndex: number, loIndex: number, hiIndex: number, frac: number) => {
     lastReprojRef.current = { lng: geoLng, lat: geoLat, idx: settledIndex };
     const { globeRadius: r, cx: centerX, cy: centerY } = layoutRef.current;
     const geoData = articleGeoRef.current;
-
-    const proj = projRef.current;
-    proj.rotate([-geoLng, -geoLat, 0]).scale(r).translate([centerX, centerY]);
-
-    const pg = pgRef.current;
-    pg.projection(proj);
-
-    // Land — reuse path object to avoid native memory accumulation
-    const landPath = landPathRef.current;
-    landPath.reset();
-    skiaCtx.setPath(landPath);
-    pg.context(skiaCtx as unknown as GeoContext)(land);
 
     // Update which country to highlight when settled article changes.
     // Compare both index AND article slug — index alone misses category
@@ -463,11 +624,43 @@ export const MiniGlobe = memo(function MiniGlobe({
       cachedCountryRef.current = geo?.country ?? null;
     }
 
+    // Adaptive zoom — interpolate clip angle between adjacent articles for smooth transitions
+    const loCountry = geoData[loIndex]?.countryName ?? null;
+    const hiCountry = geoData[hiIndex]?.countryName ?? null;
+    const loClip = clipAngleForCountry(loCountry);
+    const hiClip = clipAngleForCountry(hiCountry);
+    const clipAngle = loClip + (hiClip - loClip) * frac;
+    const projScale = r / Math.sin(clipAngle * Math.PI / 180);
+
+    const proj = projRef.current;
+    proj.clipAngle(clipAngle).rotate([-geoLng, -geoLat, 0]).scale(projScale).translate([centerX, centerY]);
+
+    const pg = pgRef.current;
+    pg.projection(proj);
+
+    // Land — reuse path object to avoid native memory accumulation
+    const landPath = landPathRef.current;
+    landPath.reset();
+    skiaCtx.setPath(landPath);
+    pg.context(skiaCtx as unknown as GeoContext)(land);
+
     // Dot
     let dot: { x: number; y: number } | null = null;
     if (geo) {
       const pt = proj([geo.lng, geo.lat]);
       if (pt) dot = { x: pt[0], y: pt[1] };
+    }
+
+    // Dot label — location + local time
+    let dotLabel: GlobeState['dotLabel'] = null;
+    const settledCountry = cachedCountryRef.current?.properties?.name ?? null;
+    if (dot && settledCountry) {
+      const tz = COUNTRY_TZ[settledCountry];
+      const time = tz ? formatLocalTime(tz) : null;
+      const article = articlesRef.current[settledIndex];
+      const loc = displayLocation(article?.location ?? null);
+      const text = [loc, time].filter(Boolean).join(' · ');
+      if (text) dotLabel = { text, x: dot.x, y: dot.y };
     }
 
     // Country highlight — reuse path object
@@ -479,29 +672,46 @@ export const MiniGlobe = memo(function MiniGlobe({
       pg.context(skiaCtx as unknown as GeoContext)(cachedCountryRef.current);
     }
 
-    // Neighbouring country borders — three optimizations for smooth scroll:
+    // Neighbouring country borders — two optimizations:
     //  1. bordersMesh (topojson.mesh) = single MultiLineString, no duplicate edges
-    //  2. precision(0) = skip adaptive resampling (invisible at 0.5px/0.15 opacity)
-    //  3. Angular cache = skip if globe rotated < 3° since last generation
+    //  2. precision(0) = skip adaptive resampling (invisible at 0.5px/0.22 opacity)
     const bordersPath = bordersPathRef.current;
-    const bDx = geoLng - lastBordersRotRef.current[0];
-    const bDy = geoLat - lastBordersRotRef.current[1];
-    if (settled || bDx * bDx + bDy * bDy > 9) {
-      lastBordersRotRef.current = [geoLng, geoLat];
-      proj.precision(0);
-      bordersPath.reset();
-      skiaCtx.setPath(bordersPath);
-      pg.context(skiaCtx as unknown as GeoContext)(bordersMesh);
-      proj.precision(8);
-    }
+    proj.precision(0);
+    bordersPath.reset();
+    skiaCtx.setPath(bordersPath);
+    pg.context(skiaCtx as unknown as GeoContext)(bordersMesh);
+    proj.precision(8);
 
     // Night shadow — reuse path object
     const [sunLng, sunLat] = getSunPosition();
-    const nightGeo = nightCircleGen.center([sunLng + 180, -sunLat]).radius(80)();
+    const nightCenter: [number, number] = [sunLng + 180, -sunLat];
+    const nightGeo = nightCircleGen.center(nightCenter).radius(80)();
     const nightPath = nightPathRef.current;
     nightPath.reset();
     skiaCtx.setPath(nightPath);
     pg.context(skiaCtx as unknown as GeoContext)(nightGeo);
+
+    // Civil twilight — softer gradient band before full night
+    const twilightPath = twilightPathRef.current;
+    twilightPath.reset();
+    skiaCtx.setPath(twilightPath);
+    pg.context(skiaCtx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(74)());
+
+    // Equator + polar circles
+    const graticulePath = graticulePathRef.current;
+    graticulePath.reset();
+    skiaCtx.setPath(graticulePath);
+    pg.context(skiaCtx as unknown as GeoContext)(graticuleLines);
+    pg.context(skiaCtx as unknown as GeoContext)(ARCTIC_CIRCLE);
+    pg.context(skiaCtx as unknown as GeoContext)(ANTARCTIC_CIRCLE);
+
+    // Poles
+    let northPole: GlobeState['northPole'] = null;
+    let southPole: GlobeState['southPole'] = null;
+    const npp = proj(NORTH_POLE);
+    if (npp) northPole = { x: npp[0], y: npp[1] };
+    const spp = proj(SOUTH_POLE);
+    if (spp) southPole = { x: spp[0], y: spp[1] };
 
     // Makkah — qibla reference point
     let makkah: { x: number; y: number } | null = null;
@@ -529,6 +739,34 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
     }
 
+    // Source arcs — great circle lines from each source's HQ to the article location
+    const srcArcs = sourceArcsRef.current;
+    srcArcs.reset();
+    let hasSourceArcs = false;
+    if (geo) {
+      const storyPt: [number, number] = [geo.lng, geo.lat];
+      const article = articlesRef.current[settledIndex];
+      if (article?.sources) {
+        for (const src of article.sources) {
+          const srcCoords = SOURCE_COORDS[src.name];
+          if (!srcCoords) continue;
+          const srcPt: [number, number] = [srcCoords[1], srcCoords[0]]; // [lng, lat] from [lat, lng]
+          // Skip if source is at the same location as the story or not visible
+          if (geoDistance(srcPt, storyPt) < 0.05) continue;
+          if (geoDistance(srcPt, [geoLng, geoLat]) >= HALF_PI) continue;
+          const interp = geoInterpolate(srcPt, storyPt);
+          let started = false;
+          for (let i = 0; i <= 20; i++) {
+            const p = proj(interp(i / 20));
+            if (!p) { started = false; continue; }
+            if (!started) { srcArcs.moveTo(p[0], p[1]); started = true; }
+            else srcArcs.lineTo(p[0], p[1]);
+          }
+          hasSourceArcs = true;
+        }
+      }
+    }
+
     // Coverage hotspot glows — project visible zones onto the front hemisphere
     const hotspotGlows: GlobeState['hotspotGlows'] = [];
     for (const zone of hotspotsRef.current) {
@@ -546,7 +784,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
     }
 
-    setState({ landPath, bordersPath, countryPath, nightPath, qiblaPath: hasQibla ? qiblaP : null, dot, makkah, hotspotGlows });
+    setState({ landPath, bordersPath, countryPath, countryName: cachedCountryRef.current?.properties?.name ?? null, nightPath, twilightPath, graticulePath, qiblaPath: hasQibla ? qiblaP : null, sourceArcs: hasSourceArcs ? srcArcs : null, northPole, southPole, dot, dotLabel, makkah, hotspotGlows });
   }, []);
 
   // Throttle reprojection to 32ms (~30fps), skip throttle on first call
@@ -593,7 +831,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       const settled = Math.min(Math.round(rawIndex), articleCount - 1);
 
-      runOnJS(callReproject)(lng, lat, settled);
+      runOnJS(callReproject)(lng, lat, settled, lo, hi, frac);
     },
   );
 
@@ -602,14 +840,14 @@ export const MiniGlobe = memo(function MiniGlobe({
     if (!_tick) return; // skip initial render
     invalidateSunCaches();
     const last = lastReprojRef.current;
-    if (last) callReproject(last.lng, last.lat, last.idx);
+    if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_tick]);
 
   // Re-project when hotspot data changes (e.g. heatmap fetch after app resume)
   useEffect(() => {
     const last = lastReprojRef.current;
-    if (last) callReproject(last.lng, last.lat, last.idx);
+    if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hotspots]);
 
@@ -661,7 +899,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           const tz = COUNTRY_TZ[geoData.countryName];
           return {
             countryName: geoData.countryName,
-            location: geoData.location,
+            location: displayLocation(geoData.location) ?? geoData.location,
             localTime: tz ? formatLocalTime(tz) : null,
             data: COUNTRY_DATA[geoData.countryName] ?? null,
             hotspotLabels: storiesFor(geoData.countryName),
@@ -687,7 +925,16 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (gdx * gdx + gdy * gdy <= hitR * hitR) {
         const coords = projRef.current.invert?.([x, y]);
         if (coords) {
-          const feature = countries.features.find((f) => geoContains(f, coords));
+          const [lng, lat] = coords;
+          let feature: GeoJSON.Feature | undefined;
+          for (let i = 0; i < countries.features.length; i++) {
+            const [minLng, minLat, maxLng, maxLat] = countryBboxes[i]!;
+            if (lng < minLng || lng > maxLng || lat < minLat || lat > maxLat) continue;
+            if (geoContains(countries.features[i]!, coords)) {
+              feature = countries.features[i]!;
+              break;
+            }
+          }
           if (feature) {
             const name = feature.properties?.name ?? '';
             const tz = name ? COUNTRY_TZ[name] : undefined;
@@ -720,43 +967,14 @@ export const MiniGlobe = memo(function MiniGlobe({
     return p;
   }, [moonX, moonY, moonR]);
 
-  // Lit-side clip: circle minus the shadow region — texture only draws on the lit part
-  const moonLitClip = useMemo(() => {
-    const tc = Math.cos(moonPhase * 2 * Math.PI);
-    const shadow = Skia.Path.Make();
-    const steps = 16;
-    shadow.moveTo(moonX, moonY - moonR);
-    if (moonPhase < 0.5) {
-      // Waxing: shadow on the left — left semicircle + right terminator ellipse
-      for (let i = 0; i <= steps; i++) {
-        const a = -Math.PI / 2 + Math.PI * (i / steps);
-        shadow.lineTo(moonX - Math.cos(a) * moonR, moonY + Math.sin(a) * moonR);
-      }
-      for (let i = steps; i >= 0; i--) {
-        const a = -Math.PI / 2 + Math.PI * (i / steps);
-        shadow.lineTo(moonX + Math.cos(a) * moonR * tc, moonY + Math.sin(a) * moonR);
-      }
-    } else {
-      // Waning: shadow on the right — right semicircle + left terminator ellipse
-      for (let i = 0; i <= steps; i++) {
-        const a = -Math.PI / 2 + Math.PI * (i / steps);
-        shadow.lineTo(moonX + Math.cos(a) * moonR, moonY + Math.sin(a) * moonR);
-      }
-      for (let i = steps; i >= 0; i--) {
-        const a = -Math.PI / 2 + Math.PI * (i / steps);
-        shadow.lineTo(moonX - Math.cos(a) * moonR * tc, moonY + Math.sin(a) * moonR);
-      }
-    }
-    shadow.close();
-    const lit = moonClip.copy();
-    lit.op(shadow, 0); // 0 = Difference: circle minus shadow = lit area
-    return lit;
-  }, [moonClip, moonX, moonY, moonR, moonPhase]);
-
-  // Stars — fixed positions, memoized once
-  const stars = useMemo(() => {
-    const s: { x: number; y: number; r: number; o: number }[] = [];
-    // Seeded pseudo-random for deterministic positions
+  // Stars + atmospheric halo — recorded into an immutable Picture so Skia
+  // replays a single cached GPU command instead of re-evaluating ~40+ React
+  // elements on every scroll-driven rerender.
+  const starsPicture = useMemo(() => {
+    const recorder = Skia.PictureRecorder();
+    const canvas = recorder.beginRecording(Skia.XYWHRect(0, 0, width, height));
+    const paint = Skia.Paint();
+    paint.setColor(Skia.Color(colors.accent));
     let seed = 42;
     const rand = () => {
       seed = (seed * 16807 + 0) % 2147483647;
@@ -765,88 +983,59 @@ export const MiniGlobe = memo(function MiniGlobe({
     for (let i = 0; i < 40; i++) {
       const x = rand() * width;
       const y = rand() * height;
-      // Skip stars that would be behind the globe
       const dx = x - cx;
       const dy = y - cy;
       if (dx * dx + dy * dy < globeRadius * globeRadius) continue;
-      s.push({
-        x,
-        y,
-        r: 0.5 + rand() * 1.0, // 0.5–1.5px
-        o: 0.15 + rand() * 0.35, // 15–50% opacity
-      });
+      const r = 0.5 + rand() * 1.0;
+      paint.setAlphaf(0.15 + rand() * 0.35);
+      canvas.drawCircle(x, y, r, paint);
     }
-    return s;
-  }, [width, height, cx, cy, globeRadius]);
+    // Atmospheric halo — static blurred circle at globe edge
+    const haloPaint = Skia.Paint();
+    haloPaint.setColor(Skia.Color(colors.atmosphere));
+    haloPaint.setAlphaf(0.12);
+    haloPaint.setMaskFilter(Skia.MaskFilter.MakeBlur(0, globeRadius * 0.08, true));
+    canvas.drawCircle(cx, cy, globeRadius * 1.05, haloPaint);
+    return recorder.finishRecordingAsPicture();
+  }, [width, height, cx, cy, globeRadius, colors.accent, colors.atmosphere]);
 
   return (
     <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
-      {/* Stars — tiny fixed points */}
-      {stars.map((s, i) => (
-        <Circle key={i} cx={s.x} cy={s.y} r={s.r} color={colors.accent} opacity={s.o} />
-      ))}
+      {/* Stars — single cached Picture, no per-frame React overhead */}
+      <Picture picture={starsPicture} />
 
-      {/* Moon — NASA texture with phase shadow */}
-      {moonTexture && isLocalNight() && (
-        <>
-          {/* Halo — tight glow around the moon */}
-          <Circle
-            cx={moonX + (moonPhase < 0.5 ? moonR * 0.3 : -moonR * 0.3)}
-            cy={moonY}
-            r={moonR * 1.8}
-            color={colors.accent}
-            opacity={0.025}
-          >
-            <BlurMask blur={moonR * 0.8} style="solid" />
-          </Circle>
-          {/* Limb glow — bright ring right at the disk edge */}
-          <Circle cx={moonX} cy={moonY} r={moonR} color={colors.accent} opacity={0.15}>
-            <BlurMask blur={moonR * 0.25} style="outer" />
-          </Circle>
-          {/* Moon texture — full disk */}
-          <Group clip={moonClip}>
-            <BlurMask blur={moonR * 0.06} style="normal" />
-            <Image
-              image={moonTexture}
-              x={moonX - moonR}
-              y={moonY - moonR}
-              width={moonR * 2}
-              height={moonR * 2}
-              opacity={0.45}
-            />
-          </Group>
-          {/* Gradient shadow — gradual terminator falloff */}
-          <Group clip={moonClip}>
-            <BlurMask blur={moonR * 0.04} style="normal" />
-            <Rect x={moonX - moonR} y={moonY - moonR} width={moonR * 2} height={moonR * 2}>
-              <LinearGradient
-                start={vec(moonPhase < 0.5 ? moonX + moonR : moonX - moonR, moonY)}
-                end={vec(moonPhase < 0.5 ? moonX - moonR : moonX + moonR, moonY)}
-                colors={[bgAlpha(0), bgAlpha(0), bgAlpha(0.85), bgAlpha(0.95)]}
-                positions={[
-                  0,
-                  Math.max(0, Math.abs(Math.cos(moonPhase * 2 * Math.PI)) * 0.5),
-                  Math.min(1, 0.5 + Math.abs(Math.cos(moonPhase * 2 * Math.PI)) * 0.35),
-                  1,
-                ]}
-              />
-            </Rect>
-          </Group>
-        </>
+      {/* Moon — memoized to skip re-reconciliation during scroll */}
+      {isLocalNight() && (
+        <Moon
+          x={moonX}
+          y={moonY}
+          r={moonR}
+          phase={moonPhase}
+          texture={moonTexture}
+          clip={moonClip}
+          accentColor={colors.accent}
+          bgAlpha={bgAlpha}
+        />
       )}
 
-      {/* Atmospheric halo — thin glow at the globe's edge */}
-      <Circle cx={cx} cy={cy} r={globeRadius * 1.03} color={colors.atmosphere} opacity={0.08}>
-        <BlurMask blur={globeRadius * 0.04} style="solid" />
-      </Circle>
+      {/* Ocean disk — subtle sphere body behind land */}
+      <Circle cx={cx} cy={cy} r={globeRadius} color={colors.atmosphere} opacity={light ? 0.12 : 0.07} />
 
       {/* Land silhouette */}
-      {state.landPath && <Path path={state.landPath} color={colors.rule} opacity={0.4} />}
+      {state.landPath && <Path path={state.landPath} color={light ? colors.accent : colors.rule} opacity={light ? 0.25 : 0.4} />}
 
       {/* Neighbouring country borders — visible when scroll is at rest */}
       {state.bordersPath && (
         <Path path={state.bordersPath} color={colors.accent} style="stroke" strokeWidth={0.5} opacity={0.22} />
       )}
+
+      {/* Equator + polar circles */}
+      {state.graticulePath && (
+        <Path path={state.graticulePath} color={colors.accent} style="stroke" strokeWidth={0.4} opacity={light ? 0.12 : 0.08} />
+      )}
+
+      {/* Civil twilight — faint band before full night for gradient falloff */}
+      {state.twilightPath && <Path path={state.twilightPath} color={colors.black} opacity={0.06} />}
 
       {/* Night shadow — darker overlay on the unlit hemisphere */}
       {state.nightPath && <Path path={state.nightPath} color={colors.black} opacity={0.15} />}
@@ -870,55 +1059,59 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       ))}
 
-      {/* Country highlight */}
+      {/* Country highlight — opacity scales with area so small nations pop */}
       {state.countryPath && (
-        <>
-          <Path path={state.countryPath} color={colors.sheetBg} opacity={0.8}>
-            <BlurMask blur={0.5} style="normal" />
-          </Path>
-          <Path
-            path={state.countryPath}
-            color={colors.accent}
-            style="stroke"
-            strokeWidth={1}
-            opacity={0.55}
-          />
-        </>
+        <CountryHighlight
+          path={state.countryPath}
+          countryName={state.countryName}
+          color={colors.text}
+        />
+      )}
+
+      {/* Source arcs — information flow lines from source HQs to story location */}
+      {state.sourceArcs && (
+        <Path path={state.sourceArcs} color={colors.accent} style="stroke" strokeWidth={0.5} opacity={light ? 0.15 : 0.08} />
       )}
 
       {/* Qibla arc — great circle toward Makkah */}
       {state.qiblaPath && (
-        <Path path={state.qiblaPath} color={colors.dome} style="stroke" strokeWidth={0.8} opacity={0.12} />
+        <Path path={state.qiblaPath} color={colors.dome} style="stroke" strokeWidth={0.8} opacity={light ? 0.2 : 0.12} />
       )}
 
       {/* Makkah — golden qibla reference point */}
       {state.makkah && (
-        <Glow
-          x={state.makkah.x}
-          y={state.makkah.y}
-          color={colors.dome}
-          layers={[
-            { r: 12, opacity: 0.03, blur: 8 },
-            { r: 5, opacity: 0.08, blur: 3 },
-            { r: 2.5, opacity: 0.2, blur: 1.5 },
-            { r: 1.2, opacity: 0.7 },
-          ]}
-        />
+        <Glow x={state.makkah.x} y={state.makkah.y} color={colors.dome} layers={MAKKAH_GLOW_LAYERS} />
       )}
 
       {/* Story dot */}
       {state.dot && (
-        <Glow
-          x={state.dot.x}
-          y={state.dot.y}
+        <Glow x={state.dot.x} y={state.dot.y} color={colors.text} layers={DOT_GLOW_LAYERS} />
+      )}
+
+      {/* Dot label — location · local time */}
+      {state.dotLabel && labelFont && (
+        <SkiaText
+          x={state.dotLabel.x + 6}
+          y={state.dotLabel.y + 4}
+          text={state.dotLabel.text}
+          font={labelFont}
           color={colors.text}
-          layers={[
-            { r: 14, opacity: 0.04, blur: 10 },
-            { r: 7, opacity: 0.12, blur: 5 },
-            { r: 3.5, opacity: 0.3, blur: 2 },
-            { r: 2, opacity: 1 },
-          ]}
+          opacity={light ? 0.4 : 0.3}
         />
+      )}
+
+      {/* Pole markers — tiny crosses */}
+      {state.northPole && (
+        <>
+          <Rect x={state.northPole.x - 3} y={state.northPole.y - 0.4} width={6} height={0.8} color={colors.accent} opacity={light ? 0.2 : 0.15} />
+          <Rect x={state.northPole.x - 0.4} y={state.northPole.y - 3} width={0.8} height={6} color={colors.accent} opacity={light ? 0.2 : 0.15} />
+        </>
+      )}
+      {state.southPole && (
+        <>
+          <Rect x={state.southPole.x - 3} y={state.southPole.y - 0.4} width={6} height={0.8} color={colors.accent} opacity={light ? 0.2 : 0.15} />
+          <Rect x={state.southPole.x - 0.4} y={state.southPole.y - 3} width={0.8} height={6} color={colors.accent} opacity={light ? 0.2 : 0.15} />
+        </>
       )}
     </Canvas>
   );

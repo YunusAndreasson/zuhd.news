@@ -4,6 +4,7 @@ import { PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact } from '../lib/haptics';
+import { displayLocation } from '../lib/place-names';
 import type { Category } from '../types';
 
 interface ArticleRowProps {
@@ -14,6 +15,7 @@ interface ArticleRowProps {
   location: string | null;
   onPress: (slug: string, category: Category) => void;
   onLongPress?: (slug: string) => void;
+  delayLongPress?: number;
 }
 
 export const ArticleRow = memo(function ArticleRow({
@@ -24,6 +26,7 @@ export const ArticleRow = memo(function ArticleRow({
   location,
   onPress,
   onLongPress,
+  delayLongPress = 400,
 }: ArticleRowProps) {
   const { colors, font, typography, textStyles } = useTheme();
   const handlePress = useCallback(() => {
@@ -39,7 +42,7 @@ export const ArticleRow = memo(function ArticleRow({
     <Pressable
       onPress={handlePress}
       onLongPress={onLongPress ? handleLongPress : undefined}
-      delayLongPress={400}
+      delayLongPress={delayLongPress}
       style={({ pressed }) => [
         styles.row,
         { borderBottomColor: colors.rule },
@@ -58,7 +61,7 @@ export const ArticleRow = memo(function ArticleRow({
         style={[textStyles.smallCapsXs, { marginTop: SPACING.xs }]}
       >
         {category} · {formatTimeAgo(addedAt)}
-        {location ? ` · ${location}` : ''}
+        {location ? ` · ${displayLocation(location)}` : ''}
       </Text>
     </Pressable>
   );

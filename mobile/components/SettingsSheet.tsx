@@ -5,7 +5,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
-import { memo, useCallback } from 'react';
+import { memo } from 'react';
 import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import {
   type AppearanceMode,
@@ -16,9 +16,11 @@ import {
 } from '../constants/theme';
 import { useSheetUrl } from '../hooks/useSheetUrl';
 import { useTheme } from '../hooks/useTheme';
-import { hapticTick } from '../lib/haptics';
+import { hapticImpact, hapticTick } from '../lib/haptics';
 import { SheetHandle } from './SheetHandle';
 import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
+
+const SettingsHandle = () => <SheetHandle title="settings" />;
 
 // ---------------------------------------------------------------------------
 // Option row — plain text selectors, zuhd-style
@@ -31,38 +33,47 @@ interface OptionRowProps<T extends string> {
   onSelect: (v: T) => void;
 }
 
-function OptionRow<T extends string>({ label, options, selected, onSelect }: OptionRowProps<T>) {
+function OptionRow<T extends string>({ label, options, selected, onSelect, hint }: OptionRowProps<T> & { hint?: string }) {
   const { colors, font, typography, textStyles } = useTheme();
   return (
     <View accessibilityRole="radiogroup" accessibilityLabel={label}>
       <Text style={textStyles.smallCapsXs}>{label}</Text>
+      {hint && (
+        <Text style={{ fontFamily: font.regular, fontSize: typography.sizeXs, color: colors.textSecondary, marginTop: 2 }}>
+          {hint}
+        </Text>
+      )}
       <View style={styles.optionRow}>
-        {options.map((opt) => (
-          <Pressable
-            key={opt.value}
-            onPress={() => {
-              if (opt.value !== selected) {
-                hapticTick();
-                onSelect(opt.value);
-              }
-            }}
-            hitSlop={12}
-            style={({ pressed }) => pressed && PRESSED_STYLE}
-            accessibilityRole="radio"
-            accessibilityState={{ selected: opt.value === selected }}
-            accessibilityLabel={opt.label}
-          >
-            <Text
-              style={{
-                fontFamily: font.semiBold,
-                fontSize: typography.sizeSm,
-                color: opt.value === selected ? colors.text : colors.textSecondary,
+        {options.map((opt) => {
+          const active = opt.value === selected;
+          return (
+            <Pressable
+              key={opt.value}
+              onPress={() => {
+                if (!active) {
+                  hapticTick();
+                  onSelect(opt.value);
+                }
               }}
+              hitSlop={12}
+              style={({ pressed }) => pressed && PRESSED_STYLE}
+              accessibilityRole="radio"
+              accessibilityState={{ selected: active }}
+              accessibilityLabel={opt.label}
             >
-              {opt.label}
-            </Text>
-          </Pressable>
-        ))}
+              <Text
+                style={{
+                  fontFamily: font.semiBold,
+                  fontSize: typography.sizeSm,
+                  color: active ? colors.text : colors.textSecondary,
+                }}
+              >
+                {opt.label}
+              </Text>
+              {active && <View style={[styles.activeIndicator, { backgroundColor: colors.text }]} />}
+            </Pressable>
+          );
+        })}
       </View>
     </View>
   );
@@ -76,7 +87,7 @@ function FooterLink({ label, onPress }: { label: string; onPress: () => void }) 
   const { colors, font, typography } = useTheme();
   return (
     <Pressable
-      onPress={() => { hapticTick(); onPress(); }}
+      onPress={() => { hapticImpact(); onPress(); }}
       hitSlop={8}
       style={({ pressed }) => pressed && PRESSED_STYLE}
       accessibilityRole="link"
@@ -133,8 +144,6 @@ export const SettingsSheet = memo(function SettingsSheet({
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
   const { openUrl, handleDismiss } = useSheetUrl(sheetRef, onDismiss);
 
-  const SettingsHandle = useCallback(() => <SheetHandle title="settings" />, []);
-
   return (
     <BottomSheetModal
       ref={sheetRef}
@@ -162,7 +171,7 @@ export const SettingsSheet = memo(function SettingsSheet({
         <OptionRow label="haptics" options={ON_OFF_OPTIONS} selected={preferences.haptics ? 'on' : 'off'} onSelect={(v) => setHaptics(v === 'on')} />
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        <OptionRow label="notifications" options={ON_OFF_OPTIONS} selected={preferences.notifications ? 'on' : 'off'} onSelect={(v) => setNotifications(v === 'on')} />
+        <OptionRow label="notifications" hint="Daily briefing reminder and breaking news alerts" options={ON_OFF_OPTIONS} selected={preferences.notifications ? 'on' : 'off'} onSelect={(v) => setNotifications(v === 'on')} />
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
         {/* About */}
@@ -201,6 +210,11 @@ const styles = StyleSheet.create({
   divider: {
     height: StyleSheet.hairlineWidth,
     marginVertical: SPACING.md,
+  },
+  activeIndicator: {
+    height: 1.5,
+    borderRadius: 1,
+    marginTop: 3,
   },
   footerLinks: {
     flexDirection: 'row',

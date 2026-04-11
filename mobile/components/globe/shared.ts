@@ -1,4 +1,5 @@
 import type { SkPath } from '@shopify/react-native-skia';
+import { geoArea } from 'd3-geo';
 import { feature, mesh } from 'topojson-client';
 import type { GeometryCollection, Topology } from 'topojson-specification';
 import countriesTopo from '../../data/countries-110m.json';
@@ -25,6 +26,38 @@ export const bordersMesh = mesh(
   countriesData.objects.countries!,
   (a, b) => a !== b,
 );
+
+// Precomputed bounding boxes for fast point-in-country pre-filtering.
+// [minLng, minLat, maxLng, maxLat] per feature — avoids expensive
+// geoContains polygon tests for points clearly outside.
+export const countryBboxes: [number, number, number, number][] = countries.features.map((f) => {
+  let minLng = Infinity;
+  let minLat = Infinity;
+  let maxLng = -Infinity;
+  let maxLat = -Infinity;
+  const walk = (coords: number[] | number[][] | number[][][] | number[][][][]) => {
+    if (typeof coords[0] === 'number') {
+      const lng = coords[0] as number;
+      const lat = coords[1] as number;
+      if (lng < minLng) minLng = lng;
+      if (lng > maxLng) maxLng = lng;
+      if (lat < minLat) minLat = lat;
+      if (lat > maxLat) maxLat = lat;
+    } else {
+      for (const c of coords) walk(c as number[] | number[][] | number[][][]);
+    }
+  };
+  if (f.geometry) walk((f.geometry as GeoJSON.Polygon | GeoJSON.MultiPolygon).coordinates);
+  return [minLng, minLat, maxLng, maxLat] as [number, number, number, number];
+});
+
+// Precomputed spherical areas (steradians) per country.
+// Used to scale country highlight opacity so small nations are more visible.
+export const countryAreas: Record<string, number> = {};
+for (const f of countries.features) {
+  const name = f.properties?.name;
+  if (name) countryAreas[name] = geoArea(f);
+}
 
 const DEG = 180 / Math.PI;
 

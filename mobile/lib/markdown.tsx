@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { StyleSheet, Text, type TextStyle } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import type { ColorPalette, FontSet, Typography } from '../constants/theme';
+import { displayLocation } from './place-names';
 
 export type Segment = { type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link'; text: string; url?: string };
 
@@ -163,7 +164,7 @@ export function renderSentences(
       const rest = sentence.startsWith(prefix) ? sentence.slice(prefix.length) : sentence;
       return (
         <Text key={i} style={[mdStyles.sentence, sizeStyle]} selectable>
-          <Text style={mdStyles.dateline}>{location.toLowerCase()}</Text>
+          <Text style={mdStyles.dateline}>{(displayLocation(location) ?? location).toLowerCase()}</Text>
           {'  '}
           {renderSegments(parseInline(rest), mdStyles)}
         </Text>

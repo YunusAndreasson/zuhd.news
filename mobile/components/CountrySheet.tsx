@@ -7,8 +7,8 @@ import { memo, useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { displayLocation } from '../lib/place-names';
 import type { TapResult } from './globe/MiniGlobe';
-import { SheetHandle } from './SheetHandle';
 import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
 
 function KeyStat({ label, value }: { label: string; value: string | null | undefined }) {
@@ -73,7 +73,22 @@ export const CountrySheet = memo(function CountrySheet({
 }: CountrySheetProps) {
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
-  const CountryHandle = useCallback(() => <SheetHandle />, []);
+  const flag = country?.data?.flag;
+  const name = country?.countryName;
+  const CountryHandle = useCallback(
+    () => (
+      <View style={styles.handle}>
+        <View style={[styles.handleIndicator, { backgroundColor: colors.rule }]} />
+        {(flag || name) && (
+          <View style={styles.handleRow}>
+            {flag && <Text style={styles.handleFlag}>{flag}</Text>}
+            {name && <Text style={[styles.handleTitle, textStyles.smallCaps]}>{name}</Text>}
+          </View>
+        )}
+      </View>
+    ),
+    [flag, name, colors.rule, textStyles.smallCaps],
+  );
 
   return (
     <BottomSheetModal
@@ -92,42 +107,6 @@ export const CountrySheet = memo(function CountrySheet({
       >
         {country?.data && (
           <>
-            {/* Identity — city + country hero */}
-            <View style={styles.countryIdentity}>
-              <View style={styles.countryIdentityText}>
-                <Text
-                  selectable
-                  style={[
-                    styles.countryLocation,
-                    {
-                      fontFamily: font.bold,
-                      fontSize: typography.sizeH1 * 0.75,
-                      lineHeight: typography.sizeH1 * 0.75 * typography.leadingHeading,
-                      color: colors.textEmphasis,
-                    },
-                  ]}
-                >
-                  {country.countryName}
-                </Text>
-                <Text
-                  selectable
-                  style={[
-                    styles.countryName,
-                    {
-                      fontFamily: font.regular,
-                      fontSize: typography.sizeSm,
-                      color: colors.textSecondary,
-                    },
-                  ]}
-                >
-                  {country.data.official}
-                </Text>
-              </View>
-              <Text style={[styles.countryFlag, { fontSize: typography.sizeH1 * 1.3 }]}>
-                {country.data.flag}
-              </Text>
-            </View>
-
             {/* Key stats — at-a-glance numbers */}
             <View style={[styles.countryKeyStats, { borderBottomColor: colors.rule }]}>
               <KeyStat label="population" value={country.data.population} />
@@ -167,7 +146,11 @@ export const CountrySheet = memo(function CountrySheet({
             )}
 
             {/* Detail rows — ordered by user interest */}
-            <CountryRow label="Capital" value={country.data.capital} />
+            <CountryRow
+              label="Official name"
+              value={country.data.official !== country.countryName ? country.data.official : null}
+            />
+            <CountryRow label="Capital" value={displayLocation(country.data.capital)} />
             <CountryRow label="Languages" value={country.data.languages} />
             <CountryRow
               label="Currency"
@@ -200,6 +183,26 @@ export const CountrySheet = memo(function CountrySheet({
 });
 
 const styles = StyleSheet.create({
+  handle: {
+    alignItems: 'center',
+    paddingTop: SPACING.sm,
+    paddingBottom: SPACING.md,
+  },
+  handleIndicator: {
+    width: 36,
+    height: 4,
+    borderRadius: 2,
+  },
+  handleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.sm,
+    marginTop: SPACING.sm,
+  },
+  handleFlag: {
+    fontSize: 20,
+  },
+  handleTitle: {},
   sheetLabel: {
     marginBottom: SPACING.sm,
   },
@@ -210,18 +213,6 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.sm,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
-  countryIdentity: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.md,
-    marginBottom: SPACING.md,
-  },
-  countryIdentityText: {
-    flex: 1,
-  },
-  countryFlag: {},
-  countryLocation: {},
-  countryName: {},
   countryKeyStats: {
     flexDirection: 'row',
     justifyContent: 'space-between',
