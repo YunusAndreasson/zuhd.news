@@ -9,12 +9,10 @@ import { spawnSync } from 'child_process'
 import { parseFrontmatter } from './lib/frontmatter.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
-const CONTENT_DIR = join(ROOT, 'content', 'articles')
 const BRIEFS_PATH = join(ROOT, 'content', '.context-briefs.json')
-const LEDGER_PATH = join(ROOT, 'content', '.story-ledger.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'edu-context-prompt.md')
 const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
-const MAX_BRIEFS_PER_CYCLE = 4
+const MAX_BRIEFS_PER_CYCLE = 5
 
 // --- Read this cycle's new articles ---
 if (!existsSync(NEW_ARTICLES_PATH)) {
@@ -31,17 +29,6 @@ if (newFiles.length === 0) {
 const briefs = existsSync(BRIEFS_PATH) ? JSON.parse(readFileSync(BRIEFS_PATH, 'utf8')) : {}
 const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
 
-// --- Build set of slugs that already have thread context (3+ article threads) ---
-const threadSlugs = new Set()
-if (existsSync(LEDGER_PATH)) {
-  const ledger = JSON.parse(readFileSync(LEDGER_PATH, 'utf8'))
-  for (const story of ledger.stories) {
-    if ((story.articles || []).length >= 3) {
-      for (const slug of story.articles) threadSlugs.add(slug)
-    }
-  }
-}
-
 // --- Build candidate list ---
 const candidates = []
 for (const file of newFiles) {
@@ -49,10 +36,8 @@ for (const file of newFiles) {
   if (!filename.endsWith('.md')) continue
   const slug = basename(filename, '.md')
 
-  // Skip if already has any context brief
+  // Skip if already has a context brief
   if (briefs[slug]) continue
-  // Skip if in a thread that qualifies for chronological context
-  if (threadSlugs.has(slug)) continue
 
   const fullPath = join(ROOT, file)
   if (!existsSync(fullPath)) continue
@@ -72,7 +57,7 @@ for (const file of newFiles) {
 }
 
 if (candidates.length === 0) {
-  console.log('No candidates for edu context — all articles have thread context or existing briefs.')
+  console.log('No candidates for edu context — all articles already have briefs.')
   process.exit(0)
 }
 

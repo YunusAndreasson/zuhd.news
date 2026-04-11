@@ -17,8 +17,6 @@ const contextToHtml = (timeline) => {
   for (const entry of timeline) {
     if (entry.heading) {
       html += `<p class="context-heading">${entry.heading}</p><p>${entry.body}</p>`
-    } else if (entry.year) {
-      html += `<p><strong class="context-year">${entry.year}</strong> ${entry.body}</p>`
     } else {
       html += `<p>${entry.body}</p>`
     }
@@ -244,10 +242,9 @@ if (existsSync(ledgerPath)) {
   console.log(`  Ledger: ${threadLookup.size} articles mapped to ${ledger.stories.filter(s => s.arc !== 'fading' && s.importance >= 2).length} threads (${briefCount} context briefs)`)
 }
 
-// Edu context: articles with slug-keyed briefs get context without needing a thread
+// Context briefs: articles with slug-keyed briefs get context
 let eduCount = 0
 for (const [id, brief] of Object.entries(contextBriefs)) {
-  if (brief.type !== 'edu') continue
   const existing = threadLookup.get(id)
   if (existing?.threadContext) continue // already has thread context — skip
   threadLookup.set(id, {

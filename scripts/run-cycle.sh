@@ -222,20 +222,15 @@ $BODY_LENGTHS
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT — $((SECONDS - T3))s" | tee -a "$LOG_FILE"
 
-  # Stage 3.5+3.6: Context briefs + Educational context (independent — run in parallel)
+  # Stage 3.5: Educational context briefs
   echo "" | tee -a "$LOG_FILE"
-  echo "--- Stage 3.5+3.6: Context & Educational briefs (parallel) ---" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.5: Educational context briefs ---" | tee -a "$LOG_FILE"
   T35=$SECONDS
-  timeout 600 node scripts/generate-context.js > /tmp/zuhd-ctx.log 2>&1 &
-  CTX_PID=$!
-  timeout 300 node scripts/generate-edu-context.js > /tmp/zuhd-edu.log 2>&1 &
-  EDU_PID=$!
-  wait $CTX_PID; CONTEXT_EXIT=$?
-  wait $EDU_PID; EDU_EXIT=$?
-  cat /tmp/zuhd-ctx.log >> "$LOG_FILE"
+  timeout 600 node scripts/generate-edu-context.js > /tmp/zuhd-edu.log 2>&1
+  EDU_EXIT=$?
   cat /tmp/zuhd-edu.log >> "$LOG_FILE"
-  rm -f /tmp/zuhd-ctx.log /tmp/zuhd-edu.log
-  echo "Context exit: $CONTEXT_EXIT, Edu exit: $EDU_EXIT — $((SECONDS - T35))s" | tee -a "$LOG_FILE"
+  rm -f /tmp/zuhd-edu.log
+  echo "Edu context exit: $EDU_EXIT — $((SECONDS - T35))s" | tee -a "$LOG_FILE"
 
   # Stage 3b: Build and deploy — always runs, even if editor timed out
   # This ensures articles get published regardless of editor success
