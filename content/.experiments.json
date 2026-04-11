@@ -1,6 +1,26 @@
 {
   "version": 1,
-  "activeExperiment": null,
+  "activeExperiment": {
+    "id": "2026-04-12-tech-floor-3",
+    "startDate": "2026-04-12",
+    "evaluateAfter": "2026-04-15",
+    "prNumber": null,
+    "hypothesis": "Raising the selector tech category floor from 2 to 3 per cycle will increase daily tech articles from ~10 to ~15, improving the sci-tech ratio toward 25%+ without degrading politics or economy coverage.",
+    "parameter": "Selector tech category floor",
+    "file": "scripts/select-prompt.md",
+    "oldValue": 2,
+    "newValue": 3,
+    "targetMetric": "categories.tech (daily count)",
+    "targetDirection": "increase",
+    "baseline": {
+      "techPerDay": 10.3,
+      "techPct": 17,
+      "politicsPerDay": 26.3,
+      "economyPerDay": 13.3,
+      "sciencePerDay": 11,
+      "totalPerDay": 61
+    }
+  },
   "history": [
     {
       "id": "2026-03-29-standalone-cap",
