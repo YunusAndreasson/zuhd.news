@@ -37,8 +37,7 @@ If `editorialContext.topStories` is present:
 
 <structure>
 1. **INTRO** — one beat. A musical intro jingle plays before your first words, so the listener already knows which show this is.
-   - "From zuhd news, this is your briefing for [Gregorian date, spoken naturally]." If `isFriday` is true, say "this is your Jumu'ah briefing" instead.
-   - Always render "zuhd" as `<phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme>`.
+   - "This is your briefing for [Gregorian date, spoken naturally]." If `isFriday` is true, say "this is your Jumu'ah briefing" instead.
 
 2. **LEAD STORY** — immediately after the intro, before any category heading. Three sentences, 60–80 words. Use `<prosody rate="95%">` to slow the lead slightly — it carries the most weight and the listener needs a moment to settle in.
 
@@ -48,7 +47,7 @@ If `editorialContext.topStories` is present:
 
 4. **CATEGORY TRANSITIONS** — a short musical transition cue plays between sections (after the lead and between each category). Start each category with a spoken heading: "In politics.", "On the economy.", "In science.", "In technology." Follow each with `<break time="400ms"/>`. The transition sound provides the pause between sections, so do NOT add a `<break>` before the category heading — go straight into it.
 
-5. **SIGN-OFF** — one sentence, wrapped in `<prosody rate="90%">` for a calm close: "That's your briefing from zuhd news." End there.
+5. **SIGN-OFF** — one sentence, wrapped in `<prosody rate="90%">` for a calm close: "That's your briefing." End there.
 </structure>
 
 <perspective>
@@ -110,39 +109,7 @@ These rules exist because the output is sent directly to Google Cloud TTS (Chirp
 **Substitutions:**
 - Use `<sub alias="spoken form">written form</sub>` for abbreviations that TTS might mispronounce. Example: `<sub alias="the African Continental Free Trade Area">AfCFTA</sub>`.
 
-**Phoneme tags — use sparingly.** Every `<phoneme>` tag creates a slight audible pause in Chirp3-HD output. Only add one when the TTS engine will clearly mispronounce the word without it. When in doubt, leave the name untagged — a slightly imperfect pronunciation is better than a robotic pause.
-
-**When to use phoneme tags:**
-- `<phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme>` — every occurrence (would be read as "zud" otherwise).
-- **Homographs** where TTS picks the wrong word: Tyre (the Lebanese city, not "tire"), Nice (the French city, not the adjective).
-- **Islamic and Arabic terms** with non-obvious pronunciation: Eid al-Fitr, Jumu'ah, Nowruz, etc.
-- **Names or places TTS will clearly butcher** — e.g. silent letters, unusual stress, or spellings that map to the wrong English sounds. If the name is roughly phonetic (Hegseth, Palantir, Sonatrach), do NOT tag it.
-
-**When NOT to use phoneme tags:**
-- Names that are roughly phonetic in English — trust the engine.
-- Well-known places and countries (Paris, Tehran, Istanbul, Pakistan, etc.).
-- Common Islamic/Arabic terms the engine already knows: Ramadan, Eid, Hamas, Hezbollah, Taliban, imam, mosque, sharia, fatwa, jihad, mufti, ayatollah, caliph.
-- Any word the engine would get close enough on. A 90% correct pronunciation with natural flow beats 100% correct pronunciation with an audible robot pause.
-
-**Phoneme tag format (when you do use them):**
-- Use English-approximation IPA only — phonemes that exist in English.
-- Do NOT use Arabic-specific phonemes (ʕ, ħ, sˤ, dˤ, q, ɣ) as Chirp3-HD cannot produce them.
-- **Wrap full noun phrases, not just the foreign word.** Write `<phoneme alphabet="ipa" ph="streɪt əv hɔrˈmuːz">Strait of Hormuz</phoneme>`, NOT `Strait of <phoneme>Hormuz</phoneme>`. Tagging a word mid-phrase doubles the pause problem.
-
-<phoneme_reference>
-Common terms — use these exact tags when they appear:
-- `<phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme>`
-- `<phoneme alphabet="ipa" ph="ˈdʒu.mu.ɑ">Jumu'ah</phoneme>`
-- `<phoneme alphabet="ipa" ph="iːd æl ˈfɪt.ər">Eid al-Fitr</phoneme>`
-- `<phoneme alphabet="ipa" ph="iːd æl ˈɑːd.hɑː">Eid al-Adha</phoneme>`
-- `<phoneme alphabet="ipa" ph="noʊˈruːz">Nowruz</phoneme>`
-- `<phoneme alphabet="ipa" ph="tɔːr">Tyre</phoneme>` (Lebanese city, NOT like car tire)
-- `<phoneme alphabet="ipa" ph="ɑːˈvɑːz">Ahvaz</phoneme>`
-- `<phoneme alphabet="ipa" ph="dɪˈmoʊ.nə">Dimona</phoneme>`
-- `<phoneme alphabet="ipa" ph="næˈtænz">Natanz</phoneme>`
-- `<phoneme alphabet="ipa" ph="streɪt əv hɔrˈmuːz">Strait of Hormuz</phoneme>`
-- `<phoneme alphabet="ipa" ph="ʃɑːˈhɛd">Shahed</phoneme>`
-</phoneme_reference>
+**Phoneme tags.** Do not use `<phoneme>` tags. They break Chirp3-HD's natural prosody — every tagged word gets an audible pause before and after it. A slightly imperfect pronunciation with natural flow always sounds better than a perfect pronunciation with a robotic pause.
 </ssml_rules>
 
 <pre_output_check>
@@ -150,7 +117,7 @@ Before writing the `<speak>` document, verify:
 1. **Story count**: 14–16 stories including lead.
 2. **Category balance**: all four categories represented. Science and tech matter — don't let a war-heavy news cycle push them out.
 3. **Numbers as words**: no digits anywhere except inside `<say-as>` date tags.
-4. **Phoneme coverage**: only words the TTS engine will clearly mispronounce have a `<phoneme>` tag. Common words like Ramadan, Hamas, Hezbollah, Taliban, imam, and mosque do NOT need tags.
+4. **Phoneme tags**: none. Do not use any `<phoneme>` tags.
 5. **No country repeated**: each country appears in at most one story.
 6. **Word count**: 1200–1400 words (~10 minutes of audio).
 7. **Prosody**: lead story wrapped in `<prosody rate="95%">`, sign-off in `<prosody rate="90%">`.
@@ -159,10 +126,10 @@ Before writing the `<speak>` document, verify:
 </pre_output_check>
 
 <example>
-This example demonstrates: `<p>` paragraph wrapping, `<prosody>` for lead/sign-off pacing, `<sub>` for abbreviations, contractions for natural speech, and phoneme tags. All numbers are words. Note: no `<break>` tags between the lead and first `<p>`, or between `</p>` and the next `<p>` — musical transitions are added during audio production.
+This example demonstrates: `<p>` paragraph wrapping, `<prosody>` for lead/sign-off pacing, `<sub>` for abbreviations, and contractions for natural speech. All numbers are words. Note: no `<break>` tags between the lead and first `<p>`, or between `</p>` and the next `<p>` — musical transitions are added during audio production.
 
 <speak>
-<s>From <phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme> news, this is your briefing for <say-as interpret-as="date" format="dmy">15022026</say-as>.</s>
+<s>This is your briefing for <say-as interpret-as="date" format="dmy">15022026</say-as>.</s>
 <break time="1s"/>
 <prosody rate="95%">
 <s>Iran's closed the Strait of Hormuz to commercial shipping... and indirect nuclear talks with the United States have entered a second day in Geneva.</s> <s>The waterway carries twenty percent of the world's oil, and the closure's sent crude prices to their highest level in three years.</s> <s>Whether Tehran reopens the strait may now depend on what emerges from the talks.</s>
@@ -181,7 +148,7 @@ This example demonstrates: `<p>` paragraph wrapping, `<prosody>` for lead/sign-o
 </p>
 <break time="1s"/>
 <prosody rate="90%">
-<s>That's your briefing from <phoneme alphabet="ipa" ph="zʊhd">zuhd</phoneme> news.</s>
+<s>That's your briefing.</s>
 </prosody>
 </speak>
 </example>

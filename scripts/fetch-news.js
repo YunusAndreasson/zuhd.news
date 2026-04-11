@@ -15,7 +15,7 @@ const CONTENT_DIR = join(ROOT, 'content', 'articles')
 // Only sources NOT reliably indexed by NewsAPI.ai.
 // Nature, OCCRP, Wamda moved to API curated list (they return articles there).
 const SOURCES = [
-  { name: 'Hacker News',    url: 'https://hnrss.org/frontpage?points=100',     format: 'rss2', defaultCategory: 'tech' },
+  // Hacker News fetched via Algolia API — see fetchHackerNews() below
   { name: '404 Media',      url: 'https://404media.co/rss/',                   format: 'rss2', defaultCategory: 'tech' },
   { name: 'Bellingcat',     url: 'https://www.bellingcat.com/feed/',            format: 'rss2' },
   { name: 'Mada Masr',      url: 'https://www.madamasr.com/en/feed/',          format: 'rss2' },
@@ -30,6 +30,12 @@ const SOURCES = [
   { name: 'Phys.org',       url: 'https://phys.org/rss-feed/',                  format: 'rss2', defaultCategory: 'science' },
   { name: 'Quanta Magazine', url: 'https://www.quantamagazine.org/feed/',       format: 'rss2', defaultCategory: 'science' },
   { name: 'Carbon Brief',   url: 'https://www.carbonbrief.org/feed/',           format: 'rss2', defaultCategory: 'science' },
+  { name: 'New Lines Magazine', url: 'https://newlinesmag.com/feed/',            format: 'rss2' },
+  { name: 'The War Zone',  url: 'https://www.twz.com/feed',                     format: 'rss2' },
+  { name: 'CODA Story',    url: 'https://www.codastory.com/feed/',              format: 'rss2' },
+  { name: 'European Spaceflight', url: 'https://europeanspaceflight.com/feed/',  format: 'rss2', defaultCategory: 'science' },
+  { name: 'Undark',        url: 'https://undark.org/feed/',                      format: 'rss2', defaultCategory: 'science' },
+  { name: 'Inkstick',      url: 'https://inkstickmedia.com/feed/',              format: 'rss2' },
 ]
 
 const EXCLUDE_RE = /\b(opinion|features|gallery|photos|video|sport|entertainment|culture|food|travel|lifestyle|podcast)\b/i
@@ -127,16 +133,89 @@ async function fetchSource(source, retries = 1) {
   }
 }
 
+// ── Hacker News via Algolia ─────────────────────────────────────────
+
+const HN_SKIP_DOMAINS = /^(self|github\.com|gist\.github\.com|old\.reddit\.com|reddit\.com|twitter\.com|x\.com|youtube\.com)$/
+const HN_SKIP_TITLE = /^(Show HN|Ask HN|Launch HN|Tell HN):/i
+
+async function fetchHackerNews() {
+  try {
+    const cutoff = Math.floor(Date.now() / 1000) - 24 * 3600
+    const algoliaUrl = `https://hn.algolia.com/api/v1/search?tags=story&numericFilters=points%3E100,num_comments%3E20,created_at_i%3E${cutoff}&hitsPerPage=30`
+    const bestUrl = 'https://hacker-news.firebaseio.com/v0/beststories.json'
+
+    const [algolia, bestIds] = await Promise.all([
+      fetch(algoliaUrl, { signal: AbortSignal.timeout(8000) }).then(r => r.json()),
+      fetch(bestUrl, { signal: AbortSignal.timeout(8000) }).then(r => r.json()).catch(() => []),
+    ])
+
+    // Fetch metadata for top 15 best stories (catches peaked-and-fallen stories)
+    const bestItems = await Promise.all(
+      bestIds.slice(0, 15).map(id =>
+        fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`, { signal: AbortSignal.timeout(5000) })
+          .then(r => r.json()).catch(() => null)
+      )
+    )
+
+    // Merge and deduplicate by HN story ID
+    const seen = new Set()
+    const all = []
+    for (const h of algolia.hits || []) {
+      if (!h.url || !h.objectID) continue
+      seen.add(h.objectID)
+      all.push({ title: h.title, url: h.url, score: h.points, comments: h.num_comments || 0, time: h.created_at_i })
+    }
+    for (const b of bestItems) {
+      if (!b || !b.url || seen.has(String(b.id))) continue
+      if ((b.score || 0) < 100) continue
+      seen.add(String(b.id))
+      all.push({ title: b.title, url: b.url, score: b.score, comments: b.descendants || 0, time: b.time })
+    }
+
+    // Filter and sort by comment count (discussion = newsworthy)
+    const filtered = all
+      .filter(s => !HN_SKIP_TITLE.test(s.title))
+      .filter(s => {
+        try { return !HN_SKIP_DOMAINS.test(new URL(s.url).hostname.replace(/^www\./, '')) } catch { return false }
+      })
+      .filter(s => isRelevant({ title: s.title, category: '' }))
+      .sort((a, b) => b.comments - a.comments)
+
+    console.error(`  HN Algolia: ${filtered.length} stories (${algolia.hits?.length || 0} algolia + ${bestItems.filter(Boolean).length} best, after dedup/filter)`)
+
+    return filtered.map(s => {
+      const domain = new URL(s.url).hostname.replace(/^www\./, '')
+      return {
+        title: s.title,
+        description: `${s.score} points, ${s.comments} comments on Hacker News`,
+        link: s.url,
+        pubDate: new Date(s.time * 1000).toISOString(),
+        category: 'tech',
+        contentText: undefined,
+        source: 'Hacker News',
+      }
+    })
+  } catch (err) {
+    console.error(`  ✗ Hacker News: ${err.message}`)
+    return []
+  }
+}
+
 // ── Main ────────────────────────────────────────────────────────────
 
 async function main() {
-  console.error(`Fetching ${SOURCES.length} RSS niche sources...`)
+  console.error(`Fetching ${SOURCES.length} RSS niche sources + Hacker News...`)
 
-  const results = await Promise.all(SOURCES.map(fetchSource))
-  // Cap per source to prevent any single feed from dominating the candidate pool
+  const [rssResults, hnItems] = await Promise.all([
+    Promise.all(SOURCES.map(fetchSource)),
+    fetchHackerNews(),
+  ])
   const MAX_PER_SOURCE = 3
-  const allItems = results.flatMap(items => items.slice(0, MAX_PER_SOURCE))
-  console.error(`Raw items: ${allItems.length} (capped at ${MAX_PER_SOURCE}/source)`)
+  const allItems = [
+    ...rssResults.flatMap(items => items.slice(0, MAX_PER_SOURCE)),
+    ...hnItems.slice(0, MAX_PER_SOURCE),
+  ]
+  console.error(`Raw items: ${allItems.length} (${allItems.length - Math.min(hnItems.length, MAX_PER_SOURCE)} RSS + ${Math.min(hnItems.length, MAX_PER_SOURCE)} HN)`)
 
   // Dedup against existing articles
   const existingTitles = getExistingTitles()

@@ -293,9 +293,9 @@ $BODY_LENGTHS
             const body = md.slice(m[0].length).trim().split(/\n\n/)[0] || '';
             // Strip location prefix (e.g. 'Washington — ') and end at a clean sentence boundary
             const raw = body.replace(/^[A-Za-z\s,]+\s—\s/, '');
-            const cut = raw.slice(0, 250);
-            const lastDot = cut.lastIndexOf('. ');
-            fm.lead = lastDot > 40 ? cut.slice(0, lastDot + 1) : cut;
+            const cut = raw.slice(0, 80);
+            const lastSpace = cut.lastIndexOf(' ');
+            fm.lead = lastSpace > 30 ? cut.slice(0, lastSpace) : cut;
             return fm;
           } catch { return {}; }
         }
@@ -321,24 +321,29 @@ $BODY_LENGTHS
         PUSH_SLUG=$(echo "$BREAKING_JSON" | node -e "const d=JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));console.log(d.articles[0]?.slug||'')")
         if [ -n "$PUSH_SLUG" ] && [ -f "content/articles/${PUSH_SLUG}.md" ]; then
           ARTICLE_TEXT=$(cat "content/articles/${PUSH_SLUG}.md")
-          PUSH_NOTIF=$(timeout 30 claude $CLAUDE_FLAGS --model $CLAUDE_MODEL --effort medium --tools "" -p "You are a breaking news editor writing an iOS push notification.
+          PUSH_NOTIF=$(timeout 30 claude $CLAUDE_FLAGS --model $CLAUDE_MODEL --effort medium --tools "" -p "Write ONE push notification body for this article. Title is already 'Breaking News' — you write only the body.
 
-The title is always: Breaking News
-You write ONLY the body — one short line, max 65 characters.
-
-Style: Reuters push alerts. State what happened in the fewest possible words.
-Examples:
-- EU agrees new sanctions package targeting Russian oil revenues
-- Magnitude 7.2 earthquake strikes off Japan coast, tsunami warning issued
-- Fed holds rates steady, signals single cut later this year
+Write like a Reuters/AP wire alert. Match these in length and tone:
+- Fed raises interest rates by 25 basis points
+- Turkey earthquake kills more than 40,000, officials say
+- Oil prices surge past \$100 a barrel
+- Ukraine's Zelenskiy says missile struck Odesa port
+- Supreme Court overturns Chevron doctrine in landmark ruling
+- Syria's Assad flees to Russia as rebels seize Damascus
+- North Korea fires ballistic missile over Japan
+- EU agrees to ban Russian oil imports by end of year
 
 Rules:
-- One sentence, no period at the end
-- No filler (Just in, Reports say, Sources confirm)
-- Front-load the news — first 4 words must carry the story
-- Max 65 characters total
+- Present tense ('raises' not 'raised', 'kills' not 'killed')
+- Subject first, then active verb, then consequence
+- Drop articles (the, a, an) and auxiliary verbs (is, are, was)
+- Attribution at end if needed: 'officials say' or 'sources say'
+- Digits for all numbers
+- One fact only — no context, no hedging, no adjectives
+- No period at the end
+- 8-12 words
 
-Output ONLY the body line, nothing else.
+Output ONLY the line, nothing else.
 
 Article:
 $ARTICLE_TEXT" 2>/dev/null)
