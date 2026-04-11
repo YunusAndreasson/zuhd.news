@@ -787,7 +787,8 @@ export const MiniGlobe = memo(function MiniGlobe({
     setState({ landPath, bordersPath, countryPath, countryName: cachedCountryRef.current?.properties?.name ?? null, nightPath, twilightPath, graticulePath, qiblaPath: hasQibla ? qiblaP : null, sourceArcs: hasSourceArcs ? srcArcs : null, northPole, southPole, dot, dotLabel, makkah, hotspotGlows });
   }, []);
 
-  // Throttle reprojection to 32ms (~30fps), skip throttle on first call
+  // Throttle reprojection to 32ms (~30fps), skip throttle on first call.
+  // 16ms overwhelms the JS thread (d3-geo projection + setState can't complete in one frame).
   const lastTimeRef = useSharedValue(0);
   const hasFired = useSharedValue(false);
 
@@ -818,7 +819,13 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       if (loLat != null && loLng != null && hiLat != null && hiLng != null) {
         lat = loLat + (hiLat - loLat) * frac;
-        lng = loLng + (hiLng - loLng) * frac;
+        // Shortest-arc longitude — prevents wild globe spins across the
+        // antimeridian (e.g. Tokyo 140°E → Alaska -150°W goes 30° east,
+        // not 290° west through Europe).
+        let dLng = hiLng - loLng;
+        if (dLng > 180) dLng -= 360;
+        if (dLng < -180) dLng += 360;
+        lng = loLng + dLng * frac;
       } else if (loLat != null && loLng != null) {
         lat = loLat;
         lng = loLng;

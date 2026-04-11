@@ -191,7 +191,7 @@ export const ArticlePage = memo(function ArticlePage({
             style={[
               styles.title,
               {
-                fontFamily: font.bold,
+                ...font.bold,
                 fontSize: typography.sizeH1,
                 lineHeight: typography.sizeH1 * typography.leadingHeading,
                 color: colors.textEmphasis,

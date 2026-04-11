@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, type TextStyle } from 'react-native';
+import { Dimensions, Platform, StyleSheet, type TextStyle } from 'react-native';
 import type { Category } from '../types';
 
 // ---------------------------------------------------------------------------
@@ -98,21 +98,38 @@ export const BG_RGB: Record<'dark' | 'light', [number, number, number]> = {
 // Font families
 // ---------------------------------------------------------------------------
 
-export const FONT_SOURCE = {
-  regular: 'SourceSans3-Regular',
-  semiBold: 'SourceSans3-SemiBold',
-  bold: 'SourceSans3-Bold',
-  smallCaps: 'SourceSans3SC-SemiBold',
-} as const satisfies Record<string, string>;
+/** Style subset produced by each font-set entry (fontFamily + optional fontWeight). */
+export type FontEntry = {
+  fontFamily: string | undefined;
+  fontWeight?: TextStyle['fontWeight'];
+};
 
-export const FONT_SYSTEM = {
-  regular: undefined as string | undefined,
-  semiBold: undefined as string | undefined,
-  bold: undefined as string | undefined,
-  smallCaps: undefined as string | undefined,
-} as const;
+export type FontSet = {
+  regular: FontEntry;
+  semiBold: FontEntry;
+  bold: FontEntry;
+  italic: FontEntry;
+  boldItalic: FontEntry;
+  smallCaps: FontEntry;
+};
 
-export type FontSet = { regular: string | undefined; semiBold: string | undefined; bold: string | undefined; smallCaps: string | undefined };
+export const FONT_SOURCE: FontSet = {
+  regular: { fontFamily: 'SourceSans3-Regular' },
+  semiBold: { fontFamily: 'SourceSans3-SemiBold' },
+  bold: { fontFamily: 'SourceSans3-Bold' },
+  italic: { fontFamily: 'SourceSans3-Italic' },
+  boldItalic: { fontFamily: 'SourceSans3-BoldItalic' },
+  smallCaps: { fontFamily: 'SourceSans3SC-SemiBold' },
+};
+
+export const FONT_SYSTEM: FontSet = {
+  regular: { fontFamily: undefined, fontWeight: '400' },
+  semiBold: { fontFamily: undefined, fontWeight: '600' },
+  bold: { fontFamily: undefined, fontWeight: '700' },
+  italic: { fontFamily: undefined, fontWeight: '400' },
+  boldItalic: { fontFamily: undefined, fontWeight: '700' },
+  smallCaps: { fontFamily: undefined, fontWeight: '600' },
+};
 
 // ---------------------------------------------------------------------------
 // Typography (can be rebuilt with a size scale)
@@ -183,18 +200,36 @@ export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech']
 /** Shared pressed-state style for Pressable components */
 export const PRESSED_STYLE = { opacity: 0.5 } as const;
 
+/** Android-specific base: remove extra padding above/below text for consistent rhythm */
+const androidTextBase: TextStyle = Platform.OS === 'android'
+  ? { includeFontPadding: false, textAlignVertical: 'center' }
+  : {};
+
 /** Build reusable text style bases from resolved theme values */
 export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: Typography) {
   return {
+    /** Sheet titles — largest small-caps tier (17pt) */
+    sheetTitle: {
+      ...font.smallCaps,
+      ...androidTextBase,
+      fontSize: typography.sizeBase,
+      lineHeight: typography.sizeBase * typography.leadingBody,
+      letterSpacing: typography.trackingCaps,
+      color: colors.textSecondary,
+    } as TextStyle,
+    /** Section labels — mid small-caps tier (13pt) */
     smallCaps: {
-      fontFamily: font.smallCaps,
+      ...font.smallCaps,
+      ...androidTextBase,
       fontSize: typography.sizeSm,
       lineHeight: typography.sizeSm * typography.leadingBody,
       letterSpacing: typography.trackingCaps,
       color: colors.textSecondary,
     } as TextStyle,
+    /** Metadata — smallest small-caps tier (11pt) */
     smallCapsXs: {
-      fontFamily: font.smallCaps,
+      ...font.smallCaps,
+      ...androidTextBase,
       fontSize: typography.sizeXs,
       lineHeight: typography.sizeXs * typography.leadingBody,
       letterSpacing: typography.trackingCaps,
@@ -206,9 +241,11 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
       textShadowRadius: 2,
     } as TextStyle,
     body: {
-      fontFamily: font.regular,
+      ...font.regular,
+      ...androidTextBase,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
+      fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.text,
     } as TextStyle,
   };

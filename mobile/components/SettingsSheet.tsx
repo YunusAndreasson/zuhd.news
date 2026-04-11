@@ -39,7 +39,7 @@ function OptionRow<T extends string>({ label, options, selected, onSelect, hint 
     <View accessibilityRole="radiogroup" accessibilityLabel={label}>
       <Text style={textStyles.smallCapsXs}>{label}</Text>
       {hint && (
-        <Text style={{ fontFamily: font.regular, fontSize: typography.sizeXs, color: colors.textSecondary, marginTop: 2 }}>
+        <Text style={{ ...font.regular, fontSize: typography.sizeXs, color: colors.textSecondary, marginTop: 2 }}>
           {hint}
         </Text>
       )}
@@ -63,7 +63,7 @@ function OptionRow<T extends string>({ label, options, selected, onSelect, hint 
             >
               <Text
                 style={{
-                  fontFamily: font.semiBold,
+                  ...font.semiBold,
                   fontSize: typography.sizeSm,
                   color: active ? colors.text : colors.textSecondary,
                 }}
@@ -93,7 +93,7 @@ function FooterLink({ label, onPress }: { label: string; onPress: () => void }) 
       accessibilityRole="link"
       accessibilityLabel={label}
     >
-      <Text style={{ fontFamily: font.semiBold, fontSize: typography.sizeSm, color: colors.text }}>
+      <Text style={{ ...font.semiBold, fontSize: typography.sizeSm, color: colors.text }}>
         {label}
       </Text>
     </Pressable>
@@ -186,7 +186,7 @@ export const SettingsSheet = memo(function SettingsSheet({
 
         <Text
           style={{
-            fontFamily: font.regular,
+            ...font.regular,
             fontSize: typography.sizeXs,
             color: colors.textSecondary,
             opacity: 0.5,

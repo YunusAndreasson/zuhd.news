@@ -152,7 +152,7 @@ export const SearchSheet = memo(function SearchSheet({
           style={[
             styles.input,
             {
-              fontFamily: font.regular,
+              ...font.regular,
               fontSize: typography.sizeBase,
               color: colors.text,
             },
@@ -171,7 +171,7 @@ export const SearchSheet = memo(function SearchSheet({
         <View style={styles.emptyState}>
           <Text
             style={{
-              fontFamily: font.regular,
+              ...font.regular,
               fontSize: typography.sizeSm,
               color: colors.textSecondary,
             }}

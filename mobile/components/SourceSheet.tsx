@@ -70,7 +70,7 @@ export const SourceSheet = memo(function SourceSheet({
             <Text
               style={[
                 styles.coverageHeading,
-                { fontFamily: font.regular, fontSize: typography.sizeSm, color: colors.accent },
+                { ...font.italic, fontSize: typography.sizeSm, color: colors.accent, fontStyle: 'italic' },
               ]}
             >
               {divergence != null &&
@@ -116,7 +116,7 @@ export const SourceSheet = memo(function SourceSheet({
                       style={[
                         styles.sourceName,
                         {
-                          fontFamily: font.semiBold,
+                          ...font.semiBold,
                           fontSize: typography.sizeBase,
                           color: colors.text,
                         },
@@ -140,7 +140,7 @@ export const SourceSheet = memo(function SourceSheet({
                             style={[
                               styles.tonePillText,
                               {
-                                fontFamily: font.semiBold,
+                                ...font.semiBold,
                                 fontSize: typography.sizeXs,
                                 color: colors.bg,
                                 letterSpacing: typography.trackingCaps,
@@ -183,7 +183,6 @@ export const SourceSheet = memo(function SourceSheet({
 
 const styles = StyleSheet.create({
   coverageHeading: {
-    fontStyle: 'italic',
     marginBottom: SPACING.md,
   },
   sheetBody: {},

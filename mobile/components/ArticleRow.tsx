@@ -52,7 +52,7 @@ export const ArticleRow = memo(function ArticleRow({
       accessibilityLabel={title}
     >
       <Text
-        style={{ fontFamily: font.semiBold, fontSize: typography.sizeLg, lineHeight: typography.sizeLg * typography.leadingHeading, color: colors.text }}
+        style={{ ...font.semiBold, fontSize: typography.sizeLg, lineHeight: typography.sizeLg * typography.leadingHeading, color: colors.text }}
         numberOfLines={2}
       >
         {title}

@@ -63,7 +63,7 @@ export const ContextSheet = memo(function ContextSheet({
             style={[
               styles.entryYear,
               {
-                fontFamily: font.semiBold,
+                ...font.semiBold,
                 fontSize: typography.sizeXs,
                 color: colors.accent,
                 letterSpacing: typography.trackingCaps,
@@ -89,7 +89,7 @@ export const ContextSheet = memo(function ContextSheet({
             style={[
               styles.sectionHeading,
               textStyles.smallCapsXs,
-              { color: colors.accent, fontFamily: font.semiBold },
+              { color: colors.accent, ...font.semiBold },
             ]}
           >
             {entry.heading}
