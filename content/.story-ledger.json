@@ -2,13 +2,146 @@
   "version": 1,
   "stories": [
     {
+      "id": "china-set-to-supply-iran-manpads-arms",
+      "label": "US Intelligence Shows China Set to Supply Iran Arms, CNN Reports",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-china-set-to-supply-iran-manpads-arms"
+      ],
+      "eventUri": "eng-11560110",
+      "summary": "US intelligence shows China preparing to ship MANPADS — shoulder-fired anti-aircraft missiles — to Iran within weeks. This is the first direct Chinese arms transfer to Iran during the war, transforming a bilateral US-Iran conflict into a potential proxy confrontation between the world's two largest economies. Lead with the MANPADS: cheap missiles that could threaten low-flying US aircraft and raise the cost of American air operations without triggering a direct China-US confrontation. The reader tracking the Iran war will see Beijing making a calculated bet — and the structural question of what happens when a third great power picks a side.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_States_Intelligence_Community",
+        "http://en.wikipedia.org/wiki/CNN",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Anti-aircraft_warfare",
+        "http://en.wikipedia.org/wiki/Man-portable_air-defense_system",
+        "http://en.wikipedia.org/wiki/Ceasefire"
+      ]
+    },
+    {
+      "id": "mamdani-sewer-socialism-nyc-100-days",
+      "label": "Mamdani, Leaning Into 'Sewer Socialism,' Gets His Hands Dirty",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-mamdani-sewer-socialism-nyc-100-days"
+      ],
+      "eventUri": "eng-11552475",
+      "summary": "At 100 days, NYC Mayor Zohran Mamdani — the city's first Muslim mayor — is governing through 'sewer socialism': fixing public services instead of chasing big-ticket projects. Lead with the concept: a century-old socialist municipal tradition being revived by a Muslim-American mayor in the country's largest city. The reader will see practical, constituent-focused governance that contrasts sharply with the federal dysfunction they follow daily. The structural question: can a mayor who fixes sewers and bus routes build a political model that outlasts the culture wars?",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Sewer_socialism",
+        "http://en.wikipedia.org/wiki/Zohran_Mamdani",
+        "http://en.wikipedia.org/wiki/John_Adams",
+        "http://en.wikipedia.org/wiki/Socialism",
+        "http://en.wikipedia.org/wiki/Mayor"
+      ]
+    },
+    {
+      "id": "bhutan-sells-70-percent-bitcoin-sovereign",
+      "label": "Bhutan has sold 70% of its bitcoin in 18 months. It may have stopped BTC mining too.",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-bhutan-sells-70-percent-bitcoin-sovereign"
+      ],
+      "eventUri": "eng-11560105",
+      "summary": "Bhutan has quietly sold 70% of its sovereign bitcoin holdings — $22.68M transferred Thursday alone — and may have stopped mining entirely. This was the most unusual government crypto experiment in the world: hydropower-mined bitcoin as a sovereign wealth strategy for a nation of 780,000 people. Lead with the unwinding: the real-world test of sovereign bitcoin adoption is ending in retreat. The reader who follows crypto and macro will see what happens when a small state bets on a volatile asset and the numbers stop working.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bitcoin",
+        "http://en.wikipedia.org/wiki/Bhutan",
+        "http://en.wikipedia.org/wiki/Sovereign_wealth_fund",
+        "http://en.wikipedia.org/wiki/Mining",
+        "http://en.wikipedia.org/wiki/Proof_of_concept"
+      ]
+    },
+    {
+      "id": "egypt-lucky-fintech-23m-credit-expansion",
+      "label": "Egypt's Lucky raises $23m to expand credit services and regional growth",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-egypt-lucky-fintech-23m-credit-expansion"
+      ],
+      "eventUri": null,
+      "summary": "Egyptian fintech Lucky raised $23M to expand credit services — one of the largest MENA fintech rounds in 2026. Lead with the market signal: while GCC economies reel from the Iran war and Gulf tourism collapses, Egypt's startup ecosystem is attracting growth capital for consumer credit. The reader tracking MENA tech will see a bet on Egypt's 100M+ population and massive unbanked majority — fintech as the financial infrastructure the state never built.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-withdraws-cop33-bid-energy-crisis",
+      "label": "DeBriefed 10 April 2026: Worst energy crisis 'ever' | India withdraws COP33 bid | Drag artists and climate change",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-india-withdraws-cop33-bid-energy-crisis"
+      ],
+      "eventUri": null,
+      "summary": "India has withdrawn its bid to host COP33 — the world's third-largest carbon emitter stepping back from climate leadership as the Iran war triggers what the IEA calls the worst energy crisis ever. Lead with the withdrawal: India's retreat signals that climate diplomacy is losing ground to the immediate politics of energy costs and war-driven fuel disruption. The reader will see the connection: the same conflict driving $4/gallon gas is now dismantling the institutional architecture for addressing the climate crisis.",
+      "conceptUris": []
+    },
+    {
+      "id": "scary-ai-stories-cognitive-science",
+      "label": "Why Do We Tell Ourselves Scary Stories About AI?",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-scary-ai-stories-cognitive-science"
+      ],
+      "eventUri": null,
+      "summary": "Cognitive scientists are unpacking why humans project survival instincts, resource-hoarding, and manipulation onto AI systems — finding that our doom scenarios say more about human psychology than about what language models actually do. Lead with the inversion: the narratives that dominate AI discourse (scheming, deception, self-preservation) map onto evolved human threat-detection circuits, not onto anything the models exhibit. The reader who works in tech and navigates AI hype daily will see their own industry's narratives dissected through cognitive science.",
+      "conceptUris": []
+    },
+    {
+      "id": "uk-ofcom-nudification-jail-threat-grok",
+      "label": "UK government threatens tech bosses with jail time if they do not adequately fight nudification tools",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-uk-ofcom-nudification-jail-threat-grok"
+      ],
+      "eventUri": null,
+      "summary": "UK regulator Ofcom will threaten tech executives with prison if they fail to combat AI nudification tools — a direct response to the Grok scandal that produced millions of deepfake nude images of women and children. Lead with the criminal liability: the UK is making individual executives personally responsible for AI-generated sexual abuse imagery on their platforms. The reader will see the sharpest regulatory response yet to generative AI harms — and the question of whether personal criminal risk changes tech company behavior where fines haven't.",
+      "conceptUris": []
+    },
+    {
       "id": "iran-us-islamabad-talks-vance-ghalibaf",
       "label": "Pakistani MFA expects constructive talks between US, Iran",
       "firstSeen": "2026-04-11T04:09:34.088Z",
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-iran-us-islamabad-talks-vance-ghalibaf"
@@ -33,7 +166,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-conscientious-objections-war-surge-us-military"
@@ -49,7 +182,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-los-angeles-schools-strike-85-percent-workers"
@@ -65,7 +198,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-strait-hormuz-gas-prices-iran-talks-oil"
@@ -81,7 +214,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-kalshi-arizona-federal-judge-prediction-market"
@@ -97,7 +230,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-artemis-ii-splashdown-moon-mission"
@@ -113,7 +246,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-ai-drones-climate-resilient-wheat-selection"
@@ -129,7 +262,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-11-ai-doctor-recording-lawsuit-sutter-abridge"
@@ -145,7 +278,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-strike-kills-13-members-of-lebanon-state-security"
@@ -170,7 +303,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-kurds-refuse-trump-war-bid-iraq-iran"
@@ -186,7 +319,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-sudan-nyala-healthcare-strike-burhan-military-reshuffle"
@@ -202,7 +335,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-doj-scrap-watergate-presidential-records-act"
@@ -218,7 +351,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-federal-court-trump-tariffs-ieepa-challenge"
@@ -243,7 +376,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-pakistan-diesel-price-cut-rs135-ceasefire"
@@ -259,7 +392,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-white-house-iran-war-insider-trading-warning"
@@ -284,7 +417,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-marine-heatwaves-double-cyclone-economic-damage"
@@ -300,7 +433,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-first-contact-complex-life-stromatolites-shark-bay"
@@ -316,7 +449,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-north-korea-drift-crypto-theft-280-million"
@@ -332,7 +465,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-04-10-france-government-linux-desktop-windows-exit",
@@ -349,7 +482,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-bars-spain-gaza-ceasefire-monitoring"
@@ -374,7 +507,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-european-airports-jet-fuel-shortage-hormuz"
@@ -399,7 +532,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-egypt-activist-ahmed-douma-detention-extended"
@@ -415,7 +548,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-hong-kong-stablecoin-licenses-hsbc-stanchart"
@@ -440,7 +573,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-secret-project-abc-conjecture-computer-verification"
@@ -456,7 +589,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-moderna-mrna-cancer-vaccine-naming-dilemma"
@@ -472,7 +605,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-florida-investigates-openai-chatgpt-deadly-shooting"
@@ -488,7 +621,7 @@
       "lastCovered": "2026-04-11T04:09:34.088Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-10-japan-missiles-us-china-collision-course",
@@ -505,7 +638,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-10-india-wastewater-drug-resistance-genes-amr",
@@ -523,7 +656,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-iran-lebanon-ceasefire-test-regional-sway"
@@ -539,7 +672,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-south-africa-trc-timol-sabotage-inquiry"
@@ -555,7 +688,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-korea-peninsula-security-iran-war-rebalancing"
@@ -571,7 +704,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-adb-asia-pacific-growth-iran-war-inflation"
@@ -596,7 +729,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-bird-flu-h5n1-dairy-cattle-vaccination-window"
@@ -612,7 +745,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-eth-zurich-17000-qubit-array-fidelity"
@@ -628,7 +761,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-dutch-hospitals-ransomware-chipsoft-disruption"
@@ -644,7 +777,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-prosthetic-emg-deep-learning-two-sensors"
@@ -660,7 +793,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-eu-nato-rift-us-military-bases-iran-war"
@@ -676,7 +809,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-34-settlements-west-bank-ceasefire"
@@ -692,7 +825,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-bjp-uniform-civil-code-west-bengal-six-months"
@@ -717,7 +850,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-china-factory-prices-growth-41-month-deflation-ends"
@@ -742,7 +875,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-african-funeral-costs-families-poverty"
@@ -758,7 +891,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-medieval-japanese-poetry-trees-space-weather"
@@ -774,7 +907,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-mcp-over-skills-ai-agent-tooling"
@@ -790,227 +923,13 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-russia-rfe-journalist-cyberattacks-ukraine-fsb"
       ],
       "eventUri": null,
       "summary": "Russia's FSB arrested a former Radio Free Europe journalist, accusing them of joining a Telegram channel run by Ukrainian intelligence and passing information used in cyberattacks against Russian media covering the war. Lead with the mechanism: joining a Telegram channel is now espionage in Russia. The deliberate blurring of journalism and intelligence work criminalizes reporting on the war and gives the state a prosecutorial template for any journalist with digital contacts abroad. The reader in tech sees the weaponization of metadata — who you follow defines your crime.",
-      "conceptUris": []
-    },
-    {
-      "id": "amazon-mineral-extraction-clean-energy-paradox",
-      "label": "Amazon at risk from mineral extraction for clean energy",
-      "firstSeen": "2026-04-09T17:08:54.419Z",
-      "lastCovered": "2026-04-10T08:09:28.322Z",
-      "coverageCount": 3,
-      "category": "science",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-09-amazon-mineral-extraction-clean-energy-paradox",
-        "2026-04-09-amazon-mineral-extraction-clean-energy-risk",
-        "2026-04-10-amazon-mineral-extraction-clean-energy-risk"
-      ],
-      "eventUri": null,
-      "summary": "The energy transition requires critical minerals — lithium, cobalt, rare earths — and the Amazon basin is rich in them. Lead with the paradox: to save the climate, we may destroy the world's largest carbon sink. The extraction pressure is increasing as clean energy demand grows, putting Indigenous territories and biodiversity at risk from the very industry meant to protect them. SciDev.Net from the Global South science perspective. The reader who takes things apart to understand how they work should see the supply chain: their EV battery started in someone's rainforest.",
-      "conceptUris": []
-    },
-    {
-      "id": "sterile-neutrinos-death-knell-experiments",
-      "label": "Experiments Ring the 'Death Knell' for Sterile Neutrinos",
-      "firstSeen": "2026-04-09T22:09:22.153Z",
-      "lastCovered": "2026-04-10T08:09:28.322Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-09-sterile-neutrinos-death-knell-experiments",
-        "2026-04-10-sterile-neutrinos-death-knell-experiments"
-      ],
-      "eventUri": null,
-      "summary": "Decades of anomalous experimental results that appeared to support the sterile neutrino — a hypothetical particle that would have solved multiple mysteries in physics — have been ruled out by recent experiments. Lead with what's lost: physicists had hoped sterile neutrinos would explain dark matter and several persistent experimental anomalies. Now those anomalies need new explanations. The reader who follows fundamental science sees how even promising hypotheses die when evidence doesn't cooperate.",
-      "conceptUris": []
-    },
-    {
-      "id": "khamenei-hormuz-new-phase-ceasefire-iran",
-      "label": "Mojtaba Khamenei signals new Strait of Hormuz phase amid shaky ceasefire: 'Not seeking war, won't forfeit rights'",
-      "firstSeen": "2026-04-10T04:05:18.954Z",
-      "lastCovered": "2026-04-10T04:05:18.954Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-khamenei-hormuz-new-phase-ceasefire-iran"
-      ],
-      "eventUri": "rus-2049531",
-      "summary": "Iran's new Supreme Leader Mojtaba Khamenei — son of Ali Khamenei, who was killed in the war — announces a 'new phase' for Strait of Hormuz management on state television. Lead with what 'new phase' means: Hormuz carries 20% of global oil and has been effectively shut for a month. Is Iran signaling it will reopen conditionally, or tighten its grip as leverage for Islamabad talks? The phrase 'won't forfeit rights' is a negotiating position broadcast to the world hours before peace talks begin. The reader tracking oil prices and the ceasefire sees the stakes.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ali_Khamenei",
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Mojtaba_Khamenei",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz"
-      ]
-    },
-    {
-      "id": "india-election-adjudication-voter-roll-skew",
-      "label": "Seat-wise data reveals skew in adjudication cuts",
-      "firstSeen": "2026-04-10T04:05:18.954Z",
-      "lastCovered": "2026-04-10T04:05:18.954Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-india-election-adjudication-voter-roll-skew"
-      ],
-      "eventUri": "eng-11546722",
-      "summary": "India's Election Commission released assembly-level voter roll data after an adjudication exercise, and the numbers reveal a stark skew: deletions disproportionately hit specific constituencies in West Bengal. Lead with the pattern — this isn't random administrative cleanup, it's targeted voter roll manipulation in the world's largest democracy. The reader who takes systems apart should see electoral infrastructure as code: who writes the rules for who gets deleted?",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Adjudication",
-        "http://en.wikipedia.org/wiki/Election_Commission_of_India",
-        "http://en.wikipedia.org/wiki/West_Bengal",
-        "http://en.wikipedia.org/wiki/Union_territory"
-      ]
-    },
-    {
-      "id": "mythos-ai-zero-day-bessent-powell-bank-ceos",
-      "label": "Mythos AI threat prompts Bessent, Powell to convene bank CEOs for urgent talks",
-      "firstSeen": "2026-04-10T04:05:18.954Z",
-      "lastCovered": "2026-04-10T04:05:18.954Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-mythos-ai-zero-day-bessent-powell-bank-ceos"
-      ],
-      "eventUri": "eng-11548864",
-      "summary": "Treasury Secretary Bessent and Fed Chair Powell called an emergency meeting with bank CEOs after Anthropic's Mythos model demonstrated the ability to discover and weaponize zero-day vulnerabilities in financial systems. Lead with the meeting itself: when the Treasury Secretary and Fed Chair convene bank CEOs urgently, the threat is real. The reader in tech sees the intersection they've been tracking — AI capability outpacing institutional defenses. The angle is systemic: if an AI can find zero-days in banking infrastructure, every financial institution is exposed.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Vulnerability_(computing)",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Computer_security",
-        "http://en.wikipedia.org/wiki/Chair_of_the_Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Jerome_Powell"
-      ]
-    },
-    {
-      "id": "singapore-air-con-oil-crunch-hormuz-asia",
-      "label": "Singapore dials down on air‑con as oil crunch grips Asia",
-      "firstSeen": "2026-04-10T04:05:18.954Z",
-      "lastCovered": "2026-04-10T04:05:18.954Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-singapore-air-con-oil-crunch-hormuz-asia"
-      ],
-      "eventUri": null,
-      "summary": "Singapore — where Lee Kuan Yew once credited air conditioning with transforming the nation — is rationing AC as the Strait of Hormuz closure chokes oil and gas supplies to Southeast Asia. Lead with the Lee Kuan Yew quote and the irony: a city-state built on climate control is losing it because of a war 6,000km away. The reader tracking the Iran war's economic cascade sees the second-order effects: Hormuz closure → energy crisis → a tropical megacity can't cool itself. This is what war looks like for civilians who aren't in it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Air_conditioning",
-        "http://en.wikipedia.org/wiki/Singapore",
-        "http://en.wikipedia.org/wiki/Lee_Kuan_Yew",
-        "http://en.wikipedia.org/wiki/Prime_minister",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz"
-      ]
-    },
-    {
-      "id": "chimps-civil-war-ngogo-scientists",
-      "label": "World's Largest Group of Chimps Waging Deadly 'Civil War,' Scientists Discover",
-      "firstSeen": "2026-04-10T04:05:18.954Z",
-      "lastCovered": "2026-04-10T04:05:18.954Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-chimps-civil-war-ngogo-scientists"
-      ],
-      "eventUri": null,
-      "summary": "At least 24 chimpanzees have been killed in a war that split the Ngogo group — the world's largest studied wild chimp community — in two, turning former kin into enemies. Lead with the number and the rupture: this isn't territorial aggression between strangers, it's a community that fractured along social lines. Scientists are watching coalition warfare, strategic killing, and territorial partition in real time. The reader who takes systems apart sees a mirror — group size, resource pressure, and factional splits produce violence in primates too.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-war-60-nations-energy-crisis-response",
-      "label": "Iran war analysis: How 60 nations have responded to the global energy crisis",
-      "firstSeen": "2026-04-10T04:05:18.954Z",
-      "lastCovered": "2026-04-10T04:05:18.954Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-iran-war-60-nations-energy-crisis-response"
-      ],
-      "eventUri": null,
-      "summary": "One month into the US-Israel war on Iran, Carbon Brief maps how 60+ countries have responded to the global energy crisis — from emergency coal restarts to accelerated renewables deployment. Lead with the divergence: some nations are doubling down on fossil fuels while others are using the crisis to fast-track the energy transition. The structural question is whether a war that shut the world's most important oil chokepoint will ultimately accelerate or delay decarbonization. The reader tracking both climate and the Iran war sees the long game.",
-      "conceptUris": []
-    },
-    {
-      "id": "nasa-orion-leaky-valves-artemis-redesign",
-      "label": "NASA homes in on likely redesign to fix Orion spacecraft's leaky valves",
-      "firstSeen": "2026-04-10T04:05:18.954Z",
-      "lastCovered": "2026-04-10T04:05:18.954Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-nasa-orion-leaky-valves-artemis-redesign"
-      ],
-      "eventUri": "eng-11549796",
-      "summary": "Artemis II astronauts are days from splashdown, but ground controllers just revamped the flight timeline after discovering helium leaks in Orion's service module valves that will likely require a redesign before Artemis III. Lead with the engineering tension: a crewed spacecraft is in deep space right now with leaky valves, and NASA is simultaneously planning how to fix the problem for the next mission. The reader in tech sees the systems engineering challenge — you can't patch hardware in orbit.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artemis_2",
-        "http://en.wikipedia.org/wiki/Apollo_command_and_service_module",
-        "http://en.wikipedia.org/wiki/Orion_(spacecraft)",
-        "http://en.wikipedia.org/wiki/Rocket_engine",
-        "http://en.wikipedia.org/wiki/Helium"
-      ]
-    },
-    {
-      "id": "quantum-safe-bitcoin-no-soft-fork-200-dollars",
-      "label": "Quantum-safe bitcoin now possible without a soft fork, but costs $200 a pop",
-      "firstSeen": "2026-04-10T04:05:18.954Z",
-      "lastCovered": "2026-04-10T04:05:18.954Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-quantum-safe-bitcoin-no-soft-fork-200-dollars"
-      ],
-      "eventUri": "eng-11556911",
-      "summary": "A StarkWare researcher published the first method for making bitcoin transactions quantum-safe without requiring a protocol-level soft fork — but each transaction costs $200. Lead with the tradeoff: quantum computing threatens every bitcoin wallet, and the first fix exists but is economically brutal. BIP-360 (the proper protocol fix) is years away. The reader who follows both crypto and quantum computing sees the gap between theoretical security and practical deployment. This is a last-resort emergency tool, not a solution.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bitcoin",
-        "http://en.wikipedia.org/wiki/Bitcoin_network",
-        "http://en.wikipedia.org/wiki/Public-key_cryptography",
-        "http://en.wikipedia.org/wiki/Digital_signature",
-        "http://en.wikipedia.org/wiki/Cryptography"
-      ]
-    },
-    {
-      "id": "microsoft-dark-patterns-onedrive-storage",
-      "label": "Microsoft is employing dark patterns to goad users into paying for storage?",
-      "firstSeen": "2026-04-10T04:05:18.954Z",
-      "lastCovered": "2026-04-10T04:05:18.954Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-microsoft-dark-patterns-onedrive-storage"
-      ],
-      "eventUri": null,
-      "summary": "A developer documents how Microsoft uses deceptive UI patterns — misleading dialog boxes, pre-selected options, confusing cancellation flows — to push users into paying for OneDrive storage they don't need. Lead with the specific dark pattern examples: 251 HN points and 140 comments means this resonates with the tech community. The reader who takes systems apart should see the business model: when a company can't compete on product quality, it competes on user confusion. This is consumer accountability reporting from the community that builds these systems.",
       "conceptUris": []
     }
   ]
