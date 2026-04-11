@@ -10,6 +10,14 @@ import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
 
+// Shared parser — reused across all sources (same options for RSS/Atom/RDF)
+const rssParser = new XMLParser({
+  ignoreAttributes: false,
+  attributeNamePrefix: '@_',
+  processEntities: true,
+  htmlEntities: true,
+})
+
 // ── Sources — only those NOT reliably indexed by NewsAPI.ai ─────────
 
 // Only sources NOT reliably indexed by NewsAPI.ai.
@@ -139,8 +147,7 @@ async function fetchSource(source, retries = 1) {
     const res = await fetch(source.url, { signal: AbortSignal.timeout(10000), headers: { 'User-Agent': 'zuhd-news/1.0 (+https://zuhd.news)' } })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     const xml = await res.text()
-    const parser = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: '@_' })
-    const feed = parser.parse(xml)
+    const feed = rssParser.parse(xml)
 
     const rawItems = source.format === 'rdf' ? parseRdfItems(feed)
       : source.format === 'atom' ? parseAtomItems(feed)
@@ -153,7 +160,9 @@ async function fetchSource(source, retries = 1) {
       return fetchSource(source, retries - 1)
     }
     console.error(`  ✗ ${source.name}: ${err.message}`)
-    return []
+    const empty = []
+    empty._error = err.message
+    return empty
   }
 }
 
@@ -225,7 +234,9 @@ async function fetchHackerNews() {
     }))
   } catch (err) {
     console.error(`  ✗ Hacker News: ${err.message}`)
-    return []
+    const empty = []
+    empty._error = err.message
+    return empty
   }
 }
 
@@ -239,6 +250,17 @@ async function main() {
     fetchHackerNews(),
   ])
   const MAX_PER_SOURCE = 3
+
+  // Per-source stats for dashboard monitoring
+  const sourceStats = SOURCES.map((src, i) => ({
+    name: src.name,
+    fetched: rssResults[i].length,
+    used: Math.min(rssResults[i].length, MAX_PER_SOURCE),
+    error: rssResults[i].length === 0 && rssResults[i]._error ? rssResults[i]._error : null,
+  }))
+  sourceStats.push({ name: 'Hacker News', fetched: hnItems.length, used: Math.min(hnItems.length, MAX_PER_SOURCE), error: hnItems._error || null })
+  try { writeFileSync('/tmp/zuhd-feed-source-stats.json', JSON.stringify({ fetchedAt: new Date().toISOString(), sources: sourceStats })) } catch {}
+
   const allItems = [
     ...rssResults.flatMap(items => items.slice(0, MAX_PER_SOURCE)),
     ...hnItems.slice(0, MAX_PER_SOURCE),

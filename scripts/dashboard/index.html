@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>zuhd.news dashboard</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="wordmark"><span class="header-dot" id="header-dot"></span>zuhd<span class="wordmark-sep"> / </span>dashboard</div>
+  <div class="clock" id="clock"></div>
+</div>
+
+<nav class="tab-strip" role="tablist">
+  <button class="tab-btn" role="tab" aria-selected="true" data-tab="pipeline">pipeline</button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-tab="quality">quality</button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-tab="logs">logs</button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-tab="experiment">experiment<span class="exp-tab-dot" id="exp-tab-dot" hidden></span></button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-tab="editorial">editorial</button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-tab="status">status</button>
+</nav>
+
+<!-- ── Pipeline ──────────────────────────────────────────────── -->
+<div class="tab-panel active" id="panel-pipeline">
+
+  <section>
+    <h3>today at a glance</h3>
+    <div class="audit-row" id="glance-row"></div>
+    <div id="glance-alerts"></div>
+  </section>
+
+  <section>
+    <h3>current state</h3>
+    <dl class="state-grid" id="state-grid">
+      <dt>cycle</dt><dd id="st-cycle">...</dd>
+      <dt>last completed</dt><dd id="st-last">...</dd>
+      <dt>next scheduled</dt><dd id="st-next">...</dd>
+      <dt>site freshness</dt><dd id="st-fresh">...</dd>
+    </dl>
+  </section>
+
+  <section>
+    <h3>7-day cycle history</h3>
+    <div class="cycle-grid" id="cycle-grid"></div>
+  </section>
+
+  <section>
+    <h3>feed source health</h3>
+    <div id="feed-health"></div>
+  </section>
+
+  <section>
+    <h3>cycle duration trend</h3>
+    <div id="chart-duration"></div>
+  </section>
+
+  <section>
+    <h3>articles published per cycle</h3>
+    <div id="chart-published"></div>
+  </section>
+
+  <section>
+    <h3>stage time breakdown</h3>
+    <div id="chart-stages"></div>
+  </section>
+
+  <section>
+    <h3>funnel efficiency</h3>
+    <div id="chart-funnel-trend"></div>
+  </section>
+
+  <section>
+    <h3>funnel (last cycle)</h3>
+    <div class="funnel" id="funnel"></div>
+  </section>
+
+  <section>
+    <h3>audio briefing</h3>
+    <div id="briefing-info"></div>
+  </section>
+
+  <section>
+    <h3>push notifications</h3>
+    <div id="push-history"></div>
+  </section>
+
+</div>
+
+<!-- ── Quality ───────────────────────────────────────────────── -->
+<div class="tab-panel" id="panel-quality">
+
+  <section>
+    <h3>categories (today)</h3>
+    <div id="cat-bars"></div>
+  </section>
+
+  <section>
+    <h3>source diversity</h3>
+    <div id="source-info"></div>
+  </section>
+
+  <section>
+    <h3>geographic spread</h3>
+    <div class="region-tags" id="region-tags"></div>
+  </section>
+
+  <section>
+    <h3>freshness</h3>
+    <div class="stat-row" id="freshness-stats"></div>
+  </section>
+
+  <section>
+    <h3>story arcs</h3>
+    <div class="stat-row" id="arc-stats"></div>
+  </section>
+
+  <section>
+    <h3>articles per day</h3>
+    <div id="chart-articles-day"></div>
+  </section>
+
+  <section>
+    <h3>category balance (7 days)</h3>
+    <div id="chart-cat-trend"></div>
+  </section>
+
+  <section>
+    <h3>edu context coverage</h3>
+    <div id="edu-coverage"></div>
+  </section>
+
+  <section>
+    <h3>duplicates &amp; validation</h3>
+    <div id="quality-issues"></div>
+  </section>
+
+</div>
+
+<!-- ── Logs ───────────────────────────────────────────────────── -->
+<div class="tab-panel" id="panel-logs">
+
+  <section>
+    <h3>cycle log browser</h3>
+    <select class="log-select" id="log-select"></select>
+    <div class="log-stages" id="log-stages"></div>
+  </section>
+
+  <section>
+    <h3>raw log tail <span class="live-badge" id="live-badge" hidden>live</span></h3>
+    <pre class="log-pre" id="log-pre"></pre>
+  </section>
+
+</div>
+
+<!-- ── Experiment ────────────────────────────────────────────── -->
+<div class="tab-panel" id="panel-experiment">
+
+  <section>
+    <h3>active experiment</h3>
+    <div id="exp-active"></div>
+  </section>
+
+  <section>
+    <h3>tracking</h3>
+    <div id="exp-tracking"></div>
+  </section>
+
+  <section>
+    <h3>history</h3>
+    <div id="exp-history"></div>
+  </section>
+
+</div>
+
+<!-- ── Editorial ─────────────────────────────────────────────── -->
+<div class="tab-panel" id="panel-editorial">
+
+  <section>
+    <h3>daily audit <span class="stale-badge" id="audit-stale" hidden>stale</span></h3>
+    <div class="meta-line" id="audit-meta"></div>
+    <div id="audit-metrics"></div>
+    <div id="audit-experiment"></div>
+    <div id="audit-prose"></div>
+  </section>
+
+  <section>
+    <h3>weekly reflection <span class="stale-badge" id="reflect-stale" hidden>stale</span></h3>
+    <div class="meta-line" id="reflect-meta"></div>
+    <div id="reflect-sections"></div>
+  </section>
+
+
+</div>
+
+<!-- ── Status ────────────────────────────────────────────────── -->
+<div class="tab-panel" id="panel-status">
+
+  <section>
+    <h3>health indicators</h3>
+    <ul class="health-list" id="health-list"></ul>
+  </section>
+
+  <section>
+    <h3>systemd</h3>
+    <dl class="state-grid" id="systemd-info"></dl>
+  </section>
+
+  <section>
+    <h3>7-day trend</h3>
+    <table class="trend-table" id="trend-table"></table>
+  </section>
+
+</div>
+
+<script>
+// ── Tabs ──────────────────────────────────────────────────────
+const tabs = document.querySelectorAll('.tab-btn')
+const panels = document.querySelectorAll('.tab-panel')
+const tabLoaders = { pipeline: loadPipeline, quality: loadQuality, logs: loadLogs, experiment: loadExperiment, editorial: loadEditorial, status: loadStatus }
+let activeTab = 'pipeline'
+
+tabs.forEach(btn => {
+  btn.addEventListener('click', () => {
+    tabs.forEach(b => b.setAttribute('aria-selected', 'false'))
+    panels.forEach(p => p.classList.remove('active'))
+    btn.setAttribute('aria-selected', 'true')
+    activeTab = btn.dataset.tab
+    document.getElementById(`panel-${activeTab}`).classList.add('active')
+    tabLoaders[activeTab]?.()
+  })
+})
+
+// ── Clock ─────────────────────────────────────────────────────
+function updateClock() {
+  document.getElementById('clock').textContent = new Date().toISOString().slice(0, 19).replace('T', ' ') + ' utc'
+}
+updateClock()
+setInterval(updateClock, 1000)
+
+// ── Fetch helper ──────────────────────────────────────────────
+async function api(path) {
+  const res = await fetch(path)
+  if (!res.ok) return null
+  return res.json()
+}
+
+// ── Bar chart helper ─────────────────────────────��────────────
+function renderBars(container, items, maxVal) {
+  if (!maxVal) maxVal = Math.max(...items.map(i => i.value), 1)
+  container.innerHTML = items.map(i => `
+    <div class="bar-row">
+      <span class="bar-label">${i.label}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(i.value / maxVal * 100)}%"></div></div>
+      <span class="bar-value">${i.display || i.value}</span>
+    </div>
+  `).join('')
+}
+
+// ── SVG Chart Helpers ────────────────────────────────────────
+const CHART = { w: 900, h: 160, pad: { t: 10, r: 50, b: 28, l: 55 } }
+
+function svgOpen(w = CHART.w, h = CHART.h) {
+  return `<svg viewBox="0 0 ${w} ${h}" class="chart" xmlns="http://www.w3.org/2000/svg">`
+}
+
+function chartScales(data, yKey, w = CHART.w, h = CHART.h) {
+  const p = CHART.pad
+  const pw = w - p.l - p.r, ph = h - p.t - p.b
+  const vals = data.map(d => typeof yKey === 'function' ? yKey(d) : d[yKey]).filter(v => v != null)
+  const yMax = Math.max(...vals, 1) * 1.1
+  return {
+    x: (i) => p.l + (i / Math.max(data.length - 1, 1)) * pw,
+    y: (v) => p.t + ph - (v / yMax) * ph,
+    pw, ph, yMax, p,
+    barW: Math.max(pw / data.length - 2, 3),
+    barX: (i) => p.l + (i / data.length) * pw + 1,
+  }
+}
+
+function xLabels(data, labelFn, s) {
+  // Show ~7 labels max
+  const step = Math.max(1, Math.floor(data.length / 7))
+  return data.map((d, i) => {
+    if (i % step !== 0 && i !== data.length - 1) return ''
+    return `<text x="${s.x(i)}" y="${CHART.h - 4}" class="chart-label">${labelFn(d)}</text>`
+  }).join('')
+}
+
+function yAxis(s, ticks = 4) {
+  const lines = []
+  for (let i = 0; i <= ticks; i++) {
+    const v = Math.round((s.yMax / ticks) * i)
+    const y = s.y(v)
+    lines.push(`<line x1="${s.p.l}" x2="${CHART.w - s.p.r}" y1="${y}" y2="${y}" class="chart-grid"/>`)
+    lines.push(`<text x="${s.p.l - 6}" y="${y + 3}" class="chart-label" text-anchor="end">${v}</text>`)
+  }
+  return lines.join('')
+}
+
+function renderLineChart(container, data, yKey, opts = {}) {
+  if (!data.length) { container.innerHTML = '<span class="empty">no data</span>'; return }
+  const s = chartScales(data, yKey)
+  const vals = data.map(d => typeof yKey === 'function' ? yKey(d) : d[yKey])
+  const points = vals.map((v, i) => v != null ? `${s.x(i)},${s.y(v)}` : null).filter(Boolean)
+  const labelFn = opts.labelFn || (d => d.label || '')
+
+  // Area fill
+  const areaPoints = `${s.p.l},${s.y(0)} ${points.join(' ')} ${s.x(data.length - 1)},${s.y(0)}`
+
+  let html = svgOpen()
+  html += yAxis(s)
+  html += `<polygon points="${areaPoints}" class="chart-area"/>`
+  html += `<polyline points="${points.join(' ')}" class="chart-line"/>`
+  // Dots + value labels
+  vals.forEach((v, i) => {
+    if (v == null) return
+    html += `<circle cx="${s.x(i)}" cy="${s.y(v)}" r="2.5" class="chart-dot"/>`
+    // Value on hover via title
+    html += `<title>${labelFn(data[i])}: ${opts.unit ? v + opts.unit : v}</title>`
+  })
+  // Values on dots (show last + min + max)
+  const maxI = vals.indexOf(Math.max(...vals.filter(v => v != null)))
+  const minI = vals.indexOf(Math.min(...vals.filter(v => v != null)))
+  for (const i of new Set([maxI, minI, vals.length - 1])) {
+    if (vals[i] == null) continue
+    html += `<text x="${s.x(i)}" y="${s.y(vals[i]) - 6}" class="chart-value">${opts.unit ? vals[i] + opts.unit : vals[i]}</text>`
+  }
+  html += xLabels(data, labelFn, s)
+  html += '</svg>'
+  container.innerHTML = html
+}
+
+function renderBarChart(container, data, yKey, opts = {}) {
+  if (!data.length) { container.innerHTML = '<span class="empty">no data</span>'; return }
+  const s = chartScales(data, yKey)
+  const vals = data.map(d => typeof yKey === 'function' ? yKey(d) : d[yKey])
+  const labelFn = opts.labelFn || (d => d.label || '')
+
+  let html = svgOpen()
+  html += yAxis(s)
+  vals.forEach((v, i) => {
+    if (v == null) return
+    const bh = s.y(0) - s.y(v)
+    const color = opts.colorFn ? opts.colorFn(data[i], v) : 'var(--text-secondary)'
+    html += `<rect x="${s.barX(i)}" y="${s.y(v)}" width="${s.barW}" height="${bh}" fill="${color}" rx="1"><title>${labelFn(data[i])}: ${v}</title></rect>`
+  })
+  html += xLabels(data, labelFn, s)
+  html += '</svg>'
+  container.innerHTML = html
+}
+
+function renderStackedBars(container, data, keys, colors, opts = {}) {
+  if (!data.length) { container.innerHTML = '<span class="empty">no data</span>'; return }
+  // Compute max stacked total
+  const totals = data.map(d => keys.reduce((sum, k) => sum + (d[k] || 0), 0))
+  const yMax = Math.max(...totals, 1) * 1.1
+  const s = chartScales(data, () => 0)
+  s.yMax = yMax
+  // Recompute y with new yMax
+  const p = CHART.pad, ph = CHART.h - p.t - p.b
+  const yFn = (v) => p.t + ph - (v / yMax) * ph
+  const labelFn = opts.labelFn || (d => d.label || '')
+
+  let html = svgOpen()
+  // Y axis
+  for (let i = 0; i <= 4; i++) {
+    const v = Math.round((yMax / 4) * i)
+    const y = yFn(v)
+    html += `<line x1="${s.p.l}" x2="${CHART.w - s.p.r}" y1="${y}" y2="${y}" class="chart-grid"/>`
+    html += `<text x="${s.p.l - 6}" y="${y + 3}" class="chart-label" text-anchor="end">${v}</text>`
+  }
+  // Stacked bars
+  data.forEach((d, i) => {
+    let cumY = 0
+    keys.forEach((k, ki) => {
+      const v = d[k] || 0
+      if (v === 0) return
+      const barY = yFn(cumY + v)
+      const barH = yFn(cumY) - barY
+      html += `<rect x="${s.barX(i)}" y="${barY}" width="${s.barW}" height="${barH}" fill="${colors[ki]}" rx="1"><title>${k}: ${v}s</title></rect>`
+      cumY += v
+    })
+  })
+  html += xLabels(data, labelFn, s)
+  // Legend
+  const legendY = 8
+  let legendX = CHART.w - s.p.r
+  keys.slice().reverse().forEach((k, ki) => {
+    const c = colors[keys.length - 1 - ki]
+    const tw = k.length * 6 + 16
+    legendX -= tw
+    html += `<rect x="${legendX}" y="${legendY - 4}" width="8" height="8" fill="${c}" rx="1"/>`
+    html += `<text x="${legendX + 11}" y="${legendY + 4}" class="chart-label">${k}</text>`
+  })
+  html += '</svg>'
+  container.innerHTML = html
+}
+
+function renderGroupedBars(container, data, keys, colors, opts = {}) {
+  if (!data.length) { container.innerHTML = '<span class="empty">no data</span>'; return }
+  const allVals = data.flatMap(d => keys.map(k => d[k] || 0))
+  const yMax = Math.max(...allVals, 1) * 1.1
+  const p = CHART.pad, pw = CHART.w - p.l - p.r, ph = CHART.h - p.t - p.b
+  const yFn = (v) => p.t + ph - (v / yMax) * ph
+  const groupW = pw / data.length
+  const barW = Math.max((groupW - 4) / keys.length, 2)
+  const labelFn = opts.labelFn || (d => d.label || '')
+
+  let html = svgOpen()
+  for (let i = 0; i <= 4; i++) {
+    const v = Math.round((yMax / 4) * i)
+    const y = yFn(v)
+    html += `<line x1="${p.l}" x2="${CHART.w - p.r}" y1="${y}" y2="${y}" class="chart-grid"/>`
+    html += `<text x="${p.l - 6}" y="${y + 3}" class="chart-label" text-anchor="end">${v}</text>`
+  }
+  data.forEach((d, i) => {
+    const gx = p.l + i * groupW + 2
+    keys.forEach((k, ki) => {
+      const v = d[k] || 0
+      if (v === 0) return
+      const barH = yFn(0) - yFn(v)
+      html += `<rect x="${gx + ki * barW}" y="${yFn(v)}" width="${barW - 1}" height="${barH}" fill="${colors[ki]}" rx="1"><title>${k}: ${v}</title></rect>`
+    })
+  })
+  html += xLabels(data, labelFn, { x: (i) => p.l + (i + 0.5) * groupW })
+  // Legend
+  const legendY = 8
+  let legendX = CHART.w - p.r
+  keys.slice().reverse().forEach((k, ki) => {
+    const c = colors[keys.length - 1 - ki]
+    const tw = k.length * 6 + 16
+    legendX -= tw
+    html += `<rect x="${legendX}" y="${legendY - 4}" width="8" height="8" fill="${c}" rx="1"/>`
+    html += `<text x="${legendX + 11}" y="${legendY + 4}" class="chart-label">${k}</text>`
+  })
+  html += '</svg>'
+  container.innerHTML = html
+}
+
+// ── Funnel helper ─────────────────────────────────────────────
+function renderFunnel(el, funnel) {
+  if (!funnel) { el.innerHTML = '<span class="empty">no data</span>'; return }
+  const steps = [
+    { label: 'feed', value: funnel.feed || '0' },
+    { label: 'selected', value: funnel.selected },
+    { label: 'deduped', value: funnel.deduped },
+    { label: 'written', value: funnel.written },
+    { label: 'validated', value: funnel.validated },
+    { label: 'published', value: funnel.published },
+  ]
+  el.innerHTML = steps.map((s, i) =>
+    (i > 0 ? '<span class="funnel-arrow">\u2192</span> ' : '') +
+    `<span class="funnel-step">${s.value}</span> <span class="funnel-label">${s.label}</span> `
+  ).join('')
+}
+
+// ── Dot helper ────────────────────────────────────────────────
+function dotHTML(status) {
+  return `<span class="dot dot-${status}"></span>`
+}
+
+// ── Pipeline Tab ──────────────────────────────────────────────
+let overviewData = null
+let cyclesData = null
+
+async function loadPipeline() {
+  const [overview, cycles, feedHealth, media] = await Promise.all([api('/api/overview'), api('/api/cycles'), api('/api/feed-health'), api('/api/media')])
+  overviewData = overview
+  cyclesData = cycles
+  if (overview) renderOverview(overview)
+  if (overview && cycles) renderGlance(overview, cycles)
+  if (feedHealth) renderFeedHealth(feedHealth)
+  if (media) {
+    renderBriefing(media.briefing)
+    renderPushHistory(media.pushHistory)
+  }
+  if (cycles) {
+    renderCycleGrid(cycles)
+    const completed = cycles.filter(c => c.completed).slice().reverse()
+    renderDurationChart(completed)
+    renderPublishedChart(completed)
+    renderStageBreakdown(completed)
+    renderFunnelTrend(completed)
+    const lastCompleted = cycles.find(c => c.completed)
+    if (lastCompleted) renderFunnel(document.getElementById('funnel'), lastCompleted.funnel)
+  }
+}
+
+function renderFeedHealth(data) {
+  const el = document.getElementById('feed-health')
+  if (!data.current?.sources?.length) {
+    // No source stats file yet — show historical failures from logs
+    if (data.failCounts && Object.keys(data.failCounts).length) {
+      el.innerHTML = '<div class="feed-note">per-source stats available after next cycle</div>' +
+        renderFailCounts(data.failCounts, data.totalCycles)
+    } else {
+      el.innerHTML = '<span class="empty">no feed data yet \u2014 available after next cycle runs</span>'
+    }
+    return
+  }
+
+  const sources = data.current.sources
+  const ok = sources.filter(s => s.fetched > 0)
+  const dead = sources.filter(s => s.fetched === 0 && s.error)
+  const empty = sources.filter(s => s.fetched === 0 && !s.error)
+
+  let html = `<div class="feed-summary">`
+  html += `<span class="feed-stat">${dotHTML('green')}${ok.length} producing</span>`
+  if (dead.length) html += `<span class="feed-stat">${dotHTML('red')}${dead.length} errored</span>`
+  if (empty.length) html += `<span class="feed-stat">${dotHTML('amber')}${empty.length} empty</span>`
+  html += `</div>`
+
+  // Source table
+  html += '<div class="feed-table">'
+  // Show errors first, then empty, then OK sorted by fetched desc
+  const sorted = [...dead, ...empty, ...ok]
+  for (const s of sorted) {
+    const status = s.error ? 'red' : s.fetched === 0 ? 'amber' : 'green'
+    const detail = s.error ? s.error : `${s.fetched} fetched, ${s.used} used`
+    // Historical fail count
+    const fails = data.failCounts?.[s.name] || 0
+    const failBadge = fails > 0 ? `<span class="feed-fail-count" title="${fails} failures in ${data.totalCycles} cycles">${fails}/${data.totalCycles} fails</span>` : ''
+    html += `<div class="feed-row">
+      <span class="dot dot-${status}"></span>
+      <span class="feed-name">${esc(s.name)}</span>
+      <span class="feed-detail">${detail}</span>
+      ${failBadge}
+    </div>`
+  }
+  html += '</div>'
+
+  el.innerHTML = html
+}
+
+function renderFailCounts(failCounts, totalCycles) {
+  const entries = Object.entries(failCounts).sort((a, b) => b[1] - a[1])
+  if (!entries.length) return ''
+  return '<div class="feed-table" style="margin-top:0.5rem">' +
+    entries.map(([name, count]) => {
+      const pct = Math.round(count / totalCycles * 100)
+      const status = pct > 50 ? 'red' : pct > 20 ? 'amber' : 'green'
+      return `<div class="feed-row">
+        <span class="dot dot-${status}"></span>
+        <span class="feed-name">${esc(name)}</span>
+        <span class="feed-detail">${count}/${totalCycles} cycles failed (${pct}%)</span>
+      </div>`
+    }).join('') + '</div>'
+}
+
+function renderGlance(overview, cycles) {
+  const el = document.getElementById('glance-row')
+  const alertsEl = document.getElementById('glance-alerts')
+
+  // Today's cycles
+  const today = new Date().toISOString().slice(0, 10)
+  const todayCycles = cycles.filter(c => c.date === today)
+  const completed = todayCycles.filter(c => c.completed)
+  const published = completed.reduce((s, c) => s + c.funnel.published, 0)
+  const avgDuration = completed.length ? Math.round(completed.reduce((s, c) => s + (c.totalSeconds || 0), 0) / completed.length) : null
+  const failures = todayCycles.filter(c => c.aborted || (c.stages.selector?.exit && c.stages.selector.exit !== 0))
+
+  let html = ''
+  html += auditStat(published, 'published today')
+  html += auditStat(`${completed.length}/${todayCycles.length}`, 'cycles')
+  html += auditStat(avgDuration ? avgDuration + 's' : '\u2014', 'avg duration')
+  html += auditStat(overview.metaAge !== null ? overview.metaAge.toFixed(1) + 'h' : '\u2014', 'site age')
+  el.innerHTML = html
+
+  // Alerts from audit data + cycle failures
+  let alerts = ''
+  if (failures.length > 0) {
+    alerts += `<div class="glance-alert alert-red">${dotHTML('red')}${failures.length} failed cycle${failures.length > 1 ? 's' : ''} today</div>`
+  }
+
+  // Fetch audit for coverage gaps and watching items
+  api('/api/editorial').then(ed => {
+    if (!ed?.audit?.data) return
+    const audit = ed.audit.data
+    // Show unmet targets
+    const m = audit.metrics || {}
+    const unmet = []
+    if (m.freshness?.met === false) unmet.push('freshness')
+    if (m.multiSource?.met === false) unmet.push('multi-source')
+    if (m.regions?.met === false) unmet.push('regions')
+    if (m.sciTech?.met === false) unmet.push('sci-tech ratio')
+    if (m.topSourceShare?.met === false) unmet.push('source concentration')
+    if (unmet.length) {
+      alerts += `<div class="glance-alert alert-amber">${dotHTML('amber')}targets missed: ${unmet.join(', ')}</div>`
+    }
+    if (m.duplicates > 0) {
+      alerts += `<div class="glance-alert alert-amber">${dotHTML('amber')}${m.duplicates} duplicate${m.duplicates > 1 ? 's' : ''} published today</div>`
+    }
+    // Coverage gaps (first 2)
+    if (audit.coverageGaps?.length) {
+      for (const gap of audit.coverageGaps.slice(0, 2)) {
+        alerts += `<div class="glance-alert alert-dim">${esc(gap)}</div>`
+      }
+    }
+    alertsEl.innerHTML = alerts
+  })
+  alertsEl.innerHTML = alerts
+}
+
+function renderOverview(o) {
+  // Cycle state
+  const stCycle = document.getElementById('st-cycle')
+  if (o.runningCycle) {
+    const elapsed = Math.round((Date.now() - new Date(o.runningCycle.startedAt).getTime()) / 1000)
+    const currentStage = detectCurrentStage(o.runningCycle.stages)
+    stCycle.innerHTML = `${dotHTML('amber')}running \u2014 ${currentStage}, ${elapsed}s elapsed`
+  } else {
+    stCycle.innerHTML = `${dotHTML(o.serviceActive ? 'amber' : 'green')}${o.serviceActive ? 'active' : 'idle'}`
+  }
+
+  // Last completed
+  const stLast = document.getElementById('st-last')
+  if (o.lastCycle) {
+    stLast.textContent = `${o.lastCycle.scheduledHour}:00 \u2014 ${o.lastCycle.totalSeconds}s \u2014 ${o.lastCycle.published} published`
+  } else {
+    stLast.textContent = 'none'
+  }
+
+  // Next scheduled
+  const stNext = document.getElementById('st-next')
+  stNext.textContent = o.nextFire ? formatSystemdTime(o.nextFire) : computeNextCycle()
+
+  // Site freshness
+  const stFresh = document.getElementById('st-fresh')
+  if (o.metaAge !== null) {
+    stFresh.innerHTML = `${dotHTML(o.status.siteFreshness)}${o.metaAge.toFixed(1)}h ago`
+  } else {
+    stFresh.textContent = 'unknown'
+  }
+}
+
+function detectCurrentStage(stages) {
+  if (stages.selector?.exit !== null && stages.writer?.exit === null) return 'writer'
+  if (stages.writer?.exit !== null && stages.editor?.exit === null) return 'editor'
+  if (stages.editor?.exit !== null && stages.build?.exit === null) return 'build'
+  if (stages.feed?.seconds === null) return 'feed fetch'
+  if (stages.selector?.exit === null) return 'selector'
+  return 'processing'
+}
+
+function formatSystemdTime(raw) {
+  if (!raw || raw === 'n/a') return 'unknown'
+  try {
+    const d = new Date(raw)
+    return d.toISOString().slice(11, 16) + ' utc'
+  } catch { return raw }
+}
+
+function computeNextCycle() {
+  const now = new Date()
+  const hours = [4, 8, 12, 17, 22]
+  const nowH = now.getUTCHours() * 60 + now.getUTCMinutes()
+  for (const h of hours) {
+    if (h * 60 > nowH) return `${String(h).padStart(2, '0')}:00 utc`
+  }
+  return '04:00 utc (tomorrow)'
+}
+
+function renderCycleGrid(cycles) {
+  const grid = document.getElementById('cycle-grid')
+  const days = {}
+  for (const c of cycles) {
+    if (!c.date) continue
+    if (!days[c.date]) days[c.date] = []
+    days[c.date].push(c)
+  }
+
+  const sortedDays = Object.keys(days).sort().reverse().slice(0, 7)
+  grid.innerHTML = sortedDays.map(d => {
+    const dayCycles = days[d]
+    const dots = dayCycles.map(c => {
+      if (!c.completed && !c.aborted) return '<span class="cycle-dot cycle-dot-running" title="running"></span>'
+      if (c.aborted || (c.stages.selector?.exit && c.stages.selector.exit !== 0)) return '<span class="cycle-dot cycle-dot-red" title="' + (c.aborted || 'failed') + '"></span>'
+      if (c.completed && c.stages.deploy?.exit === 0) return '<span class="cycle-dot cycle-dot-green" title="' + c.funnel.published + ' published, ' + c.totalSeconds + 's"></span>'
+      return '<span class="cycle-dot cycle-dot-gray" title="incomplete"></span>'
+    }).join('')
+    return `<div class="cycle-grid-row"><span class="cycle-grid-date">${d.slice(5)}</span>${dots}</div>`
+  }).join('')
+}
+
+// ── Audio Briefing Renderer ───────────────────────────────────
+function renderBriefing(briefing) {
+  const el = document.getElementById('briefing-info')
+  if (!briefing) { el.innerHTML = '<span class="empty">no briefing data</span>'; return }
+
+  let html = '<div class="audit-row">'
+  html += auditStat(briefing.date, 'date')
+  html += auditStat(briefing.durationMin ? briefing.durationMin + 'm' : null, 'duration')
+  html += auditStat(briefing.articles, 'articles')
+  html += auditStat(briefing.ageHours ? timeAgo(briefing.ageHours) : null, 'generated')
+  html += '</div>'
+
+  if (briefing.files?.length) {
+    html += '<div class="briefing-files">'
+    for (const f of briefing.files) {
+      html += `<span class="briefing-file">${f.date} <span class="feed-detail">${f.sizeMB}MB</span></span>`
+    }
+    html += '</div>'
+  }
+  el.innerHTML = html
+}
+
+// ── Push Notification Renderer ─────────────────────────��──────
+function renderPushHistory(pushHistory) {
+  const el = document.getElementById('push-history')
+  if (!pushHistory?.length) { el.innerHTML = '<span class="empty">no push notifications sent</span>'; return }
+
+  el.innerHTML = pushHistory.slice(0, 10).map(p => {
+    const article = p.articles?.[0]
+    const status = p.pushed > 0 ? 'green' : 'amber'
+    return `<div class="push-item">
+      ${dotHTML(status)}
+      <span class="push-date">${p.date} ${p.hour}</span>
+      <span class="push-title">${esc(article?.body || article?.title || 'unknown')}</span>
+      <span class="push-stat">${p.tokens ?? '?'} devices</span>
+    </div>`
+  }).join('')
+}
+
+function cycleLabel(c) { return (c.date?.slice(5) || '?') + ' ' + (c.scheduledHour || '') + 'h' }
+
+function renderDurationChart(cycles) {
+  renderLineChart(document.getElementById('chart-duration'), cycles, 'totalSeconds', {
+    labelFn: cycleLabel, unit: 's'
+  })
+}
+
+function renderPublishedChart(cycles) {
+  renderBarChart(document.getElementById('chart-published'), cycles, c => c.funnel.published, {
+    labelFn: cycleLabel,
+    colorFn: (d, v) => v === 0 ? 'var(--red)' : v < 3 ? 'var(--amber)' : 'var(--text-secondary)'
+  })
+}
+
+function renderStageBreakdown(cycles) {
+  const data = cycles.map(c => ({
+    label: cycleLabel(c),
+    feed: c.stages.feed?.seconds || 0,
+    selector: c.stages.selector?.seconds || 0,
+    writer: c.stages.writer?.seconds || 0,
+    editor: c.stages.editor?.seconds || 0,
+    edu: c.stages.edu?.seconds || 0,
+  }))
+  renderStackedBars(document.getElementById('chart-stages'), data,
+    ['feed', 'selector', 'writer', 'editor', 'edu'],
+    ['#666', '#4a9a4a', '#5b8dd9', '#c4a000', '#7a5bb5'],
+    { labelFn: d => d.label }
+  )
+}
+
+function renderFunnelTrend(cycles) {
+  const data = cycles.map(c => ({
+    label: cycleLabel(c),
+    selected: c.funnel.selected,
+    published: c.funnel.published,
+    efficiency: c.funnel.selected > 0 ? Math.round(c.funnel.published / c.funnel.selected * 100) : 0,
+  }))
+  renderLineChart(document.getElementById('chart-funnel-trend'), data, 'efficiency', {
+    labelFn: d => d.label, unit: '%'
+  })
+}
+
+// ── Quality Tab ───────────────────────────────────────────────
+async function loadQuality() {
+  const q = await api('/api/quality')
+  if (!q) return
+
+  // Categories
+  if (q.categories) {
+    const items = Object.entries(q.categories).map(([k, v]) => ({ label: k, value: v, display: String(v) }))
+    renderBars(document.getElementById('cat-bars'), items)
+  }
+
+  // Sources
+  const srcEl = document.getElementById('source-info')
+  if (q.sources) {
+    const top = q.sources.top.map(([name, count]) => `${name} (${count})`).join(', ')
+    srcEl.innerHTML = `<div class="stat-row"><div class="stat"><span class="stat-value">${q.sources.unique}</span><span class="stat-label">unique sources today</span></div></div>
+      <div style="margin-top:0.5rem;font-size:var(--size-xs);color:var(--text-secondary)">${top}</div>`
+  }
+
+  // Regions
+  const regEl = document.getElementById('region-tags')
+  if (q.regions) {
+    regEl.innerHTML = Object.entries(q.regions)
+      .filter(([k]) => k !== 'unknown')
+      .sort((a, b) => b[1] - a[1])
+      .map(([k, v]) => `<span class="region-tag"><span>${v}</span> ${k}</span>`)
+      .join('')
+  }
+
+  // Freshness
+  const freshEl = document.getElementById('freshness-stats')
+  if (q.freshness) {
+    freshEl.innerHTML = [
+      { v: q.freshness.median, l: 'median (days)' },
+      { v: q.freshness.p90, l: 'p90 (days)' },
+      { v: q.freshness.count, l: 'articles' },
+    ].map(s => `<div class="stat"><span class="stat-value">${s.v ?? '\u2014'}</span><span class="stat-label">${s.l}</span></div>`).join('')
+  } else {
+    freshEl.innerHTML = '<span class="empty">computed at 22:00 utc</span>'
+  }
+
+  // Arcs
+  const arcEl = document.getElementById('arc-stats')
+  if (q.arcs) {
+    arcEl.innerHTML = Object.entries(q.arcs)
+      .map(([k, v]) => `<div class="stat"><span class="stat-value">${v}</span><span class="stat-label">${k}</span></div>`)
+      .join('')
+  }
+
+  // Articles per day
+  if (q.articlesPerDay) {
+    const days = Object.entries(q.articlesPerDay).sort((a, b) => a[0].localeCompare(b[0]))
+    const data = days.map(([date, count]) => ({ label: date.slice(5), value: count }))
+    renderBarChart(document.getElementById('chart-articles-day'), data, 'value', {
+      labelFn: d => d.label,
+      colorFn: (d, v) => v < 20 ? 'var(--amber)' : 'var(--text-secondary)'
+    })
+  }
+
+  // Category balance trend
+  if (q.categoriesPerDay) {
+    const data = q.categoriesPerDay.map(d => ({ ...d, label: d.date.slice(5) }))
+    renderStackedBars(document.getElementById('chart-cat-trend'), data,
+      ['politics', 'economy', 'science', 'tech'],
+      ['#c44a4a', '#c4a000', '#4a9a4a', '#5b8dd9'],
+      { labelFn: d => d.label }
+    )
+  }
+
+  // Edu context
+  const eduEl = document.getElementById('edu-coverage')
+  if (q.eduContext) {
+    const e = q.eduContext
+    eduEl.innerHTML = `<div class="audit-row">
+      ${auditStat(e.totalBriefs + '/' + e.totalArticles, 'all time', e.coveragePct + '% coverage')}
+      ${auditStat(e.recentBriefs + '/' + e.recentArticles, 'last 7 days', e.recentPct + '% coverage')}
+    </div>`
+  } else {
+    eduEl.innerHTML = '<span class="empty">no edu context data</span>'
+  }
+
+  // Duplicates + validation
+  const issuesEl = document.getElementById('quality-issues')
+  let issuesHtml = '<div class="audit-row">'
+  if (q.duplicates) {
+    issuesHtml += auditStat(q.duplicates.count, 'duplicates today', q.duplicates.count === 0 ? null : q.duplicates.details?.map(d => d.slugs.join(', ')).join('; '), q.duplicates.count === 0)
+  }
+  issuesHtml += auditStat(q.validationFailures, 'validation failures (7d)', null, q.validationFailures === 0)
+  issuesHtml += '</div>'
+  issuesEl.innerHTML = issuesHtml
+}
+
+// ── Logs Tab ──────────────────────────────────────────────────
+let logCycles = null
+let sseSource = null
+
+async function loadLogs() {
+  if (!logCycles) {
+    logCycles = await api('/api/cycles')
+  }
+  if (!logCycles || !logCycles.length) return
+
+  const select = document.getElementById('log-select')
+  if (!select.children.length) {
+    select.innerHTML = logCycles.map(c =>
+      `<option value="${c.filename}">${c.filename}${c.completed ? '' : ' (running)'}</option>`
+    ).join('')
+    select.addEventListener('change', () => loadCycleDetail(select.value))
+  }
+  loadCycleDetail(logCycles[0].filename)
+  connectSSE()
+}
+
+async function loadCycleDetail(filename) {
+  const detail = await api(`/api/cycle/${encodeURIComponent(filename)}`)
+  if (!detail) return
+
+  // Structured stages
+  const stagesEl = document.getElementById('log-stages')
+  const stageOrder = [
+    ['feed', 'feed fetch'],
+    ['selector', 'selector'],
+    ['writer', 'writer'],
+    ['editor', 'editor'],
+    ['edu', 'edu context'],
+    ['build', 'build'],
+    ['deploy', 'deploy'],
+    ['briefing', 'briefing'],
+    ['tuning', 'tuning'],
+    ['reflection', 'reflection'],
+  ]
+  stagesEl.innerHTML = stageOrder.map(([key, label]) => {
+    const s = detail.stages[key]
+    if (!s || (s.exit === null && s.seconds === null)) return `<div><span class="stage-skip">\u2500</span> ${label} <span class="stage-skip">skipped</span></div>`
+    const ok = s.exit === 0 || s.exit == null
+    const icon = ok ? '<span class="stage-ok">\u2713</span>' : '<span class="stage-fail">\u2717</span>'
+    const time = s.seconds != null ? ` ${s.seconds}s` : ''
+    const exit = s.exit != null && s.exit !== 0 ? ` (exit ${s.exit})` : ''
+    return `<div>${icon} ${label}${time}${exit}</div>`
+  }).join('')
+
+  // Raw tail
+  document.getElementById('log-pre').textContent = detail.tail || '(empty)'
+}
+
+function connectSSE() {
+  if (sseSource) return
+  sseSource = new EventSource('/api/live')
+  const badge = document.getElementById('live-badge')
+  const pre = document.getElementById('log-pre')
+
+  sseSource.onmessage = (e) => {
+    try {
+      const msg = JSON.parse(e.data)
+      if (msg.type === 'running') {
+        badge.hidden = false
+      } else if (msg.type === 'idle') {
+        badge.hidden = true
+      } else if (msg.type === 'line') {
+        if (activeTab === 'logs') {
+          pre.textContent += msg.text + '\n'
+          pre.scrollTop = pre.scrollHeight
+        }
+      } else if (msg.type === 'complete') {
+        badge.hidden = true
+        // Reload data
+        logCycles = null
+        if (activeTab === 'logs') loadLogs()
+        if (activeTab === 'pipeline') loadPipeline()
+      } else if (msg.type === 'new_cycle') {
+        logCycles = null
+        if (activeTab === 'logs') loadLogs()
+      }
+    } catch {}
+  }
+
+  sseSource.onerror = () => {
+    badge.hidden = true
+    sseSource.close()
+    sseSource = null
+    // Reconnect after 5s
+    setTimeout(() => { if (activeTab === 'logs') connectSSE() }, 5000)
+  }
+}
+
+// ── Simple Markdown → HTML ────────────────────────────────────
+function md(text) {
+  if (!text) return ''
+  return text
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    // Headers
+    .replace(/^### (.+)$/gm, '<h5 class="md-h3">$1</h5>')
+    .replace(/^## (.+)$/gm, '<h4 class="md-h2">$1</h4>')
+    .replace(/^# (.+)$/gm, '<h4 class="md-h1">$1</h4>')
+    // Bold
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    // Italic
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    // List items
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    // Wrap consecutive <li> in <ul>
+    .replace(/((?:<li>.*<\/li>\n?)+)/g, '<ul>$1</ul>')
+    // Paragraphs (double newline)
+    .replace(/\n\n/g, '</p><p>')
+    // Single newlines within paragraphs
+    .replace(/\n/g, '<br>')
+    // Wrap in p
+    .replace(/^/, '<p>').replace(/$/, '</p>')
+    // Clean empty p tags
+    .replace(/<p><\/p>/g, '')
+    .replace(/<p>(<h[45])/g, '$1')
+    .replace(/(<\/h[45]>)<\/p>/g, '$1')
+    .replace(/<p>(<ul>)/g, '$1')
+    .replace(/(<\/ul>)<\/p>/g, '$1')
+}
+
+function timeAgo(hours) {
+  if (hours < 1) return 'just now'
+  if (hours < 24) return `${Math.round(hours)}h ago`
+  const days = Math.round(hours / 24)
+  return `${days}d ago`
+}
+
+// ── Editorial Tab ─────────────────────────────────────────────
+async function loadEditorial() {
+  const data = await api('/api/editorial')
+  if (!data) return
+
+  // ── Daily Audit ──
+  const auditStale = document.getElementById('audit-stale')
+  const auditMeta = document.getElementById('audit-meta')
+  const auditMetrics = document.getElementById('audit-metrics')
+  const auditExperiment = document.getElementById('audit-experiment')
+  const auditProse = document.getElementById('audit-prose')
+
+  if (data.audit) {
+    auditMeta.textContent = `updated ${timeAgo(data.audit.ageHours)} \u2014 ${data.audit.updatedAt.slice(0, 10)}`
+    auditStale.hidden = data.audit.ageHours < 36
+
+    if (data.audit.format === 'json') {
+      renderAuditJSON(data.audit.data, auditMetrics, auditExperiment, auditProse)
+    } else {
+      auditMetrics.innerHTML = ''
+      auditExperiment.innerHTML = ''
+      auditProse.innerHTML = '<div class="editorial-content">' + md(data.audit.content) + '</div>'
+    }
+  } else {
+    auditMetrics.innerHTML = '<span class="empty">no daily audit found</span>'
+  }
+
+  // ── Weekly Reflection ──
+  const reflectMeta = document.getElementById('reflect-meta')
+  const reflectSections = document.getElementById('reflect-sections')
+  const reflectStale = document.getElementById('reflect-stale')
+
+  if (data.reflection) {
+    reflectMeta.textContent = `updated ${timeAgo(data.reflection.ageHours)} \u2014 ${data.reflection.updatedAt.slice(0, 10)}`
+    reflectStale.hidden = data.reflection.ageHours < 192
+    renderReflection(data.reflection.content, reflectSections)
+  } else {
+    reflectSections.innerHTML = '<span class="empty">no weekly reflection found</span>'
+  }
+
+}
+
+// ── Audit JSON Renderer ──────────────────────────────────────
+function metricDot(met) {
+  return met === true ? dotHTML('green') : met === false ? dotHTML('red') : ''
+}
+
+function renderAuditJSON(d, metricsEl, expEl, proseEl) {
+  const m = d.metrics || {}
+
+  // Metrics grid
+  let html = '<div class="audit-grid">'
+
+  // Row 1: headline numbers
+  html += '<div class="audit-row">'
+  html += auditStat(m.articles?.value, 'articles', m.articles?.detail)
+  html += auditStat(m.uniqueSources, 'sources')
+  html += auditStat(m.duplicates, 'duplicates', null, m.duplicates === 0)
+  html += auditStat(m.avgCycleDuration ? m.avgCycleDuration + 's' : null, 'avg cycle')
+  html += '</div>'
+
+  // Row 2: target metrics
+  html += '<div class="audit-targets">'
+  html += auditTarget('freshness', `${m.freshness?.median}d median`, `p90 ${m.freshness?.p90}d`, m.freshness?.met, `target \u2264 ${m.freshness?.target}d`)
+  html += auditTarget('multi-source', m.multiSource?.value, null, m.multiSource?.met, `target \u2265 ${m.multiSource?.target}`)
+  html += auditTarget('regions', m.regions?.count + ' unique', regionBreakdown(m.regions?.breakdown), m.regions?.met, `target \u2265 ${m.regions?.target}`)
+  html += auditTarget('sci+tech', m.sciTech?.ratio + '%', null, m.sciTech?.met, `target \u2265 ${m.sciTech?.target}%`)
+  html += auditTarget('top source', m.topSourceShare?.pct + '%', m.topSourceShare?.source, m.topSourceShare?.met, `target < ${m.topSourceShare?.target}%`)
+  html += '</div>'
+
+  // Categories breakdown
+  if (m.categories) {
+    const cats = m.categories
+    const items = Object.entries(cats).map(([k, v]) => ({ label: k, value: v, display: String(v) }))
+    html += '<div class="audit-cats"><div class="label" style="margin-bottom:0.5rem">categories</div><div id="audit-cat-bars"></div></div>'
+  }
+
+  html += '</div>'
+  metricsEl.innerHTML = html
+
+  // Render category bars after DOM update
+  if (m.categories) {
+    const items = Object.entries(m.categories).map(([k, v]) => ({ label: k, value: v, display: String(v) }))
+    renderBars(document.getElementById('audit-cat-bars'), items)
+  }
+
+  // Experiment status
+  if (d.experiment) {
+    expEl.innerHTML = `<div class="audit-exp"><div class="label">experiment</div><p>${esc(d.experiment)}</p></div>`
+  }
+
+  // Prose sections
+  let prose = ''
+  if (d.weakestArea) {
+    prose += `<div class="audit-section"><div class="label">weakest area</div><p>${esc(d.weakestArea)}</p></div>`
+  }
+  if (d.watching?.length) {
+    prose += `<div class="audit-section"><div class="label">watching</div><ul class="audit-list">${d.watching.map(w => `<li>${esc(w)}</li>`).join('')}</ul></div>`
+  }
+  if (d.coverageGaps?.length) {
+    prose += `<div class="audit-section"><div class="label">coverage gaps</div><ul class="audit-list">${d.coverageGaps.map(g => `<li>${esc(g)}</li>`).join('')}</ul></div>`
+  }
+  if (d.context) {
+    prose += `<div class="audit-section"><div class="label">context</div><p>${esc(d.context)}</p></div>`
+  }
+  proseEl.innerHTML = prose
+}
+
+function esc(s) { return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;') }
+
+function auditStat(value, label, detail, ok) {
+  const dot = ok === true ? dotHTML('green') : ok === false ? dotHTML('red') : ''
+  return `<div class="audit-stat">${dot}<span class="audit-stat-value">${value ?? '\u2014'}</span><span class="audit-stat-label">${label}</span>${detail ? `<span class="audit-stat-detail">${detail}</span>` : ''}</div>`
+}
+
+function auditTarget(label, value, detail, met, target) {
+  const cls = met === true ? 'met' : met === false ? 'unmet' : ''
+  return `<div class="audit-target ${cls}">
+    <span class="audit-target-indicator">${met === true ? '\u2713' : met === false ? '\u2717' : '\u2014'}</span>
+    <span class="audit-target-label">${label}</span>
+    <span class="audit-target-value">${value ?? '\u2014'}</span>
+    ${detail ? `<span class="audit-target-detail">${detail}</span>` : ''}
+    <span class="audit-target-threshold">${target}</span>
+  </div>`
+}
+
+function regionBreakdown(breakdown) {
+  if (!breakdown) return null
+  return Object.entries(breakdown).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k}\u00a0${v}`).join(' ')
+}
+
+// ── Experiment Tab ────────────────────────────────────────────
+async function loadExperiment() {
+  const data = await api('/api/experiment')
+  if (!data) return
+
+  const expActive = document.getElementById('exp-active')
+  const expTracking = document.getElementById('exp-tracking')
+  const expHistory = document.getElementById('exp-history')
+  const tabDot = document.getElementById('exp-tab-dot')
+
+  if (data.active) {
+    tabDot.hidden = false
+    const e = data.active
+    const t = data.tracking
+
+    // Progress bar
+    const pct = t ? Math.min(Math.round(t.daysElapsed / t.daysTotal * 100), 100) : 0
+    const daysLeft = t ? Math.max(t.daysTotal - t.daysElapsed, 0) : '?'
+
+    expActive.innerHTML = `<div class="exp-card exp-active-card">
+      <div class="exp-header"><strong>${esc(e.parameter || e.id)}</strong><span class="exp-change">${e.oldValue} \u2192 ${e.newValue}</span></div>
+      <div class="exp-detail">${esc(e.hypothesis || '')}</div>
+      <div class="exp-progress">
+        <div class="exp-progress-bar"><div class="exp-progress-fill" style="width:${pct}%"></div></div>
+        <span class="exp-progress-label">day ${t?.daysElapsed ?? '?'} of ${t?.daysTotal ?? '?'} \u2014 evaluates ${e.evaluateAfter}</span>
+      </div>
+      <div class="exp-meta">file: ${esc(e.file || '')} \u00b7 metric: ${esc(e.targetMetric || '')} ${e.targetDirection || ''}</div>
+      <div class="exp-baseline-section">
+        <span class="label">baseline</span>
+        ${e.baseline ? Object.entries(e.baseline).map(([k, v]) => `<span class="exp-baseline-item">${k}: <strong>${v}</strong></span>`).join('') : ''}
+      </div>
+    </div>`
+
+    // Tracking chart — show daily metric values with baseline period
+    if (t?.dailyMetrics?.length) {
+      renderExperimentChart(expTracking, t.dailyMetrics, e)
+    } else {
+      expTracking.innerHTML = '<span class="empty">tracking data available after first full day</span>'
+    }
+  } else {
+    tabDot.hidden = true
+    expActive.innerHTML = '<div class="exp-none">no active experiment \u2014 use <code>/experiment</code> to create one</div>'
+    expTracking.innerHTML = ''
+  }
+
+  // History
+  if (data.history?.length) {
+    expHistory.innerHTML = data.history.map(e => {
+      const resultClass = e.result === 'kept' ? 'exp-kept' : (e.result || '').includes('revert') ? 'exp-reverted' : 'exp-neutral'
+      return `<div class="exp-card ${resultClass}">
+        <div class="exp-header">
+          <strong>${esc(e.parameter || e.id)}</strong>
+          <span class="exp-change">${e.oldValue} \u2192 ${e.newValue}</span>
+          <span class="exp-result">${e.result || 'pending'}</span>
+        </div>
+        <div class="exp-meta">${e.startDate || ''} \u2014 ${e.evaluatedOn || e.evaluateAfter || ''} \u00b7 ${esc(e.targetMetric || '')} ${e.targetDirection || ''}</div>
+        ${e.baseline ? `<div class="exp-baseline-section">${Object.entries(e.baseline).map(([k, v]) => `<span class="exp-baseline-item">${k}: <strong>${v}</strong></span>`).join('')}</div>` : ''}
+        <div class="exp-detail">${esc(e.notes || e.hypothesis || '')}</div>
+      </div>`
+    }).join('')
+  } else {
+    expHistory.innerHTML = '<span class="empty">no previous experiments</span>'
+  }
+}
+
+function renderExperimentChart(container, metrics, experiment) {
+  // Determine which metric to highlight based on experiment
+  const metricKey = experiment.targetMetric?.includes('tech') ? 'tech' : 'total'
+  const baselineVal = experiment.baseline?.techPerDay || experiment.baseline?.totalPerDay || null
+
+  // Render a bar chart showing the target metric per day, with baseline days dimmed
+  const data = metrics.map(m => ({
+    label: m.date.slice(5),
+    value: m[metricKey] || 0,
+    isBaseline: m.isBaseline,
+    total: m.total,
+  }))
+
+  // Custom bar chart with baseline highlighting
+  const maxVal = Math.max(...data.map(d => d.value), baselineVal || 0, 1) * 1.2
+  const p = CHART.pad, w = CHART.w, h = CHART.h
+  const pw = w - p.l - p.r, ph = h - p.t - p.b
+  const yFn = (v) => p.t + ph - (v / maxVal) * ph
+  const barW = Math.max(pw / data.length - 4, 8)
+
+  let html = svgOpen(w, h)
+
+  // Y axis
+  for (let i = 0; i <= 4; i++) {
+    const v = Math.round((maxVal / 4) * i)
+    const y = yFn(v)
+    html += `<line x1="${p.l}" x2="${w - p.r}" y1="${y}" y2="${y}" class="chart-grid"/>`
+    html += `<text x="${p.l - 6}" y="${y + 3}" class="chart-label" text-anchor="end">${v}</text>`
+  }
+
+  // Baseline reference line
+  if (baselineVal) {
+    const by = yFn(baselineVal)
+    html += `<line x1="${p.l}" x2="${w - p.r}" y1="${by}" y2="${by}" stroke="var(--amber)" stroke-width="1" stroke-dasharray="4,4"/>`
+    html += `<text x="${w - p.r + 4}" y="${by + 3}" class="chart-label" fill="var(--amber)">baseline ${baselineVal}</text>`
+  }
+
+  // Bars
+  data.forEach((d, i) => {
+    const x = p.l + (i / data.length) * pw + 2
+    const barH = yFn(0) - yFn(d.value)
+    const color = d.isBaseline ? '#444' : d.value > (baselineVal || 0) ? 'var(--green)' : 'var(--text-secondary)'
+    html += `<rect x="${x}" y="${yFn(d.value)}" width="${barW}" height="${barH}" fill="${color}" rx="1"><title>${d.label}: ${d.value} ${metricKey} / ${d.total} total</title></rect>`
+    // Value label on top
+    html += `<text x="${x + barW / 2}" y="${yFn(d.value) - 4}" class="chart-value">${d.value}</text>`
+  })
+
+  // X labels
+  data.forEach((d, i) => {
+    const x = p.l + (i + 0.5) * (pw / data.length)
+    html += `<text x="${x}" y="${h - 4}" class="chart-label"${d.isBaseline ? ' fill="#555"' : ''}>${d.label}</text>`
+  })
+
+  // Experiment start line
+  const startIdx = data.findIndex(d => !d.isBaseline)
+  if (startIdx > 0) {
+    const sx = p.l + (startIdx / data.length) * pw
+    html += `<line x1="${sx}" x2="${sx}" y1="${p.t}" y2="${p.t + ph}" stroke="var(--amber)" stroke-width="1" stroke-dasharray="2,3"/>`
+    html += `<text x="${sx + 4}" y="${p.t + 10}" class="chart-label" fill="var(--amber)">start</text>`
+  }
+
+  html += '</svg>'
+
+  // Summary stats
+  const expDays = data.filter(d => !d.isBaseline)
+  const baseDays = data.filter(d => d.isBaseline)
+  const expAvg = expDays.length ? Math.round(expDays.reduce((s, d) => s + d.value, 0) / expDays.length * 10) / 10 : null
+  const baseAvg = baseDays.length ? Math.round(baseDays.reduce((s, d) => s + d.value, 0) / baseDays.length * 10) / 10 : null
+
+  let summary = '<div class="exp-tracking-summary">'
+  if (baseAvg !== null) summary += `<span>baseline avg: <strong>${baseAvg}</strong></span>`
+  if (expAvg !== null) summary += `<span>experiment avg: <strong>${expAvg}</strong></span>`
+  if (baseAvg && expAvg) {
+    const change = Math.round((expAvg - baseAvg) / baseAvg * 100)
+    const dir = change > 0 ? '+' : ''
+    summary += `<span>change: <strong style="color:${change > 0 ? 'var(--green)' : 'var(--red)'}">${dir}${change}%</strong></span>`
+  }
+  summary += '</div>'
+
+  container.innerHTML = html + summary
+}
+
+// Also update the header dot to show experiment status
+function updateExpTabDot() {
+  api('/api/experiment').then(data => {
+    const dot = document.getElementById('exp-tab-dot')
+    if (dot) dot.hidden = !data?.active
+  })
+}
+updateExpTabDot()
+
+// ── Weekly Reflection Renderer ───────────────────────────────
+function renderReflection(content, container) {
+  if (!content) { container.innerHTML = '<span class="empty">no data</span>'; return }
+
+  // Split by ## headers into sections
+  const sections = []
+  let current = null
+  for (const line of content.split('\n')) {
+    const h1 = line.match(/^# (.+)/)
+    const h2 = line.match(/^## (.+)/)
+    if (h1 && !sections.length) {
+      // Title — render as meta
+      sections.push({ title: h1[1], lines: [] })
+    } else if (h2) {
+      current = { title: h2[1], lines: [] }
+      sections.push(current)
+    } else if (current) {
+      current.lines.push(line)
+    }
+  }
+
+  container.innerHTML = sections.map(s => {
+    const body = s.lines.join('\n').trim()
+    if (!body) return ''
+
+    // Detect numbered items (top stories, recommendations)
+    const isNumbered = /^\*?\*?\d+\./.test(body) || /^\*\*\d+\./.test(body)
+    // Detect bullet items
+    const isBulletList = body.split('\n').every(l => !l.trim() || l.trim().startsWith('- '))
+
+    let rendered
+    if (isBulletList) {
+      rendered = '<ul class="reflect-list">' + body.split('\n')
+        .filter(l => l.trim().startsWith('- '))
+        .map(l => `<li>${mdInline(l.slice(l.indexOf('- ') + 2))}</li>`)
+        .join('') + '</ul>'
+    } else if (isNumbered) {
+      // Split on numbered items
+      const items = body.split(/\n(?=\*?\*?\d+\.)/).filter(Boolean)
+      rendered = '<ol class="reflect-list">' + items.map(item => {
+        const clean = item.replace(/^\*?\*?\d+\.\s*/, '').trim()
+        return `<li>${mdInline(clean).replace(/\n/g, '<br>')}</li>`
+      }).join('') + '</ol>'
+    } else {
+      rendered = mdInline(body).split('\n\n').map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('')
+    }
+
+    return `<div class="reflect-section">
+      <div class="label">${esc(s.title.toLowerCase())}</div>
+      <div class="reflect-body">${rendered}</div>
+    </div>`
+  }).filter(Boolean).join('')
+}
+
+function mdInline(text) {
+  return esc(text)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+}
+
+// ── Status Tab ────────────────────────────────────────────────
+async function loadStatus() {
+  const [overview, cycles] = await Promise.all([
+    overviewData || api('/api/overview'),
+    cyclesData || api('/api/cycles'),
+  ])
+
+  if (overview) {
+    // Health indicators
+    const healthEl = document.getElementById('health-list')
+    const indicators = [
+      { key: 'siteFreshness', label: 'site freshness', desc: overview.metaAge !== null ? `${overview.metaAge.toFixed(1)}h ago` : 'unknown' },
+      { key: 'lastCycle', label: 'last cycle', desc: overview.lastCycle ? `${overview.lastCycle.published} published` : 'none' },
+      { key: 'cycleTiming', label: 'cycle timing', desc: overview.lastCycle ? `${overview.lastCycle.totalSeconds}s` : 'n/a' },
+      { key: 'pubRate', label: 'publication rate', desc: overview.lastCycle ? `${overview.lastCycle.published} articles` : 'n/a' },
+      { key: 'validation', label: 'validation', desc: '' },
+    ]
+    healthEl.innerHTML = indicators.map(i => {
+      const status = overview.status[i.key] || 'unknown'
+      return `<li>${dotHTML(status)}<span class="health-label">${i.label}</span><span class="health-value">${i.desc}</span></li>`
+    }).join('')
+
+    // Systemd
+    const sdEl = document.getElementById('systemd-info')
+    sdEl.innerHTML = `
+      <dt>timer</dt><dd>${overview.nextFire ? 'active' : 'unknown'}, next ${formatSystemdTime(overview.nextFire)}</dd>
+      <dt>service</dt><dd>${overview.serviceActive ? 'running' : 'inactive'}</dd>
+    `
+  }
+
+  // 7-day trend
+  if (cycles) {
+    const trendEl = document.getElementById('trend-table')
+    const byDay = {}
+    for (const c of cycles) {
+      if (!c.date) continue
+      if (!byDay[c.date]) byDay[c.date] = { total: 0, completed: 0, published: 0, avgDuration: [] }
+      byDay[c.date].total++
+      if (c.completed) {
+        byDay[c.date].completed++
+        byDay[c.date].published += c.funnel.published
+        if (c.totalSeconds) byDay[c.date].avgDuration.push(c.totalSeconds)
+      }
+    }
+
+    const days = Object.keys(byDay).sort().reverse().slice(0, 7)
+    trendEl.innerHTML = `
+      <thead><tr><th>date</th><th>cycles</th><th>articles</th><th>avg time</th></tr></thead>
+      <tbody>
+        ${days.map(d => {
+          const day = byDay[d]
+          const avg = day.avgDuration.length ? Math.round(day.avgDuration.reduce((a, b) => a + b, 0) / day.avgDuration.length) : '\u2014'
+          return `<tr><td>${d.slice(5)}</td><td>${day.completed}/${day.total}</td><td>${day.published}</td><td>${avg}${avg !== '\u2014' ? 's' : ''}</td></tr>`
+        }).join('')}
+      </tbody>
+    `
+  }
+}
+
+// ── Header Health Dot ─────────────────────────────────────────
+async function updateHeaderDot() {
+  const data = await api('/api/overview')
+  if (!data) return
+  overviewData = data
+  const dot = document.getElementById('header-dot')
+  const status = data.status?.overall || 'unknown'
+  dot.className = `header-dot dot dot-${status}`
+  dot.title = `overall: ${status}`
+}
+
+// ── Initial Load ──────────────────────────────────────────────
+loadPipeline()
+updateHeaderDot()
+
+// Auto-refresh overview every 30s
+setInterval(() => {
+  updateHeaderDot()
+  if (activeTab === 'pipeline') loadPipeline()
+  if (activeTab === 'status') loadStatus()
+}, 30000)
+</script>
+
+</body>
+</html>

@@ -262,7 +262,7 @@ $BODY_LENGTHS
 
   if [ "$BUILD_EXIT" -eq 0 ]; then
     # Commit
-    git add content/articles/ content/.last-cycle.json content/.editorial-notes.md content/.story-ledger.json content/.context-briefs.json 2>&1 | tee -a "$LOG_FILE"
+    git add content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json 2>&1 | tee -a "$LOG_FILE"
     CYCLE_TIME=$(date -u +"%Y-%m-%d %H:%M UTC")
     git commit -m "Editorial cycle $CYCLE_TIME: $NEW_COUNT articles" 2>&1 | tee -a "$LOG_FILE"
     git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
@@ -399,7 +399,7 @@ if [ "$DAY_OF_WEEK" = "7" ] && [ "$START_HOUR" = "22" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 5: Weekly reflection ---" | tee -a "$LOG_FILE"
   REFLECT_PROMPT=$(cat scripts/reflect-prompt.md)
-  timeout 300 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+  timeout 900 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
   REFLECT_EXIT=$?
   echo "Reflection exit: $REFLECT_EXIT" | tee -a "$LOG_FILE"
   # Failure here doesn't affect publishing — the cycle is already complete
@@ -425,9 +425,10 @@ if [ "$START_HOUR" = "22" ]; then
     echo "Tuning exit: $TUNE_EXIT — $((SECONDS - T6))s" | tee -a "$LOG_FILE"
     # Tuning session handles its own git workflow (experiment branches + PRs).
     # Here we only commit the tracking files if they changed.
-    AUDIT_CHANGES=$(git diff --name-only content/.experiments.json content/.daily-audit.md 2>/dev/null | wc -l)
-    if [ "$AUDIT_CHANGES" -gt 0 ]; then
-      git add content/.experiments.json content/.daily-audit.md 2>/dev/null
+    AUDIT_CHANGES=$(git diff --name-only content/.experiments.json content/.daily-audit.json content/.daily-audit.md 2>/dev/null | wc -l)
+    AUDIT_UNTRACKED=$(git ls-files --others --exclude-standard content/.daily-audit.json 2>/dev/null | wc -l)
+    if [ "$((AUDIT_CHANGES + AUDIT_UNTRACKED))" -gt 0 ]; then
+      git add content/.experiments.json content/.daily-audit.json content/.daily-audit.md 2>/dev/null
       AUDIT_DATE=$(date -u +%Y-%m-%d)
       git commit -m "Daily audit $AUDIT_DATE" 2>&1 | tee -a "$LOG_FILE"
       git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"

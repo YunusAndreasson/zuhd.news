@@ -37,13 +37,16 @@ for (const s of allStories) {
 let enriched = 0
 let missing = 0
 const missingEntries = []
+const matchLayers = { link: 0, slug: 0, sourceUrl: 0, fingerprint: 0, keyword: 0 }
 
 for (const entry of selection) {
-  let full =
-    byLink.get(entry.link) ||
-    bySlug.get(entry.suggestedSlug) ||
-    bySourceUrl.get(entry.link) ||
-    byFingerprint.get(fingerprint(entry.title))
+  let full = null
+  let layer = null
+
+  if (byLink.get(entry.link))                        { full = byLink.get(entry.link);                        layer = 'link' }
+  else if (bySlug.get(entry.suggestedSlug))           { full = bySlug.get(entry.suggestedSlug);               layer = 'slug' }
+  else if (bySourceUrl.get(entry.link))               { full = bySourceUrl.get(entry.link);                   layer = 'sourceUrl' }
+  else if (byFingerprint.get(fingerprint(entry.title))) { full = byFingerprint.get(fingerprint(entry.title)); layer = 'fingerprint' }
 
   // Fallback: keyword overlap across title + description + concepts (handles paraphrased titles)
   if (!full) {
@@ -59,12 +62,16 @@ for (const entry of selection) {
         bestMatch = s
       }
     }
-    if (bestMatch) full = bestMatch
+    if (bestMatch) { full = bestMatch; layer = 'keyword' }
   }
 
   if (full && full.sources) {
     entry.sources = full.sources
     enriched++
+    matchLayers[layer]++
+    if (layer === 'keyword') {
+      console.error(`  ⚠ KEYWORD fallback: "${entry.title}" → "${full.title}"`)
+    }
   } else {
     missing++
     missingEntries.push(entry.suggestedSlug || entry.title)
@@ -72,5 +79,6 @@ for (const entry of selection) {
 }
 
 writeFileSync('/tmp/zuhd-selection.json', JSON.stringify(selection, null, 2))
-console.log(`Enriched ${enriched}/${selection.length} stories with full bodies` +
-  (missing ? ` (${missing} not found in feed: ${missingEntries.join(', ')})` : ''))
+const layerSummary = Object.entries(matchLayers).filter(([,v]) => v > 0).map(([k,v]) => `${k}:${v}`).join(' ')
+console.log(`Enriched ${enriched}/${selection.length} stories [${layerSummary}]` +
+  (missing ? ` (${missing} not found: ${missingEntries.join(', ')})` : ''))

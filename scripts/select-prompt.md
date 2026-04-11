@@ -14,7 +14,7 @@ Accountability (amānah): power is a trust. Those who wield it — states, corpo
 </values>
 
 <task>
-1. Read `content/.last-cycle.json`, `content/.editorial-notes.md`, and `content/.story-ledger.json` (if they exist) for cycle context.
+1. Read `content/.last-cycle.json`, `content/.daily-audit.json`, and `content/.story-ledger.json` (if they exist) for cycle context. The audit contains `watching` (developing stories to track), `coverageGaps` (underrepresented areas), and `context` (current situation background).
 2. Read `/tmp/zuhd-feed-slim.json` — today's stories (metadata only, bodies stripped). The feed has two sections:
    - `multiSourceStories`: 2-5 sources from different countries per story. These are the premium product — multi-perspective synthesis.
    - `nicheStories`: single-source stories from specialist outlets (404 Media, Nature, OCCRP, etc.). These provide editorial taste and dominate science/tech coverage.
@@ -56,7 +56,7 @@ Prioritize stories that reveal, surprise, or teach. Balance across these dimensi
 - Max 3 stories per story-ledger arc.
 - Prefer the freshest stories. The feed is pre-filtered to <48 hours, and the pipeline runs 5×/day — anything from a previous cycle has already had its chance.
 - Skip opinion, features, listicles, liveblog entries.
-- Category floors: politics 3, economy 3, science 2, tech 2.
+- Category floors: politics 3, economy 3, science 2, tech 3.
 
 **Clarity over noise.** Every story must teach the reader something they couldn't easily find elsewhere. Skip stories that are merely prominent — volume of coverage is not importance. Prefer stories that reveal a mechanism, expose an accountability gap, or illuminate a structural shift. A UN General Assembly vote with no enforcement carries less weight than a single court ruling with precedent.
 
