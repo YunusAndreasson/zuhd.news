@@ -2,13 +2,150 @@
   "version": 1,
   "stories": [
     {
+      "id": "iran-us-islamabad-talks-vance-ghalibaf",
+      "label": "Pakistani MFA expects constructive talks between US, Iran",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-iran-us-islamabad-talks-vance-ghalibaf"
+      ],
+      "eventUri": "eng-11559874",
+      "summary": "Vance and Ghalibaf sit down in Islamabad on day 31+ of the US-Iran war — the first direct senior-level talks since hostilities began. Iran insists on a Lebanon ceasefire as precondition; the US wants nuclear concessions Tehran has already ruled out. Lead with the structural mismatch: both sides came to the table, but their opening positions are incompatible. The reader tracking the Iran war will see Pakistan's emergence as mediator — hosting talks that neither Geneva nor Doha could — while the ceasefire remains fragile and the Strait of Hormuz is still effectively closed.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Islamabad",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Mohammad_Bagher_Ghalibaf",
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Tehran"
+      ]
+    },
+    {
+      "id": "conscientious-objections-war-surge-us-military",
+      "label": "Conscientious objections to war rise sharply in US",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-conscientious-objections-war-surge-us-military"
+      ],
+      "eventUri": null,
+      "summary": "March alone saw 80+ new conscientious objector cases — nearly double the annual norm. Service members cite the Minab school bombing as the turning point. Lead with the 80-in-one-month number against the usual annual pace — this is the sharpest spike in CO applications since Vietnam. The reader who opposes the war will see dissent emerging from inside the military itself, not just from protesters. The structural question: what happens to a volunteer military when its own soldiers refuse to fight?",
+      "conceptUris": []
+    },
+    {
+      "id": "los-angeles-schools-strike-85-percent-workers",
+      "label": "Los Angeles schools may close as nearly 85% of district's workers plan to strike",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-los-angeles-schools-strike-85-percent-workers"
+      ],
+      "eventUri": "eng-11560024",
+      "summary": "Nearly 85% of LAUSD workers — teachers, custodians, bus drivers — plan to strike next week while the district reportedly sits on $5 billion in reserves. Lead with the $5bn reserve number against the workers' pay demands: this isn't a broke district, it's a political choice. 600,000+ students in the second-largest US school district could lose school. The reader will see this as the austerity-vs-labor pattern playing out at massive scale.",
+      "conceptUris": []
+    },
+    {
+      "id": "strait-hormuz-gas-prices-iran-talks-oil",
+      "label": "Could US-Iran talks in Islamabad bring gas prices back down?",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-strait-hormuz-gas-prices-iran-talks-oil"
+      ],
+      "eventUri": null,
+      "summary": "Only 6 tankers passed through the Strait of Hormuz on Thursday — zero on Wednesday — even after the ceasefire. Iranian attacks cut the Saudi East-West Pipeline by 10%, destroying the market's main workaround. Americans still pay $4+/gallon despite Brent crude dropping 10%. Lead with the 6-tanker number: the strait is nominally open but functionally closed, and mines plus US sanctions ambiguity are keeping ships away. The reader will see that even a peace deal won't bring quick relief — this is a logistics shock layered on a production shock.",
+      "conceptUris": []
+    },
+    {
+      "id": "kalshi-arizona-federal-judge-prediction-market",
+      "label": "Federal judge blocks Arizona from bringing criminal charges against Kalshi",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-kalshi-arizona-federal-judge-prediction-market"
+      ],
+      "eventUri": "eng-11558568",
+      "summary": "A federal judge blocked Arizona from criminally prosecuting prediction market Kalshi — the first time a state's gambling laws have been preempted by federal derivatives regulation. Lead with the collision: Arizona says it's gambling, the CFTC says it's a regulated market, and the court sided with the feds. The reader who follows prediction markets (and war bets, per previous coverage) will see the regulatory framework crystallizing: states can't shut down federally approved event contracts.",
+      "conceptUris": []
+    },
+    {
+      "id": "artemis-ii-splashdown-moon-mission",
+      "label": "Four astronauts are back home after a daring ride around the Moon",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-artemis-ii-splashdown-moon-mission"
+      ],
+      "eventUri": "spa-4163995",
+      "summary": "Artemis II splashed down safely off California — the first crewed mission beyond low Earth orbit in 54 years, breaking Apollo 13's distance record by 4,000+ miles. Lead with the splashdown: Orion hit the atmosphere at 25,000 mph and survived. The reader who follows space will care about the engineering milestone; the reader watching a divided America will note this was the one thing the country watched together during a war.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-drones-climate-resilient-wheat-selection",
+      "label": "AI and drones can select the most resilient wheat",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-ai-drones-climate-resilient-wheat-selection"
+      ],
+      "eventUri": null,
+      "summary": "Researchers combined drone imaging with AI to identify the wheat varieties most resilient to climate stress — faster and more accurate than traditional field trials. Lead with the practical application: as climate change threatens global wheat yields, this method lets breeders select drought-resistant varieties in a fraction of the time. The reader who works in tech will appreciate the AI application; the reader tracking food security will see the tool that could matter most for the next decade of harvests.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-doctor-recording-lawsuit-sutter-abridge",
+      "label": "Californians sue over AI tool that records doctor visits",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-ai-doctor-recording-lawsuit-sutter-abridge"
+      ],
+      "eventUri": null,
+      "summary": "A class-action lawsuit alleges Sutter Health and MemorialCare deployed Abridge's AI transcription tool to record patient visits without consent — violating California and federal wiretap laws. Lead with the mechanism: patients walked into a doctor's office and an AI was silently transcribing everything they said. The reader who builds software will recognize the consent failure pattern; the healthcare privacy implications are immediate and systemic as AI scribes proliferate across US hospitals.",
+      "conceptUris": []
+    },
+    {
       "id": "israel-strike-kills-13-members-of-lebanon-state-security",
       "label": "Israel strike kills 13 members of Lebanon state security",
       "firstSeen": "2026-04-10T22:09:09.078Z",
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-strike-kills-13-members-of-lebanon-state-security"
@@ -33,7 +170,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-kurds-refuse-trump-war-bid-iraq-iran"
@@ -49,7 +186,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-sudan-nyala-healthcare-strike-burhan-military-reshuffle"
@@ -65,7 +202,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-doj-scrap-watergate-presidential-records-act"
@@ -81,7 +218,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-federal-court-trump-tariffs-ieepa-challenge"
@@ -106,7 +243,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-pakistan-diesel-price-cut-rs135-ceasefire"
@@ -122,7 +259,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-white-house-iran-war-insider-trading-warning"
@@ -147,7 +284,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-marine-heatwaves-double-cyclone-economic-damage"
@@ -163,7 +300,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-first-contact-complex-life-stromatolites-shark-bay"
@@ -179,7 +316,7 @@
       "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-north-korea-drift-crypto-theft-280-million"
@@ -195,7 +332,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-04-10-france-government-linux-desktop-windows-exit",
@@ -212,7 +349,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-bars-spain-gaza-ceasefire-monitoring"
@@ -237,7 +374,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-european-airports-jet-fuel-shortage-hormuz"
@@ -262,7 +399,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-egypt-activist-ahmed-douma-detention-extended"
@@ -278,7 +415,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-hong-kong-stablecoin-licenses-hsbc-stanchart"
@@ -303,7 +440,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-secret-project-abc-conjecture-computer-verification"
@@ -319,7 +456,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-moderna-mrna-cancer-vaccine-naming-dilemma"
@@ -335,7 +472,7 @@
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-10-florida-investigates-openai-chatgpt-deadly-shooting"
@@ -345,13 +482,30 @@
       "conceptUris": []
     },
     {
+      "id": "japan-missiles-us-china-collision-course",
+      "label": "Japan's new long-range missiles put US-China on collision course",
+      "firstSeen": "2026-04-10T08:09:28.322Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-04-10-japan-missiles-us-china-collision-course",
+        "2026-04-11-japan-type-25-missile-hypersonic-us-china-escalation"
+      ],
+      "eventUri": null,
+      "summary": "Japan deployed its first domestically developed long-range missile (Type 25, 600-mile range capable of hitting Shanghai) and its first hypersonic weapon (HVGP) on March 31 — with US material support via a $340M equipment sale. Tens of thousands protested in Tokyo on April 8 against militarization and the Iran war. Lead with the range number and the security dilemma: each side's 'defensive' move reads as offensive to the other. China warns Japan has gone 'far beyond self-defense.' The reader tracking US-China tensions sees a third player now armed to escalate, while the US is distracted in the Middle East.",
+      "conceptUris": []
+    },
+    {
       "id": "india-wastewater-drug-resistance-genes-amr",
       "label": "Indian wastewater rife with drug resistance genes",
       "firstSeen": "2026-04-10T04:05:18.954Z",
       "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-04-10-india-wastewater-drug-resistance-genes-amr",
@@ -369,7 +523,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-iran-lebanon-ceasefire-test-regional-sway"
@@ -385,7 +539,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-south-africa-trc-timol-sabotage-inquiry"
@@ -401,7 +555,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-korea-peninsula-security-iran-war-rebalancing"
@@ -417,7 +571,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-adb-asia-pacific-growth-iran-war-inflation"
@@ -442,7 +596,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-bird-flu-h5n1-dairy-cattle-vaccination-window"
@@ -458,7 +612,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-eth-zurich-17000-qubit-array-fidelity"
@@ -474,7 +628,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-dutch-hospitals-ransomware-chipsoft-disruption"
@@ -490,7 +644,7 @@
       "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-prosthetic-emg-deep-learning-two-sensors"
@@ -506,7 +660,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-eu-nato-rift-us-military-bases-iran-war"
@@ -516,29 +670,13 @@
       "conceptUris": []
     },
     {
-      "id": "japan-missiles-us-china-collision-course",
-      "label": "Japan's new long-range missiles put US-China on collision course",
-      "firstSeen": "2026-04-10T08:09:28.322Z",
-      "lastCovered": "2026-04-10T08:09:28.322Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-japan-missiles-us-china-collision-course"
-      ],
-      "eventUri": null,
-      "summary": "Japan deployed its first domestically developed long-range missile (Type 25, 600-mile range capable of hitting Shanghai) and its first hypersonic weapon (HVGP) on March 31 — with US material support via a $340M equipment sale. Tens of thousands protested in Tokyo on April 8 against militarization and the Iran war. Lead with the range number and the security dilemma: each side's 'defensive' move reads as offensive to the other. China warns Japan has gone 'far beyond self-defense.' The reader tracking US-China tensions sees a third player now armed to escalate, while the US is distracted in the Middle East.",
-      "conceptUris": []
-    },
-    {
       "id": "israel-34-settlements-west-bank-ceasefire",
       "label": "Israel \"blatantly\" violating ceasefire, Iranian president says; 34 new settlements approved in occupied West Bank; China brokers deal in Afghanistan-Pakistan war",
       "firstSeen": "2026-04-10T08:09:28.322Z",
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-34-settlements-west-bank-ceasefire"
@@ -554,7 +692,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-bjp-uniform-civil-code-west-bengal-six-months"
@@ -579,7 +717,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-china-factory-prices-growth-41-month-deflation-ends"
@@ -604,7 +742,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-african-funeral-costs-families-poverty"
@@ -620,7 +758,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-medieval-japanese-poetry-trees-space-weather"
@@ -636,7 +774,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-mcp-over-skills-ai-agent-tooling"
@@ -652,7 +790,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-russia-rfe-journalist-cyberattacks-ukraine-fsb"
@@ -668,7 +806,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-09-amazon-mineral-extraction-clean-energy-paradox",
@@ -686,7 +824,7 @@
       "lastCovered": "2026-04-10T08:09:28.322Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-09-sterile-neutrinos-death-knell-experiments",
@@ -703,7 +841,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-khamenei-hormuz-new-phase-ceasefire-iran"
@@ -725,7 +863,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-india-election-adjudication-voter-roll-skew"
@@ -746,7 +884,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-mythos-ai-zero-day-bessent-powell-bank-ceos"
@@ -768,7 +906,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-singapore-air-con-oil-crunch-hormuz-asia"
@@ -790,7 +928,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-chimps-civil-war-ngogo-scientists"
@@ -806,7 +944,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-iran-war-60-nations-energy-crisis-response"
@@ -822,7 +960,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-nasa-orion-leaky-valves-artemis-redesign"
@@ -844,7 +982,7 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-quantum-safe-bitcoin-no-soft-fork-200-dollars"
@@ -866,205 +1004,13 @@
       "lastCovered": "2026-04-10T04:05:18.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-microsoft-dark-patterns-onedrive-storage"
       ],
       "eventUri": null,
       "summary": "A developer documents how Microsoft uses deceptive UI patterns — misleading dialog boxes, pre-selected options, confusing cancellation flows — to push users into paying for OneDrive storage they don't need. Lead with the specific dark pattern examples: 251 HN points and 140 comments means this resonates with the tech community. The reader who takes systems apart should see the business model: when a company can't compete on product quality, it competes on user confusion. This is consumer accountability reporting from the community that builds these systems.",
-      "conceptUris": []
-    },
-    {
-      "id": "gcc-tourism-32bn-hit-iran-conflict",
-      "label": "GCC tourism could take $32bn hit from Iran conflict",
-      "firstSeen": "2026-04-09T12:11:29.981Z",
-      "lastCovered": "2026-04-10T08:09:28.322Z",
-      "coverageCount": 3,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-09-gcc-tourism-32bn-hit-iran-conflict",
-        "2026-04-09-gcc-tourism-32-billion-hit-iran-war",
-        "2026-04-10-gcc-tourism-32-billion-hit-iran-conflict"
-      ],
-      "eventUri": null,
-      "summary": "The Iran conflict could cost GCC tourism $32 billion - the sector the Gulf states bet their post-oil future on. Lead with the number and the irony: countries that stayed out of the war are absorbing its economic shockwave through cancelled bookings and closed airspace. Dubai, Abu Dhabi, and Doha built their economies around being safe havens. The war next door shatters that brand.",
-      "conceptUris": []
-    },
-    {
-      "id": "smotrich-israel-expand-borders-gaza-lebanon-syria",
-      "label": "Finance chief says Israel will expand its borders in Gaza, Lebanon, Syria",
-      "firstSeen": "2026-04-09T22:09:22.153Z",
-      "lastCovered": "2026-04-09T22:09:22.153Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-smotrich-israel-expand-borders-gaza-lebanon-syria"
-      ],
-      "eventUri": null,
-      "summary": "Israel's Finance Minister Smotrich — leader of the Religious Zionist Party — publicly declares Israel will annex Gaza, southern Lebanon, and parts of Syria. This isn't a leak or speculation; it's a cabinet minister stating territorial expansion as policy, hours into a ceasefire. Lead with the brazenness: a finance minister announcing annexation while the US negotiates peace in Pakistan. The reader tracking the Iran war should see this as the endgame Israel's far right has been building toward — the war as pretext for permanent land seizure.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bezalel_Smotrich",
-        "http://en.wikipedia.org/wiki/Religious_Zionist_Party",
-        "http://en.wikipedia.org/wiki/Ministry_of_Finance_(Israel)",
-        "http://en.wikipedia.org/wiki/Jewish_state",
-        "http://en.wikipedia.org/wiki/Southern_Lebanon"
-      ]
-    },
-    {
-      "id": "venezuelan-cops-block-workers-march-pay-pledge",
-      "label": "Venezuelan Cops Block March as Pay Pledge Fails to Calm Workers",
-      "firstSeen": "2026-04-09T22:09:22.153Z",
-      "lastCovered": "2026-04-09T22:09:22.153Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-venezuelan-cops-block-workers-march-pay-pledge"
-      ],
-      "eventUri": "spa-4163375",
-      "summary": "Venezuelan security forces tear-gassed workers marching toward the presidential palace after Maduro's vague pay pledge failed to calm anger over soaring prices. Lead with the wages: public sector workers earn effectively nothing as hyperinflation erases their salaries. Labor unions, pensioners, students marching together — this is economic desperation turning into street confrontation. The reader should see how authoritarian governments use the same playbook: promise, then suppress.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Venezuela",
-        "http://en.wikipedia.org/wiki/Tear_gas",
-        "http://en.wikipedia.org/wiki/Caracas",
-        "http://en.wikipedia.org/wiki/Delcy_Rodríguez",
-        "http://en.wikipedia.org/wiki/Salary"
-      ]
-    },
-    {
-      "id": "israeli-interceptors-dwindled-double-digits",
-      "label": "Israeli Missile Interceptors Have Dwindled to \"Double Digits\": Trump Administration Official",
-      "firstSeen": "2026-04-09T22:09:22.153Z",
-      "lastCovered": "2026-04-09T22:09:22.153Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-israeli-interceptors-dwindled-double-digits"
-      ],
-      "eventUri": null,
-      "summary": "Israel's missile interceptor stockpile has dropped to double digits — a Trump administration official confirms the iron dome's ammunition is nearly exhausted after weeks of Iranian barrages. Lead with the number: 'double digits' means Israel cannot sustain another round of missile exchanges without the US Navy doing the intercepting. This is the material reality behind the ceasefire — Israel needed it because it was running out of the one thing keeping its cities intact. The reader sees the dependency: without American ships, Israel's defense collapses.",
-      "conceptUris": []
-    },
-    {
-      "id": "antarctic-land-claim-abbott-rivada-trump",
-      "label": "Geopolitical legal iceberg - Former Australian PM Abbott linked to Antarctic land claim pitch",
-      "firstSeen": "2026-04-09T22:09:22.153Z",
-      "lastCovered": "2026-04-09T22:09:22.153Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-antarctic-land-claim-abbott-rivada-trump"
-      ],
-      "eventUri": null,
-      "summary": "A satellite communications firm with ex-Australian PM Tony Abbott on its board is lobbying the Trump administration to claim Marie Byrd Land — the largest unclaimed landmass on Earth, in Antarctica. Lead with the absurdity: a private company wants the US to break the Antarctic Treaty System to gain territory for satellite infrastructure. The firm is Rivada Networks, run by Declan Ganley. The reader who follows tech-meets-imperialism will see the pattern: private companies using geopolitical disruption to extract territorial concessions.",
-      "conceptUris": []
-    },
-    {
-      "id": "sudanese-gold-rsf-volkswagen-supply-chain",
-      "label": "Call for business world to cease trading Sudanese gold 'that is funding war'",
-      "firstSeen": "2026-04-09T22:09:22.153Z",
-      "lastCovered": "2026-04-09T22:09:22.153Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-sudanese-gold-rsf-volkswagen-supply-chain"
-      ],
-      "eventUri": "eng-11551589",
-      "summary": "Conflict gold from Sudan's RSF-controlled mines is appearing in global supply chains — including in Volkswagen's 2024 reports. The RSF seized gold mines and oil infrastructure to fund its war. Lead with Volkswagen: a German carmaker's supply chain runs through a militia's gold mines. The mechanism is the story — how artisanal gold gets laundered through UAE refineries into European manufacturing. The reader tracking Sudan's civil war sees the financial architecture that keeps it going.",
-      "conceptUris": []
-    },
-    {
-      "id": "meta-coreweave-35-billion-ai-infrastructure",
-      "label": "Meta expands CoreWeave deal with another $21B commitment",
-      "firstSeen": "2026-04-09T22:09:22.153Z",
-      "lastCovered": "2026-04-09T22:09:22.153Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-meta-coreweave-35-billion-ai-infrastructure"
-      ],
-      "eventUri": "eng-11551071",
-      "summary": "Meta just committed another $21 billion to CoreWeave on top of $14.2B last fall — $35 billion total locked through 2032 with a single cloud provider. Same morning, Amazon's CEO told shareholders AI capex won't slow. Lead with the concentration risk: one company betting $35B on one GPU cloud provider that only IPO'd recently. The reader in tech sees the AI arms race materializing as infrastructure lock-in — and should ask what happens if the AI revenue thesis doesn't pan out.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Cloud_computing",
-        "http://en.wikipedia.org/wiki/Meta_Platforms",
-        "http://en.wikipedia.org/wiki/Nvidia",
-        "http://en.wikipedia.org/wiki/Data_center",
-        "http://en.wikipedia.org/wiki/Graphics_processing_unit",
-        "http://en.wikipedia.org/wiki/United_States_dollar",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer"
-      ]
-    },
-    {
-      "id": "emperor-penguin-endangered-iucn-sea-ice",
-      "label": "Climate crisis comes for the iconic emperor penguin, now declared endangered",
-      "firstSeen": "2026-04-09T22:09:22.153Z",
-      "lastCovered": "2026-04-09T22:09:22.153Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-emperor-penguin-endangered-iucn-sea-ice"
-      ],
-      "eventUri": "eng-11554076",
-      "summary": "Emperor penguins — the largest penguin species — have been declared endangered by the IUCN following catastrophic sea ice loss in Antarctica. Lead with the mechanism: emperor penguins need stable sea ice for 9 months to breed, and three consecutive years of record-low Antarctic sea ice have caused unprecedented breeding failures. This isn't a distant projection — it's a species collapsing in real time as its habitat disappears.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Emperor_penguin",
-        "http://en.wikipedia.org/wiki/International_Union_for_Conservation_of_Nature",
-        "http://en.wikipedia.org/wiki/Sea_ice",
-        "http://en.wikipedia.org/wiki/Species",
-        "http://en.wikipedia.org/wiki/Endangered_species",
-        "http://en.wikipedia.org/wiki/Antarctica",
-        "http://en.wikipedia.org/wiki/Climate_change",
-        "http://en.wikipedia.org/wiki/Penguin"
-      ]
-    },
-    {
-      "id": "crispr-gene-editing-beta-thalassaemia-trial",
-      "label": "Clinical trial shows gene editing works for β-Thalassaemia, too",
-      "firstSeen": "2026-04-09T22:09:22.153Z",
-      "lastCovered": "2026-04-09T22:09:22.153Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-crispr-gene-editing-beta-thalassaemia-trial"
-      ],
-      "eventUri": null,
-      "summary": "A CRISPR clinical trial has shown gene editing can treat β-thalassaemia — expanding the proven therapeutic reach of the technology beyond sickle cell disease. Lead with what this means for patients: β-thalassaemia affects millions, predominantly in South and Southeast Asia, the Middle East, and the Mediterranean. The reader in tech who follows CRISPR sees the technology graduating from proof-of-concept to a broadening clinical toolkit for genetic blood disorders.",
-      "conceptUris": []
-    },
-    {
-      "id": "maine-first-state-ban-data-centers",
-      "label": "Maine is about to become the first state to ban major new data centers",
-      "firstSeen": "2026-04-09T22:09:22.153Z",
-      "lastCovered": "2026-04-09T22:09:22.153Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-maine-first-state-ban-data-centers"
-      ],
-      "eventUri": null,
-      "summary": "Maine is poised to become the first US state to ban major new data centers — a legislative response to the AI infrastructure buildout consuming rural land, water, and power. Lead with the precedent: no state has done this before. The reader who saw the farmer arrested for speaking at a datacenter town hall last cycle now sees the political backlash scaling from individual resistance to state-level policy. 175 points and 231 comments on HN — this is landing with the tech community.",
       "conceptUris": []
     }
   ]
