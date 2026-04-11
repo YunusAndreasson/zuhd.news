@@ -36,6 +36,12 @@ const SOURCES = [
   { name: 'European Spaceflight', url: 'https://europeanspaceflight.com/feed/',  format: 'rss2', defaultCategory: 'science' },
   { name: 'Undark',        url: 'https://undark.org/feed/',                      format: 'rss2', defaultCategory: 'science' },
   { name: 'Inkstick',      url: 'https://inkstickmedia.com/feed/',              format: 'rss2' },
+  { name: 'Noema',        url: 'https://www.noemamag.com/feed/',               format: 'rss2' },
+  { name: 'Rest of World', url: 'https://restofworld.org/feed/latest/',        format: 'rss2', defaultCategory: 'tech' },
+  { name: 'The Diplomat', url: 'https://thediplomat.com/feed/',                format: 'rss2' },
+  { name: 'Lowy Interpreter', url: 'https://www.lowyinstitute.org/the-interpreter/rss.xml', format: 'rss2' },
+  { name: 'Dialogue Earth', url: 'https://thethirdpole.net/feed/',             format: 'rss2', defaultCategory: 'science' },
+  { name: 'Global Voices', url: 'https://globalvoices.org/feed/',              format: 'rss2' },
 ]
 
 const EXCLUDE_RE = /\b(opinion|features|gallery|photos|video|sport|entertainment|culture|food|travel|lifestyle|podcast)\b/i
