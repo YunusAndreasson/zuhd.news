@@ -3643,5 +3643,80 @@
     "label": "Marital Status and Health Outcomes",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-11-causal-ml-personalised-drug-dosing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "PREDICTION VS CAUSATION",
+        "body": "Standard ML asks 'what will happen?' Causal ML asks 'what will happen if we intervene?' A model can perfectly predict that patients carrying umbrellas get wet without ever understanding that rain causes both. Drug dosing requires the second kind of reasoning."
+      },
+      {
+        "heading": "THE COUNTERFACTUAL",
+        "body": "A counterfactual is the outcome a patient would have experienced under a different treatment. You can never observe it directly — the patient either got the higher dose or didn't. This is called the fundamental problem of causal inference, and every method in the field is a strategy for estimating what you cannot measure."
+      },
+      {
+        "heading": "WHY CORRELATION KILLS",
+        "body": "Sicker patients get higher doses. A naive model learns that higher doses correlate with worse outcomes and recommends undertreating everyone. Causal models use techniques like inverse probability weighting to mathematically undo this confounding — separating the effect of the drug from the effect of being sicker."
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "Drug regulators approve molecules, not algorithms. A dosing model that adapts per-patient has no precedent in approval frameworks built around fixed-dose Phase III trials. The FDA's 2023 guidance on AI in drug development acknowledges the gap but sets no binding standards."
+      }
+    ],
+    "generatedAt": "2026-04-11T10:18:10.137Z",
+    "label": "Causal Inference in Medicine",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-11-china-manpads-iran-arms-supply": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THEY ARE",
+        "body": "Man-Portable Air-Defence Systems: shoulder-fired, infrared-guided missiles weighing under 20 kg. One soldier, one missile, one aircraft killed. They fly at Mach 2 and track engine heat, making them nearly impossible to dodge without dedicated countermeasures."
+      },
+      {
+        "heading": "WHY THEY MATTER DISPROPORTIONATELY",
+        "body": "A single MANPADS costs $30,000–80,000. An F-35 costs $80 million. This asymmetry is why MANPADS proliferation is considered one of the most destabilising dynamics in modern arms control — they make air superiority enormously expensive to maintain."
+      },
+      {
+        "heading": "THE PROLIFERATION FEAR",
+        "body": "After the Soviet collapse, thousands of SA-7s flooded black markets. In 2002, two SA-7s were fired at an Israeli charter jet over Mombasa. Since then, the Wassenaar Arrangement treats MANPADS transfers as a top-tier proliferation concern — state-to-state sales require extraordinary justification."
+      },
+      {
+        "heading": "THE CEILING PROBLEM",
+        "body": "MANPADS only reach 4–6 km altitude. They threaten helicopters, low-flying jets, and transport aircraft but cannot touch high-altitude bombers or cruise missiles. Their military value is tactical — denying close air support — not strategic air denial."
+      }
+    ],
+    "generatedAt": "2026-04-11T10:18:10.138Z",
+    "label": "MANPADS",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-11-us-releases-frozen-iranian-assets-qatar": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW FREEZING WORKS",
+        "body": "Assets aren't physically seized. The US Treasury's OFAC adds names to the Specially Designated Nationals list. Every bank touching the dollar system — which is nearly every bank — must then refuse to move those funds. The money stays in the account; the account becomes a cage."
+      },
+      {
+        "heading": "WHY DOLLARS ARE THE LEVER",
+        "body": "Over 88% of international foreign exchange transactions involve the US dollar. Any bank that processes dollar transactions maintains a correspondent account at a US bank. Violate OFAC sanctions and that correspondent relationship is severed — effectively cutting the bank off from global trade."
+      },
+      {
+        "heading": "THE QATAR CHANNEL",
+        "body": "Iranian oil revenues have been held in restricted accounts in Qatar, South Korea, Japan, and Iraq since 2018. These funds can only be spent on pre-approved humanitarian goods — food, medicine — under US monitoring. Unfreezing means removing the spending restrictions, not physically transferring cash."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "In 2023, the US unfroze $6 billion in Iranian funds held in South Korea as part of a prisoner exchange. The mechanism — restricted humanitarian accounts in a third country — has become the standard template for US-Iran financial diplomacy, allowing concessions that are technically reversible."
+      }
+    ],
+    "generatedAt": "2026-04-11T10:18:10.138Z",
+    "label": "Frozen Assets",
+    "category": "politics",
+    "articleCount": 1
   }
 }

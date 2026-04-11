@@ -2,13 +2,142 @@
   "version": 1,
   "stories": [
     {
+      "id": "china-manpads-iran-arms-supply",
+      "label": "US Intelligence Shows China Set to Supply Iran Arms, CNN Reports",
+      "firstSeen": "2026-04-11T10:12:02.778Z",
+      "lastCovered": "2026-04-11T10:12:02.778Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-china-manpads-iran-arms-supply"
+      ],
+      "eventUri": "eng-11560110",
+      "summary": "China is preparing to ship MANPADS — shoulder-fired anti-aircraft missiles — to Iran within weeks. This is the first time a major power has moved to arm Iran during the current war, and it's Beijing doing it. Lead with the weapon type: MANPADS are cheap, portable, and devastating against low-flying aircraft and helicopters. The reader tracking the AI arms race and geopolitical realignment should see the structural shift — China is no longer just abstaining from sanctions, it's actively supplying a country at war with the US. Bloomberg, TRT World, and MEE all covering. The Trump administration framing this as a red line makes escalation with China itself a live risk.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/CNN",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/United_States_Intelligence_Community",
+        "http://en.wikipedia.org/wiki/Man-portable_air-defense_system",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Air_defence"
+      ]
+    },
+    {
+      "id": "us-releases-frozen-iranian-assets-qatar",
+      "label": "US Agrees To Release Frozen Iranian Assets In Qatar, Other Banks: Report",
+      "firstSeen": "2026-04-11T10:12:02.778Z",
+      "lastCovered": "2026-04-11T10:12:02.778Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-us-releases-frozen-iranian-assets-qatar"
+      ],
+      "eventUri": "eng-11560487",
+      "summary": "The US has agreed to unfreeze Iranian assets held in Qatar and other foreign banks — a concrete concession ahead of the Islamabad talks. Previous coverage reported Iran's demand; this is the US saying yes. Lead with the shift: after 31 days of war, Washington is making its first material economic concession. A senior Iranian source called it a sign of 'seriousness.' The reader should see the negotiating dynamic — asset release is the traditional first confidence-building measure, the same mechanism used in the 2015 JCPOA. The question is whether it buys enough goodwill before the April 22 ceasefire expiry.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Qatar",
+        "http://en.wikipedia.org/wiki/Dubai",
+        "http://en.wikipedia.org/wiki/Washington,_D.C."
+      ]
+    },
+    {
+      "id": "masjoody-murder-iran-diaspora-canada",
+      "label": "Killing of Masood Masjoody Exposes Deep Rifts in Canada's Iranian Diaspora",
+      "firstSeen": "2026-04-11T10:12:02.778Z",
+      "lastCovered": "2026-04-11T10:12:02.778Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-masjoody-murder-iran-diaspora-canada"
+      ],
+      "eventUri": "eng-11549865",
+      "summary": "An Iranian activist was murdered in Vancouver after years of warning that regime agents operated inside Canadian universities and diaspora organisations. Lead with his warnings — Masjoody told people he wasn't safe, named specific threats, and was killed anyway. The story exposes how Iran's security apparatus operates transnationally, embedding agents among exiles. The reader should see the pattern: states don't just fight wars abroad, they pursue dissidents in democracies that assume they're safe. Canada's failure to protect him is the accountability angle.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kowsar",
+        "http://en.wikipedia.org/wiki/Pahlavi_dynasty",
+        "http://en.wikipedia.org/wiki/Diaspora",
+        "http://en.wikipedia.org/wiki/Shah",
+        "http://en.wikipedia.org/wiki/University"
+      ]
+    },
+    {
+      "id": "zamfara-bandits-kill-ten-bunkasau",
+      "label": "Bandits kill 10 in Zamfara",
+      "firstSeen": "2026-04-11T10:12:02.778Z",
+      "lastCovered": "2026-04-11T10:12:02.778Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-zamfara-bandits-kill-ten-bunkasau"
+      ],
+      "eventUri": "eng-11554941",
+      "summary": "Bandits killed at least 10 people in a late-evening raid on Bunkasau village in Zamfara State, with the security situation in western Zamfara deteriorating over recent weeks. Lead with the pattern: this isn't an isolated attack but an escalation in a region where armed groups operate with near-impunity. The Nigerian military's mass trial of 386 terrorism suspects (covered last cycle) was meant to project strength — this attack shows the gap between courtrooms and control on the ground. The reader should see the structural failure: Nigeria convicts hundreds while bandits continue to kill dozens.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Zamfara_State",
+        "http://en.wikipedia.org/wiki/Bukkuyum",
+        "http://en.wikipedia.org/wiki/Terrorism",
+        "http://en.wikipedia.org/wiki/Civilian_Joint_Task_Force",
+        "http://en.wikipedia.org/wiki/Atiku_Abubakar"
+      ]
+    },
+    {
+      "id": "nigeria-fiscal-policy-ecowas-tariffs",
+      "label": "FG approves 2026 Fiscal Policy Measures, cuts tariffs on cars, others",
+      "firstSeen": "2026-04-11T10:12:02.778Z",
+      "lastCovered": "2026-04-11T10:12:02.778Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-nigeria-fiscal-policy-ecowas-tariffs"
+      ],
+      "eventUri": null,
+      "summary": "Nigeria approved new fiscal measures including tariff cuts on cars and new excise duties on beverages — with a carve-out applying only to non-ECOWAS imports, strengthening the West African trade bloc. Lead with the ECOWAS angle: at a time when trade blocs are fragmenting globally (US tariffs, EU protectionism), Africa's largest economy is deepening regional integration. The reader should see the structural play: Nigeria is using tariff policy to pull neighbours closer while the rest of the world builds walls. The African Continental Free Trade Area is the framework.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Economic_Community_of_West_African_States",
+        "http://en.wikipedia.org/wiki/Excise",
+        "http://en.wikipedia.org/wiki/Tariff",
+        "http://en.wikipedia.org/wiki/Prohibition",
+        "http://en.wikipedia.org/wiki/African_Continental_Free_Trade_Area"
+      ]
+    },
+    {
+      "id": "causal-ml-personalised-drug-dosing",
+      "label": "Using causal machine learning and real world data to improve dose response decision making for secukinumab in psoriatic arthritis",
+      "firstSeen": "2026-04-11T10:12:02.778Z",
+      "lastCovered": "2026-04-11T10:12:02.778Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-causal-ml-personalised-drug-dosing"
+      ],
+      "eventUri": null,
+      "summary": "A Nature study applied causal machine learning — not just pattern-matching but actual cause-and-effect inference — to real-world patient data to determine who benefits from drug dose escalation in psoriatic arthritis. Lead with the method, not the disease: this is AI making personalised medical decisions from messy real-world data, not clean clinical trials. The reader in tech should see the frontier: ML is moving from recommending products to recommending drug doses, and the causal framework means it can distinguish 'this patient improved because of the higher dose' from 'this patient would have improved anyway.'",
+      "conceptUris": []
+    },
+    {
       "id": "bjp-bengal-manifesto-ucc-infiltration",
       "label": "In Bengal, Amit Shah's 'Na Janata, Na Mamata' Jab At Congress",
       "firstSeen": "2026-04-11T08:37:57.048Z",
       "lastCovered": "2026-04-11T08:37:57.048Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-bjp-bengal-manifesto-ucc-infiltration"
@@ -33,7 +162,7 @@
       "lastCovered": "2026-04-11T08:37:57.048Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-marriage-status-cancer-risk-study"
@@ -54,7 +183,7 @@
       "lastCovered": "2026-04-11T08:37:57.048Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-pakistan-minister-asif-israel-post-deleted"
@@ -78,7 +207,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-israel-kills-13-lebanon-state-security-nabatieh"
@@ -100,7 +229,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-china-russia-rally-cuba-us-sanctions-crisis"
@@ -122,7 +251,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-sudan-healthcare-strike-burhan-consolidates-kurmuk-operation"
@@ -138,7 +267,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-us-82nd-airborne-middle-east-buildup-iran"
@@ -154,7 +283,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-peshawar-court-blocks-afghan-family-deportation-asylum"
@@ -170,7 +299,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-federal-court-trump-tariffs-legal-challenge"
@@ -191,7 +320,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-nigeria-international-breweries-profit-seven-years"
@@ -207,7 +336,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-yellowstone-farallon-plate-not-mantle-plume"
@@ -223,7 +352,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-oobleck-non-newtonian-fluid-new-surprises"
@@ -239,7 +368,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-altman-home-molotov-cocktail-attack-arrested"
@@ -260,7 +389,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-putin-russia-sovereign-llm-development"
@@ -276,7 +405,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-doj-scrap-presidential-records-act-watergate"
@@ -292,7 +421,7 @@
       "lastCovered": "2026-04-10T22:11:50.975Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-faa-recruits-gamers-air-traffic-controllers"
@@ -308,7 +437,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-iran-demands-lebanon-truce-asset-unfreeze-ahead-of-talks"
@@ -333,7 +462,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-trump-failure-kurdish-uprising-iraq-iran"
@@ -349,7 +478,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-bessent-powell-bank-ceos-anthropic-ai-cybersecurity"
@@ -374,7 +503,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-france-10-billion-electrification-gas-boiler-ban-iran-oil"
@@ -399,7 +528,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-pakistan-diesel-price-cut-rs135-ceasefire-dividend"
@@ -415,7 +544,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-marine-heatwaves-double-cyclone-economic-damage"
@@ -431,7 +560,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-forestation-wind-energy-tradeoff-climate-solutions"
@@ -447,7 +576,7 @@
       "lastCovered": "2026-04-10T19:08:12.551Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-nigeria-386-terrorism-convictions-four-day-mass-trial"
@@ -463,7 +592,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-approves-34-new-west-bank-settlements"
@@ -479,7 +608,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-expels-spain-gaza-coordination-retaliation"
@@ -504,7 +633,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-vance-pakistan-iran-peace-talks"
@@ -529,7 +658,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-purohit-malegaon-blast-acquitted-promoted-brigadier"
@@ -554,7 +683,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-israel-missile-interceptors-double-digits-depleted"
@@ -570,7 +699,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-us-inflation-3-3-percent-iran-war-energy"
@@ -595,7 +724,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-european-airports-jet-fuel-shortage-hormuz"
@@ -620,7 +749,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-white-house-iran-war-insider-trading-warning"
@@ -645,7 +774,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-artemis-2-splashdown-moon-mission-return"
@@ -670,7 +799,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-moderna-cancer-vaccine-therapy-naming-dilemma"
@@ -686,7 +815,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-indian-wastewater-antibiotic-resistance-genes"
@@ -702,7 +831,7 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-macos-privacy-security-settings-unreliable"
@@ -718,377 +847,13 @@
       "lastCovered": "2026-04-10T17:24:58.084Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-10-wireguard-windows-release-microsoft-signing"
       ],
       "eventUri": null,
       "summary": "WireGuard released a new Windows version after resolving a dispute with Microsoft over kernel driver signing — a bottleneck that had blocked updates to one of the most important privacy tools in the open-source ecosystem. 105 HN points. Lead with the power dynamic: Microsoft's driver signing requirements gave it a chokepoint over open-source security software that millions depend on. The reader who uses WireGuard (or any VPN) should see the infrastructure dependency: your privacy tool's ability to ship updates depends on a single company's signing process. The resolution matters, but the vulnerability it exposed matters more.",
-      "conceptUris": []
-    },
-    {
-      "id": "israel-death-penalty-iran-comparison",
-      "label": "What Israelis can learn from the nightmares of an Iranian hangman",
-      "firstSeen": "2026-04-09T18:27:38.610Z",
-      "lastCovered": "2026-04-11T03:15:14.127Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-09-israel-death-penalty-iran-comparison",
-        "2026-04-09-israel-death-penalty-iran-hangman"
-      ],
-      "eventUri": null,
-      "summary": "Israel is moving to embrace the death penalty through Knesset legislation, and government ministers are looking to the Iranian execution system — the same 'terror regime' they denounce — for operational precedent. Lead with the irony: the policy Israel is adopting mirrors the state it is at war with. The reader should see the policy shift, not the opinion: a democracy is legislating state killing during wartime, and the comparative evidence from Iran shows where it leads — a system that traumatizes even its own executioners.",
-      "conceptUris": []
-    },
-    {
-      "id": "gcc-tourism-32bn-hit-iran-conflict",
-      "label": "GCC tourism could take $32bn hit from Iran conflict",
-      "firstSeen": "2026-04-09T18:27:38.610Z",
-      "lastCovered": "2026-04-11T03:15:14.127Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-09-gcc-tourism-32bn-hit-iran-conflict"
-      ],
-      "eventUri": null,
-      "summary": "The Iran conflict could cost Gulf tourism $32 billion — a number that dwarfs the military spending being debated. Lead with the dollar figure and who bears it: hotel workers, airline staff, small business owners across Dubai, Doha, Bahrain, and Riyadh who had nothing to do with the war. The reader tracking the Iran economic cascade should see: Hormuz closure broke shipping, Kharg strikes broke oil exports, and now the tourism sector — the Gulf's diversification bet — is collapsing too. Three pillars of GCC economy hit simultaneously.",
-      "conceptUris": []
-    },
-    {
-      "id": "egypt-lucky-fintech-23m-raise",
-      "label": "Egypt's Lucky raises $23m to expand credit services and regional growth",
-      "firstSeen": "2026-04-09T18:27:38.610Z",
-      "lastCovered": "2026-04-11T03:15:14.127Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-09-egypt-lucky-fintech-23m-raise",
-        "2026-04-09-egypt-lucky-fintech-23m-credit"
-      ],
-      "eventUri": null,
-      "summary": "Egyptian fintech Lucky raised $23 million to expand credit services across the region — one of the larger raises in MENA fintech this year. Lead with what it builds: credit infrastructure for underbanked populations in a region where traditional banking serves a fraction of the population. The reader in tech should see a Muslim-world startup scaling financial inclusion while Gulf economies contract from the war. Contrast with the $32bn tourism loss — some parts of the MENA economy are building while others burn.",
-      "conceptUris": []
-    },
-    {
-      "id": "inside-idf-propaganda-wing-972-investigation",
-      "label": "Inside the Israeli army's propaganda wing",
-      "firstSeen": "2026-04-09T18:27:38.610Z",
-      "lastCovered": "2026-04-10T19:08:12.551Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-09-inside-idf-propaganda-wing-972-investigation",
-        "2026-04-10-inside-israeli-army-propaganda-wing-972"
-      ],
-      "eventUri": null,
-      "summary": "Soldiers and journalists reveal how the IDF Spokesperson's Unit controls public discourse through psy-op campaigns, selective leaks, and exclusive reporter access. Lead with the mechanism: this is not about 'bias' — it's an organized military operation to shape what the world sees. The reader who consumes news about Israel-Palestine should understand the infrastructure behind the information they receive. Name the tools: embedded access as reward, leak timing to set narratives, psychological operations targeting domestic and international audiences. This is accountability journalism about the journalism itself.",
-      "conceptUris": []
-    },
-    {
-      "id": "ngogo-chimps-civil-war-largest-group",
-      "label": "World's Largest Group of Chimps Waging Deadly 'Civil War,' Scientists Discover",
-      "firstSeen": "2026-04-09T18:27:38.610Z",
-      "lastCovered": "2026-04-10T19:08:12.551Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-09-ngogo-chimps-civil-war-largest-group",
-        "2026-04-10-ngogo-chimpanzee-civil-war-largest-group"
-      ],
-      "eventUri": null,
-      "summary": "The Ngogo chimpanzee community — the largest ever studied — has split into warring factions, with at least 24 killed. Lead with the scale: this is the largest documented intragroup conflict in primatology. Scientists are watching a society of 200+ individuals fracture along social lines, with former kin becoming lethal enemies. The reader should see the behavioral ecology: resource competition and group size drove a fission event that mirrors patterns in human political fragmentation. This is what happens when a community outgrows its capacity to maintain social bonds.",
-      "conceptUris": []
-    },
-    {
-      "id": "hungarian-government-passwords-bellingcat",
-      "label": "'Snoopy', 'Adolf' and 'Password': The Hungarian Government Passwords Exposed Online",
-      "firstSeen": "2026-04-09T18:27:38.610Z",
-      "lastCovered": "2026-04-10T19:08:12.551Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-09-hungarian-government-passwords-bellingcat",
-        "2026-04-10-hungarian-government-passwords-exposed-bellingcat"
-      ],
-      "eventUri": null,
-      "summary": "Bellingcat analyzed breach data showing 800 Hungarian government email addresses and passwords circulating online — affecting 12 of 13 ministries, including those handling classified work. Lead with the passwords themselves: 'Snoopy', 'Adolf', 'Password' — protecting a NATO member's state secrets. The reader in tech will grasp the systemic failure immediately: this isn't one careless employee, it's institutional indifference to basic security across an entire government. Orban's Hungary handles sensitive EU and NATO information with passwords a script kiddie could crack.",
-      "conceptUris": []
-    },
-    {
-      "id": "farmer-arrested-datacenter-town-hall",
-      "label": "Farmer Arrested for Speaking Too Long at Datacenter Town Hall Vows to Fight",
-      "firstSeen": "2026-04-09T18:27:38.610Z",
-      "lastCovered": "2026-04-10T19:08:12.551Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-09-farmer-arrested-datacenter-town-hall",
-        "2026-04-10-farmer-arrested-datacenter-town-hall-free-speech"
-      ],
-      "eventUri": null,
-      "summary": "A farmer was arrested for exceeding his 3-minute speaking limit at a town hall about a proposed data center — handcuffed for the crime of taking too long to explain how the facility would affect his land and water. Lead with the image: a man who grows food being put in handcuffs so a corporation can build servers. The reader who works in tech should see the physical cost of their infrastructure: data centers consume water, land, and power from communities that bear the burden without sharing the profits. The arrest itself is the story — when democratic participation is criminalized to protect corporate expansion.",
-      "conceptUris": []
-    },
-    {
-      "id": "uk-russia-submarine-operations-undersea-cables",
-      "label": "UK accuses Russia of covert submarine operations in British waters",
-      "firstSeen": "2026-04-09T19:07:45.819Z",
-      "lastCovered": "2026-04-09T19:07:45.819Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-uk-russia-submarine-operations-undersea-cables"
-      ],
-      "eventUri": "eng-11554247",
-      "summary": "The UK tracked three Russian submarines conducting covert operations near undersea cables and pipelines in British waters — and chose to go public about it. The angle isn't the submarines themselves but the decision to reveal the operation: Healey is exposing Russian hybrid warfare infrastructure to build the case for defense spending while the US is distracted by Iran. The reader should see the information infrastructure at stake — the same cables that carry their internet traffic. Four sources from four countries (UK, US, India, Qatar) with divergent framing: BBC centers British readiness, NYT focuses on the cable threat, Al Jazeera notes the broader NATO context.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Submarine",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin",
-        "http://en.wikipedia.org/wiki/Atlantic_Ocean",
-        "http://en.wikipedia.org/wiki/Norway",
-        "http://en.wikipedia.org/wiki/John_Healey_(politician)",
-        "http://en.wikipedia.org/wiki/Pipeline_transport"
-      ]
-    },
-    {
-      "id": "us-automated-military-draft-registration",
-      "label": "US moves closer to automated military draft",
-      "firstSeen": "2026-04-09T19:07:45.819Z",
-      "lastCovered": "2026-04-09T19:07:45.819Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-us-automated-military-draft-registration"
-      ],
-      "eventUri": "eng-11552626",
-      "summary": "The US is automating military draft registration — using IRS, Social Security, and immigration databases to auto-enroll every male turning 18, without their consent or knowledge. The system is on schedule for year-end deployment during an active war with Iran. Lead with the mechanism: the government is building infrastructure to conscript citizens by linking surveillance databases to the Selective Service. The reader in tech should see the architecture — this is the same kind of data pipeline they build at work, pointed at mandatory military service. The FY2026 NDAA authorized it quietly while attention was on Iran.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Selective_Service_System",
-        "http://en.wikipedia.org/wiki/Office_of_Information_and_Regulatory_Affairs",
-        "http://en.wikipedia.org/wiki/United_States_Congress",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/National_Defense_Authorization_Act",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Federal_government_of_the_United_States",
-        "http://en.wikipedia.org/wiki/Vietnam_War"
-      ]
-    },
-    {
-      "id": "spain-defies-trump-israel-eu-accord-suspension",
-      "label": "Spain defies Trump, ramps up criticism of Israel and US",
-      "firstSeen": "2026-04-09T19:07:45.819Z",
-      "lastCovered": "2026-04-09T19:07:45.819Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-spain-defies-trump-israel-eu-accord-suspension"
-      ],
-      "eventUri": "spa-4162659",
-      "summary": "Spain is pushing to suspend the EU-Israel association agreement and has accused Israel of violating the ceasefire and international law — the strongest EU-member stance yet against both Israel and the US during the Iran war. Lead with the diplomatic break: a NATO ally is publicly defying Washington on its most consequential military operation. Sanchez is cementing Spain as the EU's leading voice against the war. The reader should see this as a fracture in Western solidarity: European governments are splitting from the US over both the Lebanon bombardment and the broader Iran campaign. Foreign Minister Albares named specific violations.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Spain",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Diplomatic_mission",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/José_Manuel_Albares"
-      ]
-    },
-    {
-      "id": "channel-crossing-deaths-calais-migration",
-      "label": "Four die, dozens rescued in attempted Channel crossing from France to UK",
-      "firstSeen": "2026-04-09T19:07:45.819Z",
-      "lastCovered": "2026-04-09T19:07:45.819Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-channel-crossing-deaths-calais-migration"
-      ],
-      "eventUri": "eng-11554113",
-      "summary": "Four people drowned wading into the sea near Calais trying to reach an inflatable dinghy — the latest deaths in a crossing route that has killed hundreds. Lead with the image: people walking into freezing water in the dark because every legal path to safety has been closed. Connect to the editorial context: EU 'return hubs,' US $15,000 visa bonds expanding to 50+ countries, and now the physical barrier of the Channel. The reader should see the system, not just the tragedy — migration policy is being designed to make the journey lethal as a deterrent, and it's working exactly as intended.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pas-de-Calais",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/English_Channel",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Boulogne-sur-Mer",
-        "http://en.wikipedia.org/wiki/Prefect_(France)",
-        "http://en.wikipedia.org/wiki/Human_migration",
-        "http://en.wikipedia.org/wiki/Hypothermia"
-      ]
-    },
-    {
-      "id": "south-africa-survival-mode-cost-of-living",
-      "label": "South Africans shift into survival mode as essential costs reshape spending habits",
-      "firstSeen": "2026-04-09T19:07:45.819Z",
-      "lastCovered": "2026-04-09T19:07:45.819Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-south-africa-survival-mode-cost-of-living"
-      ],
-      "eventUri": null,
-      "summary": "South African households aren't cutting back — they're restructuring their entire financial lives around unavoidable costs: electricity, water, transport, food. Lead with the behavioral shift: this isn't a recession story, it's an adaptation story. Consumers are in 'defensive consumption' — reworking budgets so the fastest-rising costs (the ones they can't avoid) are covered first, and everything else is sacrificed. The reader should see the Global South structural pattern: when essential infrastructure (power, water) is privatized or poorly maintained, cost-of-living crises hit differently than in countries with functioning safety nets. South Africa is a preview of what happens when tariffs and inflation compound on already-stressed systems.",
-      "conceptUris": []
-    },
-    {
-      "id": "volkswagen-stops-id4-production-us-atlas-suv",
-      "label": "Volkswagen stops building ID.4s in the US, has inventory \"into 2027\"",
-      "firstSeen": "2026-04-09T19:07:45.819Z",
-      "lastCovered": "2026-04-09T19:07:45.819Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-volkswagen-stops-id4-production-us-atlas-suv"
-      ],
-      "eventUri": "eng-11555375",
-      "summary": "VW is halting production of its only US-built EV — the ID.4 born from the Dieselgate settlement — to build gas-powered Atlas SUVs instead. Inventory will last 'into 2027.' Lead with the irony: VW was forced to build EVs as punishment for cheating on diesel emissions, and now it's abandoning that commitment because the cars aren't selling. The reader should see the EV transition stalling in real time: tariffs on imported parts, weak demand, and the political winds shifting against electrification. The Chattanooga plant switching from electric to combustion is a material data point on the US energy transition.",
-      "conceptUris": []
-    },
-    {
-      "id": "emperor-penguins-endangered-iucn-sea-ice",
-      "label": "I.U.C.N. Red List Moves Emperor Penguins to \"Endangered\"",
-      "firstSeen": "2026-04-09T19:07:45.819Z",
-      "lastCovered": "2026-04-09T19:07:45.819Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-emperor-penguins-endangered-iucn-sea-ice"
-      ],
-      "eventUri": "eng-11554076",
-      "summary": "Emperor penguins — the species that survived 60 million years of Antarctic evolution — have been moved to 'Endangered' on the IUCN Red List because sea ice is retreating faster than models predicted. Lead with the timeline: a species that outlasted every ice age is now declining because of changes in the last 50 years. The breeding colonies require stable sea ice from April to December; when it breaks up early, chicks drown. Three sources from three countries (US, India, Singapore) all framing this as a climate benchmark. The reader should see this as a leading indicator: if the most cold-adapted species on Earth can't keep up, the rate of change is faster than we think.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Emperor_penguin",
-        "http://en.wikipedia.org/wiki/International_Union_for_Conservation_of_Nature",
-        "http://en.wikipedia.org/wiki/Sea_ice",
-        "http://en.wikipedia.org/wiki/Species",
-        "http://en.wikipedia.org/wiki/Antarctica",
-        "http://en.wikipedia.org/wiki/Endangered_species",
-        "http://en.wikipedia.org/wiki/Climate_change",
-        "http://en.wikipedia.org/wiki/Penguin"
-      ]
-    },
-    {
-      "id": "anthropic-blacklist-trump-judges-refuse-stay",
-      "label": "Trump-appointed judges refuse to block Trump blacklisting of Anthropic AI tech",
-      "firstSeen": "2026-04-09T19:07:45.819Z",
-      "lastCovered": "2026-04-09T19:07:45.819Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-anthropic-blacklist-trump-judges-refuse-stay"
-      ],
-      "eventUri": "eng-11553212",
-      "summary": "A federal appeals court refused to halt the Trump administration's blacklisting of Anthropic — the company behind Claude — denying an emergency stay but fast-tracking oral arguments to May 19. Lead with what it means: the US government is using national security powers to block a major AI company, and the judiciary is letting it proceed. The reader who uses Claude daily should see the stakes: government control of AI development is being tested in court right now, and the first round went to the executive branch. The Pentagon connection and the 'national security' framing set a precedent for how states will regulate AI companies.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/The_Pentagon",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/National_security",
-        "http://en.wikipedia.org/wiki/San_Francisco",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/California"
-      ]
-    },
-    {
-      "id": "eff-leaving-x-digital-rights",
-      "label": "EFF is leaving X",
-      "firstSeen": "2026-04-09T19:07:45.819Z",
-      "lastCovered": "2026-04-09T19:07:45.819Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-eff-leaving-x-digital-rights"
-      ],
-      "eventUri": null,
-      "summary": "The Electronic Frontier Foundation — the oldest and most prominent digital rights organization — is leaving X. 499 HN points. Lead with the institutional weight: EFF isn't a random account, it's the organization that has defended online speech since 1990. When the org that literally fights for your right to post decides the platform no longer serves that mission, it's a verdict on what X has become. The reader who follows digital rights should see this as a structural shift: the civil liberties infrastructure of the internet is migrating away from the platform that once hosted its most important debates.",
-      "conceptUris": []
-    },
-    {
-      "id": "meta-removes-addiction-litigation-ads",
-      "label": "Meta removes ads for social media addiction litigation",
-      "firstSeen": "2026-04-09T19:07:45.819Z",
-      "lastCovered": "2026-04-09T19:07:45.819Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-meta-removes-addiction-litigation-ads"
-      ],
-      "eventUri": null,
-      "summary": "Meta is blocking ads from law firms suing it over social media addiction — using its own ad platform to suppress awareness of lawsuits against itself. 424 HN points. Lead with the mechanism: the company accused of addicting children is using its monopoly on attention to prevent parents from learning they can sue. The reader should see the platform power: Meta controls both the product that causes harm and the advertising channel through which victims would learn about legal remedies. This is a company using its infrastructure as a shield against accountability.",
-      "conceptUris": []
-    },
-    {
-      "id": "vercel-plugin-claude-code-prompt-telemetry",
-      "label": "The Vercel plugin on Claude Code wants to read your prompts",
-      "firstSeen": "2026-04-09T19:07:45.819Z",
-      "lastCovered": "2026-04-09T19:07:45.819Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-vercel-plugin-claude-code-prompt-telemetry"
-      ],
-      "eventUri": null,
-      "summary": "A developer discovered that the Vercel plugin for Claude Code is reading users' prompts — the actual content they send to the AI. 226 HN points. Lead with the betrayal of trust: developers using an AI coding tool expect their prompts (which contain proprietary code, business logic, and internal context) to stay between them and the model. Vercel's plugin is silently exfiltrating that data. The reader is literally a Claude Code user — this story is about their own tool chain. The angle is developer supply chain trust: every plugin and integration you install is a potential telemetry vector for your most sensitive work.",
-      "conceptUris": []
-    },
-    {
-      "id": "state-police-deepfakes-drivers-license-photos",
-      "label": "State police corporal created porn deepfakes from driver's license photos",
-      "firstSeen": "2026-04-09T19:07:45.819Z",
-      "lastCovered": "2026-04-09T19:07:45.819Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-09-state-police-deepfakes-drivers-license-photos"
-      ],
-      "eventUri": "eng-11553174",
-      "summary": "A Pennsylvania state police corporal used AI to generate 3,000+ deepfake pornographic images from driver's license photos he accessed through his law enforcement role — alongside CSAM possession and other crimes. Lead with the access vector: government-issued ID photos, taken under legal compulsion, weaponized by the officer who had database access. The reader should see the systemic risk: every photo in a government database is now potential input for AI-generated abuse material, and the people with access are not adequately screened or monitored. This connects to the Telegram nudifying bots arc — same technology, but wielded by someone with state-granted database access. He pleaded guilty.",
       "conceptUris": []
     }
   ]
