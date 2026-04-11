@@ -2,760 +2,542 @@
   "version": 1,
   "stories": [
     {
-      "id": "china-manpads-iran-arms-supply",
-      "label": "US Intelligence Shows China Set to Supply Iran Arms, CNN Reports",
-      "firstSeen": "2026-04-11T10:12:02.778Z",
-      "lastCovered": "2026-04-11T10:12:02.778Z",
+      "id": "iran-unable-to-find-mines-in-strait-of-hormuz-us-says",
+      "label": "Iran unable to find mines in Strait of Hormuz, US says",
+      "firstSeen": "2026-04-11T12:08:36.246Z",
+      "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-04-11-china-manpads-iran-arms-supply"
+        "2026-04-11-iran-unable-to-find-mines-in-strait-of-hormuz-us-says"
       ],
-      "eventUri": "eng-11560110",
-      "summary": "China is preparing to ship MANPADS — shoulder-fired anti-aircraft missiles — to Iran within weeks. This is the first time a major power has moved to arm Iran during the current war, and it's Beijing doing it. Lead with the weapon type: MANPADS are cheap, portable, and devastating against low-flying aircraft and helicopters. The reader tracking the AI arms race and geopolitical realignment should see the structural shift — China is no longer just abstaining from sanctions, it's actively supplying a country at war with the US. Bloomberg, TRT World, and MEE all covering. The Trump administration framing this as a red line makes escalation with China itself a live risk.",
+      "eventUri": "eng-11559905",
+      "summary": "Iran mined the Strait of Hormuz during the war but now can't locate all the mines it placed — the strait is nominally open but functionally closed because the country that mined it lost control of its own minefield. Lead with the absurdity: Iran offered 'safe routes' but US officials say the IRGC's own maps are unreliable. 6 tankers passed Thursday, zero on Wednesday, despite the ceasefire. The reader tracking the war's economic fallout will see why 'ceasefire' doesn't mean 'recovery' — this is the mine problem that no peace deal can solve quickly.",
       "conceptUris": [
         "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/CNN",
-        "http://en.wikipedia.org/wiki/Beijing",
-        "http://en.wikipedia.org/wiki/United_States_Intelligence_Community",
-        "http://en.wikipedia.org/wiki/Man-portable_air-defense_system",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Naval_mine",
+        "http://en.wikipedia.org/wiki/The_New_York_Times",
+        "http://en.wikipedia.org/wiki/Tehran",
         "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Air_defence"
-      ]
-    },
-    {
-      "id": "us-releases-frozen-iranian-assets-qatar",
-      "label": "US Agrees To Release Frozen Iranian Assets In Qatar, Other Banks: Report",
-      "firstSeen": "2026-04-11T10:12:02.778Z",
-      "lastCovered": "2026-04-11T10:12:02.778Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-us-releases-frozen-iranian-assets-qatar"
-      ],
-      "eventUri": "eng-11560487",
-      "summary": "The US has agreed to unfreeze Iranian assets held in Qatar and other foreign banks — a concrete concession ahead of the Islamabad talks. Previous coverage reported Iran's demand; this is the US saying yes. Lead with the shift: after 31 days of war, Washington is making its first material economic concession. A senior Iranian source called it a sign of 'seriousness.' The reader should see the negotiating dynamic — asset release is the traditional first confidence-building measure, the same mechanism used in the 2015 JCPOA. The question is whether it buys enough goodwill before the April 22 ceasefire expiry.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
         "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Qatar",
-        "http://en.wikipedia.org/wiki/Dubai",
-        "http://en.wikipedia.org/wiki/Washington,_D.C."
+        "http://en.wikipedia.org/wiki/Israel"
       ]
     },
     {
-      "id": "masjoody-murder-iran-diaspora-canada",
-      "label": "Killing of Masood Masjoody Exposes Deep Rifts in Canada's Iranian Diaspora",
-      "firstSeen": "2026-04-11T10:12:02.778Z",
-      "lastCovered": "2026-04-11T10:12:02.778Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-masjoody-murder-iran-diaspora-canada"
-      ],
-      "eventUri": "eng-11549865",
-      "summary": "An Iranian activist was murdered in Vancouver after years of warning that regime agents operated inside Canadian universities and diaspora organisations. Lead with his warnings — Masjoody told people he wasn't safe, named specific threats, and was killed anyway. The story exposes how Iran's security apparatus operates transnationally, embedding agents among exiles. The reader should see the pattern: states don't just fight wars abroad, they pursue dissidents in democracies that assume they're safe. Canada's failure to protect him is the accountability angle.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Kowsar",
-        "http://en.wikipedia.org/wiki/Pahlavi_dynasty",
-        "http://en.wikipedia.org/wiki/Diaspora",
-        "http://en.wikipedia.org/wiki/Shah",
-        "http://en.wikipedia.org/wiki/University"
-      ]
-    },
-    {
-      "id": "zamfara-bandits-kill-ten-bunkasau",
-      "label": "Bandits kill 10 in Zamfara",
-      "firstSeen": "2026-04-11T10:12:02.778Z",
-      "lastCovered": "2026-04-11T10:12:02.778Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-zamfara-bandits-kill-ten-bunkasau"
-      ],
-      "eventUri": "eng-11554941",
-      "summary": "Bandits killed at least 10 people in a late-evening raid on Bunkasau village in Zamfara State, with the security situation in western Zamfara deteriorating over recent weeks. Lead with the pattern: this isn't an isolated attack but an escalation in a region where armed groups operate with near-impunity. The Nigerian military's mass trial of 386 terrorism suspects (covered last cycle) was meant to project strength — this attack shows the gap between courtrooms and control on the ground. The reader should see the structural failure: Nigeria convicts hundreds while bandits continue to kill dozens.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Zamfara_State",
-        "http://en.wikipedia.org/wiki/Bukkuyum",
-        "http://en.wikipedia.org/wiki/Terrorism",
-        "http://en.wikipedia.org/wiki/Civilian_Joint_Task_Force",
-        "http://en.wikipedia.org/wiki/Atiku_Abubakar"
-      ]
-    },
-    {
-      "id": "nigeria-fiscal-policy-ecowas-tariffs",
-      "label": "FG approves 2026 Fiscal Policy Measures, cuts tariffs on cars, others",
-      "firstSeen": "2026-04-11T10:12:02.778Z",
-      "lastCovered": "2026-04-11T10:12:02.778Z",
+      "id": "polymarket-gamblers-betting-millions-war",
+      "label": "'Abhorrent': the inside story of the Polymarket gamblers betting millions on war",
+      "firstSeen": "2026-04-11T12:08:36.246Z",
+      "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "economy",
       "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-04-11-nigeria-fiscal-policy-ecowas-tariffs"
+        "2026-04-11-polymarket-gamblers-betting-millions-war"
       ],
-      "eventUri": null,
-      "summary": "Nigeria approved new fiscal measures including tariff cuts on cars and new excise duties on beverages — with a carve-out applying only to non-ECOWAS imports, strengthening the West African trade bloc. Lead with the ECOWAS angle: at a time when trade blocs are fragmenting globally (US tariffs, EU protectionism), Africa's largest economy is deepening regional integration. The reader should see the structural play: Nigeria is using tariff policy to pull neighbours closer while the rest of the world builds walls. The African Continental Free Trade Area is the framework.",
+      "eventUri": "eng-11552620",
+      "summary": "Guardian investigation reveals how anonymous Polymarket gamblers bet millions on war outcomes — and how their disputes over 'truth' (which frontline map is authoritative, whether a ceasefire counts) are reshaping how news gets arbitrated. Lead with the mechanism: prediction markets don't just bet on events, they create financial incentives to define what happened. The reader who follows both crypto markets and the Iran/Ukraine wars will see the collision of gambling, information warfare, and journalism.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/Economic_Community_of_West_African_States",
-        "http://en.wikipedia.org/wiki/Excise",
-        "http://en.wikipedia.org/wiki/Tariff",
-        "http://en.wikipedia.org/wiki/Prohibition",
-        "http://en.wikipedia.org/wiki/African_Continental_Free_Trade_Area"
+        "http://en.wikipedia.org/wiki/Prediction_market",
+        "http://en.wikipedia.org/wiki/Gambling"
       ]
     },
     {
-      "id": "causal-ml-personalised-drug-dosing",
-      "label": "Using causal machine learning and real world data to improve dose response decision making for secukinumab in psoriatic arthritis",
-      "firstSeen": "2026-04-11T10:12:02.778Z",
-      "lastCovered": "2026-04-11T10:12:02.778Z",
+      "id": "uk-green-energy-surge-iran-war-fuel-prices",
+      "label": "Record number of homes in Great Britain turn to green energy as fuel prices soar",
+      "firstSeen": "2026-04-11T12:08:36.246Z",
+      "lastCovered": "2026-04-11T12:08:36.246Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-uk-green-energy-surge-iran-war-fuel-prices"
+      ],
+      "eventUri": "eng-11560484",
+      "summary": "British households are installing solar panels, heat pumps, and buying EVs at record rates — driven not by climate conviction but by the Iran war sending energy bills up 18% from July. Lead with the inversion: war, not policy, is accomplishing what years of green subsidies couldn't. The reader tracking the Iran war's economic cascade will see the demand-side response: when fossil fuel prices spike hard enough, consumers switch — and the energy transition gets an accidental accelerant.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Heat_pump",
+        "http://en.wikipedia.org/wiki/Solar_panel",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Heating_oil"
+      ]
+    },
+    {
+      "id": "delhi-fossil-fuel-bike-ban-2028-ev-policy",
+      "label": "India news: Delhi plans fossil fuel bike ban by 2028",
+      "firstSeen": "2026-04-11T12:08:36.246Z",
+      "lastCovered": "2026-04-11T12:08:36.246Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-delhi-fossil-fuel-bike-ban-2028-ev-policy"
+      ],
+      "eventUri": "eng-11560198",
+      "summary": "Delhi — one of the world's most polluted cities — plans to ban new petrol two-wheelers from 2028, with road tax waivers and scrapping incentives up to ₹1 lakh for EVs. Lead with the scale: two-wheelers are 70%+ of Delhi's registered vehicles and the single largest source of transport emissions. The reader will see a Global South megacity making the most aggressive EV mandate yet — not for climate branding, but because the air is literally unbreathable.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Electric_vehicle",
+        "http://en.wikipedia.org/wiki/Delhi",
+        "http://en.wikipedia.org/wiki/Indian_rupee",
+        "http://en.wikipedia.org/wiki/Lakh",
+        "http://en.wikipedia.org/wiki/Motorcycle",
+        "http://en.wikipedia.org/wiki/Road_tax",
+        "http://en.wikipedia.org/wiki/Electric_car",
+        "http://en.wikipedia.org/wiki/Three-wheeler"
+      ]
+    },
+    {
+      "id": "plastic-burning-indonesia-health-crisis",
+      "label": "Plastic Pollution Is Bad Enough. Burning It Can Be Even Worse.",
+      "firstSeen": "2026-04-11T12:08:36.246Z",
+      "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "science",
       "importance": 6,
       "arc": "breaking",
       "articles": [
-        "2026-04-11-causal-ml-personalised-drug-dosing"
+        "2026-04-11-plastic-burning-indonesia-health-crisis"
       ],
       "eventUri": null,
-      "summary": "A Nature study applied causal machine learning — not just pattern-matching but actual cause-and-effect inference — to real-world patient data to determine who benefits from drug dose escalation in psoriatic arthritis. Lead with the method, not the disease: this is AI making personalised medical decisions from messy real-world data, not clean clinical trials. The reader in tech should see the frontier: ML is moving from recommending products to recommending drug doses, and the causal framework means it can distinguish 'this patient improved because of the higher dose' from 'this patient would have improved anyway.'",
+      "summary": "In Indonesia, plastic waste is burned in unregulated low-tech furnaces — and the health consequences are far worse than landfilling. Even incinerators with air scrubbers are linked to premature birth and congenital abnormalities, but open burning in the Global South produces orders of magnitude more dioxins and furans. Lead with the health data: birth defects near burning sites. The reader will see the hidden cost of the global plastic waste trade — wealthy nations export plastic, poorer nations burn it, and the health burden falls on communities with no regulatory protection.",
       "conceptUris": []
     },
     {
-      "id": "bjp-bengal-manifesto-ucc-infiltration",
-      "label": "In Bengal, Amit Shah's 'Na Janata, Na Mamata' Jab At Congress",
-      "firstSeen": "2026-04-11T08:37:57.048Z",
-      "lastCovered": "2026-04-11T08:37:57.048Z",
+      "id": "majorana-quantum-spin-probes",
+      "label": "'Poor man's Majoranas' can be used as quantum spin probes",
+      "firstSeen": "2026-04-11T12:08:36.246Z",
+      "lastCovered": "2026-04-11T12:08:36.246Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-majorana-quantum-spin-probes"
+      ],
+      "eventUri": null,
+      "summary": "Researchers found that 'poor man's Majorana' quasiparticles — easier to create than the elusive real Majorana fermions — can serve as quantum spin probes, opening a practical path to quantum sensing without waiting for the particle physics breakthrough. Lead with the workaround: instead of hunting for a particle that may not exist in nature, physicists built a usable approximation from solid-state materials. The reader in tech will see the engineering pragmatism — shipping with what works rather than waiting for perfection.",
+      "conceptUris": []
+    },
+    {
+      "id": "senator-csam-inquiry-tech-giants-ai",
+      "label": "Senator launches inquiry into 8 tech giants for failures to adequately report CSAM",
+      "firstSeen": "2026-04-11T12:08:36.246Z",
+      "lastCovered": "2026-04-11T12:08:36.246Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-senator-csam-inquiry-tech-giants-ai"
+      ],
+      "eventUri": null,
+      "summary": "A US senator is investigating 8 major tech companies for deficient reporting of child sexual abuse material, following NCMEC reports alleging the platforms are also failing to report data on generative AI's role in producing CSAM. Lead with the AI connection: this isn't just about under-reporting known images — it's about platforms failing to track how their own generative AI tools are being used to create new abuse material. The reader will see the gap between the UK's criminal liability approach (covered previously with Ofcom/nudification) and the US congressional inquiry approach.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-set-to-supply-iran-manpads-arms",
+      "label": "US Intelligence Shows China Set to Supply Iran Arms, CNN Reports",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-04-10-bjp-bengal-manifesto-ucc-infiltration"
+        "2026-04-11-china-set-to-supply-iran-manpads-arms"
       ],
-      "eventUri": "eng-11556892",
-      "summary": "BJP's West Bengal election manifesto promises Uniform Civil Code within 6 months and 'zero tolerance on infiltration' — code for anti-Muslim, anti-Bangladeshi policy that would affect 200M+ Indian Muslims by overriding Muslim personal law (marriage, inheritance, divorce). Lead with the UCC 6-month deadline: this is the most concrete timeline any Indian governing party has set for dismantling religious personal law. The Rs 3,000 monthly cash transfer to women is the populist cover. The reader tracking the Muslim world should see this as the BJP operationalizing Hindu nationalist policy at the state level — Bengal has 27% Muslim population, the highest of any non-Muslim-majority Indian state.",
+      "eventUri": "eng-11560110",
+      "summary": "US intelligence shows China preparing to ship MANPADS — shoulder-fired anti-aircraft missiles — to Iran within weeks. This is the first direct Chinese arms transfer to Iran during the war, transforming a bilateral US-Iran conflict into a potential proxy confrontation between the world's two largest economies. Lead with the MANPADS: cheap missiles that could threaten low-flying US aircraft and raise the cost of American air operations without triggering a direct China-US confrontation. The reader tracking the Iran war will see Beijing making a calculated bet — and the structural question of what happens when a third great power picks a side.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
-        "http://en.wikipedia.org/wiki/West_Bengal",
-        "http://en.wikipedia.org/wiki/Amit_Shah",
-        "http://en.wikipedia.org/wiki/Minister_of_Home_Affairs_(India)",
-        "http://en.wikipedia.org/wiki/Trinamool_Congress",
-        "http://en.wikipedia.org/wiki/Manifesto",
-        "http://en.wikipedia.org/wiki/Bengal",
-        "http://en.wikipedia.org/wiki/Kolkata"
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_States_Intelligence_Community",
+        "http://en.wikipedia.org/wiki/CNN",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Anti-aircraft_warfare",
+        "http://en.wikipedia.org/wiki/Man-portable_air-defense_system",
+        "http://en.wikipedia.org/wiki/Ceasefire"
       ]
     },
     {
-      "id": "marriage-status-cancer-risk-study",
-      "label": "Marriage status has surprising link to cancer risk, study suggests: 'Clear signal'",
-      "firstSeen": "2026-04-11T08:37:57.048Z",
-      "lastCovered": "2026-04-11T08:37:57.048Z",
+      "id": "mamdani-sewer-socialism-nyc-100-days",
+      "label": "Mamdani, Leaning Into 'Sewer Socialism,' Gets His Hands Dirty",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-mamdani-sewer-socialism-nyc-100-days"
+      ],
+      "eventUri": "eng-11552475",
+      "summary": "At 100 days, NYC Mayor Zohran Mamdani — the city's first Muslim mayor — is governing through 'sewer socialism': fixing public services instead of chasing big-ticket projects. Lead with the concept: a century-old socialist municipal tradition being revived by a Muslim-American mayor in the country's largest city. The reader will see practical, constituent-focused governance that contrasts sharply with the federal dysfunction they follow daily. The structural question: can a mayor who fixes sewers and bus routes build a political model that outlasts the culture wars?",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Sewer_socialism",
+        "http://en.wikipedia.org/wiki/Zohran_Mamdani",
+        "http://en.wikipedia.org/wiki/John_Adams",
+        "http://en.wikipedia.org/wiki/Socialism",
+        "http://en.wikipedia.org/wiki/Mayor"
+      ]
+    },
+    {
+      "id": "bhutan-sells-70-percent-bitcoin-sovereign",
+      "label": "Bhutan has sold 70% of its bitcoin in 18 months. It may have stopped BTC mining too.",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-bhutan-sells-70-percent-bitcoin-sovereign"
+      ],
+      "eventUri": "eng-11560105",
+      "summary": "Bhutan has quietly sold 70% of its sovereign bitcoin holdings — $22.68M transferred Thursday alone — and may have stopped mining entirely. This was the most unusual government crypto experiment in the world: hydropower-mined bitcoin as a sovereign wealth strategy for a nation of 780,000 people. Lead with the unwinding: the real-world test of sovereign bitcoin adoption is ending in retreat. The reader who follows crypto and macro will see what happens when a small state bets on a volatile asset and the numbers stop working.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bitcoin",
+        "http://en.wikipedia.org/wiki/Bhutan",
+        "http://en.wikipedia.org/wiki/Sovereign_wealth_fund",
+        "http://en.wikipedia.org/wiki/Mining",
+        "http://en.wikipedia.org/wiki/Proof_of_concept"
+      ]
+    },
+    {
+      "id": "egypt-lucky-fintech-23m-credit-expansion",
+      "label": "Egypt's Lucky raises $23m to expand credit services and regional growth",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-egypt-lucky-fintech-23m-credit-expansion"
+      ],
+      "eventUri": null,
+      "summary": "Egyptian fintech Lucky raised $23M to expand credit services — one of the largest MENA fintech rounds in 2026. Lead with the market signal: while GCC economies reel from the Iran war and Gulf tourism collapses, Egypt's startup ecosystem is attracting growth capital for consumer credit. The reader tracking MENA tech will see a bet on Egypt's 100M+ population and massive unbanked majority — fintech as the financial infrastructure the state never built.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-withdraws-cop33-bid-energy-crisis",
+      "label": "DeBriefed 10 April 2026: Worst energy crisis 'ever' | India withdraws COP33 bid | Drag artists and climate change",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "science",
       "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-04-10-marriage-status-cancer-risk-study"
+        "2026-04-11-india-withdraws-cop33-bid-energy-crisis"
       ],
-      "eventUri": "eng-11552502",
-      "summary": "A University of Miami study of 4 million Americans across 12 states found that people who never married are significantly more likely to develop cancer — across nearly every major type, especially preventable cancers. Lead with the scale (4M people, 12 states) and the surprise: marriage itself appears protective, not just wealth or insurance access. The mechanism likely involves screening behaviour, social accountability, and stress buffering. The reader should see the public health implication: isolation is a cancer risk factor, and unmarried populations are growing globally.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Cancer",
-        "http://en.wikipedia.org/wiki/Diagnosis",
-        "http://en.wikipedia.org/wiki/Smoking",
-        "http://en.wikipedia.org/wiki/University_of_Miami"
-      ]
+      "eventUri": null,
+      "summary": "India has withdrawn its bid to host COP33 — the world's third-largest carbon emitter stepping back from climate leadership as the Iran war triggers what the IEA calls the worst energy crisis ever. Lead with the withdrawal: India's retreat signals that climate diplomacy is losing ground to the immediate politics of energy costs and war-driven fuel disruption. The reader will see the connection: the same conflict driving $4/gallon gas is now dismantling the institutional architecture for addressing the climate crisis.",
+      "conceptUris": []
     },
     {
-      "id": "pakistan-minister-asif-israel-post-deleted",
-      "label": "'Burn in hell': Pak minister Khwaja Asif deletes post on Jews after Israel hits back",
-      "firstSeen": "2026-04-11T08:37:57.048Z",
-      "lastCovered": "2026-04-11T08:37:57.048Z",
+      "id": "scary-ai-stories-cognitive-science",
+      "label": "Why Do We Tell Ourselves Scary Stories About AI?",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
-      "category": "politics",
+      "category": "science",
       "importance": 5,
       "arc": "breaking",
       "articles": [
-        "2026-04-10-pakistan-minister-asif-israel-post-deleted"
+        "2026-04-11-scary-ai-stories-cognitive-science"
       ],
-      "eventUri": "eng-11556395",
-      "summary": "Pakistan's Defence Minister called Israel a 'cancerous growth' on social media, Israel responded with 'blood libels' accusation, and Asif deleted the post — all while Pakistan is hosting Iran-US peace talks in Islamabad. Lead with the contradiction: the country mediating a ceasefire has its defence minister in a public slanging match with one of the parties' closest allies. The reader should see the impossible position Pakistan occupies — expected to be a neutral broker while its own officials cannot contain their views on the war. Multi-source but all Indian media (Hindustan Times, NDTV, India.com) — note the framing bias; Indian outlets have their own adversarial relationship with Pakistan.",
+      "eventUri": null,
+      "summary": "Cognitive scientists are unpacking why humans project survival instincts, resource-hoarding, and manipulation onto AI systems — finding that our doom scenarios say more about human psychology than about what language models actually do. Lead with the inversion: the narratives that dominate AI discourse (scheming, deception, self-preservation) map onto evolved human threat-detection circuits, not onto anything the models exhibit. The reader who works in tech and navigates AI hype daily will see their own industry's narratives dissected through cognitive science.",
+      "conceptUris": []
+    },
+    {
+      "id": "uk-ofcom-nudification-jail-threat-grok",
+      "label": "UK government threatens tech bosses with jail time if they do not adequately fight nudification tools",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-11T08:09:46.711Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-uk-ofcom-nudification-jail-threat-grok"
+      ],
+      "eventUri": null,
+      "summary": "UK regulator Ofcom will threaten tech executives with prison if they fail to combat AI nudification tools — a direct response to the Grok scandal that produced millions of deepfake nude images of women and children. Lead with the criminal liability: the UK is making individual executives personally responsible for AI-generated sexual abuse imagery on their platforms. The reader will see the sharpest regulatory response yet to generative AI harms — and the question of whether personal criminal risk changes tech company behavior where fines haven't.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-us-islamabad-talks-vance-ghalibaf",
+      "label": "Pakistani MFA expects constructive talks between US, Iran",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-iran-us-islamabad-talks-vance-ghalibaf"
+      ],
+      "eventUri": "eng-11559874",
+      "summary": "Vance and Ghalibaf sit down in Islamabad on day 31+ of the US-Iran war — the first direct senior-level talks since hostilities began. Iran insists on a Lebanon ceasefire as precondition; the US wants nuclear concessions Tehran has already ruled out. Lead with the structural mismatch: both sides came to the table, but their opening positions are incompatible. The reader tracking the Iran war will see Pakistan's emergence as mediator — hosting talks that neither Geneva nor Doha could — while the ceasefire remains fragile and the Strait of Hormuz is still effectively closed.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Lebanon",
         "http://en.wikipedia.org/wiki/Iran",
         "http://en.wikipedia.org/wiki/Islamabad",
-        "http://en.wikipedia.org/wiki/Khawaja_Muhammad_Asif",
-        "http://en.wikipedia.org/wiki/Ceasefire"
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Mohammad_Bagher_Ghalibaf",
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Tehran"
       ]
     },
     {
-      "id": "israel-kills-13-lebanon-state-security-nabatieh",
+      "id": "conscientious-objections-war-surge-us-military",
+      "label": "Conscientious objections to war rise sharply in US",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-conscientious-objections-war-surge-us-military"
+      ],
+      "eventUri": null,
+      "summary": "March alone saw 80+ new conscientious objector cases — nearly double the annual norm. Service members cite the Minab school bombing as the turning point. Lead with the 80-in-one-month number against the usual annual pace — this is the sharpest spike in CO applications since Vietnam. The reader who opposes the war will see dissent emerging from inside the military itself, not just from protesters. The structural question: what happens to a volunteer military when its own soldiers refuse to fight?",
+      "conceptUris": []
+    },
+    {
+      "id": "los-angeles-schools-strike-85-percent-workers",
+      "label": "Los Angeles schools may close as nearly 85% of district's workers plan to strike",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-los-angeles-schools-strike-85-percent-workers"
+      ],
+      "eventUri": "eng-11560024",
+      "summary": "Nearly 85% of LAUSD workers — teachers, custodians, bus drivers — plan to strike next week while the district reportedly sits on $5 billion in reserves. Lead with the $5bn reserve number against the workers' pay demands: this isn't a broke district, it's a political choice. 600,000+ students in the second-largest US school district could lose school. The reader will see this as the austerity-vs-labor pattern playing out at massive scale.",
+      "conceptUris": []
+    },
+    {
+      "id": "strait-hormuz-gas-prices-iran-talks-oil",
+      "label": "Could US-Iran talks in Islamabad bring gas prices back down?",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-strait-hormuz-gas-prices-iran-talks-oil"
+      ],
+      "eventUri": null,
+      "summary": "Only 6 tankers passed through the Strait of Hormuz on Thursday — zero on Wednesday — even after the ceasefire. Iranian attacks cut the Saudi East-West Pipeline by 10%, destroying the market's main workaround. Americans still pay $4+/gallon despite Brent crude dropping 10%. Lead with the 6-tanker number: the strait is nominally open but functionally closed, and mines plus US sanctions ambiguity are keeping ships away. The reader will see that even a peace deal won't bring quick relief — this is a logistics shock layered on a production shock.",
+      "conceptUris": []
+    },
+    {
+      "id": "kalshi-arizona-federal-judge-prediction-market",
+      "label": "Federal judge blocks Arizona from bringing criminal charges against Kalshi",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-kalshi-arizona-federal-judge-prediction-market"
+      ],
+      "eventUri": "eng-11558568",
+      "summary": "A federal judge blocked Arizona from criminally prosecuting prediction market Kalshi — the first time a state's gambling laws have been preempted by federal derivatives regulation. Lead with the collision: Arizona says it's gambling, the CFTC says it's a regulated market, and the court sided with the feds. The reader who follows prediction markets (and war bets, per previous coverage) will see the regulatory framework crystallizing: states can't shut down federally approved event contracts.",
+      "conceptUris": []
+    },
+    {
+      "id": "artemis-ii-splashdown-moon-mission",
+      "label": "Four astronauts are back home after a daring ride around the Moon",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-artemis-ii-splashdown-moon-mission"
+      ],
+      "eventUri": "spa-4163995",
+      "summary": "Artemis II splashed down safely off California — the first crewed mission beyond low Earth orbit in 54 years, breaking Apollo 13's distance record by 4,000+ miles. Lead with the splashdown: Orion hit the atmosphere at 25,000 mph and survived. The reader who follows space will care about the engineering milestone; the reader watching a divided America will note this was the one thing the country watched together during a war.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-drones-climate-resilient-wheat-selection",
+      "label": "AI and drones can select the most resilient wheat",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-ai-drones-climate-resilient-wheat-selection"
+      ],
+      "eventUri": null,
+      "summary": "Researchers combined drone imaging with AI to identify the wheat varieties most resilient to climate stress — faster and more accurate than traditional field trials. Lead with the practical application: as climate change threatens global wheat yields, this method lets breeders select drought-resistant varieties in a fraction of the time. The reader who works in tech will appreciate the AI application; the reader tracking food security will see the tool that could matter most for the next decade of harvests.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-doctor-recording-lawsuit-sutter-abridge",
+      "label": "Californians sue over AI tool that records doctor visits",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-11-ai-doctor-recording-lawsuit-sutter-abridge"
+      ],
+      "eventUri": null,
+      "summary": "A class-action lawsuit alleges Sutter Health and MemorialCare deployed Abridge's AI transcription tool to record patient visits without consent — violating California and federal wiretap laws. Lead with the mechanism: patients walked into a doctor's office and an AI was silently transcribing everything they said. The reader who builds software will recognize the consent failure pattern; the healthcare privacy implications are immediate and systemic as AI scribes proliferate across US hospitals.",
+      "conceptUris": []
+    },
+    {
+      "id": "israel-strike-kills-13-members-of-lebanon-state-security",
       "label": "Israel strike kills 13 members of Lebanon state security",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 3,
       "arc": "breaking",
       "articles": [
-        "2026-04-11-israel-kills-13-lebanon-state-security-nabatieh"
+        "2026-04-10-israel-strike-kills-13-members-of-lebanon-state-security"
       ],
       "eventUri": "eng-11558967",
-      "summary": "Israel killed 13 members of Lebanon's state security — not Hezbollah, but the government's own forces — in an airstrike on Nabatieh, even as Lebanon-Israel talks are scheduled for Tuesday in the US. Lead with the target: these are state employees, not militia. The strike hits the Lebanese government itself while diplomacy is supposedly underway. The reader tracking the war should see the pattern: ceasefire negotiations proceed in one room while strikes escalate in another. MEE, Al-Monitor, and Le Monde all covering, with Le Monde notably restrained vs MEE's sharper framing (sentiment divergence 0.41).",
+      "summary": "Israel killed 13 Lebanese state security personnel in a single airstrike on the Nabatieh Government Complex — the largest number of government employees killed at once since the war began. The angle: this isn't Hezbollah, these are civil servants at a government building. Lead with the distinction between militia and state targets — Israel is now striking the Lebanese government itself. The reader tracking the ceasefire will see that the two-week US-Iran truce has not stopped Israeli operations in Lebanon, which is exactly why Tehran set a Lebanon ceasefire as a precondition for talks.",
       "conceptUris": [
         "http://en.wikipedia.org/wiki/Lebanon",
         "http://en.wikipedia.org/wiki/Israel",
         "http://en.wikipedia.org/wiki/Hezbollah",
         "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ceasefire"
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Nabatieh",
+        "http://en.wikipedia.org/wiki/Beirut",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces"
       ]
     },
     {
-      "id": "china-russia-rally-cuba-us-sanctions-crisis",
-      "label": "China, Russia rally behind Cuba as US squeezes Havana in deepening crisis",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
+      "id": "kurds-refuse-trump-war-bid-iraq-iran",
+      "label": "\"Not Guns for Hire\": Trump's Failure to Trigger a Kurdish Uprising",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 3,
       "arc": "breaking",
       "articles": [
-        "2026-04-11-china-russia-rally-cuba-us-sanctions-crisis"
-      ],
-      "eventUri": "eng-11556740",
-      "summary": "Cuba is collapsing — blackouts, fuel shortages, food crisis — and Beijing and Moscow are publicly rallying behind Havana while the US tightens sanctions. Lead with the human cost inside Cuba, then the geopolitical chess: China and Russia are using Cuba's crisis to demonstrate alliance solidarity 90 miles from the US while Washington is distracted by the Iran war. The reader should see the multipolar pattern: every crisis the US ignores or worsens becomes a foothold for its rivals.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Cuba",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Havana",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Petroleum"
-      ]
-    },
-    {
-      "id": "sudan-healthcare-strike-burhan-consolidates-kurmuk-operation",
-      "label": "Sudan Nashra: Nyala healthcare workers on strike | Burhan abolishes deputy, assistant commander-in-chief positions | Military operation to retake Blue Nile's Kurmuk underway",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-sudan-healthcare-strike-burhan-consolidates-kurmuk-operation"
+        "2026-04-10-kurds-refuse-trump-war-bid-iraq-iran"
       ],
       "eventUri": null,
-      "summary": "Three developments in one week reveal Sudan's war entering a new phase: healthcare workers in Nyala are on strike (the people who keep civilians alive are walking off the job), Burhan is consolidating military power by abolishing deputy positions, and a ground operation to retake Kurmuk on the Blue Nile is underway. Lead with the healthcare strike — when the medics quit, a war zone becomes a death zone. The military restructuring signals Burhan tightening his grip. Fills the East Africa coverage gap flagged in editorial notes.",
+      "summary": "The US tried to enlist newly allied Kurdish factions to open a second front against Iran from inside Iraq — and the Kurds refused. The angle: this fills a glaring Iraq coverage gap. Lead with the refusal itself — a US proxy strategy that failed because the proxies had their own calculus. The reader tracking the Iran war will see that US leverage has limits even with allies it just armed, and that Iraq is not a passive theater.",
       "conceptUris": []
     },
     {
-      "id": "us-82nd-airborne-middle-east-buildup-iran",
-      "label": "US continues to build up its military group in Middle East",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
+      "id": "sudan-nyala-healthcare-strike-burhan-military-reshuffle",
+      "label": "Sudan Nashra: Nyala healthcare workers on strike | Burhan abolishes deputy, assistant commander-in-chief positions | Sudanese military intelligence head in high-level talks with Tripoli's chief of staff | Military operation to retake Blue Nile's Kurmuk underway",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 3,
       "arc": "breaking",
       "articles": [
-        "2026-04-11-us-82nd-airborne-middle-east-buildup-iran"
+        "2026-04-10-sudan-nyala-healthcare-strike-burhan-military-reshuffle"
       ],
       "eventUri": null,
-      "summary": "New fighter jets, attack aircraft, and 1,500-2,000 soldiers from the 82nd Airborne Division are deploying to the Middle East, per WSJ. Lead with the 82nd Airborne — this is the US Army's rapid-deployment division, the one you send when ground operations are imminent. The reader tracking the Iran war (day 31+, no ground invasion yet) should read this as the clearest signal yet that the US is preparing for escalation beyond airstrikes. Editorial notes flag 'ground operations not yet launched' — this story says 'but the pieces are moving.'",
+      "summary": "Healthcare workers in Nyala, South Darfur are striking while Burhan consolidates military command by abolishing deputy positions and promoting hardliner Yasser al-Atta to chief of staff. Simultaneously, a military operation to retake Kurmuk on the Blue Nile is underway. The angle: Sudan's civil war is intensifying on multiple fronts — a healthcare collapse in the west, a military offensive in the east, and a command reshuffle that signals Burhan is choosing escalation over negotiation. Lead with the Nyala healthcare strike — civilians are losing medical access in a war zone while the generals restructure for more fighting.",
       "conceptUris": []
     },
     {
-      "id": "peshawar-court-blocks-afghan-family-deportation-asylum",
-      "label": "Peshawar High Court stays repatriation of Afghan family whose asylum case for resettlement in a third country is pending",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
+      "id": "doj-scrap-watergate-presidential-records-act",
+      "label": "DOJ wants to scrap Watergate-era rule that makes presidential records public",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "politics",
       "importance": 3,
       "arc": "breaking",
       "articles": [
-        "2026-04-11-peshawar-court-blocks-afghan-family-deportation-asylum"
+        "2026-04-10-doj-scrap-watergate-presidential-records-act"
       ],
       "eventUri": null,
-      "summary": "A Pakistani court blocked the deportation of an Afghan family whose UN resettlement case is still pending — ruling that the state cannot send them back while they have a live asylum claim. Lead with the legal precedent: in a region where Afghan refugees face mass deportation drives, a high court drew a line. The reader should see this against the backdrop of Pakistan's ongoing crackdown on undocumented Afghans (1.7 million deported since 2023). A single family's case, but the ruling sets a standard that could shield others.",
+      "summary": "The Trump DOJ is moving to dismantle the Presidential Records Act — the post-Watergate law that ensures presidential documents become public. The angle: this is accountability infrastructure being dismantled. Lead with what disappears if this succeeds — future historians, journalists, and FOIA requesters lose access to the documentary record of presidential decision-making. The reader who cares about transparency will see this as a structural erosion, not just a Trump story.",
       "conceptUris": []
     },
     {
-      "id": "federal-court-trump-tariffs-legal-challenge",
+      "id": "federal-court-trump-tariffs-ieepa-challenge",
       "label": "Federal court hears new case against Trump's latest global tariffs",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "economy",
       "importance": 3,
       "arc": "breaking",
       "articles": [
-        "2026-04-11-federal-court-trump-tariffs-legal-challenge"
+        "2026-04-10-federal-court-trump-tariffs-ieepa-challenge"
       ],
       "eventUri": "eng-11557649",
-      "summary": "A three-judge panel at the US Court of International Trade is hearing a new legal challenge to Trump's sweeping global tariffs — the centrepiece of his economic policy. Lead with what's at stake: the tariffs affect every trading partner and are already spiking consumer prices (covered in previous cycle's inflation story). The legal theory matters — challengers argue Trump exceeded his statutory authority under IEEPA. Al Jazeera and The Hindu covering, with sharp sentiment divergence (0.53) suggesting the framing differs significantly between US and Indian perspectives.",
+      "summary": "A three-judge panel at the US Court of International Trade heard oral arguments challenging Trump's sweeping global tariffs, with plaintiffs arguing he exceeded emergency powers meant for narrow crises. The angle: this is a constitutional test of whether a president can unilaterally restructure global trade under emergency authority. Lead with the legal mechanism — IEEPA was designed for sanctions on hostile states, not blanket import taxes on allies. The reader tracking trade policy will see this as the strongest legal challenge yet to the tariff regime.",
       "conceptUris": [
         "http://en.wikipedia.org/wiki/Tariff",
         "http://en.wikipedia.org/wiki/Donald_Trump",
         "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States",
-        "http://en.wikipedia.org/wiki/Balance_of_trade"
+        "http://en.wikipedia.org/wiki/Balance_of_trade",
+        "http://en.wikipedia.org/wiki/United_States_Court_of_International_Trade",
+        "http://en.wikipedia.org/wiki/International_Emergency_Economic_Powers_Act",
+        "http://en.wikipedia.org/wiki/Trade_Act_of_1974",
+        "http://en.wikipedia.org/wiki/Balance_of_payments"
       ]
     },
     {
-      "id": "nigeria-international-breweries-profit-seven-years",
-      "label": "Nigeria's second-biggest beer maker posts N51 billion profit after seven years of loss-making",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-nigeria-international-breweries-profit-seven-years"
-      ],
-      "eventUri": null,
-      "summary": "International Breweries (AB InBev's Nigerian subsidiary) posted its first profit since 2017 — N51 billion — and its share price jumped 9.9% in a single day. Lead with the seven-year drought: this is a proxy for Nigeria's broader macroeconomic story. The naira devaluation that crushed foreign-owned manufacturers for years has now been absorbed, and companies are finally pricing in the new reality. The reader tracking African markets should see the signal: Nigeria's consumer economy is stabilising, at least for firms big enough to survive the adjustment.",
-      "conceptUris": []
-    },
-    {
-      "id": "yellowstone-farallon-plate-not-mantle-plume",
-      "label": "New paper argues history, not mantle plume, powers Yellowstone",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-yellowstone-farallon-plate-not-mantle-plume"
-      ],
-      "eventUri": null,
-      "summary": "A new paper challenges the textbook explanation of Yellowstone: it's not a deep mantle plume driving the supervolcano, but residual heat from the ancient Farallon plate that subducted under North America millions of years ago. Lead with the paradigm challenge — one of geology's most famous explanations may be wrong. The reader who likes taking things apart to understand how they work will appreciate the detective story: a vanished tectonic plate still shaping the continent from its grave.",
-      "conceptUris": []
-    },
-    {
-      "id": "oobleck-non-newtonian-fluid-new-surprises",
-      "label": "\"Oobleck\" still holds some surprises",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-oobleck-non-newtonian-fluid-new-surprises"
-      ],
-      "eventUri": null,
-      "summary": "Cornstarch-and-water (oobleck) is the textbook example of a non-Newtonian fluid, but new research reveals it still has unexplained behaviours that challenge our understanding of shear-thickening. Lead with the surprise: a substance every schoolchild has played with is still defeating physicists. The reader who's a hacker at heart — someone who takes things apart — will love that even the simplest system can resist full understanding.",
-      "conceptUris": []
-    },
-    {
-      "id": "altman-home-molotov-cocktail-attack-arrested",
-      "label": "OpenAI boss Sam Altman's home targeted with Molotov cocktail",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-altman-home-molotov-cocktail-attack-arrested"
-      ],
-      "eventUri": "eng-11558993",
-      "summary": "A 20-year-old threw a Molotov cocktail at Sam Altman's San Francisco home and was arrested. Lead with the escalation: anti-tech sentiment has moved from protests and op-eds to arson. The reader who works in tech should see the broader pattern — AI backlash is intensifying from policy debates to physical violence against the people building these systems. BBC, FT, and Yahoo Finance all covering, with the FT notably more alarmed (sentiment -0.51) than BBC (-0.13).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/San_Francisco",
-        "http://en.wikipedia.org/wiki/Molotov_cocktail",
-        "http://en.wikipedia.org/wiki/Sam_Altman"
-      ]
-    },
-    {
-      "id": "putin-russia-sovereign-llm-development",
-      "label": "Russia needs to develop its own LLMs to guarantee its progress",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-putin-russia-sovereign-llm-development"
-      ],
-      "eventUri": null,
-      "summary": "Putin declared LLMs a 'basic, end-to-end technology' essential for Russia's sovereign development and called for domestic models to replace Western ones. Lead with the framing: a head of state is treating large language models as critical national infrastructure, on par with energy or defence. The reader in AI should see the pattern — the US treats AI as a cybersecurity risk (Bessent/Powell meeting covered last cycle), Russia treats it as a sovereignty imperative. The AI arms race now has explicit state backing on both sides.",
-      "conceptUris": []
-    },
-    {
-      "id": "doj-scrap-presidential-records-act-watergate",
-      "label": "DOJ wants to scrap Watergate-era rule that makes presidential records public",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-doj-scrap-presidential-records-act-watergate"
-      ],
-      "eventUri": null,
-      "summary": "The Trump DOJ is trying to eliminate the Presidential Records Act — the post-Watergate law that ensures presidential documents become public. Lead with what disappears: every future president's communications, decision memos, and policy documents could become permanently secret. The Intercept investigation (137 HN points, 25 comments) reveals the specific legal mechanism. The reader who cares about accountability and transparency should see this as the executive branch trying to close the last window into how power operates.",
-      "conceptUris": []
-    },
-    {
-      "id": "faa-recruits-gamers-air-traffic-controllers",
-      "label": "FAA looks to unconventional source for new air traffic controllers: Gamers",
-      "firstSeen": "2026-04-10T22:11:50.975Z",
-      "lastCovered": "2026-04-10T22:11:50.975Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-faa-recruits-gamers-air-traffic-controllers"
-      ],
-      "eventUri": "eng-11558379",
-      "summary": "The FAA is running ads in video games telling players 'you've been training for this — become an air traffic controller.' Lead with the staffing crisis that forced this: the US air traffic control system is so short-staffed that the DOT is now recruiting from gaming communities based on the cognitive overlap (spatial awareness, multitasking, rapid decision-making under pressure). The reader on HN will recognise the pattern — institutions that can't compete on salary are trying to compete on identity.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-demands-lebanon-truce-asset-unfreeze-ahead-of-talks",
-      "label": "Iran demands Lebanon truce, asset unfreeze ahead of talks",
-      "firstSeen": "2026-04-10T19:08:12.551Z",
-      "lastCovered": "2026-04-10T19:08:12.551Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-iran-demands-lebanon-truce-asset-unfreeze-ahead-of-talks"
-      ],
-      "eventUri": "eng-11558638",
-      "summary": "Iran's pre-negotiation demands before the Islamabad talks reveal the real stakes: Araghchi insists the ceasefire must extend to Lebanon, where Israeli strikes have killed 1,900 since March, and that frozen Iranian assets must be released. The angle is the asymmetry — Iran is negotiating from a position of devastation but demanding concessions on Lebanon, which isn't even at the table. Lead with the 1,900 dead in Lebanon as the backdrop to these talks. The reader tracking the war should see that Iran is trying to use the peace process to shield Lebanon, not just itself — which tells you how badly the Israeli strikes have escalated since the ceasefire.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Mohammad_Bagher_Ghalibaf",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Pakistan"
-      ]
-    },
-    {
-      "id": "trump-failure-kurdish-uprising-iraq-iran",
-      "label": "\"Not Guns for Hire\": Trump's Failure to Trigger a Kurdish Uprising",
-      "firstSeen": "2026-04-10T19:08:12.551Z",
-      "lastCovered": "2026-04-10T19:08:12.551Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-trump-failure-kurdish-uprising-iraq-iran"
-      ],
-      "eventUri": null,
-      "summary": "Trump tried to enlist the newly allied Kurds as a ground force against Iran — and discovered they refused to be dragged into a foreign power's war. This fills the Iraq coverage gap flagged in editorial notes: Iraq hosts US bases under active attack but has been absent from coverage. Lead with the Kurdish refusal — it reveals the limits of US power projection when local actors have their own interests. The reader should see the pattern: empire assumes proxies will fight on command, and the proxies say no. Drop Site investigation with on-the-ground reporting.",
-      "conceptUris": []
-    },
-    {
-      "id": "bessent-powell-bank-ceos-anthropic-ai-cybersecurity",
-      "label": "Bessent, Fed's Powell met with bank CEOs over potent new Anthropic AI",
-      "firstSeen": "2026-04-10T19:08:12.551Z",
-      "lastCovered": "2026-04-10T19:08:12.551Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-bessent-powell-bank-ceos-anthropic-ai-cybersecurity"
-      ],
-      "eventUri": "eng-11556780",
-      "summary": "The Treasury Secretary and Fed Chair called an emergency closed-door meeting with Wall Street bank CEOs to discuss cybersecurity risks from Anthropic's latest AI model, Mythos. Lead with the extraordinary nature of the meeting: the two most powerful financial officials in the US summoned bank heads to warn them about a single AI model. The reader in tech should see the inflection point — AI capabilities have reached the level where central bankers treat them as systemic financial risk, not just a product category. The Pentagon dispute adds another layer: who controls the most powerful AI?",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Jerome_Powell",
-        "http://en.wikipedia.org/wiki/United_States_Secretary_of_the_Treasury",
-        "http://en.wikipedia.org/wiki/Chair_of_the_Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://en.wikipedia.org/wiki/Computer_security",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
-        "http://en.wikipedia.org/wiki/Washington_(state)"
-      ]
-    },
-    {
-      "id": "france-10-billion-electrification-gas-boiler-ban-iran-oil",
-      "label": "France announces ban on gas boilers in new buildings starting in 2027",
-      "firstSeen": "2026-04-10T19:08:12.551Z",
-      "lastCovered": "2026-04-10T19:08:12.551Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-france-10-billion-electrification-gas-boiler-ban-iran-oil"
-      ],
-      "eventUri": "fra-1294327",
-      "summary": "France is using the Iran war's oil shock as the trigger for a €10 billion electrification push and a ban on gas boilers in new buildings from 2027. Lead with the strategic pivot: instead of handing out fuel subsidies, PM Lecornu is accelerating the energy transition. The reader should see the structural response — while the US debates inflation and the Gulf counts tourism losses, France is treating the oil crisis as a permanent condition and rebuilding its energy infrastructure accordingly. This is the war producing a winner: the European clean energy transition just got its biggest funding boost.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Sébastien_Lecornu",
-        "http://en.wikipedia.org/wiki/Gas",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_France",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Government",
-        "http://en.wikipedia.org/wiki/Fossil_fuel",
-        "http://en.wikipedia.org/wiki/Boiler",
-        "http://en.wikipedia.org/wiki/Petroleum"
-      ]
-    },
-    {
-      "id": "pakistan-diesel-price-cut-rs135-ceasefire-dividend",
+      "id": "pakistan-diesel-price-cut-rs135-ceasefire",
       "label": "Govt reduces petrol price by Rs12 per litre, diesel by Rs135",
-      "firstSeen": "2026-04-10T19:08:12.551Z",
-      "lastCovered": "2026-04-10T19:08:12.551Z",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
-        "2026-04-10-pakistan-diesel-price-cut-rs135-ceasefire-dividend"
+        "2026-04-10-pakistan-diesel-price-cut-rs135-ceasefire"
       ],
       "eventUri": "eng-11559114",
-      "summary": "Pakistan slashed diesel prices by Rs135/litre — a massive ~40% cut — as PM Sharif frames the ceasefire he helped broker as an economic dividend for ordinary Pakistanis. Lead with the number: Rs135 is the largest single diesel price cut in Pakistan's history. The reader tracking the Iran war economic cascade should see the symmetry: while US inflation hits 3.3% and European airports run out of jet fuel, Pakistan — the mediator — is the first country to pass savings to consumers. The timing is political: Sharif is converting diplomatic capital into economic relief ahead of the Vance-Iran talks he's hosting tomorrow.",
+      "summary": "Pakistan's PM Shehbaz Sharif announced a Rs135/litre diesel price cut in a televised address he called 'historic.' The angle: this is a massive government intervention — diesel down ~40% — timed to the Iran-US ceasefire and aimed at absorbing the economic shock that has battered Pakistani consumers for a month. Lead with the Rs135 number — it's the largest single fuel price cut in Pakistan's history. The reader tracking the Iran war's economic cascade (PIA, medicine, fuel) will see this as Pakistan desperately trying to stabilize before the Islamabad peace talks begin.",
       "conceptUris": []
-    },
-    {
-      "id": "marine-heatwaves-double-cyclone-economic-damage",
-      "label": "Marine heatwaves 'nearly double' the economic damage caused by tropical cyclones",
-      "firstSeen": "2026-04-10T19:08:12.551Z",
-      "lastCovered": "2026-04-10T19:08:12.551Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-marine-heatwaves-double-cyclone-economic-damage"
-      ],
-      "eventUri": "eng-11559106",
-      "summary": "Cyclones that pass over marine heatwaves 'supercharge' — higher wind speeds, more rainfall, and nearly double the economic damage on landfall. Lead with the multiplier: ocean heating isn't just raising sea levels, it's weaponizing storms. The reader should see the compounding risk — as marine heatwaves become more frequent with climate change, every cyclone season gets more expensive. This hits insurance markets, coastal infrastructure, and the Global South disproportionately. The study quantifies what climate scientists have warned about for years: warmer oceans make weather more violent.",
-      "conceptUris": []
-    },
-    {
-      "id": "forestation-wind-energy-tradeoff-climate-solutions",
-      "label": "Regional priorities in implementing forestation and wind energy as climate solutions in facing their trade-offs",
-      "firstSeen": "2026-04-10T19:08:12.551Z",
-      "lastCovered": "2026-04-10T19:08:12.551Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-forestation-wind-energy-tradeoff-climate-solutions"
-      ],
-      "eventUri": null,
-      "summary": "Planting trees to absorb carbon increases surface roughness and reduces wind speeds — directly undermining wind energy production in the same regions. Lead with the trade-off that climate policy doesn't talk about: two of the most important decarbonization strategies physically conflict with each other. The study maps where forestation helps vs. where wind energy should be prioritized, showing the tropics favor forests while temperate zones favor turbines. The reader should see the systems thinking: climate solutions aren't additive, they interact, and getting the regional mix wrong wastes both money and carbon budgets.",
-      "conceptUris": []
-    },
-    {
-      "id": "nigeria-386-terrorism-convictions-four-day-mass-trial",
-      "label": "Court convicts 386 terrorists in four-day mass trial, says AGF",
-      "firstSeen": "2026-04-10T19:08:12.551Z",
-      "lastCovered": "2026-04-10T19:08:12.551Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-nigeria-386-terrorism-convictions-four-day-mass-trial"
-      ],
-      "eventUri": "eng-11559216",
-      "summary": "Nigeria's Federal High Court convicted 386 people in a four-day mass trial that the Attorney General is celebrating as efficiency. Lead with the math: 386 convictions in 4 days is nearly 100 convictions per day — raising immediate questions about due process, evidence review, and the right to defense. The reader should see the accountability gap: mass trials have been condemned by human rights organizations worldwide as inherently unfair, regardless of the severity of the charges. Nigeria's insurgency is real, but so is the pattern of mass detention and perfunctory justice. Premium Times is Nigeria's leading investigative outlet.",
-      "conceptUris": []
-    },
-    {
-      "id": "israel-approves-34-new-west-bank-settlements",
-      "label": "Israel approves 34 new West Bank settlements: report",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-israel-approves-34-new-west-bank-settlements"
-      ],
-      "eventUri": "eng-11554559",
-      "summary": "Israel's security cabinet secretly approved 34 new settlements in the occupied West Bank in early April — the largest single expansion in years, announced by Peace Now after leaked documents. Lead with the secrecy and the number: 34 settlements approved in a single decision, while the world watches Iran and Lebanon. The reader should see the pattern: every war provides cover for land annexation. The timing is the story — while global attention is consumed by the Iran ceasefire and Lebanon bombardment, the cabinet is quietly redrawing the map of the West Bank. This is the occupation advancing under the fog of war.",
-      "conceptUris": []
-    },
-    {
-      "id": "israel-expels-spain-gaza-coordination-retaliation",
-      "label": "Netanyahu accuses Spain of 'hostility' towards Israel",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-israel-expels-spain-gaza-coordination-retaliation"
-      ],
-      "eventUri": "spa-4164164",
-      "summary": "Israel retaliated against Spain's push to suspend the EU-Israel association agreement by expelling Spanish representatives from the Gaza humanitarian coordination center. This advances the Spain-Israel arc from yesterday — Sanchez criticized, and now Netanyahu punishes. Lead with the consequence: Spain tried to hold Israel accountable through EU institutions, and Israel responded by cutting Spain out of Gaza aid coordination. The reader should see the mechanism of impunity: challenge us diplomatically and we'll block your access to the humanitarian operation. Five sources from five countries (PS, QA, US, SG, NG) — high sentiment divergence (0.24) shows how differently this is framed globally.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Spain",
-        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
-        "http://en.wikipedia.org/wiki/Gaza_Strip",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Diplomacy",
-        "http://en.wikipedia.org/wiki/Gaza_City",
-        "http://en.wikipedia.org/wiki/Kiryat_Gat"
-      ]
-    },
-    {
-      "id": "vance-pakistan-iran-peace-talks",
-      "label": "US vice president heads to Pakistan for Iran peace talks",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-vance-pakistan-iran-peace-talks"
-      ],
-      "eventUri": "eng-11558323",
-      "summary": "JD Vance has departed for Islamabad to lead US-Iran peace negotiations — the highest-level direct engagement since the ceasefire. Lead with Trump's threat hanging over the talks: 'the only reason they are alive is to negotiate.' Pakistan continues as the mediator, building on Sharif's 90-minute ceasefire save from last week. The reader tracking the Iran war should see the stakes: this is the negotiation that determines whether the ceasefire holds or the US resumes strikes on Iranian infrastructure. Sentiment divergence is extreme (0.38) — TRT frames Pakistan's diplomatic agency while Indian media centers Trump's coercive language.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Vice_President_of_the_United_States",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Juris_Doctor",
-        "http://en.wikipedia.org/wiki/Washington_(state)",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Islamabad",
-        "http://en.wikipedia.org/wiki/Donald_Trump"
-      ]
-    },
-    {
-      "id": "purohit-malegaon-blast-acquitted-promoted-brigadier",
-      "label": "From trial to promotion: Colonel Purohit gets Brigadier clearance",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-purohit-malegaon-blast-acquitted-promoted-brigadier"
-      ],
-      "eventUri": "eng-11556984",
-      "summary": "Lt Col Prasad Purohit — acquitted in the 2008 Malegaon blast case that killed 6 people in a Muslim neighborhood — has been cleared for promotion to Brigadier. Lead with the trajectory: accused of bombing a mosque area, spent years in jail, acquitted, and now rewarded with the Indian Army's highest field command rank. The reader should see this as an accountability story about impunity for anti-Muslim violence within India's military establishment. The Armed Forces Tribunal blocked his retirement to fast-track the promotion. The Malegaon blast targeted a Muslim-majority town during Ramadan.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Malegaon",
-        "http://en.wikipedia.org/wiki/Brigadier",
-        "http://en.wikipedia.org/wiki/Acquittal",
-        "http://en.wikipedia.org/wiki/Indian_Army",
-        "http://en.wikipedia.org/wiki/Armed_Forces_Tribunal",
-        "http://en.wikipedia.org/wiki/Colonel",
-        "http://en.wikipedia.org/wiki/Lieutenant_colonel",
-        "http://en.wikipedia.org/wiki/British_Army"
-      ]
-    },
-    {
-      "id": "israel-missile-interceptors-double-digits-depleted",
-      "label": "Israeli Missile Interceptors Have Dwindled to 'Double Digits': Trump Administration Official",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-israel-missile-interceptors-double-digits-depleted"
-      ],
-      "eventUri": null,
-      "summary": "Israel's missile interceptor stockpile has fallen to 'double digits' — leaving the country increasingly dependent on US Navy missile defense. Lead with the number: from hundreds of interceptors to double digits after 40 days of war with Iran. The reader in tech should see the systems thinking: Iron Dome, Arrow, and David's Sling are finite resources being depleted faster than they can be manufactured. This is why the ceasefire matters materially, not just diplomatically — Israel literally cannot sustain another exchange. The dependency on US Navy ships reframes the 'alliance' as a lifeline.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-inflation-3-3-percent-iran-war-energy",
-      "label": "US inflation rises to 3.3%",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-us-inflation-3-3-percent-iran-war-energy"
-      ],
-      "eventUri": "eng-11557259",
-      "summary": "US consumer inflation surged to 3.3% in March — the highest since May 2024 — driven by a steep rise in energy prices from the Iran war. Lead with the war-to-wallet pipeline: drone strikes in the Gulf → oil price spike → gasoline up 21% → inflation erasing the rate-cut expectations that markets had priced in. The reader tracking the Iran economic cascade should see the domestic US impact landing: the war is now in American grocery bills and gas pumps. This compounds the political pressure on Trump, who started the war and now owns its inflation.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Inflation",
-        "http://en.wikipedia.org/wiki/Consumer_price_index",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Gasoline",
-        "http://en.wikipedia.org/wiki/Bureau_of_Labor_Statistics",
-        "http://en.wikipedia.org/wiki/Petroleum",
-        "http://en.wikipedia.org/wiki/Middle_East",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "european-airports-jet-fuel-shortage-hormuz",
-      "label": "European Airports Warn of Fuel Shortages if Gulf Supplies Remain Shut",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-10-european-airports-jet-fuel-shortage-hormuz"
-      ],
-      "eventUri": "ita-893865",
-      "summary": "European airports warned EU officials that jet fuel shipments through the Strait of Hormuz must restart within three weeks or face 'systemic' shortage — grounding flights across the continent. Lead with the deadline: 3 weeks until European air travel starts breaking. The reader should see the infrastructure dependency: Europe's aviation runs on Gulf kerosene, and the Hormuz closure has severed the supply chain. This is the Iran war hitting European daily life — not through missiles but through fuel logistics. Connect to the broader cascade: shipping disrupted, oil exports cut, tourism collapsed, and now aviation fuel running out.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Airport",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Financial_Times",
-        "http://en.wikipedia.org/wiki/Airplane",
-        "http://en.wikipedia.org/wiki/Motor_fuel",
-        "http://en.wikipedia.org/wiki/Jet_fuel"
-      ]
     },
     {
       "id": "white-house-iran-war-insider-trading-warning",
       "label": "White House warns staff over Iran war bets",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 1,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-white-house-iran-war-insider-trading-warning"
       ],
       "eventUri": "eng-11556693",
-      "summary": "The White House issued a warning to staff against using insider information about the Iran war to trade on financial markets — an admission that the problem exists. Lead with the mechanism: people with advance knowledge of Trump's bombing decisions and ceasefire announcements have been front-running markets. Oil futures and prediction markets spiked on several occasions before major announcements. The reader should see the corruption layer: the same war killing civilians in Iran and Lebanon is generating trading profits for people with access to the president's plans. This is war as a financial instrument.",
+      "summary": "The White House issued a warning to staff against using insider information on the Iran war to trade on prediction markets and financial markets, after repeated market spikes before major presidential announcements. The angle: the war isn't just geopolitics — it's a trading opportunity for those with advance knowledge of ceasefire announcements and escalation decisions. Lead with the pattern: markets spiked before several Trump announcements, suggesting someone was front-running war decisions. The reader who follows markets will immediately grasp the corruption mechanism.",
       "conceptUris": [
         "http://en.wikipedia.org/wiki/White_House",
         "http://en.wikipedia.org/wiki/Donald_Trump",
@@ -768,92 +550,379 @@
       ]
     },
     {
-      "id": "artemis-2-splashdown-moon-mission-return",
-      "label": "Watch Live: Artemis 2 Returns to Earth After Historic Moon Mission",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
+      "id": "marine-heatwaves-double-cyclone-economic-damage",
+      "label": "Marine heatwaves 'nearly double' the economic damage caused by tropical cyclones",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 1,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
-        "2026-04-10-artemis-2-splashdown-moon-mission-return"
+        "2026-04-10-marine-heatwaves-double-cyclone-economic-damage"
       ],
-      "eventUri": "eng-11554849",
-      "summary": "NASA's Artemis II crew is returning to Earth after the first crewed lunar flyby since Apollo 17 in 1972 — testing the Orion spacecraft's heat shield at re-entry speeds no human has experienced in over 50 years. Lead with the engineering risk: the heat shield must survive 2,760°C at 40,000 km/h, and this is its first test with humans aboard. The splashdown in the Pacific is the most dangerous phase of the mission. The reader should see both the achievement and the context: humans are returning to lunar orbit while the planet below is at war.",
+      "eventUri": null,
+      "summary": "Tropical cyclones that pass over marine heatwaves become 'supercharged,' nearly doubling their economic damage. The angle: climate change isn't just making storms worse in a vague sense — marine heatwaves are a specific, measurable amplifier with a dollar figure attached. Lead with the doubling — this quantifies the climate-disaster feedback loop in a way that connects ocean temperatures directly to insurance losses and rebuilding costs. The reader who thinks in systems will see the compounding mechanism.",
+      "conceptUris": []
+    },
+    {
+      "id": "first-contact-complex-life-stromatolites-shark-bay",
+      "label": "'First contact' that may have led to complex life on Earth finally witnessed by scientists",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-first-contact-complex-life-stromatolites-shark-bay"
+      ],
+      "eventUri": null,
+      "summary": "Scientists in Australia's Shark Bay have for the first time witnessed the interaction between stromatolite microbes and more complex cellular organisms — the kind of 'first contact' thought to have triggered the evolution of complex life on Earth billions of years ago. The angle: this is a living window into one of the biggest transitions in evolutionary history, observed in real time in the same type of environment where it originally happened. Lead with the fact that this process was theorized but never seen — until now.",
+      "conceptUris": []
+    },
+    {
+      "id": "north-korea-drift-crypto-theft-280-million",
+      "label": "'It reads like a spy novel': $280 million theft from Drift involved North Korean fake companies, cutouts",
+      "firstSeen": "2026-04-10T22:09:09.078Z",
+      "lastCovered": "2026-04-10T22:09:09.078Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 3,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-north-korea-drift-crypto-theft-280-million"
+      ],
+      "eventUri": null,
+      "summary": "North Korean operatives stole $280 million from crypto platform Drift using fake companies and cutouts — a six-month social engineering operation that started at a conference. The angle: this is how a sanctioned state funds itself. Lead with the tradecraft — fake quant-trading company, conference approach, six months of trust-building before the heist. The reader who builds software will recognize the social engineering pattern; the reader tracking North Korea will see the sanctions-evasion pipeline.",
+      "conceptUris": []
+    },
+    {
+      "id": "france-government-linux-desktop-windows-exit",
+      "label": "France Launches Government Linux Desktop Plan as Windows Exit Begins",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T17:05:13.901Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-04-10-france-government-linux-desktop-windows-exit",
+        "2026-04-10-france-government-windows-linux-digital-sovereignty"
+      ],
+      "eventUri": null,
+      "summary": "France has announced an official plan to migrate government desktops from Windows to Linux, framed as 'digital sovereignty' and reducing dependence on extra-European technology. The angle: this is the first major Western government to commit to a full Windows exit at the desktop level. Lead with the sovereignty framing — this isn't about cost savings, it's about a NATO ally deciding it can't depend on American software for government operations. The HN reader will debate feasibility; the geopolitics reader will see the pattern of decoupling.",
+      "conceptUris": []
+    },
+    {
+      "id": "israel-bars-spain-gaza-ceasefire-monitoring",
+      "label": "Israel bars Spain from US-led Gaza ceasefire monitoring centre",
+      "firstSeen": "2026-04-10T17:05:13.901Z",
+      "lastCovered": "2026-04-10T17:05:13.901Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-israel-bars-spain-gaza-ceasefire-monitoring"
+      ],
+      "eventUri": "spa-4164164",
+      "summary": "Netanyahu expelled Spain from the Gaza ceasefire monitoring centre hours after Madrid recognised Palestine and called for ICJ enforcement. The angle: Israel is systematically punishing states that use international law mechanisms — Spain, South Africa, Ireland, Colombia. Lead with the mechanism: this isn't a bilateral spat, it's a campaign to make the cost of recognising Palestinian rights higher than the cost of silence. The reader tracking accountability will see the pattern.",
       "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artemis_2",
-        "http://en.wikipedia.org/wiki/NASA",
-        "http://en.wikipedia.org/wiki/Astronaut",
-        "http://en.wikipedia.org/wiki/Orion_(spacecraft)",
-        "http://en.wikipedia.org/wiki/Splashdown",
-        "http://en.wikipedia.org/wiki/Earth",
-        "http://en.wikipedia.org/wiki/Moon",
-        "http://en.wikipedia.org/wiki/Atmospheric_entry"
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Spain",
+        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
+        "http://en.wikipedia.org/wiki/Gaza_Strip",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Diplomacy",
+        "http://en.wikipedia.org/wiki/Gaza_City",
+        "http://en.wikipedia.org/wiki/Kiryat_Gat"
       ]
     },
     {
-      "id": "moderna-cancer-vaccine-therapy-naming-dilemma",
-      "label": "What's in a name? Moderna's 'vaccine' vs. 'therapy' dilemma",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
+      "id": "european-airports-jet-fuel-shortage-hormuz",
+      "label": "European Airports Warn of Fuel Shortages if Gulf Supplies Remain Shut",
+      "firstSeen": "2026-04-10T17:05:13.901Z",
+      "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
+      "category": "economy",
+      "importance": 2,
       "arc": "breaking",
       "articles": [
-        "2026-04-10-moderna-cancer-vaccine-therapy-naming-dilemma"
+        "2026-04-10-european-airports-jet-fuel-shortage-hormuz"
+      ],
+      "eventUri": "ita-893865",
+      "summary": "European airport associations told EU officials that jet fuel shipments through the Strait of Hormuz must restart within three weeks or Europe faces 'systemic' aviation fuel shortages. The angle: the Iran war's economic damage is now threatening to ground flights across Europe. Lead with the 3-week deadline — this is a concrete, ticking clock that makes the abstract Hormuz closure tangible. The reader who tracked the Singapore air-con story will see the cascade widening to Europe's transport infrastructure.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/Airport",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Airplane",
+        "http://en.wikipedia.org/wiki/Financial_Times",
+        "http://en.wikipedia.org/wiki/Motor_fuel",
+        "http://en.wikipedia.org/wiki/Jet_fuel"
+      ]
+    },
+    {
+      "id": "egypt-activist-ahmed-douma-detention-extended",
+      "label": "Court extends Activist Ahmed Douma's remand detention",
+      "firstSeen": "2026-04-10T17:05:13.901Z",
+      "lastCovered": "2026-04-10T17:05:13.901Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-egypt-activist-ahmed-douma-detention-extended"
       ],
       "eventUri": null,
-      "summary": "Moderna's personalized cancer treatment sequences a patient's tumor to create a custom mRNA shot that trains the immune system to kill cancer cells — but calling it a 'vaccine' triggers anti-vax backlash and regulatory confusion. Lead with the technology: this is gene-sequencing meets immunotherapy, the most sophisticated medical intervention ever mass-produced. The naming dilemma is the story — the same mRNA platform that saved millions from COVID is now fighting cancer, but the word 'vaccine' has become politically toxic. The reader in tech should see the product-naming problem they'd recognize from their own work, applied to life-saving medicine.",
+      "summary": "An Egyptian court extended detention of prominent activist and writer Ahmed Douma for 15 more days on charges of 'spreading false news' — despite Douma having been previously granted a pardon. The angle: Egypt's pardon system is a revolving door. The state pardons activists for international optics, then re-arrests them on new charges. Lead with the pardon-then-redetain pattern — it reveals the machinery of controlled dissent. Douma has been a symbol of the 2011 revolution's unfinished promise.",
       "conceptUris": []
     },
     {
-      "id": "indian-wastewater-antibiotic-resistance-genes",
-      "label": "Indian wastewater rife with drug resistance genes",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
+      "id": "hong-kong-stablecoin-licenses-hsbc-stanchart",
+      "label": "Hong Kong Grants First Stablecoin Licenses to HSBC, Standard Chartered-Backed Venture",
+      "firstSeen": "2026-04-10T17:05:13.901Z",
+      "lastCovered": "2026-04-10T17:05:13.901Z",
       "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
+      "category": "economy",
+      "importance": 2,
       "arc": "breaking",
       "articles": [
+        "2026-04-10-hong-kong-stablecoin-licenses-hsbc-stanchart"
+      ],
+      "eventUri": "eng-11557583",
+      "summary": "Hong Kong issued its first stablecoin licenses to HSBC and a Standard Chartered-backed joint venture, marking a major step in Asia's digital asset regulation. The angle: while the US dithers on crypto regulation, Hong Kong is building the institutional rails. Colonial-era banks HSBC and StanChart are now the licensed issuers of Hong Kong dollar stablecoins — the old financial order absorbing the new. Lead with the institutional weight: these aren't crypto startups, they're the banks that built Asia's trade finance.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Stablecoin",
+        "http://en.wikipedia.org/wiki/Hong_Kong",
+        "http://en.wikipedia.org/wiki/Hong_Kong_Monetary_Authority",
+        "http://en.wikipedia.org/wiki/HSBC",
+        "http://en.wikipedia.org/wiki/Standard_Chartered",
+        "http://en.wikipedia.org/wiki/Digital_asset",
+        "http://en.wikipedia.org/wiki/Joint_venture",
+        "http://en.wikipedia.org/wiki/Hong_Kong_dollar"
+      ]
+    },
+    {
+      "id": "secret-project-abc-conjecture-computer-verification",
+      "label": "The secret project to settle controversial maths proof with a computer",
+      "firstSeen": "2026-04-10T17:05:13.901Z",
+      "lastCovered": "2026-04-10T17:05:13.901Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-secret-project-abc-conjecture-computer-verification"
+      ],
+      "eventUri": null,
+      "summary": "Two secret projects — working independently for over two years — are using formal verification software to settle the ABC conjecture, one of the most bitterly contested proofs in modern mathematics. Shinichi Mochizuki claimed to prove it in 2012; most mathematicians remain unconvinced. The angle: humans couldn't agree on whether the proof is valid, so now machines will arbitrate. Lead with the secrecy and the stakes — this is mathematics as a contact sport, and the computer is the referee neither side asked for.",
+      "conceptUris": []
+    },
+    {
+      "id": "moderna-mrna-cancer-vaccine-naming-dilemma",
+      "label": "What's in a name? Moderna's \"vaccine\" vs. \"therapy\" dilemma",
+      "firstSeen": "2026-04-10T17:05:13.901Z",
+      "lastCovered": "2026-04-10T17:05:13.901Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-moderna-mrna-cancer-vaccine-naming-dilemma"
+      ],
+      "eventUri": null,
+      "summary": "Moderna's personalised mRNA cancer treatment sequences a patient's tumour, identifies unique surface molecules (neoantigens), and trains the immune system to kill cells displaying them. It works like a vaccine — but calling it one triggers anti-vax backlash and regulatory confusion. The angle: the word 'vaccine' has become so politically toxic that it may slow adoption of a breakthrough cancer therapy. Lead with the mechanism (it IS a vaccine, technically) and the naming dilemma — the reader in tech will see the parallels to how framing shapes adoption of any new technology.",
+      "conceptUris": []
+    },
+    {
+      "id": "florida-investigates-openai-chatgpt-deadly-shooting",
+      "label": "Florida investigates OpenAI for role ChatGPT may have played in deadly shooting",
+      "firstSeen": "2026-04-10T17:05:13.901Z",
+      "lastCovered": "2026-04-10T17:05:13.901Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 2,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-florida-investigates-openai-chatgpt-deadly-shooting"
+      ],
+      "eventUri": null,
+      "summary": "Florida opened a state investigation into OpenAI after a gunman allegedly communicated extensively with ChatGPT in the days before a deadly shooting. The victim's family is also suing. The angle: this is the first state-level criminal investigation into an AI company's potential role in a killing — a regulatory precedent. Lead with the investigation (not the lawsuit) because state enforcement powers go further than civil liability. The reader building AI products needs to understand: the liability frontier just moved.",
+      "conceptUris": []
+    },
+    {
+      "id": "japan-missiles-us-china-collision-course",
+      "label": "Japan's new long-range missiles put US-China on collision course",
+      "firstSeen": "2026-04-10T08:09:28.322Z",
+      "lastCovered": "2026-04-11T04:09:34.088Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 1,
+      "arc": "developing",
+      "articles": [
+        "2026-04-10-japan-missiles-us-china-collision-course",
+        "2026-04-11-japan-type-25-missile-hypersonic-us-china-escalation"
+      ],
+      "eventUri": null,
+      "summary": "Japan deployed its first domestically developed long-range missile (Type 25, 600-mile range capable of hitting Shanghai) and its first hypersonic weapon (HVGP) on March 31 — with US material support via a $340M equipment sale. Tens of thousands protested in Tokyo on April 8 against militarization and the Iran war. Lead with the range number and the security dilemma: each side's 'defensive' move reads as offensive to the other. China warns Japan has gone 'far beyond self-defense.' The reader tracking US-China tensions sees a third player now armed to escalate, while the US is distracted in the Middle East.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-wastewater-drug-resistance-genes-amr",
+      "label": "Indian wastewater rife with drug resistance genes",
+      "firstSeen": "2026-04-10T04:05:18.954Z",
+      "lastCovered": "2026-04-10T17:05:13.901Z",
+      "coverageCount": 3,
+      "category": "science",
+      "importance": 1,
+      "arc": "developing",
+      "articles": [
+        "2026-04-10-india-wastewater-drug-resistance-genes-amr",
+        "2026-04-10-india-wastewater-antimicrobial-resistance-genes",
         "2026-04-10-indian-wastewater-antibiotic-resistance-genes"
       ],
       "eventUri": null,
-      "summary": "Scientists found an abundance of antibiotic resistance genes in India's urban wastewater — a surveillance signal for the next pandemic threat. Lead with the mechanism: resistance genes flow from hospitals and pharmaceutical factories into sewage, survive treatment, and enter waterways where they spread to environmental bacteria. The reader should see the systemic risk: antimicrobial resistance (AMR) kills 1.3 million people annually and is accelerating in the Global South where pharmaceutical manufacturing concentrates. India produces most of the world's generic antibiotics — and its wastewater is becoming a breeding ground for resistance.",
+      "summary": "Scientists found an abundance of genes resistant to common antibiotics in India's urban wastewater — a reservoir that could accelerate antimicrobial resistance globally. Lead with the scale: India's wastewater systems serve hundreds of millions of people and are seeding drug-resistant bacteria into the environment. The reader in tech should see AMR as a systems problem: resistance genes spread like software vulnerabilities, and wastewater is the network. Global South science from SciDev.Net.",
       "conceptUris": []
     },
     {
-      "id": "macos-privacy-security-settings-unreliable",
-      "label": "You can't trust macOS Privacy and Security settings",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
+      "id": "iran-lebanon-ceasefire-test-regional-sway",
+      "label": "Iran's insistence on Lebanon ceasefire a test for regional sway",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-iran-lebanon-ceasefire-test-regional-sway"
+      ],
+      "eventUri": null,
+      "summary": "Israel launched its deadliest strikes on Lebanon in years on Wednesday — during a ceasefire supposedly in effect. Iran is demanding Lebanon be included in any peace deal, testing whether its wartime leverage translates into regional diplomatic power. The angle: the ceasefire exists on paper but not in Lebanon, and Iran is using that gap to assert itself as protector of Hezbollah and gatekeeper of any broader settlement. Lead with Netanyahu's assurance of 'full coordination with Israel' while bombs fell on Beirut.",
+      "conceptUris": []
+    },
+    {
+      "id": "south-africa-trc-timol-sabotage-inquiry",
+      "label": "'Deliberate ineptitude' sabotaged TRC cases, nephew of murdered Ahmed Timol tells TRC inquiry",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-south-africa-trc-timol-sabotage-inquiry"
+      ],
+      "eventUri": "eng-11557373",
+      "summary": "Ahmed Timol was the 22nd person to die in South African police detention after 'detention without trial' laws began in 1963. No one has ever been held accountable for his murder. Now his nephew is testifying that prosecutors deliberately sabotaged TRC cases. The angle: apartheid justice isn't delayed — it was actively obstructed from within the system meant to deliver it. Lead with the number: 22nd detainee death, zero prosecutions, 60+ years later.",
+      "conceptUris": []
+    },
+    {
+      "id": "korea-peninsula-security-iran-war-rebalancing",
+      "label": "Kim Jong Un waiting for Trump, but there's a path right in front of him",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-korea-peninsula-security-iran-war-rebalancing"
+      ],
+      "eventUri": null,
+      "summary": "North Korea called South Korea's apology over drone incursions 'sincere and bold' — then immediately walked it back. Meanwhile, US strategic assets have been redeployed from South Korea to the Iran war, exposing a structural vulnerability: Seoul cannot count on permanent US deterrence. The angle: the Iran war is quietly reshaping the Korean Peninsula's security architecture. Lead with the asset redeployment — the reader tracking the Iran war's global ripple effects will see the connection immediately.",
+      "conceptUris": []
+    },
+    {
+      "id": "adb-asia-pacific-growth-iran-war-inflation",
+      "label": "ADB sees subdued PH economic growth in 2026 due to Middle East crisis",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-adb-asia-pacific-growth-iran-war-inflation"
+      ],
+      "eventUri": "eng-11556707",
+      "summary": "The Asian Development Bank warns the Iran war is curbing growth and fanning inflation across Asia-Pacific — from India to the Philippines to South Korea. This is the first major multilateral forecast to quantify the war's economic damage across the region. The angle: the war's cost isn't just in the Middle East. Lead with the ADB's growth downgrades and the inflation mechanism (energy prices → food prices → consumer squeeze). Different from the IMF $50bn estimate which focused on Middle East economies — this is the Asia-Pacific cascade.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Asian_Development_Bank",
+        "http://en.wikipedia.org/wiki/Asia",
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/Economic_growth",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Pacific_Ocean",
+        "http://en.wikipedia.org/wiki/Geopolitics"
+      ]
+    },
+    {
+      "id": "bird-flu-h5n1-dairy-cattle-vaccination-window",
+      "label": "Why experts say now is the time to vaccinate US dairy cattle against bird flu",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-bird-flu-h5n1-dairy-cattle-vaccination-window"
+      ],
+      "eventUri": null,
+      "summary": "H5N1 bird flu has jumped from poultry to dairy cattle in the US, raising concerns about food security, farm worker health, and pandemic preparedness. Experts now argue vaccination is the critical window — before the virus adapts further. The angle: the US has a narrowing opportunity to prevent H5N1 from becoming endemic in its dairy supply. Lead with the cross-species jump (wildlife → poultry → cattle) and the vaccination window argument. The reader who tracks pandemic risk will see the familiar pattern of delay.",
+      "conceptUris": []
+    },
+    {
+      "id": "eth-zurich-17000-qubit-array-fidelity",
+      "label": "ETH Zurich demonstrates 17,000 qubit array with 99.91% fidelity",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 1,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-10-eth-zurich-17000-qubit-array-fidelity"
+      ],
+      "eventUri": null,
+      "summary": "ETH Zurich has demonstrated a 17,000-qubit array operating at 99.91% fidelity — a new trick that brings stability to quantum operations at scale. The angle: the barrier to useful quantum computing has been error rates, not qubit counts. This result suggests the error problem is being solved. Lead with the numbers (17,000 qubits, 99.91% fidelity) and explain why fidelity at scale matters more than raw qubit count. The tech reader will immediately grasp the significance.",
+      "conceptUris": []
+    },
+    {
+      "id": "dutch-hospitals-ransomware-chipsoft-disruption",
+      "label": "Dutch hospitals face disruptions after ransomware attack on software provider ChipSoft",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 1,
       "arc": "breaking",
       "articles": [
-        "2026-04-10-macos-privacy-security-settings-unreliable"
+        "2026-04-10-dutch-hospitals-ransomware-chipsoft-disruption"
       ],
       "eventUri": null,
-      "summary": "macOS Privacy & Security settings don't reflect the actual permissions apps have — the UI shows one state while the system enforces another. 162 HN points. Lead with the trust violation: Apple markets privacy as a core feature, but the settings panel that's supposed to let users control it is unreliable. The reader who uses a Mac daily should see the gap between Apple's privacy marketing and the technical reality. Connect to the broader pattern: privacy controls across all platforms are becoming theater — they exist to satisfy regulatory requirements while the underlying systems operate independently.",
+      "summary": "A ransomware attack on ChipSoft, a major Dutch healthcare software vendor, has forced hospitals across the Netherlands to disable digital services. The angle: a single vendor compromise cascaded across an entire country's hospital system. Lead with the single-point-of-failure — ChipSoft's market dominance in Dutch healthcare means one ransomware hit disrupts patient care nationally. The tech reader will see the supply-chain risk; the healthcare reader will see the patient safety implications.",
       "conceptUris": []
     },
     {
-      "id": "wireguard-windows-release-microsoft-signing",
-      "label": "WireGuard makes new Windows release following Microsoft signing resolution",
-      "firstSeen": "2026-04-10T17:24:58.084Z",
-      "lastCovered": "2026-04-10T17:24:58.084Z",
+      "id": "prosthetic-emg-deep-learning-two-sensors",
+      "label": "Leveraging convolutional sparse autoencoders for robust movement classification from low-density sEMG",
+      "firstSeen": "2026-04-10T12:07:34.166Z",
+      "lastCovered": "2026-04-10T12:07:34.166Z",
       "coverageCount": 1,
       "category": "tech",
       "importance": 1,
       "arc": "breaking",
       "articles": [
-        "2026-04-10-wireguard-windows-release-microsoft-signing"
+        "2026-04-10-prosthetic-emg-deep-learning-two-sensors"
       ],
       "eventUri": null,
-      "summary": "WireGuard released a new Windows version after resolving a dispute with Microsoft over kernel driver signing — a bottleneck that had blocked updates to one of the most important privacy tools in the open-source ecosystem. 105 HN points. Lead with the power dynamic: Microsoft's driver signing requirements gave it a chokepoint over open-source security software that millions depend on. The reader who uses WireGuard (or any VPN) should see the infrastructure dependency: your privacy tool's ability to ship updates depends on a single company's signing process. The resolution matters, but the vulnerability it exposed matters more.",
+      "summary": "A Nature study demonstrates accurate prosthetic hand control using just two EMG sensors instead of the dense arrays that make current prosthetics impractical for clinical use. The deep learning framework achieves robust gesture recognition despite high variability between users. The angle: the barrier to usable prosthetics has been the number of sensors needed — this cuts it to two, making myoelectric hands viable for the 40 million amputees worldwide. Lead with the reduction (from dense arrays to 2 channels) and the clinical implication.",
       "conceptUris": []
     }
   ]

@@ -3718,5 +3718,92 @@
     "label": "Frozen Assets",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-11-iran-unable-to-find-mines-in-strait-of-hormuz-us-says": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "The Strait of Hormuz is 33 km wide, but the shipping lanes are just 3 km each with a 3 km buffer. Roughly 20% of the world's traded oil passes through this corridor daily. There is no alternative route for most Gulf exporters."
+      },
+      {
+        "heading": "WHY MINES ARE DIFFERENT",
+        "body": "A naval mine costs a few thousand dollars and can disable a ship worth hundreds of millions. Unlike missiles, mines don't need targeting systems, radar, or trained operators. Iran can deploy thousands from civilian fishing boats overnight — asymmetric warfare at its purest."
+      },
+      {
+        "heading": "THE DRIFT PROBLEM",
+        "body": "Contact mines are anchored to the seabed by cables at a set depth. But cables corrode, anchors drag, and currents shift. A mine laid at known coordinates can move hundreds of meters within weeks. The layer who placed it may genuinely not know where it is anymore."
+      },
+      {
+        "heading": "WHY CLEARANCE IS SO SLOW",
+        "body": "Minesweeping means sending a ship or drone through a channel and hoping the countermeasure triggers the mine before a tanker does. Sonar struggles in shallow, warm water with strong currents — exactly the conditions in Hormuz. The US Navy estimates clearing a moderately mined strait takes weeks to months, not days."
+      },
+      {
+        "heading": "THE HISTORICAL PRECEDENT",
+        "body": "During the Iran-Iraq War, Iran mined the Gulf in 1987-88. The USS Samuel B. Roberts struck an Iranian mine in April 1988, nearly breaking in half. Stray mines from that era were still being found in the 2000s — twenty years after they were laid."
+      }
+    ],
+    "generatedAt": "2026-04-11T12:18:28.385Z",
+    "label": "Naval Mines & the Hormuz Chokepoint",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-11-majorana-quantum-spin-probes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "EVERY PARTICLE HAS AN OPPOSITE",
+        "body": "Dirac predicted in 1928 that every particle has an antiparticle — same mass, opposite charge. The positron (anti-electron) was found four years later. This symmetry is one of the deepest features of quantum field theory."
+      },
+      {
+        "heading": "THE EXCEPTION",
+        "body": "In 1937, Ettore Majorana asked: what if a particle were its own antiparticle? The math works. A Majorana fermion would have zero charge and annihilate with itself. No one has ever confirmed one exists as a fundamental particle. Majorana himself vanished mysteriously that same year."
+      },
+      {
+        "heading": "QUASIPARTICLES",
+        "body": "Inside a solid, electrons interact with billions of neighbors. The collective behavior can mimic particles that don't exist in free space — phonons act like sound particles, Cooper pairs act like bosons. These quasiparticles are real enough to measure and engineer with, even if no standalone particle matches them."
+      },
+      {
+        "heading": "WHY PHYSICISTS CARE",
+        "body": "A Majorana quasiparticle stores quantum information non-locally — half the state lives at each end of a nanowire. Local noise can't corrupt what isn't locally stored. This is topological protection, and it would make quantum computers radically more stable. Microsoft has bet its entire quantum architecture on this idea."
+      },
+      {
+        "heading": "THE SENSING ANGLE",
+        "body": "Quantum sensors exploit the extreme sensitivity of quantum states to tiny fields. Most quantum sensors use trapped ions or nitrogen vacancies in diamond. Majorana-like quasiparticles offer a new platform: their spin response to magnetic fields is unusually clean, because the topological protection that makes them robust for computing also filters noise for sensing."
+      }
+    ],
+    "generatedAt": "2026-04-11T12:18:28.387Z",
+    "label": "Majorana Fermions",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-11-polymarket-gamblers-betting-millions-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORE CLAIM",
+        "body": "A market where people bet real money on outcomes should, in theory, produce better forecasts than polls or pundits. The logic: anyone who knows something the market doesn't can profit by betting on it, so all available information gets priced in. This is the efficient market hypothesis applied to events instead of stocks."
+      },
+      {
+        "heading": "HOW THEY WORK",
+        "body": "A prediction market sells contracts that pay $1 if an event happens and $0 if it doesn't. If a contract trades at $0.73, the market collectively estimates a 73% probability. You can buy (bet yes) or sell (bet no) at any time before resolution."
+      },
+      {
+        "heading": "THE MANIPULATION PROBLEM",
+        "body": "In financial markets, manipulation is hard because prices are anchored to real cashflows — a company's stock can't stay artificially high forever. Prediction markets have no cashflows until resolution. A wealthy actor can hold a position at a loss to broadcast a false probability, especially in thin markets where a few million dollars moves the price significantly."
+      },
+      {
+        "heading": "THE RESOLUTION PROBLEM",
+        "body": "Every prediction market needs an oracle — someone who decides whether the event happened. Who decides if a ceasefire is 'real'? Whether a territory is 'controlled'? The resolution source becomes a pressure point. If bettors can influence the oracle, the market prices lobbying skill, not forecasting skill."
+      },
+      {
+        "heading": "THE TRACK RECORD",
+        "body": "Prediction markets outperformed polls in 9 of the last 11 US presidential elections. But they badly mispriced Brexit, the 2023 Turkey earthquake response, and several short-fuse military events. They are strongest on repeated, well-defined events and weakest on novel, fast-moving crises — exactly the situations where better forecasting matters most."
+      }
+    ],
+    "generatedAt": "2026-04-11T12:18:28.387Z",
+    "label": "Prediction Markets",
+    "category": "economy",
+    "articleCount": 1
   }
 }
