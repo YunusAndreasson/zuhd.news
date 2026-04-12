@@ -1,33 +1,35 @@
 {
-  "date": "2026-04-11",
+  "date": "2026-04-12",
   "metrics": {
-    "articles": { "value": 53, "detail": "5 cycles completed, 53 total published today" },
-    "freshness": { "median": 0.2, "p90": 0.4, "max": 0.8, "target": 1.0, "met": true },
-    "categories": { "politics": 26, "economy": 12, "science": 9, "tech": 6 },
-    "multiSource": { "value": 15, "target": 4, "met": true },
+    "articles": { "value": 42, "detail": "5 cycles completed, avg 8.4/cycle" },
+    "freshness": { "median": 1.1, "p90": 1.7, "max": 1.7, "target": 1.0, "met": false },
+    "categories": { "politics": 17, "economy": 12, "science": 6, "tech": 7 },
+    "multiSource": { "value": 10, "target": 4, "met": true },
     "regions": {
       "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 20, "EU": 9, "AS": 8, "ME": 12, "AF": 4 }
+      "breakdown": { "ME": 13, "AM": 12, "AF": 7, "EU": 8, "AS": 2 }
     },
-    "sciTech": { "ratio": 28, "target": 25, "met": true },
-    "topSourceShare": { "source": "TRT World", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 44,
-    "duplicates": 1,
-    "avgCycleDuration": 815
+    "sciTech": { "ratio": 31, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 40,
+    "duplicates": 0,
+    "avgCycleDuration": 1033
   },
-  "experiment": "Skipped — all metrics within targets. Duplicate count (1 today) is a quality concern but below the threshold to warrant a parameter change.",
-  "weakestArea": "Sci-tech ratio fell to 28% today (from 39% yesterday), sitting just 3 points above the 25% floor. Science dropped from 16 to 9 articles as trade-war/tariff news dominated all five cycles and the selector gave politics disproportionate weight. No structural fix needed yet, but worth watching if it persists.",
+  "experiment": "Active — 2026-04-12-tech-floor-3 (selector tech floor 2→3), day 1 of 3. Evaluate after 2026-04-15. Today's tech count: 7 (baseline avg 10.3/day). Too early to evaluate; no new experiment proposed.",
+  "weakestArea": "Freshness remains the sole failing metric: median 1.1 days against a ≤1.0 target. The Iran War/Hormuz Blockade is generating substantial background and analysis pieces dated 1–2 days prior, inflating the lag. With the standalone cap already trimmed from 30→25 (prior kept experiment), further gains likely require the selector to weight pubDate more aggressively, or the feed to penalize articles older than 24h.",
   "watching": [
-    "China–Iran MANPADS arms transfer: Bloomberg story was published twice today from the same URL — selector or dedup logic failed to catch it.",
-    "US tariff escalation: dominated today's politics output across all cycles; expect continued coverage pressure through the week.",
-    "Pakistan ceasefire dividend: diesel price cuts and budget relief stories emerging from the India–Pakistan de-escalation track."
+    "Iran/Hormuz Blockade: 8 articles today spanning Trump's naval order, US-Iran talks collapse, UK/France counter-positioning, and downstream economic shocks in Bangladesh, Haiti, and Gulf aviation — story is live and expanding across all categories.",
+    "Nigeria security: mass kidnapping report (1,100 over four months, Amnesty) and Boko Haram market airstrike (200 dead, Yobe) running simultaneously with AI-enabled disinformation targeting officials — multi-front deterioration worth sustained coverage.",
+    "Lebanon-Israel: Israeli encirclement of Bint Jbeil and Hezbollah FPV drone escalation signal ground offensive intensifying in southern Lebanon.",
+    "Hungary: Orbán's Fidesz defeated by Tisza Party — first major electoral loss in over a decade; EU political implications developing."
   ],
   "coverageGaps": [
-    "Oceania absent today (yesterday had 1 article); Pacific/Southeast Asia voices consistently thin.",
-    "Latin America coverage is US-centric (AM region count 20, but most are about Washington policy, not regional affairs in LATAM).",
-    "Africa underrepresented at 4 articles despite Premium Times Nigeria appearing — mostly Nigeria-only, no Francophone or East African perspectives."
+    "Oceania absent again — no Pacific or Australasian stories in feed or output today.",
+    "Southeast Asia severely underrepresented: only 2 AS articles despite active stories in Thailand, Philippines, and ASEAN trade re-routing amid the Iran War.",
+    "Latin America absent: AM region's 12 articles appear US-dominated (Trump, CFTC, Iran War US angle); no Brazil, Mexico, or Andean coverage.",
+    "Central Asia invisible: Kazakhstan energy re-routing and Uzbek-Afghan border tensions are directly relevant to Iran War but absent from feed."
   ],
-  "context": "Trade-war coverage dominated the day following new US tariff announcements, pulling the selector heavily toward Americas/politics and suppressing science/tech picks. The one duplicate (China–Iran MANPADS) appears to be a URL-level dedup failure in the selector, not a feed issue — both articles were written from the same Bloomberg URL. Freshness remains excellent at 0.2 day median; multi-source and source diversity both well above target."
+  "context": "Today's output is coherent but heavily Iran War-concentrated — roughly one-fifth of articles trace back to the Hormuz Blockade in some form. This is appropriate given the story's scale, but it is compressing space for other regions and contributing to freshness drift as analysis pieces age. The Nigeria cluster (4 articles) and the Hungary election (Orbán defeated) are the strongest non-Iran stories; both have follow-up potential for tomorrow's cycles."
 }
