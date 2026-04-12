@@ -2,13 +2,203 @@
   "version": 1,
   "stories": [
     {
+      "id": "oldest-octopus-fossil-reclassified-nautilus",
+      "label": "The Oldest Octopus Fossil Ever Isn't An Octopus At All, Scientists Discover",
+      "firstSeen": "2026-04-12T04:08:52.272Z",
+      "lastCovered": "2026-04-12T08:09:02.236Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-04-12-oldest-octopus-fossil-reclassified-nautilus",
+        "2026-04-11-the-oldest-octopus-fossil-ever-isn-t-an-octopus-at-all-scien"
+      ],
+      "eventUri": null,
+      "summary": "A 300-million-year-old fossil classified for decades as the earliest octopus has been reclassified as a nautilus relative — rewriting the evolutionary timeline of cephalopods. Lead with the surprise: the textbook origin story of octopuses was wrong. The mechanism is improved imaging technology that revealed shell structures invisible to earlier analysis. The reader who values precision over narrative will appreciate how science self-corrects — and how a single misidentification can cascade through decades of evolutionary biology.",
+      "conceptUris": []
+    },
+    {
+      "id": "benin-election-wadagni-talon-succession",
+      "label": "Ex-Deloitte Executive Set to Win as Benin Votes for New Leader",
+      "firstSeen": "2026-04-12T08:09:02.236Z",
+      "lastCovered": "2026-04-12T08:09:02.236Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-benin-election-wadagni-talon-succession"
+      ],
+      "eventUri": "eng-11561598",
+      "summary": "Benin votes Sunday with Finance Minister Romuald Wadagni — a former Deloitte executive — the heavy favourite to succeed outgoing President Patrice Talon. Lead with what makes this unusual in West Africa: a sitting president voluntarily stepping down in a region where constitutional term limits are routinely circumvented. But scrutinise the succession — Wadagni is Talon's protégé, and critics question whether this is democratic transition or managed continuity. The reader should weigh this against the junta-led neighbours (Niger, Burkina Faso, Mali) where coups replaced elections entirely. Three sources from US, GB confirm the story.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Benin",
+        "http://en.wikipedia.org/wiki/Patrice_Talon",
+        "http://en.wikipedia.org/wiki/Romuald_Wadagni",
+        "http://en.wikipedia.org/wiki/West_Africa",
+        "http://en.wikipedia.org/wiki/Jihadism",
+        "http://en.wikipedia.org/wiki/Economic_growth",
+        "http://en.wikipedia.org/wiki/Coup_d'état",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)"
+      ]
+    },
+    {
+      "id": "nigeria-1100-kidnapped-four-months-amnesty",
+      "label": "Over 1,100 people kidnapped in Northern Nigeria in four months - Amnesty",
+      "firstSeen": "2026-04-12T08:09:02.236Z",
+      "lastCovered": "2026-04-12T08:09:02.236Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-nigeria-1100-kidnapped-four-months-amnesty"
+      ],
+      "eventUri": null,
+      "summary": "Amnesty International says at least 1,100 people were abducted across northern Nigeria between January and April 2026 — roughly 9 kidnappings per day. Lead with the rate and Amnesty's framing: this is a 'deepening security crisis' and a 'failure of authorities to protect vulnerable communities.' The mechanism is systemic — armed groups operate with impunity across multiple states while security forces are concentrated elsewhere. The reader who followed the Zamfara bandit killings should see this as the structural context behind individual incidents.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Amnesty_International",
+        "http://en.wikipedia.org/wiki/Nigeria",
+        "http://en.wikipedia.org/wiki/Northern_Region,_Nigeria",
+        "http://en.wikipedia.org/wiki/Kidnapping",
+        "http://en.wikipedia.org/wiki/Torture"
+      ]
+    },
+    {
+      "id": "haiti-stampede-citadelle-30-dead",
+      "label": "At least 30 feared dead in crush at Haitian tourist site",
+      "firstSeen": "2026-04-12T08:09:02.236Z",
+      "lastCovered": "2026-04-12T08:09:02.236Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-haiti-stampede-citadelle-30-dead"
+      ],
+      "eventUri": "eng-11561654",
+      "summary": "At least 30 people died in a stampede during an annual Easter gathering at the Citadelle Laferrière, a UNESCO World Heritage site in Haiti's Nord department. Lead with the scale and the setting: the Citadelle was built by formerly enslaved Haitians after independence — it is a symbol of sovereignty, and it became a death trap because of crowd mismanagement at a poorly regulated event. The deeper question is infrastructure neglect in a state that has all but collapsed under gang violence and now Iran-war fuel price spikes.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Haiti",
+        "http://en.wikipedia.org/wiki/Stampede",
+        "http://en.wikipedia.org/wiki/Citadel",
+        "http://en.wikipedia.org/wiki/World_Heritage_Site",
+        "http://en.wikipedia.org/wiki/Fortification",
+        "http://en.wikipedia.org/wiki/Nord_(French_department)",
+        "http://en.wikipedia.org/wiki/Independence",
+        "http://en.wikipedia.org/wiki/France"
+      ]
+    },
+    {
+      "id": "haiti-fuel-crisis-iran-war-poverty",
+      "label": "Haitians cut back on already scarce food and ask how they'll survive rising fuel prices",
+      "firstSeen": "2026-04-12T08:09:02.236Z",
+      "lastCovered": "2026-04-12T08:09:02.236Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-haiti-fuel-crisis-iran-war-poverty"
+      ],
+      "eventUri": "eng-11561931",
+      "summary": "A factory worker in Haiti now walks two hours each way to work because the Iran war made fuel unaffordable. Lead with that detail — it makes the war's spillover visceral. Haiti imports all its fuel; the Strait of Hormuz disruption has doubled transport costs in a country already crippled by gang violence and food insecurity. The mechanism: a war 10,000km away is starving people who have no connection to it. The reader who followed the Dubai flight restrictions and SadaPay collapse will see the pattern — Iran war externalities fall hardest on the poorest.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Gang",
+        "http://en.wikipedia.org/wiki/Port-au-Prince",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Haiti",
+        "http://en.wikipedia.org/wiki/Price_of_oil"
+      ]
+    },
+    {
+      "id": "ireland-fuel-protests-dublin-blockade-cabinet",
+      "label": "Fuel protest 'cleared' from Dublin as Cabinet prepares to hold emergency meeting",
+      "firstSeen": "2026-04-12T08:09:02.236Z",
+      "lastCovered": "2026-04-12T08:09:02.236Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-ireland-fuel-protests-dublin-blockade-cabinet"
+      ],
+      "eventUri": "eng-11552497",
+      "summary": "Police cleared a blockade of Dublin's main thoroughfare overnight, ahead of an emergency Cabinet meeting to address fuel cost protests spreading across Ireland. Lead with the escalation: this isn't a rally — it's a blockade of the capital that required a late-night police operation to break. The protests span Dublin streets, motorways, and ports. The Irish government is now in emergency session. The structural point: Iran-war fuel prices are now generating governance crises in EU member states, not just in the Global South.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Blockade",
+        "http://en.wikipedia.org/wiki/Cabinet_of_the_United_Kingdom",
+        "http://en.wikipedia.org/wiki/Garda_Síochána",
+        "http://en.wikipedia.org/wiki/Dublin",
+        "http://en.wikipedia.org/wiki/Government_of_Ireland"
+      ]
+    },
+    {
+      "id": "pakistan-non-bank-rs11-trillion-govt-securities",
+      "label": "Non-bank sector invests Rs11tr in govt papers",
+      "firstSeen": "2026-04-12T08:09:02.236Z",
+      "lastCovered": "2026-04-12T08:09:02.236Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-pakistan-non-bank-rs11-trillion-govt-securities"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's non-banking sector has poured a record Rs11 trillion into government securities by end of December 2025 — provincial governments are also joining the rush. Lead with the number and the structural implication: when everyone — insurers, mutual funds, even provincial treasuries — parks money in government debt, it means private-sector credit is being crowded out. The mechanism is a 'safe haven' effect driven by geopolitical uncertainty and high yields. The reader who follows Pakistan's ceasefire dividend should ask: does the war-driven flight to government bonds undermine the peace dividend before it arrives?",
+      "conceptUris": []
+    },
+    {
+      "id": "plant-compounds-defeat-drug-resistant-salmonella",
+      "label": "4-Hydroxycinnamic acid and Itaconic acid exhibit broad spectrum synergy with conventional antibiotics in inhibiting multidrug-resistant Salmonella Typhimurium",
+      "firstSeen": "2026-04-12T08:09:02.236Z",
+      "lastCovered": "2026-04-12T08:09:02.236Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-plant-compounds-defeat-drug-resistant-salmonella"
+      ],
+      "eventUri": null,
+      "summary": "Two plant-derived compounds — 4-hydroxycinnamic acid and itaconic acid — dramatically boost the effectiveness of conventional antibiotics against multidrug-resistant Salmonella Typhimurium. Lead with the public health stakes: drug-resistant Salmonella kills tens of thousands annually and is on the WHO priority pathogen list. The mechanism is synergy — these compounds aren't antibiotics themselves but adjuvants that break down bacterial resistance. The reader should see this as a potential paradigm shift: instead of racing to develop new antibiotics, use cheap, available compounds to rescue the ones bacteria already resist.",
+      "conceptUris": []
+    },
+    {
+      "id": "amarnath-yatra-2026-to-begin-july-3-check-dates-registration",
+      "label": "Amarnath Yatra 2026 to begin July 3; check dates, registration, routes and eligibility- Moneycontrol.com",
+      "firstSeen": "2026-04-12T08:09:02.236Z",
+      "lastCovered": "2026-04-12T08:09:02.236Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-amarnath-yatra-2026-to-begin-july-3-check-dates-registration"
+      ],
+      "eventUri": "eng-11554570",
+      "summary": "[Auto-backfill for science floor] RFID cards and health certificates required for all participants\n\nThe annual Amarnath Yatra is set to begin on July 3 this year, with authorities announcing key details regarding registration, eligibility, routes and fees, as per News18.\n\nAs per the report, the pilgrimage to the holy Amarnath Cave w",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Amarnath_Temple",
+        "http://en.wikipedia.org/wiki/Pilgrim",
+        "http://en.wikipedia.org/wiki/Yatra",
+        "http://en.wikipedia.org/wiki/Biometrics",
+        "http://en.wikipedia.org/wiki/Pilgrimage",
+        "http://en.wikipedia.org/wiki/Jammu",
+        "http://en.wikipedia.org/wiki/Indian_rupee",
+        "http://en.wikipedia.org/wiki/Pahalgam"
+      ]
+    },
+    {
       "id": "azerbaijan-aliyev-dynasty-authoritarianism",
       "label": "Extending authoritarianism through dynasty in Azerbaijan",
       "firstSeen": "2026-04-12T04:08:52.272Z",
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-azerbaijan-aliyev-dynasty-authoritarianism"
@@ -24,7 +214,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-dubai-flight-restrictions-iran-war-indian-airlines"
@@ -49,7 +239,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-meta-manus-deal-chinese-ai-founders-global"
@@ -59,29 +249,13 @@
       "conceptUris": []
     },
     {
-      "id": "oldest-octopus-fossil-reclassified-nautilus",
-      "label": "The Oldest Octopus Fossil Ever Isn't An Octopus At All, Scientists Discover",
-      "firstSeen": "2026-04-12T04:08:52.272Z",
-      "lastCovered": "2026-04-12T04:08:52.272Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-12-oldest-octopus-fossil-reclassified-nautilus"
-      ],
-      "eventUri": null,
-      "summary": "A 300-million-year-old fossil classified for decades as the earliest octopus has been reclassified as a nautilus relative — rewriting the evolutionary timeline of cephalopods. Lead with the surprise: the textbook origin story of octopuses was wrong. The mechanism is improved imaging technology that revealed shell structures invisible to earlier analysis. The reader who values precision over narrative will appreciate how science self-corrects — and how a single misidentification can cascade through decades of evolutionary biology.",
-      "conceptUris": []
-    },
-    {
       "id": "nigeria-ai-harassment-women-platform-amplification",
       "label": "When technology fails women: Online abuse and Nigeria's digital weak points",
       "firstSeen": "2026-04-12T04:08:52.272Z",
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-nigeria-ai-harassment-women-platform-amplification"
@@ -97,7 +271,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-why-we-laughed"
@@ -113,7 +287,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-first-contact"
@@ -129,7 +303,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-in-situ-electron-diffraction-tomography-study-of-the-success"
@@ -145,7 +319,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-controlled-steering-of-cherenkov-surface-plasmon-wakes-with"
@@ -161,7 +335,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-10-behind-the-blog-smoking-the-whole-carton"
@@ -177,7 +351,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-iraq-elects-kurdish-president-amedi"
@@ -202,7 +376,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-uk-200-arrested-palestine-action-protest-london"
@@ -227,7 +401,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-iran-supreme-leader-khamenei-disfigured-us-strikes"
@@ -252,7 +426,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-pakistan-family-killed-missile-debris-kuwait"
@@ -268,7 +442,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-high-rates-oil-global-debt-trap"
@@ -284,7 +458,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-thailand-asset-seizures-scam-probe-widens"
@@ -300,7 +474,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-spacex-603m-bitcoin-5b-xai-loss"
@@ -316,7 +490,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-uruguay-dead-bees-pesticides-agriculture"
@@ -332,7 +506,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-blood-brain-barrier-breakdown-in-traumatic-brain-injury-curr"
@@ -348,7 +522,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-11-the-oldest-octopus-fossil-ever-isn-t-an-octopus-at-all-scien"
@@ -358,13 +532,31 @@
       "conceptUris": []
     },
     {
+      "id": "uk-ofcom-nudification-jail-threat-grok",
+      "label": "UK government threatens tech bosses with jail time if they do not adequately fight nudification tools",
+      "firstSeen": "2026-04-11T08:09:46.711Z",
+      "lastCovered": "2026-04-12T08:09:02.236Z",
+      "coverageCount": 3,
+      "category": "tech",
+      "importance": 3,
+      "arc": "developing",
+      "articles": [
+        "2026-04-11-uk-ofcom-nudification-jail-threat-grok",
+        "2026-04-11-uk-jail-tech-bosses-ai-nudification",
+        "2026-04-12-uk-jail-tech-bosses-ai-nudification"
+      ],
+      "eventUri": null,
+      "summary": "UK regulator Ofcom will threaten tech executives with prison if they fail to combat AI nudification tools — a direct response to the Grok scandal that produced millions of deepfake nude images of women and children. Lead with the criminal liability: the UK is making individual executives personally responsible for AI-generated sexual abuse imagery on their platforms. The reader will see the sharpest regulatory response yet to generative AI harms — and the question of whether personal criminal risk changes tech company behavior where fines haven't.",
+      "conceptUris": []
+    },
+    {
       "id": "uk-shelves-chagos-islands-deal-trump",
       "label": "UK shelves Chagos Islands deal after Trump's criticism",
       "firstSeen": "2026-04-11T17:07:54.686Z",
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-uk-shelves-chagos-islands-deal-trump"
@@ -389,7 +581,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-us-unfreeze-iranian-funds-qatar"
@@ -414,7 +606,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-pakistan-jets-saudi-arabia-defence-pact"
@@ -439,7 +631,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-russia-ukraine-easter-truce-pow-swap"
@@ -455,7 +647,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-lufthansa-pilots-strike-april"
@@ -480,7 +672,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-crypto-perpetuals-wall-street-prediction"
@@ -496,7 +688,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-nigeria-terrorism-financiers-list"
@@ -512,7 +704,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-irish-bog-plant-superbug-antibiotic"
@@ -528,7 +720,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-11-eff-leaving-x-twitter"
@@ -538,30 +730,13 @@
       "conceptUris": []
     },
     {
-      "id": "uk-ofcom-nudification-jail-threat-grok",
-      "label": "UK government threatens tech bosses with jail time if they do not adequately fight nudification tools",
-      "firstSeen": "2026-04-11T08:09:46.711Z",
-      "lastCovered": "2026-04-11T22:09:08.545Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-04-11-uk-ofcom-nudification-jail-threat-grok",
-        "2026-04-11-uk-jail-tech-bosses-ai-nudification"
-      ],
-      "eventUri": null,
-      "summary": "UK regulator Ofcom will threaten tech executives with prison if they fail to combat AI nudification tools — a direct response to the Grok scandal that produced millions of deepfake nude images of women and children. Lead with the criminal liability: the UK is making individual executives personally responsible for AI-generated sexual abuse imagery on their platforms. The reader will see the sharpest regulatory response yet to generative AI harms — and the question of whether personal criminal risk changes tech company behavior where fines haven't.",
-      "conceptUris": []
-    },
-    {
       "id": "iran-unable-to-find-mines-in-strait-of-hormuz-us-says",
       "label": "Iran unable to find mines in Strait of Hormuz, US says",
       "firstSeen": "2026-04-11T12:08:36.246Z",
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-iran-unable-to-find-mines-in-strait-of-hormuz-us-says"
@@ -586,7 +761,7 @@
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-polymarket-gamblers-betting-millions-war"
@@ -605,7 +780,7 @@
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-uk-green-energy-surge-iran-war-fuel-prices"
@@ -627,7 +802,7 @@
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-delhi-fossil-fuel-bike-ban-2028-ev-policy"
@@ -652,7 +827,7 @@
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-plastic-burning-indonesia-health-crisis"
@@ -668,7 +843,7 @@
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-majorana-quantum-spin-probes"
@@ -684,7 +859,7 @@
       "lastCovered": "2026-04-11T12:08:36.246Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-senator-csam-inquiry-tech-giants-ai"
@@ -694,13 +869,41 @@
       "conceptUris": []
     },
     {
+      "id": "iran-us-islamabad-talks-vance-ghalibaf",
+      "label": "Pakistani MFA expects constructive talks between US, Iran",
+      "firstSeen": "2026-04-11T04:09:34.088Z",
+      "lastCovered": "2026-04-12T08:09:02.236Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 1,
+      "arc": "developing",
+      "articles": [
+        "2026-04-11-iran-us-islamabad-talks-vance-ghalibaf",
+        "2026-04-12-us-iran-talks-collapse-trump-naval-blockade"
+      ],
+      "eventUri": "eng-11559874",
+      "summary": "Vance and Ghalibaf sit down in Islamabad on day 31+ of the US-Iran war — the first direct senior-level talks since hostilities began. Iran insists on a Lebanon ceasefire as precondition; the US wants nuclear concessions Tehran has already ruled out. Lead with the structural mismatch: both sides came to the table, but their opening positions are incompatible. The reader tracking the Iran war will see Pakistan's emergence as mediator — hosting talks that neither Geneva nor Doha could — while the ceasefire remains fragile and the Strait of Hormuz is still effectively closed.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Islamabad",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Mohammad_Bagher_Ghalibaf",
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Vice_President_of_the_United_States",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz"
+      ]
+    },
+    {
       "id": "china-set-to-supply-iran-manpads-arms",
       "label": "US Intelligence Shows China Set to Supply Iran Arms, CNN Reports",
       "firstSeen": "2026-04-11T08:09:46.711Z",
       "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-china-set-to-supply-iran-manpads-arms"
@@ -725,7 +928,7 @@
       "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-mamdani-sewer-socialism-nyc-100-days"
@@ -747,7 +950,7 @@
       "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-bhutan-sells-70-percent-bitcoin-sovereign"
@@ -769,7 +972,7 @@
       "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-egypt-lucky-fintech-23m-credit-expansion"
@@ -785,7 +988,7 @@
       "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-india-withdraws-cop33-bid-energy-crisis"
@@ -801,150 +1004,13 @@
       "lastCovered": "2026-04-11T08:09:46.711Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-scary-ai-stories-cognitive-science"
       ],
       "eventUri": null,
       "summary": "Cognitive scientists are unpacking why humans project survival instincts, resource-hoarding, and manipulation onto AI systems — finding that our doom scenarios say more about human psychology than about what language models actually do. Lead with the inversion: the narratives that dominate AI discourse (scheming, deception, self-preservation) map onto evolved human threat-detection circuits, not onto anything the models exhibit. The reader who works in tech and navigates AI hype daily will see their own industry's narratives dissected through cognitive science.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-us-islamabad-talks-vance-ghalibaf",
-      "label": "Pakistani MFA expects constructive talks between US, Iran",
-      "firstSeen": "2026-04-11T04:09:34.088Z",
-      "lastCovered": "2026-04-11T04:09:34.088Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-iran-us-islamabad-talks-vance-ghalibaf"
-      ],
-      "eventUri": "eng-11559874",
-      "summary": "Vance and Ghalibaf sit down in Islamabad on day 31+ of the US-Iran war — the first direct senior-level talks since hostilities began. Iran insists on a Lebanon ceasefire as precondition; the US wants nuclear concessions Tehran has already ruled out. Lead with the structural mismatch: both sides came to the table, but their opening positions are incompatible. The reader tracking the Iran war will see Pakistan's emergence as mediator — hosting talks that neither Geneva nor Doha could — while the ceasefire remains fragile and the Strait of Hormuz is still effectively closed.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Islamabad",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Mohammad_Bagher_Ghalibaf",
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Tehran"
-      ]
-    },
-    {
-      "id": "conscientious-objections-war-surge-us-military",
-      "label": "Conscientious objections to war rise sharply in US",
-      "firstSeen": "2026-04-11T04:09:34.088Z",
-      "lastCovered": "2026-04-11T04:09:34.088Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-conscientious-objections-war-surge-us-military"
-      ],
-      "eventUri": null,
-      "summary": "March alone saw 80+ new conscientious objector cases — nearly double the annual norm. Service members cite the Minab school bombing as the turning point. Lead with the 80-in-one-month number against the usual annual pace — this is the sharpest spike in CO applications since Vietnam. The reader who opposes the war will see dissent emerging from inside the military itself, not just from protesters. The structural question: what happens to a volunteer military when its own soldiers refuse to fight?",
-      "conceptUris": []
-    },
-    {
-      "id": "los-angeles-schools-strike-85-percent-workers",
-      "label": "Los Angeles schools may close as nearly 85% of district's workers plan to strike",
-      "firstSeen": "2026-04-11T04:09:34.088Z",
-      "lastCovered": "2026-04-11T04:09:34.088Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-los-angeles-schools-strike-85-percent-workers"
-      ],
-      "eventUri": "eng-11560024",
-      "summary": "Nearly 85% of LAUSD workers — teachers, custodians, bus drivers — plan to strike next week while the district reportedly sits on $5 billion in reserves. Lead with the $5bn reserve number against the workers' pay demands: this isn't a broke district, it's a political choice. 600,000+ students in the second-largest US school district could lose school. The reader will see this as the austerity-vs-labor pattern playing out at massive scale.",
-      "conceptUris": []
-    },
-    {
-      "id": "strait-hormuz-gas-prices-iran-talks-oil",
-      "label": "Could US-Iran talks in Islamabad bring gas prices back down?",
-      "firstSeen": "2026-04-11T04:09:34.088Z",
-      "lastCovered": "2026-04-11T04:09:34.088Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-strait-hormuz-gas-prices-iran-talks-oil"
-      ],
-      "eventUri": null,
-      "summary": "Only 6 tankers passed through the Strait of Hormuz on Thursday — zero on Wednesday — even after the ceasefire. Iranian attacks cut the Saudi East-West Pipeline by 10%, destroying the market's main workaround. Americans still pay $4+/gallon despite Brent crude dropping 10%. Lead with the 6-tanker number: the strait is nominally open but functionally closed, and mines plus US sanctions ambiguity are keeping ships away. The reader will see that even a peace deal won't bring quick relief — this is a logistics shock layered on a production shock.",
-      "conceptUris": []
-    },
-    {
-      "id": "kalshi-arizona-federal-judge-prediction-market",
-      "label": "Federal judge blocks Arizona from bringing criminal charges against Kalshi",
-      "firstSeen": "2026-04-11T04:09:34.088Z",
-      "lastCovered": "2026-04-11T04:09:34.088Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-kalshi-arizona-federal-judge-prediction-market"
-      ],
-      "eventUri": "eng-11558568",
-      "summary": "A federal judge blocked Arizona from criminally prosecuting prediction market Kalshi — the first time a state's gambling laws have been preempted by federal derivatives regulation. Lead with the collision: Arizona says it's gambling, the CFTC says it's a regulated market, and the court sided with the feds. The reader who follows prediction markets (and war bets, per previous coverage) will see the regulatory framework crystallizing: states can't shut down federally approved event contracts.",
-      "conceptUris": []
-    },
-    {
-      "id": "artemis-ii-splashdown-moon-mission",
-      "label": "Four astronauts are back home after a daring ride around the Moon",
-      "firstSeen": "2026-04-11T04:09:34.088Z",
-      "lastCovered": "2026-04-11T04:09:34.088Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-artemis-ii-splashdown-moon-mission"
-      ],
-      "eventUri": "spa-4163995",
-      "summary": "Artemis II splashed down safely off California — the first crewed mission beyond low Earth orbit in 54 years, breaking Apollo 13's distance record by 4,000+ miles. Lead with the splashdown: Orion hit the atmosphere at 25,000 mph and survived. The reader who follows space will care about the engineering milestone; the reader watching a divided America will note this was the one thing the country watched together during a war.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-drones-climate-resilient-wheat-selection",
-      "label": "AI and drones can select the most resilient wheat",
-      "firstSeen": "2026-04-11T04:09:34.088Z",
-      "lastCovered": "2026-04-11T04:09:34.088Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-ai-drones-climate-resilient-wheat-selection"
-      ],
-      "eventUri": null,
-      "summary": "Researchers combined drone imaging with AI to identify the wheat varieties most resilient to climate stress — faster and more accurate than traditional field trials. Lead with the practical application: as climate change threatens global wheat yields, this method lets breeders select drought-resistant varieties in a fraction of the time. The reader who works in tech will appreciate the AI application; the reader tracking food security will see the tool that could matter most for the next decade of harvests.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-doctor-recording-lawsuit-sutter-abridge",
-      "label": "Californians sue over AI tool that records doctor visits",
-      "firstSeen": "2026-04-11T04:09:34.088Z",
-      "lastCovered": "2026-04-11T04:09:34.088Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-ai-doctor-recording-lawsuit-sutter-abridge"
-      ],
-      "eventUri": null,
-      "summary": "A class-action lawsuit alleges Sutter Health and MemorialCare deployed Abridge's AI transcription tool to record patient visits without consent — violating California and federal wiretap laws. Lead with the mechanism: patients walked into a doctor's office and an AI was silently transcribing everything they said. The reader who builds software will recognize the consent failure pattern; the healthcare privacy implications are immediate and systemic as AI scribes proliferate across US hospitals.",
       "conceptUris": []
     }
   ]
