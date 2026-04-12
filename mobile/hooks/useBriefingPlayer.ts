@@ -22,12 +22,16 @@ const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
 
 const icon = require('../assets/icon.png');
 
+const RATES = [1, 1.25, 1.5, 2] as const;
+
 interface BriefingPlayer {
   playing: boolean;
   elapsed: number;
   duration: number;
+  rate: number;
   toggle: () => void;
   seek: (seconds: number) => void;
+  cycleRate: () => void;
 }
 
 // createAudioPlayer may throw in Expo Go when native module is outdated.
@@ -43,6 +47,7 @@ function safeCreatePlayer(url: string): AudioPlayer | null {
 export function useBriefingPlayer(date: string | undefined, feedDuration?: number): BriefingPlayer {
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
+  const [rate, setRate] = useState(1);
   const playerRef = useRef<AudioPlayer | null>(null);
   const subRef = useRef<{ remove(): void } | null>(null);
   const savedDate = useRef<string | null>(null);
@@ -292,9 +297,18 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     hapticTick();
   }, []);
 
+  const cycleRate = useCallback(() => {
+    const next = RATES[(RATES.indexOf(rate as (typeof RATES)[number]) + 1) % RATES.length] ?? 1;
+    setRate(next);
+    if (playerRef.current) {
+      playerRef.current.playbackRate = next;
+    }
+    hapticTick();
+  }, [rate]);
+
   // In dev without a native player, provide a mock duration so the bar renders properly
   const effectiveDuration =
     feedDuration || (__DEV__ && !playerRef.current && elapsed > 0 ? 720 : 0);
 
-  return { playing, elapsed, duration: effectiveDuration, toggle, seek };
+  return { playing, elapsed, duration: effectiveDuration, rate, toggle, seek, cycleRate };
 }

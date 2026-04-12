@@ -30,23 +30,27 @@ interface BriefingBarProps {
   playing: boolean;
   elapsed: number;
   duration: number;
+  rate: number;
   date: string;
   onToggle: () => void;
   onSeek: (seconds: number) => void;
+  onCycleRate: () => void;
 }
 
 export const BriefingBar = memo(function BriefingBar({
   playing,
   elapsed,
   duration,
+  rate,
   date,
   onToggle,
   onSeek,
+  onCycleRate,
 }: BriefingBarProps) {
   const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
   const barWidth = useRef(0);
-  const expanded = playing;
+  const expanded = playing || elapsed > 0;
 
   const onBarLayout = useCallback((e: LayoutChangeEvent) => {
     barWidth.current = e.nativeEvent.layout.width;
@@ -80,6 +84,8 @@ export const BriefingBar = memo(function BriefingBar({
   const scrubGesture = useMemo(
     () =>
       Gesture.Pan()
+        .activeOffsetX([-5, 5])
+        .failOffsetY([-10, 10])
         .minDistance(0)
         .onStart((e) => {
           runOnJS(seekToX)(e.x);
@@ -90,13 +96,9 @@ export const BriefingBar = memo(function BriefingBar({
     [seekToX],
   );
 
-  // Format date for display: "Mar 31 · Shawwal 13" from "2026-03-31"
   const dateLabel = (() => {
     try {
-      const d = new Date(`${date}T00:00:00`);
-      const greg = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-      const hijri = d.toLocaleDateString('en-u-ca-islamic', { month: 'long', day: 'numeric' });
-      return `${greg} · ${hijri}`;
+      return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     } catch {
       return date;
     }
@@ -122,14 +124,18 @@ export const BriefingBar = memo(function BriefingBar({
                 style={[
                   styles.title,
                   {
-                    ...font.semiBold,
+                    ...font.smallCaps,
                     fontSize: typography.sizeSm,
+                    letterSpacing: typography.trackingCaps,
                     color: colors.textEmphasis,
                   },
                 ]}
                 numberOfLines={1}
               >
-                {dateLabel}
+                briefing
+                <Text style={{ ...font.regular, color: colors.textSecondary }}>
+                  {' \u00b7 '}{dateLabel}
+                </Text>
               </Text>
             </View>
 
@@ -146,6 +152,25 @@ export const BriefingBar = memo(function BriefingBar({
               {formatTime(elapsed)}
               <Text style={{ color: colors.textSecondary }}> / {formatTime(duration)}</Text>
             </Text>
+
+            <Pressable
+              onPress={onCycleRate}
+              hitSlop={8}
+              style={({ pressed }) => pressed && PRESSED_STYLE}
+              accessibilityRole="button"
+              accessibilityLabel={`Playback speed ${rate}x`}
+            >
+              <Text
+                style={{
+                  ...font.semiBold,
+                  fontSize: typography.sizeXs,
+                  color: rate === 1 ? colors.textSecondary : colors.textEmphasis,
+                  fontVariant: ['tabular-nums'],
+                }}
+              >
+                {rate}x
+              </Text>
+            </Pressable>
 
             <Pressable
               onPress={onToggle}

@@ -83,7 +83,7 @@ const nightCircleGen = geoCircle();
 // Equator + polar circles (Arctic 66.5°N, Antarctic 66.5°S)
 const graticuleLines = geoGraticule()
   .stepMinor([360, 360]) // no minor lines
-  .stepMajor([360, 90])  // only equator
+  .stepMajor([30, 30])   // meridians + parallels every 30°
   ();
 
 const NORTH_POLE: [number, number] = [0, 90];
@@ -422,12 +422,12 @@ function projectInitial(
   const nightCenter: [number, number] = [sunLng + 180, -sunLat];
   const np = Skia.Path.Make();
   ctx.setPath(np);
-  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(80)());
+  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(90)());
 
   // Civil twilight — softer gradient band before full night
   const tp = Skia.Path.Make();
   ctx.setPath(tp);
-  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(74)());
+  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(96)());
 
   // Equator + polar circles
   const gp = Skia.Path.Make();
@@ -488,7 +488,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   const cx = width / 2;
   const cy = height * 0.75;
   const labelFont = useFont(require('../../assets/fonts/SourceSans3-Regular.ttf'), 14);
-  const subFont = useFont(require('../../assets/fonts/SourceSans3-Regular.ttf'), 11);
+  const subFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 11);
 
   // Precompute per-article: coords + country feature + names (before useState so initializer can use it)
   const articleGeo = useMemo(() => {
@@ -706,7 +706,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     const twilightPath = twilightPathRef.current;
     twilightPath.reset();
     skiaCtx.setPath(twilightPath);
-    pg.context(skiaCtx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(74)());
+    pg.context(skiaCtx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(96)());
 
     // Equator + polar circles
     const graticulePath = graticulePathRef.current;
@@ -976,14 +976,29 @@ export const MiniGlobe = memo(function MiniGlobe({
   // eslint-disable-next-line react-hooks/exhaustive-deps -- _tick forces recalc on app resume
   const moonPhase = useMemo(() => getMoonPhase(), [_tick]);
   const moonR = globeRadius * 0.05;
-  const moonX = cx;
-  const moonY = cy - globeRadius - moonR * 5;
+
+  // Position moon astronomically: elongation from sun determines sky position.
+  // At new moon (phase=0) it's near the sun → day side → hidden.
+  // At full moon (phase=0.5) it's opposite → night side → prominent.
+  // Moon position: above the globe, offset horizontally by elongation from sun.
+  // Full moon (phase=0.5) centers above; crescents drift toward the sun side.
+  const moonPos = useMemo(() => {
+    // Elongation maps phase to horizontal offset: 0=sun side, 0.5=opposite, 1=sun side
+    const elongation = Math.sin(moonPhase * Math.PI); // 0 at new/full → 1 at quarters
+    const side = moonPhase < 0.5 ? 1 : -1; // waxing=right, waning=left
+    const maxDrift = globeRadius * 0.6;
+    const x = cx + side * elongation * maxDrift;
+    const y = cy - globeRadius - moonR * 4;
+    // Hide near new moon (phase < 0.07 or > 0.93)
+    const visible = moonPhase > 0.07 && moonPhase < 0.93;
+    return { x, y, visible };
+  }, [moonPhase, cx, cy, globeRadius, moonR]);
 
   const moonClip = useMemo(() => {
     const p = Skia.Path.Make();
-    p.addCircle(moonX, moonY, moonR);
+    p.addCircle(moonPos.x, moonPos.y, moonR);
     return p;
-  }, [moonX, moonY, moonR]);
+  }, [moonPos.x, moonPos.y, moonR]);
 
   // Stars + atmospheric halo — recorded into an immutable Picture so Skia
   // replays a single cached GPU command instead of re-evaluating ~40+ React
@@ -1023,10 +1038,10 @@ export const MiniGlobe = memo(function MiniGlobe({
       <Picture picture={starsPicture} />
 
       {/* Moon — memoized to skip re-reconciliation during scroll */}
-      {isLocalNight() && (
+      {moonPos.visible && (
         <Moon
-          x={moonX}
-          y={moonY}
+          x={moonPos.x}
+          y={moonPos.y}
           r={moonR}
           phase={moonPhase}
           texture={moonTexture}
@@ -1103,7 +1118,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Story dot */}
       {state.dot && (
-        <Glow x={state.dot.x} y={state.dot.y} color={colors.text} layers={DOT_GLOW_LAYERS} />
+        <Glow x={state.dot.x} y={state.dot.y} color={colors.textEmphasis} layers={DOT_GLOW_LAYERS} />
       )}
 
       {/* Dot label — location · local time */}
@@ -1114,8 +1129,8 @@ export const MiniGlobe = memo(function MiniGlobe({
             y={state.dotLabel.y + 4}
             text={state.dotLabel.text}
             font={labelFont}
-            color={colors.text}
-            opacity={light ? 0.6 : 0.7}
+            color={colors.textEmphasis}
+            opacity={light ? 0.65 : 0.8}
           />
           {state.dotLabel.sub && subFont && (
             <SkiaText
@@ -1123,8 +1138,8 @@ export const MiniGlobe = memo(function MiniGlobe({
               y={state.dotLabel.y + 18}
               text={state.dotLabel.sub}
               font={subFont}
-              color={colors.text}
-              opacity={light ? 0.4 : 0.45}
+              color={colors.textEmphasis}
+              opacity={light ? 0.45 : 0.55}
             />
           )}
         </>
