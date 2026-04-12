@@ -59,14 +59,6 @@ export interface MetaResponse {
   generated: string;
 }
 
-export type ContextPressHandler = (threadId: string) => void;
-
-export type SourcePressHandler = (
-  sourceName: string,
-  allSources?: ArticleSource[],
-  divergence?: number | null,
-) => void;
-
 export interface HeatmapPoint {
   lat: number;
   lng: number;

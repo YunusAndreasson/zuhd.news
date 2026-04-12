@@ -5,13 +5,14 @@ import {
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useRef, useSyncExternalStore } from 'react';
 
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { type Bookmark, getSnapshot, subscribe, toggle } from '../lib/bookmark-store';
+import { getSnapshot, subscribe, toggle } from '../lib/bookmark-store';
 import { hapticNotification } from '../lib/haptics';
 import type { Category } from '../types';
 import { ArticleRow } from './ArticleRow';
+import { EmptyState } from './EmptyState';
 import { SheetHandle } from './SheetHandle';
 import { SheetContainer } from './SheetPrimitives';
 
@@ -32,7 +33,7 @@ export const BookmarkSheet = memo(function BookmarkSheet({
   onSelectArticle,
   onDismiss,
 }: BookmarkSheetProps) {
-  const { colors, font, typography, sheetStyles } = useTheme();
+  const { sheetStyles } = useTheme();
   const bookmarks = useSyncExternalStore(subscribe, getSnapshot);
   const bookmarksRef = useRef(bookmarks);
   bookmarksRef.current = bookmarks;
@@ -49,6 +50,7 @@ export const BookmarkSheet = memo(function BookmarkSheet({
     <BottomSheetModal
       ref={sheetRef}
       snapPoints={['50%', '85%']}
+      enableDynamicSizing={false}
       enablePanDownToClose
       backdropComponent={renderBackdrop}
       backgroundStyle={sheetStyles.bg}
@@ -60,17 +62,7 @@ export const BookmarkSheet = memo(function BookmarkSheet({
         contentContainerStyle={[styles.listContent, { paddingBottom: bottomInset + SPACING.lg }]}
       >
         {bookmarks.length === 0 ? (
-          <View style={styles.emptyState}>
-            <Text
-              style={{
-                ...font.regular,
-                fontSize: typography.sizeBase,
-                color: colors.textSecondary,
-              }}
-            >
-              Long-press an article to save it
-            </Text>
-          </View>
+          <EmptyState message="Long-press an article to save it" />
         ) : (
           bookmarks.map((b) => (
             <ArticleRow
@@ -94,9 +86,5 @@ export const BookmarkSheet = memo(function BookmarkSheet({
 const styles = StyleSheet.create({
   listContent: {
     paddingHorizontal: SPACING.screenPadding,
-  },
-  emptyState: {
-    alignItems: 'center',
-    paddingTop: SPACING.xl,
   },
 });

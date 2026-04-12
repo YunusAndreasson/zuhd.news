@@ -6,21 +6,20 @@ import {
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useRef, useState } from 'react';
-import { InteractionManager, type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
+import { InteractionManager, type LayoutChangeEvent, Pressable, Share, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ActionButtons } from '../components/ActionButtons';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
 import { BookmarkSheet } from '../components/BookmarkSheet';
 import { BriefingBar } from '../components/BriefingBar';
 import { CategoryBar } from '../components/CategoryBar';
 import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
+import { MenuSheet } from '../components/MenuSheet';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { SearchSheet } from '../components/SearchSheet';
 import { SettingsSheet } from '../components/SettingsSheet';
-import { SourceSheet } from '../components/SourceSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import { CATEGORIES, EDITORIAL, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
@@ -58,10 +57,14 @@ export default function HomeScreen() {
     briefing?.duration,
   );
 
+  // Active article tracking (for bottom action bar)
+  const currentArticlesRef = useRef<(Article | null)[]>([null, null, null, null]);
+  const [activeArticle, setActiveArticle] = useState<Article | null>(null);
+
   // Sheet refs
-  const sourceSheetRef = useRef<BottomSheetModal>(null);
-  const [sourceSheetSources, setSourceSheetSources] = useState<ArticleSource[]>([]);
-  const [sourceSheetDivergence, setSourceSheetDivergence] = useState<number | null>(null);
+  const menuSheetRef = useRef<BottomSheetModal>(null);
+  const [digSources, setDigSources] = useState<ArticleSource[]>([]);
+  const [digCoverage, setDigCoverage] = useState<number | null>(null);
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
   const searchSheetRef = useRef<BottomSheetModal>(null);
@@ -88,11 +91,6 @@ export default function HomeScreen() {
     [],
   );
 
-  const handleSearchPress = useCallback(() => {
-    hapticImpact();
-    searchSheetRef.current?.present();
-  }, []);
-
   const handleSelectArticle = useCallback((slug: string, category: Category) => {
     searchSheetRef.current?.dismiss();
     bookmarkSheetRef.current?.dismiss();
@@ -118,11 +116,6 @@ export default function HomeScreen() {
     });
   }, [injectArticle]);
 
-  const handleBookmarkPress = useCallback(() => {
-    hapticImpact();
-    bookmarkSheetRef.current?.present();
-  }, []);
-
   const handleArticleBookmark = useCallback((article: Article) => {
     const catIndex = currentCategoryRef.current;
     const category = CATEGORIES[catIndex] ?? 'politics';
@@ -131,37 +124,56 @@ export default function HomeScreen() {
     toastRef.current?.show(added ? 'Saved' : 'Removed');
   }, []);
 
-  const handleSettingsPress = useCallback(() => {
+  const handleMenuPress = useCallback(() => {
     hapticImpact();
-    settingsSheetRef.current?.present();
+    menuSheetRef.current?.present();
   }, []);
 
-  const handleSourcePress = useCallback(
-    (_sourceName: string, allSources?: ArticleSource[], divergence?: number | null) => {
-      hapticImpact();
-      setSourceSheetSources(allSources ?? []);
-      setSourceSheetDivergence(divergence ?? null);
-      sourceSheetRef.current?.present();
-    },
-    [],
-  );
+  const handleSettingsPress = useCallback(() => {
+    menuSheetRef.current?.dismiss();
+    setTimeout(() => settingsSheetRef.current?.present(), 250);
+  }, []);
 
-  const handleContextPress = useCallback(
-    (threadId: string) => {
-      hapticImpact();
-      // Find the thread label from any article in the current view
-      const allArticles = Object.values(groupedRef.current).flat();
-      const match = allArticles.find((a) => a.threadId === threadId);
-      setContextThreadLabel(match?.threadLabel);
-      fetchContext(threadId);
-      contextSheetRef.current?.present();
-    },
-    [fetchContext],
-  );
+  const handleMenuSearch = useCallback(() => {
+    menuSheetRef.current?.dismiss();
+    setTimeout(() => searchSheetRef.current?.present(), 250);
+  }, []);
 
-  const handleBreakingPress = useCallback((coverage: number) => {
+  const handleMenuBookmark = useCallback(() => {
+    menuSheetRef.current?.dismiss();
+    setTimeout(() => bookmarkSheetRef.current?.present(), 250);
+  }, []);
+
+  const handleDeeperPress = useCallback(() => {
+    if (!activeArticle) return;
     hapticImpact();
-    toastRef.current?.show(`${coverage}+ sources reporting`);
+    // Capture article metadata at open time
+    setDigSources(activeArticle.sources);
+    setDigCoverage(activeArticle.eventCoverage);
+    // Fetch context if article has a thread
+    if (activeArticle.threadId) {
+      const allArticles = Object.values(groupedRef.current).flat();
+      const match = allArticles.find((a) => a.threadId === activeArticle.threadId);
+      setContextThreadLabel(match?.threadLabel);
+      fetchContext(activeArticle.threadId);
+    } else {
+      setContextThreadLabel(undefined);
+    }
+    contextSheetRef.current?.present();
+  }, [activeArticle, fetchContext]);
+
+  const handleBottomShare = useCallback(() => {
+    if (!activeArticle) return;
+    hapticImpact();
+    const url = `https://zuhd.news/a/${activeArticle.slug}`;
+    Share.share({ message: `${activeArticle.title}\n\n${url}` }).catch(() => {});
+  }, [activeArticle]);
+
+  const handleArticleChange = useCallback((article: Article, catIndex: number) => {
+    currentArticlesRef.current[catIndex] = article;
+    if (catIndex === currentCategoryRef.current) {
+      setActiveArticle(article);
+    }
   }, []);
 
   const handleCountryPress = useCallback((result: TapResult) => {
@@ -204,6 +216,7 @@ export default function HomeScreen() {
       pagerOffset.value = page;
       hapticTick();
       setCurrentCategory(page);
+      setActiveArticle(currentArticlesRef.current[page] ?? null);
     },
     [pagerOffset],
   );
@@ -334,7 +347,7 @@ export default function HomeScreen() {
         categoryProgresses={categoryProgresses}
         currentCategory={currentCategory}
         onCategoryPress={onCategoryPress}
-        onSettingsPress={handleSettingsPress}
+        onMenuPress={handleMenuPress}
       />
 
       <PagerView
@@ -360,11 +373,9 @@ export default function HomeScreen() {
                 onRefresh={handleRefresh}
                 onEndReached={handleEndReached}
                 onCaughtUp={handleCaughtUp}
-                onSourcePress={handleSourcePress}
-                onContextPress={handleContextPress}
                 onBookmarkPress={handleArticleBookmark}
                 onCountryPress={handleCountryPress}
-                onBreakingPress={handleBreakingPress}
+                onArticleChange={handleArticleChange}
                 progressesSV={categoryProgresses}
                 tick={tick}
                 resetKey={resetKey}
@@ -376,7 +387,93 @@ export default function HomeScreen() {
 
       <Toast ref={toastRef} />
 
-      {briefing?.available && briefing.date ? (
+      {/* Bottom bar: [briefing] ---- [context] [sources] [share] */}
+      {!briefingPlayer.playing && (
+        <View
+          style={[styles.bottomBar, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
+          pointerEvents="box-none"
+        >
+          {/* Briefing — far left, separated */}
+          {briefing?.available && briefing.date && (
+            <Pressable
+              onPress={briefingPlayer.toggle}
+              hitSlop={12}
+              style={({ pressed }) => [
+                styles.actionPill,
+                { backgroundColor: colors.sheetBg, shadowColor: colors.black },
+                pressed && PRESSED_STYLE,
+              ]}
+              accessibilityRole="button"
+              accessibilityLabel="Listen to daily briefing"
+            >
+              <Text
+                style={{
+                  ...font.smallCaps,
+                  fontSize: typography.sizeXs,
+                  letterSpacing: typography.trackingCaps,
+                  color: colors.textEmphasis,
+                }}
+              >
+                listen
+              </Text>
+            </Pressable>
+          )}
+
+          {/* Spacer pushes article actions to the right */}
+          <View style={styles.bottomSpacer} />
+
+          {/* Article actions — right side, closest to thumb */}
+          <View style={styles.articleActions}>
+            <Pressable
+              onPress={handleBottomShare}
+              hitSlop={12}
+              style={({ pressed }) => [
+                styles.actionPill,
+                { backgroundColor: colors.sheetBg, shadowColor: colors.black },
+                pressed && PRESSED_STYLE,
+              ]}
+              accessibilityRole="button"
+              accessibilityLabel="Share article"
+            >
+              <Text
+                style={{
+                  ...font.smallCaps,
+                  fontSize: typography.sizeXs,
+                  letterSpacing: typography.trackingCaps,
+                  color: colors.textEmphasis,
+                }}
+              >
+                share
+              </Text>
+            </Pressable>
+            <Pressable
+              onPress={handleDeeperPress}
+              hitSlop={12}
+              style={({ pressed }) => [
+                styles.actionPill,
+                { backgroundColor: colors.sheetBg, shadowColor: colors.black },
+                pressed && PRESSED_STYLE,
+              ]}
+              accessibilityRole="button"
+              accessibilityLabel="Dig into this story"
+            >
+              <Text
+                style={{
+                  ...font.smallCaps,
+                  fontSize: typography.sizeXs,
+                  letterSpacing: typography.trackingCaps,
+                  color: colors.textEmphasis,
+                }}
+              >
+                dig
+              </Text>
+            </Pressable>
+          </View>
+        </View>
+      )}
+
+      {/* Expanded briefing player — full width when playing */}
+      {briefing?.available && briefing.date && briefingPlayer.playing && (
         <BriefingBar
           playing={briefingPlayer.playing}
           elapsed={briefingPlayer.elapsed}
@@ -384,28 +481,17 @@ export default function HomeScreen() {
           date={briefing.date}
           onToggle={briefingPlayer.toggle}
           onSeek={briefingPlayer.seek}
-          onSearchPress={handleSearchPress}
-          onBookmarkPress={handleBookmarkPress}
         />
-      ) : (
-        <View
-          style={[styles.bottomActions, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
-          pointerEvents="box-none"
-        >
-          <ActionButtons onSearchPress={handleSearchPress} onBookmarkPress={handleBookmarkPress} />
-        </View>
       )}
 
-      <SourceSheet
-        sheetRef={sourceSheetRef}
-        sources={sourceSheetSources}
-        divergence={sourceSheetDivergence}
+      <MenuSheet
+        sheetRef={menuSheetRef}
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
-        onDismiss={() => {
-          setSourceSheetSources([]);
-          setSourceSheetDivergence(null);
-        }}
+        onDismiss={() => {}}
+        onSearchPress={handleMenuSearch}
+        onBookmarkPress={handleMenuBookmark}
+        onSettingsPress={handleSettingsPress}
       />
 
       <CountrySheet
@@ -418,12 +504,20 @@ export default function HomeScreen() {
 
       <ContextSheet
         sheetRef={contextSheetRef}
+        sources={digSources}
+
+        eventCoverage={digCoverage}
+
         brief={contextBrief}
         loading={contextLoading}
         threadLabel={contextThreadLabel}
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
-        onDismiss={() => setContextThreadLabel(undefined)}
+        onDismiss={() => {
+          setDigSources([]);
+          setDigCoverage(null);
+          setContextThreadLabel(undefined);
+        }}
       />
 
       <BookmarkSheet
@@ -477,12 +571,29 @@ const styles = StyleSheet.create({
   retryText: {
     marginTop: SPACING.lg,
   },
-  bottomActions: {
+  bottomBar: {
     position: 'absolute',
     bottom: 0,
+    left: 0,
     right: 0,
     flexDirection: 'row',
-    gap: SPACING.sm,
+    alignItems: 'center',
     paddingHorizontal: SPACING.md,
+    zIndex: 10,
+  },
+  bottomSpacer: {
+    flex: 1,
+  },
+  articleActions: {
+    flexDirection: 'row',
+    gap: SPACING.sm,
+  },
+  actionPill: {
+    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.md,
+    borderRadius: 14,
+    alignItems: 'center' as const,
+    justifyContent: 'center' as const,
+    ...LAYOUT.floatingShadow,
   },
 });

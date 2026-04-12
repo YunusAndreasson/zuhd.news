@@ -8,10 +8,11 @@ import { memo, useCallback, useDeferredValue, useEffect, useMemo, useRef, useSta
 
 import { AccessibilityInfo, StyleSheet, Text, View } from 'react-native';
 import type { TextInput } from 'react-native-gesture-handler';
-import { CATEGORIES, SPACING } from '../constants/theme';
+import { CATEGORIES, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { Article, Category } from '../types';
 import { ArticleRow } from './ArticleRow';
+import { EmptyState } from './EmptyState';
 import { SheetHandle } from './SheetHandle';
 import { SheetContainer } from './SheetPrimitives';
 
@@ -31,12 +32,9 @@ function buildSearchIndex(grouped: Record<Category, Article[]>): IndexedArticle[
   const index: IndexedArticle[] = [];
   for (const cat of CATEGORIES) {
     for (const a of grouped[cat] ?? []) {
-      const corpus = [
-        a.title,
-        a.location ?? '',
-        ...a.concepts,
-        ...a.sentences,
-      ].join('\n').toLowerCase();
+      const corpus = [a.title, a.location ?? '', ...a.concepts, ...a.sentences]
+        .join('\n')
+        .toLowerCase();
       index.push({ article: a, category: cat, corpus });
     }
   }
@@ -84,7 +82,10 @@ export const SearchSheet = memo(function SearchSheet({
   const prevCountRef = useRef(0);
 
   const searchIndex = useMemo(() => buildSearchIndex(grouped), [grouped]);
-  const results = useMemo(() => searchArticles(searchIndex, deferredQuery), [searchIndex, deferredQuery]);
+  const results = useMemo(
+    () => searchArticles(searchIndex, deferredQuery),
+    [searchIndex, deferredQuery],
+  );
 
   // Announce result count changes for VoiceOver (in effect, not render)
   const resultCount = results.length;
@@ -130,6 +131,7 @@ export const SearchSheet = memo(function SearchSheet({
     <BottomSheetModal
       ref={sheetRef}
       snapPoints={['85%']}
+      enableDynamicSizing={false}
       enablePanDownToClose
       backdropComponent={renderBackdrop}
       backgroundStyle={sheetStyles.bg}
@@ -168,17 +170,7 @@ export const SearchSheet = memo(function SearchSheet({
       </View>
 
       {deferredQuery.length > 0 && results.length === 0 ? (
-        <View style={styles.emptyState}>
-          <Text
-            style={{
-              ...font.regular,
-              fontSize: typography.sizeSm,
-              color: colors.textSecondary,
-            }}
-          >
-            No articles found
-          </Text>
-        </View>
+        <EmptyState message="No articles found" />
       ) : (
         <BottomSheetFlatList
           data={results}
@@ -188,9 +180,7 @@ export const SearchSheet = memo(function SearchSheet({
           keyboardShouldPersistTaps="handled"
           ListHeaderComponent={
             results.length > 0 ? (
-              <Text
-                style={[styles.resultCount, textStyles.smallCapsXs]}
-              >
+              <Text style={[styles.resultCount, textStyles.smallCapsXs]}>
                 {results.length} article{results.length === 1 ? '' : 's'}
               </Text>
             ) : null
@@ -208,7 +198,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   input: {
-    height: 40,
+    height: LAYOUT.inputHeight,
     padding: 0,
   },
   listContent: {
@@ -217,9 +207,5 @@ const styles = StyleSheet.create({
   resultCount: {
     paddingTop: SPACING.md,
     paddingBottom: SPACING.xs,
-  },
-  emptyState: {
-    alignItems: 'center',
-    paddingTop: SPACING.xl,
   },
 });

@@ -4,19 +4,18 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import Constants from 'expo-constants';
-import * as StoreReview from 'expo-store-review';
 import { memo } from 'react';
-import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import {
   type AppearanceMode,
   type FontFamily,
   type FontSize,
+  LAYOUT,
   PRESSED_STYLE,
   SPACING,
 } from '../constants/theme';
-import { useSheetUrl } from '../hooks/useSheetUrl';
 import { useTheme } from '../hooks/useTheme';
-import { hapticImpact, hapticTick } from '../lib/haptics';
+import { hapticTick } from '../lib/haptics';
 import { SheetHandle } from './SheetHandle';
 import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
 
@@ -33,16 +32,30 @@ interface OptionRowProps<T extends string> {
   onSelect: (v: T) => void;
 }
 
-function OptionRow<T extends string>({ label, options, selected, onSelect, hint }: OptionRowProps<T> & { hint?: string }) {
+function OptionRow<T extends string>({
+  label,
+  options,
+  selected,
+  onSelect,
+  hint,
+}: OptionRowProps<T> & { hint?: string }) {
   const { colors, font, typography, textStyles } = useTheme();
   return (
     <View accessibilityRole="radiogroup" accessibilityLabel={label}>
       <Text style={textStyles.smallCapsXs}>{label}</Text>
       {hint && (
-        <Text style={{ ...font.regular, fontSize: typography.sizeXs, color: colors.textSecondary, marginTop: 2 }}>
+        <Text
+          style={{
+            ...font.regular,
+            fontSize: typography.sizeXs,
+            color: colors.textSecondary,
+            marginTop: SPACING.xxs,
+          }}
+        >
           {hint}
         </Text>
       )}
+
       <View style={styles.optionRow}>
         {options.map((opt) => {
           const active = opt.value === selected;
@@ -70,33 +83,14 @@ function OptionRow<T extends string>({ label, options, selected, onSelect, hint 
               >
                 {opt.label}
               </Text>
-              {active && <View style={[styles.activeIndicator, { backgroundColor: colors.text }]} />}
+              {active && (
+                <View style={[styles.activeIndicator, { backgroundColor: colors.text }]} />
+              )}
             </Pressable>
           );
         })}
       </View>
     </View>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Footer link
-// ---------------------------------------------------------------------------
-
-function FooterLink({ label, onPress }: { label: string; onPress: () => void }) {
-  const { colors, font, typography } = useTheme();
-  return (
-    <Pressable
-      onPress={() => { hapticImpact(); onPress(); }}
-      hitSlop={8}
-      style={({ pressed }) => pressed && PRESSED_STYLE}
-      accessibilityRole="link"
-      accessibilityLabel={label}
-    >
-      <Text style={{ ...font.semiBold, fontSize: typography.sizeSm, color: colors.text }}>
-        {label}
-      </Text>
-    </Pressable>
   );
 }
 
@@ -139,10 +133,20 @@ export const SettingsSheet = memo(function SettingsSheet({
   renderBackdrop,
   onDismiss,
 }: SettingsSheetProps) {
-  const { colors, font, typography, textStyles, sheetStyles, preferences, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications } =
-    useTheme();
+  const {
+    colors,
+    font,
+    typography,
+    textStyles,
+    sheetStyles,
+    preferences,
+    setFontSize,
+    setFontFamily,
+    setAppearance,
+    setHaptics,
+    setNotifications,
+  } = useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
-  const { openUrl, handleDismiss } = useSheetUrl(sheetRef, onDismiss);
 
   return (
     <BottomSheetModal
@@ -150,40 +154,55 @@ export const SettingsSheet = memo(function SettingsSheet({
       enableDynamicSizing
       maxDynamicContentSize={MAX_SHEET_HEIGHT}
       enablePanDownToClose
+      enableOverDrag={false}
       backdropComponent={renderBackdrop}
       backgroundStyle={sheetStyles.bg}
       handleComponent={SettingsHandle}
       containerComponent={SheetContainer}
-      onDismiss={handleDismiss}
+      onDismiss={onDismiss}
     >
       <BottomSheetScrollView
         contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.xxl }]}
       >
-        <OptionRow label="size" options={FONT_SIZE_OPTIONS} selected={preferences.fontSize} onSelect={setFontSize} />
+        <OptionRow
+          label="size"
+          options={FONT_SIZE_OPTIONS}
+          selected={preferences.fontSize}
+          onSelect={setFontSize}
+        />
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        <OptionRow label="font" options={FONT_FAMILY_OPTIONS} selected={preferences.fontFamily} onSelect={setFontFamily} />
+        <OptionRow
+          label="font"
+          options={FONT_FAMILY_OPTIONS}
+          selected={preferences.fontFamily}
+          onSelect={setFontFamily}
+        />
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        <OptionRow label="appearance" options={APPEARANCE_OPTIONS} selected={preferences.appearance} onSelect={setAppearance} />
+        <OptionRow
+          label="appearance"
+          options={APPEARANCE_OPTIONS}
+          selected={preferences.appearance}
+          onSelect={setAppearance}
+        />
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        <OptionRow label="haptics" options={ON_OFF_OPTIONS} selected={preferences.haptics ? 'on' : 'off'} onSelect={(v) => setHaptics(v === 'on')} />
+        <OptionRow
+          label="haptics"
+          options={ON_OFF_OPTIONS}
+          selected={preferences.haptics ? 'on' : 'off'}
+          onSelect={(v) => setHaptics(v === 'on')}
+        />
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        <OptionRow label="notifications" hint="Daily briefing reminder and breaking news alerts" options={ON_OFF_OPTIONS} selected={preferences.notifications ? 'on' : 'off'} onSelect={(v) => setNotifications(v === 'on')} />
-        <View style={[styles.divider, { backgroundColor: colors.rule }]} />
-
-        {/* About */}
-        <Text style={textStyles.smallCapsXs}>about</Text>
-        <View style={styles.footerLinks}>
-            <FooterLink label="contact" onPress={() => Linking.openURL('mailto:contact@zuhd.news')} />
-            <FooterLink label="sources" onPress={() => openUrl('https://zuhd.news/sources')} />
-            <FooterLink label="privacy" onPress={() => openUrl('https://zuhd.news/privacy')} />
-            <FooterLink label="support" onPress={() => openUrl('https://zuhd.news/support')} />
-            <FooterLink label="rate" onPress={() => StoreReview.requestReview()} />
-          </View>
-
+        <OptionRow
+          label="notifications"
+          hint="Daily briefing reminder and breaking news alerts"
+          options={ON_OFF_OPTIONS}
+          selected={preferences.notifications ? 'on' : 'off'}
+          onSelect={(v) => setNotifications(v === 'on')}
+        />
         <Text
           style={{
             ...font.regular,
@@ -212,14 +231,8 @@ const styles = StyleSheet.create({
     marginVertical: SPACING.md,
   },
   activeIndicator: {
-    height: 1.5,
-    borderRadius: 1,
-    marginTop: 3,
-  },
-  footerLinks: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: SPACING.md,
-    marginTop: SPACING.md,
+    height: LAYOUT.activeIndicatorHeight,
+    borderRadius: LAYOUT.activeIndicatorRadius,
+    marginTop: SPACING.xxs,
   },
 });

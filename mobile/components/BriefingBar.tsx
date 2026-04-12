@@ -1,12 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
-import {
-  type LayoutChangeEvent,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   FadeIn,
@@ -14,13 +8,13 @@ import Animated, {
   LinearTransition,
   runOnJS,
   useAnimatedStyle,
+  useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { ANIMATION, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { ActionButtons } from './ActionButtons';
 
 const BAR_MARGIN = SPACING.md;
 const BAR_RADIUS = 14;
@@ -39,8 +33,6 @@ interface BriefingBarProps {
   date: string;
   onToggle: () => void;
   onSeek: (seconds: number) => void;
-  onSearchPress: () => void;
-  onBookmarkPress: () => void;
 }
 
 export const BriefingBar = memo(function BriefingBar({
@@ -50,8 +42,6 @@ export const BriefingBar = memo(function BriefingBar({
   date,
   onToggle,
   onSeek,
-  onSearchPress,
-  onBookmarkPress,
 }: BriefingBarProps) {
   const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
@@ -64,9 +54,15 @@ export const BriefingBar = memo(function BriefingBar({
 
   const progress = duration > 0 ? elapsed / duration : 0;
   const progressSV = useSharedValue(0);
+  const reduceMotion = useReducedMotion();
   useEffect(() => {
-    progressSV.value = withTiming(progress, { duration: 1000 });
-  }, [progress]);
+    if (reduceMotion) {
+      progressSV.value = progress;
+    } else {
+      // Slow fill for smooth playback tracking (1s matches the elapsed-update cadence)
+      progressSV.value = withTiming(progress, { duration: 1000 });
+    }
+  }, [progress, reduceMotion, progressSV]);
   const progressStyle = useAnimatedStyle(() => ({
     transform: [{ scaleX: progressSV.value }],
   }));
@@ -97,7 +93,7 @@ export const BriefingBar = memo(function BriefingBar({
   // Format date for display: "Mar 31 · Shawwal 13" from "2026-03-31"
   const dateLabel = (() => {
     try {
-      const d = new Date(date + 'T00:00:00');
+      const d = new Date(`${date}T00:00:00`);
       const greg = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
       const hijri = d.toLocaleDateString('en-u-ca-islamic', { month: 'long', day: 'numeric' });
       return `${greg} · ${hijri}`;
@@ -108,9 +104,9 @@ export const BriefingBar = memo(function BriefingBar({
 
   return (
     <Animated.View
-      entering={FadeIn.duration(250)}
-      exiting={FadeOut.duration(200)}
-      layout={LinearTransition.duration(250)}
+      entering={FadeIn.duration(ANIMATION.normal)}
+      exiting={FadeOut.duration(ANIMATION.fast)}
+      layout={LinearTransition.duration(ANIMATION.normal)}
       style={[styles.wrapper, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
       pointerEvents="box-none"
     >
@@ -133,16 +129,7 @@ export const BriefingBar = memo(function BriefingBar({
                 ]}
                 numberOfLines={1}
               >
-                Daily Briefing
-                <Text
-                  style={[
-                    styles.dateDim,
-                    { ...font.regular, color: colors.textSecondary },
-                  ]}
-                >
-                  {' '}
-                  · {dateLabel}
-                </Text>
+                {dateLabel}
               </Text>
             </View>
 
@@ -167,7 +154,11 @@ export const BriefingBar = memo(function BriefingBar({
               accessibilityRole="button"
               accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
             >
-              <Ionicons name={playing ? 'pause' : 'play'} size={LAYOUT.iconMd} color={colors.textEmphasis} />
+              <Ionicons
+                name={playing ? 'pause' : 'play'}
+                size={LAYOUT.iconMd}
+                color={colors.textEmphasis}
+              />
             </Pressable>
           </View>
 
@@ -198,9 +189,8 @@ export const BriefingBar = memo(function BriefingBar({
           </GestureDetector>
         </View>
       ) : (
-        /* ── Collapsed: actions + play button ── */
+        /* ── Collapsed: briefing pill ── */
         <View style={styles.collapsedRow}>
-          <ActionButtons onSearchPress={onSearchPress} onBookmarkPress={onBookmarkPress} />
           <Pressable
             onPress={onToggle}
             style={({ pressed }) => [
@@ -241,7 +231,7 @@ const styles = StyleSheet.create({
   bar: {
     width: '100%',
     borderRadius: BAR_RADIUS,
-    paddingTop: SPACING.sm + 2,
+    paddingTop: SPACING.smPlus,
     paddingHorizontal: SPACING.md,
     overflow: 'hidden',
     ...LAYOUT.floatingShadow,
@@ -249,20 +239,19 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: SPACING.sm + 2,
+    gap: SPACING.smPlus,
   },
   info: {
     flex: 1,
     justifyContent: 'center',
   },
   title: {},
-  dateDim: {},
   time: {
     fontVariant: ['tabular-nums'],
   },
   progressTouch: {
     paddingTop: SPACING.sm,
-    paddingBottom: SPACING.sm + 2,
+    paddingBottom: SPACING.smPlus,
     marginHorizontal: -SPACING.md,
     paddingHorizontal: SPACING.md,
   },

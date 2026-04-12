@@ -67,7 +67,7 @@ export const DARK_COLORS = {
 export const LIGHT_COLORS = {
   bg: '#f5f2ed',
   text: '#2a2a2a',
-  textSecondary: '#7a7a7a',
+  textSecondary: '#666666',
   accent: '#5a5a5a',
   rule: '#d8d4ce',
   textEmphasis: '#1a1a1a',
@@ -154,8 +154,10 @@ export function makeTypography(sizeScale: number = 1) {
 export type Typography = ReturnType<typeof makeTypography>;
 
 export const SPACING = {
+  xxs: 2,
   xs: 4,
   sm: 8,
+  smPlus: 10,
   md: 16,
   lg: 24,
   xl: 32,
@@ -173,6 +175,14 @@ export const LAYOUT = {
   timelineLineWidth: 1,
   pillPaddingV: 2,
   pillRadius: 3,
+  handleWidth: 36,
+  handleHeight: 4,
+  handleRadius: 2,
+  inputHeight: 40,
+  toastRadius: 14,
+  logoRadius: 8,
+  activeIndicatorHeight: 1.5,
+  activeIndicatorRadius: 1,
   floatingShadow: {
     shadowOffset: { width: 0, height: -1 },
     shadowOpacity: 0.25,
@@ -197,13 +207,19 @@ export const EDITORIAL = {
 
 export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech'];
 
+export const ANIMATION = {
+  fast: 150,
+  normal: 250,
+  slow: 400,
+  spring: { damping: 12, stiffness: 150 },
+} as const;
+
 /** Shared pressed-state style for Pressable components */
 export const PRESSED_STYLE = { opacity: 0.5 } as const;
 
 /** Android-specific base: remove extra padding above/below text for consistent rhythm */
-const androidTextBase: TextStyle = Platform.OS === 'android'
-  ? { includeFontPadding: false, textAlignVertical: 'center' }
-  : {};
+const androidTextBase: TextStyle =
+  Platform.OS === 'android' ? { includeFontPadding: false, textAlignVertical: 'center' } : {};
 
 /** Build reusable text style bases from resolved theme values */
 export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: Typography) {
@@ -247,6 +263,15 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
       lineHeight: typography.sizeBase * typography.leadingBody,
       fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.text,
+    } as TextStyle,
+    /** Italic section headings — e.g. source coverage framing */
+    sectionHeading: {
+      ...font.italic,
+      ...androidTextBase,
+      fontSize: typography.sizeSm,
+      lineHeight: typography.sizeSm * typography.leadingBody,
+      fontStyle: 'italic',
+      color: colors.accent,
     } as TextStyle,
   };
 }
