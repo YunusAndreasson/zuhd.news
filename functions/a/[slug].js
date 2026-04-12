@@ -37,6 +37,8 @@ export async function onRequest({ params }) {
       (article.sentences || [article.body]).join(' ').slice(0, 200)
     )
     const source = escapeHtml(article.source || 'zuhd.news')
+    const category = escapeHtml(article.category || 'politics')
+    const pubDate = article.date || ''
 
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -51,9 +53,13 @@ export async function onRequest({ params }) {
   <meta property="og:url" content="${SITE}/a/${slug}">
   <meta property="og:site_name" content="zuhd.news">
   <meta property="og:type" content="article">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="${pubDate}">
+  <meta property="article:section" content="${category}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${title}">
   <meta name="twitter:description" content="${body}">
+  <meta name="twitter:image" content="${SITE}/og-image.png">
   <meta name="description" content="${body}">
   <meta name="author" content="${source}">
   <script>location.replace("${SITE}/#${slug}")</script>
