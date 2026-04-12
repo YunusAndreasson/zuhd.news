@@ -2,13 +2,216 @@
   "version": 1,
   "stories": [
     {
+      "id": "nigeria-airstrike-200-dead-yobe-market-boko-haram",
+      "label": "200 feared dead as Nigerian military airstrike targeting terrorists hits market",
+      "firstSeen": "2026-04-12T17:08:13.543Z",
+      "lastCovered": "2026-04-12T17:08:13.543Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-nigeria-airstrike-200-dead-yobe-market-boko-haram"
+      ],
+      "eventUri": "eng-11562465",
+      "summary": "Nigerian military jets struck a village market in Yobe State while pursuing Boko Haram militants, killing at least 200 civilians. Amnesty International has condemned the strike. Lead with the death toll and the target — a market, not a militant camp. The mechanism is a military that treats civilian spaces as acceptable collateral in a 15-year insurgency. The reader should see the accountability gap: Nigeria's military has repeatedly bombed civilian gatherings (refugee camps in 2017, fishermen in 2023) with no consequences. This is Africa's deadliest single airstrike in years.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Yobe_State",
+        "http://en.wikipedia.org/wiki/Borno_State",
+        "http://en.wikipedia.org/wiki/Airstrike",
+        "http://en.wikipedia.org/wiki/Geidam",
+        "http://en.wikipedia.org/wiki/Boko_Haram",
+        "http://en.wikipedia.org/wiki/Insurgency",
+        "http://en.wikipedia.org/wiki/Gubio",
+        "http://en.wikipedia.org/wiki/Nigeria"
+      ]
+    },
+    {
+      "id": "hamas-refuses-un-disarmament-israel-withdrawal",
+      "label": "In meeting with Board of Peace director-general, Hamas refuses UN disarmament plans until Israel commits to withdrawal",
+      "firstSeen": "2026-04-12T17:08:13.543Z",
+      "lastCovered": "2026-04-12T17:08:13.543Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-hamas-refuses-un-disarmament-israel-withdrawal"
+      ],
+      "eventUri": null,
+      "summary": "Hamas has refused UN disarmament proposals in Cairo meetings with the Board of Peace director-general, insisting Israel must first commit to full withdrawal under the ceasefire deal. Lead with the sequencing demand — Hamas is saying: no disarmament without withdrawal guarantees. The mechanism is a negotiating impasse where each side conditions its concession on the other's. The reader should see who holds leverage: Israel has not advanced its withdrawal commitments, and Hamas is using that non-compliance to justify retaining arms. Mada Masr's anonymous Hamas sources make this a rare insider account of the Cairo talks.",
+      "conceptUris": []
+    },
+    {
+      "id": "panama-vessel-baltic-waste-dumping-sweden",
+      "label": "Boarded Panama-flagged vessel released: Swedish coast guard",
+      "firstSeen": "2026-04-12T17:08:13.543Z",
+      "lastCovered": "2026-04-12T17:08:13.543Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-panama-vessel-baltic-waste-dumping-sweden"
+      ],
+      "eventUri": "rus-2051883",
+      "summary": "Sweden's coast guard boarded and investigated a Panama-registered bulk carrier Hui Yuan caught dumping waste in the Baltic Sea. Lead with the enforcement action: a European coast guard boarding a flag-of-convenience vessel in real time. The mechanism is the shadow fleet problem — vessels registered in Panama, carrying Russian-linked cargo, operating with impunity in European waters. The reader should see the maritime accountability gap: flag-of-convenience registries let polluters escape consequences, and the Baltic is becoming a test case for whether European states will enforce environmental law against these ships.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Sweden",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Baltic_Sea",
+        "http://en.wikipedia.org/wiki/Panama",
+        "http://en.wikipedia.org/wiki/Bulk_carrier",
+        "http://en.wikipedia.org/wiki/Coal",
+        "http://en.wikipedia.org/wiki/Spain",
+        "http://en.wikipedia.org/wiki/Coast_guard"
+      ]
+    },
+    {
+      "id": "iran-war-trump-energy-dominance-failing",
+      "label": "Shock from Iran war has Trump's vision for US energy dominance flailing",
+      "firstSeen": "2026-04-12T17:08:13.543Z",
+      "lastCovered": "2026-04-12T17:08:13.543Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-iran-war-trump-energy-dominance-failing"
+      ],
+      "eventUri": "eng-11558490",
+      "summary": "Trump promised US energy dominance — then started a war that disrupted the very energy markets he needed stable. Lead with the self-inflicted wound: the world's biggest oil and gas producer launched a war that spiked global energy prices against its own consumers. The mechanism is the Hormuz chokepoint — even US domestic production can't insulate American consumers from a global price shock when 20% of world oil transits one strait. The reader should see the structural contradiction: energy independence is a myth when your economy is priced in global barrels.",
+      "conceptUris": []
+    },
+    {
+      "id": "jwst-population-iii-first-stars-evidence",
+      "label": "Astronomers find the strongest evidence yet for the universe's first stars",
+      "firstSeen": "2026-04-12T17:08:13.543Z",
+      "lastCovered": "2026-04-12T17:08:13.543Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-jwst-population-iii-first-stars-evidence"
+      ],
+      "eventUri": null,
+      "summary": "JWST observations have revealed the most compelling evidence yet for Population III stars — the universe's theoretical first generation of stars — clustered around an object that formed just 400 million years after the Big Bang. Lead with the timescale: we're seeing light from stars that existed when the universe was 3% of its current age. The mechanism is JWST's infrared sensitivity, which can detect the chemical signatures that distinguish primordial hydrogen-helium stars from everything that came after. For decades these stars existed only in models — now they may have been observed.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-first-indigenous-quantum-computing-andhra-pradesh",
+      "label": "Andhra Pradesh to Unveil India's First Indigenous Quantum Computing Test Beds",
+      "firstSeen": "2026-04-12T17:08:13.543Z",
+      "lastCovered": "2026-04-12T17:08:13.543Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-india-first-indigenous-quantum-computing-andhra-pradesh"
+      ],
+      "eventUri": "eng-11554056",
+      "summary": "India is launching its first domestically built quantum computer test beds in Amaravati, Andhra Pradesh — part of a push to build sovereign quantum capability rather than depend on IBM or Google hardware. Lead with the sovereignty angle: India is building its own quantum infrastructure instead of renting it from US tech giants. The mechanism is a state-level bet that quantum computing clusters can anchor a regional tech hub. The reader should see this alongside China's quantum advances — the quantum race is no longer US vs. China, India is entering with indigenous hardware.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Amaravati",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Quantum_computing",
+        "http://en.wikipedia.org/wiki/N._Chandrababu_Naidu",
+        "http://en.wikipedia.org/wiki/Andhra_Pradesh",
+        "http://en.wikipedia.org/wiki/Chief_minister",
+        "http://en.wikipedia.org/wiki/Indigenous_peoples_of_the_Americas",
+        "http://en.wikipedia.org/wiki/Quantum_mechanics"
+      ]
+    },
+    {
+      "id": "sam-altman-molotov-cocktail-openai-response",
+      "label": "Sam Altman's response to Molotov cocktail incident",
+      "firstSeen": "2026-04-12T17:08:13.543Z",
+      "lastCovered": "2026-04-12T17:08:13.543Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-sam-altman-molotov-cocktail-openai-response"
+      ],
+      "eventUri": null,
+      "summary": "OpenAI CEO Sam Altman published a blog response to a Molotov cocktail attack on OpenAI — the incident that sparked 354 HN points and 935 comments. Lead with the escalation pattern: anti-AI sentiment has moved from online protest to physical violence against AI companies. The mechanism is a growing backlash where displaced workers, artists, and activists see AI companies as existential threats. The reader should see both the legitimate grievance (mass displacement without consent or compensation) and the dangerous trajectory (political violence against technology). Altman's response reveals how AI leadership frames the backlash.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-orders-naval-blockade-of-strait-of-hormuz",
+      "label": "Trump orders naval blockade of Strait of Hormuz",
+      "firstSeen": "2026-04-12T17:08:13.543Z",
+      "lastCovered": "2026-04-12T17:08:13.543Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-trump-orders-naval-blockade-of-strait-of-hormuz"
+      ],
+      "eventUri": "eng-11562362",
+      "summary": "[Auto-backfill for politics floor] President Donald Trump on Sunday ordered a US naval blockade of the Strait of Hormuz in response to Iran's \"unyielding\" refusal to give up its nuclear ambitions during peace talks in Islamabad.\n\nWhile acknowledging that the marathon talks in Pakistan had gone \"well\" and \"most points were agreed to,\"",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Blockade",
+        "http://en.wikipedia.org/wiki/United_States_Navy",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Islamabad"
+      ]
+    },
+    {
+      "id": "evaluating-artificial-intelligence-chatbot-performance-on-bo",
+      "label": "Evaluating artificial intelligence chatbot performance on board-level geriatrics questions",
+      "firstSeen": "2026-04-12T17:08:13.543Z",
+      "lastCovered": "2026-04-12T17:08:13.543Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-evaluating-artificial-intelligence-chatbot-performance-on-bo"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] We are providing an unedited version of this manuscript to give early access to its findings. Before final publication, the manuscript will undergo further editing. Please note there may be errors present which affect the content, and all legal disclaimers apply.\n\nArtificial intelligence (AI) langua",
+      "conceptUris": []
+    },
+    {
+      "id": "haiti-fuel-crisis-iran-war-poverty",
+      "label": "Haitians cut back on already scarce food and ask how they'll survive rising fuel prices",
+      "firstSeen": "2026-04-12T08:09:02.236Z",
+      "lastCovered": "2026-04-12T17:08:13.543Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-04-12-haiti-fuel-crisis-iran-war-poverty",
+        "2026-04-12-bangladesh-energy-crisis-iran-war-imports"
+      ],
+      "eventUri": "eng-11561931",
+      "summary": "A factory worker in Haiti now walks two hours each way to work because the Iran war made fuel unaffordable. Lead with that detail — it makes the war's spillover visceral. Haiti imports all its fuel; the Strait of Hormuz disruption has doubled transport costs in a country already crippled by gang violence and food insecurity. The mechanism: a war 10,000km away is starving people who have no connection to it. The reader who followed the Dubai flight restrictions and SadaPay collapse will see the pattern — Iran war externalities fall hardest on the poorest.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Gang",
+        "http://en.wikipedia.org/wiki/Port-au-Prince",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Haiti",
+        "http://en.wikipedia.org/wiki/Price_of_oil"
+      ]
+    },
+    {
       "id": "oldest-octopus-fossil-reclassified-nautilus",
       "label": "The Oldest Octopus Fossil Ever Isn't An Octopus At All, Scientists Discover",
       "firstSeen": "2026-04-12T04:08:52.272Z",
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 3,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-04-12-oldest-octopus-fossil-reclassified-nautilus",
@@ -25,7 +228,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-ben-gvir-storms-al-aqsa-jordan-condemns"
@@ -50,7 +253,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-quetta-hazara-targeted-killing-sectarian"
@@ -66,7 +269,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-south-africa-da-leadership-crisis-lifestyle-audits"
@@ -82,7 +285,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-hezbollah-fpv-drones-idf-lebanon-escalation"
@@ -98,7 +301,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-saudi-green-hajj-solar-mecca-vision-2030"
@@ -114,7 +317,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-trump-memecoin-gala-senators-question-corruption"
@@ -130,7 +333,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-poland-clean-heating-subsidies-china-coal-transition"
@@ -146,7 +349,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-navy-destroyer-mystery-launcher-gulf-deployment"
@@ -162,7 +365,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-non-bank-sector-invests-rs11tr-in-govt-papers"
@@ -178,7 +381,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-clinicopathological-significance-of-gli1-expression-in-hepat"
@@ -194,7 +397,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-benin-election-wadagni-talon-succession"
@@ -219,7 +422,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-nigeria-1100-kidnapped-four-months-amnesty"
@@ -241,7 +444,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-haiti-stampede-citadelle-30-dead"
@@ -260,35 +463,13 @@
       ]
     },
     {
-      "id": "haiti-fuel-crisis-iran-war-poverty",
-      "label": "Haitians cut back on already scarce food and ask how they'll survive rising fuel prices",
-      "firstSeen": "2026-04-12T08:09:02.236Z",
-      "lastCovered": "2026-04-12T08:09:02.236Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-12-haiti-fuel-crisis-iran-war-poverty"
-      ],
-      "eventUri": "eng-11561931",
-      "summary": "A factory worker in Haiti now walks two hours each way to work because the Iran war made fuel unaffordable. Lead with that detail — it makes the war's spillover visceral. Haiti imports all its fuel; the Strait of Hormuz disruption has doubled transport costs in a country already crippled by gang violence and food insecurity. The mechanism: a war 10,000km away is starving people who have no connection to it. The reader who followed the Dubai flight restrictions and SadaPay collapse will see the pattern — Iran war externalities fall hardest on the poorest.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Gang",
-        "http://en.wikipedia.org/wiki/Port-au-Prince",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Haiti",
-        "http://en.wikipedia.org/wiki/Price_of_oil"
-      ]
-    },
-    {
       "id": "ireland-fuel-protests-dublin-blockade-cabinet",
       "label": "Fuel protest 'cleared' from Dublin as Cabinet prepares to hold emergency meeting",
       "firstSeen": "2026-04-12T08:09:02.236Z",
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-ireland-fuel-protests-dublin-blockade-cabinet"
@@ -310,7 +491,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-pakistan-non-bank-rs11-trillion-govt-securities"
@@ -326,7 +507,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-plant-compounds-defeat-drug-resistant-salmonella"
@@ -342,7 +523,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-amarnath-yatra-2026-to-begin-july-3-check-dates-registration"
@@ -367,7 +548,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-azerbaijan-aliyev-dynasty-authoritarianism"
@@ -383,7 +564,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-dubai-flight-restrictions-iran-war-indian-airlines"
@@ -408,7 +589,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-meta-manus-deal-chinese-ai-founders-global"
@@ -424,7 +605,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-nigeria-ai-harassment-women-platform-amplification"
@@ -440,7 +621,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-why-we-laughed"
@@ -456,7 +637,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-first-contact"
@@ -472,7 +653,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-in-situ-electron-diffraction-tomography-study-of-the-success"
@@ -488,7 +669,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-controlled-steering-of-cherenkov-surface-plasmon-wakes-with"
@@ -504,7 +685,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-10-behind-the-blog-smoking-the-whole-carton"
@@ -520,7 +701,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-iraq-elects-kurdish-president-amedi"
@@ -545,7 +726,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-uk-200-arrested-palestine-action-protest-london"
@@ -570,7 +751,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-iran-supreme-leader-khamenei-disfigured-us-strikes"
@@ -595,7 +776,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-pakistan-family-killed-missile-debris-kuwait"
@@ -611,7 +792,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-high-rates-oil-global-debt-trap"
@@ -627,7 +808,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-thailand-asset-seizures-scam-probe-widens"
@@ -643,7 +824,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-spacex-603m-bitcoin-5b-xai-loss"
@@ -659,7 +840,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-uruguay-dead-bees-pesticides-agriculture"
@@ -675,7 +856,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-blood-brain-barrier-breakdown-in-traumatic-brain-injury-curr"
@@ -691,7 +872,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-11-the-oldest-octopus-fossil-ever-isn-t-an-octopus-at-all-scien"
@@ -707,7 +888,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 3,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-11-uk-ofcom-nudification-jail-threat-grok",
@@ -725,7 +906,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-uk-shelves-chagos-islands-deal-trump"
@@ -750,7 +931,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-us-unfreeze-iranian-funds-qatar"
@@ -775,7 +956,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-pakistan-jets-saudi-arabia-defence-pact"
@@ -800,7 +981,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-russia-ukraine-easter-truce-pow-swap"
@@ -816,7 +997,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-lufthansa-pilots-strike-april"
@@ -841,7 +1022,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-crypto-perpetuals-wall-street-prediction"
@@ -857,7 +1038,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-nigeria-terrorism-financiers-list"
@@ -873,7 +1054,7 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-irish-bog-plant-superbug-antibiotic"
@@ -889,152 +1070,13 @@
       "lastCovered": "2026-04-11T17:07:54.686Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-eff-leaving-x-twitter"
       ],
       "eventUri": null,
       "summary": "The Electronic Frontier Foundation — the internet's most prominent digital rights organization — announced it is leaving X (Twitter). 1,415 HN points, 1,282 comments. Lead with what EFF is and why this matters: the organization that has defended online speech for 35 years concluded that the platform no longer serves that mission. This is not a political boycott — it's a structural judgment about X's role in the digital rights ecosystem. The Grok nudification scandal (covered last cycle) is part of the context.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-unable-to-find-mines-in-strait-of-hormuz-us-says",
-      "label": "Iran unable to find mines in Strait of Hormuz, US says",
-      "firstSeen": "2026-04-11T12:08:36.246Z",
-      "lastCovered": "2026-04-11T12:08:36.246Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-iran-unable-to-find-mines-in-strait-of-hormuz-us-says"
-      ],
-      "eventUri": "eng-11559905",
-      "summary": "Iran mined the Strait of Hormuz during the war but now can't locate all the mines it placed — the strait is nominally open but functionally closed because the country that mined it lost control of its own minefield. Lead with the absurdity: Iran offered 'safe routes' but US officials say the IRGC's own maps are unreliable. 6 tankers passed Thursday, zero on Wednesday, despite the ceasefire. The reader tracking the war's economic fallout will see why 'ceasefire' doesn't mean 'recovery' — this is the mine problem that no peace deal can solve quickly.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Naval_mine",
-        "http://en.wikipedia.org/wiki/The_New_York_Times",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Israel"
-      ]
-    },
-    {
-      "id": "polymarket-gamblers-betting-millions-war",
-      "label": "'Abhorrent': the inside story of the Polymarket gamblers betting millions on war",
-      "firstSeen": "2026-04-11T12:08:36.246Z",
-      "lastCovered": "2026-04-11T12:08:36.246Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-polymarket-gamblers-betting-millions-war"
-      ],
-      "eventUri": "eng-11552620",
-      "summary": "Guardian investigation reveals how anonymous Polymarket gamblers bet millions on war outcomes — and how their disputes over 'truth' (which frontline map is authoritative, whether a ceasefire counts) are reshaping how news gets arbitrated. Lead with the mechanism: prediction markets don't just bet on events, they create financial incentives to define what happened. The reader who follows both crypto markets and the Iran/Ukraine wars will see the collision of gambling, information warfare, and journalism.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Prediction_market",
-        "http://en.wikipedia.org/wiki/Gambling"
-      ]
-    },
-    {
-      "id": "uk-green-energy-surge-iran-war-fuel-prices",
-      "label": "Record number of homes in Great Britain turn to green energy as fuel prices soar",
-      "firstSeen": "2026-04-11T12:08:36.246Z",
-      "lastCovered": "2026-04-11T12:08:36.246Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-uk-green-energy-surge-iran-war-fuel-prices"
-      ],
-      "eventUri": "eng-11560484",
-      "summary": "British households are installing solar panels, heat pumps, and buying EVs at record rates — driven not by climate conviction but by the Iran war sending energy bills up 18% from July. Lead with the inversion: war, not policy, is accomplishing what years of green subsidies couldn't. The reader tracking the Iran war's economic cascade will see the demand-side response: when fossil fuel prices spike hard enough, consumers switch — and the energy transition gets an accidental accelerant.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Heat_pump",
-        "http://en.wikipedia.org/wiki/Solar_panel",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Heating_oil"
-      ]
-    },
-    {
-      "id": "delhi-fossil-fuel-bike-ban-2028-ev-policy",
-      "label": "India news: Delhi plans fossil fuel bike ban by 2028",
-      "firstSeen": "2026-04-11T12:08:36.246Z",
-      "lastCovered": "2026-04-11T12:08:36.246Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-delhi-fossil-fuel-bike-ban-2028-ev-policy"
-      ],
-      "eventUri": "eng-11560198",
-      "summary": "Delhi — one of the world's most polluted cities — plans to ban new petrol two-wheelers from 2028, with road tax waivers and scrapping incentives up to ₹1 lakh for EVs. Lead with the scale: two-wheelers are 70%+ of Delhi's registered vehicles and the single largest source of transport emissions. The reader will see a Global South megacity making the most aggressive EV mandate yet — not for climate branding, but because the air is literally unbreathable.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Electric_vehicle",
-        "http://en.wikipedia.org/wiki/Delhi",
-        "http://en.wikipedia.org/wiki/Indian_rupee",
-        "http://en.wikipedia.org/wiki/Lakh",
-        "http://en.wikipedia.org/wiki/Motorcycle",
-        "http://en.wikipedia.org/wiki/Road_tax",
-        "http://en.wikipedia.org/wiki/Electric_car",
-        "http://en.wikipedia.org/wiki/Three-wheeler"
-      ]
-    },
-    {
-      "id": "plastic-burning-indonesia-health-crisis",
-      "label": "Plastic Pollution Is Bad Enough. Burning It Can Be Even Worse.",
-      "firstSeen": "2026-04-11T12:08:36.246Z",
-      "lastCovered": "2026-04-11T12:08:36.246Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-plastic-burning-indonesia-health-crisis"
-      ],
-      "eventUri": null,
-      "summary": "In Indonesia, plastic waste is burned in unregulated low-tech furnaces — and the health consequences are far worse than landfilling. Even incinerators with air scrubbers are linked to premature birth and congenital abnormalities, but open burning in the Global South produces orders of magnitude more dioxins and furans. Lead with the health data: birth defects near burning sites. The reader will see the hidden cost of the global plastic waste trade — wealthy nations export plastic, poorer nations burn it, and the health burden falls on communities with no regulatory protection.",
-      "conceptUris": []
-    },
-    {
-      "id": "majorana-quantum-spin-probes",
-      "label": "'Poor man's Majoranas' can be used as quantum spin probes",
-      "firstSeen": "2026-04-11T12:08:36.246Z",
-      "lastCovered": "2026-04-11T12:08:36.246Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-majorana-quantum-spin-probes"
-      ],
-      "eventUri": null,
-      "summary": "Researchers found that 'poor man's Majorana' quasiparticles — easier to create than the elusive real Majorana fermions — can serve as quantum spin probes, opening a practical path to quantum sensing without waiting for the particle physics breakthrough. Lead with the workaround: instead of hunting for a particle that may not exist in nature, physicists built a usable approximation from solid-state materials. The reader in tech will see the engineering pragmatism — shipping with what works rather than waiting for perfection.",
-      "conceptUris": []
-    },
-    {
-      "id": "senator-csam-inquiry-tech-giants-ai",
-      "label": "Senator launches inquiry into 8 tech giants for failures to adequately report CSAM",
-      "firstSeen": "2026-04-11T12:08:36.246Z",
-      "lastCovered": "2026-04-11T12:08:36.246Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-senator-csam-inquiry-tech-giants-ai"
-      ],
-      "eventUri": null,
-      "summary": "A US senator is investigating 8 major tech companies for deficient reporting of child sexual abuse material, following NCMEC reports alleging the platforms are also failing to report data on generative AI's role in producing CSAM. Lead with the AI connection: this isn't just about under-reporting known images — it's about platforms failing to track how their own generative AI tools are being used to create new abuse material. The reader will see the gap between the UK's criminal liability approach (covered previously with Ofcom/nudification) and the US congressional inquiry approach.",
       "conceptUris": []
     }
   ]

@@ -4685,5 +4685,263 @@
     "label": "Memecoins & the Emoluments Gap",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-12-bangladesh-energy-crisis-iran-war-imports": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VULNERABILITY",
+        "body": "Bangladesh imports 95% of its primary energy — mostly LNG and refined petroleum products. It has no domestic oil production of note and negligible refining capacity. A disruption anywhere along the maritime supply chain hits the entire economy simultaneously."
+      },
+      {
+        "heading": "WHY NO RESERVE",
+        "body": "Strategic petroleum reserves cost billions to build and fill. The US reserve holds 60 days of imports; Japan mandates 90 days. Bangladesh's foreign exchange reserves have been under pressure since 2022, making even a modest stockpile unaffordable. The country runs its energy system as a just-in-time pipeline."
+      },
+      {
+        "heading": "THE FX DEATH SPIRAL",
+        "body": "When spot energy prices spike, import-dependent countries must buy at any price. This drains foreign exchange reserves, which weakens the currency, which makes the next shipment even more expensive in local terms. Pakistan hit this spiral in 2023; Sri Lanka hit it in 2022. The mechanism is identical each time."
+      },
+      {
+        "heading": "THE GARMENT EXPOSURE",
+        "body": "Ready-made garments are 85% of Bangladesh's export earnings. Garment factories run on gas-fired electricity and diesel backup generators. When fuel runs short, the factories that generate the dollars needed to buy more fuel are the first to shut down — a feedback loop that accelerates the crisis."
+      }
+    ],
+    "generatedAt": "2026-04-12T17:23:27.153Z",
+    "label": "Energy Import Dependence",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-12-evaluating-artificial-intelligence-chatbot-performance-on-bo": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT BOARD EXAMS ACTUALLY TEST",
+        "body": "Medical board exams use multi-step clinical vignettes — a patient history, lab results, imaging findings — that require integrating information across domains. They test pattern recognition under ambiguity, not rote recall. This is why high AI scores are notable: the task is closer to clinical reasoning than trivia."
+      },
+      {
+        "heading": "THE CALIBRATION PROBLEM",
+        "body": "A model that scores 85% but cannot tell you which 15% it got wrong is dangerous in medicine. Calibration — the alignment between a model's confidence and its actual accuracy — is a separate property from raw performance. A well-calibrated model that scores 70% is safer than a poorly calibrated model that scores 85%."
+      },
+      {
+        "heading": "WHY GERIATRICS IS HARD",
+        "body": "Elderly patients present atypically: heart attacks without chest pain, infections without fever, depression mimicking dementia. Polypharmacy — the average 75-year-old takes 5+ medications — means drug interactions dominate treatment decisions. The specialty rewards exactly the kind of multi-factor reasoning that is hardest to validate in AI."
+      },
+      {
+        "heading": "THE DEPLOYMENT GAP",
+        "body": "Passing a board exam and practicing medicine are different tasks. Board questions have a single correct answer chosen by a committee. Clinical practice involves incomplete information, patient preferences, resource constraints, and consequences for being wrong. No AI has been tested under those conditions at scale."
+      }
+    ],
+    "generatedAt": "2026-04-12T17:23:27.155Z",
+    "label": "AI & Medical Board Exams",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-12-hamas-refuses-un-disarmament-israel-withdrawal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SEQUENCING PROBLEM",
+        "body": "Every disarmament negotiation hinges on who goes first. The side that disarms before the other side withdraws has surrendered its only leverage. The side that withdraws before the other disarms fears rearming. This mutual-vulnerability problem has stalled negotiations from Northern Ireland to Colombia."
+      },
+      {
+        "heading": "THE IRA PRECEDENT",
+        "body": "The IRA took 8 years after the 1998 Good Friday Agreement to fully decommission its weapons — and only after independent verification by a Canadian general, multiple failed timelines, and continued political concessions. Armed groups disarm when they believe the political process delivers more than armed struggle. The sequence was: ceasefire, political participation, then decommissioning — never the reverse."
+      },
+      {
+        "heading": "THE OCCUPATION CONTEXT",
+        "body": "Israel has occupied Palestinian territories since 1967 — the longest military occupation in modern history. UN Security Council Resolution 242 called for withdrawal; it was never enforced. For Hamas, disarming before a binding withdrawal commitment means trusting a process that has failed to deliver withdrawal for nearly six decades."
+      },
+      {
+        "heading": "WHY PHASED FRAMEWORKS FAIL",
+        "body": "The Oslo Accords used a phased approach: interim self-governance first, final status later. Israel was to withdraw in stages; Palestinians were to build security institutions. Neither side completed its obligations, and the interim phase became permanent. Phased timelines create exit ramps that both sides use to avoid final concessions."
+      }
+    ],
+    "generatedAt": "2026-04-12T17:23:27.155Z",
+    "label": "Disarmament & Withdrawal Sequencing",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-12-india-first-indigenous-quantum-computing-andhra-pradesh": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SOVEREIGNTY MATTERS",
+        "body": "Quantum computers can break RSA encryption — the system that secures most internet traffic, banking, and military communications. Any nation relying on another country's quantum hardware for cryptographic research is running its classified computations on foreign infrastructure. This is why the US, China, and now India treat quantum hardware as a national security capability, not just a research tool."
+      },
+      {
+        "heading": "THE COLD PROBLEM",
+        "body": "Superconducting qubits operate at 15 millikelvin — colder than outer space. Reaching this temperature requires a dilution refrigerator, a device with a global supply chain dominated by a handful of Finnish and British manufacturers. Building one domestically means mastering cryogenic engineering, not just chip design."
+      },
+      {
+        "heading": "THE CLOUD DEPENDENCY",
+        "body": "Until now, Indian quantum researchers rented time on IBM Quantum or Google's machines via cloud access. This means every algorithm tested, every error rate measured, and every benchmark achieved was visible to the hardware provider. For defense and cryptographic applications, cloud quantum is a nonstarter."
+      },
+      {
+        "heading": "THE QUBIT COUNT REALITY",
+        "body": "IBM's current machines run over 1,000 qubits. Google's Willow chip demonstrated real-time error correction. India's first indigenous machines will likely start far smaller. But the strategic value is not in qubit count — it is in the domestic capability to fabricate, calibrate, and iterate without export-controlled foreign components."
+      }
+    ],
+    "generatedAt": "2026-04-12T17:23:27.155Z",
+    "label": "Quantum Computing Sovereignty",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-12-iran-war-trump-energy-dominance-failing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRICE PARADOX",
+        "body": "The US produces more oil than any country in history — over 13 million barrels per day. But American consumers pay world market prices because oil is a globally fungible commodity. A barrel pumped in Texas competes with a barrel pumped in Saudi Arabia. Domestic production does not create domestic pricing."
+      },
+      {
+        "heading": "WHY DRILLING CAN'T FIX IT",
+        "body": "US shale producers are price-takers, not price-setters. They sell at the global benchmark (WTI or Brent). When Hormuz disruption raises Brent by $30, WTI follows — and US producers profit from the spike rather than passing savings to consumers. The incentive structure makes domestic drillers beneficiaries of the crisis, not the solution."
+      },
+      {
+        "heading": "THE REFINERY BOTTLENECK",
+        "body": "America has not built a new major refinery since 1977. Existing refineries run at 90%+ capacity. Even if crude supply increases, the refining system cannot convert it to gasoline fast enough to lower pump prices during a supply shock. The constraint is not underground — it is industrial."
+      },
+      {
+        "heading": "THE EXPORT LOCK",
+        "body": "The US lifted its crude oil export ban in 2015. American producers now export 4+ million barrels per day. Banning exports during a crisis would crash domestic crude prices, bankrupting shale drillers whose breakeven costs are $40-60/barrel. Every lever that could lower consumer prices would destroy producer economics."
+      }
+    ],
+    "generatedAt": "2026-04-12T17:23:27.155Z",
+    "label": "Oil Pricing & Energy Dominance",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-12-jwst-population-iii-first-stars-evidence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CLASSIFICATION",
+        "body": "Astronomers number star populations backward. Population I stars (like the Sun) are young and metal-rich. Population II stars are old with trace metals. Population III stars — the first ever formed — should contain zero metals: pure hydrogen and helium forged in the Big Bang. The numbering reflects discovery order, not chronology."
+      },
+      {
+        "heading": "WHY THEY MATTER",
+        "body": "Population III stars ended the cosmic dark ages — the 200-million-year period after the Big Bang when the universe contained no light sources. These stars forged the first carbon, oxygen, and iron through nuclear fusion, then scattered those elements when they exploded. Every atom of iron in your blood was originally made inside a star. Population III stars were the first link in that chain."
+      },
+      {
+        "heading": "WHY THEY'RE HARD TO FIND",
+        "body": "Population III stars were massive — likely 100 to 1,000 solar masses — and burned through their fuel in a few million years. They have been dead for over 13 billion years. JWST does not see the stars themselves; it sees their light, redshifted into the infrared by the expansion of the universe, arriving now from the edge of the observable cosmos."
+      },
+      {
+        "heading": "THE SPECTRAL SIGNATURE",
+        "body": "A star's spectrum reveals its composition. Metals produce distinct absorption lines — dark bands at specific wavelengths. A Population III star's spectrum should be clean: hydrogen and helium lines only, with no metal absorption. Detecting this absence — proving a negative — requires the infrared sensitivity that only JWST provides."
+      },
+      {
+        "heading": "THE HELIUM LINE",
+        "body": "Ionized helium (He II) emits at 1640 angstroms. Population III stars were hot enough to doubly ionize helium — something metal-enriched stars rarely achieve because metals cool the stellar atmosphere. A strong He II signal with no metal lines is the smoking gun. Previous telescopes lacked the sensitivity to distinguish this signal from background noise at high redshift."
+      }
+    ],
+    "generatedAt": "2026-04-12T17:23:27.155Z",
+    "label": "Population III Stars",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-12-nigeria-airstrike-200-dead-yobe-market-boko-haram": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATTERN",
+        "body": "This is Nigeria's third mass-casualty airstrike on civilians since 2017. In January 2017, a jet hit a displaced-persons camp in Rann, Borno, killing 112. In December 2023, a drone struck a religious gathering in Tudun Biri, Kaduna, killing over 80. Each time, the military initially claimed a legitimate target. Each time, investigations found the strike hit civilians."
+      },
+      {
+        "heading": "WHY IT KEEPS HAPPENING",
+        "body": "Nigeria's Air Force operates with minimal ground-truth intelligence in the northeast. Boko Haram fighters embed in civilian populations, and satellite imagery cannot distinguish a market from a militant gathering. The military's targeting chain relies heavily on signals intelligence and informant tips — both prone to error in a region where Boko Haram has infiltrated local governance."
+      },
+      {
+        "heading": "THE ACCOUNTABILITY GAP",
+        "body": "No Nigerian military officer has been prosecuted for any of the previous civilian airstrike incidents. Internal military investigations concluded without public findings. The International Criminal Court has conducted preliminary examinations of the conflict since 2010 but has not opened a formal investigation. Without consequences, the targeting failures repeat."
+      },
+      {
+        "heading": "THE BOKO HARAM CONTEXT",
+        "body": "Boko Haram's insurgency began in 2009 and has killed over 40,000 people in northeastern Nigeria. The group held territory the size of Belgium in 2014-15 before a multinational offensive pushed it back. It splintered into factions — Boko Haram proper and the Islamic State West Africa Province (ISWAP) — which complicates targeting further, as the factions operate in overlapping areas with different command structures."
+      }
+    ],
+    "generatedAt": "2026-04-12T17:23:27.156Z",
+    "label": "Nigerian Military Airstrikes on Civilians",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-12-panama-vessel-baltic-waste-dumping-sweden": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW FLAGS WORK",
+        "body": "Every commercial vessel must register with a nation — its flag state — which sets the labor, safety, and environmental rules the ship follows. Under international maritime law, the flag state, not the port or cargo origin state, has primary jurisdiction. This creates a market for regulation."
+      },
+      {
+        "heading": "THE CONVENIENCE TRADE",
+        "body": "Panama, Liberia, and the Marshall Islands register over 40% of the world's shipping tonnage. None have significant domestic shipping industries. They sell registration: lower taxes, minimal inspections, no requirement that crew be nationals. A Russian-owned, Chinese-crewed vessel carrying Russian coal can sail under a Panamanian flag and answer to Panamanian law — which is the point."
+      },
+      {
+        "heading": "THE ENFORCEMENT PROBLEM",
+        "body": "Port states can inspect and detain foreign-flagged vessels under the Paris Memorandum of Understanding, but only for safety and pollution violations. Sweden boarding the Hui Yuan used this authority. The constraint is capacity — the global merchant fleet exceeds 100,000 vessels, and port state inspections cover roughly 20% annually."
+      },
+      {
+        "heading": "THE SANCTIONS DODGE",
+        "body": "After Western sanctions targeted Russian exports in 2022, a shadow fleet of aging tankers and bulk carriers — often flagged in Panama, Gabon, or Cameroon — emerged to move Russian oil and coal outside sanctioned channels. Flag-of-convenience registries enable this by design: they do not screen cargo origins or beneficial ownership."
+      }
+    ],
+    "generatedAt": "2026-04-12T17:23:27.156Z",
+    "label": "Flag-of-Convenience Shipping",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-12-sam-altman-molotov-cocktail-openai-response": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LUDDITE PARALLEL",
+        "body": "The original Luddites (1811-16) were not anti-technology — they were skilled textile workers who smashed specific machines that owners used to replace them with cheaper, unskilled labor. The violence was targeted and strategic: destroy the machines, preserve the jobs. The modern echo is displacement anxiety converting to direct action against perceived agents of displacement."
+      },
+      {
+        "heading": "THE ESCALATION LADDER",
+        "body": "Political violence against tech figures follows a pattern seen in other industries: protests, then vandalism of property (Google bus blockades in 2013-14, Waymo attacks in 2024), then targeted attacks on individuals. Each step normalizes the next. The San Francisco tech backlash has moved through every rung over the past decade."
+      },
+      {
+        "heading": "THE HISTORICAL PATTERN",
+        "body": "Executives targeted for their industry's perceived harms is not new. In the 1970s, German industrialists faced kidnappings by the Red Army Faction, which framed corporate leaders as enablers of systemic injustice. The Unabomber (1978-95) targeted university researchers and airline executives he believed were driving harmful technological change. The logic is consistent: hold individuals responsible for structural disruption."
+      },
+      {
+        "heading": "WHY AI IS DIFFERENT",
+        "body": "Previous automation waves displaced specific trades — weavers, switchboard operators, bank tellers. AI threatens white-collar knowledge work: legal research, medical diagnosis, copywriting, coding. The affected class is educated, politically engaged, and concentrated in cities with proximity to tech leadership. The displacement is broader and the backlash pool is larger."
+      }
+    ],
+    "generatedAt": "2026-04-12T17:23:27.156Z",
+    "label": "Tech Backlash & Political Violence",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-12-trump-orders-naval-blockade-of-strait-of-hormuz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL STATUS",
+        "body": "Under international law, a blockade is an act of war. The San Remo Manual on naval warfare (1994) requires that a blockade be declared, notified, effective, and non-discriminatory. Blocking neutral commercial shipping — including vessels bound for countries not party to the conflict — violates the principle of freedom of navigation unless a formal state of war exists."
+      },
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption. The deepest channel hugs the Iranian coast, which is why Iranian naval positioning matters disproportionately."
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West Pipeline and the UAE's Habshan-Fujairah pipeline can reroute maybe a third of Gulf oil exports overland. Qatar's LNG — the world's largest supply — has no pipeline alternative at all. Iraq, Kuwait, and Iran have zero bypass capacity. A full blockade removes roughly 14 million barrels per day from global markets with no substitute."
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson for both sides: disruption at Hormuz is easier to threaten than to sustain, but even partial disruption sends insurance premiums — and therefore prices — spiraling."
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not mines or missiles — are what functionally close a shipping lane. When premiums spike from 0.05% to 5% of hull value, a single tanker transit can cost millions in insurance alone. Commercial vessels reroute or sit idle regardless of how many warships are present. The financial chokepoint is tighter than the physical one."
+      }
+    ],
+    "generatedAt": "2026-04-12T17:23:27.156Z",
+    "label": "Naval Blockades & Hormuz",
+    "category": "politics",
+    "articleCount": 1
   }
 }
