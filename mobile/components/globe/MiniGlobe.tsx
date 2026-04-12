@@ -267,7 +267,7 @@ interface GlobeState {
   northPole: { x: number; y: number } | null;
   southPole: { x: number; y: number } | null;
   dot: { x: number; y: number } | null;
-  dotLabel: { text: string; x: number; y: number } | null;
+  dotLabel: { text: string; sub?: string; x: number; y: number } | null;
   makkah: { x: number; y: number } | null;
   hotspotGlows: {
     x: number;
@@ -487,7 +487,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   const globeRadius = width * 0.9;
   const cx = width / 2;
   const cy = height * 0.75;
-  const labelFont = useFont(require('../../assets/fonts/SourceSans3-Regular.ttf'), 10);
+  const labelFont = useFont(require('../../assets/fonts/SourceSans3-Regular.ttf'), 14);
+  const subFont = useFont(require('../../assets/fonts/SourceSans3-Regular.ttf'), 11);
 
   // Precompute per-article: coords + country feature + names (before useState so initializer can use it)
   const articleGeo = useMemo(() => {
@@ -651,16 +652,26 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (pt) dot = { x: pt[0], y: pt[1] };
     }
 
-    // Dot label — location + local time
+    // Dot label — location name (primary), local time (secondary)
     let dotLabel: GlobeState['dotLabel'] = null;
     const settledCountry = cachedCountryRef.current?.properties?.name ?? null;
     if (dot && settledCountry) {
-      const tz = COUNTRY_TZ[settledCountry];
-      const time = tz ? formatLocalTime(tz) : null;
       const article = articlesRef.current[settledIndex];
       const loc = displayLocation(article?.location ?? null);
-      const text = [loc, time].filter(Boolean).join(' · ');
-      if (text) dotLabel = { text, x: dot.x, y: dot.y };
+      if (loc) {
+        // Derive local time from longitude (15° = 1 hour) — accurate for any
+        // point on earth, unlike the single-timezone-per-country lookup which
+        // fails for large countries (e.g. US: DC vs Hawaii is 5 hours off).
+        let sub: string | undefined;
+        if (geo && geo.lng != null) {
+          const now = new Date();
+          const utcMs = now.getTime() + now.getTimezoneOffset() * 60000;
+          const localMs = utcMs + (geo.lng / 15) * 3600000;
+          const local = new Date(localMs);
+          sub = `${String(local.getHours()).padStart(2, '0')}:${String(local.getMinutes()).padStart(2, '0')}`;
+        }
+        dotLabel = { text: loc, sub, x: dot.x, y: dot.y };
+      }
     }
 
     // Country highlight — reuse path object
@@ -1097,14 +1108,26 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Dot label — location · local time */}
       {state.dotLabel && labelFont && (
-        <SkiaText
-          x={state.dotLabel.x + 6}
-          y={state.dotLabel.y + 4}
-          text={state.dotLabel.text}
-          font={labelFont}
-          color={colors.text}
-          opacity={light ? 0.4 : 0.3}
-        />
+        <>
+          <SkiaText
+            x={state.dotLabel.x + 6}
+            y={state.dotLabel.y + 4}
+            text={state.dotLabel.text}
+            font={labelFont}
+            color={colors.text}
+            opacity={light ? 0.6 : 0.7}
+          />
+          {state.dotLabel.sub && subFont && (
+            <SkiaText
+              x={state.dotLabel.x + 6}
+              y={state.dotLabel.y + 18}
+              text={state.dotLabel.sub}
+              font={subFont}
+              color={colors.text}
+              opacity={light ? 0.4 : 0.45}
+            />
+          )}
+        </>
       )}
 
       {/* Pole markers — tiny crosses */}

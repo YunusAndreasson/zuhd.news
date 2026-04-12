@@ -3,7 +3,7 @@ import {
   BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -20,15 +20,17 @@ function KeyStat({ label, value }: { label: string; value: string | null | undef
         selectable
         style={[
           styles.keyStatValue,
-          { ...font.bold, fontSize: typography.sizeBase, color: colors.textEmphasis, fontVariant: ['oldstyle-nums'] as const },
+          {
+            ...font.bold,
+            fontSize: typography.sizeBase,
+            color: colors.textEmphasis,
+            fontVariant: ['oldstyle-nums'] as const,
+          },
         ]}
       >
         {value}
       </Text>
-      <Text
-        selectable
-        style={[styles.keyStatLabel, textStyles.smallCapsXs]}
-      >
+      <Text selectable style={[styles.keyStatLabel, textStyles.smallCapsXs]}>
         {label}
       </Text>
     </View>
@@ -75,19 +77,29 @@ export const CountrySheet = memo(function CountrySheet({
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
   const flag = country?.data?.flag;
   const name = country?.countryName;
+  const handleDataRef = useRef({ flag, name });
+  handleDataRef.current = { flag, name };
   const CountryHandle = useCallback(
-    () => (
-      <View style={styles.handle}>
-        <View style={[styles.handleIndicator, { backgroundColor: colors.rule }]} />
-        {(flag || name) && (
-          <View style={styles.handleRow}>
-            {flag && <Text style={styles.handleFlag}>{flag}</Text>}
-            {name && <Text style={[styles.handleTitle, textStyles.sheetTitle]}>{name}</Text>}
-          </View>
-        )}
-      </View>
-    ),
-    [flag, name, colors.rule, textStyles.sheetTitle],
+    () => {
+      const { flag: f, name: n } = handleDataRef.current;
+      return (
+        <View
+          style={styles.handle}
+          accessibilityRole="adjustable"
+          accessibilityLabel={n ? `${n} sheet` : 'Country sheet'}
+          accessibilityHint="Swipe down to dismiss"
+        >
+          <View style={[styles.handleIndicator, { backgroundColor: colors.rule }]} />
+          {(f || n) && (
+            <View style={styles.handleRow}>
+              {f && <Text style={styles.handleFlag}>{f}</Text>}
+              {n && <Text style={[styles.handleTitle, textStyles.sheetTitle]}>{n}</Text>}
+            </View>
+          )}
+        </View>
+      );
+    },
+    [colors.rule, textStyles.sheetTitle],
   );
 
   return (
@@ -117,12 +129,7 @@ export const CountrySheet = memo(function CountrySheet({
             {/* Developing stories — shown when coverage hotspots overlap this country */}
             {country.hotspotLabels && country.hotspotLabels.length > 0 && (
               <View style={styles.hotspotSection}>
-                <Text
-                  style={[
-                    styles.sheetLabel,
-                    textStyles.smallCapsXs,
-                  ]}
-                >
+                <Text style={[styles.sheetLabel, textStyles.smallCapsXs]}>
                   {country.hotspotLabels.length === 1 ? 'DEVELOPING STORY' : 'DEVELOPING STORIES'}
                 </Text>
                 {country.hotspotLabels.map((label, i) => (
@@ -189,9 +196,9 @@ const styles = StyleSheet.create({
     paddingBottom: SPACING.md,
   },
   handleIndicator: {
-    width: 36,
-    height: 4,
-    borderRadius: 2,
+    width: LAYOUT.handleWidth,
+    height: LAYOUT.handleHeight,
+    borderRadius: LAYOUT.handleRadius,
   },
   handleRow: {
     flexDirection: 'row',
@@ -200,7 +207,7 @@ const styles = StyleSheet.create({
     marginTop: SPACING.sm,
   },
   handleFlag: {
-    fontSize: 20,
+    fontSize: LAYOUT.iconMd,
   },
   handleTitle: {},
   sheetLabel: {
@@ -225,7 +232,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   keyStatValue: {
-    marginBottom: SPACING.xs / 2,
+    marginBottom: SPACING.xxs,
   },
   keyStatLabel: {},
   countryRow: {

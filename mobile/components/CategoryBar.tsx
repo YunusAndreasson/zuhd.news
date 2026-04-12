@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
@@ -18,7 +19,7 @@ interface CategoryBarProps {
   categoryProgresses: SharedValue<number[]>;
   currentCategory: number;
   onCategoryPress: (index: number) => void;
-  onSettingsPress: () => void;
+  onMenuPress: () => void;
 }
 
 function TabLabel({
@@ -72,7 +73,7 @@ export const CategoryBar = memo(function CategoryBar({
   categoryProgresses,
   currentCategory,
   onCategoryPress,
-  onSettingsPress,
+  onMenuPress,
 }: CategoryBarProps) {
   const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
@@ -154,22 +155,13 @@ export const CategoryBar = memo(function CategoryBar({
           </Text>
         </Pressable>
         <Pressable
-          onPress={onSettingsPress}
+          onPress={onMenuPress}
           hitSlop={12}
           style={({ pressed }) => pressed && PRESSED_STYLE}
           accessibilityRole="button"
-          accessibilityLabel="Settings"
+          accessibilityLabel="Menu"
         >
-          <Text
-            style={{
-              ...font.smallCaps,
-              fontSize: typography.sizeXs,
-              letterSpacing: typography.trackingCaps,
-              color: colors.textSecondary,
-            }}
-          >
-            settings
-          </Text>
+          <Ionicons name="menu" size={typography.sizeBase} color={colors.textSecondary} />
         </Pressable>
       </View>
 

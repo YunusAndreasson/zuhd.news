@@ -3,7 +3,6 @@ import { StyleSheet, Text, type TextStyle } from 'react-native';
 import * as WebBrowser from 'expo-web-browser';
 import type { ColorPalette, FontSet, Typography } from '../constants/theme';
 import { Platform } from 'react-native';
-import { displayLocation } from './place-names';
 
 export type Segment = { type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link'; text: string; url?: string };
 
@@ -151,6 +150,7 @@ export function renderSentences(
   typography: Typography,
   fontSize?: number,
   location?: string | null,
+  dateline?: string | null,
 ): ReactNode[] {
   const size = fontSize ?? typography.sizeBase;
   const sizeStyle = fontSize
@@ -162,17 +162,30 @@ export function renderSentences(
     : null;
 
   return sentences.map((sentence, i) => {
-    // First sentence: use location meta for dateline, strip "Location — " prefix
-    if (i === 0 && location) {
-      const prefix = location + ' \u2014 ';
-      const rest = sentence.startsWith(prefix) ? sentence.slice(prefix.length) : sentence;
-      return (
-        <Text key={i} style={[mdStyles.sentence, sizeStyle]} selectable>
-          <Text style={mdStyles.dateline}>{(displayLocation(location) ?? location).toLowerCase()}</Text>
-          {'  '}
-          {renderSegments(parseInline(rest), mdStyles)}
-        </Text>
-      );
+    if (i === 0) {
+      // Strip "Location — " prefix from first sentence if present
+      let rest = sentence;
+      if (location) {
+        const prefix = location + ' \u2014 ';
+        if (sentence.startsWith(prefix)) rest = sentence.slice(prefix.length);
+      }
+      // Show dateline (e.g. time ago) in small-caps before first sentence
+      if (dateline) {
+        return (
+          <Text key={i} style={[mdStyles.sentence, sizeStyle]} selectable>
+            <Text style={mdStyles.dateline}>{dateline}</Text>
+            {'  '}
+            {renderSegments(parseInline(rest), mdStyles)}
+          </Text>
+        );
+      }
+      if (rest !== sentence) {
+        return (
+          <Text key={i} style={[mdStyles.sentence, sizeStyle]} selectable>
+            {renderSegments(parseInline(rest), mdStyles)}
+          </Text>
+        );
+      }
     }
     return (
       <Text key={i} style={[mdStyles.sentence, sizeStyle]} selectable>

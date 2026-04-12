@@ -4,11 +4,12 @@ import Animated, {
   Easing,
   runOnJS,
   useAnimatedStyle,
+  useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import { ANIMATION, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 type ToastPosition = 'top' | 'bottom';
@@ -19,8 +20,8 @@ export interface ToastRef {
 
 const TOAST_VISIBLE_MS = 4000;
 const TOAST_SLIDE_OFFSET = SPACING.xxl;
-const EASE_IN = { duration: 200, easing: Easing.in(Easing.ease) };
-const EASE_OUT = { duration: 250, easing: Easing.out(Easing.ease) };
+const EASE_IN = { duration: ANIMATION.normal, easing: Easing.in(Easing.ease) };
+const EASE_OUT = { duration: ANIMATION.normal, easing: Easing.out(Easing.ease) };
 
 export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
   const { colors, font, typography } = useTheme();
@@ -34,6 +35,7 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
   const translateY = useSharedValue<number>(TOAST_SLIDE_OFFSET);
 
   const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     return () => {
@@ -42,12 +44,17 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
   }, []);
 
   const dismiss = useCallback(() => {
+    if (reduceMotion) {
+      opacity.value = 0;
+      setVisible(false);
+      return;
+    }
     const offset = posRef.current === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET;
     opacity.value = withTiming(0, EASE_IN, (finished) => {
       if (finished) runOnJS(setVisible)(false);
     });
     translateY.value = withTiming(offset, EASE_IN);
-  }, [opacity, translateY]);
+  }, [opacity, translateY, reduceMotion]);
 
   useImperativeHandle(ref, () => ({
     show: (msg: string, onPress?: () => void, position: ToastPosition = 'bottom') => {
@@ -58,9 +65,14 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
       setVisible(true);
       onPressRef.current = onPress;
 
-      translateY.value = position === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET;
-      opacity.value = withTiming(1, EASE_OUT);
-      translateY.value = withTiming(0, EASE_OUT);
+      if (reduceMotion) {
+        translateY.value = 0;
+        opacity.value = 1;
+      } else {
+        translateY.value = position === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET;
+        opacity.value = withTiming(1, EASE_OUT);
+        translateY.value = withTiming(0, EASE_OUT);
+      }
 
       timerRef.current = setTimeout(dismiss, TOAST_VISIBLE_MS);
     },
@@ -96,7 +108,14 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
         accessibilityRole="alert"
         accessibilityLabel={message}
       >
-        <Text style={[styles.text, { ...font.semiBold, fontSize: typography.sizeSm, color: colors.text }]}>{message}</Text>
+        <Text
+          style={[
+            styles.text,
+            { ...font.semiBold, fontSize: typography.sizeSm, color: colors.text },
+          ]}
+        >
+          {message}
+        </Text>
       </Pressable>
     </Animated.View>
   );
@@ -114,7 +133,7 @@ const styles = StyleSheet.create({
   pill: {
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.lg,
-    borderRadius: 14,
+    borderRadius: LAYOUT.toastRadius,
   },
   text: {},
 });

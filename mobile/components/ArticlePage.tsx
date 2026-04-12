@@ -1,7 +1,6 @@
-import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { memo, useCallback, useMemo } from 'react';
-import { Pressable, Share, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -10,17 +9,16 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { LAYOUT, SPACING } from '../constants/theme';
+import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact } from '../lib/haptics';
 import { makeMarkdownStyles, renderSentences } from '../lib/markdown';
-import type { Article, ContextPressHandler, SourcePressHandler } from '../types';
-import { ActionLabel } from './ActionLabel';
+import type { Article } from '../types';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 
-const GRADIENT_HEIGHT_TOP = 28;
-const GRADIENT_HEIGHT_BOTTOM = 40;
+const GRADIENT_HEIGHT_TOP = 32;
+const GRADIENT_HEIGHT_BOTTOM = 72;
 
 interface ArticlePageProps {
   article: Article;
@@ -28,16 +26,12 @@ interface ArticlePageProps {
   screenWidth: number;
   index: number;
   scrollY: SharedValue<number>;
-  onSourcePress?: SourcePressHandler;
-  onContextPress?: ContextPressHandler;
   onBookmarkPress?: (article: Article) => void;
   showEarlierDivider?: boolean;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
   onCountryPress?: (result: TapResult) => void;
   tick?: number;
-  isBreaking?: boolean;
-  onBreakingPress?: (coverage: number) => void;
 }
 
 function GlobeTapZone({
@@ -78,16 +72,12 @@ export const ArticlePage = memo(function ArticlePage({
   screenWidth,
   index,
   scrollY,
-  onSourcePress,
-  onContextPress,
   onBookmarkPress,
   showEarlierDivider,
   globeRef,
   globeYOffset,
   onCountryPress,
   tick: _tick,
-  isBreaking,
-  onBreakingPress,
 }: ArticlePageProps) {
   const { colors, font, typography, textStyles, bgAlpha } = useTheme();
   const timeAgo = formatTimeAgo(article.addedAt);
@@ -135,16 +125,9 @@ export const ArticlePage = memo(function ArticlePage({
   );
 
   const body = useMemo(
-    () => renderSentences(article.sentences, mdStyles, typography, bodyFontSize, article.location),
-    [article.sentences, mdStyles, typography, bodyFontSize, article.location],
+    () => renderSentences(article.sentences, mdStyles, typography, bodyFontSize, article.location, timeAgo),
+    [article.sentences, mdStyles, typography, bodyFontSize, article.location, timeAgo],
   );
-
-  const articleUrl = `https://zuhd.news/a/${article.slug}`;
-
-  const handleShare = useCallback(() => {
-    hapticImpact();
-    Share.share({ message: `${article.title}\n\n${articleUrl}` }).catch(() => {});
-  }, [article.title, articleUrl]);
 
   const handleLongPress = useCallback(() => {
     onBookmarkPress?.(article);
@@ -178,7 +161,11 @@ export const ArticlePage = memo(function ArticlePage({
           <View style={styles.earlierDivider}>
             <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
             <Text
-              style={[styles.earlierLabel, textStyles.smallCaps, { fontSize: typography.sizeBase, color: colors.accent }]}
+              style={[
+                styles.earlierLabel,
+                textStyles.smallCaps,
+                { fontSize: typography.sizeBase, color: colors.accent },
+              ]}
             >
               caught up
             </Text>
@@ -203,51 +190,14 @@ export const ArticlePage = memo(function ArticlePage({
             {article.title}
           </Text>
           {body}
-
-          {/* Meta — status left, actions right */}
-          <View style={styles.meta}>
-            <View style={styles.metaGroup}>
-              {isBreaking && (
-                <Pressable
-                  onPress={() => onBreakingPress?.(article.eventCoverage ?? 0)}
-                  hitSlop={8}
-                  accessibilityRole="button"
-                  accessibilityLabel="Breaking news indicator"
-                >
-                  <Ionicons name="flame" size={typography.sizeSm} color={colors.textSecondary} />
-                </Pressable>
-              )}
-              <Text style={[styles.metaDim, textStyles.smallCaps, textStyles.textShadow]}>
-                {timeAgo}
-              </Text>
-            </View>
-            <View style={styles.metaGroup}>
-              {article.threadId && onContextPress && (
-                <ActionLabel label="context" onPress={() => onContextPress(article.threadId!)} />
-              )}
-              {article.sources.length > 0 ? (
-                <ActionLabel
-                  label={article.sources.length === 1 ? 'source' : 'sources'}
-                  onPress={() =>
-                    onSourcePress?.(
-                      article.sources[0]?.name ?? '',
-                      article.sources,
-                      article.sentimentDivergence,
-                    )
-                  }
-                />
-              ) : null}
-              <ActionLabel label="share" onPress={handleShare} />
-            </View>
-          </View>
         </Animated.View>
       </Pressable>
 
       {/* Gradient dissolves content into globe — fades with body */}
       <Animated.View style={fadeStyle} pointerEvents="none">
         <LinearGradient
-          colors={[colors.bg, bgAlpha(0.8), bgAlpha(0.4), bgAlpha(0)]}
-          locations={[0, 0.3, 0.7, 1]}
+          colors={[colors.bg, bgAlpha(0.8), bgAlpha(0.35), bgAlpha(0)]}
+          locations={[0, 0.2, 0.55, 1]}
           style={[styles.gradientBottom, { width: screenWidth }]}
         />
       </Animated.View>
@@ -261,6 +211,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: SPACING.screenPadding,
+    paddingBottom: SPACING.xl,
   },
   gradientTop: {
     height: GRADIENT_HEIGHT_TOP,
@@ -284,18 +235,6 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.lg,
     fontVariant: ['oldstyle-nums'],
   },
-  meta: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: SPACING.lg,
-  },
-  metaGroup: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.sm,
-  },
-  metaDim: {},
   globeTapZone: {
     ...StyleSheet.absoluteFillObject,
   },

@@ -50,16 +50,20 @@ export const ArticleRow = memo(function ArticleRow({
       ]}
       accessibilityRole="button"
       accessibilityLabel={title}
+      accessibilityHint="Double tap to read, long press to save"
     >
       <Text
-        style={{ ...font.semiBold, fontSize: typography.sizeLg, lineHeight: typography.sizeLg * typography.leadingHeading, color: colors.text }}
+        style={{
+          ...font.semiBold,
+          fontSize: typography.sizeLg,
+          lineHeight: typography.sizeLg * typography.leadingHeading,
+          color: colors.text,
+        }}
         numberOfLines={2}
       >
         {title}
       </Text>
-      <Text
-        style={[textStyles.smallCapsXs, { marginTop: SPACING.xs }]}
-      >
+      <Text style={[textStyles.smallCapsXs, { marginTop: SPACING.xs }]}>
         {category} · {formatTimeAgo(addedAt)}
         {location ? ` · ${displayLocation(location)}` : ''}
       </Text>
@@ -69,7 +73,7 @@ export const ArticleRow = memo(function ArticleRow({
 
 const styles = StyleSheet.create({
   row: {
-    paddingVertical: SPACING.md + 4,
+    paddingVertical: SPACING.screenPadding,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
 });

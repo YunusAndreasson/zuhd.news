@@ -2,12 +2,13 @@ import { useCallback, useEffect } from 'react';
 import { Image, Pressable, StyleSheet } from 'react-native';
 import Animated, {
   useAnimatedStyle,
+  useReducedMotion,
   useSharedValue,
   withSequence,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import { LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { hapticImpact } from '../lib/haptics';
 
@@ -18,7 +19,8 @@ interface BrandLogoProps {
   autoPlay?: boolean;
 }
 
-function playRotation(rotation: { value: number }) {
+function playRotation(rotation: { value: number }, reduceMotion: boolean) {
+  if (reduceMotion) return;
   rotation.value = withSequence(
     withTiming(0, { duration: 0 }),
     withSpring(-90, { damping: 12, stiffness: 180 }),
@@ -29,15 +31,16 @@ function playRotation(rotation: { value: number }) {
 export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
   const { colors } = useTheme();
   const rotation = useSharedValue(0);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    if (autoPlay) playRotation(rotation);
-  }, [autoPlay, rotation]);
+    if (autoPlay) playRotation(rotation, !!reduceMotion);
+  }, [autoPlay, rotation, reduceMotion]);
 
   const onPress = useCallback(() => {
     hapticImpact();
-    playRotation(rotation);
-  }, [rotation]);
+    playRotation(rotation, !!reduceMotion);
+  }, [rotation, reduceMotion]);
 
   const logoStyle = useAnimatedStyle(() => ({
     transform: [{ rotate: `${rotation.value}deg` }],
@@ -52,7 +55,10 @@ export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
       accessibilityLabel="zuhd.news logo"
     >
       <Animated.View style={logoStyle}>
-        <Image source={logo} style={[styles.logo, { width: size, height: size, backgroundColor: colors.bg }]} />
+        <Image
+          source={logo}
+          style={[styles.logo, { width: size, height: size, backgroundColor: colors.bg }]}
+        />
       </Animated.View>
     </Pressable>
   );
@@ -60,6 +66,6 @@ export function BrandLogo({ size = 36, autoPlay = false }: BrandLogoProps) {
 
 const styles = StyleSheet.create({
   logo: {
-    borderRadius: 8,
+    borderRadius: LAYOUT.logoRadius,
   },
 });

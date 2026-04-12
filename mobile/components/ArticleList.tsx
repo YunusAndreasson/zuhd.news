@@ -1,13 +1,14 @@
 import {
   memo,
   useCallback,
+  useEffect,
   useEffectEvent,
   useImperativeHandle,
   useMemo,
   useRef,
   useState,
 } from 'react';
-import { RefreshControl, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { RefreshControl, StyleSheet, useWindowDimensions, View } from 'react-native';
 import Animated, {
   runOnJS,
   type SharedValue,
@@ -15,14 +16,14 @@ import Animated, {
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { SPACING } from '../constants/theme';
 import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { hapticNotification, hapticTick } from '../lib/haptics';
 import { maybeRequestReview } from '../lib/store-review';
-import type { Article, ContextPressHandler, HeatmapPoint, SourcePressHandler } from '../types';
+import type { Article, HeatmapPoint } from '../types';
 import { ArticlePage } from './ArticlePage';
+import { EmptyState } from './EmptyState';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
 
 const BREAKING_THRESHOLD = 100;
@@ -41,11 +42,9 @@ interface ArticleListProps {
   onRefresh: () => Promise<void>;
   onEndReached?: (catIndex: number) => void;
   onCaughtUp?: () => void;
-  onSourcePress?: SourcePressHandler;
-  onContextPress?: ContextPressHandler;
   onCountryPress?: (result: TapResult) => void;
   onBookmarkPress?: (article: Article) => void;
-  onBreakingPress?: (coverage: number) => void;
+  onArticleChange?: (article: Article, catIndex: number) => void;
   progressesSV: SharedValue<number[]>;
   tick?: number;
   resetKey?: number;
@@ -58,11 +57,9 @@ export const ArticleList = memo(function ArticleList({
   viewportHeight,
   catIndex,
   lastSeenAt,
-  onSourcePress,
-  onContextPress,
   onCountryPress,
   onBookmarkPress,
-  onBreakingPress,
+  onArticleChange,
   onRefresh,
   onEndReached,
   onCaughtUp,
@@ -71,7 +68,7 @@ export const ArticleList = memo(function ArticleList({
   resetKey,
   ref,
 }: ArticleListProps) {
-  const { colors, font, typography } = useTheme();
+  const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const { width: screenWidth } = useWindowDimensions();
   // Chronological sort, but within the same time bucket (e.g. all "1h ago")
@@ -91,10 +88,7 @@ export const ArticleList = memo(function ArticleList({
   }, [articles]);
   const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight;
-  const safeAreaFooter = useMemo(
-    () => <View style={{ height: insets.bottom }} />,
-    [insets.bottom],
-  );
+  const safeAreaFooter = useMemo(() => <View style={{ height: insets.bottom }} />, [insets.bottom]);
   const {
     scrollY,
     currentIndex,
@@ -128,6 +122,12 @@ export const ArticleList = memo(function ArticleList({
       setLocalRefreshing(false);
     }
   }, [onRefresh]);
+
+  // Report current article to parent (initial + on snap/sort change)
+  useEffect(() => {
+    const article = sortedArticles[currentIndex];
+    if (article) onArticleChange?.(article, catIndex);
+  }, [currentIndex, sortedArticles, catIndex, onArticleChange]);
 
   useImperativeHandle(ref, () => ({
     scrollToTop: () => {
@@ -185,7 +185,7 @@ export const ArticleList = memo(function ArticleList({
       setCurrentIndex(idx);
       maybeRequestReview();
     },
-    [earlierIndex, onCaughtUp],
+    [earlierIndex, onCaughtUp, caughtUpFired, setCurrentIndex],
   );
 
   const handleMomentumEnd = useCallback(
@@ -213,27 +213,20 @@ export const ArticleList = memo(function ArticleList({
         screenWidth={screenWidth}
         index={index}
         scrollY={scrollY}
-        onSourcePress={onSourcePress}
-        onContextPress={onContextPress}
         onBookmarkPress={onBookmarkPress}
         showEarlierDivider={index === earlierIndex}
         globeRef={globeRef}
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
-        onBreakingPress={onBreakingPress}
         tick={tick}
-        isBreaking={(item.eventCoverage ?? 0) >= BREAKING_THRESHOLD}
       />
     ),
     [
       itemHeight,
       screenWidth,
       scrollY,
-      onSourcePress,
-      onContextPress,
       onCountryPress,
       onBookmarkPress,
-      onBreakingPress,
       earlierIndex,
       tick,
     ],
@@ -241,14 +234,7 @@ export const ArticleList = memo(function ArticleList({
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);
 
-  if (sortedArticles.length === 0)
-    return (
-      <View style={styles.empty}>
-        <Text style={{ ...font.regular, fontSize: typography.sizeSm, color: colors.textSecondary }}>
-          No articles yet
-        </Text>
-      </View>
-    );
+  if (sortedArticles.length === 0) return <EmptyState message="No articles yet" />;
 
   return (
     <View
@@ -304,5 +290,4 @@ export const ArticleList = memo(function ArticleList({
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  empty: { flex: 1, alignItems: 'center', paddingTop: SPACING.xl },
 });

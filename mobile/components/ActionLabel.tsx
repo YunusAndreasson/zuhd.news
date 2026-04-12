@@ -6,15 +6,25 @@ import { useTheme } from '../hooks/useTheme';
 interface ActionLabelProps {
   label: string;
   onPress: () => void;
+  accessibilityHint?: string;
 }
 
-export const ActionLabel = memo(function ActionLabel({ label, onPress }: ActionLabelProps) {
+export const ActionLabel = memo(function ActionLabel({
+  label,
+  onPress,
+  accessibilityHint,
+}: ActionLabelProps) {
   const { textStyles } = useTheme();
   return (
-    <Pressable onPress={onPress} hitSlop={12} style={({ pressed }) => pressed && PRESSED_STYLE} accessibilityRole="button" accessibilityLabel={label}>
-      <Text style={[styles.label, textStyles.smallCaps, textStyles.textShadow]}>
-        {label}
-      </Text>
+    <Pressable
+      onPress={onPress}
+      hitSlop={12}
+      style={({ pressed }) => pressed && PRESSED_STYLE}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      accessibilityHint={accessibilityHint}
+    >
+      <Text style={[styles.label, textStyles.smallCaps, textStyles.textShadow]}>{label}</Text>
     </Pressable>
   );
 });
