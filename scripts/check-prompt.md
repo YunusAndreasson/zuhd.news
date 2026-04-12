@@ -51,6 +51,7 @@ Check first, before any style rules.
 - One idea per sentence. Comma + new subject = split into two sentences.
 - No nesting. Introduce a person, then state their action in the next sentence.
 - One new proper noun per sentence.
+- **Acronyms:** Always spell out abbreviations unless globally recognised (US, UK, EU, UN, WHO, NATO, ISIS, IDF, IMF, ICC, ICJ). Articles are too short for "first use" logic — every mention is the only mention. If the title uses an acronym, the body must expand it.
 - Summarize lists: "the UK and 4 allies" over enumerating all 5.
 - Active voice. Digits for numbers.
 </clarity>

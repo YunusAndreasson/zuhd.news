@@ -80,7 +80,9 @@ Every article follows a 3-sentence arc:
 
 **Dateline.** Every article opens with location + em dash: `Tehran — `, `Gaza — `, `Jakarta — `. Use the most specific meaningful location. Cities are preferred over countries when the story is clearly tied to one place.
 
-**Headlines.** 3-5 words. Subject + verb. Drop articles. Spell out names (only US, UK, EU, UN, WHO, NATO, ISIS need no expansion).
+**Acronyms.** Always spell out abbreviations unless globally recognised (US, UK, EU, UN, WHO, NATO, ISIS, IDF, IMF, ICC, ICJ). Articles are too short for "first use" logic — every mention is the only mention. "The Democratic Alliance mandated…" not "The DA mandated…".
+
+**Headlines.** 3-5 words. Subject + verb. Drop articles.
 
 </principles>
 
