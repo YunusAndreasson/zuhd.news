@@ -4943,5 +4943,267 @@
     "label": "Naval Blockades & Hormuz",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-12-ai-backlash-violence-essay-hacker-news": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE LUDDITES ACTUALLY WERE",
+        "body": "The Luddites were not anti-technology. They were skilled textile workers in 1811-16 England who smashed specific machines — wide stocking frames — that factory owners used to replace them with cheaper, unskilled labor. Their grievance was not the machine itself but the elimination of their bargaining power. The British government deployed more troops against Luddites than it had sent to fight Napoleon in the Peninsular War."
+      },
+      {
+        "heading": "THE PATTERN",
+        "body": "Technology displacement follows a consistent sequence: new tool arrives, owners capture the productivity gain, displaced workers lose income before any new jobs materialize, and violence targets the most visible symbol of the change. The gap between displacement and re-employment is where the danger lives. For handloom weavers after the power loom, that gap lasted 40 years."
+      },
+      {
+        "heading": "WHY LABS, NOT GOVERNMENTS",
+        "body": "The Luddites attacked factory owners, not Parliament, because Parliament had already refused to act — a proposed bill to ban wide frames was voted down in the House of Lords. When the political system offers no relief valve, anger redirects to the nearest physical target. AI labs occupy the same position: highly visible, geographically concentrated, and with no political counterweight advocating for displaced workers."
+      },
+      {
+        "heading": "THE SPEED VARIABLE",
+        "body": "Previous automation waves displaced one industry at a time — textiles, then agriculture, then manufacturing — giving decades for labor markets to adjust. Large language models affect white-collar and blue-collar work simultaneously across multiple sectors. The historical pattern holds, but the timeline is compressed in a way that has no precedent."
+      }
+    ],
+    "generatedAt": "2026-04-12T22:20:16.436Z",
+    "label": "The Luddite Pattern",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-12-artemis-ii-earthset-photo-apollo-earthrise": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ACCIDENTAL ICON",
+        "body": "Apollo 8's Earthrise was not planned. The crew was photographing the lunar surface for future landing sites when Bill Anders saw Earth rising above the horizon during an orbital roll. He scrambled for color film. The resulting photograph — AS8-14-2383HR — is credited with catalyzing the modern environmental movement. No image before or since has so fundamentally changed how humans see their planet."
+      },
+      {
+        "heading": "WHY EARTHSET, NOT EARTHRISE",
+        "body": "Earthrise and Earthset are only visible during orbital maneuvers or flyby trajectories. From the lunar surface, Earth hangs in a fixed position in the sky because the Moon is tidally locked — it never rises or sets. The Apollo 8 crew saw Earth rise because their orbit carried them around the far side and back. Artemis II's free-return flyby created the same geometry from a different trajectory."
+      },
+      {
+        "heading": "THE 54-YEAR GAP",
+        "body": "Apollo ended not because the technology failed but because the budget did. Each Saturn V cost roughly $1.5 billion in today's dollars and was expendable. NASA bet everything on the reusable Shuttle, which could only reach low orbit. No heavy-lift Moon rocket existed again until SLS — meaning an entire generation of astronauts lived and retired without the possibility of leaving Earth's neighborhood."
+      },
+      {
+        "heading": "FREE-RETURN TRAJECTORY",
+        "body": "Artemis II follows a free-return path: if every engine fails after the trans-lunar injection burn, the Moon's gravity alone slings the crew back toward Earth. Apollo 13 survived because it was on exactly this trajectory. For a first crewed flight of a new vehicle, it is the only responsible choice — you design the mission so that the worst-case failure mode still brings the crew home."
+      }
+    ],
+    "generatedAt": "2026-04-12T22:20:16.437Z",
+    "label": "Earthrise & Lunar Photography",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-12-cftc-prediction-markets-exclusive-authority-states": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PREDICTION MARKETS WORK",
+        "body": "Hayek's 1945 insight: prices aggregate dispersed knowledge that no single person holds. Prediction markets apply this to events — a contract trading at $0.70 means the market collectively assigns a 70% probability. Someone with superior information has a financial incentive to trade on it, moving the price toward truth without anyone needing to identify who knows what."
+      },
+      {
+        "heading": "THE CLASSIFICATION PROBLEM",
+        "body": "The CFTC regulates futures — contracts to buy commodities at a future date. State gambling commissions regulate bets on uncertain outcomes. A prediction market contract on an election result looks like both simultaneously. Kalshi won CFTC approval by arguing its contracts are derivatives; states argue they are wagers. The legal question is genuinely unsettled, and the answer determines which regulator controls a potentially massive market."
+      },
+      {
+        "heading": "THE PREEMPTION DOCTRINE",
+        "body": "Federal preemption means a federal law displaces state law when the two conflict. The CFTC is arguing that the Commodity Exchange Act occupies the entire field of event contracts, leaving states no room to regulate them as gambling. If the courts agree, prediction markets become a single federal market overnight. If not, platforms must comply with 50 different state gambling regimes — many of which ban them outright."
+      },
+      {
+        "heading": "THE DODD-FRANK CARVEOUT",
+        "body": "Dodd-Frank (2010) gave the CFTC explicit authority over event contracts but also gave it power to ban contracts on terrorism, war, and certain government actions deemed contrary to the public interest. This dual power — to approve and to prohibit — means the CFTC is not just claiming jurisdiction; it is claiming the sole right to decide which questions Americans can bet on."
+      }
+    ],
+    "generatedAt": "2026-04-12T22:20:16.438Z",
+    "label": "Prediction Market Regulation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-12-filing-corners-macbook-design-critique": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNIBODY TRADEOFF",
+        "body": "Apple's unibody MacBook is CNC-milled from a single block of aluminum. This eliminates flex, reduces part count, and creates the rigid feel Apple markets as premium. The tradeoff is that every edge is a machined aluminum edge — sharp by default. Rounding them adds milling time and cost per unit across millions of machines."
+      },
+      {
+        "heading": "WHY SHARP EDGES PERSIST",
+        "body": "Chamfered (beveled) edges catch light and photograph well — they create the thin visual line that makes a laptop look slim in marketing shots. A fully rounded edge looks thicker in profile even at the same dimensions. Apple optimizes for the moment a customer sees the product on a shelf or screen, not for the 8 hours of daily wrist contact that follows."
+      },
+      {
+        "heading": "THE TOLERANCE PROBLEM",
+        "body": "Consumer electronics design is governed by tolerances measured in tenths of a millimeter. A comfortable radius on an edge requires about 1-2mm of rounding. On a laptop whose lid-to-base gap is already under 1mm, rounding the edges changes how the lid seats, how magnets align, and how the display gasket seals against dust. Every ergonomic fix cascades into a dozen engineering constraints."
+      },
+      {
+        "heading": "THE THINKPAD CONTRAST",
+        "body": "Lenovo's ThinkPad uses a glass-fiber reinforced plastic chassis with deliberately rounded edges and a rubberized coating. It optimizes for sustained use — the original IBM design brief prioritized a Japanese bento box's feel in the hands. Two design philosophies, one choosing visual precision, the other choosing tactile comfort, producing opposite tradeoffs at the wrist."
+      }
+    ],
+    "generatedAt": "2026-04-12T22:20:16.438Z",
+    "label": "Unibody Laptop Design",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-12-hormuz-blockade-economic-consequences-quincy-analysis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption. No other chokepoint carries this volume."
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West Pipeline and the UAE's Habshan-Fujairah pipeline together can reroute maybe a third of Gulf exports around Hormuz. The rest has no alternative. Pipelines take years to build, and no overland route from the Gulf reaches the Pacific — meaning Asian importers have zero alternatives on any relevant timeline."
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not mines or warships — are what actually close a shipping lane. When premiums spike, commercial vessels reroute or anchor regardless of how many threats remain. During the 2019 tanker attacks, premiums jumped tenfold in 48 hours. The financial chokepoint is tighter than the physical one."
+      },
+      {
+        "heading": "WHO ACTUALLY PAYS",
+        "body": "The US imports almost no Persian Gulf oil — shale made it a net exporter. But oil is priced on a single global market. A Hormuz closure raises Brent crude everywhere, meaning American consumers pay more at the pump for a blockade of a strait they do not depend on. Meanwhile, treaty allies like Japan (90% Gulf-dependent), South Korea (70%), and the Philippines (98%) face genuine energy crises."
+      },
+      {
+        "heading": "THE FERTILIZER CHAIN",
+        "body": "Natural gas from Qatar — the world's largest LNG exporter — also transits Hormuz. Natural gas is the primary feedstock for ammonia, which is the primary feedstock for nitrogen fertilizer. A Hormuz blockade during planting season does not just raise fuel prices; it threatens the next harvest's yield in every country that imports fertilizer."
+      }
+    ],
+    "generatedAt": "2026-04-12T22:20:16.438Z",
+    "label": "The Hormuz Economic Weapon",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-12-israel-encircles-bint-jbeil-lebanon-netanyahu-islamabad": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 2006 PRECEDENT",
+        "body": "Bint Jbeil was the site of the fiercest battle of the 2006 Lebanon War. Israel sent elite Golani Brigade units to capture the town; Hezbollah fighters held it for days in close urban combat, killing 8 Israeli soldiers in a single ambush. Israel eventually withdrew without holding the town. In Hezbollah's narrative, Bint Jbeil is their Stalingrad — the proof that Israeli ground forces can be fought to a standstill."
+      },
+      {
+        "heading": "WHY ENCIRCLEMENT, NOT ENTRY",
+        "body": "Urban warfare inverts the attacker's advantage. A modern army's firepower, armor, and air superiority are blunted in narrow streets where defenders choose the engagement range. Encirclement — sealing a town and controlling supply routes — avoids costly street fighting but creates a siege dynamic with its own political costs, especially when civilians are trapped inside."
+      },
+      {
+        "heading": "THE SPOILER LOGIC",
+        "body": "In conflict studies, a spoiler is a party that uses violence to derail a peace process it views as threatening. Escalation timed to coincide with negotiations is a textbook spoiler move — it forces the other side to respond to the battlefield rather than the negotiating table, and gives hawks on both sides evidence that diplomacy is futile."
+      },
+      {
+        "heading": "SOUTH LEBANON'S SIGNIFICANCE",
+        "body": "South Lebanon — from the Litani River to the border — has been a buffer zone, occupation zone, and battleground continuously since 1978. Israel occupied it for 18 years (1982-2000). UN Resolution 1701 after the 2006 war was supposed to keep it demilitarized. The recurrence of major operations there reflects a structural reality: the geography that makes it a buffer also makes it a perpetual frontline."
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "In Islamic tradition, al-Sham — Greater Syria, encompassing modern Syria, Lebanon, Jordan, and Palestine — holds particular significance. A hadith in Sahih al-Bukhari describes the people of al-Sham as being under divine protection. Classical scholars including Ibn Kathir identified this region as central to end-times events. For the Muslim reader, repeated military escalation across southern Lebanon and Palestine resonates with a prophetic geography that predates modern borders."
+      }
+    ],
+    "generatedAt": "2026-04-12T22:20:16.438Z",
+    "label": "Bint Jbeil & Spoiler Dynamics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-12-nigeria-ai-fake-image-governor-sultan-disinformation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE SULTAN IS",
+        "body": "The Sultan of Sokoto is the spiritual leader of Nigeria's roughly 100 million Muslims — the highest Islamic authority in the country. The position descends from Usman dan Fodio's 1804 Sokoto Caliphate, which unified Hausa city-states under Islamic governance and ruled until British conquest in 1903. A Christian governor bowing to the Sultan is not a religious gesture; in Nigeria's political grammar, it reads as submission to northern Muslim political authority."
+      },
+      {
+        "heading": "THE NORTH-SOUTH DIVIDE",
+        "body": "Nigeria's politics run along a religious-geographic fault line: the predominantly Muslim north and the predominantly Christian south. Since independence in 1960, an informal power-rotation agreement has alternated the presidency between the two. Benue State sits directly on this fault line — a Christian-majority state bordering Muslim-majority states to the north, making it a flashpoint for identity politics."
+      },
+      {
+        "heading": "WHY THIS IMAGE WORKS AS A WEAPON",
+        "body": "Governor Alia is a Christian governor of Benue during an unresolved killing crisis attributed to Fulani herders — who are predominantly Muslim. An AI-generated image showing him bowing to the Sultan activates the deepest fear in Benue politics: that their governor has been captured by the very ethnic-religious power structure they blame for the killings. The image does not need to be believed permanently; it only needs to circulate during the crisis window."
+      },
+      {
+        "heading": "THE VERIFICATION GAP",
+        "body": "Nigeria has over 100 million WhatsApp users. WhatsApp messages are end-to-end encrypted, meaning no platform-level content moderation is possible. Images shared in WhatsApp groups are forwarded without source attribution, and by the time a fact-check appears on a news site, the image has already passed through dozens of group chats. The architecture of the platform favors the fabricator."
+      }
+    ],
+    "generatedAt": "2026-04-12T22:20:16.438Z",
+    "label": "The Sultan of Sokoto & Nigerian Fault Lines",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-12-orban-defeated-hungary-election-tisza-party": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW ORBÁN BUILT THE SYSTEM",
+        "body": "After winning a two-thirds supermajority in 2010, Fidesz rewrote Hungary's constitution, redrew electoral districts to favor rural Fidesz voters, and consolidated nearly all private media into a single pro-government foundation. By 2018, an estimated 80% of Hungarian media was controlled by Fidesz-aligned owners. Opposition parties could campaign but could barely be heard."
+      },
+      {
+        "heading": "THE EU FUNDING LEVER",
+        "body": "Hungary receives roughly 4-5% of its GDP from EU cohesion funds — one of the highest ratios in the bloc. The EU froze billions over rule-of-law concerns, creating a paradox: Orbán's nationalist posture depended on EU money to fund domestic patronage networks. The new government inherits the task of unlocking those funds, which requires rule-of-law reforms that will dismantle parts of the system Fidesz built."
+      },
+      {
+        "heading": "WHY TISZA, NOT THE OLD OPPOSITION",
+        "body": "Hungary's traditional opposition parties — a fractured coalition of socialists, greens, and liberals — failed repeatedly against Fidesz. Peter Magyar is a former Fidesz insider whose ex-wife served in Orbán's government. He split from the system and built Tisza as a center-right alternative, meaning voters could reject Orbán without voting for parties they had already rejected. The defector from within succeeded where external opposition could not."
+      },
+      {
+        "heading": "THE VETO THAT VANISHES",
+        "body": "Hungary under Orbán wielded an effective veto in the EU Council, blocking sanctions on Russia, delaying Ukraine aid, and stalling rule-of-law mechanisms. EU decisions on foreign policy require unanimity. A single member state changing government from Eurosceptic to pro-European does not just change one country's politics — it removes a structural blockage in the entire EU decision-making apparatus."
+      }
+    ],
+    "generatedAt": "2026-04-12T22:20:16.438Z",
+    "label": "Orbán's System & Its Collapse",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-12-south-africa-food-insecurity-crisis-foodforward": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "South Africa produces enough food to feed its population. It is a net food exporter. The crisis is not supply — it is access. With official unemployment above 30% and youth unemployment above 60%, millions of people live in a country surrounded by food they cannot afford to buy. This is textbook Amartya Sen: famines are failures of entitlement, not of agriculture."
+      },
+      {
+        "heading": "WHY STUNTING IS IRREVERSIBLE",
+        "body": "Chronic malnutrition before age 5 causes stunting — permanently reduced height and, critically, reduced cognitive development. The damage cannot be reversed by later nutrition. When 29% of South African children under 5 are stunted, the country is not just failing today's children; it is reducing the productive capacity of the workforce that will exist in 2045."
+      },
+      {
+        "heading": "THE TRANSMISSION CHAIN",
+        "body": "South Africa imports most of its fuel. Fuel prices set transport costs. Transport costs set food prices in a country where the average household spends 30-40 minutes traveling to a supermarket. A Hormuz-driven fuel shock does not just raise the price of petrol — it raises the price of maize meal in a township shop, where the markup from farm gate to shelf is already 300-400%."
+      },
+      {
+        "heading": "THE STRUCTURAL TRAP",
+        "body": "Apartheid's spatial planning deliberately located Black townships far from economic centers, creating transport-dependent communities. Post-apartheid South Africa inherited this geography. Thirty years later, the average Black worker still commutes farther, pays more for transport, and spends a higher share of income on food than any other demographic — a colonial design that compounds every price shock."
+      }
+    ],
+    "generatedAt": "2026-04-12T22:20:16.438Z",
+    "label": "South Africa's Structural Hunger",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-12-uk-france-hormuz-navigation-blockade-counter": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL PRINCIPLE",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage or impose conditions beyond safety and environmental rules. A blockade by a third party — not the coastal state — has no basis in international law at all. Britain and France are not just opposing US policy; they are defending a legal regime that underpins their own global trade."
+      },
+      {
+        "heading": "THE MINESWEEPER SIGNAL",
+        "body": "Sending minesweepers to a strait you refuse to blockade is a precise diplomatic signal: we will keep this waterway open, including against the mines our ally might lay. Britain's Hunt-class minesweepers are specifically designed for the Gulf — the Royal Navy has maintained a standing mine countermeasures force in Bahrain since 2006. The deployment is routine; the political context makes it extraordinary."
+      },
+      {
+        "heading": "THE SUEZ PRECEDENT",
+        "body": "The last time Britain and France broke from the US on a Middle Eastern waterway was the 1956 Suez Crisis — and that time they were the aggressors. Eisenhower forced their withdrawal and humiliated both powers. The reversal is striking: in 1956, the US defended freedom of navigation against its allies. In 2026, the allies are defending it against the US."
+      },
+      {
+        "heading": "WHY NATO CANNOT HELP",
+        "body": "NATO's Article 5 covers armed attacks on member states. A blockade initiated by a NATO member is not an external attack — it is a policy choice. There is no NATO mechanism to compel allies to join an offensive naval operation, and several NATO members (Turkey, Greece, Portugal) depend on Gulf energy imports that a blockade would disrupt. Trump invoking NATO for Hormuz asks allies to hurt themselves."
+      },
+      {
+        "heading": "THE ESCORT OPTION",
+        "body": "During the 1987-88 Tanker War, the US reflagged Kuwaiti tankers as American vessels and escorted them through the Gulf. Britain and France could do the same — reflag allied shipping and escort it through Hormuz under naval protection. This keeps the strait open for allies without directly confronting the US blockade, a legal and military middle path that both navies have rehearsed."
+      }
+    ],
+    "generatedAt": "2026-04-12T22:20:16.438Z",
+    "label": "Freedom of Navigation & Alliance Fractures",
+    "category": "politics",
+    "articleCount": 1
   }
 }

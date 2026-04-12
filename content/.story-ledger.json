@@ -2,13 +2,224 @@
   "version": 1,
   "stories": [
     {
+      "id": "orban-defeated-hungary-election-tisza-party",
+      "label": "Reactions to PM Orban's defeat in Hungary's election",
+      "firstSeen": "2026-04-12T22:06:34.168Z",
+      "lastCovered": "2026-04-12T22:06:34.168Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-orban-defeated-hungary-election-tisza-party"
+      ],
+      "eventUri": "fra-1294760",
+      "summary": "Viktor Orbán's 16-year grip on Hungary is over. The centre-right Tisza party is on track to win, ending Europe's longest-running nationalist government. Lead with the duration — 16 years — and the fact that Orbán was backed by both Trump and Putin. The mechanism: a protest vote driven by economic stagnation and democratic erosion, not a leftward shift. The reader should see the precedent: authoritarian-adjacent leaders can be voted out when opposition consolidates around a single credible challenger. Sentiment divergence (0.31) shows Russia and the West framing this very differently.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Hungary",
+        "http://en.wikipedia.org/wiki/Viktor_Orbán",
+        "http://en.wikipedia.org/wiki/Hungarians",
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/Ursula_von_der_Leyen",
+        "http://en.wikipedia.org/wiki/Prime_minister",
+        "http://en.wikipedia.org/wiki/Emmanuel_Macron",
+        "http://en.wikipedia.org/wiki/Tisza"
+      ]
+    },
+    {
+      "id": "israel-encircles-bint-jbeil-lebanon-netanyahu-islamabad",
+      "label": "Israeli forces encircle Bint Jbeil but fail to enter town, as Netanyahu looks to Lebanese front to spoil Islamabad talks",
+      "firstSeen": "2026-04-12T22:06:34.168Z",
+      "lastCovered": "2026-04-12T22:06:34.168Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-israel-encircles-bint-jbeil-lebanon-netanyahu-islamabad"
+      ],
+      "eventUri": null,
+      "summary": "Israeli forces have encircled Bint Jbeil in southern Lebanon but cannot enter the town, while Netanyahu escalates the Lebanese front to undermine the Islamabad ceasefire track. Lead with the dual framing: military failure on the ground (encircled but blocked) and diplomatic sabotage from above. Mada Masr reports two parallel ceasefire tracks — one in Islamabad, one in Washington — that are competing, not complementing. The reader should see the mechanism: escalation as a negotiating tool, where ground offensives are timed to collapse diplomatic windows.",
+      "conceptUris": []
+    },
+    {
+      "id": "uk-france-hormuz-navigation-blockade-counter",
+      "label": "What is a naval blockade and how would it work in Strait of Hormuz?",
+      "firstSeen": "2026-04-12T22:06:34.168Z",
+      "lastCovered": "2026-04-12T22:06:34.168Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-uk-france-hormuz-navigation-blockade-counter"
+      ],
+      "eventUri": "eng-11562805",
+      "summary": "The UK and France are coordinating to resume navigation through the Strait of Hormuz — effectively pushing back against Trump's blockade order. Lead with the fracture: America's closest allies are working to undo what the US just announced. The mechanism is that a blockade of Hormuz doesn't just target Iran — it traps allied shipping too. The Philippines gets 98% of its energy through the strait; Japan and South Korea are similarly exposed. This is the story of a US policy that harms its own alliance system. Advances the Hormuz arc with the European counter-response angle.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Blockade",
+        "http://en.wikipedia.org/wiki/Minesweeper",
+        "http://en.wikipedia.org/wiki/United_States_Navy",
+        "http://en.wikipedia.org/wiki/France"
+      ]
+    },
+    {
+      "id": "hormuz-blockade-economic-consequences-quincy-analysis",
+      "label": "Trump: US to block Hormuz, shooting ourselves & allies in foot",
+      "firstSeen": "2026-04-12T22:06:34.168Z",
+      "lastCovered": "2026-04-12T22:06:34.168Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-hormuz-blockade-economic-consequences-quincy-analysis"
+      ],
+      "eventUri": null,
+      "summary": "The Quincy Institute's experts lay out the economic catastrophe of a full Hormuz blockade: oil could hit $200/barrel if Houthis restart Red Sea attacks (taking another 12% of global oil off the market), the Philippines gets 98% of energy through the strait, China accounts for 90% of Iran's oil exports making this a US-China proxy conflict, and even US weapons supply chains depend on strait shipping. Lead with the $200 scenario and the self-harm — American farmers already face planting-season disruption from fertilizer shortages. The mechanism: a blockade designed to pressure Iran inflicts more damage on US allies and the US economy than on Tehran.",
+      "conceptUris": []
+    },
+    {
+      "id": "cftc-prediction-markets-exclusive-authority-states",
+      "label": "CFTC Chair Mike Selig argues for agency's 'exclusive regulatory authority' in prediction markets fight",
+      "firstSeen": "2026-04-12T22:06:34.168Z",
+      "lastCovered": "2026-04-12T22:06:34.168Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-cftc-prediction-markets-exclusive-authority-states"
+      ],
+      "eventUri": null,
+      "summary": "The CFTC chair is asserting exclusive federal authority over prediction markets, arguing states cannot regulate platforms like Polymarket and Kalshi. Lead with the jurisdiction fight: this is a turf war between federal and state regulators that will determine who controls the fast-growing prediction market industry. The mechanism is regulatory preemption — if the CFTC wins, it creates a single federal framework; if states retain authority, prediction markets face a patchwork of 50 different rules. The reader who trades on these platforms or builds DeFi should care about this precedent.",
+      "conceptUris": []
+    },
+    {
+      "id": "south-africa-food-insecurity-crisis-foodforward",
+      "label": "FoodForward SA calls for decisive action to address sharp rise in food insecurity",
+      "firstSeen": "2026-04-12T22:06:34.168Z",
+      "lastCovered": "2026-04-12T22:06:34.168Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-south-africa-food-insecurity-crisis-foodforward"
+      ],
+      "eventUri": null,
+      "summary": "South Africa's largest food redistribution nonprofit is sounding the alarm: food insecurity has risen sharply over five years, driven by escalating living costs, soaring food prices, and rising unemployment. Lead with the structural failure — this is Africa's most industrialized economy and it cannot feed its people. The mechanism is a compounding crisis: global food price inflation (worsened by the Iran war disrupting fertilizer supply chains through Hormuz) hits hardest in countries where unemployment is already above 30%. The reader should see this as a Global South consequence of the conflicts dominating the rest of today's cycle.",
+      "conceptUris": []
+    },
+    {
+      "id": "artemis-ii-earthset-photo-apollo-earthrise",
+      "label": "How Artemis II's Earthset photo compares with the iconic Earthrise image from 1968",
+      "firstSeen": "2026-04-12T22:06:34.168Z",
+      "lastCovered": "2026-04-12T22:06:34.168Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-artemis-ii-earthset-photo-apollo-earthrise"
+      ],
+      "eventUri": null,
+      "summary": "Artemis II astronauts captured an 'Earthset' photo during their lunar flyby — the Earth setting behind the Moon, a visual counterpart to Apollo 8's iconic 1968 Earthrise. Lead with the comparison: 58 years between the two images, and what changed (the technology, the crew diversity, the state of the planet in the frame). The reader should see both the achievement and the continuity — humans are back at the Moon, and this time the mission is building toward a sustained presence.",
+      "conceptUris": []
+    },
+    {
+      "id": "spider-venom-mechanism-recluse-toxin-cells",
+      "label": "How does spider venom damage human cells? Researchers uncover the killer mechanism of recluse spider toxin",
+      "firstSeen": "2026-04-12T22:06:34.168Z",
+      "lastCovered": "2026-04-12T22:06:34.168Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-spider-venom-mechanism-recluse-toxin-cells"
+      ],
+      "eventUri": null,
+      "summary": "Researchers have identified the precise molecular mechanism by which brown recluse spider venom destroys human cells — a long-standing mystery in toxicology. Lead with the mechanism itself: the toxin targets a specific lipid in cell membranes, triggering a cascade that causes tissue necrosis. The reader should see the medical application: understanding the mechanism opens a path to targeted antidotes, which don't currently exist for recluse bites. Thousands of bites occur annually with no specific treatment.",
+      "conceptUris": []
+    },
+    {
+      "id": "nigeria-ai-fake-image-governor-sultan-disinformation",
+      "label": "Image of Alia bowing before Sultan is fake, AI-generated -- Media team",
+      "firstSeen": "2026-04-12T22:06:34.168Z",
+      "lastCovered": "2026-04-12T22:06:34.168Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-nigeria-ai-fake-image-governor-sultan-disinformation"
+      ],
+      "eventUri": null,
+      "summary": "An AI-generated image showing the Christian governor of Benue State bowing before the Sultan of Sokoto went viral in Nigeria, exploiting religious and ethnic tensions. Lead with the fabrication: this is AI-generated disinformation weaponized along Nigeria's Muslim-Christian fault line. The mechanism is cheap, targeted deepfakes designed to inflame communal violence in a country where religious identity maps onto political power. The reader should see the escalation: AI disinformation has moved from Western elections to African communal politics, where the consequences — sectarian violence — can be immediate and lethal.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-backlash-violence-essay-hacker-news",
+      "label": "AI Will Be Met with Violence, and Nothing Good Will Come of It",
+      "firstSeen": "2026-04-12T22:06:34.168Z",
+      "lastCovered": "2026-04-12T22:06:34.168Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-ai-backlash-violence-essay-hacker-news"
+      ],
+      "eventUri": null,
+      "summary": "A widely shared essay (321 HN points, 572 comments) argues that anti-AI backlash is escalating toward physical violence — days after a Molotov cocktail was thrown at OpenAI's office. Lead with the pattern: this is not an isolated incident but a trajectory from online anger to real-world action. The mechanism is the same one that drove anti-globalization and Luddite movements — economic displacement channeled into rage at visible corporate symbols. The reader who builds or deploys AI should see the structural forces: job displacement fears, concentrated corporate power, and inadequate political response are creating conditions for sustained resistance.",
+      "conceptUris": []
+    },
+    {
+      "id": "filing-corners-macbook-design-critique",
+      "label": "Filing the corners off my MacBooks",
+      "firstSeen": "2026-04-12T22:06:34.168Z",
+      "lastCovered": "2026-04-12T22:06:34.168Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-12-filing-corners-macbook-design-critique"
+      ],
+      "eventUri": null,
+      "summary": "A maker physically filed the sharp aluminum corners off every MacBook they own — and documented the process. The post hit 1,358 HN points (the most-upvoted tech story this cycle) because it touches a nerve: Apple's industrial design prioritizes visual perfection over ergonomic comfort, and this person took a metal file to a $2,500 laptop to fix it. Lead with the act itself and the community response. The reader should see the broader design critique: when a manufacturer won't round its corners, users do it themselves — a small rebellion against products designed to be admired, not used.",
+      "conceptUris": []
+    },
+    {
+      "id": "oldest-octopus-fossil-reclassified-nautilus",
+      "label": "The Oldest Octopus Fossil Ever Isn't An Octopus At All, Scientists Discover",
+      "firstSeen": "2026-04-12T04:08:52.272Z",
+      "lastCovered": "2026-04-12T22:06:34.168Z",
+      "coverageCount": 4,
+      "category": "science",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-04-12-oldest-octopus-fossil-reclassified-nautilus",
+        "2026-04-11-the-oldest-octopus-fossil-ever-isn-t-an-octopus-at-all-scien"
+      ],
+      "eventUri": null,
+      "summary": "A 300-million-year-old fossil classified for decades as the earliest octopus has been reclassified as a nautilus relative — rewriting the evolutionary timeline of cephalopods. Lead with the surprise: the textbook origin story of octopuses was wrong. The mechanism is improved imaging technology that revealed shell structures invisible to earlier analysis. The reader who values precision over narrative will appreciate how science self-corrects — and how a single misidentification can cascade through decades of evolutionary biology.",
+      "conceptUris": []
+    },
+    {
       "id": "nigeria-airstrike-200-dead-yobe-market-boko-haram",
       "label": "200 feared dead as Nigerian military airstrike targeting terrorists hits market",
       "firstSeen": "2026-04-12T17:08:13.543Z",
       "lastCovered": "2026-04-12T17:08:13.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-nigeria-airstrike-200-dead-yobe-market-boko-haram"
@@ -33,7 +244,7 @@
       "lastCovered": "2026-04-12T17:08:13.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-hamas-refuses-un-disarmament-israel-withdrawal"
@@ -49,7 +260,7 @@
       "lastCovered": "2026-04-12T17:08:13.543Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-panama-vessel-baltic-waste-dumping-sweden"
@@ -74,7 +285,7 @@
       "lastCovered": "2026-04-12T17:08:13.543Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-iran-war-trump-energy-dominance-failing"
@@ -90,7 +301,7 @@
       "lastCovered": "2026-04-12T17:08:13.543Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-jwst-population-iii-first-stars-evidence"
@@ -106,7 +317,7 @@
       "lastCovered": "2026-04-12T17:08:13.543Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-india-first-indigenous-quantum-computing-andhra-pradesh"
@@ -131,7 +342,7 @@
       "lastCovered": "2026-04-12T17:08:13.543Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-sam-altman-molotov-cocktail-openai-response"
@@ -147,7 +358,7 @@
       "lastCovered": "2026-04-12T17:08:13.543Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-trump-orders-naval-blockade-of-strait-of-hormuz"
@@ -172,7 +383,7 @@
       "lastCovered": "2026-04-12T17:08:13.543Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-12-evaluating-artificial-intelligence-chatbot-performance-on-bo"
@@ -188,7 +399,7 @@
       "lastCovered": "2026-04-12T17:08:13.543Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-04-12-haiti-fuel-crisis-iran-war-poverty",
@@ -205,30 +416,13 @@
       ]
     },
     {
-      "id": "oldest-octopus-fossil-reclassified-nautilus",
-      "label": "The Oldest Octopus Fossil Ever Isn't An Octopus At All, Scientists Discover",
-      "firstSeen": "2026-04-12T04:08:52.272Z",
-      "lastCovered": "2026-04-12T12:11:30.331Z",
-      "coverageCount": 3,
-      "category": "science",
-      "importance": 5,
-      "arc": "developing",
-      "articles": [
-        "2026-04-12-oldest-octopus-fossil-reclassified-nautilus",
-        "2026-04-11-the-oldest-octopus-fossil-ever-isn-t-an-octopus-at-all-scien"
-      ],
-      "eventUri": null,
-      "summary": "A 300-million-year-old fossil classified for decades as the earliest octopus has been reclassified as a nautilus relative — rewriting the evolutionary timeline of cephalopods. Lead with the surprise: the textbook origin story of octopuses was wrong. The mechanism is improved imaging technology that revealed shell structures invisible to earlier analysis. The reader who values precision over narrative will appreciate how science self-corrects — and how a single misidentification can cascade through decades of evolutionary biology.",
-      "conceptUris": []
-    },
-    {
       "id": "ben-gvir-storms-al-aqsa-jordan-condemns",
       "label": "Israel's Ben-Gvir visits flashpoint Al-Aqsa Mosque compound",
       "firstSeen": "2026-04-12T12:11:30.331Z",
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-ben-gvir-storms-al-aqsa-jordan-condemns"
@@ -253,7 +447,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-quetta-hazara-targeted-killing-sectarian"
@@ -269,7 +463,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-south-africa-da-leadership-crisis-lifestyle-audits"
@@ -285,7 +479,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-hezbollah-fpv-drones-idf-lebanon-escalation"
@@ -301,7 +495,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-saudi-green-hajj-solar-mecca-vision-2030"
@@ -317,7 +511,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-trump-memecoin-gala-senators-question-corruption"
@@ -333,7 +527,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-poland-clean-heating-subsidies-china-coal-transition"
@@ -349,7 +543,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-navy-destroyer-mystery-launcher-gulf-deployment"
@@ -365,7 +559,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-non-bank-sector-invests-rs11tr-in-govt-papers"
@@ -381,7 +575,7 @@
       "lastCovered": "2026-04-12T12:11:30.331Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-12-clinicopathological-significance-of-gli1-expression-in-hepat"
@@ -397,7 +591,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-benin-election-wadagni-talon-succession"
@@ -422,7 +616,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-nigeria-1100-kidnapped-four-months-amnesty"
@@ -444,7 +638,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-haiti-stampede-citadelle-30-dead"
@@ -469,7 +663,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-ireland-fuel-protests-dublin-blockade-cabinet"
@@ -491,7 +685,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-pakistan-non-bank-rs11-trillion-govt-securities"
@@ -507,7 +701,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-plant-compounds-defeat-drug-resistant-salmonella"
@@ -523,7 +717,7 @@
       "lastCovered": "2026-04-12T08:09:02.236Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-12-amarnath-yatra-2026-to-begin-july-3-check-dates-registration"
@@ -548,7 +742,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-12-azerbaijan-aliyev-dynasty-authoritarianism"
@@ -564,7 +758,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-12-dubai-flight-restrictions-iran-war-indian-airlines"
@@ -589,7 +783,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-12-meta-manus-deal-chinese-ai-founders-global"
@@ -605,7 +799,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-12-nigeria-ai-harassment-women-platform-amplification"
@@ -621,7 +815,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-12-why-we-laughed"
@@ -637,7 +831,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-12-first-contact"
@@ -653,7 +847,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-12-in-situ-electron-diffraction-tomography-study-of-the-success"
@@ -669,7 +863,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-12-controlled-steering-of-cherenkov-surface-plasmon-wakes-with"
@@ -685,7 +879,7 @@
       "lastCovered": "2026-04-12T04:08:52.272Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-10-behind-the-blog-smoking-the-whole-carton"
@@ -701,7 +895,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-iraq-elects-kurdish-president-amedi"
@@ -726,7 +920,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-uk-200-arrested-palestine-action-protest-london"
@@ -751,7 +945,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-iran-supreme-leader-khamenei-disfigured-us-strikes"
@@ -776,7 +970,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-pakistan-family-killed-missile-debris-kuwait"
@@ -792,7 +986,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-high-rates-oil-global-debt-trap"
@@ -808,7 +1002,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-thailand-asset-seizures-scam-probe-widens"
@@ -824,7 +1018,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-spacex-603m-bitcoin-5b-xai-loss"
@@ -840,7 +1034,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-uruguay-dead-bees-pesticides-agriculture"
@@ -856,7 +1050,7 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-blood-brain-barrier-breakdown-in-traumatic-brain-injury-curr"
@@ -872,211 +1066,13 @@
       "lastCovered": "2026-04-11T22:09:08.545Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-11-the-oldest-octopus-fossil-ever-isn-t-an-octopus-at-all-scien"
       ],
       "eventUri": null,
       "summary": "[Auto-backfill for tech floor] A re-examination of a 300-million-year-old fossil that was long thought to be the earliest octopus revealed that the animal was actually part of the nautilus family.",
-      "conceptUris": []
-    },
-    {
-      "id": "uk-ofcom-nudification-jail-threat-grok",
-      "label": "UK government threatens tech bosses with jail time if they do not adequately fight nudification tools",
-      "firstSeen": "2026-04-11T08:09:46.711Z",
-      "lastCovered": "2026-04-12T08:09:02.236Z",
-      "coverageCount": 3,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-11-uk-ofcom-nudification-jail-threat-grok",
-        "2026-04-11-uk-jail-tech-bosses-ai-nudification",
-        "2026-04-12-uk-jail-tech-bosses-ai-nudification"
-      ],
-      "eventUri": null,
-      "summary": "UK regulator Ofcom will threaten tech executives with prison if they fail to combat AI nudification tools — a direct response to the Grok scandal that produced millions of deepfake nude images of women and children. Lead with the criminal liability: the UK is making individual executives personally responsible for AI-generated sexual abuse imagery on their platforms. The reader will see the sharpest regulatory response yet to generative AI harms — and the question of whether personal criminal risk changes tech company behavior where fines haven't.",
-      "conceptUris": []
-    },
-    {
-      "id": "uk-shelves-chagos-islands-deal-trump",
-      "label": "UK shelves Chagos Islands deal after Trump's criticism",
-      "firstSeen": "2026-04-11T17:07:54.686Z",
-      "lastCovered": "2026-04-11T17:07:54.686Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-uk-shelves-chagos-islands-deal-trump"
-      ],
-      "eventUri": "eng-11559617",
-      "summary": "Britain promised to return the Chagos Islands to Mauritius — ending 60 years of displacement of the Chagossian people — then shelved the deal after Trump called it 'great stupidity.' The real story: Diego Garcia hosts a US-UK military base critical to Indian Ocean power projection, and Washington vetoed decolonization to keep it. Lead with the Chagossians who were expelled and still cannot return. The sentiment divergence (0.71) shows sources disagree sharply on framing — Middle East Eye calls it colonial, Express calls it a U-turn victory.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Chagos_Archipelago",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Diego_Garcia",
-        "http://en.wikipedia.org/wiki/Mauritius",
-        "http://en.wikipedia.org/wiki/Keir_Starmer",
-        "http://en.wikipedia.org/wiki/Sovereignty",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "us-unfreeze-iranian-funds-qatar",
-      "label": "US agrees to unfreeze Iranian funds abroad - media",
-      "firstSeen": "2026-04-11T17:07:54.686Z",
-      "lastCovered": "2026-04-11T17:07:54.686Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-us-unfreeze-iranian-funds-qatar"
-      ],
-      "eventUri": "eng-11560487",
-      "summary": "The US reportedly agreed to release $6 billion in Iranian assets frozen in Qatar and other banks — the most concrete concession signal since Islamabad talks began. Iran called it a sign of 'seriousness.' Lead with the dollar figure and what it buys: this is the same $6B that was controversially unfrozen then refrozen after October 2023. The mechanism matters — who holds the funds, what conditions attach, and whether this survives Congressional backlash.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Qatar",
-        "http://en.wikipedia.org/wiki/Islamabad",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Washington_(state)",
-        "http://en.wikipedia.org/wiki/Washington,_D.C."
-      ]
-    },
-    {
-      "id": "pakistan-jets-saudi-arabia-defence-pact",
-      "label": "Pakistani fighter jets land in Saudi Arabia as part of defence pact",
-      "firstSeen": "2026-04-11T17:07:54.686Z",
-      "lastCovered": "2026-04-11T17:07:54.686Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-pakistan-jets-saudi-arabia-defence-pact"
-      ],
-      "eventUri": "eng-11560621",
-      "summary": "Pakistan deployed fighter jets to Saudi Arabia under a mutual defense pact on the same day it hosts US-Iran peace talks in Islamabad. The juxtaposition is the story: Islamabad is simultaneously mediating peace and arming one side's neighbor. Lead with the timing — jets landing at King Abdulaziz Air Base while diplomats sit across the table 2,000km away. This reveals Pakistan's hedging strategy and the Saudi-Pakistan defense axis strengthening during the Iran war.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/King_Abdulaziz_Air_Base",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Islamabad",
-        "http://en.wikipedia.org/wiki/Pakistan_Armed_Forces",
-        "http://en.wikipedia.org/wiki/Riyadh",
-        "http://en.wikipedia.org/wiki/Military"
-      ]
-    },
-    {
-      "id": "russia-ukraine-easter-truce-pow-swap",
-      "label": "Easter truce between Russia, Ukraine begins",
-      "firstSeen": "2026-04-11T17:07:54.686Z",
-      "lastCovered": "2026-04-11T17:07:54.686Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-russia-ukraine-easter-truce-pow-swap"
-      ],
-      "eventUri": "eng-11556054",
-      "summary": "Russia and Ukraine began an Easter ceasefire and exchanged 350 POWs (175 each, plus 7 Kursk civilians) — the largest prisoner swap in months. Kyiv warned it would respond 'immediately' to violations. Lead with the POW numbers and the fragility: Putin ordered the truce, Zelenskyy agreed reluctantly, and neither side expects it to hold. The reader should understand this as a humanitarian window, not a peace signal.",
-      "conceptUris": []
-    },
-    {
-      "id": "lufthansa-pilots-strike-april",
-      "label": "Pilots' union calls strikes at Lufthansa on April 13, 14",
-      "firstSeen": "2026-04-11T17:07:54.686Z",
-      "lastCovered": "2026-04-11T17:07:54.686Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-lufthansa-pilots-strike-april"
-      ],
-      "eventUri": "deu-2107792",
-      "summary": "Lufthansa pilots will strike Monday-Tuesday across Lufthansa Cargo, CityLine, and Eurowings after management showed 'no discernible willingness to reach a solution.' This hits European air travel during an already constrained jet fuel market from the Iran war. Lead with the compounding effect: fuel prices up 40%+ from Hormuz disruption, and now the largest European carrier's pilots walk out. The labor angle — pilots pushing back against post-pandemic contract erosion — matters for economy readers.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Strike_action",
-        "http://en.wikipedia.org/wiki/Lufthansa",
-        "http://de.wikipedia.org/wiki/Vereinigung_Cockpit",
-        "http://en.wikipedia.org/wiki/Aircraft_pilot",
-        "http://en.wikipedia.org/wiki/Lufthansa_CityLine",
-        "http://en.wikipedia.org/wiki/Eurowings",
-        "http://en.wikipedia.org/wiki/Lufthansa_Cargo",
-        "http://en.wikipedia.org/wiki/Employment"
-      ]
-    },
-    {
-      "id": "crypto-perpetuals-wall-street-prediction",
-      "label": "Crypto TradFi perpetuals are predicting the direction of Wall Street's Monday open with 89% accuracy",
-      "firstSeen": "2026-04-11T17:07:54.686Z",
-      "lastCovered": "2026-04-11T17:07:54.686Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-crypto-perpetuals-wall-street-prediction"
-      ],
-      "eventUri": "eng-11555787",
-      "summary": "Crypto perpetual futures now predict Monday's Wall Street direction with 89% accuracy, and weekend trading volume has grown to 38% of weekday levels. This is a structural shift: price discovery no longer stops when NYSE closes. Lead with the 89% figure and what it means — crypto markets are becoming the de facto weekend pricing layer for traditional finance. Binance leads volume. The Iran war's weekend volatility accelerated adoption.",
-      "conceptUris": []
-    },
-    {
-      "id": "nigeria-terrorism-financiers-list",
-      "label": "BREAKING: Nigerian govt releases updated list of terrorism financiers",
-      "firstSeen": "2026-04-11T17:07:54.686Z",
-      "lastCovered": "2026-04-11T17:07:54.686Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-nigeria-terrorism-financiers-list"
-      ],
-      "eventUri": null,
-      "summary": "Nigeria's sanctions committee published a list of 48 individuals and armed groups financing terrorism — including Islamic State West Africa Province and Boko Haram networks. The accountability mechanism matters: naming financiers publicly is how you choke funding. Lead with the 48 names and what groups they fund. The reader should see this as Nigeria taking ownership of its counterterrorism architecture rather than outsourcing it to the US or UN.",
-      "conceptUris": []
-    },
-    {
-      "id": "irish-bog-plant-superbug-antibiotic",
-      "label": "Irish bog plant revives ancient remedy as a new weapon vs superbugs",
-      "firstSeen": "2026-04-11T17:07:54.686Z",
-      "lastCovered": "2026-04-11T17:07:54.686Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-irish-bog-plant-superbug-antibiotic"
-      ],
-      "eventUri": null,
-      "summary": "Researchers found that compounds from an Irish bog plant used in traditional medicine are effective against antibiotic-resistant superbugs. Lead with the antimicrobial resistance crisis — 1.27 million deaths annually from drug-resistant infections — and the irony that a pre-modern remedy may help solve a modern crisis. The science reader wants the mechanism: which compounds, which pathogens, how does resistance differ from synthetic antibiotics.",
-      "conceptUris": []
-    },
-    {
-      "id": "eff-leaving-x-twitter",
-      "label": "EFF is leaving X",
-      "firstSeen": "2026-04-11T17:07:54.686Z",
-      "lastCovered": "2026-04-11T17:07:54.686Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-11-eff-leaving-x-twitter"
-      ],
-      "eventUri": null,
-      "summary": "The Electronic Frontier Foundation — the internet's most prominent digital rights organization — announced it is leaving X (Twitter). 1,415 HN points, 1,282 comments. Lead with what EFF is and why this matters: the organization that has defended online speech for 35 years concluded that the platform no longer serves that mission. This is not a political boycott — it's a structural judgment about X's role in the digital rights ecosystem. The Grok nudification scandal (covered last cycle) is part of the context.",
       "conceptUris": []
     }
   ]
