@@ -6,7 +6,7 @@ import {
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useRef, useState } from 'react';
-import { InteractionManager, type LayoutChangeEvent, Pressable, Share, StyleSheet, Text, View } from 'react-native';
+import { InteractionManager, type LayoutChangeEvent, Platform, Pressable, Share, StyleSheet, Text, View } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -166,7 +166,17 @@ export default function HomeScreen() {
     if (!activeArticle) return;
     hapticImpact();
     const url = `https://zuhd.news/a/${activeArticle.slug}`;
-    Share.share({ message: `${activeArticle.title}\n\n${url}` }).catch(() => {});
+    const title = activeArticle.title;
+    Share.share(
+      Platform.select({
+        ios: { url, title },
+        default: { message: `${title}\n${url}`, title },
+      })!,
+      Platform.select({
+        ios: { subject: `${title} \u2014 zuhd.news` },
+        default: { dialogTitle: 'Share' },
+      }),
+    ).catch(() => {});
   }, [activeArticle]);
 
   const handleArticleChange = useCallback((article: Article, catIndex: number) => {
@@ -388,7 +398,7 @@ export default function HomeScreen() {
       <Toast ref={toastRef} />
 
       {/* Bottom bar: [briefing] ---- [context] [sources] [share] */}
-      {!briefingPlayer.playing && (
+      {!(briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
         <View
           style={[styles.bottomBar, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
           pointerEvents="box-none"
@@ -455,7 +465,7 @@ export default function HomeScreen() {
                 pressed && PRESSED_STYLE,
               ]}
               accessibilityRole="button"
-              accessibilityLabel="Dig into this story"
+              accessibilityLabel="More about this story"
             >
               <Text
                 style={{
@@ -465,22 +475,24 @@ export default function HomeScreen() {
                   color: colors.textEmphasis,
                 }}
               >
-                dig
+                more
               </Text>
             </Pressable>
           </View>
         </View>
       )}
 
-      {/* Expanded briefing player — full width when playing */}
-      {briefing?.available && briefing.date && briefingPlayer.playing && (
+      {/* Briefing player — persists while playing or paused mid-listen */}
+      {briefing?.available && briefing.date && (briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
         <BriefingBar
           playing={briefingPlayer.playing}
           elapsed={briefingPlayer.elapsed}
           duration={briefingPlayer.duration}
+          rate={briefingPlayer.rate}
           date={briefing.date}
           onToggle={briefingPlayer.toggle}
           onSeek={briefingPlayer.seek}
+          onCycleRate={briefingPlayer.cycleRate}
         />
       )}
 

@@ -19,7 +19,7 @@ function ccToFlag(cc: string): string {
     .replace(/./g, (c) => String.fromCodePoint(0x1f1e6 + c.charCodeAt(0) - 65));
 }
 
-const DigHandle = () => <SheetHandle title="dig" />;
+const MoreHandle = () => <SheetHandle title="more" />;
 
 // ---------------------------------------------------------------------------
 // Main sheet
@@ -131,7 +131,7 @@ export const ContextSheet = memo(function ContextSheet({
       enablePanDownToClose
       backdropComponent={renderBackdrop}
       backgroundStyle={sheetStyles.bg}
-      handleComponent={DigHandle}
+      handleComponent={MoreHandle}
       containerComponent={SheetContainer}
       onDismiss={handleDismiss}
     >

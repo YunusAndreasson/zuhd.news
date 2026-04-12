@@ -3,6 +3,7 @@ import {
   BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
+import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
 import { memo, useCallback, useRef, useState } from 'react';
 import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -27,32 +28,29 @@ const INFO_PAGES: Record<string, { title: string; sections: InfoSection[] }> = {
     title: 'about',
     sections: [
       { body: 'Zuhd \u2014 the discipline of doing without what you do not need.' },
-      { body: 'Each article says what happened, why it matters, and what comes next. Then it stops.' },
-      { body: 'Forty sources across six continents. Where a story is told from determines who is a person and who is a number.' },
-      { body: 'No social media. That time goes toward the work.' },
+      { body: 'What happened. Why it matters. What comes next. Then stop.' },
+      { body: 'Hundreds of sources across six continents, selected for editorial independence. Where a story is told from determines who is treated as a person and who as a statistic.' },
+      { body: 'No social media, no investors, no editorial board.' },
       { link: { label: 'zuhd.news', url: 'https://zuhd.news' }, body: '' },
     ],
   },
   sources: {
     title: 'sources',
     sections: [
-      { body: 'Selected for editorial independence, not funding model. State-funded outlets are included if editorially autonomous; editorial interference disqualifies regardless of ownership.' },
-      { heading: 'middle east', body: 'Al Jazeera, Al Monitor, Haaretz, Medyascope, Middle East Eye' },
-      { heading: 'asia', body: 'Antara News, Daily Star, Dawn, Malay Mail, South China Morning Post, The Hindu, Yonhap' },
-      { heading: 'africa', body: 'AllAfrica, Daily Maverick, Mada Masr, Premium Times, TSA' },
-      { heading: 'americas', body: 'Buenos Aires Times, CBC News, Fox News, MercoPress' },
-      { heading: 'oceania', body: 'ABC News Australia, RNZ Pacific' },
-      { heading: 'europe', body: 'BBC, Deutsche Welle, France 24, Moscow Times, Sveriges Radio' },
-      { heading: 'specialist', body: '404 Media, Ars Technica, Bellingcat, Carbon Brief, CoinDesk, Hacker News, MIT Technology Review, Nature, New Scientist, Quanta Magazine, Rest of World, STAT News' },
+      { body: 'Stories are compiled from hundreds of outlets indexed by EventRegistry. A language model selects and writes each article based on geographic breadth and editorial significance.' },
+      { heading: 'inclusion', body: 'Editorial independence determines inclusion. State-funded outlets qualify if editorially autonomous. Editorial interference disqualifies regardless of ownership.' },
+      { heading: 'transparency', body: 'Every article lists the outlets used, their country of origin, and how each covers the story. Tap \u201cmore\u201d on any article to inspect.' },
     ],
   },
   privacy: {
     title: 'privacy',
     sections: [
-      { body: 'No cookies. No analytics. No tracking. No third-party scripts. No accounts.' },
-      { heading: 'website', body: 'Your browser remembers which articles you have read. That data stays on your device. Typefaces load from our own servers.' },
-      { heading: 'mobile app', body: 'The app fetches content over HTTPS without sending identifying information or usage metrics. Reading preferences and history remain on your device. The app does not use third-party analytics, advertising frameworks, or crash reporting services.' },
-      { heading: 'audio briefings', body: 'Audio is generated with Google Cloud Text-to-Speech and hosted by us. Downloads go directly to your device without sharing information with Google.' },
+      { body: 'No accounts. No analytics. No telemetry. No advertising. No crash reporting. No third-party SDKs.' },
+      { heading: 'data collection', body: 'None. The app makes HTTPS requests to zuhd-news.pages.dev and receives JSON. No device identifiers, IP addresses, or usage data are logged server-side.' },
+      { heading: 'local storage', body: 'Reading history, bookmarks, and preferences are stored on-device using AsyncStorage. This data never leaves your device.' },
+      { heading: 'network requests', body: 'Content fetches, context briefs, and audio downloads go to Cloudflare Pages. No third-party endpoints are contacted.' },
+      { heading: 'audio', body: 'Briefing audio is generated via Google Cloud TTS and hosted on our infrastructure. Google receives the text to synthesize; it does not receive any user data.' },
+      { heading: 'notifications', body: 'Push tokens are stored on our server to deliver alerts. No other identifying information is collected alongside the token.' },
     ],
   },
   contact: {
@@ -252,6 +250,18 @@ export const MenuSheet = memo(function MenuSheet({
               <InfoLink label="contact" onPress={() => navigateTo('contact')} />
               <InfoLink label="rate" onPress={() => StoreReview.requestReview()} />
             </View>
+
+            <Text
+              style={{
+                ...font.regular,
+                fontSize: typography.sizeXs,
+                color: colors.textSecondary,
+                opacity: 0.5,
+                marginTop: SPACING.lg,
+              }}
+            >
+              zuhd.news · {Constants.expoConfig?.version ?? ''}
+            </Text>
           </>
         )}
       </BottomSheetScrollView>
