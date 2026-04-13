@@ -1,35 +1,33 @@
 {
-  "date": "2026-04-12",
+  "date": "2026-04-13",
   "metrics": {
-    "articles": { "value": 42, "detail": "5 cycles completed, avg 8.4/cycle" },
-    "freshness": { "median": 1.1, "p90": 1.7, "max": 1.7, "target": 1.0, "met": false },
-    "categories": { "politics": 17, "economy": 12, "science": 6, "tech": 7 },
+    "articles": { "value": 58, "detail": "5 cycles completed, avg 10/cycle" },
+    "freshness": { "median": 1.3, "p90": 1.5, "max": 1.5, "target": 1.0, "met": false, "note": "count=4 — only 4 articles had parseable pub-date; sample may be unrepresentative of full output" },
+    "categories": { "politics": 22, "economy": 15, "science": 10, "tech": 11 },
     "multiSource": { "value": 10, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "ME": 13, "AM": 12, "AF": 7, "EU": 8, "AS": 2 }
+      "breakdown": { "AM": 17, "ME": 11, "EU": 15, "AS": 11, "OC": 2, "AF": 2 }
     },
-    "sciTech": { "ratio": 31, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 40,
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 56,
     "duplicates": 0,
-    "avgCycleDuration": 1033
+    "avgCycleDuration": 1213
   },
-  "experiment": "Active — 2026-04-12-tech-floor-3 (selector tech floor 2→3), day 1 of 3. Evaluate after 2026-04-15. Today's tech count: 7 (baseline avg 10.3/day). Too early to evaluate; no new experiment proposed.",
-  "weakestArea": "Freshness remains the sole failing metric: median 1.1 days against a ≤1.0 target. The Iran War/Hormuz Blockade is generating substantial background and analysis pieces dated 1–2 days prior, inflating the lag. With the standalone cap already trimmed from 30→25 (prior kept experiment), further gains likely require the selector to weight pubDate more aggressively, or the feed to penalize articles older than 24h.",
+  "experiment": "Active: 2026-04-12-tech-floor-3 (selector tech floor 2→3), day 2 of 3. Evaluates 2026-04-15 — too early to judge. Today's tech count is 11 vs baseline 10.3 — trending positive. No new experiment proposed while current one runs.",
+  "weakestArea": "Freshness median (1.3d) remains above the ≤1.0d target for the second consecutive day (yesterday 1.1d). However, today's freshness calculation covers only 4 articles out of 58 published — the metrics pipeline may not be capturing pub-date data for most articles. The freshness signal is unreliable until the sample size issue is investigated; do not act on this metric until confirmed.",
   "watching": [
-    "Iran/Hormuz Blockade: 8 articles today spanning Trump's naval order, US-Iran talks collapse, UK/France counter-positioning, and downstream economic shocks in Bangladesh, Haiti, and Gulf aviation — story is live and expanding across all categories.",
-    "Nigeria security: mass kidnapping report (1,100 over four months, Amnesty) and Boko Haram market airstrike (200 dead, Yobe) running simultaneously with AI-enabled disinformation targeting officials — multi-front deterioration worth sustained coverage.",
-    "Lebanon-Israel: Israeli encirclement of Bint Jbeil and Hezbollah FPV drone escalation signal ground offensive intensifying in southern Lebanon.",
-    "Hungary: Orbán's Fidesz defeated by Tisza Party — first major electoral loss in over a decade; EU political implications developing."
+    "Politics heavily weighted at 22 articles (38% of output) — monitor whether politics dominance compresses science/tech headroom in future cycles.",
+    "Africa (2 articles) and Oceania (2 articles) remain the thinnest regional slots — watch whether Southeast Asia improvement (AS: 11 today, up from 2 yesterday) holds.",
+    "Freshness sample anomaly: count=4 vs 58 published is abnormally low — investigate whether metrics script is computing freshness across all published articles."
   ],
   "coverageGaps": [
-    "Oceania absent again — no Pacific or Australasian stories in feed or output today.",
-    "Southeast Asia severely underrepresented: only 2 AS articles despite active stories in Thailand, Philippines, and ASEAN trade re-routing amid the Iran War.",
-    "Latin America absent: AM region's 12 articles appear US-dominated (Trump, CFTC, Iran War US angle); no Brazil, Mexico, or Andean coverage.",
-    "Central Asia invisible: Kazakhstan energy re-routing and Uzbek-Afghan border tensions are directly relevant to Iran War but absent from feed."
+    "Sub-Saharan Africa: only 2 articles today (Premium Times Nigeria only); no East African, Francophone, or Southern African angles beyond Daily Maverick.",
+    "Oceania: 2 articles (ABC + Lowy Interpreter only); no Pacific island, climate, or Southeast Asian island-nation coverage.",
+    "Latin America: AM region at 17 articles but likely US/Canada-heavy; no dedicated LatAm sources (Brazil, Mexico, Andean) visible in today's source list."
   ],
-  "context": "Today's output is coherent but heavily Iran War-concentrated — roughly one-fifth of articles trace back to the Hormuz Blockade in some form. This is appropriate given the story's scale, but it is compressing space for other regions and contributing to freshness drift as analysis pieces age. The Nigeria cluster (4 articles) and the Hungary election (Orbán defeated) are the strongest non-Iran stories; both have follow-up potential for tomorrow's cycles."
+  "context": "Today's output is a clear improvement over yesterday: 58 vs 42 articles, 56 vs 40 unique sources, and regional coverage expanded to 6 regions with Southeast Asia jumping from 2 to 11 articles. The active tech-floor experiment shows early positive signal (11 tech today vs baseline 10.3). Freshness remains the lone failing metric but the tiny sample (4/58) makes the reading suspect — this warrants a data-quality check on the metrics pipeline before any parameter change is considered."
 }
