@@ -6210,5 +6210,354 @@
     "label": "CAATSA & India's Defence Bind",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-13-a16z-phone-farm-doublespeed-hacked-ai-influencers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A PHONE FARM ACTUALLY IS",
+        "body": "Hundreds of physical smartphones racked in a server room, each running a separate social media account. The phones are real because platforms fingerprint device hardware — emulators get flagged. The economics only work at scale: one operator managing 500+ accounts through a central dashboard."
+      },
+      {
+        "heading": "WHY CENTRAL CONTROL IS THE VULNERABILITY",
+        "body": "Orchestrating hundreds of accounts requires a single management layer — the dashboard that queues posts, rotates content, and monitors engagement. Compromise that one layer and you control every account simultaneously. The same architecture that makes the farm efficient makes it a single point of failure."
+      },
+      {
+        "heading": "THE ASTROTURFING LINEAGE",
+        "body": "Coordinated inauthentic behavior predates AI. The Russian Internet Research Agency ran 3,000+ human-operated accounts in 2016. What changed is cost: AI-generated personas eliminate the per-account labor cost, dropping the marginal cost of a fake influencer to near zero. The constraint shifted from content production to platform access."
+      },
+      {
+        "heading": "THE DETECTION ARMS RACE",
+        "body": "Platforms detect coordinated accounts by behavioral signatures — posting at the same times, sharing the same links, engaging with each other in suspicious patterns. Phone farms counter by randomizing schedules and mixing organic engagement. Each generation of detection forces a more expensive evasion, which is why centralized management platforms like Doublespeed exist in the first place."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.114Z",
+    "label": "AI Influence Operations",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-13-ai-revolution-mathematics-proving-new-results": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISTINCTION THAT MATTERS",
+        "body": "Solving a competition problem means finding an answer someone already knows exists. Proving a new theorem means demonstrating something no human has ever established is true. The first is pattern matching against known technique families. The second requires constructing entirely new reasoning chains — a qualitatively different task."
+      },
+      {
+        "heading": "WHY THE IMO IS THE BENCHMARK",
+        "body": "The International Mathematical Olympiad tests creative problem-solving, not computation. Problems require novel proofs in combinatorics, geometry, number theory, and algebra. No formula sheet helps. The top human scorers — roughly 50 per year out of 600 contestants — represent the ceiling of adolescent mathematical reasoning. Matching them is a meaningful signal about reasoning capability, not just calculation speed."
+      },
+      {
+        "heading": "THE FORMAL VERIFICATION BOTTLENECK",
+        "body": "Mathematicians write proofs in natural language with implicit steps. Computers verify proofs in formal languages like Lean or Coq where every step is explicit. Translating between the two — autoformalization — is itself an unsolved problem. An AI that generates a natural-language proof still cannot guarantee it is correct without formalization."
+      },
+      {
+        "heading": "THE FOUR-COLOR PRECEDENT",
+        "body": "The first major computer-assisted proof was the Four Color Theorem in 1976. Mathematicians objected that a proof no human could verify by hand was not really a proof. The debate lasted decades. If AI begins producing novel theorems that humans cannot fully follow, the same epistemological question returns — but at vastly larger scale."
+      },
+      {
+        "heading": "WHAT WOULD ACTUALLY CHANGE",
+        "body": "Mathematics has roughly 100,000 active researchers producing about 150,000 papers per year. Most progress is incremental — filling gaps, extending results, connecting subfields. If AI can reliably generate even incremental proofs, the bottleneck shifts from proving to conjecturing: deciding which questions are worth asking."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.115Z",
+    "label": "AI & Mathematical Proof",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-13-fbi-indonesia-w3ll-phishing-tool-takedown": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUSINESS MODEL",
+        "body": "Phishing-as-a-service platforms rent turnkey credential-theft kits the way SaaS companies rent software. The operator builds and maintains the phishing infrastructure — fake login pages, hosting, evasion techniques — and customers pay a subscription to use it. No technical skill required. The $500 price point puts enterprise-grade attacks within reach of petty criminals."
+      },
+      {
+        "heading": "WHY CORPORATE CREDENTIALS ARE THE TARGET",
+        "body": "A stolen personal email password is worth a few dollars on dark web markets. A stolen corporate Microsoft 365 credential is worth hundreds — it opens access to email, SharePoint, Teams, and often the VPN. One compromised corporate account can be the entry point for ransomware, wire fraud, or data exfiltration affecting the entire organization."
+      },
+      {
+        "heading": "THE MFA BYPASS PROBLEM",
+        "body": "Modern phishing kits do not just steal passwords — they act as real-time proxies between the victim and the legitimate login page. When the victim enters their multi-factor authentication code, the kit captures and replays it instantly. This adversary-in-the-middle technique defeats SMS codes, authenticator apps, and most push notifications. Only hardware security keys (FIDO2) resist it reliably."
+      },
+      {
+        "heading": "THE JURISDICTION GAP",
+        "body": "Cybercrime infrastructure is deliberately distributed across jurisdictions that rarely cooperate. A US-Indonesia joint takedown is unusual — most phishing platforms operate from countries where local law enforcement lacks either the capability or the incentive to act. Takedowns disrupt but rarely result in charges; operators typically rebuild within weeks under a new name."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.115Z",
+    "label": "Phishing-as-a-Service",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-13-india-womens-reservation-bill-parliament": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THIRTY-YEAR BLOCK",
+        "body": "The Women's Reservation Bill was first introduced in 1996 by the Deve Gowda government. It failed repeatedly because OBC (Other Backward Classes) parties demanded a sub-quota for OBC women within the reserved seats. Without that carve-out, they argued, upper-caste women would fill every reserved seat. This caste-versus-gender deadlock killed the bill in 1998, 1999, 2003, and 2008."
+      },
+      {
+        "heading": "THE DELIMITATION TRIGGER",
+        "body": "India's parliamentary seats are still distributed based on the 1971 census — a freeze imposed in 1976 to avoid punishing states that reduced birth rates. Delimitation (redrawing constituencies based on current population) has been postponed repeatedly because southern states with lower birth rates would lose seats to northern states. Tying women's reservation to delimitation means the bill's actual implementation depends on resolving this older, more explosive north-south demographic dispute."
+      },
+      {
+        "heading": "THE PANCHAYAT PRECEDENT",
+        "body": "India already runs the world's largest women's political reservation at the local level. The 73rd Amendment (1992) reserved one-third of all panchayat (village council) seats for women. Research from this natural experiment shows that women-led panchayats invested more in water infrastructure, roads, and education — and that exposure to women leaders reduced gender bias in subsequent elections."
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "India's Lok Sabha has 543 elected seats. Reserving one-third means 181 seats rotate to women-only contests each election cycle. By comparison, Rwanda leads the world with 61% women in parliament, but its lower house has only 80 seats. India would create the largest women's legislative bloc in any democracy by absolute numbers."
+      },
+      {
+        "heading": "HOW ROTATION WORKS",
+        "body": "Reserved constituencies are not permanent — they rotate each election so that different districts take turns electing women. This prevents any single constituency from being permanently locked into a reservation category. The rotation formula itself becomes a political weapon: which seats rotate when determines which incumbents lose their constituencies."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.115Z",
+    "label": "India's Reservation System",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-13-lafarge-ceo-jailed-france-funding-isis-syria": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LOGIC OF STAYING",
+        "body": "A cement plant cannot relocate. Lafarge's Jalabiya facility represented a $680 million investment in a fixed asset — kilns, quarries, rail links — all immovable. When ISIS advanced in 2013-2014, the choice was pay or abandon. Multinational boards rarely write off nine-figure assets voluntarily, which is how protection payments get rationalized as business continuity."
+      },
+      {
+        "heading": "THE INTERMEDIARY CHAIN",
+        "body": "Lafarge did not wire money directly to ISIS. Payments flowed through local intermediaries and subcontractors who provided security, raw materials, and transport permits. Each link in the chain provided plausible deniability — until investigators traced the money backward from ISIS-controlled checkpoints to Lafarge purchase orders."
+      },
+      {
+        "heading": "THE FRENCH LEGAL FRAMEWORK",
+        "body": "France's 2017 Sapin II law made corporations criminally liable for corruption by subsidiaries anywhere in the world. But Lafarge was charged under older terrorism-financing statutes, which carry heavier penalties and no compliance-program defense. The distinction matters: corruption charges can be settled with monitored agreements, but terrorism-financing convictions require criminal sentences."
+      },
+      {
+        "heading": "THE HOLCIM SHIELD",
+        "body": "LafargeHolcim merged in 2015 — after the payments began but before the prosecution. Holcim initially claimed ignorance, then admitted Lafarge leadership acted alone. The merger created a jurisdictional puzzle: a Swiss-domiciled parent, a French subsidiary, and crimes committed in Syria. French prosecutors pursued the French entity; whether liability reaches Holcim's Swiss board remains unresolved."
+      },
+      {
+        "heading": "WHY SYRIA'S CEMENT MATTERED",
+        "body": "ISIS taxed every economic activity in its territory. Cement was uniquely valuable because it was essential for fortifications, tunnel construction, and rebuilding in conquered towns. Lafarge was not just paying for safe passage — it was supplying a strategic material to an organization actively using it for military purposes."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.115Z",
+    "label": "Corporate Operations in War Zones",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-13-lufthansa-pilots-48-hour-strike-fourth-2026": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNION STRUCTURE",
+        "body": "German aviation splits labor into three separate unions: Vereinigung Cockpit (pilots), UFO (cabin crew), and ver.di (ground staff). Each negotiates independently, which means an airline can face rolling strikes from different unions in sequence. A pilot deal does not prevent a cabin crew walkout the following week — as Lufthansa is discovering in 2026."
+      },
+      {
+        "heading": "WHY PENSIONS ARE THE STICKING POINT",
+        "body": "Lufthansa pilots historically received defined-benefit pensions guaranteeing a fixed retirement income. The airline shifted new hires to defined-contribution plans (fixed employer payments, variable outcome) after 2014. The current dispute is about the transition generation — pilots hired under the old promise who watched the benefit shrink. Doubling contributions is an attempt to close the gap without restoring the original guarantee."
+      },
+      {
+        "heading": "THE COST ARITHMETIC",
+        "body": "A single canceled Lufthansa flight costs the airline roughly €50,000-150,000 in rebooking, compensation (EU Regulation 261), and lost revenue. At 572 canceled flights over 48 hours, the direct cost approaches €50-80 million per strike — before counting the passengers who permanently switch to competitors."
+      },
+      {
+        "heading": "THE LEGAL CONSTRAINT",
+        "body": "German labor law gives unions broad strike rights but requires proportionality — the strike must be a last resort after negotiations fail. Courts can and do issue injunctions against disproportionate strikes. However, German courts have historically been reluctant to intervene in aviation disputes, treating them as legitimate industrial action even when thousands of passengers are stranded."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.115Z",
+    "label": "German Aviation Labor",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-13-muslim-student-34-years-pro-palestine-protest-pittsburgh": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHARGE-STACKING MECHANISM",
+        "body": "American prosecutors have near-total discretion over which charges to file. A single incident can be broken into multiple felonies — assault, rioting, conspiracy — each carrying its own maximum sentence. The combined theoretical maximum (here, 34 years) bears almost no relationship to likely sentences but creates enormous plea-bargain leverage: accept a misdemeanor deal or risk decades at trial."
+      },
+      {
+        "heading": "THE PLEA BARGAIN PRESSURE",
+        "body": "Over 97% of federal criminal cases and roughly 94% of state cases in the US are resolved by plea bargain, not trial. When prosecutors offer co-defendants reduced charges in exchange for guilty pleas, the holdout who insists on trial faces the full weight of the original charges. This creates a structural incentive to plead guilty regardless of innocence — a dynamic the legal system treats as feature, not bug."
+      },
+      {
+        "heading": "THE SELECTIVE PROSECUTION QUESTION",
+        "body": "The Equal Protection Clause of the 14th Amendment prohibits prosecutors from targeting defendants based on race, religion, or political viewpoint. But proving selective prosecution requires showing both discriminatory effect (similarly situated people were not charged) and discriminatory intent — a standard the Supreme Court set deliberately high in United States v. Armstrong (1996). Almost no defendants clear this bar."
+      },
+      {
+        "heading": "THE HISTORICAL PATTERN",
+        "body": "Felony charges against protesters follow a recurring American pattern: suffragists were charged with obstructing traffic, civil rights marchers with criminal trespass, Vietnam War protesters with conspiracy. In nearly every era, charges that seemed proportionate to authorities at the time were later recognized as instruments of political suppression. The recognition typically comes decades after the damage is done."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.116Z",
+    "label": "Felony Protest Charges",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-13-nigerian-army-colonel-killed-borno-iswap-attack": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SPLIT",
+        "body": "ISWAP broke from Boko Haram in 2016 after a leadership dispute over targeting. Boko Haram under Shekau attacked Muslim civilians indiscriminately — including mosques and markets. ISWAP's founder, Abu Musab al-Barnawi, argued this was strategically and religiously indefensible. ISIS central command in Raqqa sided with al-Barnawi. The split produced two groups: ISWAP, which avoids civilian massacres to maintain local support, and Boko Haram's remnant, which largely collapsed after Shekau's death in 2021."
+      },
+      {
+        "heading": "WHY BORNO",
+        "body": "Borno State sits at the intersection of Nigeria, Niger, Chad, and Cameroon — a region where state authority thins to almost nothing. The Lake Chad basin provides water, fish, and seasonal farmland, making it possible to sustain a fighting force without external supply lines. Every counterinsurgency campaign has to operate across four national borders with four different militaries, none of which fully trust the others."
+      },
+      {
+        "heading": "THE IED SHIFT",
+        "body": "ISWAP's increasing use of IEDs against military convoys signals a tactical evolution. Direct ambushes risk casualties; roadside bombs allow attacks with minimal exposure. The US military found the same pattern in Iraq after 2004 — IED campaigns indicate an insurgency that has learned to conserve fighters while inflicting maximum psychological damage on a conventional force."
+      },
+      {
+        "heading": "THE COMMAND-TARGETING LOGIC",
+        "body": "Killing a colonel on a battlefield assessment visit is not random violence — it is intelligence-driven targeting. Senior officers on forward visits follow predictable routes on known schedules. Successful targeting of command-level officers suggests ISWAP has either infiltrated military communications or cultivated informants within the force. Two senior kills in four days elevates this from coincidence to pattern."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.116Z",
+    "label": "ISWAP & the Lake Chad Basin",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-13-rheinmetall-destinus-missile-joint-venture-europe": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GAP",
+        "body": "Europe has designed cruise missiles for decades — the Franco-British Storm Shadow/SCALP, the German Taurus KEPD-350 — but has never mass-produced them. Annual production runs are measured in dozens, not thousands. When European nations wanted to supply Ukraine with cruise missiles, they discovered their stockpiles were designed for quality-over-quantity Cold War scenarios that assumed wars would last days, not years."
+      },
+      {
+        "heading": "WHY PRODUCTION IS HARD",
+        "body": "A cruise missile is a single-use jet aircraft: turbofan engine, guidance computer, terrain-matching navigation, and a warhead, all miniaturized to fit in a 5-meter airframe. Each component has its own supply chain bottleneck. Engine production alone requires specialized turbine blades made from single-crystal nickel superalloys — a material with a global supplier base measured in single digits."
+      },
+      {
+        "heading": "THE UKRAINE PROVING GROUND",
+        "body": "Ukraine's Ruta missile was designed, tested, and refined under combat conditions — a development cycle impossible to replicate in peacetime. Battlefield data on evasion patterns, jamming resistance, and terminal accuracy is worth more than years of range testing. Rheinmetall is not just buying a design; it is buying combat-validated performance data."
+      },
+      {
+        "heading": "THE SOVEREIGNTY CALCULUS",
+        "body": "European NATO members currently depend on American Tomahawk missiles for deep-strike capability. Building an indigenous European cruise missile at industrial scale would reduce this dependency — which is both the strategic argument for the joint venture and the reason it faces political friction. Washington has historically discouraged European weapons programs that compete with American exports."
+      },
+      {
+        "heading": "THE 51% LOGIC",
+        "body": "Rheinmetall's majority stake ensures the venture falls under German export-control law, which is among Europe's strictest. This gives Berlin a veto over where the missiles can be sold — a concession that likely smoothed regulatory approval but constrains commercial potential outside NATO."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.116Z",
+    "label": "European Cruise Missile Production",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-13-tcs-nashik-sexual-assault-forced-conversion-probe": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL LANDSCAPE",
+        "body": "India has no national anti-conversion law, but 12 states have enacted their own — typically called Freedom of Religion Acts. These laws criminalize conversion by force, fraud, allurement, or coercion. The burden of proof often falls on the person accused of converting someone, not on the person claiming coercion. Penalties range from fines to 10 years imprisonment."
+      },
+      {
+        "heading": "WHY WORKPLACE ADDS COMPLEXITY",
+        "body": "Anti-conversion laws were designed with religious missionaries in mind. Applying them to workplace allegations introduces a power dynamic the statutes were not built for — a supervisor-subordinate relationship where economic coercion (threat of firing, withholding promotions) can substitute for physical force. Whether workplace authority constitutes the kind of coercion these laws target is legally untested at this scale."
+      },
+      {
+        "heading": "THE CORPORATE LIABILITY QUESTION",
+        "body": "Indian law distinguishes between individual criminal acts and corporate negligence. If TCS knew about complaints and failed to act, it faces liability under the Prevention of Sexual Harassment (POSH) Act of 2013, which requires every employer with 10+ workers to maintain an Internal Complaints Committee. Failure to constitute or operate this committee is itself a criminal offense — separate from the underlying assault allegations."
+      },
+      {
+        "heading": "THE TATA REPUTATION FACTOR",
+        "body": "Tata Group companies trade on a century-old reputation for ethical governance — Jamsetji Tata founded India's first steel mill, first luxury hotel, and first research university. TCS alone employs over 600,000 people and generates roughly $29 billion in annual revenue. For the Tata brand, the reputational cost of a mishandled investigation may exceed any legal penalty."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.116Z",
+    "label": "India's Anti-Conversion Laws",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-13-ultrasound-generates-light-inside-body-noninvasive": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROBLEM",
+        "body": "Light is medicine's most precise tool — it can activate drugs, stimulate neurons, and kill cancer cells — but tissue absorbs and scatters it within millimeters. Shine a laser on skin and almost nothing reaches organs beneath. Every existing method for delivering therapeutic light to deep tissue requires cutting: fiber optics threaded through incisions, or surgical exposure of the target."
+      },
+      {
+        "heading": "THE PHYSICS",
+        "body": "Ultrasound passes through soft tissue almost unimpeded — that is why it works for imaging fetuses. Light does not: hemoglobin, water, and collagen absorb and scatter photons aggressively. The gap between ultrasound's tissue penetration (centimeters) and light's (millimeters) is the asymmetry this technique exploits."
+      },
+      {
+        "heading": "THE MECHANISM",
+        "body": "When ultrasound waves compress tissue at sufficient intensity, they can excite certain molecules to emit photons — a process related to sonoluminescence, first observed in 1934 when researchers noticed that ultrasound could make water glow. Generating useful, targeted light inside tissue rather than in a beaker of water is what makes this advance new."
+      },
+      {
+        "heading": "WHAT IT UNLOCKS",
+        "body": "Photodynamic therapy uses light-activated drugs to destroy tumors with minimal collateral damage — but currently only works on surface cancers reachable by fiber optics. Optogenetics uses light to control genetically modified neurons with millisecond precision — but currently requires implanted fibers in the brain. Non-invasive light delivery would make both techniques applicable to deep organs for the first time."
+      },
+      {
+        "heading": "THE DISTANCE TO PATIENTS",
+        "body": "Sonoluminescence in water produces broadband light at unpredictable intensities. Controlling the wavelength, intensity, and location of light generated inside living tissue — where composition varies with every patient and every organ — is an engineering challenge that separates a laboratory demonstration from a clinical tool. The technique works; the precision does not yet exist."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.116Z",
+    "label": "Light Delivery in Living Tissue",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-13-volkswagen-q1-deliveries-drop-china-us-weakness": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEPENDENCY",
+        "body": "China accounted for roughly 40% of Volkswagen Group's global sales at peak in 2019. No other Western automaker was as exposed to a single foreign market. VW entered China in 1984 — one of the first Western manufacturers — and built a network of joint ventures that became the template for every foreign automaker that followed."
+      },
+      {
+        "heading": "THE EV DISRUPTION",
+        "body": "Chinese consumers are switching to electric vehicles faster than any other market: EVs and plug-in hybrids reached over 50% of new car sales in China by late 2025. VW's EV offerings — the ID series — have struggled against BYD, Nio, and Xiaomi on price, software, and charging network integration. The brand loyalty that protected VW's combustion-engine dominance does not transfer to a new technology category."
+      },
+      {
+        "heading": "THE JOINT VENTURE TRAP",
+        "body": "Chinese law required foreign automakers to operate through 50-50 joint ventures with local partners until 2022. VW's partners — SAIC and FAW — now have the manufacturing expertise, supplier networks, and government relationships to compete independently. The joint venture structure that gave VW market access for 40 years also built its future competitors."
+      },
+      {
+        "heading": "THE TARIFF SQUEEZE",
+        "body": "VW faces a two-front tariff problem: US tariffs on European-made vehicles raise the price of its exports, while EU tariffs on Chinese EVs threaten retaliation against European automakers operating in China. VW's globally integrated production model — shipping components across borders for assembly — is optimized for free trade. Every new tariff wall degrades that model's economics."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.116Z",
+    "label": "Volkswagen's China Problem",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-13-webinartv-scraped-zoom-anonymous-recovery-meetings": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEFAULT THAT ENABLES THIS",
+        "body": "Zoom meeting links are URLs with a numeric ID and optional passcode embedded in the link itself. Anyone with the full URL can join or, if recording is enabled, access the recording. There is no authentication layer between the link and the content unless the host manually enables a waiting room or requires sign-in. The link is the key — and links leak through calendar invites, emails, forums, and chat messages."
+      },
+      {
+        "heading": "WHY SCRAPING WORKS AT SCALE",
+        "body": "Zoom links follow a predictable URL pattern. Automated scrapers can harvest them from public web pages, indexed Google results, social media posts, and paste sites. Once collected, the scraper checks each link for accessible recordings. At 200,000 recordings, this is industrial-scale data harvesting — not a targeted attack but a dragnet that captures whatever the default settings expose."
+      },
+      {
+        "heading": "THE ANONYMITY ASSUMPTION",
+        "body": "Twelve-step programs operate on a tradition of anonymity established in the 1930s — members use first names only, and what is shared in meetings stays in meetings. This norm was designed for physical rooms where attendance was self-selecting. Zoom meetings inherited the anonymity expectation but not the access control: a physical room has walls, a Zoom link has a URL."
+      },
+      {
+        "heading": "THE LEGAL GAP",
+        "body": "US federal wiretapping law (the Electronic Communications Privacy Act of 1986) prohibits intercepting communications in transit but offers weaker protection for stored recordings. A scraped Zoom recording is stored data, not an intercepted call. State laws vary — California and Illinois have stronger protections — but no federal statute clearly prohibits scraping publicly accessible meeting recordings, even when participants expected privacy."
+      },
+      {
+        "heading": "THE PLATFORM INCENTIVE",
+        "body": "Zoom's business model rewards frictionless access — the fewer clicks to join, the more meetings happen, the more licenses sell. Every security measure (waiting rooms, authentication, link expiration) adds friction that reduces adoption. This is not negligence but a deliberate product tradeoff: ease of use is the feature that made Zoom a verb during the pandemic."
+      }
+    ],
+    "generatedAt": "2026-04-13T17:29:13.116Z",
+    "label": "Zoom's Privacy Architecture",
+    "category": "tech",
+    "articleCount": 1
   }
 }
