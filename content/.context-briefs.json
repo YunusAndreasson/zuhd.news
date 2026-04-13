@@ -6559,5 +6559,279 @@
     "label": "Zoom's Privacy Architecture",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-13-beccs-carbon-capture-flagship-project-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ACCOUNTING TRICK",
+        "body": "BECCS assumes burning biomass is carbon-neutral because new trees reabsorb what was released. The climate models then count the captured CO2 as negative emissions — a double credit. If the biomass is not actually carbon-neutral, the entire subtraction collapses into addition."
+      },
+      {
+        "heading": "THE CARBON DEBT",
+        "body": "A mature tree stores decades of accumulated carbon. Burning it releases that carbon in minutes. A new seedling takes 30-80 years to reabsorb the same amount. During that gap — the carbon debt — the atmosphere is warmer than if you had never cut the tree. Princeton's finding that BECCS adds CO2 for 30 years is this debt in action."
+      },
+      {
+        "heading": "HOW IT ENTERED THE MODELS",
+        "body": "When the IPCC modeled pathways to 1.5°C in its 2014 Fifth Assessment, most scenarios required removing CO2 already in the atmosphere — not just cutting emissions. BECCS was the only negative-emission technology with a plausible engineering basis at scale. It entered the models as a placeholder and hardened into an assumption."
+      },
+      {
+        "heading": "THE SCALE PROBLEM",
+        "body": "IPCC scenarios assume BECCS capturing 5-10 billion tons of CO2 per year by mid-century. That would require dedicated biomass plantations covering an area roughly the size of India — competing directly with food production. No country has allocated this land."
+      },
+      {
+        "heading": "THE DRAX HISTORY",
+        "body": "Drax was Britain's largest coal power station before converting to wood pellets and rebranding as renewable energy. It became the UK's single largest source of carbon emissions while receiving over £6 billion in renewable energy subsidies. Its carbon-capture pilot was meant to prove BECCS viable at industrial scale."
+      }
+    ],
+    "generatedAt": "2026-04-13T22:34:34.942Z",
+    "label": "BECCS & Negative Emissions",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-13-google-rust-pixel-10-modem-firmware-security": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HIDDEN COMPUTER",
+        "body": "Every phone contains two processors: the application processor running your apps, and the baseband processor running the modem. The baseband handles raw radio signals, parses network protocols, and operates with direct hardware access — often running its own real-time operating system invisible to Android or iOS."
+      },
+      {
+        "heading": "WHY MODEMS ARE THE TARGET",
+        "body": "The baseband processes data from cell towers before any user-space security applies. A malformed network packet can trigger code execution on the modem with no user interaction — no link clicked, no app installed, no notification shown. The attacker only needs to be on the same cell network or operate a fake base station."
+      },
+      {
+        "heading": "THE MEMORY SAFETY PROBLEM",
+        "body": "Most baseband firmware is written in C, a language that gives programmers direct control over memory but no protection against overflows, use-after-free, or out-of-bounds reads. Google's Project Zero has found that roughly 70% of serious security vulnerabilities in major software are memory-safety errors. Rust eliminates these classes of bugs at compile time."
+      },
+      {
+        "heading": "THE CONSTRAINT",
+        "body": "Modem firmware runs on processors with as little as 256KB of RAM, where every kilobyte of code matters. Rust's standard library and runtime add binary size. This is why Google replaced a single component — the DNS parser — rather than rewriting the entire modem stack: the safety benefit must fit within the size budget."
+      },
+      {
+        "heading": "WHY DNS FIRST",
+        "body": "DNS parsing converts untrusted network input into structured data. It is the first code that touches attacker-controlled content in many network flows. A single off-by-one error in a DNS parser can hand an attacker control of the modem. It is the highest-risk, smallest-surface component — the ideal first target for a memory-safe rewrite."
+      }
+    ],
+    "generatedAt": "2026-04-13T22:34:34.943Z",
+    "label": "Baseband Security",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-13-judge-dismisses-trump-wsj-10-billion-defamation-suit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RULE",
+        "body": "New York Times v. Sullivan (1964) established that public figures cannot win defamation suits by proving a story was wrong. They must prove actual malice — that the publisher knew the statement was false or published with reckless disregard for the truth. This is deliberately almost impossible to prove, by design."
+      },
+      {
+        "heading": "WHY IT EXISTS",
+        "body": "The Sullivan case arose from a civil rights advertisement in 1964 Alabama. Southern officials were using defamation suits to bankrupt Northern newspapers covering the movement. The Supreme Court created the actual malice standard to prevent libel law from becoming a weapon against press coverage of powerful people."
+      },
+      {
+        "heading": "THE DENIAL PARADOX",
+        "body": "Publishing a subject's denial of allegations works against the subject's own defamation claim. If the newspaper printed your denial, it demonstrates the paper sought your side and presented it — the opposite of reckless disregard. The more prominently the denial runs, the harder the case becomes."
+      },
+      {
+        "heading": "WITHOUT PREJUDICE",
+        "body": "A dismissal without prejudice is not an acquittal — it means the court found the complaint legally insufficient as filed but allows the plaintiff to fix the deficiencies and refile. The plaintiff gets another attempt, but the ruling signals what the court considers missing. Most refiled complaints fail for the same structural reasons."
+      }
+    ],
+    "generatedAt": "2026-04-13T22:34:34.943Z",
+    "label": "Actual Malice Standard",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-13-minnesota-county-probes-ice-arrest-possible-kidnapping": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSTITUTIONAL LINE",
+        "body": "The Fourth Amendment requires federal agents to carry a judicial warrant — signed by a judge — to arrest someone. ICE often operates with administrative warrants signed by ICE officials themselves. Federal courts have consistently ruled that administrative warrants do not authorize forcible entry or detention, but the distinction is rarely tested on the street."
+      },
+      {
+        "heading": "THE IDENTIFICATION PROBLEM",
+        "body": "Federal agents operating in plainclothes with unmarked vehicles and no body cameras create an evidentiary void. When officers cannot be identified, neither civil liability nor criminal prosecution can attach to any individual. The accountability chain breaks at the first link."
+      },
+      {
+        "heading": "THE CITIZEN QUESTION",
+        "body": "US citizenship cannot be verified in the field in real time. No federal database returns citizenship status on a name lookup. ICE relies on immigration databases that track non-citizens — meaning citizens do not appear in the system at all. An absence of records is structurally indistinguishable from an undocumented presence."
+      },
+      {
+        "heading": "THE COUNTY-FEDERAL TENSION",
+        "body": "County prosecutors have jurisdiction over crimes committed in their county, including by federal officers. But the Supremacy Clause creates friction: federal agents can argue they were acting under federal authority, potentially removing the case to federal court where the standards differ. The jurisdictional fight often outlasts the underlying investigation."
+      }
+    ],
+    "generatedAt": "2026-04-13T22:34:34.943Z",
+    "label": "Immigration Enforcement & the Fourth Amendment",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-13-nigeria-morocco-25-billion-gas-pipeline-deal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ROUTE",
+        "body": "At 6,900 km, the African Atlantic Gas Pipeline would be the longest offshore pipeline ever built — roughly three times the length of Nord Stream. It hugs the West African coast from Nigeria through Benin, Togo, Ghana, Côte d'Ivoire, Liberia, Sierra Leone, Guinea, Guinea-Bissau, Gambia, Senegal, and Mauritania before reaching Morocco. Each transit country requires a separate intergovernmental agreement."
+      },
+      {
+        "heading": "THE EUROPEAN PLAY",
+        "body": "Morocco sits 14 km from Spain across the Strait of Gibraltar. The Maghreb-Europe pipeline already connects Moroccan gas infrastructure to Spain and Portugal. This makes Morocco the only African country that can pipe gas directly into the European grid without an undersea Mediterranean crossing — which is why half the pipeline's capacity is earmarked for European markets."
+      },
+      {
+        "heading": "THE COMPETITOR IT REPLACED",
+        "body": "The Trans-Saharan Gas Pipeline — Nigeria through Niger and Algeria to Europe — has been proposed since the 1970s. It has never broken ground. The route crosses the Sahara, passes through areas with active insurgencies, and requires cooperation between Nigeria and Algeria, which are regional rivals. The Atlantic route avoids the Sahara entirely by going offshore."
+      },
+      {
+        "heading": "WHY NIGERIA GOES LAST",
+        "body": "Nigeria flares more natural gas than almost any country on earth — burning off gas extracted alongside oil because it lacks the infrastructure to capture and transport it. Building the southern leg of the pipeline requires gas-gathering infrastructure that Nigeria has failed to build for decades. The northern segments connecting existing Mauritanian and Senegalese gas fields are simpler and faster."
+      },
+      {
+        "heading": "THE MOROCCAN STRATEGY",
+        "body": "Morocco imports over 90% of its energy. The pipeline transforms it from a dependent consumer into a transit hub collecting fees on every cubic meter flowing to Europe — the same strategic position Turkey holds with pipelines from the Caspian and Russia. Transit states extract geopolitical leverage far beyond their own energy needs."
+      }
+    ],
+    "generatedAt": "2026-04-13T22:34:34.943Z",
+    "label": "The African Atlantic Pipeline",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-13-pakistan-customs-officers-arrested-silver-lead-swap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SWAP PHYSICS",
+        "body": "Silver weighs 10.5 grams per cubic centimeter; lead weighs 11.3. A sealed box of lead is only 8% heavier than the same volume of silver — close enough to pass a casual weight check, especially with 36 boxes where small variations are expected. This physical similarity is why lead has been the counterfeiter's substitute metal for centuries."
+      },
+      {
+        "heading": "THE MINT'S ROLE",
+        "body": "Pakistan Mint, a division of the Ministry of Finance, is the sole manufacturer of the country's coins. Silver is a raw input — minted into commemorative coins and used in industrial contracts. The Quetta-to-Lahore shipment was government metal moving between government facilities, which is why it traveled under customs seal rather than private security."
+      },
+      {
+        "heading": "THE SEAL PROBLEM",
+        "body": "Customs seals authenticate that a container was closed by an authorized officer and has not been opened in transit. When the officers applying the seals are the ones committing the theft, the seal system authenticates the crime rather than preventing it. This is the fundamental weakness of any chain-of-custody system that relies on the custodians themselves."
+      },
+      {
+        "heading": "THE QUETTA FACTOR",
+        "body": "Quetta sits 80 km from the Afghan border and is a major node in cross-border smuggling networks that move gold, narcotics, and currency between Pakistan, Afghanistan, and Iran. Precious metals diverted in Quetta have an immediate secondary market — unlike in Lahore or Islamabad, where resale requires entering the formal banking system."
+      }
+    ],
+    "generatedAt": "2026-04-13T22:34:34.943Z",
+    "label": "Bullion Transport & Institutional Trust",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-13-philippines-accuses-china-cyanide-sabotage-south-china-sea": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GROUNDED SHIP",
+        "body": "In 1999, the Philippines deliberately ran the BRP Sierra Madre — a rusting World War II-era transport ship — aground on Second Thomas Shoal to establish a permanent physical presence. A small Marine detachment has lived aboard the decaying hull ever since. The ship is the claim. If it disintegrates, the legal and physical basis for Philippine presence goes with it."
+      },
+      {
+        "heading": "WHY CYANIDE",
+        "body": "Sodium cyanide kills coral within hours by poisoning the symbiotic algae that build and maintain the reef structure. Without living coral, the reef erodes. Second Thomas Shoal is an atoll — a ring of coral barely above water. Destroying the reef does not just kill marine life; it eliminates the physical feature that the Sierra Madre sits on."
+      },
+      {
+        "heading": "THE 2016 RULING",
+        "body": "The Permanent Court of Arbitration ruled that China's nine-dash line claim has no legal basis under UNCLOS and that the Philippines holds sovereign rights over its exclusive economic zone, including Second Thomas Shoal. China rejected the ruling and has never complied. The ruling is legally binding but has no enforcement mechanism."
+      },
+      {
+        "heading": "THE GRAY ZONE",
+        "body": "China's South China Sea strategy avoids actions that trigger a military response. Coast guard ships, not navy vessels. Water cannons, not weapons. Fishing fleets, not marines. Environmental sabotage fits this pattern — it degrades the Philippine position without a single shot fired, making it difficult to invoke mutual defense treaties that require an armed attack."
+      },
+      {
+        "heading": "THE ISLAMIC DIMENSION",
+        "body": "The southern Philippines — Mindanao and the Sulu archipelago — is home to the country's Muslim population, the Bangsamoro. Filipino Muslim fishermen have worked the Spratlys and surrounding waters for generations. Chinese exclusion zones and reef destruction directly affect Bangsamoro livelihoods, though this dimension is largely absent from Manila's diplomatic framing."
+      }
+    ],
+    "generatedAt": "2026-04-13T22:34:34.943Z",
+    "label": "Reef Warfare at Second Thomas Shoal",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-13-pope-leo-africa-voyage-four-countries": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEMOGRAPHIC SHIFT",
+        "body": "In 1900, Europe held 65% of the world's Catholics. By 2025, sub-Saharan Africa holds more Catholics than Europe, and the gap widens by roughly 5 million per year. The Church's institutional center is Rome; its demographic center has crossed the Mediterranean. Every papal strategic decision now reflects this imbalance."
+      },
+      {
+        "heading": "WHY ALGERIA FIRST",
+        "body": "Algeria is 99% Muslim. Choosing it as the first stop signals that the visit is diplomatic, not evangelical. Algeria's Catholic history is also layered — Saint Augustine was born in Thagaste (modern Souk Ahras), and the Church of Africa was one of early Christianity's most intellectually productive centers before the Islamic conquests of the 7th century."
+      },
+      {
+        "heading": "THE POLITICAL CALCULUS",
+        "body": "Pope Leo is the first Latin American pope and the first non-European pope in over a millennium. Visiting Africa before the United States — while a sitting US president publicly attacks him — establishes that the papacy's primary audience is no longer the Western world. The sequencing is the message."
+      },
+      {
+        "heading": "THE AFRICAN CHURCH'S CONSERVATISM",
+        "body": "African Catholic bishops have been the strongest internal opposition to liberalizing reforms on divorce, same-sex relationships, and married clergy. The African church's rapid growth gives its conservative theological positions increasing weight in Vatican deliberations — the demographic dividend comes with doctrinal conditions."
+      }
+    ],
+    "generatedAt": "2026-04-13T22:34:34.943Z",
+    "label": "Catholicism's African Century",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-13-second-contractor-whistleblower-israeli-attacks-gaza-aid": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL FRAMEWORK",
+        "body": "Article 54 of Additional Protocol I to the Geneva Conventions prohibits attacking objects indispensable to the survival of the civilian population — including food, crops, and the means to distribute them. Firing on a food distribution site is not a gray area under international humanitarian law; it is a specifically enumerated prohibition."
+      },
+      {
+        "heading": "THE CORROBORATION STANDARD",
+        "body": "A single witness can be dismissed as mistaken or malicious. A second independent witness describing the same pattern — from a different vantage point, employed by a different organization — meets the evidentiary threshold that international criminal tribunals use to establish a practice rather than an incident. The word 'routine' is legally significant."
+      },
+      {
+        "heading": "THE AID DEPENDENCY",
+        "body": "Before October 2023, Gaza imported roughly 500 truckloads of goods daily. The UN estimated 2.2 million people — the entire population — were food-insecure by early 2024. When the entire civilian population depends on aid convoys, attacking distribution points does not merely disrupt logistics; it controls whether a population eats."
+      },
+      {
+        "heading": "THE CONTRACTOR LAYER",
+        "body": "International aid operations in conflict zones increasingly rely on private security contractors to manage distribution sites. These contractors are not protected as combatants, are not under military command, and operate under commercial contracts that typically include non-disclosure clauses. Whistleblowing requires breaking a contract, not just a chain of command — which is why so few speak publicly."
+      },
+      {
+        "heading": "THE NAKBA CONTINUITY",
+        "body": "The weaponization of food access in Palestine has a documented lineage. During the 1948 Nakba, Israeli forces destroyed grain stores and blocked harvests in depopulated villages to prevent refugees from returning. The UN Mediator Count Bernadotte reported systematic obstruction of relief supplies before his assassination in September 1948. Control of sustenance has been a tool of displacement from the beginning."
+      }
+    ],
+    "generatedAt": "2026-04-13T22:34:34.943Z",
+    "label": "Targeting Aid Distribution",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-13-venezuela-model-trump-iran-blockade-regime-change": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VENEZUELA PLAYBOOK",
+        "body": "The US imposed oil sanctions on Venezuela in 2019, froze government assets, recognized an opposition leader as president, and waited for the regime to collapse. It didn't. Maduro retained military loyalty, pivoted oil sales to China and India at steep discounts, and survived. The 'perfect scenario' Trump describes required Maduro's eventual physical capture — not the sanctions working as designed."
+      },
+      {
+        "heading": "WHY IRAN IS DIFFERENT",
+        "body": "Venezuela exports roughly 800,000 barrels per day from Caribbean ports accessible by tanker from any direction. Iran exports 1.5 million barrels per day, but its oil must transit the Strait of Hormuz — a 33-km-wide chokepoint that Iran also controls militarily. Blockading Iran's exports means blockading a waterway that carries 20% of the world's oil supply, including exports from Iraq, Kuwait, Qatar, and the UAE."
+      },
+      {
+        "heading": "THE SANCTIONS RATCHET",
+        "body": "US secondary sanctions punish any foreign company that buys sanctioned oil — their dollar accounts get frozen, they lose access to US financial markets. This is why Indian refiners stopped buying Venezuelan crude openly and switched to intermediaries. But enforcement is imperfect: sanctioned oil still flows, just at discounted prices through longer supply chains. The regime loses revenue but does not lose all revenue."
+      },
+      {
+        "heading": "THE MILITARY LOYALTY QUESTION",
+        "body": "Sanctions-based regime change assumes economic pain turns the military against the leader. In Venezuela, Maduro gave senior officers control of food import monopolies and mining concessions — making them beneficiaries of the crisis, not victims. Iran's Revolutionary Guard Corps similarly controls an estimated 20-40% of the Iranian economy through foundations, construction firms, and smuggling networks. Sanctions strengthen the institutions they aim to weaken."
+      },
+      {
+        "heading": "THE HORMUZ EQUATION",
+        "body": "Iran's asymmetric naval doctrine relies on swarm attacks by small fast boats, anti-ship missiles hidden along its coastline, and naval mines. The US Navy can defeat any of these individually, but the Strait's geography — narrow, shallow, flanked by Iranian territory — compresses reaction time. A 1988 skirmish (Operation Praying Mantis) showed the US could win engagements; it did not show it could keep the Strait open to commercial traffic simultaneously."
+      }
+    ],
+    "generatedAt": "2026-04-13T22:34:34.943Z",
+    "label": "Maximum Pressure & Regime Change",
+    "category": "politics",
+    "articleCount": 1
   }
 }
