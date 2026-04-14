@@ -17,8 +17,8 @@ import { makeMarkdownStyles, renderSentences } from '../lib/markdown';
 import type { Article } from '../types';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 
-const GRADIENT_HEIGHT_TOP = 32;
-const GRADIENT_HEIGHT_BOTTOM = 72;
+const GRADIENT_HEIGHT_TOP = 24;
+const GRADIENT_HEIGHT_BOTTOM = 56;
 
 interface ArticlePageProps {
   article: Article;
@@ -31,7 +31,6 @@ interface ArticlePageProps {
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
   onCountryPress?: (result: TapResult) => void;
-  tick?: number;
 }
 
 function GlobeTapZone({
@@ -77,7 +76,6 @@ export const ArticlePage = memo(function ArticlePage({
   globeRef,
   globeYOffset,
   onCountryPress,
-  tick: _tick,
 }: ArticlePageProps) {
   const { colors, font, typography, textStyles, bgAlpha } = useTheme();
   const timeAgo = formatTimeAgo(article.addedAt);
@@ -125,7 +123,15 @@ export const ArticlePage = memo(function ArticlePage({
   );
 
   const body = useMemo(
-    () => renderSentences(article.sentences, mdStyles, typography, bodyFontSize, article.location, timeAgo),
+    () =>
+      renderSentences(
+        article.sentences,
+        mdStyles,
+        typography,
+        bodyFontSize,
+        article.location,
+        timeAgo,
+      ),
     [article.sentences, mdStyles, typography, bodyFontSize, article.location, timeAgo],
   );
 
@@ -143,36 +149,35 @@ export const ArticlePage = memo(function ArticlePage({
         impact={hapticImpact}
       />
 
-      {/* Top gradient — dissolves globe into content */}
-      <LinearGradient
-        colors={[bgAlpha(0), bgAlpha(0.4), bgAlpha(0.8), colors.bg]}
-        locations={[0, 0.3, 0.7, 1]}
-        style={[styles.gradientTop, { width: screenWidth }]}
-        pointerEvents="none"
-      />
+      {/* Content + gradients fade together — reveals globe during swipe transitions */}
+      <Animated.View style={fadeStyle} pointerEvents="box-none">
+        <LinearGradient
+          colors={[bgAlpha(0), bgAlpha(0.25), bgAlpha(0.7), colors.bg]}
+          locations={[0, 0.4, 0.75, 1]}
+          style={[styles.gradientTop, { width: screenWidth }]}
+          pointerEvents="none"
+        />
 
-      {/* Content zone — title, body, meta all grouped together */}
-      <Pressable
-        style={[styles.content, { backgroundColor: colors.bg }]}
-        onLongPress={handleLongPress}
-        delayLongPress={400}
-      >
-        {showEarlierDivider && (
-          <View style={styles.earlierDivider}>
-            <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
-            <Text
-              style={[
-                styles.earlierLabel,
-                textStyles.smallCaps,
-                { fontSize: typography.sizeBase, color: colors.accent },
-              ]}
-            >
-              caught up
-            </Text>
-            <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
-          </View>
-        )}
-        <Animated.View style={fadeStyle}>
+        <Pressable
+          style={[styles.content, { backgroundColor: colors.bg }]}
+          onLongPress={handleLongPress}
+          delayLongPress={400}
+        >
+          {showEarlierDivider && (
+            <View style={styles.earlierDivider}>
+              <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
+              <Text
+                style={[
+                  styles.earlierLabel,
+                  textStyles.smallCaps,
+                  { fontSize: typography.sizeBase, color: colors.accent },
+                ]}
+              >
+                caught up
+              </Text>
+              <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
+            </View>
+          )}
           <Text
             selectable
             style={[
@@ -190,15 +195,13 @@ export const ArticlePage = memo(function ArticlePage({
             {article.title}
           </Text>
           {body}
-        </Animated.View>
-      </Pressable>
+        </Pressable>
 
-      {/* Gradient dissolves content into globe — fades with body */}
-      <Animated.View style={fadeStyle} pointerEvents="none">
         <LinearGradient
-          colors={[colors.bg, bgAlpha(0.8), bgAlpha(0.35), bgAlpha(0)]}
-          locations={[0, 0.2, 0.55, 1]}
+          colors={[bgAlpha(0.88), bgAlpha(0.45), bgAlpha(0.1), bgAlpha(0)]}
+          locations={[0, 0.3, 0.7, 1]}
           style={[styles.gradientBottom, { width: screenWidth }]}
+          pointerEvents="none"
         />
       </Animated.View>
     </View>
@@ -211,7 +214,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: SPACING.screenPadding,
-    paddingBottom: SPACING.xl,
+    paddingBottom: SPACING.sm,
   },
   gradientTop: {
     height: GRADIENT_HEIGHT_TOP,

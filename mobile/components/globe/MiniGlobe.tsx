@@ -14,7 +14,16 @@ import {
   useImage,
   vec,
 } from '@shopify/react-native-skia';
-import { geoCircle, geoContains, geoDistance, geoGraticule, geoInterpolate, geoOrthographic, geoPath } from 'd3-geo';
+import type { GeoContext } from 'd3-geo';
+import {
+  geoCircle,
+  geoContains,
+  geoDistance,
+  geoGraticule,
+  geoInterpolate,
+  geoOrthographic,
+  geoPath,
+} from 'd3-geo';
 import {
   memo,
   useCallback,
@@ -33,12 +42,17 @@ import {
 } from 'react-native-reanimated';
 import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
 import { useTheme } from '../../hooks/useTheme';
-import type { Article, HeatmapPoint } from '../../types';
-import { COUNTRY_TZ } from './coordinates';
-import type { GeoContext } from 'd3-geo';
 import { displayLocation } from '../../lib/place-names';
-import { SOURCE_COORDS } from './coordinates';
-import { bordersMesh, countries, countryAreas, countryBboxes, createSkiaPathContext, land } from './shared';
+import type { Article, HeatmapPoint } from '../../types';
+import { COUNTRY_TZ, SOURCE_COORDS } from './coordinates';
+import {
+  bordersMesh,
+  countries,
+  countryAreas,
+  countryBboxes,
+  createSkiaPathContext,
+  land,
+} from './shared';
 import { getCoords } from './storyDots';
 
 /** Squared-distance hit test */
@@ -83,13 +97,18 @@ const nightCircleGen = geoCircle();
 // Equator + polar circles (Arctic 66.5°N, Antarctic 66.5°S)
 const graticuleLines = geoGraticule()
   .stepMinor([360, 360]) // no minor lines
-  .stepMajor([30, 30])   // meridians + parallels every 30°
-  ();
+  .stepMajor([90, 30])(
+  // meridians + parallels every 30°
+);
 
 const NORTH_POLE: [number, number] = [0, 90];
 const SOUTH_POLE: [number, number] = [0, -90];
-const ARCTIC_CIRCLE = geoCircle().center(NORTH_POLE).radius(90 - 66.5)();
-const ANTARCTIC_CIRCLE = geoCircle().center(SOUTH_POLE).radius(90 - 66.5)();
+const ARCTIC_CIRCLE = geoCircle()
+  .center(NORTH_POLE)
+  .radius(90 - 66.5)();
+const ANTARCTIC_CIRCLE = geoCircle()
+  .center(SOUTH_POLE)
+  .radius(90 - 66.5)();
 const HALF_PI = Math.PI / 2;
 const DECAY_LAMBDA = Math.LN2 / 18; // 18h half-life
 
@@ -125,10 +144,9 @@ function getMoonPhase(): number {
 // Sun position from UTC time (cached 60s)
 let cachedSunPos: [number, number] = [0, 0];
 let sunPosTs = 0;
-/** Bust sun/night caches so the next call recalculates immediately. */
+/** Bust sun cache so the next call recalculates immediately. */
 function invalidateSunCaches() {
   sunPosTs = 0;
-  _nightTs = 0;
 }
 function getSunPosition(): [number, number] {
   const now = Date.now();
@@ -143,20 +161,6 @@ function getSunPosition(): [number, number] {
 }
 
 // Night check — is the sun below the horizon at the user's approximate location?
-// Uses timezone offset for longitude, 25°N as latitude proxy (primary audience band).
-// Cached 60s (matches sun position cache).
-let _isNight = false;
-let _nightTs = 0;
-function isLocalNight(): boolean {
-  const now = Date.now();
-  if (now - _nightTs < 60000) return _isNight;
-  _nightTs = now;
-  const [sunLng, sunLat] = getSunPosition();
-  const userLng = -(new Date(now).getTimezoneOffset() / 60) * 15;
-  _isNight = geoDistance([sunLng, sunLat], [userLng, 25]) > HALF_PI;
-  return _isNight;
-}
-
 function formatLocalTime(tz: string): string | null {
   try {
     return new Date().toLocaleTimeString('en-GB', {
@@ -260,6 +264,7 @@ interface GlobeState {
   countryPath: ReturnType<typeof Skia.Path.Make> | null;
   countryName: string | null;
   nightPath: ReturnType<typeof Skia.Path.Make> | null;
+  deepTwilightPath: ReturnType<typeof Skia.Path.Make> | null;
   twilightPath: ReturnType<typeof Skia.Path.Make> | null;
   graticulePath: ReturnType<typeof Skia.Path.Make> | null;
   qiblaPath: ReturnType<typeof Skia.Path.Make> | null;
@@ -272,6 +277,8 @@ interface GlobeState {
   hotspotGlows: {
     x: number;
     y: number;
+    lat: number;
+    lng: number;
     intensity: number;
     labels: string[];
     countryName: string | null;
@@ -318,14 +325,7 @@ const Moon = memo(function Moon({
       {/* Moon texture — full disk */}
       <Group clip={clip}>
         <BlurMask blur={r * 0.06} style="normal" />
-        <Image
-          image={texture}
-          x={x - r}
-          y={y - r}
-          width={r * 2}
-          height={r * 2}
-          opacity={0.45}
-        />
+        <Image image={texture} x={x - r} y={y - r} width={r * 2} height={r * 2} opacity={0.45} />
       </Group>
       {/* Gradient shadow — gradual terminator falloff */}
       <Group clip={clip}>
@@ -359,7 +359,7 @@ const CountryHighlight = memo(function CountryHighlight({
   countryName: string | null;
   color: string;
 }) {
-  const area = countryName ? countryAreas[countryName] ?? 0 : 0;
+  const area = countryName ? (countryAreas[countryName] ?? 0) : 0;
   const opacity = area < 0.001 ? 0.25 : area < 0.005 ? 0.18 : 0.12;
   return (
     <Path path={p} color={color} opacity={opacity}>
@@ -369,34 +369,52 @@ const CountryHighlight = memo(function CountryHighlight({
 });
 
 const EMPTY_GLOBE: GlobeState = {
-  landPath: null, bordersPath: null, countryPath: null, countryName: null,
-  nightPath: null, twilightPath: null, graticulePath: null, qiblaPath: null,
-  sourceArcs: null, northPole: null, southPole: null,
-  dot: null, dotLabel: null, makkah: null, hotspotGlows: [],
+  landPath: null,
+  bordersPath: null,
+  countryPath: null,
+  countryName: null,
+  nightPath: null,
+  deepTwilightPath: null,
+  twilightPath: null,
+  graticulePath: null,
+  qiblaPath: null,
+  sourceArcs: null,
+  northPole: null,
+  southPole: null,
+  dot: null,
+  dotLabel: null,
+  makkah: null,
+  hotspotGlows: [],
 };
 
 /** Clip angle for a country's spherical area — smaller countries get tighter clip (more zoom). */
 function clipAngleForArea(area: number): number {
   if (area < 0.002) return 25;
-  if (area < 0.03) return 25 + (area - 0.002) / (0.03 - 0.002) * 65;
+  if (area < 0.03) return 25 + ((area - 0.002) / (0.03 - 0.002)) * 65;
   return 90;
 }
 
 /** Clip angle for a country name. */
 function clipAngleForCountry(countryName: string | null): number {
-  const area = countryName ? countryAreas[countryName] ?? 1 : 1;
+  const area = countryName ? (countryAreas[countryName] ?? 1) : 1;
   return clipAngleForArea(area);
 }
 
 /** Pure projection — creates fresh Skia paths, no shared mutable state. */
 function projectInitial(
   geo: { lat: number; lng: number; country: GeoJSON.Feature | null },
-  r: number, centerX: number, centerY: number,
+  r: number,
+  centerX: number,
+  centerY: number,
 ): GlobeState {
   const clipAngle = clipAngleForCountry(geo.country?.properties?.name ?? null);
-  const projScale = r / Math.sin(clipAngle * Math.PI / 180);
-  const proj = geoOrthographic().clipAngle(clipAngle).precision(8)
-    .rotate([-geo.lng, -geo.lat, 0]).scale(projScale).translate([centerX, centerY]);
+  const projScale = r / Math.sin((clipAngle * Math.PI) / 180);
+  const proj = geoOrthographic()
+    .clipAngle(clipAngle)
+    .precision(8)
+    .rotate([-geo.lng, -geo.lat, 0])
+    .scale(projScale)
+    .translate([centerX, centerY]);
   const pg = geoPath(proj);
   const ctx = createSkiaPathContext();
 
@@ -422,12 +440,17 @@ function projectInitial(
   const nightCenter: [number, number] = [sunLng + 180, -sunLat];
   const np = Skia.Path.Make();
   ctx.setPath(np);
-  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(90)());
+  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(72)());
 
-  // Civil twilight — softer gradient band before full night
+  // Deep twilight — sun -9° to -18° (midpoint of Maghrib–Isha band)
+  const dtp = Skia.Path.Make();
+  ctx.setPath(dtp);
+  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(81)());
+
+  // Twilight — Maghrib/sunrise (0°) to Isha/Fajr (-18°)
   const tp = Skia.Path.Make();
   ctx.setPath(tp);
-  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(96)());
+  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(90)());
 
   // Equator + polar circles
   const gp = Skia.Path.Make();
@@ -463,13 +486,35 @@ function projectInitial(
     let started = false;
     for (let i = 0; i <= 30; i++) {
       const p = proj(interp(i / 30));
-      if (!p) { started = false; continue; }
-      if (!started) { qp.moveTo(p[0], p[1]); started = true; }
-      else qp.lineTo(p[0], p[1]);
+      if (!p) {
+        started = false;
+        continue;
+      }
+      if (!started) {
+        qp.moveTo(p[0], p[1]);
+        started = true;
+      } else qp.lineTo(p[0], p[1]);
     }
   }
 
-  return { landPath: lp, bordersPath: bp, countryPath: cp, countryName: geo.country?.properties?.name ?? null, nightPath: np, twilightPath: tp, graticulePath: gp, qiblaPath: qp, sourceArcs: null, northPole, southPole, dot, dotLabel: null, makkah, hotspotGlows: [] };
+  return {
+    landPath: lp,
+    bordersPath: bp,
+    countryPath: cp,
+    countryName: geo.country?.properties?.name ?? null,
+    nightPath: np,
+    deepTwilightPath: dtp,
+    twilightPath: tp,
+    graticulePath: gp,
+    qiblaPath: qp,
+    sourceArcs: null,
+    northPole,
+    southPole,
+    dot,
+    dotLabel: null,
+    makkah,
+    hotspotGlows: [],
+  };
 }
 
 export const MiniGlobe = memo(function MiniGlobe({
@@ -513,7 +558,17 @@ export const MiniGlobe = memo(function MiniGlobe({
   const hotspots = useMemo((): Hotspot[] => {
     // Fallback to article-based clustering when heatmap data unavailable
     if (!heatmapPoints || heatmapPoints.length === 0) {
-      const clusters = new Map<string, { lat: number; lng: number; total: number; countryName: string | null }>();
+      const clusters = new Map<
+        string,
+        {
+          latSum: number;
+          lngSum: number;
+          count: number;
+          total: number;
+          labels: Set<string>;
+          countryName: string | null;
+        }
+      >();
       for (let i = 0; i < articles.length; i++) {
         const geo = articleGeo[i];
         if (!geo) continue;
@@ -521,21 +576,54 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (coverage <= 0) continue;
         const key = `${Math.round(geo.lat * 2) / 2},${Math.round(geo.lng * 2) / 2}`;
         const existing = clusters.get(key);
-        if (existing) existing.total += coverage;
-        else clusters.set(key, { lat: geo.lat, lng: geo.lng, total: coverage, countryName: geo.countryName });
+        const a = articles[i]!;
+        const label = a.threadLabel
+          ? a.threadLabel.includes(':')
+            ? a.threadLabel.slice(0, a.threadLabel.indexOf(':'))
+            : a.threadLabel
+          : a.title;
+        if (existing) {
+          existing.latSum += geo.lat;
+          existing.lngSum += geo.lng;
+          existing.count += 1;
+          existing.total += coverage;
+          if (label) existing.labels.add(label);
+        } else {
+          const labels = new Set<string>();
+          if (label) labels.add(label);
+          clusters.set(key, {
+            latSum: geo.lat,
+            lngSum: geo.lng,
+            count: 1,
+            total: coverage,
+            labels,
+            countryName: geo.countryName,
+          });
+        }
       }
       const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 2);
       if (sorted.length === 0) return [];
       const logMax = Math.log(sorted[0]!.total + 1);
       return sorted.map((z) => ({
-        lat: z.lat, lng: z.lng,
+        lat: z.latSum / z.count,
+        lng: z.lngSum / z.count,
         intensity: Math.log(z.total + 1) / logMax,
-        labels: [], countryName: z.countryName,
+        labels: [...z.labels],
+        countryName: z.countryName,
       }));
     }
 
     const now = Date.now();
-    const clusters = new Map<string, { lat: number; lng: number; total: number; labels: Set<string> }>();
+    const clusters = new Map<
+      string,
+      {
+        latSum: number;
+        lngSum: number;
+        count: number;
+        total: number;
+        labels: Set<string>;
+      }
+    >();
 
     for (const pt of heatmapPoints) {
       const ageHours = (now - pt.t) / 3_600_000;
@@ -547,12 +635,21 @@ export const MiniGlobe = memo(function MiniGlobe({
       const key = `${Math.round(pt.lat * 2) / 2},${Math.round(pt.lng * 2) / 2}`;
       const existing = clusters.get(key);
       if (existing) {
+        existing.latSum += pt.lat;
+        existing.lngSum += pt.lng;
+        existing.count += 1;
         existing.total += weight;
         if (pt.l) existing.labels.add(pt.l);
       } else {
         const labels = new Set<string>();
         if (pt.l) labels.add(pt.l);
-        clusters.set(key, { lat: pt.lat, lng: pt.lng, total: weight, labels });
+        clusters.set(key, {
+          latSum: pt.lat,
+          lngSum: pt.lng,
+          count: 1,
+          total: weight,
+          labels,
+        });
       }
     }
 
@@ -560,16 +657,15 @@ export const MiniGlobe = memo(function MiniGlobe({
     const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 2);
     if (sorted.length === 0) return [];
     const logMax = Math.log(sorted[0]!.total + 1);
-    return sorted.map((z) => {
-      const country = findCountry(z.lat, z.lng);
-      return {
-        lat: z.lat,
-        lng: z.lng,
-        intensity: Math.log(z.total + 1) / logMax,
-        labels: [...z.labels],
-        countryName: country?.properties?.name ?? null,
-      };
-    });
+    // Country name resolved lazily on tap (hitTest) — skip expensive
+    // findCountry polygon tests for all clusters upfront.
+    return sorted.map((z) => ({
+      lat: z.latSum / z.count,
+      lng: z.lngSum / z.count,
+      intensity: Math.log(z.total + 1) / logMax,
+      labels: [...z.labels],
+      countryName: null,
+    }));
   }, [heatmapPoints, articles, articleGeo]);
 
   // Flat coord array for UI thread interpolation
@@ -591,6 +687,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   const bordersPathRef = useRef(Skia.Path.Make());
   const countryPathRef = useRef(Skia.Path.Make());
   const nightPathRef = useRef(Skia.Path.Make());
+  const deepTwilightPathRef = useRef(Skia.Path.Make());
   const twilightPathRef = useRef(Skia.Path.Make());
   const graticulePathRef = useRef(Skia.Path.Make());
   const qiblaPathRef = useRef(Skia.Path.Make());
@@ -608,195 +705,268 @@ export const MiniGlobe = memo(function MiniGlobe({
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
   const lastReprojRef = useRef<{ lng: number; lat: number; idx: number } | null>(null);
 
-  const callReproject = useCallback((geoLng: number, geoLat: number, settledIndex: number, loIndex: number, hiIndex: number, frac: number) => {
-    lastReprojRef.current = { lng: geoLng, lat: geoLat, idx: settledIndex };
-    const { globeRadius: r, cx: centerX, cy: centerY } = layoutRef.current;
-    const geoData = articleGeoRef.current;
+  const callReproject = useCallback(
+    (
+      geoLng: number,
+      geoLat: number,
+      settledIndex: number,
+      loIndex: number,
+      hiIndex: number,
+      frac: number,
+    ) => {
+      lastReprojRef.current = { lng: geoLng, lat: geoLat, idx: settledIndex };
+      const { globeRadius: r, cx: centerX, cy: centerY } = layoutRef.current;
+      const geoData = articleGeoRef.current;
 
-    // Update which country to highlight when settled article changes.
-    // Compare both index AND article slug — index alone misses category
-    // switches where scroll resets to 0 but the article is different.
-    const geo = geoData[settledIndex];
-    const slug = articlesRef.current[settledIndex]?.slug ?? null;
-    const settled = settledIndex !== lastSettled.current || slug !== lastSettledSlug.current;
-    if (settled) {
-      lastSettled.current = settledIndex;
-      lastSettledSlug.current = slug;
-      cachedCountryRef.current = geo?.country ?? null;
-    }
+      // Mid-scroll vs settled — skip expensive settle-only work (source arcs,
+      // qibla, dot label) during scroll to cut ~130 projection calls per frame.
+      const isSettled = frac < 0.01 || frac > 0.99;
 
-    // Adaptive zoom — interpolate clip angle between adjacent articles for smooth transitions
-    const loCountry = geoData[loIndex]?.countryName ?? null;
-    const hiCountry = geoData[hiIndex]?.countryName ?? null;
-    const loClip = clipAngleForCountry(loCountry);
-    const hiClip = clipAngleForCountry(hiCountry);
-    const clipAngle = loClip + (hiClip - loClip) * frac;
-    const projScale = r / Math.sin(clipAngle * Math.PI / 180);
-
-    const proj = projRef.current;
-    proj.clipAngle(clipAngle).rotate([-geoLng, -geoLat, 0]).scale(projScale).translate([centerX, centerY]);
-
-    const pg = pgRef.current;
-    pg.projection(proj);
-
-    // Land — reuse path object to avoid native memory accumulation
-    const landPath = landPathRef.current;
-    landPath.reset();
-    skiaCtx.setPath(landPath);
-    pg.context(skiaCtx as unknown as GeoContext)(land);
-
-    // Dot
-    let dot: { x: number; y: number } | null = null;
-    if (geo) {
-      const pt = proj([geo.lng, geo.lat]);
-      if (pt) dot = { x: pt[0], y: pt[1] };
-    }
-
-    // Dot label — location name (primary), local time (secondary)
-    let dotLabel: GlobeState['dotLabel'] = null;
-    const settledCountry = cachedCountryRef.current?.properties?.name ?? null;
-    if (dot && settledCountry) {
-      const article = articlesRef.current[settledIndex];
-      const loc = displayLocation(article?.location ?? null);
-      if (loc) {
-        // Derive local time from longitude (15° = 1 hour) — accurate for any
-        // point on earth, unlike the single-timezone-per-country lookup which
-        // fails for large countries (e.g. US: DC vs Hawaii is 5 hours off).
-        let sub: string | undefined;
-        if (geo && geo.lng != null) {
-          const now = new Date();
-          const utcMs = now.getTime() + now.getTimezoneOffset() * 60000;
-          const localMs = utcMs + (geo.lng / 15) * 3600000;
-          const local = new Date(localMs);
-          sub = `${String(local.getHours()).padStart(2, '0')}:${String(local.getMinutes()).padStart(2, '0')}`;
-        }
-        dotLabel = { text: loc, sub, x: dot.x, y: dot.y };
+      // Update which country to highlight when settled article changes.
+      // Compare both index AND article slug — index alone misses category
+      // switches where scroll resets to 0 but the article is different.
+      const geo = geoData[settledIndex];
+      const slug = articlesRef.current[settledIndex]?.slug ?? null;
+      const settled = settledIndex !== lastSettled.current || slug !== lastSettledSlug.current;
+      if (settled) {
+        lastSettled.current = settledIndex;
+        lastSettledSlug.current = slug;
+        cachedCountryRef.current = geo?.country ?? null;
       }
-    }
 
-    // Country highlight — reuse path object
-    let countryPath: ReturnType<typeof Skia.Path.Make> | null = null;
-    if (cachedCountryRef.current) {
-      countryPath = countryPathRef.current;
-      countryPath.reset();
-      skiaCtx.setPath(countryPath);
-      pg.context(skiaCtx as unknown as GeoContext)(cachedCountryRef.current);
-    }
+      // Adaptive zoom — interpolate clip angle between adjacent articles for smooth transitions
+      const loCountry = geoData[loIndex]?.countryName ?? null;
+      const hiCountry = geoData[hiIndex]?.countryName ?? null;
+      const loClip = clipAngleForCountry(loCountry);
+      const hiClip = clipAngleForCountry(hiCountry);
+      const clipAngle = loClip + (hiClip - loClip) * frac;
+      const projScale = r / Math.sin((clipAngle * Math.PI) / 180);
 
-    // Neighbouring country borders — two optimizations:
-    //  1. bordersMesh (topojson.mesh) = single MultiLineString, no duplicate edges
-    //  2. precision(0) = skip adaptive resampling (invisible at 0.5px/0.22 opacity)
-    const bordersPath = bordersPathRef.current;
-    proj.precision(0);
-    bordersPath.reset();
-    skiaCtx.setPath(bordersPath);
-    pg.context(skiaCtx as unknown as GeoContext)(bordersMesh);
-    proj.precision(8);
+      const proj = projRef.current;
+      proj
+        .clipAngle(clipAngle)
+        .rotate([-geoLng, -geoLat, 0])
+        .scale(projScale)
+        .translate([centerX, centerY]);
 
-    // Night shadow — reuse path object
-    const [sunLng, sunLat] = getSunPosition();
-    const nightCenter: [number, number] = [sunLng + 180, -sunLat];
-    const nightGeo = nightCircleGen.center(nightCenter).radius(80)();
-    const nightPath = nightPathRef.current;
-    nightPath.reset();
-    skiaCtx.setPath(nightPath);
-    pg.context(skiaCtx as unknown as GeoContext)(nightGeo);
+      const pg = pgRef.current;
+      pg.projection(proj);
 
-    // Civil twilight — softer gradient band before full night
-    const twilightPath = twilightPathRef.current;
-    twilightPath.reset();
-    skiaCtx.setPath(twilightPath);
-    pg.context(skiaCtx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(96)());
+      // During scroll, skip adaptive resampling (precision 0) and drop
+      // subtle overlay lines (borders, graticule). Imperceptible during
+      // motion, snaps back to full quality on settle.
+      if (!isSettled) proj.precision(0);
 
-    // Equator + polar circles
-    const graticulePath = graticulePathRef.current;
-    graticulePath.reset();
-    skiaCtx.setPath(graticulePath);
-    pg.context(skiaCtx as unknown as GeoContext)(graticuleLines);
-    pg.context(skiaCtx as unknown as GeoContext)(ARCTIC_CIRCLE);
-    pg.context(skiaCtx as unknown as GeoContext)(ANTARCTIC_CIRCLE);
+      // ── Tier 1: every frame (land, country, dot, makkah, hotspots) ──
 
-    // Poles
-    let northPole: GlobeState['northPole'] = null;
-    let southPole: GlobeState['southPole'] = null;
-    const npp = proj(NORTH_POLE);
-    if (npp) northPole = { x: npp[0], y: npp[1] };
-    const spp = proj(SOUTH_POLE);
-    if (spp) southPole = { x: spp[0], y: spp[1] };
+      // Land — reuse path object to avoid native memory accumulation
+      const landPath = landPathRef.current;
+      landPath.rewind();
+      skiaCtx.setPath(landPath);
+      pg.context(skiaCtx as unknown as GeoContext)(land);
 
-    // Makkah — qibla reference point
-    let makkah: { x: number; y: number } | null = null;
-    if (geoDistance(MAKKAH.coords, [geoLng, geoLat]) < HALF_PI) {
-      const pt = proj(MAKKAH.coords);
-      if (pt) makkah = { x: pt[0], y: pt[1] };
-    }
-
-    // Qibla arc — great circle from story location to Makkah
-    const qiblaP = qiblaPathRef.current;
-    qiblaP.reset();
-    let hasQibla = false;
-    if (geo) {
-      const storyPt: [number, number] = [geo.lng, geo.lat];
-      if (geoDistance(storyPt, MAKKAH.coords) > 0.02) {
-        const interp = geoInterpolate(storyPt, MAKKAH.coords);
-        let started = false;
-        for (let i = 0; i <= 30; i++) {
-          const p = proj(interp(i / 30));
-          if (!p) { started = false; continue; }
-          if (!started) { qiblaP.moveTo(p[0], p[1]); started = true; }
-          else qiblaP.lineTo(p[0], p[1]);
-        }
-        hasQibla = true;
+      // Dot
+      let dot: { x: number; y: number } | null = null;
+      if (geo) {
+        const pt = proj([geo.lng, geo.lat]);
+        if (pt) dot = { x: pt[0], y: pt[1] };
       }
-    }
 
-    // Source arcs — great circle lines from each source's HQ to the article location
-    const srcArcs = sourceArcsRef.current;
-    srcArcs.reset();
-    let hasSourceArcs = false;
-    if (geo) {
-      const storyPt: [number, number] = [geo.lng, geo.lat];
-      const article = articlesRef.current[settledIndex];
-      if (article?.sources) {
-        for (const src of article.sources) {
-          const srcCoords = SOURCE_COORDS[src.name];
-          if (!srcCoords) continue;
-          const srcPt: [number, number] = [srcCoords[1], srcCoords[0]]; // [lng, lat] from [lat, lng]
-          // Skip if source is at the same location as the story or not visible
-          if (geoDistance(srcPt, storyPt) < 0.05) continue;
-          if (geoDistance(srcPt, [geoLng, geoLat]) >= HALF_PI) continue;
-          const interp = geoInterpolate(srcPt, storyPt);
-          let started = false;
-          for (let i = 0; i <= 20; i++) {
-            const p = proj(interp(i / 20));
-            if (!p) { started = false; continue; }
-            if (!started) { srcArcs.moveTo(p[0], p[1]); started = true; }
-            else srcArcs.lineTo(p[0], p[1]);
+      // Country highlight — reuse path object
+      let countryPath: ReturnType<typeof Skia.Path.Make> | null = null;
+      if (cachedCountryRef.current) {
+        countryPath = countryPathRef.current;
+        countryPath.rewind();
+        skiaCtx.setPath(countryPath);
+        pg.context(skiaCtx as unknown as GeoContext)(cachedCountryRef.current);
+      }
+
+      // Neighbouring country borders — skip during scroll (0.5px/0.22 opacity, invisible in motion)
+      const bordersPath = bordersPathRef.current;
+      if (isSettled) {
+        bordersPath.rewind();
+        skiaCtx.setPath(bordersPath);
+        pg.context(skiaCtx as unknown as GeoContext)(bordersMesh);
+      }
+
+      // Night shadow — reuse path object
+      const [sunLng, sunLat] = getSunPosition();
+      const nightCenter: [number, number] = [sunLng + 180, -sunLat];
+      const nightGeo = nightCircleGen.center(nightCenter).radius(72)();
+      const nightPath = nightPathRef.current;
+      nightPath.rewind();
+      skiaCtx.setPath(nightPath);
+      pg.context(skiaCtx as unknown as GeoContext)(nightGeo);
+
+      // Twilight — Maghrib/sunrise (0°) to Isha/Fajr (-18°)
+      const twilightPath = twilightPathRef.current;
+      twilightPath.rewind();
+      skiaCtx.setPath(twilightPath);
+      pg.context(skiaCtx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(90)());
+
+      // Equator + polar circles — skip during scroll (0.4px/0.08 opacity, invisible in motion)
+      const graticulePath = graticulePathRef.current;
+      const deepTwilightPath = deepTwilightPathRef.current;
+      if (isSettled) {
+        // Deep twilight — sun -9° to -18° (settle-only, subtle visual detail)
+        deepTwilightPath.rewind();
+        skiaCtx.setPath(deepTwilightPath);
+        pg.context(skiaCtx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(81)());
+        graticulePath.rewind();
+        skiaCtx.setPath(graticulePath);
+        pg.context(skiaCtx as unknown as GeoContext)(graticuleLines);
+        pg.context(skiaCtx as unknown as GeoContext)(ARCTIC_CIRCLE);
+        pg.context(skiaCtx as unknown as GeoContext)(ANTARCTIC_CIRCLE);
+      }
+
+      // Restore full precision for settle
+      if (!isSettled) proj.precision(8);
+
+      // Poles
+      let northPole: GlobeState['northPole'] = null;
+      let southPole: GlobeState['southPole'] = null;
+      const npp = proj(NORTH_POLE);
+      if (npp) northPole = { x: npp[0], y: npp[1] };
+      const spp = proj(SOUTH_POLE);
+      if (spp) southPole = { x: spp[0], y: spp[1] };
+
+      // Visibility threshold — match the adaptive clip angle so nothing
+      // projects outside the visible globe disk (small countries zoom in).
+      const clipRad = (clipAngle * Math.PI) / 180;
+
+      // Makkah — qibla reference point
+      let makkah: { x: number; y: number } | null = null;
+      if (geoDistance(MAKKAH.coords, [geoLng, geoLat]) < clipRad) {
+        const pt = proj(MAKKAH.coords);
+        if (pt) makkah = { x: pt[0], y: pt[1] };
+      }
+
+      // Coverage hotspot glows — only within the clipped hemisphere
+      const hotspotGlows: GlobeState['hotspotGlows'] = [];
+      for (const zone of hotspotsRef.current) {
+        const zoneCoords: [number, number] = [zone.lng, zone.lat];
+        if (geoDistance(zoneCoords, [geoLng, geoLat]) < clipRad) {
+          const pt = proj(zoneCoords);
+          if (pt)
+            hotspotGlows.push({
+              x: pt[0],
+              y: pt[1],
+              lat: zone.lat,
+              lng: zone.lng,
+              intensity: zone.intensity,
+              labels: zone.labels,
+              countryName: zone.countryName,
+            });
+        }
+      }
+
+      // ── Tier 2: settle-only (source arcs, qibla, dot label) ──
+      // Skipped during mid-scroll to save ~130 projection calls per frame.
+      // Visually: arcs fade out during swipe and reappear on snap — intentional declutter.
+
+      let dotLabel: GlobeState['dotLabel'] = null;
+      let hasQibla = false;
+      let hasSourceArcs = false;
+      const qiblaP = qiblaPathRef.current;
+      const srcArcs = sourceArcsRef.current;
+
+      if (isSettled) {
+        // Dot label — location name (primary), local time (secondary)
+        const settledCountry = cachedCountryRef.current?.properties?.name ?? null;
+        if (dot && settledCountry) {
+          const article = articlesRef.current[settledIndex];
+          const loc = displayLocation(article?.location ?? null);
+          if (loc) {
+            let sub: string | undefined;
+            if (geo && geo.lng != null) {
+              const solarOffsetH = geo.lng / 15;
+              const snappedOffsetH = Math.round(solarOffsetH * 2) / 2;
+              const now = new Date();
+              const utcH = now.getUTCHours() + now.getUTCMinutes() / 60;
+              const localH = ((utcH + snappedOffsetH) % 24 + 24) % 24;
+              const h = Math.floor(localH);
+              const m = Math.round((localH - h) * 60);
+              sub = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+            }
+            dotLabel = { text: loc, sub, x: dot.x, y: dot.y };
           }
-          hasSourceArcs = true;
+        }
+
+        // Qibla arc — great circle from story location to Makkah
+        qiblaP.rewind();
+        if (geo) {
+          const storyPt: [number, number] = [geo.lng, geo.lat];
+          if (geoDistance(storyPt, MAKKAH.coords) > 0.02) {
+            const interp = geoInterpolate(storyPt, MAKKAH.coords);
+            let started = false;
+            for (let i = 0; i <= 30; i++) {
+              const p = proj(interp(i / 30));
+              if (!p) {
+                started = false;
+                continue;
+              }
+              if (!started) {
+                qiblaP.moveTo(p[0], p[1]);
+                started = true;
+              } else qiblaP.lineTo(p[0], p[1]);
+            }
+            hasQibla = true;
+          }
+        }
+
+        // Source arcs — great circle lines from each source's HQ to the article location
+        srcArcs.rewind();
+        if (geo) {
+          const storyPt: [number, number] = [geo.lng, geo.lat];
+          const article = articlesRef.current[settledIndex];
+          if (article?.sources) {
+            for (const src of article.sources) {
+              const srcCoords = SOURCE_COORDS[src.name];
+              if (!srcCoords) continue;
+              const srcPt: [number, number] = [srcCoords[1], srcCoords[0]]; // [lng, lat] from [lat, lng]
+              // Skip if source is at the same location as the story or not visible
+              if (geoDistance(srcPt, storyPt) < 0.05) continue;
+              if (geoDistance(srcPt, [geoLng, geoLat]) >= clipRad) continue;
+              const interp = geoInterpolate(srcPt, storyPt);
+              let started = false;
+              for (let i = 0; i <= 20; i++) {
+                const p = proj(interp(i / 20));
+                if (!p) {
+                  started = false;
+                  continue;
+                }
+                if (!started) {
+                  srcArcs.moveTo(p[0], p[1]);
+                  started = true;
+                } else srcArcs.lineTo(p[0], p[1]);
+              }
+              hasSourceArcs = true;
+            }
+          }
         }
       }
-    }
 
-    // Coverage hotspot glows — project visible zones onto the front hemisphere
-    const hotspotGlows: GlobeState['hotspotGlows'] = [];
-    for (const zone of hotspotsRef.current) {
-      const zoneCoords: [number, number] = [zone.lng, zone.lat];
-      if (geoDistance(zoneCoords, [geoLng, geoLat]) < HALF_PI) {
-        const pt = proj(zoneCoords);
-        if (pt)
-          hotspotGlows.push({
-            x: pt[0],
-            y: pt[1],
-            intensity: zone.intensity,
-            labels: zone.labels,
-            countryName: zone.countryName,
-          });
-      }
-    }
-
-    setState({ landPath, bordersPath, countryPath, countryName: cachedCountryRef.current?.properties?.name ?? null, nightPath, twilightPath, graticulePath, qiblaPath: hasQibla ? qiblaP : null, sourceArcs: hasSourceArcs ? srcArcs : null, northPole, southPole, dot, dotLabel, makkah, hotspotGlows });
-  }, []);
+      setState({
+        landPath,
+        bordersPath: isSettled ? bordersPath : null,
+        countryPath,
+        countryName: cachedCountryRef.current?.properties?.name ?? null,
+        nightPath,
+        deepTwilightPath: isSettled ? deepTwilightPath : null,
+        twilightPath,
+        graticulePath: isSettled ? graticulePath : null,
+        qiblaPath: hasQibla ? qiblaP : null,
+        sourceArcs: hasSourceArcs ? srcArcs : null,
+        northPole,
+        southPole,
+        dot,
+        dotLabel,
+        makkah,
+        hotspotGlows,
+      });
+    },
+    [],
+  );
 
   // Throttle reprojection to 32ms (~30fps), skip throttle on first call.
   // 16ms overwhelms the JS thread (d3-geo projection + setState can't complete in one frame).
@@ -896,13 +1066,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Check hotspot glows first — tight hit area (r²=900) signals precise intent
       for (const z of state.hotspotGlows) {
         if (isNear(x, y, z.x, z.y, 900)) {
-          const name = z.countryName ?? '';
+          // Resolve country lazily on tap — avoids expensive findCountry for all clusters upfront
+          const name = z.countryName ?? findCountry(z.lat, z.lng)?.properties?.name ?? '';
           const tz = name ? COUNTRY_TZ[name] : undefined;
           return {
             countryName: name,
             location: null,
             localTime: tz ? formatLocalTime(tz) : null,
-            data: name ? COUNTRY_DATA[name] ?? null : null,
+            data: name ? (COUNTRY_DATA[name] ?? null) : null,
             hotspotLabels: z.labels.length > 0 ? z.labels : undefined,
             isHotspot: true,
           };
@@ -960,7 +1131,7 @@ export const MiniGlobe = memo(function MiniGlobe({
               countryName: name,
               location: null,
               localTime: tz ? formatLocalTime(tz) : null,
-              data: name ? COUNTRY_DATA[name] ?? null : null,
+              data: name ? (COUNTRY_DATA[name] ?? null) : null,
               hotspotLabels: storiesFor(name),
             };
           }
@@ -1052,33 +1223,64 @@ export const MiniGlobe = memo(function MiniGlobe({
       )}
 
       {/* Ocean disk — subtle sphere body behind land */}
-      <Circle cx={cx} cy={cy} r={globeRadius} color={colors.atmosphere} opacity={light ? 0.12 : 0.07} />
+      <Circle
+        cx={cx}
+        cy={cy}
+        r={globeRadius}
+        color={colors.atmosphere}
+        opacity={light ? 0.12 : 0.07}
+      />
 
       {/* Land silhouette */}
-      {state.landPath && <Path path={state.landPath} color={light ? colors.accent : colors.rule} opacity={light ? 0.25 : 0.4} />}
+      {state.landPath && (
+        <Path
+          path={state.landPath}
+          color={light ? colors.accent : colors.rule}
+          opacity={light ? 0.25 : 0.4}
+        />
+      )}
 
       {/* Neighbouring country borders — visible when scroll is at rest */}
       {state.bordersPath && (
-        <Path path={state.bordersPath} color={colors.accent} style="stroke" strokeWidth={0.5} opacity={0.22} />
+        <Path
+          path={state.bordersPath}
+          color={colors.accent}
+          style="stroke"
+          strokeWidth={0.5}
+          opacity={0.22}
+        />
       )}
 
       {/* Equator + polar circles */}
       {state.graticulePath && (
-        <Path path={state.graticulePath} color={colors.accent} style="stroke" strokeWidth={0.4} opacity={light ? 0.12 : 0.08} />
+        <Path
+          path={state.graticulePath}
+          color={colors.accent}
+          style="stroke"
+          strokeWidth={0.4}
+          opacity={light ? 0.12 : 0.08}
+        />
       )}
 
-      {/* Civil twilight — faint band before full night for gradient falloff */}
-      {state.twilightPath && <Path path={state.twilightPath} color={colors.black} opacity={0.06} />}
+      {/* Twilight — Maghrib/sunrise to Isha/Fajr (3-step gradient) */}
+      {state.twilightPath && <Path path={state.twilightPath} color={colors.black} opacity={0.04} />}
+      {state.deepTwilightPath && <Path path={state.deepTwilightPath} color={colors.black} opacity={0.05} />}
 
-      {/* Night shadow — darker overlay on the unlit hemisphere */}
-      {state.nightPath && <Path path={state.nightPath} color={colors.black} opacity={0.15} />}
+      {/* Night — Isha to Fajr */}
+      {state.nightPath && <Path path={state.nightPath} color={colors.black} opacity={0.12} />}
 
-      {/* Terminator — thin stroke at the day/night boundary */}
-      {state.nightPath && (
-        <Path path={state.nightPath} color={colors.atmosphere} style="stroke" strokeWidth={0.5} opacity={0.2} />
+      {/* Terminator — sunset/sunrise line */}
+      {state.twilightPath && (
+        <Path
+          path={state.twilightPath}
+          color={colors.atmosphere}
+          style="stroke"
+          strokeWidth={0.5}
+          opacity={0.15}
+        />
       )}
 
-      {/* Coverage hotspot ambient glows — top coverage hotspots */}
+      {/* Coverage hotspot ambient glows — no BlurMask, plain circles only */}
       {state.hotspotGlows.map((z, i) => (
         <Glow
           key={i}
@@ -1086,8 +1288,9 @@ export const MiniGlobe = memo(function MiniGlobe({
           y={z.y}
           color={colors.text}
           layers={[
-            { r: 16 + z.intensity * 18, opacity: 0.02 + z.intensity * 0.04, blur: 12 },
-            { r: 5 + z.intensity * 8, opacity: 0.03 + z.intensity * 0.06, blur: 4 },
+            { r: 20 + z.intensity * 20, opacity: 0.015 + z.intensity * 0.025 },
+            { r: 10 + z.intensity * 10, opacity: 0.03 + z.intensity * 0.05 },
+            { r: 3 + z.intensity * 5, opacity: 0.06 + z.intensity * 0.1 },
           ]}
         />
       ))}
@@ -1103,22 +1306,44 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Source arcs — information flow lines from source HQs to story location */}
       {state.sourceArcs && (
-        <Path path={state.sourceArcs} color={colors.accent} style="stroke" strokeWidth={0.5} opacity={light ? 0.15 : 0.08} />
+        <Path
+          path={state.sourceArcs}
+          color={colors.accent}
+          style="stroke"
+          strokeWidth={0.5}
+          opacity={light ? 0.15 : 0.08}
+        />
       )}
 
       {/* Qibla arc — great circle toward Makkah */}
       {state.qiblaPath && (
-        <Path path={state.qiblaPath} color={colors.dome} style="stroke" strokeWidth={0.8} opacity={light ? 0.2 : 0.12} />
+        <Path
+          path={state.qiblaPath}
+          color={colors.dome}
+          style="stroke"
+          strokeWidth={0.8}
+          opacity={light ? 0.2 : 0.12}
+        />
       )}
 
       {/* Makkah — golden qibla reference point */}
       {state.makkah && (
-        <Glow x={state.makkah.x} y={state.makkah.y} color={colors.dome} layers={MAKKAH_GLOW_LAYERS} />
+        <Glow
+          x={state.makkah.x}
+          y={state.makkah.y}
+          color={colors.dome}
+          layers={MAKKAH_GLOW_LAYERS}
+        />
       )}
 
       {/* Story dot */}
       {state.dot && (
-        <Glow x={state.dot.x} y={state.dot.y} color={colors.textEmphasis} layers={DOT_GLOW_LAYERS} />
+        <Glow
+          x={state.dot.x}
+          y={state.dot.y}
+          color={colors.textEmphasis}
+          layers={DOT_GLOW_LAYERS}
+        />
       )}
 
       {/* Dot label — location · local time */}
@@ -1148,14 +1373,42 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Pole markers — tiny crosses */}
       {state.northPole && (
         <>
-          <Rect x={state.northPole.x - 3} y={state.northPole.y - 0.4} width={6} height={0.8} color={colors.accent} opacity={light ? 0.2 : 0.15} />
-          <Rect x={state.northPole.x - 0.4} y={state.northPole.y - 3} width={0.8} height={6} color={colors.accent} opacity={light ? 0.2 : 0.15} />
+          <Rect
+            x={state.northPole.x - 3}
+            y={state.northPole.y - 0.4}
+            width={6}
+            height={0.8}
+            color={colors.accent}
+            opacity={light ? 0.2 : 0.15}
+          />
+          <Rect
+            x={state.northPole.x - 0.4}
+            y={state.northPole.y - 3}
+            width={0.8}
+            height={6}
+            color={colors.accent}
+            opacity={light ? 0.2 : 0.15}
+          />
         </>
       )}
       {state.southPole && (
         <>
-          <Rect x={state.southPole.x - 3} y={state.southPole.y - 0.4} width={6} height={0.8} color={colors.accent} opacity={light ? 0.2 : 0.15} />
-          <Rect x={state.southPole.x - 0.4} y={state.southPole.y - 3} width={0.8} height={6} color={colors.accent} opacity={light ? 0.2 : 0.15} />
+          <Rect
+            x={state.southPole.x - 3}
+            y={state.southPole.y - 0.4}
+            width={6}
+            height={0.8}
+            color={colors.accent}
+            opacity={light ? 0.2 : 0.15}
+          />
+          <Rect
+            x={state.southPole.x - 0.4}
+            y={state.southPole.y - 3}
+            width={0.8}
+            height={6}
+            color={colors.accent}
+            opacity={light ? 0.2 : 0.15}
+          />
         </>
       )}
     </Canvas>

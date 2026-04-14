@@ -102,7 +102,7 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
         hitSlop={12}
         style={({ pressed }) => [
           styles.pill,
-          { backgroundColor: colors.toastBg },
+          { backgroundColor: colors.toastBg, shadowColor: colors.black },
           pressed && PRESSED_STYLE,
         ]}
         accessibilityRole="alert"
@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.lg,
     borderRadius: LAYOUT.toastRadius,
+    ...LAYOUT.floatingShadow,
   },
   text: {},
 });

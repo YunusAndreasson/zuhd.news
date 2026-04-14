@@ -4,11 +4,21 @@ import {
   type BottomSheetModal,
 } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
+import * as Notifications from 'expo-notifications';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useRef, useState } from 'react';
-import { InteractionManager, type LayoutChangeEvent, Platform, Pressable, Share, StyleSheet, Text, View } from 'react-native';
+import {
+  InteractionManager,
+  type LayoutChangeEvent,
+  Platform,
+  Pressable,
+  Share,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
-import { useSharedValue } from 'react-native-reanimated';
+import Animated, { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
 import { BookmarkSheet } from '../components/BookmarkSheet';
@@ -16,23 +26,54 @@ import { BriefingBar } from '../components/BriefingBar';
 import { CategoryBar } from '../components/CategoryBar';
 import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
-import { MenuSheet } from '../components/MenuSheet';
 import type { TapResult } from '../components/globe/MiniGlobe';
+import { MenuSheet } from '../components/MenuSheet';
 import { SearchSheet } from '../components/SearchSheet';
 import { SettingsSheet } from '../components/SettingsSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import { CATEGORIES, EDITORIAL, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { CATEGORIES, EDITORIAL, LAYOUT, PRESSED_STYLE, RIPPLE, SPACING } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useContextBrief } from '../hooks/useContextBrief';
 import { useHeatmap } from '../hooks/useHeatmap';
+import { usePagerScrollHandler } from '../hooks/usePagerScrollHandler';
 import { useTheme } from '../hooks/useTheme';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
-import { get as getPendingSlug, clear as clearPendingSlug } from '../lib/pending-notification';
 import type { Article, ArticleSource, Category } from '../types';
 
+const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
+
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
+
+function ActionPill({ label, accessibilityLabel, onPress }: { label: string; accessibilityLabel: string; onPress: () => void }) {
+  const { colors, font, typography } = useTheme();
+  return (
+    <Pressable
+      onPress={onPress}
+      hitSlop={12}
+      android_ripple={RIPPLE}
+      style={({ pressed }) => [
+        styles.actionPill,
+        { backgroundColor: colors.sheetBg, shadowColor: colors.black },
+        pressed && PRESSED_STYLE,
+      ]}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
+    >
+      <Text
+        style={{
+          ...font.smallCaps,
+          fontSize: typography.sizeXs,
+          letterSpacing: typography.trackingCaps,
+          color: colors.textEmphasis,
+        }}
+      >
+        {label}
+      </Text>
+    </Pressable>
+  );
+}
 
 export default function HomeScreen() {
   const { colors, font, typography } = useTheme();
@@ -91,30 +132,33 @@ export default function HomeScreen() {
     [],
   );
 
-  const handleSelectArticle = useCallback((slug: string, category: Category) => {
-    searchSheetRef.current?.dismiss();
-    bookmarkSheetRef.current?.dismiss();
-    const catIndex = CATEGORIES.indexOf(category);
-    if (catIndex < 0) return;
+  const handleSelectArticle = useCallback(
+    (slug: string, category: Category) => {
+      searchSheetRef.current?.dismiss();
+      bookmarkSheetRef.current?.dismiss();
+      const catIndex = CATEGORIES.indexOf(category);
+      if (catIndex < 0) return;
 
-    // If the article rotated out of the feed, inject the bookmarked copy
-    const inFeed = groupedRef.current[category]?.some((a) => a.slug === slug);
-    if (!inFeed) {
-      const bookmark = getBookmarks().find((b) => b.article.slug === slug);
-      if (bookmark) {
-        injectArticle(bookmark.article, category);
-      } else {
-        toastRef.current?.show('Article no longer available');
-        return;
+      // If the article rotated out of the feed, inject the bookmarked copy
+      const inFeed = groupedRef.current[category]?.some((a) => a.slug === slug);
+      if (!inFeed) {
+        const bookmark = getBookmarks().find((b) => b.article.slug === slug);
+        if (bookmark) {
+          injectArticle(bookmark.article, category);
+        } else {
+          toastRef.current?.show('Article no longer available');
+          return;
+        }
       }
-    }
 
-    pagerRef.current?.setPage(catIndex);
-    // Wait for pager animation to complete before scrolling
-    InteractionManager.runAfterInteractions(() => {
-      listRefs[catIndex]?.current?.scrollToSlug?.(slug);
-    });
-  }, [injectArticle]);
+      pagerRef.current?.setPage(catIndex);
+      // Wait for pager animation to complete before scrolling
+      InteractionManager.runAfterInteractions(() => {
+        listRefs[catIndex]?.current?.scrollToSlug?.(slug);
+      });
+    },
+    [injectArticle],
+  );
 
   const handleArticleBookmark = useCallback((article: Article) => {
     const catIndex = currentCategoryRef.current;
@@ -188,10 +232,19 @@ export default function HomeScreen() {
 
   const handleCountryPress = useCallback((result: TapResult) => {
     hapticImpact();
-    // Hotspot glow tap → toast (event label or country name)
+    // Hotspot glow tap → toast with tap-to-scroll
     if (result.isHotspot) {
       const label = result.hotspotLabels?.[0] ?? result.countryName;
-      if (label) toastRef.current?.show(label);
+      if (!label) return;
+      // Find matching article in current category by threadLabel or title
+      const catIndex = currentCategoryRef.current;
+      const cat = CATEGORIES[catIndex];
+      const articles = cat ? groupedRef.current[cat] : [];
+      const match = articles?.find((a) => a.title === label || a.threadLabel?.startsWith(label));
+      toastRef.current?.show(
+        label,
+        match ? () => listRefs[catIndex]?.current?.scrollToSlug?.(match.slug) : undefined,
+      );
       return;
     }
     // Country/dot tap → sheet
@@ -219,6 +272,12 @@ export default function HomeScreen() {
 
   const pagerOffset = useSharedValue(0);
   const categoryProgresses = useSharedValue([0, 0, 0, 0]);
+  const onPageScroll = useCallback(
+    (e: { nativeEvent: { position: number; offset: number } }) => {
+      pagerOffset.value = e.nativeEvent.position + e.nativeEvent.offset;
+    },
+    [pagerOffset],
+  );
 
   const onPageSelected = useCallback(
     (e: PagerViewOnPageSelectedEvent) => {
@@ -227,13 +286,6 @@ export default function HomeScreen() {
       hapticTick();
       setCurrentCategory(page);
       setActiveArticle(currentArticlesRef.current[page] ?? null);
-    },
-    [pagerOffset],
-  );
-
-  const onPageScroll = useCallback(
-    (e: { nativeEvent: { position: number; offset: number } }) => {
-      pagerOffset.value = e.nativeEvent.position + e.nativeEvent.offset;
     },
     [pagerOffset],
   );
@@ -257,7 +309,6 @@ export default function HomeScreen() {
   const handleEndReached = useCallback((catIndex: number) => {
     const cat = CATEGORIES[catIndex];
     if (!cat) return;
-    const count = groupedRef.current[cat]?.length ?? 0;
     toastRef.current?.show('End \u00B7 tap for top', () =>
       listRefs[catIndex]?.current?.scrollToTop(),
     );
@@ -288,13 +339,30 @@ export default function HomeScreen() {
     if (!loading) SplashScreen.hideAsync();
   }, [loading]);
 
-  // Navigate to article from push notification tap
+  // Handle push notification taps (including cold-start)
+  const lastResponse = Notifications.useLastNotificationResponse();
+  const handledResponseId = useRef<string | null>(null);
+  const briefingPlayerRef = useRef(briefingPlayer);
+  briefingPlayerRef.current = briefingPlayer;
   useEffect(() => {
-    if (loading) return;
-    const slug = getPendingSlug();
-    if (!slug) return;
-    clearPendingSlug();
-    // Find which category has this article
+    if (loading || !lastResponse) return;
+    if (lastResponse.actionIdentifier !== Notifications.DEFAULT_ACTION_IDENTIFIER) return;
+    const id = lastResponse.notification.request.identifier;
+    if (id === handledResponseId.current) return;
+    handledResponseId.current = id;
+    const data = lastResponse.notification.request.content.data;
+
+    // Briefing push — start the audio player
+    if (data?.type === 'briefing') {
+      setTimeout(() => {
+        if (!briefingPlayerRef.current.playing) briefingPlayerRef.current.toggle();
+      }, 300);
+      return;
+    }
+
+    // Article push — navigate to the article
+    const slug = data?.slug;
+    if (typeof slug !== 'string') return;
     for (const cat of CATEGORIES) {
       const found = grouped[cat]?.some((a) => a.slug === slug);
       if (found) {
@@ -306,7 +374,7 @@ export default function HomeScreen() {
         break;
       }
     }
-  }, [loading, grouped]);
+  }, [loading, grouped, lastResponse]);
 
   if (loading) return null;
 
@@ -360,7 +428,7 @@ export default function HomeScreen() {
         onMenuPress={handleMenuPress}
       />
 
-      <PagerView
+      <AnimatedPagerView
         ref={pagerRef}
         style={styles.pager}
         initialPage={0}
@@ -393,7 +461,7 @@ export default function HomeScreen() {
             )}
           </View>
         ))}
-      </PagerView>
+      </AnimatedPagerView>
 
       <Toast ref={toastRef} />
 
@@ -405,28 +473,7 @@ export default function HomeScreen() {
         >
           {/* Briefing — far left, separated */}
           {briefing?.available && briefing.date && (
-            <Pressable
-              onPress={briefingPlayer.toggle}
-              hitSlop={12}
-              style={({ pressed }) => [
-                styles.actionPill,
-                { backgroundColor: colors.sheetBg, shadowColor: colors.black },
-                pressed && PRESSED_STYLE,
-              ]}
-              accessibilityRole="button"
-              accessibilityLabel="Listen to daily briefing"
-            >
-              <Text
-                style={{
-                  ...font.smallCaps,
-                  fontSize: typography.sizeXs,
-                  letterSpacing: typography.trackingCaps,
-                  color: colors.textEmphasis,
-                }}
-              >
-                listen
-              </Text>
-            </Pressable>
+            <ActionPill label="listen" accessibilityLabel="Listen to daily briefing" onPress={briefingPlayer.toggle} />
           )}
 
           {/* Spacer pushes article actions to the right */}
@@ -434,67 +481,28 @@ export default function HomeScreen() {
 
           {/* Article actions — right side, closest to thumb */}
           <View style={styles.articleActions}>
-            <Pressable
-              onPress={handleBottomShare}
-              hitSlop={12}
-              style={({ pressed }) => [
-                styles.actionPill,
-                { backgroundColor: colors.sheetBg, shadowColor: colors.black },
-                pressed && PRESSED_STYLE,
-              ]}
-              accessibilityRole="button"
-              accessibilityLabel="Share article"
-            >
-              <Text
-                style={{
-                  ...font.smallCaps,
-                  fontSize: typography.sizeXs,
-                  letterSpacing: typography.trackingCaps,
-                  color: colors.textEmphasis,
-                }}
-              >
-                share
-              </Text>
-            </Pressable>
-            <Pressable
-              onPress={handleDeeperPress}
-              hitSlop={12}
-              style={({ pressed }) => [
-                styles.actionPill,
-                { backgroundColor: colors.sheetBg, shadowColor: colors.black },
-                pressed && PRESSED_STYLE,
-              ]}
-              accessibilityRole="button"
-              accessibilityLabel="More about this story"
-            >
-              <Text
-                style={{
-                  ...font.smallCaps,
-                  fontSize: typography.sizeXs,
-                  letterSpacing: typography.trackingCaps,
-                  color: colors.textEmphasis,
-                }}
-              >
-                more
-              </Text>
-            </Pressable>
+            <ActionPill label="share" accessibilityLabel="Share article" onPress={handleBottomShare} />
+            <ActionPill label="more" accessibilityLabel="More about this story" onPress={handleDeeperPress} />
           </View>
         </View>
       )}
 
       {/* Briefing player — persists while playing or paused mid-listen */}
-      {briefing?.available && briefing.date && (briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
-        <BriefingBar
-          playing={briefingPlayer.playing}
-          elapsed={briefingPlayer.elapsed}
-          duration={briefingPlayer.duration}
-          rate={briefingPlayer.rate}
-          date={briefing.date}
-          onToggle={briefingPlayer.toggle}
-          onSeek={briefingPlayer.seek}
-          onCycleRate={briefingPlayer.cycleRate}
-        />
-      )}
+      {briefing?.available &&
+        briefing.date &&
+        (briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
+          <BriefingBar
+            playing={briefingPlayer.playing}
+            elapsed={briefingPlayer.elapsed}
+            duration={briefingPlayer.duration}
+            rate={briefingPlayer.rate}
+            date={briefing.date}
+            onToggle={briefingPlayer.toggle}
+            onSeek={briefingPlayer.seek}
+            onCycleRate={briefingPlayer.cycleRate}
+            onDismiss={briefingPlayer.dismiss}
+          />
+        )}
 
       <MenuSheet
         sheetRef={menuSheetRef}
@@ -517,9 +525,7 @@ export default function HomeScreen() {
       <ContextSheet
         sheetRef={contextSheetRef}
         sources={digSources}
-
         eventCoverage={digCoverage}
-
         brief={contextBrief}
         loading={contextLoading}
         threadLabel={contextThreadLabel}
@@ -555,7 +561,6 @@ export default function HomeScreen() {
         renderBackdrop={renderBackdrop}
         onDismiss={() => {}}
       />
-
     </View>
   );
 }
@@ -603,7 +608,7 @@ const styles = StyleSheet.create({
   actionPill: {
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.md,
-    borderRadius: 14,
+    borderRadius: LAYOUT.floatingRadius,
     alignItems: 'center' as const,
     justifyContent: 'center' as const,
     ...LAYOUT.floatingShadow,

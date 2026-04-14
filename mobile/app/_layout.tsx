@@ -1,20 +1,19 @@
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import * as Notifications from 'expo-notifications';
 import { useFonts } from 'expo-font';
+import * as Notifications from 'expo-notifications';
 import { Slot } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
+import * as WebBrowser from 'expo-web-browser';
 import { Suspense, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import * as WebBrowser from 'expo-web-browser';
 import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 import { DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
-import { enableNotifications, ensureScheduled, registerPushToken } from '../lib/notifications';
-import { set as setPendingSlug } from '../lib/pending-notification';
+import { enableNotifications, registerPushToken } from '../lib/notifications';
 import { getPreferences, savePreferences } from '../lib/storage';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
@@ -35,7 +34,7 @@ function ThemedShell() {
   const { colors, resolvedAppearance } = useTheme();
   return (
     <>
-      <StatusBar style={resolvedAppearance === 'dark' ? 'light' : 'dark'} translucent backgroundColor="transparent" />
+      <StatusBar style={resolvedAppearance === 'dark' ? 'light' : 'dark'} />
       <View style={[styles.root, { backgroundColor: colors.bg }]}>
         <Slot />
       </View>
@@ -56,10 +55,10 @@ export default function RootLayout() {
   useEffect(() => {
     registerBackgroundTask();
     WebBrowser.warmUpAsync().catch(() => {});
-    ensureScheduled();
-    const sub = Notifications.addNotificationResponseReceivedListener((response) => {
-      const slug = response.notification.request.content.data?.slug;
-      if (typeof slug === 'string') setPendingSlug(slug);
+
+    // Re-register push token if it changes mid-session (rare but documented)
+    const tokenSub = Notifications.addPushTokenListener(() => {
+      registerPushToken();
     });
 
     // Prompt notification permission on first launch so reviewers see native dialog
@@ -81,7 +80,7 @@ export default function RootLayout() {
     })();
 
     return () => {
-      sub.remove();
+      tokenSub.remove();
       WebBrowser.coolDownAsync().catch(() => {});
     };
   }, []);

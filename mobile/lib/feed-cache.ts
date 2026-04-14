@@ -10,11 +10,15 @@ interface CacheMeta {
   generated: string;
 }
 
-export function writeFeedCache(feed: FeedResponse): void {
-  // Defer sync write off the current frame to avoid blocking JS thread
-  // during feed apply → UI update. The write is fire-and-forget.
+export function writeFeedCache(feed: FeedResponse, sync = false): void {
   const json = JSON.stringify(feed);
   const meta = JSON.stringify({ cachedAt: Date.now(), generated: feed.generated });
+  if (sync) {
+    FEED_FILE.write(json);
+    META_FILE.write(meta);
+    return;
+  }
+  // Defer off the current frame to avoid blocking JS thread during UI update
   setTimeout(() => {
     try {
       FEED_FILE.write(json);
