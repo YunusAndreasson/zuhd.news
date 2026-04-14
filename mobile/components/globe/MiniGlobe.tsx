@@ -524,7 +524,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (existing) existing.total += coverage;
         else clusters.set(key, { lat: geo.lat, lng: geo.lng, total: coverage, countryName: geo.countryName });
       }
-      const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 5);
+      const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 2);
       if (sorted.length === 0) return [];
       const logMax = Math.log(sorted[0]!.total + 1);
       return sorted.map((z) => ({
@@ -557,7 +557,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     }
 
     // Resolve country names only for top clusters
-    const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 8);
+    const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 2);
     if (sorted.length === 0) return [];
     const logMax = Math.log(sorted[0]!.total + 1);
     return sorted.map((z) => {
