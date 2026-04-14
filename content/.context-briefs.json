@@ -7513,5 +7513,317 @@
     "label": "Naval Mine Warfare",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-14-birth-order-health-effects-10-million-siblings": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IMMUNE HYPOTHESIS",
+        "body": "A mother's immune system encounters fetal antigens for the first time during a first pregnancy. By the second, her immune memory is primed — her body responds differently to the placenta, the amniotic environment, and the fetus itself. This immunological difference is the leading explanation for why firstborns carry different disease risks."
+      },
+      {
+        "heading": "THE HYGIENE GRADIENT",
+        "body": "Later-born children are exposed to more pathogens earlier — brought home by older siblings. This microbial exposure in infancy is thought to calibrate the immune system away from allergic responses, which is why firstborns consistently show higher rates of asthma, eczema, and hay fever across dozens of studies."
+      },
+      {
+        "heading": "WHY SIBLING STUDIES MATTER",
+        "body": "Siblings share genetics, household income, parental education, and neighborhood. By comparing health outcomes within families rather than between them, researchers eliminate most confounders that plague population-level studies. A 10-million-sibling dataset is not just large — it is structurally cleaner than a 100-million-person survey."
+      },
+      {
+        "heading": "THE REPLICATION PROBLEM",
+        "body": "Birth order effects have been claimed and debunked repeatedly since Adler proposed them in the 1920s. IQ, personality, and career outcomes have mostly failed to replicate. Biological health outcomes — where the mechanism is immunological rather than behavioral — have proven far more robust."
+      }
+    ],
+    "generatedAt": "2026-04-14T12:30:00.321Z",
+    "label": "Birth Order & Disease Risk",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-14-github-stacked-pull-requests-launch": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROBLEM WITH LARGE PRS",
+        "body": "Code review quality degrades sharply with size. A study at Google found that reviews of changes under 100 lines caught significantly more defects per line than reviews over 400 lines. Developers skim large diffs — the brain cannot hold the full context. Stacking breaks one large change into a reviewable sequence."
+      },
+      {
+        "heading": "HOW STACKING WORKS",
+        "body": "Each pull request in a stack builds on the one below it — PR 2 branches from PR 1, PR 3 from PR 2. Reviewers see only the incremental diff at each level. When PR 1 merges, the stack rebases automatically. The workflow originated at Facebook, where the internal tool Phabricator enforced single-commit reviews by default."
+      },
+      {
+        "heading": "THE TRUNK-BASED TRADEOFF",
+        "body": "Google, Meta, and Microsoft all converged on trunk-based development: small, frequent commits to a single main branch. Stacked diffs are the pull-request equivalent — they impose the same discipline on teams that use branches. The tradeoff is tooling complexity: every rebase of a base PR must propagate through the entire stack."
+      },
+      {
+        "heading": "WHY IT TOOK THIS LONG",
+        "body": "Git's data model tracks snapshots, not dependent change sequences. Stacking requires tracking parent-child relationships between branches, auto-rebasing on merge, and updating review state across the chain — none of which Git provides natively. Third-party tools like Graphite and Gerrit built this layer; GitHub is the last major platform to add it."
+      }
+    ],
+    "generatedAt": "2026-04-14T12:30:00.322Z",
+    "label": "Stacked Diffs",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-14-india-noida-factory-workers-wage-protest": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BORDER WAGE GAP",
+        "body": "India's minimum wage is set by each state independently, with no binding federal floor for most sectors. Noida (Uttar Pradesh) and Gurugram (Haryana) are 80 kilometers apart, connected by the same metro system, drawing from the same labor pool — but one state can pay 30% less than the other. Workers can literally see the wage gap from their factory windows."
+      },
+      {
+        "heading": "THE SPECIAL ECONOMIC ZONE TRAP",
+        "body": "Noida was built as an industrial zone to attract manufacturing with cheap land and relaxed labor enforcement. These zones generate employment but suppress organizing — factories operate under state investment protection, labor inspectors rarely visit, and unions face legal and practical barriers. The workers are essential to the model but have almost no leverage within it."
+      },
+      {
+        "heading": "THE CONTAGION MECHANISM",
+        "body": "India's National Capital Region spans three states — Uttar Pradesh, Haryana, and Delhi. When Haryana raised wages 35%, workers 80 km away in Noida could see the disparity instantly. Labor unrest in one jurisdiction spreads to adjacent industrial zones within hours because the workforce is mobile, connected by WhatsApp, and the grievances are shared."
+      },
+      {
+        "heading": "THE AUTO BELT DEPENDENCY",
+        "body": "Noida and its surroundings form one of India's largest auto components clusters, feeding assembly lines for Maruti Suzuki, Hyundai, and Tata. Auto supply chains run on just-in-time delivery with near-zero inventory buffers. A road blockade at the parts belt does not slow production gradually — it halts final assembly within 24-48 hours."
+      }
+    ],
+    "generatedAt": "2026-04-14T12:30:00.322Z",
+    "label": "India's Cross-Border Wage Gap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-14-indonesia-us-defense-partnership-prabowo-russia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOCTRINE",
+        "body": "Indonesia's foreign policy has been formally non-aligned since the 1955 Bandung Conference, which Sukarno hosted. The phrase 'bebas dan aktif' — free and active — is constitutional doctrine, not just rhetoric. Every Indonesian president since independence has maintained ties with both blocs simultaneously, and public opinion punishes perceived alignment."
+      },
+      {
+        "heading": "THE CAATSA PROBLEM",
+        "body": "US law (CAATSA, 2017) mandates sanctions on any country that makes significant arms purchases from Russia. Indonesia ordered Russian Su-35 fighters in 2018, then quietly shelved the deal under sanctions pressure. Signing a US defense partnership while visiting Moscow signals that Jakarta is still shopping both aisles — and daring Washington to object."
+      },
+      {
+        "heading": "THE MILITARY'S RUSSIAN INVENTORY",
+        "body": "Indonesia's armed forces operate a mix of Russian Sukhoi fighters, US F-16s, French submarines, and South Korean frigates. This deliberate diversification prevents dependency on any single supplier — but it also means no one power can cut off spare parts without Jakarta having alternatives already in service."
+      },
+      {
+        "heading": "WHY INDONESIA MATTERS",
+        "body": "Indonesia controls the Malacca, Sunda, and Lombok Straits — three of the world's most critical shipping chokepoints. Roughly a third of global trade passes through Indonesian waters. Neither the US nor China can afford to lose Jakarta's cooperation, which gives Indonesia leverage disproportionate to its military strength."
+      }
+    ],
+    "generatedAt": "2026-04-14T12:30:00.322Z",
+    "label": "Indonesia's Non-Alignment",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-14-kuwait-journalist-shihab-eldin-jailed-iran-war-speech": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "KUWAIT'S UNUSUAL POSITION",
+        "body": "Kuwait has the oldest elected parliament in the Gulf (since 1963) and historically tolerated more press freedom than its neighbors. But the constitution also grants the emir power to suspend parliament and rule by decree — which has happened repeatedly. Press freedom exists within a ceiling the state can lower at any time."
+      },
+      {
+        "heading": "THE SECURITY TRIBUNAL MODEL",
+        "body": "Fast-track security courts — created by executive order, staffed by military or security judges, operating under relaxed evidentiary standards — are a common tool across the Gulf and North Africa. Egypt's State Security Emergency Courts, Bahrain's National Safety Courts, and Saudi Arabia's Specialized Criminal Court all follow the same template: parallel judicial systems that bypass civilian courts for politically sensitive cases."
+      },
+      {
+        "heading": "THE CYBERCRIME EXPANSION",
+        "body": "Since 2015, Gulf states have expanded cybercrime and 'false information' laws to cover social media speech. These laws were drafted to address fraud and hacking but are now routinely applied to journalists, activists, and ordinary citizens who post critical commentary. The charge of 'spreading false information' requires no proof of falsity — the state's assertion is typically sufficient."
+      },
+      {
+        "heading": "THE HORMUZ CONTEXT",
+        "body": "Kuwait sits at the top of the Persian Gulf, closer to Iran than any other Arab capital except Manama. During the Iran-Iraq war, Kuwait was attacked by both sides. This proximity makes Kuwaiti authorities acutely sensitive to public commentary on regional conflicts — speech that would be unremarkable in Amman or Tunis triggers national security reflexes in Kuwait City."
+      }
+    ],
+    "generatedAt": "2026-04-14T12:30:00.322Z",
+    "label": "Press Freedom in the Gulf",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-14-logged-forests-burn-worse-old-growth-tasmania": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FUEL LOAD PARADOX",
+        "body": "The timber industry has long argued that logging reduces fire risk by removing fuel. The structural reality is the opposite: logging opens the canopy, lets sunlight reach the floor, dries out the understory, and leaves behind slash — branches, bark, and treetops too small to mill. This debris is finer and drier than anything in an intact forest, and fine fuels ignite first."
+      },
+      {
+        "heading": "THE REGROWTH PROBLEM",
+        "body": "After logging, forests regenerate as dense, even-aged stands of young trees. These regrowth forests have continuous vertical fuel structure — from ground litter through saplings to canopy — that lets fire climb rapidly. Old-growth forests, by contrast, have gaps, wet understories, and fire-resistant bark built up over centuries."
+      },
+      {
+        "heading": "WHY TASMANIA IS THE NATURAL EXPERIMENT",
+        "body": "The 2019 Riveaux Road fire burned through adjacent patches of logged and unlogged forest in the same valley, under the same weather, on the same day. This kind of side-by-side comparison almost never occurs — usually researchers must compare fires across different years, regions, or weather conditions, introducing confounders that Tasmania's geography eliminated."
+      },
+      {
+        "heading": "THE MOISTURE ENGINE",
+        "body": "Old-growth canopies intercept sunlight and trap humidity, keeping the forest floor 10-15°C cooler and dramatically wetter than adjacent clearings. This microclimate acts as a fire brake. Once the canopy is removed, the moisture engine stops — and it takes 100-200 years of regrowth to restart it."
+      }
+    ],
+    "generatedAt": "2026-04-14T12:30:00.322Z",
+    "label": "Fire Ecology & Logging",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-14-pakistan-loadshedding-fuel-constraints-hormuz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SINGLE-SOURCE TRAP",
+        "body": "Pakistan imports roughly 75% of its natural gas as LNG, and Qatar supplies the majority under long-term contracts signed in 2016. Pakistan has almost no strategic gas reserves and no domestic alternative at scale. A force majeure declaration from Qatar does not reduce supply gradually — it removes the primary fuel source for Pakistan's power grid."
+      },
+      {
+        "heading": "THE CIRCULAR DEBT CRISIS",
+        "body": "Pakistan's power sector carries over $5 billion in circular debt — the government subsidizes electricity below cost, utilities cannot pay generators, generators cannot pay fuel suppliers, and the cycle compounds. Every tariff increase is politically explosive, but every delay deepens the debt. Load-shedding is the physical manifestation of a financial problem."
+      },
+      {
+        "heading": "THE HORMUZ DEPENDENCY",
+        "body": "Qatar's LNG tankers must pass through the Strait of Hormuz — there is no pipeline alternative from the Qatari peninsula. When the strait is disrupted, Pakistan's exposure is immediate and total. Unlike Gulf oil exporters who built partial pipeline bypasses, Pakistan has no hedge against a Hormuz closure."
+      },
+      {
+        "heading": "WHY LNG IS DIFFERENT FROM OIL",
+        "body": "Oil is fungible — if one supplier cuts off, buyers can redirect cargoes globally within days. LNG requires specialized terminals, cryogenic ships, and long-term contracts. Pakistan has only two LNG terminals, both at Port Qasim near Karachi. Even if spot cargoes were available, the terminals cannot handle more than their rated capacity."
+      },
+      {
+        "heading": "THE LOAD-SHEDDING CALCULUS",
+        "body": "Controlled blackouts are not random — grid operators cut supply to residential areas first because factories pay higher tariffs and generate export revenue. The political cost falls on households; the economic cost of cutting industry is higher. This is why 2.25 hours of daily cuts translates to far longer outages in poorer neighborhoods."
+      }
+    ],
+    "generatedAt": "2026-04-14T12:30:00.323Z",
+    "label": "Pakistan's Energy Dependency",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-14-rednote-xiaohongshu-us-expansion-ecommerce": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TIKTOK TEMPLATE",
+        "body": "TikTok's US legal battle established the precedent: the federal government can force divestiture of a foreign-owned app under the International Emergency Economic Powers Act (IEEPA) if it poses a national security risk. The question for every Chinese app entering the US market is now whether this template will be applied to them."
+      },
+      {
+        "heading": "THE DATA SOVEREIGNTY QUESTION",
+        "body": "US concern is not about content — it is about data. A social commerce app collects purchase history, location data, browsing patterns, and social graphs. Under China's National Intelligence Law (2017), Chinese companies must cooperate with state intelligence operations if asked. Whether this law has ever been invoked against a consumer app is unknown, but the legal obligation exists."
+      },
+      {
+        "heading": "THE ACQUISITION PLAYBOOK",
+        "body": "RedNote is not building a US audience from scratch — it inherited millions of users who downloaded it in January 2025 when TikTok briefly went dark. This is the playbook Shein pioneered: enter the US market through organic virality, build a user base before regulators notice, then argue that shutting it down would harm American consumers and small businesses."
+      },
+      {
+        "heading": "WHY SOCIAL COMMERCE IS DIFFERENT",
+        "body": "Pure social media apps show ads. Social commerce apps process transactions — they handle payments, shipping addresses, and purchase data. This moves the regulatory conversation from content moderation (First Amendment protections) to financial regulation (CFIUS jurisdiction, payment processing rules, consumer protection law), where the government has far more authority to intervene."
+      }
+    ],
+    "generatedAt": "2026-04-14T12:30:00.323Z",
+    "label": "Chinese Apps in the US",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-14-sanctioned-tankers-transit-hormuz-us-blockade": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "BLOCKADE VS. EMBARGO",
+        "body": "A naval blockade is an act of war under international law. An embargo is a unilateral trade restriction. The distinction matters: blockading Iran's ports but allowing strait transit creates a legal grey zone — the US can argue it is enforcing sanctions, not waging war. Iran can argue the opposite. The classification determines whether third parties like China have legal grounds to intervene."
+      },
+      {
+        "heading": "THE TRANSIT LOOPHOLE",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend it. A blockade that bars port calls but permits transit is threading a legal needle: it pressures Iran without violating the transit rights of every other nation that uses Hormuz. The tankers that crossed on day one exploited exactly this distinction."
+      },
+      {
+        "heading": "THE DARK FLEET",
+        "body": "Since 2019, a shadow fleet of aging tankers has carried sanctioned oil by switching off transponders, conducting ship-to-ship transfers at sea, and using shell companies for registration. An estimated 600-800 vessels operate in this grey market. They are uninsured by Western underwriters, which means an oil spill or collision in the strait would have no conventional cleanup funding."
+      },
+      {
+        "heading": "WHY CHINA KEEPS BUYING",
+        "body": "China imports roughly 1.5 million barrels per day of Iranian crude — about 15% of Iran's total output — at steep discounts. These purchases are settled in yuan, bypassing the dollar system entirely. For China, sanctioned Iranian oil is simultaneously cheap energy, leverage over Tehran, and a pillar of its de-dollarization strategy. The incentive to stop is close to zero."
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not mines or warships — are what functionally close a shipping lane. Once premiums spike, commercial vessels reroute regardless of military reality. During the 2019 tanker attacks, premiums jumped tenfold overnight. The financial chokepoint is tighter than the physical one."
+      }
+    ],
+    "generatedAt": "2026-04-14T12:30:00.323Z",
+    "label": "Naval Blockades & Sanctions Enforcement",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-14-super-typhoon-sinlaku-mariana-islands-guam": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SUPER TYPHOONS FORM HERE",
+        "body": "The western Pacific warm pool — the largest body of water above 28°C on Earth — sits directly beneath the Mariana Islands. Tropical cyclones extract energy from warm surface water through evaporation. The warmer and deeper the warm layer, the higher the theoretical intensity ceiling. No other ocean basin offers this combination of heat and depth."
+      },
+      {
+        "heading": "THE SAFFIR-SIMPSON GAP",
+        "body": "The Saffir-Simpson scale tops out at Category 5 (252+ km/h). Sinlaku at 278 km/h and a hypothetical storm at 350 km/h receive the same rating. Meteorologists have proposed a Category 6 threshold, but the scale measures wind speed while actual damage depends on storm surge, rainfall, and duration — factors the number does not capture."
+      },
+      {
+        "heading": "THE MARIANA VULNERABILITY",
+        "body": "The Northern Mariana Islands have a combined population under 50,000 spread across 14 islands. There is one hospital on Saipan, no Category 5-rated public shelters, and no evacuation route — the nearest landmass is Guam, 200 km south. When a super typhoon makes a direct hit, the entire population shelters in place in concrete structures not engineered for the wind loads."
+      },
+      {
+        "heading": "THE MILITARY DIMENSION",
+        "body": "Guam hosts Andersen Air Force Base and Naval Base Guam — the US military's most forward-deployed permanent installations in the Pacific. Typhoon damage to these bases directly affects US force projection capability in the western Pacific. After Typhoon Mawar in 2023, Andersen took months to restore full operations."
+      }
+    ],
+    "generatedAt": "2026-04-14T12:30:00.323Z",
+    "label": "Typhoon Mechanics & the Marianas",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-14-turkey-school-shooting-siverek": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REGULATORY FRAMEWORK",
+        "body": "Turkey's 1953 Firearms Law requires a licence for possession, a separate permit for carry, and background checks covering criminal history, mental health records, and military service status. Shotguns require a licence but face fewer restrictions than rifles or handguns — a regulatory gap common across many countries where shotguns are classified as sporting or agricultural tools."
+      },
+      {
+        "heading": "THE NUMBERS",
+        "body": "Turkey has an estimated 25 million civilian firearms — roughly one for every 3.5 people — but only about 15 million are registered. The gap is largely historical: rural households have held weapons for generations, and periodic amnesty programs have registered millions but never closed the gap entirely. Legal ownership is tightly controlled; actual possession is far more widespread."
+      },
+      {
+        "heading": "THE SOUTHEAST CONTEXT",
+        "body": "Siverek sits in Sanliurfa province, in Turkey's predominantly Kurdish southeast — a region with decades of armed conflict between the Turkish state and the PKK. Weapons availability in the southeast is higher than the national average due to proximity to conflict zones and cross-border smuggling routes from Syria and Iraq. The social context of gun violence here is distinct from western Turkey."
+      },
+      {
+        "heading": "WHY SCHOOL SHOOTINGS ARE RARE",
+        "body": "Turkey averages fewer than one school shooting per decade despite high gun ownership. The difference from the US is structural: Turkish schools have perimeter security with guards and metal detectors as standard, the culture does not mythologize lone-gunman violence, and media reporting guidelines restrict naming attackers or detailing methods — reducing the contagion effect that criminologists identify as a driver of copycat attacks."
+      }
+    ],
+    "generatedAt": "2026-04-14T12:30:00.323Z",
+    "label": "Firearms in Turkey",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-14-uk-arms-shipment-israel-seized-belgium": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRANSIT LICENCE",
+        "body": "Most arms-exporting countries require an export licence but not a transit licence — weapons can pass through airports and ports without the transit country's approval. Belgium is an exception: its 2003 Arms Trade Law requires a licence for any weapons transiting Belgian territory, even if they never leave the airport. This is why Liège caught what other transit points would have waved through."
+      },
+      {
+        "heading": "THE WALLOON FACTOR",
+        "body": "In Belgium, arms export licences are issued by regional governments, not the federal state. Wallonia — the French-speaking region where Liège sits — has historically been stricter than Flanders on arms exports to conflict zones. In 2019, Wallonia suspended arms licences to Saudi Arabia over Yemen. The same regional authority governs Liège airport, Europe's sixth-largest cargo hub."
+      },
+      {
+        "heading": "THE ICJ OBLIGATION",
+        "body": "The International Court of Justice ruled in January 2024 that states must prevent genocide in Gaza under the Genocide Convention. While the ICJ did not order an arms embargo, legal scholars argue that continuing arms transfers to a party under plausible genocide proceedings creates complicity risk. Belgium's seizure occurred against this legal backdrop — a transit state enforcing obligations the exporting state chose not to."
+      },
+      {
+        "heading": "THE ROUTING GAME",
+        "body": "Military cargo avoids direct flights when export licences are politically sensitive. Routing through third-country airports — particularly cargo hubs like Liège, Leipzig, or Dubai — obscures the origin-destination pair on shipping manifests. The practice is legal when transit licences are obtained. When they are not, it becomes smuggling — which is why Belgium opened a criminal investigation, not merely a regulatory one."
+      },
+      {
+        "heading": "WHO IS MOOG",
+        "body": "Moog Inc. is a US aerospace and defense manufacturer specializing in precision motion control — the actuators, servos, and flight control systems that guide missiles and stabilize aircraft. Its UK factories supply components to multiple militaries. Fire control systems are not weapons themselves, but without them, guided munitions cannot hit their targets. The distinction between a weapon and the system that aims it is legally meaningful but operationally hollow."
+      }
+    ],
+    "generatedAt": "2026-04-14T12:30:00.323Z",
+    "label": "Arms Transit Law",
+    "category": "politics",
+    "articleCount": 1
   }
 }
