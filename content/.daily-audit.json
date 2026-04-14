@@ -1,33 +1,33 @@
 {
-  "date": "2026-04-13",
+  "date": "2026-04-14",
   "metrics": {
-    "articles": { "value": 58, "detail": "5 cycles completed, avg 10/cycle" },
-    "freshness": { "median": 1.3, "p90": 1.5, "max": 1.5, "target": 1.0, "met": false, "note": "count=4 — only 4 articles had parseable pub-date; sample may be unrepresentative of full output" },
-    "categories": { "politics": 22, "economy": 15, "science": 10, "tech": 11 },
+    "articles": { "value": 53, "detail": "5 cycles completed, avg 9/cycle" },
+    "freshness": { "median": 0.3, "p90": 1.2, "max": 1.4, "target": 1.0, "met": true },
+    "categories": { "politics": 18, "economy": 11, "science": 11, "tech": 13 },
     "multiSource": { "value": 10, "target": 4, "met": true },
     "regions": {
       "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 17, "ME": 11, "EU": 15, "AS": 11, "OC": 2, "AF": 2 }
+      "breakdown": { "AM": 17, "ME": 10, "EU": 7, "AS": 15, "OC": 2, "AF": 2 }
     },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 56,
+    "sciTech": { "ratio": 45, "target": 25, "met": true },
+    "topSourceShare": { "source": "Phys.org", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 48,
     "duplicates": 0,
-    "avgCycleDuration": 1213
+    "avgCycleDuration": 1177
   },
-  "experiment": "Active: 2026-04-12-tech-floor-3 (selector tech floor 2→3), day 2 of 3. Evaluates 2026-04-15 — too early to judge. Today's tech count is 11 vs baseline 10.3 — trending positive. No new experiment proposed while current one runs.",
-  "weakestArea": "Freshness median (1.3d) remains above the ≤1.0d target for the second consecutive day (yesterday 1.1d). However, today's freshness calculation covers only 4 articles out of 58 published — the metrics pipeline may not be capturing pub-date data for most articles. The freshness signal is unreliable until the sample size issue is investigated; do not act on this metric until confirmed.",
+  "experiment": "Active: 2026-04-12-tech-floor-3 (selector tech floor 2→3), day 3 of 3. Evaluates 2026-04-15 — not evaluated yet. Today's tech count is 13 vs baseline 10.3 (+26%) — strong positive signal heading into evaluation tomorrow. No new experiment proposed while current one runs.",
+  "weakestArea": "Africa (AF: 2/53 = 3.8%) and Oceania (OC: 2/53 = 3.8%) remain the thinnest regional slots, well below the Americas (32%) and Asia (28%). All four diversity targets are met, but AF and OC are structurally thin with no dedicated sources for those regions in the feed.",
   "watching": [
-    "Politics heavily weighted at 22 articles (38% of output) — monitor whether politics dominance compresses science/tech headroom in future cycles.",
-    "Africa (2 articles) and Oceania (2 articles) remain the thinnest regional slots — watch whether Southeast Asia improvement (AS: 11 today, up from 2 yesterday) holds.",
-    "Freshness sample anomaly: count=4 vs 58 published is abnormally low — investigate whether metrics script is computing freshness across all published articles."
+    "Tech floor experiment concludes tomorrow (2026-04-15) — tech at 13 today vs 10.3 baseline is a clear improvement; evaluation should keep if politics/economy haven't degraded >20%.",
+    "Dawn contributing 4 articles (7.5% of output) and Hindustan Times + NDTV + India.com together add 5 more — South Asian source concentration is elevated today.",
+    "Freshness dramatically recovered from yesterday's 1.3 median to 0.3 today — today's sample size is 12, much more representative than yesterday's count of 4."
   ],
   "coverageGaps": [
-    "Sub-Saharan Africa: only 2 articles today (Premium Times Nigeria only); no East African, Francophone, or Southern African angles beyond Daily Maverick.",
-    "Oceania: 2 articles (ABC + Lowy Interpreter only); no Pacific island, climate, or Southeast Asian island-nation coverage.",
-    "Latin America: AM region at 17 articles but likely US/Canada-heavy; no dedicated LatAm sources (Brazil, Mexico, Andean) visible in today's source list."
+    "Sub-Saharan Africa: only Daily Maverick and Daily Mail today; no East African, West African (InSight Crime is Latin America), or Francophone African coverage.",
+    "Oceania: 2 articles only (Lowy Interpreter visible but no Pacific island, climate, or Pacific island-nation stories).",
+    "Latin America: AM region 17 articles but dominated by US sources (CBS News, Yahoo News, The Hill, AOL); only InSight Crime provides dedicated LatAm perspective."
   ],
-  "context": "Today's output is a clear improvement over yesterday: 58 vs 42 articles, 56 vs 40 unique sources, and regional coverage expanded to 6 regions with Southeast Asia jumping from 2 to 11 articles. The active tech-floor experiment shows early positive signal (11 tech today vs baseline 10.3). Freshness remains the lone failing metric but the tiny sample (4/58) makes the reading suspect — this warrants a data-quality check on the metrics pipeline before any parameter change is considered."
+  "context": "Today is the best all-green day in recent history — freshness, sci-tech ratio, multi-source, and regional diversity all comfortably exceed targets. The tech floor experiment (floor 2→3) shows its clearest positive signal yet with 13 tech articles vs 10.3 baseline, and politics has moderated from yesterday's 22 to 18. Cycle durations held steady (~1177s avg). Tomorrow's evaluation of the tech floor experiment is the key action item."
 }
