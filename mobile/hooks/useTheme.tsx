@@ -1,33 +1,29 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, use } from 'react';
-import { Platform, useColorScheme } from 'react-native';
-import * as NavigationBar from 'expo-navigation-bar';
 import * as SystemUI from 'expo-system-ui';
+import { createContext, use, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { useColorScheme } from 'react-native';
 import {
+  type AppearanceMode,
   BG_RGB,
+  type ColorPalette,
   DARK_COLORS,
-  DEFAULT_PREFS,
   FONT_SIZE_SCALE,
   FONT_SOURCE,
   FONT_SYSTEM,
+  type FontFamily,
+  type FontSet,
+  type FontSize,
   LIGHT_COLORS,
   makeBgAlpha,
   makeSheetStyles,
   makeTextStyles,
   makeTypography,
-  type AppearanceMode,
-  type ColorPalette,
-  type FontFamily,
-  type FontSet,
-  type FontSize,
   type Preferences,
   type TextStyles,
   type Typography,
 } from '../constants/theme';
 import { setHapticsEnabled } from '../lib/haptics';
 import {
-  disableNotifications,
   enableNotifications,
-  ensureScheduled,
   registerPushToken,
   unregisterPushToken,
 } from '../lib/notifications';
@@ -37,7 +33,7 @@ import { getPreferences, savePreferences } from '../lib/storage';
 // Theme shape
 // ---------------------------------------------------------------------------
 
-export interface Theme {
+interface Theme {
   colors: ColorPalette;
   font: FontSet;
   typography: Typography;
@@ -82,36 +78,32 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [prefs, setPrefs] = useState<Preferences>(() => {
     setHapticsEnabled(initialPrefs.haptics);
     if (initialPrefs.notifications) {
-      ensureScheduled();
       registerPushToken();
     }
     return initialPrefs;
   });
   const systemScheme = useColorScheme();
 
-  const persist = useCallback((next: Preferences) => {
-    setPrefs(next);
-    savePreferences(next);
+  const updatePref = useCallback((patch: Partial<Preferences>) => {
+    setPrefs((prev) => {
+      const next = { ...prev, ...patch };
+      savePreferences(next);
+      return next;
+    });
   }, []);
 
-  const setFontSize = useCallback(
-    (v: FontSize) => persist({ ...prefs, fontSize: v }),
-    [prefs, persist],
-  );
-  const setFontFamily = useCallback(
-    (v: FontFamily) => persist({ ...prefs, fontFamily: v }),
-    [prefs, persist],
-  );
+  const setFontSize = useCallback((v: FontSize) => updatePref({ fontSize: v }), [updatePref]);
+  const setFontFamily = useCallback((v: FontFamily) => updatePref({ fontFamily: v }), [updatePref]);
   const setAppearance = useCallback(
-    (v: AppearanceMode) => persist({ ...prefs, appearance: v }),
-    [prefs, persist],
+    (v: AppearanceMode) => updatePref({ appearance: v }),
+    [updatePref],
   );
   const setHaptics = useCallback(
     (v: boolean) => {
       setHapticsEnabled(v);
-      persist({ ...prefs, haptics: v });
+      updatePref({ haptics: v });
     },
-    [prefs, persist],
+    [updatePref],
   );
   const setNotifications = useCallback(
     async (v: boolean) => {
@@ -120,18 +112,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         if (!granted) return;
         registerPushToken();
       } else {
-        await disableNotifications();
         unregisterPushToken();
       }
-      persist({ ...prefs, notifications: v });
+      updatePref({ notifications: v });
     },
-    [prefs, persist],
+    [updatePref],
   );
 
   const theme = useMemo<Theme>(() => {
     const resolvedAppearance: 'dark' | 'light' =
       prefs.appearance === 'system'
-        ? (systemScheme === 'light' ? 'light' : 'dark')
+        ? systemScheme === 'light'
+          ? 'light'
+          : 'dark'
         : prefs.appearance;
 
     const colors = resolvedAppearance === 'dark' ? DARK_COLORS : LIGHT_COLORS;
@@ -159,17 +152,20 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       setHaptics,
       setNotifications,
     };
-  }, [prefs, systemScheme, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications]);
+  }, [
+    prefs,
+    systemScheme,
+    setFontSize,
+    setFontFamily,
+    setAppearance,
+    setHaptics,
+    setNotifications,
+  ]);
 
-  // Sync native system UI (Android nav bar + root background) with theme
+  // Sync root view background with theme (nav bar handled by OS via plugin)
   useEffect(() => {
-    const { colors, resolvedAppearance } = theme;
-    SystemUI.setBackgroundColorAsync(colors.bg).catch(() => {});
-    if (Platform.OS === 'android') {
-      NavigationBar.setBackgroundColorAsync(colors.bg).catch(() => {});
-      NavigationBar.setButtonStyleAsync(resolvedAppearance === 'dark' ? 'light' : 'dark').catch(() => {});
-    }
-  }, [theme.colors.bg, theme.resolvedAppearance]);
+    SystemUI.setBackgroundColorAsync(theme.colors.bg).catch(() => {});
+  }, [theme.colors.bg]);
 
   return <ThemeContext value={theme}>{children}</ThemeContext>;
 }

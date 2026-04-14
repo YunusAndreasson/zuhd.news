@@ -5,7 +5,14 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  AccessibilityInfo,
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { SOURCES } from '../constants/sources';
 import { EDITORIAL, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
@@ -80,9 +87,7 @@ export const ContextSheet = memo(function ContextSheet({
       return (
         <View key={i}>
           {entry.heading && (
-            <Text style={[styles.eduHeading, textStyles.smallCaps]}>
-              {entry.heading}
-            </Text>
+            <Text style={[styles.eduHeading, textStyles.smallCaps]}>{entry.heading}</Text>
           )}
           <Text selectable style={[styles.bodyText, textStyles.body, styles.bodySpacing]}>
             {entry.body}
@@ -196,10 +201,13 @@ export const ContextSheet = memo(function ContextSheet({
                           styles.tonePill,
                           {
                             backgroundColor:
-                              tone === 'favorable' ? colors.toneFavorable
-                              : tone === 'unfavorable' ? colors.toneUnfavorable
-                              : tone === 'neutral' ? colors.toneNeutral
-                              : colors.textSecondary,
+                              tone === 'favorable'
+                                ? colors.toneFavorable
+                                : tone === 'unfavorable'
+                                  ? colors.toneUnfavorable
+                                  : tone === 'neutral'
+                                    ? colors.toneNeutral
+                                    : colors.textSecondary,
                           },
                         ]}
                       >

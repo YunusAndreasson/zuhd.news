@@ -21,11 +21,7 @@ export const countries = feature(
 // Internal borders only (shared edges between countries, no coastlines — land
 // already shows those). Single MultiLineString = much faster to project than
 // 180 separate country polygons.
-export const bordersMesh = mesh(
-  countriesData,
-  countriesData.objects.countries!,
-  (a, b) => a !== b,
-);
+export const bordersMesh = mesh(countriesData, countriesData.objects.countries!, (a, b) => a !== b);
 
 // Precomputed bounding boxes for fast point-in-country pre-filtering.
 // [minLng, minLat, maxLng, maxLat] per feature — avoids expensive
@@ -62,7 +58,7 @@ for (const f of countries.features) {
 const DEG = 180 / Math.PI;
 
 /** d3-geo GeoContext subset — used to bridge Skia paths into d3's .context() API */
-export interface SkiaGeoContext {
+interface SkiaGeoContext {
   setPath(p: SkPath): void;
   beginPath(): void;
   moveTo(x: number, y: number): void;

@@ -32,6 +32,7 @@ interface BriefingPlayer {
   toggle: () => void;
   seek: (seconds: number) => void;
   cycleRate: () => void;
+  dismiss: () => void;
 }
 
 // createAudioPlayer may throw in Expo Go when native module is outdated.
@@ -150,11 +151,15 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     try {
       const assets = await Asset.loadAsync(icon);
       const artworkUrl = assets[0]?.localUri ?? assets[0]?.uri;
-      player.setActiveForLockScreen(true, {
-        title: 'Daily Briefing',
-        artist: 'zuhd.news',
-        ...(artworkUrl ? { artworkUrl } : {}),
-      });
+      player.setActiveForLockScreen(
+        true,
+        {
+          title: 'Daily Briefing',
+          artist: 'zuhd.news',
+          ...(artworkUrl ? { artworkUrl } : {}),
+        },
+        { showSeekForward: true, showSeekBackward: true },
+      );
       lockScreenActive.current = true;
     } catch {}
   }, []);
@@ -297,11 +302,28 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     hapticTick();
   }, []);
 
+  const dismiss = useCallback(() => {
+    savePosition();
+    subRef.current?.remove();
+    subRef.current = null;
+    try {
+      playerRef.current?.clearLockScreenControls();
+    } catch {}
+    playerRef.current?.remove();
+    playerRef.current = null;
+    lockScreenActive.current = false;
+    devMockActive.current = false;
+    setPlaying(false);
+    setElapsed(0);
+    setRate(1);
+    hapticTick();
+  }, [savePosition]);
+
   const cycleRate = useCallback(() => {
     const next = RATES[(RATES.indexOf(rate as (typeof RATES)[number]) + 1) % RATES.length] ?? 1;
     setRate(next);
     if (playerRef.current) {
-      playerRef.current.playbackRate = next;
+      playerRef.current.setPlaybackRate(next, 'high');
     }
     hapticTick();
   }, [rate]);
@@ -310,5 +332,5 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const effectiveDuration =
     feedDuration || (__DEV__ && !playerRef.current && elapsed > 0 ? 720 : 0);
 
-  return { playing, elapsed, duration: effectiveDuration, rate, toggle, seek, cycleRate };
+  return { playing, elapsed, duration: effectiveDuration, rate, toggle, seek, cycleRate, dismiss };
 }

@@ -17,7 +17,6 @@ import { ANIMATION, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 const BAR_MARGIN = SPACING.md;
-const BAR_RADIUS = 14;
 const PROGRESS_HEIGHT = 3;
 
 function formatTime(seconds: number): string {
@@ -35,6 +34,7 @@ interface BriefingBarProps {
   onToggle: () => void;
   onSeek: (seconds: number) => void;
   onCycleRate: () => void;
+  onDismiss: () => void;
 }
 
 export const BriefingBar = memo(function BriefingBar({
@@ -46,6 +46,7 @@ export const BriefingBar = memo(function BriefingBar({
   onToggle,
   onSeek,
   onCycleRate,
+  onDismiss,
 }: BriefingBarProps) {
   const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
@@ -98,7 +99,10 @@ export const BriefingBar = memo(function BriefingBar({
 
   const dateLabel = (() => {
     try {
-      return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+      });
     } catch {
       return date;
     }
@@ -134,7 +138,8 @@ export const BriefingBar = memo(function BriefingBar({
               >
                 briefing
                 <Text style={{ ...font.regular, color: colors.textSecondary }}>
-                  {' \u00b7 '}{dateLabel}
+                  {' \u00b7 '}
+                  {dateLabel}
                 </Text>
               </Text>
             </View>
@@ -183,6 +188,20 @@ export const BriefingBar = memo(function BriefingBar({
                 name={playing ? 'pause' : 'play'}
                 size={LAYOUT.iconMd}
                 color={colors.textEmphasis}
+              />
+            </Pressable>
+
+            <Pressable
+              onPress={onDismiss}
+              hitSlop={12}
+              style={({ pressed }) => pressed && PRESSED_STYLE}
+              accessibilityRole="button"
+              accessibilityLabel="Close briefing"
+            >
+              <Ionicons
+                name="close"
+                size={LAYOUT.iconMd}
+                color={colors.textSecondary}
               />
             </Pressable>
           </View>
@@ -255,7 +274,7 @@ const styles = StyleSheet.create({
   /* ── Expanded bar ── */
   bar: {
     width: '100%',
-    borderRadius: BAR_RADIUS,
+    borderRadius: LAYOUT.floatingRadius,
     paddingTop: SPACING.smPlus,
     paddingHorizontal: SPACING.md,
     overflow: 'hidden',
@@ -300,7 +319,7 @@ const styles = StyleSheet.create({
   pill: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: BAR_RADIUS,
+    borderRadius: LAYOUT.floatingRadius,
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.md,
     ...LAYOUT.floatingShadow,

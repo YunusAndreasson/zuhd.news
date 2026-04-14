@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import { PRESSED_STYLE, RIPPLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact } from '../lib/haptics';
@@ -43,6 +43,7 @@ export const ArticleRow = memo(function ArticleRow({
       onPress={handlePress}
       onLongPress={onLongPress ? handleLongPress : undefined}
       delayLongPress={delayLongPress}
+      android_ripple={RIPPLE}
       style={({ pressed }) => [
         styles.row,
         { borderBottomColor: colors.rule },
