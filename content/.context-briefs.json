@@ -7825,5 +7825,217 @@
     "label": "Arms Transit Law",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-14-amazon-globalstar-satellite-starlink": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SPECTRUM, NOT SATELLITES",
+        "body": "Satellites are commodities — launch costs have dropped 95% since 2010. Spectrum is the scarce resource. Band 53 (2483-2495 MHz) is one of the few midband frequencies licensed for both terrestrial and satellite use simultaneously, meaning a phone can talk to a cell tower and a satellite on the same radio without switching hardware."
+      },
+      {
+        "heading": "THE DIRECT-TO-DEVICE RACE",
+        "body": "Conventional satellite phones need specialized antennas. Direct-to-device uses standard smartphone radios by exploiting satellites with massive phased-array antennas that compensate for the phone's weak signal. Apple launched Emergency SOS via Globalstar in 2022; T-Mobile partnered with Starlink in 2023. Amazon's Kuiper constellation had no spectrum path to phones until now."
+      },
+      {
+        "heading": "WHY GLOBALSTAR WAS VULNERABLE",
+        "body": "Globalstar nearly went bankrupt twice (2002, 2011). Apple's emergency SOS contract saved it but locked its best spectrum into a single customer. With Apple's $1.5B stake converting to Amazon equity, Apple keeps the service but loses the strategic asset — the spectrum license itself."
+      },
+      {
+        "heading": "THE ANTITRUST GEOMETRY",
+        "body": "Amazon now controls the retail platform (buying decisions), the cloud infrastructure (AWS ground stations), and satellite spectrum. Starlink has more satellites but no e-commerce platform. The competitive concern is not satellite count — it is vertical integration across the entire stack from orbit to checkout."
+      }
+    ],
+    "generatedAt": "2026-04-14T17:24:29.296Z",
+    "label": "Spectrum & Satellite-to-Phone",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-14-china-air-pollution-deep-water-phase": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EASY PHASE",
+        "body": "China's PM2.5 fell 57% between 2013 and 2025 — one of the fastest air quality improvements in history. Most of this came from closing coal plants and steel mills: point sources with smokestacks you can cap. This is the cheap end of the abatement curve."
+      },
+      {
+        "heading": "WHY VOCs ARE HARDER",
+        "body": "Volatile organic compounds evaporate from millions of distributed sources — vehicle exhaust, paint, solvents, petrochemical plants, even cooking. There is no single smokestack to shut. Reducing VOCs requires changing industrial processes, vehicle fleets, and consumer products simultaneously."
+      },
+      {
+        "heading": "THE OZONE TRAP",
+        "body": "VOCs react with nitrogen oxides in sunlight to form ground-level ozone. China cut NOx but not VOCs, which paradoxically increased ozone in some cities — removing one precursor without the other shifts the chemical equilibrium. This is why ozone has risen even as PM2.5 fell."
+      },
+      {
+        "heading": "THE REGIONAL SPLIT",
+        "body": "Eastern China industrialized first and is now deindustrializing its dirtiest sectors. Western provinces — Xinjiang, Inner Mongolia, Ningxia — are building coal-chemical plants to feed the east's demand for plastics and fertilizers. China's pollution is not disappearing; it is migrating inland."
+      }
+    ],
+    "generatedAt": "2026-04-14T17:24:29.297Z",
+    "label": "Air Pollution Chemistry",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-14-fed-nominee-warsh-190-million-assets": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REFLEXIVITY PROBLEM",
+        "body": "A hedge fund manager's wealth grows or shrinks based on interest rate movements. The Fed Chair sets interest rates. When the same person occupies both roles sequentially, every prior position becomes a potential conflict — not because of corruption, but because their financial intuitions were literally shaped by trading against the institution they now lead."
+      },
+      {
+        "heading": "THE RECUSAL MECHANISM",
+        "body": "Fed governors must divest or recuse from decisions affecting their holdings. But monetary policy affects everything — there is no rate decision that does not move equity, bond, and currency markets. Full recusal from rate-setting would make the Chair unable to do the job. The ethics framework was designed for narrow conflicts, not systemic ones."
+      },
+      {
+        "heading": "THE SPOUSAL EXEMPTION",
+        "body": "Federal ethics rules require nominees to divest conflicting assets, but spousal holdings in family businesses are typically exempt if the nominee has no management role. The Estée Lauder stake is inherited wealth through the Lauder family. This exemption exists because forcing divestiture of family businesses would effectively bar anyone with a wealthy spouse from public service — but it creates a gap wide enough to shelter billion-dollar positions."
+      },
+      {
+        "heading": "THE HISTORICAL PATTERN",
+        "body": "Every Fed Chair since Volcker has come from either academia (Bernanke, Yellen), law (Powell), or the Fed itself (Greenspan was a consulting economist). Warsh would be the first Chair drawn directly from a hedge fund. The distinction matters: academic economists model markets from outside; fund managers have spent careers exploiting the gap between Fed signals and market pricing."
+      }
+    ],
+    "generatedAt": "2026-04-14T17:24:29.297Z",
+    "label": "Fed Chair Conflicts of Interest",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-14-google-microsoft-meta-tracking-opt-out-audit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT GPC IS",
+        "body": "Global Privacy Control is an HTTP header — a single bit your browser sends with every request saying 'do not sell or share my data.' California's CCPA and Colorado's privacy law both recognize it as a legally binding opt-out. The technical implementation is trivial: one line of code to check. The 87% failure rate is not a bug."
+      },
+      {
+        "heading": "THE DO NOT TRACK PRECEDENT",
+        "body": "The W3C introduced Do Not Track in 2009. Adoption was voluntary, and ad companies simply ignored it. By 2019 the standard was formally abandoned. GPC was designed to fix this by attaching legal consequences — but legal consequences require enforcement, and enforcement requires audits like this one to prove non-compliance."
+      },
+      {
+        "heading": "THE COOKIE SWAP",
+        "body": "Responding to an opt-out signal by setting an advertising cookie is not merely ignoring the request — it is using the request as a trigger to do the opposite. The IDE cookie is Google's primary cross-site tracking identifier, used to build advertising profiles across the 35 million sites running Google ads."
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "California's AG has fined exactly one company (Sephora, $1.2M in 2022) for ignoring GPC signals. For Google, whose ad revenue exceeded $260 billion in 2025, a million-dollar fine is a rounding error. The law has teeth on paper; the penalty structure does not."
+      }
+    ],
+    "generatedAt": "2026-04-14T17:24:29.297Z",
+    "label": "Browser Privacy Signals",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-14-hezbollah-targets-israeli-forces-lebanon-talks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 1983 PRECEDENT",
+        "body": "The last direct Lebanon-Israel negotiations produced the May 17 Agreement of 1983, brokered by the US. It required mutual withdrawal and normalized relations. Syria rejected it, armed its Lebanese allies, and within a year the agreement was dead. Lebanon formally abrogated it in 1987. The lesson burned into every Lebanese diplomat: no deal survives without Syrian — now Iranian — acquiescence."
+      },
+      {
+        "heading": "SPOILER LOGIC",
+        "body": "In conflict resolution theory, a 'spoiler' is an actor who uses violence to derail negotiations that threaten its position. Hezbollah's strikes during talks are textbook spoiler behavior — not irrational, but strategic. The message is not directed at Israel but at the negotiating table: any agreement that excludes us will not hold on the ground."
+      },
+      {
+        "heading": "THE OCCUPATION LEVERAGE",
+        "body": "Israel currently holds territory in southern Lebanon beyond the Blue Line — the UN-demarcated border. Lebanese President Aoun's precondition (no deal under occupation) is not posturing; it reflects a structural reality. Any Lebanese leader who signs an agreement while foreign troops occupy Lebanese soil faces the precedent of the 1983 deal, which collapsed precisely because it was seen as negotiating under duress."
+      },
+      {
+        "heading": "RESOLUTION 1701",
+        "body": "UN Security Council Resolution 1701, which ended the 2006 war, called for Hezbollah to disarm south of the Litani River and for Israel to withdraw to the Blue Line. Neither provision was fully implemented. Every subsequent negotiation starts from the same unresolved baseline — making 1701 less a ceasefire framework than a monument to deferred decisions."
+      },
+      {
+        "heading": "WHY 1983, NOT CAMP DAVID",
+        "body": "Egypt's Camp David Accords (1978) succeeded because Egypt was a sovereign state negotiating over its own territory. Lebanon's 1983 talks failed because the Lebanese state did not control the actors fighting on its soil. The structural question in 2026 is unchanged: does the Lebanese government command enough domestic authority to deliver on any commitment it signs?"
+      }
+    ],
+    "generatedAt": "2026-04-14T17:24:29.297Z",
+    "label": "Spoiler Dynamics & the 1983 Talks",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-14-iran-demands-reparations-arab-states-us-bases": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL FRAMING",
+        "body": "Addressing the demand to the UN Secretary-General — not to the states themselves — transforms a bilateral grievance into an international legal claim. Iran is building a paper trail for future proceedings, whether at the ICJ or a hypothetical post-war tribunal. The reparations demand is a filing, not a negotiation."
+      },
+      {
+        "heading": "THE IRAN-IRAQ PRECEDENT",
+        "body": "After the 1980-88 Iran-Iraq war, Iran sought reparations for Iraqi use of chemical weapons — supplied by Western and Gulf states. No reparations were ever paid. The UN Security Council's Resolution 598 called for an impartial body to determine responsibility; that body was never formed. Iran's institutional memory of unpaid debts is four decades deep."
+      },
+      {
+        "heading": "THE BASING DILEMMA",
+        "body": "Qatar hosts Al Udeid (the largest US air base in the Middle East), Bahrain hosts the Fifth Fleet, Jordan hosts multiple facilities, and the UAE and Saudi Arabia provide logistics and overflight. Hosting US forces brings security guarantees but makes each country a co-belligerent in any US military operation — a status these states publicly deny but cannot escape when the strikes originate from their territory."
+      },
+      {
+        "heading": "THE AUDIENCE",
+        "body": "The reparations demand is calibrated for Arab public opinion, not Western courts. By naming each government individually, Iran forces a domestic conversation in five capitals: citizens asking why their country hosted the bases that brought war to the region. The demand costs Iran nothing to make and imposes a political cost on every named state to deflect."
+      },
+      {
+        "heading": "THE ISLAMIC FRAME",
+        "body": "Iran's rhetoric frames the strikes as aggression against a Muslim nation launched from Muslim soil. This taps a deep nerve — a hadith in Sahih Muslim describes Muslims fighting one another near the end of times as among the gravest of tribulations. Whether or not Iran's government invokes this explicitly, the subtext resonates across the region: Muslim states facilitated an attack on a Muslim country."
+      }
+    ],
+    "generatedAt": "2026-04-14T17:24:29.297Z",
+    "label": "War Reparations as Diplomacy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-14-italy-suspends-defense-pact-israel": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ITALY'S LAW 185",
+        "body": "Italy's 1990 arms export law (Law 185/90) prohibits weapons transfers to countries engaged in armed conflict or whose governments violate human rights. It is one of Europe's strictest — and most frequently tested. Italy suspended arms to Saudi Arabia over Yemen in 2021 using the same legal mechanism. The law gives political cover: the suspension is framed as legal obligation, not policy choice."
+      },
+      {
+        "heading": "THE UNIFIL TRIGGER",
+        "body": "Italy contributes roughly 1,000 troops to UNIFIL in southern Lebanon — the largest Western contingent. When Israeli forces struck Italian peacekeepers, the attack crossed a line that no NATO ally can absorb quietly. Defending your own soldiers is not a policy preference; it is a domestic political imperative that overrides any alliance consideration."
+      },
+      {
+        "heading": "THE BILATERAL PACT",
+        "body": "The 2005 Italy-Israel defense cooperation agreement covered joint military exercises, defense industry collaboration, and intelligence sharing. It was one of Israel's deepest bilateral defense relationships in Europe. Suspending it does not halt all arms flows — existing contracts may continue — but it freezes the institutional framework that enabled future deals."
+      },
+      {
+        "heading": "THE MELONI CALCULATION",
+        "body": "Meloni leads a right-wing coalition that was historically among Europe's most pro-Israel. Her reversal signals that the political cost of defending Israel now exceeds the cost of breaking with it — a threshold that, once crossed by a right-wing European leader, makes it easier for centrist and left-wing governments to follow."
+      },
+      {
+        "heading": "THE EU PATTERN",
+        "body": "The Netherlands suspended F-35 parts exports to Israel after a court ruling in February 2024. Belgium, Spain, and now Italy have imposed various restrictions. No EU-wide embargo exists because foreign policy requires unanimity, and Germany and the Czech Republic block collective action. The result is a patchwork — each state acting alone, creating cumulative pressure without formal coordination."
+      }
+    ],
+    "generatedAt": "2026-04-14T17:24:29.297Z",
+    "label": "Arms Export Law & Alliance Fractures",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-14-vedanta-power-plant-blast-kills-10-chhattisgarh": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SUBCONTRACTOR SHIELD",
+        "body": "Indian industrial plants routinely outsource hazardous operations — boiler maintenance, ash handling, chemical processing — to subcontractors. The workers face the physical risk; the parent company argues it bears no direct employer liability. This structure is not incidental. It is a deliberate legal architecture that concentrates danger on the least protected workers."
+      },
+      {
+        "heading": "THE BOILER FAILURE MODE",
+        "body": "Power plant boilers operate at 150-250 atmospheres of pressure and temperatures above 500°C. A tube failure releases superheated steam that flashes to 1,700 times its liquid volume instantaneously. The explosion is not chemical — it is a phase-change event. Workers near the breach have no survivable reaction time."
+      },
+      {
+        "heading": "THE INSPECTION REGIME",
+        "body": "India's Boiler Act of 1923 — still the governing statute — requires annual inspection by state-appointed inspectors. Chhattisgarh has roughly 3,000 registered boilers and a chronic shortage of qualified inspectors. The gap between statutory requirement and enforcement capacity is where industrial fatalities concentrate."
+      },
+      {
+        "heading": "THE VEDANTA PATTERN",
+        "body": "Vedanta Resources has faced regulatory action across multiple countries — Zambia (pollution), India (tribal land rights in Odisha), and the UK (corporate liability suits). The company's operating model relies on resource extraction in jurisdictions where enforcement is weakest. Its Chhattisgarh operations sit in one of India's poorest states, where industrial investment and political leverage are closely linked."
+      }
+    ],
+    "generatedAt": "2026-04-14T17:24:29.298Z",
+    "label": "Industrial Subcontracting & Boiler Safety",
+    "category": "politics",
+    "articleCount": 1
   }
 }
