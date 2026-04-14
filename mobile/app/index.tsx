@@ -258,7 +258,7 @@ export default function HomeScreen() {
     const cat = CATEGORIES[catIndex];
     if (!cat) return;
     const count = groupedRef.current[cat]?.length ?? 0;
-    toastRef.current?.show(`All ${count} articles \u00B7 tap to scroll up`, () =>
+    toastRef.current?.show('End \u00B7 tap for top', () =>
       listRefs[catIndex]?.current?.scrollToTop(),
     );
   }, []);
