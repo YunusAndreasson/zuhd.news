@@ -151,11 +151,16 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     try {
       const assets = await Asset.loadAsync(icon);
       const artworkUrl = assets[0]?.localUri ?? assets[0]?.uri;
-      player.setActiveForLockScreen(true, {
-        title: 'Daily Briefing',
-        artist: 'zuhd.news',
-        ...(artworkUrl ? { artworkUrl } : {}),
-      });
+      player.setActiveForLockScreen(
+        true,
+        {
+          title: 'Daily Briefing',
+          artist: 'zuhd.news',
+          albumTitle: savedDate.current ?? undefined,
+          ...(artworkUrl ? { artworkUrl } : {}),
+        },
+        { showSeekForward: true, showSeekBackward: true },
+      );
       lockScreenActive.current = true;
     } catch {}
   }, []);

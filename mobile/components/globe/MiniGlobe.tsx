@@ -94,7 +94,7 @@ function Glow({
 const skiaCtx = createSkiaPathContext();
 const nightCircleGen = geoCircle();
 
-// Equator + polar circles (Arctic 66.5°N, Antarctic 66.5°S)
+// Equator + polar circles (Arctic 66.56°N, Antarctic 66.56°S)
 const graticuleLines = geoGraticule()
   .stepMinor([360, 360]) // no minor lines
   .stepMajor([30, 30])(
@@ -105,10 +105,10 @@ const NORTH_POLE: [number, number] = [0, 90];
 const SOUTH_POLE: [number, number] = [0, -90];
 const ARCTIC_CIRCLE = geoCircle()
   .center(NORTH_POLE)
-  .radius(90 - 66.5)();
+  .radius(23.44)();
 const ANTARCTIC_CIRCLE = geoCircle()
   .center(SOUTH_POLE)
-  .radius(90 - 66.5)();
+  .radius(23.44)();
 const HALF_PI = Math.PI / 2;
 const DECAY_LAMBDA = Math.LN2 / 18; // 18h half-life
 
@@ -440,7 +440,7 @@ function projectInitial(
   ctx.setPath(np);
   pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(90)());
 
-  // Civil twilight — softer gradient band before full night
+  // Low-sun band — softer gradient where sun is near the horizon (0–6° above)
   const tp = Skia.Path.Make();
   ctx.setPath(tp);
   pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(96)());
@@ -759,13 +759,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       // Night shadow — reuse path object
       const [sunLng, sunLat] = getSunPosition();
       const nightCenter: [number, number] = [sunLng + 180, -sunLat];
-      const nightGeo = nightCircleGen.center(nightCenter).radius(80)();
+      const nightGeo = nightCircleGen.center(nightCenter).radius(90)();
       const nightPath = nightPathRef.current;
       nightPath.reset();
       skiaCtx.setPath(nightPath);
       pg.context(skiaCtx as unknown as GeoContext)(nightGeo);
 
-      // Civil twilight — softer gradient band before full night
+      // Low-sun band — softer gradient where sun is near the horizon (0–6° above)
       const twilightPath = twilightPathRef.current;
       twilightPath.reset();
       skiaCtx.setPath(twilightPath);
@@ -1182,7 +1182,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       )}
 
-      {/* Civil twilight — faint band before full night for gradient falloff */}
+      {/* Low-sun band — faint gradient where sun is near the horizon */}
       {state.twilightPath && <Path path={state.twilightPath} color={colors.black} opacity={0.06} />}
 
       {/* Night shadow — darker overlay on the unlit hemisphere */}

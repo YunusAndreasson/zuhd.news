@@ -115,6 +115,7 @@ export const ArticleList = memo(function ArticleList({
   const [localRefreshing, setLocalRefreshing] = useState(false);
 
   const handleRefresh = useCallback(async () => {
+    hapticTick();
     setLocalRefreshing(true);
     try {
       await onRefresh();
