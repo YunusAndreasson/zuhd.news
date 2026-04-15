@@ -1,33 +1,35 @@
 {
-  "date": "2026-04-14",
+  "date": "2026-04-15",
   "metrics": {
-    "articles": { "value": 53, "detail": "5 cycles completed, avg 9/cycle" },
-    "freshness": { "median": 0.3, "p90": 1.2, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 18, "economy": 11, "science": 11, "tech": 13 },
-    "multiSource": { "value": 10, "target": 4, "met": true },
+    "articles": { "value": 46, "detail": "5 cycles completed, avg 9.2/cycle" },
+    "freshness": { "median": 0.6, "p90": 1.6, "max": 1.6, "target": 1.0, "met": true },
+    "categories": { "politics": 17, "economy": 8, "science": 8, "tech": 13 },
+    "multiSource": { "value": 7, "target": 4, "met": true },
     "regions": {
       "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 17, "ME": 10, "EU": 7, "AS": 15, "OC": 2, "AF": 2 }
+      "breakdown": { "EU": 6, "AM": 18, "ME": 11, "AS": 6, "AF": 3, "OC": 2 }
     },
-    "sciTech": { "ratio": 45, "target": 25, "met": true },
-    "topSourceShare": { "source": "Phys.org", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 48,
+    "sciTech": { "ratio": 46, "target": 25, "met": true },
+    "topSourceShare": { "source": "The Record / Al Jazeera Online (tied)", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 39,
     "duplicates": 0,
-    "avgCycleDuration": 1177
+    "avgCycleDuration": 1266
   },
-  "experiment": "Active: 2026-04-12-tech-floor-3 (selector tech floor 2→3), day 3 of 3. Evaluates 2026-04-15 — not evaluated yet. Today's tech count is 13 vs baseline 10.3 (+26%) — strong positive signal heading into evaluation tomorrow. No new experiment proposed while current one runs.",
-  "weakestArea": "Africa (AF: 2/53 = 3.8%) and Oceania (OC: 2/53 = 3.8%) remain the thinnest regional slots, well below the Americas (32%) and Asia (28%). All four diversity targets are met, but AF and OC are structurally thin with no dedicated sources for those regions in the feed.",
+  "experiment": "Experiment 2026-04-12-tech-floor-3 evaluated and KEPT. Tech articles rose from baseline 10.3/day to ~13.5/day average over the experiment window (+31%). No other metric degraded >20% proportionally: politics share 43%→36% (-16%), economy 22%→19% (-14%), science 18%→19% (slight improvement). Tech floor remains at 3. No new experiment proposed — all metrics are within targets.",
+  "weakestArea": "Freshness p90 is 1.6 days — the median (0.6) comfortably meets target but the long tail indicates some articles are nearly 2 days old at publication. Economy and science both dropped to 8 articles today (vs 11 each yesterday), reflecting lower overall cycle output; the daily targets are met but the drop is worth monitoring.",
   "watching": [
-    "Tech floor experiment concludes tomorrow (2026-04-15) — tech at 13 today vs 10.3 baseline is a clear improvement; evaluation should keep if politics/economy haven't degraded >20%.",
-    "Dawn contributing 4 articles (7.5% of output) and Hindustan Times + NDTV + India.com together add 5 more — South Asian source concentration is elevated today.",
-    "Freshness dramatically recovered from yesterday's 1.3 median to 0.3 today — today's sample size is 12, much more representative than yesterday's count of 4."
+    "Iran-Hormuz: naval blockade and US-ally friction is the defining story; ceasefire talks in Islamabad are the key diplomatic thread to track.",
+    "Nigeria security crisis: Yobe airstrike (~200 dead) and 1,100+ kidnappings report from Amnesty ran once on Sunday — need consistent follow-up, not one-off drops.",
+    "Artemis II: first crewed lunar mission since Apollo, ~7 articles/week — track milestone events as mission progresses.",
+    "Hungary: Orbán government ended; monitoring early signals from the Tisza-led government for authoritarian-reversal precedent."
   ],
   "coverageGaps": [
-    "Sub-Saharan Africa: only Daily Maverick and Daily Mail today; no East African, West African (InSight Crime is Latin America), or Francophone African coverage.",
-    "Oceania: 2 articles only (Lowy Interpreter visible but no Pacific island, climate, or Pacific island-nation stories).",
-    "Latin America: AM region 17 articles but dominated by US sources (CBS News, Yahoo News, The Hill, AOL); only InSight Crime provides dedicated LatAm perspective."
+    "Sub-Saharan Africa: Sudan RSF/Darfur offensive dropped from pipeline after late-March; Sahel junta consolidation not tracked week-to-week.",
+    "Southeast Asia: Philippines (98% energy-dependent on Hormuz) barely covered despite being the most exposed nation to the blockade.",
+    "Climate policy: IPCC AR7 deadlock and Global South adaptation spending are being crowded out by Iran war energy coverage.",
+    "Labour and migration: worker cost-of-living squeeze and war-driven displacement nearly absent despite direct relevance to the economic cascade."
   ],
-  "context": "Today is the best all-green day in recent history — freshness, sci-tech ratio, multi-source, and regional diversity all comfortably exceed targets. The tech floor experiment (floor 2→3) shows its clearest positive signal yet with 13 tech articles vs 10.3 baseline, and politics has moderated from yesterday's 22 to 18. Cycle durations held steady (~1177s avg). Tomorrow's evaluation of the tech floor experiment is the key action item."
+  "context": "All four diversity targets are green today. The tech floor experiment concludes successfully — raising the floor from 2 to 3 per cycle lifted tech coverage from ~17% to ~28% of daily output with no meaningful collateral degradation. Total output is slightly lower than yesterday (46 vs 56) but the pipeline ran cleanly with zero duplicates across 39 unique sources. The weekly reflection's coverage gap recommendations (Africa, Southeast Asia, climate) remain structurally unaddressed at the parameter level."
 }

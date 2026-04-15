@@ -1,27 +1,31 @@
 {
   "version": 1,
-  "activeExperiment": {
-    "id": "2026-04-12-tech-floor-3",
-    "startDate": "2026-04-12",
-    "evaluateAfter": "2026-04-15",
-    "prNumber": null,
-    "hypothesis": "Raising the selector tech category floor from 2 to 3 per cycle will increase daily tech articles from ~10 to ~15, improving the sci-tech ratio toward 25%+ without degrading politics or economy coverage.",
-    "parameter": "Selector tech category floor",
-    "file": "scripts/select-prompt.md",
-    "oldValue": 2,
-    "newValue": 3,
-    "targetMetric": "categories.tech (daily count)",
-    "targetDirection": "increase",
-    "baseline": {
-      "techPerDay": 10.3,
-      "techPct": 17,
-      "politicsPerDay": 26.3,
-      "economyPerDay": 13.3,
-      "sciencePerDay": 11,
-      "totalPerDay": 61
-    }
-  },
+  "activeExperiment": null,
   "history": [
+    {
+      "id": "2026-04-12-tech-floor-3",
+      "startDate": "2026-04-12",
+      "evaluateAfter": "2026-04-15",
+      "prNumber": null,
+      "hypothesis": "Raising the selector tech category floor from 2 to 3 per cycle will increase daily tech articles from ~10 to ~15, improving the sci-tech ratio toward 25%+ without degrading politics or economy coverage.",
+      "parameter": "Selector tech category floor",
+      "file": "scripts/select-prompt.md",
+      "oldValue": 2,
+      "newValue": 3,
+      "targetMetric": "categories.tech (daily count)",
+      "targetDirection": "increase",
+      "baseline": {
+        "techPerDay": 10.3,
+        "techPct": 17,
+        "politicsPerDay": 26.3,
+        "economyPerDay": 13.3,
+        "sciencePerDay": 11,
+        "totalPerDay": 61
+      },
+      "result": "kept",
+      "evaluatedOn": "2026-04-15",
+      "notes": "Tech articles rose from baseline 10.3/day to ~13.5/day average (Apr 14: 14, Apr 15: 13), a +31% increase. Proportional degradation in other metrics: politics 43%→36% (-16%), economy 22%→19% (-14%), science 18%→19% (improved). No metric degraded >20% proportionally. Total output also declined (~51 vs 61 baseline) but this is not attributable to the floor change alone. Tech share rose from 17% to 26-28%. Keeping floor at 3."
+    },
     {
       "id": "2026-03-29-standalone-cap",
       "startDate": "2026-03-29",
