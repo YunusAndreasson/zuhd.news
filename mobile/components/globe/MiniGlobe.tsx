@@ -44,7 +44,7 @@ import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
 import { useTheme } from '../../hooks/useTheme';
 import { displayLocation } from '../../lib/place-names';
 import type { Article, HeatmapPoint } from '../../types';
-import { COUNTRY_TZ, SOURCE_COORDS } from './coordinates';
+import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from './coordinates';
 import {
   bordersMesh,
   countries,
@@ -722,17 +722,13 @@ export const MiniGlobe = memo(function MiniGlobe({
         const article = articlesRef.current[settledIndex];
         const loc = displayLocation(article?.location ?? null);
         if (loc) {
-          // Derive local time from longitude (15° = 1 hour) — accurate for any
-          // point on earth, unlike the single-timezone-per-country lookup which
-          // fails for large countries (e.g. US: DC vs Hawaii is 5 hours off).
+          // Look up IANA timezone: city first (handles large countries like US/Russia),
+          // then fall back to country-level timezone.
           let sub: string | undefined;
-          if (geo && geo.lng != null) {
-            const now = new Date();
-            const utcMs = now.getTime() + now.getTimezoneOffset() * 60000;
-            const localMs = utcMs + (geo.lng / 15) * 3600000;
-            const local = new Date(localMs);
-            sub = `${String(local.getHours()).padStart(2, '0')}:${String(local.getMinutes()).padStart(2, '0')}`;
-          }
+          const article = articlesRef.current[settledIndex];
+          const cityKey = (article?.location ?? '').toLowerCase();
+          const tz = CITY_TZ[cityKey] ?? (settledCountry ? COUNTRY_TZ[settledCountry] : undefined);
+          if (tz) sub = formatLocalTime(tz) ?? undefined;
           dotLabel = { text: loc, sub, x: dot.x, y: dot.y };
         }
       }
