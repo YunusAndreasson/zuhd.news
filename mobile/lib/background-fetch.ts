@@ -8,7 +8,7 @@ import { fetchWithTimeout } from './fetch';
 const TASK_NAME = 'ZUHD_BACKGROUND_FETCH';
 
 /** Fetch feed if new content available. Returns true if cache was updated. */
-export async function fetchAndCacheIfNew(): Promise<boolean> {
+async function fetchAndCacheIfNew(): Promise<boolean> {
   try {
     const res = await fetchWithTimeout(`${API_BASE}/api/meta.json`, 5000, {
       cache: 'no-store',

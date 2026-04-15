@@ -1,7 +1,7 @@
 import { startTransition, useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
-import { AppState } from 'react-native';
-import { API_BASE } from '../constants/theme';
+import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
 import { readFeedCache, writeFeedCache } from '../lib/feed-cache';
+import { useAppResume } from './useAppResume';
 import { fetchWithTimeout } from '../lib/fetch';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 
@@ -21,8 +21,6 @@ interface BriefingInfo {
   available: boolean;
   duration?: number;
 }
-
-const STALE_THRESHOLD = 5 * 60 * 1000; // 5 minutes
 
 interface ArticlesState {
   grouped: GroupedArticles;
@@ -48,7 +46,6 @@ export function useArticles(): ArticlesState {
   const [generated, setGenerated] = useState<string | null>(null);
   const lastGeneratedRef = useRef<string | null>(null);
   const refreshingRef = useRef(false);
-  const lastActiveRef = useRef(Date.now());
   const [resetKey, setResetKey] = useState(0);
 
   // Load lastSeenAt from storage on mount
@@ -137,8 +134,7 @@ export function useArticles(): ArticlesState {
   // Foreground resume: refresh if away > 5 min
   const handleResume = useEffectEvent(async () => {
     setTick((t) => t + 1);
-    const away = Date.now() - lastActiveRef.current;
-    if (away > STALE_THRESHOLD && !refreshingRef.current) {
+    if (!refreshingRef.current) {
       refreshingRef.current = true;
       try {
         const changed = await hasNewContent();
@@ -154,18 +150,11 @@ export function useArticles(): ArticlesState {
     }
   });
 
-  useEffect(() => {
-    const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'background') {
-        saveLastSeenAt(Date.now());
-        lastActiveRef.current = Date.now();
-      }
-      if (state === 'active') {
-        handleResume();
-      }
-    });
-    return () => sub.remove();
-  }, []);
+  const handleBackground = useEffectEvent(() => {
+    saveLastSeenAt(Date.now());
+  });
+
+  useAppResume(handleResume, STALE_THRESHOLD, handleBackground);
 
   const refresh = useCallback(async (): Promise<number> => {
     if (refreshingRef.current) return 0;

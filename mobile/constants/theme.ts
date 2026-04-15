@@ -216,6 +216,9 @@ export const EDITORIAL = {
 
 export const CATEGORIES: Category[] = ['politics', 'economy', 'science', 'tech'];
 
+/** How long the app must be backgrounded before a foreground resume triggers a refresh */
+export const STALE_THRESHOLD = 5 * 60 * 1000; // 5 minutes
+
 export const ANIMATION = {
   fast: 150,
   normal: 250,
@@ -272,6 +275,15 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
       lineHeight: typography.sizeBase * typography.leadingBody,
       fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.text,
+    } as TextStyle,
+    /** Category/section labels — largest small-caps tier (17pt) */
+    smallCapsBase: {
+      ...font.smallCaps,
+      ...androidTextBase,
+      fontSize: typography.sizeBase,
+      lineHeight: typography.sizeBase * typography.leadingBody,
+      letterSpacing: typography.trackingCaps,
+      color: colors.textSecondary,
     } as TextStyle,
     /** Italic section headings — e.g. source coverage framing */
     sectionHeading: {

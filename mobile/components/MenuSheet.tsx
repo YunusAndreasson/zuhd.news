@@ -66,7 +66,7 @@ const INFO_PAGES: Record<string, { title: string; sections: InfoSection[] }> = {
 // ---------------------------------------------------------------------------
 
 function MenuItem({ label, onPress }: { label: string; onPress: () => void }) {
-  const { colors, font, typography } = useTheme();
+  const { colors, textStyles } = useTheme();
   return (
     <Pressable
       onPress={() => { hapticImpact(); onPress(); }}
@@ -74,14 +74,7 @@ function MenuItem({ label, onPress }: { label: string; onPress: () => void }) {
       accessibilityRole="button"
       accessibilityLabel={label}
     >
-      <Text
-        style={{
-          ...font.smallCaps,
-          fontSize: typography.sizeBase,
-          letterSpacing: typography.trackingCaps,
-          color: colors.text,
-        }}
-      >
+      <Text style={[textStyles.smallCapsBase, { color: colors.text }]}>
         {label}
       </Text>
     </Pressable>
@@ -180,14 +173,7 @@ export const MenuSheet = memo(function MenuSheet({
               accessibilityRole="button"
               accessibilityLabel="Back to menu"
             >
-              <Text
-                style={{
-                  ...font.smallCaps,
-                  fontSize: typography.sizeSm,
-                  letterSpacing: typography.trackingCaps,
-                  color: colors.text,
-                }}
-              >
+              <Text style={[textStyles.smallCaps, { color: colors.text }]}>
                 {'\u2190 menu'}
               </Text>
             </Pressable>

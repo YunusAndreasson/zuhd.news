@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { API_BASE } from '../constants/theme';
+import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
 import { fetchWithTimeout } from '../lib/fetch';
 import { readHeatmapCache, writeHeatmapCache } from '../lib/heatmap-cache';
 import type { HeatmapPoint } from '../types';
 import { useAppResume } from './useAppResume';
-
-const STALE_THRESHOLD = 5 * 60 * 1000;
 
 export function useHeatmap(feedGenerated: string | null): HeatmapPoint[] {
   const [points, setPoints] = useState<HeatmapPoint[]>([]);
