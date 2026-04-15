@@ -2,13 +2,157 @@
   "version": 1,
   "stories": [
     {
+      "id": "china-four-point-peace-proposal-iran-war-hormuz",
+      "label": "Will China mediate between the US and Iran? Xi Jinping presents four-point peace proposal after US blocks Strait of Hormuz",
+      "firstSeen": "2026-04-15T04:09:44.032Z",
+      "lastCovered": "2026-04-15T04:09:44.032Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-china-four-point-peace-proposal-iran-war-hormuz"
+      ],
+      "eventUri": "zho-2012880",
+      "summary": "China has moved from passive blockade-runner to active mediator, presenting a four-point peace plan for the Iran war. Lead with the shift: last week Beijing defied the Hormuz blockade with a tanker; this week it's offering to broker the peace. The structural question is whether the US can simultaneously blockade Chinese oil imports and expect Chinese cooperation on a ceasefire. Pakistan hosted round one, China is bidding for round two — the mediation landscape is expanding beyond Washington's control. The reader tracking the Iran diplomatic arc needs to see: the war is creating the non-Western diplomatic architecture the editorial notes flagged.",
+      "conceptUris": []
+    },
+    {
+      "id": "pirro-prosecutors-fed-headquarters-turned-away",
+      "label": "Prosecutors from Pirro's office tried to access Fed headquarters, but were turned away",
+      "firstSeen": "2026-04-15T04:09:44.032Z",
+      "lastCovered": "2026-04-15T04:09:44.032Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-pirro-prosecutors-fed-headquarters-turned-away"
+      ],
+      "eventUri": "eng-11569792",
+      "summary": "Prosecutors from Trump-appointed US Attorney Jeanine Pirro's office showed up unannounced at the Federal Reserve's headquarters and tried to access the building. They were turned away. Lead with the physical confrontation: the executive branch literally walked up to the central bank's door. This is about the independence of monetary institutions — the Fed is already under political pressure over interest rates, and now prosecutors are attempting physical access. The reader who watches power structures will see the escalation: from rhetoric to physical encroachment.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-offered-role-iran-war-mediator-us-envoy",
+      "label": "'Up to India to decide but...': What US envoy said on Delhi's role in efforts to end Iran war",
+      "firstSeen": "2026-04-15T04:09:44.032Z",
+      "lastCovered": "2026-04-15T04:09:44.032Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-india-offered-role-iran-war-mediator-us-envoy"
+      ],
+      "eventUri": "eng-11568321",
+      "summary": "The US ambassador to India explicitly invited Delhi to join Iran war mediation efforts — the first time Washington has publicly expanded the mediator pool beyond Pakistan. Lead with the strategic logic: India imports Iranian oil, has deep Gulf labor ties (8 million workers), and maintained relations with Tehran throughout the war. The US is hedging after round one collapsed in Islamabad. With China now offering its own peace plan, the mediation contest is becoming a proxy for great-power positioning. The reader sees: who mediates the peace shapes who controls the post-war order.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-balochistan-smuggling-tax-evasion-parallel-economy",
+      "label": "Senate panel flags massive smuggling, tax evasion, revenue losses",
+      "firstSeen": "2026-04-15T04:09:44.032Z",
+      "lastCovered": "2026-04-15T04:09:44.032Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-pakistan-balochistan-smuggling-tax-evasion-parallel-economy"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's Senate committee revealed smuggled diesel sells at Rs240/litre in Quetta while cannabis and opium are openly cultivated in Qila Abdullah valley — and customs officials admitted they have no presence outside settled areas. Lead with the admission: the state confesses it doesn't control its own border economy. Balochistan's parallel economy operates in plain sight. With Pakistan already absorbing Iran war shocks (fuel prices, supply chain disruption), the fact that a significant chunk of its fuel market is smuggled Iranian diesel makes the Hormuz blockade a direct threat to an economy that officially doesn't exist.",
+      "conceptUris": []
+    },
+    {
+      "id": "el-mencho-jalisco-cartel-drug-market-data-analysis",
+      "label": "After El Mencho: A Data-Driven Look at an Evolving Drug Market",
+      "firstSeen": "2026-04-15T04:09:44.032Z",
+      "lastCovered": "2026-04-15T04:09:44.032Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-13-el-mencho-jalisco-cartel-drug-market-data-analysis"
+      ],
+      "eventUri": null,
+      "summary": "InSight Crime uses fragmented data across nearly 20 years to map how El Mencho's Jalisco New Generation Cartel transformed the methamphetamine market — and what the market looks like after his capture. Lead with the data methodology: this is investigative journalism that treats organized crime like a supply chain problem. The reader who thinks in systems will see the parallel to any disrupted market: remove the monopolist and the ecosystem fragments, it doesn't disappear. Connects to the drug boat strikes story — the US is killing suspected traffickers at sea while the market structure they're trying to disrupt keeps evolving.",
+      "conceptUris": []
+    },
+    {
+      "id": "agentic-ai-pharmacogenomic-drug-recommendations",
+      "label": "An agentic AI system for automated pharmacogenomic recommendation generation",
+      "firstSeen": "2026-04-15T04:09:44.032Z",
+      "lastCovered": "2026-04-15T04:09:44.032Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-agentic-ai-pharmacogenomic-drug-recommendations"
+      ],
+      "eventUri": null,
+      "summary": "An agentic AI system now generates pharmacogenomic drug recommendations at scale — the kind of personalized 'which drug works for your DNA' guidelines that previously required months of expert curation per gene-drug pair. Lead with the bottleneck it breaks: there are thousands of gene-drug interactions but only a few hundred curated guidelines because the manual process is too slow. This system automates CPIC-style recommendations. The reader in tech sees the AI-agent pattern applied to a domain where the stakes are life-and-death: getting drug dosing wrong kills people, and most of the world's population has never had their pharmacogenomic profile considered.",
+      "conceptUris": []
+    },
+    {
+      "id": "autism-degendering-dehumanization-facial-perception",
+      "label": "De-gendering and dehumanization in mental representations of autistic men's and women's facial appearance",
+      "firstSeen": "2026-04-15T04:09:44.032Z",
+      "lastCovered": "2026-04-15T04:09:44.032Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-autism-degendering-dehumanization-facial-perception"
+      ],
+      "eventUri": null,
+      "summary": "People mentally represent autistic faces as less gendered and more dehumanized than neurotypical faces — and they do this unconsciously, without being told who is autistic. Lead with the mechanism: this isn't about explicit prejudice but about how the brain categorizes faces. When people imagine 'an autistic person,' they strip gender cues and assign less-human features. The implications are concrete: these mental representations shape hiring decisions, medical treatment, and social inclusion. The reader who values karāmah (human dignity) sees the structural point — dehumanization begins in perception, before any conscious decision.",
+      "conceptUris": []
+    },
+    {
+      "id": "aptoide-google-android-antitrust-lawsuit-app-store",
+      "label": "Google Faces Antitrust Lawsuit Over Android App Store Monopoly",
+      "firstSeen": "2026-04-15T04:09:44.032Z",
+      "lastCovered": "2026-04-15T04:09:44.032Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-aptoide-google-android-antitrust-lawsuit-app-store"
+      ],
+      "eventUri": "eng-11569785",
+      "summary": "Portuguese app store Aptoide sued Google for monopolizing Android app distribution — claiming Google blocks rival stores, steers developers exclusively to Play Store, and uses billing practices to lock out competition. Lead with the European challenger: Aptoide has survived Google's ecosystem for years and is now taking the fight to court. The reader who builds for Android knows the pain — Play Store's 30% cut and its gatekeeping power over app discovery. This follows the Epic Games precedent but comes from a smaller, European competitor. The antitrust question: can Android be 'open' if Google controls the only viable distribution channel?",
+      "conceptUris": []
+    },
+    {
+      "id": "nazi-party-ancestor-search-engine-germany",
+      "label": "Nazi search engine shows if ancestors were in Hitler's party",
+      "firstSeen": "2026-04-15T04:09:44.032Z",
+      "lastCovered": "2026-04-15T04:09:44.032Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-14-nazi-party-ancestor-search-engine-germany"
+      ],
+      "eventUri": null,
+      "summary": "A new German online search engine lets anyone discover in seconds whether their ancestors were Nazi Party members — and it's already surfacing uncomfortable truths across Austrian and German families. Lead with the speed and scale: what was once locked in archives requiring in-person visits is now a search query. The technical angle: digitizing and indexing millions of Nazi-era membership records is a database engineering problem with moral weight. The reader who thinks about data, archives, and accountability will see the broader question: what other historical records of complicity remain locked in analog archives because no one has built the search tool yet?",
+      "conceptUris": []
+    },
+    {
       "id": "iran-demands-reparations-arab-states-war-complicity",
       "label": "Iran demands reparations from Arab states",
       "firstSeen": "2026-04-14T10:11:20.914Z",
       "lastCovered": "2026-04-14T10:11:20.914Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-14-iran-demands-reparations-arab-states-war-complicity"
@@ -33,7 +177,7 @@
       "lastCovered": "2026-04-14T10:11:20.914Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-14-uk-arms-shipment-israel-seized-belgium"
@@ -54,7 +198,7 @@
       "lastCovered": "2026-04-14T10:11:20.914Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-14-lavrov-beijing-fidan-turkey-ukraine-iran-crisis"
@@ -79,7 +223,7 @@
       "lastCovered": "2026-04-14T10:11:20.914Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-14-us-iran-round-2-talks-islamabad-pakistan"
@@ -101,7 +245,7 @@
       "lastCovered": "2026-04-14T10:11:20.914Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-14-chinese-tanker-breaks-hormuz-blockade-sanctions"
@@ -126,7 +270,7 @@
       "lastCovered": "2026-04-14T10:11:20.914Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-14-tms-white-matter-pathways-depression-precision"
@@ -147,7 +291,7 @@
       "lastCovered": "2026-04-14T10:11:20.914Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-14-plague-not-great-equalizer-class-mortality"
@@ -167,7 +311,7 @@
       "lastCovered": "2026-04-14T10:11:20.914Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-14-meteorite-ink-contamination-mars-sample-protocols"
@@ -187,7 +331,7 @@
       "lastCovered": "2026-04-14T10:11:20.914Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-14-ai-vibe-coding-horror-story"
@@ -206,7 +350,7 @@
       "lastCovered": "2026-04-14T10:11:20.914Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-14-justin-sun-criticizes-trump-crypto-world-liberty"
@@ -226,7 +370,7 @@
       "lastCovered": "2026-04-14T07:18:45.311Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-14-dc-think-tanks-promoted-iran-war-iraq-overlap"
@@ -242,7 +386,7 @@
       "lastCovered": "2026-04-14T07:18:45.311Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-14-carney-wins-majority-canada-special-elections"
@@ -264,7 +408,7 @@
       "lastCovered": "2026-04-14T07:18:45.311Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-14-katsina-mass-kidnapping-n150m-ransom-nigeria"
@@ -280,7 +424,7 @@
       "lastCovered": "2026-04-14T07:18:45.311Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-14-evergrande-founder-hui-ka-yan-pleads-guilty-fraud"
@@ -305,7 +449,7 @@
       "lastCovered": "2026-04-14T07:18:45.311Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-14-singapore-central-bank-tightens-iran-war-inflation"
@@ -330,7 +474,7 @@
       "lastCovered": "2026-04-14T07:18:45.311Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-14-starquakes-fossilized-magnetism-white-dwarfs"
@@ -346,7 +490,7 @@
       "lastCovered": "2026-04-14T07:18:45.311Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-14-ancient-dna-graves-non-biological-family-kinship"
@@ -362,7 +506,7 @@
       "lastCovered": "2026-04-14T07:18:45.311Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-14-zaporizhzhia-npp-power-loss-single-line-restored"
@@ -378,7 +522,7 @@
       "lastCovered": "2026-04-14T07:18:45.311Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-14-google-spam-policy-back-button-hijacking"
@@ -394,7 +538,7 @@
       "lastCovered": "2026-04-14T07:18:45.311Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-14-davinci-resolve-free-photo-editor-blackmagic"
@@ -410,7 +554,7 @@
       "lastCovered": "2026-04-14T07:02:56.110Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-14-vance-pope-leo-stay-out-us-affairs-catholic"
@@ -432,7 +576,7 @@
       "lastCovered": "2026-04-14T07:02:56.110Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-13-lebanon-israel-talks-no-leverage-hezbollah"
@@ -454,7 +598,7 @@
       "lastCovered": "2026-04-14T07:02:56.110Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-13-nigeria-airstrikes-yobe-fighters-amnesty-boko-haram"
@@ -470,7 +614,7 @@
       "lastCovered": "2026-04-14T07:02:56.110Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-14-us-southern-command-strikes-drug-vessel-pacific-kills-two"
@@ -486,7 +630,7 @@
       "lastCovered": "2026-04-14T07:02:56.110Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-13-glioblastoma-birc3-cav1-drug-resistance-therapeutic-target"
@@ -502,7 +646,7 @@
       "lastCovered": "2026-04-14T07:02:56.110Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-14-resilient-crops-climate-change-novel-pest-pressures"
@@ -518,7 +662,7 @@
       "lastCovered": "2026-04-14T07:02:56.110Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-13-australia-social-media-ban-youth-still-using-policy-failure"
@@ -534,7 +678,7 @@
       "lastCovered": "2026-04-14T07:02:56.110Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-14-amazon-data-centre-taloja-mumbai-environmental-clearance"
@@ -556,7 +700,7 @@
       "lastCovered": "2026-04-14T07:02:56.110Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-13-peer-confocal-microscopy-resolution-pinhole-engineering"
@@ -572,7 +716,7 @@
       "lastCovered": "2026-04-14T10:11:20.914Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-13-noida-factory-workers-wage-protest-violence-delhi",
@@ -600,7 +744,7 @@
       "lastCovered": "2026-04-14T07:02:56.110Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-13-nigeria-morocco-25b-gas-pipeline-deal",
@@ -622,7 +766,7 @@
       "lastCovered": "2026-04-14T01:07:44.778Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-14-leaked-documents-reveal-details-of-the-secret-saudi-arabia-p"
@@ -638,7 +782,7 @@
       "lastCovered": "2026-04-14T01:07:44.778Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-12-israeli-forces-encircle-bint-jbeil-but-fail-to-enter-town-as"
@@ -654,7 +798,7 @@
       "lastCovered": "2026-04-14T01:07:44.778Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-12-in-meeting-with-board-of-peace-director-general-hamas-refuse"
@@ -670,7 +814,7 @@
       "lastCovered": "2026-04-14T01:07:44.778Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-13-fda-pushes-drugmakers-to-report-missing-clinical-trial-resul"
@@ -686,7 +830,7 @@
       "lastCovered": "2026-04-14T01:07:44.778Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-13-america-s-new-tax-mantra-the-irs-isn-t-going-to-catch-me"
@@ -711,7 +855,7 @@
       "lastCovered": "2026-04-14T01:07:44.778Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-13-after-el-mencho-a-data-driven-look-at-an-evolving-drug-marke"
@@ -727,7 +871,7 @@
       "lastCovered": "2026-04-14T01:07:44.778Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-13-pakistan-hospital-at-centre-of-child-hiv-outbreak-caught-reu"
@@ -743,7 +887,7 @@
       "lastCovered": "2026-04-14T01:07:44.778Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-14-new-research-exposes-the-deadly-exploitation-of-migrant-fish"
@@ -759,7 +903,7 @@
       "lastCovered": "2026-04-14T01:07:44.778Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-14-how-hidden-soil-fungi-steal-bacterial-dna-to-control-the-rai"
@@ -775,7 +919,7 @@
       "lastCovered": "2026-04-14T01:07:44.778Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-13-stanford-report-highlights-growing-disconnect-between-ai-ins"
@@ -791,7 +935,7 @@
       "lastCovered": "2026-04-14T01:07:44.778Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-13-github-stacked-prs"
@@ -807,7 +951,7 @@
       "lastCovered": "2026-04-14T01:07:44.778Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-13-nzxt-agrees-to-3-45-million-settlement-over-controversial-re"
@@ -823,7 +967,7 @@
       "lastCovered": "2026-04-13T22:08:25.468Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-13-minnesota-county-probes-federal-arrest-kidnapping"
@@ -848,7 +992,7 @@
       "lastCovered": "2026-04-13T22:08:25.468Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-13-second-contractor-whistleblower-israeli-attacks-gaza-aid"
@@ -864,7 +1008,7 @@
       "lastCovered": "2026-04-13T22:08:25.468Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-13-china-fm-pakistan-ceasefire-priority-iran"
@@ -889,7 +1033,7 @@
       "lastCovered": "2026-04-13T22:08:25.468Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-13-pakistan-customs-officers-silver-lead-swap"
@@ -905,7 +1049,7 @@
       "lastCovered": "2026-04-13T22:08:25.468Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-13-beccs-flagship-climate-solution-failing"
@@ -927,7 +1071,7 @@
       "lastCovered": "2026-04-13T22:08:25.468Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-13-ship-wakes-soft-tissue-surface-wave-physics"
@@ -943,7 +1087,7 @@
       "lastCovered": "2026-04-13T22:08:25.468Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-13-ion-pumps-click-chemistry-precise-drug-release"
@@ -959,7 +1103,7 @@
       "lastCovered": "2026-04-13T22:08:25.468Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-13-google-rust-pixel-10-modem-legacy-safety"
@@ -975,7 +1119,7 @@
       "lastCovered": "2026-04-13T22:08:25.468Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-13-fbi-indonesia-w3ll-phishing-takedown"
@@ -991,248 +1135,13 @@
       "lastCovered": "2026-04-13T22:08:25.468Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-13-rockstar-games-breach-cloud-analytics-shinyhunters"
       ],
       "eventUri": null,
       "summary": "ShinyHunters claimed a breach of Rockstar Games through a third-party cloud analytics platform, threatening to release stolen data unless a ransom is paid. The angle: the attack vector is the cloud analytics vendor, not Rockstar itself — another supply-chain breach where the weakest link is a third-party SaaS tool with privileged access. Lead with the attack path (cloud analytics platform as entry point) and the ShinyHunters attribution. The developer reader will recognize the pattern: you can harden your own infrastructure and still get breached through a vendor's API key.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-naval-blockade-iran-ports-operational",
-      "label": "Pentagon announces 'blockade' of Iranian ports",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-us-naval-blockade-iran-ports-operational"
-      ],
-      "eventUri": "eng-11563015",
-      "summary": "The US naval blockade of Iranian ports is now operational — Trump threatened to 'immediately eliminate' any Iranian vessel that approaches. Iran stands to lose $150M/day in oil revenue. The angle: this is the first full naval blockade the US has imposed on a sovereign state since Cuba 1962. Oil surged past $100/barrel on the announcement. Lead with the Cuba parallel and the $150M/day figure. The blockade escalates a 31-day war into an act of aggression under international law (UN Definition of Aggression, Article 3c). Advances the Hormuz arc from 'ordered' to 'operational' — a qualitative shift with immediate global energy consequences.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Port",
-        "http://en.wikipedia.org/wiki/United_States_Central_Command",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Blockade",
-        "http://en.wikipedia.org/wiki/Petroleum"
-      ]
-    },
-    {
-      "id": "sudan-army-airstrikes-darfur-civilians-24-dead",
-      "label": "Sudan army air strikes intensify across Darfur — at least 24 dead and dozens injured",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-sudan-army-airstrikes-darfur-civilians-24-dead"
-      ],
-      "eventUri": null,
-      "summary": "The Sudanese Armed Forces intensified air strikes across Darfur, hitting densely populated civilian areas including a march in Al-Daein. At least 24 dead, dozens injured. The angle: this is the SAF — the internationally recognized government — bombing its own civilians in a war that has killed tens of thousands and displaced millions. World attention is on Iran while Sudan's war deepens. Lead with the Al-Daein march strike (civilians hit while demonstrating) and the escalation pattern. The reader tracking forgotten wars needs to see Sudan's civilian toll mounting with zero international intervention.",
-      "conceptUris": []
-    },
-    {
-      "id": "muslim-student-34-years-prison-palestine-protest-pittsburgh",
-      "label": "How 51 Seconds at a Pro-Palestine Protest Could Send a Muslim Student to Prison for 34 years",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-muslim-student-34-years-prison-palestine-protest-pittsburgh"
-      ],
-      "eventUri": null,
-      "summary": "Muhammad Ali, a former University of Pittsburgh student, faces three felonies and up to 34 years in prison for a 51-second tug-of-war with a police officer over a metal barrier at a pro-Palestine protest. The angle: the disproportion between act and charge reveals how the state is weaponizing felony charges to criminalize Palestine solidarity. Lead with the 51 seconds vs 34 years — the ratio is the story. The reader who follows the crackdown on dissent in the US will recognize the pattern: Muslim name, Palestine protest, maximalist prosecution.",
-      "conceptUris": []
-    },
-    {
-      "id": "nato-allies-refuse-iran-blockade-alliance-split",
-      "label": "NATO allies refuse to join Trump's Iran blockade",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-nato-allies-refuse-iran-blockade-alliance-split"
-      ],
-      "eventUri": "eng-11564349",
-      "summary": "NATO allies including France told Washington they would not participate in the Iran blockade, offering to intervene only after fighting ends. The angle: the US is now enforcing a naval blockade alone against a sovereign state while its own military alliance refuses to participate — the broadest NATO split since Iraq 2003. Lead with the refusal and what it means for blockade enforcement: the US Navy must patrol the Strait without allied logistics, intelligence, or legitimacy. Previous cycle covered UK rejection specifically; this is the alliance-wide refusal. The reader should see the pattern: unilateral American force projection with diminishing coalition support.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/NATO",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Blockade",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/France"
-      ]
-    },
-    {
-      "id": "tcs-nashik-sexual-harassment-forced-conversion-sit-probe",
-      "label": "TCS Nashik case: SIT probes harassment and forced conversion claims against executives",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-tcs-nashik-sexual-harassment-forced-conversion-sit-probe"
-      ],
-      "eventUri": "eng-11562746",
-      "summary": "Eight women at Tata Consultancy Services' Nashik office allege sexual harassment and forced religious conversion by executives. A Special Investigation Team has been formed, seven executives arrested. The angle: India's largest IT services company — 600,000+ employees, contracts with banks and governments worldwide — has a workplace abuse scandal that mixes sexual coercion with forced conversion, a politically explosive combination in Modi's India. Lead with the scale (TCS is the world's 3rd largest IT employer) and the dual allegation. The reader in tech will recognize the power dynamics of outsourcing giants; the forced conversion angle adds a dimension that is uniquely Indian and structurally important.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nashik",
-        "http://en.wikipedia.org/wiki/Tata_Consultancy_Services",
-        "http://en.wikipedia.org/wiki/Sexual_harassment",
-        "http://en.wikipedia.org/wiki/Human_resources",
-        "http://en.wikipedia.org/wiki/Information_technology",
-        "http://en.wikipedia.org/wiki/Natarajan_Chandrasekaran",
-        "http://en.wikipedia.org/wiki/Coercion",
-        "http://en.wikipedia.org/wiki/Religious_conversion"
-      ]
-    },
-    {
-      "id": "ibm-dei-settlement-17m-trump-first-penalty",
-      "label": "IBM folds to Trump anti-DEI push, admits no misconduct but pays $17M penalty",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-ibm-dei-settlement-17m-trump-first-penalty"
-      ],
-      "eventUri": "eng-11559842",
-      "summary": "IBM agreed to pay $17M to settle DOJ claims that its DEI policies discriminated — while admitting no misconduct. This is the first financial penalty under Trump's anti-DEI executive orders. The angle: the government is extracting money from companies for diversity programs that were legal and encouraged under the previous administration. Lead with the contradiction: IBM pays $17M but admits nothing wrong. The precedent matters — every tech company with DEI hiring targets is now on notice. The reader in tech should see this as the moment DEI became a financial liability, not just a political one.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-revolution-mathematics-proving-theorems",
-      "label": "The AI Revolution in Math Has Arrived",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-ai-revolution-mathematics-proving-theorems"
-      ],
-      "eventUri": null,
-      "summary": "AI systems are now proving new mathematical results at a pace that surprises even researchers. Mathematicians say this is just the beginning — AI is not replacing them but becoming a collaborator that can explore proof spaces humans cannot. The angle: mathematics, the most abstract human discipline, is being transformed by AI in ways that coding and writing were not. Lead with a specific new result AI proved and why it matters. The reader who builds AI systems should see the meta-story: the tools they work with daily are now reshaping the foundations of knowledge itself.",
-      "conceptUris": []
-    },
-    {
-      "id": "proton-radius-puzzle-resolved-hydrogen-measurement",
-      "label": "Cracking a 16-year proton mystery as ultra-precise hydrogen measurements confirm a smaller-than-expected core",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-proton-radius-puzzle-resolved-hydrogen-measurement"
-      ],
-      "eventUri": null,
-      "summary": "New ultra-precise measurements of hydrogen confirm the proton is smaller than physicists thought for decades, resolving a 16-year discrepancy between muonic and electronic hydrogen experiments. The angle: a single subatomic particle's size has stumped physics since 2010 — the resolution validates exotic measurement techniques and closes a chapter in quantum electrodynamics. Lead with the 16-year puzzle and the fact that the answer was 'the proton really is that small.' The reader who appreciates precision engineering will see the parallel between debugging measurement systems and debugging code.",
-      "conceptUris": []
-    },
-    {
-      "id": "microglia-calcium-signaling-drives-anxiety-mice",
-      "label": "Microglia respond to and induce anxiety and grooming in mice using calcium signaling",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-microglia-calcium-signaling-drives-anxiety-mice"
-      ],
-      "eventUri": null,
-      "summary": "Optogenetically stimulating microglia in the hippocampus directly induces anxiety and compulsive grooming in mice — via calcium ion signaling. The angle: the brain's immune cells are not just passive janitors but active drivers of psychiatric behavior. This is a mechanistic link between neuroinflammation and anxiety disorders that could reshape treatment approaches. Lead with the finding that stimulating immune cells (not neurons) triggers anxiety. The reader should see the implication: if inflammation drives anxiety at the cellular level, anti-inflammatory approaches may matter more than SSRIs for some patients.",
-      "conceptUris": []
-    },
-    {
-      "id": "wordpress-plugins-purchased-backdoored-supply-chain",
-      "label": "Someone Bought 30 WordPress Plugins and Planted a Backdoor in All of Them",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-wordpress-plugins-purchased-backdoored-supply-chain"
-      ],
-      "eventUri": null,
-      "summary": "An attacker purchased 30 WordPress plugins through legitimate marketplace transactions, then pushed updates containing backdoors to every site running them. The angle: the supply chain attack vector isn't a vulnerability — it's the marketplace itself. Plugin ownership transfers are unaudited, and WordPress's auto-update mechanism becomes the delivery system. Lead with the mechanism (buy, own, backdoor) and the number of sites affected. The reader who manages any WordPress infrastructure should see this as an existential trust problem: the plugin you installed last year may now be owned by someone else entirely.",
-      "conceptUris": []
-    },
-    {
-      "id": "a16z-phone-farm-doublespeed-hacked-ai-influencers",
-      "label": "Hacker Compromises a16z-Backed Phone Farm, Tries to Post Memes Calling a16z the 'Antichrist'",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-a16z-phone-farm-doublespeed-hacked-ai-influencers"
-      ],
-      "eventUri": null,
-      "summary": "Doublespeed, an a16z-backed startup, operates a phone farm that floods social media with AI-generated influencers. A hacker breached its backend and tried to post memes calling a16z the 'Antichrist.' The angle: Andreessen Horowitz is funding industrial-scale social media manipulation — fake people posting fake content at scale — and a hacker exposed the infrastructure. Lead with what Doublespeed actually does (AI influencer farm) and who funds it (a16z). The hack is the hook but the real story is that top-tier VC is financing the pollution of public discourse.",
-      "conceptUris": []
-    },
-    {
-      "id": "webinartv-scraped-zoom-recovery-meetings-anonymity",
-      "label": "WebinarTV Secretly Scraped Zoom Meetings of Anonymous Recovery Programs",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-webinartv-scraped-zoom-recovery-meetings-anonymity"
-      ],
-      "eventUri": null,
-      "summary": "WebinarTV scraped and publicly shared recordings of 12-step recovery meetings — addiction support groups where anonymity is the foundational promise. The angle: a company built a business by harvesting the most private moments of the most vulnerable people. The 'anonymous' in Alcoholics Anonymous was supposed to be a guarantee; Zoom's architecture made it a lie. Lead with what was exposed (people in recovery, speaking about addiction, believing they were in a safe space) and the mechanism (Zoom meetings scraped without consent). The reader who uses Zoom daily should feel the chill: if recovery meetings aren't safe, nothing is.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-submarine-cable-repair-internet-degradation-war",
-      "label": "PTCL says repair work on submarine cable to begin from Tuesday, internet users may face service degradation",
-      "firstSeen": "2026-04-13T19:09:00.628Z",
-      "lastCovered": "2026-04-13T19:09:00.628Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-13-pakistan-submarine-cable-repair-internet-degradation-war"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's state-owned telecom is repairing a submarine cable starting April 14, with degraded internet expected through April 20. The angle: Pakistan's internet backbone runs through cables in waters near an active war zone — the Strait of Hormuz blockade and Iran war put these chokepoints at risk. A country of 240 million people could lose connectivity not from a cyberattack but from a ship anchor or a stray missile. Lead with the timing (cable repair during a naval blockade) and the infrastructure fragility. The reader in tech understands single points of failure; Pakistan's internet has several, all near Hormuz.",
       "conceptUris": []
     }
   ]
