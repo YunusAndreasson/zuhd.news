@@ -8037,5 +8037,362 @@
     "label": "Industrial Subcontracting & Boiler Safety",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-15-ai-pharmacogenomics-gene-drug-dosing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Your body processes drugs through enzymes, mainly the cytochrome P450 family. Variants in genes like CYP2D6 can make you metabolize a drug 10x faster or 10x slower than the population average. The same dose that works for one patient is toxic or useless for another."
+      },
+      {
+        "heading": "THE SCALE PROBLEM",
+        "body": "The Clinical Pharmacogenetics Implementation Consortium has published dosing guidelines for roughly 100 gene-drug pairs. The FDA's drug label database lists thousands of drugs with known genetic interactions. Each guideline takes a panel of experts months to produce — the backlog grows faster than humans can curate."
+      },
+      {
+        "heading": "WHY LABELS MATTER",
+        "body": "FDA drug labels already contain pharmacogenomic information — warnings like 'poor CYP2D6 metabolizers may require dose reduction.' But this information is buried in dense text, inconsistently formatted across decades of approvals, and rarely actionable without a pharmacist who knows what to look for."
+      },
+      {
+        "heading": "THE GAP IN PRACTICE",
+        "body": "Fewer than 1% of US patients have pharmacogenomic testing results in their medical record. Even when testing exists, most electronic health record systems cannot automatically flag a gene-drug conflict at the point of prescribing. The knowledge exists; the infrastructure to use it does not."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.525Z",
+    "label": "Pharmacogenomics",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-15-airbnb-hosts-outsource-messages-ai-chatbots": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FICTION",
+        "body": "Airbnb's brand is built on the idea that you're staying with a local host who knows the neighborhood. In practice, 30% of US Airbnb revenue comes from hosts with multiple listings. The 'host' is often a property management company — the AI chatbot replaces a person who was already absent."
+      },
+      {
+        "heading": "THE LIABILITY GAP",
+        "body": "Airbnb's terms make the host — not Airbnb — responsible for guest safety and communication. When a chatbot handles a carbon monoxide alarm or a medical emergency, the question is whether a host who delegated to AI exercised reasonable care. No court has ruled on this yet."
+      },
+      {
+        "heading": "THE AUTOMATION STACK",
+        "body": "Guest messaging was the last manual task in a stack that already includes automated pricing (dynamic rate tools), automated access (smart locks), automated cleaning (scheduling services), and automated reviews (template generators). Each layer removed a reason for the host to interact with the guest at all."
+      },
+      {
+        "heading": "THE PROMPT INJECTION PROBLEM",
+        "body": "When guests trick a chatbot into sharing recipes or ignoring its instructions, they're exploiting prompt injection — feeding inputs that override the system's programmed behavior. Any AI that reads untrusted user messages and acts on them is vulnerable. The same flaw that produces a funny recipe could produce a fraudulent refund approval."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.526Z",
+    "label": "Platform Labor & the Host Fiction",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-15-big-tech-ignores-opt-out-tracking-194-services": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW IT WORKS",
+        "body": "Global Privacy Control is a single HTTP header — Sec-GPC: 1 — sent with every web request. It tells the receiving server the user opts out of data sale and sharing. The technical implementation is trivial; a server can read it in one line of code. Non-compliance is a choice, not a technical limitation."
+      },
+      {
+        "heading": "THE LEGAL TRIGGER",
+        "body": "California's CPRA (2023) explicitly recognizes opt-out preference signals as legally binding. A business that receives a GPC signal and ignores it is violating the same law as one that ignores a written opt-out request. The law treats the header as the user's voice."
+      },
+      {
+        "heading": "THE ENFORCEMENT DESIGN",
+        "body": "California's Attorney General and the California Privacy Protection Agency share enforcement authority but have a combined staff smaller than many of the companies they regulate. Enforcement relies on investigations triggered by complaints — and users cannot see whether their opt-out signal was honored, so they rarely complain."
+      },
+      {
+        "heading": "THE DO NOT TRACK PRECEDENT",
+        "body": "Do Not Track, a similar browser header introduced in 2009, failed because no law required compliance. Companies simply ignored it until the W3C abandoned the standard in 2019. GPC was designed to avoid this fate by anchoring to an enforceable statute — but a law without enforcement reproduces the same outcome."
+      },
+      {
+        "heading": "WHY SELF-REPORTING FAILS",
+        "body": "Compliance is measured by the company's own declaration in its privacy policy. There is no technical audit, no independent verification, and no penalty for a false declaration until someone investigates. The system trusts the entity it is designed to constrain."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.526Z",
+    "label": "Browser Opt-Out Signals",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-15-china-xi-four-point-peace-proposal-us-iran": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OIL DEPENDENCY",
+        "body": "China imports roughly 10 million barrels of oil per day — more than any other nation. About 40% transits the Strait of Hormuz. A blockade does not just threaten Iran; it threatens the energy supply that powers Chinese manufacturing. Beijing's peace diplomacy and its tanker convoys serve the same interest."
+      },
+      {
+        "heading": "THE SAUDI-IRAN PRECEDENT",
+        "body": "In March 2023, China brokered the Saudi-Iran rapprochement in Beijing — the first time a non-Western power mediated a major Middle Eastern diplomatic reset. That deal restored diplomatic relations severed since 2016. Xi is now attempting to repeat the pattern with higher stakes and a less willing counterparty in Washington."
+      },
+      {
+        "heading": "THE HORMUZ BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21% of global oil consumption passes through daily. The deepest channel hugs the Iranian coastline, which is why Iranian naval positioning matters disproportionately."
+      },
+      {
+        "heading": "THE LEGAL ARGUMENT",
+        "body": "Xi's 'law of the jungle' language maps to a specific legal dispute. Under UNCLOS Article 38, ships have a right of transit passage through international straits that coastal states cannot suspend. A US naval blockade of Hormuz would violate the same convention the US invokes to justify freedom of navigation operations in the South China Sea."
+      },
+      {
+        "heading": "CHINA'S MEDIATION MODEL",
+        "body": "China's diplomatic interventions follow a pattern: no preconditions, no alliance commitments, and no enforcement mechanism. The model works when both sides want an off-ramp (as with Saudi-Iran) but has no tools for coercion when one side does not. It is mediation without leverage — effective only when leverage is unnecessary."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.526Z",
+    "label": "China's Gulf Diplomacy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-15-india-markets-oil-rebound": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRUCTURAL VULNERABILITY",
+        "body": "India imports over 80% of its crude oil and has no strategic petroleum reserve large enough to matter — its reserve holds about 9.5 days of imports, compared to 60+ days for the US and 90 days mandated in Japan. Every dollar-per-barrel move in crude shifts India's import bill by roughly $1.5 billion annually."
+      },
+      {
+        "heading": "THE CURRENT ACCOUNT MECHANISM",
+        "body": "Oil imports are India's single largest import category. When crude rises, the current account deficit widens, the rupee weakens, and the Reserve Bank of India must spend foreign exchange reserves to defend the currency. This is why oil price moves show up in stock markets within hours — investors are pricing in the entire chain reaction."
+      },
+      {
+        "heading": "THE FII DYNAMIC",
+        "body": "Foreign institutional investors hold roughly 17% of Indian equities. They trade on macro signals — oil, the dollar, US yields — not company fundamentals. A single session of FII selling can move the Nifty 50 more than a quarter of domestic earnings reports. Indian retail investors often find themselves on the other side of these flows."
+      },
+      {
+        "heading": "THE HIDDEN TAX CUSHION",
+        "body": "India deliberately kept petrol and diesel outside its GST system, letting the centre and states stack taxes independently. At peak in 2020, taxes comprised 65% of petrol's retail price. When crude falls, the government can quietly raise excise duty to capture the savings rather than pass them to consumers — a fiscal shock absorber invisible to markets."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.526Z",
+    "label": "India's Oil Dependence",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-15-israel-targets-hospitals-medics-southern-lebanon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL FRAMEWORK",
+        "body": "The Geneva Conventions grant medical personnel, facilities, and transport a distinct protected status. Article 19 of the Fourth Geneva Convention states that hospitals shall not be attacked under any circumstances. The protection is absolute — not conditional on the belligerent's characterization of who is being treated inside."
+      },
+      {
+        "heading": "THE SOUTH LEBANON CONTEXT",
+        "body": "Israel occupied southern Lebanon from 1978 to 2000. The occupation created a distinct medical infrastructure — clinics and hospitals in the south operate with chronic underfunding and limited evacuation routes northward. When medical facilities are destroyed, the nearest alternatives are hours away across damaged roads."
+      },
+      {
+        "heading": "THE ICC JURISDICTION",
+        "body": "The ICC can investigate war crimes in Lebanon because Lebanon, while not a member of the ICC, can accept its jurisdiction on an ad hoc basis — and the UN Security Council can refer situations independently. In practice, referrals require no veto from the five permanent members. The US has historically vetoed or threatened to veto any referral involving Israel."
+      },
+      {
+        "heading": "THE PATTERN",
+        "body": "The WHO's Surveillance System for Attacks on Health Care has recorded over 2,000 attacks on medical facilities in conflict zones since 2018. No military has been prosecuted at the international level for systematic attacks on medical infrastructure. The legal framework is precise; the enforcement mechanism is absent."
+      },
+      {
+        "heading": "THE NAKBA CONTINUITY",
+        "body": "Israel's military operations in southern Lebanon follow a pattern established during the Nakba of 1948 and repeated in 1978, 1982, 1996, and 2006: ground operations in southern Lebanon accompanied by systematic destruction of civilian infrastructure. Each campaign displaced hundreds of thousands; each ended with the infrastructure rebuilt and the cycle repeated."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.526Z",
+    "label": "Medical Protection in War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-15-janaware-ransomware-targeting-turkey-geofenced": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW GEOFENCING WORKS",
+        "body": "Malware checks the system locale (keyboard language, regional settings) and the machine's IP geolocation before executing. If the system doesn't match the target country, the malware silently exits. This costs the attacker nothing — a few lines of code — but dramatically reduces detection by security researchers, most of whom run English-language lab environments."
+      },
+      {
+        "heading": "WHY SINGLE-COUNTRY TARGETING",
+        "body": "Most ransomware gangs exclude their home country (Russian groups skip CIS locales) to avoid domestic prosecution. Targeting a single foreign country is rarer and suggests either a grudge, a specific financial motive — like access to Turkish banking credentials — or a state-adjacent actor with a defined target set."
+      },
+      {
+        "heading": "THE PERSISTENCE SIGNAL",
+        "body": "Opportunistic ransomware campaigns burn fast — mass spam, quick encryption, move on. A six-year campaign against one country's systems indicates the operators have stable infrastructure, ongoing access to Turkish-language social engineering content, and a reason to sustain the operation. This profile fits an advanced persistent threat more than a criminal gang."
+      },
+      {
+        "heading": "TURKEY'S CYBER LANDSCAPE",
+        "body": "Turkey sits at the intersection of NATO's eastern flank, Kurdish conflict zones, and competition between Russian and Western intelligence services. Turkish systems have been targeted by groups attributed to Iran, Russia, and domestic actors. A geofenced campaign with unknown attribution fits a crowded and contested threat environment."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.526Z",
+    "label": "Geofenced Malware",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-15-japan-institutionalizes-drone-warfare-demographic-decline": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NUMBERS",
+        "body": "Japan's population peaked at 128 million in 2008 and is projected to fall below 100 million by 2050. The military-age cohort (18-26) is shrinking fastest — the Self-Defense Forces missed their recruitment target every year since 2014 and currently operate at roughly 90% of authorized strength."
+      },
+      {
+        "heading": "THE CONSTITUTIONAL CONSTRAINT",
+        "body": "Article 9 of Japan's 1947 constitution renounces war and prohibits maintaining 'war potential.' The Self-Defense Forces exist through a legal interpretation that self-defense is not war. Every military expansion — from overseas deployments to drone offices — must be framed within this fiction, which shapes procurement, doctrine, and institutional culture."
+      },
+      {
+        "heading": "THE 1% CEILING",
+        "body": "From 1976 to 2022, Japan informally capped defense spending at 1% of GDP. The 2022 National Security Strategy doubled this to 2%, making Japan the world's third-largest military spender in absolute terms by 2027. The money is available; the people to spend it on are not — which is exactly what makes automation attractive."
+      },
+      {
+        "heading": "THE DRONE DOCTRINE SHIFT",
+        "body": "Most militaries adopt drones to reduce casualties or cut costs. Japan is the first major military to adopt drones because it literally cannot fill the ranks with humans. This inverts the usual logic: drones are not replacing soldiers who could be there — they are filling positions that will never be filled. The demographic constraint makes the shift permanent, not doctrinal."
+      },
+      {
+        "heading": "THE UKRAINE LESSON",
+        "body": "Ukraine's use of cheap FPV drones against Russian armor demonstrated that small, expendable drones can neutralize systems costing thousands of times more. Japan's military planners watched a country with a smaller economy hold off a larger army partly through drone warfare — a model that maps directly onto Japan's own asymmetric defense problem."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.526Z",
+    "label": "Japan's Demographic Defense Crisis",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-15-mq4c-triton-drone-crash-persian-gulf-confirmed": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT TRITON DOES",
+        "body": "The MQ-4C Triton is a maritime surveillance variant of the Global Hawk. It flies at 55,000 feet for 24+ hours, carrying radar that can scan 7 million square kilometers of ocean in a single sortie. It exists to watch chokepoints — exactly the mission it was performing over Hormuz."
+      },
+      {
+        "heading": "THE 2019 PRECEDENT",
+        "body": "In June 2019, Iran's Revolutionary Guard shot down a US RQ-4A Global Hawk (Triton's parent design) over the Strait of Hormuz with a surface-to-air missile. The US came within minutes of retaliatory strikes before Trump called them off. The loss of a drone over Hormuz carries escalatory weight beyond its dollar value."
+      },
+      {
+        "heading": "WHY THE DELAY MATTERS",
+        "body": "The Pentagon confirmed the crash five days after it happened. Military aircraft losses are typically announced within hours. Delayed disclosure in a conflict zone usually means one of three things: the cause is embarrassing (mechanical failure of a flagship system), the cause is sensitive (electronic warfare or hostile action), or the wreckage landed somewhere problematic."
+      },
+      {
+        "heading": "THE COST SIGNAL",
+        "body": "At $238 million per unit, Triton is among the most expensive drones ever built — comparable to a manned fighter jet. The Navy planned to buy 68; budget cuts reduced the order. Each loss is not just an intelligence gap but a procurement crisis in a program that was already under pressure."
+      },
+      {
+        "heading": "THE INTELLIGENCE GAP",
+        "body": "Triton's radar and sensor suite provides the kind of persistent, wide-area maritime surveillance that satellites cannot — satellites pass overhead on fixed orbits, while Triton loiters. Losing one over Hormuz during a blockade creates a blind spot at the worst possible time, likely forcing manned aircraft into the same airspace at greater risk."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.526Z",
+    "label": "High-Altitude Surveillance Drones",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-15-pacific-islands-connectivity-shock-oil-prices": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEPENDENCY",
+        "body": "Pacific island nations import 100% of their fossil fuels. There are no pipelines, no refineries, no domestic reserves. Every litre of diesel arrives by tanker on routes that stretch thousands of kilometres across open ocean. A price spike at the source is amplified by transport costs that already double or triple the base price."
+      },
+      {
+        "heading": "THE CASCADING FAILURE",
+        "body": "Diesel does not just power vehicles in Pacific islands — it runs the generators that produce electricity, the pumps that supply water, and the boats that connect outer islands to central markets. A fuel price shock is simultaneously an electricity crisis, a water crisis, a food distribution crisis, and a communications crisis."
+      },
+      {
+        "heading": "THE STRATEGIC COMPETITION",
+        "body": "China has offered Pacific island nations infrastructure loans, port construction, and energy partnerships since 2018. Australia and the US countered with their own aid packages. For small island governments with annual budgets smaller than a mid-sized company's revenue, an energy crisis forces a choice between competing patrons — with sovereignty as the price."
+      },
+      {
+        "heading": "WHY RENEWABLES HAVEN'T SOLVED IT",
+        "body": "Pacific islands have abundant solar and wind resources, and several have set 100% renewable targets. But intermittent renewables need battery storage, which is expensive and degrades fast in tropical humidity. Most islands still run diesel generators as baseload power — the renewable transition reduced dependence on paper but not yet in practice."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.526Z",
+    "label": "Pacific Island Energy Vulnerability",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-15-pakistan-senate-smuggling-balochistan-revenue-losses": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRICE GAP",
+        "body": "Iran subsidizes domestic fuel at some of the lowest prices in the world — diesel sells for the equivalent of Rs50-70 per litre at Iranian pumps. Across the border in Pakistan, the legal price is nearly four times higher. That margin is the entire business model: no refining, no value addition, just arbitrage across a porous border."
+      },
+      {
+        "heading": "THE BORDER",
+        "body": "The Pakistan-Iran border runs 959 km through some of the most ungoverned terrain in either country. The Balochistan side has minimal road infrastructure, no permanent customs posts in several districts, and tribal governance structures that predate and often supersede the Pakistani state's authority."
+      },
+      {
+        "heading": "THE STATE ABSENCE",
+        "body": "Pakistan State Oil, the state-owned fuel distributor, does not operate in several Balochistan districts — meaning there is no legal alternative to smuggled fuel. The smuggling economy is not displacing a functioning market; it is the market. Shutting it down without building distribution infrastructure first would leave communities without fuel entirely."
+      },
+      {
+        "heading": "THE REVENUE MATH",
+        "body": "Pakistan levies petroleum development levy and sales tax on legal fuel sales — together roughly Rs80-100 per litre. Every litre of smuggled Iranian diesel that enters Balochistan is a litre on which the federal and provincial governments collect nothing. The Senate inquiry is driven by revenue loss, not border security."
+      },
+      {
+        "heading": "THE SANCTIONS LAYER",
+        "body": "Iranian fuel is under US secondary sanctions. Pakistan buying it through legal channels would trigger sanctions risk on Pakistani banks and institutions. The smuggling economy solves this by keeping the trade informal — no banking transactions, no customs declarations, no paper trail for US Treasury to follow."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.526Z",
+    "label": "Iran-Pakistan Fuel Smuggling",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-15-pirro-prosecutors-access-fed-headquarters": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DESIGN",
+        "body": "The Federal Reserve Act of 1913 deliberately placed the central bank outside the executive branch. The President appoints the chair to a four-year term but cannot remove them except for cause — defined as malfeasance, not policy disagreement. This structure was copied from the Bank of England model and hardened after political manipulation of monetary policy in the 19th century."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "In 1965, Lyndon Johnson physically intimidated Fed Chair William McChesney Martin at his Texas ranch, demanding lower rates. Martin partially capitulated, contributing to the inflation that plagued the 1970s. The episode became the textbook case for why central bank independence matters — and why 'soft' political pressure can be as damaging as formal removal."
+      },
+      {
+        "heading": "THE LEGAL FIREWALL",
+        "body": "The DOJ has no statutory authority over Federal Reserve operations, monetary policy, or personnel decisions. Sending prosecutors to the Fed building is legally equivalent to sending them to the Supreme Court — the institutions are coordinate, not subordinate. A federal judge already quashed the underlying subpoenas, making the physical visit an escalation beyond the legal process that was already rejected."
+      },
+      {
+        "heading": "THE MARKET MECHANISM",
+        "body": "Central bank independence is not just a governance principle — it is priced into every US Treasury bond. Investors accept lower yields because they trust the Fed will prioritize price stability over political convenience. Visible political interference raises the risk premium, increasing borrowing costs for the US government. The threat is self-defeating: pressuring the Fed to ease policy makes policy tighter by raising market rates."
+      },
+      {
+        "heading": "THE WARSH COMPLICATION",
+        "body": "Kevin Warsh, a former Fed governor, was nominated to replace Powell. Warsh is a known inflation hawk who has criticized the Fed's post-2020 policies. Blocking his confirmation until the investigation concludes means the political pressure campaign has stalled both the current chair and his designated replacement — leaving the Fed in institutional limbo."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.526Z",
+    "label": "Federal Reserve Independence",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-15-student-athletes-heat-deaths-no-national-standard": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PHYSIOLOGY",
+        "body": "Exertional heatstroke occurs when the body generates heat faster than it can shed it — core temperature exceeds 40°C and the central nervous system begins to fail. Unlike classic heatstroke in the elderly, it strikes young, fit athletes during intense exercise. Death can occur within 30 minutes of collapse if cooling is delayed."
+      },
+      {
+        "heading": "THE TREATMENT WINDOW",
+        "body": "Cold water immersion within 10 minutes of collapse has a near-100% survival rate in clinical studies. After 30 minutes, mortality rises sharply. The difference between a school that has a cold tub on the sideline and one that waits for an ambulance is frequently the difference between survival and death."
+      },
+      {
+        "heading": "THE REGULATORY VOID",
+        "body": "US high school sports are governed by state athletic associations, not federal regulation. There is no OSHA-equivalent for student athletes. Some states mandate wet bulb globe temperature monitoring and mandatory rest breaks; others have no heat policy at all. A student's protection depends entirely on which state line they live on."
+      },
+      {
+        "heading": "THE WET BULB MEASURE",
+        "body": "Wet bulb globe temperature combines heat, humidity, wind, and solar radiation into a single number. It is the gold standard for heat risk assessment in military and occupational settings. A dry temperature of 32°C with high humidity can be more dangerous than 38°C with low humidity — but most schools that have any policy at all use simple air temperature, which misses the danger."
+      },
+      {
+        "heading": "THE COUNTING PROBLEM",
+        "body": "No federal agency tracks heat-related deaths in student athletes. The CDC's death certificate system often codes heatstroke deaths as cardiac arrest, because the heart stops first. Independent researchers estimate 3-5 deaths per year in US high school football alone, but the true number is unknown — you cannot regulate what you do not measure."
+      }
+    ],
+    "generatedAt": "2026-04-15T04:30:34.526Z",
+    "label": "Exertional Heatstroke",
+    "category": "science",
+    "articleCount": 1
   }
 }
