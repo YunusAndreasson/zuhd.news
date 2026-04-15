@@ -2,8 +2,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SOURCES } from '../constants/sources';
 import { EDITORIAL, LAYOUT, SPACING } from '../constants/theme';
-import { ccToFlag } from '../lib/article-utils';
 import { useTheme } from '../hooks/useTheme';
+import { ccToFlag } from '../lib/article-utils';
 import type { ArticleSource } from '../types';
 
 type Tone = 'favorable' | 'unfavorable' | 'neutral' | null;
@@ -35,10 +35,13 @@ export function SourceRow({ source, isExpanded, onPress }: SourceRowProps) {
   const tone = computeTone(source.sentiment);
   const toneWord = tone ? TONE_LABELS[tone] : 'unknown';
   const toneBg =
-    tone === 'favorable' ? colors.toneFavorable
-    : tone === 'unfavorable' ? colors.toneUnfavorable
-    : tone === 'neutral' ? colors.toneNeutral
-    : colors.textSecondary;
+    tone === 'favorable'
+      ? colors.toneFavorable
+      : tone === 'unfavorable'
+        ? colors.toneUnfavorable
+        : tone === 'neutral'
+          ? colors.toneNeutral
+          : colors.textSecondary;
 
   return (
     <Pressable
@@ -87,10 +90,7 @@ export function SourceRow({ source, isExpanded, onPress }: SourceRowProps) {
           <Text selectable style={[styles.sourceType, textStyles.smallCapsXs]}>
             {info.type} · {info.location}
           </Text>
-          <Text
-            selectable
-            style={[styles.bodyText, textStyles.body, { color: colors.accent }]}
-          >
+          <Text selectable style={[styles.bodyText, textStyles.body, { color: colors.accent }]}>
             {info.description}
           </Text>
         </>

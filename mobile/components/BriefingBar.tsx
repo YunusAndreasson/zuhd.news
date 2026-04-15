@@ -99,7 +99,10 @@ export const BriefingBar = memo(function BriefingBar({
 
   const dateLabel = (() => {
     try {
-      return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      return new Date(`${date}T00:00:00`).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+      });
     } catch {
       return date;
     }
@@ -127,7 +130,8 @@ export const BriefingBar = memo(function BriefingBar({
               >
                 briefing
                 <Text style={{ ...font.regular, color: colors.textSecondary }}>
-                  {' \u00b7 '}{dateLabel}
+                  {' \u00b7 '}
+                  {dateLabel}
                 </Text>
               </Text>
             </View>
@@ -186,11 +190,7 @@ export const BriefingBar = memo(function BriefingBar({
               accessibilityRole="button"
               accessibilityLabel="Close briefing player"
             >
-              <Ionicons
-                name="close"
-                size={LAYOUT.iconMd}
-                color={colors.textSecondary}
-              />
+              <Ionicons name="close" size={LAYOUT.iconMd} color={colors.textSecondary} />
             </Pressable>
           </View>
 
@@ -233,9 +233,7 @@ export const BriefingBar = memo(function BriefingBar({
             accessibilityRole="button"
             accessibilityLabel="Play daily briefing"
           >
-            <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>
-              briefing
-            </Text>
+            <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>briefing</Text>
           </Pressable>
         </View>
       )}

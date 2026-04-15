@@ -2,5 +2,9 @@
 let pendingSlug: string | null = null;
 
 export const get = (): string | null => pendingSlug;
-export const set = (slug: string): void => { pendingSlug = slug; };
-export const clear = (): void => { pendingSlug = null; };
+export const set = (slug: string): void => {
+  pendingSlug = slug;
+};
+export const clear = (): void => {
+  pendingSlug = null;
+};

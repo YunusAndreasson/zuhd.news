@@ -63,7 +63,12 @@ export const SourceSheet = memo(function SourceSheet({
             <Text
               style={[
                 styles.coverageHeading,
-                { ...font.italic, fontSize: typography.sizeSm, color: colors.accent, fontStyle: 'italic' },
+                {
+                  ...font.italic,
+                  fontSize: typography.sizeSm,
+                  color: colors.accent,
+                  fontStyle: 'italic',
+                },
               ]}
             >
               {divergence != null &&

@@ -125,7 +125,15 @@ export const ArticlePage = memo(function ArticlePage({
   );
 
   const body = useMemo(
-    () => renderSentences(article.sentences, mdStyles, typography, bodyFontSize, article.location, timeAgo),
+    () =>
+      renderSentences(
+        article.sentences,
+        mdStyles,
+        typography,
+        bodyFontSize,
+        article.location,
+        timeAgo,
+      ),
     [article.sentences, mdStyles, typography, bodyFontSize, article.location, timeAgo],
   );
 

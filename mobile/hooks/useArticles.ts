@@ -1,11 +1,10 @@
 import { startTransition, useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
 import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
 import { readFeedCache, writeFeedCache } from '../lib/feed-cache';
-import { useAppResume } from './useAppResume';
 import { fetchWithTimeout } from '../lib/fetch';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
-
 import type { Article, Category, FeedResponse, MetaResponse } from '../types';
+import { useAppResume } from './useAppResume';
 
 type GroupedArticles = Record<Category, Article[]>;
 

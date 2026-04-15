@@ -29,7 +29,9 @@ const INFO_PAGES: Record<string, { title: string; sections: InfoSection[] }> = {
     sections: [
       { body: 'Zuhd \u2014 the discipline of doing without what you do not need.' },
       { body: 'What happened. Why it matters. What comes next. Then stop.' },
-      { body: 'Hundreds of sources across six continents, selected for editorial independence. Where a story is told from determines who is treated as a person and who as a statistic.' },
+      {
+        body: 'Hundreds of sources across six continents, selected for editorial independence. Where a story is told from determines who is treated as a person and who as a statistic.',
+      },
       { body: 'No social media, no investors, no editorial board.' },
       { link: { label: 'zuhd.news', url: 'https://zuhd.news' }, body: '' },
     ],
@@ -37,26 +39,54 @@ const INFO_PAGES: Record<string, { title: string; sections: InfoSection[] }> = {
   sources: {
     title: 'sources',
     sections: [
-      { body: 'Stories are compiled from hundreds of outlets indexed by EventRegistry. A language model selects and writes each article based on geographic breadth and editorial significance.' },
-      { heading: 'inclusion', body: 'Editorial independence determines inclusion. State-funded outlets qualify if editorially autonomous. Editorial interference disqualifies regardless of ownership.' },
-      { heading: 'transparency', body: 'Every article lists the outlets used, their country of origin, and how each covers the story. Tap \u201cmore\u201d on any article to inspect.' },
+      {
+        body: 'Stories are compiled from hundreds of outlets indexed by EventRegistry. A language model selects and writes each article based on geographic breadth and editorial significance.',
+      },
+      {
+        heading: 'inclusion',
+        body: 'Editorial independence determines inclusion. State-funded outlets qualify if editorially autonomous. Editorial interference disqualifies regardless of ownership.',
+      },
+      {
+        heading: 'transparency',
+        body: 'Every article lists the outlets used, their country of origin, and how each covers the story. Tap \u201cmore\u201d on any article to inspect.',
+      },
     ],
   },
   privacy: {
     title: 'privacy',
     sections: [
-      { body: 'No accounts. No analytics. No telemetry. No advertising. No crash reporting. No third-party SDKs.' },
-      { heading: 'data collection', body: 'None. The app makes HTTPS requests to zuhd-news.pages.dev and receives JSON. No device identifiers, IP addresses, or usage data are logged server-side.' },
-      { heading: 'local storage', body: 'Reading history, bookmarks, and preferences are stored on-device using AsyncStorage. This data never leaves your device.' },
-      { heading: 'network requests', body: 'Content fetches, context briefs, and audio downloads go to Cloudflare Pages. No third-party endpoints are contacted.' },
-      { heading: 'audio', body: 'Briefing audio is generated via Google Cloud TTS and hosted on our infrastructure. Google receives the text to synthesize; it does not receive any user data.' },
-      { heading: 'notifications', body: 'Push tokens are stored on our server to deliver alerts. No other identifying information is collected alongside the token.' },
+      {
+        body: 'No accounts. No analytics. No telemetry. No advertising. No crash reporting. No third-party SDKs.',
+      },
+      {
+        heading: 'data collection',
+        body: 'None. The app makes HTTPS requests to zuhd-news.pages.dev and receives JSON. No device identifiers, IP addresses, or usage data are logged server-side.',
+      },
+      {
+        heading: 'local storage',
+        body: 'Reading history, bookmarks, and preferences are stored on-device using AsyncStorage. This data never leaves your device.',
+      },
+      {
+        heading: 'network requests',
+        body: 'Content fetches, context briefs, and audio downloads go to Cloudflare Pages. No third-party endpoints are contacted.',
+      },
+      {
+        heading: 'audio',
+        body: 'Briefing audio is generated via Google Cloud TTS and hosted on our infrastructure. Google receives the text to synthesize; it does not receive any user data.',
+      },
+      {
+        heading: 'notifications',
+        body: 'Push tokens are stored on our server to deliver alerts. No other identifying information is collected alongside the token.',
+      },
     ],
   },
   contact: {
     title: 'contact',
     sections: [
-      { body: 'Questions, corrections, or feedback.', link: { label: 'contact@zuhd.news', url: 'mailto:contact@zuhd.news' } },
+      {
+        body: 'Questions, corrections, or feedback.',
+        link: { label: 'contact@zuhd.news', url: 'mailto:contact@zuhd.news' },
+      },
     ],
   },
 };
@@ -69,14 +99,15 @@ function MenuItem({ label, onPress }: { label: string; onPress: () => void }) {
   const { colors, textStyles } = useTheme();
   return (
     <Pressable
-      onPress={() => { hapticImpact(); onPress(); }}
+      onPress={() => {
+        hapticImpact();
+        onPress();
+      }}
       style={({ pressed }) => [styles.menuItem, pressed && PRESSED_STYLE]}
       accessibilityRole="button"
       accessibilityLabel={label}
     >
-      <Text style={[textStyles.smallCapsBase, { color: colors.text }]}>
-        {label}
-      </Text>
+      <Text style={[textStyles.smallCapsBase, { color: colors.text }]}>{label}</Text>
     </Pressable>
   );
 }
@@ -85,7 +116,10 @@ function InfoLink({ label, onPress }: { label: string; onPress: () => void }) {
   const { colors, font, typography } = useTheme();
   return (
     <Pressable
-      onPress={() => { hapticImpact(); onPress(); }}
+      onPress={() => {
+        hapticImpact();
+        onPress();
+      }}
       style={({ pressed }) => pressed && PRESSED_STYLE}
       accessibilityRole="button"
       accessibilityLabel={label}
@@ -173,17 +207,13 @@ export const MenuSheet = memo(function MenuSheet({
               accessibilityRole="button"
               accessibilityLabel="Back to menu"
             >
-              <Text style={[textStyles.smallCaps, { color: colors.text }]}>
-                {'\u2190 menu'}
-              </Text>
+              <Text style={[textStyles.smallCaps, { color: colors.text }]}>{'\u2190 menu'}</Text>
             </Pressable>
 
             {infoData.sections.map((section, i) => (
               <View key={i} style={i > 0 ? styles.infoSection : undefined}>
                 {section.heading && (
-                  <Text style={[styles.infoHeading, textStyles.smallCaps]}>
-                    {section.heading}
-                  </Text>
+                  <Text style={[styles.infoHeading, textStyles.smallCaps]}>{section.heading}</Text>
                 )}
                 {section.body.length > 0 && (
                   <Text

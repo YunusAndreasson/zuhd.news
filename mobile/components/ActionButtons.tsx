@@ -26,9 +26,7 @@ export const ActionButtons = memo(function ActionButtons({
         accessibilityRole="button"
         accessibilityLabel="Search"
       >
-        <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>
-          search
-        </Text>
+        <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>search</Text>
       </Pressable>
       <Pressable
         onPress={onBookmarkPress}
@@ -41,9 +39,7 @@ export const ActionButtons = memo(function ActionButtons({
         accessibilityRole="button"
         accessibilityLabel="Saved articles"
       >
-        <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>
-          saved
-        </Text>
+        <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>saved</Text>
       </Pressable>
     </View>
   );

@@ -1,24 +1,23 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, use } from 'react';
-import { Platform, useColorScheme } from 'react-native';
 import * as NavigationBar from 'expo-navigation-bar';
 import * as SystemUI from 'expo-system-ui';
+import { createContext, use, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { Platform, useColorScheme } from 'react-native';
 import {
+  type AppearanceMode,
   BG_RGB,
+  type ColorPalette,
   DARK_COLORS,
-  DEFAULT_PREFS,
   FONT_SIZE_SCALE,
   FONT_SOURCE,
   FONT_SYSTEM,
+  type FontFamily,
+  type FontSet,
+  type FontSize,
   LIGHT_COLORS,
   makeBgAlpha,
   makeSheetStyles,
   makeTextStyles,
   makeTypography,
-  type AppearanceMode,
-  type ColorPalette,
-  type FontFamily,
-  type FontSet,
-  type FontSize,
   type Preferences,
   type TextStyles,
   type Typography,
@@ -129,7 +128,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const theme = useMemo<Theme>(() => {
     const resolvedAppearance: 'dark' | 'light' =
       prefs.appearance === 'system'
-        ? (systemScheme === 'light' ? 'light' : 'dark')
+        ? systemScheme === 'light'
+          ? 'light'
+          : 'dark'
         : prefs.appearance;
 
     const colors = resolvedAppearance === 'dark' ? DARK_COLORS : LIGHT_COLORS;
@@ -157,7 +158,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       setHaptics,
       setNotifications,
     };
-  }, [prefs, systemScheme, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications]);
+  }, [
+    prefs,
+    systemScheme,
+    setFontSize,
+    setFontFamily,
+    setAppearance,
+    setHaptics,
+    setNotifications,
+  ]);
 
   // Sync native system UI (Android nav bar + root background) with theme
   useEffect(() => {
@@ -165,7 +174,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     SystemUI.setBackgroundColorAsync(colors.bg).catch(() => {});
     if (Platform.OS === 'android') {
       NavigationBar.setBackgroundColorAsync(colors.bg).catch(() => {});
-      NavigationBar.setButtonStyleAsync(resolvedAppearance === 'dark' ? 'light' : 'dark').catch(() => {});
+      NavigationBar.setButtonStyleAsync(resolvedAppearance === 'dark' ? 'light' : 'dark').catch(
+        () => {},
+      );
     }
   }, [theme.colors.bg, theme.resolvedAppearance]);
 
