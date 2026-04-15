@@ -119,15 +119,6 @@ export async function registerPushToken(): Promise<void> {
   }
 }
 
-/** Get stored push token (for debugging). */
-export async function getStoredPushToken(): Promise<string | null> {
-  try {
-    return await getItemAsync(TOKEN_KEY);
-  } catch {
-    return null;
-  }
-}
-
 /** Unregister push token from the backend. */
 export async function unregisterPushToken(): Promise<void> {
   try {

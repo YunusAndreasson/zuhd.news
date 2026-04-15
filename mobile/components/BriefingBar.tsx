@@ -48,7 +48,7 @@ export const BriefingBar = memo(function BriefingBar({
   onCycleRate,
   onClose,
 }: BriefingBarProps) {
-  const { colors, font, typography } = useTheme();
+  const { colors, font, typography, textStyles } = useTheme();
   const insets = useSafeAreaInsets();
   const barWidth = useRef(0);
   const expanded = playing || elapsed > 0;
@@ -122,15 +122,7 @@ export const BriefingBar = memo(function BriefingBar({
           <View style={styles.row}>
             <View style={styles.info}>
               <Text
-                style={[
-                  styles.title,
-                  {
-                    ...font.smallCaps,
-                    fontSize: typography.sizeSm,
-                    letterSpacing: typography.trackingCaps,
-                    color: colors.textEmphasis,
-                  },
-                ]}
+                style={[styles.title, textStyles.smallCaps, { color: colors.textEmphasis }]}
                 numberOfLines={1}
               >
                 briefing
@@ -241,14 +233,7 @@ export const BriefingBar = memo(function BriefingBar({
             accessibilityRole="button"
             accessibilityLabel="Play daily briefing"
           >
-            <Text
-              style={{
-                ...font.smallCaps,
-                fontSize: typography.sizeXs,
-                letterSpacing: typography.trackingCaps,
-                color: colors.textEmphasis,
-              }}
-            >
+            <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>
               briefing
             </Text>
           </Pressable>

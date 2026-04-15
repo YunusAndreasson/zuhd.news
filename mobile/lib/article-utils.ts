@@ -12,6 +12,12 @@ export function formatTimeAgo(addedAt: number): string {
   return date.toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 }
 
+export function ccToFlag(cc: string): string {
+  return cc
+    .toUpperCase()
+    .replace(/./g, (c) => String.fromCodePoint(0x1f1e6 + c.charCodeAt(0) - 65));
+}
+
 export function computeFontScale(title: string, sentences: string[]): number {
   const contentLength = title.length * 2 + sentences.join(' ').length;
   const threshold = 450;

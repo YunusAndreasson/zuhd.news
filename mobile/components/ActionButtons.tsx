@@ -12,7 +12,7 @@ export const ActionButtons = memo(function ActionButtons({
   onSearchPress,
   onBookmarkPress,
 }: ActionButtonsProps) {
-  const { colors, font, typography } = useTheme();
+  const { colors, textStyles } = useTheme();
   return (
     <View style={styles.row}>
       <Pressable
@@ -26,14 +26,7 @@ export const ActionButtons = memo(function ActionButtons({
         accessibilityRole="button"
         accessibilityLabel="Search"
       >
-        <Text
-          style={{
-            ...font.smallCaps,
-            fontSize: typography.sizeXs,
-            letterSpacing: typography.trackingCaps,
-            color: colors.textEmphasis,
-          }}
-        >
+        <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>
           search
         </Text>
       </Pressable>
@@ -48,14 +41,7 @@ export const ActionButtons = memo(function ActionButtons({
         accessibilityRole="button"
         accessibilityLabel="Saved articles"
       >
-        <Text
-          style={{
-            ...font.smallCaps,
-            fontSize: typography.sizeXs,
-            letterSpacing: typography.trackingCaps,
-            color: colors.textEmphasis,
-          }}
-        >
+        <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>
           saved
         </Text>
       </Pressable>
