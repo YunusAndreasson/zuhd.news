@@ -140,7 +140,6 @@ interface MenuSheetProps {
   bottomInset: number;
   renderBackdrop: React.FC<BottomSheetBackdropProps>;
   onDismiss: () => void;
-  onSearchPress: () => void;
   onBookmarkPress: () => void;
   onSettingsPress: () => void;
 }
@@ -150,7 +149,6 @@ export const MenuSheet = memo(function MenuSheet({
   bottomInset,
   renderBackdrop,
   onDismiss,
-  onSearchPress,
   onBookmarkPress,
   onSettingsPress,
 }: MenuSheetProps) {
@@ -253,7 +251,6 @@ export const MenuSheet = memo(function MenuSheet({
         ) : (
           /* ── Menu view ── */
           <>
-            <MenuItem label="search" onPress={onSearchPress} />
             <MenuItem label="saved" onPress={onBookmarkPress} />
             <MenuItem label="settings" onPress={onSettingsPress} />
 
