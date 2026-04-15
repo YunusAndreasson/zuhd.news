@@ -20,7 +20,6 @@ interface CategoryBarProps {
   currentCategory: number;
   onCategoryPress: (index: number) => void;
   onSearchPress: () => void;
-  onMenuPress: () => void;
 }
 
 function TabLabel({
@@ -77,7 +76,6 @@ export const CategoryBar = memo(function CategoryBar({
   currentCategory,
   onCategoryPress,
   onSearchPress,
-  onMenuPress,
 }: CategoryBarProps) {
   const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
@@ -160,13 +158,10 @@ export const CategoryBar = memo(function CategoryBar({
         </Pressable>
         <Pressable
           onPress={onSearchPress}
-          onLongPress={onMenuPress}
-          delayLongPress={400}
           hitSlop={12}
           style={({ pressed }) => pressed && PRESSED_STYLE}
           accessibilityRole="button"
           accessibilityLabel="Search"
-          accessibilityHint="Long press for menu"
         >
           <Ionicons name="search" size={typography.sizeBase} color={colors.textSecondary} />
         </Pressable>
