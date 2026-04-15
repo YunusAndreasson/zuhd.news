@@ -163,13 +163,19 @@ function getSunPosition(): [number, number] {
 // Night check — is the sun below the horizon at the user's approximate location?
 // Uses timezone offset for longitude, 25°N as latitude proxy (primary audience band).
 // Cached 60s (matches sun position cache).
+const localTimeCache = new Map<string, { ts: number; value: string }>();
 function formatLocalTime(tz: string): string | null {
+  const now = Date.now();
+  const cached = localTimeCache.get(tz);
+  if (cached && now - cached.ts < 30_000) return cached.value;
   try {
-    return new Date().toLocaleTimeString('en-GB', {
+    const value = new Date(now).toLocaleTimeString('en-GB', {
       timeZone: tz,
       hour: '2-digit',
       minute: '2-digit',
     });
+    localTimeCache.set(tz, { ts: now, value });
+    return value;
   } catch {
     return null;
   }
@@ -724,7 +730,6 @@ export const MiniGlobe = memo(function MiniGlobe({
           // Look up IANA timezone: city first (handles large countries like US/Russia),
           // then fall back to country-level timezone.
           let sub: string | undefined;
-          const article = articlesRef.current[settledIndex];
           const cityKey = (article?.location ?? '').toLowerCase();
           const tz = CITY_TZ[cityKey] ?? (settledCountry ? COUNTRY_TZ[settledCountry] : undefined);
           if (tz) sub = formatLocalTime(tz) ?? undefined;
@@ -789,11 +794,15 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (pt) makkah = { x: pt[0], y: pt[1] };
       }
 
-      // Qibla arc — great circle from story location to Makkah
+      // Qibla + source arcs — only compute when near a settled position.
+      // During mid-scroll (frac 0.1–0.9) these arcs are invisible behind the
+      // transitioning globe, so skip ~50+ interpolation steps per frame.
+      const nearSettled = frac < 0.1 || frac > 0.9;
+
       const qiblaP = qiblaPathRef.current;
       qiblaP.reset();
       let hasQibla = false;
-      if (geo) {
+      if (nearSettled && geo) {
         const storyPt: [number, number] = [geo.lng, geo.lat];
         if (geoDistance(storyPt, MAKKAH.coords) > 0.02) {
           const interp = geoInterpolate(storyPt, MAKKAH.coords);
@@ -817,7 +826,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const srcArcs = sourceArcsRef.current;
       srcArcs.reset();
       let hasSourceArcs = false;
-      if (geo) {
+      if (nearSettled && geo) {
         const storyPt: [number, number] = [geo.lng, geo.lat];
         const article = articlesRef.current[settledIndex];
         if (article?.sources) {
