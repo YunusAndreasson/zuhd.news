@@ -141,21 +141,19 @@ export default function HomeScreen() {
     searchSheetRef.current?.present();
   }, []);
 
+  const handleMenuPress = useCallback(() => {
+    hapticImpact();
+    menuSheetRef.current?.present();
+  }, []);
+
   const handleSettingsPress = useCallback(() => {
-    searchSheetRef.current?.dismiss();
     menuSheetRef.current?.dismiss();
     setTimeout(() => settingsSheetRef.current?.present(), 250);
   }, []);
 
-  const handleBookmarkPress = useCallback(() => {
-    searchSheetRef.current?.dismiss();
+  const handleMenuBookmark = useCallback(() => {
     menuSheetRef.current?.dismiss();
     setTimeout(() => bookmarkSheetRef.current?.present(), 250);
-  }, []);
-
-  const handleMenuFromSearch = useCallback(() => {
-    searchSheetRef.current?.dismiss();
-    setTimeout(() => menuSheetRef.current?.present(), 250);
   }, []);
 
   const handleDeeperPress = useCallback(() => {
@@ -371,6 +369,7 @@ export default function HomeScreen() {
         currentCategory={currentCategory}
         onCategoryPress={onCategoryPress}
         onSearchPress={handleSearchPress}
+        onMenuPress={handleMenuPress}
       />
 
       <PagerView
@@ -517,7 +516,7 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => {}}
-        onBookmarkPress={handleBookmarkPress}
+        onBookmarkPress={handleMenuBookmark}
         onSettingsPress={handleSettingsPress}
       />
 
@@ -559,9 +558,6 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onSelectArticle={handleSelectArticle}
-        onBookmarkPress={handleBookmarkPress}
-        onSettingsPress={handleSettingsPress}
-        onMenuPress={handleMenuFromSearch}
         onDismiss={() => {}}
       />
 
