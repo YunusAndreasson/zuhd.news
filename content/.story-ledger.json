@@ -2,13 +2,248 @@
   "version": 1,
   "stories": [
     {
+      "id": "eu-age-verification-app-announced-to-protect-children-online",
+      "label": "EU age verification app announced to protect children online",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-eu-age-verification-app-announced-to-protect-children-online"
+      ],
+      "eventUri": "spa-4168729",
+      "summary": "The EU has built a digital age verification app and declared it ready for rollout across all member states. The angle isn't child safety — it's infrastructure. This is the EU building a bloc-wide digital identity layer under the banner of protecting children. Five sources across Belgium, Germany, India, and Hong Kong frame it differently: Politico focuses on the regulatory push, SCMP on the surveillance implications. The reader should see the template: once governments build age verification infrastructure, it becomes identity verification infrastructure. Who controls it, who audits it, and what else it gets used for are the questions that matter.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ursula_von_der_Leyen",
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Brussels",
+        "http://en.wikipedia.org/wiki/European_Commission",
+        "http://en.wikipedia.org/wiki/Mobile_app",
+        "http://en.wikipedia.org/wiki/President_of_the_European_Commission",
+        "http://en.wikipedia.org/wiki/Member_state_of_the_European_Union"
+      ]
+    },
+    {
+      "id": "brazil-police-probe-presidential-candidate-flavio-bolsonaro",
+      "label": "Brazil's police open a probe into presidential candidate Flavio Bolsonaro",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-brazil-police-probe-presidential-candidate-flavio-bolsonaro"
+      ],
+      "eventUri": "por-1246316",
+      "summary": "Brazil's Supreme Court ordered a federal police probe into Flávio Bolsonaro — son of the convicted coup plotter — for defaming President Lula during the presidential campaign. Justice Alexandre de Moraes, who led the investigation into the January 2023 insurrection, authorized the probe. Lead with the pattern: the Bolsonaro family keeps testing judicial boundaries, and Brazil's courts keep responding with prosecution. The reader should see this as Latin America's most consequential accountability experiment — can a democracy prosecute the family of a former president while they're actively running for office again?",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Luiz_Inácio_Lula_da_Silva",
+        "http://en.wikipedia.org/wiki/Flávio_Bolsonaro",
+        "http://en.wikipedia.org/wiki/Alexandre_de_Moraes",
+        "http://en.wikipedia.org/wiki/Federal_Police_of_Brazil",
+        "http://en.wikipedia.org/wiki/Supreme_Federal_Court",
+        "http://pt.wikipedia.org/wiki/Inquérito_policial",
+        "http://en.wikipedia.org/wiki/Calumny",
+        "http://en.wikipedia.org/wiki/Social_network"
+      ]
+    },
+    {
+      "id": "south-africa-10-professionals-assassinated-zero-masterminds",
+      "label": "10 professionals assassinated in three years, zero masterminds arrested",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-south-africa-10-professionals-assassinated-zero-masterminds"
+      ],
+      "eventUri": null,
+      "summary": "Ten municipal finance officials and professionals assassinated in South Africa's Gauteng province over three years — zero masterminds arrested. CCTV footage shows Martha Rantsofu shot metres from a police station. Lead with the impunity: contract killings of public servants who control budgets are a governance crisis, not just a crime story. The reader should see the mechanism — when officials who stand between corruption and public money are systematically eliminated, accountability dies with them. This is structural state capture through assassination.",
+      "conceptUris": []
+    },
+    {
+      "id": "berlin-conference-sudan-1-5bn-humanitarian-aid",
+      "label": "Berlin Conference co-hosts pledge €1.5bn humanitarian aid for Sudan",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-berlin-conference-sudan-1-5bn-humanitarian-aid"
+      ],
+      "eventUri": "eng-11567909",
+      "summary": "The Berlin Conference pledged €1.5 billion for Sudan — €750 million from the EU alone — while declaring Sudan 'will not become a forgotten crisis.' Lead with the gap: yesterday's UNDP numbers showed 70% poverty and a country in structural collapse, and today's response is pledges that amount to roughly €30 per affected person. The reader already knows the war's scale; this story is about whether the international response matches it. Compare Berlin's €1.5bn to what the US and allies spend weekly on the Iran war — the disparity reveals whose suffering commands resources.",
+      "conceptUris": []
+    },
+    {
+      "id": "trump-threatens-uk-trade-deal-starmer-iran-war",
+      "label": "Trump threatens to scrap UK trade deal over Starmer's refusal to join Iran war",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-trump-threatens-uk-trade-deal-starmer-iran-war"
+      ],
+      "eventUri": "eng-11570496",
+      "summary": "Trump threatened to tear up the US-UK trade deal because Starmer refused to send the Royal Navy to help blockade Iran's Strait of Hormuz. Starmer said no. Lead with the refusal — Britain's closest ally demanded war participation as the price of trade, and London calculated the cost was too high. The reader should see the template: the Iran war is now a loyalty test that Washington is administering to every ally, with economic punishment for those who decline. Premium Times Nigeria's framing from outside the Western alliance is the right lens.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Keir_Starmer",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Sky_News",
+        "http://en.wikipedia.org/wiki/Prime_Minister_of_the_United_Kingdom",
+        "http://en.wikipedia.org/wiki/State_visit",
+        "http://en.wikipedia.org/wiki/Prime_Minister's_Questions"
+      ]
+    },
+    {
+      "id": "imf-middle-east-growth-hardest-hit-iran-war",
+      "label": "Middle East growth hardest hit from Iran war, IMF says",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-imf-middle-east-growth-hardest-hit-iran-war"
+      ],
+      "eventUri": null,
+      "summary": "The IMF has quantified the regional economic damage: the Middle East is the hardest-hit region from the Iran war, with growth forecasts slashed across the board. Lead with the IMF's assessment alongside yesterday's IEA declaration of the 'worst oil shock in history' — two global institutions now confirm the scale. The reader who follows macro should see the compounding effect: the IEA sees supply destruction, the IMF sees demand destruction, and the region caught between them has no agency in the conflict that's destroying its economy. Salaam Gateway's Islamic finance audience provides the right framing for how this hits Muslim-majority economies.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-lng-spot-market-iran-war-supply-disruption",
+      "label": "Pakistan considering buying LNG on spot market to offset supply disruptions caused by Iran war",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-pakistan-lng-spot-market-iran-war-supply-disruption"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan is scrambling to buy LNG on the spot market after Qatar declared force majeure on its gas deliveries — a direct consequence of the Hormuz blockade. The petroleum minister says they'd prefer government-to-government deals to avoid 'steep premiums,' but those premiums are already baked in. Lead with the force majeure: Qatar, Pakistan's primary gas supplier, can't deliver because the strait is blocked, and Pakistan's 230 million people face energy shortages as a result. The reader should see the chain: US blockade → Qatar force majeure → Pakistan spot market scramble → higher consumer prices in a country where millions already can't afford fuel.",
+      "conceptUris": []
+    },
+    {
+      "id": "bangladesh-crossroads-renewables-imported-fuel-chaos",
+      "label": "Bangladesh at the Crossroads: Renewables or Imported Fuel Chaos",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-bangladesh-crossroads-renewables-imported-fuel-chaos"
+      ],
+      "eventUri": null,
+      "summary": "Bangladesh's 177 million people face an energy crisis as the Iran war chokes imported coal and gas supplies. Experts are urging the government to pivot to renewables, but the country's energy infrastructure was built around imports. Lead with the dependency trap: Bangladesh chose imported fuel over domestic renewables for decades, and now the Hormuz blockade has exposed that bet as catastrophic. The reader should see this as the structural argument for energy sovereignty — countries that depend on fuel transiting conflict zones don't control their own lights.",
+      "conceptUris": []
+    },
+    {
+      "id": "climate-change-beekeeping-democratic-republic-congo",
+      "label": "When climate change impairs beekeeping in the Democratic Republic of the Congo",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-climate-change-beekeeping-democratic-republic-congo"
+      ],
+      "eventUri": null,
+      "summary": "Climate change is drying up beehives in the DRC — a country where beekeeping supports food security and rural livelihoods in communities with almost no access to formal employment. Lead with the mechanism: shifting rainfall patterns disrupt flowering cycles, bees produce less honey, and families who depend on that honey for income and nutrition lose both at once. The reader should see this as climate adaptation failure at the most local level — no government program reaches these communities, and no international fund covers beehive collapse. Africa's climate crisis is measured in hives, not headlines.",
+      "conceptUris": []
+    },
+    {
+      "id": "polar-ice-changes-rules-governing-it",
+      "label": "As polar ice changes, so do the rules governing it",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-polar-ice-changes-rules-governing-it"
+      ],
+      "eventUri": null,
+      "summary": "Sea ice isn't solid — it's riddled with tiny brine channels whose connectivity determines whether seawater, nutrients, and gases can pass through. University of Utah mathematician Ken Golden's decades of research shows that as ice thins, these channels connect in new ways, fundamentally changing how ice interacts with the ocean and atmosphere. Lead with the counterintuitive finding: the physics of ice change as the ice changes, which means climate models built on old ice physics are modelling a substance that no longer exists. The reader should see why this matters: if the rules governing ice are shifting, predictions about ice sheet collapse and sea level rise need recalibrating.",
+      "conceptUris": []
+    },
+    {
+      "id": "totalrecall-reloaded-windows-recall-database-bypass",
+      "label": "\"TotalRecall Reloaded\" tool finds a side entrance to Windows 11's Recall database",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-totalrecall-reloaded-windows-recall-database-bypass"
+      ],
+      "eventUri": "eng-11572061",
+      "summary": "Microsoft's Windows Recall — the AI feature that screenshots everything you do — has been bypassed again. A security researcher found a 'side entrance' to the encrypted database, two years after Microsoft promised the original TotalRecall vulnerability was fixed. Lead with the persistence: this is the second time researchers have cracked Recall's protections, which means the architectural decision to record everything a user does remains fundamentally dangerous regardless of encryption layers. The reader is a developer who will understand why 'encrypt the surveillance database' is not the same as 'don't build a surveillance database.'",
+      "conceptUris": []
+    },
+    {
+      "id": "nist-limit-cve-entries-submissions-surge",
+      "label": "NIST to limit work on CVE entries as submissions surge",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-nist-limit-cve-entries-submissions-surge"
+      ],
+      "eventUri": null,
+      "summary": "NIST is abandoning its mission to categorize every cybersecurity vulnerability. The agency will now only add details to CVE entries that meet a 'certain threshold' — meaning thousands of vulnerabilities will go unanalyzed in the national database that security teams worldwide depend on. Lead with the institutional retreat: the CVE system is the backbone of vulnerability management for every enterprise, and the agency that maintains it just said it can't keep up. The reader should see the systemic risk: when the catalog of known vulnerabilities becomes incomplete, defenders lose the map they navigate by.",
+      "conceptUris": []
+    },
+    {
+      "id": "ukraine-russians-surrendering-to-robots",
+      "label": "Ukraine Says Russians are Surrendering to Robots",
+      "firstSeen": "2026-04-15T22:06:55.963Z",
+      "lastCovered": "2026-04-15T22:06:55.963Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-ukraine-russians-surrendering-to-robots"
+      ],
+      "eventUri": null,
+      "summary": "Russian soldiers are surrendering to Ukrainian ground robots — unmanned vehicles that roll up to positions and accept capitulation without a human present. Zelenskyy is now pitching Ukraine as a global leader in military robotics. Lead with the image: a soldier surrendering to a machine. This is the first documented case of humans surrendering to autonomous platforms in combat. The reader should see the precedent: Ukraine's battlefield is the proving ground for every military's future doctrine, and 'robots accepting surrender' is a capability no international law framework has addressed.",
+      "conceptUris": []
+    },
+    {
       "id": "voice-actors-fight-to-save-their-livelihoods-and-local-cultu",
       "label": "Voice actors fight to save their livelihoods and local cultures from Hollywood's AI push",
       "firstSeen": "2026-04-15T12:10:30.744Z",
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-04-15-voice-actors-fight-to-save-their-livelihoods-and-local-cultu"
@@ -24,7 +259,7 @@
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-15-four-killed-in-turkiye-s-second-school-shooting-in-two-days"
@@ -49,7 +284,7 @@
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-15-asim-munir-in-iran-to-deliver-us-s-message-after-islamabad-t"
@@ -74,7 +309,7 @@
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-15-israel-says-thunberg-more-influential-antisemite-than-fuente"
@@ -90,7 +325,7 @@
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-15-trump-threatens-to-fire-fed-chair-powell-if-he-doesn-t-leave"
@@ -115,7 +350,7 @@
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-15-nigeria-s-food-inflation-drops-to-14-31"
@@ -131,7 +366,7 @@
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-15-new-3d-map-of-universe-could-solve-dark-energy-mystery"
@@ -147,7 +382,7 @@
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-15-the-ancient-weapons-active-in-your-immune-system-today"
@@ -163,7 +398,7 @@
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-15-snapchat-owner-cuts-1-000-jobs-as-says-ai-will-reduce-repeti"
@@ -188,7 +423,7 @@
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-15-educational-company-mcgraw-hill-says-salesforce-misconfigura"
@@ -204,7 +439,7 @@
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-14-backblaze-has-stopped-backing-up-onedrive-and-dropbox-folder"
@@ -220,7 +455,7 @@
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 5,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "ongoing",
       "articles": [
         "2026-04-14-ebrd-palestinian-trade-arab-islamic-bank",
@@ -238,7 +473,7 @@
       "lastCovered": "2026-04-15T17:06:48.856Z",
       "coverageCount": 4,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-04-14-educated-baloch-women-militancy-pakistan",
@@ -256,7 +491,7 @@
       "lastCovered": "2026-04-15T12:10:30.744Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-14-war-pushes-poverty-in-sudan-to-70-percent-un-warns"
@@ -281,7 +516,7 @@
       "lastCovered": "2026-04-15T12:10:30.744Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-14-trump-says-2nd-round-of-u-s-iran-talks-could-take-place-this"
@@ -306,7 +541,7 @@
       "lastCovered": "2026-04-15T12:10:30.744Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-15-privilege-for-none-pakistan-calls-for-abolition-of-unsc-veto"
@@ -322,7 +557,7 @@
       "lastCovered": "2026-04-15T12:10:30.744Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-15-japan-offers-10bn-support-to-help-asian-neighbors-secure-oil"
@@ -347,7 +582,7 @@
       "lastCovered": "2026-04-15T12:10:30.744Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-15-indonesia-expands-defence-ties-with-france-on-back-of-moscow"
@@ -372,7 +607,7 @@
       "lastCovered": "2026-04-15T12:10:30.744Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-15-no-one-s-sure-if-synthetic-mirror-life-will-kill-us-all"
@@ -388,7 +623,7 @@
       "lastCovered": "2026-04-15T12:10:30.744Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-15-bottled-lightning-makes-a-cleaner-fuel"
@@ -404,7 +639,7 @@
       "lastCovered": "2026-04-15T12:10:30.744Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-15-cyberscammers-are-bypassing-banks-security-with-illicit-tool"
@@ -420,7 +655,7 @@
       "lastCovered": "2026-04-15T12:10:30.744Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-13-github-stacked-prs"
@@ -436,7 +671,7 @@
       "lastCovered": "2026-04-15T08:07:32.148Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-15-north-korea-nuclear-expansion-iaea-grossi"
@@ -461,7 +696,7 @@
       "lastCovered": "2026-04-15T08:07:32.148Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-15-xi-lavrov-china-russia-strategic-coordination"
@@ -486,7 +721,7 @@
       "lastCovered": "2026-04-15T08:07:32.148Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-15-oman-iran-hormuz-tightrope-neutrality"
@@ -502,7 +737,7 @@
       "lastCovered": "2026-04-15T08:07:32.148Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-15-iran-chinese-spy-satellite-us-bases"
@@ -527,7 +762,7 @@
       "lastCovered": "2026-04-15T08:07:32.148Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-15-iran-war-poverty-millions-undp"
@@ -543,7 +778,7 @@
       "lastCovered": "2026-04-15T08:07:32.148Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-15-copper-chalcopyrite-extraction-energy-transition"
@@ -559,7 +794,7 @@
       "lastCovered": "2026-04-15T08:07:32.148Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-15-ai-revolution-mathematics-proofs-quanta"
@@ -575,7 +810,7 @@
       "lastCovered": "2026-04-15T08:07:32.148Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-15-backblaze-stops-cloud-folder-backups"
@@ -591,7 +826,7 @@
       "lastCovered": "2026-04-15T08:07:32.148Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-15-google-back-button-hijacking-spam-policy"
@@ -607,7 +842,7 @@
       "lastCovered": "2026-04-15T08:07:32.148Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-15-coupling-inertial-viscoelastic-and-enhanced-secondary-flow-i"
@@ -623,7 +858,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-pirro-prosecutors-access-fed-headquarters"
@@ -645,7 +880,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-israel-targets-hospitals-medics-southern-lebanon"
@@ -661,7 +896,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-china-xi-four-point-peace-proposal-us-iran"
@@ -683,7 +918,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-mq4c-triton-drone-crash-persian-gulf-confirmed"
@@ -699,7 +934,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-pakistan-senate-smuggling-balochistan-revenue-losses"
@@ -715,7 +950,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-pacific-islands-connectivity-shock-oil-prices"
@@ -731,7 +966,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-student-athletes-heat-deaths-no-national-standard"
@@ -747,7 +982,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-big-tech-ignores-opt-out-tracking-194-services"
@@ -763,7 +998,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-janaware-ransomware-targeting-turkey-geofenced"
@@ -779,7 +1014,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-airbnb-hosts-outsource-messages-ai-chatbots"
@@ -795,7 +1030,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-japan-institutionalizes-drone-warfare-demographic-decline"
@@ -811,7 +1046,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-sensex-nifty-50-set-to-rebound-as-cooling-crude-oil-prices-e"
@@ -827,7 +1062,7 @@
       "lastCovered": "2026-04-15T04:09:39.367Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-15-an-agentic-ai-system-for-automated-pharmacogenomic-recommend"
@@ -843,7 +1078,7 @@
       "lastCovered": "2026-04-15T12:10:30.744Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-14-ai-revolution-math-proof",
@@ -860,7 +1095,7 @@
       "lastCovered": "2026-04-14T22:06:02.608Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-14-oil-shock-nuclear-surge-asia",
@@ -877,7 +1112,7 @@
       "lastCovered": "2026-04-14T22:06:02.608Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-14-virginia-geolocation-data-sales-ban",
@@ -894,7 +1129,7 @@
       "lastCovered": "2026-04-14T22:06:02.608Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-14-us-drug-boat-strikes-168-killed-no-oversight"
@@ -910,7 +1145,7 @@
       "lastCovered": "2026-04-14T22:06:02.608Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-14-appeals-court-blocks-deportation-contempt"
@@ -935,7 +1170,7 @@
       "lastCovered": "2026-04-14T22:06:02.608Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-14-bangladesh-reform-process-stalled-bnp"
@@ -951,7 +1186,7 @@
       "lastCovered": "2026-04-14T22:06:02.608Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-14-iea-iran-war-worst-oil-shock-history"
@@ -973,7 +1208,7 @@
       "lastCovered": "2026-04-14T22:06:02.608Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-14-taunsa-hospital-hiv-malpractice-continues-pakistan"
@@ -989,7 +1224,7 @@
       "lastCovered": "2026-04-14T22:06:02.608Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-14-ai-cybersecurity-models-openai-anthropic-uk-tests"
@@ -1014,195 +1249,13 @@
       "lastCovered": "2026-04-14T22:06:02.608Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-14-thomson-reuters-fired-ice-whistleblower"
       ],
       "eventUri": null,
       "summary": "A former Thomson Reuters employee says they were fired after raising alarms that the company's data products were being used by ICE to harm people and undermine the law. Lead with the whistleblower's own words: 'When I saw evidence that our products were being used to harm people, I did what anyone should do — I raised the alarm.' The structural angle: the data broker-to-deportation pipeline, and the cost of speaking up inside the companies that build it.",
-      "conceptUris": []
-    },
-    {
-      "id": "italy-suspends-defense-pact-israel",
-      "label": "Italy Suspends Defense Pact With Israel, Further Straining Ties",
-      "firstSeen": "2026-04-14T17:09:14.084Z",
-      "lastCovered": "2026-04-14T17:09:14.084Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-14-italy-suspends-defense-pact-israel"
-      ],
-      "eventUri": "eng-11567442",
-      "summary": "Italy's Meloni government — one of Israel's closer European allies — suspends their bilateral defense agreement, citing the situation in Lebanon. The angle: this isn't a left-wing protest vote but a center-right NATO ally calculating that the diplomatic cost of association now exceeds the strategic benefit. Lead with the political identity of who is pulling away and why that matters more than if, say, Ireland had done it. Tajani simultaneously visited Beirut to support UNIFIL, which Israeli forces have fired on. Sentiment divergence (0.51) shows Italian and international media framing this very differently.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Italy",
-        "http://en.wikipedia.org/wiki/Giorgia_Meloni",
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Verona",
-        "http://en.wikipedia.org/wiki/Prime_minister",
-        "http://en.wikipedia.org/wiki/Middle_East",
-        "http://en.wikipedia.org/wiki/Antonio_Tajani"
-      ]
-    },
-    {
-      "id": "hezbollah-targets-israeli-forces-lebanon-talks",
-      "label": "Hezbollah says it targeted Israeli forces near border",
-      "firstSeen": "2026-04-14T17:09:14.084Z",
-      "lastCovered": "2026-04-14T17:09:14.084Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-14-hezbollah-targets-israeli-forces-lebanon-talks"
-      ],
-      "eventUri": "eng-11567739",
-      "summary": "Hezbollah attacks Israeli positions on the border while Lebanon's government sits across from Israel in Washington for the first direct talks in decades. The angle: the military and diplomatic tracks are running in opposite directions simultaneously. Lead with the juxtaposition — talks in DC, fire on the ground. Netanyahu is using the Lebanese front to undermine the Islamabad peace process. The reader needs the mechanism: escalation as a negotiating tactic, not just violence.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Hezbollah",
-        "http://en.wikipedia.org/wiki/Marco_Rubio",
-        "http://en.wikipedia.org/wiki/Washington,_D.C.",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/United_States_Secretary_of_State",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
-      "id": "iran-demands-reparations-arab-states-us-bases",
-      "label": "Iran demands reparations from Arab states hosting US bases",
-      "firstSeen": "2026-04-14T17:09:14.084Z",
-      "lastCovered": "2026-04-14T17:09:14.084Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-14-iran-demands-reparations-arab-states-us-bases"
-      ],
-      "eventUri": "eng-11566370",
-      "summary": "Iran's UN envoy formally demands that Saudi Arabia, Bahrain, Qatar, UAE, and Jordan pay reparations for allowing their territory to be used in US/Israeli strikes. The angle: this is Tehran establishing a legal/diplomatic record for future claims — not expecting payment, but fracturing Gulf solidarity by naming complicit states individually. Lead with the five named countries and the mechanism (UN letter to Guterres). The reader in the Muslim world will grasp immediately why this is inflammatory: it forces Gulf states to publicly own their role.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Bahrain",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Qatar",
-        "http://en.wikipedia.org/wiki/Jordan",
-        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/United_Nations"
-      ]
-    },
-    {
-      "id": "vedanta-power-plant-blast-kills-10-chhattisgarh",
-      "label": "Vedanta Power Plant Blast Kills 10 in Chhattisgarh",
-      "firstSeen": "2026-04-14T17:09:14.084Z",
-      "lastCovered": "2026-04-14T17:09:14.084Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-14-vedanta-power-plant-blast-kills-10-chhattisgarh"
-      ],
-      "eventUri": "eng-11567778",
-      "summary": "A boiler explosion at Vedanta's Singhitarai Power Plant kills at least 10 workers, injures 25+, with several still missing. The angle: Vedanta Limited has a long record of safety and environmental violations across India and Zambia. Lead with the death toll and the company's accountability record. The reader should understand this as a pattern, not an isolated accident — corporate negligence in extractive industries that employ some of India's most vulnerable workers.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Chhattisgarh",
-        "http://en.wikipedia.org/wiki/Sakti_district",
-        "http://en.wikipedia.org/wiki/Vedanta",
-        "http://en.wikipedia.org/wiki/Power_station",
-        "http://en.wikipedia.org/wiki/Boiler",
-        "http://en.wikipedia.org/wiki/Vedanta_Limited",
-        "http://en.wikipedia.org/wiki/Superintendent_of_police_(India)",
-        "http://en.wikipedia.org/wiki/Raigarh"
-      ]
-    },
-    {
-      "id": "fed-nominee-warsh-190-million-assets",
-      "label": "Fed Chair Nominee Warsh Discloses Assets Worth Over $190 Million",
-      "firstSeen": "2026-04-14T17:09:14.084Z",
-      "lastCovered": "2026-04-14T17:09:14.084Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-14-fed-nominee-warsh-190-million-assets"
-      ],
-      "eventUri": "eng-11567402",
-      "summary": "Trump's pick to run the Federal Reserve discloses $192M+ in assets with wife Jane Lauder (Estée Lauder heir), though actual wealth is 'certainly much higher.' The angle: the person who will set interest rates affecting 330 million Americans' mortgages and savings is among the wealthiest Fed chairs in history. Lead with the number and the structural conflict — his portfolio includes assets directly affected by Fed policy. This is accountability journalism about who controls monetary policy.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Kevin_Warsh",
-        "http://en.wikipedia.org/wiki/Chair_of_the_Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States_Senate",
-        "http://en.wikipedia.org/wiki/Central_bank",
-        "http://en.wikipedia.org/wiki/Advice_and_consent",
-        "http://en.wikipedia.org/wiki/United_States_Office_of_Government_Ethics"
-      ]
-    },
-    {
-      "id": "china-air-pollution-deep-water-phase",
-      "label": "China's air pollution control enters 'deep water' phase",
-      "firstSeen": "2026-04-14T17:09:14.084Z",
-      "lastCovered": "2026-04-14T17:09:14.084Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-14-china-air-pollution-deep-water-phase"
-      ],
-      "eventUri": null,
-      "summary": "China made dramatic gains against PM2.5 in the 2010s, but the easy wins are over. The remaining challenges — regional disparities between east and west, increased coal-chemical industrial use, and volatile organic compound emissions — require fundamentally different policy tools. Lead with the plateau: what worked before (shutting visible polluters) won't work now (diffuse VOC sources, coal-to-chemicals growth). The reader should understand why China's air quality gains are stalling despite continued political commitment.",
-      "conceptUris": []
-    },
-    {
-      "id": "amazon-globalstar-satellite-starlink",
-      "label": "Amazon buys Apple's satellite connectivity partner Globalstar for $11.57 billion",
-      "firstSeen": "2026-04-14T17:09:14.084Z",
-      "lastCovered": "2026-04-14T17:09:14.084Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-14-amazon-globalstar-satellite-starlink"
-      ],
-      "eventUri": "eng-11566568",
-      "summary": "Amazon acquires Globalstar — the company that powers Apple's iPhone satellite SOS feature — for $11.57B, directly challenging Musk's Starlink. The angle: this consolidates satellite connectivity into a three-player oligopoly (SpaceX, Amazon, Apple-minus-Globalstar). Lead with what Apple loses: its satellite partner is now owned by a competitor. The reader is technically literate and will grasp the infrastructure lock-in implications — whoever controls LEO satellites controls connectivity for the next billion users.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Amazon_(company)",
-        "http://en.wikipedia.org/wiki/Globalstar",
-        "http://en.wikipedia.org/wiki/Satellite",
-        "http://en.wikipedia.org/wiki/Starlink",
-        "http://en.wikipedia.org/wiki/Apple_Inc.",
-        "http://en.wikipedia.org/wiki/SpaceX",
-        "http://en.wikipedia.org/wiki/Low_Earth_orbit",
-        "http://en.wikipedia.org/wiki/United_States_dollar"
-      ]
-    },
-    {
-      "id": "google-microsoft-meta-tracking-opt-out-audit",
-      "label": "Google, Microsoft, Meta All Tracking You Even When You Opt Out, According to an Independent Audit",
-      "firstSeen": "2026-04-14T17:09:14.084Z",
-      "lastCovered": "2026-04-14T17:09:14.084Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-14-google-microsoft-meta-tracking-opt-out-audit"
-      ],
-      "eventUri": null,
-      "summary": "An independent audit finds Google, Microsoft, and Meta continue tracking users who explicitly opted out. The auditor's quote: 'This is the Strait of Hormuz in the data economy — if you want to make a change, this is where you cut it off. Anything short of that is theatrical political posture.' The angle: opt-out mechanisms are theater; the infrastructure is designed to track regardless. Lead with the specific mechanisms that persist after opt-out. The reader is a developer who will understand the technical betrayal.",
       "conceptUris": []
     }
   ]
