@@ -6,9 +6,9 @@ import {
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 
-import { AccessibilityInfo, StyleSheet, Text, View } from 'react-native';
+import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from 'react-native';
 import type { TextInput } from 'react-native-gesture-handler';
-import { CATEGORIES, LAYOUT, SPACING } from '../constants/theme';
+import { CATEGORIES, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { Article, Category } from '../types';
 import { ArticleRow } from './ArticleRow';
@@ -64,6 +64,9 @@ interface SearchSheetProps {
   bottomInset: number;
   renderBackdrop: React.FC<BottomSheetBackdropProps>;
   onSelectArticle: (slug: string, category: Category) => void;
+  onBookmarkPress: () => void;
+  onSettingsPress: () => void;
+  onMenuPress: () => void;
   onDismiss: () => void;
 }
 
@@ -73,6 +76,9 @@ export const SearchSheet = memo(function SearchSheet({
   bottomInset,
   renderBackdrop,
   onSelectArticle,
+  onBookmarkPress,
+  onSettingsPress,
+  onMenuPress,
   onDismiss,
 }: SearchSheetProps) {
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
@@ -187,6 +193,26 @@ export const SearchSheet = memo(function SearchSheet({
           }
         />
       )}
+
+      {/* Quick-access footer — visible when no query is active */}
+      {!deferredQuery && (
+        <View style={[styles.footer, { borderTopColor: colors.rule }]}>
+          {(['saved', 'settings', 'about'] as const).map((label) => (
+            <Pressable
+              key={label}
+              onPress={label === 'saved' ? onBookmarkPress : label === 'settings' ? onSettingsPress : onMenuPress}
+              hitSlop={8}
+              style={({ pressed }) => pressed && PRESSED_STYLE}
+              accessibilityRole="button"
+              accessibilityLabel={label}
+            >
+              <Text style={[textStyles.smallCapsXs, { color: colors.textSecondary }]}>
+                {label}
+              </Text>
+            </Pressable>
+          ))}
+        </View>
+      )}
     </BottomSheetModal>
   );
 });
@@ -207,5 +233,12 @@ const styles = StyleSheet.create({
   resultCount: {
     paddingTop: SPACING.md,
     paddingBottom: SPACING.xs,
+  },
+  footer: {
+    flexDirection: 'row',
+    gap: SPACING.lg,
+    paddingHorizontal: SPACING.screenPadding,
+    paddingVertical: SPACING.md,
+    borderTopWidth: StyleSheet.hairlineWidth,
   },
 });
