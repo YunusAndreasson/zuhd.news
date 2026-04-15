@@ -58,7 +58,6 @@ export const DARK_COLORS = {
   atmosphere: '#334455',
   shadow: 'rgba(0,0,0,0.6)',
   toastBg: 'rgba(48,48,48,0.92)',
-  toastBorder: 'rgba(255,255,255,0.08)',
   toneFavorable: '#6b8f71', // muted sage
   toneUnfavorable: '#8f6b6b', // muted rose
   toneNeutral: '#6b7f8f', // muted slate
@@ -77,7 +76,6 @@ export const LIGHT_COLORS = {
   atmosphere: '#8899aa',
   shadow: 'rgba(0,0,0,0.15)',
   toastBg: 'rgba(240,237,230,0.95)',
-  toastBorder: 'rgba(0,0,0,0.06)',
   toneFavorable: '#6b8f71',
   toneUnfavorable: '#8f6b6b',
   toneNeutral: '#6b7f8f',
@@ -179,11 +177,22 @@ export const LAYOUT = {
   handleHeight: 4,
   handleRadius: 2,
   inputHeight: 40,
-  toastRadius: 14,
+  floatingRadius: 14,
   logoRadius: 8,
   activeIndicatorHeight: 1.5,
   activeIndicatorRadius: 1,
   floatingShadow: {
+    shadowOffset: { width: 0, height: -1 },
+    shadowOpacity: 0.25,
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  floatingPill: {
+    paddingVertical: 8, // SPACING.sm
+    paddingHorizontal: 16, // SPACING.md
+    borderRadius: 14, // floatingRadius
+    alignItems: 'center' as const,
+    justifyContent: 'center' as const,
     shadowOffset: { width: 0, height: -1 },
     shadowOpacity: 0.25,
     shadowRadius: 6,
@@ -215,7 +224,7 @@ export const ANIMATION = {
 } as const;
 
 /** Shared pressed-state style for Pressable components */
-export const PRESSED_STYLE = { opacity: 0.5 } as const;
+export const PRESSED_STYLE = { opacity: 0.7 } as const;
 
 /** Android-specific base: remove extra padding above/below text for consistent rhythm */
 const androidTextBase: TextStyle =

@@ -8,8 +8,6 @@ interface ActionButtonsProps {
   onBookmarkPress: () => void;
 }
 
-const PILL_RADIUS = 14;
-
 export const ActionButtons = memo(function ActionButtons({
   onSearchPress,
   onBookmarkPress,
@@ -72,11 +70,6 @@ const styles = StyleSheet.create({
     gap: SPACING.sm,
   },
   pill: {
-    paddingVertical: SPACING.sm,
-    paddingHorizontal: SPACING.md,
-    borderRadius: PILL_RADIUS,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...LAYOUT.floatingShadow,
+    ...LAYOUT.floatingPill,
   },
 });
