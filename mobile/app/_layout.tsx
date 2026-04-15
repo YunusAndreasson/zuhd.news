@@ -13,7 +13,7 @@ import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-rean
 import { DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
-import { enableNotifications, ensureScheduled, registerPushToken } from '../lib/notifications';
+import { enableNotifications, registerPushToken } from '../lib/notifications';
 import { set as setPendingSlug } from '../lib/pending-notification';
 import { getPreferences, savePreferences } from '../lib/storage';
 
@@ -56,7 +56,6 @@ export default function RootLayout() {
   useEffect(() => {
     registerBackgroundTask();
     WebBrowser.warmUpAsync().catch(() => {});
-    ensureScheduled();
     const sub = Notifications.addNotificationResponseReceivedListener((response) => {
       const slug = response.notification.request.content.data?.slug;
       if (typeof slug === 'string') setPendingSlug(slug);
