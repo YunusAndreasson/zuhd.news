@@ -3,7 +3,7 @@ import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CATEGORIES, type FontEntry, LAYOUT, PRESSED_STYLE, RIPPLE, SPACING } from '../constants/theme';
+import { CATEGORIES, type FontEntry, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 const TAB_LABELS = CATEGORIES.map((c) => c.toUpperCase());
@@ -57,14 +57,11 @@ function TabLabel({
       onPress={handlePress}
       onLayout={onLayout}
       hitSlop={12}
-      android_ripple={RIPPLE}
       style={({ pressed }) => pressed && PRESSED_STYLE}
       accessibilityRole="tab"
       accessibilityLabel={label}
     >
-      <Animated.Text
-        style={[styles.tabLabel, fontEntry, { fontSize, letterSpacing }, animatedStyle]}
-      >
+      <Animated.Text style={[styles.tabLabel, fontEntry, { fontSize, letterSpacing }, animatedStyle]}>
         {label}
       </Animated.Text>
     </Pressable>

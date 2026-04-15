@@ -1,10 +1,9 @@
-import { Platform, useWindowDimensions } from 'react-native';
+import { useWindowDimensions } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 import { LAYOUT } from '../constants/theme';
 
 export function SheetContainer({ children }: { children?: React.ReactNode }): React.ReactNode {
-  if (Platform.OS === 'ios') return <FullWindowOverlay>{children}</FullWindowOverlay>;
-  return <>{children}</>;
+  return <FullWindowOverlay>{children}</FullWindowOverlay>;
 }
 
 export function useMaxSheetHeight(): number {

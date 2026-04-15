@@ -3,6 +3,7 @@ import {
   BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
+import Constants from 'expo-constants';
 import { memo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import {
@@ -134,6 +135,9 @@ export const SettingsSheet = memo(function SettingsSheet({
 }: SettingsSheetProps) {
   const {
     colors,
+    font,
+    typography,
+    textStyles,
     sheetStyles,
     preferences,
     setFontSize,
@@ -199,6 +203,18 @@ export const SettingsSheet = memo(function SettingsSheet({
           selected={preferences.notifications ? 'on' : 'off'}
           onSelect={(v) => setNotifications(v === 'on')}
         />
+        <Text
+          style={{
+            ...font.regular,
+            fontSize: typography.sizeXs,
+            color: colors.textSecondary,
+            opacity: 0.5,
+            marginTop: SPACING.xl,
+            textAlign: 'center',
+          }}
+        >
+          zuhd.news · {Constants.expoConfig?.version ?? ''}
+        </Text>
       </BottomSheetScrollView>
     </BottomSheetModal>
   );

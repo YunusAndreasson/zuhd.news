@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.4.11/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.4.8/schema.json",
   "assist": {
     "actions": {
       "source": { "organizeImports": "on" }
@@ -9,50 +9,20 @@
     "enabled": true,
     "rules": {
       "recommended": true,
-      "correctness": {
-        "useExhaustiveDependencies": "warn",
-        "useHookAtTopLevel": "error",
-        "useJsxKeyInIterable": "error",
-        "noChildrenProp": "error",
-        "noNestedComponentDefinitions": "error"
-      },
       "suspicious": {
         "noArrayIndexKey": "off",
         "noAssignInExpressions": "off",
         "noImplicitAnyLet": "off",
-        "noExplicitAny": "off",
-        "noConsole": "warn",
-        "noEvolvingTypes": "warn"
-      },
-      "security": {
-        "noSecrets": "warn"
+        "noExplicitAny": "off"
       },
       "style": {
         "noNonNullAssertion": "off"
       },
-      "performance": {
-        "noAccumulatingSpread": "warn"
+      "correctness": {
+        "useExhaustiveDependencies": "warn"
       }
     }
   },
-  "overrides": [
-    {
-      "includes": ["constants/sources.ts"],
-      "linter": {
-        "rules": {
-          "security": { "noSecrets": "off" }
-        }
-      }
-    },
-    {
-      "includes": ["scripts/**"],
-      "linter": {
-        "rules": {
-          "suspicious": { "noConsole": "off" }
-        }
-      }
-    }
-  ],
   "files": {
     "includes": [
       "app/**",
