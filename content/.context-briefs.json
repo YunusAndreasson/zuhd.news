@@ -8817,5 +8817,250 @@
     "label": "The UN Veto System",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-14-backblaze-has-stopped-backing-up-onedrive-and-dropbox-folder": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SYNC FOLDER PROBLEM",
+        "body": "OneDrive and Dropbox use placeholder files — tiny stubs that look like real files but download content on demand. A backup agent scanning the filesystem sees thousands of 0-byte placeholders, not actual data. Backing them up means either triggering a full download of the user's entire cloud drive (consuming bandwidth and disk) or silently backing up empty shells."
+      },
+      {
+        "heading": "THE DESIGN TENSION",
+        "body": "Backblaze's model is unlimited backup for a flat fee. That works when the dataset is bounded by physical disk size. Cloud sync folders break this assumption — a user with 5TB in OneDrive has 5TB of data that exists nowhere on their local disk until the backup agent forces it down. The business model assumes local storage as a natural cap; cloud folders remove the cap."
+      },
+      {
+        "heading": "THE SILENT EXCLUSION PATTERN",
+        "body": "Backup vendors have a long history of quietly excluding file types or paths that are expensive to handle. Carbonite excluded large video files for years without prominent disclosure. CrashPlan excluded network drives. The pattern is consistent: the exclusion protects margins, and the user discovers it only when they need to restore."
+      },
+      {
+        "heading": "WHO ACTUALLY HOLDS THE DATA",
+        "body": "When a file lives in OneDrive, Microsoft holds the authoritative copy. Backblaze backing up that file creates a third-party copy of data governed by Microsoft's ToS. If Microsoft changes its API, revokes access, or alters sync behavior, the backup breaks upstream of anything Backblaze controls. This is vendor-dependency risk masquerading as redundancy."
+      }
+    ],
+    "generatedAt": "2026-04-15T17:28:24.322Z",
+    "label": "Cloud Backup Architecture",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-15-asim-munir-in-iran-to-deliver-us-s-message-after-islamabad-t": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PAKISTAN",
+        "body": "Pakistan shares a 959-km border with Iran through Balochistan, hosts significant Shia populations, and maintains diplomatic channels with both Tehran and Washington. It is one of very few countries that can credibly talk to both sides. This intermediary role has deep roots — Pakistan facilitated back-channel US-Iran communication during the hostage crisis aftermath in the 1980s."
+      },
+      {
+        "heading": "THE MILITARY DIPLOMAT",
+        "body": "Sending an army chief rather than a foreign minister signals something specific in Pakistan's diplomatic grammar. The military controls Pakistan's national security policy and has historically run the country's most sensitive foreign relationships — with China, Saudi Arabia, Afghanistan, and the US. A civilian envoy signals routine diplomacy; the army chief signals the principals are engaged."
+      },
+      {
+        "heading": "THE NUCLEAR BACKDROP",
+        "body": "Iran's nuclear program has been under negotiation since 2003. The JCPOA (2015) traded enrichment limits for sanctions relief. The US withdrew in 2018, Iran resumed enrichment, and by 2024 had stockpiled enough 60%-enriched uranium that — with further enrichment to 90% — a weapon became technically achievable in weeks. Every diplomatic channel now operates against this breakout timeline."
+      },
+      {
+        "heading": "THE BALOCHISTAN COMPLICATION",
+        "body": "In January 2024, Pakistan and Iran traded cross-border strikes against militant groups in each other's Balochistan provinces — the most serious direct military exchange between the two countries in decades. Any mediation effort now carries the weight of that recent escalation, which makes the diplomatic channel more fragile and more necessary simultaneously."
+      },
+      {
+        "heading": "THE SANCTIONS ARCHITECTURE",
+        "body": "US sanctions on Iran operate through the dollar clearing system. Any bank that processes an Iran-related transaction in dollars risks being cut off from the US financial system. This gives Washington leverage far beyond its borders — and means Pakistan's role as mediator requires careful navigation of secondary sanctions that could punish the messenger."
+      }
+    ],
+    "generatedAt": "2026-04-15T17:28:24.324Z",
+    "label": "The Pakistan–Iran–US Triangle",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-15-educational-company-mcgraw-hill-says-salesforce-misconfigura": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SHARED RESPONSIBILITY GAP",
+        "body": "Cloud platforms operate on a shared responsibility model: Salesforce secures the infrastructure, the customer secures its own configuration. A misconfigured Salesforce instance — overly permissive API access, exposed guest user profiles, broken field-level security — is the customer's fault under the contract, even though the platform made the misconfiguration possible."
+      },
+      {
+        "heading": "THE SHINYHUNTERS METHOD",
+        "body": "ShinyHunters does not encrypt systems or deploy ransomware. They exfiltrate data and threaten publication. This matters because the standard ransomware defense — restore from backups — is useless. The data is already gone. The only leverage is whether the victim pays before publication or deals with the consequences after."
+      },
+      {
+        "heading": "THE SALESFORCE ATTACK SURFACE",
+        "body": "Salesforce instances are internet-facing by design. Misconfigurations in Communities (now Experience Cloud) have been a recurring breach vector since at least 2021, when KrebsOnSecurity documented exposed data across banks, state governments, and healthcare providers. The problem is systemic: default settings are often too permissive, and security audits require Salesforce-specific expertise most customers lack."
+      },
+      {
+        "heading": "THE EDUCATION DATA PRIZE",
+        "body": "McGraw-Hill holds records on millions of students — names, emails, institutional affiliations, course enrollments, and assessment scores. Educational data is uniquely valuable for social engineering because it maps real identities to institutions, making phishing campaigns against students and faculty highly targeted."
+      }
+    ],
+    "generatedAt": "2026-04-15T17:28:24.324Z",
+    "label": "Supply Chain Breach Mechanics",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-15-four-killed-in-turkiye-s-second-school-shooting-in-two-days": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL FRAMEWORK",
+        "body": "Turkey requires a license for firearms ownership, with background checks, mental health evaluations, and a minimum age of 21. On paper, this is one of Europe's stricter regimes. In practice, the Small Arms Survey estimates Turkey has roughly 16-18 million civilian firearms — and over half are unregistered. Legal controls coexist with a deep culture of private gun ownership, particularly in rural and southeastern regions."
+      },
+      {
+        "heading": "THE KAHRAMANMARAŞ CONTEXT",
+        "body": "Kahramanmaraş province was the epicenter of the February 2023 earthquakes that killed over 50,000 people. Communities there are still in various stages of reconstruction and social disruption. Disaster research consistently shows that mass-casualty events elevate rates of PTSD, domestic violence, and community violence for years afterward — the social fabric tears in ways that are slow to heal."
+      },
+      {
+        "heading": "THE CONTAGION EFFECT",
+        "body": "Criminologists call it the 'contagion period' — the 7-14 days after a mass shooting when copycat risk peaks. Media coverage creates a script: the method, the target type, the notoriety. The effect is well-documented across cultures and is not specific to any country's gun laws. Two school shootings in two days fits the established pattern precisely."
+      },
+      {
+        "heading": "THE COMPARISON TRAP",
+        "body": "Turkey's gun homicide rate is roughly 1.1 per 100,000 — higher than Western Europe but far below the Americas. Mass shootings in Turkish schools are genuinely rare events, which is precisely why clustering draws attention. Rarity does not mean the underlying conditions are absent; it means the threshold for action has not been crossed as often."
+      }
+    ],
+    "generatedAt": "2026-04-15T17:28:24.324Z",
+    "label": "Gun Ownership in Turkey",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-15-israel-says-thunberg-more-influential-antisemite-than-fuente": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IHRA DEFINITION",
+        "body": "The International Holocaust Remembrance Alliance adopted a working definition of antisemitism in 2016 that includes 'applying double standards' to Israel and 'denying the Jewish people their right to self-determination.' Critics — including the definition's lead drafter, Kenneth Stern — argue it was designed as a research tool, not a weapon to classify political speech about Israel as hate speech. Over 30 countries have adopted it anyway."
+      },
+      {
+        "heading": "THE STRATEGIC CONFLATION",
+        "body": "Ranking a climate activist who supports Palestinian rights alongside a white supremacist who denies the Holocaust collapses a critical distinction: opposition to a state's policies versus hatred of a people. This conflation is deliberate and documented — Israel's Ministry of Strategic Affairs published a 2019 report explicitly linking BDS activism to antisemitism as a communications strategy."
+      },
+      {
+        "heading": "THE CHILLING EFFECT",
+        "body": "Germany, France, and several US states have passed laws or resolutions equating BDS advocacy with antisemitism. The practical effect is self-censorship: academics avoid Israel-related research, artists cancel events, and students fear disciplinary action. Whether or not the legal definitions hold up in court, the chilling effect on speech operates independently of enforcement."
+      },
+      {
+        "heading": "THE NAKBA ERASURE",
+        "body": "What Israel calls its War of Independence in 1948, Palestinians call the Nakba — the catastrophe. Over 700,000 Palestinians were expelled or fled from their homes. Israeli law (the Nakba Law of 2011) authorises the finance minister to cut funding to institutions that commemorate the Nakba. Calling solidarity with Palestinians 'antisemitic' extends this erasure from domestic policy to international discourse."
+      },
+      {
+        "heading": "WHO DEFINES HATRED",
+        "body": "Nick Fuentes is a self-described white nationalist who has praised Hitler on camera. Greta Thunberg called for a ceasefire in Gaza. Placing both on the same index requires a framework in which criticising Israeli military operations is morally equivalent to Holocaust revisionism — a framework that, if accepted, makes meaningful political speech about Palestine impossible."
+      }
+    ],
+    "generatedAt": "2026-04-15T17:28:24.324Z",
+    "label": "The Weaponisation of Antisemitism",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-15-new-3d-map-of-universe-could-solve-dark-energy-mystery": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISCOVERY",
+        "body": "In 1998, two teams studying Type Ia supernovae independently found that the universe's expansion is accelerating — not slowing down as gravity should ensure. This meant either general relativity was incomplete or some unknown energy was pushing spacetime apart. The discovery won the 2011 Nobel Prize and remains the deepest unsolved problem in physics."
+      },
+      {
+        "heading": "THE COSMOLOGICAL CONSTANT",
+        "body": "Einstein added a constant (lambda) to his field equations in 1917 to keep the universe static, then removed it when expansion was discovered, calling it his greatest blunder. Dark energy resurrected it: if lambda is real, empty space itself has a fixed energy density that drives acceleration. The question DESI is probing is whether this energy density is truly constant or changes over time — the difference between a universe that expands forever and one that might tear itself apart."
+      },
+      {
+        "heading": "HOW DESI MEASURES",
+        "body": "DESI captures spectra from 5,000 objects simultaneously using robotic fiber-optic positioners — each fiber aims at a different galaxy or quasar. The redshift of each spectrum reveals how fast that object is receding, which reveals the expansion rate at that distance. Map enough objects at enough distances and you reconstruct the expansion history of the universe over 11 billion years."
+      },
+      {
+        "heading": "THE BARYON ACOUSTIC OSCILLATION",
+        "body": "In the early universe, sound waves rippled through the plasma of matter and radiation. When the universe cooled enough for atoms to form, these waves froze in place, leaving a characteristic spacing of about 490 million light-years between galaxy clusters. This 'standard ruler' is imprinted across the cosmos — DESI measures it at different epochs to track how expansion has stretched it over time."
+      },
+      {
+        "heading": "WHAT CHANGES IF LAMBDA VARIES",
+        "body": "A constant lambda means the universe expands at an ever-increasing rate forever — galaxies beyond our cosmic horizon disappear, and the observable universe slowly empties. A varying lambda could strengthen, leading to a 'Big Rip' where spacetime tears apart atoms, or weaken, allowing gravity to eventually halt or reverse expansion. The fate of the universe depends on which model the data supports."
+      }
+    ],
+    "generatedAt": "2026-04-15T17:28:24.324Z",
+    "label": "Dark Energy & the Expanding Universe",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-15-nigeria-s-food-inflation-drops-to-14-31": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASELINE",
+        "body": "Nigeria's food inflation peaked above 40% in mid-2024 after President Tinubu removed fuel subsidies and floated the naira. A drop to 14.31% is significant in percentage terms but still means food prices are rising three to four times faster than incomes for most Nigerians. The question is not whether prices are falling — they are not — but whether the rate of increase is slowing enough to matter at the kitchen table."
+      },
+      {
+        "heading": "THE NAIRA MECHANISM",
+        "body": "Nigeria imports roughly $4-5 billion in food annually — wheat, rice, sugar, and fish. When the naira lost over 70% of its value against the dollar between mid-2023 and early 2025, every imported calorie became proportionally more expensive in local currency. Food inflation in Nigeria is substantially an exchange rate story, not just a supply story."
+      },
+      {
+        "heading": "THE SUBSIDY REMOVAL CASCADE",
+        "body": "Nigeria spent up to $10 billion annually on petrol subsidies — roughly 2% of GDP. Removing them in June 2023 tripled pump prices overnight. Since diesel powers the trucks that move food from farms to markets, and generators that keep cold chains running, the removal fed directly into food transport costs. The IMF supported the reform; the price was paid at market stalls."
+      },
+      {
+        "heading": "THE MEASUREMENT PROBLEM",
+        "body": "Nigeria's National Bureau of Statistics collects prices from markets across 774 local government areas. But informal markets — where the majority of Nigerians actually buy food — are undersampled. Urban markets are overrepresented. The official number is a useful signal of direction, but it likely understates the price burden in rural areas where the poorest Nigerians live and eat."
+      },
+      {
+        "heading": "WHO EATS WHAT",
+        "body": "The average Nigerian household spends roughly 60% of its income on food — compared to under 10% in the US or UK. At that ratio, a 14% annual food price increase consumes almost the entire margin between income and hunger. Inflation at this level is not an economic statistic; it is a daily calculation about which meals to skip."
+      }
+    ],
+    "generatedAt": "2026-04-15T17:28:24.324Z",
+    "label": "Nigeria's Food Price Crisis",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-15-snapchat-owner-cuts-1-000-jobs-as-says-ai-will-reduce-repeti": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATTERN",
+        "body": "Since late 2022, tech companies have laid off over 400,000 workers while simultaneously increasing AI investment. The stated logic is consistent: AI replaces 'repetitive' tasks, so fewer humans are needed. But headcount reductions preceded measurable AI productivity gains at most companies — the layoffs are funded by the promise of AI, not its proven output."
+      },
+      {
+        "heading": "THE SNAP SPECIFICS",
+        "body": "Snap has roughly 5,700 employees after years of prior cuts. Losing 1,000 — about 17% of the workforce — is not a trim. The company has never posted a consistent annual profit since going public in 2017. AI is the justification, but cost pressure is the cause. When a company that has never been sustainably profitable cuts staff, the technology narrative is secondary to the margin arithmetic."
+      },
+      {
+        "heading": "THE SUBSTITUTION QUESTION",
+        "body": "Economists distinguish between AI that augments workers (making each person more productive) and AI that substitutes for them (replacing the person entirely). Most current enterprise AI — code assistants, content moderation filters, ad-targeting models — is augmentation. Claiming substitution to justify layoffs lets companies book the headcount savings now while deferring the question of whether the work actually gets done."
+      },
+      {
+        "heading": "THE MORALE COST",
+        "body": "Research from Stanford and Harvard shows that layoff announcements reduce productivity among surviving employees by 20-40% for six to twelve months. Voluntary attrition among top performers spikes. The immediate savings from cutting 1,000 roles can be offset — sometimes entirely — by the performance drag on the 4,700 who remain but are now updating their resumes."
+      }
+    ],
+    "generatedAt": "2026-04-15T17:28:24.324Z",
+    "label": "AI-Driven Layoffs",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-15-trump-threatens-to-fire-fed-chair-powell-if-he-doesn-t-leave": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DESIGN",
+        "body": "The Federal Reserve Act of 1913 deliberately placed the central bank outside the executive branch. The President appoints the chair to a four-year term but cannot remove them except 'for cause' — defined as malfeasance, not policy disagreement. This structure was hardened after 19th-century political manipulation of monetary policy repeatedly destabilised the banking system."
+      },
+      {
+        "heading": "THE LEGAL QUESTION",
+        "body": "The Supreme Court held in Humphrey's Executor (1935) that Congress can create independent agencies whose heads the President cannot fire at will. But the current Court has been chipping away at this doctrine — in Seila Law v. CFPB (2020), it ruled single-director agencies must be removable by the President. The Fed's multi-member board may distinguish it legally, but the precedent is shifting toward broader presidential removal power."
+      },
+      {
+        "heading": "THE LBJ PRECEDENT",
+        "body": "In 1965, Lyndon Johnson physically intimidated Fed Chair William McChesney Martin at his Texas ranch, demanding lower interest rates. Martin partially capitulated. The resulting loose monetary policy fed the inflation that ravaged the 1970s and required Paul Volcker's brutal rate hikes — which triggered a recession — to finally break. The episode is the textbook case for why even informal political pressure on the Fed carries catastrophic long-term costs."
+      },
+      {
+        "heading": "THE MARKET MECHANISM",
+        "body": "The moment markets believe the Fed will set rates based on political pressure rather than economic data, long-term interest rates spike — because investors demand a premium for inflation risk that a politicised central bank will not fight. This is self-fulfilling: the threat alone raises borrowing costs for mortgages, corporate debt, and government bonds before any policy actually changes."
+      },
+      {
+        "heading": "THE WARSH SIGNAL",
+        "body": "Kevin Warsh, the reported preferred replacement, is a former Fed governor (2006-2011) who favoured tighter policy and criticised quantitative easing. Paradoxically, Trump wants lower rates but his preferred chair historically advocated higher ones. This suggests the appointment is about loyalty and control, not a specific policy direction — which is precisely the scenario the independence framework was designed to prevent."
+      }
+    ],
+    "generatedAt": "2026-04-15T17:28:24.324Z",
+    "label": "Federal Reserve Independence",
+    "category": "economy",
+    "articleCount": 1
   }
 }
