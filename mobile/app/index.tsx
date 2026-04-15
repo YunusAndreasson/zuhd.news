@@ -482,7 +482,7 @@ export default function HomeScreen() {
         </View>
       )}
 
-      {/* Briefing player — persists while playing or paused mid-listen */}
+      {/* Briefing player — shown while playing or paused mid-listen */}
       {briefing?.available && briefing.date && (briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
         <BriefingBar
           playing={briefingPlayer.playing}
@@ -493,6 +493,7 @@ export default function HomeScreen() {
           onToggle={briefingPlayer.toggle}
           onSeek={briefingPlayer.seek}
           onCycleRate={briefingPlayer.cycleRate}
+          onClose={briefingPlayer.close}
         />
       )}
 

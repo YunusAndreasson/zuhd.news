@@ -17,7 +17,6 @@ import { ANIMATION, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 const BAR_MARGIN = SPACING.md;
-const BAR_RADIUS = 14;
 const PROGRESS_HEIGHT = 3;
 
 function formatTime(seconds: number): string {
@@ -35,6 +34,7 @@ interface BriefingBarProps {
   onToggle: () => void;
   onSeek: (seconds: number) => void;
   onCycleRate: () => void;
+  onClose: () => void;
 }
 
 export const BriefingBar = memo(function BriefingBar({
@@ -46,6 +46,7 @@ export const BriefingBar = memo(function BriefingBar({
   onToggle,
   onSeek,
   onCycleRate,
+  onClose,
 }: BriefingBarProps) {
   const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
@@ -185,6 +186,20 @@ export const BriefingBar = memo(function BriefingBar({
                 color={colors.textEmphasis}
               />
             </Pressable>
+
+            <Pressable
+              onPress={onClose}
+              hitSlop={12}
+              style={({ pressed }) => pressed && PRESSED_STYLE}
+              accessibilityRole="button"
+              accessibilityLabel="Close briefing player"
+            >
+              <Ionicons
+                name="close"
+                size={LAYOUT.iconMd}
+                color={colors.textSecondary}
+              />
+            </Pressable>
           </View>
 
           <GestureDetector gesture={scrubGesture}>
@@ -255,7 +270,7 @@ const styles = StyleSheet.create({
   /* ── Expanded bar ── */
   bar: {
     width: '100%',
-    borderRadius: BAR_RADIUS,
+    borderRadius: LAYOUT.floatingRadius,
     paddingTop: SPACING.smPlus,
     paddingHorizontal: SPACING.md,
     overflow: 'hidden',
@@ -298,11 +313,6 @@ const styles = StyleSheet.create({
     gap: SPACING.sm,
   },
   pill: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: BAR_RADIUS,
-    paddingVertical: SPACING.sm,
-    paddingHorizontal: SPACING.md,
-    ...LAYOUT.floatingShadow,
+    ...LAYOUT.floatingPill,
   },
 });

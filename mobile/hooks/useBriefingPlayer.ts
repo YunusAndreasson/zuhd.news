@@ -32,6 +32,7 @@ interface BriefingPlayer {
   toggle: () => void;
   seek: (seconds: number) => void;
   cycleRate: () => void;
+  close: () => void;
 }
 
 // createAudioPlayer may throw in Expo Go when native module is outdated.
@@ -297,6 +298,16 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     hapticTick();
   }, []);
 
+  const close = useCallback(() => {
+    savePosition();
+    if (playerRef.current) {
+      playerRef.current.pause();
+    }
+    setPlaying(false);
+    setElapsed(0);
+    hapticTick();
+  }, [savePosition]);
+
   const cycleRate = useCallback(() => {
     const next = RATES[(RATES.indexOf(rate as (typeof RATES)[number]) + 1) % RATES.length] ?? 1;
     setRate(next);
@@ -310,5 +321,5 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const effectiveDuration =
     feedDuration || (__DEV__ && !playerRef.current && elapsed > 0 ? 720 : 0);
 
-  return { playing, elapsed, duration: effectiveDuration, rate, toggle, seek, cycleRate };
+  return { playing, elapsed, duration: effectiveDuration, rate, toggle, seek, cycleRate, close };
 }
