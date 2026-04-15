@@ -169,6 +169,7 @@ export const ArticlePage = memo(function ArticlePage({
           <View
             style={styles.earlierDivider}
             accessible
+            accessibilityRole="separator"
             accessibilityLabel="Caught up — earlier articles below"
           >
             <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />

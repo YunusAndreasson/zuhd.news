@@ -19,7 +19,6 @@ interface CategoryBarProps {
   categoryProgresses: SharedValue<number[]>;
   currentCategory: number;
   onCategoryPress: (index: number) => void;
-  onSearchPress: () => void;
   onMenuPress: () => void;
 }
 
@@ -76,7 +75,6 @@ export const CategoryBar = memo(function CategoryBar({
   categoryProgresses,
   currentCategory,
   onCategoryPress,
-  onSearchPress,
   onMenuPress,
 }: CategoryBarProps) {
   const { colors, font, typography } = useTheme();
@@ -159,16 +157,13 @@ export const CategoryBar = memo(function CategoryBar({
           </Text>
         </Pressable>
         <Pressable
-          onPress={onSearchPress}
-          onLongPress={onMenuPress}
-          delayLongPress={400}
+          onPress={onMenuPress}
           hitSlop={12}
           style={({ pressed }) => pressed && PRESSED_STYLE}
           accessibilityRole="button"
-          accessibilityLabel="Search"
-          accessibilityHint="Long press for menu"
+          accessibilityLabel="Menu"
         >
-          <Ionicons name="search" size={typography.sizeBase} color={colors.textSecondary} />
+          <Ionicons name="menu" size={typography.sizeBase} color={colors.textSecondary} />
         </Pressable>
       </View>
 
