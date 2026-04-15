@@ -10,12 +10,7 @@ interface HeatmapCache {
 const HEATMAP_FILE = new File(Paths.cache, 'zuhd-heatmap.json');
 
 export function writeHeatmapCache(data: HeatmapCache): void {
-  const json = JSON.stringify(data);
-  setTimeout(() => {
-    try {
-      HEATMAP_FILE.write(json);
-    } catch {}
-  }, 0);
+  HEATMAP_FILE.write(JSON.stringify(data));
 }
 
 export async function readHeatmapCache(): Promise<HeatmapCache | null> {

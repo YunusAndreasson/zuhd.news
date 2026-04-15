@@ -79,25 +79,28 @@ export const CountrySheet = memo(function CountrySheet({
   const name = country?.countryName;
   const handleDataRef = useRef({ flag, name });
   handleDataRef.current = { flag, name };
-  const CountryHandle = useCallback(() => {
-    const { flag: f, name: n } = handleDataRef.current;
-    return (
-      <View
-        style={styles.handle}
-        accessibilityRole="adjustable"
-        accessibilityLabel={n ? `${n} sheet` : 'Country sheet'}
-        accessibilityHint="Swipe down to dismiss"
-      >
-        <View style={[styles.handleIndicator, { backgroundColor: colors.rule }]} />
-        {(f || n) && (
-          <View style={styles.handleRow}>
-            {f && <Text style={styles.handleFlag}>{f}</Text>}
-            {n && <Text style={[styles.handleTitle, textStyles.sheetTitle]}>{n}</Text>}
-          </View>
-        )}
-      </View>
-    );
-  }, [colors.rule, textStyles.sheetTitle]);
+  const CountryHandle = useCallback(
+    () => {
+      const { flag: f, name: n } = handleDataRef.current;
+      return (
+        <View
+          style={styles.handle}
+          accessibilityRole="adjustable"
+          accessibilityLabel={n ? `${n} sheet` : 'Country sheet'}
+          accessibilityHint="Swipe down to dismiss"
+        >
+          <View style={[styles.handleIndicator, { backgroundColor: colors.rule }]} />
+          {(f || n) && (
+            <View style={styles.handleRow}>
+              {f && <Text style={styles.handleFlag}>{f}</Text>}
+              {n && <Text style={[styles.handleTitle, textStyles.sheetTitle]}>{n}</Text>}
+            </View>
+          )}
+        </View>
+      );
+    },
+    [colors.rule, textStyles.sheetTitle],
+  );
 
   return (
     <BottomSheetModal

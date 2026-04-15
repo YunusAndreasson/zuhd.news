@@ -218,9 +218,18 @@ export const ArticleList = memo(function ArticleList({
         globeRef={globeRef}
         globeYOffset={containerTopRef}
         onCountryPress={onCountryPress}
+        tick={tick}
       />
     ),
-    [itemHeight, screenWidth, scrollY, onCountryPress, onBookmarkPress, earlierIndex],
+    [
+      itemHeight,
+      screenWidth,
+      scrollY,
+      onCountryPress,
+      onBookmarkPress,
+      earlierIndex,
+      tick,
+    ],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);

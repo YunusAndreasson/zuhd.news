@@ -5,7 +5,7 @@ import type { Article, Category } from '../types';
 // Persisted bookmark with category (articles rotate out of the feed)
 // ---------------------------------------------------------------------------
 
-interface Bookmark {
+export interface Bookmark {
   article: Article;
   category: Category;
   savedAt: number;

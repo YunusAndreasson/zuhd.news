@@ -1,5 +1,5 @@
-import type { RefObject } from 'react';
 import { useEffect, useRef, useState } from 'react';
+import type { RefObject } from 'react';
 import { type SharedValue, useSharedValue } from 'react-native-reanimated';
 
 /**
@@ -51,12 +51,5 @@ export function useScrollState(
     };
   }, []);
 
-  return {
-    scrollY,
-    currentIndex,
-    setCurrentIndex,
-    overscrollFired,
-    caughtUpFired,
-    overscrollTimer,
-  };
+  return { scrollY, currentIndex, setCurrentIndex, overscrollFired, caughtUpFired, overscrollTimer };
 }

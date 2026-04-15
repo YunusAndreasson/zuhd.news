@@ -493,6 +493,7 @@ const _SOURCES: Record<string, SourceInfo> = {
       'Covers science and technology for the developing world. Funded by international development agencies. One of the few outlets bridging scientific research and Global South policy.',
   },
 
+
   // --- Sources appearing in feed without prior entries ---
   'TRT World': {
     type: 'State broadcaster',
@@ -584,6 +585,7 @@ const _SOURCES: Record<string, SourceInfo> = {
     description:
       'News division of CBS, one of the three major US broadcast networks. Coverage of the Middle East generally reflects US bipartisan consensus, which has historically been supportive of Israel.',
   },
+
 
   // --- New sources ---
   'Haberler.com': {
@@ -846,6 +848,7 @@ const _SOURCES: Record<string, SourceInfo> = {
     description:
       'Financial news and data platform under Yahoo. Provides market data, stock quotes, and business news. One of the most-visited financial sites globally.',
   },
+
 };
 
 // Manual aliases for names that can't be derived by normalization (non-Latin script, completely different names)
@@ -871,8 +874,8 @@ function normalize(name: string): string {
     .trim();
 }
 
-const _exact = new Map<string, SourceInfo>(); // lowercased exact keys
-const _fuzzy = new Map<string, SourceInfo>(); // normalized keys
+const _exact = new Map<string, SourceInfo>();   // lowercased exact keys
+const _fuzzy = new Map<string, SourceInfo>();    // normalized keys
 
 for (const [key, val] of Object.entries(_SOURCES)) {
   _exact.set(key.toLowerCase(), val);
@@ -888,6 +891,8 @@ for (const [alias, canonical] of Object.entries(ALIASES)) {
 
 export const SOURCES: Record<string, SourceInfo> = new Proxy(_SOURCES, {
   get(target, prop: string) {
-    return target[prop] ?? _exact.get(prop.toLowerCase()) ?? _fuzzy.get(normalize(prop));
+    return target[prop]
+      ?? _exact.get(prop.toLowerCase())
+      ?? _fuzzy.get(normalize(prop));
   },
 });
