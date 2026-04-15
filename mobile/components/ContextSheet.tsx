@@ -73,9 +73,7 @@ export const ContextSheet = memo(function ContextSheet({
       return (
         <View key={i}>
           {entry.heading && (
-            <Text style={[styles.eduHeading, textStyles.smallCaps]}>
-              {entry.heading}
-            </Text>
+            <Text style={[styles.eduHeading, textStyles.smallCaps]}>{entry.heading}</Text>
           )}
           <Text selectable style={[styles.bodyText, textStyles.body, styles.bodySpacing]}>
             {entry.body}

@@ -6,7 +6,16 @@ import {
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useRef, useState } from 'react';
-import { InteractionManager, type LayoutChangeEvent, Platform, Pressable, Share, StyleSheet, Text, View } from 'react-native';
+import {
+  InteractionManager,
+  type LayoutChangeEvent,
+  Platform,
+  Pressable,
+  Share,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -16,8 +25,8 @@ import { BriefingBar } from '../components/BriefingBar';
 import { CategoryBar } from '../components/CategoryBar';
 import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
-import { MenuSheet } from '../components/MenuSheet';
 import type { TapResult } from '../components/globe/MiniGlobe';
+import { MenuSheet } from '../components/MenuSheet';
 import { SearchSheet } from '../components/SearchSheet';
 import { SettingsSheet } from '../components/SettingsSheet';
 import { Toast, type ToastRef } from '../components/Toast';
@@ -29,7 +38,7 @@ import { useHeatmap } from '../hooks/useHeatmap';
 import { useTheme } from '../hooks/useTheme';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
-import { get as getPendingSlug, clear as clearPendingSlug } from '../lib/pending-notification';
+import { clear as clearPendingSlug, get as getPendingSlug } from '../lib/pending-notification';
 import type { Article, ArticleSource, Category } from '../types';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
@@ -91,30 +100,33 @@ export default function HomeScreen() {
     [],
   );
 
-  const handleSelectArticle = useCallback((slug: string, category: Category) => {
-    searchSheetRef.current?.dismiss();
-    bookmarkSheetRef.current?.dismiss();
-    const catIndex = CATEGORIES.indexOf(category);
-    if (catIndex < 0) return;
+  const handleSelectArticle = useCallback(
+    (slug: string, category: Category) => {
+      searchSheetRef.current?.dismiss();
+      bookmarkSheetRef.current?.dismiss();
+      const catIndex = CATEGORIES.indexOf(category);
+      if (catIndex < 0) return;
 
-    // If the article rotated out of the feed, inject the bookmarked copy
-    const inFeed = groupedRef.current[category]?.some((a) => a.slug === slug);
-    if (!inFeed) {
-      const bookmark = getBookmarks().find((b) => b.article.slug === slug);
-      if (bookmark) {
-        injectArticle(bookmark.article, category);
-      } else {
-        toastRef.current?.show('Article no longer available');
-        return;
+      // If the article rotated out of the feed, inject the bookmarked copy
+      const inFeed = groupedRef.current[category]?.some((a) => a.slug === slug);
+      if (!inFeed) {
+        const bookmark = getBookmarks().find((b) => b.article.slug === slug);
+        if (bookmark) {
+          injectArticle(bookmark.article, category);
+        } else {
+          toastRef.current?.show('Article no longer available');
+          return;
+        }
       }
-    }
 
-    pagerRef.current?.setPage(catIndex);
-    // Wait for pager animation to complete before scrolling
-    InteractionManager.runAfterInteractions(() => {
-      listRefs[catIndex]?.current?.scrollToSlug?.(slug);
-    });
-  }, [injectArticle]);
+      pagerRef.current?.setPage(catIndex);
+      // Wait for pager animation to complete before scrolling
+      InteractionManager.runAfterInteractions(() => {
+        listRefs[catIndex]?.current?.scrollToSlug?.(slug);
+      });
+    },
+    [injectArticle],
+  );
 
   const handleArticleBookmark = useCallback((article: Article) => {
     const catIndex = currentCategoryRef.current;
@@ -257,7 +269,6 @@ export default function HomeScreen() {
   const handleEndReached = useCallback((catIndex: number) => {
     const cat = CATEGORIES[catIndex];
     if (!cat) return;
-    const count = groupedRef.current[cat]?.length ?? 0;
     toastRef.current?.show('End \u00B7 tap for top', () =>
       listRefs[catIndex]?.current?.scrollToTop(),
     );
@@ -483,19 +494,21 @@ export default function HomeScreen() {
       )}
 
       {/* Briefing player — shown while playing or paused mid-listen */}
-      {briefing?.available && briefing.date && (briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
-        <BriefingBar
-          playing={briefingPlayer.playing}
-          elapsed={briefingPlayer.elapsed}
-          duration={briefingPlayer.duration}
-          rate={briefingPlayer.rate}
-          date={briefing.date}
-          onToggle={briefingPlayer.toggle}
-          onSeek={briefingPlayer.seek}
-          onCycleRate={briefingPlayer.cycleRate}
-          onClose={briefingPlayer.close}
-        />
-      )}
+      {briefing?.available &&
+        briefing.date &&
+        (briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
+          <BriefingBar
+            playing={briefingPlayer.playing}
+            elapsed={briefingPlayer.elapsed}
+            duration={briefingPlayer.duration}
+            rate={briefingPlayer.rate}
+            date={briefing.date}
+            onToggle={briefingPlayer.toggle}
+            onSeek={briefingPlayer.seek}
+            onCycleRate={briefingPlayer.cycleRate}
+            onClose={briefingPlayer.close}
+          />
+        )}
 
       <MenuSheet
         sheetRef={menuSheetRef}
@@ -518,9 +531,7 @@ export default function HomeScreen() {
       <ContextSheet
         sheetRef={contextSheetRef}
         sources={digSources}
-
         eventCoverage={digCoverage}
-
         brief={contextBrief}
         loading={contextLoading}
         threadLabel={contextThreadLabel}
@@ -556,7 +567,6 @@ export default function HomeScreen() {
         renderBackdrop={renderBackdrop}
         onDismiss={() => {}}
       />
-
     </View>
   );
 }

@@ -221,15 +221,7 @@ export const ArticleList = memo(function ArticleList({
         tick={tick}
       />
     ),
-    [
-      itemHeight,
-      screenWidth,
-      scrollY,
-      onCountryPress,
-      onBookmarkPress,
-      earlierIndex,
-      tick,
-    ],
+    [itemHeight, screenWidth, scrollY, onCountryPress, onBookmarkPress, earlierIndex, tick],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);

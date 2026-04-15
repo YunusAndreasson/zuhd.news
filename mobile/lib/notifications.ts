@@ -1,5 +1,5 @@
 import * as Notifications from 'expo-notifications';
-import { getItemAsync, setItemAsync, deleteItemAsync } from 'expo-secure-store';
+import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
 import { Platform } from 'react-native';
 import { API_BASE } from '../constants/theme';
 

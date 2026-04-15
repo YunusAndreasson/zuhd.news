@@ -6,11 +6,7 @@ import { AppState } from 'react-native';
  * backgrounded for longer than `staleMs` milliseconds.
  * Optionally runs `onBackground` when the app enters the background.
  */
-export function useAppResume(
-  onResume: () => void,
-  staleMs: number,
-  onBackground?: () => void,
-) {
+export function useAppResume(onResume: () => void, staleMs: number, onBackground?: () => void) {
   const lastActiveRef = useRef(Date.now());
 
   const handleResume = useEffectEvent(() => {

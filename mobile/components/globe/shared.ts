@@ -21,11 +21,7 @@ export const countries = feature(
 // Internal borders only (shared edges between countries, no coastlines — land
 // already shows those). Single MultiLineString = much faster to project than
 // 180 separate country polygons.
-export const bordersMesh = mesh(
-  countriesData,
-  countriesData.objects.countries!,
-  (a, b) => a !== b,
-);
+export const bordersMesh = mesh(countriesData, countriesData.objects.countries!, (a, b) => a !== b);
 
 // Precomputed bounding boxes for fast point-in-country pre-filtering.
 // [minLng, minLat, maxLng, maxLat] per feature — avoids expensive

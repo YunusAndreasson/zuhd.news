@@ -61,7 +61,9 @@ function TabLabel({
       accessibilityRole="tab"
       accessibilityLabel={label}
     >
-      <Animated.Text style={[styles.tabLabel, fontEntry, { fontSize, letterSpacing }, animatedStyle]}>
+      <Animated.Text
+        style={[styles.tabLabel, fontEntry, { fontSize, letterSpacing }, animatedStyle]}
+      >
         {label}
       </Animated.Text>
     </Pressable>

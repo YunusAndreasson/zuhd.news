@@ -1,14 +1,14 @@
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import * as Notifications from 'expo-notifications';
 import { useFonts } from 'expo-font';
+import * as Notifications from 'expo-notifications';
 import { Slot } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
+import * as WebBrowser from 'expo-web-browser';
 import { Suspense, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import * as WebBrowser from 'expo-web-browser';
 import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
 import { DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
@@ -35,7 +35,11 @@ function ThemedShell() {
   const { colors, resolvedAppearance } = useTheme();
   return (
     <>
-      <StatusBar style={resolvedAppearance === 'dark' ? 'light' : 'dark'} translucent backgroundColor="transparent" />
+      <StatusBar
+        style={resolvedAppearance === 'dark' ? 'light' : 'dark'}
+        translucent
+        backgroundColor="transparent"
+      />
       <View style={[styles.root, { backgroundColor: colors.bg }]}>
         <Slot />
       </View>
