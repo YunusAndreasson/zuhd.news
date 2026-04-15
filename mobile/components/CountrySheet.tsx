@@ -130,7 +130,7 @@ export const CountrySheet = memo(function CountrySheet({
             {country.hotspotLabels && country.hotspotLabels.length > 0 && (
               <View style={styles.hotspotSection}>
                 <Text style={[styles.sheetLabel, textStyles.smallCapsXs]}>
-                  {country.hotspotLabels.length === 1 ? 'DEVELOPING STORY' : 'DEVELOPING STORIES'}
+                  {country.hotspotLabels.length === 1 ? 'developing story' : 'developing stories'}
                 </Text>
                 {country.hotspotLabels.map((label, i) => (
                   <Text
@@ -154,30 +154,30 @@ export const CountrySheet = memo(function CountrySheet({
 
             {/* Detail rows — ordered by user interest */}
             <CountryRow
-              label="Official name"
+              label="official name"
               value={country.data.official !== country.countryName ? country.data.official : null}
             />
-            <CountryRow label="Capital" value={displayLocation(country.data.capital)} />
-            <CountryRow label="Languages" value={country.data.languages} />
+            <CountryRow label="capital" value={displayLocation(country.data.capital)} />
+            <CountryRow label="languages" value={country.data.languages} />
             <CountryRow
-              label="Currency"
+              label="currency"
               value={
                 country.data.currency
                   ? `${country.data.currency}${country.data.currencySymbol ? ` ${country.data.currencySymbol}` : ''}`
                   : null
               }
             />
-            <CountryRow label="Local time" value={country.localTime} />
-            <CountryRow label="Area" value={country.data.area} />
+            <CountryRow label="local time" value={country.localTime} />
+            <CountryRow label="area" value={country.data.area} />
             <CountryRow label="GDP/capita" value={country.data.gdpPerCapita} />
-            <CountryRow label="Life expectancy" value={country.data.lifeExpectancy} />
-            <CountryRow label="Internet" value={country.data.internetPct} />
+            <CountryRow label="life expectancy" value={country.data.lifeExpectancy} />
+            <CountryRow label="internet" value={country.data.internetPct} />
             <CountryRow
-              label="Region"
+              label="region"
               value={[
                 country.data.region,
-                country.data.landlocked ? 'Landlocked' : null,
-                !country.data.independent ? 'Disputed' : null,
+                country.data.landlocked ? 'landlocked' : null,
+                !country.data.independent ? 'disputed' : null,
               ]
                 .filter(Boolean)
                 .join(' · ')}
