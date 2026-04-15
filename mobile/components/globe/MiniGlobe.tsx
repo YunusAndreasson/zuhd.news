@@ -570,7 +570,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             countryName: geo.countryName,
           });
       }
-      const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 2);
+      const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 5);
       if (sorted.length === 0) return [];
       const logMax = Math.log(sorted[0]!.total + 1);
       return sorted.map((z) => ({
@@ -608,7 +608,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     }
 
     // Resolve country names only for top clusters
-    const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 2);
+    const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 5);
     if (sorted.length === 0) return [];
     const logMax = Math.log(sorted[0]!.total + 1);
     return sorted.map((z) => {
