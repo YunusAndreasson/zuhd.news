@@ -198,7 +198,7 @@ export const SettingsSheet = memo(function SettingsSheet({
 
         <OptionRow
           label="notifications"
-          hint="Daily briefing reminder and breaking news alerts"
+          hint="Briefing ready and breaking news alerts"
           options={ON_OFF_OPTIONS}
           selected={preferences.notifications ? 'on' : 'off'}
           onSelect={(v) => setNotifications(v === 'on')}
