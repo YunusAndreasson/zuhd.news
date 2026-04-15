@@ -136,6 +136,11 @@ export default function HomeScreen() {
     toastRef.current?.show(added ? 'Saved' : 'Removed');
   }, []);
 
+  const handleSearchPress = useCallback(() => {
+    hapticImpact();
+    searchSheetRef.current?.present();
+  }, []);
+
   const handleMenuPress = useCallback(() => {
     hapticImpact();
     menuSheetRef.current?.present();
@@ -144,11 +149,6 @@ export default function HomeScreen() {
   const handleSettingsPress = useCallback(() => {
     menuSheetRef.current?.dismiss();
     setTimeout(() => settingsSheetRef.current?.present(), 250);
-  }, []);
-
-  const handleMenuSearch = useCallback(() => {
-    menuSheetRef.current?.dismiss();
-    setTimeout(() => searchSheetRef.current?.present(), 250);
   }, []);
 
   const handleMenuBookmark = useCallback(() => {
@@ -368,6 +368,7 @@ export default function HomeScreen() {
         categoryProgresses={categoryProgresses}
         currentCategory={currentCategory}
         onCategoryPress={onCategoryPress}
+        onSearchPress={handleSearchPress}
         onMenuPress={handleMenuPress}
       />
 
@@ -515,7 +516,6 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => {}}
-        onSearchPress={handleMenuSearch}
         onBookmarkPress={handleMenuBookmark}
         onSettingsPress={handleSettingsPress}
       />
