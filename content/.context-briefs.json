@@ -8394,5 +8394,221 @@
     "label": "Exertional Heatstroke",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-15-backblaze-stops-cloud-folder-backups": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISTINCTION",
+        "body": "Backup and sync solve different problems. Sync keeps files identical across devices in real time. Backup preserves a recoverable copy in case of loss. A file that exists in OneDrive is synced but not backed up — if OneDrive deletes it (policy change, account suspension, ransomware propagation), it is gone from every synced device simultaneously."
+      },
+      {
+        "heading": "THE PLACEHOLDER TRICK",
+        "body": "Modern cloud sync clients use 'placeholder' or 'on-demand' files — tiny pointers that look like real files but contain no data until opened. A backup agent scanning the disk sees a 0-byte placeholder, not the actual file. Backing it up preserves nothing. This is the technical reason cloud folders break traditional backup tools."
+      },
+      {
+        "heading": "THE UNLIMITED MODEL",
+        "body": "Unlimited backup pricing works because most users store far less than the plan costs to serve. The provider prices for the median user, not the tail. When a new category of data (cloud-synced folders) threatens to shift the median upward, excluding it silently is cheaper than repricing — and less visible than announcing a cap."
+      },
+      {
+        "heading": "THE AUDIT PROBLEM",
+        "body": "Backup software reports what it attempted, not what it protected. A successful backup job that silently excluded half the filesystem still shows 100% completion. The failure only surfaces during a restore — the worst possible moment to discover a gap."
+      }
+    ],
+    "generatedAt": "2026-04-15T08:21:45.301Z",
+    "label": "Cloud Backup vs. Cloud Sync",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-15-copper-chalcopyrite-extraction-energy-transition": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "The energy transition runs on copper — electric vehicles use 3-4 times more copper than combustion cars, and a single offshore wind turbine needs roughly 8 tonnes. The IEA projects copper demand doubling by 2040, but new mines take 15-20 years from discovery to production."
+      },
+      {
+        "heading": "THE ORE PROBLEM",
+        "body": "Chalcopyrite (CuFeS2) accounts for about 70% of the world's copper reserves. Unlike copper oxide ores, which dissolve readily in acid, chalcopyrite forms a passivation layer — a sulfur-rich film that coats the mineral surface during leaching and blocks further reaction. Decades of research have failed to prevent this film from forming."
+      },
+      {
+        "heading": "WHY IT MATTERS NOW",
+        "body": "The easy copper is running out. High-grade oxide deposits that could be cheaply heap-leached are depleting. What remains is mostly chalcopyrite, which must be smelted — an energy-intensive process that produces sulfur dioxide. A hydrometallurgical route for chalcopyrite would cut both emissions and capital costs."
+      },
+      {
+        "heading": "THE GRADE DECLINE",
+        "body": "Average copper ore grades have fallen from about 2% a century ago to 0.5% today. That means moving four times as much rock per tonne of copper produced. Every incremental drop in grade compounds the energy, water, and waste costs of extraction — making process efficiency gains more valuable than new discoveries."
+      }
+    ],
+    "generatedAt": "2026-04-15T08:21:45.303Z",
+    "label": "Chalcopyrite & Copper Supply",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-15-google-back-button-hijacking-spam-policy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW IT WORKS",
+        "body": "The HTML5 History API lets JavaScript insert entries into the browser's navigation history without loading a page. Legitimate use: single-page apps updating the URL bar. Malicious use: stuffing fake history entries so the back button cycles through ad pages instead of returning the user to Google."
+      },
+      {
+        "heading": "THE SUPPLY CHAIN PROBLEM",
+        "body": "Most back-button hijacking does not originate with the site owner. It lives in third-party ad scripts, analytics tags, or affiliate redirects — code the publisher included but does not control. A single ad network script can inject history entries across thousands of sites simultaneously."
+      },
+      {
+        "heading": "WHY GOOGLE CARES",
+        "body": "Google's search results page is the most common 'back' destination. When a user clicks a result and cannot return, they lose trust in the search engine, not the site. Back-button hijacking directly degrades Google's core product experience."
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "Google's spam policies have always penalized deceptive practices, but enforcement required manual review. Algorithmic detection of history manipulation is harder — the abuse happens in client-side JavaScript at runtime, not in the HTML that Googlebot crawls. Detecting it at scale likely requires Chrome usage data, not just crawl data."
+      }
+    ],
+    "generatedAt": "2026-04-15T08:21:45.303Z",
+    "label": "History API Abuse",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-15-iran-chinese-spy-satellite-us-bases": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SATELLITES CHANGE THE CALCULUS",
+        "body": "Ballistic missiles are only as good as their targeting data. Iran has had medium-range missiles capable of reaching US bases for over a decade — what it lacked was precise, real-time coordinates of mobile assets like aircraft and air defense batteries. A dedicated reconnaissance satellite closes that gap from orbit."
+      },
+      {
+        "heading": "THE INTELLIGENCE HIERARCHY",
+        "body": "Military targeting requires three layers: strategic intelligence (where bases exist), operational intelligence (what assets are deployed there now), and tactical intelligence (real-time positions for strike guidance). Commercial satellite imagery provides the first. A military-grade reconnaissance satellite with revisit rates under 24 hours provides the second. The jump from commercial to military-grade imagery is the jump from knowing where a base is to knowing what is parked on its tarmac today."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The Soviet Union provided Egypt with satellite reconnaissance data before the 1973 Yom Kippur War — imagery of Israeli positions in Sinai that shaped Egyptian crossing plans. China providing Iran with a dedicated reconnaissance satellite goes further: it transfers the capability itself, not just the product."
+      },
+      {
+        "heading": "THE LEGAL GREY ZONE",
+        "body": "The Outer Space Treaty (1967) prohibits placing weapons in orbit but says nothing about reconnaissance. No international law restricts selling or transferring military observation satellites. The Missile Technology Control Regime covers launch vehicles but not payloads designed for imaging. China exploits a gap that was never closed because the drafters assumed only superpowers would have this capability."
+      }
+    ],
+    "generatedAt": "2026-04-15T08:21:45.303Z",
+    "label": "Space-Based Targeting",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-15-iran-war-poverty-millions-undp": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INFRASTRUCTURE MULTIPLIER",
+        "body": "Destroying a factory does not just eliminate its output — it eliminates every job, supply chain, and downstream business that depended on it. The World Bank's research on Iraq after 2003 found that each destroyed industrial facility reduced local economic activity by 3-5 times the facility's own output value. The effect compounds when thousands are hit simultaneously."
+      },
+      {
+        "heading": "THE FOOD PRICE MECHANISM",
+        "body": "Iran imports roughly 30% of its grain and nearly all its cooking oil. A naval blockade does not need to stop every ship — it needs only to raise insurance premiums and shipping costs enough that importers cannot afford to deliver at pre-war prices. The 134% food cost increase follows the same pattern seen in Yemen after the Saudi-led coalition's blockade began in 2015."
+      },
+      {
+        "heading": "THE RECONSTRUCTION TRAP",
+        "body": "Post-war reconstruction costs routinely exceed wartime destruction estimates by 2-5 times. Iraq's infrastructure damage was estimated at $100 billion in 2003; actual reconstruction through 2013 cost over $220 billion. The gap exists because damage assessments count what was destroyed, not the cost of rebuilding in a shattered economy with no functioning supply chains."
+      },
+      {
+        "heading": "THE SANCTIONS LOCK",
+        "body": "Historically, wartime blockades end with ceasefires. Modern sanctions regimes do not. US sanctions on Iraq persisted for 13 years after the 1991 Gulf War. The bureaucratic and political costs of lifting sanctions are high enough that they tend to outlast the conflicts that created them — meaning economic recovery cannot begin even after fighting stops."
+      },
+      {
+        "heading": "THE HISTORICAL PATTERN",
+        "body": "Iran has been subject to economic warfare before. The Anglo-Soviet invasion of 1941 and the British blockade during the Mossadegh oil nationalization crisis of 1951-53 both used economic strangulation as a tool of coercion. In both cases, the civilian population bore costs that persisted for a generation after the political crisis resolved."
+      }
+    ],
+    "generatedAt": "2026-04-15T08:21:45.304Z",
+    "label": "War & Economic Collapse",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-15-north-korea-nuclear-expansion-iaea-grossi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO PATHS",
+        "body": "Nuclear weapons require either plutonium-239 or highly enriched uranium. North Korea pursues both. Yongbyon's 5-megawatt reactor produces plutonium in its spent fuel rods; separate centrifuge cascades enrich uranium. Each path has different bottlenecks — plutonium requires reprocessing (detectable by satellite), uranium enrichment can be hidden underground."
+      },
+      {
+        "heading": "WHY YONGBYON MATTERS",
+        "body": "Yongbyon is the only North Korean nuclear site the IAEA has ever inspected. When Pyongyang expelled inspectors in 2009, the international community lost its only direct window into the program. Everything since — warhead counts, enrichment capacity, reprocessing rates — is estimated from satellite imagery and seismic data, not verified measurement."
+      },
+      {
+        "heading": "THE PROLIFERATION ECONOMICS",
+        "body": "A state with 50 warheads has a deterrent. A state with 200 has a surplus. The marginal strategic value of each additional warhead drops sharply after a credible second-strike capability is established. Surplus warheads become exportable assets — which is precisely what South Korea's warning about proliferation beyond North Korea's borders implies."
+      },
+      {
+        "heading": "THE PAKISTAN PRECEDENT",
+        "body": "The A.Q. Khan network demonstrated that a state nuclear program can become a proliferation supply chain. Khan sold centrifuge designs, components, and expertise to Libya, Iran, and North Korea itself between the late 1980s and early 2000s. The network operated for over a decade before it was exposed in 2004. North Korea with surplus warheads and chronic hard-currency shortages fits the same structural incentives."
+      },
+      {
+        "heading": "THE INSPECTION GAP",
+        "body": "The IAEA's safeguards system was designed for states that agreed to be monitored. It has no enforcement mechanism for states that withdraw from the Non-Proliferation Treaty, as North Korea did in 2003. The agency can detect and report, but compelling access requires Security Council action — where China and Russia hold vetoes."
+      }
+    ],
+    "generatedAt": "2026-04-15T08:21:45.304Z",
+    "label": "North Korea's Nuclear Program",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-15-oman-iran-hormuz-tightrope-neutrality": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IBADI FACTOR",
+        "body": "Oman is the world's only Ibadi-majority state. Ibadism predates the Sunni-Shia split — it descends from the Kharijite movement of the 7th century but diverged early into a quietist, non-confrontational theology. This sectarian distinctiveness means Oman has no natural alignment with either Sunni Saudi Arabia or Shia Iran, giving it diplomatic space that no other Gulf state possesses."
+      },
+      {
+        "heading": "THE QABOOS DOCTRINE",
+        "body": "Sultan Qaboos bin Said, who ruled from 1970 to 2020, built Oman's foreign policy on a single principle: talk to everyone, ally with no one. Oman maintained diplomatic relations with Iran throughout the Iran-Iraq War, hosted Israeli officials while other Arab states refused contact, and mediated between the US and Iran when no other channel existed. Sultan Haitham has continued this approach."
+      },
+      {
+        "heading": "THE BACK-CHANNEL HISTORY",
+        "body": "Oman hosted the secret US-Iran talks in 2012-2013 that led to the JCPOA nuclear deal. It facilitated the 2023 Saudi-Iranian normalization alongside China. It negotiated prisoner exchanges between the US and Iran in 2016 and again in 2023. No other state has brokered as many Iran-related agreements in the past two decades."
+      },
+      {
+        "heading": "THE GEOGRAPHIC BIND",
+        "body": "Oman's Musandam Peninsula juts into the Strait of Hormuz, separated from the rest of Oman by UAE territory. Iranian and Omani territorial waters overlap in the strait's shipping lanes. Any military escalation in Hormuz physically involves Omani territory whether Muscat consents or not — making neutrality not just a preference but a survival strategy."
+      },
+      {
+        "heading": "WHY IRAN RECIPROCATES",
+        "body": "Iran needs Oman more than Oman needs Iran. Muscat is Tehran's only reliable diplomatic back-channel to Washington and Riyadh. Striking Oman would destroy the one mediator willing to carry Iranian messages to hostile capitals — a strategic asset Iran cannot replace."
+      }
+    ],
+    "generatedAt": "2026-04-15T08:21:45.304Z",
+    "label": "Oman's Neutrality Doctrine",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-15-xi-lavrov-china-russia-strategic-coordination": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEPENDENCY",
+        "body": "China imports roughly 72% of its oil, and about 15% of those imports transit the Strait of Hormuz. A sustained Hormuz disruption threatens Chinese energy security directly. This is why Beijing's Iran mediation is not altruism — every week the conflict continues, Chinese refineries pay a war premium."
+      },
+      {
+        "heading": "THE RUSSIAN HEDGE",
+        "body": "The Power of Siberia pipeline delivers Russian gas directly to China overland, bypassing every maritime chokepoint. Lavrov's offer to replace Gulf-disrupted energy is not new capacity — it is leverage. Russia has been pushing Power of Siberia 2 (a second pipeline through Mongolia) for years. A Hormuz crisis gives Moscow its strongest negotiating position yet."
+      },
+      {
+        "heading": "THE MEDIATION PATTERN",
+        "body": "China's four-point peace plans follow a template: call for ceasefire, respect sovereignty, oppose sanctions, offer reconstruction. Beijing used near-identical frameworks for Ukraine (2023) and Israel-Palestine (2024). None included enforcement mechanisms or consequences for non-compliance. The plans function as diplomatic positioning — signaling willingness to mediate without committing to any outcome."
+      },
+      {
+        "heading": "THE NO-LIMITS PARTNERSHIP",
+        "body": "Xi and Putin declared a 'no limits' partnership in February 2022, weeks before Russia invaded Ukraine. In practice, limits exist: China has not provided Russia with lethal military aid, has not recognized annexed Ukrainian territory, and has quietly reduced exposure to sanctioned Russian banks. The phrase signals strategic alignment on opposing US hegemony, not a mutual defense pact."
+      },
+      {
+        "heading": "THE SENTIMENT GAP",
+        "body": "Russian state media (TASS) frames these meetings with strongly positive language emphasizing partnership and shared values. Non-aligned outlets report the same events with neutral or cautious framing. This 0.7-point sentiment divergence is characteristic of stories where one party's state media is a primary source — the reader should note who is narrating."
+      }
+    ],
+    "generatedAt": "2026-04-15T08:21:45.305Z",
+    "label": "China-Russia Energy Alignment",
+    "category": "politics",
+    "articleCount": 1
   }
 }
