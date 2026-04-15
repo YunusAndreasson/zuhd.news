@@ -557,8 +557,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       for (let i = 0; i < articles.length; i++) {
         const geo = articleGeo[i];
         if (!geo) continue;
-        const coverage = articles[i]!.eventCoverage ?? 0;
-        if (coverage <= 0) continue;
+        const coverage = articles[i]!.eventCoverage ?? 1;
         const key = `${Math.round(geo.lat * 2) / 2},${Math.round(geo.lng * 2) / 2}`;
         const existing = clusters.get(key);
         if (existing) existing.total += coverage;
@@ -570,7 +569,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             countryName: geo.countryName,
           });
       }
-      const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 5);
+      const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 8);
       if (sorted.length === 0) return [];
       const logMax = Math.log(sorted[0]!.total + 1);
       return sorted.map((z) => ({
@@ -608,7 +607,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     }
 
     // Resolve country names only for top clusters
-    const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 5);
+    const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 8);
     if (sorted.length === 0) return [];
     const logMax = Math.log(sorted[0]!.total + 1);
     return sorted.map((z) => {
@@ -1203,8 +1202,8 @@ export const MiniGlobe = memo(function MiniGlobe({
           y={z.y}
           color={colors.text}
           layers={[
-            { r: 16 + z.intensity * 18, opacity: 0.02 + z.intensity * 0.04, blur: 12 },
-            { r: 5 + z.intensity * 8, opacity: 0.03 + z.intensity * 0.06, blur: 4 },
+            { r: 18 + z.intensity * 20, opacity: 0.04 + z.intensity * 0.08, blur: 12 },
+            { r: 6 + z.intensity * 10, opacity: 0.06 + z.intensity * 0.1, blur: 4 },
           ]}
         />
       ))}
