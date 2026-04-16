@@ -94,15 +94,13 @@ export const ArticlePage = memo(function ArticlePage({
     if (reduceMotion) return { opacity: 1 };
     const off = offset.value;
 
-    // Fade — visible throughout the swipe so you always see what you're
-    // scrolling toward. Gentle fade-in from below, slightly faster fade-out
-    // as the article scrolls past.
-    const opacity = interpolate(
-      off,
-      [-itemHeight, 0, itemHeight * 0.4],
-      [0, 1, 0],
-      Extrapolation.CLAMP,
-    );
+    // Smoothstep fade — direct math avoids two interpolate() calls per frame.
+    // tIn: 0 at -itemHeight, 1 at 0. tOut: 1 at 0, 0 at itemHeight*0.4.
+    const tIn = Math.max(0, Math.min(1, off / itemHeight + 1));
+    const tOut = Math.max(0, Math.min(1, 1 - off / (itemHeight * 0.4)));
+    const easedIn = tIn * tIn * (3 - 2 * tIn);
+    const easedOut = tOut * tOut * (3 - 2 * tOut);
+    const opacity = Math.min(easedIn, easedOut);
 
     // Parallax — content rises gently into place and lifts away on exit,
     // creating spatial depth between the globe layer and the text layer.

@@ -34,10 +34,12 @@ import {
   useState,
 } from 'react';
 import { StyleSheet } from 'react-native';
-import {
+import Animated, {
   runOnJS,
   type SharedValue,
   useAnimatedReaction,
+  useAnimatedStyle,
+  useDerivedValue,
   useSharedValue,
 } from 'react-native-reanimated';
 import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
@@ -250,6 +252,9 @@ interface MiniGlobeProps {
   articles: Article[];
   heatmapPoints?: HeatmapPoint[];
   scrollY: SharedValue<number>;
+  /** Shared value that kicks to ~1 on snap and springs back to 0.
+   *  Drives a brief clip-angle overshoot so the globe feels weighty. */
+  settleBounce: SharedValue<number>;
   itemHeight: number;
   width: number;
   height: number;
@@ -521,6 +526,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   articles,
   heatmapPoints,
   scrollY,
+  settleBounce,
   itemHeight,
   width,
   height,
@@ -678,6 +684,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       loIndex: number,
       hiIndex: number,
       frac: number,
+      bounce: number,
     ) => {
       lastReprojRef.current = { lng: geoLng, lat: geoLat, idx: settledIndex };
       const { globeRadius: r, cx: centerX, cy: centerY } = layoutRef.current;
@@ -719,7 +726,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
       const parabola = 4 * frac * (1 - frac);
       const clipAngle = Math.min(90, baseClip + parabola * flyoverBoost);
-      const projScale = r / Math.sin((clipAngle * Math.PI) / 180);
+
+      // Settle bounce — briefly zooms in ~1.5° past target on snap, then
+      // springs back. settleBounce is kicked to 0.6 and springs to 0.
+      const bounceClip = Math.max(15, clipAngle - bounce * 2.5);
+      const projScale = r / Math.sin((bounceClip * Math.PI) / 180);
 
       const proj = projRef.current;
       proj
@@ -936,7 +947,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   const hasFired = useSharedValue(false);
 
   useAnimatedReaction(
-    () => ({ sy: scrollY.value, len: coordsSV.value.length }),
+    () => ({ sy: scrollY.value, len: coordsSV.value.length, sb: settleBounce.value }),
     ({ sy, len }) => {
       if (len === 0) return;
 
@@ -1015,7 +1026,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       const settled = Math.min(Math.round(rawIndex), articleCount - 1);
 
-      runOnJS(callReproject)(lng, lat, settled, lo, hi, frac);
+      runOnJS(callReproject)(lng, lat, settled, lo, hi, frac, settleBounce.value);
     },
   );
 
@@ -1025,14 +1036,14 @@ export const MiniGlobe = memo(function MiniGlobe({
     if (!_tick) return; // skip initial render
     invalidateSunCaches();
     const last = lastReprojRef.current;
-    if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0);
+    if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0, 0);
   }, [_tick]);
 
   // Re-project when hotspot data changes (e.g. heatmap fetch after app resume)
   // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
   useEffect(() => {
     const last = lastReprojRef.current;
-    if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0);
+    if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0, 0);
   }, [hotspots]);
 
   useImperativeHandle(ref, () => ({
@@ -1201,213 +1212,236 @@ export const MiniGlobe = memo(function MiniGlobe({
     return recorder.finishRecordingAsPicture();
   }, [width, height, cx, cy, globeRadius, colors.accent, colors.atmosphere]);
 
+  // Synchronous scroll nudge — a cheap translateY on the Canvas wrapper
+  // that responds in the SAME frame as the scroll (useDerivedValue is
+  // synchronous, unlike useAnimatedReaction which has 1-frame lag).
+  // This masks the d3 reprojection latency: the globe shifts instantly
+  // in the scroll direction while the expensive path recalculation
+  // catches up 1 frame later.
+  const prevScrollY = useSharedValue(0);
+  const scrollNudge = useDerivedValue(() => {
+    'worklet';
+    const delta = scrollY.value - prevScrollY.value;
+    prevScrollY.value = scrollY.value;
+    // Clamp to ±3px — just enough to feel responsive, not enough to
+    // create visible misalignment with the projected paths.
+    return Math.max(-3, Math.min(3, -delta * 0.08));
+  });
+  const nudgeStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: scrollNudge.value }],
+  }));
+
   return (
-    <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
-      {/* Stars — single cached Picture, no per-frame React overhead */}
-      <Picture picture={starsPicture} />
+    <Animated.View style={[styles.canvas, { width, height }, nudgeStyle]} pointerEvents="none">
+      <Canvas style={[styles.canvasInner, { width, height }]}>
+        {/* Stars — single cached Picture, no per-frame React overhead */}
+        <Picture picture={starsPicture} />
 
-      {/* Moon — memoized to skip re-reconciliation during scroll */}
-      {moonPos.visible && (
-        <Moon
-          x={moonPos.x}
-          y={moonPos.y}
-          r={moonR}
-          phase={moonPhase}
-          texture={moonTexture}
-          clip={moonClip}
-          accentColor={colors.accent}
-          bgAlpha={bgAlpha}
-        />
-      )}
-
-      {/* Ocean disk — subtle sphere body behind land */}
-      <Circle
-        cx={cx}
-        cy={cy}
-        r={globeRadius}
-        color={colors.atmosphere}
-        opacity={light ? 0.12 : 0.07}
-      />
-
-      {/* Land silhouette */}
-      {state.landPath && (
-        <Path
-          path={state.landPath}
-          color={light ? colors.accent : colors.rule}
-          opacity={light ? 0.25 : 0.4}
-        />
-      )}
-
-      {/* Neighbouring country borders — visible when scroll is at rest */}
-      {state.bordersPath && (
-        <Path
-          path={state.bordersPath}
-          color={colors.accent}
-          style="stroke"
-          strokeWidth={0.5}
-          opacity={0.22}
-        />
-      )}
-
-      {/* Equator + polar circles */}
-      {state.graticulePath && (
-        <Path
-          path={state.graticulePath}
-          color={colors.accent}
-          style="stroke"
-          strokeWidth={0.4}
-          opacity={light ? 0.12 : 0.08}
-        />
-      )}
-
-      {/* Low-sun band — faint gradient where sun is near the horizon */}
-      {state.twilightPath && <Path path={state.twilightPath} color={colors.black} opacity={0.06} />}
-
-      {/* Night shadow — darker overlay on the unlit hemisphere */}
-      {state.nightPath && <Path path={state.nightPath} color={colors.black} opacity={0.15} />}
-
-      {/* Terminator — thin stroke at the day/night boundary */}
-      {state.nightPath && (
-        <Path
-          path={state.nightPath}
-          color={colors.atmosphere}
-          style="stroke"
-          strokeWidth={0.5}
-          opacity={0.2}
-        />
-      )}
-
-      {/* Coverage hotspot ambient glows — top coverage hotspots */}
-      {state.hotspotGlows.map((z, i) => (
-        <Glow
-          key={i}
-          x={z.x}
-          y={z.y}
-          color={colors.text}
-          layers={[
-            { r: 18 + z.intensity * 20, opacity: 0.04 + z.intensity * 0.08, blur: 12 },
-            { r: 6 + z.intensity * 10, opacity: 0.06 + z.intensity * 0.1, blur: 4 },
-          ]}
-        />
-      ))}
-
-      {/* Country highlight — opacity scales with area so small nations pop */}
-      {state.countryPath && (
-        <CountryHighlight
-          path={state.countryPath}
-          countryName={state.countryName}
-          color={colors.text}
-        />
-      )}
-
-      {/* Source arcs — information flow lines from source HQs to story location */}
-      {state.sourceArcs && (
-        <Path
-          path={state.sourceArcs}
-          color={colors.accent}
-          style="stroke"
-          strokeWidth={0.5}
-          opacity={(light ? 0.15 : 0.08) * state.arcOpacity}
-        />
-      )}
-
-      {/* Qibla arc — great circle toward Makkah */}
-      {state.qiblaPath && (
-        <Path
-          path={state.qiblaPath}
-          color={colors.dome}
-          style="stroke"
-          strokeWidth={0.8}
-          opacity={(light ? 0.2 : 0.12) * state.arcOpacity}
-        />
-      )}
-
-      {/* Makkah — golden qibla reference point */}
-      {state.makkah && (
-        <Glow
-          x={state.makkah.x}
-          y={state.makkah.y}
-          color={colors.dome}
-          layers={MAKKAH_GLOW_LAYERS}
-        />
-      )}
-
-      {/* Story dot */}
-      {state.dot && (
-        <Glow
-          x={state.dot.x}
-          y={state.dot.y}
-          color={colors.textEmphasis}
-          layers={DOT_GLOW_LAYERS}
-        />
-      )}
-
-      {/* Dot label — location · local time */}
-      {state.dotLabel && labelFont && (
-        <>
-          <SkiaText
-            x={state.dotLabel.x + 6}
-            y={state.dotLabel.y + 4}
-            text={state.dotLabel.text}
-            font={labelFont}
-            color={colors.textEmphasis}
-            opacity={light ? 0.65 : 0.8}
+        {/* Moon — memoized to skip re-reconciliation during scroll */}
+        {moonPos.visible && (
+          <Moon
+            x={moonPos.x}
+            y={moonPos.y}
+            r={moonR}
+            phase={moonPhase}
+            texture={moonTexture}
+            clip={moonClip}
+            accentColor={colors.accent}
+            bgAlpha={bgAlpha}
           />
-          {state.dotLabel.sub && subFont && (
+        )}
+
+        {/* Ocean disk — subtle sphere body behind land */}
+        <Circle
+          cx={cx}
+          cy={cy}
+          r={globeRadius}
+          color={colors.atmosphere}
+          opacity={light ? 0.12 : 0.07}
+        />
+
+        {/* Land silhouette */}
+        {state.landPath && (
+          <Path
+            path={state.landPath}
+            color={light ? colors.accent : colors.rule}
+            opacity={light ? 0.25 : 0.4}
+          />
+        )}
+
+        {/* Neighbouring country borders — visible when scroll is at rest */}
+        {state.bordersPath && (
+          <Path
+            path={state.bordersPath}
+            color={colors.accent}
+            style="stroke"
+            strokeWidth={0.5}
+            opacity={0.22}
+          />
+        )}
+
+        {/* Equator + polar circles */}
+        {state.graticulePath && (
+          <Path
+            path={state.graticulePath}
+            color={colors.accent}
+            style="stroke"
+            strokeWidth={0.4}
+            opacity={light ? 0.12 : 0.08}
+          />
+        )}
+
+        {/* Low-sun band — faint gradient where sun is near the horizon */}
+        {state.twilightPath && (
+          <Path path={state.twilightPath} color={colors.black} opacity={0.06} />
+        )}
+
+        {/* Night shadow — darker overlay on the unlit hemisphere */}
+        {state.nightPath && <Path path={state.nightPath} color={colors.black} opacity={0.15} />}
+
+        {/* Terminator — thin stroke at the day/night boundary */}
+        {state.nightPath && (
+          <Path
+            path={state.nightPath}
+            color={colors.atmosphere}
+            style="stroke"
+            strokeWidth={0.5}
+            opacity={0.2}
+          />
+        )}
+
+        {/* Coverage hotspot ambient glows — top coverage hotspots */}
+        {state.hotspotGlows.map((z, i) => (
+          <Glow
+            key={i}
+            x={z.x}
+            y={z.y}
+            color={colors.text}
+            layers={[
+              { r: 18 + z.intensity * 20, opacity: 0.04 + z.intensity * 0.08, blur: 12 },
+              { r: 6 + z.intensity * 10, opacity: 0.06 + z.intensity * 0.1, blur: 4 },
+            ]}
+          />
+        ))}
+
+        {/* Country highlight — opacity scales with area so small nations pop */}
+        {state.countryPath && (
+          <CountryHighlight
+            path={state.countryPath}
+            countryName={state.countryName}
+            color={colors.text}
+          />
+        )}
+
+        {/* Source arcs — information flow lines from source HQs to story location */}
+        {state.sourceArcs && (
+          <Path
+            path={state.sourceArcs}
+            color={colors.accent}
+            style="stroke"
+            strokeWidth={0.5}
+            opacity={(light ? 0.15 : 0.08) * state.arcOpacity}
+          />
+        )}
+
+        {/* Qibla arc — great circle toward Makkah */}
+        {state.qiblaPath && (
+          <Path
+            path={state.qiblaPath}
+            color={colors.dome}
+            style="stroke"
+            strokeWidth={0.8}
+            opacity={(light ? 0.2 : 0.12) * state.arcOpacity}
+          />
+        )}
+
+        {/* Makkah — golden qibla reference point */}
+        {state.makkah && (
+          <Glow
+            x={state.makkah.x}
+            y={state.makkah.y}
+            color={colors.dome}
+            layers={MAKKAH_GLOW_LAYERS}
+          />
+        )}
+
+        {/* Story dot */}
+        {state.dot && (
+          <Glow
+            x={state.dot.x}
+            y={state.dot.y}
+            color={colors.textEmphasis}
+            layers={DOT_GLOW_LAYERS}
+          />
+        )}
+
+        {/* Dot label — location · local time */}
+        {state.dotLabel && labelFont && (
+          <>
             <SkiaText
               x={state.dotLabel.x + 6}
-              y={state.dotLabel.y + 18}
-              text={state.dotLabel.sub}
-              font={subFont}
+              y={state.dotLabel.y + 4}
+              text={state.dotLabel.text}
+              font={labelFont}
               color={colors.textEmphasis}
-              opacity={light ? 0.45 : 0.55}
+              opacity={light ? 0.65 : 0.8}
             />
-          )}
-        </>
-      )}
+            {state.dotLabel.sub && subFont && (
+              <SkiaText
+                x={state.dotLabel.x + 6}
+                y={state.dotLabel.y + 18}
+                text={state.dotLabel.sub}
+                font={subFont}
+                color={colors.textEmphasis}
+                opacity={light ? 0.45 : 0.55}
+              />
+            )}
+          </>
+        )}
 
-      {/* Pole markers — tiny crosses */}
-      {state.northPole && (
-        <>
-          <Rect
-            x={state.northPole.x - 3}
-            y={state.northPole.y - 0.4}
-            width={6}
-            height={0.8}
-            color={colors.accent}
-            opacity={light ? 0.2 : 0.15}
-          />
-          <Rect
-            x={state.northPole.x - 0.4}
-            y={state.northPole.y - 3}
-            width={0.8}
-            height={6}
-            color={colors.accent}
-            opacity={light ? 0.2 : 0.15}
-          />
-        </>
-      )}
-      {state.southPole && (
-        <>
-          <Rect
-            x={state.southPole.x - 3}
-            y={state.southPole.y - 0.4}
-            width={6}
-            height={0.8}
-            color={colors.accent}
-            opacity={light ? 0.2 : 0.15}
-          />
-          <Rect
-            x={state.southPole.x - 0.4}
-            y={state.southPole.y - 3}
-            width={0.8}
-            height={6}
-            color={colors.accent}
-            opacity={light ? 0.2 : 0.15}
-          />
-        </>
-      )}
-    </Canvas>
+        {/* Pole markers — tiny crosses */}
+        {state.northPole && (
+          <>
+            <Rect
+              x={state.northPole.x - 3}
+              y={state.northPole.y - 0.4}
+              width={6}
+              height={0.8}
+              color={colors.accent}
+              opacity={light ? 0.2 : 0.15}
+            />
+            <Rect
+              x={state.northPole.x - 0.4}
+              y={state.northPole.y - 3}
+              width={0.8}
+              height={6}
+              color={colors.accent}
+              opacity={light ? 0.2 : 0.15}
+            />
+          </>
+        )}
+        {state.southPole && (
+          <>
+            <Rect
+              x={state.southPole.x - 3}
+              y={state.southPole.y - 0.4}
+              width={6}
+              height={0.8}
+              color={colors.accent}
+              opacity={light ? 0.2 : 0.15}
+            />
+            <Rect
+              x={state.southPole.x - 0.4}
+              y={state.southPole.y - 3}
+              width={0.8}
+              height={6}
+              color={colors.accent}
+              opacity={light ? 0.2 : 0.15}
+            />
+          </>
+        )}
+      </Canvas>
+    </Animated.View>
   );
 });
 
@@ -1416,5 +1450,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     left: 0,
+  },
+  canvasInner: {
+    // Canvas fills the Animated.View wrapper — no extra positioning
   },
 });

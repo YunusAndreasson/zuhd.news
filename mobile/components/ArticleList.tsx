@@ -14,6 +14,8 @@ import Animated, {
   type SharedValue,
   useAnimatedRef,
   useAnimatedScrollHandler,
+  useSharedValue,
+  withSpring,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useScrollState } from '../hooks/useScrollState';
@@ -103,6 +105,9 @@ export const ArticleList = memo(function ArticleList({
   const globeRef = useRef<MiniGlobeRef>(null);
   const containerRef = useRef<View>(null);
   const containerTopRef = useRef(0);
+  // Globe settle spring — kicked to 1 on snap, springs back to 0.
+  // Drives a brief clip-angle overshoot for physical weight.
+  const settleBounce = useSharedValue(0);
   const resetOverscroll = useCallback(() => {
     if (overscrollTimer.current) clearTimeout(overscrollTimer.current);
     overscrollTimer.current = setTimeout(() => {
@@ -185,8 +190,11 @@ export const ArticleList = memo(function ArticleList({
       }
       setCurrentIndex(idx);
       maybeRequestReview();
+      // Kick the globe settle spring — overshoots and bounces back
+      settleBounce.value = 0.6;
+      settleBounce.value = withSpring(0, { damping: 12, stiffness: 200 });
     },
-    [earlierIndex, onCaughtUp, caughtUpFired, setCurrentIndex],
+    [earlierIndex, onCaughtUp, caughtUpFired, setCurrentIndex, settleBounce],
   );
 
   const handleMomentumEnd = useCallback(
@@ -244,6 +252,7 @@ export const ArticleList = memo(function ArticleList({
         articles={sortedArticles}
         heatmapPoints={heatmapPoints}
         scrollY={scrollY}
+        settleBounce={settleBounce}
         itemHeight={itemHeight}
         width={screenWidth}
         height={viewportHeight}
