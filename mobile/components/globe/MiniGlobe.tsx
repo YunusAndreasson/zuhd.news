@@ -276,6 +276,7 @@ interface Hotspot {
   lat: number;
   lng: number;
   intensity: number; // 0–1 log-normalized
+  recency: number; // 0–1, 1 = just now, decays with age
   labels: string[];
   countryName: string | null;
 }
@@ -300,6 +301,7 @@ interface GlobeState {
     x: number;
     y: number;
     intensity: number;
+    recency: number;
     labels: string[];
     countryName: string | null;
   }[];
@@ -572,10 +574,11 @@ export const MiniGlobe = memo(function MiniGlobe({
   // Cluster heatmap points with 18h half-life time-decay → top 8 coverage hotspots
   const hotspots = useMemo((): Hotspot[] => {
     // Fallback to article-based clustering when heatmap data unavailable
+    const now = Date.now();
     if (!heatmapPoints || heatmapPoints.length === 0) {
       const clusters = new Map<
         string,
-        { lat: number; lng: number; total: number; countryName: string | null }
+        { lat: number; lng: number; total: number; newestT: number; countryName: string | null }
       >();
       for (let i = 0; i < articles.length; i++) {
         const geo = articleGeo[i];
@@ -585,12 +588,15 @@ export const MiniGlobe = memo(function MiniGlobe({
         const coverage = article.eventCoverage ?? 1;
         const key = `${Math.round(geo.lat * 2) / 2},${Math.round(geo.lng * 2) / 2}`;
         const existing = clusters.get(key);
-        if (existing) existing.total += coverage;
-        else
+        if (existing) {
+          existing.total += coverage;
+          if (article.addedAt > existing.newestT) existing.newestT = article.addedAt;
+        } else
           clusters.set(key, {
             lat: geo.lat,
             lng: geo.lng,
             total: coverage,
+            newestT: article.addedAt,
             countryName: geo.countryName,
           });
       }
@@ -602,15 +608,15 @@ export const MiniGlobe = memo(function MiniGlobe({
         lat: z.lat,
         lng: z.lng,
         intensity: Math.log(z.total + 1) / logMax,
+        recency: Math.exp(-DECAY_LAMBDA * ((now - z.newestT) / 3_600_000)),
         labels: [],
         countryName: z.countryName,
       }));
     }
 
-    const now = Date.now();
     const clusters = new Map<
       string,
-      { lat: number; lng: number; total: number; labels: Set<string> }
+      { lat: number; lng: number; total: number; newestT: number; labels: Set<string> }
     >();
 
     for (const pt of heatmapPoints) {
@@ -624,11 +630,12 @@ export const MiniGlobe = memo(function MiniGlobe({
       const existing = clusters.get(key);
       if (existing) {
         existing.total += weight;
+        if (pt.t > existing.newestT) existing.newestT = pt.t;
         if (pt.l) existing.labels.add(pt.l);
       } else {
         const labels = new Set<string>();
         if (pt.l) labels.add(pt.l);
-        clusters.set(key, { lat: pt.lat, lng: pt.lng, total: weight, labels });
+        clusters.set(key, { lat: pt.lat, lng: pt.lng, total: weight, newestT: pt.t, labels });
       }
     }
 
@@ -643,6 +650,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         lat: z.lat,
         lng: z.lng,
         intensity: Math.log(z.total + 1) / logMax,
+        recency: Math.exp(-DECAY_LAMBDA * ((now - z.newestT) / 3_600_000)),
         labels: [...z.labels],
         countryName: country?.properties?.name ?? null,
       };
@@ -918,6 +926,7 @@ export const MiniGlobe = memo(function MiniGlobe({
                 x: pt[0],
                 y: pt[1],
                 intensity: zone.intensity,
+                recency: zone.recency,
                 labels: zone.labels,
                 countryName: zone.countryName,
               });
@@ -1309,18 +1318,22 @@ export const MiniGlobe = memo(function MiniGlobe({
       )}
 
       {/* Coverage hotspot ambient glows — top coverage hotspots */}
-      {state.hotspotGlows.map((z, i) => (
-        <Glow
-          key={i}
-          x={z.x}
-          y={z.y}
-          color={colors.text}
-          layers={[
-            { r: 18 + z.intensity * 20, opacity: 0.04 + z.intensity * 0.08, blur: 12 },
-            { r: 6 + z.intensity * 10, opacity: 0.06 + z.intensity * 0.1, blur: 4 },
-          ]}
-        />
-      ))}
+      {state.hotspotGlows.map((z, i) => {
+        // Recency fades older hotspots: fresh stories are prominent, stale ones whisper
+        const fade = 0.3 + 0.7 * z.recency;
+        return (
+          <Glow
+            key={i}
+            x={z.x}
+            y={z.y}
+            color={colors.text}
+            layers={[
+              { r: 12 + z.intensity * 14, opacity: (0.03 + z.intensity * 0.06) * fade, blur: 10 },
+              { r: 4 + z.intensity * 7, opacity: (0.05 + z.intensity * 0.08) * fade, blur: 3 },
+            ]}
+          />
+        );
+      })}
 
       {/* Country highlight — opacity scales with area so small nations pop */}
       {state.countryPath && (

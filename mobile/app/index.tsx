@@ -209,16 +209,36 @@ export default function HomeScreen() {
 
   const handleCountryPress = useCallback((result: TapResult) => {
     hapticImpact();
-    // Hotspot glow tap → toast (event label or country name)
+    // Hotspot glow tap → toast with tap-to-navigate
     if (result.isHotspot) {
       const label = result.hotspotLabels?.[0] ?? result.countryName;
-      if (label) toastRef.current?.show(label);
+      if (!label) return;
+      toastRef.current?.show(label, () => {
+        // Find article matching this hotspot label
+        for (const cat of CATEGORIES) {
+          const articles = groupedRef.current[cat];
+          if (!articles) continue;
+          const match = articles.find((a) => {
+            if (a.threadLabel) {
+              const prefix = a.threadLabel.includes(':')
+                ? a.threadLabel.slice(0, a.threadLabel.indexOf(':'))
+                : a.threadLabel;
+              if (prefix === label) return true;
+            }
+            return a.title === label;
+          });
+          if (match) {
+            handleSelectArticle(match.slug, cat);
+            return;
+          }
+        }
+      });
       return;
     }
     // Country/dot tap → sheet
     setCountrySheet(result);
     countrySheetRef.current?.present();
-  }, []);
+  }, [handleSelectArticle]);
 
   const handleCountryStoryPress = useCallback(
     (label: string) => {
