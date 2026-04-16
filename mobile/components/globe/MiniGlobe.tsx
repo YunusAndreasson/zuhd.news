@@ -94,6 +94,9 @@ function Glow({
 const skiaCtx = createSkiaPathContext();
 const nightCircleGen = geoCircle();
 
+// __DEV__ perf counters — module-level to avoid worklet serialization issues
+const globePerf = { calls: 0, totalMs: 0, maxMs: 0, totalGap: 0, lastCall: 0 };
+
 // Equator + polar circles (Arctic 66.56°N, Antarctic 66.56°S)
 const graticuleLines = geoGraticule()
   .stepMinor([360, 360]) // no minor lines
@@ -679,6 +682,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       hiIndex: number,
       frac: number,
     ) => {
+      let t0 = 0;
+      if (__DEV__) {
+        t0 = performance.now();
+        if (globePerf.lastCall > 0) globePerf.totalGap += t0 - globePerf.lastCall;
+      }
       lastReprojRef.current = { lng: geoLng, lat: geoLat, idx: settledIndex };
       const { globeRadius: r, cx: centerX, cy: centerY } = layoutRef.current;
       const geoData = articleGeoRef.current;
@@ -911,6 +919,26 @@ export const MiniGlobe = memo(function MiniGlobe({
         makkah,
         hotspotGlows,
       });
+
+      if (__DEV__) {
+        const dur = performance.now() - t0;
+        globePerf.calls++;
+        globePerf.totalMs += dur;
+        if (dur > globePerf.maxMs) globePerf.maxMs = dur;
+        if (globePerf.calls % 60 === 0) {
+          const avg = (globePerf.totalMs / globePerf.calls).toFixed(1);
+          const gap = globePerf.calls > 1 ? globePerf.totalGap / (globePerf.calls - 1) : 0;
+          console.log(
+            `[Globe] 60-frame avg: ${avg}ms, max: ${globePerf.maxMs.toFixed(1)}ms, ` +
+              `avg gap: ${gap.toFixed(0)}ms (target: 32ms)`,
+          );
+          globePerf.calls = 0;
+          globePerf.totalMs = 0;
+          globePerf.maxMs = 0;
+          globePerf.totalGap = 0;
+        }
+        globePerf.lastCall = performance.now();
+      }
     },
     [],
   );
