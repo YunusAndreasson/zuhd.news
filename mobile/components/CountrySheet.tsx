@@ -174,7 +174,7 @@ export const CountrySheet = memo(function CountrySheet({
               value={[
                 country.data.region,
                 country.data.landlocked ? 'landlocked' : null,
-                !country.data.independent ? 'disputed' : null,
+                !country.data.independent ? 'territory' : null,
               ]
                 .filter(Boolean)
                 .join(' · ')}

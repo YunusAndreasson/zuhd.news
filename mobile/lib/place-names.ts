@@ -20,6 +20,9 @@ const ARABIC_NAMES: Record<string, string> = {
   Ramle: 'ar-Ramla',
   Lod: 'al-Ludd',
   Jaffa: 'Yafa',
+  Bethlehem: 'Bayt Lahm',
+  Jericho: 'Ariha',
+  Hebron: 'Al-Khalil',
 };
 
 export function displayLocation(location: string | null): string | null {
