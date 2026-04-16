@@ -115,12 +115,12 @@ concepts:
   - "Russia"
 ---
 
-London — Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. They are now reporting Russia to the chemical weapons watchdog.
+London — Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. Britain and 4 allies have formally referred Russia to the chemical weapons watchdog for investigation.
 </example>
 
 <example>
 ---
-title: "Gaza Hospitals Run Out of Fuel"
+title: "Israel Cuts Gaza Fuel"
 date: "2026-02-14T12:00:00Z"
 category: "politics"
 location: "Gaza"
