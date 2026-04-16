@@ -179,11 +179,13 @@ export default function HomeScreen() {
     hapticImpact();
     const url = `https://zuhd.news/a/${activeArticle.slug}`;
     const title = activeArticle.title;
+    const content = Platform.select({
+      ios: { url, title },
+      default: { message: `${title}\n${url}`, title },
+    });
+    if (!content) return;
     Share.share(
-      Platform.select({
-        ios: { url, title },
-        default: { message: `${title}\n${url}`, title },
-      })!,
+      content,
       Platform.select({
         ios: { subject: `${title} \u2014 zuhd.news` },
         default: { dialogTitle: 'Share' },

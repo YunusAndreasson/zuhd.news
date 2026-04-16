@@ -1,5 +1,6 @@
 import { getCoords } from '../components/globe/storyDots';
-import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
+import { ccToFlag, computeFontScale, formatTimeAgo } from '../lib/article-utils';
+import { displayLocation } from '../lib/place-names';
 import type { Article } from '../types';
 
 // Minimal Article factory — only fields used by getCoords/formatTimeAgo/computeFontScale
@@ -89,6 +90,61 @@ describe('getCoords', () => {
   it('returns null for empty sentences and null source', () => {
     const a = makeArticle({ sentences: [], source: null });
     expect(getCoords(a)).toBeNull();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// ccToFlag — country code → Unicode flag emoji
+// ---------------------------------------------------------------------------
+
+describe('ccToFlag', () => {
+  it('converts uppercase country code to flag emoji', () => {
+    expect(ccToFlag('US')).toBe('🇺🇸');
+  });
+
+  it('converts lowercase country code to flag emoji', () => {
+    expect(ccToFlag('gb')).toBe('🇬🇧');
+  });
+
+  it('handles mixed case', () => {
+    expect(ccToFlag('De')).toBe('🇩🇪');
+  });
+
+  it('converts single-char codes without crashing', () => {
+    // Not a real country code, but should not throw
+    expect(() => ccToFlag('A')).not.toThrow();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// displayLocation — Arabic place name restoration
+// ---------------------------------------------------------------------------
+
+describe('displayLocation', () => {
+  it('returns null for null input', () => {
+    expect(displayLocation(null)).toBeNull();
+  });
+
+  it('maps Tel Aviv to Yafa', () => {
+    expect(displayLocation('Tel Aviv')).toBe('Yafa');
+  });
+
+  it('maps Jerusalem to Al-Quds', () => {
+    expect(displayLocation('Jerusalem')).toBe('Al-Quds');
+  });
+
+  it('maps Jaffa to Yafa', () => {
+    expect(displayLocation('Jaffa')).toBe('Yafa');
+  });
+
+  it('passes through unmapped locations unchanged', () => {
+    expect(displayLocation('London')).toBe('London');
+    expect(displayLocation('Tehran')).toBe('Tehran');
+  });
+
+  it('is case-sensitive (matches frontmatter casing)', () => {
+    // Lowercase "tel aviv" has no mapping — only "Tel Aviv" does
+    expect(displayLocation('tel aviv')).toBe('tel aviv');
   });
 });
 

@@ -169,16 +169,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   ]);
 
   // Sync native system UI (Android nav bar + root background) with theme
+  const { bg } = theme.colors;
+  const { resolvedAppearance } = theme;
   useEffect(() => {
-    const { colors, resolvedAppearance } = theme;
-    SystemUI.setBackgroundColorAsync(colors.bg).catch(() => {});
+    SystemUI.setBackgroundColorAsync(bg).catch(() => {});
     if (Platform.OS === 'android') {
-      NavigationBar.setBackgroundColorAsync(colors.bg).catch(() => {});
+      NavigationBar.setBackgroundColorAsync(bg).catch(() => {});
       NavigationBar.setButtonStyleAsync(resolvedAppearance === 'dark' ? 'light' : 'dark').catch(
         () => {},
       );
     }
-  }, [theme.colors.bg, theme.resolvedAppearance]);
+  }, [bg, resolvedAppearance]);
 
   return <ThemeContext value={theme}>{children}</ThemeContext>;
 }

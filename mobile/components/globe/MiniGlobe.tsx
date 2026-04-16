@@ -103,12 +103,8 @@ const graticuleLines = geoGraticule()
 
 const NORTH_POLE: [number, number] = [0, 90];
 const SOUTH_POLE: [number, number] = [0, -90];
-const ARCTIC_CIRCLE = geoCircle()
-  .center(NORTH_POLE)
-  .radius(23.44)();
-const ANTARCTIC_CIRCLE = geoCircle()
-  .center(SOUTH_POLE)
-  .radius(23.44)();
+const ARCTIC_CIRCLE = geoCircle().center(NORTH_POLE).radius(23.44)();
+const ANTARCTIC_CIRCLE = geoCircle().center(SOUTH_POLE).radius(23.44)();
 const HALF_PI = Math.PI / 2;
 const DECAY_LAMBDA = Math.LN2 / 18; // 18h half-life
 
@@ -226,9 +222,12 @@ function findCountry(lat: number, lng: number, location?: string | null): GeoJSO
     const ptLat = lat + dlat;
     const pt: [number, number] = [ptLng, ptLat];
     for (let i = 0; i < countries.features.length; i++) {
-      const [minLng, minLat, maxLng, maxLat] = countryBboxes[i]!;
+      const bbox = countryBboxes[i];
+      const feat = countries.features[i];
+      if (!bbox || !feat) continue;
+      const [minLng, minLat, maxLng, maxLat] = bbox;
       if (ptLng < minLng || ptLng > maxLng || ptLat < minLat || ptLat > maxLat) continue;
-      if (geoContains(countries.features[i]!, pt)) return countries.features[i]!;
+      if (geoContains(feat, pt)) return feat;
     }
   }
   return null;
@@ -563,7 +562,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       for (let i = 0; i < articles.length; i++) {
         const geo = articleGeo[i];
         if (!geo) continue;
-        const coverage = articles[i]!.eventCoverage ?? 1;
+        const article = articles[i];
+        if (!article) continue;
+        const coverage = article.eventCoverage ?? 1;
         const key = `${Math.round(geo.lat * 2) / 2},${Math.round(geo.lng * 2) / 2}`;
         const existing = clusters.get(key);
         if (existing) existing.total += coverage;
@@ -576,8 +577,9 @@ export const MiniGlobe = memo(function MiniGlobe({
           });
       }
       const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 8);
-      if (sorted.length === 0) return [];
-      const logMax = Math.log(sorted[0]!.total + 1);
+      const first = sorted[0];
+      if (!first) return [];
+      const logMax = Math.log(first.total + 1);
       return sorted.map((z) => ({
         lat: z.lat,
         lng: z.lng,
@@ -614,8 +616,9 @@ export const MiniGlobe = memo(function MiniGlobe({
 
     // Resolve country names only for top clusters
     const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 8);
-    if (sorted.length === 0) return [];
-    const logMax = Math.log(sorted[0]!.total + 1);
+    const first2 = sorted[0];
+    if (!first2) return [];
+    const logMax = Math.log(first2.total + 1);
     return sorted.map((z) => {
       const country = findCountry(z.lat, z.lng);
       return {
@@ -949,19 +952,19 @@ export const MiniGlobe = memo(function MiniGlobe({
   );
 
   // On app resume, invalidate sun/night caches and reproject the globe
+  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
   useEffect(() => {
     if (!_tick) return; // skip initial render
     invalidateSunCaches();
     const last = lastReprojRef.current;
     if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_tick]);
 
   // Re-project when hotspot data changes (e.g. heatmap fetch after app resume)
+  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
   useEffect(() => {
     const last = lastReprojRef.current;
     if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [hotspots]);
 
   useImperativeHandle(ref, () => ({
@@ -1041,10 +1044,13 @@ export const MiniGlobe = memo(function MiniGlobe({
           const [lng, lat] = coords;
           let feature: GeoJSON.Feature | undefined;
           for (let i = 0; i < countries.features.length; i++) {
-            const [minLng, minLat, maxLng, maxLat] = countryBboxes[i]!;
+            const bbox = countryBboxes[i];
+            const feat = countries.features[i];
+            if (!bbox || !feat) continue;
+            const [minLng, minLat, maxLng, maxLat] = bbox;
             if (lng < minLng || lng > maxLng || lat < minLat || lat > maxLat) continue;
-            if (geoContains(countries.features[i]!, coords)) {
-              feature = countries.features[i]!;
+            if (geoContains(feat, coords)) {
+              feature = feat;
               break;
             }
           }
@@ -1068,7 +1074,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   // Moon — NASA texture with phase shadow
   const moonTexture = useImage(require('../../assets/moon.png'));
-  // eslint-disable-next-line react-hooks/exhaustive-deps -- _tick forces recalc on app resume
+  // biome-ignore lint/correctness/useExhaustiveDependencies: _tick forces recalc on app resume
   const moonPhase = useMemo(() => getMoonPhase(), [_tick]);
   const moonR = globeRadius * 0.05;
 
