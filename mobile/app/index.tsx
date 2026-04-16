@@ -220,6 +220,31 @@ export default function HomeScreen() {
     countrySheetRef.current?.present();
   }, []);
 
+  const handleCountryStoryPress = useCallback(
+    (label: string) => {
+      // Find article matching this hotspot label (threadLabel prefix or title)
+      for (const cat of CATEGORIES) {
+        const articles = groupedRef.current[cat];
+        if (!articles) continue;
+        const match = articles.find((a) => {
+          if (a.threadLabel) {
+            const prefix = a.threadLabel.includes(':')
+              ? a.threadLabel.slice(0, a.threadLabel.indexOf(':'))
+              : a.threadLabel;
+            if (prefix === label) return true;
+          }
+          return a.title === label;
+        });
+        if (match) {
+          countrySheetRef.current?.dismiss();
+          handleSelectArticle(match.slug, cat);
+          return;
+        }
+      }
+    },
+    [handleSelectArticle],
+  );
+
   const pagerRef = useRef<PagerView>(null);
   const toastRef = useRef<ToastRef>(null);
 
@@ -539,6 +564,7 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => setCountrySheet(null)}
+        onStoryPress={handleCountryStoryPress}
       />
 
       <ContextSheet
