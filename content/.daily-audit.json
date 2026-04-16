@@ -1,35 +1,33 @@
 {
-  "date": "2026-04-15",
+  "date": "2026-04-16",
   "metrics": {
-    "articles": { "value": 46, "detail": "5 cycles completed, avg 9.2/cycle" },
-    "freshness": { "median": 0.6, "p90": 1.6, "max": 1.6, "target": 1.0, "met": true },
-    "categories": { "politics": 17, "economy": 8, "science": 8, "tech": 13 },
-    "multiSource": { "value": 7, "target": 4, "met": true },
+    "articles": { "value": 53, "detail": "5 cycles, avg 9/cycle" },
+    "freshness": { "median": 0.4, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
+    "categories": { "politics": 21, "economy": 11, "science": 10, "tech": 11 },
+    "multiSource": { "value": 10, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 7,
       "target": 4,
       "met": true,
-      "breakdown": { "EU": 6, "AM": 18, "ME": 11, "AS": 6, "AF": 3, "OC": 2 }
+      "breakdown": { "AM": 19, "EU": 13, "ME": 12, "AS": 4, "AF": 3, "OC": 1, "GL": 1 }
     },
-    "sciTech": { "ratio": 46, "target": 25, "met": true },
-    "topSourceShare": { "source": "The Record / Al Jazeera Online (tied)", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 39,
+    "sciTech": { "ratio": 40, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 11, "target": 20, "met": true },
+    "uniqueSources": 51,
     "duplicates": 0,
-    "avgCycleDuration": 1266
+    "avgCycleDuration": 1074
   },
-  "experiment": "Experiment 2026-04-12-tech-floor-3 evaluated and KEPT. Tech articles rose from baseline 10.3/day to ~13.5/day average over the experiment window (+31%). No other metric degraded >20% proportionally: politics share 43%→36% (-16%), economy 22%→19% (-14%), science 18%→19% (slight improvement). Tech floor remains at 3. No new experiment proposed — all metrics are within targets.",
-  "weakestArea": "Freshness p90 is 1.6 days — the median (0.6) comfortably meets target but the long tail indicates some articles are nearly 2 days old at publication. Economy and science both dropped to 8 articles today (vs 11 each yesterday), reflecting lower overall cycle output; the daily targets are met but the drop is worth monitoring.",
+  "experiment": "Active experiment 2026-04-16-push-min-coverage started today (eventCoverage >= 1 threshold for breaking-news push candidates). Evaluates 2026-04-19 — no action yet.",
+  "weakestArea": "Africa is the thinnest region at 3 articles (5.7% of output), far below Americas (36%) and Europe (25%). The region target (≥4 unique regions) is met numerically, but AF depth is shallow — Premium Times Nigeria and Radio Dabanga carry the full load with no East Africa or Sahel coverage.",
   "watching": [
-    "Iran-Hormuz: naval blockade and US-ally friction is the defining story; ceasefire talks in Islamabad are the key diplomatic thread to track.",
-    "Nigeria security crisis: Yobe airstrike (~200 dead) and 1,100+ kidnappings report from Amnesty ran once on Sunday — need consistent follow-up, not one-off drops.",
-    "Artemis II: first crewed lunar mission since Apollo, ~7 articles/week — track milestone events as mission progresses.",
-    "Hungary: Orbán government ended; monitoring early signals from the Tisza-led government for authoritarian-reversal precedent."
+    "Ukraine-Russia front: Kyiv Independent and TASS both active today — monitor for ceasefire signals or escalation through the weekend.",
+    "US tariff fallout: Investing.com, CNBC, and Bloomberg all running trade angles; economy category likely to stay elevated.",
+    "Dawn at 6 articles today — Pakistan political/security cycle is active; worth watching for topic concentration if this continues across cycles."
   ],
   "coverageGaps": [
-    "Sub-Saharan Africa: Sudan RSF/Darfur offensive dropped from pipeline after late-March; Sahel junta consolidation not tracked week-to-week.",
-    "Southeast Asia: Philippines (98% energy-dependent on Hormuz) barely covered despite being the most exposed nation to the blockade.",
-    "Climate policy: IPCC AR7 deadlock and Global South adaptation spending are being crowded out by Iran war energy coverage.",
-    "Labour and migration: worker cost-of-living squeeze and war-driven displacement nearly absent despite direct relevance to the economic cascade."
+    "Sub-Saharan Africa beyond Nigeria is absent — no East Africa (Ethiopia, Somalia, Kenya) despite ongoing security and climate stories.",
+    "Southeast Asia largely missing today; ASEAN economies and Myanmar conflict absent.",
+    "Latin America covered only through a US-centric tariff lens — no independent story from Brazil, Argentina, or Colombia."
   ],
-  "context": "All four diversity targets are green today. The tech floor experiment concludes successfully — raising the floor from 2 to 3 per cycle lifted tech coverage from ~17% to ~28% of daily output with no meaningful collateral degradation. Total output is slightly lower than yesterday (46 vs 56) but the pipeline ran cleanly with zero duplicates across 39 unique sources. The weekly reflection's coverage gap recommendations (Africa, Southeast Asia, climate) remain structurally unaddressed at the parameter level."
+  "context": "All four tracked goals are comfortably met today: freshness median 0.4 days, sci+tech at 40%, multi-source at 10, and 7 distinct regions. Politics continues to dominate at 40% of output (21/53) but absolute counts for science (10) and tech (11) are both well above their daily floors. Cycle performance was solid — 5/5 completed with avg duration 1074s and zero duplicates across 51 unique sources."
 }
