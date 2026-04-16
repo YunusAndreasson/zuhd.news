@@ -25,7 +25,10 @@ export function useHeatmap(feedGenerated: string | null): HeatmapPoint[] {
   }, []);
 
   // Cache-first initial load
+  const didInitialFetch = useRef(false);
   useEffect(() => {
+    if (didInitialFetch.current) return;
+    didInitialFetch.current = true;
     (async () => {
       const cached = await readHeatmapCache();
       if (cached) {
@@ -36,9 +39,11 @@ export function useHeatmap(feedGenerated: string | null): HeatmapPoint[] {
     })();
   }, [fetchHeatmap]);
 
-  // Refetch when feed changes
+  // Refetch when feed rotates — only after the initial fetch has settled so
+  // we don't race the cache-load path.
   useEffect(() => {
     if (!feedGenerated) return;
+    if (!lastGenRef.current) return;
     if (feedGenerated !== lastGenRef.current) {
       fetchHeatmap();
     }

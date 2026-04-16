@@ -1,6 +1,6 @@
 import { Component, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { DARK_COLORS, SPACING } from '../constants/theme';
+import { DARK_COLORS, LAYOUT, makeTypography, SPACING } from '../constants/theme';
 
 interface Props {
   children: ReactNode;
@@ -9,6 +9,10 @@ interface Props {
 interface State {
   error: Error | null;
 }
+
+// ErrorBoundary lives above ThemeProvider in the tree, so it can't consume the
+// theme context. Fall back to dark-mode defaults and the shared typography scale.
+const typography = makeTypography(1);
 
 export class ErrorBoundary extends Component<Props, State> {
   state: State = { error: null };
@@ -35,7 +39,7 @@ export class ErrorBoundary extends Component<Props, State> {
         </Text>
         <Pressable
           onPress={this.reset}
-          hitSlop={16}
+          hitSlop={LAYOUT.hitSlop}
           accessibilityRole="button"
           accessibilityLabel="Try again"
         >
@@ -56,19 +60,19 @@ const styles = StyleSheet.create({
   },
   title: {
     color: DARK_COLORS.text,
-    fontSize: 18,
+    fontSize: typography.sizeLg,
     marginBottom: SPACING.sm,
     textAlign: 'center',
   },
   detail: {
     color: DARK_COLORS.textSecondary,
-    fontSize: 14,
+    fontSize: typography.sizeSm,
     textAlign: 'center',
     marginBottom: SPACING.lg,
   },
   retry: {
     color: DARK_COLORS.text,
-    fontSize: 15,
+    fontSize: typography.sizeSm,
     fontWeight: '600',
   },
 });

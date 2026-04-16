@@ -72,7 +72,10 @@ export const ArticleList = memo(function ArticleList({
   const insets = useSafeAreaInsets();
   const { width: screenWidth } = useWindowDimensions();
   // Chronological sort, but within the same time bucket (e.g. all "1h ago")
-  // breaking stories (eventCoverage >= 100) float to top of their bucket
+  // breaking stories (eventCoverage >= 100) float to top of their bucket.
+  // Buckets depend on Date.now() — `tick` from useArticles invalidates the
+  // memo on app-resume so crossing-bucket sort stays accurate.
+  // biome-ignore lint/correctness/useExhaustiveDependencies: `tick` is the intentional re-memo signal for the Date.now() buckets
   const sortedArticles = useMemo(() => {
     // Pre-bucket once so the comparator is pure (no Date.now() per comparison)
     const buckets = new Map<Article, string>();
@@ -85,7 +88,7 @@ export const ArticleList = memo(function ArticleList({
       }
       return b.addedAt - a.addedAt;
     });
-  }, [articles]);
+  }, [articles, tick]);
   const articleCount = sortedArticles.length;
   const itemHeight = viewportHeight;
   const safeAreaFooter = useMemo(() => <View style={{ height: insets.bottom }} />, [insets.bottom]);

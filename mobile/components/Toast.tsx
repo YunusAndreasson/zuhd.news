@@ -23,6 +23,8 @@ const TOAST_SLIDE_OFFSET = SPACING.xxl;
 const EASE_IN = { duration: ANIMATION.normal, easing: Easing.in(Easing.ease) };
 const EASE_OUT = { duration: ANIMATION.normal, easing: Easing.out(Easing.ease) };
 
+const offsetFor = (p: ToastPosition) => (p === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET);
+
 export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
   const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
@@ -44,12 +46,13 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
   }, []);
 
   const dismiss = useCallback(() => {
+    const offset = offsetFor(posRef.current);
     if (reduceMotion) {
       opacity.value = 0;
+      translateY.value = offset;
       setVisible(false);
       return;
     }
-    const offset = posRef.current === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET;
     opacity.value = withTiming(0, EASE_IN, (finished) => {
       if (finished) runOnJS(setVisible)(false);
     });
@@ -65,11 +68,12 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
       setVisible(true);
       onPressRef.current = onPress;
 
+      const start = offsetFor(position);
       if (reduceMotion) {
         translateY.value = 0;
         opacity.value = 1;
       } else {
-        translateY.value = position === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET;
+        translateY.value = start;
         opacity.value = withTiming(1, EASE_OUT);
         translateY.value = withTiming(0, EASE_OUT);
       }

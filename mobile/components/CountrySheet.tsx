@@ -4,16 +4,17 @@ import {
   type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
-import { memo, useCallback, useRef, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { ANIMATION, LAYOUT, PRESSED_STYLE, SPACING, staggerDelay } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { MetricKey } from '../lib/country-ranking';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { CountryRankingView } from './CountryRankingView';
 import type { TapResult } from './globe/MiniGlobe';
 import { HapticPressable } from './HapticPressable';
+import { SheetHandle } from './SheetHandle';
 import { SheetLayout } from './SheetLayout';
 import { useMaxSheetHeight } from './SheetPrimitives';
 
@@ -139,40 +140,24 @@ export const CountrySheet = memo(function CountrySheet({
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
   const flag = country?.data?.flag;
   const name = displayCountryName(country?.countryName ?? null);
-  const onBack = useCallback(() => setActiveRanking(null), []);
-  const handleDataRef = useRef({ flag, name, inRanking: !!activeRanking, onBack });
-  handleDataRef.current = { flag, name, inRanking: !!activeRanking, onBack };
-  const CountryHandle = useCallback(() => {
-    const { flag: f, name: n, inRanking, onBack: back } = handleDataRef.current;
-    return (
-      <View
-        style={styles.handle}
-        accessibilityRole="adjustable"
-        accessibilityLabel={n ? `${n} sheet` : 'Country sheet'}
-        accessibilityHint="Swipe down to dismiss"
-      >
-        <View style={[styles.handleIndicator, { backgroundColor: colors.rule }]} />
-        {(f || n || inRanking) && (
-          <View style={styles.handleRow}>
-            {f && <Text style={styles.handleFlag}>{f}</Text>}
-            {n && <Text style={textStyles.sheetTitle}>{n}</Text>}
-          </View>
-        )}
-        {inRanking && (
-          <HapticPressable
-            onPress={back}
-            haptic="tick"
-            hitSlop={LAYOUT.hitSlop}
-            accessibilityRole="button"
-            accessibilityLabel="Back to country"
-            style={styles.handleBack}
-          >
-            <Ionicons name="chevron-back" size={LAYOUT.iconMd} color={colors.text} />
-          </HapticPressable>
-        )}
-      </View>
-    );
-  }, [colors.rule, colors.text, textStyles.sheetTitle]);
+  const onBackToCountry = useCallback(() => setActiveRanking(null), []);
+
+  const CountryHandle = useCallback(
+    () => (
+      <SheetHandle
+        onBack={activeRanking ? onBackToCountry : undefined}
+        title={
+          flag || name ? (
+            <View style={styles.handleRow}>
+              {flag && <Text style={styles.handleFlag}>{flag}</Text>}
+              {name && <Text style={textStyles.sheetTitle}>{name}</Text>}
+            </View>
+          ) : undefined
+        }
+      />
+    ),
+    [activeRanking, onBackToCountry, flag, name, textStyles.sheetTitle],
+  );
 
   const hasHotspot = country?.hotspotLabels && country.hotspotLabels.length > 0;
 
@@ -186,9 +171,6 @@ export const CountrySheet = memo(function CountrySheet({
     setActiveRanking(null);
     onDismiss();
   }, [onDismiss]);
-
-  let delay = 0;
-  const nextDelay = () => (delay += ANIMATION.staggerStep);
 
   return (
     <SheetLayout
@@ -217,7 +199,7 @@ export const CountrySheet = memo(function CountrySheet({
             <>
               {/* Key stats — at-a-glance numbers */}
               <Animated.View
-                entering={FadeInDown.duration(ANIMATION.normal).delay(nextDelay())}
+                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(0))}
                 style={[styles.countryKeyStats, { borderBottomColor: colors.rule }]}
               >
                 <KeyStat
@@ -241,14 +223,14 @@ export const CountrySheet = memo(function CountrySheet({
               {hasHotspot && (
                 <Animated.View
                   style={styles.hotspotSection}
-                  entering={FadeInDown.duration(ANIMATION.normal).delay(nextDelay())}
+                  entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(1))}
                 >
                   <Text style={[styles.sheetLabel, textStyles.smallCapsXs]}>
-                    {country.hotspotLabels!.length === 1
+                    {country.hotspotLabels?.length === 1
                       ? 'developing story'
                       : 'developing stories'}
                   </Text>
-                  {country.hotspotLabels!.map((label, i) => (
+                  {country.hotspotLabels?.map((label, i) => (
                     <Pressable
                       key={i}
                       onPress={() => onStoryPress?.(label)}
@@ -275,7 +257,9 @@ export const CountrySheet = memo(function CountrySheet({
               )}
 
               {/* ── Economy ── */}
-              <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(nextDelay())}>
+              <Animated.View
+                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(2))}
+              >
                 <SectionLabel>economy</SectionLabel>
                 <CountryRow
                   label="GDP/capita"
@@ -295,7 +279,9 @@ export const CountrySheet = memo(function CountrySheet({
               </Animated.View>
 
               {/* ── People ── */}
-              <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(nextDelay())}>
+              <Animated.View
+                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(3))}
+              >
                 <SectionLabel>people</SectionLabel>
                 <CountryRow
                   label="capital"
@@ -322,7 +308,9 @@ export const CountrySheet = memo(function CountrySheet({
               </Animated.View>
 
               {/* ── Geography ── */}
-              <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(nextDelay())}>
+              <Animated.View
+                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(4))}
+              >
                 <SectionLabel>geography</SectionLabel>
                 <CountryRow
                   label="official name"
@@ -357,7 +345,9 @@ export const CountrySheet = memo(function CountrySheet({
               </Animated.View>
 
               {/* Attribution */}
-              <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(nextDelay())}>
+              <Animated.View
+                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(5))}
+              >
                 <Text style={[styles.attribution, textStyles.smallCapsXs]}>
                   world bank \u00B7 rest countries
                 </Text>
@@ -371,29 +361,13 @@ export const CountrySheet = memo(function CountrySheet({
 });
 
 const styles = StyleSheet.create({
-  handle: {
-    alignItems: 'center',
-    paddingTop: SPACING.sm,
-    paddingBottom: SPACING.md,
-  },
-  handleIndicator: {
-    width: LAYOUT.handleWidth,
-    height: LAYOUT.handleHeight,
-    borderRadius: LAYOUT.handleRadius,
-  },
   handleRow: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.sm,
-    marginTop: SPACING.sm,
   },
   handleFlag: {
     fontSize: LAYOUT.iconMd,
-  },
-  handleBack: {
-    position: 'absolute',
-    left: SPACING.screenPadding,
-    bottom: SPACING.md,
   },
   sheetLabel: {
     marginBottom: SPACING.sm,

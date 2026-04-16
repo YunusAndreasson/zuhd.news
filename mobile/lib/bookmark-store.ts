@@ -48,6 +48,11 @@ function persistDebounced() {
   persistTimer = setTimeout(persistNow, 100);
 }
 
+/** Flush any pending write — call from app-background transitions. */
+export function flushBookmarks(): void {
+  if (persistTimer) persistNow();
+}
+
 // ---------------------------------------------------------------------------
 // Public API
 // ---------------------------------------------------------------------------
@@ -62,7 +67,7 @@ export function toggle(article: Article, category: Category): boolean {
   }
   bookmarks = [{ article, category, savedAt: Date.now() }, ...bookmarks];
   emit();
-  persistNow(); // write immediately so a crash can't lose the save
+  persistDebounced();
   return true; // added
 }
 

@@ -129,7 +129,10 @@ describe('useContextBrief', () => {
     expect(result.current.brief).toEqual(briefB); // B's result preserved
   });
 
-  it('applies late successful response when the active request failed', async () => {
+  it('discards an aborted earlier request even if the active one fails', async () => {
+    // The latest fetchBrief always wins. When a new request starts, any
+    // in-flight request is aborted — its later result must not leak into
+    // the UI, even if the newer request also fails.
     const idA = uniqueId('race-a');
     const idB = uniqueId('race-b');
     const briefA = makeBrief(idA);
@@ -140,29 +143,23 @@ describe('useContextBrief', () => {
 
     const { result } = renderHook(() => useContextBrief());
 
-    // Start A
     act(() => {
       result.current.fetchBrief(idA);
     });
-
-    // Start B (overwrites activeId)
     act(() => {
       result.current.fetchBrief(idB);
     });
 
-    // B fails — activeId is cleared, allowing fallback
     await act(async () => {
       deferB.reject(new Error('network'));
     });
     expect(result.current.loading).toBe(false);
     expect(result.current.brief).toBeNull();
 
-    // A succeeds late — since activeId was cleared by B's failure,
-    // A's valid data is applied instead of being silently discarded
+    // A was aborted when B started — its result must not be applied.
     await act(async () => {
       deferA.resolve(mockResponse(briefA));
     });
-
-    expect(result.current.brief).toEqual(briefA);
+    expect(result.current.brief).toBeNull();
   });
 });

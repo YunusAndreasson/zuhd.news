@@ -1,11 +1,5 @@
-import {
-  type BottomSheetBackdropProps,
-  BottomSheetFlatList,
-  type BottomSheetModal,
-  BottomSheetTextInput,
-} from '@gorhom/bottom-sheet';
-import { memo, useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
-
+import { BottomSheetFlatList, BottomSheetTextInput } from '@gorhom/bottom-sheet';
+import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, StyleSheet, Text, View } from 'react-native';
 import type { TextInput } from 'react-native-gesture-handler';
 import { CATEGORIES, LAYOUT, SPACING } from '../constants/theme';
@@ -13,7 +7,6 @@ import { useTheme } from '../hooks/useTheme';
 import type { Article, Category } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
-import { SheetLayout } from './SheetLayout';
 
 interface SearchResult extends Article {
   category: Category;
@@ -22,7 +15,7 @@ interface SearchResult extends Article {
 interface IndexedArticle {
   article: Article;
   category: Category;
-  corpus: string; // pre-lowercased searchable text
+  corpus: string;
 }
 
 function buildSearchIndex(grouped: Record<Category, Article[]>): IndexedArticle[] {
@@ -51,27 +44,13 @@ function searchArticles(index: IndexedArticle[], query: string): SearchResult[] 
   return results;
 }
 
-// ---------------------------------------------------------------------------
-// Search sheet
-// ---------------------------------------------------------------------------
-
-interface SearchSheetProps {
-  sheetRef: React.RefObject<BottomSheetModal | null>;
+interface SheetSearchPageProps {
   grouped: Record<Category, Article[]>;
   bottomInset: number;
-  renderBackdrop: React.FC<BottomSheetBackdropProps>;
   onSelectArticle: (slug: string, category: Category) => void;
-  onDismiss: () => void;
 }
 
-export const SearchSheet = memo(function SearchSheet({
-  sheetRef,
-  grouped,
-  bottomInset,
-  renderBackdrop,
-  onSelectArticle,
-  onDismiss,
-}: SearchSheetProps) {
+export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: SheetSearchPageProps) {
   const { colors, font, typography, textStyles } = useTheme();
   const [query, setQuery] = useState('');
   const deferredQuery = useDeferredValue(query.trim());
@@ -84,7 +63,7 @@ export const SearchSheet = memo(function SearchSheet({
     [searchIndex, deferredQuery],
   );
 
-  // Announce result count changes for VoiceOver (in effect, not render)
+  // Announce result count changes for VoiceOver
   const resultCount = results.length;
   useEffect(() => {
     if (!deferredQuery) return;
@@ -95,17 +74,10 @@ export const SearchSheet = memo(function SearchSheet({
     );
   }, [deferredQuery, resultCount]);
 
-  const handleDismiss = useCallback(() => {
-    setQuery('');
-    prevCountRef.current = 0;
-    onDismiss();
-  }, [onDismiss]);
-
-  const handleChange = useCallback((index: number) => {
-    // Focus input once the sheet has settled at its snap point
-    if (index === 0) {
-      inputRef.current?.focus();
-    }
+  // Focus the input when the page mounts — defer so nav transition commits first.
+  useEffect(() => {
+    const h = setTimeout(() => inputRef.current?.focus(), 50);
+    return () => clearTimeout(h);
   }, []);
 
   const renderItem = useCallback(
@@ -125,19 +97,7 @@ export const SearchSheet = memo(function SearchSheet({
   const keyExtractor = useCallback((item: SearchResult) => item.slug, []);
 
   return (
-    <SheetLayout
-      sheetRef={sheetRef}
-      snapPoints={['85%']}
-      enableDynamicSizing={false}
-      renderBackdrop={renderBackdrop}
-      handleTitle="search"
-      onDismiss={handleDismiss}
-      onChange={handleChange}
-      keyboardBehavior="extend"
-      keyboardBlurBehavior="none"
-      enableBlurKeyboardOnGesture
-      android_keyboardInputMode="adjustResize"
-    >
+    <>
       <View style={[styles.inputRow, { borderBottomColor: colors.rule }]}>
         <BottomSheetTextInput
           ref={inputRef}
@@ -181,9 +141,9 @@ export const SearchSheet = memo(function SearchSheet({
           }
         />
       )}
-    </SheetLayout>
+    </>
   );
-});
+}
 
 const styles = StyleSheet.create({
   inputRow: {

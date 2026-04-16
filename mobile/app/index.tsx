@@ -10,34 +10,24 @@ import {
   InteractionManager,
   type LayoutChangeEvent,
   Platform,
-  Pressable,
   Share,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
-import { BookmarkSheet } from '../components/BookmarkSheet';
+import { BottomActionBar } from '../components/BottomActionBar';
 import { BriefingBar } from '../components/BriefingBar';
 import { CategoryBar } from '../components/CategoryBar';
 import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
+import { ErrorState } from '../components/ErrorState';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { MenuSheet } from '../components/MenuSheet';
-import { SearchSheet } from '../components/SearchSheet';
-import { SettingsSheet } from '../components/SettingsSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import {
-  CATEGORIES,
-  EDITORIAL,
-  LAYOUT,
-  MAX_FONT_SCALE,
-  PRESSED_STYLE,
-  SPACING,
-} from '../constants/theme';
+import { CATEGORIES, EDITORIAL, LAYOUT } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useContextBrief } from '../hooks/useContextBrief';
@@ -51,7 +41,7 @@ import type { Article, ArticleSource, Category } from '../types';
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
 export default function HomeScreen() {
-  const { colors, font, typography } = useTheme();
+  const { colors } = useTheme();
   const {
     grouped,
     briefing,
@@ -83,9 +73,6 @@ export default function HomeScreen() {
 
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
-  const searchSheetRef = useRef<BottomSheetModal>(null);
-  const bookmarkSheetRef = useRef<BottomSheetModal>(null);
-  const settingsSheetRef = useRef<BottomSheetModal>(null);
   const contextSheetRef = useRef<BottomSheetModal>(null);
   const {
     brief: contextBrief,
@@ -109,8 +96,7 @@ export default function HomeScreen() {
 
   const handleSelectArticle = useCallback(
     (slug: string, category: Category) => {
-      searchSheetRef.current?.dismiss();
-      bookmarkSheetRef.current?.dismiss();
+      menuSheetRef.current?.dismiss();
       const catIndex = CATEGORIES.indexOf(category);
       if (catIndex < 0) return;
 
@@ -146,21 +132,6 @@ export default function HomeScreen() {
   const handleMenuPress = useCallback(() => {
     hapticImpact();
     menuSheetRef.current?.present();
-  }, []);
-
-  const handleSettingsPress = useCallback(() => {
-    menuSheetRef.current?.dismiss();
-    setTimeout(() => settingsSheetRef.current?.present(), 250);
-  }, []);
-
-  const handleMenuSearch = useCallback(() => {
-    menuSheetRef.current?.dismiss();
-    setTimeout(() => searchSheetRef.current?.present(), 250);
-  }, []);
-
-  const handleMenuBookmark = useCallback(() => {
-    menuSheetRef.current?.dismiss();
-    setTimeout(() => bookmarkSheetRef.current?.present(), 250);
   }, []);
 
   const handleDeeperPress = useCallback(() => {
@@ -362,62 +333,19 @@ export default function HomeScreen() {
     const slug = getPendingSlug();
     if (!slug) return;
     clearPendingSlug();
-    // Find which category has this article
     for (const cat of CATEGORIES) {
-      const found = grouped[cat]?.some((a) => a.slug === slug);
-      if (found) {
-        setTimeout(() => {
-          const catIndex = CATEGORIES.indexOf(cat);
-          pagerRef.current?.setPage(catIndex);
-          setTimeout(() => listRefs[catIndex]?.current?.scrollToSlug?.(slug), 150);
-        }, 100);
+      if (grouped[cat]?.some((a) => a.slug === slug)) {
+        handleSelectArticle(slug, cat);
         break;
       }
     }
-  }, [loading, grouped]);
+  }, [loading, grouped, handleSelectArticle]);
 
   if (loading) return null;
 
   if (error && Object.values(grouped).every((a) => a.length === 0)) {
-    const offline = network.isInternetReachable === false;
     return (
-      <View style={[styles.center, { backgroundColor: colors.bg }]}>
-        <Text
-          style={[
-            styles.errorText,
-            { ...font.regular, fontSize: typography.sizeBase, color: colors.text },
-          ]}
-        >
-          {offline ? 'No connection.' : 'Could not load articles.'}
-        </Text>
-        <Text
-          style={[
-            styles.errorHint,
-            { ...font.regular, fontSize: typography.sizeSm, color: colors.textSecondary },
-          ]}
-        >
-          {offline ? 'Connect to the internet and reopen.' : error}
-        </Text>
-        <Pressable
-          onPress={() => {
-            hapticImpact();
-            retry();
-          }}
-          style={({ pressed }) => pressed && PRESSED_STYLE}
-          hitSlop={LAYOUT.hitSlop}
-          accessibilityRole="button"
-          accessibilityLabel="Try again"
-        >
-          <Text
-            style={[
-              styles.retryText,
-              { ...font.semiBold, fontSize: typography.sizeSm, color: colors.text },
-            ]}
-          >
-            Try again
-          </Text>
-        </Pressable>
-      </View>
+      <ErrorState offline={network.isInternetReachable === false} error={error} onRetry={retry} />
     );
   }
 
@@ -468,92 +396,14 @@ export default function HomeScreen() {
 
       <Toast ref={toastRef} />
 
-      {/* Bottom bar: [briefing] ---- [context] [sources] [share] */}
       {!(briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
-        <View
-          style={[styles.bottomBar, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
-          pointerEvents="box-none"
-        >
-          {/* Briefing — far left, separated */}
-          {briefing?.available && briefing.date && (
-            <Pressable
-              onPress={briefingPlayer.toggle}
-              hitSlop={LAYOUT.hitSlop}
-              style={({ pressed }) => [
-                styles.actionPill,
-                { backgroundColor: colors.pillBg },
-                pressed && PRESSED_STYLE,
-              ]}
-              accessibilityRole="button"
-              accessibilityLabel="Listen to daily briefing"
-            >
-              <Text
-                style={{
-                  ...font.smallCaps,
-                  fontSize: typography.sizeXs,
-                  letterSpacing: typography.trackingCaps,
-                  color: colors.textEmphasis,
-                }}
-                maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
-              >
-                listen
-              </Text>
-            </Pressable>
-          )}
-
-          {/* Spacer pushes article actions to the right */}
-          <View style={styles.bottomSpacer} />
-
-          {/* Article actions — right side, closest to thumb */}
-          <View style={styles.articleActions}>
-            <Pressable
-              onPress={handleBottomShare}
-              hitSlop={LAYOUT.hitSlop}
-              style={({ pressed }) => [
-                styles.actionPill,
-                { backgroundColor: colors.pillBg },
-                pressed && PRESSED_STYLE,
-              ]}
-              accessibilityRole="button"
-              accessibilityLabel="Share article"
-            >
-              <Text
-                style={{
-                  ...font.smallCaps,
-                  fontSize: typography.sizeXs,
-                  letterSpacing: typography.trackingCaps,
-                  color: colors.textEmphasis,
-                }}
-                maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
-              >
-                share
-              </Text>
-            </Pressable>
-            <Pressable
-              onPress={handleDeeperPress}
-              hitSlop={LAYOUT.hitSlop}
-              style={({ pressed }) => [
-                styles.actionPill,
-                { backgroundColor: colors.pillBg },
-                pressed && PRESSED_STYLE,
-              ]}
-              accessibilityRole="button"
-              accessibilityLabel="Context about this story"
-            >
-              <Text
-                style={{
-                  ...font.smallCaps,
-                  fontSize: typography.sizeXs,
-                  letterSpacing: typography.trackingCaps,
-                  color: colors.textEmphasis,
-                }}
-                maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
-              >
-                context
-              </Text>
-            </Pressable>
-          </View>
-        </View>
+        <BottomActionBar
+          bottomInset={insets.bottom}
+          showBriefing={!!(briefing?.available && briefing.date)}
+          onBriefingPress={briefingPlayer.toggle}
+          onSharePress={handleBottomShare}
+          onContextPress={handleDeeperPress}
+        />
       )}
 
       {/* Briefing player — shown while playing or paused mid-listen */}
@@ -576,9 +426,8 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => {}}
-        onSearchPress={handleMenuSearch}
-        onBookmarkPress={handleMenuBookmark}
-        onSettingsPress={handleSettingsPress}
+        grouped={grouped}
+        onSelectArticle={handleSelectArticle}
       />
 
       <CountrySheet
@@ -603,30 +452,6 @@ export default function HomeScreen() {
           setContextThreadLabel(undefined);
         }}
       />
-
-      <BookmarkSheet
-        sheetRef={bookmarkSheetRef}
-        bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
-        onSelectArticle={handleSelectArticle}
-        onDismiss={() => {}}
-      />
-
-      <SearchSheet
-        sheetRef={searchSheetRef}
-        grouped={grouped}
-        bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
-        onSelectArticle={handleSelectArticle}
-        onDismiss={() => {}}
-      />
-
-      <SettingsSheet
-        sheetRef={settingsSheetRef}
-        bottomInset={insets.bottom}
-        renderBackdrop={renderBackdrop}
-        onDismiss={() => {}}
-      />
     </View>
   );
 }
@@ -637,46 +462,5 @@ const styles = StyleSheet.create({
   },
   pager: {
     flex: 1,
-  },
-  center: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: SPACING.xl,
-  },
-  errorText: {
-    textAlign: 'center',
-    marginBottom: SPACING.sm,
-  },
-  errorHint: {
-    textAlign: 'center',
-  },
-  retryText: {
-    marginTop: SPACING.lg,
-  },
-  bottomBar: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: SPACING.md,
-    zIndex: 10,
-  },
-  bottomSpacer: {
-    flex: 1,
-  },
-  articleActions: {
-    flexDirection: 'row',
-    gap: SPACING.sm,
-  },
-  actionPill: {
-    paddingVertical: SPACING.sm,
-    paddingHorizontal: SPACING.md,
-    borderRadius: 14,
-    alignItems: 'center' as const,
-    justifyContent: 'center' as const,
-    ...LAYOUT.floatingShadow,
   },
 });

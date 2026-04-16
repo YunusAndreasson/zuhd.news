@@ -516,3 +516,29 @@ export const COUNTRY_TZ: Record<string, string> = {
   Zimbabwe: 'Africa/Harare',
   eSwatini: 'Africa/Mbabane',
 };
+
+// ---------------------------------------------------------------------------
+// Country-override lookup — cities whose coordinates fall outside their
+// country polygon in the 110m Natural Earth TopoJSON, or whose sovereignty
+// representation we want to correct. Keyed lowercase.
+// ---------------------------------------------------------------------------
+export const COUNTRY_OVERRIDES: Record<string, string> = {
+  singapore: 'Singapore',
+  // Historic Palestine — all cities in the occupied West Bank, Gaza,
+  // and 1948 territories that may fall outside 110m TopoJSON polygons.
+  gaza: 'Palestine',
+  ramallah: 'Palestine',
+  nablus: 'Palestine',
+  hebron: 'Palestine',
+  jenin: 'Palestine',
+  'al-quds': 'Palestine',
+  bethlehem: 'Palestine',
+  tulkarm: 'Palestine',
+  'khan younis': 'Palestine',
+  jericho: 'Palestine',
+  'deir al-balah': 'Palestine',
+  rafah: 'Palestine',
+  qalqilya: 'Palestine',
+  tubas: 'Palestine',
+  salfit: 'Palestine',
+};
