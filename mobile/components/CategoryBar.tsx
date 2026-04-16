@@ -65,14 +65,14 @@ function TabLabel({
     <Pressable
       onPress={handlePress}
       onLayout={onLayout}
-      hitSlop={12}
+      hitSlop={LAYOUT.hitSlop}
       style={({ pressed }) => pressed && PRESSED_STYLE}
       accessibilityRole="tab"
       accessibilityState={{ selected: isSelected }}
       accessibilityLabel={label}
     >
       <Animated.Text
-        style={[styles.tabLabel, fontEntry, { fontSize, letterSpacing }, animatedStyle]}
+        style={[fontEntry, { fontSize, letterSpacing }, animatedStyle]}
         maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
       >
         {label}
@@ -147,7 +147,7 @@ export const CategoryBar = memo(function CategoryBar({
           accessibilityLabel="zuhd.news, scroll to top"
         >
           <Text
-            style={[styles.wordmark, { letterSpacing: typography.trackingWordmark }]}
+            style={{ letterSpacing: typography.trackingWordmark }}
             maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
           >
             <Text
@@ -172,7 +172,7 @@ export const CategoryBar = memo(function CategoryBar({
         </Pressable>
         <Pressable
           onPress={onMenuPress}
-          hitSlop={12}
+          hitSlop={LAYOUT.hitSlop}
           style={({ pressed }) => pressed && PRESSED_STYLE}
           accessibilityRole="button"
           accessibilityLabel="Menu"
@@ -221,7 +221,6 @@ const styles = StyleSheet.create({
     paddingTop: SPACING.xs,
     marginBottom: SPACING.sm,
   },
-  wordmark: {},
   tabRow: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -229,7 +228,6 @@ const styles = StyleSheet.create({
     gap: SPACING.lg,
     paddingBottom: SPACING.xs,
   },
-  tabLabel: {},
   progressBar: {
     position: 'absolute',
     bottom: 0,

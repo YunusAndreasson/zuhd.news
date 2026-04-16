@@ -1,6 +1,6 @@
 import {
   type BottomSheetBackdropProps,
-  BottomSheetModal,
+  type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useState } from 'react';
@@ -8,8 +8,8 @@ import { StyleSheet, Text } from 'react-native';
 import { EDITORIAL, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { ArticleSource } from '../types';
-import { SheetHandle } from './SheetHandle';
-import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
+import { SheetLayout } from './SheetLayout';
+import { useMaxSheetHeight } from './SheetPrimitives';
 import { SourceRow } from './SourceRow';
 
 interface SourceSheetProps {
@@ -33,26 +33,18 @@ export const SourceSheet = memo(function SourceSheet({
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
   const [expandedSource, setExpandedSource] = useState<number | null>(null);
 
-  const SourceHandle = useCallback(
-    () => <SheetHandle title={sources.length === 1 ? 'source' : 'sources'} />,
-    [sources.length],
-  );
-
   const handleDismiss = useCallback(() => {
     setExpandedSource(null);
     onDismiss();
   }, [onDismiss]);
 
   return (
-    <BottomSheetModal
-      ref={sheetRef}
+    <SheetLayout
+      sheetRef={sheetRef}
       enableDynamicSizing
       maxDynamicContentSize={MAX_SHEET_HEIGHT}
-      enablePanDownToClose
-      backdropComponent={renderBackdrop}
-      backgroundStyle={sheetStyles.bg}
-      handleComponent={SourceHandle}
-      containerComponent={SheetContainer}
+      renderBackdrop={renderBackdrop}
+      handleTitle={sources.length === 1 ? 'source' : 'sources'}
       onDismiss={handleDismiss}
     >
       <BottomSheetScrollView
@@ -90,7 +82,7 @@ export const SourceSheet = memo(function SourceSheet({
           </>
         ) : null}
       </BottomSheetScrollView>
-    </BottomSheetModal>
+    </SheetLayout>
   );
 });
 

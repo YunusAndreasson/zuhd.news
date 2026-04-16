@@ -99,20 +99,17 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
     >
       <Pressable
         onPress={handlePress}
-        hitSlop={12}
+        hitSlop={LAYOUT.hitSlop}
         style={({ pressed }) => [
           styles.pill,
-          { backgroundColor: colors.toastBg, shadowColor: colors.black },
+          { backgroundColor: colors.toastBg },
           pressed && PRESSED_STYLE,
         ]}
         accessibilityRole="alert"
         accessibilityLabel={message}
       >
         <Text
-          style={[
-            styles.text,
-            { ...font.semiBold, fontSize: typography.sizeSm, color: colors.text },
-          ]}
+          style={{ ...font.semiBold, fontSize: typography.sizeSm, color: colors.text }}
           maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
         >
           {message}
@@ -137,5 +134,4 @@ const styles = StyleSheet.create({
     borderRadius: LAYOUT.floatingRadius,
     ...LAYOUT.floatingShadow,
   },
-  text: {},
 });

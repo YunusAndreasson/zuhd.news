@@ -1,6 +1,6 @@
 import {
   type BottomSheetBackdropProps,
-  BottomSheetModal,
+  type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import Constants from 'expo-constants';
@@ -18,10 +18,8 @@ import {
 } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { hapticTick } from '../lib/haptics';
-import { SheetHandle } from './SheetHandle';
-import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
-
-const SettingsHandle = () => <SheetHandle title="settings" />;
+import { SheetLayout } from './SheetLayout';
+import { useMaxSheetHeight } from './SheetPrimitives';
 
 // ---------------------------------------------------------------------------
 // Option row — plain text selectors, zuhd-style
@@ -70,7 +68,7 @@ function OptionRow<T extends string>({
                   onSelect(opt.value);
                 }
               }}
-              hitSlop={12}
+              hitSlop={LAYOUT.hitSlop}
               style={({ pressed }) => pressed && PRESSED_STYLE}
               accessibilityRole="radio"
               accessibilityState={{ selected: active }}
@@ -150,16 +148,13 @@ export const SettingsSheet = memo(function SettingsSheet({
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
 
   return (
-    <BottomSheetModal
-      ref={sheetRef}
+    <SheetLayout
+      sheetRef={sheetRef}
       enableDynamicSizing
       maxDynamicContentSize={MAX_SHEET_HEIGHT}
-      enablePanDownToClose
       enableOverDrag={false}
-      backdropComponent={renderBackdrop}
-      backgroundStyle={sheetStyles.bg}
-      handleComponent={SettingsHandle}
-      containerComponent={SheetContainer}
+      renderBackdrop={renderBackdrop}
+      handleTitle="settings"
       onDismiss={onDismiss}
     >
       <BottomSheetScrollView
@@ -225,7 +220,7 @@ export const SettingsSheet = memo(function SettingsSheet({
           zuhd.news · {Constants.expoConfig?.version ?? ''}
         </Text>
       </BottomSheetScrollView>
-    </BottomSheetModal>
+    </SheetLayout>
   );
 });
 

@@ -54,6 +54,7 @@ export const DARK_COLORS = {
   textEmphasis: '#ffffff',
   dome: '#c9a84c', // Dome of the Rock gold — the only color in the app
   sheetBg: '#1c1c1c',
+  pillBg: 'rgba(50,50,50,0.7)',
   black: '#000000',
   atmosphere: '#334455',
   shadow: 'rgba(0,0,0,0.6)',
@@ -72,6 +73,7 @@ export const LIGHT_COLORS = {
   textEmphasis: '#1a1a1a',
   dome: '#c9a84c',
   sheetBg: '#eae6e0',
+  pillBg: 'rgba(220,216,210,0.7)',
   black: '#000000',
   atmosphere: '#8899aa',
   shadow: 'rgba(0,0,0,0.15)',
@@ -195,22 +197,14 @@ export const LAYOUT = {
   logoRadius: 8,
   activeIndicatorHeight: 1.5,
   activeIndicatorRadius: 1,
-  floatingShadow: {
-    shadowOffset: { width: 0, height: -1 },
-    shadowOpacity: 0.25,
-    shadowRadius: 6,
-    elevation: 4,
-  },
+  hitSlop: 12,
+  floatingShadow: {},
   floatingPill: {
     paddingVertical: 8, // SPACING.sm
     paddingHorizontal: 16, // SPACING.md
     borderRadius: 14, // floatingRadius
     alignItems: 'center' as const,
     justifyContent: 'center' as const,
-    shadowOffset: { width: 0, height: -1 },
-    shadowOpacity: 0.25,
-    shadowRadius: 6,
-    elevation: 4,
   },
 } as const;
 
@@ -238,7 +232,13 @@ export const ANIMATION = {
   normal: 250,
   slow: 400,
   spring: { damping: 12, stiffness: 150 },
+  staggerStep: 40,
+  staggerCap: 8,
 } as const;
+
+export function staggerDelay(index: number): number {
+  return Math.min(index, ANIMATION.staggerCap) * ANIMATION.staggerStep;
+}
 
 /** Shared pressed-state style for Pressable components */
 export const PRESSED_STYLE = { opacity: 0.7, transform: [{ scale: 0.97 }] } as const;

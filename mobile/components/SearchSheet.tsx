@@ -1,7 +1,7 @@
 import {
   type BottomSheetBackdropProps,
   BottomSheetFlatList,
-  BottomSheetModal,
+  type BottomSheetModal,
   BottomSheetTextInput,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
@@ -13,10 +13,7 @@ import { useTheme } from '../hooks/useTheme';
 import type { Article, Category } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
-import { SheetHandle } from './SheetHandle';
-import { SheetContainer } from './SheetPrimitives';
-
-const SearchHandle = () => <SheetHandle title="search" />;
+import { SheetLayout } from './SheetLayout';
 
 interface SearchResult extends Article {
   category: Category;
@@ -75,7 +72,7 @@ export const SearchSheet = memo(function SearchSheet({
   onSelectArticle,
   onDismiss,
 }: SearchSheetProps) {
-  const { colors, font, typography, textStyles, sheetStyles } = useTheme();
+  const { colors, font, typography, textStyles } = useTheme();
   const [query, setQuery] = useState('');
   const deferredQuery = useDeferredValue(query.trim());
   const inputRef = useRef<TextInput>(null);
@@ -128,15 +125,12 @@ export const SearchSheet = memo(function SearchSheet({
   const keyExtractor = useCallback((item: SearchResult) => item.slug, []);
 
   return (
-    <BottomSheetModal
-      ref={sheetRef}
+    <SheetLayout
+      sheetRef={sheetRef}
       snapPoints={['85%']}
       enableDynamicSizing={false}
-      enablePanDownToClose
-      backdropComponent={renderBackdrop}
-      backgroundStyle={sheetStyles.bg}
-      handleComponent={SearchHandle}
-      containerComponent={SheetContainer}
+      renderBackdrop={renderBackdrop}
+      handleTitle="search"
       onDismiss={handleDismiss}
       onChange={handleChange}
       keyboardBehavior="extend"
@@ -187,7 +181,7 @@ export const SearchSheet = memo(function SearchSheet({
           }
         />
       )}
-    </BottomSheetModal>
+    </SheetLayout>
   );
 });
 

@@ -194,7 +194,7 @@ export const ArticlePage = memo(function ArticlePage({
             >
               <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
               <Text
-                style={[styles.earlierLabel, textStyles.smallCapsBase, { color: colors.accent }]}
+                style={[textStyles.smallCapsBase, { color: colors.accent }]}
                 maxFontSizeMultiplier={MAX_FONT_SCALE.label}
               >
                 {'caught up'}
@@ -259,7 +259,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: StyleSheet.hairlineWidth,
   },
-  earlierLabel: {},
   title: {
     marginBottom: SPACING.lg,
     fontVariant: ['oldstyle-nums'],

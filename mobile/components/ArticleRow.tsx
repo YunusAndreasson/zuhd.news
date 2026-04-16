@@ -1,11 +1,11 @@
-import { memo, useCallback } from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
-import { MAX_FONT_SCALE, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { memo, useCallback, useMemo } from 'react';
+import { StyleSheet, Text } from 'react-native';
+import { MAX_FONT_SCALE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
-import { hapticImpact } from '../lib/haptics';
 import { displayLocation } from '../lib/place-names';
 import type { Category } from '../types';
+import { HapticPressable } from './HapticPressable';
 
 interface ArticleRowProps {
   slug: string;
@@ -29,8 +29,11 @@ export const ArticleRow = memo(function ArticleRow({
   delayLongPress = 400,
 }: ArticleRowProps) {
   const { colors, font, typography, textStyles } = useTheme();
+  const titleFontSize = useMemo(() => {
+    const scale = title.length > 70 ? 0.92 : title.length > 50 ? 0.96 : 1;
+    return Math.round(typography.sizeLg * scale);
+  }, [title, typography.sizeLg]);
   const handlePress = useCallback(() => {
-    hapticImpact();
     onPress(slug, category);
   }, [slug, category, onPress]);
 
@@ -39,15 +42,11 @@ export const ArticleRow = memo(function ArticleRow({
   }, [slug, onLongPress]);
 
   return (
-    <Pressable
+    <HapticPressable
       onPress={handlePress}
       onLongPress={onLongPress ? handleLongPress : undefined}
       delayLongPress={delayLongPress}
-      style={({ pressed }) => [
-        styles.row,
-        { borderBottomColor: colors.rule },
-        pressed && PRESSED_STYLE,
-      ]}
+      style={[styles.row, { borderBottomColor: colors.rule }]}
       accessibilityRole="button"
       accessibilityLabel={title}
       accessibilityHint="Double tap to read, long press to save"
@@ -55,8 +54,8 @@ export const ArticleRow = memo(function ArticleRow({
       <Text
         style={{
           ...font.semiBold,
-          fontSize: typography.sizeLg,
-          lineHeight: typography.sizeLg * typography.leadingHeading,
+          fontSize: titleFontSize,
+          lineHeight: titleFontSize * typography.leadingHeading,
           color: colors.text,
         }}
         numberOfLines={2}
@@ -71,7 +70,7 @@ export const ArticleRow = memo(function ArticleRow({
         {category} · {formatTimeAgo(addedAt)}
         {location ? ` · ${displayLocation(location)}` : ''}
       </Text>
-    </Pressable>
+    </HapticPressable>
   );
 });
 

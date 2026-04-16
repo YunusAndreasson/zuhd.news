@@ -69,15 +69,12 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
         <View style={styles.sourceRowRight}>
           <View style={[styles.tonePill, { backgroundColor: toneBg }]}>
             <Text
-              style={[
-                styles.tonePillText,
-                {
-                  ...font.semiBold,
-                  fontSize: typography.sizeXs,
-                  color: colors.black,
-                  letterSpacing: typography.trackingCaps,
-                },
-              ]}
+              style={{
+                ...font.semiBold,
+                fontSize: typography.sizeXs,
+                color: colors.black,
+                letterSpacing: typography.trackingCaps,
+              }}
             >
               {toneWord}
             </Text>
@@ -94,7 +91,7 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
           <Text selectable style={[styles.sourceType, textStyles.smallCapsXs]}>
             {info.type} · {info.location}
           </Text>
-          <Text selectable style={[styles.bodyText, textStyles.body, { color: colors.accent }]}>
+          <Text selectable style={[textStyles.body, { color: colors.accent }]}>
             {info.description}
           </Text>
         </>
@@ -126,10 +123,8 @@ const styles = StyleSheet.create({
     paddingVertical: LAYOUT.pillPaddingV,
     borderRadius: LAYOUT.pillRadius,
   },
-  tonePillText: {},
   sourceType: {
     marginTop: SPACING.sm,
     marginBottom: SPACING.sm,
   },
-  bodyText: {},
 });
