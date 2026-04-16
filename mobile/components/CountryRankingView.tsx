@@ -1,0 +1,150 @@
+import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
+import { memo, useCallback, useMemo } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { LAYOUT, SPACING } from '../constants/theme';
+import { useTheme } from '../hooks/useTheme';
+import { getRanking, METRICS, type MetricKey, type RankingEntry } from '../lib/country-ranking';
+import { displayCountryName } from '../lib/place-names';
+import { HapticPressable } from './HapticPressable';
+
+interface Props {
+  metric: MetricKey;
+  currentCountryName: string | null;
+  bottomInset: number;
+  onBack: () => void;
+}
+
+export const CountryRankingView = memo(function CountryRankingView({
+  metric,
+  currentCountryName,
+  bottomInset,
+  onBack,
+}: Props) {
+  const { colors, font, typography, textStyles } = useTheme();
+  const ranking = useMemo(() => getRanking(metric), [metric]);
+  const currentIndex = useMemo(
+    () => (currentCountryName ? ranking.findIndex((r) => r.name === currentCountryName) : -1),
+    [ranking, currentCountryName],
+  );
+
+  const renderItem = useCallback(
+    ({ item, index }: { item: RankingEntry; index: number }) => {
+      const isCurrent = item.name === currentCountryName;
+      return (
+        <View
+          style={[
+            styles.row,
+            { borderBottomColor: colors.rule },
+            isCurrent && { backgroundColor: colors.pillBg },
+          ]}
+        >
+          <Text style={[styles.rank, textStyles.smallCapsXs]} maxFontSizeMultiplier={1.3}>
+            {index + 1}
+          </Text>
+          <Text style={styles.flag}>{item.flag}</Text>
+          <Text
+            style={[
+              styles.name,
+              {
+                ...font.regular,
+                fontSize: typography.sizeSm,
+                color: isCurrent ? colors.textEmphasis : colors.text,
+              },
+            ]}
+            numberOfLines={1}
+          >
+            {displayCountryName(item.name)}
+          </Text>
+          <Text
+            style={{
+              ...font.regular,
+              fontSize: typography.sizeSm,
+              color: colors.text,
+              fontVariant: ['oldstyle-nums'],
+            }}
+          >
+            {item.value}
+          </Text>
+        </View>
+      );
+    },
+    [colors, font, typography, textStyles, currentCountryName],
+  );
+
+  const totalLabel = `#${currentIndex + 1} of ${ranking.length}`;
+
+  return (
+    <BottomSheetFlatList
+      data={ranking}
+      keyExtractor={(item) => item.name}
+      renderItem={renderItem}
+      initialScrollIndex={currentIndex > 4 ? Math.max(0, currentIndex - 3) : 0}
+      getItemLayout={(_, index) => ({ length: ROW_HEIGHT, offset: ROW_HEIGHT * index, index })}
+      contentContainerStyle={{ paddingBottom: bottomInset + SPACING.lg }}
+      ListHeaderComponent={
+        <View style={styles.header}>
+          <HapticPressable
+            onPress={onBack}
+            haptic="tick"
+            hitSlop={LAYOUT.hitSlop}
+            accessibilityRole="button"
+            accessibilityLabel="Back to country"
+          >
+            <Text style={[textStyles.smallCaps, { color: colors.text }]}>{'\u2190 back'}</Text>
+          </HapticPressable>
+          <View style={styles.headerRight}>
+            <Text style={textStyles.smallCapsXs}>{METRICS[metric].label}</Text>
+            {currentIndex >= 0 && (
+              <Text
+                style={{
+                  ...font.semiBold,
+                  fontSize: typography.sizeXs,
+                  color: colors.textEmphasis,
+                  letterSpacing: typography.trackingCaps,
+                  fontVariant: ['oldstyle-nums'],
+                }}
+              >
+                {totalLabel}
+              </Text>
+            )}
+          </View>
+        </View>
+      }
+    />
+  );
+});
+
+const ROW_HEIGHT = 40;
+
+const styles = StyleSheet.create({
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: SPACING.screenPadding,
+    paddingTop: SPACING.sm,
+    paddingBottom: SPACING.md,
+  },
+  headerRight: {
+    alignItems: 'flex-end',
+    gap: SPACING.xxs,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.sm,
+    paddingHorizontal: SPACING.screenPadding,
+    height: ROW_HEIGHT,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  rank: {
+    width: 28,
+    fontVariant: ['oldstyle-nums'],
+  },
+  flag: {
+    fontSize: 18,
+  },
+  name: {
+    flex: 1,
+  },
+});
