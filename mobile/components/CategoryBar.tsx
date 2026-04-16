@@ -3,7 +3,14 @@ import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { CATEGORIES, type FontEntry, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
+import {
+  CATEGORIES,
+  type FontEntry,
+  LAYOUT,
+  MAX_FONT_SCALE,
+  PRESSED_STYLE,
+  SPACING,
+} from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 const TAB_LABELS = CATEGORIES.map((c) => c.toUpperCase());
@@ -26,6 +33,7 @@ function TabLabel({
   label,
   index,
   pagerOffset,
+  isSelected,
   textColor,
   fontEntry,
   fontSize,
@@ -36,6 +44,7 @@ function TabLabel({
   label: string;
   index: number;
   pagerOffset: SharedValue<number>;
+  isSelected: boolean;
   textColor: string;
   fontEntry: FontEntry;
   fontSize: number;
@@ -59,10 +68,12 @@ function TabLabel({
       hitSlop={12}
       style={({ pressed }) => pressed && PRESSED_STYLE}
       accessibilityRole="tab"
+      accessibilityState={{ selected: isSelected }}
       accessibilityLabel={label}
     >
       <Animated.Text
         style={[styles.tabLabel, fontEntry, { fontSize, letterSpacing }, animatedStyle]}
+        maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
       >
         {label}
       </Animated.Text>
@@ -135,7 +146,10 @@ export const CategoryBar = memo(function CategoryBar({
           accessibilityRole="button"
           accessibilityLabel="zuhd.news, scroll to top"
         >
-          <Text style={[styles.wordmark, { letterSpacing: typography.trackingWordmark }]}>
+          <Text
+            style={[styles.wordmark, { letterSpacing: typography.trackingWordmark }]}
+            maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
+          >
             <Text
               style={{
                 ...font.bold,
@@ -174,6 +188,7 @@ export const CategoryBar = memo(function CategoryBar({
             label={label}
             index={i}
             pagerOffset={pagerOffset}
+            isSelected={currentCategory === i}
             textColor={colors.text}
             fontEntry={font.semiBold}
             fontSize={typography.sizeXs}

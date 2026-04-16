@@ -70,7 +70,7 @@ export function SourceRow({ source, isExpanded, onPress }: SourceRowProps) {
                 {
                   ...font.semiBold,
                   fontSize: typography.sizeXs,
-                  color: colors.bg,
+                  color: colors.black,
                   letterSpacing: typography.trackingCaps,
                 },
               ]}

@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
-import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import { MAX_FONT_SCALE, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact } from '../lib/haptics';
@@ -60,10 +60,14 @@ export const ArticleRow = memo(function ArticleRow({
           color: colors.text,
         }}
         numberOfLines={2}
+        maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
       >
         {title}
       </Text>
-      <Text style={[textStyles.smallCapsXs, { marginTop: SPACING.xs }]}>
+      <Text
+        style={[textStyles.smallCapsXs, { marginTop: SPACING.xs }]}
+        maxFontSizeMultiplier={MAX_FONT_SCALE.label}
+      >
         {category} · {formatTimeAgo(addedAt)}
         {location ? ` · ${displayLocation(location)}` : ''}
       </Text>

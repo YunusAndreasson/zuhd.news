@@ -48,7 +48,7 @@ function ThemedShell() {
 }
 
 export default function RootLayout() {
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     'SourceSans3-Regular': require('../assets/fonts/SourceSans3-Regular.ttf'),
     'SourceSans3-SemiBold': require('../assets/fonts/SourceSans3-SemiBold.ttf'),
     'SourceSans3-Bold': require('../assets/fonts/SourceSans3-Bold.ttf'),
@@ -89,12 +89,13 @@ export default function RootLayout() {
     };
   }, []);
 
-  if (!fontsLoaded) return null;
+  // Proceed on load OR error (system fonts will be used as fallback)
+  if (!fontsLoaded && !fontError) return null;
 
   return (
     <GestureHandlerRootView style={styles.root}>
       <Suspense fallback={<View style={styles.root} />}>
-        <ThemeProvider>
+        <ThemeProvider fontsAvailable={fontsLoaded}>
           <BottomSheetModalProvider>
             <ThemedShell />
           </BottomSheetModalProvider>

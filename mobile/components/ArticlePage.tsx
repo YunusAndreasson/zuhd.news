@@ -9,7 +9,7 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { SPACING } from '../constants/theme';
+import { MAX_FONT_SCALE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact } from '../lib/haptics';
@@ -178,8 +178,9 @@ export const ArticlePage = memo(function ArticlePage({
                 textStyles.smallCaps,
                 { fontSize: typography.sizeBase, color: colors.accent },
               ]}
+              maxFontSizeMultiplier={MAX_FONT_SCALE.label}
             >
-              caught up
+              {'caught up'}
             </Text>
             <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
           </View>
@@ -198,6 +199,7 @@ export const ArticlePage = memo(function ArticlePage({
               titleSizeStyle,
             ]}
             numberOfLines={3}
+            maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
           >
             {article.title}
           </Text>

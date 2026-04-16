@@ -207,7 +207,6 @@ export const SettingsSheet = memo(function SettingsSheet({
             ...font.regular,
             fontSize: typography.sizeXs,
             color: colors.textSecondary,
-            opacity: 0.5,
             marginTop: SPACING.xl,
             textAlign: 'center',
           }}

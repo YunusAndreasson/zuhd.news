@@ -75,7 +75,13 @@ const prefsPromise = getPreferences();
 // Provider
 // ---------------------------------------------------------------------------
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+export function ThemeProvider({
+  children,
+  fontsAvailable = true,
+}: {
+  children: React.ReactNode;
+  fontsAvailable?: boolean;
+}) {
   const initialPrefs = use(prefsPromise);
   const [prefs, setPrefs] = useState<Preferences>(() => {
     setHapticsEnabled(initialPrefs.haptics);
@@ -134,7 +140,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         : prefs.appearance;
 
     const colors = resolvedAppearance === 'dark' ? DARK_COLORS : LIGHT_COLORS;
-    const font = prefs.fontFamily === 'source' ? FONT_SOURCE : FONT_SYSTEM;
+    const font = prefs.fontFamily === 'source' && fontsAvailable ? FONT_SOURCE : FONT_SYSTEM;
     const sizeScale = FONT_SIZE_SCALE[prefs.fontSize];
     const typography = makeTypography(sizeScale);
     const textStyles = makeTextStyles(colors, font, typography);
@@ -160,6 +166,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     };
   }, [
     prefs,
+    fontsAvailable,
     systemScheme,
     setFontSize,
     setFontFamily,

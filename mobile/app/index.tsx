@@ -30,7 +30,14 @@ import { MenuSheet } from '../components/MenuSheet';
 import { SearchSheet } from '../components/SearchSheet';
 import { SettingsSheet } from '../components/SettingsSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import { CATEGORIES, EDITORIAL, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
+import {
+  CATEGORIES,
+  EDITORIAL,
+  LAYOUT,
+  MAX_FONT_SCALE,
+  PRESSED_STYLE,
+  SPACING,
+} from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useContextBrief } from '../hooks/useContextBrief';
@@ -344,7 +351,10 @@ export default function HomeScreen() {
           {offline ? 'Connect to the internet and reopen.' : error}
         </Text>
         <Pressable
-          onPress={retry}
+          onPress={() => {
+            hapticImpact();
+            retry();
+          }}
           style={({ pressed }) => pressed && PRESSED_STYLE}
           hitSlop={12}
           accessibilityRole="button"
@@ -436,6 +446,7 @@ export default function HomeScreen() {
                   letterSpacing: typography.trackingCaps,
                   color: colors.textEmphasis,
                 }}
+                maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
               >
                 listen
               </Text>
@@ -465,6 +476,7 @@ export default function HomeScreen() {
                   letterSpacing: typography.trackingCaps,
                   color: colors.textEmphasis,
                 }}
+                maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
               >
                 share
               </Text>
@@ -487,6 +499,7 @@ export default function HomeScreen() {
                   letterSpacing: typography.trackingCaps,
                   color: colors.textEmphasis,
                 }}
+                maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
               >
                 more
               </Text>
