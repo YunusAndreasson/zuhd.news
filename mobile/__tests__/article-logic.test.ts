@@ -156,35 +156,40 @@ describe('formatTimeAgo', () => {
   beforeEach(() => jest.useFakeTimers());
   afterEach(() => jest.useRealTimers());
 
-  it('returns a time string for today', () => {
+  it('returns "now" for articles less than a minute old', () => {
     const now = new Date(2026, 3, 16, 14, 0, 0).getTime();
     jest.setSystemTime(now);
-    const result = formatTimeAgo(new Date(2026, 3, 16, 10, 30, 0).getTime());
-    // Locale-dependent HH:MM — just verify it contains digits and a separator
-    expect(result).toMatch(/\d{1,2}.\d{2}/);
+    expect(formatTimeAgo(now)).toBe('now');
+    expect(formatTimeAgo(now - 30_000)).toBe('now');
   });
 
-  it('returns a time string for articles just published', () => {
+  it('returns Nm for sub-hour differences', () => {
     const now = new Date(2026, 3, 16, 14, 0, 0).getTime();
     jest.setSystemTime(now);
-    const result = formatTimeAgo(now);
-    expect(result).toMatch(/\d{1,2}.\d{2}/);
+    expect(formatTimeAgo(now - 5 * 60_000)).toBe('5m');
+    expect(formatTimeAgo(now - 59 * 60_000)).toBe('59m');
   });
 
-  it('returns "yesterday HH:MM" for yesterday', () => {
-    const now = new Date(2026, 3, 16, 8, 0, 0).getTime();
-    jest.setSystemTime(now);
-    const result = formatTimeAgo(new Date(2026, 3, 15, 22, 0, 0).getTime());
-    expect(result).toMatch(/^yesterday\s+\d{1,2}.\d{2}/);
-  });
-
-  it('returns a date string for 2+ days ago', () => {
+  it('returns Nh for hours within a day', () => {
     const now = new Date(2026, 3, 16, 14, 0, 0).getTime();
     jest.setSystemTime(now);
-    const result = formatTimeAgo(new Date(2026, 3, 10, 10, 0, 0).getTime());
-    // Should be a short date like "10 Apr" — not a time or "yesterday"
-    expect(result).not.toMatch(/yesterday/);
-    expect(result).not.toMatch(/^\d{1,2}.\d{2}$/);
+    expect(formatTimeAgo(now - 60 * 60_000)).toBe('1h');
+    expect(formatTimeAgo(now - 3 * 60 * 60_000)).toBe('3h');
+    expect(formatTimeAgo(now - 23 * 60 * 60_000)).toBe('23h');
+  });
+
+  it('returns Nd for 1–6 days', () => {
+    const now = new Date(2026, 3, 16, 14, 0, 0).getTime();
+    jest.setSystemTime(now);
+    expect(formatTimeAgo(now - 24 * 60 * 60_000)).toBe('1d');
+    expect(formatTimeAgo(now - 3 * 24 * 60 * 60_000)).toBe('3d');
+  });
+
+  it('returns a short date for 7+ days ago', () => {
+    const now = new Date(2026, 3, 16, 14, 0, 0).getTime();
+    jest.setSystemTime(now);
+    const result = formatTimeAgo(new Date(2026, 3, 1, 10, 0, 0).getTime());
+    expect(result).toMatch(/[A-Za-z]/);
     expect(result.length).toBeGreaterThan(0);
   });
 });

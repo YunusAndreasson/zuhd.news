@@ -48,6 +48,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const subRef = useRef<{ remove(): void } | null>(null);
   const savedDate = useRef<string | null>(null);
   const lockScreenActive = useRef(false);
+  const lockScreenDurationKnown = useRef(false);
   const preloadedUrl = useRef<string | null>(null);
   // Suppress listener-driven setPlaying briefly after user taps toggle
   const userToggleAt = useRef(0);
@@ -98,6 +99,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       playerRef.current = null;
       subRef.current = null;
       lockScreenActive.current = false;
+      lockScreenDurationKnown.current = false;
       setPlaying(false);
     });
     return () => sub.remove();
@@ -128,6 +130,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       playerRef.current = null;
       subRef.current = null;
       lockScreenActive.current = false;
+      lockScreenDurationKnown.current = false;
       setIsAudioActiveAsync(false);
     };
   }, []);
@@ -143,8 +146,9 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     } catch {}
   }, []);
 
-  const activateLockScreen = useCallback(async (player: AudioPlayer) => {
-    if (lockScreenActive.current) return;
+  // Writes NowPlayingInfo. Safe to call more than once — re-calling after the
+  // AVPlayer knows its duration makes iOS refresh the lock-screen scrubber.
+  const writeLockScreenInfo = useCallback(async (player: AudioPlayer) => {
     try {
       const assets = await Asset.loadAsync(icon);
       const artworkUrl = assets[0]?.localUri ?? assets[0]?.uri;
@@ -207,6 +211,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
               playerRef.current = null;
               subRef.current = null;
               lockScreenActive.current = false;
+              lockScreenDurationKnown.current = false;
               setPlaying(false);
             }
           }, 300);
@@ -238,15 +243,17 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       // Sync play/pause state + elapsed from player events
       // This handles lock screen controls, headphone controls, interruptions
       const eventSub = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
-        // Activate lock screen once duration is known — deferring from play()
-        // ensures iOS gets a real playbackDuration on the first NowPlayingInfo write,
-        // otherwise it shows no time scrubber.
-        if (!lockScreenActive.current && status.duration > 0) {
-          activateLockScreen(player);
-        }
         // Ignore status updates after user closed the player — the paused
         // player still fires events that would flicker state back to visible.
         if (closedRef.current) return;
+        // Refresh NowPlayingInfo once the AVPlayer knows its duration so
+        // iOS lock-screen gets a real timing scrubber. The initial
+        // activation below fires before duration is loaded; this second
+        // write updates it.
+        if (!lockScreenDurationKnown.current && status.duration > 0) {
+          lockScreenDurationKnown.current = true;
+          writeLockScreenInfo(player);
+        }
         // Skip transient playing states shortly after user tap to avoid icon flash
         const sinceToggle = Date.now() - userToggleAt.current;
         if (sinceToggle < 500 && !status.didJustFinish) {
@@ -270,6 +277,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
             player.clearLockScreenControls();
           } catch {}
           lockScreenActive.current = false;
+          lockScreenDurationKnown.current = false;
         }
       });
 
@@ -294,6 +302,12 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
 
       player.play();
       setPlaying(true);
+
+      // Activate lock-screen controls right after play so iOS registers
+      // NowPlayingInfo while the audio session is hot. The status listener
+      // will refresh this entry once duration is known, populating the
+      // lock-screen scrubber.
+      writeLockScreenInfo(player);
     } catch {
       // Clean up partially-created player on failure
       subRef.current?.remove();
@@ -301,7 +315,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       playerRef.current?.remove();
       playerRef.current = null;
     }
-  }, [date, savePosition, activateLockScreen]);
+  }, [date, savePosition, writeLockScreenInfo]);
 
   const seek = useCallback((seconds: number) => {
     if (!playerRef.current) return;
@@ -327,6 +341,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         playerRef.current.clearLockScreenControls();
       } catch {}
       lockScreenActive.current = false;
+      lockScreenDurationKnown.current = false;
     }
     setPlaying(false);
     setElapsed(0);

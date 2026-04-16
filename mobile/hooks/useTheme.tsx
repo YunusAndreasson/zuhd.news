@@ -32,7 +32,8 @@ import {
 import { getPreferences, savePreferences } from '../lib/storage';
 
 // ---------------------------------------------------------------------------
-// Theme shape
+// Theme = visual style only. Splitting theme from preferences lets toggles
+// like haptics/notifications re-render only SettingsSheet, not the whole tree.
 // ---------------------------------------------------------------------------
 
 export interface Theme {
@@ -44,6 +45,9 @@ export interface Theme {
   bgAlpha: (a: number) => string;
   bgRgb: [number, number, number];
   resolvedAppearance: 'dark' | 'light';
+}
+
+export interface PreferencesApi {
   preferences: Preferences;
   setFontSize: (v: FontSize) => void;
   setFontFamily: (v: FontFamily) => void;
@@ -52,15 +56,18 @@ export interface Theme {
   setNotifications: (v: boolean) => void;
 }
 
-// ---------------------------------------------------------------------------
-// Context
-// ---------------------------------------------------------------------------
-
 const ThemeContext = createContext<Theme | null>(null);
+const PreferencesContext = createContext<PreferencesApi | null>(null);
 
 export function useTheme(): Theme {
   const ctx = useContext(ThemeContext);
   if (!ctx) throw new Error('useTheme must be used within ThemeProvider');
+  return ctx;
+}
+
+export function usePreferences(): PreferencesApi {
+  const ctx = useContext(PreferencesContext);
+  if (!ctx) throw new Error('usePreferences must be used within ThemeProvider');
   return ctx;
 }
 
@@ -70,10 +77,6 @@ export function useTheme(): Theme {
 // ---------------------------------------------------------------------------
 
 const prefsPromise = getPreferences();
-
-// ---------------------------------------------------------------------------
-// Provider
-// ---------------------------------------------------------------------------
 
 export function ThemeProvider({
   children,
@@ -131,14 +134,16 @@ export function ThemeProvider({
     [prefs, persist],
   );
 
-  const theme = useMemo<Theme>(() => {
-    const resolvedAppearance: 'dark' | 'light' =
-      prefs.appearance === 'system'
-        ? systemScheme === 'light'
-          ? 'light'
-          : 'dark'
-        : prefs.appearance;
+  const resolvedAppearance: 'dark' | 'light' =
+    prefs.appearance === 'system'
+      ? systemScheme === 'light'
+        ? 'light'
+        : 'dark'
+      : prefs.appearance;
 
+  // Theme depends only on visual inputs — haptics/notifications toggles
+  // don't invalidate it, so consumers of useTheme don't re-render.
+  const theme = useMemo<Theme>(() => {
     const colors = resolvedAppearance === 'dark' ? DARK_COLORS : LIGHT_COLORS;
     const font = prefs.fontFamily === 'source' && fontsAvailable ? FONT_SOURCE : FONT_SYSTEM;
     const sizeScale = FONT_SIZE_SCALE[prefs.fontSize];
@@ -157,27 +162,23 @@ export function ThemeProvider({
       bgAlpha: bgAlphaFn,
       bgRgb,
       resolvedAppearance,
+    };
+  }, [resolvedAppearance, prefs.fontFamily, prefs.fontSize, fontsAvailable]);
+
+  const preferencesApi = useMemo<PreferencesApi>(
+    () => ({
       preferences: prefs,
       setFontSize,
       setFontFamily,
       setAppearance,
       setHaptics,
       setNotifications,
-    };
-  }, [
-    prefs,
-    fontsAvailable,
-    systemScheme,
-    setFontSize,
-    setFontFamily,
-    setAppearance,
-    setHaptics,
-    setNotifications,
-  ]);
+    }),
+    [prefs, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications],
+  );
 
   // Sync native system UI (Android nav bar + root background) with theme
   const { bg } = theme.colors;
-  const { resolvedAppearance } = theme;
   useEffect(() => {
     SystemUI.setBackgroundColorAsync(bg).catch(() => {});
     if (Platform.OS === 'android') {
@@ -188,5 +189,9 @@ export function ThemeProvider({
     }
   }, [bg, resolvedAppearance]);
 
-  return <ThemeContext value={theme}>{children}</ThemeContext>;
+  return (
+    <ThemeContext value={theme}>
+      <PreferencesContext value={preferencesApi}>{children}</PreferencesContext>
+    </ThemeContext>
+  );
 }
