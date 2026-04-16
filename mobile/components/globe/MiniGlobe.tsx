@@ -94,9 +94,6 @@ function Glow({
 const skiaCtx = createSkiaPathContext();
 const nightCircleGen = geoCircle();
 
-// __DEV__ perf counters — module-level to avoid worklet serialization issues
-const globePerf = { calls: 0, totalMs: 0, maxMs: 0, totalGap: 0, lastCall: 0 };
-
 // Equator + polar circles (Arctic 66.56°N, Antarctic 66.56°S)
 const graticuleLines = geoGraticule()
   .stepMinor([360, 360]) // no minor lines
@@ -682,11 +679,6 @@ export const MiniGlobe = memo(function MiniGlobe({
       hiIndex: number,
       frac: number,
     ) => {
-      let t0 = 0;
-      if (__DEV__) {
-        t0 = performance.now();
-        if (globePerf.lastCall > 0) globePerf.totalGap += t0 - globePerf.lastCall;
-      }
       lastReprojRef.current = { lng: geoLng, lat: geoLat, idx: settledIndex };
       const { globeRadius: r, cx: centerX, cy: centerY } = layoutRef.current;
       const geoData = articleGeoRef.current;
@@ -715,8 +707,12 @@ export const MiniGlobe = memo(function MiniGlobe({
       const projScale = r / Math.sin((clipAngle * Math.PI) / 180);
 
       const proj = projRef.current;
+      // precision(0) globally — skip adaptive resampling. At globe scale
+      // with 110m Natural Earth data, resampled midpoints are invisible.
+      // This is the single biggest perf win (~30-40% of projection time).
       proj
         .clipAngle(clipAngle)
+        .precision(0)
         .rotate([-geoLng, -geoLat, 0])
         .scale(projScale)
         .translate([centerX, centerY]);
@@ -737,23 +733,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (pt) dot = { x: pt[0], y: pt[1] };
       }
 
-      // Dot label — location name (primary), local time (secondary)
-      let dotLabel: GlobeState['dotLabel'] = null;
-      const settledCountry = cachedCountryRef.current?.properties?.name ?? null;
-      if (dot && settledCountry) {
-        const article = articlesRef.current[settledIndex];
-        const loc = displayLocation(article?.location ?? null);
-        if (loc) {
-          // Look up IANA timezone: city first (handles large countries like US/Russia),
-          // then fall back to country-level timezone.
-          let sub: string | undefined;
-          const cityKey = (article?.location ?? '').toLowerCase();
-          const tz = CITY_TZ[cityKey] ?? (settledCountry ? COUNTRY_TZ[settledCountry] : undefined);
-          if (tz) sub = formatLocalTime(tz) ?? undefined;
-          dotLabel = { text: loc, sub, x: dot.x, y: dot.y };
-        }
-      }
-
       // Country highlight — reuse path object
       let countryPath: ReturnType<typeof Skia.Path.Make> | null = null;
       if (cachedCountryRef.current) {
@@ -763,60 +742,88 @@ export const MiniGlobe = memo(function MiniGlobe({
         pg.context(skiaCtx as unknown as GeoContext)(cachedCountryRef.current);
       }
 
-      // Neighbouring country borders — two optimizations:
-      //  1. bordersMesh (topojson.mesh) = single MultiLineString, no duplicate edges
-      //  2. precision(0) = skip adaptive resampling (invisible at 0.5px/0.22 opacity)
+      // Neighbouring country borders
       const bordersPath = bordersPathRef.current;
-      proj.precision(0);
       bordersPath.reset();
       skiaCtx.setPath(bordersPath);
       pg.context(skiaCtx as unknown as GeoContext)(bordersMesh);
-      proj.precision(8);
 
-      // Night shadow — reuse path object
-      const [sunLng, sunLat] = getSunPosition();
-      const nightCenter: [number, number] = [sunLng + 180, -sunLat];
-      const nightGeo = nightCircleGen.center(nightCenter).radius(90)();
-      const nightPath = nightPathRef.current;
-      nightPath.reset();
-      skiaCtx.setPath(nightPath);
-      pg.context(skiaCtx as unknown as GeoContext)(nightGeo);
+      // Near-settled check — reused for cosmetic layers AND arc visibility.
+      const ARC_WINDOW = 0.25;
+      const nearSettled = frac < ARC_WINDOW || frac > 1 - ARC_WINDOW;
 
-      // Low-sun band — softer gradient where sun is near the horizon (0–6° above)
-      const twilightPath = twilightPathRef.current;
-      twilightPath.reset();
-      skiaCtx.setPath(twilightPath);
-      pg.context(skiaCtx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(96)());
-
-      // Equator + polar circles
-      const graticulePath = graticulePathRef.current;
-      graticulePath.reset();
-      skiaCtx.setPath(graticulePath);
-      pg.context(skiaCtx as unknown as GeoContext)(graticuleLines);
-      pg.context(skiaCtx as unknown as GeoContext)(ARCTIC_CIRCLE);
-      pg.context(skiaCtx as unknown as GeoContext)(ANTARCTIC_CIRCLE);
-
-      // Poles
+      // --- Cosmetic layers: skip during mid-scroll for perf (~15-20% savings).
+      // These are invisible during fast rotation; reproject them only when
+      // near a settled position (same window as arc visibility).
+      let nightPath: ReturnType<typeof Skia.Path.Make> | null = null;
+      let twilightPath: ReturnType<typeof Skia.Path.Make> | null = null;
+      let graticulePath: ReturnType<typeof Skia.Path.Make> | null = null;
       let northPole: GlobeState['northPole'] = null;
       let southPole: GlobeState['southPole'] = null;
-      const npp = proj(NORTH_POLE);
-      if (npp) northPole = { x: npp[0], y: npp[1] };
-      const spp = proj(SOUTH_POLE);
-      if (spp) southPole = { x: spp[0], y: spp[1] };
-
-      // Makkah — qibla reference point
       let makkah: { x: number; y: number } | null = null;
-      if (geoDistance(MAKKAH.coords, [geoLng, geoLat]) < HALF_PI) {
-        const pt = proj(MAKKAH.coords);
-        if (pt) makkah = { x: pt[0], y: pt[1] };
+      let dotLabel: GlobeState['dotLabel'] = null;
+
+      if (nearSettled) {
+        // Night shadow
+        const [sunLng, sunLat] = getSunPosition();
+        const nightCenter: [number, number] = [sunLng + 180, -sunLat];
+        const nightGeo = nightCircleGen.center(nightCenter).radius(90)();
+        const np = nightPathRef.current;
+        np.reset();
+        skiaCtx.setPath(np);
+        pg.context(skiaCtx as unknown as GeoContext)(nightGeo);
+        nightPath = np;
+
+        // Low-sun band
+        const tp = twilightPathRef.current;
+        tp.reset();
+        skiaCtx.setPath(tp);
+        pg.context(skiaCtx as unknown as GeoContext)(
+          nightCircleGen.center(nightCenter).radius(96)(),
+        );
+        twilightPath = tp;
+
+        // Equator + polar circles
+        const gp = graticulePathRef.current;
+        gp.reset();
+        skiaCtx.setPath(gp);
+        pg.context(skiaCtx as unknown as GeoContext)(graticuleLines);
+        pg.context(skiaCtx as unknown as GeoContext)(ARCTIC_CIRCLE);
+        pg.context(skiaCtx as unknown as GeoContext)(ANTARCTIC_CIRCLE);
+        graticulePath = gp;
+
+        // Poles
+        const npp = proj(NORTH_POLE);
+        if (npp) northPole = { x: npp[0], y: npp[1] };
+        const spp = proj(SOUTH_POLE);
+        if (spp) southPole = { x: spp[0], y: spp[1] };
+
+        // Makkah
+        if (geoDistance(MAKKAH.coords, [geoLng, geoLat]) < HALF_PI) {
+          const pt = proj(MAKKAH.coords);
+          if (pt) makkah = { x: pt[0], y: pt[1] };
+        }
+
+        // Dot label — only compute when settled (timezone lookup is expensive)
+        const settledCountry = cachedCountryRef.current?.properties?.name ?? null;
+        if (dot && settledCountry) {
+          const article = articlesRef.current[settledIndex];
+          const loc = displayLocation(article?.location ?? null);
+          if (loc) {
+            let sub: string | undefined;
+            const cityKey = (article?.location ?? '').toLowerCase();
+            const tz =
+              CITY_TZ[cityKey] ?? (settledCountry ? COUNTRY_TZ[settledCountry] : undefined);
+            if (tz) sub = formatLocalTime(tz) ?? undefined;
+            dotLabel = { text: loc, sub, x: dot.x, y: dot.y };
+          }
+        }
       }
 
       // Qibla + source arcs — only compute when near a settled position.
       // During mid-scroll these arcs are invisible behind the transitioning
       // globe, so skip interpolation steps. Smoothstep fade creates a natural
       // breathing rhythm instead of mechanical linear ramps.
-      const ARC_WINDOW = 0.25; // wider window = arcs linger longer
-      const nearSettled = frac < ARC_WINDOW || frac > 1 - ARC_WINDOW;
       let arcOpacity: number;
       if (frac < ARC_WINDOW) {
         const t = frac / ARC_WINDOW; // 0→1 as we scroll away
@@ -836,8 +843,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (geoDistance(storyPt, MAKKAH.coords) > 0.02) {
           const interp = geoInterpolate(storyPt, MAKKAH.coords);
           let started = false;
-          for (let i = 0; i <= 30; i++) {
-            const p = proj(interp(i / 30));
+          for (let i = 0; i <= 16; i++) {
+            const p = proj(interp(i / 16));
             if (!p) {
               started = false;
               continue;
@@ -868,8 +875,8 @@ export const MiniGlobe = memo(function MiniGlobe({
             if (geoDistance(srcPt, [geoLng, geoLat]) >= HALF_PI) continue;
             const interp = geoInterpolate(srcPt, storyPt);
             let started = false;
-            for (let i = 0; i <= 20; i++) {
-              const p = proj(interp(i / 20));
+            for (let i = 0; i <= 10; i++) {
+              const p = proj(interp(i / 10));
               if (!p) {
                 started = false;
                 continue;
@@ -884,20 +891,22 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      // Coverage hotspot glows — project visible zones onto the front hemisphere
+      // Coverage hotspot glows — skip during mid-scroll (cosmetic)
       const hotspotGlows: GlobeState['hotspotGlows'] = [];
-      for (const zone of hotspotsRef.current) {
-        const zoneCoords: [number, number] = [zone.lng, zone.lat];
-        if (geoDistance(zoneCoords, [geoLng, geoLat]) < HALF_PI) {
-          const pt = proj(zoneCoords);
-          if (pt)
-            hotspotGlows.push({
-              x: pt[0],
-              y: pt[1],
-              intensity: zone.intensity,
-              labels: zone.labels,
-              countryName: zone.countryName,
-            });
+      if (nearSettled) {
+        for (const zone of hotspotsRef.current) {
+          const zoneCoords: [number, number] = [zone.lng, zone.lat];
+          if (geoDistance(zoneCoords, [geoLng, geoLat]) < HALF_PI) {
+            const pt = proj(zoneCoords);
+            if (pt)
+              hotspotGlows.push({
+                x: pt[0],
+                y: pt[1],
+                intensity: zone.intensity,
+                labels: zone.labels,
+                countryName: zone.countryName,
+              });
+          }
         }
       }
 
@@ -919,26 +928,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         makkah,
         hotspotGlows,
       });
-
-      if (__DEV__) {
-        const dur = performance.now() - t0;
-        globePerf.calls++;
-        globePerf.totalMs += dur;
-        if (dur > globePerf.maxMs) globePerf.maxMs = dur;
-        if (globePerf.calls % 60 === 0) {
-          const avg = (globePerf.totalMs / globePerf.calls).toFixed(1);
-          const gap = globePerf.calls > 1 ? globePerf.totalGap / (globePerf.calls - 1) : 0;
-          console.log(
-            `[Globe] 60-frame avg: ${avg}ms, max: ${globePerf.maxMs.toFixed(1)}ms, ` +
-              `avg gap: ${gap.toFixed(0)}ms (target: 32ms)`,
-          );
-          globePerf.calls = 0;
-          globePerf.totalMs = 0;
-          globePerf.maxMs = 0;
-          globePerf.totalGap = 0;
-        }
-        globePerf.lastCall = performance.now();
-      }
     },
     [],
   );
