@@ -34,6 +34,7 @@ Check first, before any style rules.
 
 <editorial>
 - **Specificity test:** Does sentence 1 lead with a concrete, verifiable detail? Rewrite abstractions ("faces criticism," "announces plan") with the specific fact that makes the story newsworthy.
+- **Title-echo test:** Does the hook just restate the title with a verb change? ("Microsoft Pause Threatens Carbon Removal" / hook: "Microsoft is pausing carbon removal purchases.") If the hook still holds when the title is hidden, rewrite it around a number, name, or consequence *not* in the title — pull from later sentences if needed.
 - **Mechanism test:** Does sentence 2 teach *how* or *why*? If it merely adds facts from the same source, rewrite to explain the structural cause, the constraint, or the precedent.
 - **Stakes test:** Does sentence 3 name what is unresolved? A specific deadline, a pending decision, a named consequence. Not a summary, not a prescription ("must now"), not an absence ("with no"). Name who must act, what deadline looms, or what breaks.
 - **Causal-claim test:** Flag and rewrite any sentence that asserts causation the sources didn't explicitly claim: "X gave Y cover to do Z," "X gains credibility with Y," "the gap widens with every Z," "this addresses the wrong bottleneck." These are editorial theories. Either attribute to a named analyst/researcher in the source or cut. Wire copy reports; it does not interpret.

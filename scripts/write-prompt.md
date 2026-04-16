@@ -174,6 +174,7 @@ Karachi — SadaPay collapsed after Gulf strikes. Pakistan's digital banking rou
 <antipatterns>
 Rewrite before saving.
 
+- **The title echo.** S1 restates the headline with a verb change. Title: "Microsoft Pause Threatens Carbon Removal." Hook: "Microsoft is pausing carbon removal purchases." → The reader already read the title. A restated hook burns ~20% of the body budget on nothing. Diagnostic: if the hook would still hold with the title removed, it's telling the reader what they already know. Replace with a number, a name, or a consequence that *isn't* in the title. Better hook from the same sources: "Microsoft has bought 80% of all contracted carbon removal." That's a fact the title doesn't carry.
 - **The restating context:** S2 says the same thing as S1 with more words. "14 people died. The death toll from the attack reached 14." → S2 must teach WHY or HOW.
 - **The empty future:** S3 predicts nothing specific. "The situation remains fluid." "It remains to be seen." → Name the decision, the deadline, the actor.
 - **The Western reaction lead:** "The US condemned Iran's..." → Center the affected. What happened to the people the story is about?
