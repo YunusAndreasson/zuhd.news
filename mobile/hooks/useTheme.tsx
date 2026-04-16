@@ -33,7 +33,7 @@ import { getPreferences, savePreferences } from '../lib/storage';
 
 // ---------------------------------------------------------------------------
 // Theme = visual style only. Splitting theme from preferences lets toggles
-// like haptics/notifications re-render only SettingsSheet, not the whole tree.
+// like haptics/notifications re-render only the settings page, not the whole tree.
 // ---------------------------------------------------------------------------
 
 export interface Theme {

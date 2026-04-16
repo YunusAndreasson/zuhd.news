@@ -38,9 +38,6 @@ WebBrowser.warmUpAsync().catch(() => {});
 // Fallback: if fonts or the first article load stall, force-hide the splash
 // after 8s so the user sees *something* rather than a frozen launch screen.
 const SPLASH_FALLBACK_MS = 8000;
-setTimeout(() => {
-  SplashScreen.hideAsync().catch(() => {});
-}, SPLASH_FALLBACK_MS);
 
 function ThemedShell() {
   const { colors, resolvedAppearance } = useTheme();
@@ -75,15 +72,26 @@ export default function RootLayout() {
       if (typeof slug === 'string') setPendingSlug(slug);
     });
 
+    // Fallback: force-hide the splash if fonts/feed stall so the user sees
+    // something rather than a frozen launch screen. Cleared on unmount.
+    const splashFallback = setTimeout(() => {
+      SplashScreen.hideAsync().catch(() => {});
+    }, SPLASH_FALLBACK_MS);
+
     // Prompt notification permission on first launch so reviewers see native dialog
     const ASKED_KEY = 'zuhd_notif_asked';
+    let promptTimer: ReturnType<typeof setTimeout> | null = null;
+    let cancelled = false;
     (async () => {
       try {
         const asked = await SecureStore.getItemAsync(ASKED_KEY);
-        if (asked) return;
+        if (asked || cancelled) return;
         await SecureStore.setItemAsync(ASKED_KEY, '1');
         // Small delay so the app is visible before the dialog appears
-        await new Promise((r) => setTimeout(r, 1500));
+        await new Promise<void>((resolve) => {
+          promptTimer = setTimeout(resolve, 1500);
+        });
+        if (cancelled) return;
         const granted = await enableNotifications();
         if (granted) {
           registerPushToken();
@@ -94,6 +102,9 @@ export default function RootLayout() {
     })();
 
     return () => {
+      cancelled = true;
+      if (promptTimer) clearTimeout(promptTimer);
+      clearTimeout(splashFallback);
       sub.remove();
       WebBrowser.coolDownAsync().catch(() => {});
     };

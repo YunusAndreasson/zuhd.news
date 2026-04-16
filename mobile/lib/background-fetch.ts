@@ -2,7 +2,7 @@ import * as BackgroundTask from 'expo-background-task';
 import * as TaskManager from 'expo-task-manager';
 import { API_BASE } from '../constants/theme';
 import type { FeedResponse, MetaResponse } from '../types';
-import { readCachedGenerated, writeFeedCache } from './feed-cache';
+import { readFeedCache, writeFeedCache } from './feed-cache';
 import { fetchWithTimeout } from './fetch';
 
 const TASK_NAME = 'ZUHD_BACKGROUND_FETCH';
@@ -15,8 +15,8 @@ async function fetchAndCacheIfNew(): Promise<boolean> {
     });
     if (!res.ok) return false;
     const meta: MetaResponse = await res.json();
-    const cached = readCachedGenerated();
-    if (cached === meta.generated) return false;
+    const cached = await readFeedCache();
+    if (cached?.generated === meta.generated) return false;
   } catch {
     return false;
   }

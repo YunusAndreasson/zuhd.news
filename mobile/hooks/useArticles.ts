@@ -1,5 +1,6 @@
 import { startTransition, useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
 import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
+import { flushBookmarks } from '../lib/bookmark-store';
 import { readFeedCache, writeFeedCache } from '../lib/feed-cache';
 import { fetchWithTimeout } from '../lib/fetch';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
@@ -55,14 +56,18 @@ export function useArticles(): ArticlesState {
   // Track foreground returns to refresh time labels
   const [tick, setTick] = useState(0);
 
-  const applyFeed = useEffectEvent((data: FeedResponse): number => {
+  const applyFeed = useEffectEvent((data: FeedResponse, seedSlugs = false): number => {
     lastGeneratedRef.current = data.generated;
     const newGrouped = { ...emptyGrouped, ...data.categories } as GroupedArticles;
     const allSlugs = Object.values(newGrouped)
       .flat()
       .map((a) => a.slug);
     const newSlugs = new Set(allSlugs);
-    const addedCount = [...newSlugs].filter((s) => !prevSlugsRef.current.has(s)).length;
+    // On initial cache load, every slug is "already known" — counting them as
+    // new would inflate the first post-boot refresh's addedCount.
+    const addedCount = seedSlugs
+      ? 0
+      : [...newSlugs].filter((s) => !prevSlugsRef.current.has(s)).length;
     prevSlugsRef.current = newSlugs;
 
     startTransition(() => {
@@ -106,7 +111,7 @@ export function useArticles(): ArticlesState {
       // Try disk cache first
       const cached = await readFeedCache();
       if (cached) {
-        applyFeed(cached);
+        applyFeed(cached, true);
         setLoading(false);
         // Silent background check for fresher content
         try {
@@ -116,7 +121,9 @@ export function useArticles(): ArticlesState {
             // No resetKey bump — user is already at scroll position 0 on fresh launch,
             // and applyFeed already updated grouped data so FlatList re-renders in place.
           }
-        } catch {} // cached data is fine
+        } catch {
+          // cached data is fine; no UI surface for background refresh errors
+        }
         return;
       }
       // No cache — network fetch (first launch)
@@ -142,8 +149,8 @@ export function useArticles(): ArticlesState {
           setResetKey((k) => k + 1);
         }
       } catch {
-      } finally {
         // silent — existing content is fine
+      } finally {
         refreshingRef.current = false;
       }
     }
@@ -151,6 +158,7 @@ export function useArticles(): ArticlesState {
 
   const handleBackground = useEffectEvent(() => {
     saveLastSeenAt(Date.now());
+    flushBookmarks();
   });
 
   useAppResume(handleResume, STALE_THRESHOLD, handleBackground);
@@ -184,6 +192,7 @@ export function useArticles(): ArticlesState {
     setGrouped((prev) => {
       const list = prev[category] ?? [];
       if (list.some((a) => a.slug === article.slug)) return prev;
+      prevSlugsRef.current.add(article.slug);
       return { ...prev, [category]: [article, ...list] };
     });
   }, []);

@@ -46,7 +46,7 @@ import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
 import { useTheme } from '../../hooks/useTheme';
 import { displayLocation } from '../../lib/place-names';
 import type { Article, HeatmapPoint } from '../../types';
-import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from './coordinates';
+import { CITY_TZ, COUNTRY_OVERRIDES, COUNTRY_TZ, SOURCE_COORDS } from './coordinates';
 import {
   bordersMesh,
   countries,
@@ -200,28 +200,6 @@ const NUDGES: [number, number][] = [
   [0, 0.3],
   [0, -0.3],
 ];
-
-// Manual overrides for cities that fall outside their country in 110m TopoJSON
-const COUNTRY_OVERRIDES: Record<string, string> = {
-  singapore: 'Singapore',
-  // Historic Palestine — all cities in the occupied West Bank, Gaza,
-  // and 1948 territories that may fall outside 110m TopoJSON polygons.
-  gaza: 'Palestine',
-  ramallah: 'Palestine',
-  nablus: 'Palestine',
-  hebron: 'Palestine',
-  jenin: 'Palestine',
-  'al-quds': 'Palestine',
-  bethlehem: 'Palestine',
-  tulkarm: 'Palestine',
-  'khan younis': 'Palestine',
-  jericho: 'Palestine',
-  'deir al-balah': 'Palestine',
-  rafah: 'Palestine',
-  qalqilya: 'Palestine',
-  tubas: 'Palestine',
-  salfit: 'Palestine',
-};
 
 function findCountry(lat: number, lng: number, location?: string | null): GeoJSON.Feature | null {
   // Check manual overrides first

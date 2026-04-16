@@ -25,19 +25,17 @@ export const CountryRankingView = memo(function CountryRankingView({
   );
   const listRef = useRef<FlatList<RankingEntry>>(null);
 
-  // gorhom's BottomSheetFlatList locks internal scrolling while the sheet
-  // animates toward its top snap. We retry scrolling a few times so at least
-  // one attempt lands after the sheet is unlocked.
+  // gorhom's BottomSheetFlatList silently ignores scrollToOffset while the
+  // sheet is still animating to its top snap. Multiple attempts across the
+  // animation window ensure at least one lands after the internal unlock.
+  // Animated: once the first attempt lands, subsequent calls target the same
+  // offset and are effectively no-ops (zero-distance animation).
   useEffect(() => {
     if (currentIndex < 0) return;
     const offset = Math.max(0, ROW_HEIGHT * currentIndex - ROW_HEIGHT * 2);
-    const scroll = () => {
-      listRef.current?.scrollToOffset({ offset, animated: false });
-    };
-    const timers = [100, 350, 600, 900].map((delay) => setTimeout(scroll, delay));
-    return () => {
-      for (const t of timers) clearTimeout(t);
-    };
+    const scroll = () => listRef.current?.scrollToOffset({ offset, animated: true });
+    const timers = [100, 350, 600, 900].map((d) => setTimeout(scroll, d));
+    return () => timers.forEach(clearTimeout);
   }, [currentIndex]);
 
   const renderItem = useCallback(
