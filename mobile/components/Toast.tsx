@@ -9,7 +9,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ANIMATION, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { ANIMATION, LAYOUT, MAX_FONT_SCALE, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 type ToastPosition = 'top' | 'bottom';
@@ -113,6 +113,7 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
             styles.text,
             { ...font.semiBold, fontSize: typography.sizeSm, color: colors.text },
           ]}
+          maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
         >
           {message}
         </Text>

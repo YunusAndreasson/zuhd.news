@@ -230,7 +230,10 @@ export const MenuSheet = memo(function MenuSheet({
                 )}
                 {section.link && (
                   <Pressable
-                    onPress={() => Linking.openURL(section.link?.url ?? '')}
+                    onPress={() => {
+                      hapticImpact();
+                      Linking.openURL(section.link?.url ?? '');
+                    }}
                     style={({ pressed }) => [styles.infoLink, pressed && PRESSED_STYLE]}
                     accessibilityRole="link"
                     accessibilityLabel={section.link.label}
@@ -272,7 +275,6 @@ export const MenuSheet = memo(function MenuSheet({
                 ...font.regular,
                 fontSize: typography.sizeXs,
                 color: colors.textSecondary,
-                opacity: 0.5,
                 marginTop: SPACING.lg,
               }}
             >

@@ -163,6 +163,20 @@ export const SPACING = {
   screenPadding: 20,
 } as const;
 
+/** maxFontSizeMultiplier caps — prevent layout breakage at extreme Dynamic Type */
+export const MAX_FONT_SCALE = {
+  /** Headings — already large; excessive scaling overflows snap viewport */
+  heading: 1.3,
+  /** Body text — most important to scale for accessibility */
+  body: 1.5,
+  /** Small-caps labels and metadata */
+  label: 1.4,
+  /** Tabular / timer text — fixed-width layouts break at large scales */
+  tabular: 1.0,
+  /** UI chrome — pills, buttons, wordmark */
+  chrome: 1.3,
+} as const;
+
 export const LAYOUT = {
   progressBarHeight: 2,
   sheetMaxFraction: 0.7,
@@ -291,7 +305,6 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
       ...androidTextBase,
       fontSize: typography.sizeSm,
       lineHeight: typography.sizeSm * typography.leadingBody,
-      fontStyle: 'italic',
       color: colors.accent,
     } as TextStyle,
   };

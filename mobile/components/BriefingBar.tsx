@@ -13,7 +13,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ANIMATION, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { ANIMATION, LAYOUT, MAX_FONT_SCALE, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 const BAR_MARGIN = SPACING.md;
@@ -51,8 +51,6 @@ export const BriefingBar = memo(function BriefingBar({
   const { colors, font, typography, textStyles } = useTheme();
   const insets = useSafeAreaInsets();
   const barWidth = useRef(0);
-  const expanded = playing || elapsed > 0;
-
   const onBarLayout = useCallback((e: LayoutChangeEvent) => {
     barWidth.current = e.nativeEvent.layout.width;
   }, []);
@@ -116,127 +114,111 @@ export const BriefingBar = memo(function BriefingBar({
       style={[styles.wrapper, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
       pointerEvents="box-none"
     >
-      {expanded ? (
-        /* ── Expanded: full player ── */
-        <View
-          style={[styles.bar, { backgroundColor: colors.sheetBg, shadowColor: colors.black }]}
-          onLayout={onBarLayout}
-        >
-          <View style={styles.row}>
-            <View style={styles.info}>
-              <Text
-                style={[styles.title, textStyles.smallCaps, { color: colors.textEmphasis }]}
-                numberOfLines={1}
-              >
-                briefing
-                <Text style={{ ...font.regular, color: colors.textSecondary }}>
-                  {' \u00b7 '}
-                  {dateLabel}
-                </Text>
-              </Text>
-            </View>
-
+      <View
+        style={[styles.bar, { backgroundColor: colors.sheetBg, shadowColor: colors.black }]}
+        onLayout={onBarLayout}
+      >
+        <View style={styles.row}>
+          <View style={styles.info}>
             <Text
-              style={[
-                styles.time,
-                {
-                  ...font.regular,
-                  fontSize: typography.sizeXs,
-                  color: colors.textEmphasis,
-                },
-              ]}
+              style={[styles.title, textStyles.smallCaps, { color: colors.textEmphasis }]}
+              numberOfLines={1}
+              maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
             >
-              {formatTime(elapsed)}
-              <Text style={{ color: colors.textSecondary }}> / {formatTime(duration)}</Text>
-            </Text>
-
-            <Pressable
-              onPress={onCycleRate}
-              hitSlop={8}
-              style={({ pressed }) => pressed && PRESSED_STYLE}
-              accessibilityRole="button"
-              accessibilityLabel={`Playback speed ${rate}x`}
-            >
-              <Text
-                style={{
-                  ...font.semiBold,
-                  fontSize: typography.sizeXs,
-                  color: rate === 1 ? colors.textSecondary : colors.textEmphasis,
-                  fontVariant: ['tabular-nums'],
-                }}
-              >
-                {rate}x
+              briefing
+              <Text style={{ ...font.regular, color: colors.textSecondary }}>
+                {' \u00b7 '}
+                {dateLabel}
               </Text>
-            </Pressable>
-
-            <Pressable
-              onPress={onToggle}
-              hitSlop={12}
-              style={({ pressed }) => pressed && PRESSED_STYLE}
-              accessibilityRole="button"
-              accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
-            >
-              <Ionicons
-                name={playing ? 'pause' : 'play'}
-                size={LAYOUT.iconMd}
-                color={colors.textEmphasis}
-              />
-            </Pressable>
-
-            <Pressable
-              onPress={onClose}
-              hitSlop={12}
-              style={({ pressed }) => pressed && PRESSED_STYLE}
-              accessibilityRole="button"
-              accessibilityLabel="Close briefing player"
-            >
-              <Ionicons name="close" size={LAYOUT.iconMd} color={colors.textSecondary} />
-            </Pressable>
+            </Text>
           </View>
 
-          <GestureDetector gesture={scrubGesture}>
-            <View
-              style={styles.progressTouch}
-              accessibilityRole="adjustable"
-              accessibilityLabel={`Briefing progress, ${formatTime(elapsed)} of ${formatTime(duration)}`}
-              accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
-              onAccessibilityAction={(e) => {
-                const step = Math.max(10, duration * 0.05);
-                if (e.nativeEvent.actionName === 'increment')
-                  onSeek(Math.min(elapsed + step, duration));
-                else if (e.nativeEvent.actionName === 'decrement')
-                  onSeek(Math.max(elapsed - step, 0));
+          <Text
+            style={[
+              styles.time,
+              {
+                ...font.regular,
+                fontSize: typography.sizeXs,
+                color: colors.textEmphasis,
+              },
+            ]}
+            maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+          >
+            {formatTime(elapsed)}
+            <Text style={{ color: colors.textSecondary }}> / {formatTime(duration)}</Text>
+          </Text>
+
+          <Pressable
+            onPress={onCycleRate}
+            hitSlop={8}
+            style={({ pressed }) => pressed && PRESSED_STYLE}
+            accessibilityRole="button"
+            accessibilityLabel={`Playback speed ${rate}x`}
+          >
+            <Text
+              style={{
+                ...font.semiBold,
+                fontSize: typography.sizeXs,
+                color: rate === 1 ? colors.textSecondary : colors.textEmphasis,
+                fontVariant: ['tabular-nums'],
               }}
+              maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
             >
-              <View style={[styles.progressTrack, { backgroundColor: colors.rule }]}>
-                <Animated.View
-                  style={[
-                    styles.progressFill,
-                    { backgroundColor: colors.textSecondary },
-                    progressStyle,
-                  ]}
-                />
-              </View>
-            </View>
-          </GestureDetector>
-        </View>
-      ) : (
-        /* ── Collapsed: briefing pill ── */
-        <View style={styles.collapsedRow}>
+              {rate}x
+            </Text>
+          </Pressable>
+
           <Pressable
             onPress={onToggle}
-            style={({ pressed }) => [
-              styles.pill,
-              { backgroundColor: colors.sheetBg, shadowColor: colors.black },
-              pressed && PRESSED_STYLE,
-            ]}
+            hitSlop={12}
+            style={({ pressed }) => pressed && PRESSED_STYLE}
             accessibilityRole="button"
-            accessibilityLabel="Play daily briefing"
+            accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
           >
-            <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>briefing</Text>
+            <Ionicons
+              name={playing ? 'pause' : 'play'}
+              size={LAYOUT.iconMd}
+              color={colors.textEmphasis}
+            />
+          </Pressable>
+
+          <Pressable
+            onPress={onClose}
+            hitSlop={12}
+            style={({ pressed }) => pressed && PRESSED_STYLE}
+            accessibilityRole="button"
+            accessibilityLabel="Close briefing player"
+          >
+            <Ionicons name="close" size={LAYOUT.iconMd} color={colors.textSecondary} />
           </Pressable>
         </View>
-      )}
+
+        <GestureDetector gesture={scrubGesture}>
+          <View
+            style={styles.progressTouch}
+            accessibilityRole="adjustable"
+            accessibilityLabel={`Briefing progress, ${formatTime(elapsed)} of ${formatTime(duration)}`}
+            accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
+            onAccessibilityAction={(e) => {
+              const step = Math.max(10, duration * 0.05);
+              if (e.nativeEvent.actionName === 'increment')
+                onSeek(Math.min(elapsed + step, duration));
+              else if (e.nativeEvent.actionName === 'decrement')
+                onSeek(Math.max(elapsed - step, 0));
+            }}
+          >
+            <View style={[styles.progressTrack, { backgroundColor: colors.rule }]}>
+              <Animated.View
+                style={[
+                  styles.progressFill,
+                  { backgroundColor: colors.textSecondary },
+                  progressStyle,
+                ]}
+              />
+            </View>
+          </View>
+        </GestureDetector>
+      </View>
     </Animated.View>
   );
 });
@@ -288,14 +270,5 @@ const styles = StyleSheet.create({
     height: PROGRESS_HEIGHT,
     borderRadius: PROGRESS_HEIGHT,
     transformOrigin: 'left',
-  },
-  /* ── Collapsed row ── */
-  collapsedRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.sm,
-  },
-  pill: {
-    ...LAYOUT.floatingPill,
   },
 });

@@ -127,7 +127,7 @@ export const ContextSheet = memo(function ContextSheet({
       onDismiss={handleDismiss}
     >
       <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
+        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.xxl }]}
       >
         {/* ── Sources ── */}
         {hasSources && (

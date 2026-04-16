@@ -1,7 +1,12 @@
 import * as WebBrowser from 'expo-web-browser';
 import type { ReactNode } from 'react';
 import { Platform, StyleSheet, Text, type TextStyle } from 'react-native';
-import type { ColorPalette, FontSet, Typography } from '../constants/theme';
+import {
+  type ColorPalette,
+  type FontSet,
+  MAX_FONT_SCALE,
+  type Typography,
+} from '../constants/theme';
 
 export type Segment = {
   type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link';
@@ -101,11 +106,9 @@ export function makeMarkdownStyles(
     },
     italic: {
       ...font.italic,
-      fontStyle: 'italic',
     },
     boldItalic: {
       ...font.boldItalic,
-      fontStyle: 'italic',
     },
     link: {
       color: colors.accent,
@@ -182,23 +185,38 @@ export function renderSentences(
       // Show dateline (e.g. time ago) in small-caps before first sentence
       if (dateline) {
         return (
-          <Text key={i} style={[mdStyles.sentence, sizeStyle]} selectable>
+          <Text
+            key={i}
+            style={[mdStyles.sentence, sizeStyle]}
+            selectable
+            maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+          >
             <Text style={mdStyles.dateline}>{dateline}</Text>
-            {'  '}
+            {'\u2003'}
             {renderSegments(parseInline(rest), mdStyles)}
           </Text>
         );
       }
       if (rest !== sentence) {
         return (
-          <Text key={i} style={[mdStyles.sentence, sizeStyle]} selectable>
+          <Text
+            key={i}
+            style={[mdStyles.sentence, sizeStyle]}
+            selectable
+            maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+          >
             {renderSegments(parseInline(rest), mdStyles)}
           </Text>
         );
       }
     }
     return (
-      <Text key={i} style={[mdStyles.sentence, sizeStyle]} selectable>
+      <Text
+        key={i}
+        style={[mdStyles.sentence, sizeStyle]}
+        selectable
+        maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+      >
         {renderSegments(parseInline(sentence), mdStyles)}
       </Text>
     );

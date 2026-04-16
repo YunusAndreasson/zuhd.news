@@ -112,7 +112,7 @@ export const CountrySheet = memo(function CountrySheet({
       onDismiss={onDismiss}
     >
       <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
+        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.xxl }]}
       >
         {country?.data && (
           <>
