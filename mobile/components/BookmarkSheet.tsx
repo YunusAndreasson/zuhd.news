@@ -6,7 +6,8 @@ import {
 import { memo, useCallback, useRef, useSyncExternalStore } from 'react';
 
 import { StyleSheet } from 'react-native';
-import { SPACING } from '../constants/theme';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import { ANIMATION, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { getSnapshot, subscribe, toggle } from '../lib/bookmark-store';
 import { hapticNotification } from '../lib/haptics';
@@ -15,6 +16,7 @@ import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
 import { SheetHandle } from './SheetHandle';
 import { SheetContainer } from './SheetPrimitives';
+import { SwipeableRow } from './SwipeableRow';
 
 const BookmarkHandle = () => <SheetHandle title="saved" />;
 
@@ -64,18 +66,22 @@ export const BookmarkSheet = memo(function BookmarkSheet({
         {bookmarks.length === 0 ? (
           <EmptyState message="Long-press an article to save it" />
         ) : (
-          bookmarks.map((b) => (
-            <ArticleRow
+          bookmarks.map((b, i) => (
+            <Animated.View
               key={b.article.slug}
-              slug={b.article.slug}
-              title={b.article.title}
-              addedAt={b.article.addedAt}
-              category={b.category}
-              location={b.article.location}
-              onPress={onSelectArticle}
-              onLongPress={handleRemove}
-              delayLongPress={600}
-            />
+              entering={FadeInDown.duration(ANIMATION.normal).delay(Math.min(i, 8) * 40)}
+            >
+              <SwipeableRow onSwipeAction={() => handleRemove(b.article.slug)}>
+                <ArticleRow
+                  slug={b.article.slug}
+                  title={b.article.title}
+                  addedAt={b.article.addedAt}
+                  category={b.category}
+                  location={b.article.location}
+                  onPress={onSelectArticle}
+                />
+              </SwipeableRow>
+            </Animated.View>
           ))
         )}
       </BottomSheetScrollView>

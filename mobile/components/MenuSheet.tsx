@@ -7,7 +7,8 @@ import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
 import { memo, useCallback, useRef, useState } from 'react';
 import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
-import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import { ANIMATION, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { hapticImpact, hapticTick } from '../lib/haptics';
 import { SheetHandle } from './SheetHandle';
@@ -256,19 +257,28 @@ export const MenuSheet = memo(function MenuSheet({
         ) : (
           /* ── Menu view ── */
           <>
-            <MenuItem label="search" onPress={onSearchPress} />
-            <MenuItem label="saved" onPress={onBookmarkPress} />
-            <MenuItem label="settings" onPress={onSettingsPress} />
+            <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(0)}>
+              <MenuItem label="search" onPress={onSearchPress} />
+            </Animated.View>
+            <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(40)}>
+              <MenuItem label="saved" onPress={onBookmarkPress} />
+            </Animated.View>
+            <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(80)}>
+              <MenuItem label="settings" onPress={onSettingsPress} />
+            </Animated.View>
 
             <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-            <View style={styles.infoLinks}>
+            <Animated.View
+              style={styles.infoLinks}
+              entering={FadeInDown.duration(ANIMATION.normal).delay(120)}
+            >
               <InfoLink label="about" onPress={() => navigateTo('about')} />
               <InfoLink label="sources" onPress={() => navigateTo('sources')} />
               <InfoLink label="privacy" onPress={() => navigateTo('privacy')} />
               <InfoLink label="contact" onPress={() => navigateTo('contact')} />
               <InfoLink label="rate" onPress={() => StoreReview.requestReview()} />
-            </View>
+            </Animated.View>
 
             <Text
               style={{

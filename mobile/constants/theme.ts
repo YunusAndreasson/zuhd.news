@@ -241,7 +241,7 @@ export const ANIMATION = {
 } as const;
 
 /** Shared pressed-state style for Pressable components */
-export const PRESSED_STYLE = { opacity: 0.7 } as const;
+export const PRESSED_STYLE = { opacity: 0.7, transform: [{ scale: 0.97 }] } as const;
 
 /** Android-specific base: remove extra padding above/below text for consistent rhythm */
 const androidTextBase: TextStyle =
