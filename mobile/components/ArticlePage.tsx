@@ -203,7 +203,6 @@ export const ArticlePage = memo(function ArticlePage({
             </View>
           )}
           <Text
-            selectable
             style={[
               styles.title,
               {

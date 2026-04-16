@@ -156,45 +156,36 @@ describe('formatTimeAgo', () => {
   beforeEach(() => jest.useFakeTimers());
   afterEach(() => jest.useRealTimers());
 
-  it('returns "just now" for < 1 hour ago', () => {
-    const now = Date.now();
+  it('returns a time string for today', () => {
+    const now = new Date(2026, 3, 16, 14, 0, 0).getTime();
     jest.setSystemTime(now);
-    expect(formatTimeAgo(now - 30 * 60 * 1000)).toBe('just now');
+    const result = formatTimeAgo(new Date(2026, 3, 16, 10, 30, 0).getTime());
+    // Locale-dependent HH:MM — just verify it contains digits and a separator
+    expect(result).toMatch(/\d{1,2}.\d{2}/);
   });
 
-  it('returns "just now" for exactly now', () => {
-    const now = Date.now();
+  it('returns a time string for articles just published', () => {
+    const now = new Date(2026, 3, 16, 14, 0, 0).getTime();
     jest.setSystemTime(now);
-    expect(formatTimeAgo(now)).toBe('just now');
+    const result = formatTimeAgo(now);
+    expect(result).toMatch(/\d{1,2}.\d{2}/);
   });
 
-  it('returns "1h ago" at exactly 1 hour', () => {
-    const now = Date.now();
+  it('returns "yesterday HH:MM" for yesterday', () => {
+    const now = new Date(2026, 3, 16, 8, 0, 0).getTime();
     jest.setSystemTime(now);
-    expect(formatTimeAgo(now - 3600 * 1000)).toBe('1h ago');
+    const result = formatTimeAgo(new Date(2026, 3, 15, 22, 0, 0).getTime());
+    expect(result).toMatch(/^yesterday\s+\d{1,2}.\d{2}/);
   });
 
-  it('returns "23h ago" at 23 hours', () => {
-    const now = Date.now();
+  it('returns a date string for 2+ days ago', () => {
+    const now = new Date(2026, 3, 16, 14, 0, 0).getTime();
     jest.setSystemTime(now);
-    expect(formatTimeAgo(now - 23 * 3600 * 1000)).toBe('23h ago');
-  });
-
-  it('returns a date string at 24+ hours', () => {
-    const now = Date.now();
-    jest.setSystemTime(now);
-    const result = formatTimeAgo(now - 24 * 3600 * 1000);
-    // Locale-dependent, so just verify it's not in "Xh ago" format
-    expect(result).not.toMatch(/\d+h ago/);
-    expect(result).not.toBe('just now');
+    const result = formatTimeAgo(new Date(2026, 3, 10, 10, 0, 0).getTime());
+    // Should be a short date like "10 Apr" — not a time or "yesterday"
+    expect(result).not.toMatch(/yesterday/);
+    expect(result).not.toMatch(/^\d{1,2}.\d{2}$/);
     expect(result.length).toBeGreaterThan(0);
-  });
-
-  it('returns "just now" for future timestamps (clock skew)', () => {
-    const now = Date.now();
-    jest.setSystemTime(now);
-    // Future: ms is negative → hours = Math.floor(negative/3600000) < 0 < 1
-    expect(formatTimeAgo(now + 3600 * 1000)).toBe('just now');
   });
 });
 

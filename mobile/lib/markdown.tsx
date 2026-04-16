@@ -188,7 +188,6 @@ export function renderSentences(
           <Text
             key={i}
             style={[mdStyles.sentence, sizeStyle]}
-            selectable
             maxFontSizeMultiplier={MAX_FONT_SCALE.body}
           >
             <Text style={mdStyles.dateline}>{dateline}</Text>
@@ -202,7 +201,6 @@ export function renderSentences(
           <Text
             key={i}
             style={[mdStyles.sentence, sizeStyle]}
-            selectable
             maxFontSizeMultiplier={MAX_FONT_SCALE.body}
           >
             {renderSegments(parseInline(rest), mdStyles)}
@@ -214,7 +212,6 @@ export function renderSentences(
       <Text
         key={i}
         style={[mdStyles.sentence, sizeStyle]}
-        selectable
         maxFontSizeMultiplier={MAX_FONT_SCALE.body}
       >
         {renderSegments(parseInline(sentence), mdStyles)}
