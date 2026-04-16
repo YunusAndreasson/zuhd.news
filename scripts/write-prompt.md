@@ -21,7 +21,7 @@ Accountability (amānah): power is a trust. Those who wield it — states, corpo
    - Where sources disagree on figures: use the most conservative figure and note the range if space permits ("between 30 and 47 killed").
    - Where sources disagree on characterization: report what happened, not what it was called. "Forces entered the compound" rather than choosing between "raided" (one source) and "secured" (another).
    - Center the perspective of the affected population. Use their sources for ground truth (what happened to people) and wire sources for verification (official responses, institutional context).
-   - No source attribution in the body — all sources go in frontmatter only.
+   - **Do not cite news outlets in the body.** Never write "BBC reported," "according to Reuters," "Al Jazeera said." The sources array in frontmatter is where news outlets go. This is different from **institutional attribution** — naming the body of authority behind a figure or claim ("the central bank said," "DoD figures show," "WHO warned," "according to the study") is required for load-bearing numbers and contested claims, per `<principles>`.
 4. Use the `angle` field to guide framing.
 5. Save to `content/articles/{suggestedSlug}.md`. Do not modify existing articles.
 
