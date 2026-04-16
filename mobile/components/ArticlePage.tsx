@@ -173,11 +173,7 @@ export const ArticlePage = memo(function ArticlePage({
           >
             <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
             <Text
-              style={[
-                styles.earlierLabel,
-                textStyles.smallCaps,
-                { fontSize: typography.sizeBase, color: colors.accent },
-              ]}
+              style={[styles.earlierLabel, textStyles.smallCapsBase, { color: colors.accent }]}
               maxFontSizeMultiplier={MAX_FONT_SCALE.label}
             >
               {'caught up'}

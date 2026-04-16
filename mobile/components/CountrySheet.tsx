@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
   countryRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: SPACING.xs,
+    paddingVertical: SPACING.sm,
   },
   countryRowLabel: {
     flex: 1,
