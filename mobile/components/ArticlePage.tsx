@@ -240,6 +240,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: SPACING.screenPadding,
+    paddingTop: SPACING.sm,
     paddingBottom: SPACING.xl,
   },
   gradientTop: {
@@ -260,7 +261,7 @@ const styles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
   },
   title: {
-    marginBottom: SPACING.lg,
+    marginBottom: SPACING.md,
     fontVariant: ['oldstyle-nums'],
   },
   globeTapZone: {

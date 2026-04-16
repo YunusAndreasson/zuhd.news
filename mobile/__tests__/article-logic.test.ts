@@ -163,26 +163,26 @@ describe('formatTimeAgo', () => {
     expect(formatTimeAgo(now - 30_000)).toBe('now');
   });
 
-  it('returns Nm for sub-hour differences', () => {
+  it('returns Nm ago for sub-hour differences', () => {
     const now = new Date(2026, 3, 16, 14, 0, 0).getTime();
     jest.setSystemTime(now);
-    expect(formatTimeAgo(now - 5 * 60_000)).toBe('5m');
-    expect(formatTimeAgo(now - 59 * 60_000)).toBe('59m');
+    expect(formatTimeAgo(now - 5 * 60_000)).toBe('5m ago');
+    expect(formatTimeAgo(now - 59 * 60_000)).toBe('59m ago');
   });
 
-  it('returns Nh for hours within a day', () => {
+  it('returns Nh ago for hours within a day', () => {
     const now = new Date(2026, 3, 16, 14, 0, 0).getTime();
     jest.setSystemTime(now);
-    expect(formatTimeAgo(now - 60 * 60_000)).toBe('1h');
-    expect(formatTimeAgo(now - 3 * 60 * 60_000)).toBe('3h');
-    expect(formatTimeAgo(now - 23 * 60 * 60_000)).toBe('23h');
+    expect(formatTimeAgo(now - 60 * 60_000)).toBe('1h ago');
+    expect(formatTimeAgo(now - 3 * 60 * 60_000)).toBe('3h ago');
+    expect(formatTimeAgo(now - 23 * 60 * 60_000)).toBe('23h ago');
   });
 
-  it('returns Nd for 1–6 days', () => {
+  it('returns Nd ago for 1–6 days', () => {
     const now = new Date(2026, 3, 16, 14, 0, 0).getTime();
     jest.setSystemTime(now);
-    expect(formatTimeAgo(now - 24 * 60 * 60_000)).toBe('1d');
-    expect(formatTimeAgo(now - 3 * 24 * 60 * 60_000)).toBe('3d');
+    expect(formatTimeAgo(now - 24 * 60 * 60_000)).toBe('1d ago');
+    expect(formatTimeAgo(now - 3 * 24 * 60 * 60_000)).toBe('3d ago');
   });
 
   it('returns a short date for 7+ days ago', () => {

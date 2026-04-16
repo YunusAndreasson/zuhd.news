@@ -7,11 +7,11 @@ export function formatTimeAgo(addedAt: number): string {
   const diffMs = Date.now() - addedAt;
   const diffMin = Math.floor(diffMs / 60_000);
   if (diffMin < 1) return 'now';
-  if (diffMin < 60) return `${diffMin}m`;
+  if (diffMin < 60) return `${diffMin}m ago`;
   const diffHours = Math.floor(diffMin / 60);
-  if (diffHours < 24) return `${diffHours}h`;
+  if (diffHours < 24) return `${diffHours}h ago`;
   const diffDays = Math.floor(diffHours / 24);
-  if (diffDays < 7) return `${diffDays}d`;
+  if (diffDays < 7) return `${diffDays}d ago`;
   return new Date(addedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 }
 
