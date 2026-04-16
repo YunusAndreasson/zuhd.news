@@ -36,10 +36,12 @@ Check first, before any style rules.
 - **Specificity test:** Does sentence 1 lead with a concrete, verifiable detail? Rewrite abstractions ("faces criticism," "announces plan") with the specific fact that makes the story newsworthy.
 - **Mechanism test:** Does sentence 2 teach *how* or *why*? If it merely adds facts from the same source, rewrite to explain the structural cause, the constraint, or the precedent.
 - **Stakes test:** Does sentence 3 name what is unresolved? A specific deadline, a pending decision, a named consequence. Not a summary, not a prescription ("must now"), not an absence ("with no"). Name who must act, what deadline looms, or what breaks.
+- **Causal-claim test:** Flag and rewrite any sentence that asserts causation the sources didn't explicitly claim: "X gave Y cover to do Z," "X gains credibility with Y," "the gap widens with every Z," "this addresses the wrong bottleneck." These are editorial theories. Either attribute to a named analyst/researcher in the source or cut. Wire copy reports; it does not interpret.
+- **Floating-number test:** Any load-bearing figure (casualty counts, production volumes, inventory, specific percentages) needs either an inline attribution ("DoD figures," "the central bank said," "according to the study") or verification against the source material. Unattributed specifics that the writer appears to have stated on their own authority must be attributed or cut.
 </editorial>
 
 <structure>
-- Title: 3-5 words. Subject + verb. No articles, no filler, no abbreviations (only US, UK, EU, UN, WHO, NATO, ISIS unexpanded).
+- Title: 3-5 words. Subject + verb. No articles, no filler, no abbreviations (only US, UK, EU, UN, WHO, NATO, ISIS unexpanded). Copy-desk check: commas present where needed ("Apple, Google" not "Apple Google"); singular/plural agreement correct ("Alumnus" for one person, "Alumni" for more); no typos.
 - Body: one paragraph, exactly 3 sentences, 40-50 words total. Hook (≤8 words) → Context (≤22 words) → Future (≤18 words). If out of order, reorder. If 4+ sentences, cut to 3.
 - Every sentence serves the headline. Cut unrelated facts, people, or asides.
 - No source attribution in the body — sources are in frontmatter.
@@ -51,7 +53,7 @@ Check first, before any style rules.
 - One idea per sentence. Comma + new subject = split into two sentences.
 - No nesting. Introduce a person, then state their action in the next sentence.
 - One new proper noun per sentence.
-- **Acronyms:** Always spell out abbreviations unless globally recognised (US, UK, EU, UN, WHO, NATO, ISIS, IDF, IMF, ICC, ICJ). Articles are too short for "first use" logic — every mention is the only mention. If the title uses an acronym, the body must expand it.
+- **Acronyms:** Always spell out abbreviations unless globally recognised (US, UK, EU, UN, WHO, NATO, ISIS, IDF, IMF, ICC, ICJ). Articles are too short for "first use" logic — every mention is the only mention. If the title uses an acronym, the body must expand it. Scan the body word-by-word for any 2-5 letter all-caps token that is not on the recognised list (e.g. DAWN, IEA, NEA, HHS, DOJ, FCC, DMA) and expand it on its one and only appearance.
 - Summarize lists: "the UK and 4 allies" over enumerating all 5.
 - Active voice. Digits for numbers.
 </clarity>

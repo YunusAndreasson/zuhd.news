@@ -18,6 +18,38 @@ const rssParser = new XMLParser({
   htmlEntities: true,
 })
 
+// ── Source → country code (where the outlet is legally based / editorial HQ) ─
+// Fills the country field so RSS-sourced articles don't land with country:null.
+const SOURCE_COUNTRY = {
+  '404 Media': 'US',
+  'Bellingcat': 'NL',
+  'Mada Masr': 'EG',
+  'Salaam Gateway': 'AE',
+  'InSight Crime': 'US',
+  'Declassified UK': 'GB',
+  'Responsible Statecraft': 'US',
+  'Drop Site News': 'US',
+  'SMEX': 'LB',
+  'SciDev.Net': 'GB',
+  'The Record': 'US',
+  'Phys.org': 'GB',
+  'Quanta Magazine': 'US',
+  'Carbon Brief': 'GB',
+  'New Lines Magazine': 'US',
+  'The War Zone': 'US',
+  'CODA Story': 'US',
+  'European Spaceflight': 'FR',
+  'Undark': 'US',
+  'Inkstick': 'US',
+  'Noema': 'US',
+  'Rest of World': 'US',
+  'The Diplomat': 'US',
+  'Lowy Interpreter': 'AU',
+  'Dialogue Earth': 'GB',
+  'Global Voices': 'NL',
+  'Hacker News': 'US',
+}
+
 // ── Sources — only those NOT reliably indexed by NewsAPI.ai ─────────
 
 // Only sources NOT reliably indexed by NewsAPI.ai.
@@ -291,7 +323,7 @@ async function main() {
       suggestedSlug: slugify(item.title, pubDate),
       eventUri: null,
       eventCoverage: null,
-      sources: [{ name: item.source, url: item.link, country: null, body: (item.contentText || item.description || '').slice(0, 3000) }],
+      sources: [{ name: item.source, url: item.link, country: SOURCE_COUNTRY[item.source] || null, body: (item.contentText || item.description || '').slice(0, 3000) }],
       concepts: [],
       location: null,
       sentiment: null,

@@ -78,6 +78,10 @@ Every article follows a 3-sentence arc:
 
 **Economy.** Drop filler ("In a significant development"), hedging ("could reshape"), and speculation ("is poised to"). Start with the fact. Each sentence must introduce new information — if S3 restates S2 with different words, rewrite S3 with what happens next.
 
+**Attribute non-routine numbers.** Contested figures — casualty counts, production volumes, market-share claims, specific statistics — earn a 2-3 word inline attribution: "the central bank said," "DoD figures show," "according to the study." Routine, self-evident facts (ages, dates, geography) don't. If a figure is load-bearing and lacks a named authority in the source material, drop or soften it — don't float it as if it were common knowledge.
+
+**Report, don't theorize.** The body reports what happened and how the mechanism works. It does not claim what something "gives cover to," what "credibility" someone "gains," or how a "gap widens" — those are opinion columns, not wire copy. If a source makes a causal claim, attribute it to them by name. If no source made the claim, cut it.
+
 **Strategic depth.** The context sentence must teach a mechanism, not restate the hook with more words. "Prices rose" is a hook. "The pipeline runs through a chokepoint that carries 20% of global supply" is a mechanism. If the reader already knows the mechanism, teach the constraint — why the obvious solution doesn't work, what makes this problem structural rather than temporary.
 
 **Dateline.** Every article opens with location + em dash: `Tehran — `, `Gaza — `, `Jakarta — `. Use the most specific meaningful location. Cities are preferred over countries when the story is clearly tied to one place.
@@ -175,4 +179,7 @@ These patterns appear when the model falls into wire-copy autopilot. Rewrite bef
 - **The Western reaction lead:** "The US condemned Iran's..." → Center the affected. What happened to the people the story is about?
 - **The hedge parade:** "Could reshape," "may signal," "is poised to," "raises questions about." → State what happened. If the consequence is uncertain, name the specific uncertainty.
 - **The dateline mismatch:** Article about Indonesian plastic burning datelined Jakarta because Jakarta is the capital. → Dateline the specific location where the story happened.
+- **The unattributed causal claim:** "Six weeks of Iran headlines gave Israel cover." "Pakistan's mediation gains credibility with accounts in surplus." "Hospital stewardship addresses the wrong bottleneck." → Theories presented as fact. Either attribute ("researchers argue," "analysts say") or cut. A wire dispatch reports what happened and what the mechanism is — it does not editorialize about what events "mean."
+- **The press-era phrase:** "at press time," "this morning," "today." → Wire dispatches stamp the date in metadata. Use "Wednesday," "as of Wednesday," or just state the fact without a temporal hedge. "At press time" is a print anachronism.
+- **The floating number:** "850 Tomahawks fired in 4 weeks." "46.5 tons of cocaine passed through Costa Rica." "Viva produces 10% of domestic fuel." → If the figure is load-bearing and disputable, attribute it inline ("DoD figures," "the drug agency said," "the refiner reports"). Unattributed specifics read as if the writer invented them.
 </antipatterns>
