@@ -46,7 +46,7 @@ Check first, before any style rules.
 - Every sentence serves the headline. Cut unrelated facts, people, or asides.
 - No **news-outlet** citations in the body — never "BBC said," "according to Reuters," "Al Jazeera reported." Outlet names live in the frontmatter `sources` array only. This is separate from institutional attribution ("the central bank said," "DoD figures show," "WHO warned"), which is *required* for load-bearing numbers per `<editorial>`.
 - `location` in frontmatter must match the dateline. Can be a city or country. Coordinates (`lat`/`lng`) must fall on land inside a country — not in a body of water or ocean.
-- **Length (CRITICAL):** Body text (everything after the closing `---`) must be ≤350 characters. If a `<body-lengths>` block is appended below, every article flagged OVER **must** be rewritten shorter — this is not optional. Cut adjectives, compress clauses, shorten proper nouns ("the US health department" → "HHS"), drop the weakest detail. Never drop a whole sentence. After trimming, verify the result still has exactly 3 sentences and reads naturally.
+- **Length (CRITICAL):** Body text (everything after the closing `---`) must be ≤350 characters. If a `<body-lengths>` block is appended below, every article flagged OVER **must** be rewritten shorter. Cut adjectives, compress clauses, shorten proper nouns ("the US health department" → "HHS"), drop the weakest detail. Never drop a whole sentence. After trimming, verify the result still has exactly 3 sentences and reads naturally.
 </structure>
 
 <clarity>

@@ -47,7 +47,7 @@ concepts:
   - "Key Entity"
 ---
 
-One paragraph. Exactly 3 sentences. 40-50 words total (body text only, excluding frontmatter). Follow the per-sentence word limits in `<rhythm>` strictly — they are the budget.
+One paragraph. Exactly 3 sentences. 40-50 words total (body text only, excluding frontmatter). Follow the per-sentence word limits in `<rhythm>`.
 ```
 
 **Hard limit: body text (everything after the closing `---`) must be ≤350 characters.** This is enforced downstream — articles that overshoot get rewritten shorter before publish, wasting cycle time. Aim for 280-330 characters; under-spending is better than overspending. A rough check: 50 words at ~6 chars/word ≈ 300 characters.
@@ -172,7 +172,7 @@ Karachi — SadaPay collapsed after Gulf strikes. Pakistan's digital banking rou
 </examples>
 
 <antipatterns>
-These patterns appear when the model falls into wire-copy autopilot. Rewrite before saving.
+Rewrite before saving.
 
 - **The restating context:** S2 says the same thing as S1 with more words. "14 people died. The death toll from the attack reached 14." → S2 must teach WHY or HOW.
 - **The empty future:** S3 predicts nothing specific. "The situation remains fluid." "It remains to be seen." → Name the decision, the deadline, the actor.
