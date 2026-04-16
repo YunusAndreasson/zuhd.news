@@ -29,7 +29,7 @@ export interface Article {
   sentences: string[];
 }
 
-export interface ContextIndexEntry {
+interface ContextIndexEntry {
   type?: 'edu' | 'thread';
   label: string;
   category: Category;

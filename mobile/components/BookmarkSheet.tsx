@@ -1,24 +1,20 @@
 import {
   type BottomSheetBackdropProps,
-  BottomSheetModal,
+  type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useRef, useSyncExternalStore } from 'react';
 
 import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, SPACING } from '../constants/theme';
-import { useTheme } from '../hooks/useTheme';
+import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 import { getSnapshot, subscribe, toggle } from '../lib/bookmark-store';
 import { hapticNotification } from '../lib/haptics';
 import type { Category } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
-import { SheetHandle } from './SheetHandle';
-import { SheetContainer } from './SheetPrimitives';
+import { SheetLayout } from './SheetLayout';
 import { SwipeableRow } from './SwipeableRow';
-
-const BookmarkHandle = () => <SheetHandle title="saved" />;
 
 interface BookmarkSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
@@ -35,7 +31,6 @@ export const BookmarkSheet = memo(function BookmarkSheet({
   onSelectArticle,
   onDismiss,
 }: BookmarkSheetProps) {
-  const { sheetStyles } = useTheme();
   const bookmarks = useSyncExternalStore(subscribe, getSnapshot);
   const bookmarksRef = useRef(bookmarks);
   bookmarksRef.current = bookmarks;
@@ -49,15 +44,12 @@ export const BookmarkSheet = memo(function BookmarkSheet({
   }, []);
 
   return (
-    <BottomSheetModal
-      ref={sheetRef}
+    <SheetLayout
+      sheetRef={sheetRef}
       snapPoints={['50%', '85%']}
       enableDynamicSizing={false}
-      enablePanDownToClose
-      backdropComponent={renderBackdrop}
-      backgroundStyle={sheetStyles.bg}
-      handleComponent={BookmarkHandle}
-      containerComponent={SheetContainer}
+      renderBackdrop={renderBackdrop}
+      handleTitle="saved"
       onDismiss={onDismiss}
     >
       <BottomSheetScrollView
@@ -69,7 +61,7 @@ export const BookmarkSheet = memo(function BookmarkSheet({
           bookmarks.map((b, i) => (
             <Animated.View
               key={b.article.slug}
-              entering={FadeInDown.duration(ANIMATION.normal).delay(Math.min(i, 8) * 40)}
+              entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
             >
               <SwipeableRow onSwipeAction={() => handleRemove(b.article.slug)}>
                 <ArticleRow
@@ -85,7 +77,7 @@ export const BookmarkSheet = memo(function BookmarkSheet({
           ))
         )}
       </BottomSheetScrollView>
-    </BottomSheetModal>
+    </SheetLayout>
   );
 });
 

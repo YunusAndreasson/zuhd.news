@@ -128,12 +128,7 @@ export const BriefingBar = memo(function BriefingBar({
       transform: [
         { translateX: clampedX - TOOLTIP_WIDTH / 2 },
         {
-          scale: interpolate(
-            isScrubbing.value,
-            [0, 1],
-            [0.8, 1],
-            Extrapolation.CLAMP,
-          ),
+          scale: interpolate(isScrubbing.value, [0, 1], [0.8, 1], Extrapolation.CLAMP),
         },
       ],
     };
@@ -152,20 +147,21 @@ export const BriefingBar = memo(function BriefingBar({
 
   return (
     <Animated.View
-      entering={FadeIn.duration(ANIMATION.normal)}
-      exiting={FadeOut.duration(ANIMATION.fast)}
+      entering={FadeIn.duration(ANIMATION.normal).withInitialValues({
+        transform: [{ translateY: 12 }],
+      })}
+      exiting={FadeOut.duration(ANIMATION.fast).withInitialValues({
+        transform: [{ translateY: 0 }],
+      })}
       layout={LinearTransition.duration(ANIMATION.normal)}
       style={[styles.wrapper, { paddingBottom: Math.max(insets.bottom, SPACING.sm) }]}
       pointerEvents="box-none"
     >
-      <View
-        style={[styles.bar, { backgroundColor: colors.sheetBg, shadowColor: colors.black }]}
-        onLayout={onBarLayout}
-      >
+      <View style={[styles.bar, { backgroundColor: colors.pillBg }]} onLayout={onBarLayout}>
         <View style={styles.row}>
           <View style={styles.info}>
             <Text
-              style={[styles.title, textStyles.smallCaps, { color: colors.textEmphasis }]}
+              style={[textStyles.smallCaps, { color: colors.textEmphasis }]}
               numberOfLines={1}
               maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
             >
@@ -194,7 +190,7 @@ export const BriefingBar = memo(function BriefingBar({
 
           <Pressable
             onPress={onToggle}
-            hitSlop={12}
+            hitSlop={LAYOUT.hitSlop}
             style={({ pressed }) => pressed && PRESSED_STYLE}
             accessibilityRole="button"
             accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
@@ -208,7 +204,7 @@ export const BriefingBar = memo(function BriefingBar({
 
           <Pressable
             onPress={onClose}
-            hitSlop={12}
+            hitSlop={LAYOUT.hitSlop}
             style={({ pressed }) => pressed && PRESSED_STYLE}
             accessibilityRole="button"
             accessibilityLabel="Close briefing player"
@@ -233,11 +229,7 @@ export const BriefingBar = memo(function BriefingBar({
           >
             {/* Scrub time tooltip */}
             <Animated.View
-              style={[
-                styles.tooltip,
-                { backgroundColor: colors.toastBg },
-                tooltipStyle,
-              ]}
+              style={[styles.tooltip, { backgroundColor: colors.toastBg }, tooltipStyle]}
               pointerEvents="none"
             >
               <Text
@@ -298,7 +290,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  title: {},
   time: {
     fontVariant: ['tabular-nums'],
   },

@@ -1,7 +1,8 @@
 import { memo } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { StyleSheet, Text, View } from 'react-native';
+import { LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { HapticPressable } from './HapticPressable';
 
 interface ActionButtonsProps {
   onSearchPress: () => void;
@@ -13,34 +14,24 @@ export const ActionButtons = memo(function ActionButtons({
   onBookmarkPress,
 }: ActionButtonsProps) {
   const { colors, textStyles } = useTheme();
+  const buttons: { label: string; a11y: string; onPress: () => void }[] = [
+    { label: 'search', a11y: 'Search', onPress: onSearchPress },
+    { label: 'saved', a11y: 'Saved articles', onPress: onBookmarkPress },
+  ];
   return (
     <View style={styles.row}>
-      <Pressable
-        onPress={onSearchPress}
-        hitSlop={12}
-        style={({ pressed }) => [
-          styles.pill,
-          { backgroundColor: colors.sheetBg, shadowColor: colors.black },
-          pressed && PRESSED_STYLE,
-        ]}
-        accessibilityRole="button"
-        accessibilityLabel="Search"
-      >
-        <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>search</Text>
-      </Pressable>
-      <Pressable
-        onPress={onBookmarkPress}
-        hitSlop={12}
-        style={({ pressed }) => [
-          styles.pill,
-          { backgroundColor: colors.sheetBg, shadowColor: colors.black },
-          pressed && PRESSED_STYLE,
-        ]}
-        accessibilityRole="button"
-        accessibilityLabel="Saved articles"
-      >
-        <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>saved</Text>
-      </Pressable>
+      {buttons.map(({ label, a11y, onPress }) => (
+        <HapticPressable
+          key={label}
+          onPress={onPress}
+          hitSlop={LAYOUT.hitSlop}
+          style={[styles.pill, { backgroundColor: colors.pillBg }]}
+          accessibilityRole="button"
+          accessibilityLabel={a11y}
+        >
+          <Text style={[textStyles.smallCapsXs, { color: colors.textEmphasis }]}>{label}</Text>
+        </HapticPressable>
+      ))}
     </View>
   );
 });

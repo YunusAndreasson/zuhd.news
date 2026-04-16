@@ -72,28 +72,21 @@ export const SwipeableRow = memo(function SwipeableRow({
   return (
     <View style={styles.container}>
       <Animated.View
-        style={[
-          styles.actionContainer,
-          { backgroundColor: colors.bg },
-          actionOpacity,
-        ]}
+        style={[styles.actionContainer, { backgroundColor: colors.bg }, actionOpacity]}
       >
         <Text
-          style={[
-            styles.actionLabel,
-            {
-              ...font.smallCaps,
-              fontSize: typography.sizeXs,
-              letterSpacing: typography.trackingCaps,
-              color: colors.textSecondary,
-            },
-          ]}
+          style={{
+            ...font.smallCaps,
+            fontSize: typography.sizeXs,
+            letterSpacing: typography.trackingCaps,
+            color: colors.textSecondary,
+          }}
         >
           {actionLabel}
         </Text>
       </Animated.View>
       <GestureDetector gesture={panGesture}>
-        <Animated.View style={[styles.content, { backgroundColor: colors.sheetBg }, rowStyle]}>
+        <Animated.View style={[{ backgroundColor: colors.sheetBg }, rowStyle]}>
           {children}
         </Animated.View>
       </GestureDetector>
@@ -111,6 +104,4 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     paddingRight: SPACING.screenPadding,
   },
-  actionLabel: {},
-  content: {},
 });

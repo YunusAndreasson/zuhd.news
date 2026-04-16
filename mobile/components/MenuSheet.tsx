@@ -1,18 +1,20 @@
 import {
   type BottomSheetBackdropProps,
-  BottomSheetModal,
+  type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
 import { memo, useCallback, useRef, useState } from 'react';
-import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Linking, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { ANIMATION, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { hapticImpact, hapticTick } from '../lib/haptics';
+import { hapticTick } from '../lib/haptics';
+import { HapticPressable } from './HapticPressable';
 import { SheetHandle } from './SheetHandle';
-import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
+import { SheetLayout } from './SheetLayout';
+import { useMaxSheetHeight } from './SheetPrimitives';
 
 // ---------------------------------------------------------------------------
 // Info page content
@@ -99,36 +101,25 @@ const INFO_PAGES: Record<string, { title: string; sections: InfoSection[] }> = {
 function MenuItem({ label, onPress }: { label: string; onPress: () => void }) {
   const { colors, textStyles } = useTheme();
   return (
-    <Pressable
-      onPress={() => {
-        hapticImpact();
-        onPress();
-      }}
-      style={({ pressed }) => [styles.menuItem, pressed && PRESSED_STYLE]}
+    <HapticPressable
+      onPress={onPress}
+      style={styles.menuItem}
       accessibilityRole="button"
       accessibilityLabel={label}
     >
       <Text style={[textStyles.smallCapsBase, { color: colors.text }]}>{label}</Text>
-    </Pressable>
+    </HapticPressable>
   );
 }
 
 function InfoLink({ label, onPress }: { label: string; onPress: () => void }) {
   const { colors, font, typography } = useTheme();
   return (
-    <Pressable
-      onPress={() => {
-        hapticImpact();
-        onPress();
-      }}
-      style={({ pressed }) => pressed && PRESSED_STYLE}
-      accessibilityRole="button"
-      accessibilityLabel={label}
-    >
+    <HapticPressable onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
       <Text style={{ ...font.semiBold, fontSize: typography.sizeSm, color: colors.text }}>
         {label}
       </Text>
-    </Pressable>
+    </HapticPressable>
   );
 }
 
@@ -184,16 +175,13 @@ export const MenuSheet = memo(function MenuSheet({
   const infoData = activePage ? INFO_PAGES[activePage] : null;
 
   return (
-    <BottomSheetModal
-      ref={sheetRef}
+    <SheetLayout
+      sheetRef={sheetRef}
       enableDynamicSizing
       maxDynamicContentSize={MAX_SHEET_HEIGHT}
-      enablePanDownToClose
       enableOverDrag={false}
-      backdropComponent={renderBackdrop}
-      backgroundStyle={sheetStyles.bg}
+      renderBackdrop={renderBackdrop}
       handleComponent={Handle}
-      containerComponent={SheetContainer}
       onDismiss={handleDismiss}
     >
       <BottomSheetScrollView
@@ -202,14 +190,14 @@ export const MenuSheet = memo(function MenuSheet({
         {infoData ? (
           /* ── Info page view ── */
           <>
-            <Pressable
+            <HapticPressable
               onPress={navigateBack}
-              style={({ pressed }) => [styles.backButton, pressed && PRESSED_STYLE]}
+              style={styles.backButton}
               accessibilityRole="button"
               accessibilityLabel="Back to menu"
             >
               <Text style={[textStyles.smallCaps, { color: colors.text }]}>{'\u2190 menu'}</Text>
-            </Pressable>
+            </HapticPressable>
 
             {infoData.sections.map((section, i) => (
               <View key={i} style={i > 0 ? styles.infoSection : undefined}>
@@ -230,12 +218,9 @@ export const MenuSheet = memo(function MenuSheet({
                   </Text>
                 )}
                 {section.link && (
-                  <Pressable
-                    onPress={() => {
-                      hapticImpact();
-                      Linking.openURL(section.link?.url ?? '');
-                    }}
-                    style={({ pressed }) => [styles.infoLink, pressed && PRESSED_STYLE]}
+                  <HapticPressable
+                    onPress={() => Linking.openURL(section.link?.url ?? '')}
+                    style={styles.infoLink}
                     accessibilityRole="link"
                     accessibilityLabel={section.link.label}
                   >
@@ -249,7 +234,7 @@ export const MenuSheet = memo(function MenuSheet({
                     >
                       {section.link.label}
                     </Text>
-                  </Pressable>
+                  </HapticPressable>
                 )}
               </View>
             ))}
@@ -293,7 +278,7 @@ export const MenuSheet = memo(function MenuSheet({
           </>
         )}
       </BottomSheetScrollView>
-    </BottomSheetModal>
+    </SheetLayout>
   );
 });
 

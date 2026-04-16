@@ -1,19 +1,17 @@
 import {
   type BottomSheetBackdropProps,
-  BottomSheetModal,
+  type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, LAYOUT, SPACING } from '../constants/theme';
+import { ANIMATION, LAYOUT, SPACING, staggerDelay } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { ArticleSource, ContextBrief, TimelineEntry } from '../types';
-import { SheetHandle } from './SheetHandle';
-import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
+import { SheetLayout } from './SheetLayout';
+import { useMaxSheetHeight } from './SheetPrimitives';
 import { SourceRow } from './SourceRow';
-
-const MoreHandle = () => <SheetHandle />;
 
 // ---------------------------------------------------------------------------
 // Main sheet
@@ -74,7 +72,7 @@ export const ContextSheet = memo(function ContextSheet({
           {entry.heading && (
             <Text style={[styles.eduHeading, textStyles.smallCapsXs]}>{entry.heading}</Text>
           )}
-          <Text selectable style={[styles.bodyText, textStyles.body, styles.bodySpacing]}>
+          <Text selectable style={[textStyles.body, styles.bodySpacing]}>
             {entry.body}
           </Text>
         </View>
@@ -104,7 +102,7 @@ export const ContextSheet = memo(function ContextSheet({
           >
             {entry.year}
           </Text>
-          <Text selectable style={[styles.bodyText, textStyles.body]}>
+          <Text selectable style={textStyles.body}>
             {entry.body}
           </Text>
         </View>
@@ -113,16 +111,12 @@ export const ContextSheet = memo(function ContextSheet({
   };
 
   return (
-    <BottomSheetModal
-      ref={sheetRef}
+    <SheetLayout
+      sheetRef={sheetRef}
       {...(hasContent
         ? { enableDynamicSizing: true, maxDynamicContentSize: MAX_SHEET_HEIGHT }
         : { snapPoints: loadingSnap, enableDynamicSizing: false })}
-      enablePanDownToClose
-      backdropComponent={renderBackdrop}
-      backgroundStyle={sheetStyles.bg}
-      handleComponent={MoreHandle}
-      containerComponent={SheetContainer}
+      renderBackdrop={renderBackdrop}
       onDismiss={handleDismiss}
     >
       <BottomSheetScrollView
@@ -137,7 +131,7 @@ export const ContextSheet = memo(function ContextSheet({
             {sources.map((s, i) => (
               <Animated.View
                 key={s.name}
-                entering={FadeInDown.duration(ANIMATION.normal).delay(Math.min(i, 8) * 40)}
+                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
               >
                 <SourceRow
                   source={s}
@@ -164,7 +158,7 @@ export const ContextSheet = memo(function ContextSheet({
               <Animated.View
                 key={i}
                 entering={FadeInDown.duration(ANIMATION.normal).delay(
-                  (sources.length + Math.min(i, 8)) * 40,
+                  sources.length * ANIMATION.staggerStep + staggerDelay(i),
                 )}
               >
                 {renderTimelineEntry(entry, i, arr)}
@@ -173,7 +167,7 @@ export const ContextSheet = memo(function ContextSheet({
           </>
         )}
       </BottomSheetScrollView>
-    </BottomSheetModal>
+    </SheetLayout>
   );
 });
 
@@ -217,7 +211,6 @@ const styles = StyleSheet.create({
   entryYear: {
     marginBottom: SPACING.xxs,
   },
-  bodyText: {},
   bodySpacing: {
     marginBottom: SPACING.sm,
   },

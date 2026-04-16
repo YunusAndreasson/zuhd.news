@@ -1,6 +1,6 @@
 import {
   type BottomSheetBackdropProps,
-  BottomSheetModal,
+  type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useRef } from 'react';
@@ -10,7 +10,8 @@ import { ANIMATION, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import type { TapResult } from './globe/MiniGlobe';
-import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
+import { SheetLayout } from './SheetLayout';
+import { useMaxSheetHeight } from './SheetPrimitives';
 
 function KeyStat({ label, value }: { label: string; value: string | null | undefined }) {
   const { colors, font, typography, textStyles } = useTheme();
@@ -31,7 +32,7 @@ function KeyStat({ label, value }: { label: string; value: string | null | undef
       >
         {value}
       </Text>
-      <Text selectable style={[styles.keyStatLabel, textStyles.smallCapsXs]}>
+      <Text selectable style={textStyles.smallCapsXs}>
         {label}
       </Text>
     </View>
@@ -108,7 +109,7 @@ export const CountrySheet = memo(function CountrySheet({
         {(f || n) && (
           <View style={styles.handleRow}>
             {f && <Text style={styles.handleFlag}>{f}</Text>}
-            {n && <Text style={[styles.handleTitle, textStyles.sheetTitle]}>{n}</Text>}
+            {n && <Text style={textStyles.sheetTitle}>{n}</Text>}
           </View>
         )}
       </View>
@@ -123,18 +124,15 @@ export const CountrySheet = memo(function CountrySheet({
     : { label: 'GDP/capita', value: country?.data?.gdpPerCapita };
 
   let delay = 0;
-  const nextDelay = () => (delay += 40);
+  const nextDelay = () => (delay += ANIMATION.staggerStep);
 
   return (
-    <BottomSheetModal
-      ref={sheetRef}
+    <SheetLayout
+      sheetRef={sheetRef}
       enableDynamicSizing
       maxDynamicContentSize={MAX_SHEET_HEIGHT}
-      enablePanDownToClose
-      backdropComponent={renderBackdrop}
-      backgroundStyle={sheetStyles.bg}
+      renderBackdrop={renderBackdrop}
       handleComponent={CountryHandle}
-      containerComponent={SheetContainer}
       onDismiss={onDismiss}
     >
       <BottomSheetScrollView
@@ -159,9 +157,7 @@ export const CountrySheet = memo(function CountrySheet({
                 entering={FadeInDown.duration(ANIMATION.normal).delay(nextDelay())}
               >
                 <Text style={[styles.sheetLabel, textStyles.smallCapsXs]}>
-                  {country.hotspotLabels!.length === 1
-                    ? 'developing story'
-                    : 'developing stories'}
+                  {country.hotspotLabels!.length === 1 ? 'developing story' : 'developing stories'}
                 </Text>
                 {country.hotspotLabels!.map((label, i) => (
                   <Pressable
@@ -238,12 +234,15 @@ export const CountrySheet = memo(function CountrySheet({
               <SectionLabel>geography</SectionLabel>
               <CountryRow
                 label="official name"
-                value={
-                  country.data.official !== country.countryName ? country.data.official : null
-                }
+                value={country.data.official !== country.countryName ? country.data.official : null}
                 borderColor={colors.rule}
               />
-              <CountryRow key="time" label="local time" value={country.localTime} borderColor={colors.rule} />
+              <CountryRow
+                key="time"
+                label="local time"
+                value={country.localTime}
+                borderColor={colors.rule}
+              />
               <CountryRow label="area" value={country.data.area} borderColor={colors.rule} />
               <CountryRow
                 label="region"
@@ -267,7 +266,7 @@ export const CountrySheet = memo(function CountrySheet({
           </>
         )}
       </BottomSheetScrollView>
-    </BottomSheetModal>
+    </SheetLayout>
   );
 });
 
@@ -291,7 +290,6 @@ const styles = StyleSheet.create({
   handleFlag: {
     fontSize: LAYOUT.iconMd,
   },
-  handleTitle: {},
   sheetLabel: {
     marginBottom: SPACING.sm,
   },
@@ -320,7 +318,6 @@ const styles = StyleSheet.create({
   keyStatValue: {
     marginBottom: SPACING.xxs,
   },
-  keyStatLabel: {},
   countryRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',

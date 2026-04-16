@@ -1,7 +1,8 @@
 import { memo } from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
-import { PRESSED_STYLE, SPACING } from '../constants/theme';
+import { StyleSheet, Text } from 'react-native';
+import { LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { HapticPressable } from './HapticPressable';
 
 interface ActionLabelProps {
   label: string;
@@ -16,16 +17,15 @@ export const ActionLabel = memo(function ActionLabel({
 }: ActionLabelProps) {
   const { textStyles } = useTheme();
   return (
-    <Pressable
+    <HapticPressable
       onPress={onPress}
-      hitSlop={12}
-      style={({ pressed }) => pressed && PRESSED_STYLE}
+      hitSlop={LAYOUT.hitSlop}
       accessibilityRole="button"
       accessibilityLabel={label}
       accessibilityHint={accessibilityHint}
     >
       <Text style={[styles.label, textStyles.smallCaps, textStyles.textShadow]}>{label}</Text>
-    </Pressable>
+    </HapticPressable>
   );
 });
 
