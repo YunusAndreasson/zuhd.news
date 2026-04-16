@@ -3801,5 +3801,121 @@
     "label": "Underwater Adhesion",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-15-alzheimers-amyloid-retraction-crisis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL OBSERVATION",
+        "body": "In 1906, Alois Alzheimer examined the brain of Auguste Deter, a 51-year-old woman with dementia, and saw two things under the microscope: plaques outside neurons and tangles inside them. The plaques turned out to be amyloid-beta."
+      },
+      {
+        "heading": "THE HYPOTHESIS",
+        "body": "By the 1990s, the field converged on a single story: amyloid-beta accumulation causes Alzheimer's, and everything else — tau tangles, neuron death, memory loss — is downstream. Clear the amyloid, stop the disease."
+      },
+      {
+        "heading": "THE BET",
+        "body": "Over $30 billion in pharma R&D and most NIH dementia funding went toward amyloid-clearing drugs. Researchers pursuing alternative theories — inflammation, infection, metabolism, tau-first — struggled to get grants or publish."
+      },
+      {
+        "heading": "THE CRACK",
+        "body": "In 2022, a Science investigation found that a foundational 2006 Nature paper identifying a specific amyloid species as the toxic agent contained apparently fabricated Western blot images. Hundreds of papers had built on it."
+      },
+      {
+        "heading": "WHY MONOCULTURES ARE FRAGILE",
+        "body": "When a field bets everything on one mechanism, negative trial results get reinterpreted rather than falsifying the theory. Each failure becomes 'we cleared the wrong amyloid' or 'too late in the disease' — the hypothesis becomes unfalsifiable."
+      }
+    ],
+    "generatedAt": "2026-04-16T22:15:34.059Z",
+    "label": "The Amyloid Hypothesis",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-15-bitcoin-quantum-freeze-5-6-million-btc-debate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CRYPTOGRAPHIC FLOOR",
+        "body": "Bitcoin security rests on two problems: finding a SHA-256 preimage (for mining) and solving elliptic curve discrete logarithm (for signatures). Classical computers cannot feasibly do either. Quantum computers, in theory, break the second."
+      },
+      {
+        "heading": "SHOR'S ALGORITHM",
+        "body": "Peter Shor proved in 1994 that a sufficiently large quantum computer can factor integers and solve discrete logs in polynomial time. This breaks RSA, ECDSA, and the signature scheme protecting every Bitcoin address whose public key has been revealed."
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Modern addresses hash the public key — the key itself is only revealed when you spend. But early Bitcoin (including Satoshi's roughly 1M coins) used pay-to-public-key, exposing keys directly on-chain. Those coins are the most quantum-vulnerable."
+      },
+      {
+        "heading": "THE SOCIAL QUESTION",
+        "body": "Freezing 'lost' coins protects the network but violates Bitcoin's foundational promise: no one can take your coins. Any fork that confiscates unspent outputs — even vulnerable ones — is a governance precedent the protocol was explicitly designed to prevent."
+      },
+      {
+        "heading": "HARVEST NOW, DECRYPT LATER",
+        "body": "The threat doesn't require a quantum computer today. Adversaries can record vulnerable public keys now and break them whenever the hardware arrives. This is why post-quantum migration timelines are measured against capture-time, not break-time."
+      }
+    ],
+    "generatedAt": "2026-04-16T22:15:34.059Z",
+    "label": "Bitcoin and Quantum Risk",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-15-desi-3d-universe-map-47-million-galaxies-dark-energy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISCOVERY",
+        "body": "In 1998, two teams measuring distant supernovae found the universe's expansion is accelerating, not slowing. Something was pushing space apart against gravity. They called it dark energy because they had no idea what it was."
+      },
+      {
+        "heading": "THE COSMOLOGICAL CONSTANT",
+        "body": "Einstein added a constant to his 1917 field equations to keep the universe static, then called it his greatest blunder when Hubble showed expansion. The simplest explanation for dark energy resurrects that same constant — a fixed energy density baked into empty space."
+      },
+      {
+        "heading": "THE COMPOSITION PROBLEM",
+        "body": "Atoms — everything we can see, touch, or measure directly — make up roughly 5% of the universe. Dark matter is about 27%. Dark energy is the remaining 68%. The stuff we understand is the rounding error."
+      },
+      {
+        "heading": "WHY MAPPING GALAXIES HELPS",
+        "body": "Sound waves in the early universe left a ruler — baryon acoustic oscillations — imprinted at a fixed scale (~150 megaparsecs). Measuring that ruler at different cosmic epochs tells you how fast the universe expanded then, and whether dark energy's strength is constant or changing."
+      },
+      {
+        "heading": "WHY IT MATTERS IF IT CHANGES",
+        "body": "A constant dark energy means the universe expands forever into cold emptiness. A weakening one could allow recollapse; a strengthening one ends in a 'Big Rip' that tears atoms apart. The 2024 DESI hints of evolution — if confirmed — rewrite cosmology's endgame."
+      }
+    ],
+    "generatedAt": "2026-04-16T22:15:34.059Z",
+    "label": "Dark Energy",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-16-bacterial-persistence-metabolic-rewiring-not-dormancy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OBSERVATION",
+        "body": "In 1944, Joseph Bigger noticed that penicillin killed 99.9% of a staph culture but left a tiny fraction — 'persisters' — alive. They weren't resistant: their offspring were killed normally. The survival was behavioral, not genetic."
+      },
+      {
+        "heading": "THE OLD STORY",
+        "body": "For decades, the explanation was dormancy: persisters stop growing, and antibiotics that target cell-wall synthesis or DNA replication need active metabolism to kill. A sleeping bacterium is invisible to the drug."
+      },
+      {
+        "heading": "WHY IT MATTERS CLINICALLY",
+        "body": "Persisters explain why chronic infections — tuberculosis, cystic fibrosis lung infections, biofilm diseases — require months of antibiotics and relapse anyway. Resistance genes aren't the whole story; a subpopulation just waits the drug out."
+      },
+      {
+        "heading": "RESISTANCE VS TOLERANCE VS PERSISTENCE",
+        "body": "Resistance means a higher minimum inhibitory concentration (the drug doesn't work). Tolerance means slower killing at any dose (the drug needs more time). Persistence is tolerance restricted to a subpopulation — most die fast, a few survive indefinitely."
+      },
+      {
+        "heading": "THE EVOLUTIONARY LOGIC",
+        "body": "A clonal population that randomly produces a tiny persister fraction hedges against sudden catastrophe. It costs almost nothing when conditions are good, and saves the lineage when antibiotics, starvation, or hosts attack."
+      }
+    ],
+    "generatedAt": "2026-04-16T22:15:34.059Z",
+    "label": "Bacterial Persistence",
+    "category": "science",
+    "articleCount": 1
   }
 }
