@@ -394,8 +394,8 @@ const EMPTY_GLOBE: GlobeState = {
 
 /** Clip angle for a country's spherical area — smaller countries get tighter clip (more zoom). */
 function clipAngleForArea(area: number): number {
-  if (area < 0.002) return 25;
-  if (area < 0.03) return 25 + ((area - 0.002) / (0.03 - 0.002)) * 65;
+  if (area < 0.002) return 32;
+  if (area < 0.03) return 32 + ((area - 0.002) / (0.03 - 0.002)) * 58;
   return 90;
 }
 
@@ -695,15 +695,30 @@ export const MiniGlobe = memo(function MiniGlobe({
         cachedCountryRef.current = geo?.country ?? null;
       }
 
-      // Adaptive zoom — interpolate clip angle between adjacent articles.
-      // Smoothstep easing gives a cinematic camera-move feel: the zoom
-      // eases out of the current framing and eases into the next.
+      // Adaptive zoom with flyover — the camera pulls back proportionally to
+      // the great-circle distance between articles, creating a "fly across the
+      // earth" effect. Close stories get a gentle pan; intercontinental jumps
+      // zoom out to an orbital view mid-swipe, then dive back in.
       const loCountry = geoData[loIndex]?.countryName ?? null;
       const hiCountry = geoData[hiIndex]?.countryName ?? null;
       const loClip = clipAngleForCountry(loCountry);
       const hiClip = clipAngleForCountry(hiCountry);
       const ef = frac * frac * (3 - 2 * frac); // Hermite smoothstep
-      const clipAngle = loClip + (hiClip - loClip) * ef;
+      const baseClip = loClip + (hiClip - loClip) * ef;
+
+      // Flyover boost — parabolic arc peaking at the midpoint of the swipe.
+      // 4*t*(1-t) is a parabola: 0 at endpoints, 1.0 at t=0.5.
+      const loGeo = geoData[loIndex];
+      const hiGeo = geoData[hiIndex];
+      let flyoverBoost = 0;
+      if (loGeo && hiGeo) {
+        const dist = geoDistance([loGeo.lng, loGeo.lat], [hiGeo.lng, hiGeo.lat]);
+        const distDeg = dist * (180 / Math.PI);
+        // Scale: 0° → 0 boost, 90° → 45° boost, 180° → 55° cap
+        flyoverBoost = Math.min(55, distDeg * 0.5);
+      }
+      const parabola = 4 * frac * (1 - frac);
+      const clipAngle = Math.min(90, baseClip + parabola * flyoverBoost);
       const projScale = r / Math.sin((clipAngle * Math.PI) / 180);
 
       const proj = projRef.current;
