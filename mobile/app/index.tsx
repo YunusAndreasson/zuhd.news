@@ -516,11 +516,9 @@ export default function HomeScreen() {
             playing={briefingPlayer.playing}
             elapsed={briefingPlayer.elapsed}
             duration={briefingPlayer.duration}
-            rate={briefingPlayer.rate}
             date={briefing.date}
             onToggle={briefingPlayer.toggle}
             onSeek={briefingPlayer.seek}
-            onCycleRate={briefingPlayer.cycleRate}
             onClose={briefingPlayer.close}
           />
         )}

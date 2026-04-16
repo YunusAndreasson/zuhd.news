@@ -24,10 +24,11 @@ const TONE_LABELS: Record<string, string> = {
 interface SourceRowProps {
   source: ArticleSource;
   isExpanded: boolean;
+  isLast?: boolean;
   onPress: () => void;
 }
 
-export function SourceRow({ source, isExpanded, onPress }: SourceRowProps) {
+export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProps) {
   const { colors, font, typography, textStyles } = useTheme();
   const info = SOURCES[source.name];
   const cc = source.country?.toUpperCase();
@@ -45,7 +46,10 @@ export function SourceRow({ source, isExpanded, onPress }: SourceRowProps) {
 
   return (
     <Pressable
-      style={[styles.sourceRow, { borderBottomColor: colors.rule }]}
+      style={[
+        styles.sourceRow,
+        !isLast && { borderBottomColor: colors.rule, borderBottomWidth: StyleSheet.hairlineWidth },
+      ]}
       onPress={onPress}
       accessibilityRole="button"
       accessibilityLabel={source.name}
@@ -102,7 +106,6 @@ export function SourceRow({ source, isExpanded, onPress }: SourceRowProps) {
 const styles = StyleSheet.create({
   sourceRow: {
     paddingVertical: SPACING.md,
-    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   sourceRowHeader: {
     flexDirection: 'row',

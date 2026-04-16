@@ -138,6 +138,7 @@ export const ContextSheet = memo(function ContextSheet({
                 key={s.name}
                 source={s}
                 isExpanded={expandedSource === i}
+                isLast={i === sources.length - 1}
                 onPress={() => setExpandedSource(expandedSource === i ? null : i)}
               />
             ))}
@@ -173,7 +174,8 @@ const styles = StyleSheet.create({
   },
   sectionDivider: {
     height: StyleSheet.hairlineWidth,
-    marginVertical: SPACING.lg,
+    marginTop: SPACING.sm,
+    marginBottom: SPACING.lg,
   },
   loader: {
     marginTop: SPACING.lg,

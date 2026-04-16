@@ -192,7 +192,7 @@ export function renderSentences(
             maxFontSizeMultiplier={MAX_FONT_SCALE.body}
           >
             <Text style={mdStyles.dateline}>{dateline}</Text>
-            {'\u2003'}
+            {'\u2002'}
             {renderSegments(parseInline(rest), mdStyles)}
           </Text>
         );

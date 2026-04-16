@@ -165,23 +165,23 @@ export const ArticlePage = memo(function ArticlePage({
         onLongPress={handleLongPress}
         delayLongPress={400}
       >
-        {showEarlierDivider && (
-          <View
-            style={styles.earlierDivider}
-            accessible
-            accessibilityLabel="Caught up — earlier articles below"
-          >
-            <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
-            <Text
-              style={[styles.earlierLabel, textStyles.smallCapsBase, { color: colors.accent }]}
-              maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-            >
-              {'caught up'}
-            </Text>
-            <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
-          </View>
-        )}
         <Animated.View style={fadeStyle}>
+          {showEarlierDivider && (
+            <View
+              style={styles.earlierDivider}
+              accessible
+              accessibilityLabel="Caught up — earlier articles below"
+            >
+              <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
+              <Text
+                style={[styles.earlierLabel, textStyles.smallCapsBase, { color: colors.accent }]}
+                maxFontSizeMultiplier={MAX_FONT_SCALE.label}
+              >
+                {'caught up'}
+              </Text>
+              <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
+            </View>
+          )}
           <Text
             selectable
             style={[
@@ -203,14 +203,14 @@ export const ArticlePage = memo(function ArticlePage({
         </Animated.View>
       </Pressable>
 
-      {/* Gradient dissolves content into globe — fades with body */}
-      <Animated.View style={fadeStyle} pointerEvents="none">
-        <LinearGradient
-          colors={[colors.bg, bgAlpha(0.8), bgAlpha(0.35), bgAlpha(0)]}
-          locations={[0, 0.2, 0.55, 1]}
-          style={[styles.gradientBottom, { width: screenWidth }]}
-        />
-      </Animated.View>
+      {/* Gradient dissolves content into globe — stays opaque to mask the
+          bottom edge of the solid content background during text fade. */}
+      <LinearGradient
+        colors={[colors.bg, bgAlpha(0.8), bgAlpha(0.35), bgAlpha(0)]}
+        locations={[0, 0.2, 0.55, 1]}
+        style={[styles.gradientBottom, { width: screenWidth }]}
+        pointerEvents="none"
+      />
     </View>
   );
 });

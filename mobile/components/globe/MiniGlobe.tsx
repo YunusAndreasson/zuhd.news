@@ -275,6 +275,7 @@ interface GlobeState {
   graticulePath: ReturnType<typeof Skia.Path.Make> | null;
   qiblaPath: ReturnType<typeof Skia.Path.Make> | null;
   sourceArcs: ReturnType<typeof Skia.Path.Make> | null;
+  arcOpacity: number;
   northPole: { x: number; y: number } | null;
   southPole: { x: number; y: number } | null;
   dot: { x: number; y: number } | null;
@@ -382,6 +383,7 @@ const EMPTY_GLOBE: GlobeState = {
   graticulePath: null,
   qiblaPath: null,
   sourceArcs: null,
+  arcOpacity: 1,
   northPole: null,
   southPole: null,
   dot: null,
@@ -505,6 +507,7 @@ function projectInitial(
     graticulePath: gp,
     qiblaPath: qp,
     sourceArcs: null,
+    arcOpacity: 1,
     northPole,
     southPole,
     dot,
@@ -798,9 +801,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       // Qibla + source arcs — only compute when near a settled position.
-      // During mid-scroll (frac 0.1–0.9) these arcs are invisible behind the
+      // During mid-scroll (frac 0.15–0.85) these arcs are invisible behind the
       // transitioning globe, so skip ~50+ interpolation steps per frame.
-      const nearSettled = frac < 0.1 || frac > 0.9;
+      // Within the visible window, fade smoothly instead of popping in/out.
+      const nearSettled = frac < 0.15 || frac > 0.85;
+      const arcOpacity = nearSettled ? (frac < 0.15 ? 1 - frac / 0.15 : (frac - 0.85) / 0.15) : 0;
 
       const qiblaP = qiblaPathRef.current;
       qiblaP.reset();
@@ -885,6 +890,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         graticulePath,
         qiblaPath: hasQibla ? qiblaP : null,
         sourceArcs: hasSourceArcs ? srcArcs : null,
+        arcOpacity,
         northPole,
         southPole,
         dot,
@@ -1239,7 +1245,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           color={colors.accent}
           style="stroke"
           strokeWidth={0.5}
-          opacity={light ? 0.15 : 0.08}
+          opacity={(light ? 0.15 : 0.08) * state.arcOpacity}
         />
       )}
 
@@ -1250,7 +1256,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           color={colors.dome}
           style="stroke"
           strokeWidth={0.8}
-          opacity={light ? 0.2 : 0.12}
+          opacity={(light ? 0.2 : 0.12) * state.arcOpacity}
         />
       )}
 
