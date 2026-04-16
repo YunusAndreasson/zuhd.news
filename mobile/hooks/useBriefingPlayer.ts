@@ -22,16 +22,12 @@ const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
 
 const icon = require('../assets/icon.png');
 
-const RATES = [1, 1.25, 1.5, 2] as const;
-
 interface BriefingPlayer {
   playing: boolean;
   elapsed: number;
   duration: number;
-  rate: number;
   toggle: () => void;
   seek: (seconds: number) => void;
-  cycleRate: () => void;
   close: () => void;
 }
 
@@ -48,7 +44,6 @@ function safeCreatePlayer(url: string): AudioPlayer | null {
 export function useBriefingPlayer(date: string | undefined, feedDuration?: number): BriefingPlayer {
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-  const [rate, setRate] = useState(1);
   const playerRef = useRef<AudioPlayer | null>(null);
   const subRef = useRef<{ remove(): void } | null>(null);
   const savedDate = useRef<string | null>(null);
@@ -237,6 +232,12 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       // Sync play/pause state + elapsed from player events
       // This handles lock screen controls, headphone controls, interruptions
       const eventSub = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
+        // Activate lock screen once duration is known — deferring from play()
+        // ensures iOS gets a real playbackDuration on the first NowPlayingInfo write,
+        // otherwise it shows no time scrubber.
+        if (!lockScreenActive.current && status.duration > 0) {
+          activateLockScreen(player);
+        }
         // Skip transient playing states shortly after user tap to avoid icon flash
         const sinceToggle = Date.now() - userToggleAt.current;
         if (sinceToggle < 500 && !status.didJustFinish) {
@@ -284,9 +285,6 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
 
       player.play();
       setPlaying(true);
-
-      // Lock screen AFTER play
-      activateLockScreen(player);
     } catch {
       // Clean up partially-created player on failure
       subRef.current?.remove();
@@ -308,24 +306,22 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     savePosition();
     if (playerRef.current) {
       playerRef.current.pause();
+      // Seek to 0 so subsequent status-update ticks don't re-inject a
+      // nonzero elapsed time and flicker the bar back into view.
+      playerRef.current.seekTo(0);
+      try {
+        playerRef.current.clearLockScreenControls();
+      } catch {}
+      lockScreenActive.current = false;
     }
     setPlaying(false);
     setElapsed(0);
     hapticTick();
   }, [savePosition]);
 
-  const cycleRate = useCallback(() => {
-    const next = RATES[(RATES.indexOf(rate as (typeof RATES)[number]) + 1) % RATES.length] ?? 1;
-    setRate(next);
-    if (playerRef.current) {
-      playerRef.current.playbackRate = next;
-    }
-    hapticTick();
-  }, [rate]);
-
   // In dev without a native player, provide a mock duration so the bar renders properly
   const effectiveDuration =
     feedDuration || (__DEV__ && !playerRef.current && elapsed > 0 ? 720 : 0);
 
-  return { playing, elapsed, duration: effectiveDuration, rate, toggle, seek, cycleRate, close };
+  return { playing, elapsed, duration: effectiveDuration, toggle, seek, close };
 }

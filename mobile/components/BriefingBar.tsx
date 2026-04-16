@@ -29,11 +29,9 @@ interface BriefingBarProps {
   playing: boolean;
   elapsed: number;
   duration: number;
-  rate: number;
   date: string;
   onToggle: () => void;
   onSeek: (seconds: number) => void;
-  onCycleRate: () => void;
   onClose: () => void;
 }
 
@@ -41,11 +39,9 @@ export const BriefingBar = memo(function BriefingBar({
   playing,
   elapsed,
   duration,
-  rate,
   date,
   onToggle,
   onSeek,
-  onCycleRate,
   onClose,
 }: BriefingBarProps) {
   const { colors, font, typography, textStyles } = useTheme();
@@ -147,26 +143,6 @@ export const BriefingBar = memo(function BriefingBar({
             {formatTime(elapsed)}
             <Text style={{ color: colors.textSecondary }}> / {formatTime(duration)}</Text>
           </Text>
-
-          <Pressable
-            onPress={onCycleRate}
-            hitSlop={8}
-            style={({ pressed }) => pressed && PRESSED_STYLE}
-            accessibilityRole="button"
-            accessibilityLabel={`Playback speed ${rate}x`}
-          >
-            <Text
-              style={{
-                ...font.semiBold,
-                fontSize: typography.sizeXs,
-                color: rate === 1 ? colors.textSecondary : colors.textEmphasis,
-                fontVariant: ['tabular-nums'],
-              }}
-              maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
-            >
-              {rate}x
-            </Text>
-          </Pressable>
 
           <Pressable
             onPress={onToggle}
