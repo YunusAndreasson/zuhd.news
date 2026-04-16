@@ -92,13 +92,30 @@ export const ArticlePage = memo(function ArticlePage({
 
   const fadeStyle = useAnimatedStyle(() => {
     if (reduceMotion) return { opacity: 1 };
+    const off = offset.value;
+
+    // Fade — visible throughout the swipe so you always see what you're
+    // scrolling toward. Gentle fade-in from below, slightly faster fade-out
+    // as the article scrolls past.
+    const opacity = interpolate(
+      off,
+      [-itemHeight, 0, itemHeight * 0.4],
+      [0, 1, 0],
+      Extrapolation.CLAMP,
+    );
+
+    // Parallax — content rises gently into place and lifts away on exit,
+    // creating spatial depth between the globe layer and the text layer.
+    const translateY = interpolate(
+      off,
+      [-itemHeight * 0.3, 0, itemHeight * 0.4],
+      [14, 0, -6],
+      Extrapolation.CLAMP,
+    );
+
     return {
-      opacity: interpolate(
-        offset.value,
-        [-itemHeight, 0, itemHeight * 0.4],
-        [0, 1, 0],
-        Extrapolation.CLAMP,
-      ),
+      opacity,
+      transform: [{ translateY }],
     };
   });
 
