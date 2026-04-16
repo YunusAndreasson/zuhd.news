@@ -22,6 +22,10 @@ import { useTheme } from '../hooks/useTheme';
 const BAR_MARGIN = SPACING.md;
 const PROGRESS_HEIGHT = 3;
 const TOOLTIP_WIDTH = 48;
+// progressTouch extends horizontally by -SPACING.md on each side (for easier
+// edge-reach) then pads content back. TRACK_INSET is that padding — seekToX
+// must subtract it so touching the visible left edge of the track yields 0%.
+const TRACK_INSET = SPACING.md;
 
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
@@ -48,7 +52,7 @@ export const BriefingBar = memo(function BriefingBar({
   onSeek,
   onClose,
 }: BriefingBarProps) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors, font, typography } = useTheme();
   const insets = useSafeAreaInsets();
   const barWidthSV = useSharedValue(0);
   const barWidthRef = useRef(0);
@@ -78,19 +82,21 @@ export const BriefingBar = memo(function BriefingBar({
 
   const isScrubbing = useSharedValue(0);
   const scrubX = useSharedValue(0);
-  const [scrubTimeLabel, setScrubTimeLabel] = useState('');
+  const [scrubLabel, setScrubLabel] = useState('');
   const prevLabelRef = useRef('');
 
   const seekToX = useCallback(
     (x: number) => {
       if (duration <= 0 || barWidthRef.current <= 0) return;
-      const fraction = Math.max(0, Math.min(1, x / barWidthRef.current));
+      const trackWidth = barWidthRef.current - TRACK_INSET * 2;
+      if (trackWidth <= 0) return;
+      const fraction = Math.max(0, Math.min(1, (x - TRACK_INSET) / trackWidth));
       progressSV.value = fraction;
       onSeek(fraction * duration);
       const label = formatTime(Math.round(fraction * duration));
       if (label !== prevLabelRef.current) {
         prevLabelRef.current = label;
-        setScrubTimeLabel(label);
+        setScrubLabel(label);
       }
     },
     [duration, onSeek, progressSV],
@@ -99,7 +105,6 @@ export const BriefingBar = memo(function BriefingBar({
   const scrubGesture = Gesture.Pan()
     .activeOffsetX([-5, 5])
     .failOffsetY([-10, 10])
-    .minDistance(0)
     .onStart((e) => {
       'worklet';
       isScrubbing.value = withSpring(1, { damping: 20, stiffness: 300 });
@@ -116,6 +121,9 @@ export const BriefingBar = memo(function BriefingBar({
       isScrubbing.value = withTiming(0, { duration: ANIMATION.fast });
     });
 
+  // Tooltip rides the finger horizontally (clamped to bar edges) and lifts
+  // in/out with the scrub gesture. Positioned above the entire bar — bar's
+  // overflow is visible so the tooltip can float out.
   const tooltipStyle = useAnimatedStyle(() => {
     const w = barWidthSV.value || 1;
     const clampedX = Math.max(TOOLTIP_WIDTH / 2, Math.min(scrubX.value, w - TOOLTIP_WIDTH / 2));
@@ -123,9 +131,7 @@ export const BriefingBar = memo(function BriefingBar({
       opacity: isScrubbing.value,
       transform: [
         { translateX: clampedX - TOOLTIP_WIDTH / 2 },
-        {
-          scale: interpolate(isScrubbing.value, [0, 1], [0.8, 1], Extrapolation.CLAMP),
-        },
+        { scale: interpolate(isScrubbing.value, [0, 1], [0.8, 1], Extrapolation.CLAMP) },
       ],
     };
   });
@@ -154,10 +160,33 @@ export const BriefingBar = memo(function BriefingBar({
       pointerEvents="box-none"
     >
       <View style={[styles.bar, { backgroundColor: colors.pillBg }]} onLayout={onBarLayout}>
+        <Animated.View
+          style={[styles.tooltip, { backgroundColor: colors.toastBg }, tooltipStyle]}
+          pointerEvents="none"
+        >
+          <Text
+            style={{
+              ...font.semiBold,
+              fontSize: typography.sizeXs,
+              color: colors.textEmphasis,
+              fontVariant: ['tabular-nums'],
+              textAlign: 'center',
+            }}
+            maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+          >
+            {scrubLabel}
+          </Text>
+        </Animated.View>
+
         <View style={styles.row}>
           <View style={styles.info}>
             <Text
-              style={[textStyles.smallCaps, { color: colors.textEmphasis }]}
+              style={{
+                ...font.smallCaps,
+                fontSize: typography.sizeSm,
+                letterSpacing: typography.trackingCaps,
+                color: colors.textEmphasis,
+              }}
               numberOfLines={1}
               maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
             >
@@ -223,26 +252,6 @@ export const BriefingBar = memo(function BriefingBar({
                 onSeek(Math.max(elapsed - step, 0));
             }}
           >
-            {/* Scrub time tooltip */}
-            <Animated.View
-              style={[styles.tooltip, { backgroundColor: colors.toastBg }, tooltipStyle]}
-              pointerEvents="none"
-            >
-              <Text
-                style={[
-                  styles.tooltipText,
-                  {
-                    ...font.semiBold,
-                    fontSize: typography.sizeXs,
-                    color: colors.textEmphasis,
-                  },
-                ]}
-                maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
-              >
-                {scrubTimeLabel}
-              </Text>
-            </Animated.View>
-
             <View style={[styles.progressTrack, { backgroundColor: colors.rule }]}>
               <Animated.View
                 style={[
@@ -268,13 +277,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: BAR_MARGIN,
     alignItems: 'flex-end',
   },
-  /* ── Expanded bar ── */
+  // No overflow:hidden — the scrub tooltip floats above the bar. The
+  // progressFill is clipped by progressTrack's own overflow:hidden.
   bar: {
     width: '100%',
     borderRadius: LAYOUT.floatingRadius,
     paddingTop: SPACING.smPlus,
     paddingHorizontal: SPACING.md,
-    overflow: 'hidden',
     ...LAYOUT.floatingShadow,
   },
   row: {
@@ -306,17 +315,17 @@ const styles = StyleSheet.create({
     borderRadius: PROGRESS_HEIGHT,
     transformOrigin: 'left',
   },
+  // Floats above the bar card so the finger never covers it. Horizontal
+  // position is tooltip-centered via translateX in tooltipStyle; the left:0
+  // here is the baseline origin for that translate.
   tooltip: {
     position: 'absolute',
-    top: -SPACING.xs,
+    bottom: '100%',
+    left: 0,
+    marginBottom: SPACING.sm,
     width: TOOLTIP_WIDTH,
     paddingVertical: SPACING.xxs,
     borderRadius: LAYOUT.pillRadius,
     alignItems: 'center',
-  },
-  tooltipText: {
-    textAlign: 'center',
-    fontVariant: ['tabular-nums'],
-    padding: 0,
   },
 });
