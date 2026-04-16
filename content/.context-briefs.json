@@ -10324,5 +10324,316 @@
     "label": "The Defense Industrial Base",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-16-ai-southeast-asia-cybersecurity-policy-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSENSUS PROBLEM",
+        "body": "ASEAN operates on the 'ASEAN Way' — decisions require unanimous consensus among all 10 member states. This means cybersecurity policy moves at the speed of the least-resourced member. Laos and Myanmar do not have national CERTs; Singapore runs one of the most advanced in Asia. No binding framework can bridge that gap without abandoning the consensus model."
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Offensive cyber capability scales with compute. Defensive capability scales with trained personnel, institutional coordination, and years of hardened infrastructure. AI collapses the time and skill needed to mount an attack — automated vulnerability scanning, polymorphic malware, AI-generated phishing — but does nothing to accelerate the human and institutional side of defence."
+      },
+      {
+        "heading": "THE MARKET REALITY",
+        "body": "Southeast Asia is the fastest-growing internet market on Earth — 500 million users added in a decade — but cybersecurity spending per capita is a fraction of North America's or Europe's. The region digitized consumer services before it built the security institutions to protect them."
+      },
+      {
+        "heading": "THE COLONIAL INHERITANCE",
+        "body": "ASEAN's member states were drawn by five different colonial powers with no shared legal or administrative tradition. Mutual legal assistance treaties between them are slow and patchy. Cross-border cyber investigations require exactly the kind of institutional trust that arbitrary colonial borders did not build."
+      }
+    ],
+    "generatedAt": "2026-04-16T17:18:54.194Z",
+    "label": "ASEAN & Cyber Defence",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-16-app-stores-push-nudify-deepfake-apps": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW IT WORKS",
+        "body": "Nudify apps use diffusion models trained on paired datasets of clothed and unclothed images. The model learns to inpaint — to replace clothing pixels with synthetic skin that matches the subject's body proportions, lighting, and skin tone. The output is convincing enough to cause real harm, even though the underlying image is entirely fabricated."
+      },
+      {
+        "heading": "THE RECOMMENDATION ENGINE",
+        "body": "App store search is not neutral retrieval. Autocomplete suggestions are generated from aggregate user behaviour — when enough people search for a term, it becomes a suggestion. The platform then ranks results by engagement metrics. This means harmful apps that retain users are algorithmically promoted over less engaging alternatives."
+      },
+      {
+        "heading": "THE MODERATION GAP",
+        "body": "Apple and Google review apps before listing but rely heavily on automated classification. Nudify apps evade detection by describing themselves as 'AI art' or 'photo editing' tools and restricting explicit output to post-download in-app purchases. The policy violation happens after the review gate."
+      },
+      {
+        "heading": "THE LEGAL VACUUM",
+        "body": "Most jurisdictions criminalise distributing non-consensual intimate images but have no law against generating them. The UK's Online Safety Act (2023) is among the first to criminalise creating deepfake intimate images without consent. In the US, federal law has no equivalent — it falls to a patchwork of state statutes, most written before diffusion models existed."
+      }
+    ],
+    "generatedAt": "2026-04-16T17:18:54.197Z",
+    "label": "Deepfake Nudification",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-16-china-grid-billions-petrochemical-plan-high-seas": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUCK CURVE",
+        "body": "Solar panels produce most electricity at midday when demand is moderate, then produce nothing at sunset when demand peaks. Plotted on a graph, the net load curve looks like a duck — a deep belly at noon, a steep neck at 6 PM. The steeper the neck, the more gas or coal plants must ramp up in hours, which many cannot do."
+      },
+      {
+        "heading": "THE CURTAILMENT TRAP",
+        "body": "When generation exceeds what the grid can absorb, operators disconnect renewable sources — curtailment. China's 90.8% solar utilization means nearly 1 in 10 solar kilowatt-hours is already being wasted. Below roughly 85%, new solar capacity actively destroys its own economic case: every panel added makes every existing panel less productive."
+      },
+      {
+        "heading": "WHY TRANSMISSION IS THE BOTTLENECK",
+        "body": "China's solar and wind resources are concentrated in the northwest — Xinjiang, Gansu, Inner Mongolia. Its electricity demand is concentrated 2,000-3,000 km southeast in Guangdong, Jiangsu, and Zhejiang. Ultra-high-voltage DC lines can bridge this, but each takes 3-5 years to build. Generation is being installed faster than the wires to carry it."
+      },
+      {
+        "heading": "THE STORAGE GAP",
+        "body": "Grid-scale battery storage in China reached 35 GW by late 2025 — impressive in absolute terms, but enough to cover roughly 1-2% of peak demand for four hours. Pumped hydro remains the only proven technology for storing energy at the scale China needs, and suitable geography is finite."
+      },
+      {
+        "heading": "THE POLITICAL CONSTRAINT",
+        "body": "Provincial governments in coal-rich regions like Shanxi and Inner Mongolia derive significant revenue and employment from coal plants. Central government renewable targets collide with local economic incentives to keep coal running. The 6 provinces under review are caught in this tension — they are being told to absorb more renewables while their economies depend on burning less of them."
+      }
+    ],
+    "generatedAt": "2026-04-16T17:18:54.197Z",
+    "label": "Grid Curtailment",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-16-glp1-obesity-drug-pioneers-new-approach": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INCRETIN SYSTEM",
+        "body": "When food hits the gut, specialised cells release incretin hormones — GLP-1 and GIP — that tell the pancreas to produce insulin before blood sugar spikes. This gut-to-pancreas signal was discovered in the 1960s but ignored for decades because researchers focused on the pancreas itself, not the intestine."
+      },
+      {
+        "heading": "WHY GLP-1 CAUSES NAUSEA",
+        "body": "GLP-1 receptors are not only in the pancreas. They sit in the brainstem's area postrema — the brain's vomiting centre — and along the vagus nerve that controls gastric emptying. Semaglutide and tirzepatide slow stomach emptying dramatically, which drives satiety but also causes the nausea that makes 5-10% of trial participants quit treatment."
+      },
+      {
+        "heading": "THE GIP PARADOX",
+        "body": "GIP was long considered the 'useless incretin' — it stimulates insulin in healthy people but fails in diabetics, so researchers abandoned it. The new hypothesis flips this: GIP may not fix blood sugar, but it suppresses appetite through different brain circuits than GLP-1, without triggering the nausea pathway."
+      },
+      {
+        "heading": "THE MUSCLE PROBLEM",
+        "body": "GLP-1 drugs cause weight loss, but roughly 25-40% of the weight lost is lean muscle mass, not fat. In older patients, this muscle loss can be dangerous — increasing fall risk and metabolic dysfunction. A drug that preserves muscle while losing fat would change the risk-benefit calculus entirely."
+      },
+      {
+        "heading": "THE COMMERCIAL STAKES",
+        "body": "GLP-1 agonists are projected to be a $150 billion annual market by 2030 — larger than the entire oncology drug market was in 2020. Novo Nordisk and Eli Lilly control the duopoly. Any mechanism that achieves comparable weight loss without GLP-1 receptor activation would break that duopoly open."
+      }
+    ],
+    "generatedAt": "2026-04-16T17:18:54.197Z",
+    "label": "Incretin Hormones & Obesity",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-16-house-blocks-iran-war-powers-resolution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 60-DAY CLOCK",
+        "body": "The War Powers Resolution starts a countdown the moment US forces enter hostilities without a declaration of war. The president has 48 hours to notify Congress, then 60 days of authorised combat, plus a 30-day withdrawal period. After 90 days total, forces must leave — unless Congress authorises the war. The clock is ticking toward May 1."
+      },
+      {
+        "heading": "WHY THE VOTE MATTERS",
+        "body": "A War Powers Resolution vote forces every member of Congress on record — for or against the president's authority to wage a specific war. The political cost of voting against a sitting wartime president is real. The cost of owning an unauthorised war that goes badly is also real. The 214-213 margin means a single vote flip would have forced the withdrawal clock."
+      },
+      {
+        "heading": "THE ENFORCEMENT PROBLEM",
+        "body": "No president since Nixon has accepted the War Powers Resolution as constitutional. No court has enforced it. In 2011, Obama's legal team argued the Libya bombing was not 'hostilities' under the law. The Resolution's power is political, not legal — it works only if Congress has the votes and the will to enforce it, which it historically has not."
+      },
+      {
+        "heading": "THE AUMF SHADOW",
+        "body": "The 2001 Authorization for Use of Military Force, passed three days after 9/11, has been used to justify military action in at least 22 countries. Administrations have stretched its language — 'associated forces' of al-Qaeda — to cover conflicts Congress never contemplated. Whether it could be stretched to cover Iran is legally dubious but politically tested territory."
+      },
+      {
+        "heading": "THE HISTORICAL PATTERN",
+        "body": "Congress has formally declared war five times in American history. The last was in 1942. Every major US military engagement since — Korea, Vietnam, the Gulf War, Iraq, Afghanistan — operated under presidential authority with varying degrees of congressional acquiescence. The War Powers Resolution was supposed to fix this. It has not."
+      }
+    ],
+    "generatedAt": "2026-04-16T17:18:54.198Z",
+    "label": "War Powers & the Iran Clock",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-16-pentagon-asks-automakers-build-weapons-depleted-stocks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARSENAL OF DEMOCRACY",
+        "body": "In 1940, Ford built a bomber plant at Willow Run that produced one B-24 Liberator every 63 minutes by 1944. GM made aircraft engines, Chrysler made tanks. The conversion worked because World War II factories shared a common substrate: stamped metal, assembly lines, internal combustion. Modern munitions require specialised materials and tolerances that car factories do not share."
+      },
+      {
+        "heading": "THE PRODUCTION BOTTLENECK",
+        "body": "Raytheon produces roughly 500 Tomahawk cruise missiles per year. Each takes over a year to build, with components sourced from hundreds of sub-tier suppliers. Firing 850 in four weeks means consuming nearly two years of production in a month. The bottleneck is not final assembly — it is the supply chain of specialised components: guidance systems, turbofan engines, terrain-matching radar modules."
+      },
+      {
+        "heading": "THE DPA OPTION",
+        "body": "The Defence Production Act of 1950 allows the president to compel private companies to prioritise government contracts. It was used during COVID for ventilators and vaccines. Compelling automakers to build munitions would be legally possible but practically unprecedented in the modern era — the last time civilian factories produced weapons at scale was the Korean War."
+      },
+      {
+        "heading": "THE SUSTAINMENT PROBLEM",
+        "body": "US military doctrine since the 1990s assumed short, high-intensity wars followed by long, low-intensity occupations. Weapons stocks were sized accordingly — enough for the opening weeks, not for sustained campaigns. The Ukraine war exposed this when artillery shell production fell behind consumption within months. An Iran war compounds the same structural deficit with far more expensive munitions."
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "Defence contractors operate on cost-plus contracts — they are guaranteed a profit margin on whatever they build. Automakers operate on razor-thin margins in competitive markets. Converting a car line to munitions means losing commercial revenue with no guarantee of sustained government orders. Without multi-year contracts, no CEO will retool a factory for a war Congress has not authorised."
+      }
+    ],
+    "generatedAt": "2026-04-16T17:18:54.198Z",
+    "label": "The Defence Industrial Base",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-16-sanctioned-ships-slip-gulf-us-warns-seizures": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DARK FLEET",
+        "body": "An estimated 600-800 tankers worldwide operate as a 'shadow fleet' — aging vessels with obscure ownership, flags of convenience, and switched-off transponders. They carry sanctioned oil from Iran, Russia, and Venezuela. The fleet has grown so large it now represents a systemic maritime safety risk: many ships are uninsured, poorly maintained, and would be environmental disasters if they sank."
+      },
+      {
+        "heading": "HOW AIS EVASION WORKS",
+        "body": "All commercial vessels over 300 gross tons must broadcast their position via the Automatic Identification System. Dark fleet tankers disable AIS transponders, conduct ship-to-ship transfers at sea to clean vessels, and spoof their GPS coordinates. Satellite imagery can still track them, but processing the data takes days — by then the cargo has changed hands."
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Western sanctions bite hardest through insurance, not navies. Lloyd's of London and the International Group of P&I Clubs insure roughly 90% of global shipping. A vessel without Western insurance cannot enter most ports or transit most canals. Iran's workaround: state-backed insurance from entities Western courts cannot reach, accepted by buyers in China and India who process payments outside the dollar system."
+      },
+      {
+        "heading": "THE BOARDING QUESTION",
+        "body": "Under international law, a warship may board a foreign vessel on the high seas only with flag-state consent, under a UN Security Council resolution, or in the exercise of the right of visit for suspected piracy or statelessness. Boarding sanctioned vessels without these grounds risks an international incident — and Iran registers many of its dark fleet ships under flags that will not consent."
+      },
+      {
+        "heading": "THE HORMUZ GEOGRAPHY",
+        "body": "The Strait is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Iran's coastline runs along the entire northern edge, and the deepest shipping channel hugs the Iranian side. Any interdiction operation in or near the Strait puts US vessels within range of Iranian anti-ship missiles and fast-attack boats."
+      }
+    ],
+    "generatedAt": "2026-04-16T17:18:54.198Z",
+    "label": "Sanctions Evasion & the Dark Fleet",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-16-sudan-sovereignty-council-advisor-washington-lobbying": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RSF'S ORIGINS",
+        "body": "The Rapid Support Forces evolved from the Janjaweed militias that carried out the Darfur genocide beginning in 2003. The Bashir regime armed Arab militias to fight non-Arab rebels, then formalised them as the RSF in 2013. Hemedti, a former camel trader from Darfur, rose from militia commander to the second most powerful man in Sudan — with troops loyal to him personally, not the state."
+      },
+      {
+        "heading": "THE SUPPLY LINE QUESTION",
+        "body": "The RSF fights with equipment that crosses international borders — primarily through Chad and Libya. The UAE has been repeatedly accused by UN investigators of funnelling weapons to the RSF via these routes. Cutting supply lines means pressuring not just arms dealers but sovereign governments with their own strategic calculations in Sudan's outcome."
+      },
+      {
+        "heading": "HOW FOREIGN LOBBYING WORKS",
+        "body": "Under the Foreign Agents Registration Act (1938), anyone lobbying in the US on behalf of a foreign government must register, disclose their activities, and label their communications. The law was written to counter Nazi propaganda. Today it governs a billion-dollar industry where foreign governments hire Washington firms to shape congressional opinion — legally, transparently, and expensively."
+      },
+      {
+        "heading": "WHY CONGRESS MATTERS",
+        "body": "US arms transfer restrictions and sanctions designations are among the few levers that could change the military balance in Sudan. The State Department has resisted designating the RSF's actions as genocide — a designation that would trigger legal obligations to act. Congressional pressure is the mechanism by which that political calculus shifts."
+      },
+      {
+        "heading": "THE FORGOTTEN WAR",
+        "body": "Sudan's civil war has displaced over 12 million people — the largest displacement crisis on Earth — and created famine conditions across Darfur and Khartoum. It receives a fraction of the international attention and funding directed at Ukraine or Gaza. The lobbying trip reflects a government's recognition that in Washington, attention is a resource that must be actively purchased."
+      }
+    ],
+    "generatedAt": "2026-04-16T17:18:54.198Z",
+    "label": "Sudan's War & Washington Lobbying",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-16-uk-minister-misled-parliament-arms-exports-israel": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LICENSING REGIME",
+        "body": "UK arms exports require a licence from the Export Control Joint Unit, assessed against the Strategic Export Licensing Criteria. Criterion 2c requires refusal if there is a 'clear risk' the items might be used in serious violations of international humanitarian law. The assessment is made by civil servants, but ministers are accountable for the decision to Parliament."
+      },
+      {
+        "heading": "THE MINISTERIAL CODE",
+        "body": "The Ministerial Code requires that ministers who knowingly mislead Parliament offer their resignation. The code has no legal force — it is enforced by the Prime Minister alone. In practice, ministers survive misleading Parliament when the PM decides the political cost of losing them exceeds the cost of the scandal. The code is a convention, not a law."
+      },
+      {
+        "heading": "THE M-346 QUESTION",
+        "body": "The M-346 is an advanced jet trainer built by Leonardo. Trainers are dual-use — they train pilots, but many variants can carry weapons. The UK licensing question turns on whether parts supplied for trainers could reach operational combat aircraft or pilots who fly combat missions. The distinction between 'trainer' and 'combat aircraft' is thinner than the public debate suggests."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "In 2019, the UK Court of Appeal ruled that arms export licences to Saudi Arabia were unlawful because the government had not properly assessed whether Saudi forces were committing IHL violations in Yemen. The government was forced to suspend new licences pending a review. That ruling established that courts can scrutinise the substance of arms export decisions, not just the process."
+      },
+      {
+        "heading": "WHY DOCUMENTARY EVIDENCE MATTERS",
+        "body": "Ministers regularly offer policy justifications that cannot be independently verified — they claim classified intelligence supports their position. When the classified briefing itself contradicts the public justification, it collapses the defence entirely. The minister cannot claim he was briefed differently from what he told Parliament when the briefing document says otherwise."
+      }
+    ],
+    "generatedAt": "2026-04-16T17:18:54.198Z",
+    "label": "UK Arms Export Controls",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-16-ukraine-hospitals-agingfly-espionage-malware": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY HOSPITALS",
+        "body": "Military hospitals in a war zone hold intelligence gold — casualty figures, unit identifiers from patient records, supply chain data from pharmaceutical orders, and staff communications that reveal troop movements. The medical network is often less hardened than military command systems but contains operationally useful data."
+      },
+      {
+        "heading": "ESPIONAGE VS DISRUPTION",
+        "body": "Espionage malware is designed to remain undetected and exfiltrate data silently. Destructive malware — like the NotPetya attack that hit Ukraine in 2017 — announces itself by breaking systems. The two require different defences: one hides in normal traffic, the other overwhelms it. Espionage tools are harder to detect precisely because they try not to cause symptoms."
+      },
+      {
+        "heading": "THE GENEVA QUESTION",
+        "body": "The Geneva Conventions grant hospitals and medical units protected status in armed conflict. International humanitarian law has not been formally updated to address cyber operations, but the ICRC's 2019 position holds that cyber attacks on medical facilities violate the same principles. No state has been held accountable under this framework."
+      },
+      {
+        "heading": "THE ATTRIBUTION PROBLEM",
+        "body": "Researchers naming a malware tool is not the same as attributing it to a state. Technical indicators — code language, infrastructure overlap, targeting patterns — can suggest an origin, but sophisticated actors routinely plant false flags. Public attribution is a political act as much as a technical one, which is why researchers often name the tool but not the actor."
+      }
+    ],
+    "generatedAt": "2026-04-16T17:18:54.198Z",
+    "label": "Cyber Espionage & Hospital Targeting",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-16-us-military-fully-withdraws-from-syria-after-10-years": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW THE US GOT IN",
+        "body": "The US entered Syria in 2014 to fight the Islamic State, not to join the civil war. It partnered with the Kurdish-led Syrian Democratic Forces because no other ground force was both capable and willing. The partnership was always a marriage of convenience — the Kurds wanted autonomy, the US wanted ISIS destroyed, and neither promised the other what they actually needed."
+      },
+      {
+        "heading": "THE KURDISH DILEMMA",
+        "body": "The SDF's core is the YPG, a Kurdish militia that Turkey considers a branch of the PKK — a group Turkey, the US, and the EU all designate as terrorist. The US armed and trained a force that its NATO ally considered an existential threat. Every American base in northeastern Syria was simultaneously a launchpad against ISIS and a shield against Turkish invasion."
+      },
+      {
+        "heading": "TURKEY'S PATIENCE",
+        "body": "Turkey conducted three military operations into northern Syria between 2016 and 2019, each time seizing territory from Kurdish forces. The US presence in the northeast was the only thing preventing a fourth. With American withdrawal complete, Turkey holds the dominant military position along Syria's entire northern border — the outcome Ankara has pursued for a decade."
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "In Islamic tradition, al-Sham — Greater Syria, encompassing modern Syria, Lebanon, Jordan, and Palestine — holds particular significance. A hadith in Sahih al-Bukhari describes the people of al-Sham as being under divine protection. Classical scholars including Ibn Kathir identified this region as central to end-times events. The withdrawal of foreign powers from al-Sham, and the question of who fills the vacuum, resonates with a prophetic geography that predates modern borders by fourteen centuries."
+      },
+      {
+        "heading": "THE ISLAMIC STATE'S RESIDUAL THREAT",
+        "body": "ISIS lost its last territorial holding in Baghuz, Syria, in March 2019 but never ceased operations. Its cells carry out dozens of attacks monthly across the Syrian desert. The group's strategy since 2019 has been deliberate patience — maintain a low-level insurgency, wait for security vacuums, and reconstitute when conditions allow. Every foreign withdrawal creates exactly such a vacuum."
+      },
+      {
+        "heading": "THE DAMASCUS FACTOR",
+        "body": "Damascus is one of the oldest continuously inhabited cities on Earth and holds deep significance across Islamic history — it was the capital of the Umayyad Caliphate, the first great Islamic dynasty after the Rashidun period. The question of who governs from Damascus has shaped the region for fourteen centuries. A Syria without external military guarantees returns that question to its oldest form: a contest among regional powers."
+      }
+    ],
+    "generatedAt": "2026-04-16T17:18:54.199Z",
+    "label": "The US in Syria & al-Sham",
+    "category": "politics",
+    "articleCount": 1
   }
 }
