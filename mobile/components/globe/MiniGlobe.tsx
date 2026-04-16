@@ -695,12 +695,15 @@ export const MiniGlobe = memo(function MiniGlobe({
         cachedCountryRef.current = geo?.country ?? null;
       }
 
-      // Adaptive zoom — interpolate clip angle between adjacent articles for smooth transitions
+      // Adaptive zoom — interpolate clip angle between adjacent articles.
+      // Smoothstep easing gives a cinematic camera-move feel: the zoom
+      // eases out of the current framing and eases into the next.
       const loCountry = geoData[loIndex]?.countryName ?? null;
       const hiCountry = geoData[hiIndex]?.countryName ?? null;
       const loClip = clipAngleForCountry(loCountry);
       const hiClip = clipAngleForCountry(hiCountry);
-      const clipAngle = loClip + (hiClip - loClip) * frac;
+      const ef = frac * frac * (3 - 2 * frac); // Hermite smoothstep
+      const clipAngle = loClip + (hiClip - loClip) * ef;
       const projScale = r / Math.sin((clipAngle * Math.PI) / 180);
 
       const proj = projRef.current;
@@ -801,11 +804,21 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       // Qibla + source arcs — only compute when near a settled position.
-      // During mid-scroll (frac 0.15–0.85) these arcs are invisible behind the
-      // transitioning globe, so skip ~50+ interpolation steps per frame.
-      // Within the visible window, fade smoothly instead of popping in/out.
-      const nearSettled = frac < 0.15 || frac > 0.85;
-      const arcOpacity = nearSettled ? (frac < 0.15 ? 1 - frac / 0.15 : (frac - 0.85) / 0.15) : 0;
+      // During mid-scroll these arcs are invisible behind the transitioning
+      // globe, so skip interpolation steps. Smoothstep fade creates a natural
+      // breathing rhythm instead of mechanical linear ramps.
+      const ARC_WINDOW = 0.25; // wider window = arcs linger longer
+      const nearSettled = frac < ARC_WINDOW || frac > 1 - ARC_WINDOW;
+      let arcOpacity: number;
+      if (frac < ARC_WINDOW) {
+        const t = frac / ARC_WINDOW; // 0→1 as we scroll away
+        arcOpacity = 1 - t * t * (3 - 2 * t); // smoothstep fade-out
+      } else if (frac > 1 - ARC_WINDOW) {
+        const t = (frac - (1 - ARC_WINDOW)) / ARC_WINDOW; // 0→1 as we approach
+        arcOpacity = t * t * (3 - 2 * t); // smoothstep fade-in
+      } else {
+        arcOpacity = 0;
+      }
 
       const qiblaP = qiblaPathRef.current;
       qiblaP.reset();
@@ -933,14 +946,48 @@ export const MiniGlobe = memo(function MiniGlobe({
       let lng: number;
 
       if (loLat != null && loLng != null && hiLat != null && hiLng != null) {
-        lat = loLat + (hiLat - loLat) * frac;
-        // Shortest-arc longitude — prevents wild globe spins across the
-        // antimeridian (e.g. Tokyo 140°E → Alaska -150°W goes 30° east,
-        // not 290° west through Europe).
-        let dLng = hiLng - loLng;
-        if (dLng > 180) dLng -= 360;
-        if (dLng < -180) dLng += 360;
-        lng = loLng + dLng * frac;
+        // Great-circle interpolation (slerp) — the globe rotates along the
+        // surface of the sphere between story locations, like tracing a path
+        // on a physical globe. Linear lat/lng would cut through the interior.
+        const DEG2RAD = Math.PI / 180;
+        const RAD2DEG = 180 / Math.PI;
+        const lat0 = loLat * DEG2RAD;
+        const lng0 = loLng * DEG2RAD;
+        const lat1 = hiLat * DEG2RAD;
+        const lng1 = hiLng * DEG2RAD;
+
+        // Convert to unit-sphere cartesian
+        const cosLat0 = Math.cos(lat0);
+        const cosLat1 = Math.cos(lat1);
+        const x0 = cosLat0 * Math.cos(lng0);
+        const y0 = cosLat0 * Math.sin(lng0);
+        const z0 = Math.sin(lat0);
+        const x1 = cosLat1 * Math.cos(lng1);
+        const y1 = cosLat1 * Math.sin(lng1);
+        const z1 = Math.sin(lat1);
+
+        // Angular distance between the two points
+        const dot = x0 * x1 + y0 * y1 + z0 * z1;
+        const omega = Math.acos(Math.min(1, Math.max(-1, dot)));
+
+        if (omega > 0.001) {
+          // Slerp — spherical linear interpolation
+          const sinO = Math.sin(omega);
+          const a = Math.sin((1 - frac) * omega) / sinO;
+          const b = Math.sin(frac * omega) / sinO;
+          const rx = a * x0 + b * x1;
+          const ry = a * y0 + b * y1;
+          const rz = a * z0 + b * z1;
+          lat = Math.asin(Math.min(1, Math.max(-1, rz))) * RAD2DEG;
+          lng = Math.atan2(ry, rx) * RAD2DEG;
+        } else {
+          // Points nearly coincident — fall back to linear
+          lat = loLat + (hiLat - loLat) * frac;
+          let dLng = hiLng - loLng;
+          if (dLng > 180) dLng -= 360;
+          if (dLng < -180) dLng += 360;
+          lng = loLng + dLng * frac;
+        }
       } else if (loLat != null && loLng != null) {
         lat = loLat;
         lng = loLng;
