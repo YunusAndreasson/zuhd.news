@@ -14,7 +14,7 @@ import { getItemAsync, setItemAsync } from 'expo-secure-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { API_BASE } from '../constants/theme';
-import { hapticImpact, hapticTick } from '../lib/haptics';
+import { hapticImpact } from '../lib/haptics';
 
 const POSITION_KEY = 'zuhd_briefing_pos';
 const DATE_KEY = 'zuhd_briefing_date';
@@ -317,12 +317,20 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     }
   }, [date, savePosition, writeLockScreenInfo]);
 
+  const lastHapticSecRef = useRef(-1);
   const seek = useCallback((seconds: number) => {
     if (!playerRef.current) return;
     const clamped = Math.max(0, Math.min(seconds, playerRef.current.duration || Infinity));
     playerRef.current.seekTo(clamped);
-    setElapsed(Math.floor(clamped));
-    hapticTick();
+    const sec = Math.floor(clamped);
+    setElapsed(sec);
+    // Discrete tick per scrubbed-second boundary. hapticImpact (not Tick) —
+    // iOS's AVAudioSession in playback mode suppresses selectionAsync(), so
+    // the Light impact is the reliable choice during audio playback.
+    if (sec !== lastHapticSecRef.current) {
+      lastHapticSecRef.current = sec;
+      hapticImpact();
+    }
   }, []);
 
   const close = useCallback(() => {
@@ -332,20 +340,24 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       verifyTimer.current = null;
     }
     savePosition();
+    // Fully tear down — pausing and keeping the player alive leaves iOS in a
+    // state where the next play() call can silently fail, requiring two taps
+    // on LISTEN to restart. Re-creating on the next toggle is reliable.
     if (playerRef.current) {
-      playerRef.current.pause();
-      // Seek to 0 so subsequent status-update ticks don't re-inject a
-      // nonzero elapsed time and flicker the bar back into view.
-      playerRef.current.seekTo(0);
+      subRef.current?.remove();
       try {
+        playerRef.current.pause();
         playerRef.current.clearLockScreenControls();
       } catch {}
+      playerRef.current.remove();
+      playerRef.current = null;
+      subRef.current = null;
       lockScreenActive.current = false;
       lockScreenDurationKnown.current = false;
     }
     setPlaying(false);
     setElapsed(0);
-    hapticTick();
+    hapticImpact();
   }, [savePosition]);
 
   // In dev without a native player, provide a mock duration so the bar renders properly
