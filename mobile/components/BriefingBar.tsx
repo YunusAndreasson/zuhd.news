@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
@@ -96,29 +96,25 @@ export const BriefingBar = memo(function BriefingBar({
     [duration, onSeek, progressSV],
   );
 
-  const scrubGesture = useMemo(
-    () =>
-      Gesture.Pan()
-        .activeOffsetX([-5, 5])
-        .failOffsetY([-10, 10])
-        .minDistance(0)
-        .onStart((e) => {
-          'worklet';
-          isScrubbing.value = withSpring(1, { damping: 20, stiffness: 300 });
-          scrubX.value = e.x;
-          runOnJS(seekToX)(e.x);
-        })
-        .onChange((e) => {
-          'worklet';
-          scrubX.value = e.x;
-          runOnJS(seekToX)(e.x);
-        })
-        .onFinalize(() => {
-          'worklet';
-          isScrubbing.value = withTiming(0, { duration: ANIMATION.fast });
-        }),
-    [seekToX, isScrubbing, scrubX],
-  );
+  const scrubGesture = Gesture.Pan()
+    .activeOffsetX([-5, 5])
+    .failOffsetY([-10, 10])
+    .minDistance(0)
+    .onStart((e) => {
+      'worklet';
+      isScrubbing.value = withSpring(1, { damping: 20, stiffness: 300 });
+      scrubX.value = e.x;
+      runOnJS(seekToX)(e.x);
+    })
+    .onChange((e) => {
+      'worklet';
+      scrubX.value = e.x;
+      runOnJS(seekToX)(e.x);
+    })
+    .onFinalize(() => {
+      'worklet';
+      isScrubbing.value = withTiming(0, { duration: ANIMATION.fast });
+    });
 
   const tooltipStyle = useAnimatedStyle(() => {
     const w = barWidthSV.value || 1;

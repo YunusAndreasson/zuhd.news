@@ -1,24 +1,21 @@
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
-import { memo, useCallback, useMemo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { LAYOUT, SPACING } from '../constants/theme';
+import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import { type FlatList, StyleSheet, Text, View } from 'react-native';
+import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { getRanking, METRICS, type MetricKey, type RankingEntry } from '../lib/country-ranking';
 import { displayCountryName } from '../lib/place-names';
-import { HapticPressable } from './HapticPressable';
 
 interface Props {
   metric: MetricKey;
   currentCountryName: string | null;
   bottomInset: number;
-  onBack: () => void;
 }
 
 export const CountryRankingView = memo(function CountryRankingView({
   metric,
   currentCountryName,
   bottomInset,
-  onBack,
 }: Props) {
   const { colors, font, typography, textStyles } = useTheme();
   const ranking = useMemo(() => getRanking(metric), [metric]);
@@ -26,6 +23,22 @@ export const CountryRankingView = memo(function CountryRankingView({
     () => (currentCountryName ? ranking.findIndex((r) => r.name === currentCountryName) : -1),
     [ranking, currentCountryName],
   );
+  const listRef = useRef<FlatList<RankingEntry>>(null);
+
+  // gorhom's BottomSheetFlatList locks internal scrolling while the sheet
+  // animates toward its top snap. We retry scrolling a few times so at least
+  // one attempt lands after the sheet is unlocked.
+  useEffect(() => {
+    if (currentIndex < 0) return;
+    const offset = Math.max(0, ROW_HEIGHT * currentIndex - ROW_HEIGHT * 2);
+    const scroll = () => {
+      listRef.current?.scrollToOffset({ offset, animated: false });
+    };
+    const timers = [100, 350, 600, 900].map((delay) => setTimeout(scroll, delay));
+    return () => {
+      for (const t of timers) clearTimeout(t);
+    };
+  }, [currentIndex]);
 
   const renderItem = useCallback(
     ({ item, index }: { item: RankingEntry; index: number }) => {
@@ -75,39 +88,28 @@ export const CountryRankingView = memo(function CountryRankingView({
 
   return (
     <BottomSheetFlatList
+      ref={listRef as never}
       data={ranking}
       keyExtractor={(item) => item.name}
       renderItem={renderItem}
-      initialScrollIndex={currentIndex > 4 ? Math.max(0, currentIndex - 3) : 0}
       getItemLayout={(_, index) => ({ length: ROW_HEIGHT, offset: ROW_HEIGHT * index, index })}
       contentContainerStyle={{ paddingBottom: bottomInset + SPACING.lg }}
       ListHeaderComponent={
         <View style={styles.header}>
-          <HapticPressable
-            onPress={onBack}
-            haptic="tick"
-            hitSlop={LAYOUT.hitSlop}
-            accessibilityRole="button"
-            accessibilityLabel="Back to country"
-          >
-            <Text style={[textStyles.smallCaps, { color: colors.text }]}>{'\u2190 back'}</Text>
-          </HapticPressable>
-          <View style={styles.headerRight}>
-            <Text style={textStyles.smallCapsXs}>{METRICS[metric].label}</Text>
-            {currentIndex >= 0 && (
-              <Text
-                style={{
-                  ...font.semiBold,
-                  fontSize: typography.sizeXs,
-                  color: colors.textEmphasis,
-                  letterSpacing: typography.trackingCaps,
-                  fontVariant: ['oldstyle-nums'],
-                }}
-              >
-                {totalLabel}
-              </Text>
-            )}
-          </View>
+          <Text style={textStyles.smallCapsXs}>{METRICS[metric].label}</Text>
+          {currentIndex >= 0 && (
+            <Text
+              style={{
+                ...font.semiBold,
+                fontSize: typography.sizeXs,
+                color: colors.textEmphasis,
+                letterSpacing: typography.trackingCaps,
+                fontVariant: ['oldstyle-nums'],
+              }}
+            >
+              {totalLabel}
+            </Text>
+          )}
         </View>
       }
     />
@@ -124,10 +126,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.screenPadding,
     paddingTop: SPACING.sm,
     paddingBottom: SPACING.md,
-  },
-  headerRight: {
-    alignItems: 'flex-end',
-    gap: SPACING.xxs,
   },
   row: {
     flexDirection: 'row',

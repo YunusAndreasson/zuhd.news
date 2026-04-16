@@ -538,7 +538,7 @@ export default function HomeScreen() {
                 pressed && PRESSED_STYLE,
               ]}
               accessibilityRole="button"
-              accessibilityLabel="More about this story"
+              accessibilityLabel="Context about this story"
             >
               <Text
                 style={{
@@ -549,7 +549,7 @@ export default function HomeScreen() {
                 }}
                 maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
               >
-                more
+                context
               </Text>
             </Pressable>
           </View>

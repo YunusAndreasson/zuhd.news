@@ -16,7 +16,7 @@ import {
   PRESSED_STYLE,
   SPACING,
 } from '../constants/theme';
-import { useTheme } from '../hooks/useTheme';
+import { usePreferences, useTheme } from '../hooks/useTheme';
 import { hapticTick } from '../lib/haptics';
 import { SheetLayout } from './SheetLayout';
 import { useMaxSheetHeight } from './SheetPrimitives';
@@ -133,18 +133,9 @@ export const SettingsSheet = memo(function SettingsSheet({
   renderBackdrop,
   onDismiss,
 }: SettingsSheetProps) {
-  const {
-    colors,
-    font,
-    typography,
-    sheetStyles,
-    preferences,
-    setFontSize,
-    setFontFamily,
-    setAppearance,
-    setHaptics,
-    setNotifications,
-  } = useTheme();
+  const { colors, font, typography, sheetStyles } = useTheme();
+  const { preferences, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications } =
+    usePreferences();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
 
   return (

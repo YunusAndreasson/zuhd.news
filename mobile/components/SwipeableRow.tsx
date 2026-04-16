@@ -1,4 +1,4 @@
-import { memo, type ReactNode, useCallback, useMemo } from 'react';
+import { memo, type ReactNode, useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
@@ -35,26 +35,22 @@ export const SwipeableRow = memo(function SwipeableRow({
     onSwipeAction();
   }, [onSwipeAction]);
 
-  const panGesture = useMemo(
-    () =>
-      Gesture.Pan()
-        .activeOffsetX([-12, 12])
-        .failOffsetY([-10, 10])
-        .onUpdate((e) => {
-          'worklet';
-          translateX.value = Math.min(0, Math.max(-ACTION_WIDTH, e.translationX));
-        })
-        .onEnd(() => {
-          'worklet';
-          if (translateX.value < SWIPE_THRESHOLD) {
-            translateX.value = withSpring(0, ANIMATION.spring);
-            runOnJS(fireAction)();
-          } else {
-            translateX.value = withSpring(0, ANIMATION.spring);
-          }
-        }),
-    [translateX, fireAction],
-  );
+  const panGesture = Gesture.Pan()
+    .activeOffsetX([-12, 12])
+    .failOffsetY([-10, 10])
+    .onUpdate((e) => {
+      'worklet';
+      translateX.value = Math.min(0, Math.max(-ACTION_WIDTH, e.translationX));
+    })
+    .onEnd(() => {
+      'worklet';
+      if (translateX.value < SWIPE_THRESHOLD) {
+        translateX.value = withSpring(0, ANIMATION.spring);
+        runOnJS(fireAction)();
+      } else {
+        translateX.value = withSpring(0, ANIMATION.spring);
+      }
+    });
 
   const rowStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],

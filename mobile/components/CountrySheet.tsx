@@ -139,10 +139,11 @@ export const CountrySheet = memo(function CountrySheet({
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
   const flag = country?.data?.flag;
   const name = displayCountryName(country?.countryName ?? null);
-  const handleDataRef = useRef({ flag, name });
-  handleDataRef.current = { flag, name };
+  const onBack = useCallback(() => setActiveRanking(null), []);
+  const handleDataRef = useRef({ flag, name, inRanking: !!activeRanking, onBack });
+  handleDataRef.current = { flag, name, inRanking: !!activeRanking, onBack };
   const CountryHandle = useCallback(() => {
-    const { flag: f, name: n } = handleDataRef.current;
+    const { flag: f, name: n, inRanking, onBack: back } = handleDataRef.current;
     return (
       <View
         style={styles.handle}
@@ -151,15 +152,27 @@ export const CountrySheet = memo(function CountrySheet({
         accessibilityHint="Swipe down to dismiss"
       >
         <View style={[styles.handleIndicator, { backgroundColor: colors.rule }]} />
-        {(f || n) && (
+        {(f || n || inRanking) && (
           <View style={styles.handleRow}>
             {f && <Text style={styles.handleFlag}>{f}</Text>}
             {n && <Text style={textStyles.sheetTitle}>{n}</Text>}
           </View>
         )}
+        {inRanking && (
+          <HapticPressable
+            onPress={back}
+            haptic="tick"
+            hitSlop={LAYOUT.hitSlop}
+            accessibilityRole="button"
+            accessibilityLabel="Back to country"
+            style={styles.handleBack}
+          >
+            <Ionicons name="chevron-back" size={LAYOUT.iconMd} color={colors.text} />
+          </HapticPressable>
+        )}
       </View>
     );
-  }, [colors.rule, textStyles.sheetTitle]);
+  }, [colors.rule, colors.text, textStyles.sheetTitle]);
 
   const hasHotspot = country?.hotspotLabels && country.hotspotLabels.length > 0;
 
@@ -192,7 +205,6 @@ export const CountrySheet = memo(function CountrySheet({
           metric={activeRanking}
           currentCountryName={country?.countryName ?? null}
           bottomInset={bottomInset}
-          onBack={() => setActiveRanking(null)}
         />
       ) : (
         <BottomSheetScrollView
@@ -377,6 +389,11 @@ const styles = StyleSheet.create({
   },
   handleFlag: {
     fontSize: LAYOUT.iconMd,
+  },
+  handleBack: {
+    position: 'absolute',
+    left: SPACING.screenPadding,
+    bottom: SPACING.md,
   },
   sheetLabel: {
     marginBottom: SPACING.sm,

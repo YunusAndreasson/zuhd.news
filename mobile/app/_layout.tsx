@@ -10,6 +10,7 @@ import { Suspense, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
+import { ErrorBoundary } from '../components/ErrorBoundary';
 import { DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
@@ -30,6 +31,16 @@ Notifications.setNotificationHandler({
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({ fade: true, duration: 250 });
+
+// Warm up the in-app browser at module scope so the first tap isn't cold.
+WebBrowser.warmUpAsync().catch(() => {});
+
+// Fallback: if fonts or the first article load stall, force-hide the splash
+// after 8s so the user sees *something* rather than a frozen launch screen.
+const SPLASH_FALLBACK_MS = 8000;
+setTimeout(() => {
+  SplashScreen.hideAsync().catch(() => {});
+}, SPLASH_FALLBACK_MS);
 
 function ThemedShell() {
   const { colors, resolvedAppearance } = useTheme();
@@ -59,7 +70,6 @@ export default function RootLayout() {
 
   useEffect(() => {
     registerBackgroundTask();
-    WebBrowser.warmUpAsync().catch(() => {});
     const sub = Notifications.addNotificationResponseReceivedListener((response) => {
       const slug = response.notification.request.content.data?.slug;
       if (typeof slug === 'string') setPendingSlug(slug);
@@ -94,13 +104,15 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={styles.root}>
-      <Suspense fallback={<View style={styles.root} />}>
-        <ThemeProvider fontsAvailable={fontsLoaded}>
-          <BottomSheetModalProvider>
-            <ThemedShell />
-          </BottomSheetModalProvider>
-        </ThemeProvider>
-      </Suspense>
+      <ErrorBoundary>
+        <Suspense fallback={<View style={styles.root} />}>
+          <ThemeProvider fontsAvailable={fontsLoaded}>
+            <BottomSheetModalProvider>
+              <ThemedShell />
+            </BottomSheetModalProvider>
+          </ThemeProvider>
+        </Suspense>
+      </ErrorBoundary>
     </GestureHandlerRootView>
   );
 }

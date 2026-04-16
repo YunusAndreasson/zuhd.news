@@ -4,25 +4,15 @@
  */
 
 export function formatTimeAgo(addedAt: number): string {
-  const date = new Date(addedAt);
-  const now = new Date();
-  const sameDay =
-    date.getFullYear() === now.getFullYear() &&
-    date.getMonth() === now.getMonth() &&
-    date.getDate() === now.getDate();
-  if (sameDay) {
-    return date.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
-  }
-  const yesterday = new Date(now);
-  yesterday.setDate(yesterday.getDate() - 1);
-  const isYesterday =
-    date.getFullYear() === yesterday.getFullYear() &&
-    date.getMonth() === yesterday.getMonth() &&
-    date.getDate() === yesterday.getDate();
-  if (isYesterday) {
-    return `yesterday ${date.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}`;
-  }
-  return date.toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
+  const diffMs = Date.now() - addedAt;
+  const diffMin = Math.floor(diffMs / 60_000);
+  if (diffMin < 1) return 'now';
+  if (diffMin < 60) return `${diffMin}m`;
+  const diffHours = Math.floor(diffMin / 60);
+  if (diffHours < 24) return `${diffHours}h`;
+  const diffDays = Math.floor(diffHours / 24);
+  if (diffDays < 7) return `${diffDays}d`;
+  return new Date(addedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 }
 
 export function ccToFlag(cc: string): string {
