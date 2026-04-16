@@ -132,7 +132,7 @@ sources:
     country: "QA"
 ---
 
-Gaza — 4 of 11 remaining hospitals have gone dark. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
+Gaza — 4 of 11 remaining hospitals have gone dark. Israel has blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warns the health system has passed the point of collapse.
 </example>
 
 <example>
@@ -149,7 +149,7 @@ sources:
     country: "MY"
 ---
 
-Hanoi — 20 million unconnected Vietnamese gain satellite broadband. The radio frequency authority licensed 4 gateway stations and 600,000 Starlink terminals — the first Western carrier cleared for the market. Starlink will compete with state-backed carriers that control terrestrial infrastructure.
+Hanoi — 20 million unconnected Vietnamese gained satellite broadband. The radio frequency authority licensed 4 gateway stations and 600,000 Starlink terminals — the first Western carrier cleared for the market. Starlink will compete with state-backed carriers that control terrestrial infrastructure.
 </example>
 
 <example>
@@ -166,7 +166,7 @@ sources:
     country: "PK"
 ---
 
-Karachi — SadaPay collapsed after Gulf strikes. Pakistan's digital banking routes through AWS Bahrain, disrupted since March 1 drone strikes affecting 3 million users. The outage exposed Gulf cloud infrastructure as a single point of failure for South Asian fintech.
+Karachi — SadaPay collapsed after Gulf strikes. Pakistan's fintechs route through AWS Bahrain, offline since drone strikes on March 1 cut service to 3 million users. The outage exposed Gulf cloud infrastructure as a single point of failure for South Asian fintech.
 </example>
 
 </examples>
