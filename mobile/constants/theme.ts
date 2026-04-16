@@ -162,7 +162,7 @@ export const SPACING = {
   lg: 24,
   xl: 32,
   xxl: 48,
-  screenPadding: 20,
+  screenPadding: 18,
 } as const;
 
 /** maxFontSizeMultiplier caps — prevent layout breakage at extreme Dynamic Type */

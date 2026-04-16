@@ -182,7 +182,7 @@ export function renderSentences(
         const prefix = `${location} \u2014 `;
         if (sentence.startsWith(prefix)) rest = sentence.slice(prefix.length);
       }
-      // Show dateline (e.g. time ago) in small-caps before first sentence
+      // Show dateline (e.g. time ago) in small-caps before first sentence.
       if (dateline) {
         return (
           <Text
@@ -196,17 +196,15 @@ export function renderSentences(
           </Text>
         );
       }
-      if (rest !== sentence) {
-        return (
-          <Text
-            key={i}
-            style={[mdStyles.sentence, sizeStyle]}
-            maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-          >
-            {renderSegments(parseInline(rest), mdStyles)}
-          </Text>
-        );
-      }
+      return (
+        <Text
+          key={i}
+          style={[mdStyles.sentence, sizeStyle]}
+          maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+        >
+          {renderSegments(parseInline(rest), mdStyles)}
+        </Text>
+      );
     }
     return (
       <Text
