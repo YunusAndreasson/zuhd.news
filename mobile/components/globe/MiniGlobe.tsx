@@ -109,6 +109,7 @@ const ARCTIC_CIRCLE = geoCircle().center(NORTH_POLE).radius(23.44)();
 const ANTARCTIC_CIRCLE = geoCircle().center(SOUTH_POLE).radius(23.44)();
 const HALF_PI = Math.PI / 2;
 const DECAY_LAMBDA = Math.LN2 / 18; // 18h half-life
+const PULSE_EASING = Easing.out(Easing.cubic);
 
 const MAKKAH_GLOW_LAYERS: GlowLayer[] = [
   { r: 12, opacity: 0.03, blur: 8 },
@@ -1056,7 +1057,6 @@ export const MiniGlobe = memo(function MiniGlobe({
   const pulseY = useSharedValue(0);
   const pulseR = useSharedValue(0);
   const pulseOpacity = useSharedValue(0);
-  const PULSE_EASING = Easing.out(Easing.cubic);
 
   useImperativeHandle(ref, () => ({
     showPulse(x: number, y: number) {
