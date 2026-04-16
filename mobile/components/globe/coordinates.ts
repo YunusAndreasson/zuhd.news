@@ -438,7 +438,7 @@ export const COUNTRY_TZ: Record<string, string> = {
   Libya: 'Africa/Tripoli',
   Lithuania: 'Europe/Vilnius',
   Luxembourg: 'Europe/Luxembourg',
-  'N. Macedonia': 'Europe/Skopje',
+  Macedonia: 'Europe/Skopje',
   Madagascar: 'Indian/Antananarivo',
   Malawi: 'Africa/Blantyre',
   Malaysia: 'Asia/Kuala_Lumpur',
