@@ -35,10 +35,12 @@ import {
 } from 'react';
 import { StyleSheet } from 'react-native';
 import {
+  Easing,
   runOnJS,
   type SharedValue,
   useAnimatedReaction,
   useSharedValue,
+  withTiming,
 } from 'react-native-reanimated';
 import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
 import { useTheme } from '../../hooks/useTheme';
@@ -255,6 +257,7 @@ export interface TapResult {
 
 export interface MiniGlobeRef {
   hitTest: (x: number, y: number) => TapResult | null;
+  showPulse: (x: number, y: number) => void;
 }
 
 interface MiniGlobeProps {
@@ -1048,7 +1051,22 @@ export const MiniGlobe = memo(function MiniGlobe({
     if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0);
   }, [hotspots]);
 
+  // Tap pulse — radial ring that expands and fades on globe tap
+  const pulseX = useSharedValue(0);
+  const pulseY = useSharedValue(0);
+  const pulseR = useSharedValue(0);
+  const pulseOpacity = useSharedValue(0);
+  const PULSE_EASING = Easing.out(Easing.cubic);
+
   useImperativeHandle(ref, () => ({
+    showPulse(x: number, y: number) {
+      pulseX.value = x;
+      pulseY.value = y;
+      pulseR.value = 3;
+      pulseOpacity.value = 0.35;
+      pulseR.value = withTiming(32, { duration: 400, easing: PULSE_EASING });
+      pulseOpacity.value = withTiming(0, { duration: 400, easing: PULSE_EASING });
+    },
     hitTest(x: number, y: number): TapResult | null {
       // Collect unique story labels (or titles) for a country from the current article set
       const storiesFor = (name: string) => {
@@ -1354,6 +1372,11 @@ export const MiniGlobe = memo(function MiniGlobe({
           layers={DOT_GLOW_LAYERS}
         />
       )}
+
+      {/* Tap pulse — expanding ring on globe tap */}
+      <Circle cx={pulseX} cy={pulseY} r={pulseR} color={colors.textEmphasis} opacity={pulseOpacity}>
+        <BlurMask blur={6} style="solid" />
+      </Circle>
 
       {/* Dot label — location · local time */}
       {state.dotLabel && labelFont && (

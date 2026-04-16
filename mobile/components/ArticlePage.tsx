@@ -48,8 +48,11 @@ function GlobeTapZone({
   const handleTap = useCallback(
     (e: { nativeEvent: { pageX: number; pageY: number } }) => {
       const yOff = globeYOffset?.current ?? 0;
-      const result = globeRef?.current?.hitTest(e.nativeEvent.pageX, e.nativeEvent.pageY - yOff);
+      const tapX = e.nativeEvent.pageX;
+      const tapY = e.nativeEvent.pageY - yOff;
+      const result = globeRef?.current?.hitTest(tapX, tapY);
       if (!result) return;
+      globeRef?.current?.showPulse(tapX, tapY);
       impact();
       onTap?.(result);
     },
