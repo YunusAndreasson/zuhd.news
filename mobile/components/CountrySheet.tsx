@@ -7,7 +7,7 @@ import { memo, useCallback, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { displayLocation } from '../lib/place-names';
+import { displayCountryName, displayLocation } from '../lib/place-names';
 import type { TapResult } from './globe/MiniGlobe';
 import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
 
@@ -76,7 +76,7 @@ export const CountrySheet = memo(function CountrySheet({
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
   const flag = country?.data?.flag;
-  const name = country?.countryName;
+  const name = displayCountryName(country?.countryName ?? null);
   const handleDataRef = useRef({ flag, name });
   handleDataRef.current = { flag, name };
   const CountryHandle = useCallback(() => {
