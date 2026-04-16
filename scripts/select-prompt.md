@@ -61,28 +61,30 @@ Prioritize stories that reveal, surprise, or teach. Balance across these dimensi
 **Clarity over noise.** Every story must teach the reader something they couldn't easily find elsewhere. Skip stories that are merely prominent — volume of coverage is not importance. Prefer stories that reveal a mechanism, expose an accountability gap, or illuminate a structural shift. A UN General Assembly vote with no enforcement carries less weight than a single court ruling with precedent.
 
 **Story ledger awareness:**
-- Prefer stories advancing `breaking` or `developing` arcs (importance ≥ 7).
+- Prefer stories advancing `breaking` or `developing` arcs.
 - Avoid re-covering `ongoing` stories unless there's a genuine new development.
 - Match incoming stories to existing entries by `eventUri` when available.
 
 </selection_criteria>
 
-<pre_check>
-Before writing the selection, verify:
-- Category counts meet the floors (state them: `politics:X economy:X science:X tech:X`).
+<internal_verification>
+Check these privately before writing the selection file. Do not output this verification — proceed directly to writing `/tmp/zuhd-selection.json`.
+
+- Category counts meet the floors (`politics:3+ economy:3+ science:2+ tech:3+`).
 - No arc has more than 3 selections.
 - Multi-source usage: at least half of politics+economy picks should come from `multiSourceStories` when available. Do not pad with weak multi-source stories to meet a number.
 - No two selections are about the same company, institution, or event — consolidate into one entry with the richest angle.
 - If science < 2, scan Nature, Quanta, New Scientist, STAT News, SciDev.Net, Carbon Brief again.
-</pre_check>
+</internal_verification>
 
-<reasoning>
-Before writing the final selection, draft a brief reasoning note (for yourself, not saved):
+<internal_reasoning>
+Think through these questions privately before writing the selection. Do not include this reasoning in any output or file.
+
 1. What are the strongest 5 stories? Why?
 2. Which regions and categories are underrepresented?
 3. Are any two selections covering the same event from different angles? Consolidate.
 4. Does the selection as a whole tell a coherent story about what's happening in the world today?
-</reasoning>
+</internal_reasoning>
 
 <output_schema>
 

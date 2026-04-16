@@ -31,8 +31,8 @@ fi
 #   Writer:   Sonnet+medium — format-constrained task; medium effort sufficient for templated writing
 #   Editor:   Sonnet+medium — mechanical style checks + editorial judgment; medium is right balance
 #   Reflect:  Sonnet+medium — reflective audit, low frequency
-CLAUDE_MODEL="${ZUHD_MODEL:-sonnet}"
-CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-opus}"
+CLAUDE_MODEL="${ZUHD_MODEL:-claude-sonnet-4-6}"
+CLAUDE_SELECTOR_MODEL="${ZUHD_SELECTOR_MODEL:-claude-opus-4-7}"
 export ZUHD_MODEL="$CLAUDE_MODEL"
 
 # Tool whitelist for Claude CLI (--dangerously-skip-permissions is blocked as root)
@@ -83,14 +83,29 @@ echo "--- Stage 0: API + RSS feed fetch ---" | tee -a "$LOG_FILE"
 T0=$SECONDS
 
 # Step 1: NewsAPI.ai event-grouped fetch (3 queries, 3 tokens)
+rm -f /tmp/zuhd-feed-api.json
 node scripts/fetch-news-api.js 2>>"$LOG_FILE"
+API_EXIT=$?
+if [ "$API_EXIT" -ne 0 ]; then
+  echo "⚠ API fetch failed (exit $API_EXIT) — see log for error. RSS-only cycle." | tee -a "$LOG_FILE"
+fi
 API_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed-api.json'));console.log(d.stories.length+' stories from '+d.events+' events')}catch{console.log('failed')}" 2>/dev/null)
 echo "API fetch: $API_STATS" | tee -a "$LOG_FILE"
 
 # Step 2: RSS niche sources (HN, 404 Media, Bellingcat, Mada Masr, etc.)
 node scripts/fetch-news.js 2>>"$LOG_FILE"
+RSS_EXIT=$?
+if [ "$RSS_EXIT" -ne 0 ]; then
+  echo "⚠ RSS fetch failed (exit $RSS_EXIT)" | tee -a "$LOG_FILE"
+fi
 RSS_STATS=$(node -e "try{const d=JSON.parse(require('fs').readFileSync('/tmp/zuhd-feed-rss.json'));console.log(d.stories?.length||d.freshItems||0)}catch{console.log('0')}" 2>/dev/null)
 echo "RSS fetch: ${RSS_STATS} stories" | tee -a "$LOG_FILE"
+
+# Abort if both fetches failed — no feed = no cycle
+if [ "$API_EXIT" -ne 0 ] && [ "$RSS_EXIT" -ne 0 ]; then
+  echo "✗ Both API and RSS fetches failed — aborting cycle" | tee -a "$LOG_FILE"
+  exit 1
+fi
 
 # Step 3: Merge into unified feed
 node scripts/merge-feeds.js 2>>"$LOG_FILE"
@@ -301,7 +316,7 @@ $BODY_LENGTHS
             return fm;
           } catch { return {}; }
         }
-        const breaking = ledger.stories
+        const candidates = ledger.stories
           .filter(s => s.arc === 'breaking' && s.coverageCount === 1)
           .flatMap(s => (s.articles || []).filter(sl => slugs.has(sl)).map(sl => {
             const fm = readArticle(sl);
@@ -310,13 +325,41 @@ $BODY_LENGTHS
               title: fm.title || s.label,
               category: fm.category || s.category || 'news',
               body: fm.lead || '',
-              eventCoverage: parseInt(fm.eventCoverage) || 0
+              eventCoverage: parseInt(fm.eventCoverage) || 0,
+              importance: s.importance || 0
             };
           }))
-          .sort((a, b) => b.eventCoverage - a.eventCoverage)
-          .slice(0, 1)
+          .sort((a, b) => b.eventCoverage - a.eventCoverage);
+        // Experiment 2026-04-16-push-min-coverage: require eventCoverage >= 1
+        // (multi-source validation). Skips pushes when top candidate is niche-only.
+        const MIN_PUSH_COVERAGE = 1;
+        const eligible = candidates.filter(c => c.eventCoverage >= MIN_PUSH_COVERAGE);
+        const selected = eligible.slice(0, 1)
           .map(({ slug, title, category, body }) => ({ slug, title, category, body }));
-        if (breaking.length) console.log(JSON.stringify({ articles: breaking }));
+        const skipReason = (candidates.length > 0 && eligible.length === 0)
+          ? \`all \${candidates.length} candidates below coverage threshold \${MIN_PUSH_COVERAGE}\`
+          : null;
+
+        // Log all candidates and the decision to push-log.json
+        const logPath = 'content/.push-log.json';
+        let pushLog = [];
+        try { pushLog = JSON.parse(fs.readFileSync(logPath, 'utf8')); } catch {}
+        pushLog.push({
+          timestamp: new Date().toISOString(),
+          candidateCount: candidates.length,
+          candidates: candidates.map(c => ({
+            slug: c.slug, title: c.title, category: c.category,
+            eventCoverage: c.eventCoverage, importance: c.importance
+          })),
+          selected: selected[0] || null,
+          skipReason,
+          sent: false
+        });
+        // Keep last 100 entries
+        if (pushLog.length > 100) pushLog = pushLog.slice(-100);
+        fs.writeFileSync(logPath, JSON.stringify(pushLog, null, 2));
+
+        if (selected.length) console.log(JSON.stringify({ articles: selected }));
       ")
       if [ -n "$BREAKING_JSON" ] && [ -n "$PUSH_SECRET" ]; then
         # Craft notification body with Claude — the article lead isn't written for push
@@ -350,21 +393,54 @@ Output ONLY the line, nothing else.
 Article:
 $ARTICLE_TEXT" 2>/dev/null)
           if [ -n "$PUSH_NOTIF" ]; then
-            PUSH_TITLE="Breaking News"
-            PUSH_BODY=$(echo "$PUSH_NOTIF" | head -1)
-            BREAKING_JSON=$(TITLE="$PUSH_TITLE" BODY="$PUSH_BODY" node -e "
-              const d=JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
-              if(process.env.TITLE) d.articles[0].title=process.env.TITLE;
-              d.articles[0].body=process.env.BODY;
-              console.log(JSON.stringify(d))" <<< "$BREAKING_JSON" 2>/dev/null || echo "$BREAKING_JSON")
+            # Inject title + first non-empty line of Claude's output into BREAKING_JSON
+            # in a single node pass. Fails loudly if the body can't be extracted.
+            INJECTED=$(NOTIF="$PUSH_NOTIF" node -e "
+              const d = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
+              const body = (process.env.NOTIF||'').trim().split(/\r?\n/).map(l=>l.trim()).filter(Boolean)[0];
+              if (!body) { process.stderr.write('empty push body from claude\n'); process.exit(2); }
+              d.articles[0].title = 'Breaking News';
+              d.articles[0].body = body;
+              process.stdout.write(JSON.stringify(d));
+            " <<< "$BREAKING_JSON" 2>>"$LOG_FILE")
+            if [ -n "$INJECTED" ]; then
+              BREAKING_JSON="$INJECTED"
+            else
+              echo "⚠ Push body injection failed — skipping this push" | tee -a "$LOG_FILE"
+              BREAKING_JSON=""
+            fi
           fi
         fi
-        echo "Pushing breaking news: $BREAKING_JSON" | tee -a "$LOG_FILE"
-        curl -s -X POST "https://zuhd.news/api/push" \
-          -H "Authorization: Bearer $PUSH_SECRET" \
-          -H "Content-Type: application/json" \
-          -d "$BREAKING_JSON" 2>&1 | tee -a "$LOG_FILE"
+        if [ -n "$BREAKING_JSON" ]; then
+          echo "Pushing breaking news: $BREAKING_JSON" | tee -a "$LOG_FILE"
+          PUSH_RESPONSE=$(curl -s -X POST "https://zuhd.news/api/push" \
+            -H "Authorization: Bearer $PUSH_SECRET" \
+            -H "Content-Type: application/json" \
+            -d "$BREAKING_JSON")
+          echo "$PUSH_RESPONSE" | tee -a "$LOG_FILE"
+          # Update push log: derive title/body from the sent JSON itself (no shell-var coupling)
+          BJSON="$BREAKING_JSON" PRESP="${PUSH_RESPONSE:-}" node -e "
+            const fs = require('fs');
+            const logPath = 'content/.push-log.json';
+            try {
+              const sent = JSON.parse(process.env.BJSON);
+              const art = sent.articles?.[0] || {};
+              const log = JSON.parse(fs.readFileSync(logPath, 'utf8'));
+              const last = log[log.length - 1];
+              if (last) {
+                last.sent = true;
+                last.pushTitle = art.title;
+                last.pushBody = art.body;
+                try { last.response = JSON.parse(process.env.PRESP); } catch { last.response = process.env.PRESP; }
+              }
+              fs.writeFileSync(logPath, JSON.stringify(log, null, 2));
+            } catch (e) { process.stderr.write('push-log update failed: ' + e.message + '\n'); }
+          " 2>>"$LOG_FILE"
+        fi
       fi
+      # Commit push log
+      git add content/.push-log.json 2>/dev/null
+      git diff --cached --quiet content/.push-log.json || git commit -m "Push log $(date -u +%Y-%m-%dT%H:%M)" 2>&1 | tee -a "$LOG_FILE"
     fi
   else
     echo "Build failed — skipping deploy" | tee -a "$LOG_FILE"

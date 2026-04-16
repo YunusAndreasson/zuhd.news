@@ -1,6 +1,24 @@
 {
   "version": 1,
-  "activeExperiment": null,
+  "activeExperiment": {
+    "id": "2026-04-16-push-min-coverage",
+    "startDate": "2026-04-16",
+    "evaluateAfter": "2026-04-19",
+    "prNumber": null,
+    "hypothesis": "Requiring eventCoverage >= 1 on breaking-news push candidates filters out niche-only stories with no wire-service validation, raising push quality to Reuters-like standards. Expected impact on recent 15-push baseline: 3 drops (20% volume reduction), all from morning cycles where niche feeds published before wires caught up.",
+    "parameter": "Breaking-news push minimum eventCoverage threshold",
+    "file": "scripts/run-cycle.sh",
+    "oldValue": 0,
+    "newValue": 1,
+    "targetMetric": "push.falsePositiveRate (cycles where top candidate had 0 wire-source corroboration)",
+    "targetDirection": "decrease",
+    "baseline": {
+      "pushesPerDay": 5,
+      "zeroCoveragePushesPer3Days": 3,
+      "avgCandidatesPerCycle": 9.7,
+      "categoryMix": { "politics": 67, "economy": 20, "tech": 13, "science": 0 }
+    }
+  },
   "history": [
     {
       "id": "2026-04-12-tech-floor-3",

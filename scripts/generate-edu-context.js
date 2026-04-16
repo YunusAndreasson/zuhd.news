@@ -150,7 +150,7 @@ console.log(`  Calling Opus (${candidates.length} candidates)...`)
 const env = { ...process.env }
 delete env.CLAUDECODE
 const args = [
-  '--model', 'opus',
+  '--model', 'claude-opus-4-7',
   '--effort', 'medium',
   '--no-session-persistence',
   '--max-turns', '3',

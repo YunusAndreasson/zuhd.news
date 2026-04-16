@@ -180,8 +180,10 @@ async function apiPost(endpoint, params) {
     body: JSON.stringify({ apiKey: API_KEY, ...params }),
   })
   if (!res.ok) {
-    console.error(`API ${endpoint} error ${res.status}`)
-    return {}
+    // Surface a sliver of the body so 401/429/5xx are diagnosable from logs.
+    let detail = ''
+    try { detail = (await res.text()).slice(0, 200) } catch {}
+    throw new Error(`NewsAPI.ai ${endpoint} ${res.status} ${res.statusText}${detail ? ' — ' + detail : ''}`)
   }
   return res.json()
 }
