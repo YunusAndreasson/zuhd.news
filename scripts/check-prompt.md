@@ -90,7 +90,7 @@ FIX: Nested clauses → one idea per sentence.
 
 <example>
 BEFORE: Israel expanded its military operation in northern Gaza on Tuesday, targeting what it called Hamas infrastructure. The offensive has displaced thousands of Palestinians and drawn international criticism.
-AFTER: Thousands of Palestinians fled northern Gaza after Israeli forces expanded ground operations. Palestinian health officials said 47 were killed in overnight strikes. Israel said it targeted Hamas infrastructure.
+AFTER: Palestinian health officials said 47 were killed in Israeli overnight strikes on northern Gaza. Residents fled as Israeli forces expanded ground operations across the north. Israel said it targeted Hamas infrastructure.
 FIX: Centers affected people. Specific number. Both sides attributed.
 </example>
 

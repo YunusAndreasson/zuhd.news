@@ -132,7 +132,7 @@ sources:
     country: "QA"
 ---
 
-Gaza — 4 hospitals shut down this week. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
+Gaza — 4 hospitals have gone dark. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
 </example>
 
 <example>
@@ -149,7 +149,7 @@ sources:
     country: "MY"
 ---
 
-Hanoi — 600,000 Starlink terminals are now legal. The radio frequency authority licensed 4 gateway stations, covering 20 million people without internet access. Starlink will compete with state-backed carriers that control terrestrial infrastructure.
+Hanoi — 20 million unconnected Vietnamese gain satellite broadband. The radio frequency authority licensed 4 gateway stations and 600,000 Starlink terminals — the first Western carrier cleared for the market. Starlink will compete with state-backed carriers that control terrestrial infrastructure.
 </example>
 
 <example>
