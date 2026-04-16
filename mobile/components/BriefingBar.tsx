@@ -79,6 +79,7 @@ export const BriefingBar = memo(function BriefingBar({
   const isScrubbing = useSharedValue(0);
   const scrubX = useSharedValue(0);
   const [scrubTimeLabel, setScrubTimeLabel] = useState('');
+  const prevLabelRef = useRef('');
 
   const seekToX = useCallback(
     (x: number) => {
@@ -86,7 +87,11 @@ export const BriefingBar = memo(function BriefingBar({
       const fraction = Math.max(0, Math.min(1, x / barWidthRef.current));
       progressSV.value = fraction;
       onSeek(fraction * duration);
-      setScrubTimeLabel(formatTime(Math.round(fraction * duration)));
+      const label = formatTime(Math.round(fraction * duration));
+      if (label !== prevLabelRef.current) {
+        prevLabelRef.current = label;
+        setScrubTimeLabel(label);
+      }
     },
     [duration, onSeek, progressSV],
   );

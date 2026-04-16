@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { memo, type ReactNode, useCallback, useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
@@ -22,7 +22,7 @@ interface SwipeableRowProps {
   actionLabel?: string;
 }
 
-export function SwipeableRow({
+export const SwipeableRow = memo(function SwipeableRow({
   children,
   onSwipeAction,
   actionLabel = 'remove',
@@ -30,23 +30,31 @@ export function SwipeableRow({
   const { colors, font, typography } = useTheme();
   const translateX = useSharedValue(0);
 
-  const panGesture = Gesture.Pan()
-    .activeOffsetX([-12, 12])
-    .failOffsetY([-10, 10])
-    .onUpdate((e) => {
-      'worklet';
-      translateX.value = Math.min(0, Math.max(-ACTION_WIDTH, e.translationX));
-    })
-    .onEnd(() => {
-      'worklet';
-      if (translateX.value < SWIPE_THRESHOLD) {
-        translateX.value = withSpring(0, ANIMATION.spring);
-        runOnJS(hapticImpact)();
-        runOnJS(onSwipeAction)();
-      } else {
-        translateX.value = withSpring(0, ANIMATION.spring);
-      }
-    });
+  const fireAction = useCallback(() => {
+    hapticImpact();
+    onSwipeAction();
+  }, [onSwipeAction]);
+
+  const panGesture = useMemo(
+    () =>
+      Gesture.Pan()
+        .activeOffsetX([-12, 12])
+        .failOffsetY([-10, 10])
+        .onUpdate((e) => {
+          'worklet';
+          translateX.value = Math.min(0, Math.max(-ACTION_WIDTH, e.translationX));
+        })
+        .onEnd(() => {
+          'worklet';
+          if (translateX.value < SWIPE_THRESHOLD) {
+            translateX.value = withSpring(0, ANIMATION.spring);
+            runOnJS(fireAction)();
+          } else {
+            translateX.value = withSpring(0, ANIMATION.spring);
+          }
+        }),
+    [translateX, fireAction],
+  );
 
   const rowStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
@@ -91,7 +99,7 @@ export function SwipeableRow({
       </GestureDetector>
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
