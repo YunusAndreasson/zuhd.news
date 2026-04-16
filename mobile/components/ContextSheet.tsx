@@ -12,7 +12,7 @@ import { SheetHandle } from './SheetHandle';
 import { SheetContainer, useMaxSheetHeight } from './SheetPrimitives';
 import { SourceRow } from './SourceRow';
 
-const MoreHandle = () => <SheetHandle title="more" />;
+const MoreHandle = () => <SheetHandle />;
 
 // ---------------------------------------------------------------------------
 // Main sheet
@@ -21,7 +21,6 @@ const MoreHandle = () => <SheetHandle title="more" />;
 interface ContextSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
   sources: ArticleSource[];
-  eventCoverage: number | null;
   brief: ContextBrief | null;
   loading: boolean;
   threadLabel?: string;
@@ -33,7 +32,6 @@ interface ContextSheetProps {
 export const ContextSheet = memo(function ContextSheet({
   sheetRef,
   sources,
-  eventCoverage,
   brief,
   loading,
   threadLabel,
@@ -73,7 +71,7 @@ export const ContextSheet = memo(function ContextSheet({
       return (
         <View key={i}>
           {entry.heading && (
-            <Text style={[styles.eduHeading, textStyles.smallCaps]}>{entry.heading}</Text>
+            <Text style={[styles.eduHeading, textStyles.smallCapsXs]}>{entry.heading}</Text>
           )}
           <Text selectable style={[styles.bodyText, textStyles.body, styles.bodySpacing]}>
             {entry.body}
@@ -132,14 +130,9 @@ export const ContextSheet = memo(function ContextSheet({
         {/* ── Sources ── */}
         {hasSources && (
           <>
-            <Text style={[styles.sectionLabel, textStyles.smallCapsXs]}>
+            <Text style={[styles.sectionLabel, textStyles.smallCaps]}>
               {sources.length === 1 ? 'source' : 'sources'}
             </Text>
-            {eventCoverage != null && eventCoverage > sources.length && (
-              <Text style={[styles.sectionSubtitle, textStyles.sectionHeading]}>
-                {eventCoverage}+ sources covering this story
-              </Text>
-            )}
             {sources.map((s, i) => (
               <SourceRow
                 key={s.name}
@@ -157,9 +150,8 @@ export const ContextSheet = memo(function ContextSheet({
             {hasSources && (
               <View style={[styles.sectionDivider, { backgroundColor: colors.rule }]} />
             )}
-            <Text style={[styles.sectionLabel, textStyles.smallCapsXs]}>context</Text>
-            <Text style={[styles.contextHeading, textStyles.sectionHeading]} numberOfLines={2}>
-              {threadLabel}
+            <Text style={[styles.sectionLabel, styles.sectionLabelContext, textStyles.smallCaps]}>
+              context
             </Text>
             {loading && !brief && <ActivityIndicator color={colors.accent} style={styles.loader} />}
             {timeline.map(renderTimelineEntry)}
@@ -175,11 +167,8 @@ const styles = StyleSheet.create({
   sectionLabel: {
     marginBottom: SPACING.sm,
   },
-  sectionSubtitle: {
-    marginBottom: SPACING.sm,
-  },
   /* ── Context ── */
-  contextHeading: {
+  sectionLabelContext: {
     marginBottom: SPACING.md,
   },
   sectionDivider: {

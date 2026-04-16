@@ -80,7 +80,7 @@ export default function HomeScreen() {
   // Sheet refs
   const menuSheetRef = useRef<BottomSheetModal>(null);
   const [digSources, setDigSources] = useState<ArticleSource[]>([]);
-  const [digCoverage, setDigCoverage] = useState<number | null>(null);
+
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
   const searchSheetRef = useRef<BottomSheetModal>(null);
@@ -168,7 +168,7 @@ export default function HomeScreen() {
     hapticImpact();
     // Capture article metadata at open time
     setDigSources(activeArticle.sources);
-    setDigCoverage(activeArticle.eventCoverage);
+
     // Fetch context if article has a thread
     if (activeArticle.threadId) {
       const allArticles = Object.values(groupedRef.current).flat();
@@ -546,7 +546,6 @@ export default function HomeScreen() {
       <ContextSheet
         sheetRef={contextSheetRef}
         sources={digSources}
-        eventCoverage={digCoverage}
         brief={contextBrief}
         loading={contextLoading}
         threadLabel={contextThreadLabel}
@@ -554,7 +553,6 @@ export default function HomeScreen() {
         renderBackdrop={renderBackdrop}
         onDismiss={() => {
           setDigSources([]);
-          setDigCoverage(null);
           setContextThreadLabel(undefined);
         }}
       />

@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
   infoLinks: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: SPACING.md,
+    gap: SPACING.smPlus,
   },
   backButton: {
     marginBottom: SPACING.lg,

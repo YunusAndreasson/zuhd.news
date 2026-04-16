@@ -186,7 +186,7 @@ export const LAYOUT = {
   timelineDot: 5,
   timelineLineWidth: 1,
   pillPaddingV: 2,
-  pillRadius: 3,
+  pillRadius: 4,
   handleWidth: 36,
   handleHeight: 4,
   handleRadius: 2,

@@ -208,7 +208,6 @@ export const SettingsSheet = memo(function SettingsSheet({
             fontSize: typography.sizeXs,
             color: colors.textSecondary,
             marginTop: SPACING.xl,
-            textAlign: 'center',
           }}
         >
           zuhd.news · {Constants.expoConfig?.version ?? ''}
