@@ -1271,11 +1271,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Land silhouette */}
       {state.landPath && (
-        <Path
-          path={state.landPath}
-          color={light ? colors.accent : colors.rule}
-          opacity={light ? 0.25 : 0.4}
-        />
+        <Path path={state.landPath} color={colors.accent} opacity={light ? 0.25 : 0.1} />
       )}
 
       {/* Neighbouring country borders — visible when scroll is at rest */}
@@ -1284,8 +1280,8 @@ export const MiniGlobe = memo(function MiniGlobe({
           path={state.bordersPath}
           color={colors.accent}
           style="stroke"
-          strokeWidth={0.5}
-          opacity={0.22}
+          strokeWidth={0.7}
+          opacity={light ? 0.3 : 0.3}
         />
       )}
 
@@ -1296,7 +1292,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           color={colors.accent}
           style="stroke"
           strokeWidth={0.4}
-          opacity={light ? 0.12 : 0.08}
+          opacity={light ? 0.12 : 0.05}
         />
       )}
 
@@ -1313,7 +1309,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           color={colors.atmosphere}
           style="stroke"
           strokeWidth={0.5}
-          opacity={0.2}
+          opacity={0.12}
         />
       )}
 
