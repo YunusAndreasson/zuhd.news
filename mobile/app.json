@@ -2,7 +2,7 @@
   "expo": {
     "name": "zuhd.news",
     "slug": "zuhd-news",
-    "version": "1447.10.104",
+    "version": "1447.10.105",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -11,7 +11,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
-      "buildNumber": "211",
+      "buildNumber": "212",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
@@ -29,7 +29,7 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "versionCode": 210,
+      "versionCode": 212,
       "permissions": [
         "android.permission.FOREGROUND_SERVICE",
         "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
@@ -41,16 +41,19 @@
     },
     "plugins": [
       "expo-router",
-      ["expo-font", {
-        "fonts": [
-          "./assets/fonts/SourceSans3-Regular.ttf",
-          "./assets/fonts/SourceSans3-SemiBold.ttf",
-          "./assets/fonts/SourceSans3-Bold.ttf",
-          "./assets/fonts/SourceSans3-Italic.ttf",
-          "./assets/fonts/SourceSans3-BoldItalic.ttf",
-          "./assets/fonts/SourceSans3SC-SemiBold.ttf"
-        ]
-      }],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/SourceSans3-Regular.ttf",
+            "./assets/fonts/SourceSans3-SemiBold.ttf",
+            "./assets/fonts/SourceSans3-Bold.ttf",
+            "./assets/fonts/SourceSans3-Italic.ttf",
+            "./assets/fonts/SourceSans3-BoldItalic.ttf",
+            "./assets/fonts/SourceSans3SC-SemiBold.ttf"
+          ]
+        }
+      ],
       [
         "expo-audio",
         {
