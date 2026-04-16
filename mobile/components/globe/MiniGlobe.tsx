@@ -7,6 +7,7 @@ import {
   LinearGradient,
   Path,
   Picture,
+  RadialGradient,
   Rect,
   Skia,
   Text as SkiaText,
@@ -110,6 +111,12 @@ const ANTARCTIC_CIRCLE = geoCircle().center(SOUTH_POLE).radius(23.44)();
 const HALF_PI = Math.PI / 2;
 const DECAY_LAMBDA = Math.LN2 / 18; // 18h half-life
 const PULSE_EASING = Easing.out(Easing.cubic);
+
+/** Append an alpha channel to a hex color. a ∈ [0, 1]. Clamped. */
+function withAlpha(hex: string, a: number): string {
+  const byte = Math.round(Math.min(1, Math.max(0, a)) * 255);
+  return `${hex}${byte.toString(16).padStart(2, '0')}`;
+}
 
 const MAKKAH_GLOW_LAYERS: GlowLayer[] = [
   { r: 12, opacity: 0.03, blur: 8 },
@@ -578,7 +585,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             countryName: geo.countryName,
           });
       }
-      const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 8);
+      const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 12);
       const first = sorted[0];
       if (!first) return [];
       const logMax = Math.log(first.total + 1);
@@ -601,7 +608,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const ageHours = (now - pt.t) / 3_600_000;
       const decay = Math.exp(-DECAY_LAMBDA * ageHours);
       const weight = Math.max(pt.c, 1) * decay;
-      if (weight < 0.05) continue;
+      if (weight < 0.03) continue;
 
       // 0.5° grid (~55km) merges nearby datelines
       const key = `${Math.round(pt.lat * 2) / 2},${Math.round(pt.lng * 2) / 2}`;
@@ -618,7 +625,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     }
 
     // Resolve country names only for top clusters
-    const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 8);
+    const sorted = [...clusters.values()].sort((a, b) => b.total - a.total).slice(0, 12);
     const first2 = sorted[0];
     if (!first2) return [];
     const logMax = Math.log(first2.total + 1);
@@ -649,15 +656,17 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   const cachedCountryRef = useRef<GeoJSON.Feature | null>(null);
 
-  // Reusable Skia path objects — reset each frame instead of allocating new ones
-  const landPathRef = useRef(Skia.Path.Make());
-  const bordersPathRef = useRef(Skia.Path.Make());
-  const countryPathRef = useRef(Skia.Path.Make());
-  const nightPathRef = useRef(Skia.Path.Make());
-  const twilightPathRef = useRef(Skia.Path.Make());
-  const graticulePathRef = useRef(Skia.Path.Make());
-  const qiblaPathRef = useRef(Skia.Path.Make());
-  const sourceArcsRef = useRef(Skia.Path.Make());
+  // Reusable Skia path objects — rewound each frame instead of allocating new ones.
+  // setIsVolatile(true) tells Skia to skip GPU-side caching since these change every frame;
+  // rewind() (vs reset()) keeps internal storage allocated between frames.
+  const landPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
+  const bordersPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
+  const countryPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
+  const nightPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
+  const twilightPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
+  const graticulePathRef = useRef(Skia.Path.Make().setIsVolatile(true));
+  const qiblaPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
+  const sourceArcsRef = useRef(Skia.Path.Make().setIsVolatile(true));
 
   // Keep closure dependencies in refs so the reproject callback stays stable
   const articlesRef = useRef(articles);
@@ -721,9 +730,9 @@ export const MiniGlobe = memo(function MiniGlobe({
       const pg = pgRef.current;
       pg.projection(proj);
 
-      // Land — reuse path object to avoid native memory accumulation
+      // Land — rewind reuses the underlying buffer (vs reset which frees it)
       const landPath = landPathRef.current;
-      landPath.reset();
+      landPath.rewind();
       skiaCtx.setPath(landPath);
       pg.context(skiaCtx as unknown as GeoContext)(land);
 
@@ -738,20 +747,25 @@ export const MiniGlobe = memo(function MiniGlobe({
       let countryPath: ReturnType<typeof Skia.Path.Make> | null = null;
       if (cachedCountryRef.current) {
         countryPath = countryPathRef.current;
-        countryPath.reset();
+        countryPath.rewind();
         skiaCtx.setPath(countryPath);
         pg.context(skiaCtx as unknown as GeoContext)(cachedCountryRef.current);
       }
 
-      // Neighbouring country borders
-      const bordersPath = bordersPathRef.current;
-      bordersPath.reset();
-      skiaCtx.setPath(bordersPath);
-      pg.context(skiaCtx as unknown as GeoContext)(bordersMesh);
-
       // Near-settled check — reused for cosmetic layers AND arc visibility.
       const ARC_WINDOW = 0.25;
       const nearSettled = frac < ARC_WINDOW || frac > 1 - ARC_WINDOW;
+
+      // Neighbouring country borders — large mesh, skip during mid-scroll.
+      // Borders are visually imperceptible during fast rotation and this
+      // is one of the heaviest projection operations per frame.
+      let bordersPath: ReturnType<typeof Skia.Path.Make> | null = null;
+      if (nearSettled) {
+        bordersPath = bordersPathRef.current;
+        bordersPath.rewind();
+        skiaCtx.setPath(bordersPath);
+        pg.context(skiaCtx as unknown as GeoContext)(bordersMesh);
+      }
 
       // --- Cosmetic layers: skip during mid-scroll for perf (~15-20% savings).
       // These are invisible during fast rotation; reproject them only when
@@ -770,14 +784,14 @@ export const MiniGlobe = memo(function MiniGlobe({
         const nightCenter: [number, number] = [sunLng + 180, -sunLat];
         const nightGeo = nightCircleGen.center(nightCenter).radius(90)();
         const np = nightPathRef.current;
-        np.reset();
+        np.rewind();
         skiaCtx.setPath(np);
         pg.context(skiaCtx as unknown as GeoContext)(nightGeo);
         nightPath = np;
 
         // Low-sun band
         const tp = twilightPathRef.current;
-        tp.reset();
+        tp.rewind();
         skiaCtx.setPath(tp);
         pg.context(skiaCtx as unknown as GeoContext)(
           nightCircleGen.center(nightCenter).radius(96)(),
@@ -786,7 +800,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
         // Equator + polar circles
         const gp = graticulePathRef.current;
-        gp.reset();
+        gp.rewind();
         skiaCtx.setPath(gp);
         pg.context(skiaCtx as unknown as GeoContext)(graticuleLines);
         pg.context(skiaCtx as unknown as GeoContext)(ARCTIC_CIRCLE);
@@ -837,7 +851,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       const qiblaP = qiblaPathRef.current;
-      qiblaP.reset();
+      qiblaP.rewind();
       let hasQibla = false;
       if (nearSettled && geo) {
         const storyPt: [number, number] = [geo.lng, geo.lat];
@@ -861,7 +875,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       // Source arcs — great circle lines from each source's HQ to the article location
       const srcArcs = sourceArcsRef.current;
-      srcArcs.reset();
+      srcArcs.rewind();
       let hasSourceArcs = false;
       if (nearSettled && geo) {
         const storyPt: [number, number] = [geo.lng, geo.lat];
@@ -1187,37 +1201,87 @@ export const MiniGlobe = memo(function MiniGlobe({
     return p;
   }, [moonPos.x, moonPos.y, moonR]);
 
-  // Stars + atmospheric halo — recorded into an immutable Picture so Skia
-  // replays a single cached GPU command instead of re-evaluating ~40+ React
-  // elements on every scroll-driven rerender.
+  // Stars — recorded into an immutable Picture so Skia replays a single cached
+  // GPU command instead of re-evaluating dozens of React elements per rerender.
+  // Size distribution (cubed) mimics a real sky: mostly tiny, rare bright stars.
+  // Bright stars get a subtle 4-point glint (long-exposure photography look).
   const starsPicture = useMemo(() => {
     const recorder = Skia.PictureRecorder();
     const canvas = recorder.beginRecording(Skia.XYWHRect(0, 0, width, height));
-    const paint = Skia.Paint();
-    paint.setColor(Skia.Color(colors.accent));
+
+    // Park–Miller LCG — deterministic positions for a stable night sky
     let seed = 42;
     const rand = () => {
-      seed = (seed * 16807 + 0) % 2147483647;
+      seed = (seed * 16807) % 2147483647;
       return seed / 2147483647;
     };
-    for (let i = 0; i < 40; i++) {
+
+    // Three tints — mostly neutral (accent), a pinch of cool (atmosphere) and warm (dome)
+    const neutral = Skia.Paint();
+    neutral.setColor(Skia.Color(colors.accent));
+    const cool = Skia.Paint();
+    cool.setColor(Skia.Color(colors.atmosphere));
+    const warm = Skia.Paint();
+    warm.setColor(Skia.Color(colors.dome));
+
+    const glint = Skia.Paint();
+    glint.setColor(Skia.Color(colors.accent));
+    glint.setStrokeWidth(0.35);
+    glint.setAntiAlias(true);
+
+    // Exclude a ring slightly larger than the globe so stars don't clash with the rim glow
+    const exclusionR2 = globeRadius * globeRadius * 1.05;
+
+    for (let i = 0; i < 90; i++) {
       const x = rand() * width;
       const y = rand() * height;
       const dx = x - cx;
       const dy = y - cy;
-      if (dx * dx + dy * dy < globeRadius * globeRadius) continue;
-      const r = 0.5 + rand() * 1.0;
-      paint.setAlphaf(0.15 + rand() * 0.35);
+      if (dx * dx + dy * dy < exclusionR2) continue;
+
+      // Cubed random: heavily skewed toward small values — most stars pinpricks.
+      const t = rand();
+      const r = 0.2 + t * t * t * 1.6;
+
+      // Color roll: 78% neutral, 12% cool, 10% warm
+      const hue = rand();
+      const paint = hue < 0.12 ? cool : hue < 0.22 ? warm : neutral;
+
+      // Subtle alpha range — stars should be atmospheric dust, not focal points
+      const alpha = 0.07 + t * 0.22;
+      paint.setAlphaf(alpha);
       canvas.drawCircle(x, y, r, paint);
+
+      // Only the rarest (largest) stars get a very faint cross-glint
+      if (r > 1.45) {
+        glint.setAlphaf(alpha * 0.22);
+        const len = r * 2.4;
+        canvas.drawLine(x - len, y, x + len, y, glint);
+        canvas.drawLine(x, y - len, x, y + len, glint);
+      }
     }
-    // Atmospheric halo — static blurred circle at globe edge
-    const haloPaint = Skia.Paint();
-    haloPaint.setColor(Skia.Color(colors.atmosphere));
-    haloPaint.setAlphaf(0.12);
-    haloPaint.setMaskFilter(Skia.MaskFilter.MakeBlur(0, globeRadius * 0.08, true));
-    canvas.drawCircle(cx, cy, globeRadius * 1.05, haloPaint);
+
     return recorder.finishRecordingAsPicture();
-  }, [width, height, cx, cy, globeRadius, colors.accent, colors.atmosphere]);
+  }, [width, height, cx, cy, globeRadius, colors.accent, colors.atmosphere, colors.dome]);
+
+  // Atmospheric rim + ocean-disk gradient stops. Memoized per-theme so the
+  // declarative RadialGradient props stay referentially stable during scroll.
+  const rimColors = useMemo(() => {
+    const atm = colors.atmosphere;
+    return [
+      `${atm}00`,
+      `${atm}00`,
+      `${atm}${light ? '55' : '40'}`,
+      `${atm}${light ? '18' : '14'}`,
+      `${atm}00`,
+    ];
+  }, [colors.atmosphere, light]);
+
+  const oceanColors = useMemo(() => {
+    const atm = colors.atmosphere;
+    // Subtle Fresnel — slightly dimmer at center, brighter toward the rim
+    return [`${atm}${light ? '14' : '0A'}`, `${atm}${light ? '29' : '19'}`];
+  }, [colors.atmosphere, light]);
 
   return (
     <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
@@ -1238,14 +1302,21 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       )}
 
-      {/* Ocean disk — subtle sphere body behind land */}
-      <Circle
-        cx={cx}
-        cy={cy}
-        r={globeRadius}
-        color={colors.atmosphere}
-        opacity={light ? 0.12 : 0.07}
-      />
+      {/* Atmospheric rim — radial gradient ring just outside the globe edge.
+          Single declarative draw, no per-frame cost. */}
+      <Circle cx={cx} cy={cy} r={globeRadius * 1.25}>
+        <RadialGradient
+          c={vec(cx, cy)}
+          r={globeRadius * 1.25}
+          colors={rimColors}
+          positions={[0, 0.78, 0.84, 0.93, 1]}
+        />
+      </Circle>
+
+      {/* Ocean disk — subtle Fresnel gradient reads as a 3D sphere instead of a flat circle */}
+      <Circle cx={cx} cy={cy} r={globeRadius}>
+        <RadialGradient c={vec(cx, cy)} r={globeRadius} colors={oceanColors} positions={[0, 1]} />
+      </Circle>
 
       {/* Land silhouette */}
       {state.landPath && (
@@ -1291,21 +1362,29 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       )}
 
-      {/* Coverage hotspot ambient glows — top coverage hotspots */}
+      {/* Coverage hotspots — RadialGradient halo + sharp core dot.
+          Gradient shader gives smoother falloff than stacked BlurMask circles
+          and skips the blur pass entirely. Recency fades older hotspots:
+          fresh stories are prominent, stale ones whisper. */}
       {state.hotspotGlows.map((z, i) => {
-        // Recency fades older hotspots: fresh stories are prominent, stale ones whisper
         const fade = 0.3 + 0.7 * z.recency;
+        const haloR = 18 + z.intensity * 16;
+        const peak = withAlpha(colors.text, (0.1 + z.intensity * 0.13) * fade);
+        const mid = withAlpha(colors.text, (0.04 + z.intensity * 0.06) * fade);
+        const edge = `${colors.text}00`;
+        const coreR = 0.9 + z.intensity * 0.7;
         return (
-          <Glow
-            key={i}
-            x={z.x}
-            y={z.y}
-            color={colors.text}
-            layers={[
-              { r: 12 + z.intensity * 14, opacity: (0.03 + z.intensity * 0.06) * fade, blur: 10 },
-              { r: 4 + z.intensity * 7, opacity: (0.05 + z.intensity * 0.08) * fade, blur: 3 },
-            ]}
-          />
+          <Group key={i}>
+            <Circle cx={z.x} cy={z.y} r={haloR}>
+              <RadialGradient
+                c={vec(z.x, z.y)}
+                r={haloR}
+                colors={[peak, mid, edge]}
+                positions={[0, 0.35, 1]}
+              />
+            </Circle>
+            <Circle cx={z.x} cy={z.y} r={coreR} color={colors.text} opacity={0.42 * fade} />
+          </Group>
         );
       })}
 
