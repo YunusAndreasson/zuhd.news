@@ -132,7 +132,7 @@ sources:
     country: "QA"
 ---
 
-Gaza — 4 hospitals have gone dark. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
+Gaza — 4 of 11 remaining hospitals have gone dark. Israel blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warned the health system has passed the point of collapse.
 </example>
 
 <example>

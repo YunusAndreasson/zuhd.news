@@ -84,13 +84,13 @@ Check first, before any style rules.
 
 <example>
 BEFORE: The US health department, headed by Robert F. Kennedy Jr., who has questioned the effects of vaccines, sought to use the trial to study the jab's broader health effects.
-AFTER: The trial was proposed by the US health department under Robert F. Kennedy Jr., who has publicly questioned vaccine safety.
+AFTER: The US health department proposed the trial. Kennedy Jr., who leads the department, has publicly questioned vaccine safety.
 FIX: Nested clauses → one idea per sentence.
 </example>
 
 <example>
 BEFORE: Israel expanded its military operation in northern Gaza on Tuesday, targeting what it called Hamas infrastructure. The offensive has displaced thousands of Palestinians and drawn international criticism.
-AFTER: Palestinian health officials said 47 were killed in Israeli overnight strikes on northern Gaza. Residents fled as Israeli forces expanded ground operations across the north. Israel said it targeted Hamas infrastructure.
+AFTER: Israeli overnight strikes killed 47 in northern Gaza, Palestinian health officials said. Residents fled as Israeli forces expanded ground operations across the north. Israel said it targeted Hamas infrastructure.
 FIX: Centers affected people. Specific number. Both sides attributed.
 </example>
 
@@ -102,7 +102,7 @@ FIX: Names the actor. Active voice. No "clashes" for asymmetric violence.
 
 <example>
 BEFORE: A US-funded vaccine trial faces global condemnation. The WHO said the study is unethical. The trial planned to give half of 14,500 newborns a hepatitis B vaccine. The WHO Director-General said withholding the vaccine exposes newborns to infection. Guinea-Bissau's government said it suspended the trial.
-AFTER: 14,500 newborns were enrolled in a trial that withheld a proven vaccine. WHO called the US-funded study in Guinea-Bissau unethical — half the infants would not receive a hepatitis B shot despite evidence it prevents 70-95% of transmission. Guinea-Bissau suspended the trial, but the US CDC has not withdrawn funding.
+AFTER: A US-funded trial enrolled 14,500 Guinea-Bissau newborns to withhold hepatitis B vaccine. WHO called the study unethical — half the infants would not receive a shot despite evidence it prevents 70-95% of transmission. Guinea-Bissau suspended the trial, but the US CDC has not withdrawn funding.
 FIX: 5 sentences → 3. Concrete hook. Mechanism in context. Tension in future.
 </example>
 
