@@ -5,7 +5,8 @@ import {
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { LAYOUT, SPACING } from '../constants/theme';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import { ANIMATION, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import type { TapResult } from './globe/MiniGlobe';
@@ -117,15 +118,21 @@ export const CountrySheet = memo(function CountrySheet({
         {country?.data && (
           <>
             {/* Key stats — at-a-glance numbers */}
-            <View style={[styles.countryKeyStats, { borderBottomColor: colors.rule }]}>
+            <Animated.View
+              entering={FadeInDown.duration(ANIMATION.normal).delay(0)}
+              style={[styles.countryKeyStats, { borderBottomColor: colors.rule }]}
+            >
               <KeyStat label="population" value={country.data.population} />
               <KeyStat label="gdp" value={country.data.gdp} />
               <KeyStat label="military spend" value={country.data.military} />
-            </View>
+            </Animated.View>
 
             {/* Developing stories — shown when coverage hotspots overlap this country */}
             {country.hotspotLabels && country.hotspotLabels.length > 0 && (
-              <View style={styles.hotspotSection}>
+              <Animated.View
+                style={styles.hotspotSection}
+                entering={FadeInDown.duration(ANIMATION.normal).delay(40)}
+              >
                 <Text style={[styles.sheetLabel, textStyles.smallCapsXs]}>
                   {country.hotspotLabels.length === 1 ? 'developing story' : 'developing stories'}
                 </Text>
@@ -146,39 +153,51 @@ export const CountrySheet = memo(function CountrySheet({
                     {label}
                   </Text>
                 ))}
-              </View>
+              </Animated.View>
             )}
 
             {/* Detail rows — ordered by user interest */}
-            <CountryRow
-              label="official name"
-              value={country.data.official !== country.countryName ? country.data.official : null}
-            />
-            <CountryRow label="capital" value={displayLocation(country.data.capital)} />
-            <CountryRow label="languages" value={country.data.languages} />
-            <CountryRow
-              label="currency"
-              value={
-                country.data.currency
-                  ? `${country.data.currency}${country.data.currencySymbol ? ` ${country.data.currencySymbol}` : ''}`
-                  : null
-              }
-            />
-            <CountryRow label="local time" value={country.localTime} />
-            <CountryRow label="area" value={country.data.area} />
-            <CountryRow label="GDP/capita" value={country.data.gdpPerCapita} />
-            <CountryRow label="life expectancy" value={country.data.lifeExpectancy} />
-            <CountryRow label="internet" value={country.data.internetPct} />
-            <CountryRow
-              label="region"
-              value={[
-                country.data.region,
-                country.data.landlocked ? 'landlocked' : null,
-                !country.data.independent ? 'territory' : null,
-              ]
-                .filter(Boolean)
-                .join(' · ')}
-            />
+            {[
+              <CountryRow
+                key="official"
+                label="official name"
+                value={country.data.official !== country.countryName ? country.data.official : null}
+              />,
+              <CountryRow key="capital" label="capital" value={displayLocation(country.data.capital)} />,
+              <CountryRow key="languages" label="languages" value={country.data.languages} />,
+              <CountryRow
+                key="currency"
+                label="currency"
+                value={
+                  country.data.currency
+                    ? `${country.data.currency}${country.data.currencySymbol ? ` ${country.data.currencySymbol}` : ''}`
+                    : null
+                }
+              />,
+              <CountryRow key="time" label="local time" value={country.localTime} />,
+              <CountryRow key="area" label="area" value={country.data.area} />,
+              <CountryRow key="gdppc" label="GDP/capita" value={country.data.gdpPerCapita} />,
+              <CountryRow key="life" label="life expectancy" value={country.data.lifeExpectancy} />,
+              <CountryRow key="internet" label="internet" value={country.data.internetPct} />,
+              <CountryRow
+                key="region"
+                label="region"
+                value={[
+                  country.data.region,
+                  country.data.landlocked ? 'landlocked' : null,
+                  !country.data.independent ? 'territory' : null,
+                ]
+                  .filter(Boolean)
+                  .join(' · ')}
+              />,
+            ].map((row, i) => (
+              <Animated.View
+                key={row.key}
+                entering={FadeInDown.duration(ANIMATION.normal).delay((i + 2) * 40)}
+              >
+                {row}
+              </Animated.View>
+            ))}
           </>
         )}
       </BottomSheetScrollView>

@@ -5,7 +5,8 @@ import {
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import { LAYOUT, SPACING } from '../constants/theme';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import { ANIMATION, LAYOUT, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { ArticleSource, ContextBrief, TimelineEntry } from '../types';
 import { SheetHandle } from './SheetHandle';
@@ -134,13 +135,17 @@ export const ContextSheet = memo(function ContextSheet({
               {sources.length === 1 ? 'source' : 'sources'}
             </Text>
             {sources.map((s, i) => (
-              <SourceRow
+              <Animated.View
                 key={s.name}
-                source={s}
-                isExpanded={expandedSource === i}
-                isLast={i === sources.length - 1}
-                onPress={() => setExpandedSource(expandedSource === i ? null : i)}
-              />
+                entering={FadeInDown.duration(ANIMATION.normal).delay(Math.min(i, 8) * 40)}
+              >
+                <SourceRow
+                  source={s}
+                  isExpanded={expandedSource === i}
+                  isLast={i === sources.length - 1}
+                  onPress={() => setExpandedSource(expandedSource === i ? null : i)}
+                />
+              </Animated.View>
             ))}
           </>
         )}
@@ -155,7 +160,16 @@ export const ContextSheet = memo(function ContextSheet({
               context
             </Text>
             {loading && !brief && <ActivityIndicator color={colors.accent} style={styles.loader} />}
-            {timeline.map(renderTimelineEntry)}
+            {timeline.map((entry, i, arr) => (
+              <Animated.View
+                key={i}
+                entering={FadeInDown.duration(ANIMATION.normal).delay(
+                  (sources.length + Math.min(i, 8)) * 40,
+                )}
+              >
+                {renderTimelineEntry(entry, i, arr)}
+              </Animated.View>
+            ))}
           </>
         )}
       </BottomSheetScrollView>

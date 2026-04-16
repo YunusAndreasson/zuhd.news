@@ -6,7 +6,9 @@ import {
 import Constants from 'expo-constants';
 import { memo } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import {
+  ANIMATION,
   type AppearanceMode,
   type FontFamily,
   type FontSize,
@@ -163,45 +165,55 @@ export const SettingsSheet = memo(function SettingsSheet({
       <BottomSheetScrollView
         contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.xxl }]}
       >
-        <OptionRow
-          label="size"
-          options={FONT_SIZE_OPTIONS}
-          selected={preferences.fontSize}
-          onSelect={setFontSize}
-        />
+        <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(0)}>
+          <OptionRow
+            label="size"
+            options={FONT_SIZE_OPTIONS}
+            selected={preferences.fontSize}
+            onSelect={setFontSize}
+          />
+        </Animated.View>
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        <OptionRow
-          label="font"
-          options={FONT_FAMILY_OPTIONS}
-          selected={preferences.fontFamily}
-          onSelect={setFontFamily}
-        />
+        <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(40)}>
+          <OptionRow
+            label="font"
+            options={FONT_FAMILY_OPTIONS}
+            selected={preferences.fontFamily}
+            onSelect={setFontFamily}
+          />
+        </Animated.View>
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        <OptionRow
-          label="appearance"
-          options={APPEARANCE_OPTIONS}
-          selected={preferences.appearance}
-          onSelect={setAppearance}
-        />
+        <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(80)}>
+          <OptionRow
+            label="appearance"
+            options={APPEARANCE_OPTIONS}
+            selected={preferences.appearance}
+            onSelect={setAppearance}
+          />
+        </Animated.View>
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        <OptionRow
-          label="haptics"
-          options={ON_OFF_OPTIONS}
-          selected={preferences.haptics ? 'on' : 'off'}
-          onSelect={(v) => setHaptics(v === 'on')}
-        />
+        <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(120)}>
+          <OptionRow
+            label="haptics"
+            options={ON_OFF_OPTIONS}
+            selected={preferences.haptics ? 'on' : 'off'}
+            onSelect={(v) => setHaptics(v === 'on')}
+          />
+        </Animated.View>
         <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
-        <OptionRow
-          label="notifications"
-          hint="Briefing ready and breaking news alerts"
-          options={ON_OFF_OPTIONS}
-          selected={preferences.notifications ? 'on' : 'off'}
-          onSelect={(v) => setNotifications(v === 'on')}
-        />
+        <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(160)}>
+          <OptionRow
+            label="notifications"
+            hint="Briefing ready and breaking news alerts"
+            options={ON_OFF_OPTIONS}
+            selected={preferences.notifications ? 'on' : 'off'}
+            onSelect={(v) => setNotifications(v === 'on')}
+          />
+        </Animated.View>
         <Text
           style={{
             ...font.regular,

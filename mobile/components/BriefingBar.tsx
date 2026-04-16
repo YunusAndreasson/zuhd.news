@@ -1,15 +1,18 @@
 import { Ionicons } from '@expo/vector-icons';
-import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
+  Extrapolation,
   FadeIn,
   FadeOut,
+  interpolate,
   LinearTransition,
   runOnJS,
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
+  withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -18,6 +21,7 @@ import { useTheme } from '../hooks/useTheme';
 
 const BAR_MARGIN = SPACING.md;
 const PROGRESS_HEIGHT = 3;
+const TOOLTIP_WIDTH = 48;
 
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
@@ -46,10 +50,16 @@ export const BriefingBar = memo(function BriefingBar({
 }: BriefingBarProps) {
   const { colors, font, typography, textStyles } = useTheme();
   const insets = useSafeAreaInsets();
-  const barWidth = useRef(0);
-  const onBarLayout = useCallback((e: LayoutChangeEvent) => {
-    barWidth.current = e.nativeEvent.layout.width;
-  }, []);
+  const barWidthSV = useSharedValue(0);
+  const barWidthRef = useRef(0);
+  const onBarLayout = useCallback(
+    (e: LayoutChangeEvent) => {
+      const w = e.nativeEvent.layout.width;
+      barWidthRef.current = w;
+      barWidthSV.value = w;
+    },
+    [barWidthSV],
+  );
 
   const progress = duration > 0 ? elapsed / duration : 0;
   const progressSV = useSharedValue(0);
@@ -66,12 +76,17 @@ export const BriefingBar = memo(function BriefingBar({
     transform: [{ scaleX: progressSV.value }],
   }));
 
+  const isScrubbing = useSharedValue(0);
+  const scrubX = useSharedValue(0);
+  const [scrubTimeLabel, setScrubTimeLabel] = useState('');
+
   const seekToX = useCallback(
     (x: number) => {
-      if (duration <= 0 || barWidth.current <= 0) return;
-      const fraction = Math.max(0, Math.min(1, x / barWidth.current));
+      if (duration <= 0 || barWidthRef.current <= 0) return;
+      const fraction = Math.max(0, Math.min(1, x / barWidthRef.current));
       progressSV.value = fraction;
       onSeek(fraction * duration);
+      setScrubTimeLabel(formatTime(Math.round(fraction * duration)));
     },
     [duration, onSeek, progressSV],
   );
@@ -83,13 +98,41 @@ export const BriefingBar = memo(function BriefingBar({
         .failOffsetY([-10, 10])
         .minDistance(0)
         .onStart((e) => {
+          'worklet';
+          isScrubbing.value = withSpring(1, { damping: 20, stiffness: 300 });
+          scrubX.value = e.x;
           runOnJS(seekToX)(e.x);
         })
         .onChange((e) => {
+          'worklet';
+          scrubX.value = e.x;
           runOnJS(seekToX)(e.x);
+        })
+        .onFinalize(() => {
+          'worklet';
+          isScrubbing.value = withTiming(0, { duration: ANIMATION.fast });
         }),
-    [seekToX],
+    [seekToX, isScrubbing, scrubX],
   );
+
+  const tooltipStyle = useAnimatedStyle(() => {
+    const w = barWidthSV.value || 1;
+    const clampedX = Math.max(TOOLTIP_WIDTH / 2, Math.min(scrubX.value, w - TOOLTIP_WIDTH / 2));
+    return {
+      opacity: isScrubbing.value,
+      transform: [
+        { translateX: clampedX - TOOLTIP_WIDTH / 2 },
+        {
+          scale: interpolate(
+            isScrubbing.value,
+            [0, 1],
+            [0.8, 1],
+            Extrapolation.CLAMP,
+          ),
+        },
+      ],
+    };
+  });
 
   const dateLabel = (() => {
     try {
@@ -183,6 +226,30 @@ export const BriefingBar = memo(function BriefingBar({
                 onSeek(Math.max(elapsed - step, 0));
             }}
           >
+            {/* Scrub time tooltip */}
+            <Animated.View
+              style={[
+                styles.tooltip,
+                { backgroundColor: colors.toastBg },
+                tooltipStyle,
+              ]}
+              pointerEvents="none"
+            >
+              <Text
+                style={[
+                  styles.tooltipText,
+                  {
+                    ...font.semiBold,
+                    fontSize: typography.sizeXs,
+                    color: colors.textEmphasis,
+                  },
+                ]}
+                maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+              >
+                {scrubTimeLabel}
+              </Text>
+            </Animated.View>
+
             <View style={[styles.progressTrack, { backgroundColor: colors.rule }]}>
               <Animated.View
                 style={[
@@ -246,5 +313,18 @@ const styles = StyleSheet.create({
     height: PROGRESS_HEIGHT,
     borderRadius: PROGRESS_HEIGHT,
     transformOrigin: 'left',
+  },
+  tooltip: {
+    position: 'absolute',
+    top: -SPACING.xs,
+    width: TOOLTIP_WIDTH,
+    paddingVertical: SPACING.xxs,
+    borderRadius: LAYOUT.pillRadius,
+    alignItems: 'center',
+  },
+  tooltipText: {
+    textAlign: 'center',
+    fontVariant: ['tabular-nums'],
+    padding: 0,
   },
 });
