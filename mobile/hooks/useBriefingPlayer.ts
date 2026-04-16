@@ -53,6 +53,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const userToggleAt = useRef(0);
   const backgroundAt = useRef<number>(0);
   const verifyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const closedRef = useRef(false);
   const devMockActive = useRef(false);
 
   // Tear down stale player when app returns from extended background.
@@ -166,6 +167,11 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
 
     hapticImpact();
     userToggleAt.current = Date.now();
+    closedRef.current = false;
+    if (verifyTimer.current) {
+      clearTimeout(verifyTimer.current);
+      verifyTimer.current = null;
+    }
 
     try {
       // Dev mock — no native player, just toggle UI state
@@ -238,6 +244,9 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         if (!lockScreenActive.current && status.duration > 0) {
           activateLockScreen(player);
         }
+        // Ignore status updates after user closed the player — the paused
+        // player still fires events that would flicker state back to visible.
+        if (closedRef.current) return;
         // Skip transient playing states shortly after user tap to avoid icon flash
         const sinceToggle = Date.now() - userToggleAt.current;
         if (sinceToggle < 500 && !status.didJustFinish) {
@@ -303,6 +312,11 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   }, []);
 
   const close = useCallback(() => {
+    closedRef.current = true;
+    if (verifyTimer.current) {
+      clearTimeout(verifyTimer.current);
+      verifyTimer.current = null;
+    }
     savePosition();
     if (playerRef.current) {
       playerRef.current.pause();
