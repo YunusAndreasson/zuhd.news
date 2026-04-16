@@ -12,16 +12,20 @@ interface TopoWithObjects extends Topology {
 const world = worldTopo as unknown as TopoWithObjects;
 const countriesData = countriesTopo as unknown as TopoWithObjects;
 
-export const land = feature(world, world.objects.land!);
+const landObj = world.objects.land;
+const countriesObj = countriesData.objects.countries;
+if (!landObj || !countriesObj) throw new Error('missing topojson objects');
+
+export const land = feature(world, landObj);
 export const countries = feature(
   countriesData,
-  countriesData.objects.countries!,
+  countriesObj,
 ) as unknown as GeoJSON.FeatureCollection;
 
 // Internal borders only (shared edges between countries, no coastlines — land
 // already shows those). Single MultiLineString = much faster to project than
 // 180 separate country polygons.
-export const bordersMesh = mesh(countriesData, countriesData.objects.countries!, (a, b) => a !== b);
+export const bordersMesh = mesh(countriesData, countriesObj, (a, b) => a !== b);
 
 // Precomputed bounding boxes for fast point-in-country pre-filtering.
 // [minLng, minLat, maxLng, maxLat] per feature — avoids expensive
@@ -75,20 +79,20 @@ export function createSkiaPathContext(): SkiaGeoContext {
     },
     beginPath() {},
     moveTo(x: number, y: number) {
-      _path!.moveTo(x, y);
+      _path?.moveTo(x, y);
     },
     lineTo(x: number, y: number) {
-      _path!.lineTo(x, y);
+      _path?.lineTo(x, y);
     },
     arc(x: number, y: number, r: number, startAngle: number, endAngle: number) {
-      _path!.addArc(
+      _path?.addArc(
         { x: x - r, y: y - r, width: r * 2, height: r * 2 },
         startAngle * DEG,
         (endAngle - startAngle) * DEG,
       );
     },
     closePath() {
-      _path!.close();
+      _path?.close();
     },
   };
 }

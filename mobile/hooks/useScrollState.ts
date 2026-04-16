@@ -31,6 +31,7 @@ export function useScrollState(
   const overscrollTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   // Reset all scroll-derived state when FlatList remounts (e.g. after background refresh)
+  // biome-ignore lint/correctness/useExhaustiveDependencies: resetKey is the intentional trigger for remount reset
   useEffect(() => {
     scrollY.value = 0;
     setCurrentIndex(0);

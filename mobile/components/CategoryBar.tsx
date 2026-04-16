@@ -179,7 +179,7 @@ export const CategoryBar = memo(function CategoryBar({
             fontSize={typography.sizeXs}
             letterSpacing={typography.trackingCaps}
             onCategoryPress={onCategoryPress}
-            onLayout={tabLayoutHandlers[i]!}
+            onLayout={tabLayoutHandlers[i] ?? (() => {})}
           />
         ))}
         <Animated.View

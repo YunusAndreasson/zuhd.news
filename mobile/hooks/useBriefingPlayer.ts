@@ -119,6 +119,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     }
   }, [date]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: cleanup-only effect — runs on unmount, refs capture current values
   useEffect(() => {
     return () => {
       if (verifyTimer.current) clearTimeout(verifyTimer.current);
@@ -133,7 +134,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       lockScreenActive.current = false;
       setIsAudioActiveAsync(false);
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   const savePosition = useCallback(() => {
     if (!playerRef.current || !savedDate.current) return;

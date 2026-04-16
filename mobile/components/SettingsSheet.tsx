@@ -137,7 +137,6 @@ export const SettingsSheet = memo(function SettingsSheet({
     colors,
     font,
     typography,
-    textStyles,
     sheetStyles,
     preferences,
     setFontSize,

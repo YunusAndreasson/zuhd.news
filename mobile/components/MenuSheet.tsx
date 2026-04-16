@@ -230,7 +230,7 @@ export const MenuSheet = memo(function MenuSheet({
                 )}
                 {section.link && (
                   <Pressable
-                    onPress={() => Linking.openURL(section.link!.url)}
+                    onPress={() => Linking.openURL(section.link?.url ?? '')}
                     style={({ pressed }) => [styles.infoLink, pressed && PRESSED_STYLE]}
                     accessibilityRole="link"
                     accessibilityLabel={section.link.label}

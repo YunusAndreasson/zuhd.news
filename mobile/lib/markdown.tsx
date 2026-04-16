@@ -29,28 +29,28 @@ export function parseInline(line: string): Segment[] {
   const segments: Segment[] = [];
   const regex = /\*\*(.+?)\*\*|\*(.+?)\*|\[([^\]]+)\]\(([^)]+)\)/g;
   let lastIndex = 0;
-  let match;
 
-  while ((match = regex.exec(line)) !== null) {
-    if (match.index > lastIndex) {
-      segments.push({ type: 'text', text: smartTypography(line.slice(lastIndex, match.index)) });
+  for (const match of line.matchAll(regex)) {
+    const idx = match.index ?? 0;
+    if (idx > lastIndex) {
+      segments.push({ type: 'text', text: smartTypography(line.slice(lastIndex, idx)) });
     }
     if (match[1]) {
       // Parse nested italic (*...*) within bold content
       const boldContent = match[1];
       const italicRe = /\*(.+?)\*/g;
       let bLast = 0;
-      let im;
       let hasNested = false;
-      while ((im = italicRe.exec(boldContent)) !== null) {
+      for (const im of boldContent.matchAll(italicRe)) {
         hasNested = true;
-        if (im.index > bLast)
+        const imIdx = im.index ?? 0;
+        if (imIdx > bLast)
           segments.push({
             type: 'bold',
-            text: smartTypography(boldContent.slice(bLast, im.index)),
+            text: smartTypography(boldContent.slice(bLast, imIdx)),
           });
-        segments.push({ type: 'boldItalic', text: smartTypography(im[1]!) });
-        bLast = italicRe.lastIndex;
+        segments.push({ type: 'boldItalic', text: smartTypography(im[1] ?? '') });
+        bLast = imIdx + im[0].length;
       }
       if (!hasNested) {
         segments.push({ type: 'bold', text: smartTypography(boldContent) });
@@ -60,7 +60,7 @@ export function parseInline(line: string): Segment[] {
     } else if (match[2]) segments.push({ type: 'italic', text: smartTypography(match[2]) });
     else if (match[3])
       segments.push({ type: 'link', text: smartTypography(match[3]), url: match[4] });
-    lastIndex = regex.lastIndex;
+    lastIndex = idx + match[0].length;
   }
   if (lastIndex < line.length) {
     segments.push({ type: 'text', text: smartTypography(line.slice(lastIndex)) });
@@ -140,7 +140,11 @@ function renderSegments(segments: Segment[], mdStyles: MarkdownStyles): ReactNod
         );
       case 'link':
         return (
-          <Text key={j} style={mdStyles.link} onPress={() => WebBrowser.openBrowserAsync(seg.url!)}>
+          <Text
+            key={j}
+            style={mdStyles.link}
+            onPress={() => seg.url && WebBrowser.openBrowserAsync(seg.url)}
+          >
             {seg.text}
           </Text>
         );
@@ -172,7 +176,7 @@ export function renderSentences(
       // Strip "Location — " prefix from first sentence if present
       let rest = sentence;
       if (location) {
-        const prefix = location + ' \u2014 ';
+        const prefix = `${location} \u2014 `;
         if (sentence.startsWith(prefix)) rest = sentence.slice(prefix.length);
       }
       // Show dateline (e.g. time ago) in small-caps before first sentence
