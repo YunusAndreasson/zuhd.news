@@ -3,25 +3,22 @@ import { StyleSheet, Text, View } from 'react-native';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { type BlockVariant, blockContainerStyle } from './index';
-import { SourceCaption } from './SourceCaption';
 
 interface QuoteBlockProps {
   text: string;
   speaker?: string;
   year?: string;
   variant?: BlockVariant;
-  /** Resolved citation string from `ContextBrief.sources[block.source]`. */
-  sourceLabel?: string;
 }
 
 /** Editorial quote — left-rule in accent, italic prose, small-caps attribution.
- *  No visual gimmicks; the left rule + italic set the tone without decoration. */
+ *  Only one reference line (the speaker/year) renders; block-level source is
+ *  intentionally omitted so the quote doesn't double-attribute. */
 export const QuoteBlock = memo(function QuoteBlock({
   text,
   speaker,
   year,
   variant = 'article',
-  sourceLabel,
 }: QuoteBlockProps) {
   const { colors, font, typography, textStyles } = useTheme();
   const isContext = variant === 'context';
@@ -60,7 +57,6 @@ export const QuoteBlock = memo(function QuoteBlock({
           ) : null}
         </View>
       </View>
-      {sourceLabel ? <SourceCaption label={sourceLabel} /> : null}
     </View>
   );
 });

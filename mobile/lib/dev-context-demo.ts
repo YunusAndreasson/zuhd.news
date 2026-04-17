@@ -113,6 +113,7 @@ export const DEV_DEMO_BRIEF: ContextBrief = {
       blocks: [
         {
           type: 'compare',
+          label: "each power's role at Geneva",
           rows: [
             {
               label: 'United States',

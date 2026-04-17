@@ -42,7 +42,7 @@ interface BlockSourceRef {
 
 export type ArticleBlock =
   | ({ type: 'prose'; text: string } & BlockSourceRef)
-  | ({ type: 'compare'; rows: CompareRow[] } & BlockSourceRef)
+  | ({ type: 'compare'; rows: CompareRow[]; label?: string } & BlockSourceRef)
   | ({
       type: 'trend';
       values: number[];

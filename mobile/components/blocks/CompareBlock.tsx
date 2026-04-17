@@ -32,32 +32,34 @@ function resolvePillColors(tone: CompareRow['tone'], colors: Colors): { bg: stri
 
 interface CompareBlockProps {
   rows: CompareRow[];
+  label?: string;
   variant?: BlockVariant;
   sourceLabel?: string;
 }
 
 export const CompareBlock = memo(function CompareBlock({
   rows,
+  label,
   variant = 'article',
   sourceLabel,
 }: CompareBlockProps) {
-  const { colors, font, typography } = useTheme();
+  const { colors, font, typography, textStyles } = useTheme();
   const rowPaddingV = variant === 'context' ? SPACING.xs : SPACING.sm;
-
-  // Max weight across rows — only used when at least one row supplies it. Rows
-  // without weight still render normally; with weights, each row grows a fill
-  // proportional to its weight / max, turning compare into a light bar chart.
-  const maxWeight = rows.reduce((m, r) => Math.max(m, r.weight ?? 0), 0);
-  const showBars = maxWeight > 0;
 
   return (
     <View style={blockContainerStyle[variant]}>
+      {label ? (
+        <Text
+          style={[styles.blockLabel, textStyles.smallCapsXs]}
+          maxFontSizeMultiplier={MAX_FONT_SCALE.label}
+        >
+          {label}
+        </Text>
+      ) : null}
       {rows.map((row, i) => {
         const flag = row.cc ? ccToFlag(row.cc) : null;
         const pill = resolvePillColors(row.tone, colors);
         const ruled = i < rows.length - 1;
-        const barPct =
-          showBars && row.weight != null ? Math.max(0, Math.min(1, row.weight / maxWeight)) : 0;
         return (
           <Animated.View
             key={`${row.label}-${i}`}
@@ -71,15 +73,6 @@ export const CompareBlock = memo(function CompareBlock({
               },
             ]}
           >
-            {barPct > 0 ? (
-              <View
-                pointerEvents="none"
-                style={[
-                  styles.weightBar,
-                  { backgroundColor: colors.accent, width: `${barPct * 100}%` },
-                ]}
-              />
-            ) : null}
             <Text
               style={[
                 styles.label,
@@ -117,23 +110,14 @@ export const CompareBlock = memo(function CompareBlock({
 });
 
 const styles = StyleSheet.create({
+  blockLabel: {
+    marginBottom: SPACING.xs,
+  },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: SPACING.sm,
-    position: 'relative',
-    overflow: 'hidden',
-  },
-  // Left-anchored fill behind the row content. Subtle — signals magnitude
-  // without shouting. Label + pill stack on top.
-  weightBar: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    bottom: 0,
-    opacity: 0.18,
-    borderRadius: 2,
   },
   label: {
     flex: 1,
