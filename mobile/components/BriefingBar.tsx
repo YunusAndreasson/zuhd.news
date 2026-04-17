@@ -3,10 +3,8 @@ import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { type LayoutChangeEvent, StyleSheet, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
-  Extrapolation,
   FadeIn,
   FadeOut,
-  interpolate,
   LinearTransition,
   runOnJS,
   useAnimatedStyle,
@@ -82,6 +80,9 @@ export const BriefingBar = memo(function BriefingBar({
   }));
 
   const isScrubbing = useSharedValue(0);
+  // Tooltip scale has its own underdamped spring so grab overshoots past 1
+  // before settling — gives the scrub handle a tactile "pop" on contact.
+  const tooltipScale = useSharedValue(0.8);
   const scrubX = useSharedValue(0);
   const [scrubLabel, setScrubLabel] = useState('');
   const prevLabelRef = useRef('');
@@ -103,12 +104,15 @@ export const BriefingBar = memo(function BriefingBar({
     [duration, onSeek, progressSV],
   );
 
-  const scrubGesture = Gesture.Pan()
-    .activeOffsetX([-5, 5])
+  const panGesture = Gesture.Pan()
+    // Low threshold so the scrub engages as soon as the finger moves —
+    // vertical fail-offset still lets the parent list steal vertical pans.
+    .activeOffsetX([-2, 2])
     .failOffsetY([-10, 10])
     .onStart((e) => {
       'worklet';
       isScrubbing.value = withSpring(1, ANIMATION.springSoft);
+      tooltipScale.value = withSpring(1, { damping: 8, stiffness: 260, mass: 0.7 });
       scrubX.value = e.x;
       runOnJS(seekToX)(e.x);
     })
@@ -120,7 +124,21 @@ export const BriefingBar = memo(function BriefingBar({
     .onFinalize(() => {
       'worklet';
       isScrubbing.value = withTiming(0, { duration: ANIMATION.fast });
+      tooltipScale.value = withTiming(0.8, { duration: ANIMATION.fast });
     });
+
+  // Tap-to-seek: instant jump. No tooltip — the progress bar fill moving
+  // to the new position is feedback enough; the tooltip is reserved for
+  // drag scrubbing where the user needs a preview before committing.
+  const tapGesture = Gesture.Tap()
+    .maxDuration(400)
+    .onEnd((e, success) => {
+      'worklet';
+      if (!success) return;
+      runOnJS(seekToX)(e.x);
+    });
+
+  const scrubGesture = Gesture.Race(panGesture, tapGesture);
 
   // Tooltip rides the finger horizontally (clamped to bar edges) and lifts
   // in/out with the scrub gesture. Positioned above the entire bar — bar's
@@ -130,10 +148,7 @@ export const BriefingBar = memo(function BriefingBar({
     const clampedX = Math.max(TOOLTIP_WIDTH / 2, Math.min(scrubX.value, w - TOOLTIP_WIDTH / 2));
     return {
       opacity: isScrubbing.value,
-      transform: [
-        { translateX: clampedX - TOOLTIP_WIDTH / 2 },
-        { scale: interpolate(isScrubbing.value, [0, 1], [0.8, 1], Extrapolation.CLAMP) },
-      ],
+      transform: [{ translateX: clampedX - TOOLTIP_WIDTH / 2 }, { scale: tooltipScale.value }],
     };
   });
 
@@ -290,8 +305,10 @@ const styles = StyleSheet.create({
     fontVariant: ['tabular-nums'],
   },
   progressTouch: {
-    paddingTop: SPACING.sm,
-    paddingBottom: SPACING.smPlus,
+    // Generous vertical hit area so the 3px track is comfortable to tap —
+    // md above and below brings the effective target to ~35px tall.
+    paddingTop: SPACING.md,
+    paddingBottom: SPACING.md,
     marginHorizontal: -SPACING.md,
     paddingHorizontal: SPACING.md,
   },

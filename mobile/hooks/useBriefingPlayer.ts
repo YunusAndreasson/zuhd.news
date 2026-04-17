@@ -303,6 +303,32 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       player.play();
       setPlaying(true);
 
+      // A freshly-created AVPlayer isn't necessarily ready to play on the
+      // first play() call — for the first-ever toggle of a session the
+      // preload registry warms it up, but on a second open (after close
+      // tore the player down and consumed the registry entry), play() on a
+      // cold AVPlayer silently no-ops while it's still buffering. Poll and
+      // retry play() until it actually starts, so the user never has to tap
+      // LISTEN a second time. Give up after ~1.5s to avoid a hot loop.
+      let attempts = 0;
+      const retryPlay = () => {
+        if (!playerRef.current || playerRef.current !== player) return;
+        if (player.playing) {
+          verifyTimer.current = null;
+          return;
+        }
+        attempts += 1;
+        if (attempts >= 15) {
+          verifyTimer.current = null;
+          return;
+        }
+        try {
+          player.play();
+        } catch {}
+        verifyTimer.current = setTimeout(retryPlay, 100);
+      };
+      verifyTimer.current = setTimeout(retryPlay, 100);
+
       // Activate lock-screen controls right after play so iOS registers
       // NowPlayingInfo while the audio session is hot. The status listener
       // will refresh this entry once duration is known, populating the
@@ -339,10 +365,10 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       clearTimeout(verifyTimer.current);
       verifyTimer.current = null;
     }
-    savePosition();
-    // Fully tear down — pausing and keeping the player alive leaves iOS in a
-    // state where the next play() call can silently fail, requiring two taps
-    // on LISTEN to restart. Re-creating on the next toggle is reliable.
+    // Close = stop & forget. Clear any saved position so the next open
+    // starts at 0:00. (Pause keeps position for resume.)
+    setItemAsync(POSITION_KEY, '0').catch(() => {});
+    // Fully tear down the player and its lock-screen card.
     if (playerRef.current) {
       subRef.current?.remove();
       try {
@@ -358,7 +384,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     setPlaying(false);
     setElapsed(0);
     hapticImpact();
-  }, [savePosition]);
+  }, []);
 
   // In dev without a native player, provide a mock duration so the bar renders properly
   const effectiveDuration =

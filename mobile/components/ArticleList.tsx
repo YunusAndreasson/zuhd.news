@@ -17,12 +17,14 @@ import {
   View,
 } from 'react-native';
 import Animated, {
+  FadeIn,
   runOnJS,
   type SharedValue,
   useAnimatedRef,
   useAnimatedScrollHandler,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ANIMATION } from '../constants/theme';
 import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
@@ -127,10 +129,10 @@ export const ArticleList = memo(function ArticleList({
   const [localRefreshing, setLocalRefreshing] = useState(false);
 
   const handleRefresh = useCallback(async () => {
-    hapticTick();
     setLocalRefreshing(true);
     try {
       await onRefresh();
+      hapticNotification();
     } finally {
       setLocalRefreshing(false);
     }
@@ -273,6 +275,7 @@ export const ArticleList = memo(function ArticleList({
       />
       <Animated.FlatList
         key={resetKey}
+        entering={FadeIn.duration(ANIMATION.normal)}
         ref={listRef}
         data={sortedArticles}
         extraData={tick}

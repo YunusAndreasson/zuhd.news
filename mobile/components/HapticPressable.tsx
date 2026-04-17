@@ -1,33 +1,43 @@
 import { memo, useCallback } from 'react';
 import { Pressable, type PressableProps, type StyleProp, type ViewStyle } from 'react-native';
-import { PRESSED_STYLE } from '../constants/theme';
-import { hapticImpact, hapticTick } from '../lib/haptics';
-
-type Haptic = 'impact' | 'tick' | 'none';
+import Animated from 'react-native-reanimated';
+import { useSpringPress } from '../hooks/useSpringPress';
+import { fireHaptic, type HapticTier } from '../lib/haptics';
 
 interface HapticPressableProps extends Omit<PressableProps, 'style' | 'onPress'> {
   onPress: () => void;
-  haptic?: Haptic;
+  haptic?: HapticTier;
   style?: StyleProp<ViewStyle>;
 }
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 export const HapticPressable = memo(function HapticPressable({
   onPress,
   haptic = 'impact',
   style,
+  onPressIn,
+  onPressOut,
   ...rest
 }: HapticPressableProps) {
+  const {
+    animatedStyle,
+    onPressIn: handlePressIn,
+    onPressOut: handlePressOut,
+  } = useSpringPress(onPressIn, onPressOut);
+
   const handlePress = useCallback(() => {
-    if (haptic === 'impact') hapticImpact();
-    else if (haptic === 'tick') hapticTick();
+    fireHaptic(haptic);
     onPress();
   }, [onPress, haptic]);
 
   return (
-    <Pressable
+    <AnimatedPressable
       {...rest}
       onPress={handlePress}
-      style={({ pressed }) => [style, pressed && PRESSED_STYLE]}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
+      style={[style, animatedStyle]}
     />
   );
 });
