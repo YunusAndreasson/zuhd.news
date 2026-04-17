@@ -29,6 +29,17 @@ type InfoKey = 'about' | 'sources' | 'privacy' | 'contact';
 type SettingKey = 'size' | 'font' | 'appearance' | 'haptics' | 'notifications';
 type PageKey = InfoKey | 'settings' | SettingKey | 'search' | 'saved';
 
+const INFO_KEYS: ReadonlySet<PageKey> = new Set(['about', 'sources', 'privacy', 'contact']);
+const SETTING_KEYS: ReadonlySet<PageKey> = new Set([
+  'size',
+  'font',
+  'appearance',
+  'haptics',
+  'notifications',
+]);
+const isInfoKey = (k: PageKey): k is InfoKey => INFO_KEYS.has(k);
+const isSettingKey = (k: PageKey): k is SettingKey => SETTING_KEYS.has(k);
+
 /** Pages that need a fixed tall snap (keyboard or long scrolling list). */
 const TALL_PAGES: ReadonlySet<PageKey> = new Set(['search', 'saved']);
 
@@ -190,7 +201,15 @@ function NavRow({
   );
 }
 
-function ActionLink({ label, hint, onPress }: { label: string; hint?: string; onPress: () => void }) {
+function ActionLink({
+  label,
+  hint,
+  onPress,
+}: {
+  label: string;
+  hint?: string;
+  onPress: () => void;
+}) {
   const { colors, font, typography } = useTheme();
   return (
     <HapticPressable
@@ -310,11 +329,7 @@ export const MenuSheet = memo(function MenuSheet({
       return (
         <>
           <NavRow label="search" onPress={() => nav.push('search')} />
-          <NavRow
-            label="saved"
-            hint="Your bookmarked articles"
-            onPress={() => nav.push('saved')}
-          />
+          <NavRow label="saved" hint="Your bookmarked articles" onPress={() => nav.push('saved')} />
           <NavRow label="settings" onPress={() => nav.push('settings')} />
 
           <View style={[styles.divider, { backgroundColor: colors.rule }]} />
@@ -364,14 +379,15 @@ export const MenuSheet = memo(function MenuSheet({
       return <SheetBookmarksPage onSelectArticle={onSelectArticle} />;
     }
 
-    if (current in INFO_PAGES) {
-      return <SheetInfoPage sections={INFO_PAGES[current as InfoKey].sections} />;
+    if (isInfoKey(current)) {
+      return <SheetInfoPage sections={INFO_PAGES[current].sections} />;
     }
 
-    // Settings detail pages — use the options registry, dispatch through the setter switch
-    const config = SETTINGS.find((s) => s.key === current);
-    if (!config) return null;
-    return renderSettingPage(current as SettingKey, config.hint);
+    if (isSettingKey(current)) {
+      const config = SETTINGS.find((s) => s.key === current);
+      return renderSettingPage(current, config?.hint);
+    }
+    return null;
   }
 
   function renderSettingPage(key: SettingKey, hint?: string) {

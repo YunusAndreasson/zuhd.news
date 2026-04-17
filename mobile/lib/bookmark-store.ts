@@ -1,5 +1,6 @@
 import { File, Paths } from 'expo-file-system';
 import type { Article, Category } from '../types';
+import { isBookmarkArray } from './validate';
 
 // ---------------------------------------------------------------------------
 // Persisted bookmark with category (articles rotate out of the feed)
@@ -20,10 +21,13 @@ const BOOKMARKS_FILE = new File(Paths.document, 'zuhd-bookmarks.json');
 let bookmarks: Bookmark[] = [];
 const listeners = new Set<() => void>();
 
-// Load synchronously on import so UI has instant state
+// Load synchronously on import so UI has instant state. A schema-drift
+// bookmark (e.g. missing `sentences`) would crash on first render — validate
+// and drop the whole file if any entry is malformed.
 try {
   if (BOOKMARKS_FILE.exists) {
-    bookmarks = JSON.parse(BOOKMARKS_FILE.textSync());
+    const parsed: unknown = JSON.parse(BOOKMARKS_FILE.textSync());
+    bookmarks = isBookmarkArray(parsed) ? parsed : [];
   }
 } catch {
   bookmarks = [];

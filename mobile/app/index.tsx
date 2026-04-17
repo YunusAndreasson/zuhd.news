@@ -14,7 +14,10 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import PagerView, { type PagerViewOnPageSelectedEvent } from 'react-native-pager-view';
+import PagerView, {
+  type PagerViewOnPageScrollEvent,
+  type PagerViewOnPageSelectedEvent,
+} from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ArticleList, type ArticleListRef } from '../components/ArticleList';
@@ -103,7 +106,7 @@ export default function HomeScreen() {
       if (catIndex < 0) return;
 
       // If the article rotated out of the feed, inject the bookmarked copy
-      const inFeed = groupedRef.current[category]?.some((a) => a.slug === slug);
+      const inFeed = groupedRef.current[category].some((a) => a.slug === slug);
       if (!inFeed) {
         const bookmark = getBookmarks().find((b) => b.article.slug === slug);
         if (bookmark) {
@@ -192,9 +195,7 @@ export default function HomeScreen() {
         toastRef.current?.show(label, () => {
           // Find article matching this hotspot label
           for (const cat of CATEGORIES) {
-            const articles = groupedRef.current[cat];
-            if (!articles) continue;
-            const match = articles.find((a) => {
+            const match = groupedRef.current[cat].find((a) => {
               if (a.threadLabel) {
                 const prefix = a.threadLabel.includes(':')
                   ? a.threadLabel.slice(0, a.threadLabel.indexOf(':'))
@@ -222,9 +223,7 @@ export default function HomeScreen() {
     (label: string) => {
       // Find article matching this hotspot label (threadLabel prefix or title)
       for (const cat of CATEGORIES) {
-        const articles = groupedRef.current[cat];
-        if (!articles) continue;
-        const match = articles.find((a) => {
+        const match = groupedRef.current[cat].find((a) => {
           if (a.threadLabel) {
             const prefix = a.threadLabel.includes(':')
               ? a.threadLabel.slice(0, a.threadLabel.indexOf(':'))
@@ -276,7 +275,7 @@ export default function HomeScreen() {
   );
 
   const onPageScroll = useCallback(
-    (e: { nativeEvent: { position: number; offset: number } }) => {
+    (e: PagerViewOnPageScrollEvent) => {
       pagerOffset.value = e.nativeEvent.position + e.nativeEvent.offset;
     },
     [pagerOffset],
@@ -338,7 +337,7 @@ export default function HomeScreen() {
     if (!slug) return;
     clearPendingSlug();
     for (const cat of CATEGORIES) {
-      if (grouped[cat]?.some((a) => a.slug === slug)) {
+      if (grouped[cat].some((a) => a.slug === slug)) {
         handleSelectArticle(slug, cat);
         break;
       }

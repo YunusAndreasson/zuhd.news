@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { memo, useCallback, useMemo } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { type GestureResponderEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -46,7 +46,7 @@ function GlobeTapZone({
   impact: () => void;
 }) {
   const handleTap = useCallback(
-    (e: { nativeEvent: { pageX: number; pageY: number } }) => {
+    (e: GestureResponderEvent) => {
       const yOff = globeYOffset?.current ?? 0;
       const tapX = e.nativeEvent.pageX;
       const tapY = e.nativeEvent.pageY - yOff;

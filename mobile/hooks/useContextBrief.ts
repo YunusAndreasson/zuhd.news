@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { API_BASE } from '../constants/theme';
 import { fetchWithTimeout } from '../lib/fetch';
+import { isContextBrief } from '../lib/validate';
 import type { ContextBrief } from '../types';
 
 const cache = new Map<string, ContextBrief>();
@@ -40,14 +41,15 @@ export function useContextBrief(): ContextBriefState {
         signal: controller.signal,
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data: ContextBrief = await res.json();
+      const raw: unknown = await res.json();
+      if (!isContextBrief(raw)) throw new Error('Malformed context brief');
       if (cache.size >= MAX_CACHE) {
         const oldest = cache.keys().next().value;
         if (oldest !== undefined) cache.delete(oldest);
       }
-      cache.set(threadId, data);
+      cache.set(threadId, raw);
       if (!controller.signal.aborted) {
-        setBrief(data);
+        setBrief(raw);
         setLoading(false);
       }
     } catch {

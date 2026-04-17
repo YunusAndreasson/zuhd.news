@@ -1,12 +1,7 @@
-import type { HeatmapPoint } from '../types';
 import { createJsonCache } from './json-cache';
+import { type HeatmapResponse, isHeatmapResponse } from './validate';
 
-interface HeatmapCache {
-  generated: string;
-  points: HeatmapPoint[];
-}
-
-const heatmapCache = createJsonCache<HeatmapCache>('zuhd-heatmap.json');
+const heatmapCache = createJsonCache<HeatmapResponse>('zuhd-heatmap.json', isHeatmapResponse);
 
 export const readHeatmapCache = heatmapCache.read;
 export const writeHeatmapCache = heatmapCache.write;

@@ -21,7 +21,7 @@ interface IndexedArticle {
 function buildSearchIndex(grouped: Record<Category, Article[]>): IndexedArticle[] {
   const index: IndexedArticle[] = [];
   for (const cat of CATEGORIES) {
-    for (const a of grouped[cat] ?? []) {
+    for (const a of grouped[cat]) {
       const corpus = [a.title, a.location ?? '', ...a.concepts, ...a.sentences]
         .join('\n')
         .toLowerCase();

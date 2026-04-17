@@ -1,5 +1,5 @@
 import type { SkPath } from '@shopify/react-native-skia';
-import { geoArea } from 'd3-geo';
+import { type GeoContext, geoArea } from 'd3-geo';
 import { feature, mesh } from 'topojson-client';
 import type { GeometryCollection, Topology } from 'topojson-specification';
 import countriesTopo from '../../data/countries-110m.json';
@@ -61,14 +61,11 @@ for (const f of countries.features) {
 
 const DEG = 180 / Math.PI;
 
-/** d3-geo GeoContext subset — used to bridge Skia paths into d3's .context() API */
-export interface SkiaGeoContext {
+/** Skia path target bridged into d3-geo's `.context()` API. Extends GeoContext
+ * so `pg.context(ctx)` accepts it without a cast; `setPath` retargets writes
+ * to a different Skia path between draw calls. */
+export interface SkiaGeoContext extends GeoContext {
   setPath(p: SkPath): void;
-  beginPath(): void;
-  moveTo(x: number, y: number): void;
-  lineTo(x: number, y: number): void;
-  arc(x: number, y: number, r: number, startAngle: number, endAngle: number): void;
-  closePath(): void;
 }
 
 export function createSkiaPathContext(): SkiaGeoContext {
