@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Generate the app's icon set from a single glyph of SourceSans3-Bold.
+// Generate the app's icon set from a single glyph of SourceSans3-Regular.
 // The "logo" is the letter Z rendered directly from the typography — no
 // second asset, no drift. Re-run whenever the theme colors or weight change.
 //
@@ -18,7 +18,7 @@ import opentype from 'opentype.js';
 import sharp from 'sharp';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const FONT = resolve(root, 'assets/fonts/SourceSans3-Bold.ttf');
+const FONT = resolve(root, 'assets/fonts/SourceSans3-Regular.ttf');
 const ASSETS = resolve(root, 'assets');
 
 // Keep the icon palette in lock-step with DARK_COLORS in constants/theme.ts.
@@ -72,7 +72,7 @@ async function write(svg, filename) {
   console.log(`  ${filename}`);
 }
 
-console.log('generating icons from SourceSans3-Bold.ttf → Z glyph');
+console.log('generating icons from SourceSans3-Regular.ttf → Z glyph');
 
 // iOS launcher + splash + briefing lock screen
 const square = renderZSvg({ size: 1024, fillRatio: SQUARE_FILL, bg: BG, fg: FG });
