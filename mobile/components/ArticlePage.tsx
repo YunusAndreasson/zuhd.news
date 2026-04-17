@@ -28,6 +28,9 @@ interface ArticlePageProps {
   index: number;
   scrollY: SharedValue<number>;
   onBookmarkPress?: (article: Article) => void;
+  /** Fired when the reader taps the source link at the end of the article —
+   *  parent opens the SourcesSheet with this article's sources. */
+  onSourcesPress?: (article: Article) => void;
   showEarlierDivider?: boolean;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
@@ -78,6 +81,7 @@ export const ArticlePage = memo(function ArticlePage({
   index,
   scrollY,
   onBookmarkPress,
+  onSourcesPress,
   showEarlierDivider,
   globeRef,
   globeYOffset,
@@ -148,6 +152,25 @@ export const ArticlePage = memo(function ArticlePage({
 
   const openLink = useOpenLink();
 
+  const handleSourcesPress = useCallback(() => {
+    onSourcesPress?.(article);
+  }, [article, onSourcesPress]);
+
+  // Inline source link appended after the last word — zero extra vertical
+  // space while keeping the affordance unambiguously tappable.
+  const sourceCount = article.sources.length;
+  const sourcesTrailing = useMemo(() => {
+    if (sourceCount === 0 || !onSourcesPress) return null;
+    return (
+      <Text style={mdStyles.dateline}>
+        {'\u2002'}
+        <Text onPress={handleSourcesPress} style={{ color: colors.accent }}>
+          {sourceCount === 1 ? 'source' : 'sources'}
+        </Text>
+      </Text>
+    );
+  }, [sourceCount, onSourcesPress, handleSourcesPress, mdStyles.dateline, colors.accent]);
+
   const body = useMemo(
     () =>
       renderSentences(
@@ -158,8 +181,18 @@ export const ArticlePage = memo(function ArticlePage({
         article.location,
         timeAgo,
         openLink,
+        sourcesTrailing,
       ),
-    [article.sentences, article.location, mdStyles, typography, bodyFontSize, timeAgo, openLink],
+    [
+      article.sentences,
+      article.location,
+      mdStyles,
+      typography,
+      bodyFontSize,
+      timeAgo,
+      openLink,
+      sourcesTrailing,
+    ],
   );
 
   const handleLongPress = useCallback(() => {

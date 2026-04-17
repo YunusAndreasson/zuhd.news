@@ -3,7 +3,7 @@ import {
   type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useEffect, useMemo, useRef } from 'react';
 import { AccessibilityInfo, ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
@@ -17,11 +17,10 @@ import type { CountryData } from '../constants/country-data';
 import { useTheme } from '../hooks/useTheme';
 import { makeMarkdownStyles } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
-import type { ArticleSource, ContextBrief, TimelineEntry } from '../types';
+import type { ContextBrief, TimelineEntry } from '../types';
 import { renderBlocks } from './blocks';
 import { SheetLayout } from './SheetLayout';
 import { useMaxSheetHeight } from './SheetPrimitives';
-import { SourceRow } from './SourceRow';
 
 // Dev-only canonical brief. The __DEV__ ternary is a compile-time constant;
 // Metro strips the require (and the module it points to) from release bundles.
@@ -35,7 +34,6 @@ const DEV_DEMO_BRIEF: ContextBrief | null = __DEV__
 
 interface ContextSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
-  sources: ArticleSource[];
   brief: ContextBrief | null;
   loading: boolean;
   threadLabel?: string;
@@ -44,15 +42,11 @@ interface ContextSheetProps {
   onDismiss: () => void;
   /** Chip taps inside LocationsBlock bubble up here; parent decides how to
    *  present the country sheet (typically `countrySheetRef.present()`). */
-  onCountryPress?: (payload: {
-    countryName: string;
-    data: CountryData | null;
-  }) => void;
+  onCountryPress?: (payload: { countryName: string; data: CountryData | null }) => void;
 }
 
 export const ContextSheet = memo(function ContextSheet({
   sheetRef,
-  sources,
   brief,
   loading,
   threadLabel,
@@ -65,14 +59,12 @@ export const ContextSheet = memo(function ContextSheet({
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
 
   // In dev, every "context" tap shows the canonical demo brief so the block
-  // renderer can be evaluated without waiting for the pipeline. Sources still
-  // come from the active article above.
+  // renderer can be evaluated without waiting for the pipeline.
   const effectiveBrief = __DEV__ ? DEV_DEMO_BRIEF : brief;
   const effectiveThreadLabel = __DEV__ ? effectiveBrief?.label : threadLabel;
   const effectiveLoading = __DEV__ ? false : loading;
 
   const timeline = effectiveBrief?.timeline ?? [];
-  const hasSources = sources.length > 0;
   const hasThread = !!effectiveThreadLabel;
 
   const mdStyles = useMemo(
@@ -83,9 +75,7 @@ export const ContextSheet = memo(function ContextSheet({
 
   const spanningBlocks = effectiveBrief?.blocks ?? [];
   const hasSpanning = spanningBlocks.length > 0;
-  const hasContent = effectiveBrief != null || hasSources || hasSpanning;
-
-  const [expandedSource, setExpandedSource] = useState<number | null>(null);
+  const hasContent = effectiveBrief != null || hasSpanning;
 
   const wasLoading = useRef(false);
   useEffect(() => {
@@ -97,11 +87,6 @@ export const ContextSheet = memo(function ContextSheet({
     }
     wasLoading.current = effectiveLoading;
   }, [effectiveLoading, effectiveBrief]);
-
-  const handleDismiss = useCallback(() => {
-    setExpandedSource(null);
-    onDismiss();
-  }, [onDismiss]);
 
   const loadingSnap = useMemo(() => ['40%'], []);
 
@@ -191,69 +176,58 @@ export const ContextSheet = memo(function ContextSheet({
         ? { enableDynamicSizing: true, maxDynamicContentSize: MAX_SHEET_HEIGHT }
         : { snapPoints: loadingSnap, enableDynamicSizing: false })}
       renderBackdrop={renderBackdrop}
-      onDismiss={handleDismiss}
+      onDismiss={onDismiss}
     >
       <BottomSheetScrollView
         contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.xxl }]}
       >
-        {/* ── Sources ── */}
-        {hasSources && (
-          <>
-            <Text style={[styles.sectionLabel, textStyles.smallCaps]}>
-              {sources.length === 1 ? 'source' : 'sources'}
-            </Text>
-            {sources.map((s, i) => (
-              <Animated.View
-                key={s.name}
-                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
-              >
-                <SourceRow
-                  source={s}
-                  isExpanded={expandedSource === i}
-                  isLast={i === sources.length - 1}
-                  onPress={() => setExpandedSource(expandedSource === i ? null : i)}
-                />
-              </Animated.View>
-            ))}
-          </>
-        )}
-
-        {/* ── Spanning (arc) blocks ── */}
-        {hasSpanning && (
-          <>
-            <Text style={[styles.sectionLabel, styles.sectionLabelContext, textStyles.smallCaps]}>
-              arc
-            </Text>
-            {renderBlocks(spanningBlocks, {
-              mdStyles,
-              openLink,
-              variant: 'article',
-              sources: briefSources,
-              onCountryPress,
-            })}
-          </>
-        )}
-
-        {/* ── Context timeline ── */}
+        {/* ── Thread title ── */}
+        {/* The editorial name of this brief. Reads as the sheet's title — tells
+         *  the reader what arc they're entering before any content. */}
         {hasThread && (
-          <>
-            <Text style={[styles.sectionLabel, styles.sectionLabelContext, textStyles.smallCaps]}>
-              context
-            </Text>
-            {effectiveLoading && !effectiveBrief && (
-              <ActivityIndicator color={colors.accent} style={styles.loader} />
-            )}
+          <Text
+            selectable
+            style={[
+              styles.threadTitle,
+              {
+                ...font.bold,
+                fontSize: typography.sizeLg,
+                lineHeight: typography.sizeLg * typography.leadingHeading,
+                color: colors.textEmphasis,
+              },
+            ]}
+          >
+            {effectiveThreadLabel}
+          </Text>
+        )}
+
+        {/* Loader — brief not yet returned. */}
+        {effectiveLoading && !effectiveBrief && hasThread && (
+          <ActivityIndicator color={colors.accent} style={styles.loader} />
+        )}
+
+        {/* ── Arc ── (no label — the blocks are visually self-announcing) */}
+        {hasSpanning &&
+          renderBlocks(spanningBlocks, {
+            mdStyles,
+            openLink,
+            variant: 'article',
+            sources: briefSources,
+            onCountryPress,
+          })}
+
+        {/* ── Timeline ── (no label — the dot-on-rule pattern is its own visual header) */}
+        {timeline.length > 0 && (
+          <View style={hasSpanning ? styles.timelineAfterArc : undefined}>
             {timeline.map((entry, i, arr) => (
               <Animated.View
                 key={i}
-                entering={FadeInDown.duration(ANIMATION.normal).delay(
-                  sources.length * ANIMATION.staggerStep + staggerDelay(i),
-                )}
+                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
               >
                 {renderTimelineEntry(entry, i, arr)}
               </Animated.View>
             ))}
-          </>
+          </View>
         )}
       </BottomSheetScrollView>
     </SheetLayout>
@@ -261,14 +235,11 @@ export const ContextSheet = memo(function ContextSheet({
 });
 
 const styles = StyleSheet.create({
-  /* ── Sources ── */
-  sectionLabel: {
-    marginBottom: SPACING.sm,
+  threadTitle: {
+    marginBottom: SPACING.lg,
   },
-  /* ── Context ── */
-  sectionLabelContext: {
-    marginTop: SPACING.lg,
-    marginBottom: SPACING.md,
+  timelineAfterArc: {
+    marginTop: SPACING.md,
   },
   loader: {
     marginTop: SPACING.lg,

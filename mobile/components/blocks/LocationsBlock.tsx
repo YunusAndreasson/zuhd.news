@@ -10,22 +10,9 @@ import {
   View,
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, {
-  FadeIn,
-  runOnJS,
-  useDerivedValue,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated';
+import { runOnJS, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
-import {
-  ANIMATION,
-  EASING,
-  MAX_FONT_SCALE,
-  PRESSED_STYLE,
-  RADIUS,
-  SPACING,
-} from '../../constants/theme';
+import { EASING, MAX_FONT_SCALE, PRESSED_STYLE, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import { hapticImpact } from '../../lib/haptics';
@@ -91,10 +78,7 @@ interface LocationsBlockProps {
   /** Tap on a country chip opens the app-wide CountrySheet (deep dive). The
    *  block is intentionally agnostic to how the sheet is presented — the
    *  parent wires the ref + state. */
-  onCountryPress?: (payload: {
-    countryName: string;
-    data: CountryData | null;
-  }) => void;
+  onCountryPress?: (payload: { countryName: string; data: CountryData | null }) => void;
 }
 
 export const LocationsBlock = memo(function LocationsBlock({
@@ -327,8 +311,8 @@ export const LocationsBlock = memo(function LocationsBlock({
   const inverseScale = useDerivedValue(() => 1 / Math.max(1, animScale.value));
   // Stroke widths scale with the Group transform, so divide-by-scale keeps
   // borders crisp without inflating into slabs at high zoom.
-  const borderStrokeWidth = useDerivedValue(
-    () => Math.max(StyleSheet.hairlineWidth, 0.6 * inverseScale.value),
+  const borderStrokeWidth = useDerivedValue(() =>
+    Math.max(StyleSheet.hairlineWidth, 0.6 * inverseScale.value),
   );
   const selectedStrokeWidth = useDerivedValue(() => 1.25 * inverseScale.value);
 
@@ -394,11 +378,7 @@ export const LocationsBlock = memo(function LocationsBlock({
     >
       {label ? (
         <Text
-          style={[
-            textStyles.smallCapsXs,
-            styles.label,
-            { lineHeight: typography.sizeXs * 1.1 },
-          ]}
+          style={[textStyles.smallCapsXs, styles.label, { lineHeight: typography.sizeXs * 1.1 }]}
           maxFontSizeMultiplier={MAX_FONT_SCALE.label}
         >
           {label}
@@ -408,62 +388,62 @@ export const LocationsBlock = memo(function LocationsBlock({
         <GestureDetector gesture={mapTapGesture}>
           <View onLayout={onLayout} style={[styles.mapWrap, { height }]}>
             {width > 0 && height > 0 ? (
-            <Canvas style={{ width, height }}>
-              <Group transform={mapTransform}>
-                {paths.landPath ? (
-                  <Path
-                    path={paths.landPath}
-                    color={colors.textSecondary}
-                    opacity={0.2}
-                    style="fill"
-                  />
-                ) : null}
-                {paths.borderPath ? (
-                  <Path
-                    path={paths.borderPath}
-                    color={colors.textSecondary}
-                    opacity={0.3}
-                    style="stroke"
-                    strokeWidth={borderStrokeWidth}
-                  />
-                ) : null}
-                {paths.highlightedFillPath ? (
-                  <Path
-                    path={paths.highlightedFillPath}
-                    color={colors.accent}
-                    opacity={selectedFeature ? 0.22 : 0.4}
-                    style="fill"
-                  />
-                ) : null}
-                {paths.selectedFillPath ? (
-                  <>
+              <Canvas style={{ width, height }}>
+                <Group transform={mapTransform}>
+                  {paths.landPath ? (
                     <Path
-                      path={paths.selectedFillPath}
-                      color={colors.accent}
-                      opacity={0.7}
+                      path={paths.landPath}
+                      color={colors.textSecondary}
+                      opacity={0.2}
                       style="fill"
                     />
+                  ) : null}
+                  {paths.borderPath ? (
                     <Path
-                      path={paths.selectedFillPath}
-                      color={colors.textEmphasis}
+                      path={paths.borderPath}
+                      color={colors.textSecondary}
+                      opacity={0.3}
                       style="stroke"
-                      strokeWidth={selectedStrokeWidth}
+                      strokeWidth={borderStrokeWidth}
                     />
-                  </>
-                ) : null}
-                {selectedCentroid ? (
-                  <Circle
-                    cx={selectedCentroid.x}
-                    cy={selectedCentroid.y}
-                    r={pulseR}
-                    color={colors.accent}
-                    opacity={pulseOpacity}
-                    style="stroke"
-                    strokeWidth={pulseStrokeWidth}
-                  />
-                ) : null}
-              </Group>
-            </Canvas>
+                  ) : null}
+                  {paths.highlightedFillPath ? (
+                    <Path
+                      path={paths.highlightedFillPath}
+                      color={colors.accent}
+                      opacity={selectedFeature ? 0.22 : 0.4}
+                      style="fill"
+                    />
+                  ) : null}
+                  {paths.selectedFillPath ? (
+                    <>
+                      <Path
+                        path={paths.selectedFillPath}
+                        color={colors.accent}
+                        opacity={0.7}
+                        style="fill"
+                      />
+                      <Path
+                        path={paths.selectedFillPath}
+                        color={colors.textEmphasis}
+                        style="stroke"
+                        strokeWidth={selectedStrokeWidth}
+                      />
+                    </>
+                  ) : null}
+                  {selectedCentroid ? (
+                    <Circle
+                      cx={selectedCentroid.x}
+                      cy={selectedCentroid.y}
+                      r={pulseR}
+                      color={colors.accent}
+                      opacity={pulseOpacity}
+                      style="stroke"
+                      strokeWidth={pulseStrokeWidth}
+                    />
+                  ) : null}
+                </Group>
+              </Canvas>
             ) : null}
           </View>
         </GestureDetector>

@@ -61,7 +61,18 @@ export type ArticleBlock =
    *  index into `ContextBrief.sources` for the citation caption. */
   | ({ type: 'quote'; text: string; speaker?: string; year?: string } & BlockSourceRef)
   /** Cast of characters — named actors in a historical context. */
-  | ({ type: 'actors'; people: Actor[]; label?: string } & BlockSourceRef);
+  | ({ type: 'actors'; people: Actor[]; label?: string } & BlockSourceRef)
+  /** Active-reading check — one question, three options, retrieval practice
+   *  right after the section it quizzes. `correct` is the index into `options`;
+   *  `explanation` fades in after the user answers and is where the actual
+   *  learning moment happens. */
+  | ({
+      type: 'quiz';
+      question: string;
+      options: string[];
+      correct: number;
+      explanation?: string;
+    } & BlockSourceRef);
 
 export type BlockType = ArticleBlock['type'];
 

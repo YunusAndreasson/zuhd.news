@@ -90,6 +90,18 @@ export const DEV_DEMO_BRIEF: ContextBrief = {
             },
           ],
         },
+        {
+          type: 'quiz',
+          question: 'Moscow expected the intervention to last how long?',
+          options: [
+            'Months — a short stabilization',
+            'Two to three years',
+            'A full decade of counterinsurgency',
+          ],
+          correct: 0,
+          explanation:
+            'The Politburo authorized a limited show of force. What followed was a ten-year war.',
+        },
       ],
     },
     {
@@ -171,6 +183,16 @@ export const DEV_DEMO_BRIEF: ContextBrief = {
       year: '2001',
       heading: 'US invasion',
       body: 'Following September 11, a US-led coalition removed the Taliban within two months. Reconstruction would last twenty years.',
+      blocks: [
+        {
+          type: 'quiz',
+          question: 'How long did the initial operation take to remove the Taliban from power?',
+          options: ['About two weeks', 'About two months', 'About two years'],
+          correct: 1,
+          explanation:
+            'Kabul fell in November 2001 and Kandahar in December — roughly two months after operations began.',
+        },
+      ],
     },
     {
       year: '2021',
