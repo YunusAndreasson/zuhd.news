@@ -16,7 +16,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ANIMATION, ICON, LAYOUT, MAX_FONT_SCALE, RADIUS, SPACING } from '../constants/theme';
+import { ANIMATION, ICON, MAX_FONT_SCALE, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { HapticButton } from './HapticButton';
 
@@ -226,7 +226,7 @@ export const BriefingBar = memo(function BriefingBar({
           </HapticButton>
 
           <HapticButton onPress={onClose} accessibilityLabel="Close briefing player">
-            <Ionicons name="close" size={ICON.md} color={colors.textSecondary} />
+            <Ionicons name="close" size={ICON.sm} color={colors.textSecondary} />
           </HapticButton>
         </View>
 

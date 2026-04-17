@@ -297,6 +297,10 @@ export default function HomeScreen() {
     toastRef.current?.show('Caught up', undefined, 'top');
   }, []);
 
+  const handleMenuToast = useCallback((message: string) => {
+    toastRef.current?.show(message, undefined, 'top');
+  }, []);
+
   const handleEndReached = useCallback((catIndex: number) => {
     const cat = CATEGORIES[catIndex];
     if (!cat) return;
@@ -431,6 +435,7 @@ export default function HomeScreen() {
         onDismiss={() => {}}
         grouped={grouped}
         onSelectArticle={handleSelectArticle}
+        onToast={handleMenuToast}
       />
 
       <CountrySheet

@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { LAYOUT, MAX_FONT_SCALE, PRESSED_STYLE, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { hapticImpact } from '../lib/haptics';
 
@@ -27,25 +27,32 @@ export function ErrorState({ offline, error, onRetry }: ErrorStateProps) {
           { ...font.regular, fontSize: typography.sizeSm, color: colors.textSecondary },
         ]}
       >
-        {offline ? 'Connect to the internet and reopen.' : error}
+        {offline ? 'Connect and try again.' : error}
       </Text>
       <Pressable
         onPress={() => {
           hapticImpact();
           onRetry();
         }}
-        style={({ pressed }) => pressed && PRESSED_STYLE}
+        style={({ pressed }) => [
+          styles.retryPill,
+          { backgroundColor: colors.pillBg },
+          pressed && PRESSED_STYLE,
+        ]}
         hitSlop={LAYOUT.hitSlop}
         accessibilityRole="button"
         accessibilityLabel="Try again"
       >
         <Text
-          style={[
-            styles.retryText,
-            { ...font.semiBold, fontSize: typography.sizeSm, color: colors.text },
-          ]}
+          style={{
+            ...font.smallCaps,
+            fontSize: typography.sizeXs,
+            letterSpacing: typography.trackingCaps,
+            color: colors.textEmphasis,
+          }}
+          maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
         >
-          Try again
+          try again
         </Text>
       </Pressable>
     </View>
@@ -66,7 +73,10 @@ const styles = StyleSheet.create({
   errorHint: {
     textAlign: 'center',
   },
-  retryText: {
+  retryPill: {
     marginTop: SPACING.lg,
+    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.md,
+    borderRadius: RADIUS.floating,
   },
 });

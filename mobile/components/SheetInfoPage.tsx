@@ -1,6 +1,8 @@
-import { Linking, StyleSheet, Text, View } from 'react-native';
-import { SPACING } from '../constants/theme';
+import { StyleSheet, Text } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { useOpenLink } from '../lib/open-link';
 import { HapticPressable } from './HapticPressable';
 
 export interface InfoSection {
@@ -16,10 +18,15 @@ interface SheetInfoPageProps {
 /** Prose-heavy sheet page: optional heading, body, optional link per section. */
 export function SheetInfoPage({ sections }: SheetInfoPageProps) {
   const { colors, font, typography, textStyles } = useTheme();
+  const openLink = useOpenLink();
   return (
     <>
       {sections.map((section, i) => (
-        <View key={i} style={i > 0 ? styles.section : undefined}>
+        <Animated.View
+          key={i}
+          entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
+          style={i > 0 ? styles.section : undefined}
+        >
           {section.heading && (
             <Text style={[styles.heading, textStyles.smallCaps]}>{section.heading}</Text>
           )}
@@ -38,7 +45,7 @@ export function SheetInfoPage({ sections }: SheetInfoPageProps) {
           )}
           {section.link && (
             <HapticPressable
-              onPress={() => Linking.openURL(section.link?.url ?? '')}
+              onPress={() => section.link?.url && openLink(section.link.url)}
               style={styles.link}
               accessibilityRole="link"
               accessibilityLabel={section.link.label}
@@ -55,7 +62,7 @@ export function SheetInfoPage({ sections }: SheetInfoPageProps) {
               </Text>
             </HapticPressable>
           )}
-        </View>
+        </Animated.View>
       ))}
     </>
   );

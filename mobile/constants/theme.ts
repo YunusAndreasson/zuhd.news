@@ -42,6 +42,9 @@ export const FONT_SIZE_SCALE: Record<FontSize, number> = {
   large: 1.15,
 };
 
+/** Resolved base font size for a given size preference — useful for size-picker previews. */
+export const baseFontSize = (size: FontSize): number => fs(17, FONT_SIZE_SCALE[size]);
+
 // ---------------------------------------------------------------------------
 // Primitives — theme-invariant raw values
 // ---------------------------------------------------------------------------
