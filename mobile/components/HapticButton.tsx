@@ -1,18 +1,20 @@
 import { memo, useCallback } from 'react';
 import { Pressable, type PressableProps, type StyleProp, type ViewStyle } from 'react-native';
-import { LAYOUT, PRESSED_STYLE } from '../constants/theme';
-import { hapticImpact, hapticTick } from '../lib/haptics';
-
-type Haptic = 'impact' | 'tick' | 'none';
+import Animated from 'react-native-reanimated';
+import { LAYOUT } from '../constants/theme';
+import { useSpringPress } from '../hooks/useSpringPress';
+import { fireHaptic, type HapticTier } from '../lib/haptics';
 
 interface HapticButtonProps extends Omit<PressableProps, 'style' | 'onPress'> {
   onPress: () => void;
-  haptic?: Haptic;
+  haptic?: HapticTier;
   style?: StyleProp<ViewStyle>;
 }
 
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+
 /**
- * Icon-only / chrome button wrapper. Bakes in the shared PRESSED_STYLE,
+ * Icon-only / chrome button wrapper. Bakes in spring press animation,
  * haptics, `hitSlop`, and `accessibilityRole="button"` so callers only
  * need `onPress` and `accessibilityLabel`.
  *
@@ -25,21 +27,30 @@ export const HapticButton = memo(function HapticButton({
   style,
   hitSlop = LAYOUT.hitSlop,
   accessibilityRole = 'button',
+  onPressIn,
+  onPressOut,
   ...rest
 }: HapticButtonProps) {
+  const {
+    animatedStyle,
+    onPressIn: handlePressIn,
+    onPressOut: handlePressOut,
+  } = useSpringPress(onPressIn, onPressOut);
+
   const handlePress = useCallback(() => {
-    if (haptic === 'impact') hapticImpact();
-    else if (haptic === 'tick') hapticTick();
+    fireHaptic(haptic);
     onPress();
   }, [onPress, haptic]);
 
   return (
-    <Pressable
+    <AnimatedPressable
       {...rest}
       onPress={handlePress}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
       hitSlop={hitSlop}
       accessibilityRole={accessibilityRole}
-      style={({ pressed }) => [style, pressed && PRESSED_STYLE]}
+      style={[style, animatedStyle]}
     />
   );
 });
