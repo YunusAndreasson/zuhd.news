@@ -21,8 +21,8 @@ import { useTheme } from '../../hooks/useTheme';
 import { hapticTick } from '../../lib/haptics';
 import type { ArticleBlock, TrendAnnotation } from '../../types';
 import { HapticPressable } from '../HapticPressable';
-import type { BlockVariant } from './index';
 import { SourceCaption } from './SourceCaption';
+import type { BlockVariant } from './shared';
 
 type TrendHighlight = Extract<ArticleBlock, { type: 'trend' }>['highlight'];
 type Pt = { x: number; y: number };

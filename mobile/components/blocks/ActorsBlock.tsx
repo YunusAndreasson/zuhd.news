@@ -5,8 +5,8 @@ import { ANIMATION, MAX_FONT_SCALE, SPACING, staggerDelay } from '../../constant
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import type { Actor } from '../../types';
-import { type BlockVariant, blockContainerStyle } from './index';
 import { SourceCaption } from './SourceCaption';
+import { type BlockVariant, blockContainerStyle } from './shared';
 
 interface ActorsBlockProps {
   people: Actor[];

@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
-import { type BlockVariant, blockContainerStyle } from './index';
+import { type BlockVariant, blockContainerStyle } from './shared';
 
 interface QuoteBlockProps {
   text: string;
