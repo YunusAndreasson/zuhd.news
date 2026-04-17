@@ -103,7 +103,7 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           ref={inputRef}
           value={query}
           onChangeText={setQuery}
-          placeholder="Search articles..."
+          placeholder="search articles…"
           placeholderTextColor={colors.textSecondary}
           style={[
             styles.input,

@@ -44,6 +44,7 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
+import { BLACK } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { displayLocation } from '../../lib/place-names';
 import type { Article, HeatmapPoint } from '../../types';
@@ -1346,10 +1347,10 @@ export const MiniGlobe = memo(function MiniGlobe({
       )}
 
       {/* Low-sun band — faint gradient where sun is near the horizon */}
-      {state.twilightPath && <Path path={state.twilightPath} color={colors.black} opacity={0.06} />}
+      {state.twilightPath && <Path path={state.twilightPath} color={BLACK} opacity={0.06} />}
 
       {/* Night shadow — darker overlay on the unlit hemisphere */}
-      {state.nightPath && <Path path={state.nightPath} color={colors.black} opacity={0.15} />}
+      {state.nightPath && <Path path={state.nightPath} color={BLACK} opacity={0.15} />}
 
       {/* Terminator — thin stroke at the day/night boundary */}
       {state.nightPath && (

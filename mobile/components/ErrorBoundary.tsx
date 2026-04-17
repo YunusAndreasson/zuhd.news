@@ -1,6 +1,6 @@
 import { Component, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { DARK_COLORS, LAYOUT, makeTypography, SPACING } from '../constants/theme';
+import { DARK_COLORS, FONT_SYSTEM, LAYOUT, makeTypography, SPACING } from '../constants/theme';
 
 interface Props {
   children: ReactNode;
@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
   retry: {
     color: DARK_COLORS.text,
     fontSize: typography.sizeSm,
-    fontWeight: '600',
+    ...FONT_SYSTEM.semiBold,
   },
 });

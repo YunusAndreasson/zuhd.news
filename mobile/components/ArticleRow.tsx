@@ -49,7 +49,6 @@ export const ArticleRow = memo(function ArticleRow({
       style={[styles.row, { borderBottomColor: colors.rule }]}
       accessibilityRole="button"
       accessibilityLabel={title}
-      accessibilityHint="Double tap to read, long press to save"
     >
       <Text
         style={{

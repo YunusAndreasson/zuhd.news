@@ -86,7 +86,14 @@ jest.mock('react-native-reanimated', () => {
       return output[output.length - 1];
     },
     Extrapolation: { CLAMP: 'clamp', EXTEND: 'extend', IDENTITY: 'identity' },
-    Easing: { linear: (v) => v, ease: (v) => v },
+    Easing: {
+      linear: (v) => v,
+      ease: (v) => v,
+      cubic: (v) => v,
+      in: (fn) => fn,
+      out: (fn) => fn,
+      inOut: (fn) => fn,
+    },
     SharedValue: {},
   };
 });

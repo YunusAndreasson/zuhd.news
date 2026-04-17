@@ -5,9 +5,10 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, LAYOUT, PRESSED_STYLE, SPACING, staggerDelay } from '../constants/theme';
+import { ANIMATION, ICON, SPACING, staggerDelay } from '../constants/theme';
+import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import type { MetricKey } from '../lib/country-ranking';
 import { displayCountryName, displayLocation } from '../lib/place-names';
@@ -16,7 +17,6 @@ import type { TapResult } from './globe/MiniGlobe';
 import { HapticPressable } from './HapticPressable';
 import { SheetHandle } from './SheetHandle';
 import { SheetLayout } from './SheetLayout';
-import { useMaxSheetHeight } from './SheetPrimitives';
 
 function KeyStat({
   label,
@@ -95,7 +95,7 @@ function CountryRow({
         >
           {value}
         </Text>
-        {onPress && <Ionicons name="chevron-forward" size={LAYOUT.iconSm} color={colors.accent} />}
+        {onPress && <Ionicons name="chevron-forward" size={ICON.sm} color={colors.accent} />}
       </View>
     </View>
   );
@@ -136,8 +136,8 @@ export const CountrySheet = memo(function CountrySheet({
   onStoryPress,
 }: CountrySheetProps) {
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
-  const MAX_SHEET_HEIGHT = useMaxSheetHeight();
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
+  const snapProps = useSheetSnaps(activeRanking !== null);
   const flag = country?.data?.flag;
   const name = displayCountryName(country?.countryName ?? null);
   const onBackToCountry = useCallback(() => setActiveRanking(null), []);
@@ -161,11 +161,11 @@ export const CountrySheet = memo(function CountrySheet({
 
   const hasHotspot = country?.hotspotLabels && country.hotspotLabels.length > 0;
 
-  // Smart 3rd key stat: military spend when active stories, GDP/capita otherwise
+  // Smart 3rd key stat: military spend when active stories, gdp per capita otherwise
   const thirdStat: { label: string; value: string | null | undefined; metric: MetricKey } =
     hasHotspot
       ? { label: 'military spend', value: country?.data?.military, metric: 'military' }
-      : { label: 'GDP/capita', value: country?.data?.gdpPerCapita, metric: 'gdpPerCapita' };
+      : { label: 'gdp per capita', value: country?.data?.gdpPerCapita, metric: 'gdpPerCapita' };
 
   const handleDismiss = useCallback(() => {
     setActiveRanking(null);
@@ -175,9 +175,7 @@ export const CountrySheet = memo(function CountrySheet({
   return (
     <SheetLayout
       sheetRef={sheetRef}
-      {...(activeRanking
-        ? ({ snapPoints: ['85%'], enableDynamicSizing: false } as const)
-        : ({ enableDynamicSizing: true, maxDynamicContentSize: MAX_SHEET_HEIGHT } as const))}
+      {...snapProps}
       renderBackdrop={renderBackdrop}
       handleComponent={CountryHandle}
       onDismiss={handleDismiss}
@@ -231,12 +229,12 @@ export const CountrySheet = memo(function CountrySheet({
                       : 'developing stories'}
                   </Text>
                   {country.hotspotLabels?.map((label, i) => (
-                    <Pressable
+                    <HapticPressable
                       key={i}
+                      haptic="tick"
                       onPress={() => onStoryPress?.(label)}
-                      style={({ pressed }) => pressed && PRESSED_STYLE}
                       accessibilityRole="button"
-                      accessibilityLabel={`Go to ${label}`}
+                      accessibilityLabel={`View story: ${label}`}
                     >
                       <Text
                         style={[
@@ -251,7 +249,7 @@ export const CountrySheet = memo(function CountrySheet({
                       >
                         {label}
                       </Text>
-                    </Pressable>
+                    </HapticPressable>
                   ))}
                 </Animated.View>
               )}
@@ -262,7 +260,7 @@ export const CountrySheet = memo(function CountrySheet({
               >
                 <SectionLabel>economy</SectionLabel>
                 <CountryRow
-                  label="GDP/capita"
+                  label="gdp per capita"
                   value={country.data.gdpPerCapita}
                   borderColor={colors.rule}
                   onPress={() => setActiveRanking('gdpPerCapita')}
@@ -349,7 +347,7 @@ export const CountrySheet = memo(function CountrySheet({
                 entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(5))}
               >
                 <Text style={[styles.attribution, textStyles.smallCapsXs]}>
-                  world bank \u00B7 rest countries
+                  {'world bank \u00B7 rest countries'}
                 </Text>
               </Animated.View>
             </>
@@ -367,7 +365,7 @@ const styles = StyleSheet.create({
     gap: SPACING.sm,
   },
   handleFlag: {
-    fontSize: LAYOUT.iconMd,
+    fontSize: ICON.md,
   },
   sheetLabel: {
     marginBottom: SPACING.sm,

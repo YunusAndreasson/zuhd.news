@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { memo, type ReactNode } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { LAYOUT, SPACING } from '../constants/theme';
+import { ICON, LAYOUT, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { HapticPressable } from './HapticPressable';
 
@@ -37,7 +37,7 @@ export const SheetHandle = memo(function SheetHandle({ title, onBack }: SheetHan
               accessibilityRole="button"
               accessibilityLabel="Back"
             >
-              <Ionicons name="chevron-back" size={LAYOUT.iconMd} color={colors.text} />
+              <Ionicons name="chevron-back" size={ICON.md} color={colors.text} />
             </HapticPressable>
           )}
           {typeof title === 'string' ? (
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   indicator: {
     width: LAYOUT.handleWidth,
     height: LAYOUT.handleHeight,
-    borderRadius: LAYOUT.handleRadius,
+    borderRadius: RADIUS.handle,
   },
   titleRow: {
     flexDirection: 'row',

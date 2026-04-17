@@ -64,7 +64,8 @@ function GlobeTapZone({
       style={styles.globeTapZone}
       onPress={handleTap}
       accessibilityRole="button"
-      accessibilityLabel="Tap map to view country"
+      accessibilityLabel="Globe map"
+      accessibilityHint="Select a country for details"
     />
   );
 }

@@ -11,8 +11,8 @@ export type MetricKey =
 
 export const METRICS: Record<MetricKey, { label: string }> = {
   population: { label: 'population' },
-  gdp: { label: 'GDP' },
-  gdpPerCapita: { label: 'GDP per capita' },
+  gdp: { label: 'gdp' },
+  gdpPerCapita: { label: 'gdp per capita' },
   military: { label: 'military spending' },
   area: { label: 'area' },
   lifeExpectancy: { label: 'life expectancy' },
