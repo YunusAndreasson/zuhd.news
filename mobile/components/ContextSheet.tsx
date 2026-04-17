@@ -13,10 +13,19 @@ const TIMELINE_DOT = 5;
 const TIMELINE_LINE = 1;
 
 import { useTheme } from '../hooks/useTheme';
+import { makeMarkdownStyles } from '../lib/markdown';
+import { useOpenLink } from '../lib/open-link';
 import type { ArticleSource, ContextBrief, TimelineEntry } from '../types';
+import { renderBlocks } from './blocks';
 import { SheetLayout } from './SheetLayout';
 import { useMaxSheetHeight } from './SheetPrimitives';
 import { SourceRow } from './SourceRow';
+
+// Dev-only canonical brief. The __DEV__ ternary is a compile-time constant;
+// Metro strips the require (and the module it points to) from release bundles.
+const DEV_DEMO_BRIEF: ContextBrief | null = __DEV__
+  ? (require('../lib/dev-context-demo') as typeof import('../lib/dev-context-demo')).DEV_DEMO_BRIEF
+  : null;
 
 // ---------------------------------------------------------------------------
 // Main sheet
@@ -45,23 +54,40 @@ export const ContextSheet = memo(function ContextSheet({
 }: ContextSheetProps) {
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
-  const timeline = brief?.timeline ?? [];
+
+  // In dev, every "context" tap shows the canonical demo brief so the block
+  // renderer can be evaluated without waiting for the pipeline. Sources still
+  // come from the active article above.
+  const effectiveBrief = __DEV__ ? DEV_DEMO_BRIEF : brief;
+  const effectiveThreadLabel = __DEV__ ? effectiveBrief?.label : threadLabel;
+  const effectiveLoading = __DEV__ ? false : loading;
+
+  const timeline = effectiveBrief?.timeline ?? [];
   const hasSources = sources.length > 0;
-  const hasThread = !!threadLabel;
-  const hasContent = brief != null || hasSources;
+  const hasThread = !!effectiveThreadLabel;
+
+  const mdStyles = useMemo(
+    () => makeMarkdownStyles(colors, font, typography),
+    [colors, font, typography],
+  );
+  const openLink = useOpenLink();
+
+  const spanningBlocks = effectiveBrief?.blocks ?? [];
+  const hasSpanning = spanningBlocks.length > 0;
+  const hasContent = effectiveBrief != null || hasSources || hasSpanning;
 
   const [expandedSource, setExpandedSource] = useState<number | null>(null);
 
   const wasLoading = useRef(false);
   useEffect(() => {
-    if (wasLoading.current && !loading && brief) {
-      const count = brief.timeline.length;
+    if (wasLoading.current && !effectiveLoading && effectiveBrief) {
+      const count = effectiveBrief.timeline.length;
       AccessibilityInfo.announceForAccessibility(
         `Context loaded, ${count} entr${count === 1 ? 'y' : 'ies'}`,
       );
     }
-    wasLoading.current = loading;
-  }, [loading, brief]);
+    wasLoading.current = effectiveLoading;
+  }, [effectiveLoading, effectiveBrief]);
 
   const handleDismiss = useCallback(() => {
     setExpandedSource(null);
@@ -70,7 +96,21 @@ export const ContextSheet = memo(function ContextSheet({
 
   const loadingSnap = useMemo(() => ['40%'], []);
 
+  const briefSources = effectiveBrief?.sources;
   const renderTimelineEntry = (entry: TimelineEntry, i: number, arr: TimelineEntry[]) => {
+    const entryBlocks = entry.blocks ?? [];
+    const hasBlocks = entryBlocks.length > 0;
+    const blocksNode = hasBlocks ? (
+      <View style={styles.entryBlocks}>
+        {renderBlocks(entryBlocks, {
+          mdStyles,
+          openLink,
+          variant: 'context',
+          sources: briefSources,
+        })}
+      </View>
+    ) : null;
+
     if (!entry.year) {
       return (
         <View key={i}>
@@ -80,6 +120,7 @@ export const ContextSheet = memo(function ContextSheet({
           <Text selectable style={[textStyles.body, styles.bodySpacing]}>
             {entry.body}
           </Text>
+          {blocksNode}
         </View>
       );
     }
@@ -102,14 +143,32 @@ export const ContextSheet = memo(function ContextSheet({
                 fontSize: typography.sizeXs,
                 color: colors.accent,
                 letterSpacing: typography.trackingCaps,
+                fontVariant: ['oldstyle-nums'],
               },
             ]}
           >
             {entry.year}
           </Text>
+          {entry.heading ? (
+            <Text
+              selectable
+              style={[
+                styles.entryHeading,
+                {
+                  ...font.semiBold,
+                  fontSize: typography.sizeBase,
+                  lineHeight: typography.sizeBase * typography.leadingHeading,
+                  color: colors.textEmphasis,
+                },
+              ]}
+            >
+              {entry.heading}
+            </Text>
+          ) : null}
           <Text selectable style={textStyles.body}>
             {entry.body}
           </Text>
+          {blocksNode}
         </View>
       </View>
     );
@@ -149,16 +208,36 @@ export const ContextSheet = memo(function ContextSheet({
           </>
         )}
 
-        {/* ── Context ── */}
-        {hasThread && (
+        {/* ── Spanning (arc) blocks ── */}
+        {hasSpanning && (
           <>
             {hasSources && (
               <View style={[styles.sectionDivider, { backgroundColor: colors.rule }]} />
             )}
             <Text style={[styles.sectionLabel, styles.sectionLabelContext, textStyles.smallCaps]}>
+              arc
+            </Text>
+            {renderBlocks(spanningBlocks, {
+              mdStyles,
+              openLink,
+              variant: 'article',
+              sources: briefSources,
+            })}
+          </>
+        )}
+
+        {/* ── Context timeline ── */}
+        {hasThread && (
+          <>
+            {(hasSources || hasSpanning) && (
+              <View style={[styles.sectionDivider, { backgroundColor: colors.rule }]} />
+            )}
+            <Text style={[styles.sectionLabel, styles.sectionLabelContext, textStyles.smallCaps]}>
               context
             </Text>
-            {loading && !brief && <ActivityIndicator color={colors.accent} style={styles.loader} />}
+            {effectiveLoading && !effectiveBrief && (
+              <ActivityIndicator color={colors.accent} style={styles.loader} />
+            )}
             {timeline.map((entry, i, arr) => (
               <Animated.View
                 key={i}
@@ -216,11 +295,18 @@ const styles = StyleSheet.create({
   entryYear: {
     marginBottom: SPACING.xxs,
   },
+  entryHeading: {
+    marginBottom: SPACING.xs,
+  },
   bodySpacing: {
     marginBottom: SPACING.sm,
   },
   eduHeading: {
     marginTop: SPACING.md,
+    marginBottom: SPACING.xs,
+  },
+  entryBlocks: {
+    marginTop: SPACING.sm,
     marginBottom: SPACING.xs,
   },
 });

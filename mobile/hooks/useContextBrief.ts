@@ -1,8 +1,29 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { API_BASE } from '../constants/theme';
 import { fetchWithTimeout } from '../lib/fetch';
-import { isContextBrief } from '../lib/validate';
+import { isContextBrief, parseArticleBlocks } from '../lib/validate';
 import type { ContextBrief } from '../types';
+
+/** Sanitize optional block fields on the brief and each timeline entry so
+ *  downstream renderers never see malformed / unknown-type blocks from the
+ *  pipeline. Also coerces `sources` to a clean string array so block source
+ *  index references always resolve to usable strings. */
+function normalizeBrief(raw: ContextBrief): ContextBrief {
+  const hasBriefBlocks = raw.blocks !== undefined;
+  const hasEntryBlocks = raw.timeline.some((e) => e.blocks !== undefined);
+  const hasSources = raw.sources !== undefined;
+  if (!hasBriefBlocks && !hasEntryBlocks && !hasSources) return raw;
+  return {
+    ...raw,
+    blocks: hasBriefBlocks ? parseArticleBlocks(raw.blocks) : undefined,
+    sources: hasSources
+      ? (raw.sources ?? []).filter((s): s is string => typeof s === 'string' && s.length > 0)
+      : undefined,
+    timeline: raw.timeline.map((e) =>
+      e.blocks === undefined ? e : { ...e, blocks: parseArticleBlocks(e.blocks) },
+    ),
+  };
+}
 
 const cache = new Map<string, ContextBrief>();
 const MAX_CACHE = 50;
@@ -43,13 +64,14 @@ export function useContextBrief(): ContextBriefState {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const raw: unknown = await res.json();
       if (!isContextBrief(raw)) throw new Error('Malformed context brief');
+      const normalized = normalizeBrief(raw);
       if (cache.size >= MAX_CACHE) {
         const oldest = cache.keys().next().value;
         if (oldest !== undefined) cache.delete(oldest);
       }
-      cache.set(threadId, raw);
+      cache.set(threadId, normalized);
       if (!controller.signal.aborted) {
-        setBrief(raw);
+        setBrief(normalized);
         setLoading(false);
       }
     } catch {

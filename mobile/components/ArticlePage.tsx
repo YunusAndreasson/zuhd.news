@@ -159,7 +159,7 @@ export const ArticlePage = memo(function ArticlePage({
         timeAgo,
         openLink,
       ),
-    [article.sentences, mdStyles, typography, bodyFontSize, article.location, timeAgo, openLink],
+    [article.sentences, article.location, mdStyles, typography, bodyFontSize, timeAgo, openLink],
   );
 
   const handleLongPress = useCallback(() => {

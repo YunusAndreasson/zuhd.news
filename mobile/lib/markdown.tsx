@@ -126,7 +126,7 @@ export function makeMarkdownStyles(
   });
 }
 
-function renderSegments(
+export function renderSegments(
   segments: Segment[],
   mdStyles: MarkdownStyles,
   openLink: LinkOpener,

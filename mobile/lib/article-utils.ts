@@ -21,6 +21,9 @@ export function ccToFlag(cc: string): string {
     .replace(/./g, (c) => String.fromCodePoint(0x1f1e6 + c.charCodeAt(0) - 65));
 }
 
+/** Character-equivalent "weight" of each block type for font-scaling purposes —
+ *  chosen so that a single block occupies roughly the same viewport budget as
+ *  its prose equivalent. Tuned against fixture articles, not precise. */
 export function computeFontScale(title: string, sentences: string[]): number {
   const contentLength = title.length * 2 + sentences.join(' ').length;
   const threshold = 450;

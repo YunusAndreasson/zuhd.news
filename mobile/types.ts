@@ -6,6 +6,65 @@ export interface ArticleSource {
   sentiment?: number | null;
 }
 
+export type BlockTone = 'favorable' | 'unfavorable' | 'neutral';
+
+export interface CompareRow {
+  label: string;
+  value: string;
+  tone?: BlockTone;
+  cc?: string;
+  /** Magnitude for rendering a proportional fill behind the row. When present
+   *  across rows, the block renders as a light bar chart (max-scaled). */
+  weight?: number;
+}
+
+/** A single event marker on a trend chart — vertical hairline + small-caps
+ *  label at `atIndex` (index into `values` / `periods`). */
+export interface TrendAnnotation {
+  atIndex: number;
+  label: string;
+}
+
+export interface Actor {
+  name: string;
+  role: string;
+  /** Date-range served — e.g. "1985–1991" */
+  years?: string;
+  /** ISO-2 country code → flag prefix */
+  cc?: string;
+}
+
+/** A source reference on any block is an index into `ContextBrief.sources`. The
+ *  renderer resolves it to a short citation caption beneath the block. */
+interface BlockSourceRef {
+  source?: number;
+}
+
+export type ArticleBlock =
+  | ({ type: 'prose'; text: string } & BlockSourceRef)
+  | ({ type: 'compare'; rows: CompareRow[] } & BlockSourceRef)
+  | ({
+      type: 'trend';
+      values: number[];
+      label: string;
+      unit?: string;
+      /** Labels per point (e.g. years) — first and last are rendered as axis
+       *  anchors, others are used in accessibility text. */
+      periods?: string[];
+      highlight?: 'last' | 'first' | 'max' | 'min';
+      /** Event markers pinned to specific data points. */
+      annotations?: TrendAnnotation[];
+    } & BlockSourceRef)
+  | ({ type: 'locations'; codes: string[]; label?: string; caption?: string } & BlockSourceRef)
+  /** Period quote — editorial texture. Renders as italic body with attribution.
+   *  `speaker` names who said it; `source` (here a number, not a string) is an
+   *  index into `ContextBrief.sources` for the citation caption. */
+  | ({ type: 'quote'; text: string; speaker?: string; year?: string } & BlockSourceRef)
+  /** Cast of characters — named actors in a historical context. */
+  | ({ type: 'actors'; people: Actor[]; label?: string } & BlockSourceRef);
+
+export type BlockType = ArticleBlock['type'];
+
 export interface Article {
   slug: string;
   title: string;
@@ -41,11 +100,21 @@ export interface TimelineEntry {
   year?: string;
   heading?: string;
   body: string;
+  /** Optional structured blocks rendered alongside the prose — e.g. a stat for
+   *  "115,000 Soviet troops", a sparkline for casualty trend, a locations row
+   *  for proxy patrons. Pipeline emits these later; mobile renders them now. */
+  blocks?: ArticleBlock[];
 }
 
 export interface ContextBrief extends ContextIndexEntry {
   id: string;
   timeline: TimelineEntry[];
+  /** Spanning blocks rendered above the timeline — the "arc" view: one map
+   *  covering every country mentioned, one trend spanning all entry years. */
+  blocks?: ArticleBlock[];
+  /** Short citation strings ("Chatham House · 2023", "World Bank") referenced
+   *  by blocks via `block.source` (index into this array). */
+  sources?: string[];
 }
 
 export interface FeedResponse {
