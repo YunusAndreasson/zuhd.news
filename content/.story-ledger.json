@@ -2,13 +2,579 @@
   "version": 1,
   "stories": [
     {
+      "id": "student-led-axion-dark-matter-experiment",
+      "label": "A student-led experiment sets new limits in the search for axions",
+      "firstSeen": "2026-04-17T04:05:10.835Z",
+      "lastCovered": "2026-04-17T07:06:18.868Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-04-17-student-led-axion-dark-matter-experiment",
+        "2026-04-17-student-led-axion-experiment-dark-matter-limits"
+      ],
+      "eventUri": null,
+      "summary": "A small university team, working without the resources of CERN-scale collaborations, narrowed the parameter space for axion dark matter — a reminder that frontier physics still has room for table-top experiments and young researchers. Lead with the size of the team and the size of the result. Structural angle: this is the counter-narrative to 'big science is the only science' and a worthy story for a reader who values the hacker ethos applied to fundamental physics. Note which institution and which country — Global South participation in dark-matter searches is itself a story.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Axion",
+        "http://en.wikipedia.org/wiki/Dark_matter"
+      ]
+    },
+    {
+      "id": "pemex-gulf-mexico-oil-spill-veracruz-coverup",
+      "label": "Oil Spill Crisis: Pemex Under Fire in the Gulf of Mexico",
+      "firstSeen": "2026-04-17T07:06:18.868Z",
+      "lastCovered": "2026-04-17T07:06:18.868Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-pemex-gulf-mexico-oil-spill-veracruz-coverup"
+      ],
+      "eventUri": "spa-4170930",
+      "summary": "Three Pemex officials were fired for hiding a February pipeline leak that polluted Veracruz beaches and a federally protected reserve before being reported in March. Lead with the timeline — two months of concealment by Mexico's state oil company, with the leak finally washing onto shores. Structural angle: the world's largest publicly held oil firm by debt is collapsing in safety culture as Iran-war prices push Pemex to keep ageing platforms running. The reader should understand this as a state-capitalism failure mode, not an industrial accident.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pemex",
+        "http://en.wikipedia.org/wiki/Gulf_of_Mexico",
+        "http://en.wikipedia.org/wiki/Pipeline_transport",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Veracruz_(city)"
+      ]
+    },
+    {
+      "id": "ed-raids-punjab-minister-sanjeev-arora-fema-aap",
+      "label": "ED raids Punjab minister Sanjeev Arora, kin in FEMA probe",
+      "firstSeen": "2026-04-17T07:06:18.868Z",
+      "lastCovered": "2026-04-17T07:06:18.868Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-ed-raids-punjab-minister-sanjeev-arora-fema-aap"
+      ],
+      "eventUri": "eng-11577049",
+      "summary": "India's Enforcement Directorate raided 13 locations linked to a sitting AAP cabinet minister in a foreign-exchange probe — a politically-loaded use of a federal agency against an opposition-state government. Lead with the 13 locations and the FEMA framework, not the minister's name. Structural angle: ED action against opposition politicians has accelerated under Modi; readers should grasp the pattern of central-agency pressure on AAP-ruled Punjab, where state and centre are at open odds over water sharing and farm policy.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Enforcement_Directorate",
+        "http://en.wikipedia.org/wiki/Punjab,_India",
+        "http://en.wikipedia.org/wiki/Sanjeev_Arora",
+        "http://en.wikipedia.org/wiki/Ludhiana"
+      ]
+    },
+    {
+      "id": "lebanon-ceasefire-trump-netanyahu-delay-bridge",
+      "label": "Delayed for a phone call that didn't happen: US declares ceasefire in Lebanon",
+      "firstSeen": "2026-04-17T07:06:18.868Z",
+      "lastCovered": "2026-04-17T07:06:18.868Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-16-lebanon-ceasefire-trump-netanyahu-delay-bridge"
+      ],
+      "eventUri": null,
+      "summary": "The Lebanon ceasefire text was finalised 24 hours before its announcement; the delay was Trump waiting on a phone call with Netanyahu that never occurred. Lead with the 24-hour gap and what it cost on the ground — Israel destroyed Lebanon's last southern bridge in that window. Structural angle: this is a ground-level Arab-press account of how US-Israel personal diplomacy displaces institutional process, with Lebanese civilians as collateral. Frame for the reader as the mechanism behind 'ceasefires' that look generous on paper.",
+      "conceptUris": []
+    },
+    {
+      "id": "sudan-civil-war-three-year-anniversary-rsf-saf",
+      "label": "After 3 years of fighting, Sudan's civil war is only getting worse",
+      "firstSeen": "2026-04-17T07:06:18.868Z",
+      "lastCovered": "2026-04-17T07:06:18.868Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-sudan-civil-war-three-year-anniversary-rsf-saf"
+      ],
+      "eventUri": null,
+      "summary": "Three-year mark of Sudan's war: death toll between 150,000 and 400,000+, 2025 was the deadliest year, El Fasher under genocidal siege by RSF. Lead with the 2025 acceleration — the war is not stuck, it is escalating while world attention has moved to Iran. Structural angle: continuation of injustice is the development. Name the actors — RSF backed by UAE, SAF backed by Egypt and Türkiye — and the consequence: the largest displacement crisis on earth, sustained because no major power finds a ceasefire profitable. Fills the East Africa coverage gap flagged in editorial notes.",
+      "conceptUris": []
+    },
+    {
+      "id": "100-former-us-lawmakers-foreign-lobbyists-revolving-door",
+      "label": "100 former US lawmakers have become foreign lobbyists",
+      "firstSeen": "2026-04-17T07:06:18.868Z",
+      "lastCovered": "2026-04-17T07:06:18.868Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-100-former-us-lawmakers-foreign-lobbyists-revolving-door"
+      ],
+      "eventUri": null,
+      "summary": "100 former members of Congress are now registered foreign agents — an empirical count of the revolving door, not a vibe piece. Lead with the number and name representative cases (e.g. Norm Coleman whipping Senate votes for Hegseth's confirmation while on a foreign retainer). Structural angle: this is the supply side of US foreign policy capture. For the reader, connect to the previous Iran-war coverage — the same lobbying infrastructure shaping AIPAC, Saudi, Emirati, and Azerbaijani influence on Capitol Hill. Accountability journalism naming actors.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-smartphone-shipments-q1-2026-weakest-six-years",
+      "label": "India smartphone shipments log weakest quarter in 6 years",
+      "firstSeen": "2026-04-17T07:06:18.868Z",
+      "lastCovered": "2026-04-17T07:06:18.868Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-india-smartphone-shipments-q1-2026-weakest-six-years"
+      ],
+      "eventUri": "eng-11570240",
+      "summary": "India's smartphone shipments fell 3% YoY in Q1 2026 — weakest quarter since 2020 — with Vivo (21%) and OPPO holding the top three alongside Samsung. Lead with the bill-of-materials angle: rising component costs (memory and displays squeezed by AI server demand) plus weak rural buying power. Structural angle: India's consumer story has been the 'next billion getting their first smartphone'; this number says the saturation point arrived sooner than expected, and Chinese OEMs not Indian-made handsets are taking the value capture. Tech-economics reader will recognise the AI-memory crowding-out pattern.",
+      "conceptUris": []
+    },
+    {
+      "id": "blood-biomarker-gastric-cancer-triage-dyspepsia",
+      "label": "Blood-based biomarker for gastric cancer triage in chronic dyspepsia",
+      "firstSeen": "2026-04-17T07:06:18.868Z",
+      "lastCovered": "2026-04-17T07:06:18.868Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-blood-biomarker-gastric-cancer-triage-dyspepsia"
+      ],
+      "eventUri": null,
+      "summary": "A validated blood test substantially cuts the number of needless endoscopies needed to find one gastric cancer in chronic-dyspepsia populations. Lead with the number-needed-to-scope (NNS) reduction, which is the actual clinical bottleneck. Structural angle: gastric cancer kills disproportionately in East Asia and parts of Latin America where mass endoscopy screening is not affordable. A blood-based triage tool is a Global-South-relevant intervention, not just a workflow improvement for wealthy systems. Frame for the reader as a deployment question, not a discovery question.",
+      "conceptUris": []
+    },
+    {
+      "id": "innate-immunity-ancient-bacterial-antiviral-defences",
+      "label": "The Ancient Weapons Active in Your Immune System Today",
+      "firstSeen": "2026-04-17T01:08:37.073Z",
+      "lastCovered": "2026-04-17T07:06:18.868Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-04-15-innate-immunity-ancient-bacterial-antiviral-defences",
+        "2026-04-15-ancient-bacterial-defence-systems-human-immunity"
+      ],
+      "eventUri": null,
+      "summary": "Dozens of new papers show that human innate immunity reuses defence proteins bacteria and viruses evolved billions of years ago to fight each other — the same CRISPR-adjacent anti-phage machinery found in bacteria is embedded in our own cells. Lead with the specific finding: the protein family used to detect foreign DNA in bacteria is ancestral to cGAS-STING in humans. Structural angle: for the reader who builds systems, this is 'we didn't invent this, we forked it' at the evolutionary level — biology as a reuse story.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Innate_immune_system",
+        "http://en.wikipedia.org/wiki/CRISPR",
+        "http://en.wikipedia.org/wiki/Bacteriophage"
+      ]
+    },
+    {
+      "id": "india-hormuz-shipping-un-tanker-threats",
+      "label": "India urges restoration of safe shipping in Hormuz, slams threats to tankers",
+      "firstSeen": "2026-04-17T04:05:10.835Z",
+      "lastCovered": "2026-04-17T04:05:10.835Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-india-hormuz-shipping-un-tanker-threats"
+      ],
+      "eventUri": "eng-11576621",
+      "summary": "India — which imports 85% of its crude and gets a majority via Hormuz — used a UN platform to demand restored navigation rights, exposing how a war it has not joined is squeezing the world's most populous economy. Lead with the dependency number, not the diplomatic statement: this is what energy vulnerability looks like for a country trying to hedge between Washington, Moscow, and Tehran. Structural angle: the Strait carries roughly a fifth of global oil and a third of LNG; New Delhi's escalation to the UN signals the Iran-war supply shock has reached the threshold where non-aligned powers feel forced to take a side.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/United_Nations",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Freedom_of_navigation",
+        "http://en.wikipedia.org/wiki/Middle_East"
+      ]
+    },
+    {
+      "id": "uae-turkiye-95m-investment-realignment",
+      "label": "UAE invests $95m in Türkiye at the start of year",
+      "firstSeen": "2026-04-17T04:05:10.835Z",
+      "lastCovered": "2026-04-17T04:05:10.835Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-uae-turkiye-95m-investment-realignment"
+      ],
+      "eventUri": null,
+      "summary": "Emirati capital is moving into Türkiye at the fastest pace in years just as the Iran war reshapes Gulf supply chains and Ankara positions itself as a sanctions-tolerant manufacturing hub. Lead with the sectoral breakdown — defence-adjacent manufacturing and real estate — not the headline number. Structural angle: this is a Sunni-Gulf realignment quietly underway in parallel with the Russia-Gulf courtship the editorial notes flag; Türkiye is becoming the connector between Gulf money and Eurasian markets the West is trying to wall off.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/Foreign_direct_investment"
+      ]
+    },
+    {
+      "id": "trump-pakistan-visit-iran-mediation-munir",
+      "label": "'I might go': Trump hints at possible Pakistan visit to finalise deal with Iran",
+      "firstSeen": "2026-04-17T04:05:10.835Z",
+      "lastCovered": "2026-04-17T04:05:10.835Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-trump-pakistan-visit-iran-mediation-munir"
+      ],
+      "eventUri": "zho-2014145",
+      "summary": "Trump publicly floated travelling to Islamabad to close an Iran deal — a remarkable rehabilitation of Pakistan's mediator role and personal praise for army chief Asim Munir. Lead with the Munir quote, not the travel speculation. Structural angle: this confirms the Pakistan-mediation track flagged in the editorial notes and signals that Rawalpindi, not Riyadh or Doha, is now the venue Washington prefers — a major shift in Muslim-world diplomatic geography that elevates the military over civilian institutions just as Pakistan's economy buckles under Iran-war shocks.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Asim_Munir_(general)",
+        "http://en.wikipedia.org/wiki/Shehbaz_Sharif",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
+      "id": "deep-earthquakes-olivine-poirierite-mantle-transition",
+      "label": "Deep earthquakes triggered by the olivine-poirierite transition",
+      "firstSeen": "2026-04-17T04:05:10.835Z",
+      "lastCovered": "2026-04-17T04:05:10.835Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-deep-earthquakes-olivine-poirierite-mantle-transition"
+      ],
+      "eventUri": null,
+      "summary": "A long-standing puzzle in geophysics — why earthquakes happen 400–600 km down where rock should be too pressurised to fracture — appears to be resolved: olivine transforms into a denser mineral (poirierite) that fractures violently. Lead with the depth and the mechanism, not the journal name. Structural angle: this is the kind of hidden-mechanism finding the reader values — a slow, decades-long mystery cracked by experimental mineral physics. Frame the implication: deep-focus quakes can now be modelled, which matters for subduction-zone risk assessment around the Pacific Rim, including Indonesia and Japan.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Earthquake",
+        "http://en.wikipedia.org/wiki/Olivine",
+        "http://en.wikipedia.org/wiki/Mantle_(geology)",
+        "http://en.wikipedia.org/wiki/Subduction"
+      ]
+    },
+    {
+      "id": "preconception-radiation-mitochondrial-dna-offspring-hokkaido",
+      "label": "Preconception radiation exposure alters offspring mitochondrial DNA in an organ-specific manner",
+      "firstSeen": "2026-04-17T04:05:10.835Z",
+      "lastCovered": "2026-04-17T04:05:10.835Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-preconception-radiation-mitochondrial-dna-offspring-hokkaido"
+      ],
+      "eventUri": null,
+      "summary": "Hokkaido researchers found that radiation absorbed by a parent before conception leaves organ-specific mitochondrial DNA changes in the next generation — a heritable footprint that current radiation safety frameworks ignore. Lead with the organ-specificity, which is the genuinely new finding. Structural angle: more than a century after X-rays, regulatory exposure limits still assume effects stop with the exposed individual; this is the kind of quiet finding that, if confirmed, eventually rewrites occupational and medical-imaging standards. Relevant to Chernobyl/Fukushima follow-up populations and to nuclear-industry workers in the Global South.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Mitochondrial_DNA",
+        "http://en.wikipedia.org/wiki/Ionizing_radiation",
+        "http://en.wikipedia.org/wiki/Hokkaido_University"
+      ]
+    },
+    {
+      "id": "rosalind-franklin-rover-spacex-falcon-heavy-esa",
+      "label": "After a saga of broken promises, a European rover finally has a ride to Mars",
+      "firstSeen": "2026-04-17T04:05:10.835Z",
+      "lastCovered": "2026-04-17T04:05:10.835Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-rosalind-franklin-rover-spacex-falcon-heavy-esa"
+      ],
+      "eventUri": null,
+      "summary": "ESA's Rosalind Franklin rover — orphaned in 2022 when Europe cut launch ties with Roscosmos over Ukraine — will finally fly on a SpaceX Falcon Heavy in late 2028. Lead with the timeline of broken contracts, not the launch date. Structural angle: a flagship European science mission is now structurally dependent on a single American private company because both Russian and European rockets failed to deliver. The geopolitics of launch capacity is the real story; this is what 'strategic autonomy' looks like when it doesn't materialise.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/European_Space_Agency",
+        "http://en.wikipedia.org/wiki/Rosalind_Franklin_(rover)",
+        "http://en.wikipedia.org/wiki/SpaceX",
+        "http://en.wikipedia.org/wiki/Falcon_Heavy"
+      ]
+    },
+    {
+      "id": "amazon-price-fixing-unsealed-california-antitrust",
+      "label": "New unsealed records reveal Amazon's price-fixing tactics, California AG claims",
+      "firstSeen": "2026-04-17T04:05:10.835Z",
+      "lastCovered": "2026-04-17T04:05:10.835Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-amazon-price-fixing-unsealed-california-antitrust"
+      ],
+      "eventUri": null,
+      "summary": "Newly unsealed court records in California's antitrust case detail how Amazon allegedly used an internal pricing algorithm to raise prices across the wider e-commerce market — not just its own. Lead with the named tool and the specific mechanism, drawn from the documents. Structural angle: the reader works in tech and uses these systems daily; this is the rare antitrust case where the smoking gun is code and internal product specs, not boardroom meetings. Frame as algorithmic-collusion accountability — what was theory in academic papers is now in a court exhibit.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Amazon_(company)",
+        "http://en.wikipedia.org/wiki/Price_fixing",
+        "http://en.wikipedia.org/wiki/California_Attorney_General",
+        "http://en.wikipedia.org/wiki/Competition_law"
+      ]
+    },
+    {
+      "id": "new-jersey-north-korea-laptop-farms-sentencing",
+      "label": "New Jersey men given lengthy sentences for running North Korean laptop farms",
+      "firstSeen": "2026-04-17T04:05:10.835Z",
+      "lastCovered": "2026-04-17T04:05:10.835Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-new-jersey-north-korea-laptop-farms-sentencing"
+      ],
+      "eventUri": null,
+      "summary": "Two New Jersey men were sentenced to nearly nine and eight years for running 'laptop farms' that let North Korean IT workers pose as US-based remote engineers, generating over $5 million for Pyongyang. Lead with the dollar figure flowing to the DPRK and the operational mechanics. Structural angle: every senior tech reader has hired a remote contractor — this is the threat model brought into court. The story names a specific tradecraft (hardware-relayed remote desktop sessions) and is a rare case where US sanctions enforcement has measurable bite against a state-actor IT revenue stream.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/North_Korea",
+        "http://en.wikipedia.org/wiki/Sanctions_against_North_Korea",
+        "http://en.wikipedia.org/wiki/Remote_work"
+      ]
+    },
+    {
+      "id": "nigerian-airlines-jet-fuel-crisis-april-20",
+      "label": "Marketers dispute N3,300 aviation fuel price claim",
+      "firstSeen": "2026-04-17T01:08:37.073Z",
+      "lastCovered": "2026-04-17T01:08:37.073Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-16-nigerian-airlines-jet-fuel-crisis-april-20"
+      ],
+      "eventUri": "eng-11572468",
+      "summary": "Nigerian airlines threaten to suspend all operations from April 20 over jet fuel priced at N3,300/litre — they accuse marketers of artificial inflation while marketers blame Iran-war supply shocks. Lead with the April 20 deadline and what flight suspension would mean for a country where aviation is critical infrastructure in a nation without reliable roads or rail. The structural angle: oil-producing Nigeria still cannot refine its own jet fuel, and the Iran war has exposed that dependency.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Nigeria",
+        "http://en.wikipedia.org/wiki/Jet_fuel",
+        "http://en.wikipedia.org/wiki/Aviation_fuel",
+        "http://en.wikipedia.org/wiki/Airline",
+        "http://en.wikipedia.org/wiki/Petroleum"
+      ]
+    },
+    {
+      "id": "india-opposition-boycott-rajya-sabha-deputy-chairman",
+      "label": "INDI Alliance Parties Oppose To 'Harivansh 3.0', Boycott Rajya Sabha Dy Chairman Elections",
+      "firstSeen": "2026-04-17T01:08:37.073Z",
+      "lastCovered": "2026-04-17T01:08:37.073Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-16-india-opposition-boycott-rajya-sabha-deputy-chairman"
+      ],
+      "eventUri": "eng-11565121",
+      "summary": "The Indian opposition boycotted the April 17 election for Rajya Sabha deputy chairman, protesting that the Lok Sabha still has no deputy speaker — a post constitutionally meant for the opposition. The structural angle: Modi's BJP has held power for a decade without honoring this constitutional check, and a third consecutive term for Harivansh cements upper-house control. Lead with the vacant Lok Sabha post — the hidden erosion of parliamentary balance matters more than the boycott itself.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Rajya_Sabha",
+        "http://en.wikipedia.org/wiki/Lok_Sabha",
+        "http://en.wikipedia.org/wiki/Jairam_Ramesh",
+        "http://en.wikipedia.org/wiki/Indian_National_Congress",
+        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party"
+      ]
+    },
+    {
+      "id": "malami-firearms-case-nigeria-accountability",
+      "label": "Court fixes May 26 for DSS to open case against Malami, son",
+      "firstSeen": "2026-04-17T01:08:37.073Z",
+      "lastCovered": "2026-04-17T01:08:37.073Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-15-malami-firearms-case-nigeria-accountability"
+      ],
+      "eventUri": "eng-11571170",
+      "summary": "Nigeria's former attorney-general Abubakar Malami and his son pleaded not guilty to a five-count firearms charge — the first real criminal accountability for a senior figure from the Buhari administration. Lead with the charge itself: the man who ran the justice ministry for eight years is now in the dock, with the DSS as prosecutor. Structural angle: impunity for ministers has been a defining feature of Nigerian politics — this case either breaks that pattern or confirms it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Abubakar_Malami",
+        "http://en.wikipedia.org/wiki/Attorney_general",
+        "http://en.wikipedia.org/wiki/State_Security_Service_(Nigeria)",
+        "http://en.wikipedia.org/wiki/Firearm"
+      ]
+    },
+    {
+      "id": "us-house-war-powers-iran-one-vote",
+      "label": "US Congress narrowly rejects resolution on war with Iran",
+      "firstSeen": "2026-04-17T01:08:37.073Z",
+      "lastCovered": "2026-04-17T01:08:37.073Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-16-us-house-war-powers-iran-one-vote"
+      ],
+      "eventUri": null,
+      "summary": "The House rejected a War Powers resolution to stop Trump's Iran war by a single vote: 213–214 with one abstention. Lead with the one-vote margin — this is how close Congress came to asserting its constitutional war powers on day 31. Structural angle: a Democrat-led resolution fell because a handful of members switched sides; the war continues not by mandate but by procedural inertia. Readers should see names, not just numbers, when the write-up goes live.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_States_Congress",
+        "http://en.wikipedia.org/wiki/War_Powers_Resolution",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump"
+      ]
+    },
+    {
+      "id": "mbenenge-judicial-accountability-south-africa",
+      "label": "Judicial Service Commission finds Judge President Mbenenge guilty of gross misconduct and sexual harassment",
+      "firstSeen": "2026-04-17T01:08:37.073Z",
+      "lastCovered": "2026-04-17T01:08:37.073Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-16-mbenenge-judicial-accountability-south-africa"
+      ],
+      "eventUri": "eng-11574565",
+      "summary": "South Africa's JSC overturned a lower tribunal's finding and ruled that Eastern Cape Judge President Selby Mbenenge is guilty of gross misconduct and sexual harassment of a junior clerk — the first time in the post-apartheid era a sitting judge president faces impeachment proceedings at this level. Lead with the reversal: a judicial tribunal had downgraded the charges, and the JSC refused. Structural angle: this tests whether South Africa's judicial accountability mechanism actually works against its own presiding officers.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Judicial_Service_Commission_(South_Africa)",
+        "http://en.wikipedia.org/wiki/Sexual_harassment",
+        "http://en.wikipedia.org/wiki/Misconduct"
+      ]
+    },
+    {
+      "id": "mardan-miner-survived-16-days-rubble",
+      "label": "Man buried under rubble rescued alive 16 days after mine collapse in KP's Mardan",
+      "firstSeen": "2026-04-17T01:08:37.073Z",
+      "lastCovered": "2026-04-17T01:08:37.073Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-16-mardan-miner-survived-16-days-rubble"
+      ],
+      "eventUri": "eng-11575345",
+      "summary": "Rescue 1122 pulled a miner alive from a tunnel in Rustam, Khyber Pakhtunkhwa, 16 days after a mine collapse — among the longest survival times on record for entombed mine workers. Lead with the 16 days and what physiology allows it: hydration from seepage, low-exertion survival, ambient temperature in rock cavity. Structural angle: for readers who process numbers, this is a data point about human survival thresholds; for readers thinking about labour, it's a reminder of how unregulated extraction still looks in northwestern Pakistan.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Mardan",
+        "http://en.wikipedia.org/wiki/Khyber_Pakhtunkhwa",
+        "http://en.wikipedia.org/wiki/Rescue_1122"
+      ]
+    },
+    {
+      "id": "openai-gpt-rosalind-biology-model",
+      "label": "OpenAI starts offering a biology-tuned LLM",
+      "firstSeen": "2026-04-17T01:08:37.073Z",
+      "lastCovered": "2026-04-17T01:08:37.073Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-16-openai-gpt-rosalind-biology-model"
+      ],
+      "eventUri": null,
+      "summary": "OpenAI released GPT-Rosalind, a model trained specifically on biology workflows (sequence analysis, pathway reasoning, experimental protocol generation) rather than general science QA. Lead with what it can't do: general models can't reliably reason about gene regulation or interpret western blots — this one is designed to. Structural angle: domain-specialised models mark a move away from one-giant-model scaling toward workflow-tuned inference; for the reader who builds with LLMs, this is the architecture shift to watch.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Large_language_model",
+        "http://en.wikipedia.org/wiki/Rosalind_Franklin",
+        "http://en.wikipedia.org/wiki/Biology"
+      ]
+    },
+    {
+      "id": "agrovoltaics-tomato-water-spain-trial",
+      "label": "Agrovoltaic systems can save water, generating energy and making tomato cultivation more sustainable at the same time",
+      "firstSeen": "2026-04-17T01:08:37.073Z",
+      "lastCovered": "2026-04-17T01:08:37.073Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-16-agrovoltaics-tomato-water-spain-trial"
+      ],
+      "eventUri": null,
+      "summary": "Spanish researchers (Seville + UPM) field-tested agrivoltaic tomato cultivation with regulated deficit irrigation — harvest volumes dropped somewhat, but total water-plus-energy productivity per hectare rose. Lead with the tradeoff: less tomato, but meaningful water savings plus electricity generation on the same land. Structural angle: for readers in MENA facing parallel water scarcity and energy costs, dual-use land is the kind of answer that no single ministry tends to fund — which is exactly why it doesn't scale.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Agrivoltaics",
+        "http://en.wikipedia.org/wiki/Tomato",
+        "http://en.wikipedia.org/wiki/Deficit_irrigation"
+      ]
+    },
+    {
+      "id": "pakistan-hiv-outbreak-syringe-reuse-bbc",
+      "label": "Hospital at centre of child HIV outbreak caught reusing syringes in Pakistan",
+      "firstSeen": "2026-04-17T01:08:37.073Z",
+      "lastCovered": "2026-04-17T01:08:37.073Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-16-pakistan-hiv-outbreak-syringe-reuse-bbc"
+      ],
+      "eventUri": null,
+      "summary": "A BBC investigation found the Sindh hospital at the centre of Pakistan's child HIV outbreak (>1,000 children infected, traced back to the Ratodero cluster) is still reusing syringes on pediatric patients — years after authorities declared the problem fixed. Lead with the footage: journalists documented reuse on the wards. Structural angle: this is a systemic failure of supply-chain economics, not ignorance — the single-use syringes cost more than the replacement contract compensates for, so staff reuse. The reader should leave understanding the procurement mechanics, not just the horror.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/HIV",
+        "http://en.wikipedia.org/wiki/Syringe",
+        "http://en.wikipedia.org/wiki/Sindh",
+        "http://en.wikipedia.org/wiki/Pakistan"
+      ]
+    },
+    {
+      "id": "thomson-reuters-shareholders-ice-clear-investigation",
+      "label": "Thomson Reuters Shareholders Demand Investigation into ICE Contracts",
+      "firstSeen": "2026-04-17T01:08:37.073Z",
+      "lastCovered": "2026-04-17T01:08:37.073Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 4,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-16-thomson-reuters-shareholders-ice-clear-investigation"
+      ],
+      "eventUri": null,
+      "summary": "Thomson Reuters shareholders filed a resolution demanding the company investigate its ICE contracts, citing 404 Media investigations that showed CLEAR (Reuters' data product) is integrated with ICE's neighborhood-targeting tool. Lead with the shareholder mechanism: this is capital-market accountability, not political protest — the kind of leverage that forces disclosure regardless of the administration's stance. Structural angle: for tech workers, the surveillance stack is now a material governance risk for their employer's investors, not just a moral question.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Thomson_Reuters",
+        "http://en.wikipedia.org/wiki/U.S._Immigration_and_Customs_Enforcement",
+        "http://en.wikipedia.org/wiki/Shareholder_resolution"
+      ]
+    },
+    {
+      "id": "imf-middle-east-growth-hardest-hit-iran-war",
+      "label": "Middle East growth hardest hit from Iran war, IMF says",
+      "firstSeen": "2026-04-15T19:10:12.919Z",
+      "lastCovered": "2026-04-17T07:06:18.868Z",
+      "coverageCount": 7,
+      "category": "economy",
+      "importance": 3,
+      "arc": "ongoing",
+      "articles": [
+        "2026-04-15-imf-middle-east-growth-hardest-hit-iran-war",
+        "2026-04-16-imf-middle-east-growth-largest-downgrade-iran-war",
+        "2026-04-15-imf-middle-east-growth-hardest-hit-iran-war-cascade",
+        "2026-04-15-imf-middle-east-growth-iran-war-forecast",
+        "2026-04-17-imf-middle-east-growth-downgrade-iran-war",
+        "2026-04-15-imf-middle-east-growth-iran-war-spring-outlook"
+      ],
+      "eventUri": null,
+      "summary": "The IMF's spring outlook names the Middle East as the region suffering the largest growth downgrade from the Iran war — fresh macro data that quantifies what the editorial notes have been tracking as 'economic cascade.' Lead with the IMF's own numbers: this is the institutional confirmation that the war's economic damage extends far beyond Iran itself. Gulf states, transit economies, and energy-dependent nations across MENA are all paying. The reader tracking macro sees the structural shift: the war isn't just destroying Iran's economy, it's repricing the entire region's growth trajectory.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/International_Monetary_Fund",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Gross_domestic_product"
+      ]
+    },
+    {
       "id": "russian-strikes-kill-15-ukraine-biggest-attack-months",
       "label": "Russian Strikes Kill at Least 15 in Ukraine in Biggest Attack in Months",
       "firstSeen": "2026-04-16T22:08:45.899Z",
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-russian-strikes-kill-15-ukraine-biggest-attack-months"
@@ -33,7 +599,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-turkiye-funerals-kahramanmaras-school-shooting-us-iconography"
@@ -56,7 +622,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-pope-leo-tyrants-wars-cameroon-trump"
@@ -78,7 +644,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-eu-20th-russia-sanctions-slovakia-veto-druzhba"
@@ -101,7 +667,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-us-senate-boundary-waters-mining-ban-luksic-copper"
@@ -122,7 +688,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-norwegian-ship-burial-predates-viking-age-herlaugshaugen"
@@ -138,7 +704,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-nat10-pcsk9-gallbladder-cancer-cholesterol-repurposing"
@@ -154,7 +720,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-altermagnetism-pyrrhotite-abundant-mineral-spintronics"
@@ -170,7 +736,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-mozilla-thunderbolt-ai-client-self-hosted-byo-inference"
@@ -186,7 +752,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-app-stores-recommend-nudify-deepfake-apps-apple-google"
@@ -196,13 +762,57 @@
       "conceptUris": []
     },
     {
+      "id": "cargo-theft-hackers-remote-access-6-billion",
+      "label": "Cargo thieving hackers running sophisticated remote access campaigns, researchers find",
+      "firstSeen": "2026-04-16T16:13:35.723Z",
+      "lastCovered": "2026-04-17T07:06:18.868Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-04-16-cargo-theft-hackers-remote-access-6-billion",
+        "2026-04-16-cargo-theft-cyber-fleet-management-6-6-billion"
+      ],
+      "eventUri": null,
+      "summary": "Losses from cargo theft in North America hit $6.6 billion in 2025, driven largely by digital attacks — hackers gaining remote access to logistics platforms to reroute shipments before anyone notices they're missing. Lead with the number and the method: $6.6B stolen not by hijacking trucks but by hijacking the software that dispatches them. The reader building SaaS sees the attack surface: logistics platforms are high-value targets because a single API credential can redirect physical goods worth millions. This is supply chain security applied to actual supply chains.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Cargo_theft",
+        "http://en.wikipedia.org/wiki/Remote_access",
+        "http://en.wikipedia.org/wiki/Supply_chain"
+      ]
+    },
+    {
+      "id": "us-arms-market-dominance-declining-drones-stockpiles",
+      "label": "Watching US grip on global weapons market slowly slip away",
+      "firstSeen": "2026-04-16T16:13:35.723Z",
+      "lastCovered": "2026-04-17T01:08:37.073Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-04-16-us-arms-market-dominance-declining-drones-stockpiles",
+        "2026-04-16-us-arms-market-decline-drones-south-korea"
+      ],
+      "eventUri": null,
+      "summary": "US dominance of the global arms trade is eroding from three directions simultaneously: depleted stockpiles from Iran/Ukraine/Israel, production backlogs that push allies to South Korea and Turkey, and cheap drone warfare making big-ticket US platforms less relevant. Lead with the convergence — three structural forces, not one — and the irony: the wars meant to demonstrate US military power are destroying its arms export monopoly. The reader who follows macro sees the second-order effect: if the US can't deliver weapons on time, allies buy elsewhere, and the leverage Washington claims from arms sales evaporates. $21 billion in weapons to Israel since Gaza, and stocks still can't keep up.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Arms_industry",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Lockheed_Martin",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/South_Korea"
+      ]
+    },
+    {
       "id": "uk-minister-misled-parliament-arms-israel",
       "label": "Minister misled parliament over arms exports to Israel",
       "firstSeen": "2026-04-16T16:13:35.723Z",
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 5,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-16-uk-minister-misled-parliament-arms-israel",
@@ -224,7 +834,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 5,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-16-pentagon-ford-gm-weapons-depleted-stockpiles",
@@ -250,7 +860,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-hegseth-threatens-iran-civilian-infrastructure-blockade"
@@ -273,7 +883,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-syria-takes-control-former-us-bases-handover"
@@ -295,7 +905,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-hezbollah-respecting-ceasefire-credits-iran-blasts-beirut"
@@ -311,7 +921,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-sudan-berlin-conference-1-5bn-aid-no-ceasefire"
@@ -327,7 +937,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-china-grid-petrochemical-high-seas-climate-contradiction"
@@ -343,7 +953,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-atlantic-sargassum-blooms-traced-west-africa-origin"
@@ -359,7 +969,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-salamander-gene-human-limb-regeneration-gene-therapy"
@@ -375,7 +985,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-plant-sensory-perception-memory-biology"
@@ -391,7 +1001,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-laravel-mcp-ads-agent-monetization"
@@ -407,7 +1017,7 @@
       "lastCovered": "2026-04-16T16:13:35.723Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-us-troops-depart-syria-decade-isis-withdrawal"
@@ -432,7 +1042,7 @@
       "lastCovered": "2026-04-16T16:13:35.723Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-nigeria-former-minister-farouq-arrest-fraud"
@@ -446,35 +1056,13 @@
       ]
     },
     {
-      "id": "us-arms-market-dominance-declining-drones-stockpiles",
-      "label": "Watching US grip on global weapons market slowly slip away",
-      "firstSeen": "2026-04-16T16:13:35.723Z",
-      "lastCovered": "2026-04-16T16:13:35.723Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-us-arms-market-dominance-declining-drones-stockpiles"
-      ],
-      "eventUri": null,
-      "summary": "US dominance of the global arms trade is eroding from three directions simultaneously: depleted stockpiles from Iran/Ukraine/Israel, production backlogs that push allies to South Korea and Turkey, and cheap drone warfare making big-ticket US platforms less relevant. Lead with the convergence — three structural forces, not one — and the irony: the wars meant to demonstrate US military power are destroying its arms export monopoly. The reader who follows macro sees the second-order effect: if the US can't deliver weapons on time, allies buy elsewhere, and the leverage Washington claims from arms sales evaporates. $21 billion in weapons to Israel since Gaza, and stocks still can't keep up.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Arms_industry",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Lockheed_Martin",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/South_Korea"
-      ]
-    },
-    {
       "id": "china-billions-power-grid-energy-transition",
       "label": "China Briefing: Billions for grid | Petrochemical plan | China's high-seas bid",
       "firstSeen": "2026-04-16T16:13:35.723Z",
       "lastCovered": "2026-04-16T16:13:35.723Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-china-billions-power-grid-energy-transition"
@@ -495,7 +1083,7 @@
       "lastCovered": "2026-04-16T16:13:35.723Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-patagonia-dinosaur-bicharracosaurus-two-lineages"
@@ -516,7 +1104,7 @@
       "lastCovered": "2026-04-16T16:13:35.723Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-cities-reclaiming-housing-market-failure-global"
@@ -537,7 +1125,7 @@
       "lastCovered": "2026-04-16T16:13:35.723Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-eu-dma-google-search-data-sharing-rivals"
@@ -556,33 +1144,13 @@
       ]
     },
     {
-      "id": "cargo-theft-hackers-remote-access-6-billion",
-      "label": "Cargo thieving hackers running sophisticated remote access campaigns, researchers find",
-      "firstSeen": "2026-04-16T16:13:35.723Z",
-      "lastCovered": "2026-04-16T16:13:35.723Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-cargo-theft-hackers-remote-access-6-billion"
-      ],
-      "eventUri": null,
-      "summary": "Losses from cargo theft in North America hit $6.6 billion in 2025, driven largely by digital attacks — hackers gaining remote access to logistics platforms to reroute shipments before anyone notices they're missing. Lead with the number and the method: $6.6B stolen not by hijacking trucks but by hijacking the software that dispatches them. The reader building SaaS sees the attack surface: logistics platforms are high-value targets because a single API credential can redirect physical goods worth millions. This is supply chain security applied to actual supply chains.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Cargo_theft",
-        "http://en.wikipedia.org/wiki/Remote_access",
-        "http://en.wikipedia.org/wiki/Supply_chain"
-      ]
-    },
-    {
       "id": "qwen-3-6-open-source-agentic-coding-alibaba",
       "label": "Qwen3.6-35B-A3B: Agentic Coding Power, Now Open to All",
       "firstSeen": "2026-04-16T16:13:35.723Z",
       "lastCovered": "2026-04-16T16:13:35.723Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-qwen-3-6-open-source-agentic-coding-alibaba"
@@ -594,632 +1162,6 @@
         "http://en.wikipedia.org/wiki/Open-source_software",
         "http://en.wikipedia.org/wiki/Large_language_model",
         "http://en.wikipedia.org/wiki/Mixture_of_experts"
-      ]
-    },
-    {
-      "id": "imf-middle-east-growth-hardest-hit-iran-war",
-      "label": "Middle East growth hardest hit from Iran war, IMF says",
-      "firstSeen": "2026-04-15T19:10:12.919Z",
-      "lastCovered": "2026-04-16T22:08:45.899Z",
-      "coverageCount": 4,
-      "category": "economy",
-      "importance": 3,
-      "arc": "developing",
-      "articles": [
-        "2026-04-15-imf-middle-east-growth-hardest-hit-iran-war",
-        "2026-04-16-imf-middle-east-growth-largest-downgrade-iran-war",
-        "2026-04-15-imf-middle-east-growth-hardest-hit-iran-war-cascade"
-      ],
-      "eventUri": null,
-      "summary": "The IMF's spring outlook names the Middle East as the region suffering the largest growth downgrade from the Iran war — fresh macro data that quantifies what the editorial notes have been tracking as 'economic cascade.' Lead with the IMF's own numbers: this is the institutional confirmation that the war's economic damage extends far beyond Iran itself. Gulf states, transit economies, and energy-dependent nations across MENA are all paying. The reader tracking macro sees the structural shift: the war isn't just destroying Iran's economy, it's repricing the entire region's growth trajectory.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/International_Monetary_Fund",
-        "http://en.wikipedia.org/wiki/Middle_East",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Gross_domestic_product"
-      ]
-    },
-    {
-      "id": "gaza-children-killed-israel-iran-war-media-blackout",
-      "label": "\"My Daughter Went Out to Learn, Not to Fight\": Gaza Grieves More Children Killed by Israel",
-      "firstSeen": "2026-04-16T13:09:48.970Z",
-      "lastCovered": "2026-04-16T13:09:48.970Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-gaza-children-killed-israel-iran-war-media-blackout"
-      ],
-      "eventUri": null,
-      "summary": "As the world's attention shifted to Iran and Lebanon over the past six weeks, Israel has continued killing children in Gaza with near-zero international notice. Drop Site's ground reporting documents families whose children were killed going to school or fetching water. Lead with the media blackout angle: the Iran war didn't pause the genocide, it provided cover for it. The reader who tracks power sees the mechanism — war elsewhere becomes silence here. The oppressed are the story; continuation of injustice is the development.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Gaza_Strip",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Palestinian_children"
-      ]
-    },
-    {
-      "id": "julius-malema-sentenced-five-years-south-africa",
-      "label": "South Africa's Julius Malema sentenced to five years in prison",
-      "firstSeen": "2026-04-16T13:09:48.970Z",
-      "lastCovered": "2026-04-16T13:09:48.970Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-julius-malema-sentenced-five-years-south-africa"
-      ],
-      "eventUri": "eng-11568388",
-      "summary": "Julius Malema — leader of the Economic Freedom Fighters, South Africa's third-largest party, and the most prominent voice for radical land redistribution — has been sentenced to five years for unlawful discharge of a firearm. Lead with the political stakes: Malema built a movement around dispossession and economic justice for Black South Africans. His imprisonment removes the most disruptive opposition figure from South African politics. The reader tracking Global South power dynamics sees: the line between criminal accountability and political neutralization is thin in African democracies.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Julius_Malema",
-        "http://en.wikipedia.org/wiki/South_Africa",
-        "http://en.wikipedia.org/wiki/Economic_Freedom_Fighters"
-      ]
-    },
-    {
-      "id": "ukrainian-drone-kills-children-tuapse-russia",
-      "label": "2 children killed in Ukrainian drone strike on Russia's Tuapse port",
-      "firstSeen": "2026-04-16T13:09:48.970Z",
-      "lastCovered": "2026-04-16T13:09:48.970Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-ukrainian-drone-kills-children-tuapse-russia"
-      ],
-      "eventUri": "rus-2053538",
-      "summary": "A Ukrainian drone killed two children — aged 5 and 14 — at Russia's Black Sea port of Tuapse, one of the deadliest strikes on Russian civilians in the war. Lead with the children's ages and the 5-source coverage divergence: RT frames it as Ukrainian terror, Ukrainska Pravda focuses on the military port context, Reuters and Meduza report the facts. The reader who values equal dignity of life (karāmah) sees: civilian death is newsworthy regardless of which side inflicts it. The structural point: as drone range extends, no population center near the conflict is safe.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Tuapse",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Krasnodar",
-        "http://en.wikipedia.org/wiki/Veniamin_Kondratyev",
-        "http://en.wikipedia.org/wiki/Port",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Sochi",
-        "http://en.wikipedia.org/wiki/Governor"
-      ]
-    },
-    {
-      "id": "pakistan-loadshedding-apology-iran-war-fuel-crisis",
-      "label": "Pakistan power minister apologizes for loadshedding, blames Iran war fuel crisis",
-      "firstSeen": "2026-04-16T13:09:48.970Z",
-      "lastCovered": "2026-04-16T13:09:48.970Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-pakistan-loadshedding-apology-iran-war-fuel-crisis"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's power minister publicly apologized for 'out of control' electricity blackouts, directly blaming the Iran war's fuel supply disruption. Lead with the admission: a government minister calling the situation 'out of control' in a press conference is extraordinary — this is a state conceding it cannot keep the lights on. The reader tracking the Iran war's economic cascade sees the damage reaching 240 million people's daily lives. Pakistan was already under IMF austerity, already absorbing Gulf debt dependency (Saudi $3bn covered last cycle) — now the war has knocked out its power grid. This is what economic warfare looks like at the household level.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Rolling_blackout",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Load_management",
-        "http://en.wikipedia.org/wiki/Middle_East"
-      ]
-    },
-    {
-      "id": "shackleton-crater-moon-race-bezos-china",
-      "label": "The race to Shackleton Crater is on — will Jeff Bezos or China get there first?",
-      "firstSeen": "2026-04-16T13:09:48.970Z",
-      "lastCovered": "2026-04-16T13:09:48.970Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-shackleton-crater-moon-race-bezos-china"
-      ],
-      "eventUri": null,
-      "summary": "Two spacecraft are scheduled for launch this year targeting the same destination: Shackleton Crater on the Moon's south pole, where an immense reservoir of water ice could fuel a permanent human presence. One is Blue Origin's (Bezos), the other is China's Chang'e 7. Lead with the convergence: the most ambitious robotic lunar missions ever attempted are racing to the same crater because whoever controls lunar water controls the next phase of space. The reader in tech sees: this is cloud infrastructure competition projected onto the Moon — the resource isn't compute, it's ice.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Shackleton_(crater)",
-        "http://en.wikipedia.org/wiki/Lunar_south_pole",
-        "http://en.wikipedia.org/wiki/Blue_Origin",
-        "http://en.wikipedia.org/wiki/Chang%27e_7",
-        "http://en.wikipedia.org/wiki/Jeff_Bezos"
-      ]
-    },
-    {
-      "id": "bacterial-persistence-metabolic-rewiring-not-dormancy",
-      "label": "Beyond metabolic dormancy: metabolic rewiring in bacterial persistence",
-      "firstSeen": "2026-04-16T13:09:48.970Z",
-      "lastCovered": "2026-04-16T13:09:48.970Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-bacterial-persistence-metabolic-rewiring-not-dormancy"
-      ],
-      "eventUri": null,
-      "summary": "Bacterial persister cells — the ones that survive antibiotic treatment not through resistance but through metabolic dormancy — turn out to be far more active than assumed. This Nature Communications paper shows persisters actively rewire their metabolism rather than simply shutting down, which means the standard 'starve them out' approach to treating chronic infections is based on a wrong model. Lead with the debugging analogy: the process you thought was sleeping was actually running a different program. The reader who builds systems sees: the same failure mode that makes bugs hard to reproduce (intermittent dormancy) is what makes chronic infections incurable.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Persister_cells",
-        "http://en.wikipedia.org/wiki/Metabolism",
-        "http://en.wikipedia.org/wiki/Antibiotic",
-        "http://en.wikipedia.org/wiki/Phenotypic_plasticity"
-      ]
-    },
-    {
-      "id": "humans-in-the-loop-ai-war-illusion-autonomous-weapons",
-      "label": "Why having \"humans in the loop\" in an AI war is an illusion",
-      "firstSeen": "2026-04-16T13:09:48.970Z",
-      "lastCovered": "2026-04-16T13:09:48.970Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-humans-in-the-loop-ai-war-illusion-autonomous-weapons"
-      ],
-      "eventUri": null,
-      "summary": "The Pentagon's doctrine of 'human in the loop' for autonomous weapons is collapsing under the speed of AI-driven combat — MIT Technology Review argues the concept was always an illusion, because humans cannot meaningfully oversee decisions made in milliseconds. Lead with the gap: the policy says humans approve every kill; the physics says that's impossible at machine speed. The reader building AI systems sees the direct parallel to their own work: 'human oversight' in production ML systems is often similarly performative. This pairs with last cycle's coverage of Russians surrendering to robots — that was the battlefield fact, this is the structural analysis of why no one is truly in control.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Autonomous_weapon",
-        "http://en.wikipedia.org/wiki/The_Pentagon",
-        "http://en.wikipedia.org/wiki/Human-in-the-loop"
-      ]
-    },
-    {
-      "id": "firebase-key-54k-billing-spike-gemini-api",
-      "label": "€54k billing spike in 13 hours from unrestricted Firebase browser key accessing Gemini APIs",
-      "firstSeen": "2026-04-16T13:09:48.970Z",
-      "lastCovered": "2026-04-16T13:09:48.970Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-firebase-key-54k-billing-spike-gemini-api"
-      ],
-      "eventUri": null,
-      "summary": "A developer woke up to a €54,000 Google Cloud bill — 13 hours of unauthorized Gemini API calls through an unrestricted Firebase browser key. 106 HN points, 60 comments. Lead with the number and the speed: €54k in 13 hours, from a single misconfigured key. The reader who ships code sees the immediate lesson: Firebase browser keys default to unrestricted, and AI API pricing makes the blast radius of a leaked key orders of magnitude worse than it was for traditional APIs. The structural point: as AI APIs become the most expensive endpoints developers use, the cost of misconfiguration scales with the price-per-token, not the price-per-request.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Firebase",
-        "http://en.wikipedia.org/wiki/Google_Cloud_Platform",
-        "http://en.wikipedia.org/wiki/Gemini_(language_model)",
-        "http://en.wikipedia.org/wiki/API_key"
-      ]
-    },
-    {
-      "id": "agingfly-malware-ukraine-hospitals-espionage",
-      "label": "Ukrainian emergency services and hospitals hit by espionage campaign using new AgingFly malware",
-      "firstSeen": "2026-04-16T13:09:48.970Z",
-      "lastCovered": "2026-04-16T13:09:48.970Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 3,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-agingfly-malware-ukraine-hospitals-espionage"
-      ],
-      "eventUri": null,
-      "summary": "A new malware tool dubbed AgingFly is targeting Ukrainian hospitals and emergency services — not for disruption but for espionage, mapping medical infrastructure and patient data. Lead with the target selection: hitting hospitals during a war isn't random, it's intelligence preparation for future strikes. The reader building software sees the escalation: from ransomware-for-profit to state-sponsored espionage of medical systems. The structural point: hospitals are dual-use targets in modern warfare — their patient databases reveal troop casualties, their logistics reveal supply chains. This is cyber reconnaissance of the kind that precedes kinetic targeting.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Malware",
-        "http://en.wikipedia.org/wiki/Cyberespionage",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Hospital"
-      ]
-    },
-    {
-      "id": "lebanon-israel-talks-farce-bombing-continues",
-      "label": "Lebanon talks: A 'farce' disguising something much more sinister",
-      "firstSeen": "2026-04-16T10:08:38.859Z",
-      "lastCovered": "2026-04-16T10:08:38.859Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-lebanon-israel-talks-farce-bombing-continues"
-      ],
-      "eventUri": null,
-      "summary": "Israel is bombing Lebanon — killing hundreds, displacing a million — while holding low-level 'peace talks' that produced nothing. The farce: Trump hails a 'historic opportunity' at an ambassadorial meeting with no decision-makers, while the real negotiation comes in the form of artillery fire. Lead with the contradiction between the diplomacy optics and the body count. The structural point: Israel and the US want Lebanon's government to disarm Hezbollah — essentially become a security subcontractor like the PA — but only a strong government could do that, and Israel's bombing is making it weaker. The reader sees: the PA model being exported to Lebanon, and why it won't work.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Hezbollah",
-        "http://en.wikipedia.org/wiki/Marco_Rubio"
-      ]
-    },
-    {
-      "id": "bbc-pro-israel-bias-foi-data-meetings",
-      "label": "Strong pro-Israel bias among BBC bosses, new data indicates",
-      "firstSeen": "2026-04-16T10:08:38.859Z",
-      "lastCovered": "2026-04-16T10:08:38.859Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-bbc-pro-israel-bias-foi-data-meetings"
-      ],
-      "eventUri": null,
-      "summary": "BBC executives met 9 times with pro-Israel Jewish groups and just once with pro-Palestinian groups over 14 months of genocide, according to Freedom of Information data. Lead with the 9:1 ratio — it's not about individual bias, it's about institutional access. The reader who values haqq (truth) sees: the world's most trusted broadcaster has structurally asymmetric engagement with the two sides of its most consequential story. This is the kind of primary-source FOI investigation that reveals how editorial neutrality is shaped before a single word is written.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/BBC",
-        "http://en.wikipedia.org/wiki/Freedom_of_information",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/State_of_Palestine"
-      ]
-    },
-    {
-      "id": "france-releases-russian-shadow-fleet-tanker-fine",
-      "label": "France releases oil tanker linked to Russia",
-      "firstSeen": "2026-04-16T10:08:38.859Z",
-      "lastCovered": "2026-04-16T10:08:38.859Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-france-releases-russian-shadow-fleet-tanker-fine"
-      ],
-      "eventUri": "fra-1296002",
-      "summary": "France's Navy boarded a Mozambique-flagged tanker from Russia's shadow fleet in March — then let it go after the owner paid a fine. Lead with the accountability gap: Macron publicly identified the ship as part of Russia's sanctions-evasion network, the Navy physically seized it, and then the system released it for cash. The reader tracking Russia's energy war sees: shadow fleet enforcement is performative. Seize, fine, release, repeat. The structural question: if Western navies can intercept these ships but won't impound them, what exactly is the sanctions regime achieving? Five-source coverage from GB, RU, AZ, IN, and Kyiv shows the divergence — TASS frames it as vindication, Kyiv as failure.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Oil_tanker",
-        "http://en.wikipedia.org/wiki/Mediterranean_Sea",
-        "http://en.wikipedia.org/wiki/Marseille",
-        "http://en.wikipedia.org/wiki/Territorial_waters",
-        "http://en.wikipedia.org/wiki/Tanker_(ship)",
-        "http://en.wikipedia.org/wiki/Mozambique"
-      ]
-    },
-    {
-      "id": "malaysia-anwar-iran-mediation-gulf-channel",
-      "label": "Anwar Says Mideast States Are Using Malaysia to Engage Iran",
-      "firstSeen": "2026-04-16T10:08:38.859Z",
-      "lastCovered": "2026-04-16T10:08:38.859Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-malaysia-anwar-iran-mediation-gulf-channel"
-      ],
-      "eventUri": "eng-11573577",
-      "summary": "Gulf states are quietly routing Iran diplomacy through Malaysia — a Muslim-majority democracy outside the Middle East power structure. Lead with the structural insight: Anwar Ibrahim has become a backchannel precisely because Malaysia has no skin in the Gulf rivalry. While Pakistan carries America's message (military-to-diplomatic, covered last cycle), Malaysia carries the Gulf's (civilian-to-civilian). Two Muslim countries, two separate mediation tracks, each trusted by different parties. The reader tracking the war's diplomatic arc sees: the Muslim world isn't waiting for the West to broker peace — it's building parallel channels.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Malaysia",
-        "http://en.wikipedia.org/wiki/Australia",
-        "http://en.wikipedia.org/wiki/Anthony_Albanese",
-        "http://en.wikipedia.org/wiki/Anwar_Ibrahim",
-        "http://en.wikipedia.org/wiki/Putrajaya",
-        "http://en.wikipedia.org/wiki/Energy_security",
-        "http://en.wikipedia.org/wiki/Petronas",
-        "http://en.wikipedia.org/wiki/Petroleum"
-      ]
-    },
-    {
-      "id": "uk-food-shortage-planning-iran-war-cascade",
-      "label": "Public should be 'reassured' by Iran war food shortage preparation - Peter Kyle",
-      "firstSeen": "2026-04-16T10:08:38.859Z",
-      "lastCovered": "2026-04-16T10:08:38.859Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-uk-food-shortage-planning-iran-war-cascade"
-      ],
-      "eventUri": "eng-11573858",
-      "summary": "The UK government is making contingency plans for food shortages from the Iran war — and a leak forced the Business Secretary to publicly 'reassure' the public. Lead with the tell: when a government says 'be reassured,' the situation is serious. The worst-case scenario includes shortages of chicken, salad, and CO2 (used in food processing), all traceable to the Hormuz blockade disrupting energy and shipping. The reader tracking the Iran war's economic cascade sees the damage has reached a G7 country's food supply chain. Pair with Tesco's same-day warning that it will do 'whatever it can' to keep down food prices — the corporate sector is bracing too.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Carbon_dioxide",
-        "http://en.wikipedia.org/wiki/United_Kingdom",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Supermarket",
-        "http://en.wikipedia.org/wiki/Chicken",
-        "http://en.wikipedia.org/wiki/Meat",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Salad"
-      ]
-    },
-    {
-      "id": "russia-cuts-gas-turkey-27-percent-turkstream",
-      "label": "Russia cuts pipeline gas supplies to Turkey by 27% in January-February",
-      "firstSeen": "2026-04-16T10:08:38.859Z",
-      "lastCovered": "2026-04-16T10:08:38.859Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-russia-cuts-gas-turkey-27-percent-turkstream"
-      ],
-      "eventUri": null,
-      "summary": "Russia slashed pipeline gas to Turkey by 27% in early 2026, cutting both TurkStream and Blue Stream flows. Lead with the geopolitical context: Turkey is a NATO member that refused to join Iran war sanctions, and now Russia — its main gas supplier — is squeezing it. Is this coercion, commercial dispute, or diversion to higher-paying customers? The reader tracking energy geopolitics sees: Turkey is caught between NATO obligations and energy dependency, and Russia is weaponizing the leverage. This compounds Turkey's existing stress from the Iran war (school shootings, covered last cycle, reflect a society under pressure).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pipeline_transport",
-        "http://en.wikipedia.org/wiki/Turkey",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/TurkStream",
-        "http://en.wikipedia.org/wiki/Natural_gas"
-      ]
-    },
-    {
-      "id": "ozone-regulatory-loophole-delays-recovery",
-      "label": "A regulatory loophole could delay ozone recovery by years",
-      "firstSeen": "2026-04-16T10:08:38.859Z",
-      "lastCovered": "2026-04-16T10:08:38.859Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-ozone-regulatory-loophole-delays-recovery"
-      ],
-      "eventUri": null,
-      "summary": "The Montreal Protocol — the single most successful environmental treaty in history — is being undermined by a regulatory loophole that could delay ozone recovery by years. Lead with the irony: we solved this problem 40 years ago, and now a gap in the treaty's chemical coverage is letting substitutes that also damage the ozone layer slip through. The reader who thinks in systems sees: no governance framework is self-maintaining. Even the best regulation needs active maintenance against the incentive structures it disrupted. The loophole exists because the chemicals weren't banned by name but by class — and industry designed around the class boundaries.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Montreal_Protocol",
-        "http://en.wikipedia.org/wiki/Ozone_layer",
-        "http://en.wikipedia.org/wiki/Ozone_depletion"
-      ]
-    },
-    {
-      "id": "cells-courier-system-rna-gene-therapy-delivery",
-      "label": "Cells have a secret 'courier system' that could open hard-to-reach targets for RNA and gene therapies",
-      "firstSeen": "2026-04-16T10:08:38.859Z",
-      "lastCovered": "2026-04-16T10:08:38.859Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-cells-courier-system-rna-gene-therapy-delivery"
-      ],
-      "eventUri": null,
-      "summary": "University College Dublin discovered a previously unknown cellular courier system — coherent biological messages delivered between cells with built-in 'keys' to natural gateways. Lead with the engineering analogy: cells have a packet-switched network we didn't know about, and its routing keys can access biological locations that current drug delivery can't reach. The implications for RNA and gene therapies are immediate — the biggest barrier isn't designing the therapy, it's delivering it to the right tissue. The reader building software sees: this is the biological equivalent of discovering an undocumented API that bypasses the firewall.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/RNA_therapeutics",
-        "http://en.wikipedia.org/wiki/Gene_therapy",
-        "http://en.wikipedia.org/wiki/Drug_delivery",
-        "http://en.wikipedia.org/wiki/University_College_Dublin"
-      ]
-    },
-    {
-      "id": "ewing-sarcoma-trabectedin-irinotecan-targeted-therapy",
-      "label": "Trabectedin and low-dose irinotecan to target EWS::FLI1 in Ewing sarcoma: a phase 1/2 trial",
-      "firstSeen": "2026-04-16T10:08:38.859Z",
-      "lastCovered": "2026-04-16T10:08:38.859Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-ewing-sarcoma-trabectedin-irinotecan-targeted-therapy"
-      ],
-      "eventUri": null,
-      "summary": "A new drug combination — trabectedin (derived from a sea squirt) plus low-dose irinotecan — directly targets EWS::FLI1, the fusion protein that drives Ewing sarcoma, one of the most aggressive childhood cancers. Lead with the targeting strategy: instead of carpet-bombing with high-dose chemo, this phase 1/2 trial uses a 1-hour infusion of a marine compound that specifically disrupts the genetic driver. The reader in tech sees: this is targeted debugging applied to cancer — identify the root-cause mutation, deploy a specific intervention against it. Published in Nature Medicine, this is the first clinical evidence that the oncogenic fusion itself can be drugged.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ewing%27s_sarcoma",
-        "http://en.wikipedia.org/wiki/Trabectedin",
-        "http://en.wikipedia.org/wiki/Nature_Medicine"
-      ]
-    },
-    {
-      "id": "darkbloom-private-inference-idle-macs-distributed",
-      "label": "Darkbloom – Private inference on idle Macs",
-      "firstSeen": "2026-04-16T10:08:38.859Z",
-      "lastCovered": "2026-04-16T10:08:38.859Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-darkbloom-private-inference-idle-macs-distributed"
-      ],
-      "eventUri": null,
-      "summary": "Darkbloom turns idle Macs into a distributed private inference network — your AI queries run on other people's hardware without anyone (including the node operator) seeing your data. 244 HN points, 125 comments. Lead with the architecture: Apple Silicon's Neural Engine sits idle 90%+ of the time, and Darkbloom harvests that compute for privacy-preserving AI inference. The reader building AI applications sees the convergence of three trends: GPU scarcity, privacy regulation, and Apple's dormant ML hardware. The structural question: can distributed private inference compete with centralized cloud, or is this SETI@home for LLMs?",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Distributed_computing",
-        "http://en.wikipedia.org/wiki/Privacy",
-        "http://en.wikipedia.org/wiki/Apple_silicon",
-        "http://en.wikipedia.org/wiki/Inference"
-      ]
-    },
-    {
-      "id": "maine-first-state-data-center-moratorium",
-      "label": "Maine Would Be First State to Pause New Data Centers, if Governor Signs Bill",
-      "firstSeen": "2026-04-16T10:08:38.859Z",
-      "lastCovered": "2026-04-16T10:08:38.859Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-maine-first-state-data-center-moratorium"
-      ],
-      "eventUri": "eng-11569505",
-      "summary": "Maine's legislature passed the first statewide moratorium on new data centers in the US — a direct response to AI's insatiable energy appetite. Lead with the precedent: no state has done this before. The bill passed the Democrat-controlled legislature but Gov. Janet Mills (running for Senate) hasn't committed to signing. The reader who builds AI sees the tension: the infrastructure their work depends on is hitting physical and political limits. Data centers are competing with communities for electricity, water, and land. The structural question: will other states follow Maine, or will this become a competitive race to the bottom?",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Janet_Mills",
-        "http://en.wikipedia.org/wiki/Moratorium_(law)",
-        "http://en.wikipedia.org/wiki/Data_center",
-        "http://en.wikipedia.org/wiki/United_States_Senate",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence"
-      ]
-    },
-    {
-      "id": "fsf-google-gmail-spammer-no-response",
-      "label": "FSF trying to contact Google about spammer sending 10k+ mails from Gmail account",
-      "firstSeen": "2026-04-16T10:08:38.859Z",
-      "lastCovered": "2026-04-16T10:08:38.859Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-fsf-google-gmail-spammer-no-response"
-      ],
-      "eventUri": null,
-      "summary": "The Free Software Foundation — one of the oldest and most respected organizations in computing — cannot get Google to respond about a Gmail account sending 10,000+ spam emails impersonating them. Lead with the power asymmetry: an organization founded by Richard Stallman, which built the GNU project that underpins most of the internet's infrastructure, has no channel to reach the company that controls email for 1.8 billion users. 159 HN points, 90 comments. The reader who sends email daily sees: platform monopoly means even institutions with decades of legitimacy have no standing. Abuse goes unchecked because the platform has no accountability mechanism that scales.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Free_Software_Foundation",
-        "http://en.wikipedia.org/wiki/Google",
-        "http://en.wikipedia.org/wiki/Gmail",
-        "http://en.wikipedia.org/wiki/Email_spam"
-      ]
-    },
-    {
-      "id": "pentagon-economic-defense-unit-head-khashoggi-tier1-cerberus",
-      "label": "New DoD leader was on board of firm that trained Khashoggi's killers",
-      "firstSeen": "2026-04-16T07:21:28.417Z",
-      "lastCovered": "2026-04-16T07:21:28.417Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-pentagon-economic-defense-unit-head-khashoggi-tier1-cerberus"
-      ],
-      "eventUri": null,
-      "summary": "The head of the Pentagon's new Economic Defense Unit — managing $200 billion in investment — sat on the board of Tier 1 Group, which trained four Saudi operatives who murdered Jamal Khashoggi. Lead with the revolving door: Cerberus Capital Management founded Tier 1 Group, and now multiple Cerberus execs run the DoD — deputy secretary Feinberg, OSC head Lorch, and now Kollitides. Companies Cerberus invests in have won Pentagon contracts since Feinberg took his role. The reader who tracks power sees: the private equity firm connected to Khashoggi's murder is now running hundreds of billions in defense investment with no congressional oversight.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Jamal_Khashoggi",
-        "http://en.wikipedia.org/wiki/Cerberus_Capital_Management",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_Defense",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia"
-      ]
-    },
-    {
-      "id": "us-pentagon-military-operation-cuba-preparations",
-      "label": "Is the US prepping for a military operation in Cuba?",
-      "firstSeen": "2026-04-16T07:21:28.417Z",
-      "lastCovered": "2026-04-16T07:21:28.417Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-us-pentagon-military-operation-cuba-preparations"
-      ],
-      "eventUri": null,
-      "summary": "Zeteo reports Pentagon officials received a White House directive to ramp up preparations for possible military operations against Cuba — while already fighting in Iran. Lead with Trump's own words: 'we may stop by Cuba after we're finished with this.' Sen. Kaine is lining up a War Powers Resolution vote to prevent unauthorized action. Cuba's Diaz-Canel responded: 'If we need to die, we'll die.' The reader sees the pattern: a second front opened to distract from a quagmire in the Middle East, with soaring gas prices and a downgraded growth forecast. The structural question: can the US sustain two simultaneous military confrontations in an election year?",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Cuba",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/War_Powers_Resolution"
-      ]
-    },
-    {
-      "id": "cocaine-gold-mining-corcovado-national-park-costa-rica",
-      "label": "Cocaine and Gold: The Battle to Protect Costa Rica's Corcovado National Park",
-      "firstSeen": "2026-04-16T07:21:28.417Z",
-      "lastCovered": "2026-04-16T07:21:28.417Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-cocaine-gold-mining-corcovado-national-park-costa-rica"
-      ],
-      "eventUri": null,
-      "summary": "Cocaine trafficking is oozing into illegal gold mining inside Costa Rica's most biodiverse national park, and park rangers lack the resources and operational support to stop it. Lead with the convergence: two criminal economies — narcotics and illegal mining — are merging inside a protected ecosystem. InSight Crime's investigation shows how the logistics of drug transit routes double as supply chains for illegal resource extraction. The reader who thinks in systems sees: criminal economies optimize like any other supply chain, and environmental destruction is the externality. Latin America's conservation crisis is inseparable from its organized crime crisis.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Costa_Rica",
-        "http://en.wikipedia.org/wiki/Corcovado_National_Park",
-        "http://en.wikipedia.org/wiki/Cocaine",
-        "http://en.wikipedia.org/wiki/Gold_mining"
-      ]
-    },
-    {
-      "id": "foxes-birds-early-warning-antibiotic-resistance-wildlife",
-      "label": "Foxes and birds could be 'early warning system' to survey spread of antibiotic resistance into ecosystems",
-      "firstSeen": "2026-04-16T07:21:28.417Z",
-      "lastCovered": "2026-04-16T07:21:28.417Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-foxes-birds-early-warning-antibiotic-resistance-wildlife"
-      ],
-      "eventUri": null,
-      "summary": "An Italian study found K. pneumoniae resistance to third-generation cephalosporins — a key class of hospital antibiotics — is about five times higher in wild foxes and birds than in human hospital patients. Lead with the inversion: the wildlife is more resistant than the hospitals. The structural why: foxes and birds cross between human-dominated and natural ecosystems, carrying resistant bacteria from wastewater and agricultural runoff into wild habitats. The reader who thinks in systems sees: antibiotic resistance isn't a hospital problem, it's an ecosystem problem, and wildlife is the early warning system we're not watching.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Antimicrobial_resistance",
-        "http://en.wikipedia.org/wiki/Klebsiella_pneumoniae",
-        "http://en.wikipedia.org/wiki/Cephalosporin",
-        "http://en.wikipedia.org/wiki/Wildlife"
-      ]
-    },
-    {
-      "id": "host-genotype-sex-shape-influenza-evolution-defective-genomes",
-      "label": "Host genotype and sex shape influenza evolution and defective viral genomes",
-      "firstSeen": "2026-04-16T07:21:28.417Z",
-      "lastCovered": "2026-04-16T07:21:28.417Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-host-genotype-sex-shape-influenza-evolution-defective-genomes"
-      ],
-      "eventUri": null,
-      "summary": "Influenza A virus adapts differently depending on the host's genetics and sex — producing different mutation profiles and defective viral genomes in male vs female hosts. Lead with the implication for pandemic preparedness: one-size-fits-all models of viral evolution are wrong. The virus doesn't just evolve to spread faster — it evolves differently in different bodies. The reader in tech sees the analogy: the same code running on different hardware produces different bugs. The practical consequence: sex-specific differences in flu severity aren't just about immune responses — the virus itself evolves differently.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Influenza_A_virus",
-        "http://en.wikipedia.org/wiki/Viral_evolution",
-        "http://en.wikipedia.org/wiki/DNA_replication",
-        "http://en.wikipedia.org/wiki/Antigen"
-      ]
-    },
-    {
-      "id": "nist-limit-cve-entries-vulnerability-database-overwhelmed",
-      "label": "NIST to limit work on CVE entries as submissions surge",
-      "firstSeen": "2026-04-16T07:21:28.417Z",
-      "lastCovered": "2026-04-16T07:21:28.417Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-nist-limit-cve-entries-vulnerability-database-overwhelmed"
-      ],
-      "eventUri": null,
-      "summary": "NIST announced it will only add details to vulnerability records that meet a certain threshold — ending its longstanding mission to categorize every CVE. Lead with the infrastructure failure: the global system for tracking cybersecurity vulnerabilities is buckling under volume. NIST can't keep up, so it's triaging — which means some vulnerabilities will go unanalyzed. The reader who builds software sees the immediate impact: if your scanner relies on NVD enrichment data to prioritize patches, the gaps in coverage become your gaps in security. The structural problem: vulnerability disclosure is scaling faster than the institutions built to process it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/National_Institute_of_Standards_and_Technology",
-        "http://en.wikipedia.org/wiki/Common_Vulnerabilities_and_Exposures",
-        "http://en.wikipedia.org/wiki/Computer_security",
-        "http://en.wikipedia.org/wiki/National_Vulnerability_Database"
-      ]
-    },
-    {
-      "id": "ukraine-russian-soldiers-surrendering-autonomous-robots",
-      "label": "Ukraine Says Russians are Surrendering to Robots",
-      "firstSeen": "2026-04-16T07:21:28.417Z",
-      "lastCovered": "2026-04-16T07:21:28.417Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-ukraine-russian-soldiers-surrendering-autonomous-robots"
-      ],
-      "eventUri": null,
-      "summary": "Ukrainian forces report Russian soldiers surrendering to autonomous ground robots — and Zelenskyy is pitching Ukraine as a global leader in military robotics and defense AI. Lead with the image: a human soldier laying down arms before a machine. This is no longer speculative — it's happening on a real battlefield. The reader building AI systems sees the convergence arriving faster than expected: the same autonomous navigation and decision-making capabilities used in warehouses and self-driving cars are now accepting enemy surrenders. The structural question: if embodied AI can take prisoners, who is responsible for the Geneva Convention obligations?",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Military_robot",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Autonomous_robot",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy"
       ]
     }
   ]
