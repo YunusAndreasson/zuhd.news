@@ -2,13 +2,128 @@
   "version": 1,
   "stories": [
     {
+      "id": "myanmar-junta-frees-win-myint-amnesty-suu-kyi",
+      "label": "Myanmar Junta Frees Ex-President Win Myint in Mass Amnesty",
+      "firstSeen": "2026-04-17T10:07:48.845Z",
+      "lastCovered": "2026-04-17T10:07:48.845Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-myanmar-junta-frees-win-myint-amnesty-suu-kyi"
+      ],
+      "eventUri": "eng-11576723",
+      "summary": "Min Aung Hlaing's junta released ex-President Win Myint and cut Aung San Suu Kyi's sentence by a sixth — a calculated gesture five years after the 2021 coup, as the regime struggles against a fragmented but resilient civil resistance. Lead with who stays locked up: Suu Kyi, 80, under house arrest, while the figurehead most useful to the junta's legitimacy play walks free. Frame the amnesty as a negotiation tactic with ASEAN and Beijing, not mercy.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Myanmar",
+        "http://en.wikipedia.org/wiki/Min_Aung_Hlaing",
+        "http://en.wikipedia.org/wiki/Aung_San_Suu_Kyi",
+        "http://en.wikipedia.org/wiki/Win_Myint",
+        "http://en.wikipedia.org/wiki/Amnesty",
+        "http://en.wikipedia.org/wiki/Coup_d'état"
+      ]
+    },
+    {
+      "id": "adani-overtakes-ambani-iran-war-petrochemicals",
+      "label": "Adani overtakes Ambani to become Asia's richest person",
+      "firstSeen": "2026-04-17T10:07:48.845Z",
+      "lastCovered": "2026-04-17T10:07:48.845Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-adani-overtakes-ambani-iran-war-petrochemicals"
+      ],
+      "eventUri": "eng-11577062",
+      "summary": "Ambani's petrochemical empire — exposed to Gulf feedstock disruptions — lost ground as the Iran war choked crude supply, letting Adani's ports-and-power bets overtake him. Lead with the mechanism, not the ranking: war reshapes oligarchies through commodity chains, not headlines. For the tech reader who's watched Hormuz shipping all month, this is the downstream scoreboard.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Adani_Group",
+        "http://en.wikipedia.org/wiki/Gautam_Adani",
+        "http://en.wikipedia.org/wiki/Mukesh_Ambani",
+        "http://en.wikipedia.org/wiki/Reliance_Industries",
+        "http://en.wikipedia.org/wiki/India"
+      ]
+    },
+    {
+      "id": "pakistan-tanker-shalamar-hormuz-us-blockade-first",
+      "label": "Pakistan-flagged crude tanker exits Hormuz, first since US blockade",
+      "firstSeen": "2026-04-17T10:07:48.845Z",
+      "lastCovered": "2026-04-17T10:07:48.845Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-pakistan-tanker-shalamar-hormuz-us-blockade-first"
+      ],
+      "eventUri": "fra-1296432",
+      "summary": "The Shalamar — carrying UAE crude to Seoul — is the first tanker to clear the Strait of Hormuz since the US blockade began. Lead with the flag: a Pakistani-registered hull braving a corridor that European and Japanese majors are still avoiding. Who eats the war-risk premium, and who is quietly keeping Asian refineries running? A Muslim-world logistics story that the oil majors would rather not be visible.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Oil_tanker",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/Petroleum"
+      ]
+    },
+    {
+      "id": "scramblase-structure-blood-clotting-cancer-target",
+      "label": "Catching a scramblase in the act could pave the way to improved blood disorder and cancer treatments",
+      "firstSeen": "2026-04-17T10:07:48.845Z",
+      "lastCovered": "2026-04-17T10:07:48.845Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-scramblase-structure-blood-clotting-cancer-target"
+      ],
+      "eventUri": null,
+      "summary": "Weill Cornell researchers captured a cell-membrane scramblase mid-action — the enzyme that flips lipids between the two sides of a membrane, a process central to blood clotting and tumor signaling. Lead with the mechanism made visible: a protein caught doing its job for the first time. For the hacker reader, this is reverse-engineering the cell at molecular resolution, with therapeutic forks branching from the structure itself.",
+      "conceptUris": []
+    },
+    {
+      "id": "liver-transplant-immune-tolerance-cell-therapy-trial",
+      "label": "Cell therapy primed liver transplant patients to avoid organ rejection, small study shows",
+      "firstSeen": "2026-04-17T10:07:48.845Z",
+      "lastCovered": "2026-04-17T10:07:48.845Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-liver-transplant-immune-tolerance-cell-therapy-trial"
+      ],
+      "eventUri": "eng-11572600",
+      "summary": "A small liver-transplant trial used a regulatory-cell infusion to train recipient immune systems into tolerating the donor organ — potentially freeing patients from lifelong immunosuppressant drugs. Lead with what transplant patients actually live with today (daily drugs, infection risk, cancer risk) and what tolerance would replace. If this replicates, it is a structural change to transplantation, not an incremental one.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-bill-on-device-age-verification-os-gatekeeping",
+      "label": "US Bill Mandates On-Device Age Verification",
+      "firstSeen": "2026-04-17T10:07:48.845Z",
+      "lastCovered": "2026-04-17T10:07:48.845Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-us-bill-on-device-age-verification-os-gatekeeping"
+      ],
+      "eventUri": null,
+      "summary": "A new US bill would push age verification down to the device OS, forcing Apple, Google, and Microsoft to gatekeep what apps users can install by age. Lead with the architectural shift: what has been a per-site obligation becomes an OS-level identity check baked into every phone. For the developer reader, the question is whether this normalizes a mandatory ID layer — and whether sideloading survives it.",
+      "conceptUris": []
+    },
+    {
       "id": "student-led-axion-dark-matter-experiment",
       "label": "A student-led experiment sets new limits in the search for axions",
       "firstSeen": "2026-04-17T04:05:10.835Z",
       "lastCovered": "2026-04-17T07:06:18.868Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-04-17-student-led-axion-dark-matter-experiment",
@@ -28,7 +143,7 @@
       "lastCovered": "2026-04-17T07:06:18.868Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-17-pemex-gulf-mexico-oil-spill-veracruz-coverup"
@@ -50,7 +165,7 @@
       "lastCovered": "2026-04-17T07:06:18.868Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-17-ed-raids-punjab-minister-sanjeev-arora-fema-aap"
@@ -71,7 +186,7 @@
       "lastCovered": "2026-04-17T07:06:18.868Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-16-lebanon-ceasefire-trump-netanyahu-delay-bridge"
@@ -87,7 +202,7 @@
       "lastCovered": "2026-04-17T07:06:18.868Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-17-sudan-civil-war-three-year-anniversary-rsf-saf"
@@ -103,7 +218,7 @@
       "lastCovered": "2026-04-17T07:06:18.868Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-17-100-former-us-lawmakers-foreign-lobbyists-revolving-door"
@@ -119,7 +234,7 @@
       "lastCovered": "2026-04-17T07:06:18.868Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-17-india-smartphone-shipments-q1-2026-weakest-six-years"
@@ -135,7 +250,7 @@
       "lastCovered": "2026-04-17T07:06:18.868Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-17-blood-biomarker-gastric-cancer-triage-dyspepsia"
@@ -151,7 +266,7 @@
       "lastCovered": "2026-04-17T07:06:18.868Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-04-15-innate-immunity-ancient-bacterial-antiviral-defences",
@@ -172,7 +287,7 @@
       "lastCovered": "2026-04-17T04:05:10.835Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-17-india-hormuz-shipping-un-tanker-threats"
@@ -195,7 +310,7 @@
       "lastCovered": "2026-04-17T04:05:10.835Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-17-uae-turkiye-95m-investment-realignment"
@@ -215,7 +330,7 @@
       "lastCovered": "2026-04-17T04:05:10.835Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-17-trump-pakistan-visit-iran-mediation-munir"
@@ -237,7 +352,7 @@
       "lastCovered": "2026-04-17T04:05:10.835Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-17-deep-earthquakes-olivine-poirierite-mantle-transition"
@@ -258,7 +373,7 @@
       "lastCovered": "2026-04-17T04:05:10.835Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-17-preconception-radiation-mitochondrial-dna-offspring-hokkaido"
@@ -278,7 +393,7 @@
       "lastCovered": "2026-04-17T04:05:10.835Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-17-rosalind-franklin-rover-spacex-falcon-heavy-esa"
@@ -299,7 +414,7 @@
       "lastCovered": "2026-04-17T04:05:10.835Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-17-amazon-price-fixing-unsealed-california-antitrust"
@@ -320,7 +435,7 @@
       "lastCovered": "2026-04-17T04:05:10.835Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-17-new-jersey-north-korea-laptop-farms-sentencing"
@@ -334,13 +449,40 @@
       ]
     },
     {
+      "id": "imf-middle-east-growth-hardest-hit-iran-war",
+      "label": "Middle East growth hardest hit from Iran war, IMF says",
+      "firstSeen": "2026-04-15T19:10:12.919Z",
+      "lastCovered": "2026-04-17T10:07:48.845Z",
+      "coverageCount": 8,
+      "category": "economy",
+      "importance": 3,
+      "arc": "ongoing",
+      "articles": [
+        "2026-04-15-imf-middle-east-growth-hardest-hit-iran-war",
+        "2026-04-16-imf-middle-east-growth-largest-downgrade-iran-war",
+        "2026-04-15-imf-middle-east-growth-hardest-hit-iran-war-cascade",
+        "2026-04-15-imf-middle-east-growth-iran-war-forecast",
+        "2026-04-17-imf-middle-east-growth-downgrade-iran-war",
+        "2026-04-15-imf-middle-east-growth-iran-war-spring-outlook",
+        "2026-04-17-imf-middle-east-growth-iran-war-hardest-hit"
+      ],
+      "eventUri": null,
+      "summary": "The IMF's spring outlook names the Middle East as the region suffering the largest growth downgrade from the Iran war — fresh macro data that quantifies what the editorial notes have been tracking as 'economic cascade.' Lead with the IMF's own numbers: this is the institutional confirmation that the war's economic damage extends far beyond Iran itself. Gulf states, transit economies, and energy-dependent nations across MENA are all paying. The reader tracking macro sees the structural shift: the war isn't just destroying Iran's economy, it's repricing the entire region's growth trajectory.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/International_Monetary_Fund",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Gross_domestic_product"
+      ]
+    },
+    {
       "id": "nigerian-airlines-jet-fuel-crisis-april-20",
       "label": "Marketers dispute N3,300 aviation fuel price claim",
       "firstSeen": "2026-04-17T01:08:37.073Z",
       "lastCovered": "2026-04-17T01:08:37.073Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-nigerian-airlines-jet-fuel-crisis-april-20"
@@ -362,7 +504,7 @@
       "lastCovered": "2026-04-17T01:08:37.073Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-india-opposition-boycott-rajya-sabha-deputy-chairman"
@@ -384,7 +526,7 @@
       "lastCovered": "2026-04-17T01:08:37.073Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-15-malami-firearms-case-nigeria-accountability"
@@ -405,7 +547,7 @@
       "lastCovered": "2026-04-17T01:08:37.073Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-us-house-war-powers-iran-one-vote"
@@ -426,7 +568,7 @@
       "lastCovered": "2026-04-17T01:08:37.073Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-mbenenge-judicial-accountability-south-africa"
@@ -446,7 +588,7 @@
       "lastCovered": "2026-04-17T01:08:37.073Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-mardan-miner-survived-16-days-rubble"
@@ -466,7 +608,7 @@
       "lastCovered": "2026-04-17T01:08:37.073Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-openai-gpt-rosalind-biology-model"
@@ -487,7 +629,7 @@
       "lastCovered": "2026-04-17T01:08:37.073Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-agrovoltaics-tomato-water-spain-trial"
@@ -507,7 +649,7 @@
       "lastCovered": "2026-04-17T01:08:37.073Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-pakistan-hiv-outbreak-syringe-reuse-bbc"
@@ -528,7 +670,7 @@
       "lastCovered": "2026-04-17T01:08:37.073Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-thomson-reuters-shareholders-ice-clear-investigation"
@@ -542,39 +684,13 @@
       ]
     },
     {
-      "id": "imf-middle-east-growth-hardest-hit-iran-war",
-      "label": "Middle East growth hardest hit from Iran war, IMF says",
-      "firstSeen": "2026-04-15T19:10:12.919Z",
-      "lastCovered": "2026-04-17T07:06:18.868Z",
-      "coverageCount": 7,
-      "category": "economy",
-      "importance": 3,
-      "arc": "ongoing",
-      "articles": [
-        "2026-04-15-imf-middle-east-growth-hardest-hit-iran-war",
-        "2026-04-16-imf-middle-east-growth-largest-downgrade-iran-war",
-        "2026-04-15-imf-middle-east-growth-hardest-hit-iran-war-cascade",
-        "2026-04-15-imf-middle-east-growth-iran-war-forecast",
-        "2026-04-17-imf-middle-east-growth-downgrade-iran-war",
-        "2026-04-15-imf-middle-east-growth-iran-war-spring-outlook"
-      ],
-      "eventUri": null,
-      "summary": "The IMF's spring outlook names the Middle East as the region suffering the largest growth downgrade from the Iran war — fresh macro data that quantifies what the editorial notes have been tracking as 'economic cascade.' Lead with the IMF's own numbers: this is the institutional confirmation that the war's economic damage extends far beyond Iran itself. Gulf states, transit economies, and energy-dependent nations across MENA are all paying. The reader tracking macro sees the structural shift: the war isn't just destroying Iran's economy, it's repricing the entire region's growth trajectory.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/International_Monetary_Fund",
-        "http://en.wikipedia.org/wiki/Middle_East",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Gross_domestic_product"
-      ]
-    },
-    {
       "id": "russian-strikes-kill-15-ukraine-biggest-attack-months",
       "label": "Russian Strikes Kill at Least 15 in Ukraine in Biggest Attack in Months",
       "firstSeen": "2026-04-16T22:08:45.899Z",
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-russian-strikes-kill-15-ukraine-biggest-attack-months"
@@ -599,7 +715,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-turkiye-funerals-kahramanmaras-school-shooting-us-iconography"
@@ -622,7 +738,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-pope-leo-tyrants-wars-cameroon-trump"
@@ -644,7 +760,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-eu-20th-russia-sanctions-slovakia-veto-druzhba"
@@ -667,7 +783,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-us-senate-boundary-waters-mining-ban-luksic-copper"
@@ -688,7 +804,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-norwegian-ship-burial-predates-viking-age-herlaugshaugen"
@@ -704,7 +820,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-nat10-pcsk9-gallbladder-cancer-cholesterol-repurposing"
@@ -720,7 +836,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-altermagnetism-pyrrhotite-abundant-mineral-spintronics"
@@ -736,7 +852,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-mozilla-thunderbolt-ai-client-self-hosted-byo-inference"
@@ -752,7 +868,7 @@
       "lastCovered": "2026-04-16T22:08:45.899Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-16-app-stores-recommend-nudify-deepfake-apps-apple-google"
@@ -768,7 +884,7 @@
       "lastCovered": "2026-04-17T07:06:18.868Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-16-cargo-theft-hackers-remote-access-6-billion",
@@ -789,7 +905,7 @@
       "lastCovered": "2026-04-17T01:08:37.073Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-16-us-arms-market-dominance-declining-drones-stockpiles",
@@ -812,7 +928,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-16-uk-minister-misled-parliament-arms-israel",
@@ -834,7 +950,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-16-pentagon-ford-gm-weapons-depleted-stockpiles",
@@ -860,7 +976,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-hegseth-threatens-iran-civilian-infrastructure-blockade"
@@ -883,7 +999,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-syria-takes-control-former-us-bases-handover"
@@ -905,7 +1021,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-hezbollah-respecting-ceasefire-credits-iran-blasts-beirut"
@@ -921,7 +1037,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-sudan-berlin-conference-1-5bn-aid-no-ceasefire"
@@ -937,7 +1053,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-china-grid-petrochemical-high-seas-climate-contradiction"
@@ -953,7 +1069,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-atlantic-sargassum-blooms-traced-west-africa-origin"
@@ -969,7 +1085,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-salamander-gene-human-limb-regeneration-gene-therapy"
@@ -985,7 +1101,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-plant-sensory-perception-memory-biology"
@@ -1001,7 +1117,7 @@
       "lastCovered": "2026-04-16T19:06:45.190Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-laravel-mcp-ads-agent-monetization"
@@ -1009,160 +1125,6 @@
       "eventUri": null,
       "summary": "Laravel's MCP server, after the company took venture funding, now ships sponsored content into developer AI agents — turning your IDE assistant into an ad surface without consent. Lead with the mechanism: an agent the developer trusts is now mediating commercial messaging chosen by a vendor. Reader is a developer who uses MCP/agents daily — they need to grasp this as the early arrival of attention extraction inside the dev loop, not just a Laravel-specific story.",
       "conceptUris": []
-    },
-    {
-      "id": "us-troops-depart-syria-decade-isis-withdrawal",
-      "label": "US troops depart Syria, ending decade of presence in fight against ISIS",
-      "firstSeen": "2026-04-16T16:13:35.723Z",
-      "lastCovered": "2026-04-16T16:13:35.723Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-us-troops-depart-syria-decade-isis-withdrawal"
-      ],
-      "eventUri": "eng-11574968",
-      "summary": "The US has handed over its remaining bases in Syria to government forces, ending a decade-long ground presence that armed, trained and advised Kurdish-led forces against ISIS. Lead with the strategic vacuum: the withdrawal leaves Kurdish allies exposed to Turkey and Assad's government simultaneously, while ISIS sleeper cells remain active. The reader tracking US military overextension sees the pattern — Iran war is forcing contraction elsewhere. This also addresses an editorial gap: Syria and Iraq have been absent from coverage despite being in the active war theater. Al-Hasakah, the last US base, was a logistics hub for northeast Syria operations.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Syria",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Islamic_State",
-        "http://en.wikipedia.org/wiki/Al-Hasakah",
-        "http://en.wikipedia.org/wiki/Kurds",
-        "http://en.wikipedia.org/wiki/Iraq",
-        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
-        "http://en.wikipedia.org/wiki/Military"
-      ]
-    },
-    {
-      "id": "nigeria-former-minister-farouq-arrest-fraud",
-      "label": "Court orders arrest of former humanitarian minister Farouq over fraud charges",
-      "firstSeen": "2026-04-16T16:13:35.723Z",
-      "lastCovered": "2026-04-16T16:13:35.723Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-nigeria-former-minister-farouq-arrest-fraud"
-      ],
-      "eventUri": null,
-      "summary": "A Nigerian court ordered the arrest of former humanitarian affairs minister Sadiya Farouq after she and a co-defendant failed to appear for arraignment on fraud charges brought by the EFCC. Lead with the institutional irony: the person entrusted with managing disaster relief and social safety nets for Africa's most populous nation is now accused of defrauding the programs she ran. The reader tracking Global South governance sees: accountability mechanisms in Nigeria are functioning — the EFCC filed charges, the court issued a warrant — but the accused simply didn't show up, revealing the gap between legal process and enforcement.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Economic_and_Financial_Crimes_Commission",
-        "http://en.wikipedia.org/wiki/Nigeria",
-        "http://en.wikipedia.org/wiki/Federal_Capital_Territory,_Nigeria"
-      ]
-    },
-    {
-      "id": "china-billions-power-grid-energy-transition",
-      "label": "China Briefing: Billions for grid | Petrochemical plan | China's high-seas bid",
-      "firstSeen": "2026-04-16T16:13:35.723Z",
-      "lastCovered": "2026-04-16T16:13:35.723Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-china-billions-power-grid-energy-transition"
-      ],
-      "eventUri": null,
-      "summary": "While the US depletes stockpiles and the Gulf burns, China is investing billions in power grid infrastructure to absorb its record renewable energy build-out. Lead with the contrast: the world's largest emitter is building the grid the energy transition requires, at the exact moment its geopolitical rivals are spending on munitions. The petrochemical expansion plan shows this isn't green idealism — it's industrial strategy that happens to include the largest clean energy investment in history. The reader in tech sees: infrastructure is the real AI bottleneck, and China is solving it for energy the way it solved it for manufacturing.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Electrical_grid",
-        "http://en.wikipedia.org/wiki/Renewable_energy",
-        "http://en.wikipedia.org/wiki/Energy_transition"
-      ]
-    },
-    {
-      "id": "patagonia-dinosaur-bicharracosaurus-two-lineages",
-      "label": "Patagonia yields 155-million-year-old long-necked dinosaur with links to two famous lineages",
-      "firstSeen": "2026-04-16T16:13:35.723Z",
-      "lastCovered": "2026-04-16T16:13:35.723Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-patagonia-dinosaur-bicharracosaurus-two-lineages"
-      ],
-      "eventUri": null,
-      "summary": "A German-Argentine team discovered Bicharracosaurus dionidei in Patagonia — a 155-million-year-old sauropod that bridges two of the most famous dinosaur lineages (diplodocids and macronarians), suggesting their split happened earlier than thought and may have originated in the Southern Hemisphere. Lead with the sampling bias: Jurassic sauropod fossils from the Southern Hemisphere are extraordinarily rare, not because the animals weren't there, but because no one has looked. The reader who thinks about structural gaps in knowledge sees: even deep-time evolutionary narratives are shaped by where funding and fieldwork go. Published in PeerJ.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Sauropoda",
-        "http://en.wikipedia.org/wiki/Patagonia",
-        "http://en.wikipedia.org/wiki/Argentina",
-        "http://en.wikipedia.org/wiki/Jurassic"
-      ]
-    },
-    {
-      "id": "cities-reclaiming-housing-market-failure-global",
-      "label": "From Salford to Shanghai: Cities taking control of housing",
-      "firstSeen": "2026-04-16T16:13:35.723Z",
-      "lastCovered": "2026-04-16T16:13:35.723Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-cities-reclaiming-housing-market-failure-global"
-      ],
-      "eventUri": null,
-      "summary": "A University of Manchester study across Salford, Shanghai, Nairobi and Paris shows governments worldwide are actively reclaiming housing from failed private markets — reshaping state institutions in the process. Lead with the global convergence: from Kenya to China to France, the ideological assumption that markets deliver housing is being abandoned simultaneously, not through coordination but through parallel failure. Published in Urban Studies. The reader tracking power and justice sees: shelter is being reclaimed as a public good, and the mechanisms (direct state construction, market reshaping, institutional overhaul) vary by political system but the direction is the same.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Affordable_housing",
-        "http://en.wikipedia.org/wiki/Nairobi",
-        "http://en.wikipedia.org/wiki/Shanghai",
-        "http://en.wikipedia.org/wiki/Urban_planning"
-      ]
-    },
-    {
-      "id": "eu-dma-google-search-data-sharing-rivals",
-      "label": "EU forces Google's hand on search data, angering Google",
-      "firstSeen": "2026-04-16T16:13:35.723Z",
-      "lastCovered": "2026-04-16T16:13:35.723Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-eu-dma-google-search-data-sharing-rivals"
-      ],
-      "eventUri": "eng-11574401",
-      "summary": "Brussels has ordered Google to share its search data with rivals and give competitors equal footing on its platforms — the most concrete DMA enforcement action yet. Lead with what Google must actually do: open search indexes, ranking signals, and advertising data to competitors. The reader building products on top of search sees: the EU is forcing the unbundling of Google's most valuable moat. This isn't a fine — it's a structural remedy that could reshape how search competition works globally, since companies will build products against the EU-mandated access whether they're in Europe or not.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Google",
-        "http://en.wikipedia.org/wiki/European_Commission",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Search_engine",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Brussels",
-        "http://en.wikipedia.org/wiki/Digital_Markets_Act",
-        "http://en.wikipedia.org/wiki/Search_engine_(computing)"
-      ]
-    },
-    {
-      "id": "qwen-3-6-open-source-agentic-coding-alibaba",
-      "label": "Qwen3.6-35B-A3B: Agentic Coding Power, Now Open to All",
-      "firstSeen": "2026-04-16T16:13:35.723Z",
-      "lastCovered": "2026-04-16T16:13:35.723Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-16-qwen-3-6-open-source-agentic-coding-alibaba"
-      ],
-      "eventUri": null,
-      "summary": "Alibaba's Qwen team released Qwen3.6-35B-A3B — a 35-billion parameter open-source model that uses only 3 billion active parameters (mixture of experts) and matches proprietary models on agentic coding benchmarks. 332 HN points, 189 comments. Lead with the efficiency ratio: 35B total, 3B active — this runs on consumer hardware while competing with models that cost thousands per month in API fees. The reader who ships code sees: the agentic AI coding stack is commoditizing faster than anyone expected. Open-source models running locally can now do what only cloud APIs could do six months ago. The geopolitical angle: China's open-source AI strategy is distributing capability while US firms gate it behind APIs.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Alibaba_Group",
-        "http://en.wikipedia.org/wiki/Open-source_software",
-        "http://en.wikipedia.org/wiki/Large_language_model",
-        "http://en.wikipedia.org/wiki/Mixture_of_experts"
-      ]
     }
   ]
 }
