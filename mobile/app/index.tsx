@@ -63,9 +63,11 @@ export default function HomeScreen() {
     briefing?.duration,
   );
 
-  // Active article tracking (for bottom action bar)
+  // Active article tracking (for bottom action bar). Kept in a ref — the
+  // selected article only feeds callbacks (share, context), never JSX, so
+  // state here would re-render the whole HomeScreen tree on every snap.
   const currentArticlesRef = useRef<(Article | null)[]>([null, null, null, null]);
-  const [activeArticle, setActiveArticle] = useState<Article | null>(null);
+  const activeArticleRef = useRef<Article | null>(null);
 
   // Sheet refs
   const menuSheetRef = useRef<BottomSheetModal>(null);
@@ -135,28 +137,30 @@ export default function HomeScreen() {
   }, []);
 
   const handleDeeperPress = useCallback(() => {
-    if (!activeArticle) return;
+    const active = activeArticleRef.current;
+    if (!active) return;
     hapticImpact();
     // Capture article metadata at open time
-    setDigSources(activeArticle.sources);
+    setDigSources(active.sources);
 
     // Fetch context if article has a thread
-    if (activeArticle.threadId) {
+    if (active.threadId) {
       const allArticles = Object.values(groupedRef.current).flat();
-      const match = allArticles.find((a) => a.threadId === activeArticle.threadId);
+      const match = allArticles.find((a) => a.threadId === active.threadId);
       setContextThreadLabel(match?.threadLabel);
-      fetchContext(activeArticle.threadId);
+      fetchContext(active.threadId);
     } else {
       setContextThreadLabel(undefined);
     }
     contextSheetRef.current?.present();
-  }, [activeArticle, fetchContext]);
+  }, [fetchContext]);
 
   const handleBottomShare = useCallback(() => {
-    if (!activeArticle) return;
+    const active = activeArticleRef.current;
+    if (!active) return;
     hapticImpact();
-    const url = `https://zuhd.news/a/${activeArticle.slug}`;
-    const title = activeArticle.title;
+    const url = `https://zuhd.news/a/${active.slug}`;
+    const title = active.title;
     const content = Platform.select({
       ios: { url, title },
       default: { message: `${title}\n${url}`, title },
@@ -169,12 +173,12 @@ export default function HomeScreen() {
         default: { dialogTitle: 'Share' },
       }),
     ).catch(() => {});
-  }, [activeArticle]);
+  }, []);
 
   const handleArticleChange = useCallback((article: Article, catIndex: number) => {
     currentArticlesRef.current[catIndex] = article;
     if (catIndex === currentCategoryRef.current) {
-      setActiveArticle(article);
+      activeArticleRef.current = article;
     }
   }, []);
 
@@ -266,7 +270,7 @@ export default function HomeScreen() {
       pagerOffset.value = page;
       hapticTick();
       setCurrentCategory(page);
-      setActiveArticle(currentArticlesRef.current[page] ?? null);
+      activeArticleRef.current = currentArticlesRef.current[page] ?? null;
     },
     [pagerOffset],
   );
