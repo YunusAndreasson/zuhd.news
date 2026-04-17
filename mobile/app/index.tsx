@@ -459,6 +459,15 @@ export default function HomeScreen() {
           setDigSources([]);
           setContextThreadLabel(undefined);
         }}
+        onCountryPress={({ countryName, data }) => {
+          setCountrySheet({
+            countryName,
+            location: null,
+            localTime: null,
+            data,
+          });
+          countrySheetRef.current?.present();
+        }}
       />
     </View>
   );

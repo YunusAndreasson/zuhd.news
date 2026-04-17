@@ -8,10 +8,12 @@ import { AccessibilityInfo, ActivityIndicator, StyleSheet, Text, View } from 're
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 
-// Timeline dot sits centered on the entry line — diameter 5 over a 1px line.
-const TIMELINE_DOT = 5;
-const TIMELINE_LINE = 1;
+// Timeline dot sits centered on the entry line. Sized so the marker reads as
+// a station on small screens without crowding the body text.
+const TIMELINE_DOT = 7;
+const TIMELINE_LINE = 1.5;
 
+import type { CountryData } from '../constants/country-data';
 import { useTheme } from '../hooks/useTheme';
 import { makeMarkdownStyles } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
@@ -40,6 +42,12 @@ interface ContextSheetProps {
   bottomInset: number;
   renderBackdrop: React.FC<BottomSheetBackdropProps>;
   onDismiss: () => void;
+  /** Chip taps inside LocationsBlock bubble up here; parent decides how to
+   *  present the country sheet (typically `countrySheetRef.present()`). */
+  onCountryPress?: (payload: {
+    countryName: string;
+    data: CountryData | null;
+  }) => void;
 }
 
 export const ContextSheet = memo(function ContextSheet({
@@ -51,6 +59,7 @@ export const ContextSheet = memo(function ContextSheet({
   bottomInset,
   renderBackdrop,
   onDismiss,
+  onCountryPress,
 }: ContextSheetProps) {
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
@@ -107,6 +116,7 @@ export const ContextSheet = memo(function ContextSheet({
           openLink,
           variant: 'context',
           sources: briefSources,
+          onCountryPress,
         })}
       </View>
     ) : null;
@@ -211,9 +221,6 @@ export const ContextSheet = memo(function ContextSheet({
         {/* ── Spanning (arc) blocks ── */}
         {hasSpanning && (
           <>
-            {hasSources && (
-              <View style={[styles.sectionDivider, { backgroundColor: colors.rule }]} />
-            )}
             <Text style={[styles.sectionLabel, styles.sectionLabelContext, textStyles.smallCaps]}>
               arc
             </Text>
@@ -222,6 +229,7 @@ export const ContextSheet = memo(function ContextSheet({
               openLink,
               variant: 'article',
               sources: briefSources,
+              onCountryPress,
             })}
           </>
         )}
@@ -229,9 +237,6 @@ export const ContextSheet = memo(function ContextSheet({
         {/* ── Context timeline ── */}
         {hasThread && (
           <>
-            {(hasSources || hasSpanning) && (
-              <View style={[styles.sectionDivider, { backgroundColor: colors.rule }]} />
-            )}
             <Text style={[styles.sectionLabel, styles.sectionLabelContext, textStyles.smallCaps]}>
               context
             </Text>
@@ -262,12 +267,8 @@ const styles = StyleSheet.create({
   },
   /* ── Context ── */
   sectionLabelContext: {
+    marginTop: SPACING.lg,
     marginBottom: SPACING.md,
-  },
-  sectionDivider: {
-    height: StyleSheet.hairlineWidth,
-    marginTop: SPACING.sm,
-    marginBottom: SPACING.lg,
   },
   loader: {
     marginTop: SPACING.lg,

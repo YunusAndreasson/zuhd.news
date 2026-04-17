@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { StyleSheet } from 'react-native';
+import type { CountryData } from '../../constants/country-data';
 import { SPACING } from '../../constants/theme';
 import type { LinkOpener, MarkdownStyles } from '../../lib/markdown';
 import type { ArticleBlock } from '../../types';
@@ -33,6 +34,12 @@ interface RenderBlocksOptions {
   /** Brief-level citation strings. Blocks with a `source` index render the
    *  corresponding entry as a small caption beneath. */
   sources?: string[];
+  /** Tap on a country chip inside a LocationsBlock opens the shared
+   *  CountrySheet. Parent wires this to whatever sheet ref it owns. */
+  onCountryPress?: (payload: {
+    countryName: string;
+    data: CountryData | null;
+  }) => void;
 }
 
 function resolveSource(idx: number | undefined, sources: string[] | undefined): string | undefined {
@@ -70,7 +77,13 @@ export function renderBlocks(blocks: ArticleBlock[], opts: RenderBlocksOptions):
       }
       case 'compare':
         return (
-          <CompareBlock key={key} rows={block.rows} variant={variant} sourceLabel={sourceLabel} />
+          <CompareBlock
+            key={key}
+            rows={block.rows}
+            label={block.label}
+            variant={variant}
+            sourceLabel={sourceLabel}
+          />
         );
       case 'trend':
         return (
@@ -95,6 +108,7 @@ export function renderBlocks(blocks: ArticleBlock[], opts: RenderBlocksOptions):
             caption={block.caption}
             variant={variant}
             sourceLabel={sourceLabel}
+            onCountryPress={opts.onCountryPress}
           />
         );
       case 'quote':
@@ -105,7 +119,6 @@ export function renderBlocks(blocks: ArticleBlock[], opts: RenderBlocksOptions):
             speaker={block.speaker}
             year={block.year}
             variant={variant}
-            sourceLabel={sourceLabel}
           />
         );
       case 'actors':

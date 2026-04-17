@@ -79,7 +79,9 @@ const parseArticleBlock = (v: unknown): ArticleBlock | null => {
       if (!Array.isArray(v.rows)) return null;
       const rows = v.rows.filter(isCompareRow);
       if (rows.length === 0) return null;
-      return applySourceRef({ type: 'compare', rows }, v);
+      const block: ArticleBlock = { type: 'compare', rows };
+      if (typeof v.label === 'string' && v.label.trim().length > 0) block.label = v.label;
+      return applySourceRef(block, v);
     }
     case 'trend': {
       if (!isNumberArray(v.values) || v.values.length < 2) return null;

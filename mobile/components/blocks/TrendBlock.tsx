@@ -1,8 +1,9 @@
 import { Canvas, Circle, Line, Path, Skia, type SkPath, vec } from '@shopify/react-native-skia';
-import { memo, useEffect, useMemo, useState } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { Dimensions, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import {
+import Animated, {
+  FadeIn,
   runOnJS,
   type SharedValue,
   useAnimatedReaction,
@@ -39,9 +40,8 @@ const ENDPOINT_RING_R = 7;
 // its center lines up with the rule line drawn at y = pad (or height - pad).
 const CHART_TOP_PAD = 14;
 const CHART_BOTTOM_PAD = 14;
-const CHART_RIGHT_PAD = 48;
+const CHART_RIGHT_PAD = 44;
 const CHART_LEFT_PAD = 2;
-const GRID_QUARTILES = [0.25, 0.5, 0.75];
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -130,7 +130,7 @@ function Chart({
   colors,
   annotations,
 }: ChartProps) {
-  const { curvePath, areaPath, minY, maxY, quartileYs } = useMemo(() => {
+  const { curvePath, areaPath, minY, maxY } = useMemo(() => {
     const min = Math.min(...values);
     const max = Math.max(...values);
     const range = max - min || 1;
@@ -138,13 +138,11 @@ function Chart({
     const innerBottom = height - CHART_BOTTOM_PAD;
     const innerH = innerBottom - innerTop;
     const yFor = (v: number) => innerTop + (1 - (v - min) / range) * innerH;
-    const quarts = GRID_QUARTILES.map((q) => yFor(min + range * q));
     return {
       curvePath: buildCurve(points),
       areaPath: buildArea(buildCurve(points), points, innerBottom),
       minY: yFor(min),
       maxY: yFor(max),
-      quartileYs: quarts,
     };
   }, [values, points, height]);
 
@@ -177,7 +175,7 @@ function Chart({
 
   return (
     <Canvas style={{ width, height }}>
-      {/* Subtle filled area under the curve */}
+      {/* Subtle filled area beneath the curve — gives the line visual body. */}
       <Path
         path={areaPath}
         color={colors.textEmphasis}
@@ -187,45 +185,19 @@ function Chart({
         end={progress}
       />
 
-      {/* Vertical grid — one line per data point, anchors the x-axis so
-          scrubbing lands on a recognizable column. */}
-      {points.map((p, i) => (
-        <Line
-          key={`vgrid-${i}`}
-          p1={vec(p.x, CHART_TOP_PAD)}
-          p2={vec(p.x, height - CHART_BOTTOM_PAD)}
-          color={colors.textSecondary}
-          opacity={0.2}
-          strokeWidth={1}
-        />
-      ))}
-
-      {/* Horizontal quartile grid — reference scale. 1pt stroke so thin
-          hairlines don't vanish under antialiasing on high-DPR screens. */}
-      {quartileYs.map((y, i) => (
-        <Line
-          key={`hgrid-${i}`}
-          p1={vec(CHART_LEFT_PAD, y)}
-          p2={vec(chartRightX, y)}
-          color={colors.textSecondary}
-          opacity={0.28}
-          strokeWidth={1}
-        />
-      ))}
-
-      {/* Min and max reference lines — emphasized against the grid */}
+      {/* Min and max reference lines — the implicit axis. */}
       <Line
         p1={vec(CHART_LEFT_PAD, maxY)}
         p2={vec(chartRightX, maxY)}
         color={colors.textSecondary}
-        opacity={0.6}
+        opacity={0.45}
         strokeWidth={1}
       />
       <Line
         p1={vec(CHART_LEFT_PAD, minY)}
         p2={vec(chartRightX, minY)}
         color={colors.textSecondary}
-        opacity={0.6}
+        opacity={0.45}
         strokeWidth={1}
       />
 
@@ -241,7 +213,7 @@ function Chart({
         end={progress}
       />
 
-      {/* Crosshair — vertical rule at scrub position */}
+      {/* Crosshair — vertical rule at scrub position only */}
       <Line
         p1={crosshairP1}
         p2={crosshairP2}
@@ -250,21 +222,18 @@ function Chart({
         strokeWidth={StyleSheet.hairlineWidth}
       />
 
-      {/* Annotation markers — vertical hairlines at pinned data-point indices.
-          Labels are rendered as RN Text overlays in the parent (Skia text
-          rendering needs a font object; sticking with RN keeps typography
-          coherent with the rest of the block). */}
+      {/* Annotation markers — small dots pinned to the curve at each event
+          index. No full-height vertical rule; labels render as RN Text below. */}
       {annotations?.map((a, i) => {
         const pt = points[a.atIndex];
         if (!pt) return null;
         return (
-          <Line
+          <Circle
             key={`ann-${i}`}
-            p1={vec(pt.x, CHART_TOP_PAD)}
-            p2={vec(pt.x, height - CHART_BOTTOM_PAD)}
+            cx={pt.x}
+            cy={pt.y}
+            r={3}
             color={colors.accent}
-            opacity={0.5}
-            strokeWidth={1}
           />
         );
       })}
@@ -331,6 +300,14 @@ export const TrendBlock = memo(function TrendBlock({
   }, [reduceMotion, progress]);
 
   const [width, setWidth] = useState(INITIAL_WIDTH_ESTIMATE);
+
+  // Chart is axis + curve + annotations by default. The (i) control reveals
+  // the narrative layer (metric label, current value, delta, period, source).
+  const [infoVisible, setInfoVisible] = useState(false);
+  const toggleInfo = useCallback(() => {
+    hapticTick();
+    setInfoVisible((v) => !v);
+  }, []);
 
   // Precompute point geometry once per (values, width, height) so both the
   // Chart renderer and the pan worklet can read the same coordinates.
@@ -423,77 +400,78 @@ export const TrendBlock = memo(function TrendBlock({
       ? `${label}, ${formatNumber(displayValue, unit)}${displayPeriod ? ` in ${displayPeriod}` : ''}, range ${formatNumber(min, unit)} to ${formatNumber(max, unit)}`
       : label;
 
-  const rightColumnWidth = CHART_RIGHT_PAD;
-
   const inner = (
     <View style={styles.container}>
-      {/* Legend — label + value + period + trend indicator */}
-      <View style={styles.headerRow}>
-        <Text
-          style={[styles.label, textStyles.smallCapsXs]}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-          numberOfLines={2}
-        >
-          {label}
-        </Text>
-        {displayValue !== undefined ? (
-          <View style={styles.headerValue}>
-            <Text
-              style={{
-                ...font.bold,
-                fontSize: typography.sizeLg,
-                lineHeight: typography.sizeLg * 1.05,
-                color: colors.textEmphasis,
-                fontVariant: ['oldstyle-nums'],
-              }}
-              maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
-            >
-              {formatNumber(displayValue, unit)}
-            </Text>
-            <View style={styles.legendMetaRow}>
-              {displayPeriod ? (
-                <Text
-                  style={{
-                    ...font.regular,
-                    fontSize: typography.sizeXs,
-                    color: colors.textSecondary,
-                    letterSpacing: typography.trackingCaps,
-                  }}
-                  maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-                >
-                  {displayPeriod.toUpperCase()}
-                </Text>
-              ) : null}
-              {delta ? (
-                <>
-                  {displayPeriod ? (
-                    <Text
-                      style={{
-                        ...font.regular,
-                        fontSize: typography.sizeXs,
-                        color: colors.textSecondary,
-                      }}
-                    >
-                      {'  \u00b7  '}
-                    </Text>
-                  ) : null}
+      {/* Narrative header — hidden by default, revealed via the (i) button
+          floating over the chart. Keeps the default view axis + curve + events. */}
+      {infoVisible ? (
+        <Animated.View entering={FadeIn.duration(ANIMATION.fast)} style={styles.headerRow}>
+          <Text
+            style={[styles.label, textStyles.smallCapsXs]}
+            maxFontSizeMultiplier={MAX_FONT_SCALE.label}
+            numberOfLines={2}
+          >
+            {label}
+          </Text>
+          {displayValue !== undefined ? (
+            <View style={styles.headerValue}>
+              <Text
+                style={{
+                  ...font.bold,
+                  fontSize: typography.sizeLg,
+                  lineHeight: typography.sizeLg * 1.05,
+                  color: colors.textEmphasis,
+                  fontVariant: ['oldstyle-nums'],
+                }}
+                maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+              >
+                {formatNumber(displayValue, unit)}
+              </Text>
+              <View style={styles.legendMetaRow}>
+                {displayPeriod ? (
                   <Text
                     style={{
-                      ...font.semiBold,
+                      ...font.regular,
                       fontSize: typography.sizeXs,
-                      color: colors.accent,
-                      fontVariant: ['oldstyle-nums'],
+                      color: colors.textSecondary,
+                      letterSpacing: typography.trackingCaps,
                     }}
-                    maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+                    maxFontSizeMultiplier={MAX_FONT_SCALE.label}
                   >
-                    {delta.arrow} {delta.text}
+                    {displayPeriod.toUpperCase()}
                   </Text>
-                </>
-              ) : null}
+                ) : null}
+                {delta ? (
+                  <>
+                    {displayPeriod ? (
+                      <Text
+                        style={{
+                          ...font.regular,
+                          fontSize: typography.sizeXs,
+                          color: colors.textSecondary,
+                        }}
+                      >
+                        {'  \u00b7  '}
+                      </Text>
+                    ) : null}
+                    <Text
+                      style={{
+                        ...font.semiBold,
+                        fontSize: typography.sizeXs,
+                        color: colors.accent,
+                        fontVariant: ['oldstyle-nums'],
+                      }}
+                      maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+                    >
+                      {delta.arrow} {delta.text}
+                    </Text>
+                  </>
+                ) : null}
+              </View>
             </View>
-          </View>
-        ) : null}
-      </View>
+          ) : null}
+        </Animated.View>
+      ) : null}
 
       {/* Chart — wrapped in gesture for horizontal scrub */}
       <GestureDetector gesture={pan}>
@@ -548,11 +526,8 @@ export const TrendBlock = memo(function TrendBlock({
                   </View>
                 );
               })}
-              {/* Right-edge y-axis labels, centered on their rule lines */}
-              <View
-                pointerEvents="none"
-                style={[styles.yAxis, styles.yAxisMax, { width: rightColumnWidth }]}
-              >
+              {/* Right-edge y-axis min/max — the axis readout. */}
+              <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMax]}>
                 <Text
                   style={{
                     ...font.regular,
@@ -565,10 +540,7 @@ export const TrendBlock = memo(function TrendBlock({
                   {formatNumber(max, unit)}
                 </Text>
               </View>
-              <View
-                pointerEvents="none"
-                style={[styles.yAxis, styles.yAxisMin, { width: rightColumnWidth }]}
-              >
+              <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMin]}>
                 <Text
                   style={{
                     ...font.regular,
@@ -582,6 +554,35 @@ export const TrendBlock = memo(function TrendBlock({
                 </Text>
               </View>
             </>
+          ) : null}
+          {sourceLabel ? (
+            <Pressable
+              onPress={toggleInfo}
+              hitSlop={10}
+              accessibilityRole="button"
+              accessibilityLabel={infoVisible ? 'Hide metric details' : 'Show metric details'}
+              accessibilityState={{ expanded: infoVisible }}
+              style={({ pressed }) => [
+                styles.infoButton,
+                {
+                  borderColor: colors.rule,
+                  backgroundColor: infoVisible ? colors.accent : 'transparent',
+                  opacity: pressed ? 0.6 : 1,
+                },
+              ]}
+            >
+              <Text
+                style={{
+                  ...font.semiBold,
+                  fontSize: 10,
+                  color: infoVisible ? colors.bg : colors.textSecondary,
+                  fontStyle: 'italic',
+                }}
+                maxFontSizeMultiplier={MAX_FONT_SCALE.label}
+              >
+                i
+              </Text>
+            </Pressable>
           ) : null}
         </View>
       </GestureDetector>
@@ -620,7 +621,7 @@ export const TrendBlock = memo(function TrendBlock({
           </Text>
         </View>
       ) : null}
-      {sourceLabel ? <SourceCaption label={sourceLabel} /> : null}
+      {sourceLabel && infoVisible ? <SourceCaption label={sourceLabel} /> : null}
     </View>
   );
 
@@ -657,6 +658,17 @@ const styles = StyleSheet.create({
   label: {
     flex: 1,
   },
+  infoButton: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    borderWidth: StyleSheet.hairlineWidth,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   headerValue: {
     alignItems: 'flex-end',
   },
@@ -672,6 +684,7 @@ const styles = StyleSheet.create({
   yAxis: {
     position: 'absolute',
     right: 0,
+    width: CHART_RIGHT_PAD,
     alignItems: 'flex-end',
     justifyContent: 'center',
     paddingRight: 2,
