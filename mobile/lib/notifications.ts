@@ -1,3 +1,4 @@
+import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
 import { Platform } from 'react-native';
@@ -49,12 +50,13 @@ export async function disableNotifications(): Promise<void> {
 // ---------------------------------------------------------------------------
 
 const TOKEN_KEY = 'zuhd_pushToken';
-const PROJECT_ID = '14c4589a-a039-41ad-b3f6-23cff746c7a8';
 
 /** Register Expo push token with the backend. Idempotent. */
 export async function registerPushToken(): Promise<void> {
   try {
-    const { data: token } = await Notifications.getExpoPushTokenAsync({ projectId: PROJECT_ID });
+    const projectId = Constants.expoConfig?.extra?.eas?.projectId as string | undefined;
+    if (!projectId) return;
+    const { data: token } = await Notifications.getExpoPushTokenAsync({ projectId });
     await fetch(`${API_BASE}/api/tokens`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

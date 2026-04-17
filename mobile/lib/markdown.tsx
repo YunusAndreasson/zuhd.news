@@ -14,6 +14,12 @@ export type Segment = {
   url?: string;
 };
 
+export type LinkOpener = (url: string) => void;
+
+const defaultOpenLink: LinkOpener = (url) => {
+  WebBrowser.openBrowserAsync(url).catch(() => {});
+};
+
 export function smartTypography(s: string): string {
   return s
     .replace(/(\s|^)"(\S)/g, '$1\u201c$2') // opening double quote
@@ -120,7 +126,11 @@ export function makeMarkdownStyles(
   });
 }
 
-function renderSegments(segments: Segment[], mdStyles: MarkdownStyles): ReactNode[] {
+function renderSegments(
+  segments: Segment[],
+  mdStyles: MarkdownStyles,
+  openLink: LinkOpener,
+): ReactNode[] {
   return segments.map((seg, j) => {
     switch (seg.type) {
       case 'bold':
@@ -143,11 +153,7 @@ function renderSegments(segments: Segment[], mdStyles: MarkdownStyles): ReactNod
         );
       case 'link':
         return (
-          <Text
-            key={j}
-            style={mdStyles.link}
-            onPress={() => seg.url && WebBrowser.openBrowserAsync(seg.url)}
-          >
+          <Text key={j} style={mdStyles.link} onPress={() => seg.url && openLink(seg.url)}>
             {seg.text}
           </Text>
         );
@@ -164,6 +170,7 @@ export function renderSentences(
   fontSize?: number,
   location?: string | null,
   dateline?: string | null,
+  openLink: LinkOpener = defaultOpenLink,
 ): ReactNode[] {
   const size = fontSize ?? typography.sizeBase;
   const sizeStyle = fontSize
@@ -192,7 +199,7 @@ export function renderSentences(
           >
             <Text style={mdStyles.dateline}>{dateline}</Text>
             {'\u2002'}
-            {renderSegments(parseInline(rest), mdStyles)}
+            {renderSegments(parseInline(rest), mdStyles, openLink)}
           </Text>
         );
       }
@@ -202,7 +209,7 @@ export function renderSentences(
           style={[mdStyles.sentence, sizeStyle]}
           maxFontSizeMultiplier={MAX_FONT_SCALE.body}
         >
-          {renderSegments(parseInline(rest), mdStyles)}
+          {renderSegments(parseInline(rest), mdStyles, openLink)}
         </Text>
       );
     }
@@ -212,7 +219,7 @@ export function renderSentences(
         style={[mdStyles.sentence, sizeStyle]}
         maxFontSizeMultiplier={MAX_FONT_SCALE.body}
       >
-        {renderSegments(parseInline(sentence), mdStyles)}
+        {renderSegments(parseInline(sentence), mdStyles, openLink)}
       </Text>
     );
   });

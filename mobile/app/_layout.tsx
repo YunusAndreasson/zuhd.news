@@ -43,11 +43,7 @@ function ThemedShell() {
   const { colors, resolvedAppearance } = useTheme();
   return (
     <>
-      <StatusBar
-        style={resolvedAppearance === 'dark' ? 'light' : 'dark'}
-        translucent
-        backgroundColor="transparent"
-      />
+      <StatusBar style={resolvedAppearance === 'dark' ? 'light' : 'dark'} />
       <View style={[styles.root, { backgroundColor: colors.bg }]}>
         <Slot />
       </View>
