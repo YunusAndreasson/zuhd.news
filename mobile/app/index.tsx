@@ -27,7 +27,7 @@ import { ErrorState } from '../components/ErrorState';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { MenuSheet } from '../components/MenuSheet';
 import { Toast, type ToastRef } from '../components/Toast';
-import { CATEGORIES, EDITORIAL, LAYOUT } from '../constants/theme';
+import { CATEGORIES, EDITORIAL, OPACITY } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useContextBrief } from '../hooks/useContextBrief';
@@ -88,7 +88,7 @@ export default function HomeScreen() {
         disappearsOnIndex={-1}
         appearsOnIndex={0}
         pressBehavior="close"
-        opacity={LAYOUT.backdropOpacity}
+        opacity={OPACITY.backdrop}
       />
     ),
     [],

@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
-import { LAYOUT, SPACING } from '../constants/theme';
+import { ICON, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { HapticPressable } from './HapticPressable';
 
@@ -59,7 +59,7 @@ export function SheetOptionPage<T extends string>({
               >
                 {opt.label}
               </Text>
-              {active && <Ionicons name="checkmark" size={LAYOUT.iconMd} color={colors.text} />}
+              {active && <Ionicons name="checkmark" size={ICON.md} color={colors.text} />}
             </HapticPressable>
           );
         })}

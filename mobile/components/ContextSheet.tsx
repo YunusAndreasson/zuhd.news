@@ -6,7 +6,11 @@ import {
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, LAYOUT, SPACING, staggerDelay } from '../constants/theme';
+import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
+
+// Timeline dot sits centered on the entry line — diameter 5 over a 1px line.
+const TIMELINE_DOT = 5;
+const TIMELINE_LINE = 1;
 import { useTheme } from '../hooks/useTheme';
 import type { ArticleSource, ContextBrief, TimelineEntry } from '../types';
 import { SheetLayout } from './SheetLayout';
@@ -195,14 +199,14 @@ const styles = StyleSheet.create({
     paddingBottom: SPACING.md,
   },
   entryLine: {
-    borderLeftWidth: LAYOUT.timelineLineWidth,
+    borderLeftWidth: TIMELINE_LINE,
   },
   dot: {
     position: 'absolute',
-    left: -(LAYOUT.timelineDot / 2) - LAYOUT.timelineLineWidth / 2,
-    width: LAYOUT.timelineDot,
-    height: LAYOUT.timelineDot,
-    borderRadius: LAYOUT.timelineDot / 2,
+    left: -(TIMELINE_DOT / 2) - TIMELINE_LINE / 2,
+    width: TIMELINE_DOT,
+    height: TIMELINE_DOT,
+    borderRadius: TIMELINE_DOT / 2,
   },
   entryContent: {
     flex: 1,

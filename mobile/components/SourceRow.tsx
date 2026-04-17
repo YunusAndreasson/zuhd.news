@@ -1,10 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { SOURCES } from '../constants/sources';
-import { EDITORIAL, LAYOUT, SPACING } from '../constants/theme';
+import { BLACK, EDITORIAL, ICON, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { ccToFlag } from '../lib/article-utils';
 import type { ArticleSource } from '../types';
+import { HapticPressable } from './HapticPressable';
 
 type Tone = 'favorable' | 'unfavorable' | 'neutral' | null;
 
@@ -45,7 +46,8 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
           : colors.textSecondary;
 
   return (
-    <Pressable
+    <HapticPressable
+      haptic="tick"
       style={[
         styles.sourceRow,
         !isLast && { borderBottomColor: colors.rule, borderBottomWidth: StyleSheet.hairlineWidth },
@@ -72,7 +74,7 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
               style={{
                 ...font.semiBold,
                 fontSize: typography.sizeXs,
-                color: colors.black,
+                color: BLACK,
                 letterSpacing: typography.trackingCaps,
               }}
             >
@@ -81,7 +83,7 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
           </View>
           <Ionicons
             name={isExpanded ? 'chevron-up' : 'chevron-down'}
-            size={LAYOUT.iconSm}
+            size={ICON.sm}
             color={colors.accent}
           />
         </View>
@@ -96,7 +98,7 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
           </Text>
         </>
       )}
-    </Pressable>
+    </HapticPressable>
   );
 }
 
@@ -120,8 +122,8 @@ const styles = StyleSheet.create({
   },
   tonePill: {
     paddingHorizontal: SPACING.sm,
-    paddingVertical: LAYOUT.pillPaddingV,
-    borderRadius: LAYOUT.pillRadius,
+    paddingVertical: SPACING.xxs,
+    borderRadius: RADIUS.pill,
   },
   sourceType: {
     marginTop: SPACING.sm,

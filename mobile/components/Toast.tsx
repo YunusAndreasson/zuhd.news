@@ -1,7 +1,6 @@
 import { memo, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import Animated, {
-  Easing,
   runOnJS,
   useAnimatedStyle,
   useReducedMotion,
@@ -9,7 +8,15 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ANIMATION, LAYOUT, MAX_FONT_SCALE, PRESSED_STYLE, SPACING } from '../constants/theme';
+import {
+  ANIMATION,
+  EASING,
+  LAYOUT,
+  MAX_FONT_SCALE,
+  PRESSED_STYLE,
+  RADIUS,
+  SPACING,
+} from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 type ToastPosition = 'top' | 'bottom';
@@ -20,8 +27,8 @@ export interface ToastRef {
 
 const TOAST_VISIBLE_MS = 4000;
 const TOAST_SLIDE_OFFSET = SPACING.xxl;
-const EASE_IN = { duration: ANIMATION.normal, easing: Easing.in(Easing.ease) };
-const EASE_OUT = { duration: ANIMATION.normal, easing: Easing.out(Easing.ease) };
+const EASE_IN = { duration: ANIMATION.normal, easing: EASING.in };
+const EASE_OUT = { duration: ANIMATION.normal, easing: EASING.out };
 
 const offsetFor = (p: ToastPosition) => (p === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET);
 
@@ -135,7 +142,6 @@ const styles = StyleSheet.create({
   pill: {
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.lg,
-    borderRadius: LAYOUT.floatingRadius,
-    ...LAYOUT.floatingShadow,
+    borderRadius: RADIUS.floating,
   },
 });

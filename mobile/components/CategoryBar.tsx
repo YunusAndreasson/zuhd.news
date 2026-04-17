@@ -8,10 +8,12 @@ import {
   type FontEntry,
   LAYOUT,
   MAX_FONT_SCALE,
+  OPACITY,
   PRESSED_STYLE,
   SPACING,
 } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { HapticButton } from './HapticButton';
 
 const TAB_LABELS = CATEGORIES.map((c) => c.toUpperCase());
 const TAB_INDICES = TAB_LABELS.map((_, i) => i);
@@ -123,7 +125,7 @@ export const CategoryBar = memo(function CategoryBar({
       'clamp',
     );
     // Hide underline on icon tabs
-    return { left: x, width: w, opacity: 0.15 };
+    return { left: x, width: w, opacity: OPACITY.soft };
   });
 
   const fillPos = useAnimatedStyle(() => {
@@ -170,15 +172,9 @@ export const CategoryBar = memo(function CategoryBar({
             </Text>
           </Text>
         </Pressable>
-        <Pressable
-          onPress={onMenuPress}
-          hitSlop={LAYOUT.hitSlop}
-          style={({ pressed }) => pressed && PRESSED_STYLE}
-          accessibilityRole="button"
-          accessibilityLabel="Menu"
-        >
+        <HapticButton onPress={onMenuPress} accessibilityLabel="Menu">
           <Ionicons name="menu" size={typography.sizeBase} color={colors.textSecondary} />
-        </Pressable>
+        </HapticButton>
       </View>
 
       <View style={styles.tabRow}>

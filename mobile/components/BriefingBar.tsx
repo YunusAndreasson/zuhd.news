@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
+import { type LayoutChangeEvent, StyleSheet, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Extrapolation,
@@ -16,8 +16,9 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ANIMATION, LAYOUT, MAX_FONT_SCALE, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { ANIMATION, ICON, LAYOUT, MAX_FONT_SCALE, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { HapticButton } from './HapticButton';
 
 const BAR_MARGIN = SPACING.md;
 const PROGRESS_HEIGHT = 3;
@@ -72,8 +73,8 @@ export const BriefingBar = memo(function BriefingBar({
     if (reduceMotion) {
       progressSV.value = progress;
     } else {
-      // Slow fill for smooth playback tracking (1s matches the elapsed-update cadence)
-      progressSV.value = withTiming(progress, { duration: 1000 });
+      // Slow fill for smooth playback tracking (matches the elapsed-update cadence)
+      progressSV.value = withTiming(progress, { duration: ANIMATION.long });
     }
   }, [progress, reduceMotion, progressSV]);
   const progressStyle = useAnimatedStyle(() => ({
@@ -107,7 +108,7 @@ export const BriefingBar = memo(function BriefingBar({
     .failOffsetY([-10, 10])
     .onStart((e) => {
       'worklet';
-      isScrubbing.value = withSpring(1, { damping: 20, stiffness: 300 });
+      isScrubbing.value = withSpring(1, ANIMATION.springSoft);
       scrubX.value = e.x;
       runOnJS(seekToX)(e.x);
     })
@@ -213,29 +214,20 @@ export const BriefingBar = memo(function BriefingBar({
             <Text style={{ color: colors.textSecondary }}> / {formatTime(duration)}</Text>
           </Text>
 
-          <Pressable
+          <HapticButton
             onPress={onToggle}
-            hitSlop={LAYOUT.hitSlop}
-            style={({ pressed }) => pressed && PRESSED_STYLE}
-            accessibilityRole="button"
             accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
           >
             <Ionicons
               name={playing ? 'pause' : 'play'}
-              size={LAYOUT.iconMd}
+              size={ICON.md}
               color={colors.textEmphasis}
             />
-          </Pressable>
+          </HapticButton>
 
-          <Pressable
-            onPress={onClose}
-            hitSlop={LAYOUT.hitSlop}
-            style={({ pressed }) => pressed && PRESSED_STYLE}
-            accessibilityRole="button"
-            accessibilityLabel="Close briefing player"
-          >
-            <Ionicons name="close" size={LAYOUT.iconMd} color={colors.textSecondary} />
-          </Pressable>
+          <HapticButton onPress={onClose} accessibilityLabel="Close briefing player">
+            <Ionicons name="close" size={ICON.md} color={colors.textSecondary} />
+          </HapticButton>
         </View>
 
         <GestureDetector gesture={scrubGesture}>
@@ -281,10 +273,9 @@ const styles = StyleSheet.create({
   // progressFill is clipped by progressTrack's own overflow:hidden.
   bar: {
     width: '100%',
-    borderRadius: LAYOUT.floatingRadius,
+    borderRadius: RADIUS.floating,
     paddingTop: SPACING.smPlus,
     paddingHorizontal: SPACING.md,
-    ...LAYOUT.floatingShadow,
   },
   row: {
     flexDirection: 'row',
@@ -325,7 +316,7 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.sm,
     width: TOOLTIP_WIDTH,
     paddingVertical: SPACING.xxs,
-    borderRadius: LAYOUT.pillRadius,
+    borderRadius: RADIUS.pill,
     alignItems: 'center',
   },
 });

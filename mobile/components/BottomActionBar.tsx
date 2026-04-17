@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { LAYOUT, MAX_FONT_SCALE, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { LAYOUT, MAX_FONT_SCALE, PRESSED_STYLE, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 
 interface BottomActionBarProps {
@@ -102,9 +102,8 @@ const styles = StyleSheet.create({
   actionPill: {
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.md,
-    borderRadius: LAYOUT.floatingRadius,
+    borderRadius: RADIUS.floating,
     alignItems: 'center',
     justifyContent: 'center',
-    ...LAYOUT.floatingShadow,
   },
 });

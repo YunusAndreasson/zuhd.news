@@ -9,6 +9,7 @@ import { memo, useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { type AppearanceMode, type FontFamily, type FontSize, SPACING } from '../constants/theme';
 import { useSheetNavigation } from '../hooks/useSheetNavigation';
+import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { usePreferences, useTheme } from '../hooks/useTheme';
 import type { Article, Category } from '../types';
 import { HapticPressable } from './HapticPressable';
@@ -17,7 +18,6 @@ import { SheetHandle } from './SheetHandle';
 import { type InfoSection, SheetInfoPage } from './SheetInfoPage';
 import { SheetLayout } from './SheetLayout';
 import { SheetOptionPage } from './SheetOptionPage';
-import { useMaxSheetHeight } from './SheetPrimitives';
 import { SheetSearchPage } from './SheetSearchPage';
 
 // ---------------------------------------------------------------------------
@@ -160,7 +160,17 @@ const PAGE_TITLES: Record<PageKey, string> = {
 // Navigation row — shared by root menu and settings index
 // ---------------------------------------------------------------------------
 
-function NavRow({ label, value, onPress }: { label: string; value?: string; onPress: () => void }) {
+function NavRow({
+  label,
+  value,
+  hint,
+  onPress,
+}: {
+  label: string;
+  value?: string;
+  hint?: string;
+  onPress: () => void;
+}) {
   const { colors, font, typography, textStyles } = useTheme();
   return (
     <HapticPressable
@@ -168,6 +178,7 @@ function NavRow({ label, value, onPress }: { label: string; value?: string; onPr
       style={styles.row}
       accessibilityRole="button"
       accessibilityLabel={value ? `${label}, currently ${value}` : label}
+      accessibilityHint={hint}
     >
       <Text style={[textStyles.smallCapsBase, { color: colors.text }]}>{label}</Text>
       {value && (
@@ -179,10 +190,15 @@ function NavRow({ label, value, onPress }: { label: string; value?: string; onPr
   );
 }
 
-function ActionLink({ label, onPress }: { label: string; onPress: () => void }) {
+function ActionLink({ label, hint, onPress }: { label: string; hint?: string; onPress: () => void }) {
   const { colors, font, typography } = useTheme();
   return (
-    <HapticPressable onPress={onPress} accessibilityRole="button" accessibilityLabel={label}>
+    <HapticPressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      accessibilityHint={hint}
+    >
       <Text style={{ ...font.semiBold, fontSize: typography.sizeSm, color: colors.text }}>
         {label}
       </Text>
@@ -212,10 +228,11 @@ export const MenuSheet = memo(function MenuSheet({
   onSelectArticle,
 }: MenuSheetProps) {
   const { colors, font, typography, sheetStyles } = useTheme();
-  const MAX_SHEET_HEIGHT = useMaxSheetHeight();
   const { preferences, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications } =
     usePreferences();
   const nav = useSheetNavigation<PageKey>();
+  const isTall = nav.current !== null && TALL_PAGES.has(nav.current);
+  const snapProps = useSheetSnaps(isTall);
 
   const Handle = useCallback(
     () => (
@@ -231,8 +248,6 @@ export const MenuSheet = memo(function MenuSheet({
     nav.reset();
     onDismiss();
   }, [onDismiss, nav.reset]);
-
-  const isTall = nav.current !== null && TALL_PAGES.has(nav.current);
 
   // Display value for a given setting (looked up from its options registry)
   const settingValue = useCallback(
@@ -260,9 +275,7 @@ export const MenuSheet = memo(function MenuSheet({
   return (
     <SheetLayout
       sheetRef={sheetRef}
-      {...(isTall
-        ? ({ snapPoints: ['85%'], enableDynamicSizing: false } as const)
-        : ({ enableDynamicSizing: true, maxDynamicContentSize: MAX_SHEET_HEIGHT } as const))}
+      {...snapProps}
       enableOverDrag={false}
       renderBackdrop={renderBackdrop}
       handleComponent={Handle}
@@ -297,7 +310,11 @@ export const MenuSheet = memo(function MenuSheet({
       return (
         <>
           <NavRow label="search" onPress={() => nav.push('search')} />
-          <NavRow label="saved" onPress={() => nav.push('saved')} />
+          <NavRow
+            label="saved"
+            hint="Your bookmarked articles"
+            onPress={() => nav.push('saved')}
+          />
           <NavRow label="settings" onPress={() => nav.push('settings')} />
 
           <View style={[styles.divider, { backgroundColor: colors.rule }]} />
@@ -307,7 +324,11 @@ export const MenuSheet = memo(function MenuSheet({
             <ActionLink label="sources" onPress={() => nav.push('sources')} />
             <ActionLink label="privacy" onPress={() => nav.push('privacy')} />
             <ActionLink label="contact" onPress={() => nav.push('contact')} />
-            <ActionLink label="rate" onPress={() => StoreReview.requestReview()} />
+            <ActionLink
+              label="rate"
+              hint="Rate zuhd.news in the App Store"
+              onPress={() => StoreReview.requestReview()}
+            />
           </View>
 
           <Text

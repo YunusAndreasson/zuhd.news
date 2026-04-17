@@ -1,4 +1,5 @@
 import { Dimensions, Platform, StyleSheet, type TextStyle } from 'react-native';
+import { Easing } from 'react-native-reanimated';
 import type { Category } from '../types';
 
 // ---------------------------------------------------------------------------
@@ -42,6 +43,14 @@ export const FONT_SIZE_SCALE: Record<FontSize, number> = {
 };
 
 // ---------------------------------------------------------------------------
+// Primitives — theme-invariant raw values
+// ---------------------------------------------------------------------------
+
+/** Pure black. Theme-invariant — used for darkening overlays and high-contrast
+ * chrome that must remain pure black in both appearance modes. */
+export const BLACK = '#000000';
+
+// ---------------------------------------------------------------------------
 // Color palettes
 // ---------------------------------------------------------------------------
 
@@ -55,7 +64,6 @@ export const DARK_COLORS = {
   dome: '#c9a84c', // Dome of the Rock gold — the only color in the app
   sheetBg: '#1c1c1c',
   pillBg: 'rgba(50,50,50,0.7)',
-  black: '#000000',
   atmosphere: '#334455',
   shadow: 'rgba(0,0,0,0.6)',
   toastBg: 'rgba(48,48,48,0.92)',
@@ -74,7 +82,6 @@ export const LIGHT_COLORS = {
   dome: '#c9a84c',
   sheetBg: '#eae6e0',
   pillBg: 'rgba(220,216,210,0.7)',
-  black: '#000000',
   atmosphere: '#8899aa',
   shadow: 'rgba(0,0,0,0.15)',
   toastBg: 'rgba(240,237,230,0.95)',
@@ -179,33 +186,28 @@ export const MAX_FONT_SCALE = {
   chrome: 1.3,
 } as const;
 
+/** Border-radius scale. Semantic names — the app uses few enough radii that
+ *  intent is clearer than numeric tiers. */
+export const RADIUS = {
+  handle: 2,
+  pill: 4,
+  floating: 14,
+} as const;
+
+/** Icon pixel sizes. Two tiers — anything else is a mistake. */
+export const ICON = {
+  sm: 14,
+  md: 20,
+} as const;
+
+/** Non-radius, non-icon layout primitives. */
 export const LAYOUT = {
   progressBarHeight: 2,
   sheetMaxFraction: 0.7,
-  backdropOpacity: 0.3,
-  iconSm: 14,
-  iconMd: 20,
-  timelineDot: 5,
-  timelineLineWidth: 1,
-  pillPaddingV: 2,
-  pillRadius: 4,
   handleWidth: 36,
   handleHeight: 4,
-  handleRadius: 2,
   inputHeight: 40,
-  floatingRadius: 14,
-  logoRadius: 8,
-  activeIndicatorHeight: 1.5,
-  activeIndicatorRadius: 1,
   hitSlop: 12,
-  floatingShadow: {},
-  floatingPill: {
-    paddingVertical: 8, // SPACING.sm
-    paddingHorizontal: 16, // SPACING.md
-    borderRadius: 14, // floatingRadius
-    alignItems: 'center' as const,
-    justifyContent: 'center' as const,
-  },
 } as const;
 
 /** Editorial thresholds — not layout, but shared across components */
@@ -231,17 +233,58 @@ export const ANIMATION = {
   fast: 150,
   normal: 250,
   slow: 400,
+  /** Playback-tracking / long continuous tweens (e.g. progress fills). */
+  long: 1000,
   spring: { damping: 12, stiffness: 150 },
+  /** Snappier spring for gesture starts (scrub tooltips, pull handles). */
+  springSoft: { damping: 20, stiffness: 300 },
   staggerStep: 40,
   staggerCap: 8,
 } as const;
+
+/** Reusable Reanimated easing curves. Compose with ANIMATION durations in withTiming. */
+export const EASING = {
+  in: Easing.in(Easing.ease),
+  out: Easing.out(Easing.ease),
+  inOut: Easing.inOut(Easing.ease),
+} as const;
+
+/**
+ * Opacity scale. Grouped by intent:
+ *   - Interactive state (disabled / pressed / hover)
+ *   - Chrome (backdrop)
+ *   - Decorative layers (glow, heatmap, subtle tint)
+ * Prefer named tokens over inline decimals so visual hierarchy stays auditable.
+ */
+export const OPACITY = {
+  // Interactive states
+  disabled: 0.5,
+  pressed: 0.7,
+  hover: 0.85,
+  // Chrome
+  backdrop: 0.3,
+  // Decorative / chrome layers
+  barely: 0.03,
+  faint: 0.08,
+  soft: 0.15,
+  muted: 0.28,
+  half: 0.45,
+  strong: 0.7,
+  dominant: 0.9,
+} as const;
+
+/** Interactive transform scale — applied on Pressable press via PRESSED_STYLE. */
+export const PRESS_SCALE = 0.97;
 
 export function staggerDelay(index: number): number {
   return Math.min(index, ANIMATION.staggerCap) * ANIMATION.staggerStep;
 }
 
 /** Shared pressed-state style for Pressable components */
-export const PRESSED_STYLE = { opacity: 0.7, transform: [{ scale: 0.97 }] } as const;
+export const PRESSED_STYLE = {
+  opacity: OPACITY.pressed,
+  transform: [{ scale: PRESS_SCALE }],
+} as const;
 
 /** Android-specific base: remove extra padding above/below text for consistent rhythm */
 const androidTextBase: TextStyle =
