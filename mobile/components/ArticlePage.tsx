@@ -1,5 +1,4 @@
 import { LinearGradient } from 'expo-linear-gradient';
-import * as WebBrowser from 'expo-web-browser';
 import { memo, useCallback, useMemo } from 'react';
 import { type GestureResponderEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, {
@@ -15,6 +14,7 @@ import { useTheme } from '../hooks/useTheme';
 import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact } from '../lib/haptics';
 import { makeMarkdownStyles, renderSentences } from '../lib/markdown';
+import { useOpenLink } from '../lib/open-link';
 import type { Article } from '../types';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 
@@ -146,16 +146,7 @@ export const ArticlePage = memo(function ArticlePage({
     [colors, font, typography],
   );
 
-  const openLink = useCallback(
-    (url: string) => {
-      WebBrowser.openBrowserAsync(url, {
-        toolbarColor: colors.bg,
-        controlsColor: colors.accent,
-        dismissButtonStyle: 'close',
-      }).catch(() => {});
-    },
-    [colors.bg, colors.accent],
-  );
+  const openLink = useOpenLink();
 
   const body = useMemo(
     () =>

@@ -53,7 +53,8 @@ export interface PreferencesApi {
   setFontFamily: (v: FontFamily) => void;
   setAppearance: (v: AppearanceMode) => void;
   setHaptics: (v: boolean) => void;
-  setNotifications: (v: boolean) => void;
+  /** Resolves with `true` if the preference was applied, `false` if the OS permission request was denied. */
+  setNotifications: (v: boolean) => Promise<boolean>;
 }
 
 const ThemeContext = createContext<Theme | null>(null);
@@ -120,16 +121,17 @@ export function ThemeProvider({
     [prefs, persist],
   );
   const setNotifications = useCallback(
-    async (v: boolean) => {
+    async (v: boolean): Promise<boolean> => {
       if (v) {
         const granted = await enableNotifications();
-        if (!granted) return;
+        if (!granted) return false;
         registerPushToken();
       } else {
         await disableNotifications();
         unregisterPushToken();
       }
       persist({ ...prefs, notifications: v });
+      return true;
     },
     [prefs, persist],
   );

@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import {
   type BottomSheetBackdropProps,
   type BottomSheetModal,
@@ -5,12 +6,24 @@ import {
 } from '@gorhom/bottom-sheet';
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
-import { memo, useCallback } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { type AppearanceMode, type FontFamily, type FontSize, SPACING } from '../constants/theme';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { StyleSheet, Switch, Text, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import {
+  ANIMATION,
+  type AppearanceMode,
+  baseFontSize,
+  type FontFamily,
+  type FontSize,
+  ICON,
+  type Preferences,
+  SPACING,
+  staggerDelay,
+} from '../constants/theme';
 import { useSheetNavigation } from '../hooks/useSheetNavigation';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
-import { usePreferences, useTheme } from '../hooks/useTheme';
+import { type PreferencesApi, usePreferences, useTheme } from '../hooks/useTheme';
+import { hapticTick } from '../lib/haptics';
 import type { Article, Category } from '../types';
 import { HapticPressable } from './HapticPressable';
 import { SheetBookmarksPage } from './SheetBookmarksPage';
@@ -20,32 +33,15 @@ import { SheetLayout } from './SheetLayout';
 import { SheetOptionPage } from './SheetOptionPage';
 import { SheetSearchPage } from './SheetSearchPage';
 
+const APP_VERSION = Constants.expoConfig?.version ?? '';
+
 // ---------------------------------------------------------------------------
-// Page registry — one entry per navigable page. `title` drives the handle,
-// `render` is called with the nav + preferences the page needs.
+// Registries — one entry per navigable page. Each registry self-describes so
+// `renderPage` can be a simple lookup rather than a switch-per-setting.
 // ---------------------------------------------------------------------------
 
-type InfoKey = 'about' | 'sources' | 'privacy' | 'contact';
-type SettingKey = 'size' | 'font' | 'appearance' | 'haptics' | 'notifications';
-type PageKey = InfoKey | 'settings' | SettingKey | 'search' | 'saved';
-
-const INFO_KEYS: ReadonlySet<PageKey> = new Set(['about', 'sources', 'privacy', 'contact']);
-const SETTING_KEYS: ReadonlySet<PageKey> = new Set([
-  'size',
-  'font',
-  'appearance',
-  'haptics',
-  'notifications',
-]);
-const isInfoKey = (k: PageKey): k is InfoKey => INFO_KEYS.has(k);
-const isSettingKey = (k: PageKey): k is SettingKey => SETTING_KEYS.has(k);
-
-/** Pages that need a fixed tall snap (keyboard or long scrolling list). */
-const TALL_PAGES: ReadonlySet<PageKey> = new Set(['search', 'saved']);
-
-const INFO_PAGES: Record<InfoKey, { title: string; sections: InfoSection[] }> = {
+const INFO_PAGES = {
   about: {
-    title: 'about',
     sections: [
       { body: 'Zuhd \u2014 the discipline of doing without what you do not need.' },
       { body: 'What happened. Why it matters. What comes next. Then stop.' },
@@ -57,7 +53,6 @@ const INFO_PAGES: Record<InfoKey, { title: string; sections: InfoSection[] }> = 
     ],
   },
   sources: {
-    title: 'sources',
     sections: [
       {
         body: 'Stories are compiled from hundreds of outlets indexed by EventRegistry. A language model selects and writes each article based on geographic breadth and editorial significance.',
@@ -73,7 +68,6 @@ const INFO_PAGES: Record<InfoKey, { title: string; sections: InfoSection[] }> = 
     ],
   },
   privacy: {
-    title: 'privacy',
     sections: [
       {
         body: 'No accounts. No analytics. No telemetry. No advertising. No crash reporting. No third-party SDKs.',
@@ -101,7 +95,6 @@ const INFO_PAGES: Record<InfoKey, { title: string; sections: InfoSection[] }> = 
     ],
   },
   contact: {
-    title: 'contact',
     sections: [
       {
         body: 'Questions, corrections, or feedback.',
@@ -109,7 +102,9 @@ const INFO_PAGES: Record<InfoKey, { title: string; sections: InfoSection[] }> = 
       },
     ],
   },
-};
+} as const satisfies Record<string, { sections: InfoSection[] }>;
+
+type InfoKey = keyof typeof INFO_PAGES;
 
 const FONT_SIZE_OPTIONS: { value: FontSize; label: string }[] = [
   { value: 'small', label: 'small' },
@@ -122,50 +117,80 @@ const FONT_FAMILY_OPTIONS: { value: FontFamily; label: string }[] = [
   { value: 'system', label: 'system' },
 ];
 
-const ON_OFF_OPTIONS: { value: 'on' | 'off'; label: string }[] = [
-  { value: 'on', label: 'on' },
-  { value: 'off', label: 'off' },
-];
-
 const APPEARANCE_OPTIONS: { value: AppearanceMode; label: string }[] = [
   { value: 'dark', label: 'dark' },
   { value: 'system', label: 'system' },
   { value: 'light', label: 'light' },
 ];
 
-/** One row per setting — label + current value, navigates to the detail page. */
-const SETTINGS: {
+/**
+ * One entry per setting — options plus the get/set bridge to preferences.
+ * Keeps the metadata and the wiring in one place so render code stays trivial.
+ */
+type SettingKey = 'size' | 'font' | 'appearance' | 'haptics' | 'notifications';
+
+interface SettingEntry {
   key: SettingKey;
   label: string;
-  options: readonly { value: string; label: string }[];
+  get: (p: Preferences) => string;
+  set: (api: PreferencesApi, v: string) => void;
+  /** Drill-in detail options. Omitted on `toggle` entries. */
+  options?: readonly { value: string; label: string }[];
+  /** Per-option absolute font size for the detail-page label — used for size previews. */
+  labelFontSize?: (v: string) => number;
+  /** Render as inline switch in the settings index rather than drilling into a detail page. */
+  toggle?: boolean;
+  /** Accessibility hint — used for toggles where no drill-in explanation exists. */
   hint?: string;
-}[] = [
-  { key: 'size', label: 'size', options: FONT_SIZE_OPTIONS },
-  { key: 'font', label: 'font', options: FONT_FAMILY_OPTIONS },
-  { key: 'appearance', label: 'appearance', options: APPEARANCE_OPTIONS },
-  { key: 'haptics', label: 'haptics', options: ON_OFF_OPTIONS },
+}
+
+const SETTINGS: readonly SettingEntry[] = [
+  {
+    key: 'size',
+    label: 'size',
+    options: FONT_SIZE_OPTIONS,
+    get: (p) => p.fontSize,
+    set: (api, v) => api.setFontSize(v as FontSize),
+    labelFontSize: (v) => baseFontSize(v as FontSize),
+  },
+  {
+    key: 'font',
+    label: 'font',
+    options: FONT_FAMILY_OPTIONS,
+    get: (p) => p.fontFamily,
+    set: (api, v) => api.setFontFamily(v as FontFamily),
+  },
+  {
+    key: 'appearance',
+    label: 'appearance',
+    options: APPEARANCE_OPTIONS,
+    get: (p) => p.appearance,
+    set: (api, v) => api.setAppearance(v as AppearanceMode),
+  },
+  {
+    key: 'haptics',
+    label: 'haptics',
+    get: (p) => (p.haptics ? 'on' : 'off'),
+    set: (api, v) => api.setHaptics(v === 'on'),
+    toggle: true,
+  },
   {
     key: 'notifications',
     label: 'notifications',
-    options: ON_OFF_OPTIONS,
     hint: 'Briefing ready and breaking news alerts',
+    get: (p) => (p.notifications ? 'on' : 'off'),
+    set: (api, v) => api.setNotifications(v === 'on'),
+    toggle: true,
   },
 ];
 
-const PAGE_TITLES: Record<PageKey, string> = {
-  about: 'about',
-  sources: 'sources',
-  privacy: 'privacy',
-  contact: 'contact',
-  settings: 'settings',
-  size: 'size',
-  font: 'font',
-  appearance: 'appearance',
-  haptics: 'haptics',
-  notifications: 'notifications',
-  search: 'search',
-  saved: 'saved',
-};
+type PageKey = InfoKey | 'settings' | SettingKey | 'search' | 'saved';
+
+const isInfoKey = (k: PageKey): k is InfoKey => k in INFO_PAGES;
+const findSetting = (k: PageKey): SettingEntry | undefined => SETTINGS.find((s) => s.key === k);
+
+/** Pages that need a fixed tall snap (keyboard or long scrolling list). */
+const TALL_PAGES: ReadonlySet<PageKey> = new Set(['search', 'saved']);
 
 // ---------------------------------------------------------------------------
 // Navigation row — shared by root menu and settings index
@@ -192,12 +217,55 @@ function NavRow({
       accessibilityHint={hint}
     >
       <Text style={[textStyles.smallCapsBase, { color: colors.text }]}>{label}</Text>
-      {value && (
-        <Text style={{ ...font.regular, fontSize: typography.sizeSm, color: colors.textSecondary }}>
-          {value}
-        </Text>
-      )}
+      <View style={styles.rowRight}>
+        {value && (
+          <Text
+            style={{
+              ...font.regular,
+              fontSize: typography.sizeSm,
+              color: colors.textSecondary,
+            }}
+          >
+            {value}
+          </Text>
+        )}
+        <Ionicons name="chevron-forward" size={ICON.sm} color={colors.textSecondary} />
+      </View>
     </HapticPressable>
+  );
+}
+
+function ToggleRow({
+  label,
+  value,
+  hint,
+  onChange,
+}: {
+  label: string;
+  value: boolean;
+  hint?: string;
+  onChange: (v: boolean) => void;
+}) {
+  const { colors, textStyles } = useTheme();
+  const handleChange = useCallback(
+    (v: boolean) => {
+      hapticTick();
+      onChange(v);
+    },
+    [onChange],
+  );
+  return (
+    <View style={styles.row} accessible accessibilityRole="switch">
+      <Text style={[textStyles.smallCapsBase, { color: colors.text }]}>{label}</Text>
+      <Switch
+        value={value}
+        onValueChange={handleChange}
+        accessibilityLabel={label}
+        accessibilityHint={hint}
+        trackColor={{ false: colors.rule, true: colors.textSecondary }}
+        ios_backgroundColor={colors.rule}
+      />
+    </View>
   );
 }
 
@@ -236,6 +304,7 @@ interface MenuSheetProps {
   onDismiss: () => void;
   grouped: Record<Category, Article[]>;
   onSelectArticle: (slug: string, category: Category) => void;
+  onToast?: (message: string) => void;
 }
 
 export const MenuSheet = memo(function MenuSheet({
@@ -245,20 +314,25 @@ export const MenuSheet = memo(function MenuSheet({
   onDismiss,
   grouped,
   onSelectArticle,
+  onToast,
 }: MenuSheetProps) {
   const { colors, font, typography, sheetStyles } = useTheme();
-  const { preferences, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications } =
-    usePreferences();
+  const prefsApi = usePreferences();
+  const { preferences } = prefsApi;
   const nav = useSheetNavigation<PageKey>();
+  const [canRate, setCanRate] = useState(false);
+
+  useEffect(() => {
+    StoreReview.hasAction()
+      .then(setCanRate)
+      .catch(() => {});
+  }, []);
   const isTall = nav.current !== null && TALL_PAGES.has(nav.current);
   const snapProps = useSheetSnaps(isTall);
 
   const Handle = useCallback(
     () => (
-      <SheetHandle
-        title={nav.current ? PAGE_TITLES[nav.current] : undefined}
-        onBack={nav.depth > 0 ? nav.pop : undefined}
-      />
+      <SheetHandle title={nav.current ?? undefined} onBack={nav.depth > 0 ? nav.pop : undefined} />
     ),
     [nav.current, nav.depth, nav.pop],
   );
@@ -267,29 +341,6 @@ export const MenuSheet = memo(function MenuSheet({
     nav.reset();
     onDismiss();
   }, [onDismiss, nav.reset]);
-
-  // Display value for a given setting (looked up from its options registry)
-  const settingValue = useCallback(
-    (key: SettingKey): string => {
-      const prefValue =
-        key === 'size'
-          ? preferences.fontSize
-          : key === 'font'
-            ? preferences.fontFamily
-            : key === 'appearance'
-              ? preferences.appearance
-              : key === 'haptics'
-                ? preferences.haptics
-                  ? 'on'
-                  : 'off'
-                : preferences.notifications
-                  ? 'on'
-                  : 'off';
-      const config = SETTINGS.find((s) => s.key === key);
-      return config?.options.find((o) => o.value === prefValue)?.label ?? prefValue;
-    },
-    [preferences],
-  );
 
   return (
     <SheetLayout
@@ -328,9 +379,17 @@ export const MenuSheet = memo(function MenuSheet({
     if (current === null) {
       return (
         <>
-          <NavRow label="search" onPress={() => nav.push('search')} />
+          <NavRow
+            label="search"
+            hint="Search all articles by title, topic, or location"
+            onPress={() => nav.push('search')}
+          />
           <NavRow label="saved" hint="Your bookmarked articles" onPress={() => nav.push('saved')} />
-          <NavRow label="settings" onPress={() => nav.push('settings')} />
+          <NavRow
+            label="settings"
+            hint="Appearance, text size, haptics, notifications"
+            onPress={() => nav.push('settings')}
+          />
 
           <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
@@ -339,11 +398,15 @@ export const MenuSheet = memo(function MenuSheet({
             <ActionLink label="sources" onPress={() => nav.push('sources')} />
             <ActionLink label="privacy" onPress={() => nav.push('privacy')} />
             <ActionLink label="contact" onPress={() => nav.push('contact')} />
-            <ActionLink
-              label="rate"
-              hint="Rate zuhd.news in the App Store"
-              onPress={() => StoreReview.requestReview()}
-            />
+            {canRate && (
+              <ActionLink
+                label="rate"
+                hint="Rate zuhd.news in the App Store"
+                onPress={() => {
+                  StoreReview.requestReview().catch(() => {});
+                }}
+              />
+            )}
           </View>
 
           <Text
@@ -354,25 +417,45 @@ export const MenuSheet = memo(function MenuSheet({
               marginTop: SPACING.lg,
             }}
           >
-            zuhd.news · {Constants.expoConfig?.version ?? ''}
+            zuhd.news · {APP_VERSION}
           </Text>
         </>
       );
     }
 
     if (current === 'settings') {
-      return (
-        <>
-          {SETTINGS.map((s) => (
-            <NavRow
-              key={s.key}
-              label={s.label}
-              value={settingValue(s.key)}
-              onPress={() => nav.push(s.key)}
-            />
-          ))}
-        </>
-      );
+      return SETTINGS.map((s, i) => {
+        const currentValue = s.get(preferences);
+        return (
+          <Animated.View
+            key={s.key}
+            entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
+          >
+            {s.toggle ? (
+              <ToggleRow
+                label={s.label}
+                value={currentValue === 'on'}
+                hint={s.hint}
+                onChange={(v) => {
+                  if (s.key === 'notifications' && v) {
+                    prefsApi.setNotifications(true).then((granted) => {
+                      if (!granted) onToast?.('Enable notifications in Settings');
+                    });
+                  } else {
+                    s.set(prefsApi, v ? 'on' : 'off');
+                  }
+                }}
+              />
+            ) : (
+              <NavRow
+                label={s.label}
+                value={s.options?.find((o) => o.value === currentValue)?.label ?? currentValue}
+                onPress={() => nav.push(s.key)}
+              />
+            )}
+          </Animated.View>
+        );
+      });
     }
 
     if (current === 'saved') {
@@ -383,57 +466,18 @@ export const MenuSheet = memo(function MenuSheet({
       return <SheetInfoPage sections={INFO_PAGES[current].sections} />;
     }
 
-    if (isSettingKey(current)) {
-      const config = SETTINGS.find((s) => s.key === current);
-      return renderSettingPage(current, config?.hint);
+    const setting = findSetting(current);
+    if (setting?.options) {
+      return (
+        <SheetOptionPage
+          options={setting.options}
+          selected={setting.get(preferences)}
+          onSelect={(v) => setting.set(prefsApi, v)}
+          labelFontSize={setting.labelFontSize}
+        />
+      );
     }
     return null;
-  }
-
-  function renderSettingPage(key: SettingKey, hint?: string) {
-    switch (key) {
-      case 'size':
-        return (
-          <SheetOptionPage
-            options={FONT_SIZE_OPTIONS}
-            selected={preferences.fontSize}
-            onSelect={setFontSize}
-          />
-        );
-      case 'font':
-        return (
-          <SheetOptionPage
-            options={FONT_FAMILY_OPTIONS}
-            selected={preferences.fontFamily}
-            onSelect={setFontFamily}
-          />
-        );
-      case 'appearance':
-        return (
-          <SheetOptionPage
-            options={APPEARANCE_OPTIONS}
-            selected={preferences.appearance}
-            onSelect={setAppearance}
-          />
-        );
-      case 'haptics':
-        return (
-          <SheetOptionPage
-            options={ON_OFF_OPTIONS}
-            selected={preferences.haptics ? 'on' : 'off'}
-            onSelect={(v) => setHaptics(v === 'on')}
-          />
-        );
-      case 'notifications':
-        return (
-          <SheetOptionPage
-            hint={hint}
-            options={ON_OFF_OPTIONS}
-            selected={preferences.notifications ? 'on' : 'off'}
-            onSelect={(v) => setNotifications(v === 'on')}
-          />
-        );
-    }
   }
 });
 
@@ -443,6 +487,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: SPACING.smPlus,
+  },
+  rowRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.xs,
   },
   divider: {
     height: StyleSheet.hairlineWidth,

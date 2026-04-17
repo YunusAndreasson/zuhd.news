@@ -25,7 +25,10 @@ export interface ToastRef {
   show: (message: string, onPress?: () => void, position?: ToastPosition) => void;
 }
 
-const TOAST_VISIBLE_MS = 4000;
+// Actionable toasts linger — user needs time to decide to tap. Passive
+// acknowledgements ("Saved", "Removed") clear quickly to stay out of the way.
+const TOAST_VISIBLE_ACTIONABLE_MS = 4000;
+const TOAST_VISIBLE_PASSIVE_MS = 2000;
 const TOAST_SLIDE_OFFSET = SPACING.xxl;
 const EASE_IN = { duration: ANIMATION.normal, easing: EASING.in };
 const EASE_OUT = { duration: ANIMATION.normal, easing: EASING.out };
@@ -85,7 +88,8 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
         translateY.value = withTiming(0, EASE_OUT);
       }
 
-      timerRef.current = setTimeout(dismiss, TOAST_VISIBLE_MS);
+      const visibleMs = onPress ? TOAST_VISIBLE_ACTIONABLE_MS : TOAST_VISIBLE_PASSIVE_MS;
+      timerRef.current = setTimeout(dismiss, visibleMs);
     },
   }));
 

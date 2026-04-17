@@ -1,46 +1,36 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
-import { ICON, SPACING } from '../constants/theme';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import { ANIMATION, ICON, SPACING, staggerDelay } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { HapticPressable } from './HapticPressable';
 
 interface OptionPageProps<T extends string> {
-  /** Optional helper text shown above the options. */
-  hint?: string;
-  options: { value: T; label: string }[];
+  options: readonly { value: T; label: string }[];
   selected: T;
   onSelect: (v: T) => void;
+  /** Absolute font size for each option's label — used for typographic previews (e.g. size picker). */
+  labelFontSize?: (v: T) => number;
 }
 
 /** Vertical selection list. Active row is underlined and shows a check. */
 export function SheetOptionPage<T extends string>({
-  hint,
   options,
   selected,
   onSelect,
+  labelFontSize,
 }: OptionPageProps<T>) {
   const { colors, font, typography } = useTheme();
   return (
-    <>
-      {hint && (
-        <Text
-          style={{
-            ...font.regular,
-            fontSize: typography.sizeSm,
-            lineHeight: typography.sizeSm * typography.leadingBody,
-            color: colors.textSecondary,
-            marginBottom: SPACING.md,
-          }}
-        >
-          {hint}
-        </Text>
-      )}
-      <View accessibilityRole="radiogroup">
-        {options.map((opt) => {
-          const active = opt.value === selected;
-          return (
+    <View accessibilityRole="radiogroup">
+      {options.map((opt, i) => {
+        const active = opt.value === selected;
+        return (
+          <Animated.View
+            key={opt.value}
+            entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
+          >
             <HapticPressable
-              key={opt.value}
               onPress={() => {
                 if (!active) onSelect(opt.value);
               }}
@@ -53,7 +43,7 @@ export function SheetOptionPage<T extends string>({
               <Text
                 style={{
                   ...font.semiBold,
-                  fontSize: typography.sizeBase,
+                  fontSize: labelFontSize?.(opt.value) ?? typography.sizeBase,
                   color: active ? colors.textEmphasis : colors.text,
                 }}
               >
@@ -61,10 +51,10 @@ export function SheetOptionPage<T extends string>({
               </Text>
               {active && <Ionicons name="checkmark" size={ICON.md} color={colors.text} />}
             </HapticPressable>
-          );
-        })}
-      </View>
-    </>
+          </Animated.View>
+        );
+      })}
+    </View>
   );
 }
 

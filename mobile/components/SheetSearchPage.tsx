@@ -1,8 +1,9 @@
+import { Ionicons } from '@expo/vector-icons';
 import { BottomSheetFlatList, BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, StyleSheet, Text, View } from 'react-native';
+import { AccessibilityInfo, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import type { TextInput } from 'react-native-gesture-handler';
-import { CATEGORIES, LAYOUT, SPACING } from '../constants/theme';
+import { CATEGORIES, ICON, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { Article, Category } from '../types';
 import { ArticleRow } from './ArticleRow';
@@ -96,6 +97,8 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
 
   const keyExtractor = useCallback((item: SearchResult) => item.slug, []);
 
+  const showAndroidClear = Platform.OS === 'android' && query.length > 0;
+
   return (
     <>
       <View style={[styles.inputRow, { borderBottomColor: colors.rule }]}>
@@ -121,6 +124,17 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           returnKeyType="search"
           clearButtonMode="while-editing"
         />
+        {showAndroidClear && (
+          <Pressable
+            onPress={() => setQuery('')}
+            hitSlop={LAYOUT.hitSlop}
+            style={({ pressed }) => [styles.clearButton, pressed && PRESSED_STYLE]}
+            accessibilityRole="button"
+            accessibilityLabel="Clear search"
+          >
+            <Ionicons name="close-circle" size={ICON.md} color={colors.textSecondary} />
+          </Pressable>
+        )}
       </View>
 
       {deferredQuery.length > 0 && results.length === 0 ? (
@@ -147,13 +161,19 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
 
 const styles = StyleSheet.create({
   inputRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: SPACING.screenPadding,
     paddingBottom: SPACING.md,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   input: {
+    flex: 1,
     height: LAYOUT.inputHeight,
     padding: 0,
+  },
+  clearButton: {
+    paddingLeft: SPACING.sm,
   },
   listContent: {
     paddingHorizontal: SPACING.screenPadding,
