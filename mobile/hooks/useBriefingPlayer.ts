@@ -10,7 +10,7 @@ import {
   setAudioModeAsync,
   setIsAudioActiveAsync,
 } from 'expo-audio';
-import { getItemAsync, setItemAsync } from 'expo-secure-store';
+import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
 import { API_BASE } from '../constants/theme';
@@ -55,6 +55,10 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const backgroundAt = useRef<number>(0);
   const verifyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const closedRef = useRef(false);
+  // One-shot guard consumed by the next toggle(): suppresses position restore
+  // after the user dismisses the player with X. Synchronous so it beats the
+  // async POSITION_KEY write that close() fires off.
+  const skipRestoreRef = useRef(false);
   const devMockActive = useRef(false);
 
   // Tear down stale player when app returns from extended background.
@@ -281,20 +285,25 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         }
       });
 
-      // Restore position if same date
-      try {
-        const [savedPos, savedDateStr] = await Promise.all([
-          getItemAsync(POSITION_KEY),
-          getItemAsync(DATE_KEY),
-        ]);
-        if (savedDateStr === date && savedPos) {
-          const pos = parseInt(savedPos, 10);
-          if (pos > 0) {
-            player.seekTo(pos);
-            setElapsed(pos);
+      // Restore position if same date — unless the user just closed with X,
+      // in which case the one-shot guard forces a fresh 0:00 start.
+      if (skipRestoreRef.current) {
+        skipRestoreRef.current = false;
+      } else {
+        try {
+          const [savedPos, savedDateStr] = await Promise.all([
+            getItemAsync(POSITION_KEY),
+            getItemAsync(DATE_KEY),
+          ]);
+          if (savedDateStr === date && savedPos) {
+            const pos = parseInt(savedPos, 10);
+            if (pos > 0) {
+              player.seekTo(pos);
+              setElapsed(pos);
+            }
           }
-        }
-      } catch {}
+        } catch {}
+      }
 
       savedDate.current = date;
       playerRef.current = player;
@@ -361,13 +370,18 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
 
   const close = useCallback(() => {
     closedRef.current = true;
+    // Consumed by the next toggle() to skip position restore synchronously.
+    // We can't rely on the async SecureStore writes below landing before
+    // the user taps LISTEN again — this ref closes the race.
+    skipRestoreRef.current = true;
     if (verifyTimer.current) {
       clearTimeout(verifyTimer.current);
       verifyTimer.current = null;
     }
-    // Close = stop & forget. Clear any saved position so the next open
-    // starts at 0:00. (Pause keeps position for resume.)
-    setItemAsync(POSITION_KEY, '0').catch(() => {});
+    // Close = stop & forget. Clear both persisted keys so even after the
+    // in-memory guard resets, a cold start won't resurrect an old position.
+    deleteItemAsync(POSITION_KEY).catch(() => {});
+    deleteItemAsync(DATE_KEY).catch(() => {});
     // Fully tear down the player and its lock-screen card.
     if (playerRef.current) {
       subRef.current?.remove();
