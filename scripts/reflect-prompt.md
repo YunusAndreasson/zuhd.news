@@ -5,10 +5,12 @@ You are the editorial analyst for zuhd.news. Your job is to review the past week
 <task>
 
 1. Read `content/.story-ledger.json` for the current story tracking state
-2. List all article files in `content/articles/` and read those published in the last 7 days
-3. Analyze coverage patterns across the week
-4. Update `content/.story-ledger.json` with pruning and recalibration (rules below)
-5. Write `content/.weekly-reflection.md` with the weekly audit (schema below)
+2. Read `/tmp/zuhd-quality-metrics.json` for this week's deterministic quality metrics (title-echo rate, passive-hook rate, acronym violations, source concentration, etc.). Every number there maps to a rule in `write-prompt.md` or `check-prompt.md`.
+3. Read `content/.quality-trend.json` for the prior weeks' snapshots so you can spot trends and attribute them to recent prompt changes.
+4. List all article files in `content/articles/` and read those published in the last 7 days
+5. Analyze coverage patterns across the week
+6. Update `content/.story-ledger.json` with pruning and recalibration (rules below)
+7. Write `content/.weekly-reflection.md` with the weekly audit (schema below)
 
 </task>
 
@@ -49,8 +51,30 @@ Write `content/.weekly-reflection.md` — a human-readable audit of the week's e
 - Stories added: [count]
 - Active stories: [count]
 
+## Quality Metrics (last 7 days)
+Pull the numeric values from `/tmp/zuhd-quality-metrics.json`. Present as a table with this week's value and the week-over-week delta from `content/.quality-trend.json`. Flag anything moving the wrong direction.
+
+| Metric | This week | Δ vs last week | Target |
+|---|---|---|---|
+| Title-echo rate | X% | +/-Y | <10% |
+| Passive-hook rate | X% | +/-Y | <15% |
+| Causal-claim hits | N | +/-Y | 0 |
+| Press-era hits | N | +/-Y | 0 |
+| Hedge rate | X% | +/-Y | <5% |
+| Acronym violations | N | +/-Y | 0 |
+| country:null sources | N | +/-Y | 0 |
+| Multi-source rate | X% | +/-Y | >40% |
+| Top 3 outlet share | X% | +/-Y | <35% |
+| Char avg / over 350 | X / Y% | +/-Z | <5% over |
+| Word avg / in 40–50 | X / Y% | +/-Z | >90% in |
+
+Then 1–2 sentences on the largest moves and what they likely indicate.
+
+## Prompt Effectiveness
+Identify any recent prompt rule (title-echo test, causal-claim test, press-era antipattern, acronym scan, etc. — check the last few commits in `scripts/write-prompt.md` and `scripts/check-prompt.md`). For each one, state whether the corresponding metric is showing improvement, regression, or no signal yet. If a rule has zero effect after 2+ weeks, flag it as a candidate for removal or rewording.
+
 ## Recommendations for Next Week
-- [2–4 specific editorial suggestions based on patterns observed]
+- [2–4 specific editorial suggestions grounded in the metrics above — not vibes]
 ```
 
 Rewrite the entire file each week — do not append.

@@ -384,6 +384,31 @@ function handleQuality() {
   })
 }
 
+// ── Writing Quality (from measure-quality.js trend file) ───────────
+
+function handleWritingQuality() {
+  return cached('writing-quality', 60_000, () => {
+    const trendPath = join(ROOT, 'content', '.quality-trend.json')
+    if (!existsSync(trendPath)) return { current: null, history: [], delta: null }
+    let trend = []
+    try { trend = JSON.parse(readFileSync(trendPath, 'utf-8')) } catch { return { current: null, history: [], delta: null } }
+    if (trend.length === 0) return { current: null, history: [], delta: null }
+    const current = trend[trend.length - 1]
+    const prior = trend.length >= 2 ? trend[trend.length - 2] : null
+    const delta = {}
+    if (prior) {
+      for (const k of Object.keys(current.metrics)) {
+        const a = current.metrics[k]
+        const b = prior.metrics[k]
+        if (typeof a === 'number' && typeof b === 'number') {
+          delta[k] = +(a - b).toFixed(1)
+        }
+      }
+    }
+    return { current, delta, history: trend.slice(-12) }
+  })
+}
+
 function regionFromCoords(lat, lng) {
   if (lat == null || lng == null) return 'unknown'
   if (lat > 15 && lat < 45 && lng > 25 && lng < 75) return 'ME'
@@ -740,6 +765,7 @@ const server = createServer((req, res) => {
   if (path === '/api/overview') return sendJSON(res, handleOverview())
   if (path === '/api/cycles') return sendJSON(res, handleCycles())
   if (path === '/api/quality') return sendJSON(res, handleQuality())
+  if (path === '/api/writing-quality') return sendJSON(res, handleWritingQuality())
   if (path === '/api/editorial') return sendJSON(res, handleEditorial())
   if (path === '/api/feed-health') return sendJSON(res, handleFeedHealth())
   if (path === '/api/media') return sendJSON(res, handleMedia())

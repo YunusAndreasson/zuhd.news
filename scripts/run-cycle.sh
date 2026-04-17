@@ -474,6 +474,9 @@ DAY_OF_WEEK=$(date -u +%u)
 if [ "$DAY_OF_WEEK" = "7" ] && [ "$START_HOUR" = "22" ]; then
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 5: Weekly reflection ---" | tee -a "$LOG_FILE"
+  # Compute deterministic quality metrics first — reflect reads the JSON
+  # output to ground its audit in measurable rule compliance.
+  node scripts/measure-quality.js 2>&1 | tee -a "$LOG_FILE"
   REFLECT_PROMPT=$(cat scripts/reflect-prompt.md)
   timeout 900 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
   REFLECT_EXIT=$?

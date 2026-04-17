@@ -1,0 +1,64 @@
+[
+  {
+    "week": "2026-04-17",
+    "windowDays": 7,
+    "articleCount": 357,
+    "metrics": {
+      "charLengthAvg": 305,
+      "charOver350Pct": 0,
+      "wordCountAvg": 46,
+      "wordInRangePct": 85.4,
+      "titleEchoRatePct": 55.2,
+      "passiveHookRatePct": 0.8,
+      "causalClaimHits": 3,
+      "pressEraHits": 7,
+      "hedgeRatePct": 0.6,
+      "acronymViolations": 145,
+      "topAcronymViolators": [
+        [
+          "ASEAN",
+          5
+        ],
+        [
+          "BJP",
+          4
+        ],
+        [
+          "DOJ",
+          4
+        ],
+        [
+          "PM",
+          4
+        ],
+        [
+          "ICE",
+          4
+        ]
+      ],
+      "countryNullCount": 21,
+      "topOutletSharePct": 12.6,
+      "top3Outlets": [
+        {
+          "name": "Dawn",
+          "count": 30
+        },
+        {
+          "name": "Al Jazeera Online",
+          "count": 19
+        },
+        {
+          "name": "Phys.org",
+          "count": 18
+        }
+      ],
+      "multiSourceRatePct": 22.7,
+      "categoryBalance": {
+        "science": 63,
+        "tech": 69,
+        "politics": 144,
+        "economy": 81
+      }
+    }
+  }
+]

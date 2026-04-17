@@ -136,6 +136,13 @@
     <div id="quality-issues"></div>
   </section>
 
+  <section>
+    <h3>writing quality (last 7 days)</h3>
+    <div id="writing-quality-summary"></div>
+    <div class="stat-row" id="writing-quality-stats" style="margin-top:0.5rem"></div>
+    <div id="writing-quality-trend" style="margin-top:0.75rem"></div>
+  </section>
+
 </div>
 
 <!-- ── Logs ───────────────────────────────────────────────────── -->
@@ -856,6 +863,71 @@ async function loadQuality() {
   issuesHtml += auditStat(q.validationFailures, 'validation failures (7d)', null, q.validationFailures === 0)
   issuesHtml += '</div>'
   issuesEl.innerHTML = issuesHtml
+
+  // Writing quality (editorial rule compliance)
+  loadWritingQuality()
+}
+
+async function loadWritingQuality() {
+  const wq = await api('/api/writing-quality')
+  const sumEl = document.getElementById('writing-quality-summary')
+  const statsEl = document.getElementById('writing-quality-stats')
+  const trendEl = document.getElementById('writing-quality-trend')
+  if (!wq || !wq.current) {
+    sumEl.innerHTML = '<span class="empty">no metrics yet — computed at Sunday 22:00 utc (reflect stage)</span>'
+    statsEl.innerHTML = ''
+    trendEl.innerHTML = ''
+    return
+  }
+  const m = wq.current.metrics
+  const d = wq.delta || {}
+  const fmtDelta = (k, suffix = '') => {
+    const v = d[k]
+    if (v === undefined) return ''
+    const sign = v > 0 ? '+' : ''
+    const color = v === 0 ? 'var(--text-secondary)' : (['titleEchoRatePct','passiveHookRatePct','causalClaimHits','pressEraHits','hedgeRatePct','acronymViolations','countryNullCount','charOver350Pct','topOutletSharePct'].includes(k)
+      ? (v > 0 ? 'var(--amber)' : 'var(--green, #4a9)')
+      : (v > 0 ? 'var(--green, #4a9)' : 'var(--amber)'))
+    return `<span style="color:${color};font-size:var(--size-xs);margin-left:0.35em">(${sign}${v}${suffix})</span>`
+  }
+  sumEl.innerHTML = `<span class="stat-label">${wq.current.articleCount} articles over last ${wq.current.windowDays} days — snapshot ${wq.current.week}</span>`
+  const rows = [
+    { k: 'titleEchoRatePct',   l: 'title echo',       v: m.titleEchoRatePct,   u: '%',  target: '<10%' },
+    { k: 'passiveHookRatePct', l: 'passive hook',     v: m.passiveHookRatePct, u: '%',  target: '<15%' },
+    { k: 'hedgeRatePct',       l: 'hedges',           v: m.hedgeRatePct,       u: '%',  target: '<5%' },
+    { k: 'causalClaimHits',    l: 'causal claims',    v: m.causalClaimHits,    u: '',   target: '0' },
+    { k: 'pressEraHits',       l: 'press-era phrase', v: m.pressEraHits,       u: '',   target: '0' },
+    { k: 'acronymViolations',  l: 'acronym unexpanded', v: m.acronymViolations, u: '', target: '0' },
+    { k: 'countryNullCount',   l: 'country:null',     v: m.countryNullCount,   u: '',   target: '0' },
+    { k: 'multiSourceRatePct', l: 'multi-source',     v: m.multiSourceRatePct, u: '%',  target: '>40%' },
+    { k: 'topOutletSharePct',  l: 'top-3 outlet',     v: m.topOutletSharePct,  u: '%',  target: '<35%' },
+    { k: 'charOver350Pct',     l: 'over 350 char',    v: m.charOver350Pct,     u: '%',  target: '<5%' },
+  ]
+  statsEl.innerHTML = rows.map(r =>
+    `<div class="stat"><span class="stat-value">${r.v}${r.u}${fmtDelta(r.k, r.u)}</span><span class="stat-label">${r.l} (target ${r.target})</span></div>`
+  ).join('')
+
+  // Trend mini-charts for the headline metrics
+  if (wq.history && wq.history.length >= 2) {
+    const series = [
+      { key: 'titleEchoRatePct', label: 'title echo %' },
+      { key: 'passiveHookRatePct', label: 'passive hook %' },
+      { key: 'multiSourceRatePct', label: 'multi-source %' },
+      { key: 'acronymViolations', label: 'acronym viol.' },
+    ]
+    trendEl.innerHTML = '<div style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.3rem">trend (last ' + wq.history.length + ' weeks)</div>' +
+      series.map(s => {
+        const vals = wq.history.map(h => h.metrics[s.key] || 0)
+        const max = Math.max(1, ...vals)
+        const spark = vals.map(v => {
+          const h = Math.max(2, Math.round((v / max) * 24))
+          return `<span style="display:inline-block;width:6px;height:${h}px;background:var(--text-secondary);vertical-align:bottom;margin-right:1px"></span>`
+        }).join('')
+        return `<div style="margin-bottom:0.4rem"><span style="font-size:var(--size-xs);color:var(--text-secondary);display:inline-block;min-width:9rem">${s.label}</span>${spark} <span style="font-size:var(--size-xs);color:var(--text-secondary);margin-left:0.4rem">${vals[vals.length-1]}</span></div>`
+      }).join('')
+  } else {
+    trendEl.innerHTML = '<span class="empty" style="font-size:var(--size-xs)">trend builds over future weeks</span>'
+  }
 }
 
 // ── Logs Tab ──────────────────────────────────────────────────
