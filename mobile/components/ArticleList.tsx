@@ -54,6 +54,7 @@ interface ArticleListProps {
   onCountryPress?: (result: TapResult) => void;
   onBookmarkPress?: (article: Article) => void;
   onSourcesPress?: (article: Article) => void;
+  onTimeAgoPress?: (article: Article) => void;
   onArticleChange?: (article: Article, catIndex: number) => void;
   progressesSV: SharedValue<number[]>;
   tick?: number;
@@ -70,6 +71,7 @@ export const ArticleList = memo(function ArticleList({
   onCountryPress,
   onBookmarkPress,
   onSourcesPress,
+  onTimeAgoPress,
   onArticleChange,
   onRefresh,
   onEndReached,
@@ -230,6 +232,7 @@ export const ArticleList = memo(function ArticleList({
         scrollY={scrollY}
         onBookmarkPress={onBookmarkPress}
         onSourcesPress={onSourcesPress}
+        onTimeAgoPress={onTimeAgoPress}
         showEarlierDivider={index === earlierIndex}
         globeRef={globeRef}
         globeYOffset={containerTopRef}
@@ -244,6 +247,7 @@ export const ArticleList = memo(function ArticleList({
       onCountryPress,
       onBookmarkPress,
       onSourcesPress,
+      onTimeAgoPress,
       earlierIndex,
       tick,
     ],
