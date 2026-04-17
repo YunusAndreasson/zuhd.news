@@ -1,4 +1,5 @@
 import { LinearGradient } from 'expo-linear-gradient';
+import * as WebBrowser from 'expo-web-browser';
 import { memo, useCallback, useMemo } from 'react';
 import { type GestureResponderEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, {
@@ -145,6 +146,17 @@ export const ArticlePage = memo(function ArticlePage({
     [colors, font, typography],
   );
 
+  const openLink = useCallback(
+    (url: string) => {
+      WebBrowser.openBrowserAsync(url, {
+        toolbarColor: colors.bg,
+        controlsColor: colors.accent,
+        dismissButtonStyle: 'close',
+      }).catch(() => {});
+    },
+    [colors.bg, colors.accent],
+  );
+
   const body = useMemo(
     () =>
       renderSentences(
@@ -154,8 +166,9 @@ export const ArticlePage = memo(function ArticlePage({
         bodyFontSize,
         article.location,
         timeAgo,
+        openLink,
       ),
-    [article.sentences, mdStyles, typography, bodyFontSize, article.location, timeAgo],
+    [article.sentences, mdStyles, typography, bodyFontSize, article.location, timeAgo, openLink],
   );
 
   const handleLongPress = useCallback(() => {

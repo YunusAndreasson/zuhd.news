@@ -177,15 +177,14 @@ export function ThemeProvider({
     [prefs, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications],
   );
 
-  // Sync native system UI (Android nav bar + root background) with theme
+  // Sync native system UI with theme. Android edge-to-edge (SDK 54+) makes the
+  // nav bar transparent and ignores setBackgroundColorAsync — only setStyle
+  // (button icon color) still has effect on three-button navigation.
   const { bg } = theme.colors;
   useEffect(() => {
     SystemUI.setBackgroundColorAsync(bg).catch(() => {});
     if (Platform.OS === 'android') {
-      NavigationBar.setBackgroundColorAsync(bg).catch(() => {});
-      NavigationBar.setButtonStyleAsync(resolvedAppearance === 'dark' ? 'light' : 'dark').catch(
-        () => {},
-      );
+      NavigationBar.setStyle(resolvedAppearance === 'dark' ? 'light' : 'dark');
     }
   }, [bg, resolvedAppearance]);
 
