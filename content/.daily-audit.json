@@ -1,33 +1,34 @@
 {
-  "date": "2026-04-16",
+  "date": "2026-04-17",
   "metrics": {
-    "articles": { "value": 53, "detail": "5 cycles, avg 9/cycle" },
-    "freshness": { "median": 0.4, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 21, "economy": 11, "science": 10, "tech": 11 },
-    "multiSource": { "value": 10, "target": 4, "met": true },
+    "articles": { "value": 45, "detail": "5 cycles, avg 9/cycle" },
+    "freshness": { "median": 0.4, "p90": 1.5, "max": 1.5, "target": 1.0, "met": true },
+    "categories": { "politics": 17, "economy": 11, "science": 7, "tech": 10 },
+    "multiSource": { "value": 14, "target": 4, "met": true },
     "regions": {
-      "count": 7,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 19, "EU": 13, "ME": 12, "AS": 4, "AF": 3, "OC": 1, "GL": 1 }
+      "breakdown": { "AM": 14, "EU": 11, "AS": 10, "ME": 6, "AF": 4 }
     },
-    "sciTech": { "ratio": 40, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 51,
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "The Record", "pct": 7, "target": 20, "met": true },
+    "uniqueSources": 53,
     "duplicates": 0,
-    "avgCycleDuration": 1074
+    "avgCycleDuration": 999
   },
-  "experiment": "Active experiment 2026-04-16-push-min-coverage started today (eventCoverage >= 1 threshold for breaking-news push candidates). Evaluates 2026-04-19 — no action yet.",
-  "weakestArea": "Africa is the thinnest region at 3 articles (5.7% of output), far below Americas (36%) and Europe (25%). The region target (≥4 unique regions) is met numerically, but AF depth is shallow — Premium Times Nigeria and Radio Dabanga carry the full load with no East Africa or Sahel coverage.",
+  "experiment": "Active experiment 2026-04-16-push-min-coverage (eventCoverage >= 1 threshold) is still accumulating data — evaluates 2026-04-19. All metrics healthy today; no new experiment proposed.",
+  "weakestArea": "Science dropped to 7 articles today (from 10 yesterday), the lowest-margin category relative to its floor target of ≥5/day. Oceania disappeared entirely — yesterday had 1 article; today's regional breakdown covers only 5 of 6 tracked regions, with no Pacific presence.",
   "watching": [
-    "Ukraine-Russia front: Kyiv Independent and TASS both active today — monitor for ceasefire signals or escalation through the weekend.",
-    "US tariff fallout: Investing.com, CNBC, and Bloomberg all running trade angles; economy category likely to stay elevated.",
-    "Dawn at 6 articles today — Pakistan political/security cycle is active; worth watching for topic concentration if this continues across cycles."
+    "Ukraine-Russia: Ukrainian Pravda, Euromaidan Press, Meduza, and KyivPost all active today — monitor for ceasefire negotiation signals or frontline shifts.",
+    "India political/economic cycle remains heavy at ~13 Indian-outlet articles (India Today, Hindustan Times, News18, NDTV, The Indian Express, Times of India, Goodreturns) — watch for topic concentration.",
+    "West Africa security: Premium Times Nigeria, Punch Newspapers, Vanguard, Nairaland running in parallel — Nigeria cycle active, could indicate a major domestic story."
   ],
   "coverageGaps": [
-    "Sub-Saharan Africa beyond Nigeria is absent — no East Africa (Ethiopia, Somalia, Kenya) despite ongoing security and climate stories.",
-    "Southeast Asia largely missing today; ASEAN economies and Myanmar conflict absent.",
-    "Latin America covered only through a US-centric tariff lens — no independent story from Brazil, Argentina, or Colombia."
+    "No Oceania coverage today despite ongoing Pacific climate and geopolitics stories.",
+    "East Africa and Sahel absent — no Ethiopia, Somalia, Sudan follow-up despite Radio Dabanga presence earlier this week.",
+    "Southeast Asia largely missing; Myanmar (The Irrawaddy is present but alone) and ASEAN economies absent.",
+    "Latin America covered only through a single InSight Crime angle — no Brazil, Argentina, or Colombia economic stories despite tariff environment."
   ],
-  "context": "All four tracked goals are comfortably met today: freshness median 0.4 days, sci+tech at 40%, multi-source at 10, and 7 distinct regions. Politics continues to dominate at 40% of output (21/53) but absolute counts for science (10) and tech (11) are both well above their daily floors. Cycle performance was solid — 5/5 completed with avg duration 1074s and zero duplicates across 51 unique sources."
+  "context": "All four tracked goals met comfortably: freshness median 0.4 days, sci+tech at 38%, multi-source at 14 (highest in recent history), and 5 distinct regions. Source diversity is strong at 53 unique sources with no single source exceeding 7%. Cycle performance improved — avg duration 999s vs 1074s yesterday, 5/5 completed, zero duplicates. Politics remains elevated at 38% of output but absolute sci/tech counts hold above their floors."
 }
