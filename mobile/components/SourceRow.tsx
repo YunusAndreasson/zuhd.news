@@ -16,9 +16,11 @@ function computeTone(sentiment: number | null | undefined): Tone {
   return 'neutral';
 }
 
+// Directional labels. "Leans" sidesteps the "favorable to whom?" ambiguity
+// and signals this is about framing, not a verdict.
 const TONE_LABELS: Record<string, string> = {
-  favorable: 'favorably',
-  unfavorable: 'critically',
+  favorable: 'leans favorable',
+  unfavorable: 'leans critical',
   neutral: 'neutral',
 };
 

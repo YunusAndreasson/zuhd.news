@@ -51,6 +51,7 @@ interface ArticleListProps {
   onCaughtUp?: () => void;
   onCountryPress?: (result: TapResult) => void;
   onBookmarkPress?: (article: Article) => void;
+  onSourcesPress?: (article: Article) => void;
   onArticleChange?: (article: Article, catIndex: number) => void;
   progressesSV: SharedValue<number[]>;
   tick?: number;
@@ -66,6 +67,7 @@ export const ArticleList = memo(function ArticleList({
   lastSeenAt,
   onCountryPress,
   onBookmarkPress,
+  onSourcesPress,
   onArticleChange,
   onRefresh,
   onEndReached,
@@ -225,6 +227,7 @@ export const ArticleList = memo(function ArticleList({
         index={index}
         scrollY={scrollY}
         onBookmarkPress={onBookmarkPress}
+        onSourcesPress={onSourcesPress}
         showEarlierDivider={index === earlierIndex}
         globeRef={globeRef}
         globeYOffset={containerTopRef}
@@ -232,7 +235,16 @@ export const ArticleList = memo(function ArticleList({
         tick={tick}
       />
     ),
-    [itemHeight, screenWidth, scrollY, onCountryPress, onBookmarkPress, earlierIndex, tick],
+    [
+      itemHeight,
+      screenWidth,
+      scrollY,
+      onCountryPress,
+      onBookmarkPress,
+      onSourcesPress,
+      earlierIndex,
+      tick,
+    ],
   );
 
   const keyExtractor = useCallback((item: Article) => item.slug, []);

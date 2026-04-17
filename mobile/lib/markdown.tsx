@@ -171,6 +171,10 @@ export function renderSentences(
   location?: string | null,
   dateline?: string | null,
   openLink: LinkOpener = defaultOpenLink,
+  /** Optional inline node appended after the last word of the final sentence —
+   *  used by ArticlePage to append a tappable "sources" link without costing
+   *  a new line of vertical space. */
+  trailing?: ReactNode,
 ): ReactNode[] {
   const size = fontSize ?? typography.sizeBase;
   const sizeStyle = fontSize
@@ -181,7 +185,10 @@ export function renderSentences(
       }
     : null;
 
+  const lastIdx = sentences.length - 1;
+
   return sentences.map((sentence, i) => {
+    const isLast = i === lastIdx;
     if (i === 0) {
       // Strip "Location — " prefix from first sentence if present
       let rest = sentence;
@@ -200,6 +207,7 @@ export function renderSentences(
             <Text style={mdStyles.dateline}>{dateline}</Text>
             {'\u2002'}
             {renderSegments(parseInline(rest), mdStyles, openLink)}
+            {isLast && trailing}
           </Text>
         );
       }
@@ -210,6 +218,7 @@ export function renderSentences(
           maxFontSizeMultiplier={MAX_FONT_SCALE.body}
         >
           {renderSegments(parseInline(rest), mdStyles, openLink)}
+          {isLast && trailing}
         </Text>
       );
     }
@@ -220,6 +229,7 @@ export function renderSentences(
         maxFontSizeMultiplier={MAX_FONT_SCALE.body}
       >
         {renderSegments(parseInline(sentence), mdStyles, openLink)}
+        {isLast && trailing}
       </Text>
     );
   });

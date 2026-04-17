@@ -8,6 +8,7 @@ import { ActorsBlock } from './ActorsBlock';
 import { CompareBlock } from './CompareBlock';
 import { LocationsBlock } from './LocationsBlock';
 import { ProseBlock } from './ProseBlock';
+import { QuizBlock } from './QuizBlock';
 import { QuoteBlock } from './QuoteBlock';
 import { TrendBlock } from './TrendBlock';
 
@@ -36,10 +37,7 @@ interface RenderBlocksOptions {
   sources?: string[];
   /** Tap on a country chip inside a LocationsBlock opens the shared
    *  CountrySheet. Parent wires this to whatever sheet ref it owns. */
-  onCountryPress?: (payload: {
-    countryName: string;
-    data: CountryData | null;
-  }) => void;
+  onCountryPress?: (payload: { countryName: string; data: CountryData | null }) => void;
 }
 
 function resolveSource(idx: number | undefined, sources: string[] | undefined): string | undefined {
@@ -127,6 +125,18 @@ export function renderBlocks(blocks: ArticleBlock[], opts: RenderBlocksOptions):
             key={key}
             people={block.people}
             label={block.label}
+            variant={variant}
+            sourceLabel={sourceLabel}
+          />
+        );
+      case 'quiz':
+        return (
+          <QuizBlock
+            key={key}
+            question={block.question}
+            options={block.options}
+            correct={block.correct}
+            explanation={block.explanation}
             variant={variant}
             sourceLabel={sourceLabel}
           />

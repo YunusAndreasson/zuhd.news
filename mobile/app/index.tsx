@@ -29,6 +29,7 @@ import { CountrySheet } from '../components/CountrySheet';
 import { ErrorState } from '../components/ErrorState';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { MenuSheet } from '../components/MenuSheet';
+import { SourcesSheet } from '../components/SourcesSheet';
 import { Toast, type ToastRef } from '../components/Toast';
 import { CATEGORIES, EDITORIAL, OPACITY } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
@@ -74,7 +75,9 @@ export default function HomeScreen() {
 
   // Sheet refs
   const menuSheetRef = useRef<BottomSheetModal>(null);
-  const [digSources, setDigSources] = useState<ArticleSource[]>([]);
+
+  const sourcesSheetRef = useRef<BottomSheetModal>(null);
+  const [sheetSources, setSheetSources] = useState<ArticleSource[]>([]);
 
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
@@ -143,8 +146,6 @@ export default function HomeScreen() {
     const active = activeArticleRef.current;
     if (!active) return;
     hapticImpact();
-    // Capture article metadata at open time
-    setDigSources(active.sources);
 
     // Fetch context if article has a thread
     if (active.threadId) {
@@ -157,6 +158,12 @@ export default function HomeScreen() {
     }
     contextSheetRef.current?.present();
   }, [fetchContext]);
+
+  const handleSourcesPress = useCallback((article: Article) => {
+    hapticImpact();
+    setSheetSources(article.sources);
+    sourcesSheetRef.current?.present();
+  }, []);
 
   const handleBottomShare = useCallback(() => {
     const active = activeArticleRef.current;
@@ -390,6 +397,7 @@ export default function HomeScreen() {
                 onEndReached={handleEndReached}
                 onCaughtUp={handleCaughtUp}
                 onBookmarkPress={handleArticleBookmark}
+                onSourcesPress={handleSourcesPress}
                 onCountryPress={handleCountryPress}
                 onArticleChange={handleArticleChange}
                 progressesSV={categoryProgresses}
@@ -447,16 +455,22 @@ export default function HomeScreen() {
         onStoryPress={handleCountryStoryPress}
       />
 
+      <SourcesSheet
+        sheetRef={sourcesSheetRef}
+        sources={sheetSources}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
+        onDismiss={() => setSheetSources([])}
+      />
+
       <ContextSheet
         sheetRef={contextSheetRef}
-        sources={digSources}
         brief={contextBrief}
         loading={contextLoading}
         threadLabel={contextThreadLabel}
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => {
-          setDigSources([]);
           setContextThreadLabel(undefined);
         }}
         onCountryPress={({ countryName, data }) => {
