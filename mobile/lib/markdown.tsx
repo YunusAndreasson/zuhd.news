@@ -175,6 +175,9 @@ export function renderSentences(
    *  used by ArticlePage to append a tappable "sources" link without costing
    *  a new line of vertical space. */
   trailing?: ReactNode,
+  /** If provided, the inline dateline becomes tappable (e.g. to reveal the
+   *  exact timestamp in a toast). */
+  onDatelinePress?: () => void,
 ): ReactNode[] {
   const size = fontSize ?? typography.sizeBase;
   const sizeStyle = fontSize
@@ -204,7 +207,9 @@ export function renderSentences(
             style={[mdStyles.sentence, sizeStyle]}
             maxFontSizeMultiplier={MAX_FONT_SCALE.body}
           >
-            <Text style={mdStyles.dateline}>{dateline}</Text>
+            <Text style={mdStyles.dateline} onPress={onDatelinePress}>
+              {dateline}
+            </Text>
             {'\u2002'}
             {renderSegments(parseInline(rest), mdStyles, openLink)}
             {isLast && trailing}

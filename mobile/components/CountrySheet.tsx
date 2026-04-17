@@ -4,13 +4,13 @@ import {
   type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
-import { memo, useCallback, useState } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, ICON, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
-import type { MetricKey } from '../lib/country-ranking';
+import { getMetricValue, getRanking, type MetricKey } from '../lib/country-ranking';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { CountryRankingView } from './CountryRankingView';
 import type { TapResult } from './globe/MiniGlobe';
@@ -18,39 +18,64 @@ import { HapticPressable } from './HapticPressable';
 import { SheetHandle } from './SheetHandle';
 import { SheetLayout } from './SheetLayout';
 
-function KeyStat({
+// Progressive disclosure: three headline rankings sit at rest; everything
+// else is one tap away. What matters is the ranking — currency names and
+// language lists are chrome, not information a reader comes here to find.
+
+const MORE_METRICS: { key: MetricKey; label: string }[] = [
+  { key: 'gdpPerCapita', label: 'gdp per capita' },
+  { key: 'militaryPctGdp', label: 'military % of gdp' },
+  { key: 'populationDensity', label: 'density' },
+  { key: 'lifeExpectancy', label: 'life expectancy' },
+  { key: 'fertilityRate', label: 'fertility rate' },
+  { key: 'urbanPct', label: 'urbanization' },
+  { key: 'internetPct', label: 'internet' },
+  { key: 'migrantPct', label: 'foreign-born' },
+  { key: 'co2PerCapita', label: 'co₂ per capita' },
+  { key: 'area', label: 'area' },
+];
+
+function HeroStat({
   label,
   value,
+  rank,
   onPress,
 }: {
   label: string;
   value: string | null | undefined;
+  rank: number | null;
   onPress?: () => void;
 }) {
   const { colors, font, typography, textStyles } = useTheme();
   if (!value) return null;
   const body = (
-    <View style={styles.keyStat}>
+    <View style={styles.hero}>
       <Text
-        selectable={!onPress}
-        style={[
-          styles.keyStatValue,
-          {
-            ...font.bold,
-            fontSize: typography.sizeLg,
-            color: colors.textEmphasis,
-            fontVariant: ['oldstyle-nums'] as const,
-            textDecorationLine: onPress ? 'underline' : 'none',
-            textDecorationStyle: 'dotted',
-            textDecorationColor: colors.accent,
-          },
-        ]}
+        style={{
+          ...font.bold,
+          fontSize: typography.sizeLg,
+          color: colors.textEmphasis,
+          fontVariant: ['oldstyle-nums'],
+        }}
+        numberOfLines={1}
       >
         {value}
       </Text>
-      <Text selectable={!onPress} style={textStyles.smallCapsXs}>
-        {label}
-      </Text>
+      <Text style={textStyles.smallCapsXs}>{label}</Text>
+      {typeof rank === 'number' && rank > 0 && (
+        <Text
+          style={[
+            textStyles.smallCapsXs,
+            {
+              color: colors.dome,
+              marginTop: 2,
+              fontVariant: ['oldstyle-nums'],
+            },
+          ]}
+        >
+          {`#${rank}`}
+        </Text>
+      )}
     </View>
   );
   if (!onPress) return body;
@@ -59,63 +84,64 @@ function KeyStat({
       onPress={onPress}
       haptic="tick"
       accessibilityRole="button"
-      accessibilityLabel={`Rank ${label}`}
-      accessibilityHint={`See how this country ranks globally by ${label}`}
+      accessibilityLabel={`${label}: ${value}${rank ? `, ranked ${rank}` : ''}`}
+      accessibilityHint={`See the full ${label} ranking`}
     >
       {body}
     </HapticPressable>
   );
 }
 
-function CountryRow({
+function MoreRow({
   label,
   value,
-  borderColor,
+  rank,
   onPress,
 }: {
   label: string;
-  value: string | null | undefined;
-  borderColor: string;
-  onPress?: () => void;
+  value: string | null;
+  rank: number | null;
+  onPress: () => void;
 }) {
   const { colors, font, typography, textStyles } = useTheme();
   if (!value) return null;
-  const body = (
-    <View style={[styles.countryRow, { borderBottomColor: borderColor }]}>
-      <Text selectable={!onPress} style={[styles.countryRowLabel, textStyles.smallCaps]}>
-        {label}
-      </Text>
-      <View style={styles.countryRowRight}>
-        <Text
-          selectable={!onPress}
-          style={[
-            styles.countryRowValue,
-            { ...font.regular, fontSize: typography.sizeSm, color: colors.text },
-          ]}
-        >
-          {value}
-        </Text>
-        {onPress && <Ionicons name="chevron-forward" size={ICON.sm} color={colors.accent} />}
-      </View>
-    </View>
-  );
-  if (!onPress) return body;
   return (
     <HapticPressable
       onPress={onPress}
       haptic="tick"
+      style={[styles.moreRow, { borderBottomColor: colors.rule }]}
       accessibilityRole="button"
-      accessibilityLabel={`Rank ${label}`}
-      accessibilityHint={`See how this country ranks globally by ${label}`}
+      accessibilityLabel={`${label}: ${value}${rank ? `, ranked ${rank}` : ''}`}
     >
-      {body}
+      <Text style={[textStyles.smallCaps, styles.moreLabel]}>{label}</Text>
+      <View style={styles.moreRight}>
+        {typeof rank === 'number' && rank > 0 && (
+          <Text
+            style={{
+              ...font.semiBold,
+              fontSize: typography.sizeXs,
+              color: colors.dome,
+              letterSpacing: typography.trackingCaps,
+              fontVariant: ['oldstyle-nums'],
+            }}
+          >
+            {`#${rank}`}
+          </Text>
+        )}
+        <Text
+          style={{
+            ...font.regular,
+            fontSize: typography.sizeSm,
+            color: colors.text,
+            fontVariant: ['oldstyle-nums'],
+          }}
+        >
+          {value}
+        </Text>
+        <Ionicons name="chevron-forward" size={ICON.sm} color={colors.textSecondary} />
+      </View>
     </HapticPressable>
   );
-}
-
-function SectionLabel({ children }: { children: string }) {
-  const { textStyles } = useTheme();
-  return <Text style={[styles.sectionLabel, textStyles.smallCapsXs]}>{children}</Text>;
 }
 
 interface CountrySheetProps {
@@ -124,7 +150,6 @@ interface CountrySheetProps {
   bottomInset: number;
   renderBackdrop: React.FC<BottomSheetBackdropProps>;
   onDismiss: () => void;
-  onStoryPress?: (label: string) => void;
 }
 
 export const CountrySheet = memo(function CountrySheet({
@@ -133,11 +158,11 @@ export const CountrySheet = memo(function CountrySheet({
   bottomInset,
   renderBackdrop,
   onDismiss,
-  onStoryPress,
 }: CountrySheetProps) {
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
-  const snapProps = useSheetSnaps(activeRanking !== null);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const snapProps = useSheetSnaps(activeRanking !== null || moreOpen);
   const flag = country?.data?.flag;
   const name = displayCountryName(country?.countryName ?? null);
   const onBackToCountry = useCallback(() => setActiveRanking(null), []);
@@ -148,8 +173,12 @@ export const CountrySheet = memo(function CountrySheet({
         onBack={activeRanking ? onBackToCountry : undefined}
         title={
           flag || name ? (
-            <View style={styles.handleRow}>
-              {flag && <Text style={styles.handleFlag}>{flag}</Text>}
+            <View style={styles.handleStack}>
+              {flag && (
+                <Text allowFontScaling={false} style={styles.handleFlag}>
+                  {flag}
+                </Text>
+              )}
               {name && <Text style={textStyles.sheetTitle}>{name}</Text>}
             </View>
           ) : undefined
@@ -159,18 +188,40 @@ export const CountrySheet = memo(function CountrySheet({
     [activeRanking, onBackToCountry, flag, name, textStyles.sheetTitle],
   );
 
-  const hasHotspot = country?.hotspotLabels && country.hotspotLabels.length > 0;
+  const rankFor = useMemo(() => {
+    const targetName = country?.countryName;
+    if (!targetName) return () => null;
+    return (metric: MetricKey): number | null => {
+      const entries = getRanking(metric);
+      const idx = entries.findIndex((e) => e.name === targetName);
+      return idx >= 0 ? idx + 1 : null;
+    };
+  }, [country?.countryName]);
 
-  // Smart 3rd key stat: military spend when active stories, gdp per capita otherwise
-  const thirdStat: { label: string; value: string | null | undefined; metric: MetricKey } =
-    hasHotspot
-      ? { label: 'military spend', value: country?.data?.military, metric: 'military' }
-      : { label: 'gdp per capita', value: country?.data?.gdpPerCapita, metric: 'gdpPerCapita' };
+  // Compact metadata list directly beneath the title. One row per fact so
+  // the reader can pick out what they want at a glance — capital, currency,
+  // languages, local time. Region is dropped (obvious from the tap).
+  const basics = useMemo(() => {
+    if (!country?.data) return [];
+    const rows: { label: string; value: string }[] = [];
+    const capital = displayLocation(country.data.capital);
+    if (capital) rows.push({ label: 'capital', value: capital });
+    if (country.data.currency) {
+      const sym = country.data.currencySymbol ? ` ${country.data.currencySymbol}` : '';
+      rows.push({ label: 'currency', value: `${country.data.currency}${sym}` });
+    }
+    if (country.data.languages) rows.push({ label: 'languages', value: country.data.languages });
+    if (country.localTime) rows.push({ label: 'local time', value: country.localTime });
+    return rows;
+  }, [country?.data, country?.localTime]);
 
   const handleDismiss = useCallback(() => {
     setActiveRanking(null);
+    setMoreOpen(false);
     onDismiss();
   }, [onDismiss]);
+
+  const toggleMore = useCallback(() => setMoreOpen((v) => !v), []);
 
   return (
     <SheetLayout
@@ -195,160 +246,104 @@ export const CountrySheet = memo(function CountrySheet({
         >
           {country?.data && (
             <>
-              {/* Key stats — at-a-glance numbers */}
-              <Animated.View
-                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(0))}
-                style={[styles.countryKeyStats, { borderBottomColor: colors.rule }]}
-              >
-                <KeyStat
-                  label="population"
-                  value={country.data.population}
-                  onPress={() => setActiveRanking('population')}
-                />
-                <KeyStat
-                  label="gdp"
-                  value={country.data.gdp}
-                  onPress={() => setActiveRanking('gdp')}
-                />
-                <KeyStat
-                  label={thirdStat.label}
-                  value={thirdStat.value}
-                  onPress={() => setActiveRanking(thirdStat.metric)}
-                />
-              </Animated.View>
-
-              {/* Developing stories — tappable to navigate to the article */}
-              {hasHotspot && (
+              {/* Basics — caption block: small, muted, tight rhythm so the
+                  reader's eye slides past it toward the hero zone below. */}
+              {basics.length > 0 && (
                 <Animated.View
-                  style={styles.hotspotSection}
-                  entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(1))}
+                  entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(0))}
+                  style={styles.basics}
                 >
-                  <Text style={[styles.sheetLabel, textStyles.smallCapsXs]}>
-                    {country.hotspotLabels?.length === 1
-                      ? 'developing story'
-                      : 'developing stories'}
-                  </Text>
-                  {country.hotspotLabels?.map((label, i) => (
-                    <HapticPressable
-                      key={i}
-                      haptic="tick"
-                      onPress={() => onStoryPress?.(label)}
-                      accessibilityRole="button"
-                      accessibilityLabel={`View story: ${label}`}
-                    >
+                  {basics.map((b) => (
+                    <View key={b.label} style={styles.basicsRow}>
+                      <Text style={[textStyles.smallCapsXs, styles.basicsLabel]}>{b.label}</Text>
                       <Text
-                        style={[
-                          styles.hotspotValue,
-                          {
-                            ...font.regular,
-                            fontSize: typography.sizeSm,
-                            color: colors.text,
-                            borderBottomColor: colors.rule,
-                          },
-                        ]}
+                        style={{
+                          ...font.regular,
+                          fontSize: typography.sizeXs,
+                          lineHeight: typography.sizeXs * typography.leadingBody,
+                          color: colors.textSecondary,
+                          flexShrink: 1,
+                          textAlign: 'right',
+                        }}
+                        numberOfLines={2}
                       >
-                        {label}
+                        {b.value}
                       </Text>
-                    </HapticPressable>
+                    </View>
                   ))}
                 </Animated.View>
               )}
 
-              {/* ── Economy ── */}
+              {/* Hero rankings — enclosed by hairlines top & bottom so the
+                  three tiles read as one "headline" region (Gestalt common
+                  region) and carry the most weight on the sheet. */}
+              <Animated.View
+                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(1))}
+                style={[
+                  styles.heroRow,
+                  { borderTopColor: colors.rule, borderBottomColor: colors.rule },
+                ]}
+              >
+                <HeroStat
+                  label="population"
+                  value={country.data.population}
+                  rank={rankFor('population')}
+                  onPress={() => setActiveRanking('population')}
+                />
+                <HeroStat
+                  label="gdp"
+                  value={country.data.gdp}
+                  rank={rankFor('gdp')}
+                  onPress={() => setActiveRanking('gdp')}
+                />
+                <HeroStat
+                  label="gdp per capita"
+                  value={country.data.gdpPerCapita}
+                  rank={rankFor('gdpPerCapita')}
+                  onPress={() => setActiveRanking('gdpPerCapita')}
+                />
+              </Animated.View>
+
+              {/* Progressive disclosure — everything else is one tap away */}
               <Animated.View
                 entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(2))}
               >
-                <SectionLabel>economy</SectionLabel>
-                <CountryRow
-                  label="gdp per capita"
-                  value={country.data.gdpPerCapita}
-                  borderColor={colors.rule}
-                  onPress={() => setActiveRanking('gdpPerCapita')}
-                />
-                <CountryRow
-                  label="currency"
-                  value={
-                    country.data.currency
-                      ? `${country.data.currency}${country.data.currencySymbol ? ` ${country.data.currencySymbol}` : ''}`
-                      : null
-                  }
-                  borderColor={colors.rule}
-                />
-              </Animated.View>
+                <HapticPressable
+                  onPress={toggleMore}
+                  haptic="tick"
+                  style={styles.moreToggle}
+                  accessibilityRole="button"
+                  accessibilityLabel={moreOpen ? 'Hide rankings' : 'Show all rankings'}
+                >
+                  <Text style={[textStyles.smallCaps, { color: colors.text }]}>rankings</Text>
+                  <Ionicons
+                    name={moreOpen ? 'chevron-up' : 'chevron-down'}
+                    size={ICON.sm}
+                    color={colors.textSecondary}
+                  />
+                </HapticPressable>
 
-              {/* ── People ── */}
-              <Animated.View
-                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(3))}
-              >
-                <SectionLabel>people</SectionLabel>
-                <CountryRow
-                  label="capital"
-                  value={displayLocation(country.data.capital)}
-                  borderColor={colors.rule}
-                />
-                <CountryRow
-                  label="languages"
-                  value={country.data.languages}
-                  borderColor={colors.rule}
-                />
-                <CountryRow
-                  label="life expectancy"
-                  value={country.data.lifeExpectancy}
-                  borderColor={colors.rule}
-                  onPress={() => setActiveRanking('lifeExpectancy')}
-                />
-                <CountryRow
-                  label="internet"
-                  value={country.data.internetPct}
-                  borderColor={colors.rule}
-                  onPress={() => setActiveRanking('internetPct')}
-                />
-              </Animated.View>
-
-              {/* ── Geography ── */}
-              <Animated.View
-                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(4))}
-              >
-                <SectionLabel>geography</SectionLabel>
-                <CountryRow
-                  label="official name"
-                  value={
-                    country.data.official !== country.countryName ? country.data.official : null
-                  }
-                  borderColor={colors.rule}
-                />
-                <CountryRow
-                  key="time"
-                  label="local time"
-                  value={country.localTime}
-                  borderColor={colors.rule}
-                />
-                <CountryRow
-                  label="area"
-                  value={country.data.area}
-                  borderColor={colors.rule}
-                  onPress={() => setActiveRanking('area')}
-                />
-                <CountryRow
-                  label="region"
-                  value={[
-                    country.data.region,
-                    country.data.landlocked ? 'landlocked' : null,
-                    !country.data.independent ? 'territory' : null,
-                  ]
-                    .filter(Boolean)
-                    .join(' \u00B7 ')}
-                  borderColor={colors.rule}
-                />
-              </Animated.View>
-
-              {/* Attribution */}
-              <Animated.View
-                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(5))}
-              >
-                <Text style={[styles.attribution, textStyles.smallCapsXs]}>
-                  {'world bank \u00B7 rest countries'}
-                </Text>
+                {moreOpen && country.data && (
+                  <View style={[styles.moreList, { borderTopColor: colors.rule }]}>
+                    {MORE_METRICS.map((m) => {
+                      if (!country.data) return null;
+                      const rawValue = getMetricValue(
+                        country.countryName ?? '',
+                        country.data,
+                        m.key,
+                      );
+                      return (
+                        <MoreRow
+                          key={m.key}
+                          label={m.label}
+                          value={rawValue}
+                          rank={rankFor(m.key)}
+                          onPress={() => setActiveRanking(m.key)}
+                        />
+                      );
+                    })}
+                  </View>
+                )}
               </Animated.View>
             </>
           )}
@@ -359,64 +354,61 @@ export const CountrySheet = memo(function CountrySheet({
 });
 
 const styles = StyleSheet.create({
-  handleRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.sm,
-  },
-  handleFlag: {
-    fontSize: ICON.md,
-  },
-  sheetLabel: {
-    marginBottom: SPACING.sm,
-  },
-  sectionLabel: {
-    marginTop: SPACING.lg,
-    marginBottom: SPACING.xs,
-  },
-  hotspotSection: {
-    marginBottom: SPACING.md,
-  },
-  hotspotValue: {
-    paddingVertical: SPACING.sm,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  countryKeyStats: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: SPACING.lg,
-    paddingBottom: SPACING.md,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  keyStat: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  keyStatValue: {
-    marginBottom: SPACING.xxs,
-  },
-  countryRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: SPACING.sm,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  countryRowLabel: {
-    flex: 1,
-  },
-  countryRowRight: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+  handleStack: {
+    flexDirection: 'column',
     alignItems: 'center',
     gap: SPACING.xs,
   },
-  countryRowValue: {
-    textAlign: 'right',
-    flexShrink: 1,
+  handleFlag: {
+    fontSize: 32,
+    lineHeight: 36,
   },
-  attribution: {
-    textAlign: 'center',
-    marginTop: SPACING.lg,
+  basics: {
+    marginBottom: SPACING.md,
+  },
+  basicsRow: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    justifyContent: 'space-between',
+    gap: SPACING.md,
+    paddingVertical: SPACING.xxs,
+  },
+  basicsLabel: {
+    minWidth: 80,
+  },
+  heroRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: SPACING.md,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  hero: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  moreToggle: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: SPACING.md,
+  },
+  moreList: {
+    borderTopWidth: StyleSheet.hairlineWidth,
+  },
+  moreRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: SPACING.sm,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  moreLabel: {
+    flex: 1,
+  },
+  moreRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.md,
   },
 });

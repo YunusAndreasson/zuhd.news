@@ -165,6 +165,18 @@ export default function HomeScreen() {
     sourcesSheetRef.current?.present();
   }, []);
 
+  const handleTimeAgoPress = useCallback((article: Article) => {
+    hapticTick();
+    const exact = new Date(article.addedAt).toLocaleString(undefined, {
+      weekday: 'short',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+    });
+    toastRef.current?.show(exact, undefined, 'top');
+  }, []);
+
   const handleBottomShare = useCallback(() => {
     const active = activeArticleRef.current;
     if (!active) return;
@@ -222,29 +234,6 @@ export default function HomeScreen() {
       // Country/dot tap → sheet
       setCountrySheet(result);
       countrySheetRef.current?.present();
-    },
-    [handleSelectArticle],
-  );
-
-  const handleCountryStoryPress = useCallback(
-    (label: string) => {
-      // Find article matching this hotspot label (threadLabel prefix or title)
-      for (const cat of CATEGORIES) {
-        const match = groupedRef.current[cat].find((a) => {
-          if (a.threadLabel) {
-            const prefix = a.threadLabel.includes(':')
-              ? a.threadLabel.slice(0, a.threadLabel.indexOf(':'))
-              : a.threadLabel;
-            if (prefix === label) return true;
-          }
-          return a.title === label;
-        });
-        if (match) {
-          countrySheetRef.current?.dismiss();
-          handleSelectArticle(match.slug, cat);
-          return;
-        }
-      }
     },
     [handleSelectArticle],
   );
@@ -398,6 +387,7 @@ export default function HomeScreen() {
                 onCaughtUp={handleCaughtUp}
                 onBookmarkPress={handleArticleBookmark}
                 onSourcesPress={handleSourcesPress}
+                onTimeAgoPress={handleTimeAgoPress}
                 onCountryPress={handleCountryPress}
                 onArticleChange={handleArticleChange}
                 progressesSV={categoryProgresses}
@@ -452,7 +442,6 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => setCountrySheet(null)}
-        onStoryPress={handleCountryStoryPress}
       />
 
       <SourcesSheet

@@ -31,6 +31,9 @@ interface ArticlePageProps {
   /** Fired when the reader taps the source link at the end of the article —
    *  parent opens the SourcesSheet with this article's sources. */
   onSourcesPress?: (article: Article) => void;
+  /** Fired when the reader taps the inline dateline (e.g. "2h ago") —
+   *  parent typically shows a toast with the exact timestamp. */
+  onTimeAgoPress?: (article: Article) => void;
   showEarlierDivider?: boolean;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
@@ -82,6 +85,7 @@ export const ArticlePage = memo(function ArticlePage({
   scrollY,
   onBookmarkPress,
   onSourcesPress,
+  onTimeAgoPress,
   showEarlierDivider,
   globeRef,
   globeYOffset,
@@ -156,20 +160,26 @@ export const ArticlePage = memo(function ArticlePage({
     onSourcesPress?.(article);
   }, [article, onSourcesPress]);
 
+  const handleTimeAgoPress = useCallback(() => {
+    onTimeAgoPress?.(article);
+  }, [article, onTimeAgoPress]);
+
   // Inline source link appended after the last word — zero extra vertical
-  // space while keeping the affordance unambiguously tappable.
+  // space while keeping the affordance unambiguously tappable. Rendered
+  // one tier smaller than the dateline (smallCapsXs) so it reads as
+  // chrome metadata rather than body content.
   const sourceCount = article.sources.length;
   const sourcesTrailing = useMemo(() => {
     if (sourceCount === 0 || !onSourcesPress) return null;
     return (
-      <Text style={mdStyles.dateline}>
+      <Text style={textStyles.smallCapsXs}>
         {'\u2002'}
         <Text onPress={handleSourcesPress} style={{ color: colors.accent }}>
           {sourceCount === 1 ? 'source' : 'sources'}
         </Text>
       </Text>
     );
-  }, [sourceCount, onSourcesPress, handleSourcesPress, mdStyles.dateline, colors.accent]);
+  }, [sourceCount, onSourcesPress, handleSourcesPress, textStyles.smallCapsXs, colors.accent]);
 
   const body = useMemo(
     () =>
@@ -182,6 +192,7 @@ export const ArticlePage = memo(function ArticlePage({
         timeAgo,
         openLink,
         sourcesTrailing,
+        onTimeAgoPress ? handleTimeAgoPress : undefined,
       ),
     [
       article.sentences,
@@ -192,6 +203,8 @@ export const ArticlePage = memo(function ArticlePage({
       timeAgo,
       openLink,
       sourcesTrailing,
+      onTimeAgoPress,
+      handleTimeAgoPress,
     ],
   );
 
