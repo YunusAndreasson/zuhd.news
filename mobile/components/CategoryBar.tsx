@@ -99,8 +99,9 @@ export const CategoryBar = memo(function CategoryBar({
   const handleTabLayout = useCallback((index: number, e: LayoutChangeEvent) => {
     const { x, width } = e.nativeEvent.layout;
     layoutsRef.current[index] = { x, width };
-    if (layoutsRef.current.every((l) => l !== null)) {
-      setTabLayouts([...layoutsRef.current] as TabLayout[]);
+    const layouts = layoutsRef.current;
+    if (layouts.every((l): l is TabLayout => l !== null)) {
+      setTabLayouts([...layouts]);
     }
   }, []);
 

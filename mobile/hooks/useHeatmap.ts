@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
 import { fetchWithTimeout } from '../lib/fetch';
 import { readHeatmapCache, writeHeatmapCache } from '../lib/heatmap-cache';
+import { isHeatmapResponse } from '../lib/validate';
 import type { HeatmapPoint } from '../types';
 import { useAppResume } from './useAppResume';
 
@@ -15,11 +16,12 @@ export function useHeatmap(feedGenerated: string | null): HeatmapPoint[] {
         cache: 'no-store',
       });
       if (!res.ok) return;
-      const data: { generated: string; points: HeatmapPoint[] } = await res.json();
-      lastGenRef.current = data.generated;
-      setPoints(data.points);
+      const raw: unknown = await res.json();
+      if (!isHeatmapResponse(raw)) return;
+      lastGenRef.current = raw.generated;
+      setPoints(raw.points);
       try {
-        writeHeatmapCache(data);
+        writeHeatmapCache(raw);
       } catch {}
     } catch {}
   }, []);

@@ -11,6 +11,7 @@ import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 // Timeline dot sits centered on the entry line — diameter 5 over a 1px line.
 const TIMELINE_DOT = 5;
 const TIMELINE_LINE = 1;
+
 import { useTheme } from '../hooks/useTheme';
 import type { ArticleSource, ContextBrief, TimelineEntry } from '../types';
 import { SheetLayout } from './SheetLayout';

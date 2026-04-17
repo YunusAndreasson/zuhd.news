@@ -25,7 +25,7 @@ export function useSheetNavigation<T extends string>(): SheetNavigation<T> {
   const pop = useCallback(() => setStack((s) => (s.length > 0 ? s.slice(0, -1) : s)), []);
   const reset = useCallback(() => setStack([]), []);
   return {
-    current: stack.length > 0 ? (stack[stack.length - 1] as T) : null,
+    current: stack.at(-1) ?? null,
     stack,
     push,
     pop,

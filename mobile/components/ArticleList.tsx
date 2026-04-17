@@ -8,7 +8,14 @@ import {
   useRef,
   useState,
 } from 'react';
-import { RefreshControl, StyleSheet, useWindowDimensions, View } from 'react-native';
+import {
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
+  RefreshControl,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import Animated, {
   runOnJS,
   type SharedValue,
@@ -193,7 +200,7 @@ export const ArticleList = memo(function ArticleList({
   );
 
   const handleMomentumEnd = useCallback(
-    (e: { nativeEvent: { contentOffset: { y: number } } }) => {
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
       const idx = Math.round(e.nativeEvent.contentOffset.y / itemHeight);
       if (idx !== currentIndexRef.current) handleSnap(idx);
     },

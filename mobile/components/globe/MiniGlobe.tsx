@@ -15,7 +15,6 @@ import {
   useImage,
   vec,
 } from '@shopify/react-native-skia';
-import type { GeoContext } from 'd3-geo';
 import {
   geoCircle,
   geoContains,
@@ -428,39 +427,39 @@ function projectInitial(
 
   const lp = Skia.Path.Make();
   ctx.setPath(lp);
-  pg.context(ctx as unknown as GeoContext)(land);
+  pg.context(ctx)(land);
 
   // Neighbouring country borders — mesh + no resampling for speed
   proj.precision(0);
   const bp = Skia.Path.Make();
   ctx.setPath(bp);
-  pg.context(ctx as unknown as GeoContext)(bordersMesh);
+  pg.context(ctx)(bordersMesh);
   proj.precision(8);
 
   let cp: ReturnType<typeof Skia.Path.Make> | null = null;
   if (geo.country) {
     cp = Skia.Path.Make();
     ctx.setPath(cp);
-    pg.context(ctx as unknown as GeoContext)(geo.country);
+    pg.context(ctx)(geo.country);
   }
 
   const [sunLng, sunLat] = getSunPosition();
   const nightCenter: [number, number] = [sunLng + 180, -sunLat];
   const np = Skia.Path.Make();
   ctx.setPath(np);
-  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(90)());
+  pg.context(ctx)(nightCircleGen.center(nightCenter).radius(90)());
 
   // Low-sun band — softer gradient where sun is near the horizon (0–6° above)
   const tp = Skia.Path.Make();
   ctx.setPath(tp);
-  pg.context(ctx as unknown as GeoContext)(nightCircleGen.center(nightCenter).radius(96)());
+  pg.context(ctx)(nightCircleGen.center(nightCenter).radius(96)());
 
   // Equator + polar circles
   const gp = Skia.Path.Make();
   ctx.setPath(gp);
-  pg.context(ctx as unknown as GeoContext)(graticuleLines);
-  pg.context(ctx as unknown as GeoContext)(ARCTIC_CIRCLE);
-  pg.context(ctx as unknown as GeoContext)(ANTARCTIC_CIRCLE);
+  pg.context(ctx)(graticuleLines);
+  pg.context(ctx)(ARCTIC_CIRCLE);
+  pg.context(ctx)(ANTARCTIC_CIRCLE);
 
   // Poles
   let northPole: GlobeState['northPole'] = null;
@@ -735,7 +734,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const landPath = landPathRef.current;
       landPath.rewind();
       skiaCtx.setPath(landPath);
-      pg.context(skiaCtx as unknown as GeoContext)(land);
+      pg.context(skiaCtx)(land);
 
       // Dot
       let dot: { x: number; y: number } | null = null;
@@ -750,7 +749,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         countryPath = countryPathRef.current;
         countryPath.rewind();
         skiaCtx.setPath(countryPath);
-        pg.context(skiaCtx as unknown as GeoContext)(cachedCountryRef.current);
+        pg.context(skiaCtx)(cachedCountryRef.current);
       }
 
       // Near-settled check — reused for cosmetic layers AND arc visibility.
@@ -765,7 +764,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         bordersPath = bordersPathRef.current;
         bordersPath.rewind();
         skiaCtx.setPath(bordersPath);
-        pg.context(skiaCtx as unknown as GeoContext)(bordersMesh);
+        pg.context(skiaCtx)(bordersMesh);
       }
 
       // --- Cosmetic layers: skip during mid-scroll for perf (~15-20% savings).
@@ -787,25 +786,23 @@ export const MiniGlobe = memo(function MiniGlobe({
         const np = nightPathRef.current;
         np.rewind();
         skiaCtx.setPath(np);
-        pg.context(skiaCtx as unknown as GeoContext)(nightGeo);
+        pg.context(skiaCtx)(nightGeo);
         nightPath = np;
 
         // Low-sun band
         const tp = twilightPathRef.current;
         tp.rewind();
         skiaCtx.setPath(tp);
-        pg.context(skiaCtx as unknown as GeoContext)(
-          nightCircleGen.center(nightCenter).radius(96)(),
-        );
+        pg.context(skiaCtx)(nightCircleGen.center(nightCenter).radius(96)());
         twilightPath = tp;
 
         // Equator + polar circles
         const gp = graticulePathRef.current;
         gp.rewind();
         skiaCtx.setPath(gp);
-        pg.context(skiaCtx as unknown as GeoContext)(graticuleLines);
-        pg.context(skiaCtx as unknown as GeoContext)(ARCTIC_CIRCLE);
-        pg.context(skiaCtx as unknown as GeoContext)(ANTARCTIC_CIRCLE);
+        pg.context(skiaCtx)(graticuleLines);
+        pg.context(skiaCtx)(ARCTIC_CIRCLE);
+        pg.context(skiaCtx)(ANTARCTIC_CIRCLE);
         graticulePath = gp;
 
         // Poles

@@ -4,7 +4,8 @@ import { flushBookmarks } from '../lib/bookmark-store';
 import { readFeedCache, writeFeedCache } from '../lib/feed-cache';
 import { fetchWithTimeout } from '../lib/fetch';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
-import type { Article, Category, FeedResponse, MetaResponse } from '../types';
+import { isFeedResponse, isMetaResponse } from '../lib/validate';
+import type { Article, Category, FeedResponse } from '../types';
 import { useAppResume } from './useAppResume';
 
 type GroupedArticles = Record<Category, Article[]>;
@@ -58,7 +59,7 @@ export function useArticles(): ArticlesState {
 
   const applyFeed = useEffectEvent((data: FeedResponse, seedSlugs = false): number => {
     lastGeneratedRef.current = data.generated;
-    const newGrouped = { ...emptyGrouped, ...data.categories } as GroupedArticles;
+    const newGrouped: GroupedArticles = { ...emptyGrouped, ...data.categories };
     const allSlugs = Object.values(newGrouped)
       .flat()
       .map((a) => a.slug);
@@ -83,10 +84,11 @@ export function useArticles(): ArticlesState {
   const fetchFeed = useEffectEvent(async (): Promise<number> => {
     const res = await fetchWithTimeout(`${API_BASE}/api/feed.json`, 10000, { cache: 'no-store' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data: FeedResponse = await res.json();
-    const addedCount = applyFeed(data);
+    const raw: unknown = await res.json();
+    if (!isFeedResponse(raw)) throw new Error('Malformed feed response');
+    const addedCount = applyFeed(raw);
     try {
-      writeFeedCache(data);
+      writeFeedCache(raw);
     } catch {}
     return addedCount;
   });
@@ -98,7 +100,8 @@ export function useArticles(): ArticlesState {
         cache: 'no-store',
       });
       if (!res.ok) return false; // network issue — cached data is fine
-      const meta: MetaResponse = await res.json();
+      const meta: unknown = await res.json();
+      if (!isMetaResponse(meta)) return false;
       return meta.generated !== lastGeneratedRef.current;
     } catch {
       return false; // network error — don't trigger a doomed fetchFeed

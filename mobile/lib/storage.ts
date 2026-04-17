@@ -1,6 +1,7 @@
 import { File, Paths } from 'expo-file-system';
 import * as SecureStore from 'expo-secure-store';
 import { DEFAULT_PREFS, type Preferences } from '../constants/theme';
+import { isPreferences } from './validate';
 
 // UX state — not secrets. Lives in the document directory; SecureStore is
 // reserved for auth tokens.
@@ -44,13 +45,12 @@ export async function saveLastSeenAt(ts: number): Promise<void> {
 
 export async function getPreferences(): Promise<Preferences> {
   try {
-    if (PREFS_FILE.exists) {
-      const v = await PREFS_FILE.text();
-      return { ...DEFAULT_PREFS, ...JSON.parse(v) };
-    }
-    const migrated = await migrateFromSecureStore(LEGACY_PREFS_KEY, PREFS_FILE);
-    if (migrated) return { ...DEFAULT_PREFS, ...JSON.parse(migrated) };
-    return DEFAULT_PREFS;
+    const text = PREFS_FILE.exists
+      ? await PREFS_FILE.text()
+      : await migrateFromSecureStore(LEGACY_PREFS_KEY, PREFS_FILE);
+    if (!text) return DEFAULT_PREFS;
+    const merged = { ...DEFAULT_PREFS, ...JSON.parse(text) };
+    return isPreferences(merged) ? merged : DEFAULT_PREFS;
   } catch {
     return DEFAULT_PREFS;
   }

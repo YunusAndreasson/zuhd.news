@@ -50,7 +50,9 @@ export interface ContextBrief extends ContextIndexEntry {
 
 export interface FeedResponse {
   generated: string;
-  categories: Record<Category, Article[]>;
+  // Wire format may omit empty categories — post-merge consumers use
+  // `GroupedArticles` (a full Record) where every key is guaranteed present.
+  categories: Partial<Record<Category, Article[]>>;
   briefing: { date: string; available: boolean; duration?: number } | null;
   contexts?: Record<string, ContextIndexEntry>;
 }
