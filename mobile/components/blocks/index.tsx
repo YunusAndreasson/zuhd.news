@@ -1,7 +1,5 @@
 import { Fragment } from 'react';
-import { StyleSheet } from 'react-native';
 import type { CountryData } from '../../constants/country-data';
-import { SPACING } from '../../constants/theme';
 import type { LinkOpener, MarkdownStyles } from '../../lib/markdown';
 import type { ArticleBlock } from '../../types';
 import { ActorsBlock } from './ActorsBlock';
@@ -10,17 +8,14 @@ import { LocationsBlock } from './LocationsBlock';
 import { ProseBlock } from './ProseBlock';
 import { QuizBlock } from './QuizBlock';
 import { QuoteBlock } from './QuoteBlock';
+import type { BlockVariant } from './shared';
 import { TrendBlock } from './TrendBlock';
 
-export type BlockVariant = 'article' | 'context';
-
-/** Shared outer-container spacing for every non-prose block. Keeps margin
- *  rhythm consistent between ActorsBlock, CompareBlock, LocationsBlock,
- *  QuoteBlock and TrendBlock without per-component style duplication. */
-export const blockContainerStyle = StyleSheet.create({
-  article: { marginBottom: SPACING.md },
-  context: { marginVertical: SPACING.sm },
-});
+// Re-export so existing `components/blocks` consumers still get BlockVariant
+// and blockContainerStyle from the barrel. The source of truth lives in
+// ./shared to avoid the require cycle with individual block files.
+export type { BlockVariant } from './shared';
+export { blockContainerStyle } from './shared';
 
 interface RenderBlocksOptions {
   mdStyles: MarkdownStyles;

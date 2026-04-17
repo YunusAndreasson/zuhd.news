@@ -12,8 +12,8 @@ import {
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import type { CompareRow } from '../../types';
-import { type BlockVariant, blockContainerStyle } from './index';
 import { SourceCaption } from './SourceCaption';
+import { type BlockVariant, blockContainerStyle } from './shared';
 
 type Colors = ReturnType<typeof useTheme>['colors'];
 

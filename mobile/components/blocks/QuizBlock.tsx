@@ -12,8 +12,8 @@ import Animated, {
 import { ANIMATION, MAX_FONT_SCALE, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { hapticNotification } from '../../lib/haptics';
-import { type BlockVariant, blockContainerStyle } from './index';
 import { SourceCaption } from './SourceCaption';
+import { type BlockVariant, blockContainerStyle } from './shared';
 
 interface QuizBlockProps {
   question: string;

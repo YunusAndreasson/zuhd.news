@@ -18,8 +18,8 @@ import { ccToFlag } from '../../lib/article-utils';
 import { hapticImpact } from '../../lib/haptics';
 import { displayNameFromCode, topojsonNameFromCode } from '../../lib/iso-country';
 import { bordersMesh, countries, createSkiaPathContext, land } from '../globe/shared';
-import { type BlockVariant, blockContainerStyle } from './index';
 import { SourceCaption } from './SourceCaption';
+import { type BlockVariant, blockContainerStyle } from './shared';
 
 // ── Geometry ────────────────────────────────────────────────────────────────
 // Canvas height auto-computed from width × aspect below — no cap, so the map
