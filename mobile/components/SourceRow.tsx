@@ -64,14 +64,31 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
             <Icon name={isExpanded ? 'chevron-up' : 'chevron-down'} size="sm" tone="secondary" />
           </View>
         </View>
-        {isExpanded && info && (
+        {isExpanded && (info || source.angle) && (
           <>
-            <Text selectable variant="labelXs" style={styles.typeLine}>
-              {info.type} · {info.location}
-            </Text>
-            <Text selectable variant="body" tone="accent">
-              {info.description}
-            </Text>
+            {info && (
+              <Text selectable variant="labelXs" style={styles.typeLine}>
+                {info.type} · {info.location}
+              </Text>
+            )}
+            {source.angle ? (
+              <>
+                <Text selectable variant="body" tone="accent">
+                  {source.angle}
+                </Text>
+                {info && (
+                  <Text selectable variant="caption" style={styles.description}>
+                    {info.description}
+                  </Text>
+                )}
+              </>
+            ) : (
+              info && (
+                <Text selectable variant="body" tone="accent">
+                  {info.description}
+                </Text>
+              )
+            )}
           </>
         )}
       </Box>
@@ -97,5 +114,8 @@ const styles = StyleSheet.create({
   typeLine: {
     marginTop: SPACING.sm,
     marginBottom: SPACING.sm,
+  },
+  description: {
+    marginTop: SPACING.sm,
   },
 });
