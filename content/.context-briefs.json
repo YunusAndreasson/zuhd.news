@@ -14023,5 +14023,1084 @@
     "label": "Russia's Oil Export Geometry",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-17-hungary-magyar-orban-eu-climate-energy-shift": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNANIMITY RULE",
+        "body": "EU foreign policy, taxation, and enlargement decisions require unanimity under Article 31 TEU. A single member state can freeze the entire bloc. This is why Hungary — 2% of EU GDP — could block sanctions packages negotiated by 26 other capitals.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many EU member states must agree for a foreign policy decision under Article 31 TEU?",
+            "options": [
+              "A qualified majority (55% of states, 65% of population)",
+              "All 27 member states",
+              "The European Parliament plus the Council"
+            ],
+            "correct": 1,
+            "explanation": "Foreign policy, tax, and enlargement require unanimity — any one state can veto, which gave Budapest outsized leverage."
+          }
+        ]
+      },
+      {
+        "heading": "THE ORBÁN PLAYBOOK",
+        "body": "Orbán turned the veto into a bargaining chip. Threaten to block a sanctions package, a Ukraine aid tranche, or an accession step, then extract concessions — unfrozen cohesion funds, carve-outs for Hungarian firms, exemptions on Russian oil. The technique has a name in Brussels: hostage-taking.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Viktor Orbán",
+                "role": "Hungarian Prime Minister",
+                "years": "2010–2026",
+                "cc": "HU"
+              },
+              {
+                "name": "Péter Magyar",
+                "role": "Tisza party leader",
+                "years": "2024–present",
+                "cc": "HU"
+              }
+            ],
+            "label": "the Fidesz era"
+          }
+        ]
+      },
+      {
+        "heading": "THE PIPELINE GEOGRAPHY",
+        "body": "Hungary still draws roughly 80% of its gas and 60% of its oil from Russia via the Druzhba and TurkStream pipelines. Landlocked Central European states cannot pivot to LNG without Croatian or Polish terminal capacity — the infrastructure takes years, not months.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "HU",
+              "SK",
+              "AT",
+              "HR",
+              "RS",
+              "RU"
+            ],
+            "label": "Druzhba & TurkStream corridor"
+          },
+          {
+            "type": "trend",
+            "values": [
+              9.129581313,
+              10.10962113,
+              10.80662625,
+              10.23979241,
+              12.1938459,
+              11.750812,
+              12.755,
+              13.811,
+              13.757,
+              14.75909611,
+              15.37638294,
+              13.15601031,
+              11.57195747,
+              11.62379688,
+              12.30058745,
+              11.47064619,
+              10.97523233,
+              11.003,
+              10.897,
+              10.355,
+              9.46,
+              11.987,
+              11.19,
+              17.67
+            ],
+            "periods": [
+              "Apr 2024",
+              "May 2024",
+              "Jun 2024",
+              "Jul 2024",
+              "Aug 2024",
+              "Sep 2024",
+              "Oct 2024",
+              "Nov 2024",
+              "Dec 2024",
+              "Jan 2025",
+              "Feb 2025",
+              "Mar 2025",
+              "Apr 2025",
+              "May 2025",
+              "Jun 2025",
+              "Jul 2025",
+              "Aug 2025",
+              "Sep 2025",
+              "Oct 2025",
+              "Nov 2025",
+              "Dec 2025",
+              "Jan 2026",
+              "Feb 2026",
+              "Mar 2026"
+            ],
+            "label": "Natural gas (TTF, Europe)",
+            "unit": "$/MMBtu",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY 2035",
+        "body": "A decade is the realistic floor for replacing pipeline gas with LNG terminals, nuclear expansion at Paks, and grid interconnections with Romania and Croatia. Any faster timeline collides with physical infrastructure; any slower and Hungary keeps funding Moscow's war economy through energy payments."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Poland's 2023 election ended eight years of PiS rule and immediately unblocked €137 billion in frozen EU funds within months. National elections, not Brussels, resolve EU deadlocks — because the veto belongs to whoever holds the national capital.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Poland",
+                "value": "2023 (PiS out)",
+                "cc": "PL"
+              },
+              {
+                "label": "Hungary",
+                "value": "2026 (Fidesz out)",
+                "cc": "HU"
+              },
+              {
+                "label": "Slovakia",
+                "value": "Fico, still in",
+                "cc": "SK",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "veto-holders that flipped"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · IMF · as of 2026-03-01"
+    ],
+    "generatedAt": "2026-04-18T22:28:57.878Z",
+    "label": "Hungary's EU Veto & Russian Energy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-18-alcoa-massena-nydig-smelter-to-bitcoin-conversion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ALUMINUM NEEDS RIVERS",
+        "body": "Smelting alumina into aluminum is electrolysis at industrial scale — roughly 14 MWh per ton, about a third of total production cost. The Hall-Héroult process has barely changed since 1886. This is why aluminum plants were historically built next to dams, not ore.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Aluminum is sometimes called *solid electricity* — the metal is essentially a way to ship cheap power across borders."
+          }
+        ]
+      },
+      {
+        "heading": "THE MASSENA LEGACY",
+        "body": "Alcoa's Massena complex draws on the St. Lawrence River's hydropower, contracted via the New York Power Authority at rates far below market. The plant opened in 1903; it was one of the first industrial uses of large-scale hydroelectricity in North America.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "CA"
+            ],
+            "label": "the St. Lawrence corridor"
+          }
+        ]
+      },
+      {
+        "heading": "WHY US SMELTERS LOST",
+        "body": "Global aluminum is set by marginal producers in China, the Gulf, and Russia — places with subsidized power or stranded gas. US smelting capacity collapsed from 23 plants in 2000 to a handful today. The hydropower contracts outlived the smelters.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~43mn",
+                "cc": "CN",
+                "weight": 43
+              },
+              {
+                "label": "India",
+                "value": "~4.1mn",
+                "cc": "IN",
+                "weight": 4.1
+              },
+              {
+                "label": "Russia",
+                "value": "~3.8mn",
+                "cc": "RU",
+                "weight": 3.8
+              },
+              {
+                "label": "UAE",
+                "value": "~2.7mn",
+                "cc": "AE",
+                "weight": 2.7
+              },
+              {
+                "label": "United States",
+                "value": "~0.7mn",
+                "cc": "US",
+                "weight": 0.7
+              }
+            ],
+            "label": "primary aluminum production (2024, mt)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BITCOIN MINING FITS",
+        "body": "Bitcoin mining is location-agnostic compute that consumes electricity continuously and tolerates remote sites. The grid interconnection — substations, transmission rights, cooling water — is the scarce asset. A retired smelter ships ready-made interconnect that would take a decade to permit from scratch.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              69871.45,
+              70552.63,
+              68733.55,
+              67848.88,
+              70892.83,
+              70524.51,
+              71309.26,
+              68791.11,
+              66321.02,
+              66321.07,
+              65970.43,
+              66699.27,
+              68231.83,
+              68089.06,
+              66891.66,
+              66939.69,
+              67304.25,
+              68985.53,
+              68864.23,
+              71975.62,
+              71117.08,
+              71770.75,
+              72972.71,
+              73053.89,
+              70756.75,
+              74514.63,
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75713.86
+            ],
+            "periods": [
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 18"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE STRANDED-POWER PATTERN",
+        "body": "This conversion is one instance of a global trend: hydropower in Iceland, flared gas in Texas, surplus nuclear in France, and now hydroelectric smelter contracts in upstate New York are all being repriced as compute substrate. The buyer used to be a metals company; now it is a miner or a hyperscaler.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of a ton of aluminum's production cost is electricity?",
+            "options": [
+              "About 5%",
+              "About 15%",
+              "About 30%",
+              "About 60%"
+            ],
+            "correct": 2,
+            "explanation": "Electricity is roughly a third of primary aluminum's cost — which is why smelters live next to cheap power, and why losing the cost edge ends the plant."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-04-18"
+    ],
+    "generatedAt": "2026-04-18T22:29:23.750Z",
+    "label": "Smelters, Hydropower & Bitcoin",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-18-desi-completes-3d-universe-map-dark-energy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISCOVERY",
+        "body": "In 1998, two independent teams measuring distant supernovae found the universe's expansion is accelerating, not slowing. Gravity should pull galaxies back together; instead, something is pushing them apart. That something was named dark energy — a placeholder for a force nobody understands.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Saul Perlmutter",
+                "role": "Supernova Cosmology Project lead",
+                "years": "1988–present",
+                "cc": "US"
+              },
+              {
+                "name": "Brian Schmidt",
+                "role": "High-Z Team co-leader",
+                "years": "1994–present",
+                "cc": "AU"
+              },
+              {
+                "name": "Adam Riess",
+                "role": "High-Z Team lead author",
+                "years": "1996–present",
+                "cc": "US"
+              }
+            ],
+            "label": "the 1998 discovery teams"
+          }
+        ]
+      },
+      {
+        "heading": "THE INVENTORY PROBLEM",
+        "body": "Dark energy is roughly 68% of the universe. Dark matter is another 27%. Ordinary matter — atoms, stars, planets, people — is about 5%. Everything astronomy studied for centuries before 1998 was the thin skin on a cosmos made of things we cannot see or explain.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Dark energy",
+                "value": "~68%",
+                "weight": 68,
+                "tone": "neutral"
+              },
+              {
+                "label": "Dark matter",
+                "value": "~27%",
+                "weight": 27,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ordinary matter",
+                "value": "~5%",
+                "weight": 5,
+                "tone": "neutral"
+              }
+            ],
+            "label": "what the universe is made of"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A MAP HELPS",
+        "body": "Galaxies are not scattered randomly — sound waves in the early universe left regular spacing patterns called baryon acoustic oscillations, essentially a 490-million-light-year ruler frozen into the cosmic web. Measuring how that ruler stretches at different epochs tells you how fast expansion accelerated at each era."
+      },
+      {
+        "heading": "THE FIBRE TRICK",
+        "body": "DESI's 5,000 robotically-positioned optical fibres each capture the spectrum of one galaxy per exposure. Redshift — how much a galaxy's light is stretched toward red — gives distance. A spectrum per fibre per galaxy times millions of galaxies yields the 3D map; no imaging survey alone can do it."
+      },
+      {
+        "heading": "THE COSMOLOGICAL CONSTANT",
+        "body": "Einstein added a constant to his 1917 equations to keep the universe static, then called it his biggest blunder when expansion was discovered. The simplest dark energy model revives it: a constant vacuum energy baked into spacetime. If DESI finds dark energy's strength has changed over time, Einstein's constant is wrong and physics needs a new field.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "If dark energy's strength has changed over cosmic time, which model is ruled out?",
+            "options": [
+              "Einstein's cosmological constant",
+              "Modified gravity (MOND)",
+              "Quintessence (a dynamic scalar field)",
+              "Inflation"
+            ],
+            "correct": 0,
+            "explanation": "A cosmological constant is by definition constant. Any measured time-variation falsifies it and favors dynamic models like quintessence."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-18T22:29:48.781Z",
+    "label": "Dark Energy & Cosmic Mapping",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-18-india-summons-iran-ambassador-hormuz-tanker-fire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              52,
+              62,
+              54,
+              54,
+              72,
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3
+            ],
+            "periods": [
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The strait sits between Iran and Oman, not Iran and any Arab Gulf state. Iran's coastline runs along the entire northern edge, and the deepest shipping channel hugs the Iranian side — which is why Iranian naval positioning matters disproportionately.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "IN"
+            ],
+            "label": "Hormuz and its eastern customers"
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDIA IS UNUSUAL",
+        "body": "India is one of the few major economies that has refused to pick a side between Washington and Tehran. It kept buying discounted Russian crude through sanctions and was, before the 2019 US waiver expired, Iran's second-largest oil customer after China.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~11 mbd",
+                "weight": 11,
+                "cc": "CN"
+              },
+              {
+                "label": "India",
+                "value": "~5 mbd",
+                "weight": 5,
+                "cc": "IN"
+              },
+              {
+                "label": "Japan",
+                "value": "~2.5 mbd",
+                "weight": 2.5,
+                "cc": "JP"
+              },
+              {
+                "label": "South Korea",
+                "value": "~2.3 mbd",
+                "weight": 2.3,
+                "cc": "KR"
+              }
+            ],
+            "label": "top buyers of Gulf crude (approx, mbd)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHABAHAR BET",
+        "body": "India spent a decade and roughly $500m developing Iran's Chabahar port — a deliberate hedge to bypass Pakistan and reach Afghanistan and Central Asia overland. The project bought New Delhi a quiet working relationship with Tehran that few other capitals enjoy."
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain."
+      },
+      {
+        "heading": "THE DIASPORA LEVERAGE",
+        "body": "Roughly 9 million Indians live and work in the Gulf, sending home over $50 billion in remittances yearly — more than India receives from any other region. Any sustained Hormuz disruption threatens not only oil bills but the single largest foreign-currency inflow the Indian economy depends on.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which region sends the largest share of India's inbound remittances?",
+            "options": [
+              "North America",
+              "The Gulf states",
+              "Europe",
+              "Southeast Asia"
+            ],
+            "correct": 1,
+            "explanation": "Gulf-based Indian workers send home over $50bn a year — more than any other region, and why Hormuz disruptions hit India's balance of payments directly."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-12"
+    ],
+    "generatedAt": "2026-04-18T22:30:15.755Z",
+    "label": "India–Iran & the Hormuz calculus",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-18-israel-somaliland-envoy-12-countries-condemnation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNRECOGNIZED STATE",
+        "body": "Somaliland declared independence from Somalia in 1991 after the collapse of the Siad Barre regime. For 35 years it has held elections, issued passports, printed currency, and maintained a functioning government — yet no UN member state had recognized it until Israel did in December.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SO",
+              "ET",
+              "DJ",
+              "ER",
+              "YE"
+            ],
+            "label": "the Horn and its neighbors"
+          }
+        ]
+      },
+      {
+        "heading": "THE COLONIAL SEAM",
+        "body": "British Somaliland and Italian Somalia were separate colonies that merged five days after independence in 1960. The 1991 secession was framed by Hargeisa as dissolving a failed union, not breaking from a unitary state — the same legal logic that justified Czechoslovakia's split."
+      },
+      {
+        "heading": "THE AU DOCTRINE",
+        "body": "The African Union's founding charter enshrined uti possidetis — colonial borders are inviolable, no matter how arbitrary. This is why South Sudan (2011) required Khartoum's consent before any state recognized it, and why Somaliland has been left in limbo for three decades despite meeting every functional test of statehood.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which African secession won broad international recognition this century?",
+            "options": [
+              "Somaliland from Somalia",
+              "South Sudan from Sudan",
+              "Cabinda from Angola",
+              "Western Sahara from Morocco"
+            ],
+            "correct": 1,
+            "explanation": "South Sudan (2011) is the only post-1991 African secession with UN membership — and it required Khartoum's prior consent under the AU's colonial-borders doctrine."
+          }
+        ]
+      },
+      {
+        "heading": "THE BERBERA PRIZE",
+        "body": "Somaliland's port of Berbera sits on the Gulf of Aden across from Yemen, with a Cold War-era Soviet airstrip long enough for any military aircraft. The UAE operates the port commercially; Ethiopia signed a 2024 access deal that infuriated Mogadishu. Recognition is, mechanically, about who controls this coastline."
+      },
+      {
+        "heading": "WHY ISRAEL, WHY NOW",
+        "body": "Israel has long sought Red Sea positioning to counter Iranian-backed Houthi operations and to outflank the Arab League diplomatically. Recognizing Somaliland breaks the recognition taboo cheaply — no UN vote required — while planting a flag opposite Bab-el-Mandeb.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              6,
+              4,
+              7,
+              6,
+              11,
+              6,
+              7,
+              5,
+              9,
+              7,
+              3,
+              5,
+              4,
+              7,
+              2,
+              5,
+              5,
+              3,
+              10,
+              6,
+              4,
+              4,
+              5,
+              7,
+              4,
+              2,
+              9,
+              2,
+              5,
+              9,
+              3,
+              2,
+              6,
+              1,
+              4,
+              7,
+              5,
+              6,
+              8,
+              7,
+              3,
+              5,
+              6,
+              3,
+              1,
+              7,
+              6,
+              3,
+              4,
+              4,
+              10,
+              6,
+              5,
+              5
+            ],
+            "periods": [
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Bab-el-Mandeb containers",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE RELOCATION SUSPICION",
+        "body": "Several states linked the recognition to leaked proposals to relocate Palestinians from Gaza to third countries. Somaliland's leadership denies any such arrangement, but the timing — recognition in December, the Trump administration's Gaza relocation trial balloons in early 2026 — fueled the Arab League's sharpest language."
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-12"
+    ],
+    "generatedAt": "2026-04-18T22:30:45.032Z",
+    "label": "Somaliland & Recognition",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-18-italy-salvini-russia-gas-return-energy-lockdown": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRE-WAR BASELINE",
+        "body": "Before 2022, Russia supplied roughly 40% of EU natural gas. Italy was among the most exposed — about 40% of its gas came from Russia via the TurkStream and TransAustrian pipelines, second only to Germany in absolute volume.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "~55%",
+                "cc": "DE",
+                "weight": 55
+              },
+              {
+                "label": "Italy",
+                "value": "~40%",
+                "cc": "IT",
+                "weight": 40
+              },
+              {
+                "label": "France",
+                "value": "~17%",
+                "cc": "FR",
+                "weight": 17
+              },
+              {
+                "label": "Spain",
+                "value": "~10%",
+                "cc": "ES",
+                "weight": 10
+              }
+            ],
+            "label": "Russian gas share of imports, 2021"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GAS IS STICKIER THAN OIL",
+        "body": "Oil is fungible — a tanker rerouted from Rotterdam to Mumbai clears the market. Gas is not. Pipeline gas requires a fixed physical link; LNG requires liquefaction terminals on one end and regasification on the other. Replacing Russian pipeline gas meant building infrastructure, not just finding new sellers.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              9.129581313,
+              10.10962113,
+              10.80662625,
+              10.23979241,
+              12.1938459,
+              11.750812,
+              12.755,
+              13.811,
+              13.757,
+              14.75909611,
+              15.37638294,
+              13.15601031,
+              11.57195747,
+              11.62379688,
+              12.30058745,
+              11.47064619,
+              10.97523233,
+              11.003,
+              10.897,
+              10.355,
+              9.46,
+              11.987,
+              11.19,
+              17.67
+            ],
+            "periods": [
+              "Apr 2024",
+              "May 2024",
+              "Jun 2024",
+              "Jul 2024",
+              "Aug 2024",
+              "Sep 2024",
+              "Oct 2024",
+              "Nov 2024",
+              "Dec 2024",
+              "Jan 2025",
+              "Feb 2025",
+              "Mar 2025",
+              "Apr 2025",
+              "May 2025",
+              "Jun 2025",
+              "Jul 2025",
+              "Aug 2025",
+              "Sep 2025",
+              "Oct 2025",
+              "Nov 2025",
+              "Dec 2025",
+              "Jan 2026",
+              "Feb 2026",
+              "Mar 2026"
+            ],
+            "label": "Natural gas (TTF, Europe)",
+            "unit": "$/MMBtu",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE NORD STREAM RUPTURE",
+        "body": "In September 2022, underwater explosions destroyed three of the four Nord Stream pipelines connecting Russia to Germany. Whichever party was responsible, the physical destruction removed the option of a quick return to pre-war flows — the infrastructure itself no longer exists at full capacity."
+      },
+      {
+        "heading": "HOW EUROPE REPLACED IT",
+        "body": "The EU pivoted to US and Qatari LNG, Norwegian pipeline gas, and Algerian supply. US LNG exports to Europe roughly tripled between 2021 and 2023. The transition worked — but at roughly 2-3x the pre-war price, and with new dependence on American export terminals.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NO",
+              "DZ",
+              "QA",
+              "US",
+              "RU"
+            ],
+            "label": "Europe's replacement suppliers"
+          }
+        ]
+      },
+      {
+        "heading": "THE ITALIAN POLITICS",
+        "body": "Salvini's Lega party has a documented history of Russia-friendly positioning — a 2017 cooperation agreement with Putin's United Russia party, skepticism of sanctions from the outset of the 2022 invasion. His call is consistent with a long-held posture, not a sudden shift.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Giorgia Meloni",
+                "role": "PM, Fratelli d'Italia",
+                "years": "2022–",
+                "cc": "IT"
+              },
+              {
+                "name": "Matteo Salvini",
+                "role": "Deputy PM, Lega",
+                "years": "2022–",
+                "cc": "IT"
+              },
+              {
+                "name": "Antonio Tajani",
+                "role": "Foreign Minister, FI",
+                "years": "2022–",
+                "cc": "IT"
+              }
+            ],
+            "label": "Italy's governing coalition on Russia"
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS MECHANICS",
+        "body": "EU energy sanctions require unanimity among 27 member states to impose but also to lift. A single country — Hungary has played this role — can block tightening. Softening works the same way in reverse: any single holdout on rollback preserves the status quo.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What voting threshold does the EU require to modify energy sanctions on Russia?",
+            "options": [
+              "Qualified majority (55% of states, 65% of population)",
+              "Simple majority of member states",
+              "Unanimity of all 27 member states",
+              "European Parliament approval only"
+            ],
+            "correct": 2,
+            "explanation": "EU sanctions under the Common Foreign and Security Policy require unanimity — any single member state can block both imposition and removal."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · IMF · as of 2026-03-01"
+    ],
+    "generatedAt": "2026-04-18T22:31:13.786Z",
+    "label": "Europe's Russian Gas Dependence",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-18-salty-drinking-water-coastal-blood-pressure-climate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "Rising seas push saltwater into coastal aquifers through a process called saline intrusion. Freshwater lenses — the layer of rain-fed groundwater floating atop denser seawater — thin as extraction exceeds recharge, and the interface migrates inland. Once salt reaches a well, the contamination is effectively permanent on human timescales.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The boundary is called the *Ghyben-Herzberg interface*: for every meter of freshwater lens above sea level, roughly **40 meters** of freshwater sit below. Drop the water table by one meter and you lose forty meters of buffer."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SODIUM IN WATER HITS HARDER",
+        "body": "Dietary sodium is buffered by stomach contents, food matrix, and variable absorption. Dissolved sodium in water absorbs near-completely and arrives on an empty stomach multiple times a day. A liter of moderately saline coastal water can deliver more sodium than a fast-food meal — invisibly, because water is assumed to be neutral."
+      },
+      {
+        "heading": "THE GANGES DELTA FRONTLINE",
+        "body": "Bangladesh's coastal belt is the canonical case: low elevation, dense population, cyclone surges pushing salt inland, and upstream dam diversions reducing freshwater flow that once flushed the aquifers. Roughly 20 million people in the delta drink water above WHO salinity thresholds.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BD",
+              "IN",
+              "MM"
+            ],
+            "label": "the salt-intrusion belt",
+            "caption": "Low-lying deltas where sea rise, cyclones, and upstream dams converge"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOOD PRESSURE ARITHMETIC",
+        "body": "Epidemiological studies in coastal Bangladesh found systolic blood pressure in saline-water drinkers ran 4–6 mmHg higher than inland controls, after adjusting for diet. At population scale, a 5 mmHg shift translates to roughly a 10% rise in stroke mortality — a public health event dwarfing most named epidemics."
+      },
+      {
+        "heading": "THE PREGNANCY SIGNAL",
+        "body": "The effect first surfaced in obstetric data: coastal Bangladeshi women showed sharply elevated rates of preeclampsia and gestational hypertension in the dry season, when groundwater salinity peaks. Pregnancy amplifies sodium sensitivity, making pregnant women the sentinel population for a risk the rest of the community also carries.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does coastal groundwater salinity typically peak in the dry season?",
+            "options": [
+              "Evaporation concentrates salt in shrinking aquifers",
+              "Monsoon rain dilutes inland rivers, reducing pressure that holds seawater back",
+              "Farmers pump more groundwater for irrigation, drawing the saltwater interface inland",
+              "All of the above"
+            ],
+            "correct": 3,
+            "explanation": "Dry-season salinity is a compound problem — less recharge, less river flow pushing seawater out, and more extraction pulling it in."
+          }
+        ]
+      },
+      {
+        "heading": "THE ADAPTATION GAP",
+        "body": "Desalination is energy-intensive and centralized; rainwater harvesting works but requires storage for the dry months; piped freshwater from inland requires infrastructure that coastal governments cannot afford. The cheapest intervention — pond sand filters — removes pathogens but not dissolved salt. There is no low-cost fix for sodium once it is in the aquifer."
+      }
+    ],
+    "generatedAt": "2026-04-18T22:31:44.121Z",
+    "label": "Saline Intrusion & Hypertension",
+    "category": "science",
+    "articleCount": 1
   }
 }
