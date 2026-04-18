@@ -9,7 +9,7 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import { ANIMATION, SPACING, type TextTone } from '../../constants/theme';
+import { ANIMATION, OPACITY, SPACING, type TextTone } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { hapticNotification } from '../../lib/haptics';
 import { Text } from '../primitives';
@@ -123,7 +123,8 @@ export const QuizBlock = memo(function QuizBlock({
                   borderTopWidth: StyleSheet.hairlineWidth,
                   borderTopColor: colors.rule,
                 },
-                pressed && !answered && { backgroundColor: colors.pillBg, opacity: 0.9 },
+                pressed &&
+                  !answered && { backgroundColor: colors.pillBg, opacity: OPACITY.dominant },
               ]}
               accessibilityRole="button"
               accessibilityLabel={opt}

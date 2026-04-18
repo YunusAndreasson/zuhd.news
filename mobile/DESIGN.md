@@ -53,7 +53,7 @@ Seven primitives. Composition over configuration.
 
 ### Don't use if…
 
-- `Pressable` — if you need a static-feedback pill (no spring), use raw RN `Pressable` + `PRESSED_STYLE`. ActionPills in BottomActionBar are the reference example.
+- `Pressable` — if you need a static-feedback element (no spring), use raw RN `Pressable` + `PRESSED_STYLE`. `Toast` dismiss and the `CategoryBar` row are references. BottomActionBar pills use the spring primitive — small chrome still deserves motion.
 - `Stack` vs `Box` — Stack = flex container with gap. Box = decorative wrapper (background/radius/rule). If you need both, nest them.
 
 ### Not shipped (add when needed)
