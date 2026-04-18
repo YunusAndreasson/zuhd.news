@@ -81,6 +81,93 @@ function sanitizeSlug(s) {
   return (s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 48)
 }
 
+/** Regex fallback — used only if Haiku fails. Strip "Will" prefix,
+ *  collapse "U.S." → "US", ellipsis-truncate. Loses nuance on edge cases,
+ *  which is why Haiku is the primary path. */
+function shortenTitleRegex(raw) {
+  if (!raw || typeof raw !== 'string') return 'Untitled market'
+  const TARGET = 42
+  let s = raw.trim()
+    .replace(/^Will\s+(the\s+)?/i, '')
+    .replace(/^the\s+U\.?S\.?\s+/i, 'US ')
+    .replace(/\bU\.S\./g, 'US')
+    .replace(/\s+/g, ' ')
+  if (s.length <= TARGET) return s
+  const cut = s.slice(0, TARGET - 1)
+  const lastSpace = cut.lastIndexOf(' ')
+  const head = lastSpace > TARGET - 15 ? cut.slice(0, lastSpace) : cut
+  return head.replace(/[?.!,;:]+$/, '') + '…'
+}
+
+/** Batch-shorten Polymarket titles via Haiku. One call, all titles, ~2s.
+ *  Returns an array aligned to the input. On any failure (CLI error,
+ *  parse error, wrong length) falls back to the regex shortener per-item
+ *  so the pipeline never blocks on this.
+ *
+ *  @param {string[]} titles  Raw market questions.
+ *  @returns {Promise<string[]>}
+ */
+async function shortenTitlesViaHaiku(titles) {
+  if (titles.length === 0) return []
+  const { spawnSync } = await import('child_process')
+  const { randomUUID } = await import('crypto')
+
+  const items = titles.map((t, i) => `${i + 1}. ${t}`).join('\n')
+  const prompt = `You are shortening prediction-market question titles so they fit as chart headers on a mobile phone.
+
+Constraints per title:
+- ≤42 characters
+- Preserve the question mark if the original is a yes/no
+- Preserve the date horizon ("by 2027", "in 2026") if present — it is the market's whole point
+- Drop only filler ("Will the ...", "U.S." → "US", passive voice)
+- Keep proper names and countries intact
+- Output must be natural, not abbreviated to gibberish
+
+Examples:
+  "Will the U.S. invade Iran before 2027?"              → "US invade Iran by 2027?"
+  "Will Kevin Warsh be confirmed as Fed Chair?"         → "Kevin Warsh confirmed as Fed Chair?"
+  "Will Roberto Sánchez Palomino win the 2026 Peruvian presidential election?" → "Sánchez Palomino wins Peru 2026?"
+
+Titles to shorten:
+${items}
+
+Return ONLY a JSON array of the shortened strings, in the same order, same length as the input. No commentary, no markdown fences.`
+
+  const env = { ...process.env }
+  delete env.CLAUDECODE
+  const tmpId = randomUUID().slice(0, 8)
+  const res = spawnSync('claude', [
+    '--model', 'claude-haiku-4-5-20251001',
+    '--no-session-persistence',
+    '--max-turns', '1',
+    '--output-format', 'json',
+    '-p', prompt,
+  ], { encoding: 'utf-8', timeout: 20_000, maxBuffer: 256 * 1024, env })
+
+  if (res.status !== 0) {
+    console.error(`  ✗ polymarket-haiku ${tmpId}: exit ${res.status} — falling back to regex`)
+    return titles.map(shortenTitleRegex)
+  }
+  try {
+    // Claude envelope: outer JSON wrapping result text
+    const envelope = JSON.parse(res.stdout)
+    const raw = envelope.result ?? envelope.text ?? res.stdout
+    // Strip possible markdown fence + locate the JSON array
+    const cleaned = String(raw).replace(/^```(?:json)?\s*|\s*```$/g, '').trim()
+    const start = cleaned.indexOf('[')
+    const end = cleaned.lastIndexOf(']')
+    if (start === -1 || end === -1) throw new Error('no JSON array in output')
+    const arr = JSON.parse(cleaned.slice(start, end + 1))
+    if (!Array.isArray(arr) || arr.length !== titles.length) {
+      throw new Error(`expected ${titles.length} titles, got ${arr?.length}`)
+    }
+    return arr.map((s, i) => (typeof s === 'string' && s.length > 0 ? s : shortenTitleRegex(titles[i])))
+  } catch (err) {
+    console.error(`  ✗ polymarket-haiku ${tmpId}: ${err.message} — falling back to regex`)
+    return titles.map(shortenTitleRegex)
+  }
+}
+
 function parseOutcomeTokens(market) {
   // Gamma returns outcomes as array + clobTokenIds as stringified array. Take
   // the YES token (index 0 by convention for binary markets).
@@ -157,19 +244,22 @@ export async function fetchPolymarketTop() {
 
     const periods = history.map((h) => formatPeriod(h.t))
     const asOf = ymd(new Date((history[history.length - 1].t || 0) * 1000))
-    const title = m.question || m.title || 'Untitled market'
-    const slug = sanitizeSlug(m.slug || title)
+    const rawTitle = m.question || m.title || 'Untitled market'
+    const slug = sanitizeSlug(m.slug || rawTitle)
     const eventSlug = m.events?.[0]?.slug || null
     const eventUrl = eventSlug ? `https://polymarket.com/event/${eventSlug}` : ''
 
+    // Shortened label is filled in by a batched Haiku call after the loop so
+    // we spend one Claude call on all kept markets rather than one each.
     results.push({
       id: `poly-${slug}`,
-      label: title,
+      label: rawTitle,
+      rawTitle,
       unit: '%',
       source: 'polymarket',
       seriesId: m.slug || tokens.tokenId,
       cadence: 'daily',
-      topicTags: ['prediction', 'polymarket', 'odds', ...extractTopicTags(title)],
+      topicTags: ['prediction', 'polymarket', 'odds', ...extractTopicTags(rawTitle)],
       defaultHighlight: 'last',
       sourceLabel: 'Polymarket',
       values,
@@ -207,6 +297,19 @@ export async function fetchPolymarketTop() {
   if (deduped.length < results.length) {
     console.log(`  · polymarket: deduped ${results.length} → ${deduped.length} (one per event)`)
   }
+
+  // Batch-shorten titles via Haiku in one call. Kept after dedup to avoid
+  // spending tokens on labels we'd drop anyway.
+  if (deduped.length > 0) {
+    const rawTitles = deduped.map((r) => r.rawTitle)
+    const shortened = await shortenTitlesViaHaiku(rawTitles)
+    for (let i = 0; i < deduped.length; i++) {
+      deduped[i].label = shortened[i]
+      delete deduped[i].rawTitle
+    }
+    console.log(`  · polymarket: ${deduped.length} labels shortened via Haiku`)
+  }
+
   return deduped
 }
 

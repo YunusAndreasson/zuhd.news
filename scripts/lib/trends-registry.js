@@ -241,7 +241,7 @@ export const INDICATORS = [
   },
   {
     id: 'portwatch-bab-container',
-    label: 'Bab-el-Mandeb container transits',
+    label: 'Bab-el-Mandeb containers',
     unit: 'ships/day',
     source: 'portwatch',
     seriesId: 'bab-el-mandeb',
@@ -270,7 +270,7 @@ export const INDICATORS = [
   },
   {
     id: 'us-10y',
-    label: 'US 10-year Treasury yield',
+    label: 'US 10y Treasury',
     unit: '%',
     source: 'fred',
     seriesId: 'DGS10',

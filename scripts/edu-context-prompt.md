@@ -52,8 +52,9 @@ Target maximum character counts (aim under, never exceed by much):
 - `quote.speaker` → **~40 chars**. "US Constitution, Article I §9" ✓, long institutional provenance ✗.
 - `actors.people[].name` → **~25 chars**. Last + common first ("Gorbachev, Mikhail" ✗ → "Mikhail Gorbachev" ✓).
 - `actors.people[].role` → 3-5 words (already enforced elsewhere).
-- `trend.unit` → **~10 chars** (e.g. `$/bbl`, `%`, `ships/day`, `index`).
 - `locations.caption` (smaller text under map) → **~60 chars**.
+
+(Note: `trend` block labels, units, and annotations are server-generated from the live-indicators registry, not emitted by you. They've been audited for mobile fit separately.)
 </mobile-format>
 
 <perspective>
