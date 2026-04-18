@@ -12,7 +12,7 @@ import {
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { runOnJS, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
-import { EASING, OPACITY, PRESSED_STYLE, RADIUS, SPACING } from '../../constants/theme';
+import { EASING, FLAG, OPACITY, PRESSED_STYLE, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import { hapticImpact } from '../../lib/haptics';
@@ -451,7 +451,7 @@ const styles = StyleSheet.create({
     borderRadius: RADIUS.pill,
   },
   chipFlag: {
-    fontSize: 16,
+    fontSize: FLAG.chip,
   },
   caption: {
     marginTop: SPACING.xs,

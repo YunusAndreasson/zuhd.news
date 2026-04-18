@@ -15,13 +15,14 @@ All design tokens live in one file. Components consume via `useTheme()`.
 | Token group       | Export                                          | What it is                                    |
 |-------------------|-------------------------------------------------|-----------------------------------------------|
 | Colors            | `DARK_COLORS`, `LIGHT_COLORS` (via theme hook)  | 15 semantic keys — never inline a hex         |
-| Typography        | `makeTypography` → `sizeBase`, `sizeLg`, etc.   | Responsive scale + leading + tracking         |
+| Typography        | `makeTypography` → `sizeBase`, `sizeLg`, etc.   | Responsive scale + leading + `trackingCaps` / `trackingHeading` / `trackingWordmark` |
 | Variants          | `makeTextVariants` → 13 roles                   | The `<Text variant>` catalog (see below)      |
 | Variant caps      | `VARIANT_CAP`                                   | Dynamic Type ceiling per variant              |
 | Spacing           | `SPACING` (xxs → xxl + screenPadding)           | Four-pt-ish scale                             |
 | Gap tokens        | `GAP` (none, tight, row, item, group, section)  | Named Stack gap tiers derived from SPACING    |
 | Radii             | `RADIUS` (handle, pill, floating)               | Three semantic tiers, intent-named            |
 | Icons             | `ICON` (sm=14, md=20)                           | Two-tier. Anything else is a mistake.         |
+| Flag emoji        | `FLAG` (chip=16, row=18, display=32)            | Pictogram sizing — flags aren't type          |
 | Animation         | `ANIMATION`, `EASING`                           | Durations, spring configs, Reanimated easings |
 | Opacity           | `OPACITY`                                       | Named tiers — never inline decimals           |
 | Hit slop          | `HIT_SLOP`                                      | Standard expanded tap target                  |

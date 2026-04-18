@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import { ANIMATION, SPACING, staggerDelay } from '../../constants/theme';
+import { ANIMATION, FLAG, SPACING, staggerDelay } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import type { Actor } from '../../types';
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.sm,
   },
   flag: {
-    fontSize: 15,
+    fontSize: FLAG.chip,
   },
   textCol: {
     flex: 1,

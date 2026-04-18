@@ -6,7 +6,7 @@ import {
 import { memo, useCallback, useMemo, useState } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
+import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { getMetricValue, getRanking, type MetricKey } from '../lib/country-ranking';
@@ -239,8 +239,8 @@ const styles = StyleSheet.create({
     gap: SPACING.xs,
   },
   handleFlag: {
-    fontSize: 32,
-    lineHeight: 36,
+    fontSize: FLAG.display,
+    lineHeight: FLAG.display * 1.125,
   },
   dateline: {
     marginTop: SPACING.xxs,

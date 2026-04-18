@@ -27,6 +27,17 @@ export const countries = feature(
 // 180 separate country polygons.
 export const bordersMesh = mesh(countriesData, countriesObj, (a, b) => a !== b);
 
+// Permanent land-based ice sheets — Antarctica (~98% ice year-round) and
+// Greenland (~80%). Rendered as a white fill over the land silhouette so
+// the globe reads climatologically correct without a second basemap.
+export const iceSheets: GeoJSON.FeatureCollection = {
+  type: 'FeatureCollection',
+  features: countries.features.filter((f) => {
+    const n = f.properties?.name;
+    return n === 'Antarctica' || n === 'Greenland';
+  }),
+};
+
 // Precomputed bounding boxes for fast point-in-country pre-filtering.
 // [minLng, minLat, maxLng, maxLat] per feature — avoids expensive
 // geoContains polygon tests for points clearly outside.
