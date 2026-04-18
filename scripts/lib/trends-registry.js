@@ -19,6 +19,7 @@ import { fetchOerRates } from './trends-sources/oer.js'
 import { fetchPolymarketTop } from './trends-sources/polymarket.js'
 import { fetchPortWatchChokepoint } from './trends-sources/portwatch.js'
 import { fetchCoinGeckoSeries } from './trends-sources/crypto.js'
+import { fetchWikipediaPageviews } from './trends-sources/wikipedia.js'
 
 /** @typedef {Object} SourceDef
  *  @property {Function} fetcher
@@ -56,6 +57,11 @@ export const SOURCES = {
     requiredEnv: [],
     mode: 'perIndicator',
   },
+  wikipedia: {
+    fetcher: fetchWikipediaPageviews,
+    requiredEnv: [],
+    mode: 'perIndicator',
+  },
 }
 
 /** @typedef {'oil' | 'macro' | 'food' | 'fx' | 'shipping' | 'prediction' | 'energy'} Tier */
@@ -64,7 +70,7 @@ export const SOURCES = {
  *  @property {string} id            Stable ID used by editor + logs.
  *  @property {string} label         Display title (TrendBlock.label).
  *  @property {string} [unit]        Axis unit (TrendBlock.unit).
- *  @property {'fred'|'oer'|'polymarket'|'portwatch'|'crypto'} source
+ *  @property {'fred'|'oer'|'polymarket'|'portwatch'|'crypto'|'wikipedia'} source
  *  @property {string} [seriesId]    Source-specific identifier (FRED series, OER currency, etc.)
  *  @property {'daily'|'monthly'}    cadence
  *  @property {string[]} topicTags   Lowercased tags matched against article concepts/title/body.
@@ -301,6 +307,28 @@ export const INDICATORS = [
     defaultHighlight: 'last',
     sourceLabel: 'FRED · S&P',
   },
+  {
+    id: 'nasdaq100',
+    label: 'NASDAQ-100',
+    unit: 'index',
+    source: 'fred',
+    seriesId: 'NASDAQ100',
+    cadence: 'daily',
+    topicTags: ['nasdaq', 'tech stocks', 'big tech', 'ai capex', 'hyperscaler', 'meta', 'alphabet', 'google', 'microsoft', 'nvidia', 'amazon', 'apple'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · NASDAQ',
+  },
+  {
+    id: 'us-gas-retail',
+    label: 'US gasoline (retail)',
+    unit: '$/gal',
+    source: 'fred',
+    seriesId: 'GASREGW',
+    cadence: 'daily',
+    topicTags: ['gasoline', 'gas price', 'pump price', 'fuel', 'jet fuel', 'diesel', 'motor fuel', 'refinery', 'consumer prices'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · EIA',
+  },
 
   // ── Tier 3: crypto (CoinGecko, no key) ─────────────────────────────────────
   {
@@ -527,6 +555,121 @@ export const INDICATORS = [
     countryTags: ['ZA'],
     defaultHighlight: 'last',
     sourceLabel: 'Open Exchange Rates',
+  },
+
+  // ── Tier 3: narrative-attention (Wikipedia pageviews, no key) ──────────────
+  // A daily-views spike is the reader's own signal that a topic has gone
+  // mainstream. Chart shows relative attention — Claude attaches one when
+  // the story IS the attention shift (breaking chokepoint, scandal, figure).
+  {
+    id: 'wiki-hormuz',
+    label: 'Hormuz — Wikipedia views',
+    unit: 'views/day',
+    source: 'wikipedia',
+    seriesId: 'Strait_of_Hormuz',
+    cadence: 'daily',
+    topicTags: ['hormuz', 'strait', 'iran', 'chokepoint', 'gulf', 'oil flow'],
+    defaultHighlight: 'max',
+    sourceLabel: 'Wikipedia pageviews',
+  },
+  {
+    id: 'wiki-hezbollah',
+    label: 'Hezbollah — Wikipedia views',
+    unit: 'views/day',
+    source: 'wikipedia',
+    seriesId: 'Hezbollah',
+    cadence: 'daily',
+    topicTags: ['hezbollah', 'lebanon', 'beirut', 'iran proxy'],
+    defaultHighlight: 'max',
+    sourceLabel: 'Wikipedia pageviews',
+  },
+  {
+    id: 'wiki-irgc',
+    label: 'IRGC — Wikipedia views',
+    unit: 'views/day',
+    source: 'wikipedia',
+    seriesId: 'Islamic_Revolutionary_Guard_Corps',
+    cadence: 'daily',
+    topicTags: ['irgc', 'iran', 'revolutionary guard', 'quds force', 'iran military'],
+    defaultHighlight: 'max',
+    sourceLabel: 'Wikipedia pageviews',
+  },
+  {
+    id: 'wiki-taliban',
+    label: 'Taliban — Wikipedia views',
+    unit: 'views/day',
+    source: 'wikipedia',
+    seriesId: 'Taliban',
+    cadence: 'daily',
+    topicTags: ['taliban', 'afghanistan', 'kabul', 'emirate'],
+    defaultHighlight: 'max',
+    sourceLabel: 'Wikipedia pageviews',
+  },
+  {
+    id: 'wiki-gaza',
+    label: 'Gaza — Wikipedia views',
+    unit: 'views/day',
+    source: 'wikipedia',
+    seriesId: 'Gaza_Strip',
+    cadence: 'daily',
+    topicTags: ['gaza', 'palestine', 'israel', 'hamas', 'unrwa', 'ceasefire'],
+    defaultHighlight: 'max',
+    sourceLabel: 'Wikipedia pageviews',
+  },
+  {
+    id: 'wiki-ai',
+    label: 'AI — Wikipedia views',
+    unit: 'views/day',
+    source: 'wikipedia',
+    seriesId: 'Artificial_intelligence',
+    cadence: 'daily',
+    topicTags: ['artificial intelligence', 'ai', 'machine learning', 'llm', 'chatgpt'],
+    defaultHighlight: 'max',
+    sourceLabel: 'Wikipedia pageviews',
+  },
+  {
+    id: 'wiki-taiwan',
+    label: 'Taiwan — Wikipedia views',
+    unit: 'views/day',
+    source: 'wikipedia',
+    seriesId: 'Taiwan',
+    cadence: 'daily',
+    topicTags: ['taiwan', 'china', 'tsmc', 'cross-strait', 'taipei'],
+    defaultHighlight: 'max',
+    sourceLabel: 'Wikipedia pageviews',
+  },
+  {
+    id: 'wiki-nato',
+    label: 'NATO — Wikipedia views',
+    unit: 'views/day',
+    source: 'wikipedia',
+    seriesId: 'NATO',
+    cadence: 'daily',
+    topicTags: ['nato', 'alliance', 'article 5', 'brussels', 'collective defense'],
+    defaultHighlight: 'max',
+    sourceLabel: 'Wikipedia pageviews',
+  },
+  {
+    id: 'wiki-suez',
+    label: 'Suez Canal — Wikipedia views',
+    unit: 'views/day',
+    source: 'wikipedia',
+    seriesId: 'Suez_Canal',
+    cadence: 'daily',
+    topicTags: ['suez', 'canal', 'egypt', 'chokepoint', 'ever given'],
+    defaultHighlight: 'max',
+    sourceLabel: 'Wikipedia pageviews',
+  },
+  {
+    id: 'wiki-quantum',
+    label: 'Quantum computing — Wikipedia views',
+    unit: 'views/day',
+    source: 'wikipedia',
+    seriesId: 'Quantum_computing',
+    cadence: 'daily',
+    topicTags: ['quantum computing', 'qubit', 'shors algorithm', 'post-quantum'],
+    defaultHighlight: 'max',
+    sourceLabel: 'Wikipedia pageviews',
   },
 ]
 
