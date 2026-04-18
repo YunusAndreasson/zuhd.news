@@ -46,7 +46,13 @@ export const ContextSheet = memo(function ContextSheet({
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
 
   const timeline = brief?.timeline ?? [];
-  const hasThread = !!threadLabel;
+  // Only show the big title for genuine multi-article threads. For single-
+  // article edu briefs the `threadLabel` upstream carries is just the
+  // article's own title — re-rendering it on top of the article page's
+  // title is redundant and reads as a confusing duplicate.
+  const isMultiArticleThread =
+    brief != null && brief.type !== 'edu' && (brief.articleCount ?? 1) > 1;
+  const hasThread = !!threadLabel && isMultiArticleThread;
 
   const mdStyles = useMemo(
     () => makeMarkdownStyles(colors, font, typography),
