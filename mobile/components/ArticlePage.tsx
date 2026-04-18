@@ -10,7 +10,7 @@ import Animated, {
   useReducedMotion,
 } from 'react-native-reanimated';
 import { COUNTRY_DATA } from '../constants/country-data';
-import { SPACING } from '../constants/theme';
+import { HIT_SLOP, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact, hapticTick } from '../lib/haptics';
@@ -172,13 +172,20 @@ export const ArticlePage = memo(function ArticlePage({
 
   // Inline source link — rendered as nested RN Text because it lives inside
   // a markdown-styled sentence composite, not as a standalone `<Text variant>`.
+  // `hitSlop` on inline <Text> with `onPress` expands the tap target around
+  // the small-caps word so it's comfortable to thumb at the end of the body.
   const sourceCount = article.sources.length;
   const sourcesTrailing = useMemo(() => {
     if (sourceCount === 0 || !onSourcesPress) return null;
     return (
       <Animated.Text style={textVariants.labelXs}>
         {'\u2002'}
-        <Animated.Text onPress={handleSourcesPress} style={{ color: colors.accent }}>
+        <Animated.Text
+          onPress={handleSourcesPress}
+          // @ts-expect-error — `hitSlop` on inline Text with onPress expands the tap target at runtime (RN docs) but isn't surfaced on TextProps
+          hitSlop={HIT_SLOP}
+          style={{ color: colors.accent }}
+        >
           {sourceCount === 1 ? 'source' : 'sources'}
         </Animated.Text>
       </Animated.Text>
