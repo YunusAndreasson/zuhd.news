@@ -219,11 +219,14 @@ else
   BODY_LENGTHS=$(node -e "
     const fs = require('fs');
     const lines = fs.readFileSync('/tmp/zuhd-new-articles.txt','utf8').trim().split('\n');
+    // Count visible characters only — markdown link markup (e.g. [Iran](country:IR))
+    // is invisible to readers, so it should not eat the 350-char budget.
+    const visible = s => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '\$1');
     for (const f of lines) {
       try {
         const txt = fs.readFileSync(f,'utf8');
         const body = txt.split('---').slice(2).join('---').trim();
-        const len = body.length;
+        const len = visible(body).length;
         const flag = len > 350 ? 'OVER' : 'ok';
         console.log(flag + ' ' + len + ' chars  ' + f);
       } catch {}

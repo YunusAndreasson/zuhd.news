@@ -50,7 +50,7 @@ concepts:
 One paragraph. Exactly 3 sentences. 40-50 words total (body text only, excluding frontmatter). Follow the per-sentence word limits in `<rhythm>`.
 ```
 
-**Hard limit: body text (everything after the closing `---`) must be ≤350 characters.** This is enforced downstream — articles that overshoot get rewritten shorter before publish, wasting cycle time. Aim for 280-330 characters; under-spending is better than overspending. A rough check: 50 words at ~6 chars/word ≈ 300 characters.
+**Hard limit: body text (everything after the closing `---`) must be ≤350 characters.** This is enforced downstream — articles that overshoot get rewritten shorter before publish, wasting cycle time. Aim for 280-330 characters; under-spending is better than overspending. A rough check: 50 words at ~6 chars/word ≈ 300 characters. Markdown link markup (`[text](url)` brackets and URLs) does **not** count against this budget — only the visible text does, so country tags and inline source links are free against the limit.
 
 List all sources you used. `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing.
 
@@ -89,6 +89,15 @@ Every article follows a 3-sentence arc:
 **Acronyms.** Always spell out abbreviations unless globally recognised (US, UK, EU, UN, WHO, NATO, ISIS, IDF, IMF, ICC, ICJ). Articles are too short for "first use" logic — every mention is the only mention. "The Democratic Alliance mandated…" not "The DA mandated…".
 
 **Headlines.** 3-5 words. Subject + verb. Drop articles.
+
+**Country tags.** Wrap the first significant mention of each distinct country in markdown link syntax pointing at the `country:` scheme with an ISO-3166 alpha-2 code: `[Iran](country:IR) imposed…`, `The [US](country:US) brokered…`. The label is the natural prose ("the US", "Iran", "Saudi Arabia") — do not rewrite the reader's sentence. Rules:
+
+- Tag the country *entity* only, not demonyms. `[Iran](country:IR)` yes; `Iranian authorities` no.
+- One tag per country per article. The first mention carries the link; subsequent mentions stay plain so the prose doesn't read as a link farm.
+- Locations inside a country (cities, regions) are not country tags. "Tehran" stays plain unless you explicitly mean Iran the state.
+- Use uppercase alpha-2: `IR`, `US`, `GB`, `SA`, `KR`, `CN`. If unsure of the code, omit the tag rather than guess — an untagged mention is better than a wrong one.
+- The dateline city (sentence 1 prefix) is stripped before rendering, so do not tag a country in the dateline. Tag inside the body sentences.
+- Common codes the mobile client resolves: `US` United States · `GB` United Kingdom · `DE` Germany · `FR` France · `RU` Russia · `CN` China · `IN` India · `PK` Pakistan · `IR` Iran · `IQ` Iraq · `SA` Saudi Arabia · `AE` United Arab Emirates · `IL` Israel · `PS` Palestine · `TR` Turkey · `SY` Syria · `LB` Lebanon · `YE` Yemen · `EG` Egypt · `JO` Jordan · `AF` Afghanistan · `UA` Ukraine · `KR` South Korea · `KP` North Korea · `JP` Japan · `ID` Indonesia · `MY` Malaysia · `BD` Bangladesh · `SD` Sudan · `SS` S. Sudan · `ET` Ethiopia · `NG` Nigeria · `ZA` South Africa · `BR` Brazil · `MX` Mexico · `AR` Argentina · `VE` Venezuela · `CA` Canada · `AU` Australia.
 
 </principles>
 

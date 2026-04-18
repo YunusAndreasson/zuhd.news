@@ -9,11 +9,13 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
+import { COUNTRY_DATA } from '../constants/country-data';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
-import { hapticImpact } from '../lib/haptics';
-import { makeMarkdownStyles, renderSentences } from '../lib/markdown';
+import { hapticImpact, hapticTick } from '../lib/haptics';
+import { displayNameFromCode } from '../lib/iso-country';
+import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
 import type { Article, Entity } from '../types';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
@@ -139,7 +141,26 @@ export const ArticlePage = memo(function ArticlePage({
     [colors, font, typography],
   );
 
-  const openLink = useOpenLink();
+  const rawOpenLink = useOpenLink();
+  // Intercept `country:XX` markdown links and dispatch them through the same
+  // TapResult-shaped callback that the globe's hit-tester uses, so the
+  // existing CountrySheet plumbing in app/index.tsx opens without a new
+  // prop chain. Anything else (http, mailto…) falls through to the browser.
+  const openLink = useCallback(
+    (url: string) => {
+      if (url.startsWith(COUNTRY_URL_SCHEME)) {
+        const cc = url.slice(COUNTRY_URL_SCHEME.length).toUpperCase();
+        const countryName = displayNameFromCode(cc);
+        if (!countryName || !onCountryPress) return;
+        const data = COUNTRY_DATA[countryName] ?? null;
+        hapticTick();
+        onCountryPress({ countryName, location: null, localTime: null, data });
+        return;
+      }
+      rawOpenLink(url);
+    },
+    [rawOpenLink, onCountryPress],
+  );
 
   const handleSourcesPress = useCallback(() => {
     onSourcesPress?.(article);

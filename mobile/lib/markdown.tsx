@@ -146,9 +146,21 @@ export interface MarkdownStyles {
   italic: TextStyle;
   boldItalic: TextStyle;
   link: TextStyle;
+  /** Inline country-mention links — `[Iran](country:IR)`. Styled as a quiet
+   *  reference (text color + dim dotted underline) so they read as semantic
+   *  enrichment in the prose, not hyperlinks competing for attention. Tap
+   *  dispatches to the same openLink callback; callers intercept the
+   *  `country:` scheme before hitting Linking. */
+  countryLink: TextStyle;
   entity: TextStyle;
   dateline: TextStyle;
 }
+
+/** URL scheme for tappable country mentions in article markdown.
+ *  Writers emit `[Label](country:XX)` where XX is an ISO-3166 alpha-2 code.
+ *  ArticlePage / ContextSheet intercept the scheme in their openLink wrappers
+ *  and open `CountrySheet` instead of routing to the OS browser. */
+export const COUNTRY_URL_SCHEME = 'country:';
 
 export function makeMarkdownStyles(
   colors: ColorPalette,
@@ -177,6 +189,16 @@ export function makeMarkdownStyles(
     link: {
       color: colors.accent,
       textDecorationLine: 'underline',
+    },
+    // Country mentions blend into body prose: same text color, dim dotted
+    // underline (iOS renders the decorationColor/Style; Android falls back
+    // to a text-color solid underline). Readers discover the tappable via
+    // the hairline cue rather than a web-link accent.
+    countryLink: {
+      color: colors.text,
+      textDecorationLine: 'underline',
+      textDecorationColor: colors.rule,
+      textDecorationStyle: 'dotted',
     },
     // Entity runs get the accent hue without underline — a softer affordance
     // than a link so that tappable rich nouns don't compete with inline URLs.
@@ -216,12 +238,18 @@ export function renderSegments(
             {seg.text}
           </Text>
         );
-      case 'link':
+      case 'link': {
+        const isCountry = seg.url?.startsWith(COUNTRY_URL_SCHEME);
         return (
-          <Text key={j} style={mdStyles.link} onPress={() => seg.url && openLink(seg.url)}>
+          <Text
+            key={j}
+            style={isCountry ? mdStyles.countryLink : mdStyles.link}
+            onPress={() => seg.url && openLink(seg.url)}
+          >
             {seg.text}
           </Text>
         );
+      }
       case 'entity': {
         const entity = seg.entity;
         const onPress = entity && onEntityPress ? () => onEntityPress(entity) : undefined;
