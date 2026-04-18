@@ -11808,5 +11808,336 @@
     "label": "Belarus & the Union State",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-17-ai-ewaste-global-south-gpu-disposal-ghana-pakistan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASEL LOOPHOLE",
+        "body": "The 1989 Basel Convention bans exporting hazardous waste from rich to poor countries. But functional used electronics are classified as 'donations' or 'second-hand goods,' not waste. Roughly 75% of containers arriving in Ghana labeled as used electronics are non-functional on arrival — legal fiction doing the work of illegal dumping."
+      },
+      {
+        "heading": "AGBOGBLOSHIE",
+        "body": "The Accra neighborhood became the world's largest e-waste site in the 2000s. Workers — many of them children — burn cable insulation over open fires to recover copper. Soil tests have found lead, cadmium, and dioxin concentrations hundreds of times above safe limits. The site was partially cleared in 2021; the trade simply dispersed."
+      },
+      {
+        "heading": "WHY GPUS ARE DIFFERENT",
+        "body": "A GPU contains gold, palladium, tantalum, and rare earths in concentrations higher than natural ore. One ton of discarded GPUs yields more gold than one ton of gold ore. This is why informal recovery exists — the economics are real. What is missing is the infrastructure to recover them without poisoning workers."
+      },
+      {
+        "heading": "THE REPLACEMENT CYCLE",
+        "body": "Hyperscale AI training refreshes GPU fleets roughly every 3-4 years, faster than the hardware's physical lifespan. The economic obsolescence is driven by energy efficiency gains per generation — a three-year-old GPU uses more electricity per FLOP than its replacement, so operators retire working hardware early."
+      },
+      {
+        "heading": "THE ACCOUNTING GAP",
+        "body": "Data center operators report Scope 1 and 2 emissions (direct operations, purchased electricity) but end-of-life hardware sits in Scope 3 — the category that is rarely audited. A decommissioned GPU shipped to Karachi disappears from the operator's balance sheet the moment it leaves the loading dock."
+      }
+    ],
+    "generatedAt": "2026-04-18T04:25:45.453Z",
+    "label": "E-Waste & the Global South",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-17-angie-craig-minnesota-senate-aipac-distancing-bundling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUNDLING MECHANISM",
+        "body": "AIPAC itself does not donate to candidates. Its affiliated PAC (United Democracy Project) and individual members bundle contributions — soliciting maxed-out individual checks and delivering them together. This is legal, disclosed, and far more effective than a single PAC donation because bundled money aggregates without triggering the contribution caps that limit PACs."
+      },
+      {
+        "heading": "THE UDP SUPERPAC",
+        "body": "United Democracy Project launched in 2022 as AIPAC's independent expenditure arm. It spent roughly $100 million in the 2024 cycle, making it one of the largest single-issue superPACs in American history. It operates primarily in Democratic primaries, where pro-Israel candidates face progressive challengers."
+      },
+      {
+        "heading": "THE PRIMARY TARGETING STRATEGY",
+        "body": "Since 2022, UDP has focused almost exclusively on Democratic primaries rather than general elections. The logic: in safe Democratic districts, the primary is the real race. Spending $5 million in a primary shapes who enters Congress more efficiently than spending $50 million against a Republican."
+      },
+      {
+        "heading": "WHY CANDIDATES DISTANCE THEMSELVES NOW",
+        "body": "Polling since 2023 shows a sharp generational split among Democratic voters on Israel. For candidates in purple states or facing progressive primaries, the bundled money is valuable but the public association is increasingly costly. Distancing without rejecting the money is the political threading of the needle."
+      },
+      {
+        "heading": "THE DISCLOSURE WINDOW",
+        "body": "Bundled contributions must be disclosed only if solicited by a registered lobbyist or lobbyist-PAC above $19,000 per six months. Most bundling falls outside this window. Tracing who organized which checks requires investigative journalism, not FEC filings."
+      }
+    ],
+    "generatedAt": "2026-04-18T04:25:45.454Z",
+    "label": "AIPAC & Campaign Finance",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-17-australia-green-hydrogen-offtake-renewable-superpower": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OFFTAKE PROBLEM",
+        "body": "Hydrogen projects require 15-20 year purchase agreements to finance. But no buyer wants to commit to green hydrogen at $6/kg when grey hydrogen costs $1.50/kg. Without subsidies on both ends — production and consumption — the contracts do not get signed, and the projects do not get built."
+      },
+      {
+        "heading": "WHY HYDROGEN IS HARD TO SHIP",
+        "body": "Hydrogen has the lowest volumetric energy density of any fuel. To ship it, you either liquefy it at -253°C (losing 30% of the energy) or convert it to ammonia (losing 15-25%). A hydrogen tanker delivers roughly one-third the energy of an LNG tanker of the same size. Geography that worked for iron ore does not work for hydrogen."
+      },
+      {
+        "heading": "THE COST-DOWN ASSUMPTION",
+        "body": "Australia's strategy assumed electrolyzer costs would fall the way solar panels did — 20% per doubling of capacity. They have not. Electrolyzer costs have been flat or rising since 2021 due to iridium scarcity for PEM systems and nickel volatility for alkaline ones. The learning curve stalled, and the business case stalled with it."
+      },
+      {
+        "heading": "THE SUPERPOWER THESIS",
+        "body": "Economist Ross Garnaut coined 'renewable superpower' in 2019: Australia's sun, wind, and land could turn it into an energy exporter on the scale of its coal and iron ore dominance. The thesis assumed global buyers would pay premiums for green molecules. Japan and Korea preferred to keep burning LNG, and Europe built its own wind capacity. The buyers did not materialize."
+      },
+      {
+        "heading": "THE MINERAL PIVOT",
+        "body": "As hydrogen faltered, Canberra shifted rhetoric to critical minerals — lithium, cobalt, rare earths. The problem is that Australia mines these but does not refine them. Raw concentrate ships to China for processing. Becoming a 'critical minerals superpower' without downstream capacity is the iron ore trap all over again."
+      }
+    ],
+    "generatedAt": "2026-04-18T04:25:45.454Z",
+    "label": "Green Hydrogen Economics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-17-grinex-crypto-exchange-15-million-hack-western-services": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GARANTEX REBRAND",
+        "body": "Garantex was sanctioned by OFAC in April 2022 for processing over $100 million in illicit crypto flows, much of it connected to ransomware. When exchanges are sanctioned, they rarely shut down — they rebrand. Grinex emerged in 2024 with overlapping wallets, staff, and customer base. This is the jurisdiction-arbitrage pattern: the exchange moves, the infrastructure remains."
+      },
+      {
+        "heading": "THE STABLECOIN DEPENDENCY",
+        "body": "Russian sanctioned exchanges run almost entirely on Tether (USDT), not Bitcoin. USDT offers dollar-denominated value without touching the US banking system. Tether the company is based in the British Virgin Islands and has been slow to freeze addresses — which is precisely why sanctioned actors prefer it over USDC, whose issuer Circle routinely complies with OFAC."
+      },
+      {
+        "heading": "WHY HACKS ARE HARD TO RECOVER",
+        "body": "Sanctioned exchanges cannot approach Western law enforcement. Chainalysis and TRM Labs can trace stolen funds through mixers, but the exchange cannot subpoena a US firm to freeze an address. The result: a $15 million theft from a sanctioned platform has fewer recovery options than a theft from a compliant one."
+      },
+      {
+        "heading": "THE MIXER PROBLEM",
+        "body": "Tornado Cash, sanctioned in August 2022, remains the dominant Ethereum mixer despite the OFAC designation. Because it is autonomous code on-chain, the sanction cannot turn it off — it can only criminalize interaction with it. Forensic firms can often cluster pre- and post-mixer addresses using timing and amount heuristics, but the evidentiary standard for recovery is much higher."
+      },
+      {
+        "heading": "THE INSIDER HYPOTHESIS",
+        "body": "Exchange hacks of this scale overwhelmingly involve privileged access — hot wallet keys, signing infrastructure, or staff credentials. External exploitation of a major exchange's custody stack is rare. For sanctioned platforms, the insider threat is compounded: staff cannot easily move to compliant exchanges, so grievances accumulate."
+      }
+    ],
+    "generatedAt": "2026-04-18T04:25:45.455Z",
+    "label": "Sanctioned Crypto & Forensic Tracing",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-17-sudan-khartoum-dengue-darfur-measles-rsf-defection": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY DENGUE RETURNS",
+        "body": "Dengue is carried by Aedes aegypti — a mosquito that breeds in clean, standing water. When water infrastructure collapses, households store water in open containers. Every barrel becomes a breeding site. Urban dengue is a disease of broken pipes, not of jungle."
+      },
+      {
+        "heading": "THE MEASLES MECHANICS",
+        "body": "Measles requires 95% population immunity to prevent outbreaks — the highest threshold of any vaccine-preventable disease. Sudan's routine immunization had reached roughly 85% pre-war. When cold chains break and vaccination campaigns stop, a single imported case can spark outbreaks that kill unvaccinated children within weeks."
+      },
+      {
+        "heading": "THE GEZIRA COLLAPSE",
+        "body": "Sudan's Gezira state, the agricultural heartland between the Blue and White Niles, fell to the RSF in December 2023. The canal system that irrigates 2.2 million acres stopped being maintained. Stagnant canals breed mosquitoes; failed harvests produce malnutrition; malnourished children die from infections that would otherwise survive. Each failure compounds the next."
+      },
+      {
+        "heading": "THE RSF'S ORIGINS",
+        "body": "The RSF evolved from the Janjaweed militias that carried out the Darfur genocide beginning in 2003. The Bashir regime armed Arab militias to fight non-Arab rebels, then formalized them as the Rapid Support Forces in 2013. Hemedti, a former camel trader from Darfur, rose from militia commander to the second most powerful man in Sudan — with troops loyal to him personally, not the state."
+      },
+      {
+        "heading": "THE WEAPONISATION OF STARVATION",
+        "body": "Both the SAF and RSF have systematically blocked humanitarian corridors. The SAF restricted cross-border aid from Chad; the RSF looted warehouses in Khartoum and Darfur. Starvation and disease are not side effects of the war — controlling food and water access is a military tactic, which is why the ICC has been urged to investigate it as a war crime."
+      },
+      {
+        "heading": "THE FORGOTTEN WAR",
+        "body": "Sudan's civil war has displaced over 12 million people — the largest displacement crisis on Earth. It receives a fraction of the international attention and funding directed at Ukraine or Gaza. Dengue and measles outbreaks that would trigger international emergency response elsewhere unfold here with minimal coverage."
+      }
+    ],
+    "generatedAt": "2026-04-18T04:25:45.455Z",
+    "label": "Disease in Wartime Sudan",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-18-bio-inspired-3d-printed-earthen-materials-cement-substitute": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CEMENT PROBLEM",
+        "body": "Producing one ton of Portland cement releases roughly 0.9 tons of CO2. Cement manufacturing accounts for 7-8% of global emissions — more than aviation and shipping combined. Roughly half of that CO2 comes from the chemistry itself: limestone (CaCO3) is heated to drive off carbon dioxide, leaving calcium oxide. The emissions are a product of the material, not the fuel."
+      },
+      {
+        "heading": "WHY EARTH WAS ABANDONED",
+        "body": "Humans built with rammed earth, adobe, and cob for 10,000 years. Great Mosque of Djenné, the walls of Shibam, the Alhambra's foundations — all earthen. Industrial concrete displaced these techniques in the 20th century because cement cured faster, supported taller structures, and was standardizable across continents. The tradeoff was energy intensity for speed and uniformity."
+      },
+      {
+        "heading": "THE BIO-INSPIRED INSIGHT",
+        "body": "Termite mounds, bird nests, and mollusk shells are built by organisms that cannot afford to smelt anything. They achieve structural strength through geometry — hierarchical pore networks, graded density, fiber reinforcement. 3D printing can replicate these structures at building scale, which unreinforced poured concrete cannot."
+      },
+      {
+        "heading": "THE MOISTURE CONSTRAINT",
+        "body": "Earthen materials fail in prolonged wet conditions. Traditional buildings solved this with deep roof overhangs and stone plinths — architectural features, not chemical additives. Modern earthen construction either accepts these constraints (and designs around them) or adds small amounts of stabilizers like lime, which reintroduces some carbon cost."
+      },
+      {
+        "heading": "THE STANDARDS GAP",
+        "body": "Building codes worldwide are written around Portland cement and steel. Earthen materials often lack standardized test protocols for seismic performance, fire rating, and load certification. The technology is ahead of the regulation, which is the usual reason decarbonized alternatives do not scale despite being technically viable."
+      }
+    ],
+    "generatedAt": "2026-04-18T04:25:45.455Z",
+    "label": "Earthen Construction & Cement's Carbon",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-18-iom-iran-war-refugees-pakistan-afghanistan-crossings": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE AFGHAN RETURN PATTERN",
+        "body": "Afghanistan has been a refugee-producing country since the 1979 Soviet invasion — but it also receives returns during crises elsewhere. Roughly 3 million Afghans lived in Iran pre-2025, many as undocumented laborers. When Iran becomes unsafe, these populations flow back to an Afghanistan already struggling to feed its own population. The Taliban government gains leverage through the influx, and loses capacity to absorb it."
+      },
+      {
+        "heading": "THE PAKISTAN BOTTLENECK",
+        "body": "Pakistan hosts roughly 1.3 million registered Afghan refugees and an estimated 1.5 million undocumented. Since late 2023, Islamabad has pursued forced returns of undocumented Afghans. A war in Iran creates reverse pressure — new Afghans fleeing toward Pakistan — that collides with the deportation policy already underway."
+      },
+      {
+        "heading": "WHY CROSSINGS CLUSTER",
+        "body": "The Iran-Afghanistan border runs 921 km, but only a handful of crossings (Islam Qala, Milak, Dogharoun) are formal. Informal crossings exist but charge smuggler fees of $200-500 per person — unaffordable for families fleeing with no notice. Surge displacement concentrates at formal points because crisis removes the option of paying the informal rate."
+      },
+      {
+        "heading": "THE IOM MANDATE",
+        "body": "The International Organization for Migration joined the UN system in 2016 after 65 years as an independent body. Unlike UNHCR, which handles refugees with legal protection status, IOM handles migrants — a broader, more politically flexible category. This lets IOM operate in places where recognizing 'refugees' would require host states to grant rights they do not want to grant."
+      },
+      {
+        "heading": "THE FUNDING ASYMMETRY",
+        "body": "UN appeals for Afghan and Iranian displacement are typically funded at 30-40% of requirements. The same scale of displacement in Ukraine received over 80% funding in 2022-2023. The gap is not about need — it is about donor geopolitics. Crises in allied populations draw money; crises in sanctioned or isolated populations do not."
+      }
+    ],
+    "generatedAt": "2026-04-18T04:25:45.455Z",
+    "label": "Forced Migration in West Asia",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-18-nexstar-tegna-merger-blocked-local-tv-consolidation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OWNERSHIP CAP",
+        "body": "FCC rules bar a single company from owning stations that collectively reach more than 39% of US households. The rule dates to 1985 and was meant to preserve a diversity of local voices. A Nexstar-Tegna merger would blow past the cap — which is why the deal required either an FCC waiver, a rule change, or creative corporate structuring."
+      },
+      {
+        "heading": "THE UHF DISCOUNT TRICK",
+        "body": "For decades the FCC applied a 'UHF discount' that counted stations on UHF frequencies as half a station for cap purposes — a rule made obsolete by digital broadcasting in 2009 but kept on the books. Trump's FCC restored it in 2017; it was reversed under Biden. Whether the discount applies decides whether consolidation happens, without Congress ever voting on the cap itself."
+      },
+      {
+        "heading": "WHY LOCAL TV STILL MATTERS",
+        "body": "Despite the cord-cutting narrative, roughly 70% of American households still get local TV through cable, satellite, or antenna. Local news is the most trusted news source in Americans' polling, above national networks and social media. Consolidation changes what 'local' means — Sinclair-style central scripting of 'local' anchors reading identical copy is the pattern regulators watch for."
+      },
+      {
+        "heading": "THE RETRANSMISSION CASH MACHINE",
+        "body": "Local stations negotiate retransmission fees with cable providers for the right to carry their signal. In the 2000s these fees were negligible; today they exceed $15 billion annually. The economics of owning local stations is no longer advertising — it is leverage over cable companies. A bigger station group has more leverage, which is why Nexstar wants Tegna."
+      },
+      {
+        "heading": "THE POLITICAL AD FLOOR",
+        "body": "Local broadcast stations in swing states collect 40-60% of all political ad spending during election years — a legally protected revenue stream because candidates must be offered the 'lowest unit rate.' This makes a station in Phoenix or Atlanta materially more valuable than one in a safe state. Consolidation concentrates control over a substantial chunk of campaign spending."
+      }
+    ],
+    "generatedAt": "2026-04-18T04:25:45.455Z",
+    "label": "Local TV & Media Consolidation",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-18-urban-park-cooling-design-day-night-canopy-concordia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HEAT ISLAND MECHANISM",
+        "body": "Cities run 2-8°C hotter than surrounding countryside. Asphalt and concrete have high thermal mass — they absorb solar energy by day and release it as infrared at night. Buildings create urban canyons that trap the re-radiated heat. The island is hottest not at noon but around sunset, when rural areas have already begun cooling."
+      },
+      {
+        "heading": "WHY NIGHT COOLING MATTERS MORE",
+        "body": "Heat mortality correlates more strongly with nighttime minimum temperatures than with daytime peaks. The body repairs itself during sleep when core temperature drops. When urban nights stay above roughly 25°C, cardiovascular systems never fully recover from the day's heat load. This is why heat waves kill on day three or four, not day one."
+      },
+      {
+        "heading": "THE CANOPY TRADEOFF",
+        "body": "Dense tree canopy provides shade — the most powerful daytime cooling mechanism, because it blocks solar radiation before it hits surfaces. But the same canopy traps longwave radiation at night, slowing the park's cooling. A park optimized for midday is suboptimal for overnight heat relief, and vice versa."
+      },
+      {
+        "heading": "THE EVAPOTRANSPIRATION ENGINE",
+        "body": "A mature tree evaporates 150-300 liters of water per day. That phase change from liquid to vapor absorbs roughly 600 watts per square meter of latent heat — comparable to a small air conditioner running continuously. This is why parks cool more effectively than painted-white surfaces of the same area: active cooling from water, not just reflected sunlight."
+      },
+      {
+        "heading": "THE DESIGN INSIGHT",
+        "body": "Open grassland cools faster overnight than closed canopy because radiation escapes unimpeded to the sky. The most effective park layout combines clustered trees for daytime shade with open meadows for nighttime radiative cooling. Monoculture forests and monoculture lawns both underperform this mixed pattern."
+      }
+    ],
+    "generatedAt": "2026-04-18T04:25:45.455Z",
+    "label": "Urban Heat Islands & Park Design",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-18-us-iran-talks-islamabad-pakistan-mediator-nuclear": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 1971 PRECEDENT",
+        "body": "Pakistan mediated the secret opening between the US and China in 1971. Kissinger flew to Beijing from Islamabad on a Pakistani International Airlines plane, with Pakistani officials providing diplomatic cover. Islamabad's geographic position between hostile powers has made it a back-channel broker for over fifty years."
+      },
+      {
+        "heading": "WHY ISLAMABAD AND NOT DOHA",
+        "body": "Qatar has mediated US-Iran talks since the Obama administration, but Doha's utility is limited when talks must survive active conflict. Pakistan borders Iran, shares a long-running intelligence relationship with Tehran on Baluch militancy, and maintains a functional military-to-military channel with Washington. Geography and institutional relationships that Doha cannot replicate."
+      },
+      {
+        "heading": "THE SUNNI-SHIA DIPLOMATIC BRIDGE",
+        "body": "Pakistan is the only Sunni-majority nuclear power, with the second-largest Shia population in the world after Iran. This sectarian composition forces Islamabad to maintain working relationships across the Sunni-Shia divide that pure Gulf monarchies cannot. It makes Pakistan uniquely positioned to host talks that touch Iran's regional role."
+      },
+      {
+        "heading": "THE NUCLEAR DIMENSION",
+        "body": "Saudi Arabia funded Pakistan's nuclear weapons program through the 1970s-80s. The unspoken expectation — never confirmed, never denied — is that Pakistan would extend a nuclear umbrella if Saudi Arabia faced an existential threat. When Iran negotiates in Islamabad, it negotiates in the capital of a state linked to Riyadh's ultimate deterrent."
+      },
+      {
+        "heading": "THE JCPOA SKELETON",
+        "body": "The 2015 Joint Comprehensive Plan of Action limited Iran's uranium enrichment to 3.67% — reactor-grade, not weapons-grade — in exchange for sanctions relief. The US withdrew in 2018. Iran now enriches at 60% and has the material for multiple weapons if it chose to weaponize. Any new agreement must negotiate down from a far worse baseline than 2015."
+      },
+      {
+        "heading": "THE VERIFICATION QUESTION",
+        "body": "The IAEA's ability to inspect Iranian facilities has deteriorated since 2021. Cameras were removed, surveillance data lost, undeclared particles detected. Even if a political deal is reached, re-establishing verification requires months of technical work — which is the part of diplomacy that does not photograph well and rarely makes headlines."
+      }
+    ],
+    "generatedAt": "2026-04-18T04:25:45.455Z",
+    "label": "Pakistan's Mediator Role",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-18-us-russia-oil-waiver-renewed-iran-war-bessent-contradiction": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE G7 PRICE CAP",
+        "body": "Since December 2022, Western insurers and shippers can handle Russian oil only if it sells below a ceiling (initially $60/barrel). The goal was to keep Russian oil flowing — avoiding a supply shock — while capping Moscow's revenue. It created a two-tier market: discounted Russian crude for buyers like India and China, full price for everyone else."
+      },
+      {
+        "heading": "WHY WAIVERS EXIST",
+        "body": "General licenses are carve-outs that permit specific transactions otherwise blocked by sanctions. They exist because the Treasury knows sanctions have collateral effects — agriculture inputs, humanitarian supplies, energy to allied countries. Renewing a waiver is an admission that the sanction would cause more harm than benefit if fully enforced."
+      },
+      {
+        "heading": "THE SHADOW FLEET",
+        "body": "Russia assembled roughly 600 aging tankers — registered in Gabon, Cameroon, or nowhere verifiable — to move oil outside the price cap system. These ships use unknown insurance, spoof AIS transponders, and transfer cargo ship-to-ship in the Mediterranean. The cap's enforcement power is far narrower than its rhetorical scope."
+      },
+      {
+        "heading": "THE IRAN-RUSSIA CONTRADICTION",
+        "body": "Sanctioning Iranian oil while permitting Russian oil requires a distinction without a physical difference. Both flow primarily to India and China. Both transit via sanctions-evading intermediaries. The political logic — Iran is adversary, Russia is 'managed adversary' — is not reflected in market behavior, and traders arbitrage the inconsistency."
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "One-fifth of the world's oil passes through the Strait of Hormuz. Another 3 million barrels per day move through Russia's Baltic ports near St. Petersburg. Knock out either chokepoint and global spare capacity evaporates within weeks. This is the structural reason neither Iranian nor Russian oil has been fully sanctioned — the market cannot absorb the loss of both."
+      },
+      {
+        "heading": "THE DOLLAR DIMENSION",
+        "body": "Oil sanctions work because oil is traded in dollars, and dollar transactions clear through US correspondent banks. When India pays Russia in rupees, or China pays Iran in yuan, the sanctions lose traction. Each major waiver renewal quietly reflects the Treasury's awareness that pushing harder accelerates the exact de-dollarization Washington wants to prevent."
+      }
+    ],
+    "generatedAt": "2026-04-18T04:25:45.455Z",
+    "label": "Oil Sanctions & the Price Cap",
+    "category": "economy",
+    "articleCount": 1
   }
 }
