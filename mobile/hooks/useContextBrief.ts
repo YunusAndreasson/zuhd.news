@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { API_BASE } from '../constants/theme';
-import { fetchWithTimeout } from '../lib/fetch';
+import { fetchJson } from '../lib/fetchJson';
 import { isContextBrief, parseArticleBlocks } from '../lib/validate';
 import type { ContextBrief } from '../types';
 
@@ -58,12 +58,9 @@ export function useContextBrief(): ContextBriefState {
     setLoading(true);
 
     try {
-      const res = await fetchWithTimeout(`${API_BASE}/api/context/${threadId}.json`, 5000, {
+      const raw = await fetchJson(`${API_BASE}/api/context/${threadId}.json`, isContextBrief, {
         signal: controller.signal,
       });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const raw: unknown = await res.json();
-      if (!isContextBrief(raw)) throw new Error('Malformed context brief');
       const normalized = normalizeBrief(raw);
       if (cache.size >= MAX_CACHE) {
         const oldest = cache.keys().next().value;

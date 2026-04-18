@@ -47,7 +47,28 @@ import { BLACK } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { displayLocation } from '../../lib/place-names';
 import type { Article, Chokepoint, HeatmapPoint } from '../../types';
-import { CITY_TZ, COUNTRY_OVERRIDES, COUNTRY_TZ, SOURCE_COORDS } from './coordinates';
+import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from './coordinates';
+import { HISTORICAL_EVENTS } from './historicalEvents';
+import { ISLAMIC_PLACES } from './islamicPlaces';
+import {
+  ANTARCTIC_CIRCLE,
+  ARCTIC_CIRCLE,
+  clipAngleForCountry,
+  DECAY_LAMBDA,
+  findCountry,
+  formatLocalTime,
+  getMoonPhase,
+  getSunPosition,
+  HALF_PI,
+  invalidateSunCaches,
+  isNear,
+  MAKKAH,
+  NORTH_POLE,
+  PLACES_APPEAR_CLIP,
+  PLACES_FULL_CLIP,
+  SOUTH_POLE,
+  withAlpha,
+} from './projection';
 import {
   bordersMesh,
   countries,
@@ -57,13 +78,6 @@ import {
   land,
 } from './shared';
 import { getCoords } from './storyDots';
-
-/** Squared-distance hit test */
-function isNear(x: number, y: number, px: number, py: number, r2: number): boolean {
-  const dx = x - px;
-  const dy = y - py;
-  return dx * dx + dy * dy <= r2;
-}
 
 interface GlowLayer {
   r: number;
@@ -104,22 +118,9 @@ const graticuleLines = geoGraticule()
   // meridians + parallels every 30°
 );
 
-const NORTH_POLE: [number, number] = [0, 90];
-const SOUTH_POLE: [number, number] = [0, -90];
-const ARCTIC_CIRCLE = geoCircle().center(NORTH_POLE).radius(23.44)();
-const ANTARCTIC_CIRCLE = geoCircle().center(SOUTH_POLE).radius(23.44)();
-const HALF_PI = Math.PI / 2;
-const DECAY_LAMBDA = Math.LN2 / 18; // 18h half-life
 const PULSE_EASING = Easing.out(Easing.cubic);
-
 const ZOOM_EASING = Easing.inOut(Easing.cubic);
 const ZOOM_DURATION = 260;
-
-/** Append an alpha channel to a hex color. a ∈ [0, 1]. Clamped. */
-function withAlpha(hex: string, a: number): string {
-  const byte = Math.round(Math.min(1, Math.max(0, a)) * 255);
-  return `${hex}${byte.toString(16).padStart(2, '0')}`;
-}
 
 const MAKKAH_GLOW_LAYERS: GlowLayer[] = [
   { r: 12, opacity: 0.03, blur: 8 },
@@ -155,106 +156,6 @@ const GHOST_DEDUPE_PX2 = 900; // 30px²
 const CHOKEPOINT_DISRUPTED_DELTA = 0.15;
 const CHOKEPOINT_SATURATION_DELTA = 0.3;
 
-// Makkah — [lng, lat] for d3-geo (qibla direction reference)
-const MAKKAH = {
-  coords: [39.83, 21.42] as [number, number],
-  name: 'Makkah',
-};
-
-// Moon phase — synodic period from known new moon
-const SYNODIC = 29.53059;
-const KNOWN_NEW_MOON = Date.UTC(2025, 0, 29, 12, 36); // Jan 29, 2025 12:36 UTC
-
-function getMoonPhase(): number {
-  const days = (Date.now() - KNOWN_NEW_MOON) / 86400000;
-  return (((days % SYNODIC) + SYNODIC) % SYNODIC) / SYNODIC; // 0 = new, 0.5 = full
-}
-
-// Sun position from UTC time (cached 60s)
-let cachedSunPos: [number, number] = [0, 0];
-let sunPosTs = 0;
-/** Bust sun/night caches so the next call recalculates immediately. */
-function invalidateSunCaches() {
-  sunPosTs = 0;
-}
-function getSunPosition(): [number, number] {
-  const now = Date.now();
-  if (now - sunPosTs < 60000) return cachedSunPos;
-  sunPosTs = now;
-  const d = new Date(now);
-  const dayOfYear = Math.floor((now - Date.UTC(d.getUTCFullYear(), 0, 1)) / 86400000);
-  const declination = -23.44 * Math.cos((2 * Math.PI * (dayOfYear + 10)) / 365);
-  const hourAngle = ((d.getUTCHours() + d.getUTCMinutes() / 60) / 24) * 360 - 180;
-  cachedSunPos = [-hourAngle, declination];
-  return cachedSunPos;
-}
-
-// Night check — is the sun below the horizon at the user's approximate location?
-// Uses timezone offset for longitude, 25°N as latitude proxy (primary audience band).
-// Cached 60s (matches sun position cache).
-const localTimeCache = new Map<string, { ts: number; value: string }>();
-function formatLocalTime(tz: string): string | null {
-  const now = Date.now();
-  const cached = localTimeCache.get(tz);
-  if (cached && now - cached.ts < 30_000) return cached.value;
-  try {
-    const value = new Date(now).toLocaleTimeString('en-GB', {
-      timeZone: tz,
-      hour: '2-digit',
-      minute: '2-digit',
-    });
-    localTimeCache.set(tz, { ts: now, value });
-    return value;
-  } catch {
-    return null;
-  }
-}
-
-// Nudge offsets for coastal/border coordinate fallback (0.1° ≈ 11km)
-const NUDGES: [number, number][] = [
-  [0, 0],
-  [0.1, 0],
-  [-0.1, 0],
-  [0, 0.1],
-  [0, -0.1],
-  [0.1, 0.1],
-  [-0.1, 0.1],
-  [0.1, -0.1],
-  [-0.1, -0.1],
-  [0.2, 0],
-  [-0.2, 0],
-  [0, 0.2],
-  [0, -0.2],
-  [0.3, 0],
-  [-0.3, 0],
-  [0, 0.3],
-  [0, -0.3],
-];
-
-function findCountry(lat: number, lng: number, location?: string | null): GeoJSON.Feature | null {
-  // Check manual overrides first
-  if (location) {
-    const override = COUNTRY_OVERRIDES[location.toLowerCase()];
-    if (override) {
-      return countries.features.find((f) => f.properties?.name === override) ?? null;
-    }
-  }
-  for (const [dlat, dlng] of NUDGES) {
-    const ptLng = lng + dlng;
-    const ptLat = lat + dlat;
-    const pt: [number, number] = [ptLng, ptLat];
-    for (let i = 0; i < countries.features.length; i++) {
-      const bbox = countryBboxes[i];
-      const feat = countries.features[i];
-      if (!bbox || !feat) continue;
-      const [minLng, minLat, maxLng, maxLat] = bbox;
-      if (ptLng < minLng || ptLng > maxLng || ptLat < minLat || ptLat > maxLat) continue;
-      if (geoContains(feat, pt)) return feat;
-    }
-  }
-  return null;
-}
-
 export interface TapResult {
   countryName: string;
   location: string | null;
@@ -265,6 +166,12 @@ export interface TapResult {
   /** Set when the tap landed on an ambient chokepoint ring. The parent
    *  resolves the ID to the full Chokepoint payload and opens ChokepointSheet. */
   chokepointId?: string;
+  /** Set when the tap landed on an Islamic-geography marker. The parent
+   *  resolves the ID via ISLAMIC_PLACES_BY_ID and shows a toast. */
+  islamicPlaceId?: string;
+  /** Set when the tap landed on a historical-event cross. The parent
+   *  resolves the ID via HISTORICAL_EVENTS_BY_ID and shows a toast. */
+  historicalEventId?: string;
 }
 
 export interface MiniGlobeRef {
@@ -335,6 +242,27 @@ interface GlobeState {
     label: string;
     intensity: number;
     disrupted: boolean;
+  }[];
+  /** Islamic-geography markers — historically significant places surfaced
+   *  only when the camera is zoomed past the adaptive range.
+   *  `opacity` already folds in the per-frame fade factor. */
+  islamicPlaces: {
+    x: number;
+    y: number;
+    id: string;
+    name: string;
+    opacity: number;
+  }[];
+  /** Historical-event markers — one-time inflections (battles, declarations,
+   *  revolutions) drawn with a cross glyph and year label so they read as
+   *  a distinct layer from the places above. Same zoom gate. */
+  historicalEvents: {
+    x: number;
+    y: number;
+    id: string;
+    name: string;
+    year: string;
+    opacity: number;
   }[];
 }
 
@@ -440,20 +368,9 @@ const EMPTY_GLOBE: GlobeState = {
   makkah: null,
   hotspotGlows: [],
   chokepoints: [],
+  islamicPlaces: [],
+  historicalEvents: [],
 };
-
-/** Clip angle for a country's spherical area — smaller countries get tighter clip (more zoom). */
-function clipAngleForArea(area: number): number {
-  if (area < 0.002) return 25;
-  if (area < 0.03) return 25 + ((area - 0.002) / (0.03 - 0.002)) * 65;
-  return 90;
-}
-
-/** Clip angle for a country name. */
-function clipAngleForCountry(countryName: string | null): number {
-  const area = countryName ? (countryAreas[countryName] ?? 1) : 1;
-  return clipAngleForArea(area);
-}
 
 /** Pure projection — creates fresh Skia paths, no shared mutable state. */
 function projectInitial(
@@ -566,6 +483,8 @@ function projectInitial(
     makkah,
     hotspotGlows: [],
     chokepoints: [],
+    islamicPlaces: [],
+    historicalEvents: [],
   };
 }
 
@@ -1057,6 +976,45 @@ export const MiniGlobe = memo(function MiniGlobe({
         });
       }
 
+      // Islamic-geography overlay — gated on clipAngle so it only appears
+      // once the camera is genuinely zoomed. Fade factor is linear across
+      // the [PLACES_APPEAR_CLIP, PLACES_FULL_CLIP] band; outside the band
+      // we skip the loop entirely so there's zero cost at 1× / 0.5×.
+      const placeMarks: GlobeState['islamicPlaces'] = [];
+      const eventMarks: GlobeState['historicalEvents'] = [];
+      if (clipAngle < PLACES_APPEAR_CLIP) {
+        const span = PLACES_APPEAR_CLIP - PLACES_FULL_CLIP;
+        const placeOpacity = Math.min(1, Math.max(0, (PLACES_APPEAR_CLIP - clipAngle) / span));
+        for (const place of ISLAMIC_PLACES) {
+          if (geoDistance(place.coords, cameraCoords) >= HALF_PI) continue;
+          const pt = proj(place.coords);
+          if (!pt) continue;
+          placeMarks.push({
+            x: pt[0],
+            y: pt[1],
+            id: place.id,
+            name: place.name,
+            opacity: placeOpacity,
+          });
+        }
+        // Historical events share the same zoom gate and fade. Separate
+        // loop (not merged with places) so the render layer stays simple
+        // and so the event glyph/label can differ visually.
+        for (const ev of HISTORICAL_EVENTS) {
+          if (geoDistance(ev.coords, cameraCoords) >= HALF_PI) continue;
+          const pt = proj(ev.coords);
+          if (!pt) continue;
+          eventMarks.push({
+            x: pt[0],
+            y: pt[1],
+            id: ev.id,
+            name: ev.name,
+            year: ev.year,
+            opacity: placeOpacity,
+          });
+        }
+      }
+
       setState({
         landPath,
         bordersPath,
@@ -1076,6 +1034,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         makkah,
         hotspotGlows,
         chokepoints: chokepointMarks,
+        islamicPlaces: placeMarks,
+        historicalEvents: eventMarks,
       });
     },
     [],
@@ -1342,6 +1302,38 @@ export const MiniGlobe = memo(function MiniGlobe({
             localTime: null,
             data: null,
             chokepointId: c.id,
+          };
+        }
+      }
+
+      // Islamic-geography markers — small glyph + label. Use a 30px tap
+      // zone (900 px²) — tight enough not to steal taps from nearby
+      // chokepoints or the story dot, wide enough to catch the tiny ring
+      // plus its label below.
+      for (const p of state.islamicPlaces) {
+        if (isNear(x, y, p.x, p.y, 900)) {
+          return {
+            countryName: '',
+            location: null,
+            localTime: null,
+            data: null,
+            islamicPlaceId: p.id,
+          };
+        }
+      }
+
+      // Historical events — same 30px tap zone as places. Checked after
+      // places so a tight coincidence (e.g. 'Ayn Jalut ~90km from Al-Aqsa)
+      // resolves to whichever marker the user landed nearer to first in
+      // iteration order, while keeping both independently tappable.
+      for (const e of state.historicalEvents) {
+        if (isNear(x, y, e.x, e.y, 900)) {
+          return {
+            countryName: '',
+            location: null,
+            localTime: null,
+            data: null,
+            historicalEventId: e.id,
           };
         }
       }
@@ -1678,6 +1670,68 @@ export const MiniGlobe = memo(function MiniGlobe({
           </Group>
         );
       })}
+
+      {/* Historical events — one-time inflections (Tours, Manzikert, Suez,
+          Partition…). Cross glyph + year·name label ABOVE the point so
+          events and places can sit close without their labels colliding. */}
+      {state.historicalEvents.map((e) => (
+        <Group key={e.id}>
+          <Rect
+            x={e.x - 3}
+            y={e.y - 0.4}
+            width={6}
+            height={0.8}
+            color={colors.dome}
+            opacity={0.75 * e.opacity}
+          />
+          <Rect
+            x={e.x - 0.4}
+            y={e.y - 3}
+            width={0.8}
+            height={6}
+            color={colors.dome}
+            opacity={0.75 * e.opacity}
+          />
+          {subFont && (
+            <SkiaText
+              x={e.x - (e.year.length + e.name.length + 3) * 1.8}
+              y={e.y - 6}
+              text={`${e.year} · ${e.name}`}
+              font={subFont}
+              color={colors.dome}
+              opacity={0.7 * e.opacity}
+            />
+          )}
+        </Group>
+      ))}
+
+      {/* Islamic geography — historical landmarks (Medina, Al-Aqsa, Baghdad,
+          Cordoba, Samarkand…). Surfaces only at 2×/3× so the default view
+          stays quiet. Tiny ring + Latin label; sourced in islamicPlaces.ts. */}
+      {state.islamicPlaces.map((p) => (
+        <Group key={p.id}>
+          <Circle
+            cx={p.x}
+            cy={p.y}
+            r={2.5}
+            color={colors.accent}
+            opacity={0.7 * p.opacity}
+            style="stroke"
+            strokeWidth={0.8}
+          />
+          <Circle cx={p.x} cy={p.y} r={0.8} color={colors.accent} opacity={0.9 * p.opacity} />
+          {subFont && (
+            <SkiaText
+              x={p.x - p.name.length * 2.2}
+              y={p.y - 6}
+              text={p.name}
+              font={subFont}
+              color={colors.textSecondary}
+              opacity={0.7 * p.opacity}
+            />
+          )}
+        </Group>
+      ))}
 
       {/* Country highlight — opacity scales with area so small nations pop */}
       {state.countryPath && (

@@ -1,12 +1,14 @@
 import { startTransition, useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
 import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
 import { flushBookmarks } from '../lib/bookmark-store';
-import { readFeedCache, writeFeedCache } from '../lib/feed-cache';
-import { fetchWithTimeout } from '../lib/fetch';
+import { fetchJson } from '../lib/fetchJson';
+import { createJsonCache } from '../lib/json-cache';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import { isFeedResponse, isMetaResponse } from '../lib/validate';
 import type { Article, Category, FeedResponse } from '../types';
 import { useAppResume } from './useAppResume';
+
+const feedCache = createJsonCache<FeedResponse>('zuhd-feed.json', isFeedResponse);
 
 type GroupedArticles = Record<Category, Article[]>;
 
@@ -82,13 +84,13 @@ export function useArticles(): ArticlesState {
   });
 
   const fetchFeed = useEffectEvent(async (): Promise<number> => {
-    const res = await fetchWithTimeout(`${API_BASE}/api/feed.json`, 10000, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const raw: unknown = await res.json();
-    if (!isFeedResponse(raw)) throw new Error('Malformed feed response');
+    const raw = await fetchJson(`${API_BASE}/api/feed.json`, isFeedResponse, {
+      timeoutMs: 10000,
+      cache: 'no-store',
+    });
     const addedCount = applyFeed(raw);
     try {
-      writeFeedCache(raw);
+      feedCache.write(raw);
     } catch {}
     return addedCount;
   });
@@ -96,15 +98,12 @@ export function useArticles(): ArticlesState {
   const hasNewContent = useEffectEvent(async (): Promise<boolean> => {
     if (!lastGeneratedRef.current) return true;
     try {
-      const res = await fetchWithTimeout(`${API_BASE}/api/meta.json`, 5000, {
+      const meta = await fetchJson(`${API_BASE}/api/meta.json`, isMetaResponse, {
         cache: 'no-store',
       });
-      if (!res.ok) return false; // network issue — cached data is fine
-      const meta: unknown = await res.json();
-      if (!isMetaResponse(meta)) return false;
       return meta.generated !== lastGeneratedRef.current;
     } catch {
-      return false; // network error — don't trigger a doomed fetchFeed
+      return false; // network error or malformed meta — cached data is fine
     }
   });
 
@@ -112,7 +111,7 @@ export function useArticles(): ArticlesState {
   useEffect(() => {
     (async () => {
       // Try disk cache first
-      const cached = await readFeedCache();
+      const cached = await feedCache.read();
       if (cached) {
         applyFeed(cached, true);
         setLoading(false);

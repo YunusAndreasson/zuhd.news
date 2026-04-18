@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
-import { fetchWithTimeout } from '../lib/fetch';
-import { readHeatmapCache, writeHeatmapCache } from '../lib/heatmap-cache';
-import { isHeatmapResponse } from '../lib/validate';
+import { fetchJson } from '../lib/fetchJson';
+import { createJsonCache } from '../lib/json-cache';
+import { type HeatmapResponse, isHeatmapResponse } from '../lib/validate';
 import type { HeatmapPoint } from '../types';
 import { useAppResume } from './useAppResume';
+
+const heatmapCache = createJsonCache<HeatmapResponse>('zuhd-heatmap.json', isHeatmapResponse);
 
 export function useHeatmap(feedGenerated: string | null): HeatmapPoint[] {
   const [points, setPoints] = useState<HeatmapPoint[]>([]);
@@ -12,16 +14,14 @@ export function useHeatmap(feedGenerated: string | null): HeatmapPoint[] {
 
   const fetchHeatmap = useCallback(async () => {
     try {
-      const res = await fetchWithTimeout(`${API_BASE}/api/heatmap.json`, 8000, {
+      const raw = await fetchJson(`${API_BASE}/api/heatmap.json`, isHeatmapResponse, {
+        timeoutMs: 8000,
         cache: 'no-store',
       });
-      if (!res.ok) return;
-      const raw: unknown = await res.json();
-      if (!isHeatmapResponse(raw)) return;
       lastGenRef.current = raw.generated;
       setPoints(raw.points);
       try {
-        writeHeatmapCache(raw);
+        heatmapCache.write(raw);
       } catch {}
     } catch {}
   }, []);
@@ -32,7 +32,7 @@ export function useHeatmap(feedGenerated: string | null): HeatmapPoint[] {
     if (didInitialFetch.current) return;
     didInitialFetch.current = true;
     (async () => {
-      const cached = await readHeatmapCache();
+      const cached = await heatmapCache.read();
       if (cached) {
         lastGenRef.current = cached.generated;
         setPoints(cached.points);

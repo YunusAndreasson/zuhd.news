@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { API_BASE } from '../constants/theme';
-import { fetchWithTimeout } from '../lib/fetch';
+import { fetchJson } from '../lib/fetchJson';
 import { isChokepointSnapshot } from '../lib/validate';
 import type { Chokepoint } from '../types';
 
@@ -14,19 +14,15 @@ export function useChokepoints(): { chokepoints: Chokepoint[] } {
   useEffect(() => {
     const controller = new AbortController();
     let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetchWithTimeout(`${API_BASE}/api/chokepoints.json`, 5000, {
-          signal: controller.signal,
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const raw: unknown = await res.json();
-        if (!isChokepointSnapshot(raw)) throw new Error('Malformed chokepoint snapshot');
-        if (!cancelled) setChokepoints(raw.chokepoints);
-      } catch {
+    fetchJson(`${API_BASE}/api/chokepoints.json`, isChokepointSnapshot, {
+      signal: controller.signal,
+    })
+      .then((snapshot) => {
+        if (!cancelled) setChokepoints(snapshot.chokepoints);
+      })
+      .catch(() => {
         // Silent — an empty chokepoint list is a valid render path.
-      }
-    })();
+      });
     return () => {
       cancelled = true;
       controller.abort();

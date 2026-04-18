@@ -1,6 +1,7 @@
-import { Dimensions, Platform, StyleSheet, type TextStyle } from 'react-native';
+import { Dimensions, StyleSheet, type TextStyle } from 'react-native';
 import { Easing } from 'react-native-reanimated';
 import type { Category } from '../types';
+import { ANDROID_TEXT_BASE } from './platform';
 
 // ---------------------------------------------------------------------------
 // Preference types
@@ -289,17 +290,13 @@ export const PRESSED_STYLE = {
   transform: [{ scale: PRESS_SCALE }],
 } as const;
 
-/** Android-specific base: remove extra padding above/below text for consistent rhythm */
-const androidTextBase: TextStyle =
-  Platform.OS === 'android' ? { includeFontPadding: false, textAlignVertical: 'center' } : {};
-
 /** Build reusable text style bases from resolved theme values */
 export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: Typography) {
   return {
     /** Sheet titles — largest small-caps tier (17pt) */
     sheetTitle: {
       ...font.smallCaps,
-      ...androidTextBase,
+      ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
       letterSpacing: typography.trackingCaps,
@@ -308,7 +305,7 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
     /** Section labels — mid small-caps tier (13pt) */
     smallCaps: {
       ...font.smallCaps,
-      ...androidTextBase,
+      ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeSm,
       lineHeight: typography.sizeSm * typography.leadingBody,
       letterSpacing: typography.trackingCaps,
@@ -317,7 +314,7 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
     /** Metadata — smallest small-caps tier (11pt) */
     smallCapsXs: {
       ...font.smallCaps,
-      ...androidTextBase,
+      ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeXs,
       lineHeight: typography.sizeXs * typography.leadingBody,
       letterSpacing: typography.trackingCaps,
@@ -330,7 +327,7 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
     } as TextStyle,
     body: {
       ...font.regular,
-      ...androidTextBase,
+      ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
       fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
@@ -339,7 +336,7 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
     /** Category/section labels — largest small-caps tier (17pt) */
     smallCapsBase: {
       ...font.smallCaps,
-      ...androidTextBase,
+      ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
       letterSpacing: typography.trackingCaps,
@@ -348,7 +345,7 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
     /** Italic section headings — e.g. source coverage framing */
     sectionHeading: {
       ...font.italic,
-      ...androidTextBase,
+      ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeSm,
       lineHeight: typography.sizeSm * typography.leadingBody,
       color: colors.accent,

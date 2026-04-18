@@ -1,6 +1,7 @@
 import * as WebBrowser from 'expo-web-browser';
 import type { ReactNode } from 'react';
-import { Platform, StyleSheet, Text, type TextStyle } from 'react-native';
+import { StyleSheet, Text, type TextStyle } from 'react-native';
+import { ANDROID_TEXT_BASE } from '../constants/platform';
 import {
   type ColorPalette,
   type FontSet,
@@ -93,14 +94,10 @@ export function makeMarkdownStyles(
   font: FontSet,
   typography: Typography,
 ): MarkdownStyles {
-  const androidBase =
-    Platform.OS === 'android'
-      ? { includeFontPadding: false as const, textAlignVertical: 'center' as const }
-      : {};
   return StyleSheet.create({
     sentence: {
       ...font.regular,
-      ...androidBase,
+      ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
       color: colors.text,

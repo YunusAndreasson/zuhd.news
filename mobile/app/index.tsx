@@ -28,6 +28,8 @@ import { ChokepointSheet } from '../components/ChokepointSheet';
 import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
 import { ErrorState } from '../components/ErrorState';
+import { HISTORICAL_EVENTS_BY_ID } from '../components/globe/historicalEvents';
+import { ISLAMIC_PLACES_BY_ID } from '../components/globe/islamicPlaces';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { MenuSheet } from '../components/MenuSheet';
 import { SourcesSheet } from '../components/SourcesSheet';
@@ -41,26 +43,32 @@ import { useHeatmap } from '../hooks/useHeatmap';
 import { useTheme } from '../hooks/useTheme';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
-import { clear as clearPendingSlug, get as getPendingSlug } from '../lib/pending-notification';
 import type { Article, ArticleSource, Category, Chokepoint } from '../types';
+import { usePendingNotification } from './_hooks/usePendingNotification';
+import { useZoomCycle } from './_hooks/useZoomCycle';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
-// Cycling zoom levels. `clip === null` defers to the scroll-adaptive
-// projection; numeric values force that clip angle (lower = more zoom).
-// Order below is the cycle order when tapping the pill.
-const ZOOM_LEVELS: { label: string; clip: number | null }[] = [
-  { label: '1×', clip: null },
-  { label: '2×', clip: 15 },
-  { label: '3×', clip: 8 },
-  { label: '0.5×', clip: 90 },
-];
-const DEFAULT_ZOOM_INDEX = 0;
-
 export default function HomeScreen() {
   const { colors } = useTheme();
-  const [zoomIndex, setZoomIndex] = useState(DEFAULT_ZOOM_INDEX);
-  const currentZoom = ZOOM_LEVELS[zoomIndex] ?? { label: '1×', clip: null };
+  const { current: currentZoom, toggle: handleZoomToggle } = useZoomCycle();
+  const menuSheetRef = useRef<BottomSheetModal>(null);
+  const sourcesSheetRef = useRef<BottomSheetModal>(null);
+  const countrySheetRef = useRef<BottomSheetModal>(null);
+  const chokepointSheetRef = useRef<BottomSheetModal>(null);
+  const contextSheetRef = useRef<BottomSheetModal>(null);
+  const renderBackdrop = useCallback(
+    (props: BottomSheetBackdropProps) => (
+      <BottomSheetBackdrop
+        {...props}
+        disappearsOnIndex={-1}
+        appearsOnIndex={0}
+        pressBehavior="close"
+        opacity={OPACITY.backdrop}
+      />
+    ),
+    [],
+  );
   const {
     grouped,
     briefing,
@@ -89,36 +97,16 @@ export default function HomeScreen() {
   const currentArticlesRef = useRef<(Article | null)[]>([null, null, null, null]);
   const activeArticleRef = useRef<Article | null>(null);
 
-  // Sheet refs
-  const menuSheetRef = useRef<BottomSheetModal>(null);
-
-  const sourcesSheetRef = useRef<BottomSheetModal>(null);
+  // Sheet payloads (refs come from useSheetRefs above)
   const [sheetSources, setSheetSources] = useState<ArticleSource[]>([]);
-
-  const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
-  const chokepointSheetRef = useRef<BottomSheetModal>(null);
   const [activeChokepoint, setActiveChokepoint] = useState<Chokepoint | null>(null);
-  const contextSheetRef = useRef<BottomSheetModal>(null);
   const {
     brief: contextBrief,
     loading: contextLoading,
     fetchBrief: fetchContext,
   } = useContextBrief();
   const [contextThreadLabel, setContextThreadLabel] = useState<string | undefined>();
-
-  const renderBackdrop = useCallback(
-    (props: BottomSheetBackdropProps) => (
-      <BottomSheetBackdrop
-        {...props}
-        disappearsOnIndex={-1}
-        appearsOnIndex={0}
-        pressBehavior="close"
-        opacity={OPACITY.backdrop}
-      />
-    ),
-    [],
-  );
 
   const handleSelectArticle = useCallback(
     (slug: string, category: Category) => {
@@ -242,6 +230,25 @@ export default function HomeScreen() {
         }
         return;
       }
+      if (result.islamicPlaceId) {
+        const place = ISLAMIC_PLACES_BY_ID.get(result.islamicPlaceId);
+        // 6s dwell — the caption is a sentence of real history, not an
+        // acknowledgement, so readers need time to take it in.
+        if (place)
+          toastRef.current?.show(`${place.name} · ${place.caption}`, undefined, 'bottom', 6000);
+        return;
+      }
+      if (result.historicalEventId) {
+        const ev = HISTORICAL_EVENTS_BY_ID.get(result.historicalEventId);
+        if (ev)
+          toastRef.current?.show(
+            `${ev.name} · ${ev.year} · ${ev.caption}`,
+            undefined,
+            'bottom',
+            6000,
+          );
+        return;
+      }
       // Hotspot glow tap → toast with tap-to-navigate
       if (result.isHotspot) {
         const label = result.hotspotLabels?.[0] ?? result.countryName;
@@ -328,11 +335,6 @@ export default function HomeScreen() {
     toastRef.current?.show('Caught up', undefined, 'top');
   }, []);
 
-  const handleZoomToggle = useCallback(() => {
-    hapticTick();
-    setZoomIndex((i) => (i + 1) % ZOOM_LEVELS.length);
-  }, []);
-
   const handleMenuToast = useCallback((message: string) => {
     toastRef.current?.show(message, undefined, 'top');
   }, []);
@@ -370,19 +372,7 @@ export default function HomeScreen() {
     if (!loading) SplashScreen.hideAsync();
   }, [loading]);
 
-  // Navigate to article from push notification tap
-  useEffect(() => {
-    if (loading) return;
-    const slug = getPendingSlug();
-    if (!slug) return;
-    clearPendingSlug();
-    for (const cat of CATEGORIES) {
-      if (grouped[cat].some((a) => a.slug === slug)) {
-        handleSelectArticle(slug, cat);
-        break;
-      }
-    }
-  }, [loading, grouped, handleSelectArticle]);
+  usePendingNotification(loading, grouped, handleSelectArticle);
 
   if (loading) return null;
 

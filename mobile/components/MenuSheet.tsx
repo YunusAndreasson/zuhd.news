@@ -7,17 +7,10 @@ import {
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
 import { memo, useCallback, useEffect, useState } from 'react';
-import {
-  AccessibilityInfo,
-  BackHandler,
-  Platform,
-  StyleSheet,
-  Switch,
-  Text,
-  View,
-} from 'react-native';
+import { AccessibilityInfo, BackHandler, StyleSheet, Switch, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { FadeInDown, runOnJS, useReducedMotion } from 'react-native-reanimated';
+import { IS_ANDROID } from '../constants/platform';
 import {
   ANIMATION,
   type AppearanceMode,
@@ -439,7 +432,7 @@ export const MenuSheet = memo(function MenuSheet({
   // Registered only while the sheet is open so we don't swallow back presses
   // elsewhere in the app.
   useEffect(() => {
-    if (Platform.OS !== 'android' || !isOpen) return;
+    if (!IS_ANDROID || !isOpen) return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       if (nav.depth > 0) {
         navPop();

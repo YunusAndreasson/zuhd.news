@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import type { CountryData } from '../../constants/country-data';
 import type { LinkOpener, MarkdownStyles } from '../../lib/markdown';
 import type { ArticleBlock } from '../../types';
@@ -55,17 +54,16 @@ export function renderBlocks(blocks: ArticleBlock[], opts: RenderBlocksOptions):
         const isFirst = proseSeen === 0;
         proseSeen += 1;
         return (
-          <Fragment key={key}>
-            <ProseBlock
-              text={block.text}
-              mdStyles={opts.mdStyles}
-              fontSize={opts.fontSize}
-              dateline={isFirst ? opts.dateline : null}
-              locationPrefix={isFirst ? opts.locationPrefix : null}
-              openLink={opts.openLink}
-              sourceLabel={sourceLabel}
-            />
-          </Fragment>
+          <ProseBlock
+            key={key}
+            text={block.text}
+            mdStyles={opts.mdStyles}
+            fontSize={opts.fontSize}
+            dateline={isFirst ? opts.dateline : null}
+            locationPrefix={isFirst ? opts.locationPrefix : null}
+            openLink={opts.openLink}
+            sourceLabel={sourceLabel}
+          />
         );
       }
       case 'compare':
