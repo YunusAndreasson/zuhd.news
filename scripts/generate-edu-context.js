@@ -33,6 +33,16 @@ if (newFiles.length === 0) {
 const briefs = existsSync(BRIEFS_PATH) ? JSON.parse(readFileSync(BRIEFS_PATH, 'utf8')) : {}
 const basePrompt = readFileSync(PROMPT_PATH, 'utf8')
 
+// Ensure the audit log directory exists up-front so a broken path surfaces
+// before we spend tokens calling Claude. Fail loud — silent logging gaps are
+// the single biggest observability hole for iteration on this stage.
+try {
+  mkdirSync(dirname(TRENDS_PICKS_LOG), { recursive: true })
+} catch (err) {
+  console.error(`✗ cannot create trends-picks log dir (${dirname(TRENDS_PICKS_LOG)}): ${err.message}`)
+  process.exit(1)
+}
+
 // --- Build candidate list ---
 const candidates = []
 for (const file of newFiles) {
@@ -216,8 +226,8 @@ for (const [slug, data] of Object.entries(parsed)) {
   if (validEntries.length === 0) continue
 
   // Expand chart refs → trend blocks. Shared helper builds one sources[]
-  // array per brief and returns the list of picks for logging.
-  const { timeline, sources, picked } = buildTimelineWithCharts(
+  // array per brief and returns picks/literals/dropped for the audit log.
+  const { timeline, sources, picked, literals, dropped } = buildTimelineWithCharts(
     validEntries,
     trendsSnapshot,
     (msg) => console.log(`    ⚠ ${slug}: ${msg}`),
@@ -235,24 +245,36 @@ for (const [slug, data] of Object.entries(parsed)) {
   generated++
   totalPicks += picked.length
   const headings = validEntries.filter(e => e.heading).length
-  // Literal blocks = any expanded non-chart block (locations, compare, quote, actors, prose).
-  // `picked` only tracks charts, so diff total blocks against chart count.
-  const literalBlocks = timeline.reduce((n, t) => n + (t.blocks?.filter((b) => b.type !== 'trend').length || 0), 0)
   const chartNote = picked.length ? ` + ${picked.length} chart(s): ${picked.map((p) => p.id).join(', ')}` : ''
-  const literalNote = literalBlocks ? ` + ${literalBlocks} literal block(s)` : ''
-  console.log(`  Brief: ${slug} (${validEntries.length} entries, ${headings} headings${chartNote}${literalNote})`)
+  const literalNote = literals.length ? ` + ${literals.length} literal (${literals.map((l) => l.type).join(', ')})` : ''
+  const dropNote = dropped.length ? ` · ${dropped.length} dropped` : ''
+  console.log(`  Brief: ${slug} (${validEntries.length} entries, ${headings} headings${chartNote}${literalNote}${dropNote})`)
 
-  // --- Append trends-picks JSONL for iteration analysis ---
+  // --- Append per-brief audit to JSONL — the only cross-cycle, queryable
+  //     record of what Claude considered vs what survived. Schema:
+  //       { ts, slug, category, concepts, offered: [indicator ids],
+  //         entries, headings,
+  //         picked:   [{id, heading}],
+  //         literals: [{type, heading}],
+  //         dropped:  [{type, heading, reason, ref?}] }
+  //     Dir was created up-front; any failure here is a real error we want
+  //     to see in the cycle log, not a silent swallow.
+  const candidate = candidates.find((c) => c.slug === slug)
   try {
-    mkdirSync(dirname(TRENDS_PICKS_LOG), { recursive: true })
     appendFileSync(TRENDS_PICKS_LOG, JSON.stringify({
       ts: new Date().toISOString(),
       slug,
+      category: candidate?.category || null,
+      concepts: candidate?.concepts || [],
       offered: offeredIds,
+      entries: validEntries.length,
+      headings,
       picked,
+      literals,
+      dropped,
     }) + '\n')
   } catch (err) {
-    console.error(`  ✗ trends-picks log: ${err.message}`)
+    console.error(`  ✗ trends-picks log append failed for ${slug}: ${err.message}`)
   }
 }
 

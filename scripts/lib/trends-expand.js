@@ -123,34 +123,49 @@ export function expandChartRef(chartBlock, snapshot, sourceCtx) {
  * @param {object | null} snapshot   Loaded by loadTrendsSnapshot. Null → skip
  *                                   chart expansion; literal blocks still pass.
  * @param {(msg: string) => void} [warn]   Logger for drops.
- * @returns {{ timeline: object[], sources: string[], picked: {id: string, heading: string | null}[] }}
+ * @returns {{
+ *   timeline: object[],
+ *   sources: string[],
+ *   picked: {id: string, heading: string | null}[],
+ *   literals: {type: string, heading: string | null}[],
+ *   dropped: {type: string, heading: string | null, reason: string, ref?: string}[]
+ * }}
  */
 export function buildTimelineWithCharts(entries, snapshot, warn = () => {}) {
   const sourceCtx = { sourceIndex: new Map(), sources: [] }
   const picked = []
+  const literals = []
+  const dropped = []
 
   const timeline = entries
     .filter((e) => e && typeof e.body === 'string' && e.body.length > 0)
     .map((e) => {
+      const heading = e.heading || null
       const out = { ...(e.heading ? { heading: e.heading } : {}), body: e.body }
       if (!Array.isArray(e.blocks) || e.blocks.length === 0) return out
 
       const expanded = []
       for (const b of e.blocks) {
         if (!b || typeof b !== 'object') {
+          const reason = 'not an object'
+          dropped.push({ type: 'unknown', heading, reason })
           warn(`dropping non-object block under '${e.heading || 'entry'}'`)
           continue
         }
         if (b.type === 'chart') {
           if (!snapshot) {
-            warn(`dropping chart ref '${b.ref}' — no trends snapshot loaded`)
+            const reason = 'no trends snapshot loaded'
+            dropped.push({ type: 'chart', heading, reason, ref: b.ref })
+            warn(`dropping chart ref '${b.ref}' — ${reason}`)
             continue
           }
           const trend = expandChartRef(b, snapshot, sourceCtx)
           if (trend) {
             expanded.push(trend)
-            picked.push({ id: b.ref, heading: e.heading || null })
+            picked.push({ id: b.ref, heading })
           } else {
+            const reason = 'unknown or empty chart ref'
+            dropped.push({ type: 'chart', heading, reason, ref: b.ref })
             warn(`dropping unknown/empty chart ref '${b.ref}'`)
           }
           continue
@@ -158,7 +173,9 @@ export function buildTimelineWithCharts(entries, snapshot, warn = () => {}) {
         const { block, reason } = parseArticleBlock(b)
         if (block) {
           expanded.push(block)
+          literals.push({ type: block.type, heading })
         } else {
+          dropped.push({ type: b.type || 'unknown', heading, reason: reason || 'unknown' })
           warn(`dropping malformed ${b.type || 'unknown'} block under '${e.heading || 'entry'}': ${reason}`)
         }
       }
@@ -166,5 +183,5 @@ export function buildTimelineWithCharts(entries, snapshot, warn = () => {}) {
       return out
     })
 
-  return { timeline, sources: sourceCtx.sources, picked }
+  return { timeline, sources: sourceCtx.sources, picked, literals, dropped }
 }
