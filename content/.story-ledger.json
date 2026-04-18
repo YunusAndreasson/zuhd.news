@@ -2,13 +2,206 @@
   "version": 1,
   "stories": [
     {
+      "id": "kyiv-supermarket-shooter-moscow-born-prosecutor-general",
+      "label": "Prosecutor general confirms Kyiv shooter was Moscow-born",
+      "firstSeen": "2026-04-18T17:07:23.732Z",
+      "lastCovered": "2026-04-18T17:07:23.732Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-18-kyiv-supermarket-shooter-moscow-born-prosecutor-general"
+      ],
+      "eventUri": "eng-11580874",
+      "summary": "Ukrainian prosecutor general names the supermarket gunman who killed five Kyiv civilians as Moscow-born — a rare explicit link between a domestic mass-casualty attack and Russian-origin perpetrator. Lead with the named victim toll and the prosecutor's confirmation, then the significance for how Ukraine frames internal security during wartime. 262 sources covered this; pick the detail (Holosiivskyi district supermarket, hostages, police shoot-out) rather than the geopolitical spin.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Kyiv",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Holosiivskyi_District",
+        "http://en.wikipedia.org/wiki/Hostage",
+        "http://en.wikipedia.org/wiki/Police"
+      ]
+    },
+    {
+      "id": "french-unifil-soldier-killed-lebanon-ceasefire-fragility",
+      "label": "French soldier serving with UNIFIL killed in Lebanon attack",
+      "firstSeen": "2026-04-18T17:07:23.732Z",
+      "lastCovered": "2026-04-18T17:07:23.732Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-18-french-unifil-soldier-killed-lebanon-ceasefire-fragility"
+      ],
+      "eventUri": "fra-1296801",
+      "summary": "First French UNIFIL fatality in southern Lebanon since the ceasefire; Macron publicly blames Hezbollah. The mechanism to lead with: a 'ceasefire' that continues to produce UN peacekeeper deaths exposes how fragile Lebanon's security arrangement really is, and how little control the Lebanese state has over the contested south. Name the soldier, the location, and the ambush pattern — not just the diplomatic reaction.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Emmanuel_Macron",
+        "http://en.wikipedia.org/wiki/United_Nations_Interim_Force_in_Lebanon",
+        "http://en.wikipedia.org/wiki/Hezbollah",
+        "http://en.wikipedia.org/wiki/Southern_Lebanon"
+      ]
+    },
+    {
+      "id": "gaza-water-truck-drivers-killed-unicef-israel-siege",
+      "label": "Israel kills two Gaza water truck drivers - UNICEF",
+      "firstSeen": "2026-04-18T17:07:23.732Z",
+      "lastCovered": "2026-04-18T17:07:23.732Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-18-gaza-water-truck-drivers-killed-unicef-israel-siege"
+      ],
+      "eventUri": "eng-11579769",
+      "summary": "UNICEF publicly condemns Israeli forces for killing two Gaza water truck drivers — humanitarian workers delivering water, not combatants. Lead with the named, specific act and UNICEF's own language. The mechanism: attacks on water distribution are collective punishment under international humanitarian law, and the siege continues to kill through thirst even when cameras are elsewhere. This is an accountability story — name the agency making the charge and what IHL says about targeting aid workers.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/UNICEF",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Gaza_Strip",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
+        "http://en.wikipedia.org/wiki/International_humanitarian_law"
+      ]
+    },
+    {
+      "id": "russia-baltic-port-fire-ukraine-drone-oil-exports",
+      "label": "Blaze Erupts at Russia's Baltic Port After Ukraine Drone Attack",
+      "firstSeen": "2026-04-18T17:07:23.732Z",
+      "lastCovered": "2026-04-18T17:07:23.732Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-18-russia-baltic-port-fire-ukraine-drone-oil-exports"
+      ],
+      "eventUri": "eng-11580469",
+      "summary": "Ukrainian drones hit a Baltic oil export terminal — deep inside Russia, far from the Black Sea front. Lead with which port and what product (crude or refined) flows through it, because that determines the revenue hit to the Kremlin. The mechanism: Ukraine is systematically degrading Russia's hard-currency earning infrastructure, not just its front-line logistics. Pair with oil-price reaction if any.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Oil_refinery",
+        "http://en.wikipedia.org/wiki/Port"
+      ]
+    },
+    {
+      "id": "guam-cargo-ship-overturned-typhoon-six-missing",
+      "label": "Six Are Missing After Cargo Ship Is Found Overturned Near Guam",
+      "firstSeen": "2026-04-18T17:07:23.732Z",
+      "lastCovered": "2026-04-18T17:07:23.732Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-18-guam-cargo-ship-overturned-typhoon-six-missing"
+      ],
+      "eventUri": "eng-11579380",
+      "summary": "A cargo ship was found overturned near Guam after Super Typhoon Sinklau; six crew missing. Lead with the vessel, the crew nationalities, and the typhoon's intensity. The structural angle: Pacific shipping lanes face escalating typhoon hazard as warmer seas produce more Cat-5 storms, and Guam's Coast Guard SAR capacity is stretched. Keep the missing crew — usually Filipino or Southeast Asian seafarers — at the center, not the ship.",
+      "conceptUris": []
+    },
+    {
+      "id": "poison-frogs-alkaloid-defenses-stepwise-evolution",
+      "label": "How poison frogs built a chemical weapons system one evolutionary step at a time",
+      "firstSeen": "2026-04-18T17:07:23.732Z",
+      "lastCovered": "2026-04-18T17:07:23.732Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-18-poison-frogs-alkaloid-defenses-stepwise-evolution"
+      ],
+      "eventUri": null,
+      "summary": "New research reconstructs the stepwise evolution of poison-frog alkaloid defenses — not one mutation but a sequence of changes in diet, sequestration, and membrane resistance that had to arrive in the right order. Lead with the specific alkaloid and the order of evolutionary steps. The concept for the reader: complex traits that look 'designed' emerge through incremental co-adaptation — a textbook case of how biochemistry and ecology evolve together.",
+      "conceptUris": []
+    },
+    {
+      "id": "quantum-jamming-many-body-localisation-phase-transition",
+      "label": "Quantum 'Jamming' Explores the Truly Fundamental Principles of Nature",
+      "firstSeen": "2026-04-18T17:07:23.732Z",
+      "lastCovered": "2026-04-18T17:07:23.732Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-quantum-jamming-many-body-localisation-phase-transition"
+      ],
+      "eventUri": null,
+      "summary": "Physicists apply the classical 'jamming transition' — how sand grains suddenly lock into a rigid solid — to quantum systems, revealing universal behaviour at the edge of many-body localisation. Lead with the analogy that grounds the reader (traffic/sand) then the quantum twist. The mechanism worth explaining: jamming is a phase transition without symmetry breaking, and finding quantum analogues sharpens the line between thermodynamic and information-theoretic phases.",
+      "conceptUris": []
+    },
+    {
+      "id": "posthumous-conception-gamete-retrieval-ethics-consent",
+      "label": "Babies Born from Dead Parents Will Increase with New Tech. Are We Ready?",
+      "firstSeen": "2026-04-18T17:07:23.732Z",
+      "lastCovered": "2026-04-18T17:07:23.732Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-18-posthumous-conception-gamete-retrieval-ethics-consent"
+      ],
+      "eventUri": null,
+      "summary": "Posthumous gamete retrieval is accelerating as cryopreservation improves and courts rule in favor of grieving families — producing children whose legal parents died before conception. Lead with the scale (how many cases annually, trend) and then the unresolved question: consent. The mechanism: tissue extraction 24-72 hours post-mortem, often authorized by spouse or parent, not the deceased. For a Muslim reader, raise the Islamic bioethics angle (nasab, maḥram relations, inheritance) without resolving it — let the reader think.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-gpu-refresh-e-waste-global-south-hyperscaler",
+      "label": "AI is about to make the global e-waste crisis much worse",
+      "firstSeen": "2026-04-18T17:07:23.732Z",
+      "lastCovered": "2026-04-18T17:07:23.732Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-17-ai-gpu-refresh-e-waste-global-south-hyperscaler"
+      ],
+      "eventUri": null,
+      "summary": "AI's GPU refresh cycle is vastly shorter than the CPU-era enterprise cycle — hyperscalers retire accelerators in 3-4 years instead of 7-10, and most of them flow to informal e-waste markets in Ghana, Pakistan, and Indonesia. Lead with the specific GPU volume projection and which countries absorb the waste. The structural angle: the Global South pays the material cost of wealthy-country AI buildouts, recovered copper and gold aside, in lead and cadmium groundwater contamination. Connects to accountability on corporate environmental externalisation.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-closes-strait-of-hormuz-again-until-us-lifts-blockade",
+      "label": "Iran closes strait of Hormuz again 'until US lifts blockade'",
+      "firstSeen": "2026-04-18T17:07:23.732Z",
+      "lastCovered": "2026-04-18T17:07:23.732Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-18-iran-closes-strait-of-hormuz-again-until-us-lifts-blockade"
+      ],
+      "eventUri": "eng-11580544",
+      "summary": "[Auto-backfill for economy floor] Hundreds of ships are stranded in the Gulf, waiting to pass through the key waterway that moves about 20 percent of global oil and liquefied natural gas flows.\n\nMerchant vessels attempting to cross the Strait of Hormuz received radio messages from Iran's navy telling them they were not allowed to pa",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Tanker_(ship)",
+        "http://en.wikipedia.org/wiki/Islamic_Revolutionary_Guard_Corps",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Gunboat",
+        "http://en.wikipedia.org/wiki/Oman",
+        "http://en.wikipedia.org/wiki/Strait"
+      ]
+    },
+    {
       "id": "trump-iran-nuclear-dust-unfriendly-form-hormuz-leverage",
       "label": "Trump says US will get Iran's nuclear dust 'in a much more unfriendly form' if deal fails",
       "firstSeen": "2026-04-18T12:04:51.154Z",
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-trump-iran-nuclear-dust-unfriendly-form-hormuz-leverage"
@@ -31,7 +224,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-17-kuwait-citizenship-stripping-denaturalisation-gulf-authoritarian"
@@ -47,7 +240,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-pope-leo-angola-africa-visit-trump-middle-east-clash"
@@ -68,7 +261,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-iran-war-prediction-market-1bn-insider-trading-cftc"
@@ -84,7 +277,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-tectonic-elevator-subduction-microbes-seafloor-biological-pump"
@@ -100,7 +293,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-pfas-forever-chemicals-dolphin-milk-maternal-transfer"
@@ -116,7 +309,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-17-poweroff-ddos-for-hire-takedown-europol-doj-four-arrested"
@@ -132,7 +325,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-17-angrite-meteorites-destroyed-protoplanet-solar-system-origin"
@@ -148,7 +341,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-17-openai-social-contract-intelligence-age-corporate-governance"
@@ -164,7 +357,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-tankers-crossed-strait-of-hormuz-amid-reports-of-firing-afte"
@@ -189,7 +382,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-borehole-pressure-response-and-rock-fracture-evolution-durin"
@@ -205,7 +398,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-uk-mandelson-vetting-failure-starmer-foreign-office-ouster"
@@ -221,7 +414,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-qatar-747-trump-air-force-one-test-flights-emoluments"
@@ -237,7 +430,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-south-korea-india-strategic-pivot-hedging-trump-asia"
@@ -253,7 +446,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-japan-china-public-sentiment-deterioration-polling-diplomacy"
@@ -269,7 +462,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-meta-8000-layoffs-ai-capex-gpu-reallocation-zuckerberg"
@@ -294,7 +487,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-carbon-pass-through-capital-access-decarbonisation-nature-study"
@@ -310,7 +503,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-latin-america-border-dispute-criminal-economy-sovereignty-gap"
@@ -326,7 +519,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-nanomedicine-intracellular-delivery-lipid-nanoparticles-primer"
@@ -342,7 +535,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-quantum-bitcoin-shors-algorithm-9-minute-attack-walkthrough"
@@ -358,7 +551,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-russia-internet-crackdown-ai-warfare-trigger-kremlin-censorship"
@@ -374,7 +567,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-reference-values-for-bioelectrical-impedance-derived-phase-a"
@@ -390,7 +583,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-18-us-russia-oil-waiver-renewed-iran-war-bessent-contradiction"
@@ -406,7 +599,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-18-nexstar-tegna-merger-blocked-local-tv-consolidation"
@@ -422,7 +615,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-17-sudan-khartoum-dengue-darfur-measles-rsf-defection"
@@ -438,7 +631,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-18-iom-iran-war-refugees-pakistan-afghanistan-crossings"
@@ -454,7 +647,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-17-angie-craig-minnesota-senate-aipac-distancing-bundling"
@@ -470,7 +663,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-17-australia-green-hydrogen-offtake-renewable-superpower"
@@ -486,7 +679,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-16-colombia-ecuador-border-contraband-illegal-mining-cocaine"
@@ -502,7 +695,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-18-urban-park-cooling-design-day-night-canopy-concordia"
@@ -518,7 +711,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-18-bio-inspired-3d-printed-earthen-materials-cement-substitute"
@@ -534,7 +727,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-17-grinex-crypto-exchange-15-million-hack-western-services"
@@ -550,7 +743,7 @@
       "lastCovered": "2026-04-17T22:04:33.723Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-17-uk-france-hormuz-naval-mission-european-chokepoint"
@@ -573,7 +766,7 @@
       "lastCovered": "2026-04-17T22:04:33.723Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-17-hezbollah-israel-truce-netanyahu-pressure-lebanon-return"
@@ -596,7 +789,7 @@
       "lastCovered": "2026-04-17T22:04:33.723Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-17-zelensky-belarus-russia-buildup-venezuela-warning"
@@ -618,7 +811,7 @@
       "lastCovered": "2026-04-17T22:04:33.723Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-17-nigeria-tinubu-68-trillion-budget-2025-extension"
@@ -640,7 +833,7 @@
       "lastCovered": "2026-04-17T22:04:33.723Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-17-ford-f150-recall-1-4-million-gearshift-pcm"
@@ -661,7 +854,7 @@
       "lastCovered": "2026-04-17T22:04:33.723Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-17-nyc-pied-a-terre-tax-hochul-second-home-surcharge"
@@ -683,7 +876,7 @@
       "lastCovered": "2026-04-17T22:04:33.723Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-17-nanobody-cftr-cystic-fibrosis-intracellular-antibody"
@@ -699,7 +892,7 @@
       "lastCovered": "2026-04-17T22:04:33.723Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-17-burundi-unknown-illness-africa-cdc-surveillance"
@@ -715,7 +908,7 @@
       "lastCovered": "2026-04-17T22:04:33.723Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-17-london-nhs-ransomware-18-months-unrestored"
@@ -731,7 +924,7 @@
       "lastCovered": "2026-04-17T22:04:33.723Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-17-lebanon-digital-rights-regional-war-smex-beirut"
@@ -747,7 +940,7 @@
       "lastCovered": "2026-04-17T17:06:35.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-hungary-orban-defeated-most-consequential-election"
@@ -763,7 +956,7 @@
       "lastCovered": "2026-04-17T17:06:35.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-sudan-igad-quintet-excluded-factions-berlin"
@@ -779,7 +972,7 @@
       "lastCovered": "2026-04-17T17:06:35.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-india-tapentadol-west-africa-opioid-pipeline"
@@ -795,7 +988,7 @@
       "lastCovered": "2026-04-17T17:06:35.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-vietnam-to-lam-china-strategic-choice-visit"
@@ -811,7 +1004,7 @@
       "lastCovered": "2026-04-17T17:06:35.035Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-sfr-altice-france-telecoms-consolidation-bid"
@@ -836,7 +1029,7 @@
       "lastCovered": "2026-04-17T17:06:35.035Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-india-drops-aadhaar-phone-preinstall-mandate"
@@ -852,7 +1045,7 @@
       "lastCovered": "2026-04-17T17:06:35.035Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-bangladesh-gig-workers-hormuz-fuel-shortage"
@@ -868,7 +1061,7 @@
       "lastCovered": "2026-04-17T17:06:35.035Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-quantum-jamming-cryptography-post-quantum"
@@ -884,7 +1077,7 @@
       "lastCovered": "2026-04-17T17:06:35.035Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-cascadia-ocean-seismometers-shakealert-warning"
@@ -900,7 +1093,7 @@
       "lastCovered": "2026-04-17T17:06:35.035Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-super-el-nino-warning-fossil-fuels-climate"
@@ -916,7 +1109,7 @@
       "lastCovered": "2026-04-17T17:06:35.035Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-apt28-ukraine-prosecutors-roundcube-zero-click"
@@ -932,166 +1125,13 @@
       "lastCovered": "2026-04-17T17:06:35.035Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-faa-drone-ice-penalties-dropped-doj-added"
       ],
       "eventUri": null,
       "summary": "FAA quietly dropped civil and criminal penalties for filming ICE operations with drones — but expanded the list of 'protected' agencies to include DOJ, and retained authority to shoot the drones down. Lead with what stayed and what changed: no jail time, but the drone still gets destroyed and DOJ joins the no-fly list. The structural why: press-freedom advocates pushed back on criminal penalties for journalism; the agency kept operational authority while removing the legal hook. Reader take: accountability journalism by drone is legally safer today, physically no safer.",
-      "conceptUris": []
-    },
-    {
-      "id": "uae-turkey-95m-q1-investment",
-      "label": "UAE invests $95m in Türkiye at the start of year",
-      "firstSeen": "2026-04-17T08:07:32.491Z",
-      "lastCovered": "2026-04-17T12:06:04.574Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-17-uae-turkey-95m-q1-investment",
-        "2026-04-17-uae-turkiye-95m-investment-gulf-flow"
-      ],
-      "eventUri": null,
-      "summary": "Abu Dhabi's $95m in Q1 Turkish investment sits inside a longer thaw — the UAE was bankrolling the opposition to Erdoğan's government a decade ago. Lead with the number and then the reversal. Mechanism: Gulf capital is rebalancing away from Western markets toward intra-Muslim-world infrastructure bets while the Iran war reprices risk. Worth to the reader: this is money moving inside the ummah, not toward it.",
-      "conceptUris": []
-    },
-    {
-      "id": "myanmar-frees-win-myint-keeps-suu-kyi",
-      "label": "Myanmar Frees Ousted President, but Not Daw Aung San Suu Kyi",
-      "firstSeen": "2026-04-17T12:06:04.574Z",
-      "lastCovered": "2026-04-17T12:06:04.574Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-myanmar-frees-win-myint-keeps-suu-kyi"
-      ],
-      "eventUri": "eng-11576723",
-      "summary": "The junta pardoned 4,000+ prisoners including deposed president Win Myint, but kept Aung San Suu Kyi imprisoned. Lead with the asymmetry — Min Aung Hlaing is rehabilitating selected civilian figures to legitimize his transition from junta chief to president while keeping the actual popular leader in detention. Note Xi Jinping was reportedly first to congratulate him. The mechanism: cosmetic amnesty as international-recognition laundering.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Myanmar",
-        "http://en.wikipedia.org/wiki/Aung_San_Suu_Kyi",
-        "http://en.wikipedia.org/wiki/Amnesty",
-        "http://en.wikipedia.org/wiki/Min_Aung_Hlaing",
-        "http://en.wikipedia.org/wiki/Coup_d'état",
-        "http://en.wikipedia.org/wiki/Win_Myint",
-        "http://en.wikipedia.org/wiki/Pardon",
-        "http://en.wikipedia.org/wiki/Military_dictatorship"
-      ]
-    },
-    {
-      "id": "kuwait-strips-citizenship-unprecedented-rate",
-      "label": "Kuwait Is Stripping Its People of Citizenship at an Unprecedented Rate",
-      "firstSeen": "2026-04-17T12:06:04.574Z",
-      "lastCovered": "2026-04-17T12:06:04.574Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-kuwait-strips-citizenship-unprecedented-rate"
-      ],
-      "eventUri": null,
-      "summary": "Kuwait has revoked citizenship from an unprecedented number of nationals, and as many as 1 in 5 Kuwaitis may ultimately lose their current status. Lead with the scale — this is not episodic revocation but a systematic rollback of decades of civic reforms by the ruling family. Frame it for readers as an accountability story: a Gulf state using legal machinery to reshape its own demos. The mechanism: rules written decades ago now weaponized to unwind pluralism.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-arctic-russia-northern-sea-route-leverage",
-      "label": "How China’s Arctic Ambitions Inflate Russia’s Geopolitical Leverage",
-      "firstSeen": "2026-04-17T12:06:04.574Z",
-      "lastCovered": "2026-04-17T12:06:04.574Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-china-arctic-russia-northern-sea-route-leverage"
-      ],
-      "eventUri": null,
-      "summary": "A new Russian law shows Moscow is not opening the Northern Sea Route to international shipping — it is gatekeeping it, while Beijing's Arctic investments give Moscow more, not less, leverage. Lead with the legal mechanism: the route China needs is one only Russia controls. The surprising detail is inversion — China's money strengthens Russia's hand rather than buying access. Useful for a strategically-minded reader tracking how Arctic warming reshapes chokepoints.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-gold-silver-import-festival-banks",
-      "label": "India Clarifies Gold and Silver Import Confusion Before Festival",
-      "firstSeen": "2026-04-17T12:06:04.574Z",
-      "lastCovered": "2026-04-17T12:06:04.574Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-india-gold-silver-import-festival-banks"
-      ],
-      "eventUri": "eng-11577055",
-      "summary": "India authorized 15 banks to handle gold and silver imports just days before Akshaya Tritiya, after a policy notification held tonnes of bullion at customs. Lead with the stakes — bullion buying on this festival drives seasonal demand in the world's second-largest gold market. The mechanism to highlight: a bureaucratic notification can freeze a commodity flow large enough to move global prices. Show how customs and bank channels are the plumbing of physical-metal markets.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Gold",
-        "http://en.wikipedia.org/wiki/Silver",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Bullion",
-        "http://en.wikipedia.org/wiki/Customs",
-        "http://en.wikipedia.org/wiki/Bank",
-        "http://en.wikipedia.org/wiki/Currency",
-        "http://en.wikipedia.org/wiki/Tonne"
-      ]
-    },
-    {
-      "id": "cira-space-rider-damaged-heat-shield-reentry",
-      "label": "CIRA Tests Space Rider Reentry Performance with Damaged Heat Shield",
-      "firstSeen": "2026-04-17T12:06:04.574Z",
-      "lastCovered": "2026-04-17T12:06:04.574Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-cira-space-rider-damaged-heat-shield-reentry"
-      ],
-      "eventUri": null,
-      "summary": "Italy's CIRA deliberately damaged a Space Rider heat-shield sample to simulate micrometeoroid and orbital-debris strikes — and the thermal protection still held through reentry conditions. Lead with the test logic: engineers are now designing for a debris environment, not just ideal conditions. The structural angle is that low Earth orbit is becoming dirty enough that reusable vehicles must survive impact damage, not just prevent it. Useful for readers tracking Europe's independent access to space.",
-      "conceptUris": []
-    },
-    {
-      "id": "q-day-big-tech-post-quantum-migration-split",
-      "label": "Recent advances push Big Tech closer to the Q-Day danger zone",
-      "firstSeen": "2026-04-17T12:06:04.574Z",
-      "lastCovered": "2026-04-17T12:06:04.574Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-q-day-big-tech-post-quantum-migration-split"
-      ],
-      "eventUri": "eng-11568012",
-      "summary": "Recent cryptanalytic and hardware progress has narrowed the expected window to Q-Day — when a quantum computer breaks RSA and elliptic-curve crypto — and Big Tech is splitting: some (Cloudflare, Apple, Google) are rolling out post-quantum crypto now, while others hold. Lead with the bifurcation, not the vague threat. The mechanism: 'harvest now, decrypt later' means adversaries are already archiving encrypted traffic for future decryption, so PQC migration timing is itself the story. For a technical reader.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Quantum_computing",
-        "http://en.wikipedia.org/wiki/Cloudflare",
-        "http://en.wikipedia.org/wiki/Post-quantum_cryptography",
-        "http://en.wikipedia.org/wiki/Elliptic-curve_cryptography",
-        "http://en.wikipedia.org/wiki/Qubit"
-      ]
-    },
-    {
-      "id": "the-2026-global-digital-asset-adoption-index",
-      "label": "The 2026 Global Digital Asset Adoption Index",
-      "firstSeen": "2026-04-17T12:06:04.574Z",
-      "lastCovered": "2026-04-17T12:06:04.574Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-the-2026-global-digital-asset-adoption-index"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] Asia leads in stablecoin flows, trading volume, and on-chain activity, while the U.S. builds the institutional infrastructure set to define crypto's next phase of scaled adoption.\n\nThe global digital asset landscape is being reshaped by a widening gap between narrative and reality. While the United ",
       "conceptUris": []
     }
   ]
