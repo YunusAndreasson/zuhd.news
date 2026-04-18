@@ -4,18 +4,24 @@ import { type FlatList, StyleSheet, Text, View } from 'react-native';
 import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { getRanking, METRICS, type MetricKey, type RankingEntry } from '../lib/country-ranking';
+import { useOpenLink } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
+import { HapticPressable } from './HapticPressable';
 
 interface Props {
   metric: MetricKey;
   currentCountryName: string | null;
   bottomInset: number;
+  /** Close the enclosing bottom sheet. Called before the in-app browser
+   *  opens — otherwise the browser presents behind the sheet overlay. */
+  onRequestClose?: () => void;
 }
 
 export const CountryRankingView = memo(function CountryRankingView({
   metric,
   currentCountryName,
   bottomInset,
+  onRequestClose,
 }: Props) {
   const { colors, font, typography, textStyles } = useTheme();
   const ranking = useMemo(() => getRanking(metric), [metric]);
@@ -83,6 +89,15 @@ export const CountryRankingView = memo(function CountryRankingView({
   );
 
   const totalLabel = `#${currentIndex + 1} of ${ranking.length}`;
+  const meta = METRICS[metric];
+  const openLink = useOpenLink();
+  const openSource = useCallback(() => {
+    if (!meta.sourceUrl) return;
+    // Dismiss the sheet first — the in-app browser otherwise presents
+    // behind gorhom's portal overlay on both iOS and Android.
+    onRequestClose?.();
+    openLink(meta.sourceUrl);
+  }, [meta.sourceUrl, openLink, onRequestClose]);
 
   return (
     <BottomSheetFlatList
@@ -93,20 +108,57 @@ export const CountryRankingView = memo(function CountryRankingView({
       getItemLayout={(_, index) => ({ length: ROW_HEIGHT, offset: ROW_HEIGHT * index, index })}
       contentContainerStyle={{ paddingBottom: bottomInset + SPACING.lg }}
       ListHeaderComponent={
-        <View style={styles.header}>
-          <Text style={textStyles.smallCapsXs}>{METRICS[metric].label}</Text>
-          {currentIndex >= 0 && (
-            <Text
-              style={{
-                ...font.semiBold,
-                fontSize: typography.sizeXs,
-                color: colors.textEmphasis,
-                letterSpacing: typography.trackingCaps,
-                fontVariant: ['oldstyle-nums'],
-              }}
-            >
-              {totalLabel}
-            </Text>
+        <View>
+          <View style={styles.header}>
+            <Text style={textStyles.smallCapsXs}>{meta.label}</Text>
+            {currentIndex >= 0 && (
+              <Text
+                style={{
+                  ...font.semiBold,
+                  fontSize: typography.sizeXs,
+                  color: colors.textEmphasis,
+                  letterSpacing: typography.trackingCaps,
+                  fontVariant: ['oldstyle-nums'],
+                }}
+              >
+                {totalLabel}
+              </Text>
+            )}
+          </View>
+          {(meta.description || meta.source) && (
+            <View style={[styles.meta, { borderBottomColor: colors.rule }]}>
+              {meta.description && (
+                <Text
+                  style={{
+                    ...font.regular,
+                    fontSize: typography.sizeXs,
+                    lineHeight: typography.sizeXs * typography.leadingBody,
+                    color: colors.textSecondary,
+                  }}
+                >
+                  {meta.description}
+                </Text>
+              )}
+              {meta.source &&
+                (meta.sourceUrl ? (
+                  <HapticPressable
+                    onPress={openSource}
+                    haptic="tick"
+                    accessibilityRole="link"
+                    accessibilityLabel={`Source: ${meta.source}`}
+                  >
+                    <Text
+                      style={[textStyles.smallCapsXs, { color: colors.dome, marginTop: SPACING.xxs }]}
+                    >
+                      {meta.source} ↗
+                    </Text>
+                  </HapticPressable>
+                ) : (
+                  <Text style={[textStyles.smallCapsXs, { marginTop: SPACING.xxs }]}>
+                    {meta.source}
+                  </Text>
+                ))}
+            </View>
           )}
         </View>
       }
@@ -123,7 +175,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: SPACING.screenPadding,
     paddingTop: SPACING.sm,
+    paddingBottom: SPACING.xs,
+  },
+  meta: {
+    paddingHorizontal: SPACING.screenPadding,
     paddingBottom: SPACING.md,
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   row: {
     flexDirection: 'row',

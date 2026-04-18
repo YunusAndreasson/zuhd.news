@@ -9,6 +9,9 @@ export interface InfoSection {
   heading?: string;
   body: string;
   link?: { label: string; url: string };
+  /** Multiple links stacked vertically — useful when a section references
+   *  several external sources (e.g. the About page's data-source list). */
+  links?: { label: string; url: string }[];
 }
 
 interface SheetInfoPageProps {
@@ -62,6 +65,26 @@ export function SheetInfoPage({ sections }: SheetInfoPageProps) {
               </Text>
             </HapticPressable>
           )}
+          {section.links?.map((l) => (
+            <HapticPressable
+              key={l.url}
+              onPress={() => openLink(l.url)}
+              style={styles.link}
+              accessibilityRole="link"
+              accessibilityLabel={l.label}
+            >
+              <Text
+                style={{
+                  ...font.semiBold,
+                  fontSize: typography.sizeSm,
+                  color: colors.accent,
+                  textDecorationLine: 'underline',
+                }}
+              >
+                {l.label}
+              </Text>
+            </HapticPressable>
+          ))}
         </Animated.View>
       ))}
     </>
