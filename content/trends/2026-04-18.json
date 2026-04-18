@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-04-18T21:01:35.421Z",
+  "fetchedAt": "2026-04-18T22:28:29.328Z",
   "asOf": "2026-04-18",
   "indicators": [
     {
@@ -3791,7 +3791,7 @@
     },
     {
       "id": "poly-will-roberto-snchez-palomino-win-the-2026-peruvi",
-      "label": "Sánchez Palomino wins Peru 2026?",
+      "label": "Roberto Sánchez Palomino win the 2026…",
       "unit": "%",
       "source": "polymarket",
       "seriesId": "will-roberto-snchez-palomino-win-the-2026-peruvian-presidential-election",
@@ -3844,7 +3844,7 @@
     },
     {
       "id": "poly-will-the-us-invade-iran-before-2027",
-      "label": "US invade Iran by 2027?",
+      "label": "US invade Iran before 2027?",
       "unit": "%",
       "source": "polymarket",
       "seriesId": "will-the-us-invade-iran-before-2027",
@@ -3886,7 +3886,7 @@
         30,
         32,
         31,
-        34
+        33
       ],
       "periods": [
         "Mar 19",
@@ -3925,7 +3925,7 @@
     },
     {
       "id": "poly-will-kevin-warsh-be-confirmed-as-fed-chair",
-      "label": "Kevin Warsh confirmed as Fed Chair?",
+      "label": "Kevin Warsh be confirmed as Fed Chair?",
       "unit": "%",
       "source": "polymarket",
       "seriesId": "will-kevin-warsh-be-confirmed-as-fed-chair",
@@ -4049,7 +4049,7 @@
         74833.51,
         75149.19,
         77128.44,
-        75765.8
+        75713.86
       ],
       "periods": [
         "Mar 20",
@@ -4141,7 +4141,7 @@
         2359.68,
         2348.7,
         2421.01,
-        2353.68
+        2353.32
       ],
       "periods": [
         "Mar 20",
@@ -4231,7 +4231,7 @@
         4813,
         4779.06,
         4821.21,
-        4790.05
+        4787.28
       ],
       "periods": [
         "Mar 20",
@@ -4320,7 +4320,7 @@
         345.99,
         343.4,
         348.24,
-        349.8
+        350.4
       ],
       "periods": [
         "Mar 20",
@@ -4432,7 +4432,7 @@
         "Apr 16"
       ],
       "asOf": "2026-04-16",
-      "_corpusCount": 76
+      "_corpusCount": 77
     },
     {
       "id": "wiki-donald-trump",
@@ -4586,7 +4586,7 @@
         "Apr 16"
       ],
       "asOf": "2026-04-16",
-      "_corpusCount": 41
+      "_corpusCount": 42
     },
     {
       "id": "wiki-united-states",
@@ -4740,7 +4740,7 @@
         "Apr 16"
       ],
       "asOf": "2026-04-16",
-      "_corpusCount": 26
+      "_corpusCount": 27
     },
     {
       "id": "wiki-pakistan",
@@ -4817,7 +4817,7 @@
         "Apr 16"
       ],
       "asOf": "2026-04-16",
-      "_corpusCount": 24
+      "_corpusCount": 25
     },
     {
       "id": "wiki-lebanon",
@@ -4897,83 +4897,6 @@
       "_corpusCount": 19
     },
     {
-      "id": "wiki-artificial-intelligence",
-      "label": "Artificial intelligence — Wikipedia views",
-      "unit": "views/day",
-      "source": "wikipedia",
-      "seriesId": "Artificial_intelligence",
-      "cadence": "daily",
-      "topicTags": [
-        "artificial intelligence"
-      ],
-      "defaultHighlight": "max",
-      "sourceLabel": "Wikipedia pageviews",
-      "values": [
-        118769,
-        87999,
-        26735,
-        27579,
-        34284,
-        86792,
-        33747,
-        32173,
-        29214,
-        27804,
-        24105,
-        124201,
-        29163,
-        27568,
-        24731,
-        23122,
-        22098,
-        24622,
-        25313,
-        26067,
-        29407,
-        23397,
-        26115,
-        29883,
-        25191,
-        27000,
-        30650,
-        31341,
-        32926
-      ],
-      "periods": [
-        "Mar 19",
-        "Mar 20",
-        "Mar 21",
-        "Mar 22",
-        "Mar 23",
-        "Mar 24",
-        "Mar 25",
-        "Mar 26",
-        "Mar 27",
-        "Mar 28",
-        "Mar 29",
-        "Mar 30",
-        "Mar 31",
-        "Apr 1",
-        "Apr 2",
-        "Apr 3",
-        "Apr 4",
-        "Apr 5",
-        "Apr 6",
-        "Apr 7",
-        "Apr 8",
-        "Apr 9",
-        "Apr 10",
-        "Apr 11",
-        "Apr 12",
-        "Apr 13",
-        "Apr 14",
-        "Apr 15",
-        "Apr 16"
-      ],
-      "asOf": "2026-04-16",
-      "_corpusCount": 18
-    },
-    {
       "id": "wiki-russia",
       "label": "Russia — Wikipedia views",
       "unit": "views/day",
@@ -5015,6 +4938,83 @@
         14892,
         14222,
         13927
+      ],
+      "periods": [
+        "Mar 19",
+        "Mar 20",
+        "Mar 21",
+        "Mar 22",
+        "Mar 23",
+        "Mar 24",
+        "Mar 25",
+        "Mar 26",
+        "Mar 27",
+        "Mar 28",
+        "Mar 29",
+        "Mar 30",
+        "Mar 31",
+        "Apr 1",
+        "Apr 2",
+        "Apr 3",
+        "Apr 4",
+        "Apr 5",
+        "Apr 6",
+        "Apr 7",
+        "Apr 8",
+        "Apr 9",
+        "Apr 10",
+        "Apr 11",
+        "Apr 12",
+        "Apr 13",
+        "Apr 14",
+        "Apr 15",
+        "Apr 16"
+      ],
+      "asOf": "2026-04-16",
+      "_corpusCount": 19
+    },
+    {
+      "id": "wiki-artificial-intelligence",
+      "label": "Artificial intelligence — Wikipedia views",
+      "unit": "views/day",
+      "source": "wikipedia",
+      "seriesId": "Artificial_intelligence",
+      "cadence": "daily",
+      "topicTags": [
+        "artificial intelligence"
+      ],
+      "defaultHighlight": "max",
+      "sourceLabel": "Wikipedia pageviews",
+      "values": [
+        118769,
+        87999,
+        26735,
+        27579,
+        34284,
+        86792,
+        33747,
+        32173,
+        29214,
+        27804,
+        24105,
+        124201,
+        29163,
+        27568,
+        24731,
+        23122,
+        22098,
+        24622,
+        25313,
+        26067,
+        29407,
+        23397,
+        26115,
+        29883,
+        25191,
+        27000,
+        30650,
+        31341,
+        32926
       ],
       "periods": [
         "Mar 19",
@@ -5510,44 +5510,44 @@
         "Apr 16"
       ],
       "asOf": "2026-04-16",
-      "_corpusCount": 9
+      "_corpusCount": 10
     },
     {
-      "id": "stocks:META",
-      "label": "Meta Platforms, Inc.",
+      "id": "stocks:AA",
+      "label": "Alcoa Corporation",
       "unit": "$",
       "source": "stocks",
-      "seriesId": "META",
+      "seriesId": "AA",
       "cadence": "daily",
       "topicTags": [
-        "meta platforms",
-        "meta"
+        "alcoa corporation",
+        "aa"
       ],
       "defaultHighlight": "last",
-      "sourceLabel": "Yahoo Finance · NMS",
+      "sourceLabel": "Yahoo Finance · NYQ",
       "values": [
-        615.68,
-        606.7,
-        593.66,
-        604.06,
-        592.92,
-        594.89,
-        547.54,
-        525.72,
-        536.38,
-        572.13,
-        579.23,
-        574.46,
-        573.02,
-        575.05,
-        612.42,
-        628.39,
-        629.86,
-        634.53,
-        662.49,
-        671.58,
-        676.87,
-        688.55
+        64.23,
+        58.65,
+        56.45,
+        56.08,
+        56.68,
+        58.7,
+        57.6,
+        58.41,
+        63.22,
+        66.33,
+        72.06,
+        71.53,
+        71.01,
+        72.96,
+        71.76,
+        73.27,
+        73.03,
+        73.31,
+        71.84,
+        70.38,
+        70.41,
+        65.62
       ],
       "periods": [
         "Mar 18",
@@ -5574,8 +5574,8 @@
         "Apr 17"
       ],
       "asOf": "2026-04-17",
-      "latest": 688.55,
-      "previous": 676.87,
+      "latest": 65.62,
+      "previous": 70.41,
       "points": 22
     }
   ]
