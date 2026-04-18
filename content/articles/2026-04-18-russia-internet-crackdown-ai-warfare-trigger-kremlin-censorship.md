@@ -1,5 +1,5 @@
 ---
-title: "Russia Seals Internet After Iran Strikes"
+title: "Russia Seals Internet After Strikes"
 date: "2026-04-18T01:14:33Z"
 category: "tech"
 location: "Moscow"
@@ -18,4 +18,4 @@ concepts:
   - "VPN"
 ---
 
-Moscow — Moscow imposed an unprecedented 3-week mobile internet blackout. The blackout came one week after AI-guided strikes opened Operation Epic Fury against Iran; Russia has since blocked VPNs, WhatsApp, and Telegram. The Kremlin is testing internet whitelists on home and mobile connections, moving toward network isolation.
+Moscow — Moscow imposed a 3-week mobile internet blackout. The blackout followed artificial intelligence-guided Iran strikes by one week; Russia has since blocked virtual private networks and messaging apps. The Kremlin is testing internet whitelists on home and mobile connections, moving toward network isolation.

@@ -17,4 +17,4 @@ concepts:
   - "Vetting"
 ---
 
-London — UK vetting denied Mandelson clearance; Foreign Office officials overruled. The authority refused him in January 2025 over Epstein ties and China lobbying connections; an official granted clearance without informing any minister. Starmer fired Olly Robbins on Friday; Robbins testifies before parliament next week on whether the prime minister knew.
+London — An official cleared Mandelson without informing any minister. Security vetting refused him in January 2025 over Epstein ties and China lobbying connections. Starmer fired Olly Robbins on Friday; Robbins testifies before parliament next week on whether the prime minister knew.

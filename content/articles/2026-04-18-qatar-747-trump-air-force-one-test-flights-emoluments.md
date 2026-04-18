@@ -18,4 +18,4 @@ concepts:
   - "Emoluments Clause"
 ---
 
-Washington — Qatar's gifted 747 began presidential aircraft test flights. Boeing's delayed VC-25B left a transport gap; the Air Force confirmed conversion of the Qatari jet costs near $400 million. Delivery to the Presidential Airlift Group is due by summer 2026; whether the aircraft carries military-grade defensive systems remains unconfirmed.
+Washington — Qatar's gifted 747 began presidential aircraft test flights. Boeing's delayed VC-25B left a transport gap; the Air Force confirmed conversion of the Qatari jet costs near $400 million. Delivery is due by summer 2026; whether the jet carries military-grade defensive systems remains unconfirmed.

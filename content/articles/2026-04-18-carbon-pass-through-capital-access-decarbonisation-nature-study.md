@@ -18,4 +18,4 @@ concepts:
   - "Capital markets"
 ---
 
-London — 2 variables determine whether a firm actually decarbonises. A Nature study of 6 steel and cement firms found that weak pricing power and expensive capital block transition, even when firms pass all carbon costs on. Global South firms face both barriers simultaneously, making them last to transition regardless of carbon pricing policy.
+London — Carbon pass-through alone does not trigger decarbonisation. A Nature study of 6 steel and cement firms found 2 blockers: weak pricing power and expensive capital. Global South firms face both at once, placing them last to transition regardless of carbon price.

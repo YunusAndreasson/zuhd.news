@@ -19,4 +19,4 @@ concepts:
   - "Facebook"
 ---
 
-Menlo Park — Meta plans 8,000 job cuts starting May 20. The company reported $12 billion in profit; the cuts redirect headcount budget to AI infrastructure as Meta pours billions into AI programs. A second round is planned for later in 2026; Meta has not officially confirmed either figure.
+Menlo Park — Meta cuts 8,000 despite reporting $12 billion profit. The company redirects headcount budget to artificial intelligence infrastructure, with the first round of cuts beginning May 20. A second round is planned for later in 2026; Meta has not officially confirmed either figure.
