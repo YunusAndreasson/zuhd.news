@@ -46,8 +46,21 @@ import type { Article, ArticleSource, Category, Chokepoint } from '../types';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
+// Cycling zoom levels. `clip === null` defers to the scroll-adaptive
+// projection; numeric values force that clip angle (lower = more zoom).
+// Order below is the cycle order when tapping the pill.
+const ZOOM_LEVELS: { label: string; clip: number | null }[] = [
+  { label: '1×', clip: null },
+  { label: '2×', clip: 15 },
+  { label: '3×', clip: 8 },
+  { label: '0.5×', clip: 90 },
+];
+const DEFAULT_ZOOM_INDEX = 0;
+
 export default function HomeScreen() {
   const { colors } = useTheme();
+  const [zoomIndex, setZoomIndex] = useState(DEFAULT_ZOOM_INDEX);
+  const currentZoom = ZOOM_LEVELS[zoomIndex] ?? { label: '1×', clip: null };
   const {
     grouped,
     briefing,
@@ -315,6 +328,11 @@ export default function HomeScreen() {
     toastRef.current?.show('Caught up', undefined, 'top');
   }, []);
 
+  const handleZoomToggle = useCallback(() => {
+    hapticTick();
+    setZoomIndex((i) => (i + 1) % ZOOM_LEVELS.length);
+  }, []);
+
   const handleMenuToast = useCallback((message: string) => {
     toastRef.current?.show(message, undefined, 'top');
   }, []);
@@ -414,6 +432,7 @@ export default function HomeScreen() {
                 onCountryPress={handleCountryPress}
                 onArticleChange={handleArticleChange}
                 progressesSV={categoryProgresses}
+                zoomClipOverride={currentZoom.clip}
                 tick={tick}
                 resetKey={resetKey}
               />
@@ -428,7 +447,9 @@ export default function HomeScreen() {
         <BottomActionBar
           bottomInset={insets.bottom}
           showBriefing={!!(briefing?.available && briefing.date)}
+          zoomLabel={currentZoom.label}
           onBriefingPress={briefingPlayer.toggle}
+          onZoomPress={handleZoomToggle}
           onSharePress={handleBottomShare}
           onContextPress={handleDeeperPress}
         />
