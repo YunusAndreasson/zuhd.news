@@ -42,6 +42,12 @@ const CHART_BOTTOM_PAD = 14;
 const CHART_RIGHT_PAD = 44;
 const CHART_LEFT_PAD = 2;
 
+// Scrub readout bubble — hovers above the active dot during pan. Two stacked
+// lines (value on top, period below), fades in on scrub start, clamps to
+// chart width near the edges.
+const SCRUB_LABEL_W = 96;
+const SCRUB_LABEL_H = 30;
+
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
 function resolveHighlightIndex(values: number[], mode: TrendHighlight): number {
@@ -331,6 +337,34 @@ export const TrendBlock = memo(function TrendBlock({
     },
   );
 
+  // Scrub readout: current value + period under the finger. Plain React state
+  // — useAnimatedReaction only PUSHES the index via runOnJS. Formatting
+  // (formatNumber is not a worklet) and period lookup happen on the JS side.
+  const [scrubIdxJs, setScrubIdxJs] = useState<number>(-1);
+
+  useAnimatedReaction(
+    () => scrubIdx.value,
+    (current, prev) => {
+      if (current !== prev) runOnJS(setScrubIdxJs)(current);
+    },
+  );
+
+  const scrubInfo = (() => {
+    if (scrubIdxJs < 0) return null;
+    const v = values[scrubIdxJs];
+    if (v === undefined) return null;
+    return {
+      idx: scrubIdxJs,
+      value: formatNumber(v, unit),
+      period: periods?.[scrubIdxJs] ?? '',
+    };
+  })();
+
+  const scrubPt = scrubInfo ? points[scrubInfo.idx] : null;
+  const scrubLeft = scrubPt
+    ? Math.max(0, Math.min(width - SCRUB_LABEL_W, scrubPt.x - SCRUB_LABEL_W / 2))
+    : 0;
+
   const pan = useMemo(() => {
     const pointsX = points.map((p) => p.x);
     return Gesture.Pan()
@@ -446,6 +480,47 @@ export const TrendBlock = memo(function TrendBlock({
                   </View>
                 );
               })}
+              {/* Scrub readout — value + period above the active dot while
+                  panning. Renders only during a gesture. */}
+              {scrubInfo ? (
+                <View
+                  pointerEvents="none"
+                  style={[
+                    styles.scrubLabel,
+                    { left: scrubLeft, width: SCRUB_LABEL_W, height: SCRUB_LABEL_H },
+                  ]}
+                >
+                  <Text
+                    style={{
+                      ...font.regular,
+                      fontSize: typography.sizeSm,
+                      lineHeight: typography.sizeSm * 1.1,
+                      color: colors.textEmphasis,
+                      fontVariant: ['oldstyle-nums'],
+                      textAlign: 'center',
+                    }}
+                    maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+                    numberOfLines={1}
+                  >
+                    {scrubInfo.value}
+                  </Text>
+                  <Text
+                    style={{
+                      ...font.smallCaps,
+                      fontSize: typography.sizeXs,
+                      lineHeight: typography.sizeXs * 1.2,
+                      letterSpacing: typography.trackingCaps,
+                      color: colors.textSecondary,
+                      textAlign: 'center',
+                    }}
+                    maxFontSizeMultiplier={MAX_FONT_SCALE.label}
+                    numberOfLines={1}
+                  >
+                    {scrubInfo.period.toUpperCase()}
+                  </Text>
+                </View>
+              ) : null}
+
               {/* Right-edge y-axis min/max — the axis readout. */}
               <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMax]}>
                 <Text
@@ -566,6 +641,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  scrubLabel: {
+    position: 'absolute',
+    top: 0,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   },
   xAxisRow: {
     flexDirection: 'row',

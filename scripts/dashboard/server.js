@@ -36,6 +36,7 @@ function parseCycleLog(filepath) {
   const writer = content.match(/Writer exit: (\d+) — (\d+)s/)
   const editor = content.match(/Editor exit: (\d+) — (\d+)s/)
   const edu = content.match(/Edu context exit: (\d+) — (\d+)s/)
+  const trends = content.match(/Trends: offered (\d+) indicators to editor, picked (\d+) across (\d+) articles/)
   const build = content.match(/Build exit: (\d+)/)
   const deploy = content.match(/Deploy exit: (\d+)/)
   const briefing = content.match(/Briefing exit: (\d+)/)
@@ -73,6 +74,7 @@ function parseCycleLog(filepath) {
       writer:    { exit: writer ? parseInt(writer[1]) : null, seconds: writer ? parseInt(writer[2]) : null },
       editor:    { exit: editor ? parseInt(editor[1]) : null, seconds: editor ? parseInt(editor[2]) : null },
       edu:       { exit: edu ? parseInt(edu[1]) : null, seconds: edu ? parseInt(edu[2]) : null },
+      trends:    { offered: trends ? parseInt(trends[1]) : null, picked: trends ? parseInt(trends[2]) : null, articles: trends ? parseInt(trends[3]) : null },
       build:     { exit: build ? parseInt(build[1]) : null },
       deploy:    { exit: deploy ? parseInt(deploy[1]) : null },
       briefing:  { exit: briefing ? parseInt(briefing[1]) : null },

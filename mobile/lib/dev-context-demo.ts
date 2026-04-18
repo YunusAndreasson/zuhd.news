@@ -6,11 +6,27 @@
  * + spanning map above the timeline, then a mix of prose entries and entries
  * with quote / actors / compare / locations. Lazy-imported behind __DEV__ so
  * Metro's dead-code elimination strips this from release bundles.
+ *
+ * If ./dev-context-demo.json exists (written by scripts/dry-run-augment.js on
+ * the dev machine) we export THAT instead — lets us iterate on the real
+ * trends-augmented brief output without editing source.
  */
 
 import type { ContextBrief } from '../types';
 
-export const DEV_DEMO_BRIEF: ContextBrief = {
+// Dynamic require keeps the JSON import resolvable in dev while letting
+// Metro drop the file from release bundles along with the rest of this module.
+// The require is wrapped in a try so a missing JSON file falls back to the
+// hardcoded Afghanistan brief below.
+let OVERRIDE_BRIEF: ContextBrief | null = null;
+try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+  OVERRIDE_BRIEF = require('./dev-context-demo.json') as ContextBrief;
+} catch {
+  OVERRIDE_BRIEF = null;
+}
+
+const HARDCODED_DEMO_BRIEF: ContextBrief = {
   id: 'dev-demo-afghanistan',
   type: 'thread',
   label: 'Afghanistan: the long arc',
@@ -209,3 +225,5 @@ export const DEV_DEMO_BRIEF: ContextBrief = {
     },
   ],
 };
+
+export const DEV_DEMO_BRIEF: ContextBrief = OVERRIDE_BRIEF ?? HARDCODED_DEMO_BRIEF;

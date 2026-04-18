@@ -64,7 +64,37 @@ JSON object keyed by article slug. Each value:
 - `entries`: array of objects, each with:
   - `heading`: ALLCAPS section heading
   - `body`: the explanation — concise, no markdown
+  - `blocks` (OPTIONAL): array of chart references — see `<trends>` below
 </output_format>
+
+<trends>
+For some articles you'll see a `## Live indicators` section appended to this prompt listing available charts (oil, currencies, prediction markets, shipping chokepoints, etc.). Each has an `id`, a `label`, a latest value, and `topicTags` that show what it's about.
+
+You MAY embed a chart under an entry by returning:
+
+```
+"blocks": [{"type": "chart", "ref": "<indicator-id>"}]
+```
+
+The generator expands this to a real chart block at save time — do NOT inline values, periods, or any other fields. Just the id.
+
+**When to include a chart:**
+- The chart's data materially illuminates the entry — showing the structural pressure the text describes. A Brent chart next to "the insurance chokepoint" entry; a Hormuz transits chart next to "why clearing is slow."
+- The chart's movement *is* part of the story. "PKR has fallen 40%" next to a PKR/USD chart shows the fall.
+- A prediction market gives an honest "what the world is betting" counterweight to speculation in the entry.
+
+**When to skip:**
+- The chart is thematically near but not central. An Iran article doesn't need a Brent chart unless the article is about oil prices specifically.
+- You already used a chart earlier in the same brief — prefer one strong chart over two mediocre ones.
+- The topic is abstract (surveillance mechanics, quantum error correction) — charts rarely illuminate these.
+- You'd be embedding the chart just because it matches a tag. Every chart needs a why.
+
+**Rules:**
+- Maximum **1** chart per brief. (Hard cap. Briefs are dense already.)
+- Only reference indicators that actually appear in the live indicators list below. Any other ref is silently dropped.
+- The chart attaches to ONE entry — pick the entry whose text it most directly supports.
+- Don't mention the chart in the entry body ("as the chart shows..."). The body stands alone; the chart adds evidence.
+</trends>
 
 <examples>
 <example>
@@ -120,7 +150,7 @@ JSON object keyed by article slug. Each value:
 </example>
 
 <example>
-<description>Geopolitical article — structural depth with historical reach</description>
+<description>Geopolitical article — structural depth with historical reach, with one chart attached to the entry it directly supports</description>
 <output>
 {
   "2026-04-01-iran-hormuz-mines-clearing-failure": {
@@ -128,12 +158,26 @@ JSON object keyed by article slug. Each value:
     "entries": [
       {"heading": "WHY MINES WORK", "body": "A single mine costs a few thousand dollars. Clearing it costs millions and weeks. This asymmetry is why mining has been the weapon of choice for weaker naval powers since the American Civil War."},
       {"heading": "THE TANKER WAR PRECEDENT", "body": "Iran mined the Persian Gulf in 1987-88. The USS Samuel B. Roberts struck one and nearly sank. The US retaliated with Operation Praying Mantis — the largest American naval engagement since WWII — but clearing the mines took months longer than the battles."},
-      {"heading": "WHY CLEARING IS SLOW", "body": "Contact mines anchor to the seabed and detonate on touch. Influence mines detect a ship's magnetic signature or acoustic footprint and fire from a distance. Each type requires a different sweep method, and currents move them from their charted positions."},
+      {"heading": "WHY CLEARING IS SLOW", "body": "Contact mines anchor to the seabed and detonate on touch. Influence mines detect a ship's magnetic signature or acoustic footprint and fire from a distance. Each type requires a different sweep method, and currents move them from their charted positions.", "blocks": [{"type": "chart", "ref": "portwatch-hormuz"}]},
       {"heading": "THE INSURANCE CHOKEPOINT", "body": "Lloyd's of London war-risk premiums — not the mines themselves — are what close a shipping lane. Once premiums spike, commercial vessels reroute regardless of how many mines remain. The financial chokepoint is tighter than the physical one."},
       {"heading": "THE DEPTH PROBLEM", "body": "The Strait's shipping lanes are only 10km wide and 60m deep. A single mine in the right position can halt traffic. Iran's coastline gives it thousands of launch points within small-boat range of the lanes."}
     ]
   }
 }
+</output>
+<note>The PortWatch chart attaches to "WHY CLEARING IS SLOW" because that entry's claim — that clearance takes weeks — is quantified by the collapse from 100+ to single-digit daily transits in the chart. It would be wrong to attach the same chart to "WHY MINES WORK" (too generic) or "THE DEPTH PROBLEM" (talks about physical geometry, not transit volume).</note>
+</example>
+
+<example>
+<description>Bad chart picks — these are anti-patterns. Do NOT do these.</description>
+<output>
+WRONG: attaching a Brent chart to an article about the Qatari 747 gift to Trump, "because oil and Gulf." Brent doesn't move based on this story; the chart adds noise.
+
+WRONG: attaching a PKR/USD chart to an entry explaining Sunni-Shi'a tensions in Pakistan. The currency is a separate story thread — the chart would distract from the historical point being made.
+
+WRONG: attaching a Polymarket "Gaza ceasefire" chart to an entry about al-Aqsa's Quranic significance. Theological substrate is not decided by prediction markets; the juxtaposition would be jarring and mildly offensive.
+
+WRONG: two charts in one brief — Brent on the oil-shock entry, gold on the macro-anxiety entry. Hard cap is 1. Pick the stronger one.
 </output>
 </example>
 </examples>

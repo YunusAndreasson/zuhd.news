@@ -385,6 +385,8 @@ for (const [id, brief] of Object.entries(contextBriefs)) {
     articleCount: brief.articleCount,
     generatedAt: brief.generatedAt,
     timeline: brief.timeline,
+    ...(Array.isArray(brief.sources) && brief.sources.length ? { sources: brief.sources } : {}),
+    ...(Array.isArray(brief.blocks) && brief.blocks.length ? { blocks: brief.blocks } : {}),
   }
   writeFileSync(join(DIST_DIR, 'api', 'context', `${id}.json`), JSON.stringify(payload))
   contextIndex[id] = { type: brief.type || 'thread', label: brief.label, category: brief.category, articleCount: brief.articleCount, generatedAt: brief.generatedAt }

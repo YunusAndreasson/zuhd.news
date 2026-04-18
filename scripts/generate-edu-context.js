@@ -3,15 +3,19 @@
 // Reads this cycle's new articles, identifies candidates for educational context,
 // calls Opus to select 2-4 and generate explainer briefs, saves to .context-briefs.json.
 
-import { readFileSync, writeFileSync, existsSync } from 'fs'
-import { join, basename } from 'path'
+import { readFileSync, writeFileSync, existsSync, appendFileSync, mkdirSync } from 'fs'
+import { join, basename, dirname } from 'path'
 import { spawnSync } from 'child_process'
 import { parseFrontmatter } from './lib/frontmatter.js'
+import { buildTimelineWithCharts, loadTrendsSnapshot, buildTrendsPromptSection } from './lib/trends-expand.js'
+import { parseClaudeEnvelope } from './lib/claude-envelope.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const BRIEFS_PATH = join(ROOT, 'content', '.context-briefs.json')
 const PROMPT_PATH = join(ROOT, 'scripts', 'edu-context-prompt.md')
 const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
+const TRENDS_DIGEST_PATH = '/tmp/zuhd-trends-digest.json'
+const TRENDS_PICKS_LOG = join(ROOT, 'logs', 'trends-picks.jsonl')
 const MAX_BRIEFS_PER_CYCLE = Infinity
 
 // --- Read this cycle's new articles ---
@@ -131,13 +135,23 @@ if (conceptLibrary) {
   console.log(`  Concept library: ${allCandidateConcepts.length} concepts, ${(conceptLibrary.match(/\n  "/g) || []).length} matching entries from existing briefs`)
 }
 
+// --- Load trends digest + snapshot (optional — graceful if missing) ---
+const trendsDigest = existsSync(TRENDS_DIGEST_PATH)
+  ? JSON.parse(readFileSync(TRENDS_DIGEST_PATH, 'utf8'))
+  : null
+const trendsSnapshot = loadTrendsSnapshot(ROOT)
+const trendsSection = buildTrendsPromptSection(trendsDigest)
+if (trendsDigest?.indicators?.length) {
+  console.log(`  Trends: offered ${trendsDigest.indicators.length} indicators to editor`)
+}
+
 // --- Build prompt ---
 const candidateList = candidates.map(c =>
   `- slug: ${c.slug}\n  title: ${c.title}\n  category: ${c.category}\n  concepts: ${c.concepts.join(', ') || 'none'}`
 ).join('\n')
 
 const fullPrompt = `${basePrompt}
-${conceptLibrary}
+${conceptLibrary}${trendsSection}
 ## Candidate articles
 
 ${candidateList}
@@ -169,41 +183,20 @@ if (result.status !== 0) {
   process.exit(1)
 }
 
-const raw = result.stdout?.trim()
-if (!raw) {
-  console.log('  Empty response — skipping.')
-  process.exit(0)
-}
-
-// --- Parse JSON (--output-format json returns {type:"result", result:"..."} envelope) ---
 let parsed
 try {
-  const outer = JSON.parse(raw)
-  if (outer.type === 'result') {
-    // Envelope — extract inner result
-    if (outer.result == null) throw new Error('Claude returned no text result (tool use may have exhausted max-turns)')
-    const text = String(outer.result)
-    try {
-      parsed = JSON.parse(text)
-    } catch {
-      const start = text.indexOf('{')
-      const end = text.lastIndexOf('}')
-      if (start === -1 || end === -1) throw new Error('No JSON object found in result')
-      parsed = JSON.parse(text.slice(start, end + 1))
-    }
-  } else {
-    // No envelope — raw output is the parsed data
-    parsed = outer
-  }
+  parsed = parseClaudeEnvelope(result.stdout)
 } catch (e) {
   console.log(`  Failed to parse JSON: ${e.message}`)
-  console.log(`  Raw output (first 300 chars): ${raw.slice(0, 300)}`)
+  console.log(`  Raw output (first 300 chars): ${(result.stdout || '').slice(0, 300)}`)
   process.exit(1)
 }
 
 // --- Validate and save ---
 const validSlugs = new Set(candidates.map(c => c.slug))
+const offeredIds = trendsDigest?.indicators?.map((i) => i.id) || []
 let generated = 0
+let totalPicks = 0
 
 for (const [slug, data] of Object.entries(parsed)) {
   if (!validSlugs.has(slug)) {
@@ -222,20 +215,46 @@ for (const [slug, data] of Object.entries(parsed)) {
   const validEntries = entries.filter(e => e.body && typeof e.body === 'string')
   if (validEntries.length === 0) continue
 
+  // Expand chart refs → trend blocks. Shared helper builds one sources[]
+  // array per brief and returns the list of picks for logging.
+  const { timeline, sources, picked } = buildTimelineWithCharts(
+    validEntries,
+    trendsSnapshot,
+    (msg) => console.log(`    ⚠ ${slug}: ${msg}`),
+  )
+
   briefs[slug] = {
     type: 'edu',
-    timeline: validEntries.map(e => ({
-      ...(e.heading ? { heading: e.heading } : {}),
-      body: e.body,
-    })),
+    timeline,
+    ...(sources.length ? { sources } : {}),
     generatedAt: new Date().toISOString(),
     label: data.label || slug,
     category: candidates.find(c => c.slug === slug)?.category || 'politics',
     articleCount: 1,
   }
   generated++
+  totalPicks += picked.length
   const headings = validEntries.filter(e => e.heading).length
-  console.log(`  Brief: ${slug} (${validEntries.length} entries, ${headings} headings)`)
+  const chartNote = picked.length ? ` + ${picked.length} chart(s): ${picked.map((p) => p.id).join(', ')}` : ''
+  console.log(`  Brief: ${slug} (${validEntries.length} entries, ${headings} headings${chartNote})`)
+
+  // --- Append trends-picks JSONL for iteration analysis ---
+  try {
+    mkdirSync(dirname(TRENDS_PICKS_LOG), { recursive: true })
+    appendFileSync(TRENDS_PICKS_LOG, JSON.stringify({
+      ts: new Date().toISOString(),
+      slug,
+      offered: offeredIds,
+      picked,
+    }) + '\n')
+  } catch (err) {
+    console.error(`  ✗ trends-picks log: ${err.message}`)
+  }
+}
+
+// Cycle-log summary line — parsed by scripts/dashboard/server.js.
+if (trendsDigest?.indicators?.length) {
+  console.log(`Trends: offered ${offeredIds.length} indicators to editor, picked ${totalPicks} across ${generated} articles`)
 }
 
 if (generated > 0) {
