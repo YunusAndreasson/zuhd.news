@@ -27,6 +27,7 @@ import { CategoryBar } from '../components/CategoryBar';
 import { ChokepointSheet } from '../components/ChokepointSheet';
 import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
+import { EntitySheet } from '../components/EntitySheet';
 import { ErrorState } from '../components/ErrorState';
 import { HISTORICAL_EVENTS_BY_ID } from '../components/globe/historicalEvents';
 import { ISLAMIC_PLACES_BY_ID } from '../components/globe/islamicPlaces';
@@ -41,9 +42,10 @@ import { useChokepoints } from '../hooks/useChokepoints';
 import { useContextBrief } from '../hooks/useContextBrief';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { useTheme } from '../hooks/useTheme';
+import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
-import type { Article, ArticleSource, Category, Chokepoint } from '../types';
+import type { Article, ArticleSource, Category, Chokepoint, Entity } from '../types';
 import { usePendingNotification } from './_hooks/usePendingNotification';
 import { useZoomCycle } from './_hooks/useZoomCycle';
 
@@ -57,6 +59,7 @@ export default function HomeScreen() {
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const chokepointSheetRef = useRef<BottomSheetModal>(null);
   const contextSheetRef = useRef<BottomSheetModal>(null);
+  const entitySheetRef = useRef<BottomSheetModal>(null);
   const renderBackdrop = useCallback(
     (props: BottomSheetBackdropProps) => (
       <BottomSheetBackdrop
@@ -84,6 +87,7 @@ export default function HomeScreen() {
   } = useArticles();
   const heatmapPoints = useHeatmap(generated);
   const { chokepoints } = useChokepoints();
+  const { byId: indicatorsById } = useTrendsSnapshot();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
   const briefingPlayer = useBriefingPlayer(
@@ -101,6 +105,11 @@ export default function HomeScreen() {
   const [sheetSources, setSheetSources] = useState<ArticleSource[]>([]);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
   const [activeChokepoint, setActiveChokepoint] = useState<Chokepoint | null>(null);
+  const [activeEntity, setActiveEntity] = useState<Entity | null>(null);
+  const activeIndicator = useMemo(
+    () => (activeEntity ? (indicatorsById.get(activeEntity.indicatorId) ?? null) : null),
+    [activeEntity, indicatorsById],
+  );
   const {
     brief: contextBrief,
     loading: contextLoading,
@@ -218,6 +227,21 @@ export default function HomeScreen() {
   // Flat feed across categories — memoized so downstream memos keyed on it
   // (e.g. ChokepointSheet's findRelatedArticles) don't invalidate every render.
   const flatArticles = useMemo(() => Object.values(grouped).flat(), [grouped]);
+
+  const handleEntityPress = useCallback(
+    (entity: Entity) => {
+      // Don't present the sheet if we can't resolve the indicator — the
+      // reader taps, nothing happens, worse UX than no tap affordance at
+      // all. This shouldn't fire in practice (extractor only emits ids
+      // that exist in the catalog), but snapshot vs frontmatter can drift
+      // briefly after a deploy.
+      if (!indicatorsById.get(entity.indicatorId)) return;
+      hapticTick();
+      setActiveEntity(entity);
+      entitySheetRef.current?.present();
+    },
+    [indicatorsById],
+  );
 
   const handleCountryPress = useCallback(
     (result: TapResult) => {
@@ -419,6 +443,7 @@ export default function HomeScreen() {
                 onBookmarkPress={handleArticleBookmark}
                 onSourcesPress={handleSourcesPress}
                 onTimeAgoPress={handleTimeAgoPress}
+                onEntityPress={handleEntityPress}
                 onCountryPress={handleCountryPress}
                 onArticleChange={handleArticleChange}
                 progressesSV={categoryProgresses}
@@ -487,6 +512,20 @@ export default function HomeScreen() {
         onDismiss={() => setActiveChokepoint(null)}
         onArticlePress={(slug, category) => {
           chokepointSheetRef.current?.dismiss();
+          handleSelectArticle(slug, category);
+        }}
+      />
+
+      <EntitySheet
+        sheetRef={entitySheetRef}
+        entity={activeEntity}
+        indicator={activeIndicator}
+        articles={flatArticles}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
+        onDismiss={() => setActiveEntity(null)}
+        onArticlePress={(slug, category) => {
+          entitySheetRef.current?.dismiss();
           handleSelectArticle(slug, category);
         }}
       />

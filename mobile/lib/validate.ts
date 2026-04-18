@@ -9,9 +9,13 @@ import type {
   ChokepointSnapshot,
   CompareRow,
   ContextBrief,
+  Entity,
+  EntityKind,
   FeedResponse,
   HeatmapPoint,
+  Indicator,
   MetaResponse,
+  TrendsSnapshot,
 } from '../types';
 import type { Bookmark } from './bookmark-store';
 
@@ -191,6 +195,35 @@ export const isArticle = (v: unknown): v is Article => {
   );
 };
 
+const isEntityKind = (v: unknown): v is EntityKind =>
+  v === 'commodity' ||
+  v === 'currency' ||
+  v === 'chokepoint' ||
+  v === 'crypto' ||
+  v === 'index' ||
+  v === 'stock';
+
+const isEntity = (v: unknown): v is Entity => {
+  if (!isObject(v)) return false;
+  return (
+    typeof v.mention === 'string' &&
+    v.mention.length > 0 &&
+    typeof v.indicatorId === 'string' &&
+    v.indicatorId.length > 0 &&
+    isEntityKind(v.kind)
+  );
+};
+
+/** Parse article `entities` field permissively. Missing / malformed → []. */
+export const parseEntities = (v: unknown): Entity[] => {
+  if (!Array.isArray(v)) return [];
+  const out: Entity[] = [];
+  for (const e of v) {
+    if (isEntity(e)) out.push(e);
+  }
+  return out;
+};
+
 export const isFeedResponse = (v: unknown): v is FeedResponse => {
   if (!isObject(v) || typeof v.generated !== 'string') return false;
   if (!isObject(v.categories)) return false;
@@ -259,6 +292,26 @@ export const isChokepointSnapshot = (v: unknown): v is ChokepointSnapshot =>
   typeof v.generated === 'string' &&
   Array.isArray(v.chokepoints) &&
   v.chokepoints.every(isChokepoint);
+
+const isIndicator = (v: unknown): v is Indicator => {
+  if (!isObject(v)) return false;
+  if (typeof v.id !== 'string' || v.id.length === 0) return false;
+  if (typeof v.label !== 'string' || v.label.length === 0) return false;
+  if (typeof v.source !== 'string') return false;
+  if (typeof v.sourceLabel !== 'string') return false;
+  if (!Array.isArray(v.values) || !v.values.every(isFiniteNumber)) return false;
+  if (!isStringArray(v.periods)) return false;
+  if (v.values.length !== v.periods.length) return false;
+  if (v.values.length < 2) return false;
+  return true;
+};
+
+export const isTrendsSnapshot = (v: unknown): v is TrendsSnapshot =>
+  isObject(v) &&
+  typeof v.fetchedAt === 'string' &&
+  typeof v.asOf === 'string' &&
+  Array.isArray(v.indicators) &&
+  v.indicators.every(isIndicator);
 
 export const isPreferences = (v: unknown): v is Preferences => {
   if (!isObject(v)) return false;

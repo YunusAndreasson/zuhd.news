@@ -27,7 +27,10 @@ const OUT_FILE = path.join(__dirname, '..', 'constants', 'country-augmented.ts')
 // Formatters — every value is stored as a pre-formatted display string; the
 // parseStat in lib/country-ranking.ts reads the leading number back for
 // sort order, so units and decorations come along for free.
-const fmtPct = (digits = 0) => (n) => `${n.toFixed(digits)}%`;
+const fmtPct =
+  (digits = 0) =>
+  (n) =>
+    `${n.toFixed(digits)}%`;
 const fmtPctAuto = (n) => `${n.toFixed(n < 10 ? 1 : 0)}%`;
 const fmtFixed = (digits) => (n) => n.toFixed(digits);
 const fmtCount = (n) => {
@@ -36,8 +39,10 @@ const fmtCount = (n) => {
   if (n >= 1e3) return `${(n / 1e3).toFixed(n >= 1e4 ? 0 : 1)}K`;
   return `${Math.round(n)}`;
 };
-const fmtLocale = (digits = 0) => (n) =>
-  n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+const fmtLocale =
+  (digits = 0) =>
+  (n) =>
+    n.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
 
 // World Bank indicator code → field name on CountryAugmented + formatter.
 const WB_INDICATORS = {

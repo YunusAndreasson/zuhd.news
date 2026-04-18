@@ -30,7 +30,7 @@ import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { hapticNotification, hapticTick } from '../lib/haptics';
 import { maybeRequestReview } from '../lib/store-review';
-import type { Article, Chokepoint, HeatmapPoint } from '../types';
+import type { Article, Chokepoint, Entity, HeatmapPoint } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { EmptyState } from './EmptyState';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
@@ -56,6 +56,7 @@ interface ArticleListProps {
   onBookmarkPress?: (article: Article) => void;
   onSourcesPress?: (article: Article) => void;
   onTimeAgoPress?: (article: Article) => void;
+  onEntityPress?: (entity: Entity) => void;
   onArticleChange?: (article: Article, catIndex: number) => void;
   progressesSV: SharedValue<number[]>;
   zoomClipOverride?: number | null;
@@ -75,6 +76,7 @@ export const ArticleList = memo(function ArticleList({
   onBookmarkPress,
   onSourcesPress,
   onTimeAgoPress,
+  onEntityPress,
   onArticleChange,
   onRefresh,
   onEndReached,
@@ -237,6 +239,7 @@ export const ArticleList = memo(function ArticleList({
         onBookmarkPress={onBookmarkPress}
         onSourcesPress={onSourcesPress}
         onTimeAgoPress={onTimeAgoPress}
+        onEntityPress={onEntityPress}
         showEarlierDivider={index === earlierIndex}
         globeRef={globeRef}
         globeYOffset={containerTopRef}
@@ -252,6 +255,7 @@ export const ArticleList = memo(function ArticleList({
       onBookmarkPress,
       onSourcesPress,
       onTimeAgoPress,
+      onEntityPress,
       earlierIndex,
       tick,
     ],

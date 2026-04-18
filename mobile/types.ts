@@ -79,6 +79,21 @@ export type ArticleBlock =
 
 export type BlockType = ArticleBlock['type'];
 
+/** Classes of tappable entities in article bodies. Each kind maps to a
+ *  presentation style in the EntitySheet (a chart with optional framing).
+ *  Extracted server-side from known rich-noun mentions; see
+ *  `scripts/lib/entity-registry.js`. */
+export type EntityKind = 'commodity' | 'currency' | 'chokepoint' | 'crypto' | 'index' | 'stock';
+
+/** One tappable reference from an article body into the indicator catalog.
+ *  `mention` is the literal string matched in the body (used by the renderer
+ *  to locate the tappable run); `indicatorId` keys into `TrendsSnapshot`. */
+export interface Entity {
+  mention: string;
+  indicatorId: string;
+  kind: EntityKind;
+}
+
 export interface Article {
   slug: string;
   title: string;
@@ -100,6 +115,11 @@ export interface Article {
   threadDay?: number;
   threadArticleCount?: number;
   sentences: string[];
+  /** Optional list of rich-noun references in the body — each opens an
+   *  `EntitySheet` with the matching indicator's chart + related stories.
+   *  Missing array or empty array both mean "no tappable entities"; mobile
+   *  never fails on an absent field. */
+  entities?: Entity[];
 }
 
 interface ContextIndexEntry {
@@ -189,4 +209,33 @@ export interface Chokepoint {
 export interface ChokepointSnapshot {
   generated: string;
   chokepoints: Chokepoint[];
+}
+
+/** One indicator from the trends snapshot at `/api/trends.json`. Mirrors the
+ *  shape the pipeline writes in `content/trends/<date>.json`. Value/periods
+ *  pairs drive the chart in `EntitySheet`; `topicTags` and `countryTags` are
+ *  kept for future tag-based relevance work. */
+export interface Indicator {
+  id: string;
+  label: string;
+  unit?: string;
+  source: string;
+  seriesId?: string;
+  cadence?: 'daily' | 'monthly';
+  topicTags?: string[];
+  countryTags?: string[];
+  defaultHighlight?: 'last' | 'first' | 'max' | 'min';
+  sourceLabel: string;
+  values: number[];
+  periods: string[];
+  asOf?: string;
+  latest?: number | null;
+  previous?: number | null;
+  marketUrl?: string;
+}
+
+export interface TrendsSnapshot {
+  fetchedAt: string;
+  asOf: string;
+  indicators: Indicator[];
 }

@@ -7,12 +7,17 @@ import {
   MAX_FONT_SCALE,
   type Typography,
 } from '../constants/theme';
+import type { Entity } from '../types';
 
 export type Segment = {
-  type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link';
+  type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link' | 'entity';
   text: string;
   url?: string;
+  /** When type === 'entity', the resolved entity for the tappable run. */
+  entity?: Entity;
 };
+
+export type EntityPressHandler = (entity: Entity) => void;
 
 export type LinkOpener = (url: string) => void;
 
@@ -79,12 +84,69 @@ export function parseInline(line: string): Segment[] {
   return segments.length ? segments : [{ type: 'text', text: smartTypography(line) }];
 }
 
+/** Split plain-text segments on any entity mentions, in-place, preserving
+ *  surrounding text. Matches the mention string with a case-insensitive,
+ *  word-boundary regex (+ optional plural 's'). First occurrence per entity
+ *  per sentence wins — dedup happens via the outer pass. Non-text segments
+ *  (bold, italic, link) pass through unchanged so an emphasised mention
+ *  stays emphasised rather than flipping to accent. */
+export function splitSegmentsWithEntities(segments: Segment[], entities: Entity[]): Segment[] {
+  if (!entities.length) return segments;
+  const out: Segment[] = [];
+  for (const seg of segments) {
+    if (seg.type !== 'text') {
+      out.push(seg);
+      continue;
+    }
+    const text = seg.text;
+    // Find all entity matches in this text run, earliest-first; walk once.
+    type Hit = { start: number; end: number; entity: Entity };
+    const hits: Hit[] = [];
+    for (const e of entities) {
+      const escaped = e.mention.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const re = new RegExp(`\\b${escaped}(?:s)?\\b`, 'i');
+      const m = re.exec(text);
+      if (m && m.index != null) {
+        hits.push({ start: m.index, end: m.index + m[0].length, entity: e });
+      }
+    }
+    hits.sort((a, b) => a.start - b.start);
+    // Drop overlaps — keep the earliest match.
+    const cleaned: Hit[] = [];
+    let lastEnd = -1;
+    for (const h of hits) {
+      if (h.start >= lastEnd) {
+        cleaned.push(h);
+        lastEnd = h.end;
+      }
+    }
+    if (cleaned.length === 0) {
+      out.push(seg);
+      continue;
+    }
+    // Build the new segment list for this text run.
+    let pos = 0;
+    for (const h of cleaned) {
+      if (h.start > pos) {
+        out.push({ type: 'text', text: text.slice(pos, h.start) });
+      }
+      out.push({ type: 'entity', text: text.slice(h.start, h.end), entity: h.entity });
+      pos = h.end;
+    }
+    if (pos < text.length) {
+      out.push({ type: 'text', text: text.slice(pos) });
+    }
+  }
+  return out;
+}
+
 export interface MarkdownStyles {
   sentence: TextStyle;
   bold: TextStyle;
   italic: TextStyle;
   boldItalic: TextStyle;
   link: TextStyle;
+  entity: TextStyle;
   dateline: TextStyle;
 }
 
@@ -116,6 +178,12 @@ export function makeMarkdownStyles(
       color: colors.accent,
       textDecorationLine: 'underline',
     },
+    // Entity runs get the accent hue without underline — a softer affordance
+    // than a link so that tappable rich nouns don't compete with inline URLs.
+    // The tap target uses RN Text's onPress; readers discover via color.
+    entity: {
+      color: colors.accent,
+    },
     dateline: {
       ...font.smallCaps,
     },
@@ -126,6 +194,7 @@ export function renderSegments(
   segments: Segment[],
   mdStyles: MarkdownStyles,
   openLink: LinkOpener,
+  onEntityPress?: EntityPressHandler,
 ): ReactNode[] {
   return segments.map((seg, j) => {
     switch (seg.type) {
@@ -153,6 +222,21 @@ export function renderSegments(
             {seg.text}
           </Text>
         );
+      case 'entity': {
+        const entity = seg.entity;
+        const onPress = entity && onEntityPress ? () => onEntityPress(entity) : undefined;
+        return (
+          <Text
+            key={j}
+            style={mdStyles.entity}
+            onPress={onPress}
+            accessibilityRole="button"
+            accessibilityLabel={`${seg.text} — tap for live data`}
+          >
+            {seg.text}
+          </Text>
+        );
+      }
       default:
         return seg.text;
     }
@@ -174,6 +258,10 @@ export function renderSentences(
   /** If provided, the inline dateline becomes tappable (e.g. to reveal the
    *  exact timestamp in a toast). */
   onDatelinePress?: () => void,
+  /** Tappable rich-noun mentions in the body — each one's first occurrence
+   *  across the sentence list becomes a tappable `<Text>` with `onEntityPress`. */
+  entities?: Entity[],
+  onEntityPress?: EntityPressHandler,
 ): ReactNode[] {
   const size = fontSize ?? typography.sizeBase;
   const sizeStyle = fontSize
@@ -186,6 +274,31 @@ export function renderSentences(
 
   const lastIdx = sentences.length - 1;
 
+  // Entities fire on first occurrence only across the whole body — track
+  // which indicator ids have already been consumed so later sentences don't
+  // double-tag them. Mutates per render but local to this call.
+  const remaining = entities ? [...entities] : [];
+  const consume = (rendered: Segment[]): Entity[] => {
+    if (!remaining.length) return [];
+    const used: Entity[] = [];
+    // Take whichever of the remaining entities match anywhere in the
+    // current sentence's plain-text segments; drop them from `remaining`.
+    const plain = rendered
+      .filter((s) => s.type === 'text')
+      .map((s) => s.text)
+      .join(' ');
+    const next: Entity[] = [];
+    for (const e of remaining) {
+      const escaped = e.mention.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const re = new RegExp(`\\b${escaped}(?:s)?\\b`, 'i');
+      if (re.test(plain)) used.push(e);
+      else next.push(e);
+    }
+    remaining.length = 0;
+    remaining.push(...next);
+    return used;
+  };
+
   return sentences.map((sentence, i) => {
     const isLast = i === lastIdx;
     if (i === 0) {
@@ -195,6 +308,10 @@ export function renderSentences(
         const prefix = `${location} \u2014 `;
         if (sentence.startsWith(prefix)) rest = sentence.slice(prefix.length);
       }
+      const baseSegments = parseInline(rest);
+      const segmentsForRender = entities?.length
+        ? splitSegmentsWithEntities(baseSegments, consume(baseSegments))
+        : baseSegments;
       // Show dateline (e.g. time ago) in small-caps before first sentence.
       if (dateline) {
         return (
@@ -207,7 +324,7 @@ export function renderSentences(
               {dateline}
             </Text>
             {'\u2002'}
-            {renderSegments(parseInline(rest), mdStyles, openLink)}
+            {renderSegments(segmentsForRender, mdStyles, openLink, onEntityPress)}
             {isLast && trailing}
           </Text>
         );
@@ -218,18 +335,22 @@ export function renderSentences(
           style={[mdStyles.sentence, sizeStyle]}
           maxFontSizeMultiplier={MAX_FONT_SCALE.body}
         >
-          {renderSegments(parseInline(rest), mdStyles, openLink)}
+          {renderSegments(segmentsForRender, mdStyles, openLink, onEntityPress)}
           {isLast && trailing}
         </Text>
       );
     }
+    const baseSegments = parseInline(sentence);
+    const segmentsForRender = entities?.length
+      ? splitSegmentsWithEntities(baseSegments, consume(baseSegments))
+      : baseSegments;
     return (
       <Text
         key={i}
         style={[mdStyles.sentence, sizeStyle]}
         maxFontSizeMultiplier={MAX_FONT_SCALE.body}
       >
-        {renderSegments(parseInline(sentence), mdStyles, openLink)}
+        {renderSegments(segmentsForRender, mdStyles, openLink, onEntityPress)}
         {isLast && trailing}
       </Text>
     );

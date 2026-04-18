@@ -15,7 +15,7 @@ import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact } from '../lib/haptics';
 import { makeMarkdownStyles, renderSentences } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
-import type { Article } from '../types';
+import type { Article, Entity } from '../types';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 import { Text } from './primitives';
 
@@ -31,6 +31,8 @@ interface ArticlePageProps {
   onBookmarkPress?: (article: Article) => void;
   onSourcesPress?: (article: Article) => void;
   onTimeAgoPress?: (article: Article) => void;
+  /** Tap handler for in-body entity mentions (oil, Hormuz, Bitcoin…). */
+  onEntityPress?: (entity: Entity) => void;
   showEarlierDivider?: boolean;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
   globeYOffset?: React.RefObject<number>;
@@ -83,6 +85,7 @@ export const ArticlePage = memo(function ArticlePage({
   onBookmarkPress,
   onSourcesPress,
   onTimeAgoPress,
+  onEntityPress,
   showEarlierDivider,
   globeRef,
   globeYOffset,
@@ -173,10 +176,13 @@ export const ArticlePage = memo(function ArticlePage({
         openLink,
         sourcesTrailing,
         onTimeAgoPress ? handleTimeAgoPress : undefined,
+        article.entities,
+        onEntityPress,
       ),
     [
       article.sentences,
       article.location,
+      article.entities,
       mdStyles,
       typography,
       bodyFontSize,
@@ -185,6 +191,7 @@ export const ArticlePage = memo(function ArticlePage({
       sourcesTrailing,
       onTimeAgoPress,
       handleTimeAgoPress,
+      onEntityPress,
     ],
   );
 
