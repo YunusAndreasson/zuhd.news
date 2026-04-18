@@ -36,6 +36,7 @@ import { type PreferencesApi, usePreferences, useTheme } from '../hooks/useTheme
 import { hapticTick } from '../lib/haptics';
 import type { Article, Category } from '../types';
 import { HapticPressable } from './HapticPressable';
+import { SheetAboutPage } from './SheetAboutPage';
 import { SheetBookmarksPage } from './SheetBookmarksPage';
 import { SheetHandle } from './SheetHandle';
 import { type InfoSection, SheetInfoPage } from './SheetInfoPage';
@@ -50,45 +51,6 @@ const APP_VERSION = Constants.expoConfig?.version ?? '';
 // ---------------------------------------------------------------------------
 
 const INFO_PAGES = {
-  about: {
-    sections: [
-      { body: 'Zuhd \u2014 the discipline of doing without what you do not need.' },
-      { body: 'What happened. Why it matters. What comes next. Then stop.' },
-      {
-        body: 'Where a story is told from determines who is treated as a person and who as a statistic.',
-      },
-      { body: 'No social media, no investors, no editorial board.' },
-      {
-        heading: 'sources',
-        body: 'Stories are compiled from hundreds of outlets across six continents, indexed by EventRegistry. A language model selects and writes each article based on geographic breadth and editorial significance.',
-      },
-      {
-        heading: 'inclusion',
-        body: 'Editorial independence determines inclusion. State-funded outlets qualify if editorially autonomous. Editorial interference disqualifies regardless of ownership.',
-      },
-      {
-        heading: 'transparency',
-        body: 'Every article lists the outlets used, their country of origin, and how each covers the story. Tap \u201cmore\u201d on any article to inspect.',
-      },
-      {
-        heading: 'country data',
-        body: 'Each country sheet surfaces ranked indicators across governance, development, science, economy, and demography. Tap any metric to see its full world ranking and source. Data is sourced from:',
-        links: [
-          { label: 'World Bank \u2014 data.worldbank.org', url: 'https://data.worldbank.org/' },
-          { label: 'Our World in Data \u2014 ourworldindata.org', url: 'https://ourworldindata.org/' },
-          { label: 'V-Dem Institute \u2014 v-dem.net', url: 'https://v-dem.net/' },
-          {
-            label: 'Transparency International \u2014 transparency.org',
-            url: 'https://www.transparency.org/en/cpi',
-          },
-          { label: 'Reporters Without Borders \u2014 rsf.org', url: 'https://rsf.org/en/index' },
-          { label: 'UNDP Human Development Report \u2014 hdr.undp.org', url: 'https://hdr.undp.org/' },
-          { label: 'UNHCR Refugee Data \u2014 unhcr.org', url: 'https://www.unhcr.org/refugee-statistics/' },
-          { label: 'REST Countries \u2014 restcountries.com', url: 'https://restcountries.com/' },
-        ],
-      },
-    ],
-  },
   privacy: {
     sections: [
       {
@@ -206,7 +168,7 @@ const SETTINGS: readonly SettingEntry[] = [
   },
 ];
 
-type PageKey = InfoKey | 'settings' | SettingKey | 'search' | 'saved';
+type PageKey = InfoKey | 'about' | 'settings' | SettingKey | 'search' | 'saved';
 
 const isInfoKey = (k: PageKey): k is InfoKey => k in INFO_PAGES;
 
@@ -647,24 +609,27 @@ export const MenuSheet = memo(function MenuSheet({
       return <SheetBookmarksPage onSelectArticle={onSelectArticle} />;
     }
 
-    if (isInfoKey(current)) {
+    if (current === 'about') {
+      const allArticles = Object.values(grouped).flat();
       return (
         <>
-          <SheetInfoPage sections={INFO_PAGES[current].sections} />
-          {current === 'about' && (
-            <Text
-              style={{
-                ...font.regular,
-                fontSize: typography.sizeXs,
-                color: colors.textSecondary,
-                marginTop: SPACING.lg,
-              }}
-            >
-              {APP_VERSION}
-            </Text>
-          )}
+          <SheetAboutPage articles={allArticles} />
+          <Text
+            style={{
+              ...font.regular,
+              fontSize: typography.sizeXs,
+              color: colors.textSecondary,
+              marginTop: SPACING.lg,
+            }}
+          >
+            {APP_VERSION}
+          </Text>
         </>
       );
+    }
+
+    if (isInfoKey(current)) {
+      return <SheetInfoPage sections={INFO_PAGES[current].sections} />;
     }
 
     return null;
