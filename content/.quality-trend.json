@@ -2,26 +2,22 @@
   {
     "week": "2026-04-17",
     "windowDays": 7,
-    "articleCount": 357,
+    "articleCount": 338,
     "metrics": {
-      "charLengthAvg": 305,
+      "charLengthAvg": 306,
       "charOver350Pct": 0,
       "wordCountAvg": 46,
-      "wordInRangePct": 85.4,
-      "titleEchoRatePct": 55.2,
-      "passiveHookRatePct": 0.8,
+      "wordInRangePct": 84.9,
+      "titleEchoRatePct": 53.8,
+      "passiveHookRatePct": 0.6,
       "causalClaimHits": 3,
       "pressEraHits": 7,
       "hedgeRatePct": 0.6,
-      "acronymViolations": 145,
+      "acronymViolations": 124,
       "topAcronymViolators": [
         [
           "ASEAN",
           5
-        ],
-        [
-          "BJP",
-          4
         ],
         [
           "DOJ",
@@ -34,30 +30,34 @@
         [
           "ICE",
           4
+        ],
+        [
+          "II",
+          3
         ]
       ],
       "countryNullCount": 21,
-      "topOutletSharePct": 12.6,
+      "topOutletSharePct": 12.4,
       "top3Outlets": [
         {
           "name": "Dawn",
-          "count": 30
-        },
-        {
-          "name": "Al Jazeera Online",
-          "count": 19
+          "count": 27
         },
         {
           "name": "Phys.org",
-          "count": 18
+          "count": 19
+        },
+        {
+          "name": "Hindustan Times",
+          "count": 16
         }
       ],
-      "multiSourceRatePct": 22.7,
+      "multiSourceRatePct": 21.9,
       "categoryBalance": {
-        "science": 63,
-        "tech": 69,
-        "politics": 144,
-        "economy": 81
+        "tech": 68,
+        "politics": 138,
+        "science": 58,
+        "economy": 74
       }
     }
   }
