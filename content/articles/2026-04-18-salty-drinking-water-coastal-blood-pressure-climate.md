@@ -9,6 +9,8 @@ sources:
   - name: "Phys.org"
     url: "https://phys.org/news/2026-04-salty-blood-pressure-people-coastal.html"
     country: "GB"
+    sentiment: -0.1
+    angle: "foregrounds saltwater intrusion into coastal freshwater as climate-driven hypertension risk beyond lifestyle factors"
 entities: []
 ---
 

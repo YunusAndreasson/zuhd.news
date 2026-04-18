@@ -9,6 +9,8 @@ sources:
   - name: "CoinDesk"
     url: "https://www.coindesk.com/business/2026/04/18/from-smelters-to-servers-alcoa-to-cash-in-on-crypto-s-thirst-for-energy"
     country: "US"
+    sentiment: 0.05
+    angle: "emphasizes smelter's intact electrical grid and hydropower access as valuable asset for bitcoin mining operations"
 concepts:
   - "Alcoa"
   - "NYDIG"
@@ -23,5 +25,4 @@ entities:
     indicatorId: "stocks:AA"
     kind: "stock"
 ---
-
-Massena, New York — NYDIG is converting Alcoa's idle smelter into a bitcoin mine. US aluminum smelters can't compete on global pricing; their dedicated hydropower grids are worth more as compute infrastructure. Alcoa's CEO says the deal closes mid-year and expects more idle smelters to follow.
+Massena, New York — NYDIG is converting Alcoa's idle smelter into a bitcoin mine. [US](country:US) aluminum smelters can't compete on global pricing; their dedicated hydropower grids are worth more as compute infrastructure. Alcoa's CEO says the deal closes mid-year and expects more idle smelters to follow.

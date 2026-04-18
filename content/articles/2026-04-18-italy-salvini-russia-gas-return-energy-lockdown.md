@@ -9,6 +9,8 @@ sources:
   - name: "TASS"
     url: "https://tass.com/economy/2119209"
     country: "RU"
+    sentiment: 0.15
+    angle: "highlights US-EU energy inconsistency—US suspended sanctions on Russian oil while EU maintains Russian gas embargo"
 concepts:
   - "Matteo Salvini"
   - "Russia"
@@ -20,5 +22,4 @@ entities:
     indicatorId: "brent"
     kind: "commodity"
 ---
-
-Milan — Italy's deputy PM called for resuming Russian gas imports. Matteo Salvini cited the US temporarily suspending Russian oil sanctions as justification for Europe to follow. Whether the EU will soften its Russian energy sanctions in response remains undecided.
+Milan — [Italy](country:IT)'s deputy PM called for resuming Russian gas imports. Matteo Salvini cited the [US](country:US) temporarily suspending Russian oil sanctions as justification for Europe to follow. Whether the EU will soften its Russian energy sanctions in response remains undecided.

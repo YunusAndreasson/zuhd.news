@@ -9,7 +9,8 @@ sources:
   - name: "Mehr News Agency"
     url: "https://en.mehrnews.com/news/243762/India-summons-Iran-ambassador"
     country: "IR"
-    sentiment: -0.14
+    sentiment: -0.1
+    angle: "frames India's protest through Iran's perspective, emphasizing Hormuz control as response to US blockade violations"
   - name: "haaretz.com"
     url: "https://www.haaretz.com/israel-news/israel-security/2026-04-18/ty-article-live/idf-drone-strike-kills-one-in-south-lebanon-on-first-day-of-truce-medics-say/0000019d-9e74-d290-afbf-be74d7b60005?liveBlogItemId=209815142"
     country: "IL"
@@ -17,7 +18,8 @@ sources:
   - name: "Newsweek"
     url: "https://www.newsweek.com/audio-of-indian-oil-tanker-under-iranian-fire-in-hormuz-let-me-turn-back-11849661"
     country: "US"
-    sentiment: -0.18
+    sentiment: -0.35
+    angle: "reconstructs crisis through 33-second IRGC audio of crew pleading after being fired upon by Iranian ships"
 eventCoverage: 55
 concepts:
   - "India"
@@ -34,5 +36,4 @@ entities:
     indicatorId: "brent"
     kind: "commodity"
 ---
-
-New Delhi — Iran fired on 2 Indian tankers in the Strait of Hormuz, India's government said. India summoned Tehran's ambassador in protest; India is among Iran's largest crude buyers. India called on Tehran to guarantee safe passage for its commercial vessels.
+New Delhi — [Iran](country:IR) fired on 2 Indian tankers in the Strait of Hormuz, [India](country:IN)'s government said. India summoned Tehran's ambassador in protest; India is among Iran's largest crude buyers. India called on Tehran to guarantee safe passage for its commercial vessels.

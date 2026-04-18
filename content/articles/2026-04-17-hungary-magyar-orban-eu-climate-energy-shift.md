@@ -9,7 +9,7 @@ sources:
   - name: "Carbon Brief"
     url: "https://www.carbonbrief.org/qa-what-magyars-defeat-of-orban-in-hungary-means-for-climate-and-energy/"
     country: "GB"
+    sentiment: 0
 entities: []
 ---
-
-Budapest — Péter Magyar ended 16 years of Orbán rule. Hungary blocked EU climate finance and Russian-energy decoupling for years; unanimity rules mean one election now unblocks the stalled agenda. Magyar pledged a 2035 Russian energy exit; EU states can now advance climate and energy votes Hungary's veto had blocked.
+Budapest — Péter Magyar ended 16 years of Orbán rule. [Hungary](country:HU) blocked EU climate finance and Russian-energy decoupling for years; unanimity rules mean one election now unblocks the stalled agenda. Magyar pledged a 2035 Russian energy exit; EU states can now advance climate and energy votes Hungary's veto had blocked.
