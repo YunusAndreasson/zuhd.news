@@ -4,6 +4,12 @@ export interface ArticleSource {
   name: string;
   country?: string | null;
   sentiment?: number | null;
+  /** Haiku-written one-sentence summary of the distinctive framing this
+   *  outlet brought to the story ("emphasizes X", "foregrounds Y"). Null
+   *  when the source was unfetchable (paywall, bot-block) OR when the
+   *  outlet brought nothing distinctive (wire-verbatim). Shown in the
+   *  sources sheet when present; hidden otherwise. */
+  angle?: string | null;
 }
 
 export type BlockTone = 'favorable' | 'unfavorable' | 'neutral';

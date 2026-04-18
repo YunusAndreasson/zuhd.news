@@ -277,15 +277,27 @@ $BODY_LENGTHS
   echo "Edu context exit: $EDU_EXIT — $((SECONDS - T35))s" | tee -a "$LOG_FILE"
 
   # Stage 3.6: Entity extraction — scan article bodies for known rich nouns
-  # (commodities, currencies, chokepoints, crypto, indices) and write their
-  # indicator ids into frontmatter. Mobile renders these as tappable runs
-  # opening an EntitySheet. Deterministic static-rule matching for v1 —
-  # no LLM cost, runs in <1s on a typical cycle.
+  # (commodities, currencies, chokepoints, crypto, indices, stocks) and
+  # write their indicator ids into frontmatter. Mobile renders these as
+  # tappable runs opening an EntitySheet. Mostly deterministic; uses Haiku
+  # for ambiguous currencies (rupee→PK/IN, pound→EG/LB) and for stock NER.
+  # Timeout generous to accommodate 2 Haiku calls + ~15 Yahoo fetches.
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3.6: Entity extraction ---" | tee -a "$LOG_FILE"
   T36=$SECONDS
-  timeout 30 node scripts/extract-entities.js 2>&1 | tee -a "$LOG_FILE"
+  timeout 180 node scripts/extract-entities.js 2>&1 | tee -a "$LOG_FILE"
   echo "Entities exit: $? — $((SECONDS - T36))s" | tee -a "$LOG_FILE"
+
+  # Stage 3.7: Source-angle extraction — for each source URL, fetch and
+  # summarize its distinctive framing via one batched Haiku call. Writes
+  # `angle` + improved `sentiment` back to each article's sources[] list.
+  # Mobile can surface this when the user taps a source. Soft-fails on
+  # paywall/bot-block; missing angle is a valid state.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.7: Source angles ---" | tee -a "$LOG_FILE"
+  T37=$SECONDS
+  timeout 300 node scripts/extract-source-angles.js 2>&1 | tee -a "$LOG_FILE"
+  echo "Source angles exit: $? — $((SECONDS - T37))s" | tee -a "$LOG_FILE"
 
   # Stage 3b: Build and deploy — always runs, even if editor timed out
   # This ensures articles get published regardless of editor success
