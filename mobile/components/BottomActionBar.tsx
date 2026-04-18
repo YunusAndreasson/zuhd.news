@@ -1,7 +1,7 @@
-import { Pressable, StyleSheet, View } from 'react-native';
-import { PRESSED_STYLE, RADIUS, SPACING } from '../constants/theme';
+import { StyleSheet, View } from 'react-native';
+import { RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { Text } from './primitives';
+import { Pressable, Text } from './primitives';
 
 // Tighter pills — visible footprint ~22pt tall (vs ~32pt) so the globe has
 // more room. Tap target stays ≥48pt thanks to the inflated hitSlop below.
@@ -27,15 +27,15 @@ function ActionPill({
   accessibilityLabel: string;
 }) {
   const { colors } = useTheme();
+  // Spring press via the primitive; haptic handled by each callsite's
+  // handler (zoom ticks, share/context/briefing impact), so we pass 'none'
+  // here to avoid double-firing.
   return (
     <Pressable
       onPress={onPress}
+      haptic="none"
       hitSlop={PILL_HIT_SLOP}
-      style={({ pressed }) => [
-        styles.actionPill,
-        { backgroundColor: colors.pillBg, borderColor: colors.rule },
-        pressed && PRESSED_STYLE,
-      ]}
+      style={[styles.actionPill, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
     >

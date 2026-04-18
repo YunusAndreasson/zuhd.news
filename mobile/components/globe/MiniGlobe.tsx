@@ -1306,13 +1306,20 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      // Islamic-geography markers — small glyph + label. Use a 30px tap
-      // zone (900 px²) — tight enough not to steal taps from nearby
-      // chokepoints or the story dot, wide enough to catch the tiny ring
-      // plus its label below.
+      // Islamic-geography markers + historical events — 30px tap zone
+      // (900 px²). Both layers share the same catch radius; within that
+      // radius we pick the marker closest to the finger so clusters like
+      // the Levant (Al-Aqsa / Yarmuk / Ayn Jalut / Damascus) resolve by
+      // proximity instead of array order.
+      let bestD2 = 900;
+      let bestHit: TapResult | null = null;
       for (const p of state.islamicPlaces) {
-        if (isNear(x, y, p.x, p.y, 900)) {
-          return {
+        const dx = x - p.x;
+        const dy = y - p.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 <= bestD2) {
+          bestD2 = d2;
+          bestHit = {
             countryName: '',
             location: null,
             localTime: null,
@@ -1321,14 +1328,13 @@ export const MiniGlobe = memo(function MiniGlobe({
           };
         }
       }
-
-      // Historical events — same 30px tap zone as places. Checked after
-      // places so a tight coincidence (e.g. 'Ayn Jalut ~90km from Al-Aqsa)
-      // resolves to whichever marker the user landed nearer to first in
-      // iteration order, while keeping both independently tappable.
       for (const e of state.historicalEvents) {
-        if (isNear(x, y, e.x, e.y, 900)) {
-          return {
+        const dx = x - e.x;
+        const dy = y - e.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 <= bestD2) {
+          bestD2 = d2;
+          bestHit = {
             countryName: '',
             location: null,
             localTime: null,
@@ -1337,6 +1343,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           };
         }
       }
+      if (bestHit) return bestHit;
 
       // Then article dot (wider catch zone)
       const dot = state.dot;
@@ -1672,36 +1679,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       })}
 
       {/* Historical events — one-time inflections (Tours, Manzikert, Suez,
-          Partition…). Cross glyph + year·name label ABOVE the point so
-          events and places can sit close without their labels colliding. */}
+          Partition…). Small filled diamond; distinct from the ring-dot
+          used for Islamic places. Labels removed to reduce clutter. */}
       {state.historicalEvents.map((e) => (
-        <Group key={e.id}>
-          <Rect
-            x={e.x - 3}
-            y={e.y - 0.4}
-            width={6}
-            height={0.8}
-            color={colors.dome}
-            opacity={0.75 * e.opacity}
-          />
-          <Rect
-            x={e.x - 0.4}
-            y={e.y - 3}
-            width={0.8}
-            height={6}
-            color={colors.dome}
-            opacity={0.75 * e.opacity}
-          />
-          {subFont && (
-            <SkiaText
-              x={e.x - (e.year.length + e.name.length + 3) * 1.8}
-              y={e.y - 6}
-              text={`${e.year} · ${e.name}`}
-              font={subFont}
-              color={colors.dome}
-              opacity={0.7 * e.opacity}
-            />
-          )}
+        <Group
+          key={e.id}
+          transform={[{ translateX: e.x }, { translateY: e.y }, { rotate: Math.PI / 4 }]}
+        >
+          <Rect x={-2} y={-2} width={4} height={4} color={colors.dome} opacity={0.8 * e.opacity} />
         </Group>
       ))}
 

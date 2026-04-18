@@ -210,7 +210,7 @@ export const BriefingBar = memo(function BriefingBar({
           </IconButton>
 
           <IconButton onPress={onClose} accessibilityLabel="Close briefing player">
-            <Icon name="close" size="sm" tone="secondary" />
+            <Icon name="close" tone="secondary" />
           </IconButton>
         </View>
 

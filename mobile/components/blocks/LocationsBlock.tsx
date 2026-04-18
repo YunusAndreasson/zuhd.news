@@ -12,7 +12,7 @@ import {
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { runOnJS, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
-import { EASING, PRESSED_STYLE, RADIUS, SPACING } from '../../constants/theme';
+import { EASING, OPACITY, PRESSED_STYLE, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import { hapticImpact } from '../../lib/haptics';
@@ -395,7 +395,7 @@ export const LocationsBlock = memo(function LocationsBlock({
                   styles.chip,
                   {
                     backgroundColor: isSelected ? colors.accent : colors.pillBg,
-                    opacity: disabled ? 0.4 : 1,
+                    opacity: disabled ? OPACITY.disabled : 1,
                   },
                   pressed && PRESSED_STYLE,
                 ]}
@@ -434,7 +434,7 @@ const styles = StyleSheet.create({
   mapWrap: {
     position: 'relative',
     overflow: 'hidden',
-    borderRadius: 2,
+    borderRadius: RADIUS.handle,
   },
   chipRow: {
     flexDirection: 'row',
