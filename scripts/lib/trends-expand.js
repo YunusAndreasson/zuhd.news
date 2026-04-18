@@ -8,6 +8,7 @@
 
 import { existsSync, readFileSync } from 'fs'
 import { join } from 'path'
+import { parseArticleBlock } from './validate-blocks.js'
 
 /** Load the most recent trends snapshot. Returns null if missing. */
 export function loadTrendsSnapshot(root) {
@@ -110,13 +111,19 @@ export function expandChartRef(chartBlock, snapshot, sourceCtx) {
 }
 
 /**
- * Apply chart-ref expansion to a Claude-emitted `entries[]` array. Returns
- * `{ timeline, sources, picked }` ready to save into a ContextBrief. `picked`
- * is a list of `{id, heading}` for logging.
+ * Transform a Claude-emitted `entries[]` array into a timeline ready to save
+ * into a ContextBrief. Two passes over each entry's `blocks`:
+ *   1. `{type:'chart', ref}` → expanded to a populated `trend` block via the
+ *      live-indicators snapshot (server-authored data, no fabrication risk).
+ *   2. Any other type → validated against the mobile block schema (mirror of
+ *      `mobile/lib/validate.ts parseArticleBlock`) and passed through as-is.
+ *      Malformed blocks are dropped with a warn.
  *
- * @param {Array<{heading?: string, body: string, blocks?: Array<{type:string, ref?:string}>}>} entries
- * @param {object | null} snapshot   Loaded by loadTrendsSnapshot. Null → no charts.
- * @param {(msg: string) => void} [warn]   Logger for unknown refs.
+ * @param {Array<{heading?: string, body: string, blocks?: unknown[]}>} entries
+ * @param {object | null} snapshot   Loaded by loadTrendsSnapshot. Null → skip
+ *                                   chart expansion; literal blocks still pass.
+ * @param {(msg: string) => void} [warn]   Logger for drops.
+ * @returns {{ timeline: object[], sources: string[], picked: {id: string, heading: string | null}[] }}
  */
 export function buildTimelineWithCharts(entries, snapshot, warn = () => {}) {
   const sourceCtx = { sourceIndex: new Map(), sources: [] }
@@ -126,21 +133,36 @@ export function buildTimelineWithCharts(entries, snapshot, warn = () => {}) {
     .filter((e) => e && typeof e.body === 'string' && e.body.length > 0)
     .map((e) => {
       const out = { ...(e.heading ? { heading: e.heading } : {}), body: e.body }
-      if (Array.isArray(e.blocks) && e.blocks.length && snapshot) {
-        const expanded = []
-        for (const b of e.blocks) {
-          if (b?.type === 'chart' && b.ref) {
-            const trend = expandChartRef(b, snapshot, sourceCtx)
-            if (trend) {
-              expanded.push(trend)
-              picked.push({ id: b.ref, heading: e.heading || null })
-            } else {
-              warn(`dropping unknown/empty chart ref '${b.ref}'`)
-            }
-          }
+      if (!Array.isArray(e.blocks) || e.blocks.length === 0) return out
+
+      const expanded = []
+      for (const b of e.blocks) {
+        if (!b || typeof b !== 'object') {
+          warn(`dropping non-object block under '${e.heading || 'entry'}'`)
+          continue
         }
-        if (expanded.length) out.blocks = expanded
+        if (b.type === 'chart') {
+          if (!snapshot) {
+            warn(`dropping chart ref '${b.ref}' — no trends snapshot loaded`)
+            continue
+          }
+          const trend = expandChartRef(b, snapshot, sourceCtx)
+          if (trend) {
+            expanded.push(trend)
+            picked.push({ id: b.ref, heading: e.heading || null })
+          } else {
+            warn(`dropping unknown/empty chart ref '${b.ref}'`)
+          }
+          continue
+        }
+        const { block, reason } = parseArticleBlock(b)
+        if (block) {
+          expanded.push(block)
+        } else {
+          warn(`dropping malformed ${b.type || 'unknown'} block under '${e.heading || 'entry'}': ${reason}`)
+        }
       }
+      if (expanded.length) out.blocks = expanded
       return out
     })
 

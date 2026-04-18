@@ -235,8 +235,12 @@ for (const [slug, data] of Object.entries(parsed)) {
   generated++
   totalPicks += picked.length
   const headings = validEntries.filter(e => e.heading).length
+  // Literal blocks = any expanded non-chart block (locations, compare, quote, actors, prose).
+  // `picked` only tracks charts, so diff total blocks against chart count.
+  const literalBlocks = timeline.reduce((n, t) => n + (t.blocks?.filter((b) => b.type !== 'trend').length || 0), 0)
   const chartNote = picked.length ? ` + ${picked.length} chart(s): ${picked.map((p) => p.id).join(', ')}` : ''
-  console.log(`  Brief: ${slug} (${validEntries.length} entries, ${headings} headings${chartNote})`)
+  const literalNote = literalBlocks ? ` + ${literalBlocks} literal block(s)` : ''
+  console.log(`  Brief: ${slug} (${validEntries.length} entries, ${headings} headings${chartNote}${literalNote})`)
 
   // --- Append trends-picks JSONL for iteration analysis ---
   try {

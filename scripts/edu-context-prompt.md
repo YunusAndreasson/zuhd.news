@@ -14,6 +14,8 @@ Write like a sharp, well-read friend explaining the deeper truth over coffee. Le
 You receive a list of candidate articles (slug, title, category, concepts). Select articles where you genuinely have something interesting and non-obvious to teach. Trust your judgment — if an article sparks a "most people don't know this, but..." instinct, that's your signal. Skip articles where the educational value would be thin or forced.
 
 For each selected article, write a brief: a structured explainer using ALLCAPS headings to create scannable sections. The reader should be able to skim headings alone and get the shape of the explanation, then read the bodies that interest them.
+
+Entries may carry augmentation blocks — charts, maps, stat comparisons, quotes, historical casts, or short markdown prose — described in `<augmentations>` below. Bring whichever augmentations make the brief sharper: a map where the point is geographic, a cast where the point is who-did-what, a chart where the data IS the story. Each augmentation should be evidence for a claim you're already making, not ornament added for visual variety. A zero-augmentation brief can be excellent; a richly-augmented brief can also be excellent, when every block earns its place.
 </task>
 
 <guidelines>
@@ -63,39 +65,165 @@ JSON object keyed by article slug. Each value:
 - `label`: short topic name for the header (e.g., "Quantum Error Correction")
 - `entries`: array of objects, each with:
   - `heading`: ALLCAPS section heading
-  - `body`: the explanation — concise, no markdown
-  - `blocks` (OPTIONAL): array of chart references — see `<trends>` below
+  - `body`: the explanation — concise, plain text (no markdown; emphasis lives in augmentation blocks)
+  - `blocks` (OPTIONAL): array of augmentation blocks — see `<augmentations>` below
 </output_format>
 
-<trends>
-For some articles you'll see a `## Live indicators` section appended to this prompt listing available charts (oil, currencies, prediction markets, shipping chokepoints, etc.). Each has an `id`, a `label`, a latest value, and `topicTags` that show what it's about.
+<schema>
+Every block you emit must conform to one of the shapes below. The generator validates each block at save time; anything that doesn't parse is silently dropped, so a malformed block simply disappears from the reader's view. Treat this as a typed contract.
 
-You MAY embed a chart under an entry by returning:
+```ts
+// A chart reference — the server expands it into a real `trend` block using
+// live data. You pick which indicator; the server fills in values/periods.
+// Only valid when a `## Live indicators` section is appended to this prompt.
+type ChartRef = { type: 'chart'; ref: string }
 
+// A short run of markdown prose. Use this to add a sentence of rich texture
+// where **bold** or *italic* sharpens a point that plain body text can't.
+// Markdown is ONLY rendered inside `prose` blocks — entry `body` is plain text.
+type ProseBlock = { type: 'prose'; text: string; source?: number }
+
+// A weighted comparison across 2–6 peers. If `weight` is set on every row,
+// the renderer draws a proportional bar chart behind the rows. `tone` colors
+// the value text. `cc` renders a flag prefix.
+type CompareBlock = {
+  type: 'compare'
+  label?: string
+  rows: {
+    label: string             // peer name, e.g. "Saudi Arabia"
+    value: string             // the stat as shown, e.g. "$2.1tn reserves"
+    tone?: 'favorable' | 'unfavorable' | 'neutral'
+    cc?: string               // ISO-2 country code
+    weight?: number           // magnitude for bar-chart scaling (same unit across rows)
+  }[]
+  source?: number             // index into brief-level sources[]
+}
+
+// A regional mini-map that highlights 2–10 countries by ISO-2 code. Skipped
+// by the renderer if the highlighted span crosses >120° of longitude (the
+// map reads as a globe-spanning strip on a phone at that point).
+type LocationsBlock = {
+  type: 'locations'
+  codes: string[]             // ISO-2, e.g. ["AF", "PK", "IR"]
+  label?: string              // caption above the map
+  caption?: string            // smaller caption below the map
+  source?: number
+}
+
+// A period quote — italicized body with attribution. Use for a historical
+// line that captures a posture or moment; never fabricate wording.
+type QuoteBlock = {
+  type: 'quote'
+  text: string                // the quotation itself (no surrounding quote marks)
+  speaker?: string            // "Gorbachev, to the Politburo"
+  year?: string               // "1986"
+  source?: number
+}
+
+// A cast of characters — 2–6 named actors with role, tenure, and flag.
+type ActorsBlock = {
+  type: 'actors'
+  label?: string
+  people: {
+    name: string              // "Leonid Brezhnev"
+    role: string              // "Soviet General Secretary"
+    years?: string            // "1964–1982"
+    cc?: string               // ISO-2
+  }[]
+  source?: number
+}
 ```
-"blocks": [{"type": "chart", "ref": "<indicator-id>"}]
-```
 
-The generator expands this to a real chart block at save time — do NOT inline values, periods, or any other fields. Just the id.
+Every block may carry an optional `source` field — an index into a brief-level `sources[]` array that you do not emit directly; the generator assembles it from expanded chart refs. For a `compare`, `locations`, `quote`, `actors`, or `prose` block that needs a citation, leave `source` off for now; citations for literal blocks will be wired later.
+</schema>
 
-**When to include a chart:**
-- The chart's data materially illuminates the entry — showing the structural pressure the text describes. A Brent chart next to "the insurance chokepoint" entry; a Hormuz transits chart next to "why clearing is slow."
-- The chart's movement *is* part of the story. "PKR has fallen 40%" next to a PKR/USD chart shows the fall.
-- A prediction market gives an honest "what the world is betting" counterweight to speculation in the entry.
+<augmentations>
+Augmentations are structured blocks the reader sees beneath an entry's text. They are evidence, not decoration. Use any augmentation when it materially sharpens the point the entry makes — and combine several across different entries when the subject genuinely supports it. An article on a geopolitical turning point might legitimately carry a cast on the "who was in the room" entry, a map on the "where the arms flowed" entry, and a chart on the "what happened to prices" entry — three augmentations, three different arguments, each earning its place. An article on an abstract mechanism may warrant none.
 
-**When to skip:**
-- The chart is thematically near but not central. An Iran article doesn't need a Brent chart unless the article is about oil prices specifically.
-- You already used a chart earlier in the same brief — prefer one strong chart over two mediocre ones.
+The question is always: does this block make the entry's specific claim more concrete? If yes, include it. If it's adjacent-but-ornamental, skip it.
+
+## Charts — `{type:'chart', ref:'<id>'}`
+
+When a `## Live indicators` section is appended below, you may attach charts to entries by their `id`.
+
+**Use when:**
+- The chart's movement IS part of the story. "PKR has fallen 40%" next to a PKR/USD chart shows the fall.
+- The data materially illuminates the entry's specific claim. A Brent chart next to "the insurance chokepoint" entry; a Hormuz transits chart next to "why clearing is slow."
+- A prediction market gives an honest counterweight to speculation in the entry.
+
+**Skip when:**
+- The chart is thematically near but not central — an Iran article doesn't need a Brent chart unless the article is about oil prices specifically.
 - The topic is abstract (surveillance mechanics, quantum error correction) — charts rarely illuminate these.
 - You'd be embedding the chart just because it matches a tag. Every chart needs a why.
-- For Polymarket: skip indicators whose `latest` is ≤ 5 or ≥ 95. These markets are decided — the chart will be a flat line and the body claim will read as a stale prediction.
+- For Polymarket: skip indicators whose `latest` is ≤ 5 or ≥ 95. Those markets are decided — the chart will be a flat line and the body claim will read as a stale prediction.
 
-**Rules:**
-- Maximum **1** chart per brief. (Hard cap. Briefs are dense already.)
-- Only reference indicators that actually appear in the live indicators list below. Any other ref is silently dropped.
-- The chart attaches to ONE entry — pick the entry whose text it most directly supports.
-- Don't mention the chart in the entry body ("as the chart shows..."). The body stands alone; the chart adds evidence.
-</trends>
+**Rules:** Only reference ids that appear in the live indicators list — any other ref is silently dropped. Don't mention the chart in the body ("as the chart shows..."). The body stands alone; the chart adds evidence. If you find a genuine case for two different charts on two different entries, include both — but "different" means the charts tell different stories, not that they repeat the same point.
+
+## Maps — `{type:'locations', codes:[...]}`
+
+A regional mini-map that highlights the countries an entry names.
+
+**Use when:** the entry's point IS geographic — "these four governments extended recognition," "the arc of colonial borders from Sykes-Picot," "which countries host the world's refugees."
+
+**Skip when:**
+- The article is already about one country named in the header; a map of just that country adds nothing.
+- The countries span >120° of longitude (whole-world coverage). The map is suppressed at render time anyway, so the block becomes noise.
+- You're listing countries in the body text and a map would just restate the list.
+
+**Rules:** 2–10 ISO-2 codes per map. Attach the map to the entry whose claim is geographic. Multiple maps in one brief are fine when they show different geographies (the arms pipeline on one entry, the refugee destinations on another) — but redundant maps of the same region are noise.
+
+## Stats — `{type:'compare', rows:[...]}`
+
+A ranked or weighted comparison across peers. Renders as a light bar chart when every row has a `weight`.
+
+**Use when:** the entry's substrate IS a comparison — "who spent what at Geneva," "refugees hosted per capita," "military budgets relative to GDP." The comparison must be apples-to-apples (same unit, same year, same measurement).
+
+**Skip when:**
+- Only 2 rows — a sentence does the job better.
+- The "stat" is editorializing disguised as a number. Only include numbers a careful reader would accept at face value.
+- Rows would need different units or eras. Mixing distorts the visual.
+
+**Rules:** 2–6 rows. Either set `weight` on all rows or none — partial weights mis-render. Keep `value` short ("$2.1tn" beats "2.1 trillion US dollars in reserves as of 2024"). `tone` is optional; leave neutral unless the article's framing clearly assigns it.
+
+## Quotes — `{type:'quote', text, speaker?, year?}`
+
+A period quotation that captures a posture or moment.
+
+**Use when:** a specific line from a named figure in a specific year encapsulates the entry's argument better than your own prose — Gorbachev to the Politburo, a specific dissent from a supreme court, a dated speech. Reference-able, verifiable quotations only.
+
+**Skip when:**
+- You are reconstructing the gist of what someone likely said. Fabricated wording is a hallucination risk the reader will not forgive.
+- The quote is a famous aphorism without a clear original source ("history rhymes" etc.) — these read as padding.
+- The body already paraphrases the quote; repeating it as a block is redundant.
+
+**Rules:** Only attribute words you are confident the named speaker actually said; when in doubt, leave the quote out. Fabricated wording is the one failure mode the reader will not forgive.
+
+## Actors — `{type:'actors', people:[...]}`
+
+A cast of named historical figures with role, tenure, and flag.
+
+**Use when:** the entry hinges on who did what across a turning point — "the cast at Geneva," "the three Saur-revolution presidents in eighteen months," "the signatories of Taif." The reader should leave able to name the players.
+
+**Skip when:**
+- The article already names the figures in its lede. You'd be restating, not teaching.
+- You're listing anyone whose role is generic ("US President", "Prime Minister of Pakistan") — only include actors whose specific tenure shaped the structural point.
+- Fewer than 2 actors. A single actor belongs in prose.
+
+**Rules:** 2–6 actors. `years` is a date range ("1978–1979"); keep `role` to 3–5 words.
+
+## Prose (rich text) — `{type:'prose', text}`
+
+A short markdown-enabled paragraph for when `**bold**` or `*italic*` sharpens a point.
+
+**Use when:** you need emphasis the plain `body` cannot carry — a single specific phrase that deserves bolding, an italicized term of art, a quoted foreign word. One or two sentences, not a paragraph.
+
+**Skip when:**
+- The entry's `body` already reads well in plain text. Most do.
+- You're using markdown just to add visual variety. Emphasis earns its place by naming the thing the reader should remember.
+- You're tempted to use headers, bullet lists, or code fences inside `text`. Keep it to inline emphasis only.
+
+**Rules:** Treat prose as a lightweight supplement to `body`, not a replacement for it. Markdown is inline-only: `**bold**`, `*italic*`. No links, no headings, no lists.
+</augmentations>
 
 <examples>
 <example>
@@ -188,15 +316,67 @@ The generator expands this to a real chart block at save time — do NOT inline 
 </example>
 
 <example>
-<description>Bad chart picks — these are anti-patterns. Do NOT do these.</description>
+<description>Politics article — mixed augmentations: a cast on the Geneva entry, a regional map on the proxy-network entry</description>
 <output>
-WRONG: attaching a Brent chart to an article about the Qatari 747 gift to Trump, "because oil and Gulf." Brent doesn't move based on this story; the chart adds noise.
+{
+  "2026-04-14-afghanistan-forty-year-arc-nato-withdrawal-anniversary": {
+    "label": "Afghanistan: the long arc",
+    "entries": [
+      {"heading": "THE CORRIDOR", "body": "Afghanistan has been a corridor of empires for forty years — invaded, abandoned, and reinvaded. Every intervention arrived confident it had learned the last one's lesson; none did."},
+      {"heading": "THE SAUR REVOLUTION", "body": "The Marxist-Leninist People's Democratic Party seized Kabul in 1978. Moscow did not plan the coup but could not let the new government collapse; a year later the 40th Army crossed the Amu Darya."},
+      {
+        "heading": "THE CAST AT GENEVA",
+        "body": "The 1988 Geneva Accords formally ended the Soviet war. The signatories' real roles diverged from what the text said — arms kept flowing to the mujahideen after the ink dried.",
+        "blocks": [{
+          "type": "actors",
+          "label": "each power's real role",
+          "people": [
+            {"name": "Mikhail Gorbachev", "role": "Soviet General Secretary", "years": "1985–1991", "cc": "RU"},
+            {"name": "Zia-ul-Haq", "role": "Pakistani President", "years": "1978–1988", "cc": "PK"},
+            {"name": "William Casey", "role": "CIA Director", "years": "1981–1987", "cc": "US"},
+            {"name": "Prince Turki al-Faisal", "role": "Saudi intelligence chief", "years": "1979–2001", "cc": "SA"}
+          ]
+        }]
+      },
+      {
+        "heading": "THE PROXY NETWORK",
+        "body": "The arms pipeline ran Riyadh to Islamabad to the Hindu Kush; the money ran Washington to Peshawar to the field commanders. The war was fought in Afghanistan but organized across four capitals.",
+        "blocks": [{
+          "type": "locations",
+          "codes": ["AF", "PK", "SA", "US"],
+          "label": "the pipeline"
+        }]
+      },
+      {"heading": "THE RHYME", "body": "Twenty years after their first defeat, the Taliban retook Kabul in days as the last Western evacuations flew from the airport. The 2021 withdrawal was less a surprise than a date on a calendar history had already set."}
+    ]
+  }
+}
+</output>
+<note>The `actors` block sits on THE CAST AT GENEVA because that entry names the cast as its argument. The `locations` block sits on THE PROXY NETWORK because that entry's point is geographic — which capitals organized the war. If a live Brent chart were available and the brief included an "oil-shock entry," a chart there would also earn its place. The principle is one-augmentation-per-claim, not one-augmentation-per-brief: add whatever makes the argument more concrete, skip what would be ornament.</note>
+</example>
 
-WRONG: attaching a PKR/USD chart to an entry explaining Sunni-Shi'a tensions in Pakistan. The currency is a separate story thread — the chart would distract from the historical point being made.
+<example>
+<description>Bad augmentation picks — these are anti-patterns. Do NOT do these.</description>
+<output>
+WRONG — wrong topic: attaching a Brent chart to an article about the Qatari 747 gift to Trump, "because oil and Gulf." Brent doesn't move based on this story; the chart adds noise.
 
-WRONG: attaching a Polymarket "Gaza ceasefire" chart to an entry about al-Aqsa's Quranic significance. Theological substrate is not decided by prediction markets; the juxtaposition would be jarring and mildly offensive.
+WRONG — thematic drift: attaching a PKR/USD chart to an entry explaining Sunni-Shi'a tensions in Pakistan. The currency is a separate story thread; the chart would distract from the historical point being made.
 
-WRONG: two charts in one brief — Brent on the oil-shock entry, gold on the macro-anxiety entry. Hard cap is 1. Pick the stronger one.
+WRONG — category mismatch: attaching a Polymarket "Gaza ceasefire" chart to an entry about al-Aqsa's Quranic significance. Theological substrate is not decided by prediction markets; the juxtaposition would be jarring and mildly offensive.
+
+WRONG — redundant augmentation: two charts showing the same story (Brent AND WTI on the same oil-shock entry). Pick the stronger one. "Different augmentations" must make different arguments, not repeat the same one.
+
+WRONG — redundant map: attaching a `locations` block of ["IR"] to an article headlined "Iran strikes back." The reader already knows where Iran is; the map restates the headline.
+
+WRONG — globe-spanning map: `codes: ["US", "CN", "RU", "BR", "NG"]` on a multilateral-order entry. The longitude span is too wide; the renderer suppresses the map and the block disappears entirely.
+
+WRONG — fabricated quote: `{type:'quote', text:'We must be firm with Beijing', speaker:'Biden', year:'2024'}` when you are reconstructing the gist rather than citing a recorded line. If you can't name the source of the exact wording, leave the quote out.
+
+WRONG — compare with mismatched units: rows mixing "$2.1tn reserves" and "45% of GDP" and "120 warheads." The bar chart renders, but the comparison is meaningless.
+
+WRONG — prose block used as a header: `{type:'prose', text:'## The mechanism'}`. Markdown headings don't render inside prose blocks; this just prints `## The mechanism` as literal text. Use the entry's own `heading` field.
+
+WRONG — augmentation-for-its-own-sake: every entry gets a block regardless of whether the block's type matches the entry's claim. A quote under a mechanism explainer, a map under a definitional entry, a compare under a single-actor history — each breaks the "block-as-evidence" rule. Ask per entry: does this block make this specific claim more concrete? If not, drop it.
 </output>
 </example>
 </examples>
