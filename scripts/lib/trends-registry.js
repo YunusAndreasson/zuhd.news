@@ -19,7 +19,7 @@ import { fetchOerRates } from './trends-sources/oer.js'
 import { fetchPolymarketTop } from './trends-sources/polymarket.js'
 import { fetchPortWatchChokepoint } from './trends-sources/portwatch.js'
 import { fetchCoinGeckoSeries } from './trends-sources/crypto.js'
-import { fetchWikipediaPageviews } from './trends-sources/wikipedia.js'
+import { fetchWikipediaTrendingConcepts } from './trends-sources/wikipedia.js'
 
 /** @typedef {Object} SourceDef
  *  @property {Function} fetcher
@@ -58,9 +58,9 @@ export const SOURCES = {
     mode: 'perIndicator',
   },
   wikipedia: {
-    fetcher: fetchWikipediaPageviews,
+    fetcher: fetchWikipediaTrendingConcepts,
     requiredEnv: [],
-    mode: 'perIndicator',
+    mode: 'dynamic',
   },
 }
 
@@ -557,120 +557,10 @@ export const INDICATORS = [
     sourceLabel: 'Open Exchange Rates',
   },
 
-  // ── Tier 3: narrative-attention (Wikipedia pageviews, no key) ──────────────
-  // A daily-views spike is the reader's own signal that a topic has gone
-  // mainstream. Chart shows relative attention — Claude attaches one when
-  // the story IS the attention shift (breaking chokepoint, scandal, figure).
-  {
-    id: 'wiki-hormuz',
-    label: 'Hormuz — Wikipedia views',
-    unit: 'views/day',
-    source: 'wikipedia',
-    seriesId: 'Strait_of_Hormuz',
-    cadence: 'daily',
-    topicTags: ['hormuz', 'strait', 'iran', 'chokepoint', 'gulf', 'oil flow'],
-    defaultHighlight: 'max',
-    sourceLabel: 'Wikipedia pageviews',
-  },
-  {
-    id: 'wiki-hezbollah',
-    label: 'Hezbollah — Wikipedia views',
-    unit: 'views/day',
-    source: 'wikipedia',
-    seriesId: 'Hezbollah',
-    cadence: 'daily',
-    topicTags: ['hezbollah', 'lebanon', 'beirut', 'iran proxy'],
-    defaultHighlight: 'max',
-    sourceLabel: 'Wikipedia pageviews',
-  },
-  {
-    id: 'wiki-irgc',
-    label: 'IRGC — Wikipedia views',
-    unit: 'views/day',
-    source: 'wikipedia',
-    seriesId: 'Islamic_Revolutionary_Guard_Corps',
-    cadence: 'daily',
-    topicTags: ['irgc', 'iran', 'revolutionary guard', 'quds force', 'iran military'],
-    defaultHighlight: 'max',
-    sourceLabel: 'Wikipedia pageviews',
-  },
-  {
-    id: 'wiki-taliban',
-    label: 'Taliban — Wikipedia views',
-    unit: 'views/day',
-    source: 'wikipedia',
-    seriesId: 'Taliban',
-    cadence: 'daily',
-    topicTags: ['taliban', 'afghanistan', 'kabul', 'emirate'],
-    defaultHighlight: 'max',
-    sourceLabel: 'Wikipedia pageviews',
-  },
-  {
-    id: 'wiki-gaza',
-    label: 'Gaza — Wikipedia views',
-    unit: 'views/day',
-    source: 'wikipedia',
-    seriesId: 'Gaza_Strip',
-    cadence: 'daily',
-    topicTags: ['gaza', 'palestine', 'israel', 'hamas', 'unrwa', 'ceasefire'],
-    defaultHighlight: 'max',
-    sourceLabel: 'Wikipedia pageviews',
-  },
-  {
-    id: 'wiki-ai',
-    label: 'AI — Wikipedia views',
-    unit: 'views/day',
-    source: 'wikipedia',
-    seriesId: 'Artificial_intelligence',
-    cadence: 'daily',
-    topicTags: ['artificial intelligence', 'ai', 'machine learning', 'llm', 'chatgpt'],
-    defaultHighlight: 'max',
-    sourceLabel: 'Wikipedia pageviews',
-  },
-  {
-    id: 'wiki-taiwan',
-    label: 'Taiwan — Wikipedia views',
-    unit: 'views/day',
-    source: 'wikipedia',
-    seriesId: 'Taiwan',
-    cadence: 'daily',
-    topicTags: ['taiwan', 'china', 'tsmc', 'cross-strait', 'taipei'],
-    defaultHighlight: 'max',
-    sourceLabel: 'Wikipedia pageviews',
-  },
-  {
-    id: 'wiki-nato',
-    label: 'NATO — Wikipedia views',
-    unit: 'views/day',
-    source: 'wikipedia',
-    seriesId: 'NATO',
-    cadence: 'daily',
-    topicTags: ['nato', 'alliance', 'article 5', 'brussels', 'collective defense'],
-    defaultHighlight: 'max',
-    sourceLabel: 'Wikipedia pageviews',
-  },
-  {
-    id: 'wiki-suez',
-    label: 'Suez Canal — Wikipedia views',
-    unit: 'views/day',
-    source: 'wikipedia',
-    seriesId: 'Suez_Canal',
-    cadence: 'daily',
-    topicTags: ['suez', 'canal', 'egypt', 'chokepoint', 'ever given'],
-    defaultHighlight: 'max',
-    sourceLabel: 'Wikipedia pageviews',
-  },
-  {
-    id: 'wiki-quantum',
-    label: 'Quantum computing — Wikipedia views',
-    unit: 'views/day',
-    source: 'wikipedia',
-    seriesId: 'Quantum_computing',
-    cadence: 'daily',
-    topicTags: ['quantum computing', 'qubit', 'shors algorithm', 'post-quantum'],
-    defaultHighlight: 'max',
-    sourceLabel: 'Wikipedia pageviews',
-  },
+  // Wikipedia indicators are produced dynamically by
+  // fetchWikipediaTrendingConcepts() from the top concepts of recent
+  // published articles — no static rows here. Adding more is done by
+  // writing articles about new topics; the source auto-adapts.
 ]
 
 // Normalize at load: editor matching is case- and whitespace-sensitive, and
