@@ -161,7 +161,7 @@ Augmentations are structured blocks the reader sees beneath an entry's text.
 Split them into two tiers — the question "include or omit?" has a different default for each:
 
 - **Cheap augmentations** (locations, compare, actors, prose, quiz) — these draw only on your own training knowledge. No fetch cost, no fabrication risk beyond normal care. **Default ON**: if an entry has the substrate for the block, include it. A 5-entry brief with 3–4 of these is the target.
-- **Guarded augmentations** (chart, quote) — real failure modes (unresolvable refs, fabricated wording). **Default OFF**: include only when the specific condition is clearly met.
+- **Guarded augmentations** (chart, quote) — real failure modes (unresolvable refs, fabricated wording). **Default OFF**: include only when the specific condition is clearly met. Exception: canonical text quotes (constitutional clauses, treaty articles, famous on-record speech lines) are cheap — see the `quote` block for the narrow carve-out.
 
 Across a 5–6 entry brief, expect roughly 3–5 cheap blocks and 0–2 guarded blocks. A brief with zero augmentations means either the article is unusually abstract or you're being too conservative — check the latter.
 
@@ -206,18 +206,25 @@ A ranked or weighted comparison across peers. Renders as a light bar chart when 
 
 **Rules:** 3–6 rows. Either set `weight` on all rows or none — partial weights mis-render. Keep `value` short ("$2.1tn" beats "2.1 trillion US dollars in reserves as of 2024"). `tone` is optional.
 
-## Quotes — `{type:'quote', text, speaker?, year?}`
+## Quotes — `{type:'quote', text, speaker?, year?}` [guarded by default, canonical-text exception]
 
-A period quotation that captures a posture or moment.
+A period quotation that captures a posture or moment — OR a canonical text whose wording is stable and widely reproduced.
 
-**Use when:** a specific line from a named figure in a specific year encapsulates the entry's argument better than your own prose — Gorbachev to the Politburo, a specific dissent from a supreme court, a dated speech. Reference-able, verifiable quotations only.
+**Guarded default — fabrication risk applies:**
+- Recalling what a specific person "must have said" is the main failure mode. When reconstructing wording from memory, omit the block.
+- Famous aphorisms without a clear original source ("history rhymes," "the arc of the moral universe") read as padding.
+
+**Canonical-text exception — treat as cheap:**
+- Constitutional clauses, treaty articles, published laws, landmark judicial holdings, on-record speeches whose wording is widely reproduced in primary sources. The US Emoluments Clause, Article 5 of NATO, the Balfour Declaration, a supreme-court majority line quoted in every casebook — these are verifiable, not reconstructed. Use `speaker` for the source ("US Constitution, Article I §9" or "Treaty of Westphalia, 1648").
+- Dated, on-record public speeches where the line is famous enough to appear in Wikipedia verbatim (Gorbachev's "window of opportunity," Kennedy's "Ich bin ein Berliner") also qualify.
+
+**Use when:** the entry argues a legal, constitutional, or rhetorical point and the canonical text IS the evidence. A brief on the Emoluments Clause without the clause itself is hollow.
 
 **Skip when:**
-- You are reconstructing the gist of what someone likely said. Fabricated wording is a hallucination risk the reader will not forgive.
-- The quote is a famous aphorism without a clear original source ("history rhymes" etc.) — these read as padding.
-- The body already paraphrases the quote; repeating it as a block is redundant.
+- You cannot name the precise source of the exact wording → off.
+- The body already paraphrases the quote → redundant.
 
-**Rules:** Only attribute words you are confident the named speaker actually said; when in doubt, leave the quote out. Fabricated wording is the one failure mode the reader will not forgive.
+**Rules:** Only attribute words you are confident the named speaker or document actually contains. When in doubt, leave the quote out — but "in doubt" should be reserved for reconstructed wording, not for canonical text you clearly remember.
 
 ## Actors — `{type:'actors', people:[...]}` [cheap — default on]
 
@@ -253,6 +260,25 @@ One active-reading check inline with the brief. The reader answers; the right pi
 - You can't write three genuinely plausible options. Weak distractors ("Mars" vs. "Earth" when the answer is obviously Earth) are worse than no quiz.
 
 **Rules:** Exactly one `quiz` per brief (at most). `options` must be 3–4 entries with one correct and two-to-three plausible distractors. `correct` is a zero-based index into `options`. Include `explanation` — one sentence that sharpens the lesson, not just "you were right."
+
+## Pre-flight check — before you emit
+
+After drafting your entries, scan each one and ask: **does this entry have the substrate for a cheap block I've missed?**
+
+For each entry, check these signals:
+
+| Signal in the body | Block to add |
+|---|---|
+| Names 2+ countries (corridor, rivalry, recognition, flows) | `locations` |
+| Names 2+ specific people with distinct roles/tenures | `actors` |
+| Cites 3+ comparable facts (firms, countries, figures, years) | `compare` |
+| Teaches one testable, non-obvious fact | `quiz` (once per brief) |
+| Contains a term, foreign word, or figure worth emphasizing | `prose` with inline bold/italic |
+| Quotes canonical text (constitutional clause, treaty article, published law, on-record speech with well-known wording) | `quote` ← narrow exception to the guard |
+
+Target for a 5–6 entry brief: **at minimum 3 cheap blocks, typically 4–5 when the substrate is rich.** If you end up with 0–2 blocks, re-scan — you're probably missing obvious substrate. A brief can legitimately have 2 blocks only if the article is unusually abstract (pure-mechanism philosophy, no named actors or countries or comparable figures).
+
+One narrowing on the `quote` block: while "guarded" in general, canonical texts where the wording is stable and widely reproduced (the US Emoluments Clause, Article 5 of NATO, the Balfour Declaration's single sentence, a supreme-court majority holding quoted in every law-school casebook) are safe to include. You are not reconstructing wording from memory — you are citing stable, verifiable text. Use speaker for the source ("US Constitution, Article I §9"), year for adoption date.
 </augmentations>
 
 <examples>
