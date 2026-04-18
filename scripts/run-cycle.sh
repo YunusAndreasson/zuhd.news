@@ -266,7 +266,11 @@ $BODY_LENGTHS
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3.5: Educational context briefs ---" | tee -a "$LOG_FILE"
   T35=$SECONDS
-  timeout 600 node scripts/generate-edu-context.js > /tmp/zuhd-edu.log 2>&1
+  # 1200s allows ~11 sequential Claude calls at ~30-40s each plus headroom
+  # for one or two that hit their per-call 300s timeout without killing the
+  # whole stage. Per-article mode (one brief per Claude call) replaces the
+  # old batched call to give each brief full attention.
+  timeout 1200 node scripts/generate-edu-context.js > /tmp/zuhd-edu.log 2>&1
   EDU_EXIT=$?
   cat /tmp/zuhd-edu.log >> "$LOG_FILE"
   rm -f /tmp/zuhd-edu.log

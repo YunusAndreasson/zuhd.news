@@ -153,140 +153,134 @@ if (trendsDigest?.indicators?.length) {
   console.log(`  Trends: offered ${trendsDigest.indicators.length} indicators to editor`)
 }
 
-// --- Build prompt ---
-// Include the full article body so the pre-flight signal table in
-// <augmentations> has substrate to scan. Metadata alone (title, concepts)
-// doesn't expose the named countries / people / comparable facts that
-// the "default on when substrate matches" rule depends on.
-const candidateList = candidates.map(c =>
-  `### ${c.slug}
-title: ${c.title}
-category: ${c.category}
-concepts: ${c.concepts.join(', ') || 'none'}
-
-Body:
-"""
-${c.body}
-"""`
-).join('\n\n')
-
-const fullPrompt = `${basePrompt}
-${conceptLibrary}${trendsSection}
-## Candidate articles
-
-${candidateList}
-
-Generate educational context briefs for ALL ${candidates.length} articles. Output ONLY the JSON object — no markdown fences, no commentary.`
-
-// --- Call Claude ---
-console.log(`  Calling Opus (${candidates.length} candidates)...`)
+// --- Per-article generation ---
+// Moved from one-batched-call to one-Claude-call-per-article so each brief
+// gets the model's full attention budget. Batched mode diluted each brief's
+// "default on when substrate matches" scan — dry-run vs production density
+// was ~2x, consistently. Cost: ~Nx input tokens (base prompt repeats), ~Nx
+// wall-clock (sequential). Upside: per-brief quality climbs toward dry-run.
 
 const env = { ...process.env }
 delete env.CLAUDECODE
-const args = [
-  '--model', 'claude-opus-4-7',
-  '--effort', 'medium',
-  '--no-session-persistence',
-  '--max-turns', '3',
-  '--output-format', 'json',
-  '-p', fullPrompt,
-]
-const result = spawnSync('claude', args, {
-  encoding: 'utf-8',
-  timeout: 300_000,
-  maxBuffer: 2 * 1024 * 1024,
-  env,
-})
-
-if (result.status !== 0) {
-  console.error('Claude CLI error:', result.stderr?.slice(0, 500))
-  process.exit(1)
-}
-
-let parsed
-try {
-  parsed = parseClaudeEnvelope(result.stdout)
-} catch (e) {
-  console.log(`  Failed to parse JSON: ${e.message}`)
-  console.log(`  Raw output (first 300 chars): ${(result.stdout || '').slice(0, 300)}`)
-  process.exit(1)
-}
-
-// --- Validate and save ---
-const validSlugs = new Set(candidates.map(c => c.slug))
 const offeredIds = trendsDigest?.indicators?.map((i) => i.id) || []
+
+/** Run one Claude call for one candidate. Returns the parsed brief envelope
+ *  + timing + any parse/transport error. Failures are per-article; the
+ *  caller logs and moves on to the next candidate. */
+function generateOneBrief(candidate) {
+  const singleBlock = `### ${candidate.slug}
+title: ${candidate.title}
+category: ${candidate.category}
+concepts: ${candidate.concepts.join(', ') || 'none'}
+
+Body:
+"""
+${candidate.body}
+"""`
+
+  const fullPrompt = `${basePrompt}
+${conceptLibrary}${trendsSection}
+## Candidate article
+
+${singleBlock}
+
+Generate the educational context brief for this article. Output ONLY the JSON object keyed by slug — no markdown fences, no commentary.`
+
+  const t0 = Date.now()
+  const result = spawnSync('claude', [
+    '--model', 'claude-opus-4-7',
+    '--effort', 'medium',
+    '--no-session-persistence',
+    '--max-turns', '3',
+    '--output-format', 'json',
+    '-p', fullPrompt,
+  ], { encoding: 'utf-8', timeout: 300_000, maxBuffer: 2 * 1024 * 1024, env })
+  const elapsedMs = Date.now() - t0
+
+  if (result.status !== 0) {
+    return { elapsedMs, error: `claude exit ${result.status}: ${result.stderr?.slice(0, 200)}` }
+  }
+  try {
+    return { elapsedMs, parsed: parseClaudeEnvelope(result.stdout) }
+  } catch (err) {
+    return { elapsedMs, error: `parse: ${err.message}` }
+  }
+}
+
+console.log(`  Calling Opus per-article (${candidates.length} briefs, sequential)…`)
+const stageT0 = Date.now()
+
 let generated = 0
 let totalPicks = 0
 
-for (const [slug, data] of Object.entries(parsed)) {
-  if (!validSlugs.has(slug)) {
-    console.log(`  Skipping unknown slug: ${slug}`)
-    continue
-  }
+for (const candidate of candidates) {
   if (generated >= MAX_BRIEFS_PER_CYCLE) break
+  const { elapsedMs, parsed, error } = generateOneBrief(candidate)
+  const secs = (elapsedMs / 1000).toFixed(1)
 
-  const entries = data.entries
-  if (!Array.isArray(entries) || entries.length === 0) {
-    console.log(`  Skipping ${slug}: no valid entries`)
+  if (error) {
+    console.log(`  ✗ ${candidate.slug}: ${error} (${secs}s)`)
     continue
   }
 
-  // Validate entries — each must have body
-  const validEntries = entries.filter(e => e.body && typeof e.body === 'string')
-  if (validEntries.length === 0) continue
+  const data = parsed[candidate.slug]
+  if (!data || !Array.isArray(data.entries) || data.entries.length === 0) {
+    const slugs = Object.keys(parsed)
+    console.log(`  ✗ ${candidate.slug}: no valid entries (got keys: ${slugs.join(', ') || 'none'}) (${secs}s)`)
+    continue
+  }
 
-  // Expand chart refs → trend blocks. Shared helper builds one sources[]
-  // array per brief and returns picks/literals/dropped for the audit log.
+  const validEntries = data.entries.filter(e => e.body && typeof e.body === 'string')
+  if (validEntries.length === 0) {
+    console.log(`  ✗ ${candidate.slug}: no entries with body (${secs}s)`)
+    continue
+  }
+
   const { timeline, sources, picked, literals, dropped } = buildTimelineWithCharts(
     validEntries,
     trendsSnapshot,
-    (msg) => console.log(`    ⚠ ${slug}: ${msg}`),
+    (msg) => console.log(`    ⚠ ${candidate.slug}: ${msg}`),
   )
 
-  briefs[slug] = {
+  briefs[candidate.slug] = {
     type: 'edu',
     timeline,
     ...(sources.length ? { sources } : {}),
     generatedAt: new Date().toISOString(),
-    label: data.label || slug,
-    category: candidates.find(c => c.slug === slug)?.category || 'politics',
+    label: data.label || candidate.slug,
+    category: candidate.category,
     articleCount: 1,
   }
   generated++
   totalPicks += picked.length
+
   const headings = validEntries.filter(e => e.heading).length
   const chartNote = picked.length ? ` + ${picked.length} chart(s): ${picked.map((p) => p.id).join(', ')}` : ''
   const literalNote = literals.length ? ` + ${literals.length} literal (${literals.map((l) => l.type).join(', ')})` : ''
   const dropNote = dropped.length ? ` · ${dropped.length} dropped` : ''
-  console.log(`  Brief: ${slug} (${validEntries.length} entries, ${headings} headings${chartNote}${literalNote}${dropNote})`)
+  console.log(`  ✓ ${candidate.slug} [${secs}s] (${validEntries.length} entries, ${headings} headings${chartNote}${literalNote}${dropNote})`)
 
-  // --- Append per-brief audit to JSONL — the only cross-cycle, queryable
-  //     record of what Claude considered vs what survived. Schema:
-  //       { ts, slug, category, concepts, offered: [indicator ids],
-  //         entries, headings,
-  //         picked:   [{id, heading}],
-  //         literals: [{type, heading}],
-  //         dropped:  [{type, heading, reason, ref?}] }
-  //     Dir was created up-front; any failure here is a real error we want
-  //     to see in the cycle log, not a silent swallow.
-  const candidate = candidates.find((c) => c.slug === slug)
   try {
     appendFileSync(TRENDS_PICKS_LOG, JSON.stringify({
       ts: new Date().toISOString(),
-      slug,
-      category: candidate?.category || null,
-      concepts: candidate?.concepts || [],
+      slug: candidate.slug,
+      category: candidate.category,
+      concepts: candidate.concepts,
       offered: offeredIds,
       entries: validEntries.length,
       headings,
+      elapsedMs,
       picked,
       literals,
       dropped,
     }) + '\n')
   } catch (err) {
-    console.error(`  ✗ trends-picks log append failed for ${slug}: ${err.message}`)
+    console.error(`  ✗ trends-picks log append failed for ${candidate.slug}: ${err.message}`)
   }
 }
+
+const stageSecs = ((Date.now() - stageT0) / 1000).toFixed(1)
+console.log(`  Stage total: ${stageSecs}s across ${candidates.length} candidates`)
 
 // Cycle-log summary line — parsed by scripts/dashboard/server.js.
 if (trendsDigest?.indicators?.length) {
