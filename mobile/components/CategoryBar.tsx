@@ -1,11 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
 import { memo, useCallback, useMemo, useRef, useState } from 'react';
-import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native';
+import { type LayoutChangeEvent, Pressable, StyleSheet, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   CATEGORIES,
   type FontEntry,
+  ICON,
   LAYOUT,
   MAX_FONT_SCALE,
   OPACITY,
@@ -142,42 +143,6 @@ export const CategoryBar = memo(function CategoryBar({
 
   return (
     <View style={[styles.container, { paddingTop: insets.top, backgroundColor: colors.bg }]}>
-      <View style={styles.wordmarkRow}>
-        <Pressable
-          onPress={() => onCategoryPress(currentCategory)}
-          style={({ pressed }) => pressed && PRESSED_STYLE}
-          accessibilityRole="button"
-          accessibilityLabel="zuhd.news, scroll to top"
-        >
-          <Text
-            style={{ letterSpacing: typography.trackingWordmark }}
-            maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
-          >
-            <Text
-              style={{
-                ...font.bold,
-                fontSize: typography.sizeWordmark,
-                color: colors.textSecondary,
-              }}
-            >
-              zuhd
-            </Text>
-            <Text
-              style={{
-                ...font.regular,
-                fontSize: typography.sizeWordmark,
-                color: colors.accent,
-              }}
-            >
-              .news
-            </Text>
-          </Text>
-        </Pressable>
-        <HapticButton onPress={onMenuPress} accessibilityLabel="Menu">
-          <Ionicons name="menu" size={typography.sizeBase} color={colors.textSecondary} />
-        </HapticButton>
-      </View>
-
       <View style={styles.tabRow}>
         {TAB_LABELS.map((label, i) => (
           <TabLabel
@@ -194,6 +159,9 @@ export const CategoryBar = memo(function CategoryBar({
             onLayout={tabLayoutHandlers[i] ?? (() => {})}
           />
         ))}
+        <HapticButton onPress={onMenuPress} accessibilityLabel="Menu" style={styles.menuButton}>
+          <Ionicons name="menu" size={ICON.sm} color={colors.textSecondary} />
+        </HapticButton>
         <Animated.View
           style={[styles.progressBar, { backgroundColor: colors.textEmphasis }, trackPos]}
         />
@@ -210,20 +178,24 @@ const styles = StyleSheet.create({
     zIndex: 10,
     paddingBottom: SPACING.sm,
   },
-  wordmarkRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: SPACING.screenPadding,
-    paddingTop: SPACING.xs,
-    marginBottom: SPACING.sm,
-  },
   tabRow: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    paddingHorizontal: SPACING.screenPadding,
-    gap: SPACING.lg,
+    alignItems: 'center',
+    // Left: +2 optical compensation — the small-caps labels have tighter
+    // side-bearings than H1 body text, so matching screenPadding exactly
+    // makes the row look outdented. Right: raw screenPadding (the menu
+    // glyph's own sidebearing reads flush against the right edge).
+    paddingLeft: SPACING.screenPadding + 2,
+    paddingRight: SPACING.screenPadding,
+    paddingTop: SPACING.sm,
     paddingBottom: SPACING.xs,
+    gap: SPACING.lg,
+  },
+  menuButton: {
+    marginLeft: 'auto',
+    // Pull icon up ~1px so its optical center lines up with the small-caps
+    // labels' x-height rather than the row's geometric midline.
+    transform: [{ translateY: -1 }],
   },
   progressBar: {
     position: 'absolute',
