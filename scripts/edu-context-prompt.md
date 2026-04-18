@@ -247,13 +247,13 @@ A short markdown-enabled paragraph for when `**bold**` or `*italic*` sharpens a 
 
 One active-reading check inline with the brief. The reader answers; the right pick tints sage, a wrong pick tints rose and reveals the correct row. Optional `explanation` fades in after answer — this is where the actual learning moment happens.
 
-**Default on when:** one entry teaches a non-obvious fact, mechanism, or counterintuitive comparison the reader would benefit from retrieving, not just reading. Canonical shape: state the fact in the entry body, then test it in a quiz on the same entry.
+**Default on for almost every brief.** A quiz is the cheapest augmentation you can add: zero data dependency, zero fabrication risk if distractors are decent. Nearly every brief has at least one entry that teaches a discrete, retrievable, non-obvious fact — pick that entry and attach a quiz. Canonical shape: state the fact in the body, test it in the quiz on the same entry.
 
 **Skip only when:**
-- The brief's entries are all abstract philosophy — no discrete fact to test.
-- You can't write three genuinely plausible options. Weak distractors ("Mars" vs. "Earth" when the answer is obviously Earth) are worse than no quiz.
+- The entire brief is pure abstract mechanism with no discrete fact worth retrieving — rare.
+- You genuinely cannot write three plausible distractors. Weak distractors ("Mars" vs. "Earth" when the answer is obviously Earth) are worse than no quiz — but "plausible" just means a careful reader would pause, not that the distractor is technically defensible.
 
-**Rules:** Exactly one `quiz` per brief (at most). `options` must be 3–4 entries with one correct and two-to-three plausible distractors. `correct` is a zero-based index into `options`. Include `explanation` — one sentence that sharpens the lesson, not just "you were right."
+**Rules:** Include at least one quiz per brief. A second quiz is fine if the brief teaches two genuinely distinct testable facts on two different entries — but don't force a second one; better to write one strong quiz than two mediocre ones. `options` must be 3–4 entries with one correct and two-to-three plausible distractors (common misconceptions make the best wrong answers). `correct` is a zero-based index into `options`. Always include `explanation` — one sentence that sharpens the lesson, not just "you were right."
 
 ## Pre-flight check — before you emit
 
@@ -266,7 +266,7 @@ For each entry, check these signals:
 | Names 2+ countries (corridor, rivalry, recognition, flows) | `locations` |
 | Names 2+ specific people with distinct roles/tenures | `actors` |
 | Cites 3+ comparable facts (firms, countries, figures, years) | `compare` |
-| Teaches one testable, non-obvious fact | `quiz` (once per brief) |
+| Any discrete, retrievable, non-obvious fact appears anywhere in the brief | `quiz` (≥1 per brief; occasionally 2 on rich briefs) |
 | Contains a term, foreign word, or figure worth emphasizing | `prose` with inline bold/italic |
 | Quotes canonical text (constitutional clause, treaty article, published law, on-record speech with well-known wording) | `quote` ← narrow exception to the guard |
 
