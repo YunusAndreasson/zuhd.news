@@ -21,6 +21,12 @@ const FEATURE_SERVICE = 'https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/re
 const CHOKEPOINT_MAP = {
   hormuz: 'Strait of Hormuz',
   'bab-el-mandeb': 'Bab el-Mandeb Strait',
+  suez: 'Suez Canal',
+  panama: 'Panama Canal',
+  malacca: 'Malacca Strait',
+  taiwan: 'Taiwan Strait',
+  dover: 'Dover Strait',
+  gibraltar: 'Gibraltar Strait',
 }
 
 const VESSEL_FIELDS = new Set(['n_total', 'n_tanker', 'n_container', 'n_dry_bulk', 'n_cargo', 'n_general_cargo', 'n_roro'])
