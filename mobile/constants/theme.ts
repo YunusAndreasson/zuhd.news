@@ -159,6 +159,10 @@ export function makeTypography(sizeScale: number = 1) {
     leadingHeading: 1.2,
     trackingCaps: 1.2,
     trackingWordmark: -0.3,
+    /** Editorial H1 tracking — slight negative letterspacing tightens bold
+     *  large text so headlines read with publication weight rather than
+     *  feeling airy. Subtle: -0.3 at 28pt is ≈1% kern. */
+    trackingHeading: -0.3,
   } as const;
 }
 
@@ -230,6 +234,15 @@ export const RADIUS = {
 export const ICON = {
   sm: 14,
   md: 20,
+} as const;
+
+/** Flag-emoji pixel sizes. Emoji glyphs don't map to `<Text variant>` sizing
+ *  (they're pictograms, not type), so they get their own two-tier scale:
+ *  `chip` for inline chips/rows, `display` for sheet-header badges. */
+export const FLAG = {
+  chip: 16,
+  row: 18,
+  display: 32,
 } as const;
 
 /** Non-radius, non-icon layout primitives. */
@@ -329,6 +342,7 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeH1,
       lineHeight: typography.sizeH1 * typography.leadingHeading,
+      letterSpacing: typography.trackingHeading,
       color: colors.text,
     } as TextStyle,
     /** Row titles, block titles — ArticleRow, sheet pages */

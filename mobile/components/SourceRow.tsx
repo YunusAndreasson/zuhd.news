@@ -1,7 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import { SOURCES } from '../constants/sources';
-import { BLACK, EDITORIAL, RADIUS, SPACING } from '../constants/theme';
-import { useTheme } from '../hooks/useTheme';
+import { EDITORIAL, SPACING, type TextTone } from '../constants/theme';
 import { ccToFlag } from '../lib/article-utils';
 import type { ArticleSource } from '../types';
 import { Box, Icon, Pressable, Text } from './primitives';
@@ -23,6 +22,12 @@ const TONE_LABELS: Record<string, string> = {
   neutral: 'neutral',
 };
 
+const TONE_TEXT: Record<string, TextTone> = {
+  favorable: 'favorable',
+  unfavorable: 'unfavorable',
+  neutral: 'neutral',
+};
+
 interface SourceRowProps {
   source: ArticleSource;
   isExpanded: boolean;
@@ -31,20 +36,12 @@ interface SourceRowProps {
 }
 
 export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProps) {
-  const { colors } = useTheme();
   const info = SOURCES[source.name];
   const cc = source.country?.toUpperCase();
   const flag = cc ? ccToFlag(cc) : null;
   const tone = computeTone(source.sentiment);
   const toneWord = tone ? TONE_LABELS[tone] : 'unknown';
-  const toneBg =
-    tone === 'favorable'
-      ? colors.toneFavorable
-      : tone === 'unfavorable'
-        ? colors.toneUnfavorable
-        : tone === 'neutral'
-          ? colors.toneNeutral
-          : colors.textSecondary;
+  const toneTextTone: TextTone = tone ? (TONE_TEXT[tone] ?? 'secondary') : 'secondary';
 
   return (
     <Pressable
@@ -61,12 +58,10 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
             {source.name}
           </Text>
           <View style={styles.right}>
-            <View style={[styles.tonePill, { backgroundColor: toneBg }]}>
-              <Text variant="labelXs" style={{ color: BLACK }}>
-                {toneWord}
-              </Text>
-            </View>
-            <Icon name={isExpanded ? 'chevron-up' : 'chevron-down'} size="sm" tone="accent" />
+            <Text variant="labelXs" tone={toneTextTone} numberOfLines={1}>
+              {toneWord}
+            </Text>
+            <Icon name={isExpanded ? 'chevron-up' : 'chevron-down'} size="sm" tone="secondary" />
           </View>
         </View>
         {isExpanded && info && (
@@ -94,15 +89,10 @@ const styles = StyleSheet.create({
   right: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: SPACING.xs,
+    gap: SPACING.sm,
   },
   name: {
     flex: 1,
-  },
-  tonePill: {
-    paddingHorizontal: SPACING.sm,
-    paddingVertical: SPACING.xxs,
-    borderRadius: RADIUS.pill,
   },
   typeLine: {
     marginTop: SPACING.sm,

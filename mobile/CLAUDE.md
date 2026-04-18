@@ -16,7 +16,7 @@ React Native + Expo app for zuhd.news. Voice + philosophy in root `../foundation
 
 ## Primitives live at
 
-`mobile/components/primitives/` — `Text`, `Stack`, `Box`, `Divider`, `Spacer`, `Screen`, `Pressable`, `IconButton`, `Button`, `Icon`. Import from `./primitives`.
+`mobile/components/primitives/` — `Text`, `Stack`, `Box`, `Screen`, `Pressable`, `IconButton`, `Icon`. Import from `./primitives`.
 
 ## Tokens live at
 

@@ -35,7 +35,7 @@ function ActionPill({
       onPress={onPress}
       haptic="none"
       hitSlop={PILL_HIT_SLOP}
-      style={[styles.actionPill, { backgroundColor: colors.pillBg, borderColor: colors.rule }]}
+      style={[styles.actionPill, { backgroundColor: colors.pillBg }]}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
     >
@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.xs,
     paddingHorizontal: SPACING.smPlus,
     borderRadius: RADIUS.floating,
-    borderWidth: StyleSheet.hairlineWidth,
     alignItems: 'center',
     justifyContent: 'center',
   },

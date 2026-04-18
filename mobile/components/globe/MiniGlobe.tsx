@@ -75,6 +75,7 @@ import {
   countryAreas,
   countryBboxes,
   createSkiaPathContext,
+  iceSheets,
   land,
 } from './shared';
 import { getCoords } from './storyDots';
@@ -206,6 +207,7 @@ interface Hotspot {
 
 interface GlobeState {
   landPath: ReturnType<typeof Skia.Path.Make> | null;
+  icePath: ReturnType<typeof Skia.Path.Make> | null;
   bordersPath: ReturnType<typeof Skia.Path.Make> | null;
   countryPath: ReturnType<typeof Skia.Path.Make> | null;
   countryName: string | null;
@@ -351,6 +353,7 @@ const CountryHighlight = memo(function CountryHighlight({
 
 const EMPTY_GLOBE: GlobeState = {
   landPath: null,
+  icePath: null,
   bordersPath: null,
   countryPath: null,
   countryName: null,
@@ -393,6 +396,12 @@ function projectInitial(
   const lp = Skia.Path.Make();
   ctx.setPath(lp);
   pg.context(ctx)(land);
+
+  // Permanent ice sheets (Antarctica, Greenland) — drawn as a lighter fill
+  // on top of the land silhouette so the globe reads climatologically.
+  const ip = Skia.Path.Make();
+  ctx.setPath(ip);
+  pg.context(ctx)(iceSheets);
 
   // Neighbouring country borders — mesh + no resampling for speed
   proj.precision(0);
@@ -466,6 +475,7 @@ function projectInitial(
 
   return {
     landPath: lp,
+    icePath: ip,
     bordersPath: bp,
     countryPath: cp,
     countryName: geo.country?.properties?.name ?? null,
@@ -645,6 +655,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   // setIsVolatile(true) tells Skia to skip GPU-side caching since these change every frame;
   // rewind() (vs reset()) keeps internal storage allocated between frames.
   const landPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
+  const icePathRef = useRef(Skia.Path.Make().setIsVolatile(true));
   const bordersPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
   const countryPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
   const nightPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
@@ -740,6 +751,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       landPath.rewind();
       skiaCtx.setPath(landPath);
       pg.context(skiaCtx)(land);
+
+      // Ice sheets — Antarctica + Greenland. Two polygons at 110m; marginal
+      // projection cost on top of `land` is small and runs every frame so the
+      // ice layer tracks rotation without flicker.
+      const icePath = icePathRef.current;
+      icePath.rewind();
+      skiaCtx.setPath(icePath);
+      pg.context(skiaCtx)(iceSheets);
 
       // Dot
       let dot: { x: number; y: number } | null = null;
@@ -1017,6 +1036,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       setState({
         landPath,
+        icePath,
         bordersPath,
         countryPath,
         countryName: cachedCountryRef.current?.properties?.name ?? null,
@@ -1559,6 +1579,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Land silhouette */}
       {state.landPath && (
         <Path path={state.landPath} color={colors.accent} opacity={light ? 0.25 : 0.1} />
+      )}
+
+      {/* Permanent ice sheets — Antarctica + Greenland. Scientifically the two
+          land masses covered in year-round ice; rendered as a bright fill over
+          `landPath` so the globe reads climatologically correct. */}
+      {state.icePath && (
+        <Path path={state.icePath} color={colors.text} opacity={light ? 0.55 : 0.35} />
       )}
 
       {/* Neighbouring country borders — visible when scroll is at rest */}

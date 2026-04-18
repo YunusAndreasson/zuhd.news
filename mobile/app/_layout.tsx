@@ -5,7 +5,6 @@ import { Slot } from 'expo-router';
 import * as SecureStore from 'expo-secure-store';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import * as WebBrowser from 'expo-web-browser';
 import { Suspense, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -31,9 +30,6 @@ Notifications.setNotificationHandler({
 
 SplashScreen.preventAutoHideAsync();
 SplashScreen.setOptions({ fade: true, duration: 250 });
-
-// Warm up the in-app browser at module scope so the first tap isn't cold.
-WebBrowser.warmUpAsync().catch(() => {});
 
 // Fallback: if fonts or the first article load stall, force-hide the splash
 // after 8s so the user sees *something* rather than a frozen launch screen.
@@ -102,7 +98,6 @@ export default function RootLayout() {
       if (promptTimer) clearTimeout(promptTimer);
       clearTimeout(splashFallback);
       sub.remove();
-      WebBrowser.coolDownAsync().catch(() => {});
     };
   }, []);
 

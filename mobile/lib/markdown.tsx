@@ -1,6 +1,5 @@
-import * as WebBrowser from 'expo-web-browser';
 import type { ReactNode } from 'react';
-import { StyleSheet, Text, type TextStyle } from 'react-native';
+import { Linking, StyleSheet, Text, type TextStyle } from 'react-native';
 import { ANDROID_TEXT_BASE } from '../constants/platform';
 import {
   type ColorPalette,
@@ -18,7 +17,7 @@ export type Segment = {
 export type LinkOpener = (url: string) => void;
 
 const defaultOpenLink: LinkOpener = (url) => {
-  WebBrowser.openBrowserAsync(url).catch(() => {});
+  Linking.openURL(url).catch(() => {});
 };
 
 export function smartTypography(s: string): string {

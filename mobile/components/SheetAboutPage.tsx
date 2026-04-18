@@ -226,7 +226,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
         <View style={styles.principleList}>
           {PRINCIPLES.map((p, idx) => (
             <View key={p.term} style={idx > 0 ? styles.principle : undefined}>
-              <Text selectable variant="bodyItalic" tone="accent" style={styles.term}>
+              <Text selectable variant="bodyItalic" tone="accent">
                 {p.term}
               </Text>
               <Text selectable variant="body" style={{ marginTop: SPACING.xxs }}>
@@ -272,9 +272,5 @@ const styles = StyleSheet.create({
   },
   principle: {
     marginTop: SPACING.md,
-  },
-  term: {
-    // bodyItalic default lineHeight is leadingBody (1.55). Term needs tighter
-    // leading matching the headings above it.
   },
 });

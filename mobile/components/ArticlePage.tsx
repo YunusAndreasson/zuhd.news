@@ -220,11 +220,11 @@ export const ArticlePage = memo(function ArticlePage({
               accessible
               accessibilityLabel="Caught up — earlier articles below"
             >
-              <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
-              <Text variant="label" tone="accent">
+              <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
+              <Text variant="labelXs" tone="secondary">
                 {'caught up'}
               </Text>
-              <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
+              <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
             </View>
           )}
           <Text
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: SPACING.md,
     marginBottom: SPACING.lg,
-    marginTop: -SPACING.md,
+    marginTop: -SPACING.sm,
   },
   earlierLine: {
     flex: 1,
