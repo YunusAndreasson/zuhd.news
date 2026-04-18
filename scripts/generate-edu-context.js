@@ -87,12 +87,9 @@ function buildConceptLibrary(briefs, candidateConcepts) {
 
   // Index: concept → [{heading, body, label}] from existing briefs
   const conceptEntries = {}
-  for (const [slug, brief] of Object.entries(briefs)) {
+  for (const brief of Object.values(briefs)) {
     if (!brief.timeline?.length) continue
-    // Infer concepts from the brief's label and headings
-    const briefConcepts = []
-    if (brief.label) briefConcepts.push(brief.label.toLowerCase())
-    // Also match candidate concepts against entry bodies (fuzzy)
+    // Match candidate concepts against entry label / heading / body (fuzzy)
     for (const entry of brief.timeline) {
       if (!entry.heading || !entry.body) continue
       for (const concept of needed) {
