@@ -1,10 +1,11 @@
 import { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import { ANIMATION, MAX_FONT_SCALE, SPACING, staggerDelay } from '../../constants/theme';
+import { ANIMATION, SPACING, staggerDelay } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import type { Actor } from '../../types';
+import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
 import { type BlockVariant, blockContainerStyle } from './shared';
 
@@ -21,16 +22,13 @@ export const ActorsBlock = memo(function ActorsBlock({
   variant = 'article',
   sourceLabel,
 }: ActorsBlockProps) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors } = useTheme();
   const isContext = variant === 'context';
 
   return (
     <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
       {label ? (
-        <Text
-          style={[styles.label, textStyles.smallCapsXs]}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-        >
+        <Text variant="labelXs" style={styles.label}>
           {label}
         </Text>
       ) : null}
@@ -50,35 +48,15 @@ export const ActorsBlock = memo(function ActorsBlock({
             ]}
           >
             {flag ? (
-              <Text style={styles.flag} maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}>
+              <Text variant="body" style={styles.flag}>
                 {flag}
               </Text>
             ) : null}
             <View style={styles.textCol}>
-              <Text
-                style={{
-                  ...font.semiBold,
-                  fontSize: typography.sizeBase,
-                  color: colors.textEmphasis,
-                }}
-                maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-                numberOfLines={1}
-              >
+              <Text variant="bodyEmphasis" numberOfLines={1}>
                 {p.name}
               </Text>
-              <Text
-                style={[
-                  styles.meta,
-                  {
-                    ...font.regular,
-                    fontSize: typography.sizeXs,
-                    color: colors.textSecondary,
-                    letterSpacing: typography.trackingCaps,
-                  },
-                ]}
-                maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-                numberOfLines={1}
-              >
+              <Text variant="labelXs" numberOfLines={1} style={styles.meta}>
                 {p.role.toUpperCase()}
                 {p.years ? `  \u00b7  ${p.years}` : ''}
               </Text>

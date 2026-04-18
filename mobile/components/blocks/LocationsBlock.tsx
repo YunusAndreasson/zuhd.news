@@ -5,63 +5,39 @@ import {
   Dimensions,
   type LayoutChangeEvent,
   Pressable,
+  Text as RNText,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { runOnJS, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
 import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
-import { EASING, MAX_FONT_SCALE, PRESSED_STYLE, RADIUS, SPACING } from '../../constants/theme';
+import { EASING, PRESSED_STYLE, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import { hapticImpact } from '../../lib/haptics';
 import { displayNameFromCode, topojsonNameFromCode } from '../../lib/iso-country';
 import { bordersMesh, countries, createSkiaPathContext, land } from '../globe/shared';
+import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
 import { type BlockVariant, blockContainerStyle } from './shared';
 
-// ── Geometry ────────────────────────────────────────────────────────────────
-// Canvas height auto-computed from width × aspect below — no cap, so the map
-// can't get "cut" just because a hardcoded ceiling kicked in on a wider device.
-/** Zero pad — features render edge-to-edge inside the canvas so the title
- *  above sits directly against the first row of land. */
 const FOCUS_PAD = 0;
-
-/** If the highlighted features span more than this many degrees of longitude
- *  we skip rendering the map entirely. A regional map reads cleanly on a
- *  phone; a globe-spanning strip doesn't, and ten attempts at making it work
- *  gave us diminishing returns. The chip row is still shown so taps open
- *  the per-country sheet. */
 const MAX_LNG_SPAN_FOR_MAP = 120;
-
-// Standard world-map aspect (2:1). Full sphere shows top/bottom polar areas
-// as part of the picture — same as any atlas. Earlier tight clips squeezed
-// the continents into a narrow horizontal strip which read as "not enough
-// vertical space."
 const WORLD_CLIP_ASPECT = 2.0;
 
-// Module-level Sphere object so fitSize always sees the same identity — some
-// d3-geo type-guard paths are string-literal-strict and can fall back to
-// defaults if the input shape isn't exactly recognised.
 const SPHERE = { type: 'Sphere' } as const;
 
-/** Explicit equirectangular world fit. Scale k is set so the full 2π rad of
- *  longitude span fits the canvas width; translate places the sphere's center
- *  at the canvas center, which at AR 2:1 puts lat +90 at y=0 and lat -90 at
- *  y=H — Antarctica included in full. */
 function fitWorldProjection(
   proj: ReturnType<typeof geoEquirectangular>,
   width: number,
   height: number,
 ): void {
-  // Defensive fallback in case fitSize misbehaves — hand-set scale/translate.
   proj
     .rotate([0, 0])
     .center([0, 0])
     .scale(width / (2 * Math.PI))
     .translate([width / 2, height / 2]);
-  // Then let d3 tighten the fit on the sphere for correctness.
   proj.fitSize([width, height], SPHERE);
 }
 
@@ -75,9 +51,6 @@ interface LocationsBlockProps {
   caption?: string;
   variant?: BlockVariant;
   sourceLabel?: string;
-  /** Tap on a country chip opens the app-wide CountrySheet (deep dive). The
-   *  block is intentionally agnostic to how the sheet is presented — the
-   *  parent wires the ref + state. */
   onCountryPress?: (payload: { countryName: string; data: CountryData | null }) => void;
 }
 
@@ -89,7 +62,7 @@ export const LocationsBlock = memo(function LocationsBlock({
   sourceLabel,
   onCountryPress,
 }: LocationsBlockProps) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors, typography } = useTheme();
   const isContext = variant === 'context';
 
   const [width, setWidth] = useState(INITIAL_WIDTH_ESTIMATE);
@@ -97,8 +70,6 @@ export const LocationsBlock = memo(function LocationsBlock({
     setWidth(e.nativeEvent.layout.width);
   }, []);
 
-  // Resolve ISO-2 codes → features. Keep `codes` alignment so chip index ↔
-  // feature index line up. Unresolved codes render as disabled chips.
   const resolved = useMemo(() => {
     return codes.map((code) => {
       const name = topojsonNameFromCode(code);
@@ -116,13 +87,6 @@ export const LocationsBlock = memo(function LocationsBlock({
     [resolved],
   );
 
-  // Decide whether the feature set fits on a single regional map. If the lng
-  // span is too wide, we skip the canvas entirely and just show chips. We
-  // compute bounds MANUALLY from each feature's raw coordinates instead of
-  // using d3's geoBounds — d3's spherical geometry returns a degenerate
-  // bbox (small span at the antimeridian) for globally-spanning feature
-  // collections, which fooled the earlier gate into thinking the set was
-  // regional and produced a 600px-tall near-empty canvas.
   const { height, showMap } = useMemo((): { height: number; showMap: boolean } => {
     const fallback = { height: Math.max(1, width / WORLD_CLIP_ASPECT), showMap: false };
     if (highlightedFeatures.length === 0 || width <= 0) return fallback;
@@ -172,15 +136,10 @@ export const LocationsBlock = memo(function LocationsBlock({
     }
   }, [highlightedFeatures, width]);
 
-  // Chip selection drives everything.
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const selected = selectedIdx != null ? (resolved[selectedIdx] ?? null) : null;
   const selectedFeature = selected?.feature ?? null;
 
-  // Always fit to the highlighted features — the user found the regional fit
-  // perfect and the full-globe fallback broken, so we skip the world view
-  // entirely. If no features resolve, fall back to world (rarely hit — dev
-  // demo always has resolved countries).
   const projection = useMemo(() => {
     const proj = geoEquirectangular();
     const w = Math.max(width, 1);
@@ -197,17 +156,11 @@ export const LocationsBlock = memo(function LocationsBlock({
       const fc = { type: 'FeatureCollection', features: highlightedFeatures } as const;
       proj.fitExtent(extent, fc as never);
     } catch {
-      // Defensive: some degenerate bounds (coincident points, antimeridian
-      // wrap edge cases) have been observed to throw inside d3-geo. Fall
-      // back to the world fit so the sheet still renders instead of
-      // crashing the whole app.
       fitWorldProjection(proj, w, h);
     }
     return proj;
   }, [highlightedFeatures, width, height]);
 
-  // Skia paths — highlighted countries are always filled at low opacity so the
-  // map is legible before any tap; selected country gets a stronger overlay.
   const paths = useMemo(() => {
     if (width <= 0 || height <= 0) {
       return {
@@ -257,13 +210,6 @@ export const LocationsBlock = memo(function LocationsBlock({
     }
   }, [selectedFeature, projection]);
 
-  // Target transform: when a country is selected, scale the canvas so the
-  // country's projected bounding box fills the viewport, then translate to
-  // center it. Formula derives from Skia's transform order — the array
-  // `[translateX, translateY, scale]` composes as T·S (matrix product), so
-  // scale is applied first (around origin), then translate:
-  //   p' = (cx·s + tx, cy·s + ty)
-  // Solving p' = (W/2, H/2) gives tx = W/2 − cx·s, ty = H/2 − cy·s.
   const { targetScale, targetTx, targetTy } = useMemo(() => {
     if (!selectedFeature || width <= 0 || height <= 0) {
       return { targetScale: 1, targetTx: 0, targetTy: 0 };
@@ -301,39 +247,27 @@ export const LocationsBlock = memo(function LocationsBlock({
     animTy.value = withTiming(targetTy, { duration: 420, easing: EASING.out });
   }, [targetScale, targetTx, targetTy, animScale, animTx, animTy]);
 
-  // Applied inside Skia so paths re-rasterize at the target scale (vector zoom)
-  // instead of scaling the Canvas output as a bitmap.
   const mapTransform = useDerivedValue(() => [
     { translateX: animTx.value },
     { translateY: animTy.value },
     { scale: animScale.value },
   ]);
   const inverseScale = useDerivedValue(() => 1 / Math.max(1, animScale.value));
-  // Stroke widths scale with the Group transform, so divide-by-scale keeps
-  // borders crisp without inflating into slabs at high zoom.
   const borderStrokeWidth = useDerivedValue(() =>
     Math.max(StyleSheet.hairlineWidth, 0.6 * inverseScale.value),
   );
   const selectedStrokeWidth = useDerivedValue(() => 1.25 * inverseScale.value);
 
-  // ── Selection feedback ─────────────────────────────────────────────────
   const pulse = useSharedValue(0);
   useEffect(() => {
     if (selectedIdx == null) return;
     pulse.value = 0;
     pulse.value = withTiming(1, { duration: 500 });
   }, [selectedIdx, pulse]);
-  // Pulse renders inside the transformed Group, so cancel out both the radius
-  // growth and the stroke thickening that the scale would otherwise introduce.
   const pulseR = useDerivedValue(() => (6 + pulse.value * 26) * inverseScale.value);
   const pulseStrokeWidth = useDerivedValue(() => 1.5 * inverseScale.value);
   const pulseOpacity = useDerivedValue(() => 0.6 * (1 - pulse.value));
 
-  // ── Handlers ───────────────────────────────────────────────────────────
-  // Two-step interaction: chip tap ONLY zooms to the country. Tapping the
-  // zoomed country on the map opens the CountrySheet. Keeps the chip row
-  // predictable (tap = navigate the map) and reserves the "deep dive" for
-  // the sheet, which is consistent with how country sheets open elsewhere.
   const toggleSelection = useCallback((idx: number) => {
     hapticImpact();
     setSelectedIdx((prev) => (prev === idx ? null : idx));
@@ -351,8 +285,6 @@ export const LocationsBlock = memo(function LocationsBlock({
     onCountryPress({ countryName: name, data });
   }, [selectedIdx, resolved, onCountryPress]);
 
-  // Map tap: if a country is zoomed in, this opens the CountrySheet for it.
-  // If nothing is zoomed, tap is a no-op — chips are the only way to select.
   const mapTapGesture = useMemo(
     () =>
       Gesture.Tap()
@@ -365,10 +297,6 @@ export const LocationsBlock = memo(function LocationsBlock({
     [openSelectedCountrySheet],
   );
 
-  // If the feature set doesn't produce a clean regional map, we render nothing
-  // — label, chips, caption, source all disappear together. The editorial
-  // assumption: if we can't show these countries on one map, their grouping
-  // isn't spatially meaningful enough to merit a standalone block.
   if (!showMap) return null;
 
   return (
@@ -377,10 +305,7 @@ export const LocationsBlock = memo(function LocationsBlock({
       onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
     >
       {label ? (
-        <Text
-          style={[textStyles.smallCapsXs, styles.label, { lineHeight: typography.sizeXs * 1.1 }]}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-        >
+        <Text variant="labelXs" style={[styles.label, { lineHeight: typography.sizeXs * 1.1 }]}>
           {label}
         </Text>
       ) : null}
@@ -449,9 +374,6 @@ export const LocationsBlock = memo(function LocationsBlock({
         </GestureDetector>
       ) : null}
 
-      {/* Chip row — the primary interaction. Tap zooms the map (when the map
-          is visible) AND opens the shared CountrySheet via onCountryPress.
-          If the bbox is too wide to render a map, chips are the whole UI. */}
       {resolved.length > 0 ? (
         <View style={styles.chipRow}>
           {resolved.map((r, idx) => {
@@ -478,19 +400,15 @@ export const LocationsBlock = memo(function LocationsBlock({
                   pressed && PRESSED_STYLE,
                 ]}
               >
-                <Text style={styles.chipFlag} maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}>
-                  {ccToFlag(r.code)}
-                </Text>
+                <RNText style={styles.chipFlag}>{ccToFlag(r.code)}</RNText>
+                {/* Chip label: semiBold + sizeXs + bg-or-emphasis color —
+                    captionEmphasis is semiBold + sizeSm; scale down to sizeXs. */}
                 <Text
-                  style={{
-                    ...font.semiBold,
-                    fontSize: typography.sizeXs,
-                    letterSpacing: typography.trackingCaps,
-                    color: isSelected ? colors.bg : colors.textEmphasis,
-                  }}
-                  maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
+                  variant="captionEmphasis"
+                  scale={typography.sizeXs / typography.sizeSm}
+                  style={{ color: isSelected ? colors.bg : colors.textEmphasis }}
                 >
-                  {r.code.toUpperCase()}
+                  {displayNameFromCode(r.code)}
                 </Text>
               </Pressable>
             );
@@ -499,18 +417,7 @@ export const LocationsBlock = memo(function LocationsBlock({
       ) : null}
 
       {caption ? (
-        <Text
-          style={[
-            styles.caption,
-            {
-              ...font.italic,
-              fontSize: typography.sizeSm,
-              lineHeight: typography.sizeSm * typography.leadingBody,
-              color: colors.accent,
-            },
-          ]}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-        >
+        <Text variant="sectionHeading" tone="accent" style={styles.caption}>
           {caption}
         </Text>
       ) : null}
@@ -519,10 +426,6 @@ export const LocationsBlock = memo(function LocationsBlock({
     </View>
   );
 });
-
-// ---------------------------------------------------------------------------
-// Styles
-// ---------------------------------------------------------------------------
 
 const styles = StyleSheet.create({
   label: {

@@ -1,12 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
 import { memo, useCallback, useMemo, useRef, useState } from 'react';
 import { type LayoutChangeEvent, Pressable, StyleSheet, View } from 'react-native';
 import Animated, { interpolate, type SharedValue, useAnimatedStyle } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   CATEGORIES,
-  type FontEntry,
-  ICON,
+  HIT_SLOP,
   LAYOUT,
   MAX_FONT_SCALE,
   OPACITY,
@@ -14,7 +12,7 @@ import {
   SPACING,
 } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { HapticButton } from './HapticButton';
+import { Icon, IconButton } from './primitives';
 
 const TAB_LABELS = CATEGORIES.map((c) => c.toUpperCase());
 const TAB_INDICES = TAB_LABELS.map((_, i) => i);
@@ -37,10 +35,7 @@ function TabLabel({
   index,
   pagerOffset,
   isSelected,
-  textColor,
-  fontEntry,
-  fontSize,
-  letterSpacing,
+  labelStyle,
   onCategoryPress,
   onLayout,
 }: {
@@ -48,10 +43,7 @@ function TabLabel({
   index: number;
   pagerOffset: SharedValue<number>;
   isSelected: boolean;
-  textColor: string;
-  fontEntry: FontEntry;
-  fontSize: number;
-  letterSpacing: number;
+  labelStyle: { fontFamily?: string; fontSize: number; letterSpacing: number; color: string };
   onCategoryPress: (index: number) => void;
   onLayout: (e: LayoutChangeEvent) => void;
 }) {
@@ -61,21 +53,21 @@ function TabLabel({
     'worklet';
     const distance = Math.abs(pagerOffset.value - index);
     const opacity = interpolate(distance, [0, 1], [1, 0.4], 'clamp');
-    return { color: textColor, opacity };
+    return { color: labelStyle.color, opacity };
   });
 
   return (
     <Pressable
       onPress={handlePress}
       onLayout={onLayout}
-      hitSlop={LAYOUT.hitSlop}
+      hitSlop={HIT_SLOP}
       style={({ pressed }) => pressed && PRESSED_STYLE}
       accessibilityRole="tab"
       accessibilityState={{ selected: isSelected }}
       accessibilityLabel={label}
     >
       <Animated.Text
-        style={[fontEntry, { fontSize, letterSpacing }, animatedStyle]}
+        style={[labelStyle, animatedStyle]}
         maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
       >
         {label}
@@ -126,7 +118,6 @@ export const CategoryBar = memo(function CategoryBar({
       tabLayouts.map((l) => l.width),
       'clamp',
     );
-    // Hide underline on icon tabs
     return { left: x, width: w, opacity: OPACITY.soft };
   });
 
@@ -141,6 +132,13 @@ export const CategoryBar = memo(function CategoryBar({
     return { left: tab?.x ?? 0, width: (tab?.width ?? 0) * progress, opacity: 1 };
   });
 
+  const labelStyle = {
+    ...font.semiBold,
+    fontSize: typography.sizeXs,
+    letterSpacing: typography.trackingCaps,
+    color: colors.text,
+  };
+
   return (
     <View style={[styles.container, { paddingTop: insets.top, backgroundColor: colors.bg }]}>
       <View style={styles.tabRow}>
@@ -151,17 +149,14 @@ export const CategoryBar = memo(function CategoryBar({
             index={i}
             pagerOffset={pagerOffset}
             isSelected={currentCategory === i}
-            textColor={colors.text}
-            fontEntry={font.semiBold}
-            fontSize={typography.sizeXs}
-            letterSpacing={typography.trackingCaps}
+            labelStyle={labelStyle}
             onCategoryPress={onCategoryPress}
             onLayout={tabLayoutHandlers[i] ?? (() => {})}
           />
         ))}
-        <HapticButton onPress={onMenuPress} accessibilityLabel="Menu" style={styles.menuButton}>
-          <Ionicons name="menu" size={ICON.sm} color={colors.textSecondary} />
-        </HapticButton>
+        <IconButton onPress={onMenuPress} accessibilityLabel="Menu" style={styles.menuButton}>
+          <Icon name="menu" size="sm" />
+        </IconButton>
         <Animated.View
           style={[styles.progressBar, { backgroundColor: colors.textEmphasis }, trackPos]}
         />

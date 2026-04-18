@@ -1,6 +1,6 @@
 import { Canvas, Circle, Line, Path, Skia, type SkPath, vec } from '@shopify/react-native-skia';
 import { memo, useEffect, useMemo, useState } from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import {
   runOnJS,
@@ -11,44 +11,34 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { ANIMATION, EASING, MAX_FONT_SCALE, SPACING } from '../../constants/theme';
+import { ANIMATION, EASING, SPACING } from '../../constants/theme';
 
-// Initial width estimate so the chart renders on first frame instead of flashing
-// an empty container while `onLayout` resolves.
 const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
 
 import { useTheme } from '../../hooks/useTheme';
 import { hapticTick } from '../../lib/haptics';
 import type { ArticleBlock, TrendAnnotation } from '../../types';
-import { HapticPressable } from '../HapticPressable';
+import { Pressable, Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
 import type { BlockVariant } from './shared';
 
 type TrendHighlight = Extract<ArticleBlock, { type: 'trend' }>['highlight'];
 type Pt = { x: number; y: number };
 
-// ── Geometry ────────────────────────────────────────────────────────────────
 const CHART_HEIGHT = { article: 180, context: 148 } as const;
 const STROKE_WIDTH = 1.5;
 const DATA_DOT_R = 2;
 const EVENT_DOT_R = 4;
 const ENDPOINT_DOT_R = 4;
 const ENDPOINT_RING_R = 8;
-// Top pad reserves room for the annotation label row plus the leader line
-// that drops from the label down to its data point on the curve.
 const LABEL_ROW_HEIGHT = 14;
 const CHART_TOP_PAD = LABEL_ROW_HEIGHT + 10;
 const CHART_BOTTOM_PAD = 14;
 const CHART_RIGHT_PAD = 44;
 const CHART_LEFT_PAD = 2;
 
-// Scrub readout bubble — hovers above the active dot during pan. Two stacked
-// lines (value on top, period below), fades in on scrub start, clamps to
-// chart width near the edges.
 const SCRUB_LABEL_W = 96;
 const SCRUB_LABEL_H = 30;
-
-// ── Helpers ─────────────────────────────────────────────────────────────────
 
 function resolveHighlightIndex(values: number[], mode: TrendHighlight): number {
   if (values.length === 0) return -1;
@@ -75,8 +65,6 @@ function formatNumber(n: number, unit?: string): string {
   return unit ? `${s}${unit.length === 1 || unit === '%' ? '' : ' '}${unit}` : s;
 }
 
-/** Straight-line polyline. Honest over sparse, irregular-interval data where
- *  a smoothed curve would imply values that weren't sampled. */
 function buildPolyline(points: Pt[]): SkPath {
   const path = Skia.Path.Make();
   const first = points[0];
@@ -105,8 +93,6 @@ function buildLinearArea(points: Pt[], baseY: number): SkPath {
   area.close();
   return area;
 }
-
-// ── Chart ───────────────────────────────────────────────────────────────────
 
 interface ChartProps {
   values: number[];
@@ -149,7 +135,6 @@ function Chart({
 
   const chartRightX = width - CHART_RIGHT_PAD;
 
-  // Active point — scrub position wins; otherwise fall back to default highlight.
   const activeCx = useDerivedValue(() => {
     const idx = scrubIdx.value >= 0 ? scrubIdx.value : defaultHighlightIdx;
     return points[idx]?.x ?? 0;
@@ -159,7 +144,6 @@ function Chart({
     return points[idx]?.y ?? 0;
   });
 
-  // Crosshair only visible while scrubbing.
   const crosshairOpacity = useDerivedValue(() =>
     scrubIdx.value >= 0 ? withTiming(1, { duration: 80 }) : withTiming(0, { duration: 120 }),
   );
@@ -176,7 +160,6 @@ function Chart({
 
   return (
     <Canvas style={{ width, height }}>
-      {/* Subtle filled area beneath the polyline. */}
       <Path
         path={areaPath}
         color={colors.textEmphasis}
@@ -185,8 +168,6 @@ function Chart({
         start={0}
         end={progress}
       />
-
-      {/* Min and max reference lines — the implicit axis. */}
       <Line
         p1={vec(CHART_LEFT_PAD, maxY)}
         p2={vec(chartRightX, maxY)}
@@ -201,8 +182,6 @@ function Chart({
         opacity={0.35}
         strokeWidth={StyleSheet.hairlineWidth}
       />
-
-      {/* The polyline */}
       <Path
         path={polyPath}
         style="stroke"
@@ -213,8 +192,6 @@ function Chart({
         start={0}
         end={progress}
       />
-
-      {/* Crosshair — vertical rule at scrub position only */}
       <Line
         p1={crosshairP1}
         p2={crosshairP2}
@@ -222,15 +199,9 @@ function Chart({
         opacity={crosshairOpacity}
         strokeWidth={StyleSheet.hairlineWidth}
       />
-
-      {/* Tick dots at every sampled value — make it obvious where the discrete
-          points sit on the line instead of hiding them in one continuous curve. */}
       {points.map((p, i) => (
         <Circle key={`tick-${i}`} cx={p.x} cy={p.y} r={DATA_DOT_R} color={colors.textEmphasis} />
       ))}
-
-      {/* Annotation leader lines — connect the top-row label to its event
-          point on the curve so readers see which year each label belongs to. */}
       {annotations?.map((a, i) => {
         const pt = points[a.atIndex];
         if (!pt) return null;
@@ -245,8 +216,6 @@ function Chart({
           />
         );
       })}
-
-      {/* Event dots — larger accent-colored markers for annotated points. */}
       {annotations?.map((a, i) => {
         const pt = points[a.atIndex];
         if (!pt) return null;
@@ -254,15 +223,11 @@ function Chart({
           <Circle key={`ann-dot-${i}`} cx={pt.x} cy={pt.y} r={EVENT_DOT_R} color={colors.accent} />
         );
       })}
-
-      {/* Active dot — snaps to scrub position or falls back to highlight */}
       <Circle cx={activeCx} cy={activeCy} r={ENDPOINT_RING_R} color={colors.accent} opacity={0.2} />
       <Circle cx={activeCx} cy={activeCy} r={ENDPOINT_DOT_R} color={colors.accent} />
     </Canvas>
   );
 }
-
-// ── TrendBlock ──────────────────────────────────────────────────────────────
 
 interface TrendBlockProps {
   values: number[];
@@ -287,7 +252,7 @@ export const TrendBlock = memo(function TrendBlock({
   onPress,
   sourceLabel,
 }: TrendBlockProps) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors, font } = useTheme();
   const reduceMotion = useReducedMotion();
   const isContext = variant === 'context';
   const height = isContext ? CHART_HEIGHT.context : CHART_HEIGHT.article;
@@ -307,8 +272,6 @@ export const TrendBlock = memo(function TrendBlock({
 
   const [width, setWidth] = useState(INITIAL_WIDTH_ESTIMATE);
 
-  // Precompute point geometry once per (values, width, height) so the chart
-  // renderer and the pan worklet share the same coordinates.
   const points: Pt[] = useMemo(() => {
     if (width <= 0) return [];
     const minV = Math.min(...values);
@@ -324,9 +287,6 @@ export const TrendBlock = memo(function TrendBlock({
     }));
   }, [values, width, height]);
 
-  // Scrub state — the SharedValue drives the Skia chart's active dot; one
-  // animated reaction handles both side-effects on a transition: a haptic
-  // tick (point-to-point only) and pushing the index to JS for the readout.
   const scrubIdx = useSharedValue(-1);
   const [scrubIdxJs, setScrubIdxJs] = useState<number>(-1);
 
@@ -397,8 +357,6 @@ export const TrendBlock = memo(function TrendBlock({
   const firstPeriod = periods?.[0];
   const lastPeriod = periods?.[periods.length - 1];
 
-  // a11y describes the default highlight (accessibilityLabel isn't re-announced
-  // during a pan, so scrub updates don't belong here).
   const highlightValue = values[defaultHighlightIdx];
   const highlightPeriod = periods?.[defaultHighlightIdx];
   const a11yLabel =
@@ -408,16 +366,10 @@ export const TrendBlock = memo(function TrendBlock({
 
   const inner = (
     <View style={styles.container}>
-      {/* Title — metric label. The chart itself communicates the values. */}
-      <Text
-        style={[styles.label, textStyles.smallCapsXs]}
-        maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-        numberOfLines={2}
-      >
+      <Text variant="labelXs" numberOfLines={2} style={styles.label}>
         {label}
       </Text>
 
-      {/* Chart — wrapped in gesture for horizontal scrub */}
       <GestureDetector gesture={pan}>
         <View
           onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
@@ -436,9 +388,6 @@ export const TrendBlock = memo(function TrendBlock({
                 colors={colors}
                 annotations={annotations}
               />
-              {/* Annotation labels — real small-caps glyphs pinned at the top of
-                  the chart. The leader line is drawn inside the canvas and ends
-                  just below this row, visually linking label to data point. */}
               {annotations?.map((a, i) => {
                 const pt = points[a.atIndex];
                 if (!pt) return null;
@@ -454,24 +403,16 @@ export const TrendBlock = memo(function TrendBlock({
                     ]}
                   >
                     <Text
-                      style={{
-                        ...font.smallCaps,
-                        fontSize: typography.sizeXs,
-                        lineHeight: LABEL_ROW_HEIGHT,
-                        letterSpacing: typography.trackingCaps,
-                        color: colors.accent,
-                        textAlign: 'center',
-                      }}
-                      maxFontSizeMultiplier={MAX_FONT_SCALE.label}
+                      variant="labelXs"
+                      tone="accent"
                       numberOfLines={1}
+                      style={styles.annotationLabelText}
                     >
                       {a.label}
                     </Text>
                   </View>
                 );
               })}
-              {/* Scrub readout — value + period above the active dot while
-                  panning. Renders only during a gesture. */}
               {scrubInfo ? (
                 <View
                   pointerEvents="none"
@@ -480,61 +421,30 @@ export const TrendBlock = memo(function TrendBlock({
                     { left: scrubLeft, width: SCRUB_LABEL_W, height: SCRUB_LABEL_H },
                   ]}
                 >
+                  {/* Scrub readout value: regular + sizeSm + oldstyle+tabular nums
+                      + emphasis color. No exact variant — caption (regular + sizeSm
+                      + secondary) + tone="emphasis" + fontVariant override. */}
                   <Text
-                    style={{
-                      ...font.regular,
-                      fontSize: typography.sizeSm,
-                      lineHeight: typography.sizeSm * 1.1,
-                      color: colors.textEmphasis,
-                      fontVariant: ['oldstyle-nums'],
-                      textAlign: 'center',
-                    }}
-                    maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
+                    variant="caption"
+                    tone="emphasis"
                     numberOfLines={1}
+                    style={styles.scrubValue}
                   >
                     {scrubInfo.value}
                   </Text>
-                  <Text
-                    style={{
-                      ...font.smallCaps,
-                      fontSize: typography.sizeXs,
-                      lineHeight: typography.sizeXs * 1.2,
-                      letterSpacing: typography.trackingCaps,
-                      color: colors.textSecondary,
-                      textAlign: 'center',
-                    }}
-                    maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-                    numberOfLines={1}
-                  >
+                  <Text variant="labelXs" numberOfLines={1} style={styles.scrubPeriod}>
                     {scrubInfo.period.toUpperCase()}
                   </Text>
                 </View>
               ) : null}
 
-              {/* Right-edge y-axis min/max — the axis readout. */}
               <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMax]}>
-                <Text
-                  style={{
-                    ...font.regular,
-                    fontSize: typography.sizeXs,
-                    color: colors.textSecondary,
-                    fontVariant: ['oldstyle-nums'],
-                  }}
-                  maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
-                >
+                <Text variant="tabular" tone="secondary">
                   {formatNumber(max, unit)}
                 </Text>
               </View>
               <View pointerEvents="none" style={[styles.yAxis, styles.yAxisMin]}>
-                <Text
-                  style={{
-                    ...font.regular,
-                    fontSize: typography.sizeXs,
-                    color: colors.textSecondary,
-                    fontVariant: ['oldstyle-nums'],
-                  }}
-                  maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
-                >
+                <Text variant="tabular" tone="secondary">
                   {formatNumber(min, unit)}
                 </Text>
               </View>
@@ -543,36 +453,14 @@ export const TrendBlock = memo(function TrendBlock({
         </View>
       </GestureDetector>
 
-      {/* X-axis: first and last period anchors */}
       {firstPeriod || lastPeriod ? (
         <View style={styles.xAxisRow}>
-          <Text
-            style={[
-              styles.xAxisLabel,
-              {
-                ...font.regular,
-                fontSize: typography.sizeXs,
-                color: colors.textSecondary,
-                letterSpacing: typography.trackingCaps,
-              },
-            ]}
-            maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-          >
+          {/* X-axis: regular + sizeXs + trackingCaps + secondary. Borrow labelXs
+              size/color/tracking; override family to regular via font.regular. */}
+          <Text variant="labelXs" style={[styles.xAxisLabel, font.regular]}>
             {firstPeriod ? firstPeriod.toUpperCase() : ''}
           </Text>
-          <Text
-            style={[
-              styles.xAxisLabel,
-              styles.xAxisLabelEnd,
-              {
-                ...font.regular,
-                fontSize: typography.sizeXs,
-                color: colors.textSecondary,
-                letterSpacing: typography.trackingCaps,
-              },
-            ]}
-            maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-          >
+          <Text variant="labelXs" style={[styles.xAxisLabel, styles.xAxisLabelEnd, font.regular]}>
             {lastPeriod ? lastPeriod.toUpperCase() : ''}
           </Text>
         </View>
@@ -589,14 +477,14 @@ export const TrendBlock = memo(function TrendBlock({
     );
   }
   return (
-    <HapticPressable
+    <Pressable
       haptic="impact"
       onPress={onPress}
       accessibilityRole="button"
       accessibilityLabel={a11yLabel}
     >
       {inner}
-    </HapticPressable>
+    </Pressable>
   );
 });
 
@@ -632,11 +520,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  annotationLabelText: {
+    textAlign: 'center',
+    lineHeight: LABEL_ROW_HEIGHT,
+  },
   scrubLabel: {
     position: 'absolute',
     top: 0,
     alignItems: 'center',
     justifyContent: 'flex-start',
+  },
+  scrubValue: {
+    textAlign: 'center',
+    fontVariant: ['oldstyle-nums'],
+  },
+  scrubPeriod: {
+    textAlign: 'center',
   },
   xAxisRow: {
     flexDirection: 'row',

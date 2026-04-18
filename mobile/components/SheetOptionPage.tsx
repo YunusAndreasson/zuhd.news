@@ -1,9 +1,8 @@
-import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, ICON, SPACING, staggerDelay } from '../constants/theme';
+import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { HapticPressable } from './HapticPressable';
+import { Icon, Pressable, Text } from './primitives';
 
 interface OptionPageProps<T extends string> {
   options: readonly { value: T; label: string }[];
@@ -20,17 +19,20 @@ export function SheetOptionPage<T extends string>({
   onSelect,
   labelFontSize,
 }: OptionPageProps<T>) {
-  const { colors, font, typography } = useTheme();
+  const { colors, typography } = useTheme();
   return (
     <View accessibilityRole="radiogroup">
       {options.map((opt, i) => {
         const active = opt.value === selected;
+        // When a labelFontSize is provided (size picker), the option preview
+        // renders at its actual target font — scaling from sizeBase (17pt).
+        const optScale = labelFontSize ? labelFontSize(opt.value) / typography.sizeBase : 1;
         return (
           <Animated.View
             key={opt.value}
             entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
           >
-            <HapticPressable
+            <Pressable
               onPress={() => {
                 if (!active) onSelect(opt.value);
               }}
@@ -40,17 +42,11 @@ export function SheetOptionPage<T extends string>({
               accessibilityState={{ selected: active }}
               accessibilityLabel={opt.label}
             >
-              <Text
-                style={{
-                  ...font.semiBold,
-                  fontSize: labelFontSize?.(opt.value) ?? typography.sizeBase,
-                  color: active ? colors.textEmphasis : colors.text,
-                }}
-              >
+              <Text variant="bodyEmphasis" tone={active ? 'emphasis' : 'default'} scale={optScale}>
                 {opt.label}
               </Text>
-              {active && <Ionicons name="checkmark" size={ICON.md} color={colors.text} />}
-            </HapticPressable>
+              {active && <Icon name="checkmark" tone="default" />}
+            </Pressable>
           </Animated.View>
         );
       })}

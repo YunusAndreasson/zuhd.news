@@ -1,6 +1,5 @@
-import { Ionicons } from '@expo/vector-icons';
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { type LayoutChangeEvent, StyleSheet, Text, View } from 'react-native';
+import { type LayoutChangeEvent, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   FadeIn,
@@ -14,9 +13,9 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ANIMATION, ICON, MAX_FONT_SCALE, RADIUS, SPACING } from '../constants/theme';
+import { ANIMATION, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { HapticButton } from './HapticButton';
+import { Icon, IconButton, Text } from './primitives';
 
 const BAR_MARGIN = SPACING.md;
 const PROGRESS_HEIGHT = 3;
@@ -51,7 +50,7 @@ export const BriefingBar = memo(function BriefingBar({
   onSeek,
   onClose,
 }: BriefingBarProps) {
-  const { colors, font, typography } = useTheme();
+  const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const barWidthSV = useSharedValue(0);
   const barWidthRef = useRef(0);
@@ -141,8 +140,7 @@ export const BriefingBar = memo(function BriefingBar({
   const scrubGesture = Gesture.Race(panGesture, tapGesture);
 
   // Tooltip rides the finger horizontally (clamped to bar edges) and lifts
-  // in/out with the scrub gesture. Positioned above the entire bar — bar's
-  // overflow is visible so the tooltip can float out.
+  // in/out with the scrub gesture.
   const tooltipStyle = useAnimatedStyle(() => {
     const w = barWidthSV.value || 1;
     const clampedX = Math.max(TOOLTIP_WIDTH / 2, Math.min(scrubX.value, w - TOOLTIP_WIDTH / 2));
@@ -180,69 +178,40 @@ export const BriefingBar = memo(function BriefingBar({
           style={[styles.tooltip, { backgroundColor: colors.toastBg }, tooltipStyle]}
           pointerEvents="none"
         >
-          <Text
-            style={{
-              ...font.semiBold,
-              fontSize: typography.sizeXs,
-              color: colors.textEmphasis,
-              fontVariant: ['tabular-nums'],
-              textAlign: 'center',
-            }}
-            maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
-          >
+          <Text variant="tabularEmphasis" style={styles.tooltipText}>
             {scrubLabel}
           </Text>
         </Animated.View>
 
         <View style={styles.row}>
           <View style={styles.info}>
-            <Text
-              style={{
-                ...font.smallCaps,
-                fontSize: typography.sizeSm,
-                letterSpacing: typography.trackingCaps,
-                color: colors.textEmphasis,
-              }}
-              numberOfLines={1}
-              maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
-            >
+            <Text variant="labelSm" tone="emphasis" numberOfLines={1}>
               briefing
-              <Text style={{ ...font.regular, color: colors.textSecondary }}>
+              <Text variant="caption">
                 {' \u00b7 '}
                 {dateLabel}
               </Text>
             </Text>
           </View>
 
-          <Text
-            style={[
-              styles.time,
-              {
-                ...font.regular,
-                fontSize: typography.sizeXs,
-                color: colors.textEmphasis,
-              },
-            ]}
-            maxFontSizeMultiplier={MAX_FONT_SCALE.tabular}
-          >
+          <Text variant="tabular" tone="emphasis">
             {formatTime(elapsed)}
-            <Text style={{ color: colors.textSecondary }}> / {formatTime(duration)}</Text>
+            <Text variant="tabular" tone="secondary">
+              {' / '}
+              {formatTime(duration)}
+            </Text>
           </Text>
 
-          <HapticButton
+          <IconButton
             onPress={onToggle}
             accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
           >
-            <Ionicons
-              name={playing ? 'pause' : 'play'}
-              size={ICON.md}
-              color={colors.textEmphasis}
-            />
-          </HapticButton>
+            <Icon name={playing ? 'pause' : 'play'} tone="emphasis" />
+          </IconButton>
 
-          <HapticButton onPress={onClose} accessibilityLabel="Close briefing player">
-            <Ionicons name="close" size={ICON.sm} color={colors.textSecondary} />
-          </HapticButton>
+          <IconButton onPress={onClose} accessibilityLabel="Close briefing player">
+            <Icon name="close" size="sm" tone="secondary" />
+          </IconButton>
         </View>
 
         <GestureDetector gesture={scrubGesture}>
@@ -301,9 +270,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
-  time: {
-    fontVariant: ['tabular-nums'],
-  },
   progressTouch: {
     // Generous vertical hit area so the 3px track is comfortable to tap —
     // md above and below brings the effective target to ~35px tall.
@@ -323,9 +289,7 @@ const styles = StyleSheet.create({
     borderRadius: PROGRESS_HEIGHT,
     transformOrigin: 'left',
   },
-  // Floats above the bar card so the finger never covers it. Horizontal
-  // position is tooltip-centered via translateX in tooltipStyle; the left:0
-  // here is the baseline origin for that translate.
+  // Floats above the bar card so the finger never covers it.
   tooltip: {
     position: 'absolute',
     bottom: '100%',
@@ -335,5 +299,8 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.xxs,
     borderRadius: RADIUS.pill,
     alignItems: 'center',
+  },
+  tooltipText: {
+    textAlign: 'center',
   },
 });

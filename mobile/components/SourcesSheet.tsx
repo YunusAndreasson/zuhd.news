@@ -4,11 +4,12 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useEffect, useState } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { ArticleSource } from '../types';
+import { Text } from './primitives';
 import { SheetLayout } from './SheetLayout';
 import { useMaxSheetHeight } from './SheetPrimitives';
 import { SourceRow } from './SourceRow';
@@ -31,22 +32,15 @@ export const SourcesSheet = memo(function SourcesSheet({
   renderBackdrop,
   onDismiss,
 }: SourcesSheetProps) {
-  const { colors, font, typography, textStyles, sheetStyles } = useTheme();
+  const { sheetStyles, textVariants } = useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
 
-  // Single source → auto-expanded. Multi-source → everything collapsed; the
-  // user taps a row to reveal its commentary.
   const [expandedSource, setExpandedSource] = useState<number | null>(null);
 
-  // Seed the expanded state when the sheet's source set changes (opens on a
-  // new article, etc.). Single source expands; multi collapses.
   useEffect(() => {
     setExpandedSource(sources.length === 1 ? 0 : null);
   }, [sources]);
 
-  // Always mount the SheetLayout so `sheetRef.current?.present()` works on the
-  // first tap — returning null while sources is empty would leave the modal
-  // un-registered and force the user to tap twice.
   return (
     <SheetLayout
       sheetRef={sheetRef}
@@ -60,19 +54,20 @@ export const SourcesSheet = memo(function SourcesSheet({
       >
         {sources.length > 0 && (
           <>
-            <Text style={[textStyles.smallCaps, { color: colors.textSecondary }]}>
+            <Text variant="labelSm">
               {sources.length === 1 ? 'source' : `${sources.length} sources`}
             </Text>
             {/* Explainer — anchors "tone" so the pill labels read as framing
-             *  analysis, not a verdict. One line, italic, then a breath. */}
+             *  analysis, not a verdict. One line, italic, then a breath.
+             *  Uses the sectionHeading font family at an xs size so it visually
+             *  reads as smaller than a normal italic body line. */}
             <Text
+              variant="sectionHeading"
               style={[
                 styles.explainer,
                 {
-                  ...font.italic,
-                  fontSize: typography.sizeXs,
-                  lineHeight: typography.sizeXs * typography.leadingBody,
-                  color: colors.textSecondary,
+                  fontSize: textVariants.labelXs.fontSize,
+                  lineHeight: textVariants.labelXs.lineHeight,
                 },
               ]}
             >

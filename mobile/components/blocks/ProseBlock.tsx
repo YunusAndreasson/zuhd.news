@@ -22,6 +22,10 @@ interface ProseBlockProps {
   sourceLabel?: string;
 }
 
+/** ProseBlock uses the markdown style system (mdStyles) directly because
+ *  it composes inline segments with per-segment style (links, emphasis,
+ *  dateline). The `<Text variant>` API can't express segment-level style
+ *  mixing. Sizes and colors still flow from the theme via markdown.tsx. */
 export const ProseBlock = memo(function ProseBlock({
   text,
   mdStyles,

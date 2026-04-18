@@ -1,7 +1,8 @@
 import { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { MAX_FONT_SCALE, SPACING } from '../../constants/theme';
+import { StyleSheet, View } from 'react-native';
+import { SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { Text } from '../primitives';
 import { type BlockVariant, blockContainerStyle } from './shared';
 
 interface QuoteBlockProps {
@@ -20,7 +21,7 @@ export const QuoteBlock = memo(function QuoteBlock({
   year,
   variant = 'article',
 }: QuoteBlockProps) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors } = useTheme();
   const isContext = variant === 'context';
 
   const attributionParts: string[] = [];
@@ -33,25 +34,13 @@ export const QuoteBlock = memo(function QuoteBlock({
       <View style={styles.row}>
         <View style={[styles.ruleLeft, { backgroundColor: colors.accent }]} />
         <View style={styles.body}>
-          <Text
-            selectable
-            style={{
-              ...font.italic,
-              fontSize: typography.sizeBase,
-              lineHeight: typography.sizeBase * typography.leadingBody,
-              color: colors.text,
-            }}
-            maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-          >
+          <Text selectable variant="bodyItalic">
             {'\u201c'}
             {text}
             {'\u201d'}
           </Text>
           {attribution ? (
-            <Text
-              style={[styles.attribution, textStyles.smallCapsXs]}
-              maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-            >
+            <Text variant="labelXs" style={styles.attribution}>
               {attribution}
             </Text>
           ) : null}

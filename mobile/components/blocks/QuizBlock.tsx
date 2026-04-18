@@ -1,6 +1,6 @@
 import * as Haptics from 'expo-haptics';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from 'react-native';
+import { AccessibilityInfo, Pressable, StyleSheet, View } from 'react-native';
 import Animated, {
   FadeIn,
   useAnimatedStyle,
@@ -9,9 +9,10 @@ import Animated, {
   withSequence,
   withTiming,
 } from 'react-native-reanimated';
-import { ANIMATION, MAX_FONT_SCALE, SPACING } from '../../constants/theme';
+import { ANIMATION, SPACING, type TextTone } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { hapticNotification } from '../../lib/haptics';
+import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
 import { type BlockVariant, blockContainerStyle } from './shared';
 
@@ -24,11 +25,7 @@ interface QuizBlockProps {
   sourceLabel?: string;
 }
 
-/** Active-reading check: one question, plain-row options. A correct tap fires
- *  a Success haptic and tints the chosen row in sage; a wrong tap fires a
- *  Warning haptic, shakes the question, tints the chosen row in rose, and
- *  reveals the correct row in sage. State locks after first answer — retrieval
- *  practice only counts when the attempt is meaningful. */
+/** Active-reading check: one question, plain-row options. */
 export const QuizBlock = memo(function QuizBlock({
   question,
   options,
@@ -37,7 +34,7 @@ export const QuizBlock = memo(function QuizBlock({
   variant = 'article',
   sourceLabel,
 }: QuizBlockProps) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors, typography } = useTheme();
   const isContext = variant === 'context';
   const reduceMotion = useReducedMotion();
 
@@ -70,8 +67,6 @@ export const QuizBlock = memo(function QuizBlock({
     [answered, correct, reduceMotion, shakeX],
   );
 
-  // Screen-reader announcement on answer — the visual color change is
-  // invisible to assistive tech, so we speak the outcome explicitly.
   useEffect(() => {
     if (selected === null) return;
     const right = selected === correct;
@@ -81,33 +76,20 @@ export const QuizBlock = memo(function QuizBlock({
     );
   }, [selected, correct, options]);
 
-  const rowColor = (idx: number): string => {
-    if (!answered) return colors.text;
-    if (idx === correct) return colors.toneFavorable;
-    if (idx === selected) return colors.toneUnfavorable;
-    return colors.textSecondary;
+  const rowTone = (idx: number): TextTone => {
+    if (!answered) return 'default';
+    if (idx === correct) return 'favorable';
+    if (idx === selected) return 'unfavorable';
+    return 'secondary';
   };
 
   return (
     <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
-      <Text
-        style={[styles.label, textStyles.smallCapsXs]}
-        maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-      >
+      <Text variant="labelXs" style={styles.label}>
         choose one
       </Text>
       <Animated.View style={shakeStyle}>
-        <Text
-          selectable
-          style={{
-            ...font.italic,
-            fontSize: typography.sizeBase,
-            lineHeight: typography.sizeBase * typography.leadingBody,
-            color: colors.textEmphasis,
-            marginBottom: SPACING.sm,
-          }}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-        >
+        <Text selectable variant="bodyItalic" tone="emphasis" style={styles.question}>
           {question}
         </Text>
       </Animated.View>
@@ -147,25 +129,13 @@ export const QuizBlock = memo(function QuizBlock({
               accessibilityLabel={opt}
               accessibilityState={{ disabled: answered, selected: selected === i }}
             >
-              {/* Leading radio — hollow at rest (universal "choose one"
-                  affordance), fills on answer. Replaces a left rule so the
-                  tap target reads at a glance without tapping. */}
               <View
                 style={[
                   styles.optionCircle,
                   { borderColor: circleBorder, backgroundColor: circleFill },
                 ]}
               />
-              <Text
-                style={{
-                  ...font.regular,
-                  fontSize: typography.sizeBase,
-                  lineHeight: typography.sizeBase * typography.leadingBody,
-                  color: rowColor(i),
-                  flex: 1,
-                }}
-                maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-              >
+              <Text variant="body" tone={rowTone(i)} style={styles.optionText}>
                 {opt}
               </Text>
             </Pressable>
@@ -173,19 +143,16 @@ export const QuizBlock = memo(function QuizBlock({
         })}
       </View>
       {answered && explanation ? (
-        <Animated.Text
-          entering={FadeIn.duration(ANIMATION.normal)}
-          style={{
-            ...font.italic,
-            fontSize: typography.sizeXs,
-            lineHeight: typography.sizeXs * typography.leadingBody,
-            color: colors.textSecondary,
-            marginTop: SPACING.sm,
-          }}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-        >
-          {explanation}
-        </Animated.Text>
+        <Animated.View entering={FadeIn.duration(ANIMATION.normal)}>
+          <Text
+            variant="sectionHeading"
+            tone="secondary"
+            scale={typography.sizeXs / typography.sizeSm}
+            style={styles.explanation}
+          >
+            {explanation}
+          </Text>
+        </Animated.View>
       ) : null}
       {sourceLabel ? <SourceCaption label={sourceLabel} /> : null}
     </View>
@@ -195,6 +162,9 @@ export const QuizBlock = memo(function QuizBlock({
 const styles = StyleSheet.create({
   label: {
     marginBottom: SPACING.xs,
+  },
+  question: {
+    marginBottom: SPACING.sm,
   },
   options: {
     borderTopWidth: StyleSheet.hairlineWidth,
@@ -212,5 +182,11 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     borderWidth: 1,
     marginRight: SPACING.md,
+  },
+  optionText: {
+    flex: 1,
+  },
+  explanation: {
+    marginTop: SPACING.sm,
   },
 });

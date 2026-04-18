@@ -176,6 +176,34 @@ export const SPACING = {
   screenPadding: 18,
 } as const;
 
+/** Named `gap` tiers for Stack. Derived from SPACING but intent-named so layout
+ *  code doesn't leak raw spacing values. */
+export const GAP = {
+  none: 0,
+  tight: SPACING.xs,
+  row: SPACING.sm,
+  item: SPACING.md,
+  group: SPACING.lg,
+  section: SPACING.xl,
+} as const;
+export type GapToken = keyof typeof GAP;
+
+/** Standard hitSlop object for Pressable/IconButton — expands tap target
+ *  equally on all sides by LAYOUT.hitSlop. */
+export const HIT_SLOP = {
+  top: 12,
+  bottom: 12,
+  left: 12,
+  right: 12,
+} as const;
+
+/** Title fontSize scale factor by character count. Long titles shrink to stay
+ *  on two lines without truncation. Encapsulates the previously ad-hoc logic
+ *  from ArticleRow so it can be reused wherever titles render. */
+export function titleFontScale(length: number): number {
+  return length > 70 ? 0.92 : length > 50 ? 0.96 : 1;
+}
+
 /** maxFontSizeMultiplier caps — prevent layout breakage at extreme Dynamic Type */
 export const MAX_FONT_SCALE = {
   /** Headings — already large; excessive scaling overflows snap viewport */
@@ -290,41 +318,36 @@ export const PRESSED_STYLE = {
   transform: [{ scale: PRESS_SCALE }],
 } as const;
 
-/** Build reusable text style bases from resolved theme values */
-export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: Typography) {
+/** Complete typography variant set consumed by `<Text variant>`. Each variant
+ *  bundles fontFamily, fontSize, lineHeight, letterSpacing, color, and
+ *  fontVariant — call sites should never assemble these by hand. */
+export function makeTextVariants(colors: ColorPalette, font: FontSet, typography: Typography) {
   return {
-    /** Sheet titles — largest small-caps tier (17pt) */
-    sheetTitle: {
-      ...font.smallCaps,
+    /** Hero headline — ArticlePage title */
+    display: {
+      ...font.bold,
       ...ANDROID_TEXT_BASE,
-      fontSize: typography.sizeBase,
-      lineHeight: typography.sizeBase * typography.leadingBody,
-      letterSpacing: typography.trackingCaps,
-      color: colors.textSecondary,
+      fontSize: typography.sizeH1,
+      lineHeight: typography.sizeH1 * typography.leadingHeading,
+      color: colors.text,
     } as TextStyle,
-    /** Section labels — mid small-caps tier (13pt) */
-    smallCaps: {
-      ...font.smallCaps,
+    /** Row titles, block titles — ArticleRow, sheet pages */
+    title: {
+      ...font.semiBold,
       ...ANDROID_TEXT_BASE,
-      fontSize: typography.sizeSm,
-      lineHeight: typography.sizeSm * typography.leadingBody,
-      letterSpacing: typography.trackingCaps,
-      color: colors.textSecondary,
+      fontSize: typography.sizeLg,
+      lineHeight: typography.sizeLg * typography.leadingHeading,
+      color: colors.text,
     } as TextStyle,
-    /** Metadata — smallest small-caps tier (11pt) */
-    smallCapsXs: {
-      ...font.smallCaps,
+    /** Editorial lead — subtitle under a display title, About-page opener. */
+    lead: {
+      ...font.regular,
       ...ANDROID_TEXT_BASE,
-      fontSize: typography.sizeXs,
-      lineHeight: typography.sizeXs * typography.leadingBody,
-      letterSpacing: typography.trackingCaps,
-      color: colors.textSecondary,
+      fontSize: typography.sizeLg,
+      lineHeight: typography.sizeLg * typography.leadingHeading,
+      color: colors.accent,
     } as TextStyle,
-    textShadow: {
-      textShadowColor: colors.shadow,
-      textShadowOffset: { width: 0, height: 1 },
-      textShadowRadius: 2,
-    } as TextStyle,
+    /** Paragraph text with oldstyle nums */
     body: {
       ...font.regular,
       ...ANDROID_TEXT_BASE,
@@ -333,8 +356,41 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
       fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.text,
     } as TextStyle,
-    /** Category/section labels — largest small-caps tier (17pt) */
-    smallCapsBase: {
+    /** Emphasised body — pull quotes, lead sentences */
+    bodyEmphasis: {
+      ...font.semiBold,
+      ...ANDROID_TEXT_BASE,
+      fontSize: typography.sizeBase,
+      lineHeight: typography.sizeBase * typography.leadingBody,
+      fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
+      color: colors.textEmphasis,
+    } as TextStyle,
+    /** Italic body — editorial quotes, emphasis */
+    bodyItalic: {
+      ...font.italic,
+      ...ANDROID_TEXT_BASE,
+      fontSize: typography.sizeBase,
+      lineHeight: typography.sizeBase * typography.leadingBody,
+      color: colors.text,
+    } as TextStyle,
+    /** Secondary body — captions, metadata sentences */
+    caption: {
+      ...font.regular,
+      ...ANDROID_TEXT_BASE,
+      fontSize: typography.sizeSm,
+      lineHeight: typography.sizeSm * typography.leadingBody,
+      color: colors.textSecondary,
+    } as TextStyle,
+    /** Semibold caption — toast text, pill labels, chrome copy at caption size */
+    captionEmphasis: {
+      ...font.semiBold,
+      ...ANDROID_TEXT_BASE,
+      fontSize: typography.sizeSm,
+      lineHeight: typography.sizeSm * typography.leadingBody,
+      color: colors.text,
+    } as TextStyle,
+    /** Small-caps label — base tier (17pt). Sheet titles, category labels. */
+    label: {
       ...font.smallCaps,
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
@@ -342,7 +398,43 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
       letterSpacing: typography.trackingCaps,
       color: colors.textSecondary,
     } as TextStyle,
-    /** Italic section headings — e.g. source coverage framing */
+    /** Small-caps label — section tier (13pt). */
+    labelSm: {
+      ...font.smallCaps,
+      ...ANDROID_TEXT_BASE,
+      fontSize: typography.sizeSm,
+      lineHeight: typography.sizeSm * typography.leadingBody,
+      letterSpacing: typography.trackingCaps,
+      color: colors.textSecondary,
+    } as TextStyle,
+    /** Small-caps label — metadata tier (11pt). */
+    labelXs: {
+      ...font.smallCaps,
+      ...ANDROID_TEXT_BASE,
+      fontSize: typography.sizeXs,
+      lineHeight: typography.sizeXs * typography.leadingBody,
+      letterSpacing: typography.trackingCaps,
+      color: colors.textSecondary,
+    } as TextStyle,
+    /** Tabular numerals — time readouts, counts, any fixed-width layout */
+    tabular: {
+      ...font.regular,
+      ...ANDROID_TEXT_BASE,
+      fontSize: typography.sizeXs,
+      lineHeight: typography.sizeXs * typography.leadingBody,
+      fontVariant: ['tabular-nums'] as TextStyle['fontVariant'],
+      color: colors.text,
+    } as TextStyle,
+    /** Semibold tabular — scrub tooltips, emphasised readouts */
+    tabularEmphasis: {
+      ...font.semiBold,
+      ...ANDROID_TEXT_BASE,
+      fontSize: typography.sizeXs,
+      lineHeight: typography.sizeXs * typography.leadingBody,
+      fontVariant: ['tabular-nums'] as TextStyle['fontVariant'],
+      color: colors.textEmphasis,
+    } as TextStyle,
+    /** Italic section heading — source coverage framing */
     sectionHeading: {
       ...font.italic,
       ...ANDROID_TEXT_BASE,
@@ -350,10 +442,71 @@ export function makeTextStyles(colors: ColorPalette, font: FontSet, typography: 
       lineHeight: typography.sizeSm * typography.leadingBody,
       color: colors.accent,
     } as TextStyle,
+    /** App wordmark — header chrome */
+    wordmark: {
+      ...font.bold,
+      ...ANDROID_TEXT_BASE,
+      fontSize: typography.sizeWordmark,
+      letterSpacing: typography.trackingWordmark,
+      color: colors.text,
+    } as TextStyle,
   };
 }
 
-export type TextStyles = ReturnType<typeof makeTextStyles>;
+export type TextVariants = ReturnType<typeof makeTextVariants>;
+export type TextVariant = keyof TextVariants;
+
+/** Dynamic-type ceiling per variant. Picked so extreme accessibility sizes
+ *  don't overflow the layouts each variant is used in. */
+export const VARIANT_CAP: Record<TextVariant, number> = {
+  display: MAX_FONT_SCALE.heading,
+  title: MAX_FONT_SCALE.heading,
+  lead: MAX_FONT_SCALE.heading,
+  body: MAX_FONT_SCALE.body,
+  bodyEmphasis: MAX_FONT_SCALE.body,
+  bodyItalic: MAX_FONT_SCALE.body,
+  caption: MAX_FONT_SCALE.body,
+  captionEmphasis: MAX_FONT_SCALE.chrome,
+  label: MAX_FONT_SCALE.label,
+  labelSm: MAX_FONT_SCALE.label,
+  labelXs: MAX_FONT_SCALE.label,
+  tabular: MAX_FONT_SCALE.tabular,
+  tabularEmphasis: MAX_FONT_SCALE.tabular,
+  sectionHeading: MAX_FONT_SCALE.body,
+  wordmark: MAX_FONT_SCALE.chrome,
+};
+
+/** Tone override — maps a semantic tone name to a palette color. */
+export type TextTone =
+  | 'default'
+  | 'secondary'
+  | 'accent'
+  | 'emphasis'
+  | 'dome'
+  | 'favorable'
+  | 'unfavorable'
+  | 'neutral';
+
+export function toneColor(tone: TextTone, colors: ColorPalette): string | undefined {
+  switch (tone) {
+    case 'default':
+      return colors.text;
+    case 'secondary':
+      return colors.textSecondary;
+    case 'accent':
+      return colors.accent;
+    case 'emphasis':
+      return colors.textEmphasis;
+    case 'dome':
+      return colors.dome;
+    case 'favorable':
+      return colors.toneFavorable;
+    case 'unfavorable':
+      return colors.toneUnfavorable;
+    case 'neutral':
+      return colors.toneNeutral;
+  }
+}
 
 /** Build shared bottom-sheet styles from resolved theme values */
 export function makeSheetStyles(colors: ColorPalette) {

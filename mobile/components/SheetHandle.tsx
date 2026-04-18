@@ -1,9 +1,8 @@
-import { Ionicons } from '@expo/vector-icons';
 import { memo, type ReactNode } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { ICON, LAYOUT, RADIUS, SPACING } from '../constants/theme';
+import { StyleSheet, View } from 'react-native';
+import { LAYOUT, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { HapticPressable } from './HapticPressable';
+import { Icon, IconButton, Text } from './primitives';
 
 interface SheetHandleProps {
   /** String renders as a themed title; a ReactNode is rendered as-is (e.g. flag + name). */
@@ -13,7 +12,7 @@ interface SheetHandleProps {
 }
 
 export const SheetHandle = memo(function SheetHandle({ title, onBack }: SheetHandleProps) {
-  const { colors, textStyles, typography } = useTheme();
+  const { colors, typography } = useTheme();
   const a11yLabel = typeof title === 'string' ? `${title} sheet` : 'Sheet handle';
   // Tighten line-height to match glyph height so flex center + absolute center
   // align against the same reference (no 1–2px optical drift from line-leading).
@@ -29,19 +28,19 @@ export const SheetHandle = memo(function SheetHandle({ title, onBack }: SheetHan
       {(title || onBack) && (
         <View style={styles.titleRow}>
           {onBack && (
-            <HapticPressable
+            <IconButton
               onPress={onBack}
               haptic="tick"
-              hitSlop={LAYOUT.hitSlop}
               style={styles.back}
-              accessibilityRole="button"
               accessibilityLabel="Back"
             >
-              <Ionicons name="chevron-back" size={ICON.md} color={colors.text} />
-            </HapticPressable>
+              <Icon name="chevron-back" tone="default" />
+            </IconButton>
           )}
           {typeof title === 'string' ? (
-            <Text style={[textStyles.sheetTitle, tightTitle]}>{title}</Text>
+            <Text variant="label" style={tightTitle}>
+              {title}
+            </Text>
           ) : (
             title
           )}

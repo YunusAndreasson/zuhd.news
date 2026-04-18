@@ -17,10 +17,10 @@ import {
   LIGHT_COLORS,
   makeBgAlpha,
   makeSheetStyles,
-  makeTextStyles,
+  makeTextVariants,
   makeTypography,
   type Preferences,
-  type TextStyles,
+  type TextVariants,
   type Typography,
 } from '../constants/theme';
 import { setHapticsEnabled } from '../lib/haptics';
@@ -41,7 +41,7 @@ export interface Theme {
   colors: ColorPalette;
   font: FontSet;
   typography: Typography;
-  textStyles: TextStyles;
+  textVariants: TextVariants;
   sheetStyles: ReturnType<typeof makeSheetStyles>;
   bgAlpha: (a: number) => string;
   bgRgb: [number, number, number];
@@ -151,7 +151,7 @@ export function ThemeProvider({
     const font = prefs.fontFamily === 'source' && fontsAvailable ? FONT_SOURCE : FONT_SYSTEM;
     const sizeScale = FONT_SIZE_SCALE[prefs.fontSize];
     const typography = makeTypography(sizeScale);
-    const textStyles = makeTextStyles(colors, font, typography);
+    const textVariants = makeTextVariants(colors, font, typography);
     const sheetStyles = makeSheetStyles(colors);
     const bgRgb = BG_RGB[resolvedAppearance];
     const bgAlphaFn = makeBgAlpha(bgRgb);
@@ -160,7 +160,7 @@ export function ThemeProvider({
       colors,
       font,
       typography,
-      textStyles,
+      textVariants,
       sheetStyles,
       bgAlpha: bgAlphaFn,
       bgRgb,
