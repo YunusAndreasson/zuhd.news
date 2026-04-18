@@ -203,6 +203,8 @@ After drafting entries, run this scan. **Every matching signal → attach the bl
 
 Expect 4–6 blocks on a typical 5–6 entry brief, across 3+ different types. Rich substrate supports more. A 2-block brief means you either picked an unusually abstract article or you're under-scanning — re-run the table. Zero-block briefs are a failure except when the article is pure abstract mechanism with no named actors, countries, figures, or testable facts — genuinely rare.
 
+**Prose is the block most often missed.** It's the cheapest — no data, no fabrication risk — and almost every brief contains at least one technical term (`**Fidesz**`, `**IRGC**`, `**TTF**`), a foreign word (`*jus soli*`, `*sharia*`), a numeric contrast (`**$3.9B**` vs `**$6B+**`), or a doctrine name worth boldfacing for retention. When you finish your scan, specifically re-read each entry looking for one phrase the reader should walk away remembering. Attach a prose block on that entry.
+
 Almost every brief has at least one entry that teaches a retrievable fact (→ quiz), names a country or two (→ locations), contains a term worth bolding (→ prose). If your draft doesn't have at least a quiz and a prose block, something is wrong with your scan, not with the article.
 
 ## Technical rules per block type
