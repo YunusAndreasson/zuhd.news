@@ -17,7 +17,10 @@ concepts:
   - "Layoff"
   - "Mark Zuckerberg"
   - "Facebook"
-entities: []
+entities:
+  - mention: "Meta"
+    indicatorId: "stocks:META"
+    kind: "stock"
 ---
 
 Menlo Park — Meta cuts 8,000 despite reporting $12 billion profit. The company redirects headcount budget to artificial intelligence infrastructure, with the first round of cuts beginning May 20. A second round is planned for later in 2026; Meta has not officially confirmed either figure.

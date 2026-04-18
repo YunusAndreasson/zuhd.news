@@ -16,9 +16,16 @@ import { spawnSync } from 'child_process'
 import { randomUUID } from 'crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { ENTITY_RULES_SORTED, mentionToRegex } from './lib/entity-registry.js'
+import { fetchYahooStock } from './lib/trends-sources/stocks.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const NEW_ARTICLES_PATH = '/tmp/zuhd-new-articles.txt'
+const TRENDS_SNAPSHOT_PATH = join(
+  ROOT,
+  'content',
+  'trends',
+  `${new Date().toISOString().slice(0, 10)}.json`,
+)
 
 if (!existsSync(NEW_ARTICLES_PATH)) {
   console.log('No new articles list found — skipping entity extraction.')
@@ -153,6 +160,145 @@ Return ONLY the JSON object. No commentary, no markdown fences.`
 }
 
 /**
+ * Extract publicly-traded company mentions from a set of articles via a
+ * single batched Haiku call. Returns a Map keyed by slug → array of
+ * `{mention, ticker, name}`. The mention string is what the article used
+ * (case preserved); the ticker is a Yahoo Finance symbol we can feed
+ * straight into fetchYahooStock.
+ *
+ * Haiku handles the fuzzy work: disambiguating "Meta" the company from
+ * "meta-analysis"; picking BABA vs 9988.HK based on context; skipping
+ * private firms (OpenAI, Aramco's subsidiaries).
+ *
+ * Fail-safe: any error returns an empty map. No ticker gets extracted
+ * this cycle, which is fine — next cycle retries.
+ */
+function extractStocksViaHaiku(articles) {
+  if (articles.length === 0) return new Map()
+  const invocationId = randomUUID().slice(0, 8)
+
+  const blocks = articles
+    .map(
+      (a) =>
+        `---
+slug: ${a.slug}
+title: ${a.title || ''}
+body:
+"""
+${a.body.slice(0, 1500).replace(/"""/g, "'''")}
+"""`,
+    )
+    .join('\n')
+
+  const prompt = `You extract publicly-traded company mentions from news articles so we can attach a live stock chart to each mention. For EACH article below, list only companies that:
+  - Are mentioned substantively in the body (not just in a source byline or a one-word drive-by)
+  - Are publicly traded with a known stable ticker
+  - You can confidently resolve to a Yahoo Finance symbol
+
+For each company, give:
+  - mention: the exact string used in the body (preserve case, e.g. "Meta", "Nvidia", "TSMC")
+  - ticker: Yahoo Finance symbol ("META", "NVDA", "TSM" for TSMC's ADR or "2330.TW" for Taiwan listing; use the main ADR when one exists)
+  - name: human-readable company name ("Meta Platforms", "Nvidia", "Taiwan Semiconductor")
+
+Skip (do NOT list):
+  - Private firms: OpenAI, Anthropic, SpaceX, Stripe, Boeing Defence, Aramco-the-government-entity (Saudi Aramco Public IS listed as 2222.SR — include only if named as the listed entity)
+  - Ambiguous-ticker mentions: if you're not confident which ticker is right, omit
+  - Countries, governments, people, agencies, indices (we cover those elsewhere)
+  - Generic mentions ("a tech company", "big tech", "hyperscalers" without naming specific firms)
+
+Return ONLY a JSON object keyed by slug, mapping to an array of company objects. Articles with no qualifying companies get an empty array.
+
+Example output:
+{
+  "2026-04-18-meta-8000-layoffs-ai-capex-gpu-reallocation-zuckerberg": [
+    {"mention": "Meta", "ticker": "META", "name": "Meta Platforms"},
+    {"mention": "Nvidia", "ticker": "NVDA", "name": "Nvidia"}
+  ],
+  "2026-04-18-some-pure-mechanism-science-article": []
+}
+
+Articles:
+${blocks}
+
+Return ONLY the JSON object. No commentary, no markdown fences.`
+
+  const env = { ...process.env }
+  delete env.CLAUDECODE
+  const res = spawnSync(
+    'claude',
+    [
+      '--model', 'claude-haiku-4-5-20251001',
+      '--no-session-persistence',
+      '--max-turns', '1',
+      '--output-format', 'json',
+      '-p', prompt,
+    ],
+    { encoding: 'utf-8', timeout: 30_000, maxBuffer: 512 * 1024, env },
+  )
+
+  if (res.status !== 0) {
+    console.error(`  ✗ stocks-haiku ${invocationId}: exit ${res.status}`)
+    return new Map()
+  }
+  try {
+    const envelope = JSON.parse(res.stdout)
+    const raw = envelope.result ?? envelope.text ?? res.stdout
+    const cleaned = String(raw).replace(/^```(?:json)?\s*|\s*```$/g, '').trim()
+    const start = cleaned.indexOf('{')
+    const end = cleaned.lastIndexOf('}')
+    if (start === -1 || end === -1) throw new Error('no JSON object in output')
+    const obj = JSON.parse(cleaned.slice(start, end + 1))
+    const out = new Map()
+    for (const slug of Object.keys(obj)) {
+      const arr = Array.isArray(obj[slug]) ? obj[slug] : []
+      const clean = arr.filter(
+        (c) =>
+          c &&
+          typeof c.mention === 'string' &&
+          typeof c.ticker === 'string' &&
+          /^[A-Z0-9.\-]{1,15}$/i.test(c.ticker) &&
+          typeof c.name === 'string',
+      )
+      if (clean.length > 0) out.set(slug, clean)
+    }
+    return out
+  } catch (err) {
+    console.error(`  ✗ stocks-haiku ${invocationId}: parse — ${err.message}`)
+    return new Map()
+  }
+}
+
+/**
+ * Append new indicators to today's trends snapshot + digest. Read-modify-
+ * write both files if they exist; no-op if the snapshot is missing (some
+ * cycles skip the trends stage). Safe to call with an empty indicators
+ * list. Duplicate ids are overwritten with the latest data (fresh prices
+ * for a ticker that already appeared from a prior cycle's corpus).
+ */
+function appendIndicatorsToSnapshot(newIndicators) {
+  if (newIndicators.length === 0) return
+  if (!existsSync(TRENDS_SNAPSHOT_PATH)) {
+    console.log(
+      `  · stocks: trends snapshot ${TRENDS_SNAPSHOT_PATH} not found — skipping append`,
+    )
+    return
+  }
+  try {
+    const snapshot = JSON.parse(readFileSync(TRENDS_SNAPSHOT_PATH, 'utf8'))
+    const existing = Array.isArray(snapshot.indicators) ? snapshot.indicators : []
+    const byId = new Map(existing.map((i) => [i.id, i]))
+    for (const ind of newIndicators) byId.set(ind.id, ind)
+    snapshot.indicators = [...byId.values()]
+    writeFileSync(TRENDS_SNAPSHOT_PATH, JSON.stringify(snapshot, null, 2) + '\n')
+    console.log(
+      `  · stocks: appended ${newIndicators.length} indicator(s) → ${basename(TRENDS_SNAPSHOT_PATH)} (${snapshot.indicators.length} total)`,
+    )
+  } catch (err) {
+    console.error(`  ✗ stocks: snapshot write — ${err.message}`)
+  }
+}
+
+/**
  * Insert/replace the `entities:` block in a YAML frontmatter string.
  * Line-based pass: drop any existing `entities:` + its indented children,
  * then append the fresh block. Robust to whether entities was the last key
@@ -197,7 +343,7 @@ const t0 = Date.now()
 
 // Per-file state we'll revisit in pass 2 to inject Haiku-resolved ambiguous
 // entities before writing frontmatter.
-/** @type {Array<{fullPath: string, raw: string, resolved: ReturnType<typeof extractEntities>['resolved']}>} */
+/** @type {Array<{fullPath: string, raw: string, slug: string, title: string, body: string, resolved: ReturnType<typeof extractEntities>['resolved']}>} */
 const files = []
 /** @type {Array<{key: number, fileIdx: number, mention: string, kind: string, candidates: Array<{id: string, label: string}>, context: string}>} */
 const ambiguousQueue = []
@@ -210,11 +356,13 @@ for (const rel of newFiles) {
   if (!existsSync(fullPath)) continue
 
   const raw = readFileSync(fullPath, 'utf8')
-  const { body } = parseFrontmatter(raw)
+  const { meta, body } = parseFrontmatter(raw)
+  const slug = basename(filename, '.md')
+  const title = typeof meta.title === 'string' ? meta.title : ''
   const { resolved, pending } = extractEntities(body)
 
   const fileIdx = files.length
-  files.push({ fullPath, raw, resolved })
+  files.push({ fullPath, raw, slug, title, body, resolved })
 
   for (const p of pending) {
     ambiguousQueue.push({
@@ -246,6 +394,79 @@ for (const item of ambiguousQueue) {
     indicatorId: chosenId,
     kind: item.kind,
   })
+}
+
+// --- Pass 2.5: stocks NER + Yahoo fetch ---
+// Haiku reads each article to identify publicly-traded companies, then we
+// fetch 30-day history for each unique ticker from Yahoo. Results land in
+// two places: (a) new indicators appended to today's trends snapshot so
+// EntitySheet can chart them, (b) stock entity entries added to per-article
+// frontmatter so the mention is tappable.
+let stocksHits = new Map()
+let newStockIndicators = []
+if (files.length > 0) {
+  console.log(`  · stocks-haiku: scanning ${files.length} article(s) for tickers`)
+  stocksHits = extractStocksViaHaiku(
+    files.map((f) => ({ slug: f.slug, title: f.title, body: f.body })),
+  )
+
+  // Collect unique tickers across all articles; skip duplicates.
+  const uniqueTickers = new Map() // ticker → { name, mentionExample }
+  for (const [, companies] of stocksHits) {
+    for (const c of companies) {
+      const norm = c.ticker.toUpperCase()
+      if (!uniqueTickers.has(norm)) {
+        uniqueTickers.set(norm, { name: c.name, mention: c.mention })
+      }
+    }
+  }
+
+  if (uniqueTickers.size > 0) {
+    console.log(`  · stocks: fetching ${uniqueTickers.size} ticker(s) from Yahoo`)
+    // Fetch sequentially — parallel would likely trip Yahoo's rate limit on
+    // a shared IP. Each call is ~200-400ms so 10 tickers = ~3s.
+    for (const [ticker, meta] of uniqueTickers) {
+      const data = await fetchYahooStock(ticker)
+      if (!data) continue
+      const values = data.values
+      const latest = values[values.length - 1]
+      const previous = values[values.length - 2]
+      const unit = data.currency === 'USD' ? '$' : data.currency
+      newStockIndicators.push({
+        id: `stocks:${ticker}`,
+        label: data.name,
+        unit,
+        source: 'stocks',
+        seriesId: ticker,
+        cadence: 'daily',
+        topicTags: [meta.name.toLowerCase(), ticker.toLowerCase()],
+        defaultHighlight: 'last',
+        sourceLabel: `Yahoo Finance · ${data.exchange || ticker}`,
+        values,
+        periods: data.periods,
+        asOf: data.asOf,
+        latest,
+        previous,
+        points: values.length,
+      })
+    }
+    appendIndicatorsToSnapshot(newStockIndicators)
+  }
+
+  // Back-fill stock entities into per-file resolved[] using the actual
+  // indicators we successfully fetched — a ticker Yahoo rejected gets
+  // dropped, so the tap wouldn't find its chart.
+  const resolvedIds = new Set(newStockIndicators.map((i) => i.id))
+  for (const [slug, companies] of stocksHits) {
+    const file = files.find((f) => f.slug === slug)
+    if (!file) continue
+    for (const c of companies) {
+      const id = `stocks:${c.ticker.toUpperCase()}`
+      if (!resolvedIds.has(id)) continue
+      if (file.resolved.some((e) => e.indicatorId === id)) continue
+      file.resolved.push({ mention: c.mention, indicatorId: id, kind: 'stock' })
+    }
+  }
 }
 
 // --- Pass 3: write frontmatter + log summary ---
