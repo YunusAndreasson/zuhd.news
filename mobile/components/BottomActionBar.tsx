@@ -5,7 +5,9 @@ import { useTheme } from '../hooks/useTheme';
 interface BottomActionBarProps {
   bottomInset: number;
   showBriefing: boolean;
+  zoomLabel: string;
   onBriefingPress: () => void;
+  onZoomPress: () => void;
   onSharePress: () => void;
   onContextPress: () => void;
 }
@@ -26,7 +28,7 @@ function ActionPill({
       hitSlop={LAYOUT.hitSlop}
       style={({ pressed }) => [
         styles.actionPill,
-        { backgroundColor: colors.pillBg },
+        { backgroundColor: colors.pillBg, borderColor: colors.rule },
         pressed && PRESSED_STYLE,
       ]}
       accessibilityRole="button"
@@ -50,7 +52,9 @@ function ActionPill({
 export function BottomActionBar({
   bottomInset,
   showBriefing,
+  zoomLabel,
   onBriefingPress,
+  onZoomPress,
   onSharePress,
   onContextPress,
 }: BottomActionBarProps) {
@@ -70,6 +74,11 @@ export function BottomActionBar({
       <View style={styles.bottomSpacer} />
 
       <View style={styles.articleActions}>
+        <ActionPill
+          label={zoomLabel}
+          onPress={onZoomPress}
+          accessibilityLabel={`Globe zoom ${zoomLabel}. Tap to cycle.`}
+        />
         <ActionPill label="share" onPress={onSharePress} accessibilityLabel="Share article" />
         <ActionPill
           label="context"
@@ -103,6 +112,7 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.sm,
     paddingHorizontal: SPACING.md,
     borderRadius: RADIUS.floating,
+    borderWidth: StyleSheet.hairlineWidth,
     alignItems: 'center',
     justifyContent: 'center',
   },

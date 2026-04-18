@@ -112,6 +112,9 @@ const HALF_PI = Math.PI / 2;
 const DECAY_LAMBDA = Math.LN2 / 18; // 18h half-life
 const PULSE_EASING = Easing.out(Easing.cubic);
 
+const ZOOM_EASING = Easing.inOut(Easing.cubic);
+const ZOOM_DURATION = 260;
+
 /** Append an alpha channel to a hex color. a ∈ [0, 1]. Clamped. */
 function withAlpha(hex: string, a: number): string {
   const byte = Math.round(Math.min(1, Math.max(0, a)) * 255);
@@ -277,6 +280,10 @@ interface MiniGlobeProps {
   itemHeight: number;
   width: number;
   height: number;
+  /** User-driven zoom override. null = scroll-adaptive clip (default);
+   *  a number forces that clip angle. Transitions animate via the
+   *  overrideActive/overrideAngle pair inside MiniGlobe. */
+  zoomClipOverride?: number | null;
   tick?: number;
   ref?: React.Ref<MiniGlobeRef>;
 }
@@ -570,6 +577,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   itemHeight,
   width,
   height,
+  zoomClipOverride = null,
   tick: _tick,
   ref,
 }: MiniGlobeProps) {
@@ -692,6 +700,20 @@ export const MiniGlobe = memo(function MiniGlobe({
     coordsSV.value = articleGeo.flatMap((g) => (g ? [g.lat, g.lng] : [null, null]));
   }, [articleGeo, coordsSV]);
 
+  // Zoom control — two shared values that together describe the effective
+  // clip angle each frame:
+  //   clip = rawClip + (overrideAngle - rawClip) * overrideActive
+  // overrideActive ∈ [0,1] fades between scroll-adaptive (0) and a fixed
+  // override (1). overrideAngle is the fixed target in degrees. Keeping them
+  // separate lets 2×→3× (override→override) animate by sliding overrideAngle
+  // alone, while 1×↔N× fades overrideActive without the angle ever glitching.
+  const overrideActive = useSharedValue(0);
+  const overrideAngle = useSharedValue(90);
+  const prevOverrideRef = useRef<number | null>(null);
+  // Last overrideAngleVal seen by callReproject — compared frame-over-frame
+  // to decide whether an override→override slide is in flight.
+  const lastOverrideAngleRef = useRef(90);
+
   // Projection + path generator — created eagerly so the first scroll frame is warm
   const projRef = useRef(geoOrthographic().clipAngle(90).precision(8));
   const pgRef = useRef(geoPath(projRef.current));
@@ -747,6 +769,8 @@ export const MiniGlobe = memo(function MiniGlobe({
       loIndex: number,
       hiIndex: number,
       frac: number,
+      overrideActiveVal: number,
+      overrideAngleVal: number,
     ) => {
       lastReprojRef.current = { lng: geoLng, lat: geoLat, idx: settledIndex };
       const { globeRadius: r, cx: centerX, cy: centerY } = layoutRef.current;
@@ -772,7 +796,10 @@ export const MiniGlobe = memo(function MiniGlobe({
       const loClip = clipAngleForCountry(loCountry);
       const hiClip = clipAngleForCountry(hiCountry);
       const ef = frac * frac * (3 - 2 * frac); // Hermite smoothstep
-      const clipAngle = loClip + (hiClip - loClip) * ef;
+      const rawClip = loClip + (hiClip - loClip) * ef;
+      // Blend the scroll-driven clip with the user override. Each withTiming
+      // call supplying these values is already eased, so no extra shaping.
+      const clipAngle = rawClip + (overrideAngleVal - rawClip) * overrideActiveVal;
       const projScale = r / Math.sin((clipAngle * Math.PI) / 180);
 
       const proj = projRef.current;
@@ -831,8 +858,17 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       // Near-settled check — reused for cosmetic layers AND arc visibility.
+      // Skip borders/night/twilight/graticule while the zoom is actively
+      // blending (mid-active fade OR override→override slide). Detecting
+      // the override-angle slide via a frame-delta keeps the heavy layers
+      // off the JS thread even when overrideActive stays pinned at 1.
       const ARC_WINDOW = 0.25;
-      const nearSettled = frac < ARC_WINDOW || frac > 1 - ARC_WINDOW;
+      const lastAngle = lastOverrideAngleRef.current;
+      lastOverrideAngleRef.current = overrideAngleVal;
+      const activeMid = overrideActiveVal > 0.001 && overrideActiveVal < 0.999;
+      const angleChanging = Math.abs(overrideAngleVal - lastAngle) > 0.01;
+      const zoomInFlight = activeMid || angleChanging;
+      const nearSettled = !zoomInFlight && (frac < ARC_WINDOW || frac > 1 - ARC_WINDOW);
 
       // Neighbouring country borders — large mesh, skip during mid-scroll.
       // Borders are visually imperceptible during fast rotation and this
@@ -1051,8 +1087,13 @@ export const MiniGlobe = memo(function MiniGlobe({
   const hasFired = useSharedValue(false);
 
   useAnimatedReaction(
-    () => ({ sy: scrollY.value, len: coordsSV.value.length }),
-    ({ sy, len }) => {
+    () => ({
+      sy: scrollY.value,
+      oA: overrideActive.value,
+      oG: overrideAngle.value,
+      len: coordsSV.value.length,
+    }),
+    ({ sy, oA, oG, len }) => {
       if (len === 0) return;
 
       const now = Date.now();
@@ -1130,7 +1171,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       const settled = Math.min(Math.round(rawIndex), articleCount - 1);
 
-      runOnJS(callReproject)(lng, lat, settled, lo, hi, frac);
+      runOnJS(callReproject)(lng, lat, settled, lo, hi, frac, oA, oG);
     },
   );
 
@@ -1140,21 +1181,100 @@ export const MiniGlobe = memo(function MiniGlobe({
     if (!_tick) return; // skip initial render
     invalidateSunCaches();
     const last = lastReprojRef.current;
-    if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0);
+    if (last)
+      callReproject(
+        last.lng,
+        last.lat,
+        last.idx,
+        last.idx,
+        last.idx,
+        0,
+        overrideActive.value,
+        overrideAngle.value,
+      );
   }, [_tick]);
+
+  // Once an animation settles the SharedValues stop changing, so the animated
+  // reaction stops firing and the last in-flight frame left zoomInFlight=true
+  // (angle delta vs prior frame crossed the 0.01° gate). Without this
+  // finalizer, cosmetic layers — borders, dot label, night, graticule —
+  // stayed invisible until the user scrolled. Running one more reproject
+  // with the now-stable overrides re-evaluates zoomInFlight as false.
+  const finalizeReproject = useCallback(() => {
+    const last = lastReprojRef.current;
+    if (!last) return;
+    // Prime the angle ref so callReproject's frame-delta check sees a zero
+    // delta. Without this, the last in-flight frame left lastAngleRef at a
+    // pre-target value, and finalize itself would still treat the zoom as
+    // in-flight — suppressing the very cosmetic redraw it was meant to
+    // trigger (most noticeable at 0.5× where the angle swing is largest).
+    lastOverrideAngleRef.current = overrideAngle.value;
+    callReproject(
+      last.lng,
+      last.lat,
+      last.idx,
+      last.idx,
+      last.idx,
+      0,
+      overrideActive.value,
+      overrideAngle.value,
+    );
+  }, [callReproject, overrideActive, overrideAngle]);
+
+  // Zoom prop → animated override. Three transition shapes:
+  //   override → null       : fade overrideActive to 0 (angle untouched)
+  //   null      → override  : snap overrideAngle to target, fade active to 1
+  //   override → override   : slide overrideAngle to new target, active stays 1
+  useEffect(() => {
+    const prev = prevOverrideRef.current;
+    prevOverrideRef.current = zoomClipOverride;
+    const onDone = (finished?: boolean) => {
+      'worklet';
+      if (finished) runOnJS(finalizeReproject)();
+    };
+    const opts = { duration: ZOOM_DURATION, easing: ZOOM_EASING };
+    if (zoomClipOverride === null) {
+      overrideActive.value = withTiming(0, opts, onDone);
+    } else if (prev === null) {
+      overrideAngle.value = zoomClipOverride;
+      overrideActive.value = withTiming(1, opts, onDone);
+    } else {
+      overrideAngle.value = withTiming(zoomClipOverride, opts, onDone);
+    }
+  }, [zoomClipOverride, overrideActive, overrideAngle, finalizeReproject]);
 
   // Re-project when hotspot data changes (e.g. heatmap fetch after app resume)
   // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
   useEffect(() => {
     const last = lastReprojRef.current;
-    if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0);
+    if (last)
+      callReproject(
+        last.lng,
+        last.lat,
+        last.idx,
+        last.idx,
+        last.idx,
+        0,
+        overrideActive.value,
+        overrideAngle.value,
+      );
   }, [hotspots]);
 
   // Re-project when chokepoint data arrives (first API fetch, or a cycle-level refresh)
   // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
   useEffect(() => {
     const last = lastReprojRef.current;
-    if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0);
+    if (last)
+      callReproject(
+        last.lng,
+        last.lat,
+        last.idx,
+        last.idx,
+        last.idx,
+        0,
+        overrideActive.value,
+        overrideAngle.value,
+      );
   }, [chokepoints]);
 
   // Tap pulse — radial ring that expands and fades on globe tap

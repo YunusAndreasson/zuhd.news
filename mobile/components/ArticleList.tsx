@@ -58,6 +58,7 @@ interface ArticleListProps {
   onTimeAgoPress?: (article: Article) => void;
   onArticleChange?: (article: Article, catIndex: number) => void;
   progressesSV: SharedValue<number[]>;
+  zoomClipOverride?: number | null;
   tick?: number;
   resetKey?: number;
   ref?: React.Ref<ArticleListRef>;
@@ -79,6 +80,7 @@ export const ArticleList = memo(function ArticleList({
   onEndReached,
   onCaughtUp,
   progressesSV,
+  zoomClipOverride,
   tick,
   resetKey,
   ref,
@@ -278,6 +280,7 @@ export const ArticleList = memo(function ArticleList({
         itemHeight={itemHeight}
         width={screenWidth}
         height={viewportHeight}
+        zoomClipOverride={zoomClipOverride}
         tick={tick}
       />
       <Animated.FlatList
