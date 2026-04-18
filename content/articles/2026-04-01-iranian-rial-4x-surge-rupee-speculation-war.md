@@ -15,6 +15,13 @@ concepts:
   - "Pakistani rupee"
   - "Iran"
   - "Foreign exchange market"
+entities:
+  - mention: "oil"
+    indicatorId: "brent"
+    kind: "commodity"
+  - mention: "rupee"
+    indicatorId: "fx-pkr"
+    kind: "currency"
 ---
 
 Karachi — The Iranian rial quadrupled against the Pakistani rupee. Hawala dealers cite speculation and cross-border oil smuggling; Iran's production rose 30% since the war, earning more from record prices. Pakistan's dollar rate is holding, but rising oil import costs are building pressure on that stability.

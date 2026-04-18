@@ -15,6 +15,13 @@ concepts:
   - "Nifty Bank"
   - "India"
   - "Jefferies"
+entities:
+  - mention: "oil"
+    indicatorId: "brent"
+    kind: "commodity"
+  - mention: "rupee"
+    indicatorId: "fx-inr"
+    kind: "currency"
 ---
 
 Mumbai — Indian bank stocks lost $95 billion since March. RBI's rupee defense after Iran war oil shocks froze liquidity; Jefferies estimates ₹5,000 crore more in currency trade unwind losses ahead. Fitch forecasts margin compression of 20-30 basis points through March 2027; Nifty Bank is already down 13%.

@@ -60,11 +60,33 @@ export const ENTITY_RULES = [
   { mention: 'ruble',          indicatorId: 'fx-rub',     kind: 'currency' },
   { mention: 'rand',           indicatorId: 'fx-zar',     kind: 'currency' },
   { mention: 'euro',           indicatorId: 'fx-eur',     kind: 'currency' },
-  // Ambiguous ones — require disambiguation (rupee PK vs IN; peso MX vs AR; pound EG vs LB).
-  // Extractor skips these for now; Haiku pass will resolve them later.
-  { mention: 'rupee',          indicatorId: 'fx-inr',     kind: 'currency', ambiguous: true },
-  { mention: 'peso',           indicatorId: 'fx-mxn',     kind: 'currency', ambiguous: true },
-  { mention: 'pound',          indicatorId: 'fx-egp',     kind: 'currency', ambiguous: true },
+  // Ambiguous — require a Haiku disambiguation pass. The extractor batches
+  // each ambiguous match into one Haiku call per cycle, resolves by article
+  // context, and writes the winner. Structure: `candidates` is the ordered
+  // list of possible indicator ids; first entry is the default fallback if
+  // Haiku errors out. `peso` intentionally isn't listed here — MXN is the
+  // only peso in the catalog, so bare `peso` resolves deterministically.
+  {
+    mention: 'rupee',
+    indicatorId: 'fx-inr',
+    kind: 'currency',
+    ambiguous: true,
+    candidates: [
+      { id: 'fx-inr', label: 'Indian rupee (INR)' },
+      { id: 'fx-pkr', label: 'Pakistani rupee (PKR)' },
+    ],
+  },
+  { mention: 'peso', indicatorId: 'fx-mxn', kind: 'currency' }, // MXN is the only peso in catalog
+  {
+    mention: 'pound',
+    indicatorId: 'fx-egp',
+    kind: 'currency',
+    ambiguous: true,
+    candidates: [
+      { id: 'fx-egp', label: 'Egyptian pound (EGP)' },
+      { id: 'fx-lbp', label: 'Lebanese pound (LBP)' },
+    ],
+  },
 
   // ── Crypto ─────────────────────────────────────────────────────────────────
   { mention: 'Bitcoin',        indicatorId: 'btc',        kind: 'crypto' },

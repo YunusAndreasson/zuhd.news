@@ -26,6 +26,10 @@ concepts:
   - "Price of oil"
   - "Delhi"
 sentimentDivergence: 0.21
+entities:
+  - mention: "Hormuz"
+    indicatorId: "portwatch-hormuz-tanker"
+    kind: "chokepoint"
 ---
 
 Delhi — India's jet fuel doubled overnight. Aviation fuel jumped 115% to a record Rs 207,341 per kilolitre, driven by Hormuz disruptions; ATF makes up 40% of airline costs. IATA confirmed airfares are already rising; Indian carriers are expected to announce new fuel surcharges in days.

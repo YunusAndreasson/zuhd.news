@@ -26,6 +26,10 @@ concepts:
   - "Lakh"
 eventCoverage: 30
 sentimentDivergence: 0.21
+entities:
+  - mention: "oil"
+    indicatorId: "brent"
+    kind: "commodity"
 ---
 
 New Delhi — India's jet fuel price doubled overnight. State oil companies hiked aviation fuel 115% to Rs 2.07 lakh per kilolitre and commercial LPG by Rs 195 per cylinder. Airlines, for whom fuel is 40% of costs, already fly longer detour routes around West Asia.

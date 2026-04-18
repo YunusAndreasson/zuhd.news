@@ -15,6 +15,10 @@ concepts:
   - "Islamabad"
   - "Abu Dhabi"
   - "Foreign exchange reserves"
+entities:
+  - mention: "rupee"
+    indicatorId: "fx-pkr"
+    kind: "currency"
 ---
 
 Islamabad — Pakistan returns $3.5B to Abu Dhabi this month. Abu Dhabi demanded repayment of 2019 emergency deposits, cutting central bank reserves 18 percent. Analysts warn the shortfall will pressure the rupee and jeopardize IMF reserve requirements.
