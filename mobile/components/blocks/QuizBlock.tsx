@@ -34,7 +34,7 @@ export const QuizBlock = memo(function QuizBlock({
   variant = 'article',
   sourceLabel,
 }: QuizBlockProps) {
-  const { colors, typography } = useTheme();
+  const { colors } = useTheme();
   const isContext = variant === 'context';
   const reduceMotion = useReducedMotion();
 
@@ -145,12 +145,10 @@ export const QuizBlock = memo(function QuizBlock({
       </View>
       {answered && explanation ? (
         <Animated.View entering={FadeIn.duration(ANIMATION.normal)}>
-          <Text
-            variant="sectionHeading"
-            tone="secondary"
-            scale={typography.sizeXs / typography.sizeSm}
-            style={styles.explanation}
-          >
+          {/* Explanation is the payoff of the quiz — readable at caption
+              size (13pt) in default text color, not the earlier italic
+              secondary-tinted 11pt which stacked three dimming factors. */}
+          <Text variant="caption" tone="default" style={styles.explanation}>
             {explanation}
           </Text>
         </Animated.View>

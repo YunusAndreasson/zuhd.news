@@ -22,7 +22,15 @@ import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
 import { type BlockVariant, blockContainerStyle } from './shared';
 
-const FOCUS_PAD = 0;
+/** Inset the highlighted bounding box from the canvas edges so country
+ *  borders aren't flush against the frame. 8% of width feels like a
+ *  considered margin — a hair less than 10% so small countries don't look
+ *  lonely in the middle. Floor at 12px prevents degenerate insets on
+ *  narrow viewports. */
+const FOCUS_PAD_FRACTION = 0.08;
+const FOCUS_PAD_MIN = 12;
+const focusPadFor = (w: number) =>
+  Math.max(FOCUS_PAD_MIN, Math.round(Math.max(0, w) * FOCUS_PAD_FRACTION));
 const MAX_LNG_SPAN_FOR_MAP = 120;
 const WORLD_CLIP_ASPECT = 2.0;
 
@@ -123,9 +131,10 @@ export const LocationsBlock = memo(function LocationsBlock({
       if (lngSpan > MAX_LNG_SPAN_FOR_MAP) {
         return { height: 0, showMap: false };
       }
-      const availableW = Math.max(1, width - 2 * FOCUS_PAD);
+      const pad = focusPadFor(width);
+      const availableW = Math.max(1, width - 2 * pad);
       const degreesPerPixel = lngSpan > 0 ? lngSpan / availableW : 1;
-      const computed = latSpan / degreesPerPixel + 2 * FOCUS_PAD;
+      const computed = latSpan / degreesPerPixel + 2 * pad;
       if (!Number.isFinite(computed) || computed <= 0) return fallback;
       return {
         height: Math.round(Math.max(1, Math.min(600, computed))),
@@ -148,9 +157,10 @@ export const LocationsBlock = memo(function LocationsBlock({
       fitWorldProjection(proj, w, h);
       return proj;
     }
+    const pad = focusPadFor(w);
     const extent: [[number, number], [number, number]] = [
-      [FOCUS_PAD, FOCUS_PAD],
-      [Math.max(FOCUS_PAD + 1, w - FOCUS_PAD), Math.max(FOCUS_PAD + 1, h - FOCUS_PAD)],
+      [pad, pad],
+      [Math.max(pad + 1, w - pad), Math.max(pad + 1, h - pad)],
     ];
     try {
       const fc = { type: 'FeatureCollection', features: highlightedFeatures } as const;
@@ -222,7 +232,7 @@ export const LocationsBlock = memo(function LocationsBlock({
       if (!Number.isFinite(bw) || !Number.isFinite(bh) || bw <= 0 || bh <= 0) {
         return { targetScale: 1, targetTx: 0, targetTy: 0 };
       }
-      const margin = FOCUS_PAD * 2;
+      const margin = focusPadFor(width) * 2;
       const sx = Math.max(0, width - margin * 2) / bw;
       const sy = Math.max(0, height - margin * 2) / bh;
       const s = Math.max(1.2, Math.min(8, Math.min(sx, sy)));
@@ -324,17 +334,30 @@ export const LocationsBlock = memo(function LocationsBlock({
                     />
                   ) : null}
                   {paths.highlightedFillPath ? (
-                    <Path
-                      path={paths.highlightedFillPath}
-                      color={colors.accent}
-                      opacity={selectedFeature ? 0.22 : 0.4}
-                      style="fill"
-                    />
+                    <>
+                      <Path
+                        path={paths.highlightedFillPath}
+                        color={colors.accent}
+                        opacity={selectedFeature ? 0.22 : 0.4}
+                        style="fill"
+                      />
+                      {/* Stroke the highlighted path itself — traces every
+                          highlighted country's outline so adjacent selections
+                          stay visibly distinct. The global `borderPath`
+                          below is dim (0.3 opacity); this per-country stroke
+                          in emphasis color guarantees the separation reads
+                          clearly against the accent fill. */}
+                      <Path
+                        path={paths.highlightedFillPath}
+                        color={colors.textEmphasis}
+                        opacity={0.6}
+                        style="stroke"
+                        strokeWidth={borderStrokeWidth}
+                      />
+                    </>
                   ) : null}
-                  {/* Borders draw after the highlight fill so adjacent
-                      highlighted countries keep a visible shared border — the
-                      fill would otherwise paint over the stroke and merge
-                      neighbouring selections into a single blob. */}
+                  {/* Global borders draw after the highlight fill so country
+                      lines in non-highlighted regions remain visible. */}
                   {paths.borderPath ? (
                     <Path
                       path={paths.borderPath}
