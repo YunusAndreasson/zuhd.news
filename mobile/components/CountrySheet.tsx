@@ -22,9 +22,35 @@ import { SheetLayout } from './SheetLayout';
 // else is one tap away. What matters is the ranking — currency names and
 // language lists are chrome, not information a reader comes here to find.
 
+// Every metric that can appear in the country sheet. Rows are sorted per
+// country by ascending rank at render time, so declared order here is only
+// the fallback for countries that have no rank on a given metric. The three
+// former hero tiles (population, gdp, gdpPerCapita) are now part of this
+// list — ranked like everything else.
 const MORE_METRICS: { key: MetricKey; label: string }[] = [
+  { key: 'population', label: 'population' },
+  { key: 'gdp', label: 'gdp' },
   { key: 'gdpPerCapita', label: 'gdp per capita' },
   { key: 'militaryPctGdp', label: 'military % of gdp' },
+  // Governance
+  { key: 'democracyIndex', label: 'democracy (v-dem)' },
+  { key: 'corruptionCpi', label: 'cpi (clean gov)' },
+  { key: 'pressFreedomScore', label: 'press freedom' },
+  // Development & inequality
+  { key: 'hdi', label: 'human development' },
+  { key: 'giniIndex', label: 'gini inequality' },
+  { key: 'literacyPct', label: 'adult literacy' },
+  { key: 'youthUnemploymentPct', label: 'youth unemployment' },
+  // Ummah lens
+  { key: 'refugeesHosted', label: 'refugees hosted' },
+  { key: 'refugeesProduced', label: 'refugees produced' },
+  { key: 'remittancePctGdp', label: 'remittances % of gdp' },
+  // Science / tech
+  { key: 'rdPctGdp', label: 'r&d % of gdp' },
+  { key: 'researchersPerMillion', label: 'researchers per million' },
+  { key: 'scientificArticles', label: 'scientific articles / yr' },
+  { key: 'highTechExportsPct', label: 'high-tech exports %' },
+  // Demography & environment
   { key: 'populationDensity', label: 'density' },
   { key: 'lifeExpectancy', label: 'life expectancy' },
   { key: 'fertilityRate', label: 'fertility rate' },
@@ -32,65 +58,9 @@ const MORE_METRICS: { key: MetricKey; label: string }[] = [
   { key: 'internetPct', label: 'internet' },
   { key: 'migrantPct', label: 'foreign-born' },
   { key: 'co2PerCapita', label: 'co₂ per capita' },
+  // Geography
   { key: 'area', label: 'area' },
 ];
-
-function HeroStat({
-  label,
-  value,
-  rank,
-  onPress,
-}: {
-  label: string;
-  value: string | null | undefined;
-  rank: number | null;
-  onPress?: () => void;
-}) {
-  const { colors, font, typography, textStyles } = useTheme();
-  if (!value) return null;
-  const body = (
-    <View style={styles.hero}>
-      <Text
-        style={{
-          ...font.bold,
-          fontSize: typography.sizeLg,
-          color: colors.textEmphasis,
-          fontVariant: ['oldstyle-nums'],
-        }}
-        numberOfLines={1}
-      >
-        {value}
-      </Text>
-      <Text style={textStyles.smallCapsXs}>{label}</Text>
-      {typeof rank === 'number' && rank > 0 && (
-        <Text
-          style={[
-            textStyles.smallCapsXs,
-            {
-              color: colors.dome,
-              marginTop: 2,
-              fontVariant: ['oldstyle-nums'],
-            },
-          ]}
-        >
-          {`#${rank}`}
-        </Text>
-      )}
-    </View>
-  );
-  if (!onPress) return body;
-  return (
-    <HapticPressable
-      onPress={onPress}
-      haptic="tick"
-      accessibilityRole="button"
-      accessibilityLabel={`${label}: ${value}${rank ? `, ranked ${rank}` : ''}`}
-      accessibilityHint={`See the full ${label} ranking`}
-    >
-      {body}
-    </HapticPressable>
-  );
-}
 
 function MoreRow({
   label,
@@ -105,6 +75,7 @@ function MoreRow({
 }) {
   const { colors, font, typography, textStyles } = useTheme();
   if (!value) return null;
+  const hasRank = typeof rank === 'number' && rank > 0;
   return (
     <HapticPressable
       onPress={onPress}
@@ -113,21 +84,24 @@ function MoreRow({
       accessibilityRole="button"
       accessibilityLabel={`${label}: ${value}${rank ? `, ranked ${rank}` : ''}`}
     >
+      {/* Fixed-width rank column on the left. Empty slot reserved for
+          rank-less rows so the label margin stays aligned. tabular-nums
+          keeps #1 and #144 the same visual width. */}
+      <Text
+        style={[
+          styles.rankCol,
+          {
+            ...font.semiBold,
+            fontSize: typography.sizeXs,
+            color: colors.dome,
+            letterSpacing: typography.trackingCaps,
+          },
+        ]}
+      >
+        {hasRank ? `#${rank}` : ''}
+      </Text>
       <Text style={[textStyles.smallCaps, styles.moreLabel]}>{label}</Text>
       <View style={styles.moreRight}>
-        {typeof rank === 'number' && rank > 0 && (
-          <Text
-            style={{
-              ...font.semiBold,
-              fontSize: typography.sizeXs,
-              color: colors.dome,
-              letterSpacing: typography.trackingCaps,
-              fontVariant: ['oldstyle-nums'],
-            }}
-          >
-            {`#${rank}`}
-          </Text>
-        )}
         <Text
           style={{
             ...font.regular,
@@ -161,8 +135,7 @@ export const CountrySheet = memo(function CountrySheet({
 }: CountrySheetProps) {
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
-  const [moreOpen, setMoreOpen] = useState(false);
-  const snapProps = useSheetSnaps(activeRanking !== null || moreOpen);
+  const snapProps = useSheetSnaps(activeRanking !== null);
   const flag = country?.data?.flag;
   const name = displayCountryName(country?.countryName ?? null);
   const onBackToCountry = useCallback(() => setActiveRanking(null), []);
@@ -198,6 +171,27 @@ export const CountrySheet = memo(function CountrySheet({
     };
   }, [country?.countryName]);
 
+  // Per-country rank-sorted list. Rows with no value disappear entirely; rows
+  // with a rank rise to the top in ascending order (#1 first), so the sheet
+  // opens with what the country stands out for. Rank-less rows fall to the
+  // bottom and keep MORE_METRICS' declared order among themselves.
+  const rankedRows = useMemo(() => {
+    if (!country?.data) return [];
+    const rows: { key: MetricKey; label: string; value: string; rank: number | null }[] = [];
+    for (const m of MORE_METRICS) {
+      const value = getMetricValue(country.countryName ?? '', country.data, m.key);
+      if (value == null) continue;
+      rows.push({ key: m.key, label: m.label, value, rank: rankFor(m.key) });
+    }
+    rows.sort((a, b) => {
+      if (a.rank == null && b.rank == null) return 0;
+      if (a.rank == null) return 1;
+      if (b.rank == null) return -1;
+      return a.rank - b.rank;
+    });
+    return rows;
+  }, [country?.data, country?.countryName, rankFor]);
+
   // Compact metadata list directly beneath the title. One row per fact so
   // the reader can pick out what they want at a glance — capital, currency,
   // languages, local time. Region is dropped (obvious from the tap).
@@ -217,11 +211,8 @@ export const CountrySheet = memo(function CountrySheet({
 
   const handleDismiss = useCallback(() => {
     setActiveRanking(null);
-    setMoreOpen(false);
     onDismiss();
   }, [onDismiss]);
-
-  const toggleMore = useCallback(() => setMoreOpen((v) => !v), []);
 
   return (
     <SheetLayout
@@ -236,6 +227,7 @@ export const CountrySheet = memo(function CountrySheet({
           metric={activeRanking}
           currentCountryName={country?.countryName ?? null}
           bottomInset={bottomInset}
+          onRequestClose={() => sheetRef.current?.dismiss()}
         />
       ) : (
         <BottomSheetScrollView
@@ -274,76 +266,21 @@ export const CountrySheet = memo(function CountrySheet({
                 </Animated.View>
               )}
 
-              {/* Hero rankings — enclosed by hairlines top & bottom so the
-                  three tiles read as one "headline" region (Gestalt common
-                  region) and carry the most weight on the sheet. */}
+              {/* Rankings list — always visible, sorted per-country by
+                  ascending rank so the country's strongest showings lead. */}
               <Animated.View
                 entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(1))}
-                style={[
-                  styles.heroRow,
-                  { borderTopColor: colors.rule, borderBottomColor: colors.rule },
-                ]}
+                style={[styles.moreList, { borderTopColor: colors.rule }]}
               >
-                <HeroStat
-                  label="population"
-                  value={country.data.population}
-                  rank={rankFor('population')}
-                  onPress={() => setActiveRanking('population')}
-                />
-                <HeroStat
-                  label="gdp"
-                  value={country.data.gdp}
-                  rank={rankFor('gdp')}
-                  onPress={() => setActiveRanking('gdp')}
-                />
-                <HeroStat
-                  label="gdp per capita"
-                  value={country.data.gdpPerCapita}
-                  rank={rankFor('gdpPerCapita')}
-                  onPress={() => setActiveRanking('gdpPerCapita')}
-                />
-              </Animated.View>
-
-              {/* Progressive disclosure — everything else is one tap away */}
-              <Animated.View
-                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(2))}
-              >
-                <HapticPressable
-                  onPress={toggleMore}
-                  haptic="tick"
-                  style={styles.moreToggle}
-                  accessibilityRole="button"
-                  accessibilityLabel={moreOpen ? 'Hide rankings' : 'Show all rankings'}
-                >
-                  <Text style={[textStyles.smallCaps, { color: colors.text }]}>rankings</Text>
-                  <Ionicons
-                    name={moreOpen ? 'chevron-up' : 'chevron-down'}
-                    size={ICON.sm}
-                    color={colors.textSecondary}
+                {rankedRows.map((r) => (
+                  <MoreRow
+                    key={r.key}
+                    label={r.label}
+                    value={r.value}
+                    rank={r.rank}
+                    onPress={() => setActiveRanking(r.key)}
                   />
-                </HapticPressable>
-
-                {moreOpen && country.data && (
-                  <View style={[styles.moreList, { borderTopColor: colors.rule }]}>
-                    {MORE_METRICS.map((m) => {
-                      if (!country.data) return null;
-                      const rawValue = getMetricValue(
-                        country.countryName ?? '',
-                        country.data,
-                        m.key,
-                      );
-                      return (
-                        <MoreRow
-                          key={m.key}
-                          label={m.label}
-                          value={rawValue}
-                          rank={rankFor(m.key)}
-                          onPress={() => setActiveRanking(m.key)}
-                        />
-                      );
-                    })}
-                  </View>
-                )}
+                ))}
               </Animated.View>
             </>
           )}
@@ -376,23 +313,6 @@ const styles = StyleSheet.create({
   basicsLabel: {
     minWidth: 80,
   },
-  heroRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: SPACING.md,
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-  },
-  hero: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  moreToggle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: SPACING.md,
-  },
   moreList: {
     borderTopWidth: StyleSheet.hairlineWidth,
   },
@@ -402,6 +322,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: SPACING.sm,
     borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  rankCol: {
+    width: 34,
+    textAlign: 'right',
+    marginRight: SPACING.md,
+    fontVariant: ['tabular-nums'],
   },
   moreLabel: {
     flex: 1,

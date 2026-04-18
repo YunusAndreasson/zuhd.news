@@ -7,8 +7,17 @@ import {
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { StyleSheet, Switch, Text, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import {
+  AccessibilityInfo,
+  BackHandler,
+  Platform,
+  StyleSheet,
+  Switch,
+  Text,
+  View,
+} from 'react-native';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+import Animated, { FadeInDown, runOnJS, useReducedMotion } from 'react-native-reanimated';
 import {
   ANIMATION,
   type AppearanceMode,
@@ -16,6 +25,7 @@ import {
   type FontFamily,
   type FontSize,
   ICON,
+  MAX_FONT_SCALE,
   type Preferences,
   SPACING,
   staggerDelay,
@@ -30,7 +40,6 @@ import { SheetBookmarksPage } from './SheetBookmarksPage';
 import { SheetHandle } from './SheetHandle';
 import { type InfoSection, SheetInfoPage } from './SheetInfoPage';
 import { SheetLayout } from './SheetLayout';
-import { SheetOptionPage } from './SheetOptionPage';
 import { SheetSearchPage } from './SheetSearchPage';
 
 const APP_VERSION = Constants.expoConfig?.version ?? '';
@@ -46,16 +55,12 @@ const INFO_PAGES = {
       { body: 'Zuhd \u2014 the discipline of doing without what you do not need.' },
       { body: 'What happened. Why it matters. What comes next. Then stop.' },
       {
-        body: 'Hundreds of sources across six continents, selected for editorial independence. Where a story is told from determines who is treated as a person and who as a statistic.',
+        body: 'Where a story is told from determines who is treated as a person and who as a statistic.',
       },
       { body: 'No social media, no investors, no editorial board.' },
-      { link: { label: 'zuhd.news', url: 'https://zuhd.news' }, body: '' },
-    ],
-  },
-  sources: {
-    sections: [
       {
-        body: 'Stories are compiled from hundreds of outlets indexed by EventRegistry. A language model selects and writes each article based on geographic breadth and editorial significance.',
+        heading: 'sources',
+        body: 'Stories are compiled from hundreds of outlets across six continents, indexed by EventRegistry. A language model selects and writes each article based on geographic breadth and editorial significance.',
       },
       {
         heading: 'inclusion',
@@ -64,6 +69,23 @@ const INFO_PAGES = {
       {
         heading: 'transparency',
         body: 'Every article lists the outlets used, their country of origin, and how each covers the story. Tap \u201cmore\u201d on any article to inspect.',
+      },
+      {
+        heading: 'country data',
+        body: 'Each country sheet surfaces ranked indicators across governance, development, science, economy, and demography. Tap any metric to see its full world ranking and source. Data is sourced from:',
+        links: [
+          { label: 'World Bank \u2014 data.worldbank.org', url: 'https://data.worldbank.org/' },
+          { label: 'Our World in Data \u2014 ourworldindata.org', url: 'https://ourworldindata.org/' },
+          { label: 'V-Dem Institute \u2014 v-dem.net', url: 'https://v-dem.net/' },
+          {
+            label: 'Transparency International \u2014 transparency.org',
+            url: 'https://www.transparency.org/en/cpi',
+          },
+          { label: 'Reporters Without Borders \u2014 rsf.org', url: 'https://rsf.org/en/index' },
+          { label: 'UNDP Human Development Report \u2014 hdr.undp.org', url: 'https://hdr.undp.org/' },
+          { label: 'UNHCR Refugee Data \u2014 unhcr.org', url: 'https://www.unhcr.org/refugee-statistics/' },
+          { label: 'REST Countries \u2014 restcountries.com', url: 'https://restcountries.com/' },
+        ],
       },
     ],
   },
@@ -187,7 +209,6 @@ const SETTINGS: readonly SettingEntry[] = [
 type PageKey = InfoKey | 'settings' | SettingKey | 'search' | 'saved';
 
 const isInfoKey = (k: PageKey): k is InfoKey => k in INFO_PAGES;
-const findSetting = (k: PageKey): SettingEntry | undefined => SETTINGS.find((s) => s.key === k);
 
 /** Pages that need a fixed tall snap (keyboard or long scrolling list). */
 const TALL_PAGES: ReadonlySet<PageKey> = new Set(['search', 'saved']);
@@ -200,18 +221,24 @@ function NavRow({
   label,
   value,
   hint,
+  first,
   onPress,
 }: {
   label: string;
   value?: string;
   hint?: string;
+  /** Suppresses the top hairline separator on the first row in a stack. */
+  first?: boolean;
   onPress: () => void;
 }) {
   const { colors, font, typography, textStyles } = useTheme();
   return (
     <HapticPressable
       onPress={onPress}
-      style={styles.row}
+      style={[
+        styles.row,
+        !first && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
+      ]}
       accessibilityRole="button"
       accessibilityLabel={value ? `${label}, currently ${value}` : label}
       accessibilityHint={hint}
@@ -239,11 +266,14 @@ function ToggleRow({
   label,
   value,
   hint,
+  first,
   onChange,
 }: {
   label: string;
   value: boolean;
   hint?: string;
+  /** Suppresses the top hairline separator on the first row in a stack. */
+  first?: boolean;
   onChange: (v: boolean) => void;
 }) {
   const { colors, textStyles } = useTheme();
@@ -255,7 +285,14 @@ function ToggleRow({
     [onChange],
   );
   return (
-    <View style={styles.row} accessible accessibilityRole="switch">
+    <View
+      style={[
+        styles.row,
+        !first && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
+      ]}
+      accessible
+      accessibilityRole="switch"
+    >
       <Text style={[textStyles.smallCapsBase, { color: colors.text }]}>{label}</Text>
       <Switch
         value={value}
@@ -269,19 +306,89 @@ function ToggleRow({
   );
 }
 
+/** Inline radiogroup — label + horizontal options on one settings row.
+ *  Replaces the drill-in + detail-page flow for single-select settings,
+ *  matching native iOS/Android grouped-settings expectations. */
+function InlineOptionRow<T extends string>({
+  label,
+  options,
+  selected,
+  onSelect,
+  labelFontSize,
+  first,
+}: {
+  label: string;
+  options: readonly { value: T; label: string }[];
+  selected: T;
+  onSelect: (v: T) => void;
+  /** Per-option absolute font size — used for size previews. */
+  labelFontSize?: (v: T) => number;
+  first?: boolean;
+}) {
+  const { colors, font, typography, textStyles } = useTheme();
+  return (
+    <View
+      style={[
+        styles.inlineOptionRow,
+        !first && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
+      ]}
+      accessibilityRole="radiogroup"
+      accessibilityLabel={label}
+    >
+      <Text style={[textStyles.smallCapsBase, { color: colors.text }]}>{label}</Text>
+      <View style={styles.inlineOptions}>
+        {options.map((opt) => {
+          const active = opt.value === selected;
+          return (
+            <HapticPressable
+              key={opt.value}
+              onPress={() => {
+                if (!active) onSelect(opt.value);
+              }}
+              haptic="tick"
+              hitSlop={8}
+              style={styles.inlinePill}
+              accessibilityRole="radio"
+              accessibilityState={{ selected: active }}
+              accessibilityLabel={opt.label}
+            >
+              <Text
+                style={{
+                  ...font.semiBold,
+                  fontSize: labelFontSize?.(opt.value) ?? typography.sizeSm,
+                  color: active ? colors.textEmphasis : colors.textSecondary,
+                }}
+              >
+                {opt.label}
+              </Text>
+            </HapticPressable>
+          );
+        })}
+      </View>
+    </View>
+  );
+}
+
 function ActionLink({
   label,
   hint,
+  first,
   onPress,
 }: {
   label: string;
   hint?: string;
+  /** Suppresses the top hairline separator on the first row in a stack. */
+  first?: boolean;
   onPress: () => void;
 }) {
   const { colors, font, typography } = useTheme();
   return (
     <HapticPressable
       onPress={onPress}
+      style={[
+        styles.actionRow,
+        !first && { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.rule },
+      ]}
       accessibilityRole="button"
       accessibilityLabel={label}
       accessibilityHint={hint}
@@ -289,6 +396,7 @@ function ActionLink({
       <Text style={{ ...font.semiBold, fontSize: typography.sizeSm, color: colors.text }}>
         {label}
       </Text>
+      <Ionicons name="chevron-forward" size={ICON.sm} color={colors.textSecondary} />
     </HapticPressable>
   );
 }
@@ -321,6 +429,23 @@ export const MenuSheet = memo(function MenuSheet({
   const { preferences } = prefsApi;
   const nav = useSheetNavigation<PageKey>();
   const [canRate, setCanRate] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const reduceMotion = useReducedMotion();
+
+  // Wrap push/pop with VoiceOver/TalkBack announcements so users hear what
+  // page they're on after a transition — matches native navigation-stack UX.
+  const navPush = useCallback(
+    (page: PageKey) => {
+      nav.push(page);
+      AccessibilityInfo.announceForAccessibility(page);
+    },
+    [nav.push],
+  );
+  const navPop = useCallback(() => {
+    nav.pop();
+    const next = nav.stack[nav.stack.length - 2];
+    AccessibilityInfo.announceForAccessibility(next ?? 'menu');
+  }, [nav.pop, nav.stack]);
 
   useEffect(() => {
     StoreReview.hasAction()
@@ -332,15 +457,51 @@ export const MenuSheet = memo(function MenuSheet({
 
   const Handle = useCallback(
     () => (
-      <SheetHandle title={nav.current ?? undefined} onBack={nav.depth > 0 ? nav.pop : undefined} />
+      <SheetHandle title={nav.current ?? undefined} onBack={nav.depth > 0 ? navPop : undefined} />
     ),
-    [nav.current, nav.depth, nav.pop],
+    [nav.current, nav.depth, navPop],
   );
 
   const handleDismiss = useCallback(() => {
     nav.reset();
+    setIsOpen(false);
     onDismiss();
   }, [onDismiss, nav.reset]);
+
+  // Track open state so the Android back handler registers only while visible.
+  const handleSheetChange = useCallback((index: number) => {
+    setIsOpen(index >= 0);
+  }, []);
+
+  // Android hardware back: pop the nav stack first, dismiss only at root.
+  // Registered only while the sheet is open so we don't swallow back presses
+  // elsewhere in the app.
+  useEffect(() => {
+    if (Platform.OS !== 'android' || !isOpen) return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (nav.depth > 0) {
+        navPop();
+        return true;
+      }
+      sheetRef.current?.dismiss();
+      return true;
+    });
+    return () => sub.remove();
+  }, [isOpen, nav.depth, navPop, sheetRef]);
+
+  // Swipe-back — horizontal pan on a sub-page pops one level.
+  // `activeOffsetX(20)` + `failOffsetY(±10)` prevents stealing the sheet's
+  // vertical pan-to-close or the inner ScrollView's vertical scroll.
+  const swipeBack = Gesture.Pan()
+    .enabled(nav.depth > 0)
+    .activeOffsetX(20)
+    .failOffsetY([-10, 10])
+    .onEnd(({ translationX, velocityX }) => {
+      'worklet';
+      if (translationX > 80 || velocityX > 800) {
+        runOnJS(navPop)();
+      }
+    });
 
   return (
     <SheetLayout
@@ -350,6 +511,7 @@ export const MenuSheet = memo(function MenuSheet({
       renderBackdrop={renderBackdrop}
       handleComponent={Handle}
       onDismiss={handleDismiss}
+      onChange={handleSheetChange}
       keyboardBehavior="extend"
       keyboardBlurBehavior="none"
       enableBlurKeyboardOnGesture
@@ -362,14 +524,16 @@ export const MenuSheet = memo(function MenuSheet({
           onSelectArticle={onSelectArticle}
         />
       ) : (
-        <BottomSheetScrollView
-          contentContainerStyle={[
-            sheetStyles.content,
-            { paddingBottom: bottomInset + SPACING.xxl },
-          ]}
-        >
-          {renderPage()}
-        </BottomSheetScrollView>
+        <GestureDetector gesture={swipeBack}>
+          <BottomSheetScrollView
+            contentContainerStyle={[
+              sheetStyles.content,
+              { paddingBottom: bottomInset + SPACING.xxl },
+            ]}
+          >
+            {renderPage()}
+          </BottomSheetScrollView>
+        </GestureDetector>
       )}
     </SheetLayout>
   );
@@ -379,25 +543,51 @@ export const MenuSheet = memo(function MenuSheet({
     if (current === null) {
       return (
         <>
+          <Text
+            style={[styles.wordmark, { letterSpacing: typography.trackingWordmark }]}
+            maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
+            accessibilityRole="header"
+            accessibilityLabel="zuhd.news"
+          >
+            <Text
+              style={{
+                ...font.bold,
+                fontSize: typography.sizeWordmark,
+                color: colors.textSecondary,
+              }}
+            >
+              zuhd
+            </Text>
+            <Text
+              style={{
+                ...font.regular,
+                fontSize: typography.sizeWordmark,
+                color: colors.accent,
+              }}
+            >
+              .news
+            </Text>
+          </Text>
+
           <NavRow
+            first
             label="search"
             hint="Search all articles by title, topic, or location"
-            onPress={() => nav.push('search')}
+            onPress={() => navPush('search')}
           />
-          <NavRow label="saved" hint="Your bookmarked articles" onPress={() => nav.push('saved')} />
+          <NavRow label="saved" hint="Your bookmarked articles" onPress={() => navPush('saved')} />
           <NavRow
             label="settings"
             hint="Appearance, text size, haptics, notifications"
-            onPress={() => nav.push('settings')}
+            onPress={() => navPush('settings')}
           />
 
           <View style={[styles.divider, { backgroundColor: colors.rule }]} />
 
           <View style={styles.infoLinks}>
-            <ActionLink label="about" onPress={() => nav.push('about')} />
-            <ActionLink label="sources" onPress={() => nav.push('sources')} />
-            <ActionLink label="privacy" onPress={() => nav.push('privacy')} />
-            <ActionLink label="contact" onPress={() => nav.push('contact')} />
+            <ActionLink first label="about" onPress={() => navPush('about')} />
+            <ActionLink label="privacy" onPress={() => navPush('privacy')} />
+            <ActionLink label="contact" onPress={() => navPush('contact')} />
             {canRate && (
               <ActionLink
                 label="rate"
@@ -408,17 +598,6 @@ export const MenuSheet = memo(function MenuSheet({
               />
             )}
           </View>
-
-          <Text
-            style={{
-              ...font.regular,
-              fontSize: typography.sizeXs,
-              color: colors.textSecondary,
-              marginTop: SPACING.lg,
-            }}
-          >
-            zuhd.news · {APP_VERSION}
-          </Text>
         </>
       );
     }
@@ -426,33 +605,39 @@ export const MenuSheet = memo(function MenuSheet({
     if (current === 'settings') {
       return SETTINGS.map((s, i) => {
         const currentValue = s.get(preferences);
+        // Skip stagger animation when the OS has Reduce Motion enabled.
+        const entering = reduceMotion
+          ? undefined
+          : FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i));
+        const row = s.toggle ? (
+          <ToggleRow
+            first={i === 0}
+            label={s.label}
+            value={currentValue === 'on'}
+            hint={s.hint}
+            onChange={(v) => {
+              if (s.key === 'notifications' && v) {
+                prefsApi.setNotifications(true).then((granted) => {
+                  if (!granted) onToast?.('Enable notifications in Settings');
+                });
+              } else {
+                s.set(prefsApi, v ? 'on' : 'off');
+              }
+            }}
+          />
+        ) : s.options ? (
+          <InlineOptionRow
+            first={i === 0}
+            label={s.label}
+            options={s.options}
+            selected={currentValue}
+            onSelect={(v) => s.set(prefsApi, v)}
+            labelFontSize={s.labelFontSize}
+          />
+        ) : null;
         return (
-          <Animated.View
-            key={s.key}
-            entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i))}
-          >
-            {s.toggle ? (
-              <ToggleRow
-                label={s.label}
-                value={currentValue === 'on'}
-                hint={s.hint}
-                onChange={(v) => {
-                  if (s.key === 'notifications' && v) {
-                    prefsApi.setNotifications(true).then((granted) => {
-                      if (!granted) onToast?.('Enable notifications in Settings');
-                    });
-                  } else {
-                    s.set(prefsApi, v ? 'on' : 'off');
-                  }
-                }}
-              />
-            ) : (
-              <NavRow
-                label={s.label}
-                value={s.options?.find((o) => o.value === currentValue)?.label ?? currentValue}
-                onPress={() => nav.push(s.key)}
-              />
-            )}
+          <Animated.View key={s.key} entering={entering}>
+            {row}
           </Animated.View>
         );
       });
@@ -463,25 +648,33 @@ export const MenuSheet = memo(function MenuSheet({
     }
 
     if (isInfoKey(current)) {
-      return <SheetInfoPage sections={INFO_PAGES[current].sections} />;
-    }
-
-    const setting = findSetting(current);
-    if (setting?.options) {
       return (
-        <SheetOptionPage
-          options={setting.options}
-          selected={setting.get(preferences)}
-          onSelect={(v) => setting.set(prefsApi, v)}
-          labelFontSize={setting.labelFontSize}
-        />
+        <>
+          <SheetInfoPage sections={INFO_PAGES[current].sections} />
+          {current === 'about' && (
+            <Text
+              style={{
+                ...font.regular,
+                fontSize: typography.sizeXs,
+                color: colors.textSecondary,
+                marginTop: SPACING.lg,
+              }}
+            >
+              {APP_VERSION}
+            </Text>
+          )}
+        </>
       );
     }
+
     return null;
   }
 });
 
 const styles = StyleSheet.create({
+  wordmark: {
+    marginBottom: SPACING.sm,
+  },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -495,11 +688,29 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: StyleSheet.hairlineWidth,
-    marginVertical: SPACING.md,
+    marginVertical: SPACING.sm,
   },
   infoLinks: {
+    // Stacked vertically for easier tapping. Keeps lowercase styling to read
+    // as secondary / editorial links, distinct from the capitalised NavRows.
+  },
+  inlineOptionRow: {
+    paddingVertical: SPACING.smPlus,
+  },
+  inlineOptions: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: SPACING.smPlus,
+    alignItems: 'baseline',
+    gap: SPACING.md,
+    marginTop: SPACING.xs,
+  },
+  inlinePill: {
+    paddingVertical: SPACING.xs,
+  },
+  actionRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingVertical: SPACING.smPlus,
   },
 });
