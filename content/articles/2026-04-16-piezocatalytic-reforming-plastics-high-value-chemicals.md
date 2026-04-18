@@ -15,6 +15,7 @@ concepts:
   - "Upcycling"
   - "Catalysis"
   - "Plastic"
+entities: []
 ---
 
 London — Plastic trash converts to hydrogen under mechanical vibration. Piezoelectric nanorods convert mixed unsortable plastics into hydrogen and alcohols at room temperature, without heat or chemical catalysts. Mechanical-to-chemical efficiency sits at 4.96%; scaling vibration-based systems to industrial volume remains undemonstrated.

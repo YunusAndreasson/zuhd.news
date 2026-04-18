@@ -15,6 +15,7 @@ concepts:
   - "Post-quantum cryptography"
   - "Elliptic-curve cryptography"
   - "Qubit"
+entities: []
 ---
 
 San Francisco — Google shows elliptic-curve keys break in 9 minutes. New research shows 1,200 logical qubits suffice — far fewer than prior estimates — shifting the threat from stored traffic to live authentication systems. Google and Cloudflare moved their quantum-readiness deadline to 2029; Amazon and Microsoft remain on 2031–2035 timelines.

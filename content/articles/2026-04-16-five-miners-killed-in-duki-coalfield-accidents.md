@@ -14,6 +14,7 @@ concepts:
   - "Balochistan"
   - "Methane"
   - "Coal"
+entities: []
 ---
 
 Quetta — 5 Balochistan miners died in separate underground accidents. Methane trapped 3 in Bolan's coalfield; a runaway coal trolley killed 2 in Duki — both coalfields operate with minimal safety enforcement. The Mines and Minerals Department ordered an investigation; Duki's second deceased miner remained unidentified at press time.

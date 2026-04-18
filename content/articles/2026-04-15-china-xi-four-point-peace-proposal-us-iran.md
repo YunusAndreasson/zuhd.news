@@ -15,6 +15,10 @@ concepts:
   - "Donald Trump"
   - "Iran"
   - "China"
+entities:
+  - mention: "Hormuz"
+    indicatorId: "portwatch-hormuz-tanker"
+    kind: "chokepoint"
 ---
 
 Beijing — Xi Jinping offered 4 peace principles for Iran. China continued shipping through Hormuz despite the US Navy blockade; Xi called it a return to "the law of the jungle." Iran has not responded; Trump says a second round of talks could happen within days.

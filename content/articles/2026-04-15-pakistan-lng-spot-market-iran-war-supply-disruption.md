@@ -15,6 +15,16 @@ concepts:
   - "Spot market"
   - "Strait of Hormuz"
   - "Qatar"
+entities:
+  - mention: "natural gas"
+    indicatorId: "natgas-hh"
+    kind: "commodity"
+  - mention: "Hormuz"
+    indicatorId: "portwatch-hormuz-tanker"
+    kind: "chokepoint"
+  - mention: "crude"
+    indicatorId: "brent"
+    kind: "commodity"
 ---
 
 Islamabad — Qatar declared force majeure on Pakistan's gas deliveries. Spot liquefied natural gas has surged to $20-30 per mmBtu; Pakistan now routes crude via Saudi Arabia's Yanbu port to bypass Hormuz. Petroleum Minister Malik warned prolonged shortages could threaten food security as a new domestic gas well begins output.

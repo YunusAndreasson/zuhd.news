@@ -16,6 +16,7 @@ concepts:
   - "Cement"
   - "Cash flow"
   - "Capital markets"
+entities: []
 ---
 
 London — Carbon pass-through alone does not trigger decarbonisation. A Nature study of 6 steel and cement firms found 2 blockers: weak pricing power and expensive capital. Global South firms face both at once, placing them last to transition regardless of carbon price.

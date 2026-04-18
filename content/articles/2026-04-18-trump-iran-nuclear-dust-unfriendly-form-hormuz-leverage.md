@@ -30,6 +30,13 @@ concepts:
   - "United States"
   - "Ceasefire"
   - "Tehran"
+entities:
+  - mention: "Hormuz"
+    indicatorId: "portwatch-hormuz-tanker"
+    kind: "chokepoint"
+  - mention: "oil"
+    indicatorId: "brent"
+    kind: "commodity"
 ---
 
 Washington — Trump: bombs resume Wednesday if deal fails. Iran controls Hormuz transit — the chokepoint carrying 20% of world oil — but Trump rejected any Iranian-imposed tolls. Pakistan's army chief left Tehran Saturday; the truce expires in days with Iran's blockade demands unresolved.

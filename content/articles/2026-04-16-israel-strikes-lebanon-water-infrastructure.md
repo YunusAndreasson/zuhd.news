@@ -15,6 +15,7 @@ concepts:
   - "Lebanon"
   - "Mohamed Bashoun"
   - "Tyre"
+entities: []
 ---
 
 Tyre — Israel killed 2 water technicians servicing Tyre. Mohamed Bashoun, 51, now runs the station alone; it supplies 70,000 people as Israeli drones still circle. The Taybeh wastewater plant, damaged in strikes, remains closed months past its planned March reopening.

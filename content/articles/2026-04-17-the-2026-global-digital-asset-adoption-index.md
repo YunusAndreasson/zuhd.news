@@ -15,6 +15,7 @@ concepts:
   - "Asia"
   - "Digital asset"
   - "United States"
+entities: []
 ---
 
 Singapore — Asia tops crypto volumes, US draws institutions. The 2026 Global Digital Asset Adoption Index ranks Asia first in stablecoin flows, exchange volume, and on-chain activity; US regulatory clarity attracts institutional capital but not transaction volume. Whether Asian volume or US institutional scale defines the next cycle is unresolved.

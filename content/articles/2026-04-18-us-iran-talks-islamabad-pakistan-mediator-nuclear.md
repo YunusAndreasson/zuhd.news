@@ -25,6 +25,7 @@ concepts:
   - "Pakistan"
   - "Islamabad"
   - "Nuclear diplomacy"
+entities: []
 ---
 
 Islamabad — Pakistan hosts a 2nd US-Iran round Monday. Qatar and Turkey endorsed Pakistan's mediator role; Army Chief Asim Munir visited Tehran last week to prepare the ground. Iran refuses full enrichment abandonment, and Washington has not offered unconditional sanctions relief.

@@ -15,6 +15,7 @@ concepts:
   - "Deep biosphere"
   - "Microbiology"
   - "Plate tectonics"
+entities: []
 ---
 
 Seattle — Subduction, not ocean currents, drives ancient microbial cycling. Pressure-driven fluid in earthquake megathrusts carries dormant organisms upward, cycling the deep biosphere over millions of years. The findings suggest subduction drives deep microbial exchange — a role previously attributed to ocean currents.

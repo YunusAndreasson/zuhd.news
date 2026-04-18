@@ -16,6 +16,7 @@ concepts:
   - "Insider trading"
   - "Prediction markets"
   - "Iran war"
+entities: []
 ---
 
 Washington — Bets on Khamenei's death settled $553,000 before confirmation. Columbia University researchers found a 70% win rate across 200,000 screened trades, impossible without advance knowledge of classified schedules. The Commodity Futures Trading Commission has 1 seat filled and cannot regulate; blockchain anonymity shields traders.

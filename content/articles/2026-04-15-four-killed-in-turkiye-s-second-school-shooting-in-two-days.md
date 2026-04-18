@@ -28,6 +28,7 @@ concepts:
   - "Kahramanmaraş"
   - "School shooting"
 sentimentDivergence: 0.31
+entities: []
 ---
 
 Kahramanmaras — 9 died at a middle school on Wednesday. The attacker, 13, brought 5 of his father's firearms — strict Turkish licensing didn't prevent access to a licensed officer's personal arsenal. The 2nd shooting in 2 days, Erdogan pledged accountability but offered no timeline for changing how police store licensed firearms.

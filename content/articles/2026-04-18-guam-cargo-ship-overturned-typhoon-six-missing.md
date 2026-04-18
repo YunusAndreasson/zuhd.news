@@ -15,6 +15,7 @@ concepts:
   - "United States Coast Guard"
   - "Guam"
   - "Pacific Ocean"
+entities: []
 ---
 
 Saipan — 6 are missing from the overturned cargo ship Mariana. The vessel reported engine failure Wednesday, 140 miles northwest of Saipan, as Typhoon Sinlaku struck; contact was lost that evening. Coast Guard, US Navy, and Japan Coast Guard resumed aerial search Saturday after the storm eased.

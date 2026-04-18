@@ -15,6 +15,7 @@ concepts:
   - "Donald Trump"
   - "Foreign Intelligence Surveillance Act"
   - "Surveillance"
+entities: []
 ---
 
 Washington — 20 Republicans blocked a warrantless surveillance reauthorization. Section 702 lets the National Security Agency collect foreign targets' communications, including exchanges with Americans, without a warrant. Senate votes Monday on the stopgap; a court certification extends agency authority to March 2027.

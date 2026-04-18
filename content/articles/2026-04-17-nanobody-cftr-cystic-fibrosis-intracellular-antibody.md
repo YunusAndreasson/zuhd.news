@@ -15,6 +15,7 @@ concepts:
   - "Nanobody"
   - "Charité"
   - "Nature Chemical Biology"
+entities: []
 ---
 
 Berlin — Researchers crossed the cell membrane with a nanobody. The Charité team used it to refold the defective protein causing cystic fibrosis — a barrier antibodies cannot normally cross. Published in Nature Chemical Biology, researchers say the approach could target other misfolded-protein diseases.

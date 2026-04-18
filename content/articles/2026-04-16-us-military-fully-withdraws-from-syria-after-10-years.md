@@ -24,6 +24,7 @@ concepts:
   - "United States"
   - "Islamic State"
   - "Syrian Democratic Forces"
+entities: []
 ---
 
 Hasakah — US forces left Syria's last base Thursday. Kurdish Syrian Democratic Forces, US partners since 2014, are now integrated into the national army with no American guarantee of autonomy. Turkey, which spent a decade opposing the US-SDF partnership, now sits as Syria's dominant northern neighbor.

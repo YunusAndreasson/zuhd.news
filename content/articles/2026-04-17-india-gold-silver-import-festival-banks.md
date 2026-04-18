@@ -22,6 +22,10 @@ concepts:
   - "Customs"
 eventCoverage: 45
 sentimentDivergence: 0.09
+entities:
+  - mention: "gold"
+    indicatorId: "paxg"
+    kind: "commodity"
 ---
 
 New Delhi — 5 tonnes of gold froze at Indian customs. Banks paused imports awaiting authorization, exposing how a missing government list can lock physical supply in the world's second-largest gold market. India's trade authority listed 15 authorized banks on Friday; Akshaya Tritiya buying begins Sunday.

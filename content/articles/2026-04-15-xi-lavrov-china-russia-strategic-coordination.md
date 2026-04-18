@@ -22,6 +22,7 @@ concepts:
   - "Russia"
   - "Strait of Hormuz"
 sentimentDivergence: 0.7
+entities: []
 ---
 
 Beijing — Xi called China-Russia ties 'precious.' Lavrov offered Russia as a replacement energy source for Gulf-disrupted Chinese imports; Xi pledged to play a 'constructive' role in the US-Iran conflict. Beijing's four-point Iran peace plan has no enforcement mechanism as the US port blockade continues.

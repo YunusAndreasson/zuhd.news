@@ -14,6 +14,7 @@ concepts:
   - "Biotechnology"
   - "Glucagon-like peptide-1"
   - "Eli Lilly"
+entities: []
 ---
 
 Munich — GLP-1 drug creators say their target was wrong. An experimental drug targeting GIP and glucagon receptors matched weight loss in primate studies without nausea. The hypothesis still needs human trials; if confirmed, it would challenge the billion-dollar GLP-1 drug development pipeline.

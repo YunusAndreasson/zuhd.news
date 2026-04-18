@@ -16,6 +16,7 @@ concepts:
   - "Europol"
   - "Operation PowerOFF"
   - "Booter services"
+entities: []
 ---
 
 The Hague — 4 arrested; 20 nations seized booter platforms. These services rented attack floods for a few dollars per hour — the entry drug into cybercrime for a decade. Europol logged 9 prior PowerOFF operations; platforms relaunched after each one.

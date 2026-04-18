@@ -33,6 +33,7 @@ concepts:
   - "European Commission"
   - "Digital Services Act"
 sentimentDivergence: 0.31
+entities: []
 ---
 
 Brussels — The European Commission declared its age verification app technically ready. The app links government IDs to anonymous age tokens via the COVID vaccine certificate system, creating a bloc-wide EU digital identity layer. A child safety panel reports this summer; its findings determine whether it becomes binding EU law.

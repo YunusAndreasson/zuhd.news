@@ -15,6 +15,7 @@ concepts:
   - "Humanitarianism"
   - "Sudanese Armed Forces"
   - "Rapid Support Forces"
+entities: []
 ---
 
 Berlin — 55 states pledged €1.5 billion for Sudan's humanitarian crisis. The warring parties were absent; co-hosts called it the world's worst humanitarian emergency and demanded they allow aid access. The co-hosts want a civilian-led political dialogue — neither Sudanese faction agreed to attend or negotiate.

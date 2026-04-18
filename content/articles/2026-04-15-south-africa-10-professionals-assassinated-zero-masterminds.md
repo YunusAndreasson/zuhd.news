@@ -14,6 +14,7 @@ concepts:
   - "Assassination"
   - "Contract killing"
   - "South Africa"
+entities: []
 ---
 
 Johannesburg — 10 assassinations across Gauteng; no mastermind convicted. Contract killers target those who control public money; eliminating the official standing between corruption and the budget is cheaper than exposure. The pending Whistleblower Protection Bill would give prosecutors new tools, but parliament has not voted.

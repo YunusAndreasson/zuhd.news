@@ -26,6 +26,7 @@ concepts:
   - "State Security Service (Nigeria)"
   - "Abuja"
 sentimentDivergence: 0.05
+entities: []
 ---
 
 Abuja — Nigeria's ex-Attorney General Malami shed terror charges Wednesday. The State Security Service refiled a 5-count charge focused solely on unlicensed firearms found at his Birnin Kebbi home in December. Malami, married to ex-President Buhari's daughter, calls the prosecution political; trial opens May 26.

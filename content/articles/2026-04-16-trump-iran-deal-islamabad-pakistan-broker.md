@@ -16,6 +16,7 @@ concepts:
   - "Iran"
   - "Pakistan"
   - "Asim Munir"
+entities: []
 ---
 
 Islamabad — Pakistan's army chief flew to Iran to mediate. Islamabad hosted the last round last weekend and yielded no deal; Prime Minister Shehbaz Sharif has since lobbied Gulf capitals. Trump said he might travel to Islamabad to sign a deal; the ceasefire expires next week.

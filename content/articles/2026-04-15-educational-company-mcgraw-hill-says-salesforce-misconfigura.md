@@ -14,6 +14,7 @@ concepts:
   - "McGraw-Hill"
   - "Salesforce"
   - "Data breach"
+entities: []
 ---
 
 New York — ShinyHunters claimed 45 million McGraw-Hill student records. McGraw-Hill attributed the exposure to a Salesforce misconfiguration, not an intrusion — records were left accessible by a configuration error. ShinyHunters' April 14 ransom deadline has passed; whether the data was published remains unconfirmed.

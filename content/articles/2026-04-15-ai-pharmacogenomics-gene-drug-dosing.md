@@ -13,6 +13,7 @@ concepts:
   - "Pharmacogenomics"
   - "Pharmacotherapy"
   - "Genetics"
+entities: []
 ---
 
 London — An AI matched gene-drug pairs at 91.9% accuracy. The system reads FDA drug labels and biomedical literature to produce dosing recommendations, outperforming rival AI models in expert review of 24 clinical cases. Manual pharmacogenomic curation covers only a fraction of gene-drug pairs; the system could scale to the rest.

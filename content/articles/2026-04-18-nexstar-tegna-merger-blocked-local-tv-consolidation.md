@@ -20,6 +20,7 @@ concepts:
   - "Antitrust"
   - "Federal Communications Commission"
   - "Media consolidation"
+entities: []
 ---
 
 Sacramento — Judge froze Nexstar's $6.2 billion Tegna acquisition. Combined, they would control multiple Big Four affiliates in 31 local markets, the judge found, giving Nexstar leverage to demand higher broadcast fees. DirecTV and 8 state attorneys general can revise their antitrust complaints by month's end.

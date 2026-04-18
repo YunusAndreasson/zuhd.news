@@ -15,6 +15,7 @@ concepts:
   - "Ebola"
   - "Rift Valley fever"
   - "Crimean-Congo hemorrhagic fever"
+entities: []
 ---
 
 Bujumbura — 5 dead in Burundi from an unidentified illness. Africa Centres for Disease Control has ruled out Ebola, Marburg, Rift Valley fever, and 2 other haemorrhagic fevers — the cause remains unknown. A rapid response team deployed to Mpanda District; the agency is tracking 92 high-risk events continent-wide in 2026.

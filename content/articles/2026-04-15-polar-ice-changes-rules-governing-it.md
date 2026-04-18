@@ -15,6 +15,7 @@ concepts:
   - "Ken Golden"
   - "University of Utah"
   - "Ocean-atmosphere interaction"
+entities: []
 ---
 
 Salt Lake City — Sea ice is riddled with liquid brine channels. Whether those channels connect determines how seawater, nutrients, and gases move through the ice — a relationship University of Utah's Ken Golden has documented over decades. As ice sheets thin and connectivity patterns shift, models built on fixed ice physics require recalibration.

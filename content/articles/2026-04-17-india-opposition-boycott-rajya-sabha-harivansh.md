@@ -25,6 +25,7 @@ concepts:
   - "Indian National Congress"
   - "Bharatiya Janata Party"
 sentimentDivergence: 0.32
+entities: []
 ---
 
 New Delhi — Harivansh wins India's upper-house deputy post unopposed. The post has historically required cross-party consensus; this is the first time a presidential appointee is a candidate, Congress said. The entire opposition boycotted the vote; the Lok Sabha Deputy Speaker post has been vacant since 2019.

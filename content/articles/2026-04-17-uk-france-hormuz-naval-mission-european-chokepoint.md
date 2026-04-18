@@ -34,6 +34,13 @@ concepts:
   - "France"
   - "United Kingdom"
 sentimentDivergence: 0.58
+entities:
+  - mention: "Hormuz"
+    indicatorId: "portwatch-hormuz-tanker"
+    kind: "chokepoint"
+  - mention: "oil"
+    indicatorId: "brent"
+    kind: "commodity"
 ---
 
 Paris — Iran's ceasefire expires April 22. France and the UK will lead 49 nations to police Hormuz — through which 20% of world oil flows — after Washington declined NATO leadership. Military officials meet at Northwood, UK, next week to finalize the mission.

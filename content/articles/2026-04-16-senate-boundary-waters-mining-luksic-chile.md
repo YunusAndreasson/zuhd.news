@@ -21,6 +21,10 @@ concepts:
   - "Boundary Waters Canoe Area Wilderness"
   - "Minnesota"
   - "Antofagasta"
+entities:
+  - mention: "copper"
+    indicatorId: "copper"
+    kind: "commodity"
 ---
 
 Washington — One Senate vote opened 200,000 Boundary Waters acres. Antofagasta, controlled by Chile's Luksic family, can now advance a copper-nickel mine 2 miles from the Boundary Waters. The mining ban has seesawed 4 times with US administrations; the project still requires environmental approvals.

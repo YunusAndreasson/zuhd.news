@@ -9,6 +9,7 @@ sources:
   - name: "The Record"
     url: "https://therecord.media/big-tech-fails-to-opt-out-users-requesting-not-to-be-tracked"
     country: "US"
+entities: []
 ---
 
 San Francisco — 194 ad services ignore legally defined opt-out signals. California law mandates these opt-out signals; compliance is entirely self-reported with no state audit. California can prosecute all 194 under existing law; no case has been filed.

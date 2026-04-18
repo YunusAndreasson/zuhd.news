@@ -24,6 +24,7 @@ concepts:
   - "Cameroon"
   - "Donald Trump"
   - "Bamenda"
+entities: []
 ---
 
 Bamenda — Over 6,000 killed in Cameroon's 9-year insurgency. Pope Leo spoke inside that conflict — calling world leaders "tyrants" who spend billions on war while denying resources to healing. Trump's attacks on Leo have drawn dismay in Africa, where Leo draws his broadest support.

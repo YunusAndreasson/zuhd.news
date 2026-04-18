@@ -15,6 +15,7 @@ concepts:
   - "Pakistan"
   - "Afghanistan"
   - "Human migration"
+entities: []
 ---
 
 Kabul — Afghanistan got 13 times Pakistan's Iran refugee intake, the International Organization for Migration found. The agency counted 170,153 arrivals from Iran into Afghanistan; Kabul has received no formal international support for the intake. A ceasefire triggered a reversal: 1,144 Iranians crossed from Afghanistan back to Iran in one week.

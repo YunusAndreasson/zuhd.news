@@ -17,6 +17,7 @@ concepts:
   - "United Kingdom"
   - "Iran"
   - "Strait of Hormuz"
+entities: []
 ---
 
 London — Trump threatened the US-UK trade deal over Iran. The 2025 deal set a 10% baseline tariff on British goods; Trump said it "can always be changed." Starmer told parliament his position on the Iran war would not change, leaving the trade deal's future unresolved.

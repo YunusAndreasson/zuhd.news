@@ -16,6 +16,7 @@ concepts:
   - "Digital Markets Act"
   - "Search engine"
   - "Privacy"
+entities: []
 ---
 
 Brussels — EU orders Google to share its search index with rivals. Google's advantage compounds with scale: every query improves its algorithms; the EU's Digital Markets Act remedy would transfer that query data to competitors. A final Commission ruling is due in July; violations carry fines up to 10% of Google's global annual revenue.

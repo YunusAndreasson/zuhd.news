@@ -15,6 +15,7 @@ concepts:
   - "Immigration and Customs Enforcement"
   - "Press freedom"
   - "Drone journalism"
+entities: []
 ---
 
 Washington — The Justice Department replaced Immigration and Customs Enforcement on the federal drone no-fly list. The Federal Aviation Administration dropped criminal penalties for drone journalism near federal agencies under the same order. Agencies retain authority to destroy drones deemed a security threat.

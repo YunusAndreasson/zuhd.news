@@ -25,6 +25,10 @@ concepts:
   - "Aviation fuel"
   - "Airline"
 sentimentDivergence: 0.32
+entities:
+  - mention: "crude"
+    indicatorId: "brent"
+    kind: "commodity"
 ---
 
 Lagos — Fuel rose 270%; Nigeria's airlines threaten Monday shutdown. Jet fuel rose from N900 to N3,300 per litre since February, against global crude's 30% rise, carriers said. Dangote, Nigeria's sole domestic jet-fuel producer, made no domestic deliveries in March; the shutdown deadline is Monday.

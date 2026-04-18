@@ -15,6 +15,7 @@ concepts:
   - "Keir Starmer"
   - "Foreign, Commonwealth and Development Office"
   - "Vetting"
+entities: []
 ---
 
 London — An official cleared Mandelson without informing any minister. Security vetting refused him in January 2025 over Epstein ties and China lobbying connections. Starmer fired Olly Robbins on Friday; Robbins testifies before parliament next week on whether the prime minister knew.

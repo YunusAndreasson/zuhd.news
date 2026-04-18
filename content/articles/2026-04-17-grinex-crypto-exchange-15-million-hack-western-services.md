@@ -15,6 +15,10 @@ concepts:
   - "Russia"
   - "Sanctions evasion"
   - "Cryptocurrency theft"
+entities:
+  - mention: "ruble"
+    indicatorId: "fx-rub"
+    kind: "currency"
 ---
 
 Bishkek — $15 million drained from Russia-linked Grinex exchange. Grinex — successor to sanctioned Garantex — processed over $6 billion as Russia's largest ruble-to-crypto rail, Elliptic said. Its suspension leaves Russia-linked sanctioned crypto flows without an established platform.

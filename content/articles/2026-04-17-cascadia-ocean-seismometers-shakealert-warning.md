@@ -15,6 +15,7 @@ concepts:
   - "ShakeAlert"
   - "Pacific Northwest"
   - "Earthquake early warning"
+entities: []
 ---
 
 Seattle — Cascadia fault sensors would add seconds to ShakeAlert. Land-based sensors miss the offshore fault where scientists expect a magnitude-8 or -9 megathrust; ocean-bottom seismometers would close that blind spot. The technology is ready; US federal agencies have not committed deployment funding.

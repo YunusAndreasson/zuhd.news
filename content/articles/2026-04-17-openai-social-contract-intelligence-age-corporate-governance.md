@@ -15,6 +15,7 @@ concepts:
   - "AI governance"
   - "Social contract"
   - "AGI"
+entities: []
 ---
 
 San Francisco — No government has published a superintelligence governance framework. OpenAI did — authoring one alone that frames AI development as a developer-humanity covenant with no enforcement body. The company is already deploying the systems its own document governs.

@@ -14,6 +14,7 @@ concepts:
   - "Israel"
   - "Antisemitism"
   - "Gaza"
+entities: []
 ---
 
 Jerusalem — Israel ranked Thunberg above white nationalist Fuentes. Her offense: using "genocide," "siege," and "mass starvation" about Gaza — words half of US voters have endorsed in polls. The report is the first government-issued antisemitism ranking, collapsing the distinction between Gaza criticism and ethnic hatred.

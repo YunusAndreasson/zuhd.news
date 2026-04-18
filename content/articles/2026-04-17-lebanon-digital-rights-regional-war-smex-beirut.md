@@ -15,6 +15,7 @@ concepts:
   - "Apple Maps"
   - "Ahmed Shihab-Eldin"
   - "SMEX"
+entities: []
 ---
 
 Beirut — Israel bombed Lebanon 160 times in 10 minutes, the Social Media Exchange reported. Wartime digital harms mirror physical ones: journalist detentions, account suspensions, and villages invisible on mapping platforms. Journalist Ahmed Shihab-Eldin has been in a Kuwaiti prison 6 weeks for sharing a video.

@@ -16,6 +16,7 @@ concepts:
   - "Berlin Conference"
   - "Rapid Support Forces"
   - "Sudan Armed Forces"
+entities: []
 ---
 
 Berlin — 25 Sudanese political groups boycotted the Berlin peace conference. The quintet mediation format splits civilian voices into a separate track, preserving Sudan's 2 warring factions' veto over any settlement. A May follow-on meeting will let excluded groups set their own agenda and attendance.

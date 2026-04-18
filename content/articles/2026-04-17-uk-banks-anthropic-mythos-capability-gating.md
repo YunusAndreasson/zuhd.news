@@ -15,6 +15,7 @@ concepts:
   - "United Kingdom"
   - "Finance"
   - "Anthropic"
+entities: []
 ---
 
 London — UK banks get Anthropic's Mythos within days. Anthropic said Mythos surpasses the best humans at finding software vulnerabilities — it restricted public access but now licenses the model to banks. European Central Bank chief Christine Lagarde said no framework covers Mythos; regulators are calibrating when to intervene.

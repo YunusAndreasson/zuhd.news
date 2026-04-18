@@ -16,6 +16,7 @@ concepts:
   - "International Atomic Energy Agency"
   - "Nuclear weapon"
   - "Rafael Grossi"
+entities: []
 ---
 
 Pyongyang — North Korea builds 10-20 warheads per year. The International Atomic Energy Agency confirmed rapid activity at Yongbyon's reprocessing unit; a new undeclared enrichment facility there is nearing operational readiness. South Korea's president warned that once Kim Jong-un has surplus weapons, they will proliferate beyond his borders.

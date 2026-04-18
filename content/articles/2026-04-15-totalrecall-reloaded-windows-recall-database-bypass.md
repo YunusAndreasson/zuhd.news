@@ -15,6 +15,7 @@ concepts:
   - "Windows Recall"
   - "Encryption"
   - "Authentication"
+entities: []
 ---
 
 Redmond — Researcher Alexander Hagenah hijacked Windows Recall without admin rights. AIXHost.exe receives Recall's decrypted data after authentication and can be injected without elevated access. Microsoft classified the finding "not a vulnerability"; Signal and Brave already force Recall to exclude their windows.

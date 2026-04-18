@@ -15,6 +15,7 @@ concepts:
   - "ICE"
   - "CLEAR"
   - "Surveillance"
+entities: []
 ---
 
 New York — Thomson Reuters fired its staff protest organizer. British Columbia's government union, a minority shareholder, filed a human rights audit demand over CLEAR — embedded in US immigration enforcement deportation mapping. The fired worker has sued for retaliation; the shareholder resolution goes before Thomson Reuters' board.

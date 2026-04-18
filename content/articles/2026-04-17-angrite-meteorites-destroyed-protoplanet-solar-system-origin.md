@@ -15,6 +15,7 @@ concepts:
   - "Protoplanet"
   - "Solar system formation"
   - "Isotope analysis"
+entities: []
 ---
 
 Boulder — 70 meteorites confirm a protoplanet's moon-scale size. Crystals in an aluminum-rich angrite could only form deep in a large mantle, University of Colorado researchers said. The parent body — shattered 4.56 billion years ago — has never been found; its remnants are still reaching Earth.

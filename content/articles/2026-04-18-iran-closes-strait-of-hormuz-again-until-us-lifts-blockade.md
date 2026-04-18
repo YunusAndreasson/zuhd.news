@@ -26,6 +26,10 @@ concepts:
   - "Islamic Revolutionary Guard Corps"
   - "United Kingdom"
 sentimentDivergence: 0.3
+entities:
+  - mention: "Strait of Hormuz"
+    indicatorId: "portwatch-hormuz-tanker"
+    kind: "chokepoint"
 ---
 
 Tehran — Iran re-closed the Strait of Hormuz to tankers. It reversed a brief opening after the US refused to lift its blockade; Iran's Revolutionary Guard gunboats fired on 2 vessels. Trump's blockade holds until a permanent deal; the 10-day US-Iran ceasefire expires Wednesday with no talks scheduled.

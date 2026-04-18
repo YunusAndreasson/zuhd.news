@@ -17,6 +17,10 @@ concepts:
   - "Ceasefire"
   - "United States"
   - "Strait of Hormuz"
+entities:
+  - mention: "Strait of Hormuz"
+    indicatorId: "portwatch-hormuz-tanker"
+    kind: "chokepoint"
 ---
 
 Tehran — Trump tied the US blockade of Iran to a nuclear deal. Iran opened the Strait of Hormuz; Washington blocked Iranian ports, converting military pressure into a sanctions standoff. US-Iran talks resume; Trump said a meeting could happen this weekend.

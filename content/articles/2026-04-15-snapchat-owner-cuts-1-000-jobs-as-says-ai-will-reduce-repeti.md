@@ -21,6 +21,7 @@ concepts:
   - "Evan Spiegel"
   - "Layoff"
 sentimentDivergence: 0.31
+entities: []
 ---
 
 Santa Monica — Snap cut 1,000 jobs; AI replaced their work. CEO Evan Spiegel cited AI directly; 65% of new code is AI-generated, and small AI-enabled teams have outperformed larger ones for months. Amazon, Meta, and others cited AI for layoffs this year; Block CEO Jack Dorsey predicted "the majority of companies" will follow.

@@ -276,6 +276,17 @@ $BODY_LENGTHS
   rm -f /tmp/zuhd-edu.log
   echo "Edu context exit: $EDU_EXIT — $((SECONDS - T35))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.6: Entity extraction — scan article bodies for known rich nouns
+  # (commodities, currencies, chokepoints, crypto, indices) and write their
+  # indicator ids into frontmatter. Mobile renders these as tappable runs
+  # opening an EntitySheet. Deterministic static-rule matching for v1 —
+  # no LLM cost, runs in <1s on a typical cycle.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.6: Entity extraction ---" | tee -a "$LOG_FILE"
+  T36=$SECONDS
+  timeout 30 node scripts/extract-entities.js 2>&1 | tee -a "$LOG_FILE"
+  echo "Entities exit: $? — $((SECONDS - T36))s" | tee -a "$LOG_FILE"
+
   # Stage 3b: Build and deploy — always runs, even if editor timed out
   # This ensures articles get published regardless of editor success
   echo "" | tee -a "$LOG_FILE"

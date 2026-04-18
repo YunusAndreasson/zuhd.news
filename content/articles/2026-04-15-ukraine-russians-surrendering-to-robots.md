@@ -15,6 +15,7 @@ concepts:
   - "Unmanned ground vehicles"
   - "Military robotics"
   - "Kharkiv"
+entities: []
 ---
 
 Kyiv — Russian soldiers surrendered to Ukrainian ground robots. Ukraine's ground robots ran 22,000 frontline missions in 3 months; a position north of Kharkiv was taken entirely without infantry. No international legal framework addresses surrender to autonomous platforms; Ukraine's battlefield is now the proving ground.

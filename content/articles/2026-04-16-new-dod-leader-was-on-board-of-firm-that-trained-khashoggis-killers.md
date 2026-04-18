@@ -9,6 +9,7 @@ sources:
   - name: "Responsible Statecraft"
     url: "https://responsiblestatecraft.org/khashoggi-cerberus/"
     country: null
+entities: []
 ---
 
 Washington — Tier 1 Group trained Khashoggi's killers. Its former board member George Kollitides now leads the Pentagon's new $200 billion Economic Defense Unit, appointed without a Senate confirmation hearing. DAWN, the organization Khashoggi founded, is demanding congressional hearings; a similar nominee was blocked by Congress in 2020.

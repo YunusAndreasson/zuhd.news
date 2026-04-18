@@ -15,6 +15,7 @@ concepts:
   - "Critical minerals"
   - "Industrial policy"
   - "Climate economics"
+entities: []
 ---
 
 Canberra — Stranded assets loom for Australia's green export push. The Lowy Institute warns that green subsidies without offtake deals from Japan, South Korea, or the EU will produce uneconomic infrastructure. Without those demand-side contracts in place, private capital will not follow public investment.

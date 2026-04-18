@@ -22,6 +22,10 @@ concepts:
   - "Freedom of navigation"
   - "United Nations"
 sentimentDivergence: 0.24
+entities:
+  - mention: "Hormuz"
+    indicatorId: "portwatch-hormuz-tanker"
+    kind: "chokepoint"
 ---
 
 New York — India's envoy said Hormuz closures killed 8 seafarers. Ship transits fell from 130 to 6 per day in March, UN Trade and Development data show. India formally demanded Hormuz be reopened; Russia and China blocked a Security Council resolution.

@@ -14,6 +14,7 @@ concepts:
   - "Haripur District"
   - "Sui Northern Gas Pipelines Limited"
   - "Khyber Pakhtunkhwa"
+entities: []
 ---
 
 Haripur — Children died in the pipeline blast. A Sui Northern 16-inch line burst near Hattar Industrial Estate; 8 people died and 400 residential quarters border the site. Investigators have not determined the cause; the line supplies gas north to Abbottabad.

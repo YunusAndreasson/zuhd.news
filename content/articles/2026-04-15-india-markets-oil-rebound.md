@@ -13,6 +13,10 @@ concepts:
   - "India"
   - "Price of oil"
   - "NIFTY 50"
+entities:
+  - mention: "crude"
+    indicatorId: "brent"
+    kind: "commodity"
 ---
 
 Mumbai — India's GIFT Nifty rose 1.4% on cooling crude. India imports more than 80% of its crude; lower prices shrink the current account deficit and ease inflation. Foreign investors offloaded ₹2,500 crore the previous session; whether falling oil reverses the outflow is the day's question.

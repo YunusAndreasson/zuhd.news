@@ -15,6 +15,7 @@ concepts:
   - "Confidence trick"
   - "Hieu Minh Ngo"
   - "Hacker"
+entities: []
 ---
 
 Phnom Penh — Bank facial checks fall to a static photo. Tools sold on Telegram replace live video with a static photo, defeating the liveness checks banks use to verify identity. The kits remain available after Telegram removed 22 channels identified in the MIT Technology Review report.

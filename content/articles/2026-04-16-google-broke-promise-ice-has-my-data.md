@@ -9,6 +9,7 @@ sources:
   - name: "Electronic Frontier Foundation"
     url: "https://www.eff.org/deeplinks/2026/04/google-broke-its-promise-me-now-ice-has-my-data"
     country: "US"
+entities: []
 ---
 
 San Francisco — Google gave a student's data to ICE. Google's decade-old notification policy lets users contest subpoenas; ICE requested student Thomas-Johnson's records and Google complied silently. The Electronic Frontier Foundation filed complaints in 2 states seeking a deceptive-practices investigation.

@@ -15,6 +15,7 @@ concepts:
   - "Blue Origin"
   - "Lunar south pole"
   - "Water ice"
+entities: []
 ---
 
 Houston — Blue Origin and China race to lunar water. Shackleton Crater's ice converts to rocket fuel; the first nation with a base there controls resupply for all deep-space operations. China hasn't signed the US-drafted Artemis Accords; the Outer Space Treaty's 'due regard' standard for lunar competition has never been tested.

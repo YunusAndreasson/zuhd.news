@@ -16,6 +16,10 @@ concepts:
   - "Strait of Hormuz"
   - "Tanker (ship)"
   - "Persian Gulf"
+entities:
+  - mention: "crude"
+    indicatorId: "brent"
+    kind: "commodity"
 ---
 
 Bandar Abbas — Iran-linked tankers slipped into the Gulf Thursday. Iran has maintained pre-war oil export levels since February — 3 in 4 tankers carrying crude do so without broadcasting their location. US Naval Forces Central Command announced it will board and seize any sanctioned vessel, anywhere in the world.
