@@ -4,12 +4,10 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useEffect, useMemo, useRef } from 'react';
-import { AccessibilityInfo, ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { AccessibilityInfo, ActivityIndicator, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 
-// Timeline dot sits centered on the entry line. Sized so the marker reads as
-// a station on small screens without crowding the body text.
 const TIMELINE_DOT = 7;
 const TIMELINE_LINE = 1.5;
 
@@ -19,12 +17,9 @@ import { makeMarkdownStyles } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
 import type { ContextBrief, TimelineEntry } from '../types';
 import { renderBlocks } from './blocks';
+import { Text } from './primitives';
 import { SheetLayout } from './SheetLayout';
 import { useMaxSheetHeight } from './SheetPrimitives';
-
-// ---------------------------------------------------------------------------
-// Main sheet
-// ---------------------------------------------------------------------------
 
 interface ContextSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
@@ -34,8 +29,6 @@ interface ContextSheetProps {
   bottomInset: number;
   renderBackdrop: React.FC<BottomSheetBackdropProps>;
   onDismiss: () => void;
-  /** Chip taps inside LocationsBlock bubble up here; parent decides how to
-   *  present the country sheet (typically `countrySheetRef.present()`). */
   onCountryPress?: (payload: { countryName: string; data: CountryData | null }) => void;
 }
 
@@ -49,7 +42,7 @@ export const ContextSheet = memo(function ContextSheet({
   onDismiss,
   onCountryPress,
 }: ContextSheetProps) {
-  const { colors, font, typography, textStyles, sheetStyles } = useTheme();
+  const { colors, font, typography, sheetStyles } = useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
 
   const timeline = brief?.timeline ?? [];
@@ -98,9 +91,11 @@ export const ContextSheet = memo(function ContextSheet({
       return (
         <View key={i}>
           {entry.heading && (
-            <Text style={[styles.eduHeading, textStyles.smallCapsXs]}>{entry.heading}</Text>
+            <Text variant="labelXs" style={styles.eduHeading}>
+              {entry.heading}
+            </Text>
           )}
-          <Text selectable style={[textStyles.body, styles.bodySpacing]}>
+          <Text selectable variant="body" style={styles.bodySpacing}>
             {entry.body}
           </Text>
           {blocksNode}
@@ -119,36 +114,26 @@ export const ContextSheet = memo(function ContextSheet({
         <View style={styles.entryContent}>
           <Text
             selectable
-            style={[
-              styles.entryYear,
-              {
-                ...font.semiBold,
-                fontSize: typography.sizeXs,
-                color: colors.accent,
-                letterSpacing: typography.trackingCaps,
-                fontVariant: ['oldstyle-nums'],
-              },
-            ]}
+            variant="labelXs"
+            tone="accent"
+            style={[styles.entryYear, styles.yearNum]}
           >
             {entry.year}
           </Text>
           {entry.heading ? (
             <Text
               selectable
+              variant="bodyEmphasis"
+              tone="emphasis"
               style={[
                 styles.entryHeading,
-                {
-                  ...font.semiBold,
-                  fontSize: typography.sizeBase,
-                  lineHeight: typography.sizeBase * typography.leadingHeading,
-                  color: colors.textEmphasis,
-                },
+                { lineHeight: typography.sizeBase * typography.leadingHeading },
               ]}
             >
               {entry.heading}
             </Text>
           ) : null}
-          <Text selectable style={textStyles.body}>
+          <Text selectable variant="body">
             {entry.body}
           </Text>
           {blocksNode}
@@ -169,32 +154,16 @@ export const ContextSheet = memo(function ContextSheet({
       <BottomSheetScrollView
         contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.xxl }]}
       >
-        {/* ── Thread title ── */}
-        {/* The editorial name of this brief. Reads as the sheet's title — tells
-         *  the reader what arc they're entering before any content. */}
         {hasThread && (
-          <Text
-            selectable
-            style={[
-              styles.threadTitle,
-              {
-                ...font.bold,
-                fontSize: typography.sizeLg,
-                lineHeight: typography.sizeLg * typography.leadingHeading,
-                color: colors.textEmphasis,
-              },
-            ]}
-          >
+          <Text selectable variant="title" tone="emphasis" style={[styles.threadTitle, font.bold]}>
             {threadLabel}
           </Text>
         )}
 
-        {/* Loader — brief not yet returned. */}
         {loading && !brief && hasThread && (
           <ActivityIndicator color={colors.accent} style={styles.loader} />
         )}
 
-        {/* ── Arc ── (no label — the blocks are visually self-announcing) */}
         {hasSpanning &&
           renderBlocks(spanningBlocks, {
             mdStyles,
@@ -204,7 +173,6 @@ export const ContextSheet = memo(function ContextSheet({
             onCountryPress,
           })}
 
-        {/* ── Timeline ── (no label — the dot-on-rule pattern is its own visual header) */}
         {timeline.length > 0 && (
           <View style={hasSpanning ? styles.timelineAfterArc : undefined}>
             {timeline.map((entry, i, arr) => (
@@ -232,7 +200,6 @@ const styles = StyleSheet.create({
   loader: {
     marginTop: SPACING.lg,
   },
-  /* ── Timeline ── */
   entry: {
     flexDirection: 'row',
     paddingLeft: SPACING.sm,
@@ -254,6 +221,9 @@ const styles = StyleSheet.create({
   },
   entryYear: {
     marginBottom: SPACING.xxs,
+  },
+  yearNum: {
+    fontVariant: ['oldstyle-nums'],
   },
   entryHeading: {
     marginBottom: SPACING.xs,

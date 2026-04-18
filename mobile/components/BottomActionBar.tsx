@@ -1,6 +1,11 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { LAYOUT, MAX_FONT_SCALE, PRESSED_STYLE, RADIUS, SPACING } from '../constants/theme';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { PRESSED_STYLE, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { Text } from './primitives';
+
+// Tighter pills — visible footprint ~22pt tall (vs ~32pt) so the globe has
+// more room. Tap target stays ≥48pt thanks to the inflated hitSlop below.
+const PILL_HIT_SLOP = 16;
 
 interface BottomActionBarProps {
   bottomInset: number;
@@ -21,11 +26,11 @@ function ActionPill({
   onPress: () => void;
   accessibilityLabel: string;
 }) {
-  const { colors, font, typography } = useTheme();
+  const { colors } = useTheme();
   return (
     <Pressable
       onPress={onPress}
-      hitSlop={LAYOUT.hitSlop}
+      hitSlop={PILL_HIT_SLOP}
       style={({ pressed }) => [
         styles.actionPill,
         { backgroundColor: colors.pillBg, borderColor: colors.rule },
@@ -34,15 +39,7 @@ function ActionPill({
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
     >
-      <Text
-        style={{
-          ...font.smallCaps,
-          fontSize: typography.sizeXs,
-          letterSpacing: typography.trackingCaps,
-          color: colors.textEmphasis,
-        }}
-        maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
-      >
+      <Text variant="labelXs" tone="emphasis">
         {label}
       </Text>
     </Pressable>
@@ -109,8 +106,8 @@ const styles = StyleSheet.create({
     gap: SPACING.sm,
   },
   actionPill: {
-    paddingVertical: SPACING.sm,
-    paddingHorizontal: SPACING.md,
+    paddingVertical: SPACING.xs,
+    paddingHorizontal: SPACING.smPlus,
     borderRadius: RADIUS.floating,
     borderWidth: StyleSheet.hairlineWidth,
     alignItems: 'center',

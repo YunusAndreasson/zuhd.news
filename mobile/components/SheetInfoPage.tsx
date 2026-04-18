@@ -1,9 +1,8 @@
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
-import { useTheme } from '../hooks/useTheme';
 import { useOpenLink } from '../lib/open-link';
-import { HapticPressable } from './HapticPressable';
+import { Pressable, Text } from './primitives';
 
 export interface InfoSection {
   heading?: string;
@@ -20,7 +19,6 @@ interface SheetInfoPageProps {
 
 /** Prose-heavy sheet page: optional heading, body, optional link per section. */
 export function SheetInfoPage({ sections }: SheetInfoPageProps) {
-  const { colors, font, typography, textStyles } = useTheme();
   const openLink = useOpenLink();
   return (
     <>
@@ -31,59 +29,39 @@ export function SheetInfoPage({ sections }: SheetInfoPageProps) {
           style={i > 0 ? styles.section : undefined}
         >
           {section.heading && (
-            <Text style={[styles.heading, textStyles.smallCaps]}>{section.heading}</Text>
+            <Text variant="labelSm" style={styles.heading}>
+              {section.heading}
+            </Text>
           )}
           {section.body.length > 0 && (
-            <Text
-              selectable
-              style={{
-                ...font.regular,
-                fontSize: typography.sizeSm,
-                lineHeight: typography.sizeSm * typography.leadingBody,
-                color: section.heading ? colors.text : colors.accent,
-              }}
-            >
+            <Text selectable variant="caption" tone={section.heading ? 'default' : 'accent'}>
               {section.body}
             </Text>
           )}
           {section.link && (
-            <HapticPressable
+            <Pressable
               onPress={() => section.link?.url && openLink(section.link.url)}
               style={styles.link}
               accessibilityRole="link"
               accessibilityLabel={section.link.label}
             >
-              <Text
-                style={{
-                  ...font.semiBold,
-                  fontSize: typography.sizeSm,
-                  color: colors.accent,
-                  textDecorationLine: 'underline',
-                }}
-              >
+              <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
                 {section.link.label}
               </Text>
-            </HapticPressable>
+            </Pressable>
           )}
           {section.links?.map((l) => (
-            <HapticPressable
+            <Pressable
               key={l.url}
               onPress={() => openLink(l.url)}
               style={styles.link}
               accessibilityRole="link"
               accessibilityLabel={l.label}
             >
-              <Text
-                style={{
-                  ...font.semiBold,
-                  fontSize: typography.sizeSm,
-                  color: colors.accent,
-                  textDecorationLine: 'underline',
-                }}
-              >
+              <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
                 {l.label}
               </Text>
-            </HapticPressable>
+            </Pressable>
           ))}
         </Animated.View>
       ))}
@@ -100,5 +78,8 @@ const styles = StyleSheet.create({
   },
   link: {
     marginTop: SPACING.xs,
+  },
+  linkText: {
+    textDecorationLine: 'underline',
   },
 });

@@ -1,15 +1,13 @@
 import { useMemo, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
-import { useTheme } from '../hooks/useTheme';
 import { useOpenLink } from '../lib/open-link';
 import type { Article } from '../types';
-import { HapticPressable } from './HapticPressable';
+import { Pressable, Text } from './primitives';
 
 // Copy lives with the component; the About page is one-of-a-kind and doesn't
-// reuse the generic InfoSection schema. Keeping it here keeps the visual
-// hierarchy and the text it shapes in the same file.
+// reuse the generic InfoSection schema.
 
 const LEAD = 'Zuhd \u2014 the discipline of doing without what you do not need.';
 
@@ -19,15 +17,11 @@ const MANIFESTO = [
   'Most systems that process news today are optimized for engagement, not understanding. zuhd.news is built on a different set of values: zuhd, tabayyun, isnad, adalah, haqq. The work is automated; the alignment is not.',
 ];
 
-// The article format — narrative-ordered (sequence carries meaning), so no
-// staircase sort. Rendered with the same quiet vertical typography as the
-// subtractions list below, forming a matched pair of mini-declaratives.
 const WHATS = ['What happened.', 'Why it matters.', 'What comes next.', 'Then stop.'];
 
 const STANCE =
   'Where a story is told from determines who is treated as a person and who as a statistic. People who bear power\u2019s consequences are the subject, not the background.';
 
-// Ordered shortest-to-longest so the list renders as a visual staircase.
 const SUBTRACTIONS = [
   'No ads.',
   'No tracking.',
@@ -87,13 +81,8 @@ const PRINCIPLES: { term: string; gloss: string }[] = [
   { term: 'haqq', gloss: 'Truth is published without regard to power.' },
 ];
 
-// Source names we can drop from the surfaced list — the aggregator feed
-// ("Hacker News") isn't really a primary voice in the zuhd sense.
 const SUPPRESS_SOURCES = new Set(['Hacker News']);
 
-/** Unique outlet names across the current feed, sorted by how often they
- *  surfaced. Empty until the feed is loaded — the caller decides how to
- *  handle that (we just omit the dynamic line). */
 function aggregateSources(articles: Article[]): string[] {
   const freq = new Map<string, number>();
   for (const a of articles) {
@@ -107,7 +96,6 @@ function aggregateSources(articles: Article[]): string[] {
     .map(([name]) => name);
 }
 
-/** Oxford-comma join: [A, B, C] -> "A, B, and C". */
 function prose(list: string[]): string {
   if (list.length === 0) return '';
   if (list.length === 1) return list[0] ?? '';
@@ -120,19 +108,7 @@ interface SheetAboutPageProps {
   articles: Article[];
 }
 
-/** Full About page with designed visual hierarchy:
- *  1. Lead (sizeLg, accent) — the hook
- *  2. Supporting statements (sizeBase, text) — the stance
- *  3. Subtraction list (sizeSm, textSecondary) — quiet rhythm of absences
- *  4. Architectural sections (smallCaps heading + body) — how it works
- *  5. Principles (italic-accent term above regular gloss) — the editorial constitution
- *  6. Closer (italic, textSecondary) — two attributions, one idea
- *
- *  The `sources` section lists actual outlets from the current feed (live),
- *  and the `context` section keeps its 12 data-provider links collapsed
- *  behind a toggle so the page doesn't dump a link wall on arrival. */
 export function SheetAboutPage({ articles }: SheetAboutPageProps) {
-  const { colors, font, typography, textStyles } = useTheme();
   const openLink = useOpenLink();
   const [providersOpen, setProvidersOpen] = useState(false);
 
@@ -143,32 +119,17 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
   let blockIndex = 0;
   const enter = () => FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(blockIndex++));
 
-  const body = {
-    ...font.regular,
-    fontSize: typography.sizeBase,
-    lineHeight: typography.sizeBase * typography.leadingBody,
-    color: colors.text,
-  };
-
   return (
     <>
       <Animated.View entering={enter()}>
-        <Text
-          selectable
-          style={{
-            ...font.regular,
-            fontSize: typography.sizeLg,
-            lineHeight: typography.sizeLg * typography.leadingHeading,
-            color: colors.accent,
-          }}
-        >
+        <Text selectable variant="lead">
           {LEAD}
         </Text>
       </Animated.View>
 
       {MANIFESTO.map((line) => (
         <Animated.View key={line} entering={enter()} style={styles.block}>
-          <Text selectable style={body}>
+          <Text selectable variant="body">
             {line}
           </Text>
         </Animated.View>
@@ -176,72 +137,45 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
 
       <Animated.View entering={enter()} style={styles.listBlock}>
         {WHATS.map((item) => (
-          <Text
-            key={item}
-            selectable
-            style={{
-              ...font.regular,
-              fontSize: typography.sizeSm,
-              lineHeight: typography.sizeSm * typography.leadingBody,
-              color: colors.textSecondary,
-            }}
-          >
+          <Text key={item} selectable variant="caption">
             {item}
           </Text>
         ))}
       </Animated.View>
 
       <Animated.View entering={enter()} style={styles.block}>
-        <Text selectable style={body}>
+        <Text selectable variant="body">
           {STANCE}
         </Text>
       </Animated.View>
 
       <Animated.View entering={enter()} style={styles.listBlock}>
         {SUBTRACTIONS.map((item) => (
-          <Text
-            key={item}
-            selectable
-            style={{
-              ...font.regular,
-              fontSize: typography.sizeSm,
-              lineHeight: typography.sizeSm * typography.leadingBody,
-              color: colors.textSecondary,
-            }}
-          >
+          <Text key={item} selectable variant="caption">
             {item}
           </Text>
         ))}
       </Animated.View>
 
       <Animated.View entering={enter()} style={styles.block}>
-        <Text selectable style={body}>
+        <Text selectable variant="body">
           {NEWSROOM_LINE}
         </Text>
       </Animated.View>
 
       <Animated.View entering={enter()} style={styles.block}>
-        <Text selectable style={body}>
+        <Text selectable variant="body">
           {FLOW_LINE}
         </Text>
       </Animated.View>
 
       <Animated.View entering={enter()} style={styles.section}>
-        <Text style={textStyles.smallCaps}>sources</Text>
-        <Text selectable style={[body, styles.sectionBody]}>
+        <Text variant="labelSm">sources</Text>
+        <Text selectable variant="body" style={styles.sectionBody}>
           {SOURCES_BODY}
         </Text>
         {visibleSources.length > 0 && (
-          <Text
-            selectable
-            style={{
-              ...font.regular,
-              fontSize: typography.sizeSm,
-              lineHeight: typography.sizeSm * typography.leadingBody,
-              color: colors.textSecondary,
-              marginTop: SPACING.sm,
-            }}
-          >
+          <Text selectable variant="caption" style={{ marginTop: SPACING.sm }}>
             Recent stories draw on {prose(visibleSources)}
             {extraCount > 0 ? `, and ${extraCount} others` : ''}.
           </Text>
@@ -249,28 +183,21 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
       </Animated.View>
 
       <Animated.View entering={enter()} style={styles.section}>
-        <Text style={textStyles.smallCaps}>context</Text>
-        <Text selectable style={[body, styles.sectionBody]}>
+        <Text variant="labelSm">context</Text>
+        <Text selectable variant="body" style={styles.sectionBody}>
           {CONTEXT_BODY}
         </Text>
-        <HapticPressable
+        <Pressable
           onPress={() => setProvidersOpen((v) => !v)}
           style={styles.discloseToggle}
           accessibilityRole="button"
           accessibilityLabel={providersOpen ? 'Hide data providers' : 'View data providers'}
           accessibilityState={{ expanded: providersOpen }}
         >
-          <Text
-            style={{
-              ...font.smallCaps,
-              fontSize: typography.sizeXs,
-              letterSpacing: typography.trackingCaps,
-              color: colors.accent,
-            }}
-          >
+          <Text variant="labelXs" tone="accent">
             {providersOpen ? 'hide data providers' : 'view data providers'}
           </Text>
-        </HapticPressable>
+        </Pressable>
         {providersOpen && (
           <View style={styles.linkList}>
             {DATA_SOURCES.map((l, idx) => (
@@ -278,23 +205,16 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
                 key={l.url}
                 entering={FadeInDown.duration(ANIMATION.fast).delay(staggerDelay(idx))}
               >
-                <HapticPressable
+                <Pressable
                   onPress={() => openLink(l.url)}
                   style={styles.link}
                   accessibilityRole="link"
                   accessibilityLabel={l.label}
                 >
-                  <Text
-                    style={{
-                      ...font.semiBold,
-                      fontSize: typography.sizeSm,
-                      color: colors.accent,
-                      textDecorationLine: 'underline',
-                    }}
-                  >
+                  <Text variant="captionEmphasis" tone="accent" style={styles.linkText}>
                     {l.label}
                   </Text>
-                </HapticPressable>
+                </Pressable>
               </Animated.View>
             ))}
           </View>
@@ -302,28 +222,14 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
       </Animated.View>
 
       <Animated.View entering={enter()} style={styles.section}>
-        <Text style={textStyles.smallCaps}>principles</Text>
+        <Text variant="labelSm">principles</Text>
         <View style={styles.principleList}>
           {PRINCIPLES.map((p, idx) => (
             <View key={p.term} style={idx > 0 ? styles.principle : undefined}>
-              <Text
-                selectable
-                style={{
-                  ...font.italic,
-                  fontSize: typography.sizeBase,
-                  lineHeight: typography.sizeBase * typography.leadingHeading,
-                  color: colors.accent,
-                }}
-              >
+              <Text selectable variant="bodyItalic" tone="accent" style={styles.term}>
                 {p.term}
               </Text>
-              <Text
-                selectable
-                style={{
-                  ...body,
-                  marginTop: SPACING.xxs,
-                }}
-              >
+              <Text selectable variant="body" style={{ marginTop: SPACING.xxs }}>
                 {p.gloss}
               </Text>
             </View>
@@ -354,6 +260,9 @@ const styles = StyleSheet.create({
   link: {
     marginTop: SPACING.xs,
   },
+  linkText: {
+    textDecorationLine: 'underline',
+  },
   discloseToggle: {
     marginTop: SPACING.sm,
     alignSelf: 'flex-start',
@@ -364,7 +273,8 @@ const styles = StyleSheet.create({
   principle: {
     marginTop: SPACING.md,
   },
-  closer: {
-    marginTop: SPACING.xl,
+  term: {
+    // bodyItalic default lineHeight is leadingBody (1.55). Term needs tighter
+    // leading matching the headings above it.
   },
 });

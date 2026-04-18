@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import Animated, {
   runOnJS,
   useAnimatedStyle,
@@ -8,25 +8,25 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import {
-  ANIMATION,
-  EASING,
-  LAYOUT,
-  MAX_FONT_SCALE,
-  PRESSED_STYLE,
-  RADIUS,
-  SPACING,
-} from '../constants/theme';
+import { ANIMATION, EASING, HIT_SLOP, PRESSED_STYLE, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
+import { Text } from './primitives';
 
 type ToastPosition = 'top' | 'bottom';
 
 export interface ToastRef {
-  show: (message: string, onPress?: () => void, position?: ToastPosition) => void;
+  show: (
+    message: string,
+    onPress?: () => void,
+    position?: ToastPosition,
+    durationMs?: number,
+  ) => void;
 }
 
 // Actionable toasts linger — user needs time to decide to tap. Passive
 // acknowledgements ("Saved", "Removed") clear quickly to stay out of the way.
+// Callers that need a custom dwell (e.g. educational copy that takes longer
+// to read) pass `durationMs` explicitly.
 const TOAST_VISIBLE_ACTIONABLE_MS = 4000;
 const TOAST_VISIBLE_PASSIVE_MS = 2000;
 const TOAST_SLIDE_OFFSET = SPACING.xxl;
@@ -36,7 +36,7 @@ const EASE_OUT = { duration: ANIMATION.normal, easing: EASING.out };
 const offsetFor = (p: ToastPosition) => (p === 'top' ? -TOAST_SLIDE_OFFSET : TOAST_SLIDE_OFFSET);
 
 export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> }) {
-  const { colors, font, typography } = useTheme();
+  const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const [message, setMessage] = useState('');
   const [pos, setPos] = useState<ToastPosition>('bottom');
@@ -70,7 +70,12 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
   }, [opacity, translateY, reduceMotion]);
 
   useImperativeHandle(ref, () => ({
-    show: (msg: string, onPress?: () => void, position: ToastPosition = 'bottom') => {
+    show: (
+      msg: string,
+      onPress?: () => void,
+      position: ToastPosition = 'bottom',
+      durationMs?: number,
+    ) => {
       if (timerRef.current) clearTimeout(timerRef.current);
       setMessage(msg);
       setPos(position);
@@ -88,7 +93,8 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
         translateY.value = withTiming(0, EASE_OUT);
       }
 
-      const visibleMs = onPress ? TOAST_VISIBLE_ACTIONABLE_MS : TOAST_VISIBLE_PASSIVE_MS;
+      const visibleMs =
+        durationMs ?? (onPress ? TOAST_VISIBLE_ACTIONABLE_MS : TOAST_VISIBLE_PASSIVE_MS);
       timerRef.current = setTimeout(dismiss, visibleMs);
     },
   }));
@@ -114,7 +120,7 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
     >
       <Pressable
         onPress={handlePress}
-        hitSlop={LAYOUT.hitSlop}
+        hitSlop={HIT_SLOP}
         style={({ pressed }) => [
           styles.pill,
           { backgroundColor: colors.toastBg },
@@ -123,12 +129,7 @@ export const Toast = memo(function Toast({ ref }: { ref?: React.Ref<ToastRef> })
         accessibilityRole="alert"
         accessibilityLabel={message}
       >
-        <Text
-          style={{ ...font.semiBold, fontSize: typography.sizeSm, color: colors.text }}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
-        >
-          {message}
-        </Text>
+        <Text variant="captionEmphasis">{message}</Text>
       </Pressable>
     </Animated.View>
   );

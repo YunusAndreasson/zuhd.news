@@ -4,28 +4,26 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useMemo } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { Text as RNText, StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, CATEGORIES, MAX_FONT_SCALE, SPACING, staggerDelay } from '../constants/theme';
+import { ANIMATION, CATEGORIES, SPACING, staggerDelay } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { Article, Category, Chokepoint, CompareRow, VesselField } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { CompareBlock } from './blocks/CompareBlock';
 import { SourceCaption } from './blocks/SourceCaption';
 import { TrendBlock } from './blocks/TrendBlock';
+import { Text } from './primitives';
 import { SheetLayout } from './SheetLayout';
 import { useMaxSheetHeight } from './SheetPrimitives';
 
 interface ChokepointSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
   chokepoint: Chokepoint | null;
-  /** Flat feed across all categories — used to surface articles tagged to
-   *  this chokepoint via `topicTags ∩ article.concepts/title` overlap. */
   articles: Article[];
   bottomInset: number;
   renderBackdrop: React.FC<BottomSheetBackdropProps>;
   onDismiss: () => void;
-  /** Tapping a related-article row asks the parent to scroll the feed to it. */
   onArticlePress?: (slug: string, category: Category) => void;
 }
 
@@ -48,8 +46,6 @@ function formatDelta(delta: number): { text: string; tone: CompareRow['tone'] } 
   const pct = Math.round(delta * 100);
   if (pct === 0) return { text: 'steady', tone: 'neutral' };
   const sign = pct > 0 ? '+' : '';
-  // Tone is magnitude-only — a dip isn't universally bad (Panama drought
-  // rationing was a good-news story), so we avoid editorialising direction.
   const tone: CompareRow['tone'] = Math.abs(pct) > 15 ? 'unfavorable' : 'neutral';
   return { text: `${sign}${pct}% vs 90d`, tone };
 }
@@ -82,7 +78,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
   onDismiss,
   onArticlePress,
 }: ChokepointSheetProps) {
-  const { colors, font, typography, textStyles, sheetStyles } = useTheme();
+  const { colors, font, sheetStyles } = useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
 
   const related = useMemo(
@@ -96,7 +92,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
       const current = chokepoint.last7Avg[v.field];
       const baseline = chokepoint.baseline90Avg[v.field];
       if (current == null || baseline == null) return [];
-      if (baseline < 0.5 && current < 0.5) return []; // vessel class absent here
+      if (baseline < 0.5 && current < 0.5) return [];
       const delta = chokepoint.delta7vs90[v.field] ?? 0;
       const { text: deltaText, tone } = formatDelta(delta);
       return [
@@ -118,7 +114,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
   const current = (primary && chokepoint?.last7Avg[primary]) ?? 0;
   const delta = (primary && chokepoint?.delta7vs90[primary]) ?? 0;
   const { text: deltaText, tone } = formatDelta(delta);
-  const deltaColor = tone === 'unfavorable' ? colors.accent : colors.textSecondary;
+  const deltaTone = tone === 'unfavorable' ? 'accent' : 'secondary';
 
   return (
     <SheetLayout
@@ -135,43 +131,19 @@ export const ChokepointSheet = memo(function ChokepointSheet({
         {chokepoint && (
           <>
             <Animated.View entering={enter()}>
-              <Text
-                selectable
-                style={{
-                  ...font.bold,
-                  fontSize: typography.sizeLg,
-                  lineHeight: typography.sizeLg * typography.leadingHeading,
-                  color: colors.textEmphasis,
-                }}
-                maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
-              >
+              <Text selectable variant="title" tone="emphasis" style={font.bold}>
                 {formatCount(current)}{' '}
-                <Text style={{ ...font.regular, color: colors.textSecondary }}>
+                <RNText style={{ ...font.regular, color: colors.textSecondary }}>
                   {primaryLabel}/day
-                </Text>
+                </RNText>
               </Text>
-              <Text
-                style={{
-                  ...font.semiBold,
-                  fontSize: typography.sizeSm,
-                  color: deltaColor,
-                  marginTop: SPACING.xxs,
-                }}
-              >
+              <Text variant="captionEmphasis" tone={deltaTone} style={styles.delta}>
                 {deltaText}
               </Text>
             </Animated.View>
 
             <Animated.View entering={enter()} style={styles.blurb}>
-              <Text
-                selectable
-                style={{
-                  ...font.regular,
-                  fontSize: typography.sizeBase,
-                  lineHeight: typography.sizeBase * typography.leadingBody,
-                  color: colors.text,
-                }}
-              >
+              <Text selectable variant="body">
                 {chokepoint.blurb}
               </Text>
             </Animated.View>
@@ -195,12 +167,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
 
             {related.length > 0 && onArticlePress && (
               <Animated.View entering={enter()} style={styles.section}>
-                <Text
-                  style={[
-                    textStyles.smallCapsXs,
-                    { color: colors.textSecondary, marginBottom: SPACING.xs },
-                  ]}
-                >
+                <Text variant="labelXs" style={styles.relatedHeading}>
                   related stories
                 </Text>
                 {related.map((a) => (
@@ -233,5 +200,11 @@ const styles = StyleSheet.create({
   },
   section: {
     marginTop: SPACING.lg,
+  },
+  delta: {
+    marginTop: SPACING.xxs,
+  },
+  relatedHeading: {
+    marginBottom: SPACING.xs,
   },
 });

@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import {
   type BottomSheetBackdropProps,
   type BottomSheetModal,
@@ -7,7 +6,14 @@ import {
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { AccessibilityInfo, BackHandler, StyleSheet, Switch, Text, View } from 'react-native';
+import {
+  AccessibilityInfo,
+  BackHandler,
+  Text as RNText,
+  StyleSheet,
+  Switch,
+  View,
+} from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { FadeInDown, runOnJS, useReducedMotion } from 'react-native-reanimated';
 import { IS_ANDROID } from '../constants/platform';
@@ -17,8 +23,6 @@ import {
   baseFontSize,
   type FontFamily,
   type FontSize,
-  ICON,
-  MAX_FONT_SCALE,
   type Preferences,
   SPACING,
   staggerDelay,
@@ -28,7 +32,7 @@ import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { type PreferencesApi, usePreferences, useTheme } from '../hooks/useTheme';
 import { hapticTick } from '../lib/haptics';
 import type { Article, Category } from '../types';
-import { HapticPressable } from './HapticPressable';
+import { Icon, Pressable, Text } from './primitives';
 import { SheetAboutPage } from './SheetAboutPage';
 import { SheetBookmarksPage } from './SheetBookmarksPage';
 import { SheetHandle } from './SheetHandle';
@@ -100,10 +104,6 @@ const APPEARANCE_OPTIONS: { value: AppearanceMode; label: string }[] = [
   { value: 'light', label: 'light' },
 ];
 
-/**
- * One entry per setting — options plus the get/set bridge to preferences.
- * Keeps the metadata and the wiring in one place so render code stays trivial.
- */
 type SettingKey = 'size' | 'font' | 'appearance' | 'haptics' | 'notifications';
 
 interface SettingEntry {
@@ -111,13 +111,10 @@ interface SettingEntry {
   label: string;
   get: (p: Preferences) => string;
   set: (api: PreferencesApi, v: string) => void;
-  /** Drill-in detail options. Omitted on `toggle` entries. */
   options?: readonly { value: string; label: string }[];
   /** Per-option absolute font size for the detail-page label — used for size previews. */
   labelFontSize?: (v: string) => number;
-  /** Render as inline switch in the settings index rather than drilling into a detail page. */
   toggle?: boolean;
-  /** Accessibility hint — used for toggles where no drill-in explanation exists. */
   hint?: string;
 }
 
@@ -165,12 +162,7 @@ type PageKey = InfoKey | 'about' | 'settings' | SettingKey | 'search' | 'saved';
 
 const isInfoKey = (k: PageKey): k is InfoKey => k in INFO_PAGES;
 
-/** Pages that need a fixed tall snap (keyboard or long scrolling list). */
 const TALL_PAGES: ReadonlySet<PageKey> = new Set(['search', 'saved']);
-
-// ---------------------------------------------------------------------------
-// Navigation row — shared by root menu and settings index
-// ---------------------------------------------------------------------------
 
 function NavRow({
   label,
@@ -182,13 +174,12 @@ function NavRow({
   label: string;
   value?: string;
   hint?: string;
-  /** Suppresses the top hairline separator on the first row in a stack. */
   first?: boolean;
   onPress: () => void;
 }) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors } = useTheme();
   return (
-    <HapticPressable
+    <Pressable
       onPress={onPress}
       style={[
         styles.row,
@@ -198,22 +189,14 @@ function NavRow({
       accessibilityLabel={value ? `${label}, currently ${value}` : label}
       accessibilityHint={hint}
     >
-      <Text style={[textStyles.smallCapsBase, { color: colors.text }]}>{label}</Text>
+      <Text variant="label" tone="default">
+        {label}
+      </Text>
       <View style={styles.rowRight}>
-        {value && (
-          <Text
-            style={{
-              ...font.regular,
-              fontSize: typography.sizeSm,
-              color: colors.textSecondary,
-            }}
-          >
-            {value}
-          </Text>
-        )}
-        <Ionicons name="chevron-forward" size={ICON.sm} color={colors.textSecondary} />
+        {value && <Text variant="caption">{value}</Text>}
+        <Icon name="chevron-forward" size="sm" tone="secondary" />
       </View>
-    </HapticPressable>
+    </Pressable>
   );
 }
 
@@ -227,11 +210,10 @@ function ToggleRow({
   label: string;
   value: boolean;
   hint?: string;
-  /** Suppresses the top hairline separator on the first row in a stack. */
   first?: boolean;
   onChange: (v: boolean) => void;
 }) {
-  const { colors, textStyles } = useTheme();
+  const { colors } = useTheme();
   const handleChange = useCallback(
     (v: boolean) => {
       hapticTick();
@@ -248,7 +230,9 @@ function ToggleRow({
       accessible
       accessibilityRole="switch"
     >
-      <Text style={[textStyles.smallCapsBase, { color: colors.text }]}>{label}</Text>
+      <Text variant="label" tone="default">
+        {label}
+      </Text>
       <Switch
         value={value}
         onValueChange={handleChange}
@@ -261,9 +245,7 @@ function ToggleRow({
   );
 }
 
-/** Inline radiogroup — label + horizontal options on one settings row.
- *  Replaces the drill-in + detail-page flow for single-select settings,
- *  matching native iOS/Android grouped-settings expectations. */
+/** Inline radiogroup — label + horizontal options on one settings row. */
 function InlineOptionRow<T extends string>({
   label,
   options,
@@ -280,7 +262,7 @@ function InlineOptionRow<T extends string>({
   labelFontSize?: (v: T) => number;
   first?: boolean;
 }) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors, typography } = useTheme();
   return (
     <View
       style={[
@@ -290,12 +272,18 @@ function InlineOptionRow<T extends string>({
       accessibilityRole="radiogroup"
       accessibilityLabel={label}
     >
-      <Text style={[textStyles.smallCapsBase, { color: colors.text }]}>{label}</Text>
+      <Text variant="label" tone="default">
+        {label}
+      </Text>
       <View style={styles.inlineOptions}>
         {options.map((opt) => {
           const active = opt.value === selected;
+          // Option pills in the size setting render at their *actual* target
+          // font size (live preview), so they need dynamic scaling not in a
+          // fixed variant. All other option pills use the default caption size.
+          const pillScale = labelFontSize ? labelFontSize(opt.value) / typography.sizeSm : 1;
           return (
-            <HapticPressable
+            <Pressable
               key={opt.value}
               onPress={() => {
                 if (!active) onSelect(opt.value);
@@ -308,15 +296,13 @@ function InlineOptionRow<T extends string>({
               accessibilityLabel={opt.label}
             >
               <Text
-                style={{
-                  ...font.semiBold,
-                  fontSize: labelFontSize?.(opt.value) ?? typography.sizeSm,
-                  color: active ? colors.textEmphasis : colors.textSecondary,
-                }}
+                variant="captionEmphasis"
+                tone={active ? 'emphasis' : 'secondary'}
+                scale={pillScale}
               >
                 {opt.label}
               </Text>
-            </HapticPressable>
+            </Pressable>
           );
         })}
       </View>
@@ -332,13 +318,12 @@ function ActionLink({
 }: {
   label: string;
   hint?: string;
-  /** Suppresses the top hairline separator on the first row in a stack. */
   first?: boolean;
   onPress: () => void;
 }) {
-  const { colors, font, typography } = useTheme();
+  const { colors } = useTheme();
   return (
-    <HapticPressable
+    <Pressable
       onPress={onPress}
       style={[
         styles.actionRow,
@@ -348,17 +333,11 @@ function ActionLink({
       accessibilityLabel={label}
       accessibilityHint={hint}
     >
-      <Text style={{ ...font.semiBold, fontSize: typography.sizeSm, color: colors.text }}>
-        {label}
-      </Text>
-      <Ionicons name="chevron-forward" size={ICON.sm} color={colors.textSecondary} />
-    </HapticPressable>
+      <Text variant="captionEmphasis">{label}</Text>
+      <Icon name="chevron-forward" size="sm" tone="secondary" />
+    </Pressable>
   );
 }
-
-// ---------------------------------------------------------------------------
-// MenuSheet
-// ---------------------------------------------------------------------------
 
 interface MenuSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
@@ -379,7 +358,7 @@ export const MenuSheet = memo(function MenuSheet({
   onSelectArticle,
   onToast,
 }: MenuSheetProps) {
-  const { colors, font, typography, sheetStyles } = useTheme();
+  const { colors, font, sheetStyles } = useTheme();
   const prefsApi = usePreferences();
   const { preferences } = prefsApi;
   const nav = useSheetNavigation<PageKey>();
@@ -387,8 +366,6 @@ export const MenuSheet = memo(function MenuSheet({
   const [isOpen, setIsOpen] = useState(false);
   const reduceMotion = useReducedMotion();
 
-  // Wrap push/pop with VoiceOver/TalkBack announcements so users hear what
-  // page they're on after a transition — matches native navigation-stack UX.
   const navPush = useCallback(
     (page: PageKey) => {
       nav.push(page);
@@ -423,14 +400,10 @@ export const MenuSheet = memo(function MenuSheet({
     onDismiss();
   }, [onDismiss, nav.reset]);
 
-  // Track open state so the Android back handler registers only while visible.
   const handleSheetChange = useCallback((index: number) => {
     setIsOpen(index >= 0);
   }, []);
 
-  // Android hardware back: pop the nav stack first, dismiss only at root.
-  // Registered only while the sheet is open so we don't swallow back presses
-  // elsewhere in the app.
   useEffect(() => {
     if (!IS_ANDROID || !isOpen) return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -444,9 +417,6 @@ export const MenuSheet = memo(function MenuSheet({
     return () => sub.remove();
   }, [isOpen, nav.depth, navPop, sheetRef]);
 
-  // Swipe-back — horizontal pan on a sub-page pops one level.
-  // `activeOffsetX(20)` + `failOffsetY(±10)` prevents stealing the sheet's
-  // vertical pan-to-close or the inner ScrollView's vertical scroll.
   const swipeBack = Gesture.Pan()
     .enabled(nav.depth > 0)
     .activeOffsetX(20)
@@ -498,30 +468,17 @@ export const MenuSheet = memo(function MenuSheet({
     if (current === null) {
       return (
         <>
+          {/* Wordmark: composite with mixed weights/colors per glyph cluster.
+              Outer sets size + tracking via `wordmark` variant; inner fragments
+              override font family and color only — a one-off brand lockup. */}
           <Text
-            style={[styles.wordmark, { letterSpacing: typography.trackingWordmark }]}
-            maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
+            variant="wordmark"
             accessibilityRole="header"
             accessibilityLabel="zuhd.news"
+            style={styles.wordmark}
           >
-            <Text
-              style={{
-                ...font.bold,
-                fontSize: typography.sizeWordmark,
-                color: colors.textSecondary,
-              }}
-            >
-              zuhd
-            </Text>
-            <Text
-              style={{
-                ...font.regular,
-                fontSize: typography.sizeWordmark,
-                color: colors.accent,
-              }}
-            >
-              .news
-            </Text>
+            <RNText style={{ ...font.bold, color: colors.textSecondary }}>zuhd</RNText>
+            <RNText style={{ ...font.regular, color: colors.accent }}>.news</RNText>
           </Text>
 
           <NavRow
@@ -560,7 +517,6 @@ export const MenuSheet = memo(function MenuSheet({
     if (current === 'settings') {
       return SETTINGS.map((s, i) => {
         const currentValue = s.get(preferences);
-        // Skip stagger animation when the OS has Reduce Motion enabled.
         const entering = reduceMotion
           ? undefined
           : FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i));
@@ -607,14 +563,7 @@ export const MenuSheet = memo(function MenuSheet({
       return (
         <>
           <SheetAboutPage articles={allArticles} />
-          <Text
-            style={{
-              ...font.regular,
-              fontSize: typography.sizeXs,
-              color: colors.textSecondary,
-              marginTop: SPACING.lg,
-            }}
-          >
+          <Text variant="caption" style={{ marginTop: SPACING.lg }}>
             {APP_VERSION}
           </Text>
         </>
@@ -648,10 +597,7 @@ const styles = StyleSheet.create({
     height: StyleSheet.hairlineWidth,
     marginVertical: SPACING.sm,
   },
-  infoLinks: {
-    // Stacked vertically for easier tapping. Keeps lowercase styling to read
-    // as secondary / editorial links, distinct from the capitalised NavRows.
-  },
+  infoLinks: {},
   inlineOptionRow: {
     paddingVertical: SPACING.smPlus,
   },

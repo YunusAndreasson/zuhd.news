@@ -1,56 +1,41 @@
-import { Ionicons } from '@expo/vector-icons';
 import {
   type BottomSheetBackdropProps,
   type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { memo, useCallback, useMemo, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text as RNText, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, ICON, SPACING, staggerDelay } from '../constants/theme';
+import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { getMetricValue, getRanking, type MetricKey } from '../lib/country-ranking';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { CountryRankingView } from './CountryRankingView';
 import type { TapResult } from './globe/MiniGlobe';
-import { HapticPressable } from './HapticPressable';
+import { Icon, Pressable, Text } from './primitives';
 import { SheetHandle } from './SheetHandle';
 import { SheetLayout } from './SheetLayout';
 
-// Progressive disclosure: three headline rankings sit at rest; everything
-// else is one tap away. What matters is the ranking — currency names and
-// language lists are chrome, not information a reader comes here to find.
-
-// Every metric that can appear in the country sheet. Rows are sorted per
-// country by ascending rank at render time, so declared order here is only
-// the fallback for countries that have no rank on a given metric. The three
-// former hero tiles (population, gdp, gdpPerCapita) are now part of this
-// list — ranked like everything else.
 const MORE_METRICS: { key: MetricKey; label: string }[] = [
   { key: 'population', label: 'population' },
   { key: 'gdp', label: 'gdp' },
   { key: 'gdpPerCapita', label: 'gdp per capita' },
   { key: 'militaryPctGdp', label: 'military % of gdp' },
-  // Governance
   { key: 'democracyIndex', label: 'democracy (v-dem)' },
   { key: 'corruptionCpi', label: 'cpi (clean gov)' },
   { key: 'pressFreedomScore', label: 'press freedom' },
-  // Development & inequality
   { key: 'hdi', label: 'human development' },
   { key: 'giniIndex', label: 'gini inequality' },
   { key: 'literacyPct', label: 'adult literacy' },
   { key: 'youthUnemploymentPct', label: 'youth unemployment' },
-  // Ummah lens
   { key: 'refugeesHosted', label: 'refugees hosted' },
   { key: 'refugeesProduced', label: 'refugees produced' },
   { key: 'remittancePctGdp', label: 'remittances % of gdp' },
-  // Science / tech
   { key: 'rdPctGdp', label: 'r&d % of gdp' },
   { key: 'researchersPerMillion', label: 'researchers per million' },
   { key: 'scientificArticles', label: 'scientific articles / yr' },
   { key: 'highTechExportsPct', label: 'high-tech exports %' },
-  // Demography & environment
   { key: 'populationDensity', label: 'density' },
   { key: 'lifeExpectancy', label: 'life expectancy' },
   { key: 'fertilityRate', label: 'fertility rate' },
@@ -58,9 +43,10 @@ const MORE_METRICS: { key: MetricKey; label: string }[] = [
   { key: 'internetPct', label: 'internet' },
   { key: 'migrantPct', label: 'foreign-born' },
   { key: 'co2PerCapita', label: 'co₂ per capita' },
-  // Geography
   { key: 'area', label: 'area' },
 ];
+
+const GOLD_RANK_THRESHOLD = 5;
 
 function MoreRow({
   label,
@@ -73,48 +59,37 @@ function MoreRow({
   rank: number | null;
   onPress: () => void;
 }) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors, font, typography } = useTheme();
   if (!value) return null;
   const hasRank = typeof rank === 'number' && rank > 0;
+  const isTopRank = hasRank && rank <= GOLD_RANK_THRESHOLD;
+  // Rank column is a single-purpose typographic role (#N) — keep the per-cell
+  // style here rather than inventing a variant just for this.
+  const rankStyle = {
+    ...(isTopRank ? font.semiBold : font.regular),
+    fontSize: typography.sizeXs,
+    color: isTopRank ? colors.dome : colors.textSecondary,
+    letterSpacing: typography.trackingCaps,
+  };
   return (
-    <HapticPressable
-      onPress={onPress}
+    <Pressable
       haptic="tick"
+      onPress={onPress}
       style={[styles.moreRow, { borderBottomColor: colors.rule }]}
       accessibilityRole="button"
       accessibilityLabel={`${label}: ${value}${rank ? `, ranked ${rank}` : ''}`}
     >
-      {/* Fixed-width rank column on the left. Empty slot reserved for
-          rank-less rows so the label margin stays aligned. tabular-nums
-          keeps #1 and #144 the same visual width. */}
-      <Text
-        style={[
-          styles.rankCol,
-          {
-            ...font.semiBold,
-            fontSize: typography.sizeXs,
-            color: colors.dome,
-            letterSpacing: typography.trackingCaps,
-          },
-        ]}
-      >
-        {hasRank ? `#${rank}` : ''}
+      <RNText style={[styles.rankCol, rankStyle]}>{hasRank ? `#${rank}` : ''}</RNText>
+      <Text variant="labelSm" style={styles.moreLabel}>
+        {label}
       </Text>
-      <Text style={[textStyles.smallCaps, styles.moreLabel]}>{label}</Text>
       <View style={styles.moreRight}>
-        <Text
-          style={{
-            ...font.regular,
-            fontSize: typography.sizeSm,
-            color: colors.text,
-            fontVariant: ['oldstyle-nums'],
-          }}
-        >
+        <Text variant="caption" tone="default" style={styles.value}>
           {value}
         </Text>
-        <Ionicons name="chevron-forward" size={ICON.sm} color={colors.textSecondary} />
+        <Icon name="chevron-forward" size="sm" tone="secondary" />
       </View>
-    </HapticPressable>
+    </Pressable>
   );
 }
 
@@ -133,12 +108,27 @@ export const CountrySheet = memo(function CountrySheet({
   renderBackdrop,
   onDismiss,
 }: CountrySheetProps) {
-  const { colors, font, typography, textStyles, sheetStyles } = useTheme();
+  const { colors, sheetStyles } = useTheme();
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
   const snapProps = useSheetSnaps(activeRanking !== null);
   const flag = country?.data?.flag;
   const name = displayCountryName(country?.countryName ?? null);
   const onBackToCountry = useCallback(() => setActiveRanking(null), []);
+
+  const dateline = useMemo(() => {
+    if (!country?.data) return '';
+    const parts: string[] = [];
+    const capital = displayLocation(country.data.capital);
+    if (capital) parts.push(capital);
+    const currency = country.data.currencySymbol || country.data.currency;
+    if (currency) parts.push(currency);
+    if (country.data.languages) {
+      const first = country.data.languages.split(',')[0]?.trim();
+      if (first) parts.push(first);
+    }
+    if (country.localTime) parts.push(country.localTime);
+    return parts.join(' · ');
+  }, [country?.data, country?.localTime]);
 
   const CountryHandle = useCallback(
     () => (
@@ -148,17 +138,22 @@ export const CountrySheet = memo(function CountrySheet({
           flag || name ? (
             <View style={styles.handleStack}>
               {flag && (
-                <Text allowFontScaling={false} style={styles.handleFlag}>
+                <RNText allowFontScaling={false} style={styles.handleFlag}>
                   {flag}
+                </RNText>
+              )}
+              {name && <Text variant="label">{name}</Text>}
+              {dateline && (
+                <Text variant="labelXs" numberOfLines={1} style={styles.dateline}>
+                  {dateline}
                 </Text>
               )}
-              {name && <Text style={textStyles.sheetTitle}>{name}</Text>}
             </View>
           ) : undefined
         }
       />
     ),
-    [activeRanking, onBackToCountry, flag, name, textStyles.sheetTitle],
+    [activeRanking, onBackToCountry, flag, name, dateline],
   );
 
   const rankFor = useMemo(() => {
@@ -171,10 +166,6 @@ export const CountrySheet = memo(function CountrySheet({
     };
   }, [country?.countryName]);
 
-  // Per-country rank-sorted list. Rows with no value disappear entirely; rows
-  // with a rank rise to the top in ascending order (#1 first), so the sheet
-  // opens with what the country stands out for. Rank-less rows fall to the
-  // bottom and keep MORE_METRICS' declared order among themselves.
   const rankedRows = useMemo(() => {
     if (!country?.data) return [];
     const rows: { key: MetricKey; label: string; value: string; rank: number | null }[] = [];
@@ -191,23 +182,6 @@ export const CountrySheet = memo(function CountrySheet({
     });
     return rows;
   }, [country?.data, country?.countryName, rankFor]);
-
-  // Compact metadata list directly beneath the title. One row per fact so
-  // the reader can pick out what they want at a glance — capital, currency,
-  // languages, local time. Region is dropped (obvious from the tap).
-  const basics = useMemo(() => {
-    if (!country?.data) return [];
-    const rows: { label: string; value: string }[] = [];
-    const capital = displayLocation(country.data.capital);
-    if (capital) rows.push({ label: 'capital', value: capital });
-    if (country.data.currency) {
-      const sym = country.data.currencySymbol ? ` ${country.data.currencySymbol}` : '';
-      rows.push({ label: 'currency', value: `${country.data.currency}${sym}` });
-    }
-    if (country.data.languages) rows.push({ label: 'languages', value: country.data.languages });
-    if (country.localTime) rows.push({ label: 'local time', value: country.localTime });
-    return rows;
-  }, [country?.data, country?.localTime]);
 
   const handleDismiss = useCallback(() => {
     setActiveRanking(null);
@@ -237,52 +211,20 @@ export const CountrySheet = memo(function CountrySheet({
           ]}
         >
           {country?.data && (
-            <>
-              {/* Basics — caption block: small, muted, tight rhythm so the
-                  reader's eye slides past it toward the hero zone below. */}
-              {basics.length > 0 && (
-                <Animated.View
-                  entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(0))}
-                  style={styles.basics}
-                >
-                  {basics.map((b) => (
-                    <View key={b.label} style={styles.basicsRow}>
-                      <Text style={[textStyles.smallCapsXs, styles.basicsLabel]}>{b.label}</Text>
-                      <Text
-                        style={{
-                          ...font.regular,
-                          fontSize: typography.sizeXs,
-                          lineHeight: typography.sizeXs * typography.leadingBody,
-                          color: colors.textSecondary,
-                          flexShrink: 1,
-                          textAlign: 'right',
-                        }}
-                        numberOfLines={2}
-                      >
-                        {b.value}
-                      </Text>
-                    </View>
-                  ))}
-                </Animated.View>
-              )}
-
-              {/* Rankings list — always visible, sorted per-country by
-                  ascending rank so the country's strongest showings lead. */}
-              <Animated.View
-                entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(1))}
-                style={[styles.moreList, { borderTopColor: colors.rule }]}
-              >
-                {rankedRows.map((r) => (
-                  <MoreRow
-                    key={r.key}
-                    label={r.label}
-                    value={r.value}
-                    rank={r.rank}
-                    onPress={() => setActiveRanking(r.key)}
-                  />
-                ))}
-              </Animated.View>
-            </>
+            <Animated.View
+              entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(0))}
+              style={[styles.moreList, { borderTopColor: colors.rule }]}
+            >
+              {rankedRows.map((r) => (
+                <MoreRow
+                  key={r.key}
+                  label={r.label}
+                  value={r.value}
+                  rank={r.rank}
+                  onPress={() => setActiveRanking(r.key)}
+                />
+              ))}
+            </Animated.View>
           )}
         </BottomSheetScrollView>
       )}
@@ -300,18 +242,9 @@ const styles = StyleSheet.create({
     fontSize: 32,
     lineHeight: 36,
   },
-  basics: {
-    marginBottom: SPACING.md,
-  },
-  basicsRow: {
-    flexDirection: 'row',
-    alignItems: 'baseline',
-    justifyContent: 'space-between',
-    gap: SPACING.md,
-    paddingVertical: SPACING.xxs,
-  },
-  basicsLabel: {
-    minWidth: 80,
+  dateline: {
+    marginTop: SPACING.xxs,
+    textAlign: 'center',
   },
   moreList: {
     borderTopWidth: StyleSheet.hairlineWidth,
@@ -336,5 +269,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.md,
+  },
+  value: {
+    fontVariant: ['oldstyle-nums'],
   },
 });

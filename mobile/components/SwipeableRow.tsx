@@ -1,5 +1,5 @@
 import { memo, type ReactNode, useCallback } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   Extrapolation,
@@ -12,12 +12,10 @@ import Animated, {
 import { ANIMATION, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { hapticImpact, hapticTick } from '../lib/haptics';
+import { Text } from './primitives';
 
 const ACTION_WIDTH = 72;
 const SWIPE_THRESHOLD = -ACTION_WIDTH * 0.6;
-// First ratchet fires as the action label begins revealing — subtle tick
-// hints that the swipe is registering. Second fires at the commit threshold,
-// signalling "release to delete". Commit impact fires on onEnd as before.
 const RATCHET_START = -ACTION_WIDTH * 0.2;
 
 interface SwipeableRowProps {
@@ -31,10 +29,8 @@ export const SwipeableRow = memo(function SwipeableRow({
   onSwipeAction,
   actionLabel = 'remove',
 }: SwipeableRowProps) {
-  const { colors, font, typography } = useTheme();
+  const { colors } = useTheme();
   const translateX = useSharedValue(0);
-  // Ratchet flags live on the worklet side so haptic firing stays synchronous
-  // with the drag frame. Reset at gesture start so a second swipe re-arms.
   const ratchetStartFired = useSharedValue(false);
   const ratchetThresholdFired = useSharedValue(false);
 
@@ -44,8 +40,6 @@ export const SwipeableRow = memo(function SwipeableRow({
   }, [onSwipeAction]);
 
   const panGesture = Gesture.Pan()
-    // Action is right-to-left only — rightward drags should fail immediately
-    // so vertical/list scroll isn't blocked by accidental pan activation.
     .activeOffsetX([-12, 999])
     .failOffsetY([-10, 10])
     .onStart(() => {
@@ -65,8 +59,6 @@ export const SwipeableRow = memo(function SwipeableRow({
         ratchetThresholdFired.value = true;
         runOnJS(hapticTick)();
       }
-      // Swiping back past a ratchet re-arms it so the user feels the ticks
-      // again on a second pass — matches the "click-wheel" metaphor.
       if (ratchetStartFired.value && next > RATCHET_START) {
         ratchetStartFired.value = false;
       }
@@ -102,16 +94,7 @@ export const SwipeableRow = memo(function SwipeableRow({
       <Animated.View
         style={[styles.actionContainer, { backgroundColor: colors.bg }, actionOpacity]}
       >
-        <Text
-          style={{
-            ...font.smallCaps,
-            fontSize: typography.sizeXs,
-            letterSpacing: typography.trackingCaps,
-            color: colors.textSecondary,
-          }}
-        >
-          {actionLabel}
-        </Text>
+        <Text variant="labelXs">{actionLabel}</Text>
       </Animated.View>
       <GestureDetector gesture={panGesture}>
         <Animated.View style={[{ backgroundColor: colors.sheetBg }, rowStyle]}>

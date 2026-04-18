@@ -1,11 +1,10 @@
-import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { SOURCES } from '../constants/sources';
-import { BLACK, EDITORIAL, ICON, RADIUS, SPACING } from '../constants/theme';
+import { BLACK, EDITORIAL, RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { ccToFlag } from '../lib/article-utils';
 import type { ArticleSource } from '../types';
-import { HapticPressable } from './HapticPressable';
+import { Box, Icon, Pressable, Text } from './primitives';
 
 type Tone = 'favorable' | 'unfavorable' | 'neutral' | null;
 
@@ -32,7 +31,7 @@ interface SourceRowProps {
 }
 
 export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProps) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors } = useTheme();
   const info = SOURCES[source.name];
   const cc = source.country?.toUpperCase();
   const flag = cc ? ccToFlag(cc) : null;
@@ -48,78 +47,56 @@ export function SourceRow({ source, isExpanded, isLast, onPress }: SourceRowProp
           : colors.textSecondary;
 
   return (
-    <HapticPressable
+    <Pressable
       haptic="tick"
-      style={[
-        styles.sourceRow,
-        !isLast && { borderBottomColor: colors.rule, borderBottomWidth: StyleSheet.hairlineWidth },
-      ]}
       onPress={onPress}
       accessibilityRole="button"
       accessibilityLabel={source.name}
       accessibilityState={{ expanded: isExpanded }}
     >
-      <View style={styles.sourceRowHeader}>
-        <Text
-          style={[
-            styles.sourceName,
-            { ...font.semiBold, fontSize: typography.sizeBase, color: colors.text },
-          ]}
-          numberOfLines={1}
-        >
-          {flag ? `${flag} ` : ''}
-          {source.name}
-        </Text>
-        <View style={styles.sourceRowRight}>
-          <View style={[styles.tonePill, { backgroundColor: toneBg }]}>
-            <Text
-              style={{
-                ...font.semiBold,
-                fontSize: typography.sizeXs,
-                color: BLACK,
-                letterSpacing: typography.trackingCaps,
-              }}
-            >
-              {toneWord}
-            </Text>
+      <Box paddingY="md" rule={isLast ? undefined : 'bottom'}>
+        <View style={styles.header}>
+          <Text variant="bodyEmphasis" numberOfLines={1} style={styles.name}>
+            {flag ? `${flag} ` : ''}
+            {source.name}
+          </Text>
+          <View style={styles.right}>
+            <View style={[styles.tonePill, { backgroundColor: toneBg }]}>
+              <Text variant="labelXs" style={{ color: BLACK }}>
+                {toneWord}
+              </Text>
+            </View>
+            <Icon name={isExpanded ? 'chevron-up' : 'chevron-down'} size="sm" tone="accent" />
           </View>
-          <Ionicons
-            name={isExpanded ? 'chevron-up' : 'chevron-down'}
-            size={ICON.sm}
-            color={colors.accent}
-          />
         </View>
-      </View>
-      {isExpanded && info && (
-        <>
-          <Text selectable style={[styles.sourceType, textStyles.smallCapsXs]}>
-            {info.type} · {info.location}
-          </Text>
-          <Text selectable style={[textStyles.body, { color: colors.accent }]}>
-            {info.description}
-          </Text>
-        </>
-      )}
-    </HapticPressable>
+        {isExpanded && info && (
+          <>
+            <Text selectable variant="labelXs" style={styles.typeLine}>
+              {info.type} · {info.location}
+            </Text>
+            <Text selectable variant="body" tone="accent">
+              {info.description}
+            </Text>
+          </>
+        )}
+      </Box>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  sourceRow: {
-    paddingVertical: SPACING.md,
-  },
-  sourceRowHeader: {
+  header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     gap: SPACING.sm,
   },
-  sourceRowRight: {
+  right: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.xs,
   },
-  sourceName: {
+  name: {
     flex: 1,
   },
   tonePill: {
@@ -127,7 +104,7 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.xxs,
     borderRadius: RADIUS.pill,
   },
-  sourceType: {
+  typeLine: {
     marginTop: SPACING.sm,
     marginBottom: SPACING.sm,
   },

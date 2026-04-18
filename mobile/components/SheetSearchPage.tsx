@@ -1,14 +1,14 @@
-import { Ionicons } from '@expo/vector-icons';
 import { BottomSheetFlatList, BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from 'react-native';
+import { AccessibilityInfo, Pressable, StyleSheet, View } from 'react-native';
 import type { TextInput } from 'react-native-gesture-handler';
 import { IS_ANDROID } from '../constants/platform';
-import { CATEGORIES, ICON, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
+import { CATEGORIES, HIT_SLOP, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { Article, Category } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
+import { Icon, Text } from './primitives';
 
 interface SearchResult extends Article {
   category: Category;
@@ -53,7 +53,7 @@ interface SheetSearchPageProps {
 }
 
 export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: SheetSearchPageProps) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors, textVariants } = useTheme();
   const [query, setQuery] = useState('');
   const deferredQuery = useDeferredValue(query.trim());
   const inputRef = useRef<TextInput>(null);
@@ -65,7 +65,6 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
     [searchIndex, deferredQuery],
   );
 
-  // Announce result count changes for VoiceOver
   const resultCount = results.length;
   useEffect(() => {
     if (!deferredQuery) return;
@@ -76,7 +75,6 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
     );
   }, [deferredQuery, resultCount]);
 
-  // Focus the input when the page mounts — defer so nav transition commits first.
   useEffect(() => {
     const h = setTimeout(() => inputRef.current?.focus(), 50);
     return () => clearTimeout(h);
@@ -109,14 +107,7 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           onChangeText={setQuery}
           placeholder="search articles…"
           placeholderTextColor={colors.textSecondary}
-          style={[
-            styles.input,
-            {
-              ...font.regular,
-              fontSize: typography.sizeBase,
-              color: colors.text,
-            },
-          ]}
+          style={[styles.input, textVariants.body]}
           accessibilityRole="search"
           accessibilityLabel="Search articles"
           accessibilityHint="Filter articles by title, topic, or location"
@@ -132,12 +123,12 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
         {showAndroidClear && (
           <Pressable
             onPress={() => setQuery('')}
-            hitSlop={LAYOUT.hitSlop}
+            hitSlop={HIT_SLOP}
             style={({ pressed }) => [styles.clearButton, pressed && PRESSED_STYLE]}
             accessibilityRole="button"
             accessibilityLabel="Clear search"
           >
-            <Ionicons name="close-circle" size={ICON.md} color={colors.textSecondary} />
+            <Icon name="close-circle" tone="secondary" />
           </Pressable>
         )}
       </View>
@@ -153,7 +144,7 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           keyboardShouldPersistTaps="handled"
           ListHeaderComponent={
             results.length > 0 ? (
-              <Text style={[styles.resultCount, textStyles.smallCapsXs]}>
+              <Text variant="labelXs" style={styles.resultCount}>
                 {results.length} article{results.length === 1 ? '' : 's'}
               </Text>
             ) : null

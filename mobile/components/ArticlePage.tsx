@@ -1,6 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import { memo, useCallback, useMemo } from 'react';
-import { type GestureResponderEvent, Pressable, StyleSheet, Text, View } from 'react-native';
+import { type GestureResponderEvent, Pressable, StyleSheet, View } from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -9,7 +9,7 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { MAX_FONT_SCALE, SPACING } from '../constants/theme';
+import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact } from '../lib/haptics';
@@ -17,6 +17,7 @@ import { makeMarkdownStyles, renderSentences } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
 import type { Article } from '../types';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
+import { Text } from './primitives';
 
 const GRADIENT_HEIGHT_TOP = 32;
 const GRADIENT_HEIGHT_BOTTOM = 72;
@@ -28,11 +29,7 @@ interface ArticlePageProps {
   index: number;
   scrollY: SharedValue<number>;
   onBookmarkPress?: (article: Article) => void;
-  /** Fired when the reader taps the source link at the end of the article —
-   *  parent opens the SourcesSheet with this article's sources. */
   onSourcesPress?: (article: Article) => void;
-  /** Fired when the reader taps the inline dateline (e.g. "2h ago") —
-   *  parent typically shows a toast with the exact timestamp. */
   onTimeAgoPress?: (article: Article) => void;
   showEarlierDivider?: boolean;
   globeRef?: React.RefObject<MiniGlobeRef | null>;
@@ -92,7 +89,7 @@ export const ArticlePage = memo(function ArticlePage({
   onCountryPress,
   tick: _tick,
 }: ArticlePageProps) {
-  const { colors, font, typography, textStyles, bgAlpha } = useTheme();
+  const { colors, font, typography, textVariants, bgAlpha } = useTheme();
   const timeAgo = formatTimeAgo(article.addedAt);
   const pageStart = index * itemHeight;
   const reduceMotion = useReducedMotion();
@@ -107,9 +104,6 @@ export const ArticlePage = memo(function ArticlePage({
     if (reduceMotion) return { opacity: 1 };
     const off = offset.value;
 
-    // Fade — visible throughout the swipe so you always see what you're
-    // scrolling toward. Gentle fade-in from below, slightly faster fade-out
-    // as the article scrolls past.
     const opacity = interpolate(
       off,
       [-itemHeight, 0, itemHeight * 0.4],
@@ -117,8 +111,6 @@ export const ArticlePage = memo(function ArticlePage({
       Extrapolation.CLAMP,
     );
 
-    // Parallax — content rises gently into place and lifts away on exit,
-    // creating spatial depth between the globe layer and the text layer.
     const translateY = interpolate(
       off,
       [-itemHeight * 0.3, 0, itemHeight * 0.4],
@@ -132,22 +124,12 @@ export const ArticlePage = memo(function ArticlePage({
     };
   });
 
-  // Scale fonts down for long articles so content fits the snap viewport.
   const fontScale = useMemo(
     () => computeFontScale(article.title, article.sentences),
     [article.title, article.sentences],
   );
 
-  const titleFontSize = Math.round(typography.sizeH1 * fontScale);
   const bodyFontSize = fontScale < 1 ? Math.round(typography.sizeBase * fontScale) : undefined;
-
-  const titleSizeStyle =
-    fontScale < 1
-      ? {
-          fontSize: titleFontSize,
-          lineHeight: titleFontSize * typography.leadingHeading,
-        }
-      : null;
 
   const mdStyles = useMemo(
     () => makeMarkdownStyles(colors, font, typography),
@@ -164,22 +146,20 @@ export const ArticlePage = memo(function ArticlePage({
     onTimeAgoPress?.(article);
   }, [article, onTimeAgoPress]);
 
-  // Inline source link appended after the last word — zero extra vertical
-  // space while keeping the affordance unambiguously tappable. Rendered
-  // one tier smaller than the dateline (smallCapsXs) so it reads as
-  // chrome metadata rather than body content.
+  // Inline source link — rendered as nested RN Text because it lives inside
+  // a markdown-styled sentence composite, not as a standalone `<Text variant>`.
   const sourceCount = article.sources.length;
   const sourcesTrailing = useMemo(() => {
     if (sourceCount === 0 || !onSourcesPress) return null;
     return (
-      <Text style={textStyles.smallCapsXs}>
+      <Animated.Text style={textVariants.labelXs}>
         {'\u2002'}
-        <Text onPress={handleSourcesPress} style={{ color: colors.accent }}>
+        <Animated.Text onPress={handleSourcesPress} style={{ color: colors.accent }}>
           {sourceCount === 1 ? 'source' : 'sources'}
-        </Text>
-      </Text>
+        </Animated.Text>
+      </Animated.Text>
     );
-  }, [sourceCount, onSourcesPress, handleSourcesPress, textStyles.smallCapsXs, colors.accent]);
+  }, [sourceCount, onSourcesPress, handleSourcesPress, textVariants.labelXs, colors.accent]);
 
   const body = useMemo(
     () =>
@@ -214,7 +194,6 @@ export const ArticlePage = memo(function ArticlePage({
 
   return (
     <View style={[styles.container, { height: itemHeight }]}>
-      {/* Globe tap zone — behind content, full card size */}
       <GlobeTapZone
         globeRef={globeRef}
         globeYOffset={globeYOffset}
@@ -222,7 +201,6 @@ export const ArticlePage = memo(function ArticlePage({
         impact={hapticImpact}
       />
 
-      {/* Top gradient — dissolves globe into content */}
       <LinearGradient
         colors={[bgAlpha(0), bgAlpha(0.4), bgAlpha(0.8), colors.bg]}
         locations={[0, 0.3, 0.7, 1]}
@@ -230,7 +208,6 @@ export const ArticlePage = memo(function ArticlePage({
         pointerEvents="none"
       />
 
-      {/* Content zone — title, body, meta all grouped together */}
       <Pressable
         style={[styles.content, { backgroundColor: colors.bg }]}
         onLongPress={handleLongPress}
@@ -244,28 +221,18 @@ export const ArticlePage = memo(function ArticlePage({
               accessibilityLabel="Caught up — earlier articles below"
             >
               <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
-              <Text
-                style={[textStyles.smallCapsBase, { color: colors.accent }]}
-                maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-              >
+              <Text variant="label" tone="accent">
                 {'caught up'}
               </Text>
               <View style={[styles.earlierLine, { backgroundColor: colors.accent }]} />
             </View>
           )}
           <Text
-            style={[
-              styles.title,
-              {
-                ...font.bold,
-                fontSize: typography.sizeH1,
-                lineHeight: typography.sizeH1 * typography.leadingHeading,
-                color: colors.textEmphasis,
-              },
-              titleSizeStyle,
-            ]}
+            variant="display"
+            tone="emphasis"
+            scale={fontScale}
             numberOfLines={3}
-            maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
+            style={styles.title}
           >
             {article.title}
           </Text>
@@ -273,8 +240,6 @@ export const ArticlePage = memo(function ArticlePage({
         </Animated.View>
       </Pressable>
 
-      {/* Gradient dissolves content into globe — stays opaque to mask the
-          bottom edge of the solid content background during text fade. */}
       <LinearGradient
         colors={[colors.bg, bgAlpha(0.8), bgAlpha(0.35), bgAlpha(0)]}
         locations={[0, 0.2, 0.55, 1]}

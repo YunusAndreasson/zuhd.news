@@ -37,6 +37,10 @@ Single-variable pipeline experiments tracked in `content/.experiments.json`. One
 - **Tunable parameters**: selector category floors (`select-prompt.md`), feed params (`fetch-news-api.js`, `fetch-news.js`), build params (`build.js`). Full list in `/experiment` skill and `tune-prompt.md`.
 - **Rules**: one variable, one experiment, minimum 3 days, ≤ 20% of parameter range
 
+## Mobile
+
+Design system reference: `mobile/DESIGN.md` — tokens, primitives, variants, a11y checklist. Read before touching mobile UI. Mobile-scoped instructions: `mobile/CLAUDE.md`.
+
 ## Dev Reference
 
 Developer/operator details (key files, sources, hosting, Notion workflow, roadmap) are in `DEV.md`.

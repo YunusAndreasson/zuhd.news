@@ -1,17 +1,11 @@
 import { memo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import {
-  ANIMATION,
-  BLACK,
-  MAX_FONT_SCALE,
-  RADIUS,
-  SPACING,
-  staggerDelay,
-} from '../../constants/theme';
+import { ANIMATION, BLACK, RADIUS, SPACING, staggerDelay } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import type { CompareRow } from '../../types';
+import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
 import { type BlockVariant, blockContainerStyle } from './shared';
 
@@ -43,16 +37,13 @@ export const CompareBlock = memo(function CompareBlock({
   variant = 'article',
   sourceLabel,
 }: CompareBlockProps) {
-  const { colors, font, typography, textStyles } = useTheme();
+  const { colors, font } = useTheme();
   const rowPaddingV = variant === 'context' ? SPACING.xs : SPACING.sm;
 
   return (
     <View style={blockContainerStyle[variant]}>
       {label ? (
-        <Text
-          style={[styles.blockLabel, textStyles.smallCapsXs]}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.label}
-        >
+        <Text variant="labelXs" style={styles.blockLabel}>
           {label}
         </Text>
       ) : null}
@@ -73,31 +64,15 @@ export const CompareBlock = memo(function CompareBlock({
               },
             ]}
           >
-            <Text
-              style={[
-                styles.label,
-                {
-                  ...font.regular,
-                  fontSize: typography.sizeBase,
-                  color: colors.text,
-                },
-              ]}
-              maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-              numberOfLines={1}
-            >
+            <Text variant="body" numberOfLines={1} style={styles.label}>
               {flag ? `${flag}  ` : ''}
               {row.label}
             </Text>
             <View style={[styles.pill, { backgroundColor: pill.bg }]}>
-              <Text
-                style={{
-                  ...font.semiBold,
-                  fontSize: typography.sizeXs,
-                  letterSpacing: typography.trackingCaps,
-                  color: pill.fg,
-                }}
-                maxFontSizeMultiplier={MAX_FONT_SCALE.chrome}
-              >
+              {/* Pill value reads as mixed glyphs (numerals, %, operators) —
+                  semiBold family preserves the original look rather than
+                  forcing small-caps SC metrics onto the letters. */}
+              <Text variant="labelXs" style={[{ color: pill.fg }, font.semiBold]}>
                 {row.value}
               </Text>
             </View>
