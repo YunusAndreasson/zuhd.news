@@ -1,8 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import { BottomSheetFlatList, BottomSheetTextInput } from '@gorhom/bottom-sheet';
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { AccessibilityInfo, Pressable, StyleSheet, Text, View } from 'react-native';
 import type { TextInput } from 'react-native-gesture-handler';
+import { IS_ANDROID } from '../constants/platform';
 import { CATEGORIES, ICON, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import type { Article, Category } from '../types';
@@ -97,7 +98,7 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
 
   const keyExtractor = useCallback((item: SearchResult) => item.slug, []);
 
-  const showAndroidClear = Platform.OS === 'android' && query.length > 0;
+  const showAndroidClear = IS_ANDROID && query.length > 0;
 
   return (
     <>

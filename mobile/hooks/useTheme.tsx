@@ -1,7 +1,8 @@
 import * as NavigationBar from 'expo-navigation-bar';
 import * as SystemUI from 'expo-system-ui';
 import { createContext, use, useCallback, useContext, useEffect, useMemo, useState } from 'react';
-import { Platform, useColorScheme } from 'react-native';
+import { useColorScheme } from 'react-native';
+import { IS_ANDROID } from '../constants/platform';
 import {
   type AppearanceMode,
   BG_RGB,
@@ -185,7 +186,7 @@ export function ThemeProvider({
   const { bg } = theme.colors;
   useEffect(() => {
     SystemUI.setBackgroundColorAsync(bg).catch(() => {});
-    if (Platform.OS === 'android') {
+    if (IS_ANDROID) {
       NavigationBar.setStyle(resolvedAppearance === 'dark' ? 'light' : 'dark');
     }
   }, [bg, resolvedAppearance]);

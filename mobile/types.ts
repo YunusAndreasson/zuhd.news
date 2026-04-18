@@ -36,7 +36,7 @@ export interface Actor {
 
 /** A source reference on any block is an index into `ContextBrief.sources`. The
  *  renderer resolves it to a short citation caption beneath the block. */
-interface BlockSourceRef {
+export interface BlockSourceRef {
   source?: number;
 }
 
