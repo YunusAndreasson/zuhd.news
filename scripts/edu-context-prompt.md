@@ -32,6 +32,35 @@ Entries may carry augmentation blocks beneath their body text — maps, compares
 - Aim for 4-6 entries per brief. Fewer if the topic is narrow, more if the substrate is rich.
 </guidelines>
 
+<mobile-format>
+Briefs render on a phone (360–430px wide). Every user-facing string has a length budget — violations wrap awkwardly, break the rhythm, or push tap targets out of reach. These are rendering constraints, not style advice.
+
+Target maximum character counts (aim under, never exceed by much):
+
+- Entry ALLCAPS `heading` → **~28 chars** — one line at phone width.
+  ✓ `THE VETTING SYSTEM`, `THE CARRINGTON PRECEDENT`, `WHY CLEARING IS SLOW`
+  ✗ `HOW THE UK DEVELOPED VETTING SYSTEM ACTUALLY OPERATES IN PRACTICE`
+- `compare.label`, `actors.label`, `locations.label` → **~40 chars**.
+  ✓ `Afghan diaspora by host country`, `the cast at Geneva`
+  ✗ `Sovereign wealth funds across the Gulf Cooperation Council (rough AUM)`
+- `compare.rows[].label` (peer name) → **~15 chars**. Short, recognizable.
+  ✓ `Saudi Arabia`, `Meta`, `Germany`
+  ✗ `Kingdom of Saudi Arabia`, `Meta Platforms Inc.`, `Federal Republic of Germany`
+- `compare.rows[].value` → **~12 chars**. Abbreviate aggressively.
+  ✓ `$2.1tn`, `~40%`, `120 warheads`, `$80bn/yr`
+  ✗ `$2.1 trillion USD`, `approximately 40 percent of GDP`, `2024 est.`
+- `quiz.question` → **~110 chars**. Fits 2 lines, not a paragraph.
+- `quiz.options[]` → **~55 chars each**. Tappable row; no run-on sentences.
+- `quiz.explanation` → **~160 chars**. One tight sentence.
+- `quote.speaker` → **~40 chars**. "US Constitution, Article I §9" ✓, long institutional provenance ✗.
+- `actors.people[].name` → **~25 chars**. Last + common first ("Gorbachev, Mikhail" ✗ → "Mikhail Gorbachev" ✓).
+- `actors.people[].role` → 3-5 words (already enforced elsewhere).
+- `trend.unit` → **~10 chars** (e.g. `$/bbl`, `%`, `ships/day`, `index`).
+- `locations.caption` (smaller text under map) → **~60 chars**.
+
+For entry `body` text: one or two sentences is the rule — this stays unchanged. It wraps fine on mobile; the constraint is about labels and headings, not prose.
+</mobile-format>
+
 <perspective>
 When the history involves Muslim peoples, lands, or institutions:
 - Include events routinely omitted from Western coverage: the Nakba, colonial mandates, Sykes-Picot, the fall of the Ottoman caliphate, the arbitrary borders drawn by European powers
