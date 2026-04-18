@@ -395,6 +395,15 @@ if (Object.keys(contextIndex).length > 0) {
   console.log(`  Built: api/context/ (${Object.keys(contextIndex).length} briefs)`)
 }
 
+// Chokepoints snapshot — ambient globe layer on mobile. Missing file is a
+// graceful degrade: the mobile hook treats a 404 as "no layer this run".
+const chokepointsSrc = join(ROOT, 'content', '.chokepoints.json')
+if (existsSync(chokepointsSrc)) {
+  cpSync(chokepointsSrc, join(DIST_DIR, 'api', 'chokepoints.json'))
+  const n = JSON.parse(readFileSync(chokepointsSrc, 'utf8')).chokepoints?.length ?? 0
+  console.log(`  Built: api/chokepoints.json (${n} chokepoints)`)
+}
+
 // Legacy flat endpoint (backwards compatible)
 writeFileSync(join(DIST_DIR, 'api', 'articles.json'), JSON.stringify({ generated, articles: apiArticles.map(a => ({ ...a, category: CATEGORY_ORDER.find(c => apiCategories[c]?.includes(a)) ?? 'politics', body: a.sentences.join(' ') })) }))
 console.log(`  Built: api/articles.json (${apiArticles.length} articles)`)

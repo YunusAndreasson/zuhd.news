@@ -7,6 +7,8 @@
 // schema drifts, we log and return null rather than failing the whole cycle.
 // The orchestrator treats a null return as "skip this indicator this run".
 
+import { CHOKEPOINT_CATALOG } from '../chokepoint-metadata.js'
+
 const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 
 // IMF PortWatch "Daily Chokepoints Data" feature service (ArcGIS).
@@ -102,6 +104,125 @@ export async function fetchPortWatchChokepoint(indicator) {
     return { values, periods, asOf }
   } catch (err) {
     console.error(`  ✗ portwatch:${indicator.id}: ${err.message}`)
+    return null
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Snapshot fetcher — all catalog chokepoints in one call. Powers the globe's
+// ambient chokepoint layer (not the per-article trend-block pipeline).
+// ---------------------------------------------------------------------------
+
+const SNAPSHOT_DAYS = 90
+const SNAPSHOT_VESSEL_FIELDS = ['n_total', 'n_tanker', 'n_container', 'n_dry_bulk', 'n_cargo', 'n_general_cargo', 'n_roro']
+
+function meanOf(values) {
+  if (values.length === 0) return 0
+  let s = 0
+  for (const v of values) s += v
+  return s / values.length
+}
+
+/**
+ * Fetch 90 days of daily transit counts for every chokepoint in the catalog
+ * in a single batched ArcGIS query, then roll up into per-chokepoint summary
+ * stats + a full `n_total` series for the sparkline.
+ *
+ * @returns {Promise<Array<{
+ *   id: string,
+ *   portname: string,
+ *   last7Avg: Record<string, number>,
+ *   baseline90Avg: Record<string, number>,
+ *   delta7vs90: Record<string, number>,
+ *   series: { periods: string[], total: number[] },
+ *   asOf: string,
+ * }> | null>}
+ */
+export async function fetchAllChokepointsSnapshot() {
+  const portnames = CHOKEPOINT_CATALOG.map((c) => c.portname)
+  const end = new Date()
+  const start = new Date(end)
+  start.setUTCDate(start.getUTCDate() - SNAPSHOT_DAYS)
+
+  // ArcGIS `timestamp 'YYYY-MM-DD HH:mm:ss'` literal — stable across this service.
+  const startStamp = start.toISOString().replace('T', ' ').slice(0, 19)
+  const portList = portnames.map((n) => `'${n.replace(/'/g, "''")}'`).join(',')
+  const where = `portname IN (${portList}) AND date >= timestamp '${startStamp}'`
+
+  const url = new URL(FEATURE_SERVICE)
+  url.searchParams.set('f', 'json')
+  url.searchParams.set('where', where)
+  url.searchParams.set('outFields', ['date', 'portname', ...SNAPSHOT_VESSEL_FIELDS].join(','))
+  url.searchParams.set('orderByFields', 'date ASC')
+  // 11 chokepoints × 90d = 990 rows; buffer to the service's standardMaxRecordCount.
+  url.searchParams.set('resultRecordCount', '2000')
+
+  try {
+    const res = await fetch(url, {
+      signal: AbortSignal.timeout(20000),
+      headers: { 'User-Agent': USER_AGENT },
+    })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const data = await res.json()
+    const features = data.features || []
+    if (features.length === 0) {
+      console.error('  ✗ portwatch-snapshot: no features returned')
+      return null
+    }
+
+    // Group rows by portname, sorted ascending by date (query already asked
+    // for that, but re-sort to be defensive against ArcGIS ordering quirks).
+    const byPort = new Map()
+    for (const f of features) {
+      const a = f.attributes || {}
+      if (a.date == null || !a.portname) continue
+      let rows = byPort.get(a.portname)
+      if (!rows) {
+        rows = []
+        byPort.set(a.portname, rows)
+      }
+      rows.push(a)
+    }
+
+    const out = []
+    for (const entry of CHOKEPOINT_CATALOG) {
+      const rows = (byPort.get(entry.portname) || []).sort((x, y) => x.date - y.date)
+      if (rows.length === 0) {
+        console.error(`  ✗ portwatch-snapshot: ${entry.portname}: no rows`)
+        continue
+      }
+
+      const last7 = rows.slice(-7)
+      const base = rows.length <= 7 ? rows : rows.slice(0, -7) // exclude the last-7 window from the baseline
+
+      const last7Avg = {}
+      const baselineAvg = {}
+      const delta = {}
+      for (const field of SNAPSHOT_VESSEL_FIELDS) {
+        const l7 = meanOf(last7.map((r) => Number(r[field] ?? 0)))
+        const b = meanOf(base.map((r) => Number(r[field] ?? 0)))
+        last7Avg[field] = Math.round(l7 * 10) / 10
+        baselineAvg[field] = Math.round(b * 10) / 10
+        delta[field] = b > 0 ? Math.round(((l7 - b) / b) * 1000) / 1000 : 0
+      }
+
+      out.push({
+        id: entry.id,
+        portname: entry.portname,
+        last7Avg,
+        baseline90Avg: baselineAvg,
+        delta7vs90: delta,
+        series: {
+          periods: rows.map((r) => formatPeriod(new Date(r.date).toISOString())),
+          total: rows.map((r) => Number(r.n_total ?? 0)),
+        },
+        asOf: ymd(new Date(rows[rows.length - 1].date)),
+      })
+    }
+
+    return out
+  } catch (err) {
+    console.error(`  ✗ portwatch-snapshot: ${err.message}`)
     return null
   }
 }

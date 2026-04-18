@@ -46,7 +46,7 @@ import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
 import { BLACK } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { displayLocation } from '../../lib/place-names';
-import type { Article, HeatmapPoint } from '../../types';
+import type { Article, Chokepoint, HeatmapPoint } from '../../types';
 import { CITY_TZ, COUNTRY_OVERRIDES, COUNTRY_TZ, SOURCE_COORDS } from './coordinates';
 import {
   bordersMesh,
@@ -239,6 +239,9 @@ export interface TapResult {
   data: CountryData | null;
   hotspotLabels?: string[];
   isHotspot?: boolean;
+  /** Set when the tap landed on an ambient chokepoint ring. The parent
+   *  resolves the ID to the full Chokepoint payload and opens ChokepointSheet. */
+  chokepointId?: string;
 }
 
 export interface MiniGlobeRef {
@@ -249,6 +252,7 @@ export interface MiniGlobeRef {
 interface MiniGlobeProps {
   articles: Article[];
   heatmapPoints?: HeatmapPoint[];
+  chokepoints?: Chokepoint[];
   scrollY: SharedValue<number>;
   itemHeight: number;
   width: number;
@@ -289,6 +293,17 @@ interface GlobeState {
     recency: number;
     labels: string[];
     countryName: string | null;
+  }[];
+  /** Ambient chokepoint rings — always projected (not gated by nearSettled)
+   *  because they're reference geography rather than cosmetic detail.
+   *  `intensity` ∈ [0,1] is |delta7vs90| / 0.3; `disrupted` fires above 15%. */
+  chokepoints: {
+    x: number;
+    y: number;
+    id: string;
+    label: string;
+    intensity: number;
+    disrupted: boolean;
   }[];
 }
 
@@ -392,6 +407,7 @@ const EMPTY_GLOBE: GlobeState = {
   dotLabel: null,
   makkah: null,
   hotspotGlows: [],
+  chokepoints: [],
 };
 
 /** Clip angle for a country's spherical area — smaller countries get tighter clip (more zoom). */
@@ -516,12 +532,14 @@ function projectInitial(
     dotLabel: null,
     makkah,
     hotspotGlows: [],
+    chokepoints: [],
   };
 }
 
 export const MiniGlobe = memo(function MiniGlobe({
   articles,
   heatmapPoints,
+  chokepoints,
   scrollY,
   itemHeight,
   width,
@@ -675,6 +693,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   articleGeoRef.current = articleGeo;
   const hotspotsRef = useRef(hotspots);
   hotspotsRef.current = hotspots;
+  const chokepointsRef = useRef(chokepoints ?? []);
+  chokepointsRef.current = chokepoints ?? [];
   const layoutRef = useRef({ globeRadius, cx, cy });
   layoutRef.current = { globeRadius, cx, cy };
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
@@ -924,6 +944,26 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
+      // Chokepoints — always projected (unlike hotspots). The set is small
+      // (≤11) and the markers are geographic reference, not cosmetic detail,
+      // so they shouldn't blink out during a fast scroll.
+      const chokepointMarks: GlobeState['chokepoints'] = [];
+      for (const cp of chokepointsRef.current) {
+        const coords: [number, number] = [cp.lng, cp.lat];
+        if (geoDistance(coords, [geoLng, geoLat]) >= HALF_PI) continue;
+        const pt = proj(coords);
+        if (!pt) continue;
+        const delta = Math.abs(cp.delta7vs90[cp.primaryField] ?? 0);
+        chokepointMarks.push({
+          x: pt[0],
+          y: pt[1],
+          id: cp.id,
+          label: cp.name.toUpperCase(),
+          intensity: Math.min(1, delta / 0.3),
+          disrupted: delta > 0.15,
+        });
+      }
+
       setState({
         landPath,
         bordersPath,
@@ -941,6 +981,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         dotLabel,
         makkah,
         hotspotGlows,
+        chokepoints: chokepointMarks,
       });
     },
     [],
@@ -1051,6 +1092,13 @@ export const MiniGlobe = memo(function MiniGlobe({
     if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0);
   }, [hotspots]);
 
+  // Re-project when chokepoint data arrives (first API fetch, or a cycle-level refresh)
+  // biome-ignore lint/correctness/useExhaustiveDependencies: callReproject is intentionally stale — perf-critical, uses ref for latest state
+  useEffect(() => {
+    const last = lastReprojRef.current;
+    if (last) callReproject(last.lng, last.lat, last.idx, last.idx, last.idx, 0);
+  }, [chokepoints]);
+
   // Tap pulse — radial ring that expands and fades on globe tap
   const pulseX = useSharedValue(0);
   const pulseY = useSharedValue(0);
@@ -1101,6 +1149,21 @@ export const MiniGlobe = memo(function MiniGlobe({
             data: name ? (COUNTRY_DATA[name] ?? null) : null,
             hotspotLabels: z.labels.length > 0 ? z.labels : undefined,
             isHotspot: true,
+          };
+        }
+      }
+
+      // Chokepoint rings — ambient markers. 36px tap zone, generous so small
+      // rings are still reliably tappable, but smaller than the article-dot
+      // window so chokepoints near the settled pin don't eat its taps.
+      for (const c of state.chokepoints) {
+        if (isNear(x, y, c.x, c.y, 1296)) {
+          return {
+            countryName: '',
+            location: null,
+            localTime: null,
+            data: null,
+            chokepointId: c.id,
           };
         }
       }
@@ -1382,6 +1445,58 @@ export const MiniGlobe = memo(function MiniGlobe({
               />
             </Circle>
             <Circle cx={z.x} cy={z.y} r={coreR} color={colors.text} opacity={0.42 * fade} />
+          </Group>
+        );
+      })}
+
+      {/* Chokepoint rings — ambient reference geography. Quiet when transit
+          flow is near baseline, accent-fill when disrupted (±>15% from 90d
+          average). Label is always drawn so the reader learns the geography. */}
+      {state.chokepoints.map((c) => {
+        const ringOpacity = 0.35 + 0.45 * c.intensity;
+        const ringColor = c.disrupted ? colors.accent : colors.rule;
+        return (
+          <Group key={c.id}>
+            {c.disrupted && (
+              <Circle cx={c.x} cy={c.y} r={12}>
+                <RadialGradient
+                  c={vec(c.x, c.y)}
+                  r={12}
+                  colors={[
+                    withAlpha(colors.accent, 0.22 * c.intensity),
+                    withAlpha(colors.accent, 0.08 * c.intensity),
+                    `${colors.accent}00`,
+                  ]}
+                  positions={[0, 0.5, 1]}
+                />
+              </Circle>
+            )}
+            <Circle
+              cx={c.x}
+              cy={c.y}
+              r={6}
+              color={ringColor}
+              opacity={ringOpacity}
+              style="stroke"
+              strokeWidth={1.25}
+            />
+            <Circle
+              cx={c.x}
+              cy={c.y}
+              r={1}
+              color={ringColor}
+              opacity={Math.min(1, ringOpacity + 0.2)}
+            />
+            {subFont && (
+              <SkiaText
+                x={c.x - c.label.length * 2.5}
+                y={c.y + 20}
+                text={c.label}
+                font={subFont}
+                color={c.disrupted ? colors.accent : colors.textSecondary}
+                opacity={c.disrupted ? 0.9 : 0.55}
+              />
+            )}
           </Group>
         );
       })}

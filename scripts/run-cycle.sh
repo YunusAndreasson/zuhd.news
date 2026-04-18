@@ -253,6 +253,15 @@ $BODY_LENGTHS
   TRENDS_EXIT=$?
   echo "Trends exit: $TRENDS_EXIT — $((SECONDS - T34))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.4b: Chokepoints snapshot — ambient globe layer on mobile. Single
+  # PortWatch query, independent of the trend-block pipeline. Fail-soft.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.4b: Chokepoints snapshot ---" | tee -a "$LOG_FILE"
+  T34B=$SECONDS
+  timeout 60 node scripts/fetch-chokepoints.js >> "$LOG_FILE" 2>&1
+  CHOKEPOINTS_EXIT=$?
+  echo "Chokepoints exit: $CHOKEPOINTS_EXIT — $((SECONDS - T34B))s" | tee -a "$LOG_FILE"
+
   # Stage 3.5: Educational context briefs
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3.5: Educational context briefs ---" | tee -a "$LOG_FILE"

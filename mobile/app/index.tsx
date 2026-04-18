@@ -24,6 +24,7 @@ import { ArticleList, type ArticleListRef } from '../components/ArticleList';
 import { BottomActionBar } from '../components/BottomActionBar';
 import { BriefingBar } from '../components/BriefingBar';
 import { CategoryBar } from '../components/CategoryBar';
+import { ChokepointSheet } from '../components/ChokepointSheet';
 import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
 import { ErrorState } from '../components/ErrorState';
@@ -34,13 +35,14 @@ import { Toast, type ToastRef } from '../components/Toast';
 import { CATEGORIES, EDITORIAL, OPACITY } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
+import { useChokepoints } from '../hooks/useChokepoints';
 import { useContextBrief } from '../hooks/useContextBrief';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { useTheme } from '../hooks/useTheme';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 import { clear as clearPendingSlug, get as getPendingSlug } from '../lib/pending-notification';
-import type { Article, ArticleSource, Category } from '../types';
+import type { Article, ArticleSource, Category, Chokepoint } from '../types';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 
@@ -60,6 +62,7 @@ export default function HomeScreen() {
     injectArticle,
   } = useArticles();
   const heatmapPoints = useHeatmap(generated);
+  const { chokepoints } = useChokepoints();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
   const briefingPlayer = useBriefingPlayer(
@@ -81,6 +84,8 @@ export default function HomeScreen() {
 
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
+  const chokepointSheetRef = useRef<BottomSheetModal>(null);
+  const [activeChokepoint, setActiveChokepoint] = useState<Chokepoint | null>(null);
   const contextSheetRef = useRef<BottomSheetModal>(null);
   const {
     brief: contextBrief,
@@ -204,9 +209,22 @@ export default function HomeScreen() {
     }
   }, []);
 
+  // Stable ref so handleCountryPress doesn't recapture when chokepoints refetch.
+  const chokepointsRef = useRef(chokepoints);
+  chokepointsRef.current = chokepoints;
+
   const handleCountryPress = useCallback(
     (result: TapResult) => {
       hapticImpact();
+      // Chokepoint ring tap → ambient transit sheet
+      if (result.chokepointId) {
+        const cp = chokepointsRef.current.find((c) => c.id === result.chokepointId);
+        if (cp) {
+          setActiveChokepoint(cp);
+          chokepointSheetRef.current?.present();
+        }
+        return;
+      }
       // Hotspot glow tap → toast with tap-to-navigate
       if (result.isHotspot) {
         const label = result.hotspotLabels?.[0] ?? result.countryName;
@@ -379,6 +397,7 @@ export default function HomeScreen() {
                 ref={listRefs[catIndex]}
                 articles={grouped[cat]}
                 heatmapPoints={heatmapPoints}
+                chokepoints={chokepoints}
                 viewportHeight={pagerHeight}
                 catIndex={catIndex}
                 lastSeenAt={lastSeenAt}
@@ -442,6 +461,19 @@ export default function HomeScreen() {
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => setCountrySheet(null)}
+      />
+
+      <ChokepointSheet
+        sheetRef={chokepointSheetRef}
+        chokepoint={activeChokepoint}
+        articles={Object.values(grouped).flat()}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
+        onDismiss={() => setActiveChokepoint(null)}
+        onArticlePress={(slug, category) => {
+          chokepointSheetRef.current?.dismiss();
+          handleSelectArticle(slug, category);
+        }}
       />
 
       <SourcesSheet

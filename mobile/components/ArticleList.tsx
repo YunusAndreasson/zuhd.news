@@ -30,7 +30,7 @@ import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { hapticNotification, hapticTick } from '../lib/haptics';
 import { maybeRequestReview } from '../lib/store-review';
-import type { Article, HeatmapPoint } from '../types';
+import type { Article, Chokepoint, HeatmapPoint } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { EmptyState } from './EmptyState';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
@@ -45,6 +45,7 @@ export interface ArticleListRef {
 interface ArticleListProps {
   articles: Article[];
   heatmapPoints?: HeatmapPoint[];
+  chokepoints?: Chokepoint[];
   viewportHeight: number;
   catIndex: number;
   lastSeenAt: number;
@@ -65,6 +66,7 @@ interface ArticleListProps {
 export const ArticleList = memo(function ArticleList({
   articles,
   heatmapPoints,
+  chokepoints,
   viewportHeight,
   catIndex,
   lastSeenAt,
@@ -271,6 +273,7 @@ export const ArticleList = memo(function ArticleList({
         ref={globeRef}
         articles={sortedArticles}
         heatmapPoints={heatmapPoints}
+        chokepoints={chokepoints}
         scrollY={scrollY}
         itemHeight={itemHeight}
         width={screenWidth}

@@ -4,6 +4,9 @@ import type {
   Article,
   ArticleBlock,
   Category,
+  Chokepoint,
+  ChokepointCounts,
+  ChokepointSnapshot,
   CompareRow,
   ContextBrief,
   FeedResponse,
@@ -231,6 +234,30 @@ export const isHeatmapResponse = (v: unknown): v is HeatmapResponse =>
   typeof v.generated === 'string' &&
   Array.isArray(v.points) &&
   v.points.every(isHeatmapPoint);
+
+const isCounts = (v: unknown): v is ChokepointCounts =>
+  isObject(v) && Object.values(v).every((n) => typeof n === 'number' && Number.isFinite(n));
+
+const isChokepoint = (v: unknown): v is Chokepoint => {
+  if (!isObject(v)) return false;
+  if (typeof v.id !== 'string' || v.id.length === 0) return false;
+  if (typeof v.name !== 'string' || v.name.length === 0) return false;
+  if (typeof v.blurb !== 'string') return false;
+  if (typeof v.lat !== 'number' || typeof v.lng !== 'number') return false;
+  if (!isStringArray(v.topicTags)) return false;
+  if (typeof v.primaryField !== 'string') return false;
+  if (!isCounts(v.last7Avg) || !isCounts(v.baseline90Avg) || !isCounts(v.delta7vs90)) return false;
+  if (!isObject(v.series)) return false;
+  if (!isStringArray(v.series.periods) || !isNumberArray(v.series.total)) return false;
+  if (typeof v.asOf !== 'string') return false;
+  return true;
+};
+
+export const isChokepointSnapshot = (v: unknown): v is ChokepointSnapshot =>
+  isObject(v) &&
+  typeof v.generated === 'string' &&
+  Array.isArray(v.chokepoints) &&
+  v.chokepoints.every(isChokepoint);
 
 export const isPreferences = (v: unknown): v is Preferences => {
   if (!isObject(v)) return false;

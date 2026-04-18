@@ -151,3 +151,32 @@ export interface HeatmapPoint {
   t: number; // addedAt timestamp ms
   l: string; // story label (threadLabel prefix or title)
 }
+
+/** Per-vessel-class transit counts keyed by PortWatch field names
+ *  (n_total, n_tanker, n_container, n_dry_bulk, n_cargo, n_general_cargo, n_roro). */
+export type ChokepointCounts = Record<string, number>;
+
+/** IMF PortWatch-derived chokepoint state — ambient layer rendered on the
+ *  globe. `primaryField` selects which vessel class the headline stat and
+ *  disruption trigger care about (tanker for oil chokepoints, container for
+ *  commercial routes). `delta7vs90[field]` is a signed fraction: +0.12 means
+ *  last-7d average is 12% above the 90d baseline. */
+export interface Chokepoint {
+  id: string;
+  name: string;
+  blurb: string;
+  lat: number;
+  lng: number;
+  topicTags: string[];
+  primaryField: string;
+  last7Avg: ChokepointCounts;
+  baseline90Avg: ChokepointCounts;
+  delta7vs90: ChokepointCounts;
+  series: { periods: string[]; total: number[] };
+  asOf: string;
+}
+
+export interface ChokepointSnapshot {
+  generated: string;
+  chokepoints: Chokepoint[];
+}
