@@ -404,6 +404,19 @@ if (existsSync(chokepointsSrc)) {
   console.log(`  Built: api/chokepoints.json (${n} chokepoints)`)
 }
 
+// Trends snapshot — full indicator catalog with values/periods. Mobile
+// EntitySheet fetches this to render charts for any entity tapped in an
+// article body. Ships today's snapshot as api/trends.json (single file,
+// always current for this deploy); if mobile wants historical, /trends/
+// per-date JSONs remain queryable via the git repo.
+const today = new Date().toISOString().slice(0, 10)
+const trendsSrc = join(ROOT, 'content', 'trends', `${today}.json`)
+if (existsSync(trendsSrc)) {
+  cpSync(trendsSrc, join(DIST_DIR, 'api', 'trends.json'))
+  const n = JSON.parse(readFileSync(trendsSrc, 'utf8')).indicators?.length ?? 0
+  console.log(`  Built: api/trends.json (${n} indicators)`)
+}
+
 // Legacy flat endpoint (backwards compatible)
 writeFileSync(join(DIST_DIR, 'api', 'articles.json'), JSON.stringify({ generated, articles: apiArticles.map(a => ({ ...a, category: CATEGORY_ORDER.find(c => apiCategories[c]?.includes(a)) ?? 'politics', body: a.sentences.join(' ') })) }))
 console.log(`  Built: api/articles.json (${apiArticles.length} articles)`)
