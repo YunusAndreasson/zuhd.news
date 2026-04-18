@@ -33,13 +33,10 @@ Entries may carry augmentation blocks beneath their body text — maps, compares
 </guidelines>
 
 <mobile-format>
-Briefs render on a phone (360–430px wide). Every user-facing string has a length budget — violations wrap awkwardly, break the rhythm, or push tap targets out of reach. These are rendering constraints, not style advice.
+Augmentation blocks render on a phone (360–430px wide). Every short user-facing string inside a block has a length budget — violations wrap awkwardly in the card, cramping numbers next to labels or pushing tap targets out of reach. These are rendering constraints, not style advice, and they apply ONLY to augmentation-block fields. Entry `heading` and `body` are unconstrained here (they render in the brief's main column).
 
 Target maximum character counts (aim under, never exceed by much):
 
-- Entry ALLCAPS `heading` → **~28 chars** — one line at phone width.
-  ✓ `THE VETTING SYSTEM`, `THE CARRINGTON PRECEDENT`, `WHY CLEARING IS SLOW`
-  ✗ `HOW THE UK DEVELOPED VETTING SYSTEM ACTUALLY OPERATES IN PRACTICE`
 - `compare.label`, `actors.label`, `locations.label` → **~40 chars**.
   ✓ `Afghan diaspora by host country`, `the cast at Geneva`
   ✗ `Sovereign wealth funds across the Gulf Cooperation Council (rough AUM)`
@@ -57,8 +54,6 @@ Target maximum character counts (aim under, never exceed by much):
 - `actors.people[].role` → 3-5 words (already enforced elsewhere).
 - `trend.unit` → **~10 chars** (e.g. `$/bbl`, `%`, `ships/day`, `index`).
 - `locations.caption` (smaller text under map) → **~60 chars**.
-
-For entry `body` text: one or two sentences is the rule — this stays unchanged. It wraps fine on mobile; the constraint is about labels and headings, not prose.
 </mobile-format>
 
 <perspective>
