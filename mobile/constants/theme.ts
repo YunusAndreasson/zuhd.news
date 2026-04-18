@@ -201,6 +201,18 @@ export const HIT_SLOP = {
   right: 12,
 } as const;
 
+/** Smaller hitSlop for inline tappable `<Text>` runs within paragraph
+ *  prose (country tags, entity mentions). Vertical slop is restrained so
+ *  the tap target doesn't intrude into adjacent lines and steal taps
+ *  meant for a neighbour; horizontal slop is looser since inline runs are
+ *  already separated by spaces. */
+export const INLINE_HIT_SLOP = {
+  top: 6,
+  bottom: 6,
+  left: 8,
+  right: 8,
+} as const;
+
 /** Title fontSize scale factor by character count. Long titles shrink to stay
  *  on two lines without truncation. Encapsulates the previously ad-hoc logic
  *  from ArticleRow so it can be reused wherever titles render. */

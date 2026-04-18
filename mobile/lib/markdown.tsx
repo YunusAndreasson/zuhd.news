@@ -4,6 +4,7 @@ import { ANDROID_TEXT_BASE } from '../constants/platform';
 import {
   type ColorPalette,
   type FontSet,
+  INLINE_HIT_SLOP,
   MAX_FONT_SCALE,
   type Typography,
 } from '../constants/theme';
@@ -244,6 +245,8 @@ export function renderSegments(
             key={j}
             style={isCountry ? mdStyles.countryLink : mdStyles.link}
             onPress={() => seg.url && openLink(seg.url)}
+            // @ts-expect-error — `hitSlop` on inline Text with onPress expands the tap target at runtime (RN docs) but isn't surfaced on TextProps
+            hitSlop={INLINE_HIT_SLOP}
           >
             {seg.text}
           </Text>
@@ -259,6 +262,8 @@ export function renderSegments(
             onPress={onPress}
             accessibilityRole="button"
             accessibilityLabel={`${seg.text} — tap for live data`}
+            // @ts-expect-error — see note on `link` case above
+            hitSlop={INLINE_HIT_SLOP}
           >
             {seg.text}
           </Text>
