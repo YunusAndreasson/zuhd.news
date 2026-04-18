@@ -74,17 +74,16 @@ export function expandChartRef(chartBlock, snapshot, sourceCtx) {
   const indicator = snapshot?.indicators?.find((i) => i.id === chartBlock.ref)
   if (!indicator || !Array.isArray(indicator.values) || indicator.values.length < 2) return null
 
-  // Derive a "first/last" annotation pair for Polymarket markets only, since
-  // their history often includes a meaningful inflection. For static macro
-  // series (Brent, FX) we keep annotations empty — the default highlight +
-  // endpoint dots are enough.
+  // Annotate Polymarket endpoints with their probabilities so the reader sees
+  // the move (e.g. "12% → 47%") at a glance. Both labels are values — mixing
+  // a date label with a percent label looked inconsistent. For static macro
+  // series (Brent, FX) we keep annotations empty — the default highlight dot
+  // and the x-axis period anchors are enough.
   const annotations = []
-  if (indicator.source === 'polymarket' && indicator.periods?.length >= 2) {
-    annotations.push({ atIndex: 0, label: indicator.periods[0] })
-    annotations.push({
-      atIndex: indicator.values.length - 1,
-      label: `${indicator.values[indicator.values.length - 1]}%`,
-    })
+  if (indicator.source === 'polymarket' && indicator.values.length >= 2) {
+    const lastIdx = indicator.values.length - 1
+    annotations.push({ atIndex: 0, label: `${indicator.values[0]}%` })
+    annotations.push({ atIndex: lastIdx, label: `${indicator.values[lastIdx]}%` })
   }
 
   // Append sourceLabel to shared sources[] once; reuse index on subsequent
@@ -105,6 +104,7 @@ export function expandChartRef(chartBlock, snapshot, sourceCtx) {
     unit: indicator.unit,
     highlight: indicator.defaultHighlight || 'last',
     ...(annotations.length ? { annotations } : {}),
+    ...(indicator.marketUrl ? { link: indicator.marketUrl } : {}),
     source: idx,
   }
 }

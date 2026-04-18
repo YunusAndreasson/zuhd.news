@@ -105,6 +105,9 @@ const parseArticleBlock = (v: unknown): ArticleBlock | null => {
           .filter((a): a is NonNullable<typeof a> => a != null);
         if (anns.length > 0) block.annotations = anns;
       }
+      if (typeof v.link === 'string' && /^https?:\/\//.test(v.link)) {
+        block.link = v.link;
+      }
       return applySourceRef(block, v);
     }
     case 'locations': {

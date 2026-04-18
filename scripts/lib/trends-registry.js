@@ -4,6 +4,53 @@
 //
 // Keep this file flat and declarative. Per-source fetch logic lives in
 // ./trends-sources/*.js and reads the `source` + `seriesId` fields here.
+//
+// Adding a new source:
+//   1. Drop scripts/lib/trends-sources/<name>.js exporting either
+//      `fetch<Name>(indicator, ...args)` returning {values, periods, asOf}
+//      OR `fetch<Name>Top(...)` returning a list of fully-formed snapshot
+//      entries (the dynamic shape — Polymarket-style).
+//   2. Add an entry to SOURCES below.
+//   3. Add registry entries here (skip step 3 for dynamic sources).
+// The fetch-trends.js orchestrator iterates SOURCES — no new code needed.
+
+import { fetchFredSeries } from './trends-sources/fred.js'
+import { fetchOerRates } from './trends-sources/oer.js'
+import { fetchPolymarketTop } from './trends-sources/polymarket.js'
+import { fetchPortWatchChokepoint } from './trends-sources/portwatch.js'
+
+/** @typedef {Object} SourceDef
+ *  @property {Function} fetcher
+ *  @property {string[]} requiredEnv  Env var names this source needs (skip with warning if missing).
+ *  @property {'perIndicator'|'batched'|'dynamic'} mode
+ *      - perIndicator: orchestrator calls fetcher(indicator) once per matching registry row.
+ *      - batched:      one call covers all matching rows (orchestrator passes seriesIds + cache path).
+ *      - dynamic:      no registry rows; fetcher returns full snapshot entries directly.
+ */
+
+/** @type {Record<string, SourceDef>} */
+export const SOURCES = {
+  fred: {
+    fetcher: fetchFredSeries,
+    requiredEnv: ['FRED_API_KEY'],
+    mode: 'perIndicator',
+  },
+  oer: {
+    fetcher: fetchOerRates,
+    requiredEnv: ['OER_APP_ID'],
+    mode: 'batched',
+  },
+  portwatch: {
+    fetcher: fetchPortWatchChokepoint,
+    requiredEnv: [],
+    mode: 'perIndicator',
+  },
+  polymarket: {
+    fetcher: fetchPolymarketTop,
+    requiredEnv: [],
+    mode: 'dynamic',
+  },
+}
 
 /** @typedef {'oil' | 'macro' | 'food' | 'fx' | 'shipping' | 'prediction' | 'energy'} Tier */
 
@@ -171,25 +218,30 @@ export const INDICATORS = [
   },
 
   // ── Tier 2: shipping chokepoints (IMF PortWatch) ───────────────────────────
+  // Per-chokepoint vessel class is the meaningful series, not the total: the
+  // Hormuz story is tankers (oil flow), the Bab-el-Mandeb / Red Sea story is
+  // containers (Houthi targeting of commercial shipping).
   {
-    id: 'portwatch-hormuz',
-    label: 'Hormuz transits',
+    id: 'portwatch-hormuz-tanker',
+    label: 'Hormuz tanker transits',
     unit: 'ships/day',
     source: 'portwatch',
     seriesId: 'hormuz',
+    field: 'n_tanker',
     cadence: 'daily',
-    topicTags: ['hormuz', 'strait', 'blockade', 'shipping', 'tanker', 'chokepoint', 'gulf shipping', 'iran navy', 'persian gulf'],
+    topicTags: ['hormuz', 'strait', 'blockade', 'shipping', 'tanker', 'chokepoint', 'gulf shipping', 'iran navy', 'persian gulf', 'oil flow'],
     defaultHighlight: 'last',
     sourceLabel: 'IMF PortWatch',
   },
   {
-    id: 'portwatch-bab',
-    label: 'Bab-el-Mandeb transits',
+    id: 'portwatch-bab-container',
+    label: 'Bab-el-Mandeb container transits',
     unit: 'ships/day',
     source: 'portwatch',
     seriesId: 'bab-el-mandeb',
+    field: 'n_container',
     cadence: 'daily',
-    topicTags: ['red sea', 'bab-el-mandeb', 'houthi', 'yemen shipping', 'suez', 'chokepoint', 'sanaa'],
+    topicTags: ['red sea', 'bab-el-mandeb', 'houthi', 'yemen shipping', 'suez', 'chokepoint', 'sanaa', 'container', 'maersk', 'commercial shipping'],
     defaultHighlight: 'last',
     sourceLabel: 'IMF PortWatch',
   },
@@ -198,3 +250,12 @@ export const INDICATORS = [
   // IndicatorDef-compatible object per top-20 market (id prefixed
   // `poly-<slug>`) directly in the snapshot, without a registry entry.
 ]
+
+// Normalize at load: editor matching is case- and whitespace-sensitive, and
+// the dynamic Polymarket source emits its own tags downstream. Catching
+// stray uppercase / trailing whitespace here keeps a single typo from
+// silently dropping an indicator out of every relevance match.
+for (const i of INDICATORS) {
+  i.topicTags = i.topicTags.map((t) => t.trim().toLowerCase())
+  if (i.countryTags) i.countryTags = i.countryTags.map((c) => c.trim().toUpperCase())
+}

@@ -13,6 +13,15 @@ const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 
 const TOP_N = 20
 
+// Minimum daily points to chart usefully — a 2-point line is just a slope.
+const MIN_HISTORY_POINTS = 5
+
+// "Decided" filter: a market whose tail sits within ±DECIDED_BAND of an
+// extreme is informationally dead — the chart is a flat line. We check the
+// last DECIDED_TAIL_FRACTION of points.
+const DECIDED_BAND = 3   // percentage points
+const DECIDED_TAIL_FRACTION = 1 / 3
+
 // Categories we keep — prioritize ummah-relevant geopolitics/economics.
 // Polymarket's category taxonomy is fuzzy; we also inspect the market title.
 const KEEP_CATEGORIES = new Set(['geopolitics', 'politics', 'world', 'middle-east', 'economy', 'business', 'war', 'elections'])
@@ -29,7 +38,10 @@ function ymd(d) {
 }
 
 async function fetchTopMarkets(limit) {
-  // Gamma's /markets supports order by volume24hr. We over-fetch then filter.
+  // Gamma's /markets sorts by `order=volume24hr` (camelCase). The public docs
+  // spell it `volume_24hr` but that form returns essentially-random results
+  // — confirmed against the live API 2026-04. The camelCase spelling is what
+  // works. We over-fetch to leave headroom after category + decided pruning.
   const url = new URL(`${GAMMA_BASE}/markets`)
   url.searchParams.set('order', 'volume24hr')
   url.searchParams.set('ascending', 'false')
@@ -138,13 +150,17 @@ export async function fetchPolymarketTop() {
       console.error(`  ✗ polymarket history ${m.slug}: ${err.message}`)
       continue
     }
-    if (history.length < 2) continue
+    if (history.length < MIN_HISTORY_POINTS) continue
 
     const values = history.map((h) => Math.round((h.p || 0) * 100))
+    if (isDecidedSeries(values)) continue
+
     const periods = history.map((h) => formatPeriod(h.t))
     const asOf = ymd(new Date((history[history.length - 1].t || 0) * 1000))
     const title = m.question || m.title || 'Untitled market'
     const slug = sanitizeSlug(m.slug || title)
+    const eventSlug = m.events?.[0]?.slug || null
+    const eventUrl = eventSlug ? `https://polymarket.com/event/${eventSlug}` : ''
 
     results.push({
       id: `poly-${slug}`,
@@ -159,11 +175,50 @@ export async function fetchPolymarketTop() {
       values,
       periods,
       asOf,
-      marketUrl: m.slug ? `https://polymarket.com/event/${m.slug}` : '',
+      marketUrl: eventUrl,
       outcomeLabel: tokens.label,
+      // Internal — used for event-level dedupe below, not persisted.
+      _eventSlug: eventSlug,
+      _volume24hr: Number(m.volume24hr) || 0,
     })
   }
-  return results
+
+  // Dedupe by event: many "neg-risk" markets (e.g. Fed +25/no change/-25/-50)
+  // share one event. Keep the highest-volume outcome per event so the editor
+  // sees one chart per real-world question rather than four near-duplicates.
+  const dedupedByEvent = new Map()
+  const standalone = []
+  for (const r of results) {
+    if (!r._eventSlug) {
+      standalone.push(r)
+      continue
+    }
+    const existing = dedupedByEvent.get(r._eventSlug)
+    if (!existing || r._volume24hr > existing._volume24hr) {
+      dedupedByEvent.set(r._eventSlug, r)
+    }
+  }
+  const deduped = [...standalone, ...dedupedByEvent.values()]
+  for (const r of deduped) {
+    delete r._eventSlug
+    delete r._volume24hr
+  }
+
+  if (deduped.length < results.length) {
+    console.log(`  · polymarket: deduped ${results.length} → ${deduped.length} (one per event)`)
+  }
+  return deduped
+}
+
+/** A series is "decided" if its tail (last DECIDED_TAIL_FRACTION of points)
+ *  sits within DECIDED_BAND of 0 or 100 — the chart would be a flat line. */
+function isDecidedSeries(values) {
+  if (values.length < MIN_HISTORY_POINTS) return false
+  const tailLen = Math.max(2, Math.ceil(values.length * DECIDED_TAIL_FRACTION))
+  const tail = values.slice(-tailLen)
+  const allLow = tail.every((v) => v <= DECIDED_BAND)
+  const allHigh = tail.every((v) => v >= 100 - DECIDED_BAND)
+  return allLow || allHigh
 }
 
 function extractTopicTags(title) {

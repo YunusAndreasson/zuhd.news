@@ -88,6 +88,7 @@ The generator expands this to a real chart block at save time — do NOT inline 
 - You already used a chart earlier in the same brief — prefer one strong chart over two mediocre ones.
 - The topic is abstract (surveillance mechanics, quantum error correction) — charts rarely illuminate these.
 - You'd be embedding the chart just because it matches a tag. Every chart needs a why.
+- For Polymarket: skip indicators whose `latest` is ≤ 5 or ≥ 95. These markets are decided — the chart will be a flat line and the body claim will read as a stale prediction.
 
 **Rules:**
 - Maximum **1** chart per brief. (Hard cap. Briefs are dense already.)
@@ -166,6 +167,24 @@ The generator expands this to a real chart block at save time — do NOT inline 
 }
 </output>
 <note>The PortWatch chart attaches to "WHY CLEARING IS SLOW" because that entry's claim — that clearance takes weeks — is quantified by the collapse from 100+ to single-digit daily transits in the chart. It would be wrong to attach the same chart to "WHY MINES WORK" (too generic) or "THE DEPTH PROBLEM" (talks about physical geometry, not transit volume).</note>
+</example>
+
+<example>
+<description>Economics article — FRED commodity chart attached to the entry whose claim it quantifies</description>
+<output>
+{
+  "2026-04-15-pakistan-flour-riots-wheat-imports": {
+    "label": "Wheat & the Bread Subsidy",
+    "entries": [
+      {"heading": "THE SUBSIDY MECHANIC", "body": "Pakistan's flour subsidy works through provincial wheat boards that buy at a fixed support price and release to mills below import parity. When global wheat rises, the gap between the two prices is a deficit the government absorbs."},
+      {"heading": "WHY THIS MATTERS NOW", "body": "Pakistan imports roughly a third of its wheat. A move in the Chicago benchmark passes through to mill costs within weeks, then to bread prices when the subsidy budget runs short.", "blocks": [{"type": "chart", "ref": "wheat"}]},
+      {"heading": "THE 1977 PRECEDENT", "body": "Bhutto's last months in office saw flour shortages that Zia's coup later cited as evidence of administrative collapse. Bread riots in Karachi predate the IMF era; they are a recurring stress test of state legitimacy."},
+      {"heading": "WHO PAYS", "body": "When the subsidy is cut, urban consumers pay first; when the subsidy is preserved, rural growers paid below market for procurement pay. The political question is which group the government can afford to alienate."}
+    ]
+  }
+}
+</output>
+<note>The wheat chart attaches to "WHY THIS MATTERS NOW" because that entry's claim — that global wheat moves pass through to bread prices — is what the chart shows. The other entries explain mechanism and history; a chart on those would be ornamental.</note>
 </example>
 
 <example>

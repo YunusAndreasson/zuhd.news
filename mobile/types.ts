@@ -54,6 +54,9 @@ export type ArticleBlock =
       highlight?: 'last' | 'first' | 'max' | 'min';
       /** Event markers pinned to specific data points. */
       annotations?: TrendAnnotation[];
+      /** External URL the chart links to (e.g. Polymarket event). The renderer
+       *  wires this to onPress so curious readers can verify the source. */
+      link?: string;
     } & BlockSourceRef)
   | ({ type: 'locations'; codes: string[]; label?: string; caption?: string } & BlockSourceRef)
   /** Period quote — editorial texture. Renders as italic body with attribution.

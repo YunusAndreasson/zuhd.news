@@ -11,21 +11,14 @@
 //  - Missing API keys → skip that source with a warning (graceful), do not abort.
 //  - Idempotent: writing the same day twice overwrites the snapshot.
 
-import { writeFileSync, mkdirSync, existsSync } from 'fs'
+import { writeFileSync, mkdirSync } from 'fs'
 import { join } from 'path'
-import { INDICATORS } from './lib/trends-registry.js'
-import { fetchFredSeries } from './lib/trends-sources/fred.js'
-import { fetchOerRates } from './lib/trends-sources/oer.js'
-import { fetchPolymarketTop } from './lib/trends-sources/polymarket.js'
-import { fetchPortWatchChokepoint } from './lib/trends-sources/portwatch.js'
+import { INDICATORS, SOURCES } from './lib/trends-registry.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const TRENDS_DIR = join(ROOT, 'content', 'trends')
 const FX_CACHE = join(TRENDS_DIR, '.fx-history.json')
 const DIGEST_PATH = '/tmp/zuhd-trends-digest.json'
-
-const FRED_KEY = process.env.FRED_API_KEY
-const OER_ID = process.env.OER_APP_ID
 
 const today = new Date().toISOString().slice(0, 10)
 const SNAPSHOT_PATH = join(TRENDS_DIR, `${today}.json`)
@@ -37,51 +30,56 @@ console.log(`Fetching trends for ${today}`)
 
 const indicators = [] // populated snapshot entries
 
-// --- FRED ---
-const fredIndicators = INDICATORS.filter((i) => i.source === 'fred')
-if (FRED_KEY && fredIndicators.length > 0) {
-  console.log(`FRED: ${fredIndicators.length} series`)
-  for (const ind of fredIndicators) {
-    const data = await fetchFredSeries(ind, FRED_KEY)
-    if (data) indicators.push(buildIndicatorEntry(ind, data))
+// Generic dispatch: each source declares its mode in trends-registry.js.
+// Adding a new source = add one entry to SOURCES + registry rows. No
+// changes required here.
+for (const [name, def] of Object.entries(SOURCES)) {
+  const missingEnv = def.requiredEnv.filter((k) => !process.env[k])
+  if (missingEnv.length > 0) {
+    console.warn(`  ⚠ ${name}: missing env ${missingEnv.join(', ')} — skipping`)
+    continue
   }
-} else if (!FRED_KEY) {
-  console.warn('  ⚠ FRED_API_KEY not set — skipping FRED series (register at https://fred.stlouisfed.org/docs/api/api_key.html)')
-}
 
-// --- OER (single batched call across all fx- indicators) ---
-const oerIndicators = INDICATORS.filter((i) => i.source === 'oer')
-if (OER_ID && oerIndicators.length > 0) {
-  console.log(`OER: ${oerIndicators.length} currencies`)
-  const currencies = oerIndicators.map((i) => i.seriesId)
-  const rates = await fetchOerRates(currencies, OER_ID, FX_CACHE)
-  if (rates) {
-    for (const ind of oerIndicators) {
-      const data = rates[ind.seriesId]
+  if (def.mode === 'dynamic') {
+    console.log(`${name}: top markets`)
+    const results = await def.fetcher()
+    if (results) for (const r of results) indicators.push(r)
+    continue
+  }
+
+  const matched = INDICATORS.filter((i) => i.source === name)
+  if (matched.length === 0) continue
+
+  if (def.mode === 'perIndicator') {
+    console.log(`${name}: ${matched.length} series`)
+    const apiKey = def.requiredEnv[0] ? process.env[def.requiredEnv[0]] : undefined
+    for (const ind of matched) {
+      const data = apiKey != null ? await def.fetcher(ind, apiKey) : await def.fetcher(ind)
       if (data) indicators.push(buildIndicatorEntry(ind, data))
     }
+    continue
   }
-} else if (!OER_ID) {
-  console.warn('  ⚠ OER_APP_ID not set — skipping currency basket (register at https://openexchangerates.org/signup/free)')
+
+  if (def.mode === 'batched') {
+    console.log(`${name}: ${matched.length} series (batched)`)
+    const seriesIds = matched.map((i) => i.seriesId)
+    const apiKey = process.env[def.requiredEnv[0]]
+    const map = await def.fetcher(seriesIds, apiKey, FX_CACHE)
+    if (map) {
+      for (const ind of matched) {
+        const data = map[ind.seriesId]
+        if (data) indicators.push(buildIndicatorEntry(ind, data))
+      }
+    }
+  }
 }
 
-// --- PortWatch (no auth) ---
-const pwIndicators = INDICATORS.filter((i) => i.source === 'portwatch')
-if (pwIndicators.length > 0) {
-  console.log(`PortWatch: ${pwIndicators.length} chokepoints`)
-  for (const ind of pwIndicators) {
-    const data = await fetchPortWatchChokepoint(ind)
-    if (data) indicators.push(buildIndicatorEntry(ind, data))
-  }
-}
-
-// --- Polymarket (no auth, dynamic indicators) ---
-console.log(`Polymarket: top markets`)
-const polyResults = await fetchPolymarketTop()
-if (polyResults) {
-  for (const r of polyResults) {
-    indicators.push(r) // already in snapshot shape
-  }
+// Catch silent ID collisions early — trends-expand.js's find() returns the
+// first match, so a dupe means a chart pick can resolve to the wrong series.
+const seenIds = new Set()
+for (const i of indicators) {
+  if (seenIds.has(i.id)) console.warn(`  ⚠ duplicate indicator id: ${i.id}`)
+  seenIds.add(i.id)
 }
 
 // ── Write snapshot ─────────────────────────────────────────────────────────
@@ -140,6 +138,7 @@ function buildIndicatorEntry(ind, data) {
     unit: ind.unit,
     source: ind.source,
     seriesId: ind.seriesId,
+    ...(ind.field ? { field: ind.field } : {}),
     cadence: ind.cadence,
     topicTags: ind.topicTags,
     countryTags: ind.countryTags || [],

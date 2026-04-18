@@ -324,28 +324,18 @@ export const TrendBlock = memo(function TrendBlock({
     }));
   }, [values, width, height]);
 
-  // Scrub state — the SharedValue drives the Skia chart's active dot; the
-  // animated reaction fires a haptic tick on each point-to-point transition.
+  // Scrub state — the SharedValue drives the Skia chart's active dot; one
+  // animated reaction handles both side-effects on a transition: a haptic
+  // tick (point-to-point only) and pushing the index to JS for the readout.
   const scrubIdx = useSharedValue(-1);
-
-  useAnimatedReaction(
-    () => scrubIdx.value,
-    (current, prev) => {
-      if (current !== prev && current >= 0 && prev !== null && prev >= 0) {
-        runOnJS(hapticTick)();
-      }
-    },
-  );
-
-  // Scrub readout: current value + period under the finger. Plain React state
-  // — useAnimatedReaction only PUSHES the index via runOnJS. Formatting
-  // (formatNumber is not a worklet) and period lookup happen on the JS side.
   const [scrubIdxJs, setScrubIdxJs] = useState<number>(-1);
 
   useAnimatedReaction(
     () => scrubIdx.value,
     (current, prev) => {
-      if (current !== prev) runOnJS(setScrubIdxJs)(current);
+      if (current === prev) return;
+      runOnJS(setScrubIdxJs)(current);
+      if (current >= 0 && prev !== null && prev >= 0) runOnJS(hapticTick)();
     },
   );
 

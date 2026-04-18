@@ -90,6 +90,7 @@ export function renderBlocks(blocks: ArticleBlock[], opts: RenderBlocksOptions):
             annotations={block.annotations}
             variant={variant}
             sourceLabel={sourceLabel}
+            onPress={block.link ? () => opts.openLink(block.link as string) : undefined}
           />
         );
       case 'locations':

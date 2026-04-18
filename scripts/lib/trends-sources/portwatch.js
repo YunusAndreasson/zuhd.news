@@ -14,10 +14,16 @@ const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 // Found via hub.arcgis.com search; owning org weJ1QsnbMYJlCHdG.
 const FEATURE_SERVICE = 'https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query'
 
+// portname is the only server-side filter. The vessel-class field (`field`)
+// chooses which subset of transits gets surfaced as the indicator's series —
+// this is the difference between "Hormuz tanker traffic" (the actual story
+// for an oil chokepoint) and undifferentiated total transits.
 const CHOKEPOINT_MAP = {
   hormuz: 'Strait of Hormuz',
   'bab-el-mandeb': 'Bab el-Mandeb Strait',
 }
+
+const VESSEL_FIELDS = new Set(['n_total', 'n_tanker', 'n_container', 'n_dry_bulk', 'n_cargo', 'n_general_cargo', 'n_roro'])
 
 const HISTORY_DAYS = 60
 
@@ -32,9 +38,13 @@ function ymd(d) {
 }
 
 /**
- * Fetch PortWatch transit counts for a given chokepoint.
+ * Fetch PortWatch transit counts for a given chokepoint and vessel class.
  *
- * @param {{ id: string, seriesId: keyof typeof CHOKEPOINT_MAP }} indicator
+ * @param {{ id: string, seriesId: keyof typeof CHOKEPOINT_MAP, field?: string }} indicator
+ *        `field` selects the vessel-count column (default `n_total`). For
+ *        Hormuz the meaningful series is `n_tanker`; for Bab-el-Mandeb it is
+ *        `n_container` (the Houthi-blockade story is a container-shipping
+ *        story, not a totals story).
  * @returns {Promise<{ values: number[], periods: string[], asOf: string } | null>}
  */
 export async function fetchPortWatchChokepoint(indicator) {
@@ -43,6 +53,7 @@ export async function fetchPortWatchChokepoint(indicator) {
     console.error(`  ✗ portwatch:${indicator.id}: unknown chokepoint seriesId`)
     return null
   }
+  const field = indicator.field && VESSEL_FIELDS.has(indicator.field) ? indicator.field : 'n_total'
 
   const end = new Date()
   const start = new Date(end)
@@ -53,7 +64,7 @@ export async function fetchPortWatchChokepoint(indicator) {
   // sorting. ArcGIS's timestamp WHERE dialect is finicky across services.
   url.searchParams.set('f', 'json')
   url.searchParams.set('where', `portname='${portName}'`)
-  url.searchParams.set('outFields', 'date,portname,n_total')
+  url.searchParams.set('outFields', `date,portname,${field}`)
   url.searchParams.set('orderByFields', 'date DESC')
   url.searchParams.set('resultRecordCount', String(HISTORY_DAYS + 5))
 
@@ -72,7 +83,7 @@ export async function fetchPortWatchChokepoint(indicator) {
 
     // ArcGIS returns date as epoch ms. DESC-sorted; reverse for chart order.
     const rows = features
-      .map((f) => ({ ts: f.attributes?.date, calls: f.attributes?.n_total }))
+      .map((f) => ({ ts: f.attributes?.date, calls: f.attributes?.[field] }))
       .filter((r) => r.ts != null && r.calls != null && r.ts >= start.getTime())
       .sort((a, b) => a.ts - b.ts)
 

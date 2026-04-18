@@ -244,6 +244,15 @@ $BODY_LENGTHS
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT — $((SECONDS - T3))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.4: Live trends digest — feeds the edu-context stage. Fail-soft:
+  # missing keys / missing sources just shrink the offered indicator list.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.4: Trends fetch ---" | tee -a "$LOG_FILE"
+  T34=$SECONDS
+  timeout 120 node scripts/fetch-trends.js >> "$LOG_FILE" 2>&1
+  TRENDS_EXIT=$?
+  echo "Trends exit: $TRENDS_EXIT — $((SECONDS - T34))s" | tee -a "$LOG_FILE"
+
   # Stage 3.5: Educational context briefs
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3.5: Educational context briefs ---" | tee -a "$LOG_FILE"
