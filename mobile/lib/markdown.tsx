@@ -190,17 +190,16 @@ export function makeMarkdownStyles(
       color: colors.accent,
       textDecorationLine: 'underline',
     },
-    // Country mentions: body text color with a dotted `textSecondary`
-    // underline — a footnote-style cue that whispers "tappable reference"
-    // without shouting like a web link. On iOS both `textDecorationStyle`
-    // and `textDecorationColor` render; on Android both are ignored and the
-    // fallback is a solid text-color underline (still visible, still
-    // distinguishable from plain body / entity / web-link treatments).
+    // Country mentions: body text color with a dotted underline that inherits
+    // the body text color. A footnote-style cue that whispers "tappable
+    // reference" without shouting like a web link. iOS renders the dotted
+    // style; Android ignores it and falls back to a solid text-color
+    // underline — still visible, still distinguishable from plain body /
+    // entity / web-link treatments.
     countryLink: {
       color: colors.text,
       textDecorationLine: 'underline',
       textDecorationStyle: 'dotted',
-      textDecorationColor: colors.textSecondary,
     },
     // Entity runs get the accent hue without underline — a softer affordance
     // than a link so that tappable rich nouns don't compete with inline URLs.
