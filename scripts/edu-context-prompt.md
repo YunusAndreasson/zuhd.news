@@ -156,7 +156,7 @@ Augmentations are structured blocks the reader sees beneath an entry's body. Two
 - **Cheap** (locations, compare, actors, prose, quiz) — drawn entirely from your training knowledge. **Default ON**: if an entry has the substrate, include the block.
 - **Guarded** (chart, quote) — real failure modes (unresolvable refs, fabricated wording). **Default OFF**. One narrow exception: canonical text quotes — covered in the `quote` block section.
 
-**Target for a 5–6 entry brief: 3–5 cheap blocks plus 0–2 guarded.** Zero-block briefs are only legitimate when the article is pure mechanism with no named actors, countries, or comparable figures. If you end up under three, re-scan the entries against the pre-flight signal table at the bottom of this section — you're probably missing obvious substrate.
+**Target for a 5–6 entry brief: 3–5 cheap blocks plus 0–2 guarded — and aim for 3+ *different block types*, not just 3+ blocks.** Three compares alone is worse than one compare + one locations + one quiz + one prose: diverse block types lift a brief that monoculture blocks can't. Cover multiple substrates (geographic + comparative + retrieval + emphasis) when the entries support them. Zero-block briefs are only legitimate when the article is pure mechanism with no named actors, countries, or comparable figures. If you end up under three types OR under three blocks, re-scan against the pre-flight signal table — you're probably missing obvious substrate.
 
 ## Charts — `{type:'chart', ref:'<id>'}`
 
@@ -234,14 +234,15 @@ A cast of named historical figures with role, tenure, and flag.
 
 ## Prose (rich text) — `{type:'prose', text}` [cheap — default on]
 
-A short markdown-enabled paragraph for when `**bold**` or `*italic*` sharpens a point — a term of art, a foreign word, a number worth emphasizing.
+A short markdown-enabled paragraph for when `**bold**` or `*italic*` sharpens a point — a term of art, a foreign word, a distinction worth pausing on, a number worth emphasizing.
 
-**Default on when:** the entry contains a specific term, phrase, or figure the reader should walk away remembering. Bold the term; italicize foreign words; use inline emphasis surgically.
+**Default on for almost every brief.** Prose is cheap — pure LLM knowledge, no data dependency, no fabrication risk. Almost every brief contains at least one term, distinction, or figure the reader should walk away remembering. Pick the entry with the richest conceptual substrate and add a prose block there. Examples of substrate: technical terms (`**jus soli**` vs `**jus sanguinis**`), foreign-language terms (`*sharia*`, `*waqf*`, `*Amayesh*`, `*ijtihad*`), a specific numeric contrast (`**$3.9B**` contract vs `**$6B+**` actual), the name of a doctrine or mechanism worth boldfacing.
 
 **Skip only when:**
-- The entry's `body` already emphasizes the right thing — adding a prose block would duplicate it.
+- The entry's `body` already uses emphasis-worthy phrasing — a prose block would duplicate it.
+- The brief is entirely about a single concrete event with no terms, distinctions, or figures to highlight — rare.
 
-**Rules:** One or two sentences, not a paragraph. Markdown is inline-only: `**bold**`, `*italic*`. No links, no headings, no lists, no bullet lists, no code fences.
+**Rules:** One or two sentences, not a paragraph. Markdown is inline-only: `**bold**`, `*italic*`. No links, no headings, no lists, no bullet lists, no code fences. Attach the prose block to the entry whose content it emphasizes — not as a standalone entry.
 
 ## Quiz — `{type:'quiz', question, options[], correct, explanation?}` [cheap — default on]
 
