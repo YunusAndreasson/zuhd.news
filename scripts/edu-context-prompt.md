@@ -15,12 +15,7 @@ You receive a list of candidate articles (slug, title, category, concepts). Sele
 
 For each selected article, write a brief: a structured explainer using ALLCAPS headings to create scannable sections. The reader should be able to skim headings alone and get the shape of the explanation, then read the bodies that interest them.
 
-Entries may carry augmentation blocks — described in `<augmentations>` below — split into two tiers:
-
-- **Cheap augmentations** (locations, compare, actors, prose-markdown, quiz) draw entirely on your own training knowledge. **Default to using them generously** — when an entry names countries, include a `locations` map; when it names several actors, include an `actors` cast; when a claim is comparative, include a `compare`; when active-reading would reinforce a fact, include a `quiz`. A brief of 5 entries with 3–4 cheap augmentations is the target, not the exception. Skip only when the block would actively mislead (redundant map, forced comparison) — not out of restraint.
-- **Guarded augmentations** (chart, quote) carry real failure modes — fabricating exact quote wording, picking an unresolvable chart ref — and stay strict. Use when the condition clearly holds, otherwise omit.
-
-Each augmentation should be evidence for a claim you're already making. Don't introduce facts in a block that aren't already in the entry's body.
+Entries may carry augmentation blocks beneath their body text — maps, compares, casts of actors, quotes, prose, quizzes, and (when live data is available) charts. Full rules in `<augmentations>` below. Each block must be evidence for a claim the body already makes — never introduce new facts in a block.
 </task>
 
 <guidelines>
@@ -156,14 +151,12 @@ Every block may carry an optional `source` field — an index into a brief-level
 </schema>
 
 <augmentations>
-Augmentations are structured blocks the reader sees beneath an entry's text.
+Augmentations are structured blocks the reader sees beneath an entry's body. Two tiers with different defaults:
 
-Split them into two tiers — the question "include or omit?" has a different default for each:
+- **Cheap** (locations, compare, actors, prose, quiz) — drawn entirely from your training knowledge. **Default ON**: if an entry has the substrate, include the block.
+- **Guarded** (chart, quote) — real failure modes (unresolvable refs, fabricated wording). **Default OFF**. One narrow exception: canonical text quotes — covered in the `quote` block section.
 
-- **Cheap augmentations** (locations, compare, actors, prose, quiz) — these draw only on your own training knowledge. No fetch cost, no fabrication risk beyond normal care. **Default ON**: if an entry has the substrate for the block, include it. A 5-entry brief with 3–4 of these is the target.
-- **Guarded augmentations** (chart, quote) — real failure modes (unresolvable refs, fabricated wording). **Default OFF**: include only when the specific condition is clearly met. Exception: canonical text quotes (constitutional clauses, treaty articles, famous on-record speech lines) are cheap — see the `quote` block for the narrow carve-out.
-
-Across a 5–6 entry brief, expect roughly 3–5 cheap blocks and 0–2 guarded blocks. A brief with zero augmentations means either the article is unusually abstract or you're being too conservative — check the latter.
+**Target for a 5–6 entry brief: 3–5 cheap blocks plus 0–2 guarded.** Zero-block briefs are only legitimate when the article is pure mechanism with no named actors, countries, or comparable figures. If you end up under three, re-scan the entries against the pre-flight signal table at the bottom of this section — you're probably missing obvious substrate.
 
 ## Charts — `{type:'chart', ref:'<id>'}`
 
@@ -217,6 +210,7 @@ A period quotation that captures a posture or moment — OR a canonical text who
 **Canonical-text exception — treat as cheap:**
 - Constitutional clauses, treaty articles, published laws, landmark judicial holdings, on-record speeches whose wording is widely reproduced in primary sources. The US Emoluments Clause, Article 5 of NATO, the Balfour Declaration, a supreme-court majority line quoted in every casebook — these are verifiable, not reconstructed. Use `speaker` for the source ("US Constitution, Article I §9" or "Treaty of Westphalia, 1648").
 - Dated, on-record public speeches where the line is famous enough to appear in Wikipedia verbatim (Gorbachev's "window of opportunity," Kennedy's "Ich bin ein Berliner") also qualify.
+- **Not covered by this exception:** Islamic religious sources (Quran, hadith, tafsir). Follow the reference-don't-quote rule in `<perspective>` — cite the collection ("a hadith in Sahih Muslim describes…"), never attempt exact Arabic or a specific hadith number.
 
 **Use when:** the entry argues a legal, constitutional, or rhetorical point and the canonical text IS the evidence. A brief on the Emoluments Clause without the clause itself is hollow.
 
@@ -276,9 +270,7 @@ For each entry, check these signals:
 | Contains a term, foreign word, or figure worth emphasizing | `prose` with inline bold/italic |
 | Quotes canonical text (constitutional clause, treaty article, published law, on-record speech with well-known wording) | `quote` ← narrow exception to the guard |
 
-Target for a 5–6 entry brief: **at minimum 3 cheap blocks, typically 4–5 when the substrate is rich.** If you end up with 0–2 blocks, re-scan — you're probably missing obvious substrate. A brief can legitimately have 2 blocks only if the article is unusually abstract (pure-mechanism philosophy, no named actors or countries or comparable figures).
-
-One narrowing on the `quote` block: while "guarded" in general, canonical texts where the wording is stable and widely reproduced (the US Emoluments Clause, Article 5 of NATO, the Balfour Declaration's single sentence, a supreme-court majority holding quoted in every law-school casebook) are safe to include. You are not reconstructing wording from memory — you are citing stable, verifiable text. Use speaker for the source ("US Constitution, Article I §9"), year for adoption date.
+Apply the signal table before emitting. Each signal that matches = one block added.
 </augmentations>
 
 <examples>
