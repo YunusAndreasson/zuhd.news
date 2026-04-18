@@ -16,18 +16,13 @@ const LEAD = 'Zuhd \u2014 the discipline of doing without what you do not need.'
 const MANIFESTO = [
   'Information is no longer scarce; attention is. Attention is where information becomes fact \u2014 and without facts, no truth; without truth, no trust; without trust, no shared reality.',
   'In 1971, Herbert Simon observed that a wealth of information creates a poverty of attention. Seven centuries earlier, Ibn Taymiyyah had named the discipline \u2014 zuhd: abandon what does not bring benefit. zuhd.news applies that discipline to the present.',
-  'Most systems that process news today are optimized for engagement, not understanding. zuhd.news is aligned on a different set of values: zuhd, tabayyun, isnad, adalah, haqq. The work is automated; the alignment is not.',
+  'Most systems that process news today are optimized for engagement, not understanding. zuhd.news is built on a different set of values: zuhd, tabayyun, isnad, adalah, haqq. The work is automated; the alignment is not.',
 ];
 
 // The article format — narrative-ordered (sequence carries meaning), so no
 // staircase sort. Rendered with the same quiet vertical typography as the
 // subtractions list below, forming a matched pair of mini-declaratives.
-const WHATS = [
-  'What happened.',
-  'Why it matters.',
-  'What comes next.',
-  'Then stop.',
-];
+const WHATS = ['What happened.', 'Why it matters.', 'What comes next.', 'Then stop.'];
 
 const STANCE =
   'Where a story is told from determines who is treated as a person and who as a statistic. People who bear power\u2019s consequences are the subject, not the background.';
@@ -42,13 +37,13 @@ const SUBTRACTIONS = [
 ];
 
 const NEWSROOM_LINE =
-  'zuhd.news is a fully automated newsroom. The intelligence lives in the system; the editors stand at the edges, where judgment belongs \u2014 what qualifies as news, how it is verified, whether a pattern is oppression, when to name power. They do not write the articles; they write the rules the newsroom follows.';
+  'zuhd.news is an automated newsroom. The intelligence lives in the system; the editors stand at the edges, where judgment belongs \u2014 what qualifies as news, how it is verified, whether a pattern is oppression, when to name power. They do not write the articles; they write the rules the newsroom follows.';
 
 const FLOW_LINE =
-  'Under those rules, the newsroom reads the world, verifies what it finds, drafts each article, and augments it with live institutional data.';
+  'Under those rules, the newsroom reads the world, verifies what it finds, drafts each article, and augments it with live data.';
 
 const SOURCES_BODY =
-  'There is no fixed roster. Each cycle, the newsroom looks for the voices closest to what happened \u2014 from international wires like Reuters and the BBC to newsrooms inside the country where it happened. No more than two of any story\u2019s sources come from the Western press. State media is included to carry a government\u2019s position, never as a substitute for independent reporting.';
+  'There is no fixed roster. Each cycle, the newsroom looks for the voices closest to the story \u2014 from international wires like Reuters and the BBC to newsrooms inside the country where it happened. No more than two of any story\u2019s sources come from the Western press. State media is included to carry a government\u2019s position, never as a substitute for independent reporting.';
 
 const CONTEXT_BODY =
   'Every article draws on a layer of institutional data: shipping flows, exchange rates, development indicators, press-freedom scores, refugee counts, prediction markets.';
@@ -78,18 +73,18 @@ const DATA_SOURCES: { label: string; url: string }[] = [
 ];
 
 const PRINCIPLES: { term: string; gloss: string }[] = [
-  { term: 'Zuhd', gloss: 'Only what benefits the reader is published.' },
+  { term: 'zuhd', gloss: 'Only what benefits the reader is published.' },
   {
-    term: 'Tabayyun',
+    term: 'tabayyun',
     gloss:
       'Reports are verified before publication; the burden of proof rests with the source (Qur\u2019an 49:6).',
   },
   {
-    term: 'Isnad',
+    term: 'isnad',
     gloss: 'Every article ends with its chain of sources, named and linked.',
   },
-  { term: 'Adalah', gloss: 'Sources are weighed by character, not only by content.' },
-  { term: 'Haqq', gloss: 'Truth is published without regard to power.' },
+  { term: 'adalah', gloss: 'Sources are weighed by character, not only by content.' },
+  { term: 'haqq', gloss: 'Truth is published without regard to power.' },
 ];
 
 // Source names we can drop from the surfaced list — the aggregator feed
@@ -146,8 +141,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
   const extraCount = Math.max(0, recentSources.length - visibleSources.length);
 
   let blockIndex = 0;
-  const enter = () =>
-    FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(blockIndex++));
+  const enter = () => FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(blockIndex++));
 
   const body = {
     ...font.regular,
@@ -248,7 +242,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
               marginTop: SPACING.sm,
             }}
           >
-            Recent stories came from {prose(visibleSources)}
+            Recent stories draw on {prose(visibleSources)}
             {extraCount > 0 ? `, and ${extraCount} others` : ''}.
           </Text>
         )}
@@ -263,9 +257,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
           onPress={() => setProvidersOpen((v) => !v)}
           style={styles.discloseToggle}
           accessibilityRole="button"
-          accessibilityLabel={
-            providersOpen ? 'Hide data providers' : 'View data providers'
-          }
+          accessibilityLabel={providersOpen ? 'Hide data providers' : 'View data providers'}
           accessibilityState={{ expanded: providersOpen }}
         >
           <Text
@@ -284,9 +276,7 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
             {DATA_SOURCES.map((l, idx) => (
               <Animated.View
                 key={l.url}
-                entering={FadeInDown.duration(ANIMATION.fast).delay(
-                  staggerDelay(idx),
-                )}
+                entering={FadeInDown.duration(ANIMATION.fast).delay(staggerDelay(idx))}
               >
                 <HapticPressable
                   onPress={() => openLink(l.url)}
@@ -340,7 +330,6 @@ export function SheetAboutPage({ articles }: SheetAboutPageProps) {
           ))}
         </View>
       </Animated.View>
-
     </>
   );
 }

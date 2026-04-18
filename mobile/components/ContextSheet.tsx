@@ -22,12 +22,6 @@ import { renderBlocks } from './blocks';
 import { SheetLayout } from './SheetLayout';
 import { useMaxSheetHeight } from './SheetPrimitives';
 
-// Dev-only canonical brief. The __DEV__ ternary is a compile-time constant;
-// Metro strips the require (and the module it points to) from release bundles.
-const DEV_DEMO_BRIEF: ContextBrief | null = __DEV__
-  ? (require('../lib/dev-context-demo') as typeof import('../lib/dev-context-demo')).DEV_DEMO_BRIEF
-  : null;
-
 // ---------------------------------------------------------------------------
 // Main sheet
 // ---------------------------------------------------------------------------
@@ -58,14 +52,8 @@ export const ContextSheet = memo(function ContextSheet({
   const { colors, font, typography, textStyles, sheetStyles } = useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
 
-  // In dev, every "context" tap shows the canonical demo brief so the block
-  // renderer can be evaluated without waiting for the pipeline.
-  const effectiveBrief = __DEV__ ? DEV_DEMO_BRIEF : brief;
-  const effectiveThreadLabel = __DEV__ ? effectiveBrief?.label : threadLabel;
-  const effectiveLoading = __DEV__ ? false : loading;
-
-  const timeline = effectiveBrief?.timeline ?? [];
-  const hasThread = !!effectiveThreadLabel;
+  const timeline = brief?.timeline ?? [];
+  const hasThread = !!threadLabel;
 
   const mdStyles = useMemo(
     () => makeMarkdownStyles(colors, font, typography),
@@ -73,24 +61,24 @@ export const ContextSheet = memo(function ContextSheet({
   );
   const openLink = useOpenLink();
 
-  const spanningBlocks = effectiveBrief?.blocks ?? [];
+  const spanningBlocks = brief?.blocks ?? [];
   const hasSpanning = spanningBlocks.length > 0;
-  const hasContent = effectiveBrief != null || hasSpanning;
+  const hasContent = brief != null || hasSpanning;
 
   const wasLoading = useRef(false);
   useEffect(() => {
-    if (wasLoading.current && !effectiveLoading && effectiveBrief) {
-      const count = effectiveBrief.timeline.length;
+    if (wasLoading.current && !loading && brief) {
+      const count = brief.timeline.length;
       AccessibilityInfo.announceForAccessibility(
         `Context loaded, ${count} entr${count === 1 ? 'y' : 'ies'}`,
       );
     }
-    wasLoading.current = effectiveLoading;
-  }, [effectiveLoading, effectiveBrief]);
+    wasLoading.current = loading;
+  }, [loading, brief]);
 
   const loadingSnap = useMemo(() => ['40%'], []);
 
-  const briefSources = effectiveBrief?.sources;
+  const briefSources = brief?.sources;
   const renderTimelineEntry = (entry: TimelineEntry, i: number, arr: TimelineEntry[]) => {
     const entryBlocks = entry.blocks ?? [];
     const hasBlocks = entryBlocks.length > 0;
@@ -197,12 +185,12 @@ export const ContextSheet = memo(function ContextSheet({
               },
             ]}
           >
-            {effectiveThreadLabel}
+            {threadLabel}
           </Text>
         )}
 
         {/* Loader — brief not yet returned. */}
-        {effectiveLoading && !effectiveBrief && hasThread && (
+        {loading && !brief && hasThread && (
           <ActivityIndicator color={colors.accent} style={styles.loader} />
         )}
 

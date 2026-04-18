@@ -291,7 +291,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: SPACING.screenPadding,
-    paddingTop: SPACING.sm,
+    paddingTop: 0,
     paddingBottom: SPACING.xl,
   },
   gradientTop: {

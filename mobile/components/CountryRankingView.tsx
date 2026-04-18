@@ -148,7 +148,10 @@ export const CountryRankingView = memo(function CountryRankingView({
                     accessibilityLabel={`Source: ${meta.source}`}
                   >
                     <Text
-                      style={[textStyles.smallCapsXs, { color: colors.dome, marginTop: SPACING.xxs }]}
+                      style={[
+                        textStyles.smallCapsXs,
+                        { color: colors.dome, marginTop: SPACING.xxs },
+                      ]}
                     >
                       {meta.source} ↗
                     </Text>
