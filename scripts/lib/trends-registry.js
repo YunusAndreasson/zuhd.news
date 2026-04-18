@@ -18,6 +18,7 @@ import { fetchFredSeries } from './trends-sources/fred.js'
 import { fetchOerRates } from './trends-sources/oer.js'
 import { fetchPolymarketTop } from './trends-sources/polymarket.js'
 import { fetchPortWatchChokepoint } from './trends-sources/portwatch.js'
+import { fetchCoinGeckoSeries } from './trends-sources/crypto.js'
 
 /** @typedef {Object} SourceDef
  *  @property {Function} fetcher
@@ -50,6 +51,11 @@ export const SOURCES = {
     requiredEnv: [],
     mode: 'dynamic',
   },
+  crypto: {
+    fetcher: fetchCoinGeckoSeries,
+    requiredEnv: [],
+    mode: 'perIndicator',
+  },
 }
 
 /** @typedef {'oil' | 'macro' | 'food' | 'fx' | 'shipping' | 'prediction' | 'energy'} Tier */
@@ -58,7 +64,7 @@ export const SOURCES = {
  *  @property {string} id            Stable ID used by editor + logs.
  *  @property {string} label         Display title (TrendBlock.label).
  *  @property {string} [unit]        Axis unit (TrendBlock.unit).
- *  @property {'fred'|'oer'|'polymarket'|'portwatch'} source
+ *  @property {'fred'|'oer'|'polymarket'|'portwatch'|'crypto'} source
  *  @property {string} [seriesId]    Source-specific identifier (FRED series, OER currency, etc.)
  *  @property {'daily'|'monthly'}    cadence
  *  @property {string[]} topicTags   Lowercased tags matched against article concepts/title/body.
@@ -249,6 +255,65 @@ export const INDICATORS = [
   // Polymarket indicators are dynamic — fetchPolymarketTop() produces one
   // IndicatorDef-compatible object per top-20 market (id prefixed
   // `poly-<slug>`) directly in the snapshot, without a registry entry.
+
+  // ── Tier 2: industrial metals + macro bellwethers (FRED) ───────────────────
+  {
+    id: 'copper',
+    label: 'Copper',
+    unit: '$/mt',
+    source: 'fred',
+    seriesId: 'PCOPPUSDM',
+    cadence: 'monthly',
+    topicTags: ['copper', 'metals', 'electrification', 'ev', 'grid', 'wiring', 'chile', 'zambia', 'peru', 'china demand', 'industrial'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · IMF',
+  },
+  {
+    id: 'us-10y',
+    label: 'US 10-year Treasury yield',
+    unit: '%',
+    source: 'fred',
+    seriesId: 'DGS10',
+    cadence: 'daily',
+    topicTags: ['treasury', 'yield', 'fed', 'bond', 'capital flow', 'emerging markets', 'em debt', 'dollar', 'rate hike', 'interest rates'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · Board of Governors',
+  },
+  {
+    id: 'vix',
+    label: 'VIX',
+    unit: 'index',
+    source: 'fred',
+    seriesId: 'VIXCLS',
+    cadence: 'daily',
+    topicTags: ['vix', 'volatility', 'market stress', 'risk off', 'fear gauge', 'panic', 'crisis', 'equities'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · CBOE',
+  },
+  {
+    id: 'sp500',
+    label: 'S&P 500',
+    unit: 'index',
+    source: 'fred',
+    seriesId: 'SP500',
+    cadence: 'daily',
+    topicTags: ['sp500', 's&p', 'equities', 'stocks', 'wall street', 'us stocks', 'market', 'bull', 'bear'],
+    defaultHighlight: 'last',
+    sourceLabel: 'FRED · S&P',
+  },
+
+  // ── Tier 3: crypto (CoinGecko, no key) ─────────────────────────────────────
+  {
+    id: 'btc',
+    label: 'Bitcoin',
+    unit: '$',
+    source: 'crypto',
+    seriesId: 'bitcoin',
+    cadence: 'daily',
+    topicTags: ['bitcoin', 'btc', 'crypto', 'blockchain', 'mining', 'satoshi', 'quantum bitcoin', 'on-chain', 'coinbase', 'kraken', 'spot etf', 'halving'],
+    defaultHighlight: 'last',
+    sourceLabel: 'CoinGecko',
+  },
 ]
 
 // Normalize at load: editor matching is case- and whitespace-sensitive, and
