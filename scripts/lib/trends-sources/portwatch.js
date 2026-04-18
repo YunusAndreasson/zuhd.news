@@ -7,7 +7,7 @@
 // schema drifts, we log and return null rather than failing the whole cycle.
 // The orchestrator treats a null return as "skip this indicator this run".
 
-import { CHOKEPOINT_CATALOG } from '../chokepoint-metadata.js'
+import { CHOKEPOINT_BY_ID, CHOKEPOINT_CATALOG } from '../chokepoint-metadata.js'
 
 const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 
@@ -16,22 +16,8 @@ const USER_AGENT = 'zuhd-news/1.0 (+https://zuhd.news)'
 // Found via hub.arcgis.com search; owning org weJ1QsnbMYJlCHdG.
 const FEATURE_SERVICE = 'https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query'
 
-// portname is the only server-side filter. The vessel-class field (`field`)
-// chooses which subset of transits gets surfaced as the indicator's series —
-// this is the difference between "Hormuz tanker traffic" (the actual story
-// for an oil chokepoint) and undifferentiated total transits.
-const CHOKEPOINT_MAP = {
-  hormuz: 'Strait of Hormuz',
-  'bab-el-mandeb': 'Bab el-Mandeb Strait',
-  suez: 'Suez Canal',
-  panama: 'Panama Canal',
-  malacca: 'Malacca Strait',
-  taiwan: 'Taiwan Strait',
-  dover: 'Dover Strait',
-  gibraltar: 'Gibraltar Strait',
-}
-
-const VESSEL_FIELDS = new Set(['n_total', 'n_tanker', 'n_container', 'n_dry_bulk', 'n_cargo', 'n_general_cargo', 'n_roro'])
+const VESSEL_FIELDS = ['n_total', 'n_tanker', 'n_container', 'n_dry_bulk', 'n_cargo', 'n_general_cargo', 'n_roro']
+const VESSEL_FIELD_SET = new Set(VESSEL_FIELDS)
 
 const HISTORY_DAYS = 60
 
@@ -48,7 +34,7 @@ function ymd(d) {
 /**
  * Fetch PortWatch transit counts for a given chokepoint and vessel class.
  *
- * @param {{ id: string, seriesId: keyof typeof CHOKEPOINT_MAP, field?: string }} indicator
+ * @param {{ id: string, seriesId: string, field?: string }} indicator
  *        `field` selects the vessel-count column (default `n_total`). For
  *        Hormuz the meaningful series is `n_tanker`; for Bab-el-Mandeb it is
  *        `n_container` (the Houthi-blockade story is a container-shipping
@@ -56,12 +42,12 @@ function ymd(d) {
  * @returns {Promise<{ values: number[], periods: string[], asOf: string } | null>}
  */
 export async function fetchPortWatchChokepoint(indicator) {
-  const portName = CHOKEPOINT_MAP[indicator.seriesId]
+  const portName = CHOKEPOINT_BY_ID[indicator.seriesId]?.portname
   if (!portName) {
     console.error(`  ✗ portwatch:${indicator.id}: unknown chokepoint seriesId`)
     return null
   }
-  const field = indicator.field && VESSEL_FIELDS.has(indicator.field) ? indicator.field : 'n_total'
+  const field = indicator.field && VESSEL_FIELD_SET.has(indicator.field) ? indicator.field : 'n_total'
 
   const end = new Date()
   const start = new Date(end)
@@ -114,7 +100,6 @@ export async function fetchPortWatchChokepoint(indicator) {
 // ---------------------------------------------------------------------------
 
 const SNAPSHOT_DAYS = 90
-const SNAPSHOT_VESSEL_FIELDS = ['n_total', 'n_tanker', 'n_container', 'n_dry_bulk', 'n_cargo', 'n_general_cargo', 'n_roro']
 
 function meanOf(values) {
   if (values.length === 0) return 0
@@ -152,7 +137,7 @@ export async function fetchAllChokepointsSnapshot() {
   const url = new URL(FEATURE_SERVICE)
   url.searchParams.set('f', 'json')
   url.searchParams.set('where', where)
-  url.searchParams.set('outFields', ['date', 'portname', ...SNAPSHOT_VESSEL_FIELDS].join(','))
+  url.searchParams.set('outFields', ['date', 'portname', ...VESSEL_FIELDS].join(','))
   url.searchParams.set('orderByFields', 'date ASC')
   // 11 chokepoints × 90d = 990 rows; buffer to the service's standardMaxRecordCount.
   url.searchParams.set('resultRecordCount', '2000')
@@ -198,7 +183,7 @@ export async function fetchAllChokepointsSnapshot() {
       const last7Avg = {}
       const baselineAvg = {}
       const delta = {}
-      for (const field of SNAPSHOT_VESSEL_FIELDS) {
+      for (const field of VESSEL_FIELDS) {
         const l7 = meanOf(last7.map((r) => Number(r[field] ?? 0)))
         const b = meanOf(base.map((r) => Number(r[field] ?? 0)))
         last7Avg[field] = Math.round(l7 * 10) / 10

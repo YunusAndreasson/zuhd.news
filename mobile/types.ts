@@ -152,9 +152,19 @@ export interface HeatmapPoint {
   l: string; // story label (threadLabel prefix or title)
 }
 
-/** Per-vessel-class transit counts keyed by PortWatch field names
- *  (n_total, n_tanker, n_container, n_dry_bulk, n_cargo, n_general_cargo, n_roro). */
-export type ChokepointCounts = Record<string, number>;
+/** PortWatch vessel-class columns. Mirrors the backend's SNAPSHOT_VESSEL_FIELDS
+ *  — keeping these as raw field names lets the ChokepointSnapshot travel end to
+ *  end untranslated; translation to display labels happens once in the sheet. */
+export type VesselField =
+  | 'n_total'
+  | 'n_tanker'
+  | 'n_container'
+  | 'n_dry_bulk'
+  | 'n_cargo'
+  | 'n_general_cargo'
+  | 'n_roro';
+
+export type ChokepointCounts = Partial<Record<VesselField, number>>;
 
 /** IMF PortWatch-derived chokepoint state — ambient layer rendered on the
  *  globe. `primaryField` selects which vessel class the headline stat and
@@ -168,7 +178,7 @@ export interface Chokepoint {
   lat: number;
   lng: number;
   topicTags: string[];
-  primaryField: string;
+  primaryField: VesselField;
   last7Avg: ChokepointCounts;
   baseline90Avg: ChokepointCounts;
   delta7vs90: ChokepointCounts;

@@ -18,11 +18,12 @@ import type { Bookmark } from './bookmark-store';
 const isObject = (v: unknown): v is Record<string, unknown> =>
   typeof v === 'object' && v !== null && !Array.isArray(v);
 
+const isFiniteNumber = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
+
 const isStringArray = (v: unknown): v is string[] =>
   Array.isArray(v) && v.every((s) => typeof s === 'string');
 
-const isNumberArray = (v: unknown): v is number[] =>
-  Array.isArray(v) && v.every((n) => typeof n === 'number' && Number.isFinite(n));
+const isNumberArray = (v: unknown): v is number[] => Array.isArray(v) && v.every(isFiniteNumber);
 
 const isTone = (v: unknown): v is CompareRow['tone'] =>
   v === 'favorable' || v === 'unfavorable' || v === 'neutral';
@@ -236,7 +237,7 @@ export const isHeatmapResponse = (v: unknown): v is HeatmapResponse =>
   v.points.every(isHeatmapPoint);
 
 const isCounts = (v: unknown): v is ChokepointCounts =>
-  isObject(v) && Object.values(v).every((n) => typeof n === 'number' && Number.isFinite(n));
+  isObject(v) && Object.values(v).every(isFiniteNumber);
 
 const isChokepoint = (v: unknown): v is Chokepoint => {
   if (!isObject(v)) return false;

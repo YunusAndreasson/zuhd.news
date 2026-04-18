@@ -6,9 +6,9 @@ import {
 import { memo, useMemo } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, MAX_FONT_SCALE, SPACING, staggerDelay } from '../constants/theme';
+import { ANIMATION, CATEGORIES, MAX_FONT_SCALE, SPACING, staggerDelay } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import type { Article, Category, Chokepoint, CompareRow } from '../types';
+import type { Article, Category, Chokepoint, CompareRow, VesselField } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { CompareBlock } from './blocks/CompareBlock';
 import { SourceCaption } from './blocks/SourceCaption';
@@ -29,7 +29,9 @@ interface ChokepointSheetProps {
   onArticlePress?: (slug: string, category: Category) => void;
 }
 
-const VESSEL_LABELS: { field: string; label: string }[] = [
+const MAX_RELATED = 3;
+
+const VESSEL_LABELS: { field: VesselField; label: string }[] = [
   { field: 'n_tanker', label: 'Tanker' },
   { field: 'n_container', label: 'Container' },
   { field: 'n_dry_bulk', label: 'Dry bulk' },
@@ -46,31 +48,29 @@ function formatDelta(delta: number): { text: string; tone: CompareRow['tone'] } 
   const pct = Math.round(delta * 100);
   if (pct === 0) return { text: 'steady', tone: 'neutral' };
   const sign = pct > 0 ? '+' : '';
-  // Deltas on shipping flow are most often "less is worse" (closure), but a
-  // dip isn't universally bad (Panama drought == good news rationing). Treat
-  // tone as magnitude-only so the sheet doesn't editorialise.
+  // Tone is magnitude-only — a dip isn't universally bad (Panama drought
+  // rationing was a good-news story), so we avoid editorialising direction.
   const tone: CompareRow['tone'] = Math.abs(pct) > 15 ? 'unfavorable' : 'neutral';
   return { text: `${sign}${pct}% vs 90d`, tone };
 }
 
 function findRelatedArticles(chokepoint: Chokepoint, articles: Article[]): Article[] {
-  const tags = new Set(chokepoint.topicTags.map((t) => t.toLowerCase()));
+  const tags = chokepoint.topicTags.map((t) => t.toLowerCase());
   const out: Article[] = [];
   for (const a of articles) {
+    if (out.length >= MAX_RELATED) break;
     const haystack = [
       a.title.toLowerCase(),
       ...(a.concepts || []).map((c) => c.toLowerCase()),
       (a.threadLabel || '').toLowerCase(),
     ].join(' ');
-    for (const tag of tags) {
-      if (haystack.includes(tag)) {
-        out.push(a);
-        break;
-      }
-    }
-    if (out.length >= 3) break;
+    if (tags.some((tag) => haystack.includes(tag))) out.push(a);
   }
   return out;
+}
+
+function resolveCategory(article: Article): Category {
+  return CATEGORIES.find((c) => (article.concepts || []).includes(c)) ?? 'politics';
 }
 
 export const ChokepointSheet = memo(function ChokepointSheet({
@@ -82,7 +82,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
   onDismiss,
   onArticlePress,
 }: ChokepointSheetProps) {
-  const { sheetStyles } = useTheme();
+  const { colors, font, typography, textStyles, sheetStyles } = useTheme();
   const MAX_SHEET_HEIGHT = useMaxSheetHeight();
 
   const related = useMemo(
@@ -109,6 +109,17 @@ export const ChokepointSheet = memo(function ChokepointSheet({
     });
   }, [chokepoint]);
 
+  let blockIndex = 0;
+  const enter = () => FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(blockIndex++));
+
+  const primary = chokepoint?.primaryField;
+  const primaryLabel =
+    (primary && VESSEL_LABELS.find((v) => v.field === primary)?.label.toLowerCase()) || 'transits';
+  const current = (primary && chokepoint?.last7Avg[primary]) ?? 0;
+  const delta = (primary && chokepoint?.delta7vs90[primary]) ?? 0;
+  const { text: deltaText, tone } = formatDelta(delta);
+  const deltaColor = tone === 'unfavorable' ? colors.accent : colors.textSecondary;
+
   return (
     <SheetLayout
       sheetRef={sheetRef}
@@ -122,140 +133,99 @@ export const ChokepointSheet = memo(function ChokepointSheet({
         contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.xxl }]}
       >
         {chokepoint && (
-          <ChokepointBody
-            chokepoint={chokepoint}
-            vesselRows={vesselRows}
-            related={related}
-            onArticlePress={onArticlePress}
-          />
+          <>
+            <Animated.View entering={enter()}>
+              <Text
+                selectable
+                style={{
+                  ...font.bold,
+                  fontSize: typography.sizeLg,
+                  lineHeight: typography.sizeLg * typography.leadingHeading,
+                  color: colors.textEmphasis,
+                }}
+                maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
+              >
+                {formatCount(current)}{' '}
+                <Text style={{ ...font.regular, color: colors.textSecondary }}>
+                  {primaryLabel}/day
+                </Text>
+              </Text>
+              <Text
+                style={{
+                  ...font.semiBold,
+                  fontSize: typography.sizeSm,
+                  color: deltaColor,
+                  marginTop: SPACING.xxs,
+                }}
+              >
+                {deltaText}
+              </Text>
+            </Animated.View>
+
+            <Animated.View entering={enter()} style={styles.blurb}>
+              <Text
+                selectable
+                style={{
+                  ...font.regular,
+                  fontSize: typography.sizeBase,
+                  lineHeight: typography.sizeBase * typography.leadingBody,
+                  color: colors.text,
+                }}
+              >
+                {chokepoint.blurb}
+              </Text>
+            </Animated.View>
+
+            <Animated.View entering={enter()} style={styles.section}>
+              <TrendBlock
+                values={chokepoint.series.total}
+                periods={chokepoint.series.periods}
+                label="Total transits, last 90 days"
+                unit="ships/day"
+                highlight="last"
+                variant="context"
+              />
+            </Animated.View>
+
+            {vesselRows.length > 0 && (
+              <Animated.View entering={enter()} style={styles.section}>
+                <CompareBlock rows={vesselRows} label="By vessel class" variant="context" />
+              </Animated.View>
+            )}
+
+            {related.length > 0 && onArticlePress && (
+              <Animated.View entering={enter()} style={styles.section}>
+                <Text
+                  style={[
+                    textStyles.smallCapsXs,
+                    { color: colors.textSecondary, marginBottom: SPACING.xs },
+                  ]}
+                >
+                  related stories
+                </Text>
+                {related.map((a) => (
+                  <ArticleRow
+                    key={a.slug}
+                    slug={a.slug}
+                    title={a.title}
+                    addedAt={a.addedAt}
+                    category={resolveCategory(a)}
+                    location={a.location}
+                    onPress={onArticlePress}
+                  />
+                ))}
+              </Animated.View>
+            )}
+
+            <Animated.View entering={enter()} style={styles.section}>
+              <SourceCaption label="IMF PortWatch" />
+            </Animated.View>
+          </>
         )}
       </BottomSheetScrollView>
     </SheetLayout>
   );
 });
-
-interface ChokepointBodyProps {
-  chokepoint: Chokepoint;
-  vesselRows: CompareRow[];
-  related: Article[];
-  onArticlePress?: (slug: string, category: Category) => void;
-}
-
-function ChokepointBody({ chokepoint, vesselRows, related, onArticlePress }: ChokepointBodyProps) {
-  const { colors, font, typography, textStyles } = useTheme();
-
-  const primary = chokepoint.primaryField;
-  const primaryLabel =
-    VESSEL_LABELS.find((v) => v.field === primary)?.label.toLowerCase() ?? 'transits';
-  const current = chokepoint.last7Avg[primary] ?? 0;
-  const delta = chokepoint.delta7vs90[primary] ?? 0;
-  const { text: deltaText, tone } = formatDelta(delta);
-  const deltaColor = tone === 'unfavorable' ? colors.accent : colors.textSecondary;
-
-  let blockIndex = 0;
-  const enter = () => FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(blockIndex++));
-
-  return (
-    <>
-      {/* Headline stat — the one-line why-you-care */}
-      <Animated.View entering={enter()}>
-        <Text
-          selectable
-          style={{
-            ...font.bold,
-            fontSize: typography.sizeLg,
-            lineHeight: typography.sizeLg * typography.leadingHeading,
-            color: colors.textEmphasis,
-          }}
-          maxFontSizeMultiplier={MAX_FONT_SCALE.heading}
-        >
-          {formatCount(current)}{' '}
-          <Text style={{ ...font.regular, color: colors.textSecondary }}>{primaryLabel}/day</Text>
-        </Text>
-        <Text
-          style={{
-            ...font.semiBold,
-            fontSize: typography.sizeSm,
-            color: deltaColor,
-            marginTop: SPACING.xxs,
-          }}
-        >
-          {deltaText}
-        </Text>
-      </Animated.View>
-
-      {/* Educational blurb */}
-      <Animated.View entering={enter()} style={styles.blurb}>
-        <Text
-          selectable
-          style={{
-            ...font.regular,
-            fontSize: typography.sizeBase,
-            lineHeight: typography.sizeBase * typography.leadingBody,
-            color: colors.text,
-          }}
-        >
-          {chokepoint.blurb}
-        </Text>
-      </Animated.View>
-
-      {/* Sparkline — full 90d of total transits */}
-      <Animated.View entering={enter()} style={styles.section}>
-        <TrendBlock
-          values={chokepoint.series.total}
-          periods={chokepoint.series.periods}
-          label="Total transits, last 90 days"
-          unit="ships/day"
-          highlight="last"
-          variant="context"
-        />
-      </Animated.View>
-
-      {/* Vessel-class breakdown */}
-      {vesselRows.length > 0 && (
-        <Animated.View entering={enter()} style={styles.section}>
-          <CompareBlock rows={vesselRows} label="By vessel class" variant="context" />
-        </Animated.View>
-      )}
-
-      {/* Related articles — present only when the current feed has matches */}
-      {related.length > 0 && onArticlePress && (
-        <Animated.View entering={enter()} style={styles.section}>
-          <Text
-            style={[
-              textStyles.smallCapsXs,
-              { color: colors.textSecondary, marginBottom: SPACING.xs },
-            ]}
-          >
-            related stories
-          </Text>
-          {related.map((a) => {
-            const category: Category =
-              (['politics', 'economy', 'science', 'tech'] as Category[]).find((c) =>
-                (a.concepts || []).includes(c),
-              ) ?? 'politics';
-            return (
-              <ArticleRow
-                key={a.slug}
-                slug={a.slug}
-                title={a.title}
-                addedAt={a.addedAt}
-                category={category}
-                location={a.location}
-                onPress={onArticlePress}
-              />
-            );
-          })}
-        </Animated.View>
-      )}
-
-      {/* Source caption — anchor provenance */}
-      <Animated.View entering={enter()} style={styles.section}>
-        <SourceCaption label="IMF PortWatch" />
-      </Animated.View>
-    </>
-  );
-}
 
 const styles = StyleSheet.create({
   blurb: {

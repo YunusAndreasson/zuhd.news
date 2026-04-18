@@ -132,6 +132,26 @@ const DOT_GLOW_LAYERS: GlowLayer[] = [
   { r: 2, opacity: 0.8 },
 ];
 
+// Ghost-pin layers: same shape as DOT_GLOW_LAYERS but smaller and fainter
+// so neighboring articles whisper — they announce "what's nearby in the
+// scroll" without competing with the settled story's pin.
+const GHOST_GLOW_LAYERS: GlowLayer[] = [
+  { r: 7, opacity: 0.03, blur: 5 },
+  { r: 3.5, opacity: 0.08, blur: 2.5 },
+  { r: 1.5, opacity: 0.22 },
+];
+
+// Scroll-order offsets for ghost pins (± settled index). Module constant so
+// the literal doesn't reallocate every frame inside callReproject.
+const GHOST_OFFSETS = [-2, -1, 1, 2] as const;
+const GHOST_DEDUPE_PX2 = 900; // 30px²
+
+// Disruption thresholds for chokepoint visual state. A chokepoint becomes
+// "disrupted" at ±15% from baseline; intensity saturates at ±30% so the
+// glow doesn't keep brightening forever during extreme events.
+const CHOKEPOINT_DISRUPTED_DELTA = 0.15;
+const CHOKEPOINT_SATURATION_DELTA = 0.3;
+
 // Makkah — [lng, lat] for d3-geo (qibla direction reference)
 const MAKKAH = {
   coords: [39.83, 21.42] as [number, number],
@@ -284,6 +304,10 @@ interface GlobeState {
   northPole: { x: number; y: number } | null;
   southPole: { x: number; y: number } | null;
   dot: { x: number; y: number } | null;
+  /** Neighboring articles in scroll order (±2 from the settled index). Fainter
+   *  than the main dot and deduped against each other + the main dot so tight
+   *  geographic clusters don't smudge into a single glow. */
+  ghostDots: { x: number; y: number }[];
   dotLabel: { text: string; sub?: string; x: number; y: number } | null;
   makkah: { x: number; y: number } | null;
   hotspotGlows: {
@@ -404,6 +428,7 @@ const EMPTY_GLOBE: GlobeState = {
   northPole: null,
   southPole: null,
   dot: null,
+  ghostDots: [],
   dotLabel: null,
   makkah: null,
   hotspotGlows: [],
@@ -529,6 +554,7 @@ function projectInitial(
     northPole,
     southPole,
     dot,
+    ghostDots: [],
     dotLabel: null,
     makkah,
     hotspotGlows: [],
@@ -693,8 +719,21 @@ export const MiniGlobe = memo(function MiniGlobe({
   articleGeoRef.current = articleGeo;
   const hotspotsRef = useRef(hotspots);
   hotspotsRef.current = hotspots;
-  const chokepointsRef = useRef(chokepoints ?? []);
-  chokepointsRef.current = chokepoints ?? [];
+  // Precompute the per-frame derivations once per snapshot: uppercase label,
+  // [lng,lat] tuple (reused inside geoDistance + proj), and absolute delta
+  // of the primary vessel class (drives intensity + disrupted flag).
+  const enrichedChokepoints = useMemo(
+    () =>
+      (chokepoints ?? []).map((cp) => ({
+        id: cp.id,
+        label: cp.name.toUpperCase(),
+        coords: [cp.lng, cp.lat] as [number, number],
+        absDelta: Math.abs(cp.delta7vs90[cp.primaryField] ?? 0),
+      })),
+    [chokepoints],
+  );
+  const chokepointsRef = useRef(enrichedChokepoints);
+  chokepointsRef.current = enrichedChokepoints;
   const layoutRef = useRef({ globeRadius, cx, cy });
   layoutRef.current = { globeRadius, cx, cy };
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
@@ -761,6 +800,25 @@ export const MiniGlobe = memo(function MiniGlobe({
       if (geo) {
         const pt = proj([geo.lng, geo.lat]);
         if (pt) dot = { x: pt[0], y: pt[1] };
+      }
+
+      // Ghost dots — ±2 articles on either side of the settled one. Skipped
+      // when behind the globe or when they'd visually smudge into the main
+      // dot / an earlier ghost (30px proximity dedupe, ~1° at default zoom).
+      const ghostDots: { x: number; y: number }[] = [];
+      const accepted: { x: number; y: number }[] = dot ? [dot] : [];
+      for (const offset of GHOST_OFFSETS) {
+        const idx = settledIndex + offset;
+        if (idx < 0 || idx >= geoData.length) continue;
+        const g = geoData[idx];
+        if (!g) continue;
+        if (geoDistance([g.lng, g.lat], [geoLng, geoLat]) >= HALF_PI) continue;
+        const pt = proj([g.lng, g.lat]);
+        if (!pt) continue;
+        const [gx, gy] = pt;
+        if (accepted.some((a) => isNear(gx, gy, a.x, a.y, GHOST_DEDUPE_PX2))) continue;
+        accepted.push({ x: gx, y: gy });
+        ghostDots.push({ x: gx, y: gy });
       }
 
       // Country highlight — reuse path object
@@ -948,19 +1006,18 @@ export const MiniGlobe = memo(function MiniGlobe({
       // (≤11) and the markers are geographic reference, not cosmetic detail,
       // so they shouldn't blink out during a fast scroll.
       const chokepointMarks: GlobeState['chokepoints'] = [];
+      const cameraCoords: [number, number] = [geoLng, geoLat];
       for (const cp of chokepointsRef.current) {
-        const coords: [number, number] = [cp.lng, cp.lat];
-        if (geoDistance(coords, [geoLng, geoLat]) >= HALF_PI) continue;
-        const pt = proj(coords);
+        if (geoDistance(cp.coords, cameraCoords) >= HALF_PI) continue;
+        const pt = proj(cp.coords);
         if (!pt) continue;
-        const delta = Math.abs(cp.delta7vs90[cp.primaryField] ?? 0);
         chokepointMarks.push({
           x: pt[0],
           y: pt[1],
           id: cp.id,
-          label: cp.name.toUpperCase(),
-          intensity: Math.min(1, delta / 0.3),
-          disrupted: delta > 0.15,
+          label: cp.label,
+          intensity: Math.min(1, cp.absDelta / CHOKEPOINT_SATURATION_DELTA),
+          disrupted: cp.absDelta > CHOKEPOINT_DISRUPTED_DELTA,
         });
       }
 
@@ -978,6 +1035,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         northPole,
         southPole,
         dot,
+        ghostDots,
         dotLabel,
         makkah,
         hotspotGlows,
@@ -1465,7 +1523,7 @@ export const MiniGlobe = memo(function MiniGlobe({
                   colors={[
                     withAlpha(colors.accent, 0.22 * c.intensity),
                     withAlpha(colors.accent, 0.08 * c.intensity),
-                    `${colors.accent}00`,
+                    withAlpha(colors.accent, 0),
                   ]}
                   positions={[0, 0.5, 1]}
                 />
@@ -1541,6 +1599,18 @@ export const MiniGlobe = memo(function MiniGlobe({
           layers={MAKKAH_GLOW_LAYERS}
         />
       )}
+
+      {/* Ghost dots — adjacent articles in the scroll, rendered under the
+          main dot so the settled story always reads brightest. */}
+      {state.ghostDots.map((g, i) => (
+        <Glow
+          key={`ghost-${i}`}
+          x={g.x}
+          y={g.y}
+          color={colors.textEmphasis}
+          layers={GHOST_GLOW_LAYERS}
+        />
+      ))}
 
       {/* Story dot */}
       {state.dot && (

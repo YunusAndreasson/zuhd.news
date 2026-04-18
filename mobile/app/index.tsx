@@ -5,7 +5,7 @@ import {
 } from '@gorhom/bottom-sheet';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
-import { createRef, useCallback, useEffect, useRef, useState } from 'react';
+import { createRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   InteractionManager,
   type LayoutChangeEvent,
@@ -209,14 +209,18 @@ export default function HomeScreen() {
     }
   }, []);
 
-  // Stable ref so handleCountryPress doesn't recapture when chokepoints refetch.
+  // Ref for handleCountryPress, kept stable so the memoized renderItem in
+  // ArticleList doesn't invalidate on every chokepoint refetch.
   const chokepointsRef = useRef(chokepoints);
   chokepointsRef.current = chokepoints;
+
+  // Flat feed across categories — memoized so downstream memos keyed on it
+  // (e.g. ChokepointSheet's findRelatedArticles) don't invalidate every render.
+  const flatArticles = useMemo(() => Object.values(grouped).flat(), [grouped]);
 
   const handleCountryPress = useCallback(
     (result: TapResult) => {
       hapticImpact();
-      // Chokepoint ring tap → ambient transit sheet
       if (result.chokepointId) {
         const cp = chokepointsRef.current.find((c) => c.id === result.chokepointId);
         if (cp) {
@@ -466,7 +470,7 @@ export default function HomeScreen() {
       <ChokepointSheet
         sheetRef={chokepointSheetRef}
         chokepoint={activeChokepoint}
-        articles={Object.values(grouped).flat()}
+        articles={flatArticles}
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => setActiveChokepoint(null)}
