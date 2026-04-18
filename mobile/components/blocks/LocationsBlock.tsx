@@ -323,6 +323,18 @@ export const LocationsBlock = memo(function LocationsBlock({
                       style="fill"
                     />
                   ) : null}
+                  {paths.highlightedFillPath ? (
+                    <Path
+                      path={paths.highlightedFillPath}
+                      color={colors.accent}
+                      opacity={selectedFeature ? 0.22 : 0.4}
+                      style="fill"
+                    />
+                  ) : null}
+                  {/* Borders draw after the highlight fill so adjacent
+                      highlighted countries keep a visible shared border — the
+                      fill would otherwise paint over the stroke and merge
+                      neighbouring selections into a single blob. */}
                   {paths.borderPath ? (
                     <Path
                       path={paths.borderPath}
@@ -330,14 +342,6 @@ export const LocationsBlock = memo(function LocationsBlock({
                       opacity={0.3}
                       style="stroke"
                       strokeWidth={borderStrokeWidth}
-                    />
-                  ) : null}
-                  {paths.highlightedFillPath ? (
-                    <Path
-                      path={paths.highlightedFillPath}
-                      color={colors.accent}
-                      opacity={selectedFeature ? 0.22 : 0.4}
-                      style="fill"
                     />
                   ) : null}
                   {paths.selectedFillPath ? (
