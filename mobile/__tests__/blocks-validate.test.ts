@@ -225,4 +225,34 @@ describe('parseArticleBlocks', () => {
       { type: 'prose', text: 'ok' },
     ]);
   });
+
+  it('parses a well-formed quiz block', () => {
+    const out = parseArticleBlocks([
+      {
+        type: 'quiz',
+        question: 'Which country hosts the largest Afghan diaspora?',
+        options: ['Iran', 'Pakistan', 'Turkey'],
+        correct: 0,
+        explanation: 'Iran has hosted ~3.8m vs Pakistan ~1.7m.',
+      },
+    ]);
+    expect(out).toHaveLength(1);
+    expect(out[0]).toMatchObject({
+      type: 'quiz',
+      question: 'Which country hosts the largest Afghan diaspora?',
+      options: ['Iran', 'Pakistan', 'Turkey'],
+      correct: 0,
+    });
+  });
+
+  it('drops malformed quiz blocks', () => {
+    const out = parseArticleBlocks([
+      { type: 'quiz', question: '', options: ['a', 'b'], correct: 0 }, // empty question
+      { type: 'quiz', question: 'Q?', options: ['solo'], correct: 0 }, // <2 options
+      { type: 'quiz', question: 'Q?', options: ['a', 'b'], correct: 5 }, // out-of-range correct
+      { type: 'quiz', question: 'Q?', options: ['a', 'b'], correct: 1.5 }, // non-integer correct
+      { type: 'quiz', question: 'Q?', options: ['a', 'b'] }, // missing correct
+    ]);
+    expect(out).toEqual([]);
+  });
 });

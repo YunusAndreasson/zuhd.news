@@ -132,6 +132,27 @@ const parseArticleBlock = (v: unknown): ArticleBlock | null => {
       if (typeof v.label === 'string') block.label = v.label;
       return applySourceRef(block, v);
     }
+    case 'quiz': {
+      if (typeof v.question !== 'string' || v.question.length === 0) return null;
+      if (!isStringArray(v.options) || v.options.length < 2) return null;
+      if (
+        typeof v.correct !== 'number' ||
+        !Number.isInteger(v.correct) ||
+        v.correct < 0 ||
+        v.correct >= v.options.length
+      )
+        return null;
+      const block: ArticleBlock = {
+        type: 'quiz',
+        question: v.question,
+        options: v.options,
+        correct: v.correct,
+      };
+      if (typeof v.explanation === 'string' && v.explanation.length > 0) {
+        block.explanation = v.explanation;
+      }
+      return applySourceRef(block, v);
+    }
     default:
       return null;
   }

@@ -2,10 +2,6 @@
 // Runs at generation time so a malformed block from Claude is caught here
 // (logged, then dropped) rather than silently disappearing when the app loads
 // the brief. Keep this in sync with mobile — the runtime contract is the same.
-//
-// Missing on purpose: `quiz`. The mobile validator doesn't parse it either, so
-// emitting one would be dropped on load. Matching that gap here means the
-// generator doesn't save blocks the app would then silently discard.
 
 const isObject = (v) => typeof v === 'object' && v !== null && !Array.isArray(v)
 const isStringArray = (v) => Array.isArray(v) && v.every((s) => typeof s === 'string')
@@ -125,6 +121,32 @@ export function parseArticleBlock(v) {
       if (people.length === 0) return { block: null, reason: 'actors has no valid people' }
       const block = { type: 'actors', people }
       if (typeof v.label === 'string') block.label = v.label
+      return { block: applySourceRef(block, v) }
+    }
+    case 'quiz': {
+      if (typeof v.question !== 'string' || v.question.length === 0) {
+        return { block: null, reason: 'quiz.question must be non-empty string' }
+      }
+      if (!isStringArray(v.options) || v.options.length < 2) {
+        return { block: null, reason: 'quiz.options must be ≥2 strings' }
+      }
+      if (
+        typeof v.correct !== 'number' ||
+        !Number.isInteger(v.correct) ||
+        v.correct < 0 ||
+        v.correct >= v.options.length
+      ) {
+        return { block: null, reason: 'quiz.correct must be integer index into options' }
+      }
+      const block = {
+        type: 'quiz',
+        question: v.question,
+        options: v.options,
+        correct: v.correct,
+      }
+      if (typeof v.explanation === 'string' && v.explanation.length > 0) {
+        block.explanation = v.explanation
+      }
       return { block: applySourceRef(block, v) }
     }
     default:

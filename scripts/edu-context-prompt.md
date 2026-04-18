@@ -15,7 +15,12 @@ You receive a list of candidate articles (slug, title, category, concepts). Sele
 
 For each selected article, write a brief: a structured explainer using ALLCAPS headings to create scannable sections. The reader should be able to skim headings alone and get the shape of the explanation, then read the bodies that interest them.
 
-Entries may carry augmentation blocks — charts, maps, stat comparisons, quotes, historical casts, or short markdown prose — described in `<augmentations>` below. Bring whichever augmentations make the brief sharper: a map where the point is geographic, a cast where the point is who-did-what, a chart where the data IS the story. Each augmentation should be evidence for a claim you're already making, not ornament added for visual variety. A zero-augmentation brief can be excellent; a richly-augmented brief can also be excellent, when every block earns its place.
+Entries may carry augmentation blocks — described in `<augmentations>` below — split into two tiers:
+
+- **Cheap augmentations** (locations, compare, actors, prose-markdown, quiz) draw entirely on your own training knowledge. **Default to using them generously** — when an entry names countries, include a `locations` map; when it names several actors, include an `actors` cast; when a claim is comparative, include a `compare`; when active-reading would reinforce a fact, include a `quiz`. A brief of 5 entries with 3–4 cheap augmentations is the target, not the exception. Skip only when the block would actively mislead (redundant map, forced comparison) — not out of restraint.
+- **Guarded augmentations** (chart, quote) carry real failure modes — fabricating exact quote wording, picking an unresolvable chart ref — and stay strict. Use when the condition clearly holds, otherwise omit.
+
+Each augmentation should be evidence for a claim you're already making. Don't introduce facts in a block that aren't already in the entry's body.
 </task>
 
 <guidelines>
@@ -132,15 +137,33 @@ type ActorsBlock = {
   }[]
   source?: number
 }
+
+// Active-reading check — one question, 3–4 options, retrieval practice.
+// At most one per brief. Tap a wrong option → reveals correct one +
+// explanation fades in. Use it on an entry that teaches a discrete,
+// testable fact.
+type QuizBlock = {
+  type: 'quiz'
+  question: string            // "Which country hosts the largest Afghan diaspora?"
+  options: string[]           // 3–4 entries — one right, rest plausible
+  correct: number             // 0-based index into `options`
+  explanation?: string        // one sentence teaching why it's that answer
+  source?: number
+}
 ```
 
 Every block may carry an optional `source` field — an index into a brief-level `sources[]` array that you do not emit directly; the generator assembles it from expanded chart refs. For a `compare`, `locations`, `quote`, `actors`, or `prose` block that needs a citation, leave `source` off for now; citations for literal blocks will be wired later.
 </schema>
 
 <augmentations>
-Augmentations are structured blocks the reader sees beneath an entry's text. They are evidence, not decoration. Use any augmentation when it materially sharpens the point the entry makes — and combine several across different entries when the subject genuinely supports it. An article on a geopolitical turning point might legitimately carry a cast on the "who was in the room" entry, a map on the "where the arms flowed" entry, and a chart on the "what happened to prices" entry — three augmentations, three different arguments, each earning its place. An article on an abstract mechanism may warrant none.
+Augmentations are structured blocks the reader sees beneath an entry's text.
 
-The question is always: does this block make the entry's specific claim more concrete? If yes, include it. If it's adjacent-but-ornamental, skip it.
+Split them into two tiers — the question "include or omit?" has a different default for each:
+
+- **Cheap augmentations** (locations, compare, actors, prose, quiz) — these draw only on your own training knowledge. No fetch cost, no fabrication risk beyond normal care. **Default ON**: if an entry has the substrate for the block, include it. A 5-entry brief with 3–4 of these is the target.
+- **Guarded augmentations** (chart, quote) — real failure modes (unresolvable refs, fabricated wording). **Default OFF**: include only when the specific condition is clearly met.
+
+Across a 5–6 entry brief, expect roughly 3–5 cheap blocks and 0–2 guarded blocks. A brief with zero augmentations means either the article is unusually abstract or you're being too conservative — check the latter.
 
 ## Charts — `{type:'chart', ref:'<id>'}`
 
@@ -159,31 +182,29 @@ When a `## Live indicators` section is appended below, you may attach charts to 
 
 **Rules:** Only reference ids that appear in the live indicators list — any other ref is silently dropped. Don't mention the chart in the body ("as the chart shows..."). The body stands alone; the chart adds evidence. If you find a genuine case for two different charts on two different entries, include both — but "different" means the charts tell different stories, not that they repeat the same point.
 
-## Maps — `{type:'locations', codes:[...]}`
+## Maps — `{type:'locations', codes:[...]}` [cheap — default on]
 
 A regional mini-map that highlights the countries an entry names.
 
-**Use when:** the entry's point IS geographic — "these four governments extended recognition," "the arc of colonial borders from Sykes-Picot," "which countries host the world's refugees."
+**Default on when:** the entry names 2+ countries and they share a region (a corridor, a rivalry, a conflict zone, recognition, refugee flows). You do NOT need the entry to be "about" geography — naming multiple countries is enough substrate.
 
-**Skip when:**
-- The article is already about one country named in the header; a map of just that country adds nothing.
-- The countries span >120° of longitude (whole-world coverage). The map is suppressed at render time anyway, so the block becomes noise.
-- You're listing countries in the body text and a map would just restate the list.
+**Skip only when:**
+- The countries span >120° of longitude (whole-world coverage) — the map is suppressed at render time.
+- Only one country is named in the entry.
 
-**Rules:** 2–10 ISO-2 codes per map. Attach the map to the entry whose claim is geographic. Multiple maps in one brief are fine when they show different geographies (the arms pipeline on one entry, the refugee destinations on another) — but redundant maps of the same region are noise.
+**Rules:** 2–10 ISO-2 codes per map. Attach the map to the entry whose claim names the countries. Multiple maps in one brief are fine when they show different geographies (the arms pipeline on one entry, the refugee destinations on another).
 
-## Stats — `{type:'compare', rows:[...]}`
+## Stats — `{type:'compare', rows:[...]}` [cheap — default on]
 
 A ranked or weighted comparison across peers. Renders as a light bar chart when every row has a `weight`.
 
-**Use when:** the entry's substrate IS a comparison — "who spent what at Geneva," "refugees hosted per capita," "military budgets relative to GDP." The comparison must be apples-to-apples (same unit, same year, same measurement).
+**Default on when:** the entry cites comparative facts — "who spent what," "refugees hosted per country," "which firms dominate," "budgets as a share of GDP." 3+ comparable items is the cue. Use well-established figures you know — ballpark order-of-magnitude when exact isn't needed.
 
-**Skip when:**
-- Only 2 rows — a sentence does the job better.
-- The "stat" is editorializing disguised as a number. Only include numbers a careful reader would accept at face value.
-- Rows would need different units or eras. Mixing distorts the visual.
+**Skip only when:**
+- Only 2 rows — a sentence is better.
+- Rows would mix different units or eras — the visual would distort.
 
-**Rules:** 2–6 rows. Either set `weight` on all rows or none — partial weights mis-render. Keep `value` short ("$2.1tn" beats "2.1 trillion US dollars in reserves as of 2024"). `tone` is optional; leave neutral unless the article's framing clearly assigns it.
+**Rules:** 3–6 rows. Either set `weight` on all rows or none — partial weights mis-render. Keep `value` short ("$2.1tn" beats "2.1 trillion US dollars in reserves as of 2024"). `tone` is optional.
 
 ## Quotes — `{type:'quote', text, speaker?, year?}`
 
@@ -198,31 +219,40 @@ A period quotation that captures a posture or moment.
 
 **Rules:** Only attribute words you are confident the named speaker actually said; when in doubt, leave the quote out. Fabricated wording is the one failure mode the reader will not forgive.
 
-## Actors — `{type:'actors', people:[...]}`
+## Actors — `{type:'actors', people:[...]}` [cheap — default on]
 
 A cast of named historical figures with role, tenure, and flag.
 
-**Use when:** the entry hinges on who did what across a turning point — "the cast at Geneva," "the three Saur-revolution presidents in eighteen months," "the signatories of Taif." The reader should leave able to name the players.
+**Default on when:** the entry names 2+ specific people whose roles shaped the story — a revolutionary cohort, a negotiating table, a dynasty of central-bank governors, the leadership of a firm or movement. You need their names, roles, and rough tenures — standard training-data material for any named public figure.
 
-**Skip when:**
-- The article already names the figures in its lede. You'd be restating, not teaching.
-- You're listing anyone whose role is generic ("US President", "Prime Minister of Pakistan") — only include actors whose specific tenure shaped the structural point.
-- Fewer than 2 actors. A single actor belongs in prose.
+**Skip only when:**
+- The entry names only one person.
+- The roles would all be generic placeholders ("US President", "Prime Minister") without specific tenure — add nothing over naming them in prose.
 
-**Rules:** 2–6 actors. `years` is a date range ("1978–1979"); keep `role` to 3–5 words.
+**Rules:** 2–6 actors. `years` is a date range ("1978–1979"); keep `role` to 3–5 words. Include a `cc` ISO-2 code when the actor is associated with a specific country.
 
-## Prose (rich text) — `{type:'prose', text}`
+## Prose (rich text) — `{type:'prose', text}` [cheap — default on]
 
-A short markdown-enabled paragraph for when `**bold**` or `*italic*` sharpens a point.
+A short markdown-enabled paragraph for when `**bold**` or `*italic*` sharpens a point — a term of art, a foreign word, a number worth emphasizing.
 
-**Use when:** you need emphasis the plain `body` cannot carry — a single specific phrase that deserves bolding, an italicized term of art, a quoted foreign word. One or two sentences, not a paragraph.
+**Default on when:** the entry contains a specific term, phrase, or figure the reader should walk away remembering. Bold the term; italicize foreign words; use inline emphasis surgically.
 
-**Skip when:**
-- The entry's `body` already reads well in plain text. Most do.
-- You're using markdown just to add visual variety. Emphasis earns its place by naming the thing the reader should remember.
-- You're tempted to use headers, bullet lists, or code fences inside `text`. Keep it to inline emphasis only.
+**Skip only when:**
+- The entry's `body` already emphasizes the right thing — adding a prose block would duplicate it.
 
-**Rules:** Treat prose as a lightweight supplement to `body`, not a replacement for it. Markdown is inline-only: `**bold**`, `*italic*`. No links, no headings, no lists.
+**Rules:** One or two sentences, not a paragraph. Markdown is inline-only: `**bold**`, `*italic*`. No links, no headings, no lists, no bullet lists, no code fences.
+
+## Quiz — `{type:'quiz', question, options[], correct, explanation?}` [cheap — default on]
+
+One active-reading check inline with the brief. The reader answers; the right pick tints sage, a wrong pick tints rose and reveals the correct row. Optional `explanation` fades in after answer — this is where the actual learning moment happens.
+
+**Default on when:** one entry teaches a non-obvious fact, mechanism, or counterintuitive comparison the reader would benefit from retrieving, not just reading. Canonical shape: state the fact in the entry body, then test it in a quiz on the same entry.
+
+**Skip only when:**
+- The brief's entries are all abstract philosophy — no discrete fact to test.
+- You can't write three genuinely plausible options. Weak distractors ("Mars" vs. "Earth" when the answer is obviously Earth) are worse than no quiz.
+
+**Rules:** Exactly one `quiz` per brief (at most). `options` must be 3–4 entries with one correct and two-to-three plausible distractors. `correct` is a zero-based index into `options`. Include `explanation` — one sentence that sharpens the lesson, not just "you were right."
 </augmentations>
 
 <examples>
@@ -376,7 +406,9 @@ WRONG — compare with mismatched units: rows mixing "$2.1tn reserves" and "45% 
 
 WRONG — prose block used as a header: `{type:'prose', text:'## The mechanism'}`. Markdown headings don't render inside prose blocks; this just prints `## The mechanism` as literal text. Use the entry's own `heading` field.
 
-WRONG — augmentation-for-its-own-sake: every entry gets a block regardless of whether the block's type matches the entry's claim. A quote under a mechanism explainer, a map under a definitional entry, a compare under a single-actor history — each breaks the "block-as-evidence" rule. Ask per entry: does this block make this specific claim more concrete? If not, drop it.
+WRONG — type-mismatched augmentation: the block's type doesn't match the entry's substrate. A quote under a mechanism explainer, a map under a definitional entry, a compare under a single-actor history. The rule for cheap blocks is "default on when the substrate matches" — not "default on always." If the substrate isn't there, skip the block rather than force one.
+
+WRONG — weak quiz distractors: `options: ["Earth", "Mars", "the Moon"]` when the answer is obviously Earth. If two of three options are eliminable before reading the question, the quiz teaches nothing. Write distractors a careful reader would actually consider — common misconceptions make the best wrong answers.
 </output>
 </example>
 </examples>
