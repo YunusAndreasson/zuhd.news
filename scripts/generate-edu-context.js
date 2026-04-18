@@ -57,7 +57,7 @@ for (const file of newFiles) {
   if (!existsSync(fullPath)) continue
 
   const raw = readFileSync(fullPath, 'utf8')
-  const { meta } = parseFrontmatter(raw)
+  const { meta, body } = parseFrontmatter(raw)
   const concepts = Array.isArray(meta.concepts)
     ? meta.concepts.map(c => typeof c === 'object' ? c.label : c)
     : []
@@ -67,6 +67,7 @@ for (const file of newFiles) {
     title: meta.title || slug,
     category: meta.category || 'politics',
     concepts,
+    body: body.trim(),
   })
 }
 
@@ -153,9 +154,21 @@ if (trendsDigest?.indicators?.length) {
 }
 
 // --- Build prompt ---
+// Include the full article body so the pre-flight signal table in
+// <augmentations> has substrate to scan. Metadata alone (title, concepts)
+// doesn't expose the named countries / people / comparable facts that
+// the "default on when substrate matches" rule depends on.
 const candidateList = candidates.map(c =>
-  `- slug: ${c.slug}\n  title: ${c.title}\n  category: ${c.category}\n  concepts: ${c.concepts.join(', ') || 'none'}`
-).join('\n')
+  `### ${c.slug}
+title: ${c.title}
+category: ${c.category}
+concepts: ${c.concepts.join(', ') || 'none'}
+
+Body:
+"""
+${c.body}
+"""`
+).join('\n\n')
 
 const fullPrompt = `${basePrompt}
 ${conceptLibrary}${trendsSection}
