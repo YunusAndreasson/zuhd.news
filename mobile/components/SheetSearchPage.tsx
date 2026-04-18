@@ -121,8 +121,12 @@ export function SheetSearchPage({ grouped, bottomInset, onSelectArticle }: Sheet
           accessibilityHint="Filter articles by title, topic, or location"
           autoCorrect={false}
           autoCapitalize="none"
+          autoComplete="off"
+          spellCheck={false}
           returnKeyType="search"
           clearButtonMode="while-editing"
+          textContentType="none"
+          enablesReturnKeyAutomatically
         />
         {showAndroidClear && (
           <Pressable
