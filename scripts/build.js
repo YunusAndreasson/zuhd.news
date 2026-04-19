@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, existsSync, rmSync, statSync } from 'fs'
 import { join, basename } from 'path'
 import { parseFrontmatter } from './lib/frontmatter.js'
-import { splitSentences as splitBodySentencesShared } from './lib/sentences.js'
+import { splitSentences as splitBodySentencesShared, ABBREVS } from './lib/sentences.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -63,11 +63,14 @@ const markdownToHtml = (md) => {
   return result.join('\n')
 }
 
-const ABBREVS = /(?:St|Mr|Mrs|Ms|Dr|Jr|Sr|vs|Gen|Gov|Sgt|Col|Cpl|Pvt|Prof|Rev|Rep|Sen|Inc|Ltd|Corp|Dept|Univ|Est|approx|No|[A-Z])\.\s+/g
+// Shares ABBREVS with lib/sentences.js — prevents acronym list drift between
+// the markdown-space validator (count check) and this HTML-space wrapper.
+// Lookahead accepts `<` so sentences starting with rendered markdown links
+// (country tags become `<a href="country:XX">…</a>`) still split correctly.
 const splitSentences = (html) =>
   html.replace(/<p>([\s\S]*?)<\/p>/g, (match, inner) => {
     const masked = inner.replace(ABBREVS, m => m.replace('. ', '.\x00'))
-    const sentences = masked.split(/(?<=[.!?][\u201D\u2019]?(?:<\/em>)?)\s+(?=[A-Z\u00C0-\u024F])/)
+    const sentences = masked.split(/(?<=[.!?][\u201D\u2019]?(?:<\/em>)?)\s+(?=[A-Z\u00C0-\u024F<])/)
     if (sentences.length <= 1) return match
     return '<p>' + sentences.map(s => `<span class="s">${s.replace(/\.\x00/g, '. ')}</span>`).join(' ') + '</p>'
   })
