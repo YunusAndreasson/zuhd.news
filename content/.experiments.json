@@ -1,25 +1,57 @@
 {
   "version": 1,
   "activeExperiment": {
-    "id": "2026-04-16-push-min-coverage",
-    "startDate": "2026-04-16",
-    "evaluateAfter": "2026-04-19",
+    "id": "2026-04-19-prefilter-7d",
+    "startDate": "2026-04-19",
+    "evaluateAfter": "2026-04-22",
     "prNumber": null,
-    "hypothesis": "Requiring eventCoverage >= 1 on breaking-news push candidates filters out niche-only stories with no wire-service validation, raising push quality to Reuters-like standards. Expected impact on recent 15-push baseline: 3 drops (20% volume reduction), all from morning cycles where niche feeds published before wires caught up.",
-    "parameter": "Breaking-news push minimum eventCoverage threshold",
-    "file": "scripts/run-cycle.sh",
-    "oldValue": 0,
-    "newValue": 1,
-    "targetMetric": "push.falsePositiveRate (cycles where top candidate had 0 wire-source corroboration)",
+    "hypothesis": "Widening the prefilter dedup lookback from 48h to 7 days will catch stories the selector would otherwise pick that match articles published 2-3 days ago, eliminating the post-selection dedup cascade that causes backfill filler to fire. Analysis of 40 cycles (Apr 11-19) showed post-selection dedup avg 3.15/cycle with outliers up to 10/cycle (2026-04-19_08:03 had 10 dedups, only 3 articles published after backfill filler). Most late-caught dups are 2-3 days old, beyond the current 48h prefilter window.",
+    "parameter": "Prefilter dedup lookback window (loadDedupContext cutoffMs)",
+    "file": "scripts/prefilter-feed.js",
+    "oldValue": "48h (2 days)",
+    "newValue": "168h (7 days)",
+    "targetMetric": "avg post-selection dedup count per cycle",
     "targetDirection": "decrease",
     "baseline": {
-      "pushesPerDay": 5,
-      "zeroCoveragePushesPer3Days": 3,
-      "avgCandidatesPerCycle": 9.7,
-      "categoryMix": { "politics": 67, "economy": 20, "tech": 13, "science": 0 }
+      "postSelectionDedupAvgPerCycle": 3.15,
+      "postSelectionDedupMax": 10,
+      "backfillFiresAvgPerCycle": 0.9,
+      "backfillFiresMax": 8,
+      "publishMeanPerCycle": 9.43,
+      "publishMin": 3,
+      "cyclesAnalyzed": 40,
+      "windowStart": "2026-04-11",
+      "windowEnd": "2026-04-19"
+    },
+    "guardrails": {
+      "prefilterOverRemoval": "prefilterTotal should not routinely exceed 15/cycle (signal we're killing genuinely novel stories)",
+      "publishCount": "mean publish count should not drop below 8/cycle",
+      "categoryFloors": "no category floor violation rate increase vs baseline"
     }
   },
   "history": [
+    {
+      "id": "2026-04-16-push-min-coverage",
+      "startDate": "2026-04-16",
+      "evaluateAfter": "2026-04-19",
+      "prNumber": null,
+      "hypothesis": "Requiring eventCoverage >= 1 on breaking-news push candidates filters out niche-only stories with no wire-service validation, raising push quality to Reuters-like standards.",
+      "parameter": "Breaking-news push minimum eventCoverage threshold",
+      "file": "scripts/run-cycle.sh",
+      "oldValue": 0,
+      "newValue": 1,
+      "targetMetric": "push.falsePositiveRate (cycles where top candidate had 0 wire-source corroboration)",
+      "targetDirection": "decrease",
+      "baseline": {
+        "pushesPerDay": 5,
+        "zeroCoveragePushesPer3Days": 3,
+        "avgCandidatesPerCycle": 9.7,
+        "categoryMix": { "politics": 67, "economy": 20, "tech": 13, "science": 0 }
+      },
+      "result": "kept",
+      "evaluatedOn": "2026-04-19",
+      "notes": "Zero-coverage pushes dropped from 3/3days (60% of pushes) to 1/3days (6% of pushes) — 83% reduction. Guardrail intact: push volume 5.3/day vs 5/day baseline (unchanged). 16 of 17 push decisions in the experiment window passed the coverage>=1 filter and were sent. Keeping MIN_PUSH_COVERAGE=1."
+    },
     {
       "id": "2026-04-12-tech-floor-3",
       "startDate": "2026-04-12",

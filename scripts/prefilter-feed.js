@@ -10,7 +10,10 @@ const SLIM = '/tmp/zuhd-feed-slim.json'
 
 if (!existsSync(FEED)) process.exit(0)
 
-const ctx = loadDedupContext()
+// Experiment 2026-04-19-prefilter-7d: widen prefilter slug/fuzzy window from
+// 48h to 7d so the selector stops picking stories that match articles
+// published 2-3 days ago (causes post-selection dedup cascade + backfill filler).
+const ctx = loadDedupContext(7 * 24 * 3600 * 1000)
 const counts = { exact: 0, eventUri: 0, fuzzy: 0 }
 
 function filterSection(stories) {

@@ -383,7 +383,7 @@ $BODY_LENGTHS
         const MIN_PUSH_COVERAGE = 1;
         const eligible = candidates.filter(c => c.eventCoverage >= MIN_PUSH_COVERAGE);
         const selected = eligible.slice(0, 1)
-          .map(({ slug, title, category, body }) => ({ slug, title, category, body }));
+          .map(({ slug, title, category, body, eventCoverage, importance }) => ({ slug, title, category, body, eventCoverage, importance }));
         const skipReason = (candidates.length > 0 && eligible.length === 0)
           ? \`all \${candidates.length} candidates below coverage threshold \${MIN_PUSH_COVERAGE}\`
           : null;
@@ -493,6 +493,18 @@ $ARTICLE_TEXT" 2>/dev/null)
   else
     echo "Build failed — skipping deploy" | tee -a "$LOG_FILE"
   fi
+fi
+
+# Stage 3.9: Cloudflare analytics fetch (04:00 UTC only — low-frequency, fail-soft)
+# Writes content/.analytics.json with past-7d per-article pageview counts.
+# Requires CLOUDFLARE_API_TOKEN with Zone > Analytics > Read — skips silently otherwise.
+HOUR_UTC=$(date -u +%H)
+if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.9: Analytics fetch ---" | tee -a "$LOG_FILE"
+  T39=$SECONDS
+  timeout 60 node scripts/fetch-analytics.js 2>&1 | tee -a "$LOG_FILE"
+  echo "Analytics fetch — $((SECONDS - T39))s" | tee -a "$LOG_FILE"
 fi
 
 # Stage 4: Audio briefing — generate at 04:00 UTC cycle only (morning for GCC→India)

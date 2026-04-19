@@ -173,7 +173,19 @@ function assembleSourcePanel(articles, eventLocation) {
 
 // ── API Calls ───────────────────────────────────────────────────────
 
-async function apiPost(endpoint, params) {
+// Token accounting — NewsAPI.ai charges ~5 tokens per event search, ~1 per article search.
+// Tracks every apiPost so cycles can log actual cost vs budgeted cost.
+const tokenStats = { eventCalls: 0, articleCalls: 0, perEventCalls: 0, otherCalls: 0, estTokens: 0 }
+
+async function apiPost(endpoint, params, tag = 'other') {
+  // Cost model: event/getEvents = 5 tokens, article queries = 1, event/getEvent = 1
+  const cost = endpoint === 'event/getEvents' ? 5 : 1
+  tokenStats.estTokens += cost
+  if (tag === 'events') tokenStats.eventCalls++
+  else if (tag === 'articles') tokenStats.articleCalls++
+  else if (tag === 'perEvent') tokenStats.perEventCalls++
+  else tokenStats.otherCalls++
+
   const res = await fetch(`${API_BASE}/${endpoint}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -285,7 +297,7 @@ async function fetchEvents() {
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
     dateStart: new Date().toISOString().slice(0, 10),
     minArticlesInEvent: 10,
-  })
+  }, 'events')
   return (data.events?.results || []).filter(Boolean)
 }
 
@@ -308,7 +320,7 @@ async function fetchReaderAlignedArticles() {
     ...ARTICLE_DEFAULTS,
     articlesSortBy: 'date',
     sourceUri: READER_ALIGNED,
-  })
+  }, 'articles')
   return data.articles?.results || []
 }
 
@@ -320,7 +332,7 @@ async function fetchCuratedArticles() {
     ...ARTICLE_DEFAULTS,
     articlesSortBy: 'date',
     sourceUri: CURATED_REMAINING,
-  })
+  }, 'articles')
   return data.articles?.results || []
 }
 
@@ -333,7 +345,7 @@ async function fetchGapArticles() {
     categoryUri: INCLUDE_CATEGORIES,
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
     sourceLocationUri: GAP_COUNTRIES,
-  })
+  }, 'articles')
   return data.articles?.results || []
 }
 
@@ -347,7 +359,7 @@ async function fetchBroadArticles() {
     ignoreCategoryUri: EXCLUDE_CATEGORIES,
     startSourceRankPercentile: 0,
     endSourceRankPercentile: 20,
-  })
+  }, 'articles')
   return data.articles?.results || []
 }
 
@@ -456,10 +468,15 @@ async function main() {
   const TOP_EVENTS_TO_FETCH = 8
   const topEvents = events.slice(0, TOP_EVENTS_TO_FETCH)
   let perEventFetched = 0
+  const perEventLog = []
   for (const event of topEvents) {
     const uri = event.uri
+    const preCount = (articlesByEvent.get(uri) || []).length
     // Skip if we already have 3+ articles from Q2-Q5
-    if ((articlesByEvent.get(uri) || []).length >= 3) continue
+    if (preCount >= 3) {
+      perEventLog.push({ uri, cov: event.totalArticleCount, skipped: 'already>=3', preCount, tokens: 0 })
+      continue
+    }
 
     // Fetch articles for this event (skip info/redirect check — saves 1 token per event;
     // if the URI was redirected the query returns empty and we move on)
@@ -475,9 +492,10 @@ async function main() {
       includeArticleSentiment: true,
       includeArticleConcepts: true,
       includeArticleLocation: true,
-    })
+    }, 'perEvent')
 
     const fetchedArts = artData[uri]?.articles?.results || []
+    perEventLog.push({ uri, cov: event.totalArticleCount, preCount, returned: fetchedArts.length, tokens: 1 })
     if (fetchedArts.length > 0) {
       // Annotate and add to the event's article pool
       for (const a of fetchedArts) {
@@ -491,6 +509,11 @@ async function main() {
     }
   }
   console.error(`Per-event fetch: enriched ${perEventFetched}/${TOP_EVENTS_TO_FETCH} top events`)
+  // Per-event detail log — one line per event so experiments can audit waste/yield
+  for (const e of perEventLog) {
+    const tail = e.skipped ? `skipped=${e.skipped}` : `returned=${e.returned}`
+    console.error(`  per-event ${e.uri} cov=${e.cov||0} preCount=${e.preCount} tokens=${e.tokens} ${tail}`)
+  }
 
   // Build stories: merge events with their matched articles
   const stories = []
@@ -523,6 +546,8 @@ async function main() {
         source: '',
         suggestedSlug: slugify(title, eventDate),
         eventUri: uri,
+        eventDate: eventDate,
+        panelMaxPubDate: null,
         eventCoverage: totalArticles,
         sources: [],
         concepts: eventConcepts,
@@ -542,11 +567,18 @@ async function main() {
       : (eventLoc?.label?.eng || primary.location?.label?.eng || null)
 
     const storyTitle = panel.length > 1 ? bestTitle(panel, primary.title || title) : (primary.title || title)
+    // Compute panelMaxPubDate — most-recent dateTimePub across all panel members.
+    // This is the correct "is this event still being covered today?" signal,
+    // distinct from primary pubDate (which follows source importance, not recency).
+    const panelDates = panel.map(a => a.dateTimePub || a.dateTime).filter(Boolean)
+    const panelMaxPubDate = panelDates.length ? panelDates.sort().at(-1) : null
     stories.push({
       title: storyTitle,
       description: (primary.body || '').slice(0, 300),
       link: primary.url || '',
       pubDate: primary.dateTimePub || primary.dateTime || eventDate + 'T00:00:00Z',
+      eventDate: eventDate,
+      panelMaxPubDate,
       category: mapCategory(primary.categories || eventCategories),
       source: primary.source?.title || '',
       suggestedSlug: slugify(storyTitle, primary.dateTimePub || eventDate),
@@ -644,12 +676,55 @@ async function main() {
   const output = {
     fetchedAt: new Date().toISOString(),
     events: events.length,
+    tokens: tokenStats,
     stories,
   }
 
   writeFileSync(OUTPUT, JSON.stringify(output, null, 2))
   console.error(`Wrote ${stories.length} stories: ${withSources} with articles (${multiSource} multi-source), ${stories.length - withSources} headline-only`)
+  console.error(`NewsAPI tokens this cycle: ~${tokenStats.estTokens} (events=${tokenStats.eventCalls}×5 articles=${tokenStats.articleCalls}×1 perEvent=${tokenStats.perEventCalls}×1 other=${tokenStats.otherCalls})`)
   console.log(`${stories.length} stories from ${events.length} events`)
+
+  // Archive slim snapshot for backtest/replay (keeps 30 days).
+  // Strip article bodies to keep snapshots small; story-level metadata is enough for filter experiments.
+  try {
+    const { mkdirSync, readdirSync, unlinkSync, statSync } = await import('fs')
+    const SNAP_DIR = 'content/.feed-snapshots'
+    mkdirSync(SNAP_DIR, { recursive: true })
+    const slim = {
+      fetchedAt: output.fetchedAt,
+      events: output.events,
+      tokens: output.tokens,
+      stories: stories.map(s => ({
+        title: s.title,
+        pubDate: s.pubDate,
+        eventDate: s.eventDate,
+        panelMaxPubDate: s.panelMaxPubDate,
+        category: s.category,
+        source: s.source,
+        suggestedSlug: s.suggestedSlug,
+        eventUri: s.eventUri,
+        eventCoverage: s.eventCoverage,
+        sources: (s.sources || []).map(src => ({ name: src.name, url: src.url, country: src.country, importanceRank: src.importanceRank })),
+        location: s.location,
+        sentiment: s.sentiment,
+        origin: s.origin,
+      })),
+    }
+    const stamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 16)
+    const snapPath = `${SNAP_DIR}/${stamp}.json`
+    writeFileSync(snapPath, JSON.stringify(slim))
+    // Rotate: keep last 30 days only
+    const cutoff = Date.now() - 30 * 86400000
+    for (const f of readdirSync(SNAP_DIR)) {
+      try {
+        const p = `${SNAP_DIR}/${f}`
+        if (statSync(p).mtimeMs < cutoff) unlinkSync(p)
+      } catch {}
+    }
+  } catch (e) {
+    console.error(`snapshot archive failed: ${e.message}`)
+  }
 }
 
 main().catch(e => { console.error(e); process.exit(1) })

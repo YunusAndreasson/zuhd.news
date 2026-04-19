@@ -590,6 +590,46 @@ function handleFeedHealth() {
 
 // ── Editorial Data ──────────────────────────────────────────────────
 
+function handleReach() {
+  return cached('reach', 300_000, () => {
+    const path1 = join(ROOT, 'content', '.analytics.json')
+    const errPath = join(ROOT, 'content', '.analytics-error.json')
+    if (existsSync(path1)) {
+      try {
+        const data = JSON.parse(readFileSync(path1, 'utf-8'))
+        const stat = statSync(path1)
+        // Join with article metadata for recency/category/origin context.
+        // Small per-article additions only; don't read every body.
+        const articlesDir = join(ROOT, 'content', 'articles')
+        const withMeta = (data.articles || []).slice(0, 100).map(a => {
+          const md = join(articlesDir, a.slug + '.md')
+          let meta = {}
+          if (existsSync(md)) {
+            const head = readFileSync(md, 'utf-8').slice(0, 800)
+            const get = k => (head.match(new RegExp(`^${k}:\\s*['"]?(.+?)['"]?$`, 'm')) || [])[1]
+            meta = { category: get('category'), date: get('date'), origin: get('origin'), eventCoverage: +(get('eventCoverage') || 0) }
+          }
+          return { ...a, ...meta }
+        })
+        return {
+          fetchedAt: data.fetchedAt,
+          ageHours: Math.round((Date.now() - stat.mtime.getTime()) / 3600000 * 10) / 10,
+          windowDays: data.windowDays,
+          totalRequests: data.totalRequests,
+          perDay: data.perDay,
+          articles: withMeta,
+        }
+      } catch (e) {
+        return { error: `parse error: ${e.message}` }
+      }
+    }
+    if (existsSync(errPath)) {
+      try { return { error: JSON.parse(readFileSync(errPath, 'utf-8')) } } catch {}
+    }
+    return { empty: true, hint: 'Run scripts/fetch-analytics.js (requires Zone > Analytics > Read)' }
+  })
+}
+
 function handleEditorial() {
   return cached('editorial', 300_000, () => {
     const result = { audit: null, reflection: null, experiments: null }
@@ -772,6 +812,7 @@ const server = createServer((req, res) => {
   if (path === '/api/feed-health') return sendJSON(res, handleFeedHealth())
   if (path === '/api/media') return sendJSON(res, handleMedia())
   if (path === '/api/experiment') return sendJSON(res, handleExperiment())
+  if (path === '/api/reach') return sendJSON(res, handleReach())
   if (path === '/api/live') return handleLive(req, res)
 
   // Parameterized: /api/cycle/cycle-2026-04-11_1702.log
