@@ -49,10 +49,72 @@ const focusPadFor = (w: number) =>
   Math.max(FOCUS_PAD_MIN, Math.round(Math.max(0, w) * FOCUS_PAD_FRACTION));
 const MAX_LNG_SPAN_FOR_MAP = 120;
 const WORLD_CLIP_ASPECT = 2.0;
+// Vertical headroom for the map canvas. The raw aspect-true height keeps
+// the bbox undistorted but leaves horizontally-oriented selections (e.g.
+// Kazakhstan, Russia, or a multi-country band across the Mediterranean)
+// short enough that a country zoom hits sy before sx and can't magnify
+// much. Floor the height at 75% of the width so every selection gets a
+// near-portrait canvas with extra vertical slack that translates directly
+// into additional zoom-in scale. Cap raised to 900 so tall selections
+// (Chile, Norway) aren't clipped.
+const MIN_MAP_HEIGHT_RATIO = 0.75;
+const MAX_MAP_HEIGHT = 900;
 // Label box width. Wide enough for ~20 characters of labelXs ("Bosnia and
 // Herzegovina", "Central African Republic"); longer names clip with
-// numberOfLines={1}. Centered on the centroid via `left: x - LABEL_WIDTH/2`.
+// numberOfLines={1}. Centered on the centroid via `left: cx - LABEL_WIDTH/2`.
 const LABEL_WIDTH = 160;
+
+// Collision-avoidance tuning for packedLabels. Char-width factors are rough
+// empirical estimates of how many pixels a glyph takes at ~11pt in each
+// variant — small-caps country labels are letter-spaced and run wider per
+// char; regular + italic water/capital are tighter. Used only to estimate
+// label bbox for overlap detection; labels still render at their true size.
+const LABEL_CHAR_WIDTH = { country: 7.5, capital: 5.8, water: 5.6 } as const;
+const LABEL_MIN_W = 20;
+const LABEL_BBOX_PAD = 3;
+const LABEL_OFFSET = 8;
+
+type LabelKind = 'country' | 'capital' | 'water';
+type LabelAnchor = 'center' | 'above' | 'below' | 'right' | 'left';
+
+interface PackedLabel {
+  key: string;
+  text: string;
+  kind: LabelKind;
+  /** Pre-zoom point the label "belongs to" — the anchor that the worklet
+   *  translates to follow as the Skia group zooms. */
+  anchorX: number;
+  anchorY: number;
+  /** Center position of the label at scale 1 (anchor + chosen anchor offset). */
+  cx: number;
+  cy: number;
+}
+
+const anchorSequence = (kind: LabelKind): LabelAnchor[] =>
+  kind === 'capital'
+    ? ['below', 'right', 'left', 'above']
+    : ['center', 'above', 'below', 'right', 'left'];
+
+function anchorCenter(
+  anchorX: number,
+  anchorY: number,
+  w: number,
+  h: number,
+  anchor: LabelAnchor,
+): { cx: number; cy: number } {
+  switch (anchor) {
+    case 'center':
+      return { cx: anchorX, cy: anchorY };
+    case 'above':
+      return { cx: anchorX, cy: anchorY - (h / 2 + LABEL_OFFSET) };
+    case 'below':
+      return { cx: anchorX, cy: anchorY + (h / 2 + LABEL_OFFSET) };
+    case 'right':
+      return { cx: anchorX + (w / 2 + LABEL_OFFSET), cy: anchorY };
+    case 'left':
+      return { cx: anchorX - (w / 2 + LABEL_OFFSET), cy: anchorY };
+  }
+}
 
 const SPHERE = { type: 'Sphere' } as const;
 
@@ -138,26 +200,33 @@ type Feature = (typeof countriesHiRes.features)[number];
 
 /** Label that stays glued to a projected point during the zoom animation.
  *  Math mirrors the Skia `Group transform={[tx, ty, scale]}` — for a projected
- *  centroid (x, y), the screen position after the group transform is
- *  `(tx + x*scale, ty + y*scale)`. We reuse that here via a UI-thread worklet
- *  and apply only the translate (never the scale), so text stays the same
- *  visual size while the paths underneath grow. */
+ *  anchor (anchorX, anchorY), the screen position after the group transform
+ *  is `(tx + anchorX*scale, ty + anchorY*scale)`. We apply only the translate
+ *  (never the scale), so text stays the same visual size while the paths
+ *  underneath grow. (cx, cy) is the label's final center at scale 1 — when
+ *  the packer picks an off-center anchor (e.g. "right") the label sits
+ *  offset from the anchor point, and that offset is preserved through zoom
+ *  because it's baked into the absolute left/top, not the worklet. */
 const MapLabel = memo(function MapLabel({
   text,
-  x,
-  y,
+  anchorX,
+  anchorY,
+  cx,
+  cy,
   kind,
   animScale,
   animTx,
   animTy,
 }: {
   text: string;
-  x: number;
-  y: number;
+  anchorX: number;
+  anchorY: number;
+  cx: number;
+  cy: number;
   /** Visual role — country (small caps, emphasis), capital (caption,
-   *  emphasis, below marker dot), or water (italic sectionHeading, shown
+   *  emphasis, marker-adjacent), or water (italic sectionHeading, shown
    *  only when zoomed). All use textEmphasis for contrast. */
-  kind: 'country' | 'capital' | 'water';
+  kind: LabelKind;
   animScale: SharedValue<number>;
   animTx: SharedValue<number>;
   animTy: SharedValue<number>;
@@ -165,26 +234,30 @@ const MapLabel = memo(function MapLabel({
   const { colors, typography } = useTheme();
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [
-      { translateX: animTx.value + x * (animScale.value - 1) },
-      { translateY: animTy.value + y * (animScale.value - 1) },
+      { translateX: animTx.value + anchorX * (animScale.value - 1) },
+      { translateY: animTy.value + anchorY * (animScale.value - 1) },
     ],
   }));
   const variant =
     kind === 'country' ? 'labelXs' : kind === 'capital' ? 'caption' : 'sectionHeading';
-  // Capital labels sit just below the marker dot; country + water labels
-  // are centered on the point.
-  const yOffset = kind === 'capital' ? typography.sizeXs * 0.6 : -typography.sizeXs * 0.6;
+  // Capital + water variants natively render at sizeSm (13pt); scale them
+  // down to sizeXs so all map labels share the same ~11pt footprint and
+  // adjacent city/river/sea names don't overlap each other on a tight
+  // country zoom. Country labels already sit at labelXs natively.
+  const scale = kind === 'country' ? undefined : typography.sizeXs / typography.sizeSm;
+  const halfH = typography.sizeXs * 0.7;
   return (
     <Animated.View
       pointerEvents="none"
       style={[
         styles.countryLabelWrap,
-        { left: x - LABEL_WIDTH / 2, top: y + yOffset },
+        { left: cx - LABEL_WIDTH / 2, top: cy - halfH },
         animatedStyle,
       ]}
     >
       <Text
         variant={variant}
+        scale={scale}
         style={[styles.countryLabel, { color: colors.textEmphasis, textShadowColor: colors.bg }]}
         numberOfLines={1}
       >
@@ -277,8 +350,9 @@ export const LocationsBlock = memo(function LocationsBlock({
       const degreesPerPixel = lngSpan > 0 ? lngSpan / availableW : 1;
       const computed = latSpan / degreesPerPixel + 2 * pad;
       if (!Number.isFinite(computed) || computed <= 0) return fallback;
+      const floor = width * MIN_MAP_HEIGHT_RATIO;
       return {
-        height: Math.round(Math.max(1, Math.min(600, computed))),
+        height: Math.round(Math.max(1, Math.min(MAX_MAP_HEIGHT, Math.max(floor, computed)))),
         showMap: true,
       };
     } catch {
@@ -507,6 +581,93 @@ export const LocationsBlock = memo(function LocationsBlock({
     return out;
   }, [selectedIdx, selectedFeature, projection, width, height]);
 
+  // Collision-aware label packer. Runs once per label-set change and picks
+  // a non-overlapping screen anchor per label in priority order:
+  //   country > capital > water (in collection order: lakes → rivers → seas)
+  // For each candidate we try a short sequence of anchor positions (center,
+  // above, below, right, left) and accept the first one whose bbox fits
+  // inside the canvas and doesn't intersect an already-placed label.
+  // Labels that can't be placed anywhere are dropped — hiding the least
+  // important name is preferable to stacking two names on top of each
+  // other. Computed in the pre-zoom projection: labels all ride the same
+  // translate worklet at runtime, so pre-zoom collisions imply on-screen
+  // collisions at every zoom level (labels spread apart as zoom increases,
+  // so 1x is the worst case).
+  const packedLabels = useMemo(() => {
+    if (width <= 0 || height <= 0) return [] as PackedLabel[];
+    const labelH = typography.sizeXs * 1.4;
+    const estWidth = (text: string, kind: LabelKind) =>
+      Math.min(LABEL_WIDTH, Math.max(LABEL_MIN_W, text.length * LABEL_CHAR_WIDTH[kind]));
+
+    type Cand = { key: string; text: string; kind: LabelKind; x: number; y: number; w: number };
+    const candidates: Cand[] = [];
+    for (const l of highlightedLabels) {
+      candidates.push({
+        key: `country-${l.name}`,
+        text: l.name,
+        kind: 'country',
+        x: l.x,
+        y: l.y,
+        w: estWidth(l.name, 'country'),
+      });
+    }
+    for (const c of capitalMarkers) {
+      candidates.push({
+        key: `cap-label-${c.code}`,
+        text: c.name,
+        kind: 'capital',
+        x: c.x,
+        y: c.y,
+        w: estWidth(c.name, 'capital'),
+      });
+    }
+    for (const wl of waterLabels) {
+      candidates.push({
+        key: wl.key,
+        text: wl.name,
+        kind: 'water',
+        x: wl.x,
+        y: wl.y,
+        w: estWidth(wl.name, 'water'),
+      });
+    }
+
+    type Box = { x0: number; y0: number; x1: number; y1: number };
+    const placed: (PackedLabel & { box: Box })[] = [];
+    for (const cand of candidates) {
+      for (const a of anchorSequence(cand.kind)) {
+        const { cx, cy } = anchorCenter(cand.x, cand.y, cand.w, labelH, a);
+        const box: Box = {
+          x0: cx - cand.w / 2 - LABEL_BBOX_PAD,
+          x1: cx + cand.w / 2 + LABEL_BBOX_PAD,
+          y0: cy - labelH / 2 - LABEL_BBOX_PAD,
+          y1: cy + labelH / 2 + LABEL_BBOX_PAD,
+        };
+        if (cx < 0 || cx > width || cy < 0 || cy > height) continue;
+        let collides = false;
+        for (const p of placed) {
+          if (box.x0 < p.box.x1 && box.x1 > p.box.x0 && box.y0 < p.box.y1 && box.y1 > p.box.y0) {
+            collides = true;
+            break;
+          }
+        }
+        if (collides) continue;
+        placed.push({
+          key: cand.key,
+          text: cand.text,
+          kind: cand.kind,
+          anchorX: cand.x,
+          anchorY: cand.y,
+          cx,
+          cy,
+          box,
+        });
+        break;
+      }
+    }
+    return placed.map(({ box: _box, ...rest }) => rest);
+  }, [highlightedLabels, capitalMarkers, waterLabels, width, height, typography.sizeXs]);
+
   const { targetScale, targetTx, targetTy } = useMemo(() => {
     if (!selectedFeature || width <= 0 || height <= 0) {
       return { targetScale: 1, targetTx: 0, targetTy: 0 };
@@ -619,10 +780,7 @@ export const LocationsBlock = memo(function LocationsBlock({
   if (!showMap) return null;
 
   return (
-    <View
-      style={blockContainerStyle[isContext ? 'context' : 'article']}
-      onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-    >
+    <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
       {label ? (
         <Text variant="labelXs" style={[styles.label, { lineHeight: typography.sizeXs * 1.1 }]}>
           {label}
@@ -692,26 +850,25 @@ export const LocationsBlock = memo(function LocationsBlock({
                       />
                     </>
                   ) : null}
-                  {/* Rivers with halo — bg-colored wider stroke underneath,
-                      dark textEmphasis stroke on top. This two-layer pattern
-                      survives any background: over the plain land tint the
-                      halo barely registers (bg ≈ background); over the
-                      warm accent of a selected country the halo gives the
-                      river its own white edge so the dark line inside has
-                      a clear boundary to read against. */}
+                  {/* Rivers — muted secondary at 1x so they read as
+                      background geography, not foreground lines. When a
+                      country is selected (zoomed) we pop to textEmphasis +
+                      bg halo so they stay legible over the accent fill. */}
                   {paths.riversPath ? (
                     <>
+                      {selectedFeature ? (
+                        <Path
+                          path={paths.riversPath}
+                          color={colors.bg}
+                          opacity={0.75}
+                          style="stroke"
+                          strokeWidth={riverHaloStrokeWidth}
+                        />
+                      ) : null}
                       <Path
                         path={paths.riversPath}
-                        color={colors.bg}
-                        opacity={0.75}
-                        style="stroke"
-                        strokeWidth={riverHaloStrokeWidth}
-                      />
-                      <Path
-                        path={paths.riversPath}
-                        color={colors.textEmphasis}
-                        opacity={0.8}
+                        color={selectedFeature ? colors.textEmphasis : colors.textSecondary}
+                        opacity={selectedFeature ? 0.8 : 0.45}
                         style="stroke"
                         strokeWidth={riverStrokeWidth}
                       />
@@ -755,39 +912,17 @@ export const LocationsBlock = memo(function LocationsBlock({
                 </Group>
               </Canvas>
             ) : null}
-            {highlightedLabels.length + capitalMarkers.length + waterLabels.length > 0 ? (
+            {packedLabels.length > 0 ? (
               <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-                {waterLabels.map((l) => (
+                {packedLabels.map((l) => (
                   <MapLabel
                     key={l.key}
-                    text={l.name}
-                    x={l.x}
-                    y={l.y}
-                    kind="water"
-                    animScale={animScale}
-                    animTx={animTx}
-                    animTy={animTy}
-                  />
-                ))}
-                {highlightedLabels.map((l) => (
-                  <MapLabel
-                    key={`country-${l.name}`}
-                    text={l.name}
-                    x={l.x}
-                    y={l.y}
-                    kind="country"
-                    animScale={animScale}
-                    animTx={animTx}
-                    animTy={animTy}
-                  />
-                ))}
-                {capitalMarkers.map((cap) => (
-                  <MapLabel
-                    key={`cap-label-${cap.code}`}
-                    text={cap.name}
-                    x={cap.x}
-                    y={cap.y}
-                    kind="capital"
+                    text={l.text}
+                    anchorX={l.anchorX}
+                    anchorY={l.anchorY}
+                    cx={l.cx}
+                    cy={l.cy}
+                    kind={l.kind}
                     animScale={animScale}
                     animTx={animTx}
                     animTy={animTy}
