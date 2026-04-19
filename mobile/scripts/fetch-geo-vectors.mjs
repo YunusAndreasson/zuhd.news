@@ -16,10 +16,13 @@
 //                                        oceans filtered), inner-visual-center
 //                                        points as {name,lat,lng,rank,kind}
 //
-// `countries-50m.json`, `countries-110m.json`, `world-50m.json`, and
-// `world-110m.json` were originally copied from the `world-atlas` npm package
-// (v2.0.2, Natural Earth 4.1.0). This script doesn't regenerate those — see
-// https://github.com/topojson/world-atlas if/when we want to bump them.
+// `countries-50m.json` and `countries-110m.json` were originally copied
+// from the `world-atlas` npm package (v2.0.2, Natural Earth 4.1.0). Each
+// file already bundles a `land` object alongside the `countries` object
+// sharing the same arc set, so country borders and the land silhouette
+// stay perfectly aligned at any zoom. This script doesn't regenerate
+// those — see https://github.com/topojson/world-atlas if/when we want
+// to bump them.
 //
 // Usage:
 //   node scripts/fetch-geo-vectors.mjs

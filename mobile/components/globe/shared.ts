@@ -3,20 +3,25 @@ import { type GeoContext, geoArea, geoCentroid } from 'd3-geo';
 import { feature, mesh } from 'topojson-client';
 import type { GeometryCollection, Topology } from 'topojson-specification';
 import countriesTopo from '../../data/countries-110m.json';
-import worldTopo from '../../data/world-110m.json';
 
 interface TopoWithObjects extends Topology {
   objects: Record<string, GeometryCollection>;
 }
 
-const world = worldTopo as unknown as TopoWithObjects;
+// IMPORTANT: land and countries share the SAME topology. Earlier versions
+// loaded `land` from a separate `world-110m.json` (a more aggressively
+// simplified union) and `countries` from `countries-110m.json` — the two
+// used different arc sets, so the country polygons didn't perfectly align
+// with the land silhouette at zoom. Taking both from the single
+// `countries-110m.json` topology guarantees coastline + country borders
+// reference the same arcs, so they overlap exactly.
 const countriesData = countriesTopo as unknown as TopoWithObjects;
 
-const landObj = world.objects.land;
+const landObj = countriesData.objects.land;
 const countriesObj = countriesData.objects.countries;
 if (!landObj || !countriesObj) throw new Error('missing topojson objects');
 
-export const land = feature(world, landObj);
+export const land = feature(countriesData, landObj);
 export const countries = feature(
   countriesData,
   countriesObj,
