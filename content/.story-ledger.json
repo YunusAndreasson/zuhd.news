@@ -2,13 +2,166 @@
   "version": 1,
   "stories": [
     {
+      "id": "babies-born-from-dead-parents-will-increase-with-new-tech-ar",
+      "label": "Babies Born from Dead Parents Will Increase with New Tech. Are We Ready?",
+      "firstSeen": "2026-04-18T22:05:16.355Z",
+      "lastCovered": "2026-04-19T04:06:53.771Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-04-18-babies-born-from-dead-parents-will-increase-with-new-tech-ar"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] Reproductive technologies have enabled children to be posthumously conceived from the frozen eggs and sperm of deceased parents, raising legal, ethical, and practical questions.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-war-refugees-cascading-humanitarian-crisis",
+      "label": "The Iran War Is Hurting Refugees Across the Region",
+      "firstSeen": "2026-04-19T04:06:53.771Z",
+      "lastCovered": "2026-04-19T04:06:53.771Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-19-iran-war-refugees-cascading-humanitarian-crisis"
+      ],
+      "eventUri": null,
+      "summary": "A new report finds the Iran war triggered cascading humanitarian crises that exceeded worst-case projections — Afghan refugees in Iran, Iraqi Kurds displaced by IRGC operations, Pakistani returnees stranded at borders. Lead with the report's numbers versus the pre-war projections, then name the populations bearing the cost of a war declared elsewhere. Follows our ongoing Iran-war arc with a humanitarian frame, not a military one.",
+      "conceptUris": []
+    },
+    {
+      "id": "hormuz-reopen-economic-aftermath-insurance-shipping",
+      "label": "Strait of Hormuz Is Open, But Economic Pain Is Just Beginning",
+      "firstSeen": "2026-04-19T04:06:53.771Z",
+      "lastCovered": "2026-04-19T04:06:53.771Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-19-hormuz-reopen-economic-aftermath-insurance-shipping"
+      ],
+      "eventUri": null,
+      "summary": "Iran declared the Strait 'completely open' ahead of US talks in Pakistan; oil prices tumbled — but insurance premiums, shipping reroutes, and LNG contract repricing from the closure period will take months to unwind. Lead with the gap between headline oil price and the sticky costs: war-risk insurance, tanker chartering, Gulf port throughput. Continues our Hormuz arc with the economic-aftermath angle we haven't covered.",
+      "conceptUris": []
+    },
+    {
+      "id": "victoria-australia-free-public-transport-extended",
+      "label": "Victoria to Extend Free Public Transport for Millions",
+      "firstSeen": "2026-04-19T04:06:53.771Z",
+      "lastCovered": "2026-04-19T04:06:53.771Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-19-victoria-australia-free-public-transport-extended"
+      ],
+      "eventUri": "eng-11581522",
+      "summary": "The Australian state of Victoria extends free public transport for another month and half-price fares for the rest of 2026 — one of the largest farebox-revenue forgone experiments in the developed world. Lead with the fiscal cost and ridership impact so far; structural story is whether free transit scales or becomes a political ratchet that can't be unwound. Useful contrast for readers watching transit-funding debates globally.",
+      "conceptUris": []
+    },
+    {
+      "id": "strategy-mstr-strc-bi-monthly-dividend-bitcoin-treasury",
+      "label": "Why Michael Saylor's Strategy Decided to Make STRC's Dividend Bi-Monthly",
+      "firstSeen": "2026-04-19T04:06:53.771Z",
+      "lastCovered": "2026-04-19T04:06:53.771Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-19-strategy-mstr-strc-bi-monthly-dividend-bitcoin-treasury"
+      ],
+      "eventUri": "eng-11579744",
+      "summary": "Strategy (MSTR) is splitting its STRC perpetual preferred dividend into bi-monthly payments to keep the stock trading closer to par — a technical tell that the bitcoin-treasury-company financial engineering is running into liquidity mechanics. Lead with what bi-monthly actually means for holders, then the broader point: the bitcoin-treasury trade depends on preferred-equity plumbing that's now being adjusted in real time. For readers tracking crypto-finance structure.",
+      "conceptUris": []
+    },
+    {
+      "id": "esa-rosalind-franklin-mars-rover-falcon-heavy-2028",
+      "label": "ESA's Mars Rover to Launch Aboard SpaceX Falcon Heavy in 2028",
+      "firstSeen": "2026-04-19T04:06:53.771Z",
+      "lastCovered": "2026-04-19T04:06:53.771Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-19-esa-rosalind-franklin-mars-rover-falcon-heavy-2028"
+      ],
+      "eventUri": null,
+      "summary": "NASA selected SpaceX Falcon Heavy to launch the ESA Rosalind Franklin Mars rover in late 2028 — the same rover that was stranded when Russia's Proton launch was cancelled after the 2022 invasion. Lead with the geopolitical arc: a European life-seeking mission that lost its Russian ride, waited six years, and now goes up on an American commercial rocket. Structural: European space autonomy is a fiction; launch capacity is an American commercial monopoly.",
+      "conceptUris": []
+    },
+    {
+      "id": "faa-drones-ice-penalties-press-freedom",
+      "label": "FAA Scraps Civil and Criminal Penalties for Flying Drones Near ICE Vehicles",
+      "firstSeen": "2026-04-19T04:06:53.771Z",
+      "lastCovered": "2026-04-19T04:06:53.771Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-19-faa-drones-ice-penalties-press-freedom"
+      ],
+      "eventUri": null,
+      "summary": "The FAA rolled back civil and criminal penalties for flying drones near ICE vehicles — but the government retains the right to shoot drones down and has expanded the list of protected agencies to include DOJ. Lead with the legal asymmetry: filming is now legal, but the aircraft can still be destroyed without recourse. Structural: press-freedom and accountability-journalism stakes when the target of filming is also the authority regulating airspace.",
+      "conceptUris": []
+    },
+    {
+      "id": "a-new-pakistan",
+      "label": "A new Pakistan",
+      "firstSeen": "2026-04-19T04:06:53.771Z",
+      "lastCovered": "2026-04-19T04:06:53.771Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-19-a-new-pakistan"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for politics floor] PAKISTAN's diplomacy to end the war between Iran and the US has been in full swing during the last few days, and apparently, these efforts are yielding results, as hinted by statements from both sides. The outcome of the talks between Iran and the US will become clear soon, but the war has already t",
+      "conceptUris": []
+    },
+    {
+      "id": "n-korea-fires-suspected-ballistic-missiles-japan-gov-t",
+      "label": "N. Korea fires suspected ballistic missiles: Japan gov't",
+      "firstSeen": "2026-04-19T04:06:53.771Z",
+      "lastCovered": "2026-04-19T04:06:53.771Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-19-n-korea-fires-suspected-ballistic-missiles-japan-gov-t"
+      ],
+      "eventUri": "eng-11581453",
+      "summary": "[Auto-backfill for science floor] South Korea said in a statement that it has bolstered its surveillance posture and is closely exchanging information with the U.S. and Japan.\n\nThis would mark the seventh missile launch this year from the Hermit Kingdom, and occur ahead of a summit between the United States and China scheduled for m",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/North_Korea",
+        "http://en.wikipedia.org/wiki/Ballistic_missile",
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/Japan",
+        "http://en.wikipedia.org/wiki/Joint_Chiefs_of_Staff",
+        "http://en.wikipedia.org/wiki/Missile",
+        "http://en.wikipedia.org/wiki/Pyongyang",
+        "http://en.wikipedia.org/wiki/Seoul"
+      ]
+    },
+    {
       "id": "israel-somaliland-envoy-12-countries-condemnation",
       "label": "12 countries, including Pakistan, condemn Israel's move to appoint envoy to Somaliland",
       "firstSeen": "2026-04-18T22:05:16.355Z",
       "lastCovered": "2026-04-18T22:05:16.355Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-israel-somaliland-envoy-12-countries-condemnation"
@@ -24,7 +177,7 @@
       "lastCovered": "2026-04-18T22:05:16.355Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-india-summons-iran-ambassador-hormuz-tanker-fire"
@@ -48,7 +201,7 @@
       "lastCovered": "2026-04-18T22:05:16.355Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-alcoa-massena-nydig-smelter-to-bitcoin-conversion"
@@ -64,7 +217,7 @@
       "lastCovered": "2026-04-18T22:05:16.355Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-italy-salvini-russia-gas-return-energy-lockdown"
@@ -80,7 +233,7 @@
       "lastCovered": "2026-04-18T22:05:16.355Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-desi-completes-3d-universe-map-dark-energy"
@@ -96,7 +249,7 @@
       "lastCovered": "2026-04-18T22:05:16.355Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-salty-drinking-water-coastal-blood-pressure-climate"
@@ -112,7 +265,7 @@
       "lastCovered": "2026-04-18T22:05:16.355Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-17-hungary-magyar-orban-eu-climate-energy-shift"
@@ -128,7 +281,7 @@
       "lastCovered": "2026-04-18T22:05:16.355Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-17-ai-hardware-global-ewaste-crisis-non-western-burden"
@@ -144,7 +297,7 @@
       "lastCovered": "2026-04-18T22:05:16.355Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-strait-of-hormuz-under-islamic-republic-s-control-ghalibaf"
@@ -169,7 +322,7 @@
       "lastCovered": "2026-04-18T22:05:16.355Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-18-10th-indian-ship-crosses-strait-amid-firing-by-iranian-gunbo"
@@ -188,29 +341,13 @@
       ]
     },
     {
-      "id": "babies-born-from-dead-parents-will-increase-with-new-tech-ar",
-      "label": "Babies Born from Dead Parents Will Increase with New Tech. Are We Ready?",
-      "firstSeen": "2026-04-18T22:05:16.355Z",
-      "lastCovered": "2026-04-18T22:05:16.355Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-18-babies-born-from-dead-parents-will-increase-with-new-tech-ar"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] Reproductive technologies have enabled children to be posthumously conceived from the frozen eggs and sperm of deceased parents, raising legal, ethical, and practical questions.",
-      "conceptUris": []
-    },
-    {
       "id": "kyiv-supermarket-shooter-moscow-born-prosecutor-general",
       "label": "Prosecutor general confirms Kyiv shooter was Moscow-born",
       "firstSeen": "2026-04-18T17:07:23.732Z",
       "lastCovered": "2026-04-18T17:07:23.732Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-kyiv-supermarket-shooter-moscow-born-prosecutor-general"
@@ -232,7 +369,7 @@
       "lastCovered": "2026-04-18T17:07:23.732Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-french-unifil-soldier-killed-lebanon-ceasefire-fragility"
@@ -254,7 +391,7 @@
       "lastCovered": "2026-04-18T17:07:23.732Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-gaza-water-truck-drivers-killed-unicef-israel-siege"
@@ -276,7 +413,7 @@
       "lastCovered": "2026-04-18T17:07:23.732Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-russia-baltic-port-fire-ukraine-drone-oil-exports"
@@ -298,7 +435,7 @@
       "lastCovered": "2026-04-18T17:07:23.732Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-guam-cargo-ship-overturned-typhoon-six-missing"
@@ -314,7 +451,7 @@
       "lastCovered": "2026-04-18T17:07:23.732Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-poison-frogs-alkaloid-defenses-stepwise-evolution"
@@ -330,7 +467,7 @@
       "lastCovered": "2026-04-18T17:07:23.732Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-17-quantum-jamming-many-body-localisation-phase-transition"
@@ -346,7 +483,7 @@
       "lastCovered": "2026-04-18T17:07:23.732Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-posthumous-conception-gamete-retrieval-ethics-consent"
@@ -362,7 +499,7 @@
       "lastCovered": "2026-04-18T17:07:23.732Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-17-ai-gpu-refresh-e-waste-global-south-hyperscaler"
@@ -378,7 +515,7 @@
       "lastCovered": "2026-04-18T17:07:23.732Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-18-iran-closes-strait-of-hormuz-again-until-us-lifts-blockade"
@@ -403,7 +540,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-18-trump-iran-nuclear-dust-unfriendly-form-hormuz-leverage"
@@ -426,7 +563,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-17-kuwait-citizenship-stripping-denaturalisation-gulf-authoritarian"
@@ -442,7 +579,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-18-pope-leo-angola-africa-visit-trump-middle-east-clash"
@@ -463,7 +600,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-18-iran-war-prediction-market-1bn-insider-trading-cftc"
@@ -479,7 +616,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-18-tectonic-elevator-subduction-microbes-seafloor-biological-pump"
@@ -495,7 +632,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-18-pfas-forever-chemicals-dolphin-milk-maternal-transfer"
@@ -511,7 +648,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-17-poweroff-ddos-for-hire-takedown-europol-doj-four-arrested"
@@ -527,7 +664,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-17-angrite-meteorites-destroyed-protoplanet-solar-system-origin"
@@ -543,7 +680,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-17-openai-social-contract-intelligence-age-corporate-governance"
@@ -559,7 +696,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-18-tankers-crossed-strait-of-hormuz-amid-reports-of-firing-afte"
@@ -584,7 +721,7 @@
       "lastCovered": "2026-04-18T12:04:51.154Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-18-borehole-pressure-response-and-rock-fracture-evolution-durin"
@@ -594,13 +731,30 @@
       "conceptUris": []
     },
     {
+      "id": "sudan-khartoum-dengue-darfur-measles-rsf-defection",
+      "label": "Sudan Nashra: Dengue outbreak in Khartoum; measles killing displaced in North Darfur; RSF commander defects",
+      "firstSeen": "2026-04-18T04:07:53.434Z",
+      "lastCovered": "2026-04-19T04:06:53.771Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-04-17-sudan-khartoum-dengue-darfur-measles-rsf-defection",
+        "2026-04-19-sudan-third-anniversary-dengue-measles-rsf-defections"
+      ],
+      "eventUri": null,
+      "summary": "On the third anniversary of Sudan's war, Khartoum — paraded as reclaimed by the army — is falling to dengue fever while measles kills children daily in North Darfur displacement camps. Simultaneously, a Mahamid-branch RSF commander has defected with his forces to the military, and RSF-SPLM-N shelling killed six civilians in Dalang. Lead with the epidemiological collapse: the state's 'voluntary return' campaign is pulling civilians back into a capital that cannot contain the diseases they fled. This is continuation-of-injustice reporting, the kind Western wires rarely file.",
+      "conceptUris": []
+    },
+    {
       "id": "uk-mandelson-vetting-failure-starmer-foreign-office-ouster",
       "label": "'Pure shock': how ministers reacted to revelation of Mandelson vetting failure",
       "firstSeen": "2026-04-18T08:07:23.797Z",
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-18-uk-mandelson-vetting-failure-starmer-foreign-office-ouster"
@@ -616,7 +770,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-18-qatar-747-trump-air-force-one-test-flights-emoluments"
@@ -632,7 +786,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-18-south-korea-india-strategic-pivot-hedging-trump-asia"
@@ -648,7 +802,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-18-japan-china-public-sentiment-deterioration-polling-diplomacy"
@@ -664,7 +818,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-18-meta-8000-layoffs-ai-capex-gpu-reallocation-zuckerberg"
@@ -689,7 +843,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-18-carbon-pass-through-capital-access-decarbonisation-nature-study"
@@ -705,7 +859,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-18-latin-america-border-dispute-criminal-economy-sovereignty-gap"
@@ -721,7 +875,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-18-nanomedicine-intracellular-delivery-lipid-nanoparticles-primer"
@@ -737,7 +891,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-18-quantum-bitcoin-shors-algorithm-9-minute-attack-walkthrough"
@@ -753,7 +907,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-18-russia-internet-crackdown-ai-warfare-trigger-kremlin-censorship"
@@ -769,7 +923,7 @@
       "lastCovered": "2026-04-18T08:07:23.797Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-18-reference-values-for-bioelectrical-impedance-derived-phase-a"
@@ -785,7 +939,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-18-us-russia-oil-waiver-renewed-iran-war-bessent-contradiction"
@@ -801,7 +955,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-18-nexstar-tegna-merger-blocked-local-tv-consolidation"
@@ -811,29 +965,13 @@
       "conceptUris": []
     },
     {
-      "id": "sudan-khartoum-dengue-darfur-measles-rsf-defection",
-      "label": "Sudan Nashra: Dengue outbreak in Khartoum; measles killing displaced in North Darfur; RSF commander defects",
-      "firstSeen": "2026-04-18T04:07:53.434Z",
-      "lastCovered": "2026-04-18T04:07:53.434Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-sudan-khartoum-dengue-darfur-measles-rsf-defection"
-      ],
-      "eventUri": null,
-      "summary": "On the third anniversary of Sudan's war, Khartoum — paraded as reclaimed by the army — is falling to dengue fever while measles kills children daily in North Darfur displacement camps. Simultaneously, a Mahamid-branch RSF commander has defected with his forces to the military, and RSF-SPLM-N shelling killed six civilians in Dalang. Lead with the epidemiological collapse: the state's 'voluntary return' campaign is pulling civilians back into a capital that cannot contain the diseases they fled. This is continuation-of-injustice reporting, the kind Western wires rarely file.",
-      "conceptUris": []
-    },
-    {
       "id": "iom-iran-war-refugees-pakistan-afghanistan-crossings",
       "label": "IOM says 13,000 crossed into Pakistan from Iran during war",
       "firstSeen": "2026-04-18T04:07:53.434Z",
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-18-iom-iran-war-refugees-pakistan-afghanistan-crossings"
@@ -849,7 +987,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-angie-craig-minnesota-senate-aipac-distancing-bundling"
@@ -865,7 +1003,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-australia-green-hydrogen-offtake-renewable-superpower"
@@ -881,7 +1019,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-16-colombia-ecuador-border-contraband-illegal-mining-cocaine"
@@ -897,7 +1035,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-18-urban-park-cooling-design-day-night-canopy-concordia"
@@ -913,7 +1051,7 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-18-bio-inspired-3d-printed-earthen-materials-cement-substitute"
@@ -929,210 +1067,13 @@
       "lastCovered": "2026-04-18T04:07:53.434Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-17-grinex-crypto-exchange-15-million-hack-western-services"
       ],
       "eventUri": "eng-11576166",
       "summary": "Grinex — a US-sanctioned crypto exchange registered in Kyrgyzstan and widely understood as a successor to the shuttered Garantex — announced it is halting operations after losing $15 million, blaming 'western special services.' TRM Labs confirmed the heist. Lead with the infrastructure question: Grinex is a sanctions-evasion rail for Russian-linked flows, and a state-attributed crypto heist against a sanctions-evading exchange is effectively offensive cyber as sanctions enforcement. For the developer-literate reader, this is the operational picture of how economic warfare now runs through chain-level hacks rather than SWIFT notices.",
-      "conceptUris": []
-    },
-    {
-      "id": "uk-france-hormuz-naval-mission-european-chokepoint",
-      "label": "UK and France to lead defensive mission in Strait of Hormuz",
-      "firstSeen": "2026-04-17T22:04:33.723Z",
-      "lastCovered": "2026-04-17T22:04:33.723Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-uk-france-hormuz-naval-mission-european-chokepoint"
-      ],
-      "eventUri": "eng-11577821",
-      "summary": "Starmer and Macron announced a UK-French-led naval mission to secure the Strait of Hormuz, stepping into a role Washington has traditionally held alone. Lead with the European entry into Gulf maritime security as the Iran War winds down — this marks a structural shift in who polices the world's most important oil chokepoint, and commits London and Paris to a mission that could last years. Pair with Trump's reported ceasefire diplomacy for context on why the mission is forming now.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Emmanuel_Macron",
-        "http://en.wikipedia.org/wiki/Keir_Starmer",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/United_Kingdom"
-      ]
-    },
-    {
-      "id": "hezbollah-israel-truce-netanyahu-pressure-lebanon-return",
-      "label": "Hezbollah Celebrates Truce That Puts Pressure on Netanyahu",
-      "firstSeen": "2026-04-17T22:04:33.723Z",
-      "lastCovered": "2026-04-17T22:04:33.723Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-hezbollah-israel-truce-netanyahu-pressure-lebanon-return"
-      ],
-      "eventUri": "eng-11576765",
-      "summary": "A ceasefire brokered after the heaviest bombardment of Lebanon in a year has Hezbollah claiming strategic victory and thousands of displaced Lebanese returning to flattened southern villages — while Netanyahu faces a coalition revolt for agreeing to it. Lead with the sources-divergence: Al Jazeera and Nairaland frame it as Hezbollah vindication; Bloomberg frames it as a Netanyahu political problem. The structural point is that Iran's endgame diplomacy is rearranging Lebanon's internal balance, and the Lebanese state — still largely absent from the talks — gets to live with the consequences.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Hezbollah",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Southern_Lebanon"
-      ]
-    },
-    {
-      "id": "zelensky-belarus-russia-buildup-venezuela-warning",
-      "label": "Zelensky Warns of Russian Effort to Pull Belarus Into War",
-      "firstSeen": "2026-04-17T22:04:33.723Z",
-      "lastCovered": "2026-04-17T22:04:33.723Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-zelensky-belarus-russia-buildup-venezuela-warning"
-      ],
-      "eventUri": "ukr-345064",
-      "summary": "Zelensky publicly named Russian military buildup inside Belarus near the Ukrainian border and invoked Venezuela as a cautionary tale for Lukashenko — the first time Kyiv has framed Minsk's dilemma so bluntly. The reader angle: a second Belarusian front would force Ukraine to divert forces from the east just as Trump-era ceasefire talk circulates. Note the sentiment divergence — BelTA still leads with a routine Belarus-Türkiye trade deal, treating the warning as non-news.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Belarus",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Volodymyr_Zelenskyy",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Venezuela"
-      ]
-    },
-    {
-      "id": "nigeria-tinubu-68-trillion-budget-2025-extension",
-      "label": "Tinubu Signs N68.32trn 2026 Budget, Extends 2025 Budget Implementation Deadline",
-      "firstSeen": "2026-04-17T22:04:33.723Z",
-      "lastCovered": "2026-04-17T22:04:33.723Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-nigeria-tinubu-68-trillion-budget-2025-extension"
-      ],
-      "eventUri": "eng-11578145",
-      "summary": "Nigeria's 2026 appropriation — roughly $42 billion at current rates — was signed into law alongside an extension of 2025 implementation, a quiet admission that last year's spending never happened on schedule. Lead with the capex-vs-debt-service split and the national-security line. The structural point: Africa's largest economy is running two budgets in parallel because the fiscal machinery can't execute one. Good fit to fill the Africa-depth gap from the daily audit.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bola_Tinubu",
-        "http://en.wikipedia.org/wiki/Nigerian_naira",
-        "http://en.wikipedia.org/wiki/Appropriation_bill",
-        "http://en.wikipedia.org/wiki/Capital_expenditure",
-        "http://en.wikipedia.org/wiki/Government_debt"
-      ]
-    },
-    {
-      "id": "ford-f150-recall-1-4-million-gearshift-pcm",
-      "label": "Ford recalls about 1.4 million F-150 pickups over gearshift issue",
-      "firstSeen": "2026-04-17T22:04:33.723Z",
-      "lastCovered": "2026-04-17T22:04:33.723Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-ford-f150-recall-1-4-million-gearshift-pcm"
-      ],
-      "eventUri": "eng-11578063",
-      "summary": "One of the largest Ford recalls in recent years hits America's best-selling vehicle: 1.4 million F-150 trucks pulled over a powertrain control module defect that can cause unintended gear shifts. Lead with the scale and the NHTSA mechanism — this is a software/firmware era recall, not a mechanical one, and the remedy will likely be an OTA-style fix. The structural point: modern vehicle safety is increasingly about code, and the legal liability surface is changing accordingly.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ford_Motor_Company",
-        "http://en.wikipedia.org/wiki/Ford_F-Series",
-        "http://en.wikipedia.org/wiki/National_Highway_Traffic_Safety_Administration",
-        "http://en.wikipedia.org/wiki/Powertrain_control_module"
-      ]
-    },
-    {
-      "id": "nyc-pied-a-terre-tax-hochul-second-home-surcharge",
-      "label": "Contours of Pied-à-Terre Tax in New York City Begin to Take Shape",
-      "firstSeen": "2026-04-17T22:04:33.723Z",
-      "lastCovered": "2026-04-17T22:04:33.723Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-nyc-pied-a-terre-tax-hochul-second-home-surcharge"
-      ],
-      "eventUri": "spa-4169956",
-      "summary": "Governor Hochul's proposed property-tax surcharge on high-end second homes in NYC is nearing legislative shape — a policy shift that would tax absentee ultra-wealthy owners for the first time. Lead with the mechanism (graduated surcharge on non-primary residences above a value threshold) and what it means for the global-capital-parked-as-Manhattan-condos pattern. Readers tracking housing policy will want the precedent question: if NYC can do this, London and Vancouver's pied-à-terre debates follow.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Kathy_Hochul",
-        "http://en.wikipedia.org/wiki/Pied-%C3%A0-terre",
-        "http://en.wikipedia.org/wiki/Property_tax",
-        "http://en.wikipedia.org/wiki/New_York_City",
-        "http://en.wikipedia.org/wiki/Real_estate"
-      ]
-    },
-    {
-      "id": "nanobody-cftr-cystic-fibrosis-intracellular-antibody",
-      "label": "Nanobody repairs misfolded CFTR inside cells, boosting function in cystic fibrosis",
-      "firstSeen": "2026-04-17T22:04:33.723Z",
-      "lastCovered": "2026-04-17T22:04:33.723Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-nanobody-cftr-cystic-fibrosis-intracellular-antibody"
-      ],
-      "eventUri": null,
-      "summary": "Charité and FMP researchers engineered a nanobody — a single-domain antibody fragment — that penetrates human cells and refolds the defective CFTR chloride channel behind most cystic fibrosis cases. Lead with the mechanism: intracellular antibody therapy was long thought impossible because antibodies can't cross membranes. The structural point: if nanobodies can be delivered inside cells, a whole class of 'undruggable' misfolded-protein diseases — from cystic fibrosis to certain cancers — opens up. Published in Nature Chemical Biology.",
-      "conceptUris": []
-    },
-    {
-      "id": "burundi-unknown-illness-africa-cdc-surveillance",
-      "label": "Africa CDC raises alarm over unknown illness in Burundi",
-      "firstSeen": "2026-04-17T22:04:33.723Z",
-      "lastCovered": "2026-04-17T22:04:33.723Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-burundi-unknown-illness-africa-cdc-surveillance"
-      ],
-      "eventUri": null,
-      "summary": "Africa CDC has flagged an unidentified illness in Burundi that lab tests have already ruled out as Ebola, Marburg, Rift Valley fever, and Crimean-Congo hemorrhagic fever — meaning investigators are confronting something new. Lead with the exclusion list and what it tells us about the continent's hemorrhagic-fever surveillance capacity post-Ebola. The structural point: Africa CDC is doing the work that WHO used to lead, and doing it faster — this is the post-colonial public-health infrastructure functioning as intended.",
-      "conceptUris": []
-    },
-    {
-      "id": "london-nhs-ransomware-18-months-unrestored",
-      "label": "Ransomware attack continues to disrupt healthcare in London nearly two years later",
-      "firstSeen": "2026-04-17T22:04:33.723Z",
-      "lastCovered": "2026-04-17T22:04:33.723Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-london-nhs-ransomware-18-months-unrestored"
-      ],
-      "eventUri": null,
-      "summary": "18 months after the Synnovis ransomware attack, at least one London NHS trust is still running without fully restored systems and is sitting on large backlogs of delayed test results — delays that translate into missed cancer diagnoses and worsened outcomes. Lead with the 18-month number and the still-not-restored operational reality. The structural point: ransomware 'recovery' timelines in hospital IT are measured in years, not weeks, and the body count never ends up in the incident report.",
-      "conceptUris": []
-    },
-    {
-      "id": "lebanon-digital-rights-regional-war-smex-beirut",
-      "label": "Digital Rights Amid a Regional War: April 17, 2026",
-      "firstSeen": "2026-04-17T22:04:33.723Z",
-      "lastCovered": "2026-04-17T22:04:33.723Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-17-lebanon-digital-rights-regional-war-smex-beirut"
-      ],
-      "eventUri": null,
-      "summary": "SMEX's Beirut desk catalogues what happened to Lebanon's digital infrastructure during Israel's April 8 bombardment — the heaviest since the war began — including targeted strikes on telecom nodes, internet blackouts in the south, and social-media account takedowns of Lebanese journalists. Lead with the specific infrastructure harms and the SMEX methodology. The structural point: 'digital rights' in wartime means physical infrastructure plus platform governance, and the same pattern (strike the towers, suspend the accounts) now repeats everywhere from Gaza to Sudan to Ukraine. Readers get the ummah-relevant accountability record.",
       "conceptUris": []
     }
   ]
