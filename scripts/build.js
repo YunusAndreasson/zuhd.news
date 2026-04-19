@@ -70,7 +70,7 @@ const markdownToHtml = (md) => {
 const splitSentences = (html) =>
   html.replace(/<p>([\s\S]*?)<\/p>/g, (match, inner) => {
     const masked = inner.replace(ABBREVS, m => m.replace('. ', '.\x00'))
-    const sentences = masked.split(/(?<=[.!?][\u201D\u2019]?(?:<\/em>)?)\s+(?=[A-Z\u00C0-\u024F<])/)
+    const sentences = masked.split(/(?<=[.!?][\u201D\u2019]?(?:<\/em>)?)\s+(?=[\p{Lu}<])/u)
     if (sentences.length <= 1) return match
     return '<p>' + sentences.map(s => `<span class="s">${s.replace(/\.\x00/g, '. ')}</span>`).join(' ') + '</p>'
   })
