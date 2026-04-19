@@ -68,6 +68,7 @@ import {
   NORTH_POLE,
   PLACES_APPEAR_CLIP,
   PLACES_FULL_CLIP,
+  RIVERS_APPEAR_CLIP,
   SOUTH_POLE,
   withAlpha,
 } from './projection';
@@ -76,10 +77,15 @@ import {
   countries,
   countryAreas,
   countryBboxes,
-  countryCentroids,
+  countryCentroidNames,
+  countryCentroidPoints,
+  countryCentroidUnits,
+  countrySimplifiedByName,
   createSkiaPathContext,
   iceSheets,
+  iceSheetsSimplified,
   land,
+  landSimplified,
 } from './shared';
 import { getCoords } from './storyDots';
 
@@ -706,6 +712,11 @@ export const MiniGlobe = memo(function MiniGlobe({
   const lastSettledSlug = useRef<string | null>(null);
 
   const cachedCountryRef = useRef<GeoJSON.Feature | null>(null);
+  // Mid-scroll projection uses a simplified variant of the settled country
+  // (~50% fewer vertices, same topology). Swapped to the full-detail feature
+  // once the scroll settles. Keeping the pair in parallel refs avoids a
+  // per-frame name lookup inside callReproject.
+  const cachedCountrySimplifiedRef = useRef<GeoJSON.Feature | null>(null);
   // Spherical centroid of the currently settled country, cached alongside
   // the feature. geoCentroid is O(n vertices) — computing it once per
   // settled-country change (instead of per frame) is what keeps this new
@@ -778,6 +789,10 @@ export const MiniGlobe = memo(function MiniGlobe({
         lastSettled.current = settledIndex;
         lastSettledSlug.current = slug;
         cachedCountryRef.current = geo?.country ?? null;
+        const settledName = cachedCountryRef.current?.properties?.name as string | undefined;
+        cachedCountrySimplifiedRef.current = settledName
+          ? (countrySimplifiedByName[settledName] ?? null)
+          : null;
         // Centroid cached alongside the feature — projected per frame to
         // follow rotation, but the expensive sphere-centroid math runs only
         // when the settled country actually changes.
@@ -814,19 +829,35 @@ export const MiniGlobe = memo(function MiniGlobe({
       const pg = pgRef.current;
       pg.projection(proj);
 
-      // Land — rewind reuses the underlying buffer (vs reset which frees it)
+      // Near-settled gate — hoisted up so land/ice/country-highlight can pick
+      // between full-detail and simplified topology per frame. Everything
+      // gated on !nearSettled uses the Visvalingam-simplified variants; at
+      // rest we switch back to the full 110m data. `zoomInFlight` detects
+      // both the overrideActive fade and the override→override angle slide
+      // so the heavy layers stay off the JS thread during zoom animations.
+      const ARC_WINDOW = 0.25;
+      const lastAngle = lastOverrideAngleRef.current;
+      lastOverrideAngleRef.current = overrideAngleVal;
+      const activeMid = overrideActiveVal > 0.001 && overrideActiveVal < 0.999;
+      const angleChanging = Math.abs(overrideAngleVal - lastAngle) > 0.01;
+      const zoomInFlight = activeMid || angleChanging;
+      const nearSettled = !zoomInFlight && (frac < ARC_WINDOW || frac > 1 - ARC_WINDOW);
+
+      // Land — rewind reuses the underlying buffer (vs reset which frees it).
+      // Mid-scroll uses the ~2k-vertex simplified topology (vs 5k full); at
+      // rest we switch back to the full coastline so static reading is crisp.
       const landPath = landPathRef.current;
       landPath.rewind();
       skiaCtx.setPath(landPath);
-      pg.context(skiaCtx)(land);
+      pg.context(skiaCtx)(nearSettled ? land : landSimplified);
 
-      // Ice sheets — Antarctica + Greenland. Two polygons at 110m; marginal
-      // projection cost on top of `land` is small and runs every frame so the
-      // ice layer tracks rotation without flicker.
+      // Ice sheets — Antarctica + Greenland. Swapped to simplified during
+      // scroll the same way land is. Projecting every frame (not gated) so
+      // the ice layer tracks rotation without flicker.
       const icePath = icePathRef.current;
       icePath.rewind();
       skiaCtx.setPath(icePath);
-      pg.context(skiaCtx)(iceSheets);
+      pg.context(skiaCtx)(nearSettled ? iceSheets : iceSheetsSimplified);
 
       // Dot
       let dot: { x: number; y: number } | null = null;
@@ -854,13 +885,21 @@ export const MiniGlobe = memo(function MiniGlobe({
         ghostDots.push({ x: gx, y: gy });
       }
 
-      // Country highlight — reuse path object
+      // Country highlight — reuse path object. Large countries (Russia,
+      // Canada, Brazil) can push this past 1k vertices; during mid-scroll
+      // we project the simplified variant if available, otherwise fall
+      // back to the full-detail feature (small countries aren't worth a
+      // simplified copy). On settle, always full-detail.
       let countryPath: ReturnType<typeof Skia.Path.Make> | null = null;
       if (cachedCountryRef.current) {
         countryPath = countryPathRef.current;
         countryPath.rewind();
         skiaCtx.setPath(countryPath);
-        pg.context(skiaCtx)(cachedCountryRef.current);
+        const src =
+          nearSettled || !cachedCountrySimplifiedRef.current
+            ? cachedCountryRef.current
+            : cachedCountrySimplifiedRef.current;
+        pg.context(skiaCtx)(src);
       }
 
       // Country name label — project the cached centroid onto the current
@@ -879,19 +918,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         const pt = proj(centroid);
         if (pt) countryLabel = { text: countryName, x: pt[0], y: pt[1] + COUNTRY_LABEL_OFFSET };
       }
-
-      // Near-settled check — reused for cosmetic layers AND arc visibility.
-      // Skip borders/night/twilight/graticule while the zoom is actively
-      // blending (mid-active fade OR override→override slide). Detecting
-      // the override-angle slide via a frame-delta keeps the heavy layers
-      // off the JS thread even when overrideActive stays pinned at 1.
-      const ARC_WINDOW = 0.25;
-      const lastAngle = lastOverrideAngleRef.current;
-      lastOverrideAngleRef.current = overrideAngleVal;
-      const activeMid = overrideActiveVal > 0.001 && overrideActiveVal < 0.999;
-      const angleChanging = Math.abs(overrideAngleVal - lastAngle) > 0.01;
-      const zoomInFlight = activeMid || angleChanging;
-      const nearSettled = !zoomInFlight && (frac < ARC_WINDOW || frac > 1 - ARC_WINDOW);
 
       // Neighbouring country borders — large mesh, skip during mid-scroll.
       // Borders are visually imperceptible during fast rotation and this
@@ -1061,6 +1087,18 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
+      // Camera unit vector — precomputed once per frame so hemisphere culls
+      // on static point sets (neighbour centroids, etc.) can use a dot
+      // product instead of d3-geo's haversine. Standard lng/lat → Cartesian
+      // with Z pointing through the north pole; dot > 0 ⇔ visible hemisphere.
+      const DEG2RAD = Math.PI / 180;
+      const camLatR = geoLat * DEG2RAD;
+      const camLngR = geoLng * DEG2RAD;
+      const camCosLat = Math.cos(camLatR);
+      const camUnitX = camCosLat * Math.cos(camLngR);
+      const camUnitY = camCosLat * Math.sin(camLngR);
+      const camUnitZ = Math.sin(camLatR);
+
       // Chokepoints — always projected (unlike hotspots). The set is small
       // (≤11) and the markers are geographic reference, not cosmetic detail,
       // so they shouldn't blink out during a fast scroll.
@@ -1133,75 +1171,99 @@ export const MiniGlobe = memo(function MiniGlobe({
         const span = PLACES_APPEAR_CLIP - PLACES_FULL_CLIP;
         const labelOpacity = Math.min(1, Math.max(0, (PLACES_APPEAR_CLIP - clipAngle) / span));
         const settledName = cachedCountryRef.current?.properties?.name as string | undefined;
-        for (const name in countryCentroids) {
-          if (name === settledName) continue;
-          const coords = countryCentroids[name];
+
+        // Neighbour country centroids — labels follow rotation smoothly, so
+        // keep them projected every frame (cheap: one point each). Hemisphere
+        // cull uses a precomputed cartesian dot product against the camera
+        // axis, dropping ~900 trig ops per frame versus the old geoDistance
+        // haversine. Iteration is over the parallel arrays (names/points/units)
+        // populated in shared.ts.
+        for (let i = 0; i < countryCentroidNames.length; i++) {
+          const name = countryCentroidNames[i];
+          if (!name || name === settledName) continue;
+          const unit = countryCentroidUnits[i];
+          if (!unit) continue;
+          if (unit[0] * camUnitX + unit[1] * camUnitY + unit[2] * camUnitZ <= 0) continue;
+          const coords = countryCentroidPoints[i];
           if (!coords) continue;
-          if (geoDistance(coords, cameraCoords) >= HALF_PI) continue;
           const pt = proj(coords);
           if (!pt) continue;
           neighborLabels.push({ name, x: pt[0], y: pt[1], opacity: labelOpacity });
         }
 
-        // Lakes — filter to visually-significant size at globe scale
-        // (~8000 km² floor = Lake Tanganyika scale). Keeps labels to the
-        // ~20-30 giants worldwide; anything smaller is invisible through
-        // the 110m coastline anyway.
-        const LAKE_MIN_AREA = 2e-4; // steradians; ≈ 8000 km²
-        for (const lake of getLakeLabels()) {
-          if (lake.area < LAKE_MIN_AREA) continue;
-          if (geoDistance(lake.coords, cameraCoords) >= HALF_PI) continue;
-          const pt = proj(lake.coords);
-          if (!pt) continue;
-          waterLabels.push({
-            name: lake.name,
-            x: pt[0],
-            y: pt[1],
-            opacity: labelOpacity,
-            kind: 'lake',
-          });
-        }
+        // Heavy water geography — river path projection (~9k vertices), water
+        // labels (~180 single-point projections). Gated on `nearSettled` the
+        // same way the borders mesh is: invisible during fast rotation, and
+        // projecting them each scroll frame was the dominant cost at 2×/3×
+        // zoom. Labels + line return together when the scroll settles so the
+        // visual contract ("rivers with names") stays intact.
+        if (nearSettled) {
+          // Lakes — filter to visually-significant size at globe scale
+          // (~8000 km² floor = Lake Tanganyika scale). Keeps labels to the
+          // ~20-30 giants worldwide; anything smaller is invisible through
+          // the 110m coastline anyway.
+          const LAKE_MIN_AREA = 2e-4; // steradians; ≈ 8000 km²
+          for (const lake of getLakeLabels()) {
+            if (lake.area < LAKE_MIN_AREA) continue;
+            if (geoDistance(lake.coords, cameraCoords) >= HALF_PI) continue;
+            const pt = proj(lake.coords);
+            if (!pt) continue;
+            waterLabels.push({
+              name: lake.name,
+              x: pt[0],
+              y: pt[1],
+              opacity: labelOpacity,
+              kind: 'lake',
+            });
+          }
 
-        // Rivers — rank ≤ 3 filter already applied at precompute time.
-        for (const river of getRiverLabels()) {
-          if (geoDistance(river.coords, cameraCoords) >= HALF_PI) continue;
-          const pt = proj(river.coords);
-          if (!pt) continue;
-          waterLabels.push({
-            name: river.name,
-            x: pt[0],
-            y: pt[1],
-            opacity: labelOpacity,
-            kind: 'river',
-          });
-        }
+          // Rivers — rank ≤ 3 filter already applied at precompute time.
+          for (const river of getRiverLabels()) {
+            if (geoDistance(river.coords, cameraCoords) >= HALF_PI) continue;
+            const pt = proj(river.coords);
+            if (!pt) continue;
+            waterLabels.push({
+              name: river.name,
+              x: pt[0],
+              y: pt[1],
+              opacity: labelOpacity,
+              kind: 'river',
+            });
+          }
 
-        // Seas / bays / gulfs — 54 entries, all relevant at globe scale.
-        for (const sea of SEAS) {
-          const coords: [number, number] = [sea.lng, sea.lat];
-          if (geoDistance(coords, cameraCoords) >= HALF_PI) continue;
-          const pt = proj(coords);
-          if (!pt) continue;
-          waterLabels.push({
-            name: sea.name,
-            x: pt[0],
-            y: pt[1],
-            opacity: labelOpacity,
-            kind: 'sea',
-          });
-        }
+          // Seas / bays / gulfs — 54 entries, all relevant at globe scale.
+          for (const sea of SEAS) {
+            const coords: [number, number] = [sea.lng, sea.lat];
+            if (geoDistance(coords, cameraCoords) >= HALF_PI) continue;
+            const pt = proj(coords);
+            if (!pt) continue;
+            waterLabels.push({
+              name: sea.name,
+              x: pt[0],
+              y: pt[1],
+              opacity: labelOpacity,
+              kind: 'sea',
+            });
+          }
 
-        // Major river lines — not just labels, actual strokes on the
-        // globe. d3-geo's clipAngle handles the hemisphere cull for us;
-        // ~100 rank-≤3 rivers worldwide, of which most are clipped out
-        // per frame. Path is rewound (not reset) so the underlying
-        // buffer stays allocated between frames.
-        const rp = riversPathRef.current;
-        rp.rewind();
-        skiaCtx.setPath(rp);
-        pg.context(skiaCtx)(getMajorRiverFeatureCollection() as never);
-        riversPath = rp;
-        riversOpacity = labelOpacity;
+          // Major river lines — the single heaviest per-frame projection
+          // (~9k vertices). Gated on a tighter threshold than the cheap
+          // layers above so that small-country 1× framings (clip ≈ 25°)
+          // get the whisper of neighbour labels + water names without
+          // triggering the river-path settle-frame spike. Path is rewound
+          // (not reset) so the underlying buffer stays allocated between
+          // frames. Opacity uses its own fade band so rivers ease in
+          // independently as the reader zooms past 22°.
+          if (clipAngle < RIVERS_APPEAR_CLIP) {
+            const rp = riversPathRef.current;
+            rp.rewind();
+            skiaCtx.setPath(rp);
+            pg.context(skiaCtx)(getMajorRiverFeatureCollection() as never);
+            riversPath = rp;
+            const riverSpan = RIVERS_APPEAR_CLIP - PLACES_FULL_CLIP;
+            riversOpacity = Math.min(1, Math.max(0, (RIVERS_APPEAR_CLIP - clipAngle) / riverSpan));
+          }
+        }
       }
 
       // Label collision — dot label (location · time) versus country name
@@ -1871,6 +1933,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       {state.chokepoints.map((c) => {
         const ringOpacity = 0.35 + 0.45 * c.intensity;
         const ringColor = c.disrupted ? colors.accent : colors.rule;
+        // Label centering uses getTextWidth when the font has loaded;
+        // before that we fall back to a char-count approximation so the
+        // first frame doesn't misplace the text.
+        const labelTx = subFont
+          ? c.x - subFont.getTextWidth(c.label) / 2
+          : c.x - c.label.length * 2.5;
+        const labelTy = c.y + 20;
         return (
           <Group key={c.id}>
             {c.disrupted && (
@@ -1904,14 +1973,27 @@ export const MiniGlobe = memo(function MiniGlobe({
               opacity={Math.min(1, ringOpacity + 0.2)}
             />
             {subFont && (
-              <SkiaText
-                x={c.x - c.label.length * 2.5}
-                y={c.y + 20}
-                text={c.label}
-                font={subFont}
-                color={c.disrupted ? colors.accent : colors.textSecondary}
-                opacity={c.disrupted ? 0.9 : 0.55}
-              />
+              <>
+                <SkiaText
+                  x={labelTx}
+                  y={labelTy}
+                  text={c.label}
+                  font={subFont}
+                  color={colors.bg}
+                  opacity={c.disrupted ? 1 : 0.75}
+                  style="stroke"
+                  strokeWidth={3}
+                  strokeJoin="round"
+                />
+                <SkiaText
+                  x={labelTx}
+                  y={labelTy}
+                  text={c.label}
+                  font={subFont}
+                  color={c.disrupted ? colors.accent : colors.textSecondary}
+                  opacity={c.disrupted ? 0.9 : 0.55}
+                />
+              </>
             )}
           </Group>
         );
@@ -1932,30 +2014,49 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Islamic geography — historical landmarks (Medina, Al-Aqsa, Baghdad,
           Cordoba, Samarkand…). Surfaces only at 2×/3× so the default view
           stays quiet. Tiny ring + Latin label; sourced in islamicPlaces.ts. */}
-      {state.islamicPlaces.map((p) => (
-        <Group key={p.id}>
-          <Circle
-            cx={p.x}
-            cy={p.y}
-            r={2.5}
-            color={colors.accent}
-            opacity={0.7 * p.opacity}
-            style="stroke"
-            strokeWidth={0.8}
-          />
-          <Circle cx={p.x} cy={p.y} r={0.8} color={colors.accent} opacity={0.9 * p.opacity} />
-          {subFont && (
-            <SkiaText
-              x={p.x - p.name.length * 2.2}
-              y={p.y - 6}
-              text={p.name}
-              font={subFont}
-              color={colors.textSecondary}
+      {state.islamicPlaces.map((p) => {
+        const labelTx = subFont
+          ? p.x - subFont.getTextWidth(p.name) / 2
+          : p.x - p.name.length * 2.2;
+        const labelTy = p.y - 6;
+        return (
+          <Group key={p.id}>
+            <Circle
+              cx={p.x}
+              cy={p.y}
+              r={2.5}
+              color={colors.accent}
               opacity={0.7 * p.opacity}
+              style="stroke"
+              strokeWidth={0.8}
             />
-          )}
-        </Group>
-      ))}
+            <Circle cx={p.x} cy={p.y} r={0.8} color={colors.accent} opacity={0.9 * p.opacity} />
+            {subFont && (
+              <>
+                <SkiaText
+                  x={labelTx}
+                  y={labelTy}
+                  text={p.name}
+                  font={subFont}
+                  color={colors.bg}
+                  opacity={p.opacity}
+                  style="stroke"
+                  strokeWidth={3}
+                  strokeJoin="round"
+                />
+                <SkiaText
+                  x={labelTx}
+                  y={labelTy}
+                  text={p.name}
+                  font={subFont}
+                  color={colors.textSecondary}
+                  opacity={0.7 * p.opacity}
+                />
+              </>
+            )}
+          </Group>
+        );
+      })}
 
       {/* Country highlight — opacity scales with area so small nations pop */}
       {state.countryPath && (
@@ -2075,7 +2176,9 @@ export const MiniGlobe = memo(function MiniGlobe({
                 font={subFont}
                 color={colors.bg}
                 opacity={w.opacity}
+                style="stroke"
                 strokeWidth={4}
+                strokeJoin="round"
               />
               <SkiaText
                 x={tx}
@@ -2094,19 +2197,36 @@ export const MiniGlobe = memo(function MiniGlobe({
           focused country's labelFont) so visual hierarchy reads: the
           highlighted country = primary text; neighbours = secondary.
           Rendered BEFORE the highlighted country label so the focused
-          country's name draws on top if they collide. */}
+          country's name draws on top if they collide. Halo matches the
+          water-label treatment so labels stay legible over borders,
+          river strokes, and the country-highlight fill at whisper opacity. */}
       {subFont &&
-        state.neighborLabels.map((n) => (
-          <SkiaText
-            key={n.name}
-            x={n.x - subFont.getTextWidth(n.name) / 2}
-            y={n.y}
-            text={n.name}
-            font={subFont}
-            color={colors.textSecondary}
-            opacity={(light ? 0.7 : 0.55) * n.opacity}
-          />
-        ))}
+        state.neighborLabels.map((n) => {
+          const tx = n.x - subFont.getTextWidth(n.name) / 2;
+          return (
+            <Group key={n.name}>
+              <SkiaText
+                x={tx}
+                y={n.y}
+                text={n.name}
+                font={subFont}
+                color={colors.bg}
+                opacity={n.opacity}
+                style="stroke"
+                strokeWidth={3}
+                strokeJoin="round"
+              />
+              <SkiaText
+                x={tx}
+                y={n.y}
+                text={n.name}
+                font={subFont}
+                color={colors.textSecondary}
+                opacity={(light ? 0.7 : 0.55) * n.opacity}
+              />
+            </Group>
+          );
+        })}
 
       {/* Country name — always rendered (every zoom level) when a country is
           highlighted and its centroid is on the visible hemisphere. Anchored
@@ -2128,7 +2248,9 @@ export const MiniGlobe = memo(function MiniGlobe({
             font={labelFont}
             color={colors.bg}
             opacity={light ? 0.85 : 0.7}
+            style="stroke"
             strokeWidth={3}
+            strokeJoin="round"
           />
           <SkiaText
             x={state.countryLabel.x - labelFont.getTextWidth(state.countryLabel.text) / 2}

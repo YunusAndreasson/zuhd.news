@@ -1,6 +1,7 @@
 import type { SkPath } from '@shopify/react-native-skia';
 import { type GeoContext, geoArea, geoCentroid } from 'd3-geo';
 import { feature, mesh } from 'topojson-client';
+import { presimplify, simplify } from 'topojson-simplify';
 import type { GeometryCollection, Topology } from 'topojson-specification';
 import countriesTopo from '../../data/countries-110m.json';
 
@@ -43,6 +44,40 @@ export const iceSheets: GeoJSON.FeatureCollection = {
   }),
 };
 
+// ── Simplified topology for mid-scroll projection ──────────────────────────
+// Topojson Visvalingam-Whyatt simplification at weight threshold 0.5 drops
+// ~60% of coastline vertices (land 5127 → 2081, countries 10587 → 4079) with
+// no visible difference at globe scale — inland detail is what gets culled,
+// not the continental silhouette. Used for `land`, the country highlight,
+// and ice sheets during mid-scroll (!nearSettled) so the per-frame JS budget
+// drops across *every* swipe, not just 2×/3× zoom. On settle we switch back
+// to the full-detail topology. One-time ~15 ms cost at module load.
+const simplifiedData = simplify(presimplify(countriesData), 0.5) as unknown as TopoWithObjects;
+const landObjSimp = simplifiedData.objects.land;
+const countriesObjSimp = simplifiedData.objects.countries;
+if (!landObjSimp || !countriesObjSimp) throw new Error('missing simplified topojson objects');
+
+export const landSimplified = feature(simplifiedData, landObjSimp);
+const countriesSimplified = feature(
+  simplifiedData,
+  countriesObjSimp,
+) as unknown as GeoJSON.FeatureCollection;
+export const iceSheetsSimplified: GeoJSON.FeatureCollection = {
+  type: 'FeatureCollection',
+  features: countriesSimplified.features.filter((f) => {
+    const n = f.properties?.name;
+    return n === 'Antarctica' || n === 'Greenland';
+  }),
+};
+/** Name → simplified country feature lookup — used for the country-highlight
+ *  path during mid-scroll. Parallel to `cachedCountryRef` (full-detail),
+ *  so settle flips to full detail and scroll flips back to simplified. */
+export const countrySimplifiedByName: Record<string, GeoJSON.Feature> = {};
+for (const f of countriesSimplified.features) {
+  const name = f.properties?.name;
+  if (name) countrySimplifiedByName[name] = f;
+}
+
 // Precomputed bounding boxes for fast point-in-country pre-filtering.
 // [minLng, minLat, maxLng, maxLat] per feature — avoids expensive
 // geoContains polygon tests for points clearly outside.
@@ -83,6 +118,28 @@ export const countryCentroids: Record<string, [number, number]> = {};
 for (const f of countries.features) {
   const name = f.properties?.name;
   if (name) countryCentroids[name] = geoCentroid(f) as [number, number];
+}
+
+// Cartesian unit vector form of each centroid. Lets the per-frame hemisphere
+// cull use a dot product against the camera axis (3 muls + 2 adds) instead
+// of `geoDistance` haversine (~5 trig ops). Across 177 countries this moves
+// ~900 trig calls per frame off the JS thread during zoomed scroll.
+// Parallel array to centroid names so callers can iterate in index order.
+export const countryCentroidNames: string[] = [];
+export const countryCentroidPoints: [number, number][] = [];
+export const countryCentroidUnits: [number, number, number][] = [];
+{
+  const DEG = Math.PI / 180;
+  for (const name in countryCentroids) {
+    const c = countryCentroids[name];
+    if (!c) continue;
+    const latR = c[1] * DEG;
+    const lngR = c[0] * DEG;
+    const cosLat = Math.cos(latR);
+    countryCentroidNames.push(name);
+    countryCentroidPoints.push(c);
+    countryCentroidUnits.push([cosLat * Math.cos(lngR), cosLat * Math.sin(lngR), Math.sin(latR)]);
+  }
 }
 
 const DEG = 180 / Math.PI;
