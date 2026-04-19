@@ -16,6 +16,7 @@ import {
   vec,
 } from '@shopify/react-native-skia';
 import {
+  geoCentroid,
   geoCircle,
   geoContains,
   geoDistance,
@@ -48,6 +49,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { displayLocation } from '../../lib/place-names';
 import type { Article, Chokepoint, HeatmapPoint } from '../../types';
 import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from './coordinates';
+import { getLakeLabels, getMajorRiverFeatureCollection, getRiverLabels, SEAS } from './detail-geo';
 import { HISTORICAL_EVENTS } from './historicalEvents';
 import { ISLAMIC_PLACES } from './islamicPlaces';
 import {
@@ -74,6 +76,7 @@ import {
   countries,
   countryAreas,
   countryBboxes,
+  countryCentroids,
   createSkiaPathContext,
   iceSheets,
   land,
@@ -225,6 +228,11 @@ interface GlobeState {
    *  geographic clusters don't smudge into a single glow. */
   ghostDots: { x: number; y: number }[];
   dotLabel: { text: string; sub?: string; x: number; y: number } | null;
+  /** Country name anchored near the highlighted country's centroid. Rendered
+   *  at every zoom level (including fully zoomed-out) so the reader always
+   *  has geographic context for the article. Null when the centroid falls
+   *  on the globe's far side. */
+  countryLabel: { text: string; x: number; y: number } | null;
   makkah: { x: number; y: number } | null;
   hotspotGlows: {
     x: number;
@@ -266,6 +274,36 @@ interface GlobeState {
     year: string;
     opacity: number;
   }[];
+  /** Neighbour-country labels — every country within the camera's visible
+   *  hemisphere EXCEPT the highlighted one. Emerges when the camera is
+   *  zoomed past PLACES_APPEAR_CLIP, giving the reader geographic context
+   *  ("Pakistan is bordered by Iran / Afghanistan / India / China") without
+   *  needing a second screen. `opacity` folds the zoom-band fade factor. */
+  neighborLabels: {
+    name: string;
+    x: number;
+    y: number;
+    opacity: number;
+  }[];
+  /** Water-feature labels — named lakes, major rivers, seas/bays/gulfs.
+   *  Same zoom gate as neighbour labels. Drawn at a lighter visual weight
+   *  (secondary tone, lower opacity) so they read as tertiary context
+   *  beneath country names. */
+  waterLabels: {
+    name: string;
+    x: number;
+    y: number;
+    opacity: number;
+    /** Visual distinction is subtle; `kind` is used mainly for keys. */
+    kind: 'lake' | 'river' | 'sea';
+  }[];
+  /** Projected major-river linestrings. Drawn as a halo + dark stroke over
+   *  land when the globe is zoomed past PLACES_APPEAR_CLIP. Null at default
+   *  zoom — no path projection work runs. */
+  riversPath: ReturnType<typeof Skia.Path.Make> | null;
+  /** Opacity for riversPath — folds the zoom-band fade factor so rivers
+   *  emerge smoothly as the camera tightens. */
+  riversOpacity: number;
 }
 
 /** Memoized moon — skips React reconciliation during scroll since all props are stable. */
@@ -368,11 +406,16 @@ const EMPTY_GLOBE: GlobeState = {
   dot: null,
   ghostDots: [],
   dotLabel: null,
+  countryLabel: null,
   makkah: null,
   hotspotGlows: [],
   chokepoints: [],
   islamicPlaces: [],
   historicalEvents: [],
+  neighborLabels: [],
+  waterLabels: [],
+  riversPath: null,
+  riversOpacity: 0,
 };
 
 /** Pure projection — creates fresh Skia paths, no shared mutable state. */
@@ -490,11 +533,16 @@ function projectInitial(
     dot,
     ghostDots: [],
     dotLabel: null,
+    countryLabel: null,
     makkah,
     hotspotGlows: [],
     chokepoints: [],
     islamicPlaces: [],
     historicalEvents: [],
+    neighborLabels: [],
+    waterLabels: [],
+    riversPath: null,
+    riversOpacity: 0,
   };
 }
 
@@ -517,6 +565,14 @@ export const MiniGlobe = memo(function MiniGlobe({
   const cy = height * 0.75;
   const labelFont = useFont(require('../../assets/fonts/SourceSans3-Regular.ttf'), 14);
   const subFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 11);
+  // Fonts mirrored into refs so callReproject (a useCallback with `[]` deps,
+  // stable closure) can measure text width for label-collision detection.
+  // The fonts load asynchronously, so the ref pointer can flip from null to
+  // the loaded font mid-session — each frame reads the current value.
+  const labelFontRef = useRef(labelFont);
+  labelFontRef.current = labelFont;
+  const subFontRef = useRef(subFont);
+  subFontRef.current = subFont;
 
   // Precompute per-article: coords + country feature + names (before useState so initializer can use it)
   const articleGeo = useMemo(() => {
@@ -650,6 +706,11 @@ export const MiniGlobe = memo(function MiniGlobe({
   const lastSettledSlug = useRef<string | null>(null);
 
   const cachedCountryRef = useRef<GeoJSON.Feature | null>(null);
+  // Spherical centroid of the currently settled country, cached alongside
+  // the feature. geoCentroid is O(n vertices) — computing it once per
+  // settled-country change (instead of per frame) is what keeps this new
+  // label layer effectively free inside callReproject.
+  const cachedCountryCentroidRef = useRef<[number, number] | null>(null);
 
   // Reusable Skia path objects — rewound each frame instead of allocating new ones.
   // setIsVolatile(true) tells Skia to skip GPU-side caching since these change every frame;
@@ -663,6 +724,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   const graticulePathRef = useRef(Skia.Path.Make().setIsVolatile(true));
   const qiblaPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
   const sourceArcsRef = useRef(Skia.Path.Make().setIsVolatile(true));
+  const riversPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
 
   // Keep closure dependencies in refs so the reproject callback stays stable
   const articlesRef = useRef(articles);
@@ -716,6 +778,12 @@ export const MiniGlobe = memo(function MiniGlobe({
         lastSettled.current = settledIndex;
         lastSettledSlug.current = slug;
         cachedCountryRef.current = geo?.country ?? null;
+        // Centroid cached alongside the feature — projected per frame to
+        // follow rotation, but the expensive sphere-centroid math runs only
+        // when the settled country actually changes.
+        cachedCountryCentroidRef.current = cachedCountryRef.current
+          ? (geoCentroid(cachedCountryRef.current) as [number, number])
+          : null;
       }
 
       // Adaptive zoom — interpolate clip angle between adjacent articles.
@@ -793,6 +861,23 @@ export const MiniGlobe = memo(function MiniGlobe({
         countryPath.rewind();
         skiaCtx.setPath(countryPath);
         pg.context(skiaCtx)(cachedCountryRef.current);
+      }
+
+      // Country name label — project the cached centroid onto the current
+      // frame. `proj` returns null when the point is clipped (far side of
+      // the globe), which is what we want: hide the label until the
+      // country rotates into view. One projection op per frame; the
+      // centroid itself is pre-computed on settled-country change.
+      // Default offset: 14px below the centroid so the label sits under
+      // the highlight. Overridden further below if it would collide with
+      // the dot label (location · time).
+      let countryLabel: GlobeState['countryLabel'] = null;
+      const COUNTRY_LABEL_OFFSET = 14;
+      const centroid = cachedCountryCentroidRef.current;
+      const countryName = cachedCountryRef.current?.properties?.name as string | undefined;
+      if (centroid && countryName) {
+        const pt = proj(centroid);
+        if (pt) countryLabel = { text: countryName, x: pt[0], y: pt[1] + COUNTRY_LABEL_OFFSET };
       }
 
       // Near-settled check — reused for cosmetic layers AND arc visibility.
@@ -1034,6 +1119,128 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
+      // Neighbour country + water-feature labels — same zoom gate + fade
+      // band as Islamic places / historical events. Iterates the precomputed
+      // label sets, skips the highlighted country, filters by camera-visible
+      // hemisphere, and projects. Lakes/rivers/seas precompute lazily on
+      // first zoom (see detail-geo.ts), so a reader who never zooms in
+      // pays zero cost for these layers.
+      const neighborLabels: GlobeState['neighborLabels'] = [];
+      const waterLabels: GlobeState['waterLabels'] = [];
+      let riversPath: GlobeState['riversPath'] = null;
+      let riversOpacity = 0;
+      if (clipAngle < PLACES_APPEAR_CLIP) {
+        const span = PLACES_APPEAR_CLIP - PLACES_FULL_CLIP;
+        const labelOpacity = Math.min(1, Math.max(0, (PLACES_APPEAR_CLIP - clipAngle) / span));
+        const settledName = cachedCountryRef.current?.properties?.name as string | undefined;
+        for (const name in countryCentroids) {
+          if (name === settledName) continue;
+          const coords = countryCentroids[name];
+          if (!coords) continue;
+          if (geoDistance(coords, cameraCoords) >= HALF_PI) continue;
+          const pt = proj(coords);
+          if (!pt) continue;
+          neighborLabels.push({ name, x: pt[0], y: pt[1], opacity: labelOpacity });
+        }
+
+        // Lakes — filter to visually-significant size at globe scale
+        // (~8000 km² floor = Lake Tanganyika scale). Keeps labels to the
+        // ~20-30 giants worldwide; anything smaller is invisible through
+        // the 110m coastline anyway.
+        const LAKE_MIN_AREA = 2e-4; // steradians; ≈ 8000 km²
+        for (const lake of getLakeLabels()) {
+          if (lake.area < LAKE_MIN_AREA) continue;
+          if (geoDistance(lake.coords, cameraCoords) >= HALF_PI) continue;
+          const pt = proj(lake.coords);
+          if (!pt) continue;
+          waterLabels.push({
+            name: lake.name,
+            x: pt[0],
+            y: pt[1],
+            opacity: labelOpacity,
+            kind: 'lake',
+          });
+        }
+
+        // Rivers — rank ≤ 3 filter already applied at precompute time.
+        for (const river of getRiverLabels()) {
+          if (geoDistance(river.coords, cameraCoords) >= HALF_PI) continue;
+          const pt = proj(river.coords);
+          if (!pt) continue;
+          waterLabels.push({
+            name: river.name,
+            x: pt[0],
+            y: pt[1],
+            opacity: labelOpacity,
+            kind: 'river',
+          });
+        }
+
+        // Seas / bays / gulfs — 54 entries, all relevant at globe scale.
+        for (const sea of SEAS) {
+          const coords: [number, number] = [sea.lng, sea.lat];
+          if (geoDistance(coords, cameraCoords) >= HALF_PI) continue;
+          const pt = proj(coords);
+          if (!pt) continue;
+          waterLabels.push({
+            name: sea.name,
+            x: pt[0],
+            y: pt[1],
+            opacity: labelOpacity,
+            kind: 'sea',
+          });
+        }
+
+        // Major river lines — not just labels, actual strokes on the
+        // globe. d3-geo's clipAngle handles the hemisphere cull for us;
+        // ~100 rank-≤3 rivers worldwide, of which most are clipped out
+        // per frame. Path is rewound (not reset) so the underlying
+        // buffer stays allocated between frames.
+        const rp = riversPathRef.current;
+        rp.rewind();
+        skiaCtx.setPath(rp);
+        pg.context(skiaCtx)(getMajorRiverFeatureCollection() as never);
+        riversPath = rp;
+        riversOpacity = labelOpacity;
+      }
+
+      // Label collision — dot label (location · time) versus country name
+      // label. Small countries where the story dot sits near the polygon
+      // centroid (e.g. Islamabad in Pakistan) can stack the two. Compute
+      // AABBs using the loaded font widths (approximated to character
+      // count when fonts aren't loaded yet), push the country label below
+      // the dot-label block if they overlap. Dot label stays fixed since
+      // it anchors to the story location; country label is secondary.
+      if (countryLabel && dotLabel) {
+        const lfont = labelFontRef.current;
+        const sfont = subFontRef.current;
+        // Text widths — fall back to char-count approximation (7px per char
+        // for labelFont, 5px for subFont) before fonts finish loading.
+        const cWidth = lfont ? lfont.getTextWidth(countryLabel.text) : countryLabel.text.length * 7;
+        const dWidth = lfont ? lfont.getTextWidth(dotLabel.text) : dotLabel.text.length * 7;
+        const sWidth = dotLabel.sub
+          ? sfont
+            ? sfont.getTextWidth(dotLabel.sub)
+            : dotLabel.sub.length * 5
+          : 0;
+        // Country label AABB — centered on x, baseline at y.
+        const cX0 = countryLabel.x - cWidth / 2;
+        const cX1 = cX0 + cWidth;
+        const cY0 = countryLabel.y - 12; // ascender
+        const cY1 = countryLabel.y + 4; // descender
+        // Dot label block AABB — dot label at (dot.x + 6, dot.y + 4), sub
+        // offset another 14px down. Covers both rows.
+        const dX0 = dotLabel.x + 6;
+        const dX1 = dX0 + Math.max(dWidth, sWidth);
+        const dY0 = dotLabel.y + 4 - 12;
+        const dY1 = dotLabel.y + (dotLabel.sub ? 18 : 4) + 4;
+        const overlap = !(cX1 < dX0 || cX0 > dX1 || cY1 < dY0 || cY0 > dY1);
+        if (overlap) {
+          // Push country label below the dot block with a small gap.
+          countryLabel = { ...countryLabel, y: dY1 + 14 };
+        }
+      }
+
       setState({
         landPath,
         icePath,
@@ -1051,11 +1258,16 @@ export const MiniGlobe = memo(function MiniGlobe({
         dot,
         ghostDots,
         dotLabel,
+        countryLabel,
         makkah,
         hotspotGlows,
         chokepoints: chokepointMarks,
         islamicPlaces: placeMarks,
         historicalEvents: eventMarks,
+        neighborLabels,
+        waterLabels,
+        riversPath,
+        riversOpacity,
       });
     },
     [],
@@ -1754,6 +1966,31 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       )}
 
+      {/* Major river lines — zoom-gated so nothing draws at globe scale.
+          Rendered AFTER the country highlight so rivers crossing the
+          highlighted country (Ganges through India, Volga through Russia)
+          stay visible. Halo (bg, 2.5px) underneath a dark textEmphasis
+          stroke (1.2px) gives the rivers a high-contrast edge over both
+          the plain land tint and the highlight's soft glow. */}
+      {state.riversPath && (
+        <>
+          <Path
+            path={state.riversPath}
+            color={colors.bg}
+            style="stroke"
+            strokeWidth={2.5}
+            opacity={(light ? 0.8 : 0.65) * state.riversOpacity}
+          />
+          <Path
+            path={state.riversPath}
+            color={colors.textEmphasis}
+            style="stroke"
+            strokeWidth={1.2}
+            opacity={(light ? 0.85 : 0.75) * state.riversOpacity}
+          />
+        </>
+      )}
+
       {/* Source arcs — information flow lines from source HQs to story location */}
       {state.sourceArcs && (
         <Path
@@ -1812,6 +2049,97 @@ export const MiniGlobe = memo(function MiniGlobe({
       <Circle cx={pulseX} cy={pulseY} r={pulseR} color={colors.textEmphasis} opacity={pulseOpacity}>
         <BlurMask blur={6} style="solid" />
       </Circle>
+
+      {/* Water-feature labels — named lakes (major only), major rivers,
+          seas/bays/gulfs. Drawn lightest of the three label tiers so the
+          visual hierarchy reads: focused country > neighbours > waters. */}
+      {subFont &&
+        state.waterLabels.map((w, i) => {
+          const tx = w.x - subFont.getTextWidth(w.name) / 2;
+          // River labels land directly on the river line now that we
+          // render river strokes — nudge them up by ~7px (one x-height)
+          // so the label sits just above the line rather than bisecting
+          // it. Lakes and seas stay at their centroid.
+          const ty = w.kind === 'river' ? w.y - 7 : w.y;
+          // Halo strokeWidth bumped 2 → 4 and the halo drawn at full
+          // opacity so the bg outline fully occludes the river stroke
+          // behind the text — classic cartographic "label cuts the line"
+          // treatment. Without this, a dark river line drew straight
+          // through the label glyphs.
+          return (
+            <Group key={`${w.kind}-${w.name}-${i}`}>
+              <SkiaText
+                x={tx}
+                y={ty}
+                text={w.name}
+                font={subFont}
+                color={colors.bg}
+                opacity={w.opacity}
+                strokeWidth={4}
+              />
+              <SkiaText
+                x={tx}
+                y={ty}
+                text={w.name}
+                font={subFont}
+                color={colors.textSecondary}
+                opacity={(light ? 0.9 : 0.8) * w.opacity}
+              />
+            </Group>
+          );
+        })}
+
+      {/* Neighbour country labels — emerge at 2x zoom, fade toward full
+          opacity as zoom tightens. Drawn with subFont (smaller than the
+          focused country's labelFont) so visual hierarchy reads: the
+          highlighted country = primary text; neighbours = secondary.
+          Rendered BEFORE the highlighted country label so the focused
+          country's name draws on top if they collide. */}
+      {subFont &&
+        state.neighborLabels.map((n) => (
+          <SkiaText
+            key={n.name}
+            x={n.x - subFont.getTextWidth(n.name) / 2}
+            y={n.y}
+            text={n.name}
+            font={subFont}
+            color={colors.textSecondary}
+            opacity={(light ? 0.7 : 0.55) * n.opacity}
+          />
+        ))}
+
+      {/* Country name — always rendered (every zoom level) when a country is
+          highlighted and its centroid is on the visible hemisphere. Anchored
+          below the centroid so it stays clear of the city/time dot label.
+          Rendered twice (outer halo in bg + text in emphasis) so it reads
+          over the highlighted country's soft glow without a textShadow
+          primitive, which Skia doesn't support on <Text>. */}
+      {state.countryLabel && labelFont && (
+        <>
+          {/* Halo — opaque bg behind the glyphs so the label reads over
+              land tint, borders, and the highlight glow. Drawn stroked +
+              wider to mimic the textShadow primitive Skia lacks. The `y`
+              already includes the centroid offset + any collision shift
+              away from the dot label; see the AABB check in callReproject. */}
+          <SkiaText
+            x={state.countryLabel.x - labelFont.getTextWidth(state.countryLabel.text) / 2}
+            y={state.countryLabel.y}
+            text={state.countryLabel.text}
+            font={labelFont}
+            color={colors.bg}
+            opacity={light ? 0.85 : 0.7}
+            strokeWidth={3}
+          />
+          <SkiaText
+            x={state.countryLabel.x - labelFont.getTextWidth(state.countryLabel.text) / 2}
+            y={state.countryLabel.y}
+            text={state.countryLabel.text}
+            font={labelFont}
+            color={colors.textEmphasis}
+            opacity={light ? 0.95 : 0.9}
+          />
+        </>
+      )}
 
       {/* Dot label — location · local time */}
       {state.dotLabel && labelFont && (
