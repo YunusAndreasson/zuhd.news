@@ -328,6 +328,7 @@ $BODY_LENGTHS
     git add content/articles/ content/.last-cycle.json content/.story-ledger.json content/.context-briefs.json 2>&1 | tee -a "$LOG_FILE"
     CYCLE_TIME=$(date -u +"%Y-%m-%d %H:%M UTC")
     git commit -m "Editorial cycle $CYCLE_TIME: $NEW_COUNT articles" 2>&1 | tee -a "$LOG_FILE"
+    git pull --rebase origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
     git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
 
     # Deploy
@@ -521,6 +522,7 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
     node scripts/build.js 2>&1 | tee -a "$LOG_FILE"
     git add content/audio/ 2>&1 | tee -a "$LOG_FILE"
     git commit -m "Audio briefing $(date -u +%Y-%m-%d)" 2>&1 | tee -a "$LOG_FILE"
+    git pull --rebase origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
     git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
     npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
   fi
@@ -570,6 +572,7 @@ if [ "$START_HOUR" = "22" ]; then
       git add content/.experiments.json content/.daily-audit.json content/.daily-audit.md 2>/dev/null
       AUDIT_DATE=$(date -u +%Y-%m-%d)
       git commit -m "Daily audit $AUDIT_DATE" 2>&1 | tee -a "$LOG_FILE"
+      git pull --rebase origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
       git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
     fi
   else
