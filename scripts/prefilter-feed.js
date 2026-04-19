@@ -29,9 +29,6 @@ function filterSection(stories) {
 }
 
 const feed = JSON.parse(readFileSync(FEED, 'utf-8'))
-const beforeMulti = (feed.multiSourceStories || []).length
-const beforeNiche = (feed.nicheStories || []).length
-
 feed.multiSourceStories = filterSection(feed.multiSourceStories || [])
 feed.nicheStories = filterSection(feed.nicheStories || [])
 
@@ -41,8 +38,7 @@ writeFileSync(FEED, JSON.stringify(feed, null, 2))
 // Also update the slim feed so selector sees the same filtered set
 if (existsSync(SLIM)) {
   const slim = JSON.parse(readFileSync(SLIM, 'utf-8'))
-  const removed = new Set()
-  // Collect suggestedSlugs of removed stories
+  // Keep only stories whose suggestedSlug survived the filter
   const feedSlugs = new Set([...(feed.multiSourceStories || []), ...(feed.nicheStories || [])].map(s => s.suggestedSlug))
 
   slim.multiSourceStories = (slim.multiSourceStories || []).filter(s => feedSlugs.has(s.suggestedSlug))

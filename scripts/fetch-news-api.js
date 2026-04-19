@@ -2,7 +2,7 @@
 // Fetches news from NewsAPI.ai (Event Registry).
 // Strategy: events endpoint for story discovery + article queries for source diversity.
 // Output: /tmp/zuhd-feed-api.json
-import { writeFileSync } from 'fs'
+import { writeFileSync, mkdirSync, readdirSync, statSync, unlinkSync } from 'fs'
 import { slugify, zuhdCategory } from './lib/utils.js'
 
 const API_KEY = process.env.NEWSAPI_KEY
@@ -568,8 +568,11 @@ async function main() {
 
     const storyTitle = panel.length > 1 ? bestTitle(panel, primary.title || title) : (primary.title || title)
     // Compute panelMaxPubDate — most-recent dateTimePub across all panel members.
-    // This is the correct "is this event still being covered today?" signal,
-    // distinct from primary pubDate (which follows source importance, not recency).
+    // Reserved for merge-feeds freshness gating experiments (see 2026-04-19 analysis):
+    // primary pubDate follows source importance, not recency, so a live event with a
+    // stale high-rank primary gets filtered incorrectly. panelMaxPubDate + eventDate
+    // are persisted here so future merge-feeds filters can key on them without re-fetching.
+    // Currently: passthrough only — no downstream consumer reads these fields yet.
     const panelDates = panel.map(a => a.dateTimePub || a.dateTime).filter(Boolean)
     const panelMaxPubDate = panelDates.length ? panelDates.sort().at(-1) : null
     stories.push({
@@ -688,7 +691,6 @@ async function main() {
   // Archive slim snapshot for backtest/replay (keeps 30 days).
   // Strip article bodies to keep snapshots small; story-level metadata is enough for filter experiments.
   try {
-    const { mkdirSync, readdirSync, unlinkSync, statSync } = await import('fs')
     const SNAP_DIR = 'content/.feed-snapshots'
     mkdirSync(SNAP_DIR, { recursive: true })
     const slim = {

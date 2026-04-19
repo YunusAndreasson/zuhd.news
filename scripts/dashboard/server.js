@@ -6,6 +6,7 @@ import { createServer } from 'node:http'
 import { readFileSync, readdirSync, existsSync, statSync, watch } from 'node:fs'
 import { join, extname } from 'node:path'
 import { execSync } from 'node:child_process'
+import { parseFrontmatter } from '../lib/frontmatter.js'
 
 const PORT = 7777
 const HOST = '127.0.0.1'
@@ -605,9 +606,8 @@ function handleReach() {
           const md = join(articlesDir, a.slug + '.md')
           let meta = {}
           if (existsSync(md)) {
-            const head = readFileSync(md, 'utf-8').slice(0, 800)
-            const get = k => (head.match(new RegExp(`^${k}:\\s*['"]?(.+?)['"]?$`, 'm')) || [])[1]
-            meta = { category: get('category'), date: get('date'), origin: get('origin'), eventCoverage: +(get('eventCoverage') || 0) }
+            const { meta: fm } = parseFrontmatter(readFileSync(md, 'utf-8'))
+            meta = { category: fm.category, date: fm.date, origin: fm.origin, eventCoverage: +(fm.eventCoverage || 0) }
           }
           return { ...a, ...meta }
         })

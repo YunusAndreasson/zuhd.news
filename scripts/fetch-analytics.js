@@ -141,10 +141,9 @@ async function main() {
   }
   writeFileSync(OUT, JSON.stringify(out, null, 2))
   console.error(`analytics: today ${totalRequests} requests, rolling ${out.totalRequests} across ${out.windowDays} day(s), ${aggregatedArticles.length} articles tracked`)
-  const sortedArticles_display = aggregatedArticles
-  if (sortedArticles_display.length) {
+  if (aggregatedArticles.length) {
     console.error('  top 5 (rolling):')
-    for (const a of sortedArticles_display.slice(0, 5)) console.error(`    ${a.views.toString().padStart(5)}  ${a.slug}`)
+    for (const a of aggregatedArticles.slice(0, 5)) console.error(`    ${a.views.toString().padStart(5)}  ${a.slug}`)
   }
 }
 
