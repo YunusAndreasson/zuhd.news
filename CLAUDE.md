@@ -37,6 +37,10 @@ Single-variable pipeline experiments tracked in `content/.experiments.json`. One
 - **Tunable parameters**: selector category floors (`select-prompt.md`), feed params (`fetch-news-api.js`, `fetch-news.js`), build params (`build.js`). Full list in `/experiment` skill and `tune-prompt.md`.
 - **Rules**: one variable, one experiment, minimum 3 days, ≤ 20% of parameter range
 
+## Tests
+
+`node --test scripts/lib/*.test.js` — corpus and log invariants. Each test pins a real bug the pipeline has had; baselines (e.g. known-bad cycle names, dup-pair counts) are observed values, not targets. If a test fails, read the diagnostic and fix the underlying issue — don't just raise the baseline to silence it.
+
 ## Mobile
 
 Design system reference: `mobile/DESIGN.md` — tokens, primitives, variants, a11y checklist. Read before touching mobile UI. Mobile-scoped instructions: `mobile/CLAUDE.md`.

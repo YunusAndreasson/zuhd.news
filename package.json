@@ -15,10 +15,12 @@
   },
   "dependencies": {
     "@google-cloud/text-to-speech": "^6.0.0",
+    "@mozilla/readability": "^0.6.0",
     "@resvg/resvg-js": "^2.6.2",
     "d3-geo": "^3.1.1",
     "fast-xml-parser": "^5.2.0",
     "js-yaml": "^4.1.1",
+    "jsdom": "^29.0.2",
     "topojson-client": "^3.1.0"
   },
   "devDependencies": {

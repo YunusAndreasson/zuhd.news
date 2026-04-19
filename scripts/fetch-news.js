@@ -5,7 +5,10 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'fs'
 import { join, basename } from 'path'
 import { XMLParser } from 'fast-xml-parser'
+import { Readability } from '@mozilla/readability'
+import { JSDOM } from 'jsdom'
 import { slugify, fingerprint, zuhdCategory } from './lib/utils.js'
+import { shouldSkip, recordResult } from './lib/block-cache.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -100,23 +103,44 @@ function decodeEntities(str) {
 
 function stripHtml(str) { return str.replace(/<[^>]*>/g, '') }
 
+// Chrome UA unblocks ~half of the outlets that 401/403 our honest bot UA
+// (Reuters and similar). We keep the honest UA for RSS feeds below, since
+// feed publishers generally whitelist named crawlers and don't bot-wall.
+const BROWSER_UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36'
+
 async function fetchArticleBody(url) {
+  if (shouldSkip(url)) return null
   try {
     const res = await fetch(url, {
       signal: AbortSignal.timeout(8000),
-      headers: { 'User-Agent': 'zuhd-news/1.0 (+https://zuhd.news)', Accept: 'text/html' },
+      redirect: 'follow',
+      headers: {
+        'User-Agent': BROWSER_UA,
+        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'accept-language': 'en-US,en;q=0.9',
+      },
     })
-    if (!res.ok) return null
+    if (!res.ok) { recordResult(url, false); return null }
     const ct = res.headers.get('content-type') || ''
     if (!ct.includes('text/html')) return null
     const html = await res.text()
-    // Try <article>, then <main>, then fall back to nothing
+    // Readability handles sites without <article>/<main> semantics — 2026-04-19
+    // bakeoff showed 76% → 96% extraction rate vs the prior regex approach.
+    try {
+      const dom = new JSDOM(html, { url })
+      const article = new Readability(dom.window.document).parse()
+      if (article?.textContent) {
+        const text = article.textContent.replace(/\s+/g, ' ').trim()
+        if (text.length >= 200) { recordResult(url, true); return text.slice(0, 5000) }
+      }
+    } catch { /* fall through to regex extractor */ }
     const block = (html.match(/<article[^>]*>([\s\S]*?)<\/article>/i) ||
                    html.match(/<main[^>]*>([\s\S]*?)<\/main>/i) || [])[1]
     if (!block) return null
     const text = decodeEntities(stripHtml(block)).replace(/\s+/g, ' ').trim()
-    return text.length >= 200 ? text.slice(0, 5000) : null
-  } catch { return null }
+    if (text.length >= 200) { recordResult(url, true); return text.slice(0, 5000) }
+    return null
+  } catch { recordResult(url, false); return null }
 }
 
 function extractText(val) {

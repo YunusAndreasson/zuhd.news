@@ -1,12 +1,14 @@
-// Minimal HTML → plain-text extractor for source URLs.
-// Fetches with a realistic User-Agent (default Node fetch UA gets 403'd on
-// most news sites), strips obvious chrome/scripts/ads, extracts the main
-// content heuristic (prefer <article>, <main>, then <body>), collapses
-// whitespace, caps at MAX_TEXT chars.
+// HTML → plain-text extractor for source URLs. Prefers @mozilla/readability
+// (Firefox Reader View engine) with a regex-based fallback for when it
+// can't parse the DOM. Fetches with a realistic User-Agent (default Node
+// fetch UA gets 403'd on most news sites), caps at MAX_TEXT chars.
 //
 // Paywalls are not defeated — they just return shorter text (the paywall
 // message). Callers should treat any return of <MIN_USEFUL chars as "no
 // useful content extracted" and fall back gracefully.
+import { Readability } from '@mozilla/readability'
+import { JSDOM } from 'jsdom'
+import { shouldSkip, recordResult } from './block-cache.js'
 
 const USER_AGENT =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36'
@@ -65,6 +67,7 @@ export function stripHtml(html) {
  */
 export async function fetchSourceText(url) {
   if (!url || typeof url !== 'string') return null
+  if (shouldSkip(url)) return null
   try {
     const res = await fetch(url, {
       signal: AbortSignal.timeout(TIMEOUT_MS),
@@ -75,18 +78,26 @@ export async function fetchSourceText(url) {
         'accept-language': 'en-US,en;q=0.9',
       },
     })
-    if (!res.ok) return null
+    if (!res.ok) { recordResult(url, false); return null }
     const contentType = res.headers.get('content-type') || ''
     if (!contentType.includes('html')) return null
     const html = await res.text()
-    const text = stripHtml(html)
+    let text = ''
+    try {
+      const dom = new JSDOM(html, { url })
+      const article = new Readability(dom.window.document).parse()
+      if (article?.textContent) text = article.textContent.replace(/\s+/g, ' ').trim().slice(0, MAX_TEXT)
+    } catch { /* fall through to regex extractor */ }
+    if (text.length < 500) text = stripHtml(html)
     // Paywall pages often dribble out a few hundred chars of teaser prose
     // before the block. 500+ chars indicates we got at least some real
     // content; below that we'd be sending Haiku a prompt about "subscribe
     // to read the rest" which adds nothing.
-    if (text.length < 500) return null
+    if (text.length < 500) { recordResult(url, false); return null }
+    recordResult(url, true)
     return text
   } catch {
+    recordResult(url, false)
     return null
   }
 }
