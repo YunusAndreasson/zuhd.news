@@ -22,10 +22,10 @@ export const DECAY_LAMBDA = Math.LN2 / 18;
 
 // ── Zoom / clip thresholds ─────────────────────────────────────────────────
 
-/** Cheap zoom-gated layers (neighbour labels, islamic places, historical
- *  events, water-feature labels) fade in from clip=30°. At small-country
- *  1× (clip ≈ 25°) the reader gets a faint "whisper" of geographic context
- *  without needing to tap the zoom pill. Full opacity at 10°. */
+/** Cheap zoom-gated layers (neighbour labels, water-feature labels) fade
+ *  in from clip=30°. At small-country 1× (clip ≈ 25°) the reader gets a
+ *  faint "whisper" of geographic context without needing to tap the zoom
+ *  pill. Full opacity at 10°. */
 export const PLACES_APPEAR_CLIP = 30;
 export const PLACES_FULL_CLIP = 10;
 

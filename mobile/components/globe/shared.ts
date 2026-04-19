@@ -44,20 +44,34 @@ export const iceSheets: GeoJSON.FeatureCollection = {
   }),
 };
 
-// ── Simplified topology for mid-scroll projection ──────────────────────────
-// Topojson Visvalingam-Whyatt simplification at weight threshold 0.5 drops
-// ~60% of coastline vertices (land 5127 → 2081, countries 10587 → 4079) with
-// no visible difference at globe scale — inland detail is what gets culled,
-// not the continental silhouette. Used for `land`, the country highlight,
-// and ice sheets during mid-scroll (!nearSettled) so the per-frame JS budget
-// drops across *every* swipe, not just 2×/3× zoom. On settle we switch back
-// to the full-detail topology. One-time ~15 ms cost at module load.
-const simplifiedData = simplify(presimplify(countriesData), 0.5) as unknown as TopoWithObjects;
+// ── Simplified topology variants ──────────────────────────────────────────
+// Two Visvalingam-Whyatt thresholds share a single `presimplify()` pass
+// (~15ms at module load); each `simplify()` call returns a copy, so the
+// shared presimplified data stays intact across calls.
+//   - weight 0.5 → land 5127→2081, countries 10587→4079. Used during
+//     mid-scroll (!nearSettled). 60% vertex drop, no visible difference at
+//     globe-scroll speed.
+//   - weight 0.15 → land 5127→~3000, roughly the density of the old
+//     `world-110m.json` baseline before 88d0603 swapped to the aligned
+//     `countries-110m.json` source. Used for settled frames as a drop-in
+//     replacement for full-detail `land`: border/silhouette alignment is
+//     preserved (same arcs, just fewer), and settled-frame projection work
+//     recovers the +73% regression from the aligned-source swap.
+const presimplifiedData = presimplify(countriesData);
+const simplifiedData = simplify(presimplifiedData, 0.5) as unknown as TopoWithObjects;
+const mediumData = simplify(presimplifiedData, 0.15) as unknown as TopoWithObjects;
 const landObjSimp = simplifiedData.objects.land;
 const countriesObjSimp = simplifiedData.objects.countries;
-if (!landObjSimp || !countriesObjSimp) throw new Error('missing simplified topojson objects');
+const landObjMed = mediumData.objects.land;
+if (!landObjSimp || !countriesObjSimp || !landObjMed) {
+  throw new Error('missing simplified topojson objects');
+}
 
 export const landSimplified = feature(simplifiedData, landObjSimp);
+/** Mid-tier land for settled frames — denser than `landSimplified` so the
+ *  coastline keeps its read at rest, but lighter than the full `land`
+ *  mesh. Same arcs as the other two (alignment preserved). */
+export const landMedium = feature(mediumData, landObjMed);
 const countriesSimplified = feature(
   simplifiedData,
   countriesObjSimp,

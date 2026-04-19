@@ -29,8 +29,6 @@ import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
 import { EntitySheet } from '../components/EntitySheet';
 import { ErrorState } from '../components/ErrorState';
-import { HISTORICAL_EVENTS_BY_ID } from '../components/globe/historicalEvents';
-import { ISLAMIC_PLACES_BY_ID } from '../components/globe/islamicPlaces';
 import type { TapResult } from '../components/globe/MiniGlobe';
 import { MenuSheet } from '../components/MenuSheet';
 import { SourcesSheet } from '../components/SourcesSheet';
@@ -252,25 +250,6 @@ export default function HomeScreen() {
           setActiveChokepoint(cp);
           chokepointSheetRef.current?.present();
         }
-        return;
-      }
-      if (result.islamicPlaceId) {
-        const place = ISLAMIC_PLACES_BY_ID.get(result.islamicPlaceId);
-        // 6s dwell — the caption is a sentence of real history, not an
-        // acknowledgement, so readers need time to take it in.
-        if (place)
-          toastRef.current?.show(`${place.name} · ${place.caption}`, undefined, 'bottom', 6000);
-        return;
-      }
-      if (result.historicalEventId) {
-        const ev = HISTORICAL_EVENTS_BY_ID.get(result.historicalEventId);
-        if (ev)
-          toastRef.current?.show(
-            `${ev.name} · ${ev.year} · ${ev.caption}`,
-            undefined,
-            'bottom',
-            6000,
-          );
         return;
       }
       // Hotspot glow tap → toast with tap-to-navigate

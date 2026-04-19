@@ -50,8 +50,6 @@ import { displayLocation } from '../../lib/place-names';
 import type { Article, Chokepoint, HeatmapPoint } from '../../types';
 import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from './coordinates';
 import { getLakeLabels, getMajorRiverFeatureCollection, getRiverLabels, SEAS } from './detail-geo';
-import { HISTORICAL_EVENTS } from './historicalEvents';
-import { ISLAMIC_PLACES } from './islamicPlaces';
 import {
   ANTARCTIC_CIRCLE,
   ARCTIC_CIRCLE,
@@ -84,7 +82,7 @@ import {
   createSkiaPathContext,
   iceSheets,
   iceSheetsSimplified,
-  land,
+  landMedium,
   landSimplified,
 } from './shared';
 import { getCoords } from './storyDots';
@@ -176,12 +174,6 @@ export interface TapResult {
   /** Set when the tap landed on an ambient chokepoint ring. The parent
    *  resolves the ID to the full Chokepoint payload and opens ChokepointSheet. */
   chokepointId?: string;
-  /** Set when the tap landed on an Islamic-geography marker. The parent
-   *  resolves the ID via ISLAMIC_PLACES_BY_ID and shows a toast. */
-  islamicPlaceId?: string;
-  /** Set when the tap landed on a historical-event cross. The parent
-   *  resolves the ID via HISTORICAL_EVENTS_BY_ID and shows a toast. */
-  historicalEventId?: string;
 }
 
 export interface MiniGlobeRef {
@@ -258,27 +250,6 @@ interface GlobeState {
     label: string;
     intensity: number;
     disrupted: boolean;
-  }[];
-  /** Islamic-geography markers — historically significant places surfaced
-   *  only when the camera is zoomed past the adaptive range.
-   *  `opacity` already folds in the per-frame fade factor. */
-  islamicPlaces: {
-    x: number;
-    y: number;
-    id: string;
-    name: string;
-    opacity: number;
-  }[];
-  /** Historical-event markers — one-time inflections (battles, declarations,
-   *  revolutions) drawn with a cross glyph and year label so they read as
-   *  a distinct layer from the places above. Same zoom gate. */
-  historicalEvents: {
-    x: number;
-    y: number;
-    id: string;
-    name: string;
-    year: string;
-    opacity: number;
   }[];
   /** Neighbour-country labels — every country within the camera's visible
    *  hemisphere EXCEPT the highlighted one. Emerges when the camera is
@@ -416,8 +387,6 @@ const EMPTY_GLOBE: GlobeState = {
   makkah: null,
   hotspotGlows: [],
   chokepoints: [],
-  islamicPlaces: [],
-  historicalEvents: [],
   neighborLabels: [],
   waterLabels: [],
   riversPath: null,
@@ -444,7 +413,7 @@ function projectInitial(
 
   const lp = Skia.Path.Make();
   ctx.setPath(lp);
-  pg.context(ctx)(land);
+  pg.context(ctx)(landMedium);
 
   // Permanent ice sheets (Antarctica, Greenland) — drawn as a lighter fill
   // on top of the land silhouette so the globe reads climatologically.
@@ -543,8 +512,6 @@ function projectInitial(
     makkah,
     hotspotGlows: [],
     chokepoints: [],
-    islamicPlaces: [],
-    historicalEvents: [],
     neighborLabels: [],
     waterLabels: [],
     riversPath: null,
@@ -849,7 +816,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const landPath = landPathRef.current;
       landPath.rewind();
       skiaCtx.setPath(landPath);
-      pg.context(skiaCtx)(nearSettled ? land : landSimplified);
+      pg.context(skiaCtx)(nearSettled ? landMedium : landSimplified);
 
       // Ice sheets — Antarctica + Greenland. Swapped to simplified during
       // scroll the same way land is. Projecting every frame (not gated) so
@@ -1118,47 +1085,9 @@ export const MiniGlobe = memo(function MiniGlobe({
         });
       }
 
-      // Islamic-geography overlay — gated on clipAngle so it only appears
-      // once the camera is genuinely zoomed. Fade factor is linear across
-      // the [PLACES_APPEAR_CLIP, PLACES_FULL_CLIP] band; outside the band
-      // we skip the loop entirely so there's zero cost at 1× / 0.5×.
-      const placeMarks: GlobeState['islamicPlaces'] = [];
-      const eventMarks: GlobeState['historicalEvents'] = [];
-      if (clipAngle < PLACES_APPEAR_CLIP) {
-        const span = PLACES_APPEAR_CLIP - PLACES_FULL_CLIP;
-        const placeOpacity = Math.min(1, Math.max(0, (PLACES_APPEAR_CLIP - clipAngle) / span));
-        for (const place of ISLAMIC_PLACES) {
-          if (geoDistance(place.coords, cameraCoords) >= HALF_PI) continue;
-          const pt = proj(place.coords);
-          if (!pt) continue;
-          placeMarks.push({
-            x: pt[0],
-            y: pt[1],
-            id: place.id,
-            name: place.name,
-            opacity: placeOpacity,
-          });
-        }
-        // Historical events share the same zoom gate and fade. Separate
-        // loop (not merged with places) so the render layer stays simple
-        // and so the event glyph/label can differ visually.
-        for (const ev of HISTORICAL_EVENTS) {
-          if (geoDistance(ev.coords, cameraCoords) >= HALF_PI) continue;
-          const pt = proj(ev.coords);
-          if (!pt) continue;
-          eventMarks.push({
-            x: pt[0],
-            y: pt[1],
-            id: ev.id,
-            name: ev.name,
-            year: ev.year,
-            opacity: placeOpacity,
-          });
-        }
-      }
-
-      // Neighbour country + water-feature labels — same zoom gate + fade
-      // band as Islamic places / historical events. Iterates the precomputed
+      // Neighbour country + water-feature labels — zoom-gated on clipAngle
+      // so they only appear once the camera is genuinely zoomed past
+      // PLACES_APPEAR_CLIP. Iterates the precomputed
       // label sets, skips the highlighted country, filters by camera-visible
       // hemisphere, and projects. Lakes/rivers/seas precompute lazily on
       // first zoom (see detail-geo.ts), so a reader who never zooms in
@@ -1172,32 +1101,30 @@ export const MiniGlobe = memo(function MiniGlobe({
         const labelOpacity = Math.min(1, Math.max(0, (PLACES_APPEAR_CLIP - clipAngle) / span));
         const settledName = cachedCountryRef.current?.properties?.name as string | undefined;
 
-        // Neighbour country centroids — labels follow rotation smoothly, so
-        // keep them projected every frame (cheap: one point each). Hemisphere
-        // cull uses a precomputed cartesian dot product against the camera
-        // axis, dropping ~900 trig ops per frame versus the old geoDistance
-        // haversine. Iteration is over the parallel arrays (names/points/units)
-        // populated in shared.ts.
-        for (let i = 0; i < countryCentroidNames.length; i++) {
-          const name = countryCentroidNames[i];
-          if (!name || name === settledName) continue;
-          const unit = countryCentroidUnits[i];
-          if (!unit) continue;
-          if (unit[0] * camUnitX + unit[1] * camUnitY + unit[2] * camUnitZ <= 0) continue;
-          const coords = countryCentroidPoints[i];
-          if (!coords) continue;
-          const pt = proj(coords);
-          if (!pt) continue;
-          neighborLabels.push({ name, x: pt[0], y: pt[1], opacity: labelOpacity });
-        }
-
-        // Heavy water geography — river path projection (~9k vertices), water
-        // labels (~180 single-point projections). Gated on `nearSettled` the
-        // same way the borders mesh is: invisible during fast rotation, and
-        // projecting them each scroll frame was the dominant cost at 2×/3×
-        // zoom. Labels + line return together when the scroll settles so the
-        // visual contract ("rivers with names") stays intact.
+        // Neighbour + water layers are all nearSettled-gated — labels are
+        // illegible during fast rotation anyway, and at the small-country
+        // 1× clip angle where PLACES_APPEAR_CLIP fires (~25°), projecting
+        // + rendering ~60 country centroids + ~100 water labels every
+        // scroll frame was the dominant 1× cost. Labels + river path
+        // return together on settle so the visual contract stays intact.
         if (nearSettled) {
+          // Neighbour country centroids — hemisphere cull uses a
+          // precomputed cartesian dot product against the camera axis
+          // (~900 trig ops saved per frame vs. geoDistance haversine).
+          // Iteration is over the parallel arrays (names/points/units)
+          // populated in shared.ts.
+          for (let i = 0; i < countryCentroidNames.length; i++) {
+            const name = countryCentroidNames[i];
+            if (!name || name === settledName) continue;
+            const unit = countryCentroidUnits[i];
+            if (!unit) continue;
+            if (unit[0] * camUnitX + unit[1] * camUnitY + unit[2] * camUnitZ <= 0) continue;
+            const coords = countryCentroidPoints[i];
+            if (!coords) continue;
+            const pt = proj(coords);
+            if (!pt) continue;
+            neighborLabels.push({ name, x: pt[0], y: pt[1], opacity: labelOpacity });
+          }
           // Lakes — filter to visually-significant size at globe scale
           // (~8000 km² floor = Lake Tanganyika scale). Keeps labels to the
           // ~20-30 giants worldwide; anything smaller is invisible through
@@ -1205,7 +1132,8 @@ export const MiniGlobe = memo(function MiniGlobe({
           const LAKE_MIN_AREA = 2e-4; // steradians; ≈ 8000 km²
           for (const lake of getLakeLabels()) {
             if (lake.area < LAKE_MIN_AREA) continue;
-            if (geoDistance(lake.coords, cameraCoords) >= HALF_PI) continue;
+            const lu = lake.unit;
+            if (lu[0] * camUnitX + lu[1] * camUnitY + lu[2] * camUnitZ <= 0) continue;
             const pt = proj(lake.coords);
             if (!pt) continue;
             waterLabels.push({
@@ -1219,7 +1147,8 @@ export const MiniGlobe = memo(function MiniGlobe({
 
           // Rivers — rank ≤ 3 filter already applied at precompute time.
           for (const river of getRiverLabels()) {
-            if (geoDistance(river.coords, cameraCoords) >= HALF_PI) continue;
+            const ru = river.unit;
+            if (ru[0] * camUnitX + ru[1] * camUnitY + ru[2] * camUnitZ <= 0) continue;
             const pt = proj(river.coords);
             if (!pt) continue;
             waterLabels.push({
@@ -1233,9 +1162,9 @@ export const MiniGlobe = memo(function MiniGlobe({
 
           // Seas / bays / gulfs — 54 entries, all relevant at globe scale.
           for (const sea of SEAS) {
-            const coords: [number, number] = [sea.lng, sea.lat];
-            if (geoDistance(coords, cameraCoords) >= HALF_PI) continue;
-            const pt = proj(coords);
+            const su = sea.unit;
+            if (su[0] * camUnitX + su[1] * camUnitY + su[2] * camUnitZ <= 0) continue;
+            const pt = proj([sea.lng, sea.lat]);
             if (!pt) continue;
             waterLabels.push({
               name: sea.name,
@@ -1303,6 +1232,91 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
+      // Label packing — drop neighbour / water labels that overlap a
+      // higher-priority label or an already-placed peer. Greedy AABB
+      // sweep, seeded with the country + dot labels (always shown). Runs
+      // only when zoomed in enough for neighbours / waters to populate;
+      // arrays are empty at 1× so the loops skip. Priority ladder:
+      //   dotLabel ≻ countryLabel ≻ neighbours ≻ waters
+      // Inside waters the input order (lakes → rivers → seas) acts as
+      // sub-priority. N² on ≤ ~100 rects stays sub-ms on the JS thread.
+      let keptNeighbours = neighborLabels;
+      let keptWaters = waterLabels;
+      if (neighborLabels.length > 0 || waterLabels.length > 0) {
+        const lfont = labelFontRef.current;
+        const sfont = subFontRef.current;
+        const occupied: { x0: number; y0: number; x1: number; y1: number }[] = [];
+        const pad = 2;
+        if (countryLabel) {
+          const w = lfont ? lfont.getTextWidth(countryLabel.text) : countryLabel.text.length * 7;
+          occupied.push({
+            x0: countryLabel.x - w / 2 - pad,
+            x1: countryLabel.x + w / 2 + pad,
+            y0: countryLabel.y - 12,
+            y1: countryLabel.y + 4,
+          });
+        }
+        if (dotLabel) {
+          const dw = lfont ? lfont.getTextWidth(dotLabel.text) : dotLabel.text.length * 7;
+          const sw = dotLabel.sub
+            ? sfont
+              ? sfont.getTextWidth(dotLabel.sub)
+              : dotLabel.sub.length * 5
+            : 0;
+          occupied.push({
+            x0: dotLabel.x + 6 - pad,
+            x1: dotLabel.x + 6 + Math.max(dw, sw) + pad,
+            y0: dotLabel.y + 4 - 12,
+            y1: dotLabel.y + (dotLabel.sub ? 18 : 4) + 4,
+          });
+        }
+
+        const nkept: GlobeState['neighborLabels'] = [];
+        for (const n of neighborLabels) {
+          const w = sfont ? sfont.getTextWidth(n.name) : n.name.length * 5;
+          const x0 = n.x - w / 2 - pad;
+          const x1 = n.x + w / 2 + pad;
+          const y0 = n.y - 10;
+          const y1 = n.y + 3;
+          let collides = false;
+          for (const o of occupied) {
+            if (x0 < o.x1 && x1 > o.x0 && y0 < o.y1 && y1 > o.y0) {
+              collides = true;
+              break;
+            }
+          }
+          if (!collides) {
+            nkept.push(n);
+            occupied.push({ x0, y0, x1, y1 });
+          }
+        }
+        keptNeighbours = nkept;
+
+        const wkept: GlobeState['waterLabels'] = [];
+        for (const w of waterLabels) {
+          const tw = sfont ? sfont.getTextWidth(w.name) : w.name.length * 5;
+          // River labels render 7px above their coord (see render side),
+          // everything else at its coord.
+          const yc = w.kind === 'river' ? w.y - 7 : w.y;
+          const x0 = w.x - tw / 2 - pad;
+          const x1 = w.x + tw / 2 + pad;
+          const y0 = yc - 10;
+          const y1 = yc + 3;
+          let collides = false;
+          for (const o of occupied) {
+            if (x0 < o.x1 && x1 > o.x0 && y0 < o.y1 && y1 > o.y0) {
+              collides = true;
+              break;
+            }
+          }
+          if (!collides) {
+            wkept.push(w);
+            occupied.push({ x0, y0, x1, y1 });
+          }
+        }
+        keptWaters = wkept;
+      }
+
       setState({
         landPath,
         icePath,
@@ -1324,10 +1338,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         makkah,
         hotspotGlows,
         chokepoints: chokepointMarks,
-        islamicPlaces: placeMarks,
-        historicalEvents: eventMarks,
-        neighborLabels,
-        waterLabels,
+        neighborLabels: keptNeighbours,
+        waterLabels: keptWaters,
         riversPath,
         riversOpacity,
       });
@@ -1599,45 +1611,6 @@ export const MiniGlobe = memo(function MiniGlobe({
           };
         }
       }
-
-      // Islamic-geography markers + historical events — 30px tap zone
-      // (900 px²). Both layers share the same catch radius; within that
-      // radius we pick the marker closest to the finger so clusters like
-      // the Levant (Al-Aqsa / Yarmuk / Ayn Jalut / Damascus) resolve by
-      // proximity instead of array order.
-      let bestD2 = 900;
-      let bestHit: TapResult | null = null;
-      for (const p of state.islamicPlaces) {
-        const dx = x - p.x;
-        const dy = y - p.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 <= bestD2) {
-          bestD2 = d2;
-          bestHit = {
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            islamicPlaceId: p.id,
-          };
-        }
-      }
-      for (const e of state.historicalEvents) {
-        const dx = x - e.x;
-        const dy = y - e.y;
-        const d2 = dx * dx + dy * dy;
-        if (d2 <= bestD2) {
-          bestD2 = d2;
-          bestHit = {
-            countryName: '',
-            location: null,
-            localTime: null,
-            data: null,
-            historicalEventId: e.id,
-          };
-        }
-      }
-      if (bestHit) return bestHit;
 
       // Then article dot (wider catch zone)
       const dot = state.dot;
@@ -1999,65 +1972,6 @@ export const MiniGlobe = memo(function MiniGlobe({
         );
       })}
 
-      {/* Historical events — one-time inflections (Tours, Manzikert, Suez,
-          Partition…). Small filled diamond; distinct from the ring-dot
-          used for Islamic places. Labels removed to reduce clutter. */}
-      {state.historicalEvents.map((e) => (
-        <Group
-          key={e.id}
-          transform={[{ translateX: e.x }, { translateY: e.y }, { rotate: Math.PI / 4 }]}
-        >
-          <Rect x={-2} y={-2} width={4} height={4} color={colors.dome} opacity={0.8 * e.opacity} />
-        </Group>
-      ))}
-
-      {/* Islamic geography — historical landmarks (Medina, Al-Aqsa, Baghdad,
-          Cordoba, Samarkand…). Surfaces only at 2×/3× so the default view
-          stays quiet. Tiny ring + Latin label; sourced in islamicPlaces.ts. */}
-      {state.islamicPlaces.map((p) => {
-        const labelTx = subFont
-          ? p.x - subFont.getTextWidth(p.name) / 2
-          : p.x - p.name.length * 2.2;
-        const labelTy = p.y - 6;
-        return (
-          <Group key={p.id}>
-            <Circle
-              cx={p.x}
-              cy={p.y}
-              r={2.5}
-              color={colors.accent}
-              opacity={0.7 * p.opacity}
-              style="stroke"
-              strokeWidth={0.8}
-            />
-            <Circle cx={p.x} cy={p.y} r={0.8} color={colors.accent} opacity={0.9 * p.opacity} />
-            {subFont && (
-              <>
-                <SkiaText
-                  x={labelTx}
-                  y={labelTy}
-                  text={p.name}
-                  font={subFont}
-                  color={colors.bg}
-                  opacity={p.opacity}
-                  style="stroke"
-                  strokeWidth={3}
-                  strokeJoin="round"
-                />
-                <SkiaText
-                  x={labelTx}
-                  y={labelTy}
-                  text={p.name}
-                  font={subFont}
-                  color={colors.textSecondary}
-                  opacity={0.7 * p.opacity}
-                />
-              </>
-            )}
-          </Group>
-        );
-      })}
-
       {/* Country highlight — opacity scales with area so small nations pop */}
       {state.countryPath && (
         <CountryHighlight
@@ -2153,42 +2067,30 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Water-feature labels — named lakes (major only), major rivers,
           seas/bays/gulfs. Drawn lightest of the three label tiers so the
-          visual hierarchy reads: focused country > neighbours > waters. */}
+          visual hierarchy reads: focused country > neighbours > waters.
+          Halo deliberately removed: stroked-text rasterization dominated
+          the settled-frame budget (path widening + stroke pass per
+          glyph × ~50 labels). textSecondary at high opacity reads
+          cleanly against bg and the 20% land tint; river strokes only
+          cross labels briefly and the collision packer already keeps
+          labels off the densest overlaps. */}
       {subFont &&
         state.waterLabels.map((w, i) => {
           const tx = w.x - subFont.getTextWidth(w.name) / 2;
-          // River labels land directly on the river line now that we
-          // render river strokes — nudge them up by ~7px (one x-height)
-          // so the label sits just above the line rather than bisecting
-          // it. Lakes and seas stay at their centroid.
+          // River labels land directly on the river line — nudge them up
+          // by ~7px (one x-height) so the label sits just above the line
+          // rather than bisecting it. Lakes and seas stay at their centroid.
           const ty = w.kind === 'river' ? w.y - 7 : w.y;
-          // Halo strokeWidth bumped 2 → 4 and the halo drawn at full
-          // opacity so the bg outline fully occludes the river stroke
-          // behind the text — classic cartographic "label cuts the line"
-          // treatment. Without this, a dark river line drew straight
-          // through the label glyphs.
           return (
-            <Group key={`${w.kind}-${w.name}-${i}`}>
-              <SkiaText
-                x={tx}
-                y={ty}
-                text={w.name}
-                font={subFont}
-                color={colors.bg}
-                opacity={w.opacity}
-                style="stroke"
-                strokeWidth={4}
-                strokeJoin="round"
-              />
-              <SkiaText
-                x={tx}
-                y={ty}
-                text={w.name}
-                font={subFont}
-                color={colors.textSecondary}
-                opacity={(light ? 0.9 : 0.8) * w.opacity}
-              />
-            </Group>
+            <SkiaText
+              key={`${w.kind}-${w.name}-${i}`}
+              x={tx}
+              y={ty}
+              text={w.name}
+              font={subFont}
+              color={colors.textSecondary}
+              opacity={(light ? 0.95 : 0.9) * w.opacity}
+            />
           );
         })}
 
@@ -2197,34 +2099,22 @@ export const MiniGlobe = memo(function MiniGlobe({
           focused country's labelFont) so visual hierarchy reads: the
           highlighted country = primary text; neighbours = secondary.
           Rendered BEFORE the highlighted country label so the focused
-          country's name draws on top if they collide. Halo matches the
-          water-label treatment so labels stay legible over borders,
-          river strokes, and the country-highlight fill at whisper opacity. */}
+          country's name draws on top if they collide. Halo removed for
+          the same perf reason as water labels; the text tier is quiet
+          enough that a slight opacity bump restores readability. */}
       {subFont &&
         state.neighborLabels.map((n) => {
           const tx = n.x - subFont.getTextWidth(n.name) / 2;
           return (
-            <Group key={n.name}>
-              <SkiaText
-                x={tx}
-                y={n.y}
-                text={n.name}
-                font={subFont}
-                color={colors.bg}
-                opacity={n.opacity}
-                style="stroke"
-                strokeWidth={3}
-                strokeJoin="round"
-              />
-              <SkiaText
-                x={tx}
-                y={n.y}
-                text={n.name}
-                font={subFont}
-                color={colors.textSecondary}
-                opacity={(light ? 0.7 : 0.55) * n.opacity}
-              />
-            </Group>
+            <SkiaText
+              key={n.name}
+              x={tx}
+              y={n.y}
+              text={n.name}
+              font={subFont}
+              color={colors.textSecondary}
+              opacity={(light ? 0.85 : 0.7) * n.opacity}
+            />
           );
         })}
 

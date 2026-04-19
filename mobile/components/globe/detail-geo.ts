@@ -6,24 +6,52 @@
 // so a reader who never zooms never pays the cost.
 
 import { geoArea, geoCentroid } from 'd3-geo';
-import { lakesHiRes, riversHiRes, SEAS } from '../blocks/locations-geo';
+import { lakesHiRes, riversHiRes, SEAS as SEAS_RAW } from '../blocks/locations-geo';
+
+/** Cartesian unit vector on the unit sphere for a (lng, lat) pair. Shared
+ *  with `shared.ts` in spirit but duplicated here to avoid a cross-module
+ *  import cycle; all callers in this module are lazy so the duplication
+ *  costs nothing at cold start. Standard lng/lat → (x, y, z) with Z at
+ *  the north pole, so a hemisphere cull is `dot(unit, cameraUnit) > 0`. */
+const DEG2RAD = Math.PI / 180;
+function lngLatToUnit(lng: number, lat: number): [number, number, number] {
+  const latR = lat * DEG2RAD;
+  const lngR = lng * DEG2RAD;
+  const cosLat = Math.cos(latR);
+  return [cosLat * Math.cos(lngR), cosLat * Math.sin(lngR), Math.sin(latR)];
+}
 
 /** Label-ready named lake. `area` is the spherical area in steradians,
  *  kept so callers can filter to visually-significant lakes at globe
- *  scale (tiny lakes are invisible through a 110m coastline anyway). */
+ *  scale (tiny lakes are invisible through a 110m coastline anyway).
+ *  `unit` is the cartesian unit vector of `coords` so per-frame hemisphere
+ *  culls can use a dot product instead of geoDistance haversine. */
 export interface LakeLabel {
   name: string;
   coords: [number, number];
+  unit: [number, number, number];
   area: number;
 }
 
 /** Label-ready named river. `coords` is the midpoint of the longest
  *  constituent linestring — not the spherical centroid — because a
- *  winding river's centroid usually lands miles from the channel. */
+ *  winding river's centroid usually lands miles from the channel.
+ *  `unit` mirrors LakeLabel — enables cartesian hemisphere cull. */
 export interface RiverLabel {
   name: string;
   coords: [number, number];
+  unit: [number, number, number];
   rank: number;
+}
+
+/** Label-ready sea / bay / gulf. Shape matches the raw JSON plus a
+ *  precomputed cartesian unit vector. */
+export interface SeaLabel {
+  name: string;
+  lng: number;
+  lat: number;
+  rank: number;
+  unit: [number, number, number];
 }
 
 let cachedLakes: LakeLabel[] | null = null;
@@ -45,7 +73,12 @@ export function getLakeLabels(): LakeLabel[] {
       const area = geoArea(f);
       const prev = bestByName.get(name);
       if (!prev || area > prev.area) {
-        bestByName.set(name, { name, coords, area });
+        bestByName.set(name, {
+          name,
+          coords,
+          unit: lngLatToUnit(coords[0], coords[1]),
+          area,
+        });
       }
     } catch {
       // Skip degenerate geometries silently — consistent with the rest of
@@ -93,7 +126,7 @@ export function getRiverLabels(): RiverLabel[] {
     const lng = mid[0];
     const lat = mid[1];
     if (lng == null || lat == null) continue;
-    out.push({ name, coords: [lng, lat], rank });
+    out.push({ name, coords: [lng, lat], unit: lngLatToUnit(lng, lat), rank });
   }
   cachedRivers = out;
   return out;
@@ -113,4 +146,14 @@ export function getMajorRiverFeatureCollection(): GeoJSON.FeatureCollection {
   return cachedMajorRiverFC;
 }
 
-export { SEAS };
+/** Precomputed sea labels with unit vectors. SEAS is static JSON so the
+ *  (54 × 4 trig ops) precompute runs once at module load — the per-frame
+ *  reproject loop in MiniGlobe then does a cheap dot product instead of
+ *  calling geoDistance per sea. */
+export const SEAS: SeaLabel[] = SEAS_RAW.map((s) => ({
+  name: s.name,
+  lng: s.lng,
+  lat: s.lat,
+  rank: s.rank,
+  unit: lngLatToUnit(s.lng, s.lat),
+}));
