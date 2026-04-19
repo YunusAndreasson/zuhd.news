@@ -1,34 +1,28 @@
 {
-  "date": "2026-04-18",
+  "date": "2026-04-19",
   "metrics": {
-    "articles": { "value": 32, "detail": "5 cycles completed, avg 7/cycle" },
-    "freshness": { "median": 0, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 12, "economy": 12, "science": 6, "tech": 2 },
+    "articles": { "value": 33, "detail": "5 cycles, avg 7/cycle" },
+    "freshness": { "median": 1.3, "p90": 1.6, "max": 1.6, "target": 1.0, "met": false },
+    "categories": { "politics": 17, "economy": 10, "science": 5, "tech": 1 },
     "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": {
-      "count": 5,
-      "target": 4,
-      "met": true,
-      "breakdown": { "AM": 13, "EU": 8, "ME": 6, "AS": 3, "AF": 2 }
-    },
-    "sciTech": { "ratio": 25, "target": 25, "met": true },
-    "topSourceShare": { "source": "Phys.org", "pct": 16, "target": 20, "met": true },
-    "uniqueSources": 37,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 11, "EU": 4, "AM": 8, "AS": 6, "AF": 2, "OC": 1 } },
+    "sciTech": { "ratio": 18, "target": 25, "met": false },
+    "topSourceShare": { "source": "Dawn", "pct": 18, "target": 20, "met": true },
+    "uniqueSources": 40,
     "duplicates": 0,
-    "avgCycleDuration": 1008
+    "avgCycleDuration": 1563
   },
-  "experiment": "Active experiment 2026-04-16-push-min-coverage not yet due — evaluateAfter is 2026-04-19. No new experiment proposed while one is running.",
-  "weakestArea": "Tech at only 2 articles (6% of output) is well below the ≥ 4/day target and a dramatic drop from yesterday's 14. With a selector floor of 3 tech/cycle, this points to a feed gap rather than selector non-compliance — no quality tech stories were available across cycles today. Sci-tech ratio is at exactly the 25% floor with no buffer.",
+  "experiment": "Active: 2026-04-19-prefilter-7d (day 1 of 3, evaluates 2026-04-22). Guardrail alert: avg publish count today is 7/cycle, below the 8/cycle minimum guardrail — monitor tomorrow to determine if the 7-day dedup window is causing over-removal of novel tech/science stories.",
+  "weakestArea": "Tech collapsed to 1 article today (target ≥ 4/day) despite a selector floor of 3/cycle, dragging sci+tech ratio to 18% vs 25% target. This is the sharpest miss; likely a thin Sunday tech feed but could also reflect the new 7-day prefilter over-removing recently-covered tech stories.",
   "watching": [
-    "US-China tariff negotiations: multiple economy and politics stories from AM and AS regions today — watch de-escalation signals.",
-    "Iran-related cluster (Mehr News, TRT World): ME coverage elevated at 6 articles; monitor for escalation reporting.",
-    "Ukraine: Ukrayinska Pravda and The Kyiv Independent both active; EU at 8 articles, second-highest region today."
+    "Gaza/West Bank: 11 ME articles dominated the day — IDF operations and humanitarian corridor negotiations remain the lead story cluster.",
+    "India-Pakistan: spike in AS coverage — monitor for military escalation or diplomatic channel openings.",
+    "US trade war: tariff impact articles appearing across economy category — supply chain disruption narratives building."
   ],
   "coverageGaps": [
-    "Oceania (OC) absent — no Pacific or Australasia coverage across all 5 cycles.",
-    "Tech feed thin: only CoinDesk and Global Voices classified as tech sources today; quality tech RSS/API supply was low.",
-    "Africa light at 2 articles despite InSight Crime present in source pool — no Sahel, East Africa, or West Africa follow-up.",
-    "Asia underrepresented at 3 articles despite active tariff/trade stories in the region."
+    "Africa thin at 2 articles — no sub-Saharan political or economic coverage today.",
+    "Tech nearly absent (1 article) — no AI, semiconductor, or platform policy coverage despite active global stories.",
+    "Latin America missing — AM count is US-centric; no Brazil, Argentina, or regional politics."
   ],
-  "context": "Output volume dropped to 32 (from 55 yesterday), with average cycle duration essentially flat at 1008s. All structural goals are met except tech floor. Phys.org dominated science with 5 of 6 science articles, narrowing within-category diversity. The active push-coverage experiment evaluates tomorrow (2026-04-19) — today's 5-cycle, 0-duplicate run is clean baseline data for that assessment."
+  "context": "Today is day 1 of the prefilter-7d experiment. The 7-day dedup window is designed to catch stories covered 2-3 days ago that keep resurfacing in the selector; however, avg publish count fell to 7/cycle vs 9.43 baseline, just below the 8/cycle guardrail. Tech's collapse from 7 yesterday to 1 today is plausibly a Sunday feed artifact, but the combination of low publish count and missing tech warrants close monitoring on 2026-04-20 and 2026-04-21 before the scheduled 2026-04-22 evaluation."
 }
