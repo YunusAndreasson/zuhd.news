@@ -19204,5 +19204,2107 @@
     "label": "Dual-Use Targeting & the Laws of War",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-18-digitalocean-hetzner-migration-cost": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HYPERSCALER PREMIUM",
+        "body": "Public cloud pricing bundles three things: the hardware, the managed services (databases, load balancers, object storage), and the elasticity to scale in minutes. If you only use the hardware, you pay for the other two anyway.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **cloud repatriation** — moving steady-state workloads off hyperscalers back to owned or rented hardware once growth stabilizes."
+          }
+        ]
+      },
+      {
+        "heading": "BARE METAL VS VIRTUALIZATION",
+        "body": "Hetzner's low prices come from renting dedicated physical servers — one tenant per machine. DigitalOcean and AWS sell virtual slices of shared hardware, which costs more per unit of compute but lets them oversubscribe CPU and rebalance load across customers.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hetzner",
+                "value": "$233",
+                "tone": "favorable",
+                "cc": "DE",
+                "weight": 233
+              },
+              {
+                "label": "OVH",
+                "value": "$380",
+                "tone": "neutral",
+                "cc": "FR",
+                "weight": 380
+              },
+              {
+                "label": "DigitalOcean",
+                "value": "$1,432",
+                "tone": "unfavorable",
+                "cc": "US",
+                "weight": 1432
+              },
+              {
+                "label": "AWS EC2",
+                "value": "$1,800+",
+                "tone": "unfavorable",
+                "cc": "US",
+                "weight": 1800
+              }
+            ],
+            "label": "monthly cost, comparable specs"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EUROPE IS CHEAPER",
+        "body": "German and French data centers benefit from lower electricity costs in some regions, stricter price competition among mid-market providers, and no need to fund the R&D and sales machines of the US hyperscalers. Hetzner has built its own data centers in Falkenstein and Nuremberg since 2007.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "FR",
+              "FI",
+              "TR"
+            ],
+            "label": "European bare-metal corridor"
+          }
+        ]
+      },
+      {
+        "heading": "THE CURRENCY TRAP",
+        "body": "Cloud bills are denominated in dollars. When the lira falls, an Istanbul startup's revenue shrinks in dollar terms but its AWS invoice does not. This is why emerging-market developers disproportionately adopt European providers that bill in euros or at flat rates.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              44.2809,
+              44.316802,
+              44.343599,
+              44.344199,
+              44.359699,
+              44.4623,
+              44.433398,
+              44.44,
+              44.450197,
+              44.478901,
+              44.459899,
+              44.4913,
+              44.560799,
+              44.586,
+              44.520504,
+              44.589101,
+              44.610099,
+              44.572902,
+              44.489698,
+              44.642999,
+              44.665,
+              44.665,
+              44.704603,
+              44.708002,
+              44.736702,
+              44.732801,
+              44.853499,
+              44.844404,
+              44.8275,
+              44.844405
+            ],
+            "periods": [
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Turkish lira",
+            "unit": "TRY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHEN THE PREMIUM IS WORTH IT",
+        "body": "Managed databases, auto-scaling, global CDN, and serverless compute genuinely save engineering time. A team of three shipping a spiky consumer app pays the hyperscaler premium rationally. A team running a steady API at 40% CPU does not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When does a hyperscaler like AWS actually beat bare-metal on total cost?",
+            "options": [
+              "Steady workloads under 50% CPU",
+              "Spiky traffic with heavy use of managed services",
+              "Long-running batch jobs",
+              "Static file hosting"
+            ],
+            "correct": 1,
+            "explanation": "Hyperscalers win when you consume their managed services and elasticity — not when you just rent their CPUs."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-19T22:18:55.829Z",
+    "label": "Cloud Economics & Bare Metal",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-18-russia-ai-sovereignty-vpn-crackdown": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL ARCHITECTURE",
+        "body": "Russia's 2019 'Sovereign Internet Law' required all traffic to route through state-controlled exchange points and mandated deep packet inspection boxes (TSPU) at every ISP. The infrastructure for selective shutdowns was built years before it was used at this scale.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The boxes are called **TSPU** — *Technical Means of Countering Threats* — and Roskomnadzor operates them centrally, bypassing the ISPs themselves."
+          }
+        ]
+      },
+      {
+        "heading": "WHY VPNS ARE THE REAL TARGET",
+        "body": "A country-specific block is trivially defeated by a VPN that tunnels traffic through another country. China's Great Firewall works because it blocks the VPN *protocols* at the network layer — not just the destinations. Russia spent 2024 building the same capability; the 2026 ban is the activation, not the invention.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does blocking individual VPN services rarely work?",
+            "options": [
+              "Users switch to another VPN within minutes",
+              "VPNs are protected under international law",
+              "Encryption makes them invisible to any filter"
+            ],
+            "correct": 0,
+            "explanation": "There are thousands of VPN providers; only protocol-level blocking (like China's) durably stops tunneling."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPLINTERNET PEERS",
+        "body": "Only a handful of states run whitelist-style internets. China's Great Firewall is the template; Iran's National Information Network and North Korea's Kwangmyong are variants. Russia joining this club marks a structural break from the 'one internet' model of the 1990s.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~1.1bn users",
+                "cc": "CN",
+                "weight": 1100
+              },
+              {
+                "label": "Russia",
+                "value": "~130m users",
+                "cc": "RU",
+                "weight": 130
+              },
+              {
+                "label": "Iran",
+                "value": "~75m users",
+                "cc": "IR",
+                "weight": 75
+              },
+              {
+                "label": "North Korea",
+                "value": "<10k users",
+                "cc": "KP",
+                "weight": 0.01
+              }
+            ],
+            "label": "state-controlled internets"
+          }
+        ]
+      },
+      {
+        "heading": "THE AI SOVEREIGNTY CLAIM",
+        "body": "Sovereign AI means training frontier models on domestic compute, domestic data, under domestic law. The hard constraint is hardware: frontier training runs require tens of thousands of Nvidia H100-class GPUs, which US export controls bar from Russia. No domestic Russian substitute exists at that node.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Russia's flagship model **GigaChat** (Sberbank) and **YandexGPT** both trail frontier Western models by roughly two generations — a gap that widens as export controls tighten."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRAN PRECEDENT",
+        "body": "Iran shut mobile internet for over a week during the 2022 Mahsa Amini protests and again during the 2025 conflict with Israel. Each shutdown cost an estimated $40-80 million per day in lost economic activity. The calculation governments make: short-term economic pain is cheaper than losing political control.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "IR",
+              "CN",
+              "KP"
+            ],
+            "label": "the whitelisted internets"
+          }
+        ]
+      },
+      {
+        "heading": "THE TELEGRAM QUESTION",
+        "body": "Russia previously tried to block Telegram from 2018 to 2020 and failed — the app used domain-fronting through Amazon and Google cloud IPs, and blocking those broke half the Russian internet. The 2026 block works only because the TSPU infrastructure can now inspect and drop traffic by protocol signature, not just IP address."
+      }
+    ],
+    "generatedAt": "2026-04-19T22:19:25.748Z",
+    "label": "Sovereign Internet & the Splinternet",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-19-bulgaria-progressive-coalition-exit-poll": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FRAGMENTATION",
+        "body": "Bulgaria has held seven parliamentary elections since April 2021. No government has served a full four-year term in over a decade. Each snap vote produces a parliament too fragmented to form a durable coalition, triggering the next snap vote.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern has a name in Bulgarian political commentary: *izborna spirala* — the **electoral spiral**."
+          }
+        ]
+      },
+      {
+        "heading": "THE 121 THRESHOLD",
+        "body": "Bulgaria's parliament has 240 seats; a majority requires 121. The 4% threshold for entry keeps six to eight parties in play, and personalist vehicles built around single leaders fracture as often as they merge.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many seats does a Bulgarian government need for a parliamentary majority?",
+            "options": [
+              "101 of 200",
+              "121 of 240",
+              "151 of 300",
+              "165 of 329"
+            ],
+            "correct": 1,
+            "explanation": "Bulgaria's Narodno sabranie has 240 seats; 121 is the majority threshold that has eluded every coalition since 2021."
+          }
+        ]
+      },
+      {
+        "heading": "THE RADEV FACTOR",
+        "body": "President Rumen Radev, a former air force commander elected in 2016, has appointed three caretaker governments during the deadlock years. The Bulgarian presidency is largely ceremonial, but the power to name caretaker cabinets during parliamentary failure has made Radev the country's most consistent executive force."
+      },
+      {
+        "heading": "THE RUSSIA QUESTION",
+        "body": "Bulgaria joined NATO in 2004 and the EU in 2007, but remains the bloc's most Russia-sympathetic member by polling. Historical ties run deep: Russian troops liberated Bulgaria from Ottoman rule in 1878, and the Cyrillic alphabet itself originated in the medieval Bulgarian empire before spreading to Kievan Rus.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BG",
+              "RO",
+              "RS",
+              "GR",
+              "TR",
+              "MK"
+            ],
+            "label": "Bulgaria and its Balkan neighbors"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCHENGEN DELAY",
+        "body": "Bulgaria waited 17 years for full Schengen membership, admitted by land only in January 2025 after the Netherlands and Austria dropped vetoes citing corruption and organized-crime concerns. The EU's Cooperation and Verification Mechanism monitored Bulgarian judicial reform from 2007 to 2023 — a tutelage no Western member ever faced.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Poland",
+                "value": "3 yrs",
+                "cc": "PL"
+              },
+              {
+                "label": "Czechia",
+                "value": "3 yrs",
+                "cc": "CZ"
+              },
+              {
+                "label": "Croatia",
+                "value": "10 yrs",
+                "cc": "HR"
+              },
+              {
+                "label": "Romania",
+                "value": "17 yrs",
+                "cc": "RO"
+              },
+              {
+                "label": "Bulgaria",
+                "value": "17 yrs",
+                "cc": "BG",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "years from EU accession to full Schengen"
+          }
+        ]
+      },
+      {
+        "heading": "THE CORRUPTION SUBSTRATE",
+        "body": "Transparency International ranks Bulgaria last in the EU on perceived public-sector corruption. The 2020 protests that toppled Boyko Borisov's third government centered on a photograph of cash and a gun on his bedside table — a symbol of the state-capture politics that anti-graft parties have run against ever since."
+      }
+    ],
+    "generatedAt": "2026-04-19T22:19:54.180Z",
+    "label": "Bulgaria's Permanent Election",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-19-india-sri-lanka-trincomalee-energy-hub": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HARBOR",
+        "body": "Trincomalee is one of the deepest natural harbors in the world — over 25 meters in places, large enough to anchor an entire fleet. The British made it the Royal Navy's eastern headquarters; the Japanese bombed it in 1942 precisely because it rivaled Pearl Harbor in strategic value.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Admiral Nelson called Trincomalee *the finest harbor in the world* — a judgment the Royal Navy acted on for 150 years."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANK FARM",
+        "body": "The 99 colonial-era storage tanks were built by the British during WWII to fuel the Eastern Fleet. Each holds roughly 12,000 tonnes. Eighty-five sit unused, rusting in the jungle — a dormant asset larger than most commercial terminals in South Asia.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many of Trincomalee's 99 colonial oil tanks are currently in use?",
+            "options": [
+              "14",
+              "47",
+              "72",
+              "All 99"
+            ],
+            "correct": 0,
+            "explanation": "Only 14 of the 99 British-era tanks are operational; the remaining 85 are the dormant capacity India wants to activate."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BYPASS HORMUZ",
+        "body": "Every barrel India imports from the Gulf transits the Strait of Hormuz — a 33-km chokepoint Iran has repeatedly threatened to close. A Trincomalee hub fed from UAE pipelines to Fujairah (on the Indian Ocean side of the Arabian Peninsula) lets crude skip Hormuz entirely before reaching South Asian refiners.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              62,
+              54,
+              54,
+              72,
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3
+            ],
+            "periods": [
+              "Feb 19",
+              "Feb 20",
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 1987 ACCORD",
+        "body": "India's interest in Trincomalee is not new. The 1987 Indo-Sri Lanka Accord — signed during the Tamil insurgency — included a secret annex giving India veto rights over foreign use of Trincomalee's oil facilities. Rajiv Gandhi wanted to keep the US and Pakistan out; the annex has shaped every energy deal since.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "LK",
+              "AE"
+            ],
+            "label": "the proposed hub triangle"
+          }
+        ]
+      },
+      {
+        "heading": "THE COLOMBO BALANCE",
+        "body": "Sri Lanka's foreign policy since independence has oscillated between Delhi and Beijing. China built Hambantota port on the southern coast and took a 99-year lease when Colombo defaulted on the loan. Trincomalee is Delhi's counterweight — geography India cannot afford to let slip the way Hambantota did.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hambantota",
+                "value": "China, 99-yr lease",
+                "tone": "unfavorable",
+                "cc": "CN"
+              },
+              {
+                "label": "Trincomalee",
+                "value": "India, energy hub",
+                "tone": "favorable",
+                "cc": "IN"
+              },
+              {
+                "label": "Colombo Port",
+                "value": "mixed, transshipment",
+                "tone": "neutral",
+                "cc": "LK"
+              }
+            ],
+            "label": "Sri Lanka's two port bets"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2022 COLLAPSE",
+        "body": "Sri Lanka defaulted on $51 billion in external debt in 2022 after forex reserves ran dry and fuel queues stretched for kilometers. India extended $4 billion in emergency credit — more than the IMF's initial package. That bailout bought Delhi the leverage now being cashed in on Trincomalee."
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-12"
+    ],
+    "generatedAt": "2026-04-19T22:20:21.809Z",
+    "label": "Trincomalee & the Bay of Bengal",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-19-israel-lebanon-full-force-truce-katz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRUCE ON PAPER",
+        "body": "The November 2024 ceasefire required Hezbollah to withdraw north of the Litani River and Israel to pull back across the Blue Line within 60 days. The monitoring body is a five-nation committee chaired by the United States — it can document violations but cannot enforce them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "LB",
+              "SY"
+            ],
+            "label": "the Blue Line theatre"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLUE LINE",
+        "body": "The UN drew the Blue Line in 2000 after Israel's withdrawal from southern Lebanon — a withdrawal benchmark, not an agreed border. Lebanon never formally accepted it, and disputed points like the Shebaa Farms remain the legal pretext Hezbollah cites for its arms.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Blue Line is a *line of withdrawal*, not a **recognized international boundary** — a distinction that underwrites forty years of ambiguity."
+          }
+        ]
+      },
+      {
+        "heading": "UNIFIL'S LIMITS",
+        "body": "UN Interim Force in Lebanon has been deployed since 1978 under Resolution 425, expanded under 1701 after the 2006 war. Its mandate is to assist the Lebanese Army and report violations — it has no authority to disarm Hezbollah or stop Israeli strikes."
+      },
+      {
+        "heading": "THE TA'IF BARGAIN",
+        "body": "The 1989 Ta'if Accord ended Lebanon's civil war by disarming every militia except Hezbollah, which retained arms as 'resistance' against Israeli occupation of the south. That carve-out became permanent; the Lebanese state has never had a monopoly on force within its borders.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which militia kept its weapons under the 1989 Ta'if Accord that ended Lebanon's civil war?",
+            "options": [
+              "Amal Movement",
+              "Hezbollah",
+              "Phalange",
+              "Progressive Socialist Party"
+            ],
+            "correct": 1,
+            "explanation": "Ta'if disarmed every militia except Hezbollah, which was classified as resistance against Israeli occupation of southern Lebanon."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2006 PRECEDENT",
+        "body": "After the 34-day war, Resolution 1701 called for Hezbollah's disarmament south of the Litani. Eighteen years on, Hezbollah's southern arsenal grew rather than shrank — a reminder that ceasefire texts without enforcement decay into the facts on the ground that the stronger party imposes."
+      },
+      {
+        "heading": "THE CAST",
+        "body": "Israel's security cabinet sets the rules of engagement; Lebanon's caretaker government has limited authority over its own south.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Benjamin Netanyahu",
+                "role": "Israeli Prime Minister",
+                "years": "2022–",
+                "cc": "IL"
+              },
+              {
+                "name": "Israel Katz",
+                "role": "Israeli Defense Minister",
+                "years": "2024–",
+                "cc": "IL"
+              },
+              {
+                "name": "Najib Mikati",
+                "role": "Lebanese caretaker PM",
+                "years": "2021–",
+                "cc": "LB"
+              },
+              {
+                "name": "Naim Qassem",
+                "role": "Hezbollah Secretary-General",
+                "years": "2024–",
+                "cc": "LB"
+              }
+            ],
+            "label": "who decides what happens next"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-19T22:20:47.009Z",
+    "label": "Israel–Lebanon Truce Mechanics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-19-light-controlled-synthetic-cell-muscle": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEFINITION",
+        "body": "A synthetic cell is a lipid vesicle built from the outside in — researchers start with a membrane and add components (genes, enzymes, cytoskeleton) until it behaves like a living cell. The goal is not to mimic biology exactly but to isolate which parts are sufficient for life-like behavior.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The field splits into *top-down* (strip a real cell down to essentials) and *bottom-up* (build from scratch). This work is **bottom-up** — harder, but every component is understood because it was deliberately added."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOTILITY PROBLEM",
+        "body": "Real cells move using actin and myosin — proteins that consume ATP to slide past each other, generating force. Reconstituting this inside a vesicle has been a twenty-year challenge: the proteins aggregate, the membrane leaks, and controlling when contraction happens was nearly impossible."
+      },
+      {
+        "heading": "WHY LIGHT",
+        "body": "Chemical triggers diffuse slowly and cannot be localized. Light can be switched on and off in microseconds and focused to a single cell. Optogenetics — pioneered in neuroscience around 2005 — put light-activated proteins into the synthetic biology toolkit, and the same tricks now control artificial contractile networks."
+      },
+      {
+        "heading": "THE MINIMAL CELL BENCHMARK",
+        "body": "In 2016, Craig Venter's team produced JCVI-syn3.0 — a bacterium with only 473 genes, the smallest genome known to sustain life. Roughly a third of those genes have unknown function. Synthetic biology is still assembling the parts list.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many genes did JCVI-syn3.0, the smallest self-replicating organism, contain?",
+            "options": [
+              "47",
+              "473",
+              "4,730",
+              "47,300"
+            ],
+            "correct": 1,
+            "explanation": "473 genes — roughly a third with unknown function, meaning we cannot yet write a minimal genome from first principles."
+          }
+        ]
+      },
+      {
+        "heading": "THE DRUG DELIVERY PROMISE",
+        "body": "Lipid nanoparticles already deliver mRNA vaccines, but they are passive — they diffuse and rupture wherever. A synthetic cell that contracts on command could release cargo at a specific tumor, triggered by a clinician's laser. That is the clinical pitch; the lab reality is still decades of safety work away."
+      },
+      {
+        "heading": "THE DIVISION FRONTIER",
+        "body": "Contraction is also how real cells divide — a ring of actin and myosin pinches the membrane in two. A synthetic cell that can contract on command is the prerequisite for a synthetic cell that can divide, which is the prerequisite for one that can evolve. Each step remains unsolved."
+      }
+    ],
+    "generatedAt": "2026-04-19T22:21:11.947Z",
+    "label": "Synthetic Cells & Motility",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-19-nigeria-2026-fiscal-import-substitution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOCTRINE",
+        "body": "Import substitution industrialisation (ISI) is the idea that high tariffs on finished goods force domestic industry to grow behind a protected wall. Latin America ran this playbook from the 1950s to 1980s; the results were uneven — some industries matured, many stagnated behind the shield.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name is *import substitution industrialisation* — **ISI** for short. Its opposite is **export-led growth**, the East Asian model that used tariffs selectively and rewarded firms that could compete abroad."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NIGERIA KEEPS TRYING",
+        "body": "Nigeria imports refined fuel despite being Africa's largest crude producer, imports wheat for bread, and imports most manufactured goods. Oil exports fund the imports; when crude falls, the naira falls with it. Every Nigerian government since Obasanjo has promised to break this loop.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1352.627483,
+              1354.480408,
+              1377.75,
+              1375.26,
+              1383.69,
+              1384.52,
+              1383.46,
+              1378.02388,
+              1378.5,
+              1385.6,
+              1385.089099,
+              1380.03,
+              1381.109739,
+              1378.13,
+              1378.13,
+              1377.8,
+              1379.1,
+              1382.755193,
+              1378.98,
+              1361.72,
+              1359.5,
+              1358.675299,
+              1358.34,
+              1358.85,
+              1351.86,
+              1344.68,
+              1340.88,
+              1342.48,
+              1345.790676,
+              1345.790676
+            ],
+            "periods": [
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TARIFF TRADEOFF",
+        "body": "A 70% tariff on finished goods raises costs for any local producer whose inputs are also imported — machinery, components, packaging. Without matching input-tariff relief, the wall protects some firms by crushing others downstream."
+      },
+      {
+        "heading": "THE REFINERY GAP",
+        "body": "Nigeria spent decades importing petrol while its state refineries ran below capacity. The Dangote refinery, commissioned in 2023, was meant to end this. A tariff on refined fuel imports would complete the protection — but also concentrate domestic supply in very few hands."
+      },
+      {
+        "heading": "THE PEER COMPARISON",
+        "body": "Nigeria's new tariff ceiling is high by global standards. WTO members average under 10% on manufactured goods; even protectionist developing economies rarely exceed 40% on most categories.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nigeria (new)",
+                "value": "up to 70%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "~14%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Brazil",
+                "value": "~14%",
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "~7%",
+                "tone": "favorable"
+              },
+              {
+                "label": "WTO avg",
+                "value": "~8%",
+                "tone": "favorable"
+              }
+            ],
+            "label": "average applied tariff, manufactures"
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "Tariff walls transfer wealth from consumers (higher prices) and downstream firms (higher input costs) to protected producers. In an economy where most households spend over half their income on food and fuel, the consumer side of that transfer is politically volatile.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Import substitution policies most reliably raise which of the following?",
+            "options": [
+              "Export competitiveness",
+              "Domestic consumer prices",
+              "Foreign direct investment",
+              "Currency stability"
+            ],
+            "correct": 1,
+            "explanation": "Tariff walls reliably raise prices for protected goods; whether they build globally competitive industry is historically mixed."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-19T22:21:36.893Z",
+    "label": "Import Substitution & Tariff Walls",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-19-pfas-ph-controlled-trap-drinking-water": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 'FOREVER'",
+        "body": "PFAS molecules are built around a chain of carbon atoms each bonded to fluorine. The carbon-fluorine bond is the strongest single bond in organic chemistry — about 485 kJ/mol. Nothing in nature breaks it at any meaningful rate, which is why these compounds accumulate in soil, water, and human blood for decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The class covers more than **15,000 distinct compounds** — every Teflon pan, every waterproof jacket, every firefighting foam canister leaches a different variant into the environment."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOSE PROBLEM",
+        "body": "The US EPA's 2024 drinking-water limit for PFOA and PFOS is 4 parts per trillion — roughly four drops in an Olympic swimming pool. That is not a conservative buffer; it is near the detection limit of the best instruments. The chemicals are bioactive at concentrations chemistry was not built to measure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The EPA limit for PFOA in drinking water is 4 parts per trillion. How does that compare to the limit for lead?",
+            "options": [
+              "Roughly the same",
+              "About 1,000× stricter than lead",
+              "About 3,750× stricter than lead",
+              "Less strict than lead"
+            ],
+            "correct": 2,
+            "explanation": "Lead's action level is 15 parts per billion — 15,000 ppt — making the PFOA limit roughly 3,750× stricter, a measure of how toxic these compounds are at trace doses."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EXISTING FILTERS FAIL",
+        "body": "Activated carbon and ion-exchange resins capture PFAS, but they saturate. The spent media is then either landfilled — where the chemicals leach back out — or incinerated at temperatures above 1,000°C, which is energy-intensive and can release fluorinated byproducts if combustion is incomplete. There is no clean disposal endpoint."
+      },
+      {
+        "heading": "WHAT pH-SWITCHABLE MEANS",
+        "body": "A reusable sorbent binds PFAS at one pH and releases the captured molecules at another, concentrating them into a small volume of regenerant solution. The filter goes back to work; the contaminant is now in a stream small enough to destroy economically. The breakthrough is not capture — it is the release step that makes the filter regenerable."
+      },
+      {
+        "heading": "THE SCALE GAP",
+        "body": "Bench-scale chemistry routinely outperforms anything that survives a municipal water plant. Real influent contains competing organics, varies in pH and temperature hour by hour, and must be processed at millions of gallons per day. Most promising PFAS sorbents announced in the last decade have never made it past pilot scale."
+      },
+      {
+        "heading": "THE LITIGATION BACKDROP",
+        "body": "3M agreed in 2023 to pay up to $12.5 billion to US public water systems for PFAS contamination, and DuPont-spinoff Chemours settled for another $1.2 billion. Utilities now have legal funding to install treatment but no mature, low-waste technology to install — the gap this kind of research is racing to fill."
+      }
+    ],
+    "generatedAt": "2026-04-19T22:22:04.418Z",
+    "label": "PFAS & the Forever-Chemical Problem",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-19-tehran-strait-of-hormuz-never-cede-control": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil passed through daily before the war, about a fifth of global consumption.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              62,
+              54,
+              54,
+              72,
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3
+            ],
+            "periods": [
+              "Feb 19",
+              "Feb 20",
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The strait sits between Iran and Oman, not Iran and any Arab Gulf state. Iran's coastline runs along the entire northern edge, and the deepest shipping channel hugs the Iranian side — which is why Iranian naval positioning matters disproportionately.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "SA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Gulf littoral"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage or impose conditions. Iran signed UNCLOS in 1982 but never ratified it, and has long argued Hormuz is governed by its own domestic law, not the convention. Tolls charged by the IRGC navy sit in exactly this legal gap.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction between **transit passage** (automatic, non-suspendable) and *innocent passage* (conditional, suspendable) is the entire legal fight — Iran treats Hormuz as the latter, everyone else as the former."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia built the East-West Pipeline (5 million bbl/day capacity) partly as a Hormuz hedge, and the UAE built the Habshan-Fujairah pipeline. Together they could reroute maybe a third of Gulf exports. The rest has no alternative route.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi E-W Pipeline",
+                "value": "5.0 mb/d",
+                "cc": "SA",
+                "weight": 5
+              },
+              {
+                "label": "UAE Habshan-Fujairah",
+                "value": "1.5 mb/d",
+                "cc": "AE",
+                "weight": 1.5
+              },
+              {
+                "label": "Iran Goreh-Jask",
+                "value": "0.3 mb/d",
+                "cc": "IR",
+                "weight": 0.3
+              },
+              {
+                "label": "Hormuz itself",
+                "value": "~21 mb/d",
+                "tone": "unfavorable",
+                "weight": 21
+              }
+            ],
+            "label": "Gulf export bypass capacity"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              66.91,
+              67.68,
+              66.72,
+              65.46,
+              68.16,
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28
+            ],
+            "periods": [
+              "Jan 19",
+              "Jan 20",
+              "Jan 21",
+              "Jan 22",
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVEREIGNTY FRAME",
+        "body": "For Tehran, Hormuz is not a chokepoint it happens to border — it is a territorial asset that validates the 1979 revolution's anti-imperial posture. Every Iranian government since, reformist or hardline, has treated naval control of the strait as a redline. Concession would undercut the regime's founding narrative, not just its leverage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which body of water separates Iran from the Arabian Peninsula at the Strait of Hormuz?",
+            "options": [
+              "The Persian Gulf and Gulf of Oman",
+              "The Red Sea and Gulf of Aden",
+              "The Arabian Sea and Indian Ocean",
+              "The Caspian Sea and Gulf of Oman"
+            ],
+            "correct": 0,
+            "explanation": "Hormuz connects the Persian Gulf (inside) to the Gulf of Oman (outside), with Iran to the north and Oman's Musandam exclave to the south."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-12",
+      "FRED · EIA · as of 2026-04-13"
+    ],
+    "generatedAt": "2026-04-19T22:22:34.315Z",
+    "label": "Hormuz & Iranian Sovereignty",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-19-turkiye-fidan-israel-security-land-pretext": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FOUR TERRITORIES",
+        "body": "Gaza has been under blockade since 2007 and renewed ground operation since 2023. The West Bank has been occupied since 1967. South Lebanon saw Israeli ground incursions in 1978, 1982, 2006, and again in 2024. The Golan Heights of Syria was seized in 1967 and annexed in 1981 — recognized only by the United States in 2019.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "LB",
+              "SY",
+              "TR"
+            ],
+            "label": "the four fronts Fidan named"
+          }
+        ]
+      },
+      {
+        "heading": "THE OTTOMAN INHERITANCE",
+        "body": "Until 1917, all four territories — Palestine, Lebanon, Syria, and the Hejaz — were Ottoman provinces governed from Istanbul for four centuries. Turkish foreign policy toward the Levant is not foreign policy in the European sense; it is engagement with lands the Republic's founders personally served in as Ottoman officers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Sykes-Picot agreement of 1916 partitioned these Ottoman lands between Britain and France before the war ended. The borders of today's **Syria, Lebanon, Iraq, Jordan, and Palestine** were drawn on a map in London, not negotiated with the people who lived there."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TURKEY SPEAKS",
+        "body": "Turkey is the only NATO member with a Muslim-majority population and the only one that recognized the state of Palestine (1988). It hosts Hamas political offices, maintains diplomatic relations with Israel, and commands the second-largest standing army in NATO. No other NATO capital combines those three facts.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "1.33M",
+                "cc": "US",
+                "weight": 1330000
+              },
+              {
+                "label": "Turkey",
+                "value": "425K",
+                "cc": "TR",
+                "weight": 425000
+              },
+              {
+                "label": "France",
+                "value": "205K",
+                "cc": "FR",
+                "weight": 205000
+              },
+              {
+                "label": "Germany",
+                "value": "181K",
+                "cc": "DE",
+                "weight": 181000
+              },
+              {
+                "label": "UK",
+                "value": "138K",
+                "cc": "GB",
+                "weight": 138000
+              }
+            ],
+            "label": "NATO militaries by active personnel"
+          }
+        ]
+      },
+      {
+        "heading": "THE SECURITY FRAME",
+        "body": "Every modern occupation has been justified in security language. The French called Algeria a departmental security problem until 1962. The Soviets called Afghanistan fraternal assistance. The legal test under international law is different: the Fourth Geneva Convention (1949) prohibits the occupying power from transferring its civilian population into occupied territory, regardless of the security rationale offered. Settlement expansion is the evidentiary fact that separates occupation from defense."
+      },
+      {
+        "heading": "ERDOĞAN'S POSTURE",
+        "body": "Erdoğan has compared Netanyahu to Hitler, cut trade with Israel in May 2024, and called Hamas a liberation movement, not a terror group. Yet Turkey never severed diplomatic relations and the Ceyhan pipeline continued carrying Azerbaijani oil to Israeli refineries until the May 2024 halt. The rhetoric is maximal; the leverage applied is selective.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Recep Tayyip Erdoğan",
+                "role": "Turkish President",
+                "years": "2014–present",
+                "cc": "TR"
+              },
+              {
+                "name": "Hakan Fidan",
+                "role": "Foreign Minister, ex-MİT chief",
+                "years": "2023–present",
+                "cc": "TR"
+              },
+              {
+                "name": "Benjamin Netanyahu",
+                "role": "Israeli Prime Minister",
+                "years": "2022–present",
+                "cc": "IL"
+              }
+            ],
+            "label": "the principals"
+          }
+        ]
+      },
+      {
+        "heading": "THE NATO QUESTION",
+        "body": "Article 5 commits NATO members to collective defense if one is attacked. It does not commit them to collective endorsement of each other's foreign policy. Turkey blocked Sweden's NATO accession for 20 months over Kurdish issues; the alliance has no mechanism to discipline a member's rhetoric toward a non-member state like Israel. Silence from Brussels is structural, not political.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which NATO member was the first Muslim-majority state to recognize Israel?",
+            "options": [
+              "Turkey (1949)",
+              "Albania (1949)",
+              "Pakistan — never recognized",
+              "Azerbaijan (1992)"
+            ],
+            "correct": 0,
+            "explanation": "Turkey recognized Israel in March 1949, the first Muslim-majority country to do so — a relationship that has oscillated between alliance and rupture ever since."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-19T22:23:07.194Z",
+    "label": "Turkey, Israel & the Occupation Frame",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-19-us-energy-chief-gas-3-dollar-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PUMP-PRICE LAG",
+        "body": "Retail gasoline prices respond to crude moves with a 2-4 week lag on the way up and a 6-8 week lag on the way down — the 'rockets and feathers' asymmetry documented in decades of energy economics. Refiners and retailers pass through input cost increases faster than decreases.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              2.806,
+              2.853,
+              2.867,
+              2.902,
+              2.924,
+              2.937,
+              3.015,
+              3.502,
+              3.72,
+              3.961,
+              3.99,
+              4.12,
+              4.123
+            ],
+            "periods": [
+              "Jan 19",
+              "Jan 26",
+              "Feb 2",
+              "Feb 9",
+              "Feb 16",
+              "Feb 23",
+              "Mar 2",
+              "Mar 9",
+              "Mar 16",
+              "Mar 23",
+              "Mar 30",
+              "Apr 6",
+              "Apr 13"
+            ],
+            "label": "US gasoline (retail)",
+            "unit": "$/gal",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CRUDE PASS-THROUGH",
+        "body": "Crude oil is roughly 55% of the retail gasoline price; refining, distribution, and taxes make up the rest. A $10/barrel move in Brent translates to roughly $0.24 per gallon at the pump — but only after the lag clears.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              66.91,
+              67.68,
+              66.72,
+              65.46,
+              68.16,
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28
+            ],
+            "periods": [
+              "Jan 19",
+              "Jan 20",
+              "Jan 21",
+              "Jan 22",
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE REFINERY BOTTLENECK",
+        "body": "The US has not built a new major refinery since 1977. Existing refineries run at 90%+ capacity. Even if crude supply increases, the refining system cannot convert it to gasoline fast enough to lower pump prices during a supply shock. The constraint is industrial, not underground."
+      },
+      {
+        "heading": "THE HORMUZ EXPOSURE",
+        "body": "Roughly 21 million barrels of oil pass through the Strait of Hormuz daily — about a fifth of global consumption. US gasoline prices are set on a global market; even though America imports little Gulf crude directly, a Hormuz disruption reprices every barrel everywhere.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              62,
+              54,
+              54,
+              72,
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3
+            ],
+            "periods": [
+              "Feb 19",
+              "Feb 20",
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "THE ELECTORAL HISTORY",
+        "body": "Gasoline prices are the single most visible economic indicator for US voters — displayed on every street corner. Carter lost 1980 partly on the second oil shock; Bush 41 faced voter anger over 1990-91 Gulf War spikes; Biden's 2022 ratings tracked pump prices more tightly than any other variable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which president created the Strategic Petroleum Reserve in response to an oil shock?",
+            "options": [
+              "Nixon after the 1973 embargo",
+              "Ford in 1975",
+              "Carter after Iran 1979",
+              "Reagan in 1981"
+            ],
+            "correct": 1,
+            "explanation": "Ford signed the Energy Policy and Conservation Act in December 1975, creating the SPR after the 1973-74 OAPEC embargo exposed US vulnerability."
+          }
+        ]
+      },
+      {
+        "heading": "THE POLITICAL DIVERGENCE",
+        "body": "Treasury and Energy rarely contradict each other on price forecasts publicly. When they do, it usually signals internal disagreement about whether to prepare markets for prolonged conflict or project confidence in a near-term resolution.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The split between **Bessent's** summer optimism and **Wright's** 2027 floor is itself a signal — cabinet principals don't normally publish conflicting price paths unless the underlying *geopolitical premium* is genuinely unresolved."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-13",
+      "IMF PortWatch · as of 2026-04-12"
+    ],
+    "generatedAt": "2026-04-19T22:23:32.753Z",
+    "label": "Gasoline Politics & Oil Shocks",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-19-us-seizes-iranian-cargo-ship-iran-rejects-talks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL INSTRUMENT",
+        "body": "Under international law, a naval blockade is an act of war unless authorized by the UN Security Council or justified as self-defense. Visit-and-search of neutral shipping — stopping vessels to inspect cargo — sits in a grayer zone, permitted against belligerents but contested when applied to third-flag ships.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction between *interdiction* (targeted seizures under sanctions) and *blockade* (closing a coast to all traffic) is the line between a sanctions operation and a casus belli."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. The US reflagged Kuwaiti tankers under American colors and escorted them — Operation Earnest Will. Oil prices spiked briefly, then markets adapted. The lesson planners took: disruption is easier to threaten than to sustain."
+      },
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption. The deepest channel hugs the Iranian side, which is why Iranian naval positioning matters disproportionately.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              62,
+              54,
+              54,
+              72,
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3
+            ],
+            "periods": [
+              "Feb 19",
+              "Feb 20",
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY ISLAMABAD",
+        "body": "Pakistan shares a 900 km border with Iran, hosts a Shia minority of roughly 20 million, and has historically brokered between Tehran and Riyadh. It is also one of the few capitals trusted by both Iran and Washington — a legacy of its Cold War role as the backchannel for Nixon's 1971 opening to China.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "PK",
+              "OM",
+              "AE",
+              "SA"
+            ],
+            "label": "the mediation geography"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the physical closure — are what actually shut a shipping lane. Once premiums spike past a threshold, commercial vessels reroute regardless of whether the strait is technically open. The financial chokepoint is tighter than the geographic one.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              66.91,
+              67.68,
+              66.72,
+              65.46,
+              68.16,
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28
+            ],
+            "periods": [
+              "Jan 19",
+              "Jan 20",
+              "Jan 21",
+              "Jan 22",
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "THE CEASEFIRE FRAGILITY",
+        "body": "Modern ceasefires rarely collapse from the headline issue. They collapse from secondary acts — a seizure, a convoy strike, a stray shell — that one side frames as a breach and the other as enforcement. The 1988 Iran-Iraq ceasefire nearly failed three times before taking hold; each near-collapse traced to an incident smaller than the war itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ended the 1980s Tanker War?",
+            "options": [
+              "A negotiated maritime treaty between Iran and Iraq",
+              "UN Security Council Resolution 598 ending the broader war",
+              "US destruction of Iran's navy at Operation Praying Mantis",
+              "Saudi Arabia rerouting all Gulf oil via pipeline"
+            ],
+            "correct": 1,
+            "explanation": "The Tanker War ended with UNSC 598 (1988), which ended the Iran-Iraq War itself — the shipping attacks were a symptom, not the disease."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-12",
+      "FRED · EIA · as of 2026-04-13"
+    ],
+    "generatedAt": "2026-04-19T22:24:03.568Z",
+    "label": "Naval Seizures & the Hormuz Blockade",
+    "category": "politics",
+    "articleCount": 1
   }
 }
