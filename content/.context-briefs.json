@@ -17796,5 +17796,1413 @@
     "label": "The Karakoram Highway & CPEC",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-18-japan-railways-land-value-capture": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORE MECHANISM",
+        "body": "Land value capture means the entity building infrastructure owns the land whose value the infrastructure creates. A new station raises nearby property values; if the railway owns that property, the uplift funds the railway itself. The infrastructure pays for its own externalities.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this internalizing the **positive externality** — normally the station's value-uplift leaks to private landowners, and the railway operator captures none of it."
+          }
+        ]
+      },
+      {
+        "heading": "THE KOBAYASHI MODEL",
+        "body": "Ichizo Kobayashi, founder of Hankyu Railway, invented the template in 1910s Osaka: buy cheap farmland, build a rail line through it, then develop housing, department stores, amusement parks, and schools along the route. The railway was a tool to monetize the land, not the other way around."
+      },
+      {
+        "heading": "THE VERTICAL INTEGRATION",
+        "body": "Modern Japanese private railways — Tokyu, Hankyu, Seibu, Odakyu — operate department stores at terminus stations, hotels along the line, real estate portfolios, and even baseball teams. JR East, the largest operator, earns roughly a third of revenue from non-transport businesses clustered around its stations.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "JR East (JP)",
+                "value": "~35%",
+                "cc": "JP",
+                "tone": "favorable",
+                "weight": 35
+              },
+              {
+                "label": "Tokyu (JP)",
+                "value": "~70%",
+                "cc": "JP",
+                "tone": "favorable",
+                "weight": 70
+              },
+              {
+                "label": "Deutsche Bahn",
+                "value": "~15%",
+                "cc": "DE",
+                "tone": "neutral",
+                "weight": 15
+              },
+              {
+                "label": "SNCF (FR)",
+                "value": "~10%",
+                "cc": "FR",
+                "tone": "unfavorable",
+                "weight": 10
+              }
+            ],
+            "label": "rail operator non-fare revenue share"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EUROPE CAN'T COPY IT",
+        "body": "European railways were nationalized in the mid-20th century and the adjacent land was not. Stations sit on public right-of-way surrounded by privately-owned parcels governed by municipal zoning. The operator captures ticket revenue; developers capture the land uplift. The subsidy gap is structural, not managerial."
+      },
+      {
+        "heading": "THE EXPORT PROBLEM",
+        "body": "Indonesia's Jakarta MRT and Pakistan's Orange Line in Lahore adopted transit-oriented development language but not the land ownership. Without expropriation powers or pre-assembled land banks around stations, the uplift accrues to speculators who bought near planned routes. The operator still needs state subsidy; the speculator books the gain.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP",
+              "ID",
+              "PK"
+            ],
+            "label": "exporters of the model — and importers of its financing gap"
+          }
+        ]
+      },
+      {
+        "heading": "THE HONG KONG VARIANT",
+        "body": "MTR Corporation's 'Rail + Property' model is the only non-Japanese system that replicates the logic at scale. The Hong Kong government grants MTR development rights over land above and around new stations at pre-railway prices; MTR tenders development to private builders and keeps the premium. Fares alone have never covered MTR's capital costs — property does.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can Hong Kong's MTR fund rail expansion from property but London's Tube cannot?",
+            "options": [
+              "MTR charges higher fares than the Tube",
+              "The Hong Kong government grants MTR land at pre-rail prices; UK land around Tube stations is already privately owned",
+              "Hong Kong property values rise faster than London's",
+              "MTR receives larger direct government subsidies"
+            ],
+            "correct": 1,
+            "explanation": "The mechanism is land rights, not fare levels or property performance — whoever owns the land at pre-announcement prices captures the uplift."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-19T17:53:29.530Z",
+    "label": "Land Value Capture & Japanese Rail",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-18-rheinmetall-ohb-satellite-jv-approved": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SOVEREIGN CONSTELLATIONS NOW",
+        "body": "Starlink's role in Ukraine — and Musk's unilateral geofencing of it near Crimea in 2022 — taught European defence ministries that renting satellite bandwidth from a foreign commercial operator is a wartime liability. Sovereign milsatcom is the response.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has a name in European procurement papers: **strategic non-dependence** — the principle that critical military capabilities cannot route through a single foreign provider, commercial or state."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEO SHIFT",
+        "body": "Military communications historically used a handful of large geostationary satellites at 36,000 km — high latency, easy to jam, easy to target. The new generation uses hundreds of small satellites in low Earth orbit at 500–2,000 km — lower latency, harder to disable wholesale, and far cheaper per unit."
+      },
+      {
+        "heading": "THE EUROPEAN PRIMES",
+        "body": "Defence-space in Europe has long been dominated by Airbus and Thales Alenia Space, with Italy's Leonardo as junior partner. Rheinmetall — historically a tank and ammunition house — pairing with OHB (Bremen-based satellite builder) is a deliberate disruption of that duopoly.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Airbus DS",
+                "value": "€12bn rev",
+                "cc": "FR"
+              },
+              {
+                "label": "Thales Alenia",
+                "value": "€2.6bn rev",
+                "cc": "FR"
+              },
+              {
+                "label": "Leonardo",
+                "value": "€15bn rev",
+                "cc": "IT"
+              },
+              {
+                "label": "OHB",
+                "value": "€1.1bn rev",
+                "cc": "DE"
+              },
+              {
+                "label": "Rheinmetall",
+                "value": "€10bn rev",
+                "cc": "DE"
+              }
+            ],
+            "label": "European defence-space players"
+          }
+        ]
+      },
+      {
+        "heading": "THE ZEITENWENDE BUDGET",
+        "body": "Scholz announced the €100bn Sondervermögen special defence fund days after Russia's 2022 invasion. The 2024 constitutional debt-brake reform unlocked open-ended defence spending above 1% of GDP. Germany's defence budget is now structurally larger than France's or the UK's for the first time since reunification."
+      },
+      {
+        "heading": "WHY THE CARTEL OFFICE MATTERS",
+        "body": "The Bundeskartellamt is unusually independent — it blocked Siemens-Alstom's rail merger in 2019 over Brussels' objections. Its approval of a defence JV signals that consolidation in this sector now has explicit competition-authority cover, removing a key obstacle to further mergers.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Starlink's 2022 Crimea geofencing teach European defence planners?",
+            "options": [
+              "Commercial satellite bandwidth is a wartime liability",
+              "LEO constellations are technically inferior to GEO",
+              "Encryption alone solves military comms problems"
+            ],
+            "correct": 0,
+            "explanation": "Musk's unilateral decision to disable Starlink near Crimea showed that renting capacity from a foreign commercial operator means accepting a foreign veto on its wartime use."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-19T17:53:58.069Z",
+    "label": "Europe's defence-space consolidation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-18-russia-internet-clampdown-ai": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SOVEREIGN INTERNET LAW",
+        "body": "Russia's 2019 'Sovereign Internet' law required all ISPs to install deep-packet-inspection boxes (TSPU) controlled by Roskomnadzor. The hardware is already nationwide — what changes in a clampdown is not capability, it is the throttle setting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The agency is **Roskomnadzor**, and the filtering hardware it operates is called **TSPU** — *technical means for countering threats*. Once installed, blocking a service is a config push, not an engineering project."
+          }
+        ]
+      },
+      {
+        "heading": "THE TELEGRAM PARADOX",
+        "body": "Russia tried to block Telegram in 2018 and failed — Pavel Durov rotated through millions of AWS and Google Cloud IPs faster than Roskomnadzor could blacklist them, and the ban was quietly dropped in 2020. The 2026 block works because TSPU now inspects traffic at the protocol level, not the IP level.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Russia's 2018 Telegram ban fail where the 2026 one succeeds?",
+            "options": [
+              "Telegram had stronger encryption in 2018",
+              "IP-blocking couldn't keep up with cloud rotation; DPI now inspects protocols",
+              "A court overturned the 2018 ban",
+              "Putin personally reversed the earlier order"
+            ],
+            "correct": 1,
+            "explanation": "The 2019 Sovereign Internet law funded nationwide DPI hardware (TSPU), shifting blocking from IP-based to protocol-based — which cloud rotation cannot evade."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPLINTERNET",
+        "body": "China's Great Firewall, Iran's National Information Network, and Russia's Runet are three implementations of the same doctrine: route domestic traffic through state-controlled infrastructure so foreign services can be severed on command. The technical patterns converge even when the politics diverge.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "GFW, since 2003",
+                "cc": "CN"
+              },
+              {
+                "label": "Iran",
+                "value": "NIN, since 2005",
+                "cc": "IR"
+              },
+              {
+                "label": "Russia",
+                "value": "Runet, since 2019",
+                "cc": "RU"
+              }
+            ],
+            "label": "state-controlled internet architectures"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AI TARGETING RATTLES MOSCOW",
+        "body": "Modern strike packages fuse satellite imagery, SIGINT, and pattern-of-life data through ML models to compress the kill chain from hours to minutes. Russia's military AI lags not in algorithms but in compute — Western sanctions cut off access to Nvidia H100-class GPUs that training such models requires.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bottleneck is **compute**, not code. Training a targeting model at frontier scale needs thousands of **H100** or **Blackwell**-class GPUs; export controls since 2022 have made these nearly impossible for Russian labs to acquire legally."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVEREIGN AI DOCTRINE",
+        "body": "Putin's 2017 line — 'whoever becomes the leader in AI will become the ruler of the world' — shaped a decade of policy, but Russia's flagship effort (Sberbank's GigaChat, Yandex's YandexGPT) trails frontier labs by roughly two model generations. A national programme cannot compensate for sanctioned silicon.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Whoever becomes the leader in this sphere will become the ruler of the world.",
+            "speaker": "Vladimir Putin, on artificial intelligence",
+            "year": "2017"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONTROL TRADEOFF",
+        "body": "Every clampdown severs the country further from the global developer ecosystem it would need to close the AI gap. GitHub access, cloud GPU rental, Hugging Face model downloads, and conference visas all run through the same networks the Kremlin is now restricting. Autarky and frontier AI are structurally in tension."
+      }
+    ],
+    "generatedAt": "2026-04-19T17:54:28.580Z",
+    "label": "Runet & the Splinternet",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-19-egypt-sayed-moshagheb-rearrested": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "Rotation — tadweer in Arabic — works by filing a fresh case against a prisoner hours before release. The new charges reset the pretrial detention clock, which Egyptian law caps at two years but which prosecutors renew indefinitely by recycling the same defendant through new case numbers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arabic term is *tadweer* — literally \"rotation\" or \"recycling.\" Human rights lawyers use it as a specific legal-technical term, not a metaphor."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL COVER",
+        "body": "Egypt's 2013 Protest Law and 2015 Anti-Terrorism Law created sweeping charges — \"joining a terrorist group,\" \"spreading false news,\" \"inciting unlawful assembly\" — broad enough that any defendant can be re-charged on substantially the same conduct without double-jeopardy bar."
+      },
+      {
+        "heading": "WHY ULTRAS",
+        "body": "Football ultras — organized fan groups — were central to the 2011 Tahrir uprising and the 2012 Port Said massacre aftermath. Ahlawy and White Knights supplied the street-fighting muscle that held squares against riot police. Sisi's state treats them as a latent mobilization network, not a sports subculture."
+      },
+      {
+        "heading": "THE PORT SAID BACKDROP",
+        "body": "In February 2012, 74 Al-Ahly ultras were killed when stadium exits were locked and police stood aside during an attack by rival fans in Port Said. The ultras blamed the Interior Ministry; convictions and death sentences followed, but the movement emerged convinced the state had orchestrated the massacre as retribution for Tahrir.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many Al-Ahly ultras were killed in the 2012 Port Said stadium disaster?",
+            "options": [
+              "24",
+              "74",
+              "152",
+              "over 300"
+            ],
+            "correct": 1,
+            "explanation": "74 died when exits were locked and police declined to intervene — a turning point that radicalized the ultras against the Interior Ministry."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "Egyptian prisons hold an estimated 60,000 political detainees, per rights groups — the largest such population in the Arab world. The state rarely acknowledges the category exists; officially, every prisoner is a criminal defendant, which is precisely what rotation is designed to preserve."
+      },
+      {
+        "heading": "THE SENTENCE-CAP FICTION",
+        "body": "Egyptian criminal procedure theoretically limits pretrial detention to two years for the most serious charges. Rotation renders the cap meaningless — a defendant who completes a sentence or hits the pretrial limit simply becomes the defendant in a new case filed the same morning, often on evidence recycled from the closed file."
+      }
+    ],
+    "generatedAt": "2026-04-19T17:54:54.111Z",
+    "label": "Rotation & Egypt's Detention State",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-19-india-china-fdi-thaw": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRIGGER",
+        "body": "In June 2020, Indian and Chinese troops fought with clubs and stones at Galwan Valley in Ladakh. Twenty Indian soldiers and at least four Chinese died — the first combat deaths on the disputed border since 1975. Weeks later, India issued Press Note 3.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "CN"
+            ],
+            "label": "the Galwan flashpoint",
+            "caption": "Line of Actual Control, Ladakh sector"
+          }
+        ]
+      },
+      {
+        "heading": "PRESS NOTE 3",
+        "body": "The rule required prior government approval for any FDI from countries sharing a land border with India. It named no country, but the target was obvious — Pakistan and Bangladesh were already restricted, and Bhutan and Nepal are net capital importers. The wall was built for Beijing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The policy is formally country-neutral but universally called the *China FDI rule*. Rules that name no one and target one are a recurring feature of modern economic statecraft."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT IT BLOCKED",
+        "body": "Chinese FDI into India collapsed from roughly $3.5 billion in 2019-20 to under $100 million annually by 2022. BYD's $1 billion EV plant, Great Wall Motors' Talegaon acquisition, and dozens of smaller deals stalled in bureaucratic review. Some were approved years later; most were quietly abandoned."
+      },
+      {
+        "heading": "THE CHINA-PLUS-ONE BET",
+        "body": "Global manufacturers looking to diversify away from China had to choose a substitute. Vietnam, Indonesia, and Malaysia won most of the flow. India's restrictions cost it the one capital source — Chinese component makers following their own customers — that every successful manufacturing hub has historically needed.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Vietnam",
+                "value": "$75bn",
+                "cc": "VN",
+                "weight": 75
+              },
+              {
+                "label": "Indonesia",
+                "value": "$110bn",
+                "cc": "ID",
+                "weight": 110
+              },
+              {
+                "label": "Malaysia",
+                "value": "$42bn",
+                "cc": "MY",
+                "weight": 42
+              },
+              {
+                "label": "India",
+                "value": "$200bn",
+                "cc": "IN",
+                "weight": 200
+              }
+            ],
+            "label": "where China-plus-one capital went (cumulative FDI inflows, 2020–2024)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ASSEMBLY TRAP",
+        "body": "India's electronics export boom — iPhones from Tamil Nadu, solar modules from Gujarat — relies on Chinese components crossing the border as imports. Without Chinese capital investing in local component plants, the value-add stays low and the trade deficit with China keeps widening. Assembly without suppliers is a hollow industrial strategy."
+      },
+      {
+        "heading": "WHY NOW",
+        "body": "Border disengagement agreements in late 2024 and early 2025 restored patrolling rights at key friction points. Modi and Xi met at the BRICS summit — the first bilateral since Galwan. The FDI thaw is the economic tail of a political normalization that both sides decided they could afford."
+      },
+      {
+        "heading": "THE STRUCTURAL QUESTION",
+        "body": "India runs a roughly $100 billion trade deficit with China, its largest with any country. More Chinese FDI could narrow the deficit by localizing production — or deepen dependency by entrenching Chinese supply chains inside India. Which outcome the relaxation produces depends on what sectors get approved, not on the headline number.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did India's 2020 Press Note 3 require?",
+            "options": [
+              "A ban on all Chinese imports",
+              "Government approval for FDI from land-border neighbors",
+              "Tariffs on Chinese electronics",
+              "Exit of Chinese firms already operating in India"
+            ],
+            "correct": 1,
+            "explanation": "Press Note 3 was country-neutral in text but targeted Chinese FDI by requiring prior approval for investment from any land-border neighbor."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-19T17:55:23.745Z",
+    "label": "Press Note 3 & the India-China Capital Wall",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-19-lfbot-wolf-rayet-merger": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ANOMALY",
+        "body": "LFBOTs rise to peak brightness in under a week and fade in weeks, not months. Normal supernovae take months to peak and years to fade. The first clear case, AT2018cow, was so blue and so fast that astronomers initially could not classify it at all.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The prototype was nicknamed **the Cow** after its random catalog suffix — the naming convention stuck, giving later events names like *the Koala*, *the Camel*, and *the Finch*."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT WOLF-RAYET STARS ARE",
+        "body": "Wolf-Rayet stars are massive stars — typically above 20 solar masses — that have shed their hydrogen envelopes through fierce stellar winds, exposing their helium and carbon cores. They live fast, lose mass violently, and die within a few million years of formation."
+      },
+      {
+        "heading": "WHY COMPACT MERGERS FIT",
+        "body": "When a neutron star or black hole inspirals into a Wolf-Rayet companion, the energy comes from accretion onto the compact object, not from a traditional shock. This releases energy faster than radioactive nickel decay powers an ordinary supernova — hence the rapid rise and blue color.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What powers the light of a typical Type Ia supernova?",
+            "options": [
+              "Radioactive decay of nickel-56 into cobalt and iron",
+              "Accretion onto a central black hole",
+              "Fusion continuing in the stellar core",
+              "Gravitational wave emission"
+            ],
+            "correct": 0,
+            "explanation": "Most supernova light curves are powered by the radioactive decay chain nickel-56 → cobalt-56 → iron-56, which is why they fade over months."
+          }
+        ]
+      },
+      {
+        "heading": "THE X-RAY TELL",
+        "body": "LFBOTs emit persistent, variable X-rays — a signature missing from ordinary supernovae. X-rays point to a central engine: matter falling onto a compact object heats to millions of degrees before crossing the event horizon or neutron-star surface."
+      },
+      {
+        "heading": "WHY GALAXY MORPHOLOGY MATTERS",
+        "body": "LFBOTs occur overwhelmingly in star-forming dwarf galaxies, not in the nuclei of large galaxies. That rules out tidal disruption by intermediate-mass black holes, which should cluster at galactic centers. The hosts match where short-lived massive stars live and die."
+      },
+      {
+        "heading": "WHY IT MATTERS",
+        "body": "If the mechanism holds, LFBOTs are a new channel for forming binary compact objects — the same population whose later mergers produce gravitational waves detected by LIGO. The optical transient becomes a preview of a gravitational-wave event a cosmological eyeblink later."
+      }
+    ],
+    "generatedAt": "2026-04-19T17:55:47.274Z",
+    "label": "Luminous Fast Blue Optical Transients",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-19-pakistan-qatar-lng-power-shortfall": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IMPORT TRAP",
+        "body": "Pakistan's domestic gas fields peaked around 2012. To keep the lights on, it built LNG import terminals at Port Qasim and signed long-term contracts with Qatar in 2016 and 2017. Roughly a third of Pakistan's gas now arrives by ship — and every cargo passes through the Strait of Hormuz.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2016 deal with **QatarEnergy** was a 15-year take-or-pay contract at roughly **13.37%** of Brent. When spot LNG spiked above contract prices in 2022, Qatar held firm; now that Hormuz is closed, the contract holds firm against Pakistan."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIESEL IS THE FALLBACK",
+        "body": "Combined-cycle gas plants can burn high-speed diesel as a backup fuel, but at roughly 3-4x the cost per kWh and with much higher emissions. The switch is mechanical, not cheap — every day on diesel widens the circular debt in Pakistan's power sector, which already exceeds 2.6 trillion rupees.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.721355,
+              278.817084,
+              278.938921,
+              278.846901,
+              279.174143,
+              278.822517,
+              279.2,
+              278.184288,
+              278.387431,
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672
+            ],
+            "periods": [
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "FORCE MAJEURE",
+        "body": "Force majeure is a contract clause that suspends obligations when extraordinary events — war, blockade, natural disaster — make delivery impossible. Qatar invoking it on LNG cargoes is a legal declaration that Hormuz closure is beyond its control; the stranded cargoes become negotiable inventory rather than contracted deliveries.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are Qatar's LNG cargoes 'stranded' rather than rerouted?",
+            "options": [
+              "Qatar has no LNG export terminals outside the Gulf",
+              "Tankers loaded at Ras Laffan must exit through Hormuz",
+              "EU sanctions block transshipment",
+              "Insurance premiums make rerouting unprofitable"
+            ],
+            "correct": 1,
+            "explanation": "Qatar's entire LNG export capacity loads at Ras Laffan on the Gulf coast — the only exit route is through Hormuz."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOKEPOINT EXPOSURE",
+        "body": "Qatar produces roughly 77 million tonnes of LNG per year, all of it shipped from Ras Laffan. Unlike Saudi oil, there is no bypass pipeline — every molecule must transit Hormuz. When the strait closes, Qatar's customers from Karachi to Tokyo compete for the same stranded cargoes.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~20%",
+                "cc": "CN",
+                "weight": 20
+              },
+              {
+                "label": "India",
+                "value": "~12%",
+                "cc": "IN",
+                "weight": 12
+              },
+              {
+                "label": "South Korea",
+                "value": "~11%",
+                "cc": "KR",
+                "weight": 11
+              },
+              {
+                "label": "Japan",
+                "value": "~9%",
+                "cc": "JP",
+                "weight": 9
+              },
+              {
+                "label": "Pakistan",
+                "value": "~7%",
+                "cc": "PK",
+                "weight": 7
+              }
+            ],
+            "label": "Qatar LNG buyers (2024 share)"
+          },
+          {
+            "type": "trend",
+            "values": [
+              62,
+              54,
+              54,
+              72,
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3
+            ],
+            "periods": [
+              "Feb 19",
+              "Feb 20",
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "THE SUMMER PEAK",
+        "body": "Pakistan's electricity demand peaks from May through August when Punjab's temperatures cross 45°C and air conditioning load surges. Load-shedding during this window is not just economic pain — in cities like Multan and Jacobabad, it is a public health event. The IMF program has also capped subsidies, leaving fewer fiscal tools to absorb the diesel cost."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-19",
+      "IMF PortWatch · as of 2026-04-12"
+    ],
+    "generatedAt": "2026-04-19T17:56:13.904Z",
+    "label": "Pakistan's LNG Dependency",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-19-perseus-cluster-supernova-chemistry": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COSMIC FOUNDRY",
+        "body": "Almost every atom heavier than helium was forged in stars. Iron-peak elements — chromium, manganese, iron, nickel — come predominantly from thermonuclear supernovae, not the core-collapse kind. Their ratios are a fingerprint of how the white dwarf detonated.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The abundance pattern is the forensic evidence: **Cr/Fe**, **Mn/Fe**, **Ni/Fe** ratios distinguish a *deflagration* (subsonic burn) from a *detonation* (supersonic shock) inside the dying star."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CLUSTERS ARE THE LAB",
+        "body": "Galaxy clusters trap the ejecta of billions of supernovae in hot X-ray-emitting gas between galaxies. That intracluster medium is a time-integrated record of every stellar explosion in the cluster's history — a cleaner sample than any single galaxy provides."
+      },
+      {
+        "heading": "THE TWO CHANNELS",
+        "body": "Type-Ia supernovae come in two flavors: a white dwarf accreting from a companion until it hits the Chandrasekhar limit (1.4 solar masses), or two white dwarfs merging. The two paths produce different nickel and manganese yields. Which channel dominates has been unsettled for decades.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What mass limit triggers a classical Type-Ia supernova?",
+            "options": [
+              "0.6 solar masses",
+              "1.4 solar masses (Chandrasekhar)",
+              "3.0 solar masses",
+              "8.0 solar masses"
+            ],
+            "correct": 1,
+            "explanation": "Chandrasekhar showed in 1930 that electron degeneracy pressure fails above ~1.4 solar masses, collapsing the white dwarf and igniting runaway carbon fusion."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IA MATTERS BEYOND CHEMISTRY",
+        "body": "Type-Ia supernovae are the standard candles that revealed cosmic acceleration and dark energy in 1998. Their brightness depends on the detonation physics. If the chemistry models are wrong, the calibration of cosmic distances inherits that error."
+      },
+      {
+        "heading": "WHAT XRISM SEES",
+        "body": "XRISM, a Japan-US X-ray mission launched 2023, carries a microcalorimeter that resolves individual emission lines in hot cluster gas to unprecedented precision. Perseus, the brightest X-ray cluster in the sky, is the natural first target — close enough that faint element lines become measurable.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Subrahmanyan Chandrasekhar",
+                "role": "Derived white-dwarf mass limit",
+                "years": "1930",
+                "cc": "IN"
+              },
+              {
+                "name": "Riccardo Giacconi",
+                "role": "Founded X-ray astronomy",
+                "years": "1962–2002",
+                "cc": "US"
+              },
+              {
+                "name": "XRISM team (JAXA/NASA)",
+                "role": "Resolved Perseus element lines",
+                "years": "2023–",
+                "cc": "JP"
+              }
+            ],
+            "label": "the Perseus spectroscopy lineage"
+          }
+        ]
+      },
+      {
+        "heading": "THE DOWNSTREAM RECALIBRATION",
+        "body": "Stellar ages, galactic chemical evolution models, and dark-matter halo mass estimates all depend on assumed supernova yields. A shift in iron-peak abundances propagates into every one of those — which is why a spectroscopy paper reshapes cosmology, not just stellar physics."
+      }
+    ],
+    "generatedAt": "2026-04-19T17:56:39.827Z",
+    "label": "Cluster Chemistry & Type-Ia Supernovae",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-19-shreveport-louisiana-children-shooting": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CATEGORY",
+        "body": "Criminologists distinguish family annihilations from public mass shootings. The former target relatives, usually at home, and the shooter most often knows every victim by name. They account for the majority of US mass-shooting deaths but receive a fraction of the coverage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The academic term is **familicide** — a subset of mass murder where the perpetrator kills intimate partners, children, or extended kin. Motive is typically *domestic*, not ideological."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOMESTIC LINK",
+        "body": "Roughly 60% of US mass shootings involve domestic violence — either the shooter had a prior DV record or family members were among the victims. The warning signs usually appear in police reports years before the fatal event."
+      },
+      {
+        "heading": "THE LOUISIANA CONTEXT",
+        "body": "Louisiana has among the highest per-capita gun death rates in the US and the most permissive carry laws — concealed carry without a permit became law in 2024. Firearm removal orders for domestic abusers exist on paper but are rarely enforced at the parish level.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What distinguishes a 'family annihilation' from other mass shootings?",
+            "options": [
+              "The shooter targets strangers in public",
+              "The victims are primarily relatives or intimate partners",
+              "The weapon used is always a handgun",
+              "The shooter is always killed by police"
+            ],
+            "correct": 1,
+            "explanation": "Family annihilations target relatives and intimate partners, usually at home — distinct from public mass shootings driven by ideology or grievance against strangers."
+          }
+        ]
+      },
+      {
+        "heading": "THE POLICE-SHOOTING REVIEW",
+        "body": "When officers kill a suspect in Louisiana, State Police take over the investigation — a structure adopted after local-department reviews were criticized as self-investigations. The officer is typically placed on administrative leave pending the ruling."
+      },
+      {
+        "heading": "SHREVEPORT",
+        "body": "A city of roughly 180,000 in the state's northwest corner, Shreveport has seen decades of population loss as oil and gas work moved south. Its homicide rate has consistently ranked among the highest for mid-size US cities, driven by poverty concentration and underfunded policing."
+      }
+    ],
+    "generatedAt": "2026-04-19T17:57:01.010Z",
+    "label": "Family Mass Shootings in the US",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-19-spain-eu-israel-association-agreement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE AGREEMENT",
+        "body": "Signed in 1995 and in force since 2000, the EU-Israel Association Agreement grants Israel preferential trade access — zero tariffs on industrial goods, quotas on agriculture — and funds joint research via Horizon Europe. The EU is Israel's largest trading partner; Israel is a mid-tier partner for the EU.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pact is part of the **Euro-Mediterranean Partnership** — the Barcelona Process — a 1995 framework meant to bind southern Mediterranean states to European markets and norms."
+          }
+        ]
+      },
+      {
+        "heading": "ARTICLE 2",
+        "body": "The agreement's second article makes respect for human rights and democratic principles an 'essential element' of the pact. This clause is standard EU boilerplate — it appears in every association agreement — but has almost never been invoked. Suspension requires a qualified majority of member states.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Relations between the Parties, as well as all the provisions of the Agreement itself, shall be based on respect for human rights and democratic principles, which guides their internal and international policy and constitutes an essential element of this Agreement.",
+            "speaker": "EU-Israel Association Agreement, Article 2",
+            "year": "1995"
+          }
+        ]
+      },
+      {
+        "heading": "QUALIFIED MAJORITY",
+        "body": "A qualified majority at the EU Council requires 55% of member states (15 of 27) representing 65% of the EU population. Germany alone holds 18.6% of the population weight — enough that a German 'no' plus three mid-sized states can form a blocking minority.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "18.6%",
+                "cc": "DE",
+                "weight": 18.6
+              },
+              {
+                "label": "France",
+                "value": "15.0%",
+                "cc": "FR",
+                "weight": 15
+              },
+              {
+                "label": "Italy",
+                "value": "13.2%",
+                "cc": "IT",
+                "weight": 13.2
+              },
+              {
+                "label": "Spain",
+                "value": "10.6%",
+                "cc": "ES",
+                "weight": 10.6
+              },
+              {
+                "label": "Poland",
+                "value": "8.4%",
+                "cc": "PL",
+                "weight": 8.4
+              },
+              {
+                "label": "Hungary",
+                "value": "2.2%",
+                "cc": "HU",
+                "weight": 2.2
+              }
+            ],
+            "label": "EU Council population weights"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GERMANY HOLDS THE LINE",
+        "body": "Germany's postwar Staatsräson — reason of state — treats Israel's security as a core German national interest. Articulated by Merkel at the Knesset in 2008, the doctrine binds every German government regardless of coalition. It is why Berlin has blocked every prior EU move against Israel, including during the 2008-09 Gaza war and the 2014 Gaza war.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "This historical responsibility of Germany is part of my country's raison d'être. For me as German Chancellor, therefore, Israel's security will never be open to negotiation.",
+            "speaker": "Angela Merkel, Knesset address",
+            "year": "2008"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT GAP",
+        "body": "The EU has suspended association agreements before — with Syria in 2011, Belarus in 2006, Zimbabwe in 2002 — but never with a country the US actively defends. The last time sanctions split the transatlantic alliance this sharply was the 1982 Siberian pipeline dispute, when Reagan tried to block European firms from selling equipment to the Soviet gas project. Europe defied Washington; the sanctions collapsed within a year.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ES",
+              "DE",
+              "HU",
+              "IL",
+              "BE"
+            ],
+            "label": "the split — Brussels as the venue"
+          }
+        ]
+      },
+      {
+        "heading": "SPAIN'S POSITION",
+        "body": "Spain recognized Palestine as a state in May 2024 alongside Ireland and Norway — the first major Western European states to do so since the 1980s. Madrid has since led the EU's hardest line on Gaza, referring Israel to the ICJ and pushing arms embargoes. The association-agreement move extends a posture Sánchez's government has built over eighteen months.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many of the EU's 27 member states have formally recognized Palestine as a state?",
+            "options": [
+              "Fewer than 5",
+              "About 10",
+              "Roughly half",
+              "Over 20"
+            ],
+            "correct": 1,
+            "explanation": "Around 10 EU members recognize Palestine — mostly former Eastern Bloc states that did so in 1988, plus Sweden (2014) and Spain, Ireland, Slovenia (2024)."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-19T17:57:37.588Z",
+    "label": "The EU-Israel Association Agreement",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-19-trump-us-iran-pakistan-talks-round-two": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PAKISTAN BROKERS",
+        "body": "Pakistan is the only Muslim nuclear power, shares a 900km border with Iran, and maintains working relationships with Washington, Tehran, and Riyadh simultaneously. Islamabad's diplomatic value rises precisely when the US cannot talk directly to Iran — a role it also played in the 1980 hostage crisis backchannels and in early 2000s nuclear dialogue.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "US",
+              "SA"
+            ],
+            "label": "the brokering triangle"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOCKADE CATCH",
+        "body": "A naval blockade is legally an act of war under the 1909 London Declaration and customary international law. Calling it a 'quarantine' — as Kennedy did in 1962 — is the diplomatic fig leaf that preserves negotiation space. Iran citing the blockade as a reason not to attend is both a grievance and a leverage move.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The last full US naval blockade was the 1962 Cuba *quarantine* — the word change was deliberate, because **blockade** triggered obligations Washington did not want."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENRICHMENT THRESHOLD",
+        "body": "Weapons-grade uranium is 90% U-235. Civilian reactor fuel is 3-5%. Iran has enriched to 60% — a level with no civilian use but technically below the weapons line. The remaining step from 60 to 90 takes weeks, not years. This is why the enrichment ceiling, not the stockpile size, is the real redline.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Reactor fuel",
+                "value": "3–5%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Research",
+                "value": "~20%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Iran (2026)",
+                "value": "60%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Weapons-grade",
+                "value": "≥90%",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "uranium enrichment levels"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ LEVERAGE",
+        "body": "Roughly 21 million barrels of oil pass through the Strait daily — about 21% of global consumption. Iran's coastline runs along the entire northern edge, and the deepest shipping channels hug the Iranian side. Hormuz is less a 'card' Iran plays than the table the negotiation sits on.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              62,
+              54,
+              54,
+              72,
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3
+            ],
+            "periods": [
+              "Feb 19",
+              "Feb 20",
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CEASEFIRE CLOCK",
+        "body": "Ceasefires lapse when neither party sees cost in violating them. The 1973 Sinai ceasefire eroded within days because both sides judged the framework weaker than the tactical gains from breaking it. A deadline without a renewal mechanism is a countdown, not a peace.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What enrichment level has no civilian use but sits just below weapons-grade?",
+            "options": [
+              "20%",
+              "45%",
+              "60%",
+              "90%"
+            ],
+            "correct": 2,
+            "explanation": "60% U-235 serves no reactor or research purpose; the jump from there to weapons-grade 90% takes weeks."
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET'S VIEW",
+        "body": "Prediction markets aggregate bettor consensus on whether a conflict resolves. They are imperfect — thin liquidity, resolution disputes, and reflexivity all distort prices — but they move faster than diplomatic readouts and are harder to spin than official statements.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              59,
+              56,
+              57,
+              59,
+              51,
+              54,
+              62,
+              62,
+              61,
+              60,
+              68,
+              67,
+              55,
+              50,
+              57,
+              53,
+              58,
+              61,
+              28,
+              35,
+              30,
+              30,
+              33,
+              35,
+              30,
+              32,
+              31,
+              34,
+              32
+            ],
+            "periods": [
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 19",
+              "Apr 19"
+            ],
+            "label": "US invade Iran before 2027?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "59%"
+              },
+              {
+                "atIndex": 28,
+                "label": "32%"
+              }
+            ],
+            "link": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
+            "source": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-12",
+      "Polymarket · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-19T17:58:05.182Z",
+    "label": "Iran Talks & the Hormuz Question",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-19-waltz-iran-power-plants-war-crime": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL TEST",
+        "body": "Under Additional Protocol I to the Geneva Conventions (1977), a lawful military target must make an 'effective contribution to military action' and its destruction must offer a 'definite military advantage.' The 'dual-use' label is how states stretch this test — arguing civilian infrastructure also serves military functions.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key phrase US lawyers lean on is ***dual-use***: if a power plant feeds a military base alongside civilian homes, the whole plant becomes targetable — a doctrine critics call the *civilianization of war*."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1991 PRECEDENT",
+        "body": "In the Gulf War, the US destroyed 88% of Iraq's electrical generation capacity in the first weeks. A 1991 UN mission found the bombing had 'near-apocalyptic' humanitarian effects — collapsing water treatment, sewage, and hospitals. No war-crimes case followed. The precedent hardened: grids are fair game if a military nexus can be named."
+      },
+      {
+        "heading": "THE PROPORTIONALITY RULE",
+        "body": "Even a lawful target becomes unlawful if expected civilian harm is 'excessive' relative to military advantage. The rule is codified but subjective — no international court has ever convicted a Western commander for a proportionality violation. Enforcement asymmetry is the quiet truth of the laws of war.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Geneva Conventions, what makes targeting civilian infrastructure unlawful?",
+            "options": [
+              "Any civilian casualties at all",
+              "Civilian harm excessive to military advantage",
+              "Targeting without a UN mandate",
+              "Using precision vs. unguided weapons"
+            ],
+            "correct": 1,
+            "explanation": "The proportionality rule bans attacks where expected civilian harm is excessive relative to the concrete military advantage — not all civilian harm, just disproportionate harm."
+          }
+        ]
+      },
+      {
+        "heading": "IRAN'S GRID FRAGILITY",
+        "body": "Iran's power system is already running 15-20 GW short of peak demand, with rolling blackouts across Tehran and Isfahan through 2025. Sanctions have starved it of Western turbines and spare parts for two decades. A kinetic strike lands on a grid that is already half-broken — the humanitarian floor is lower than in 1991 Iraq."
+      },
+      {
+        "heading": "THE ISLAMABAD VENUE",
+        "body": "Pakistan hosting US-Iran talks is not neutral ground — it is a Sunni nuclear power that shares a 900 km border with Iran and has its own Baloch insurgency spilling across it. Islamabad's interest is a ceasefire that holds, because a wider war pulls Pakistani Shia communities and the Chabahar-Gwadar corridor into the blast radius.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "PK",
+              "AF",
+              "OM",
+              "AE"
+            ],
+            "label": "the Islamabad talks neighborhood"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST",
+        "body": "Waltz is Trump's second UN envoy, moved from National Security Advisor after the Signal-chat leak earlier in this term. His ABC appearance is diplomatic pre-positioning — laying legal cover before the strikes, not after.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Mike Waltz",
+                "role": "US UN Ambassador",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Masoud Pezeshkian",
+                "role": "Iranian President",
+                "years": "2024–",
+                "cc": "IR"
+              },
+              {
+                "name": "Ali Khamenei",
+                "role": "Supreme Leader of Iran",
+                "years": "1989–",
+                "cc": "IR"
+              }
+            ],
+            "label": "principals on the Iran file"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-19T17:58:36.249Z",
+    "label": "Dual-Use Targeting & the Laws of War",
+    "category": "politics",
+    "articleCount": 1
   }
 }
