@@ -26125,5 +26125,1418 @@
     "label": "Russia's Refinery Vulnerability",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-20-apple-ternus-succeeds-cook": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OPERATOR-TO-ENGINEER ARC",
+        "body": "Apple's three CEO eras map to three company problems. Jobs (product visionary) rebuilt the brand. Cook (supply-chain operator) scaled it to $3 trillion. Ternus (hardware engineer) inherits a company whose next decade depends on silicon, not logistics.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Steve Jobs",
+                "role": "co-founder, product visionary",
+                "years": "1997–2011",
+                "cc": "US"
+              },
+              {
+                "name": "Tim Cook",
+                "role": "operations, supply chain",
+                "years": "2011–2026",
+                "cc": "US"
+              },
+              {
+                "name": "John Ternus",
+                "role": "hardware engineering",
+                "years": "2026–",
+                "cc": "US"
+              }
+            ],
+            "label": "the three CEOs"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SILICON IS THE CROWN JEWEL",
+        "body": "In 2020 Apple cut Intel out of the Mac and shipped its own M1 chip — designed in Cupertino, fabricated by TSMC. The transition worked because vertical integration of CPU, GPU, and neural engine let Apple outpace x86 on performance-per-watt. Ternus ran the hardware engineering behind it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Apple's silicon stack — **M-series** for Macs, **A-series** for iPhones, **R-series** for Vision Pro — all share an ARM architecture license and the same fab partner. One company buys roughly a quarter of **TSMC's** leading-edge wafer capacity."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXECUTIVE CHAIRMAN ROLE",
+        "body": "An executive chairman stays involved in strategy and external affairs — regulators, heads of state, major partners — while the CEO runs operations. Bill Gates did this for Ballmer at Microsoft; Eric Schmidt did it for the Google founders. The role exists to transfer authority without transferring relationships."
+      },
+      {
+        "heading": "THE ENGINEER-CEO PATTERN",
+        "body": "Tech companies tend to return to engineer-CEOs after operator-CEOs mature the business. Microsoft went Gates→Ballmer→Nadella (engineer). Google went Page→Pichai (engineer). The pattern reflects that at scale, product differentiation comes from deep technical bets, not operational optimization.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these CEOs came from an engineering background rather than sales or operations?",
+            "options": [
+              "Steve Ballmer at Microsoft",
+              "Satya Nadella at Microsoft",
+              "Tim Cook at Apple",
+              "John Sculley at Apple"
+            ],
+            "correct": 1,
+            "explanation": "Nadella ran Microsoft's cloud engineering before becoming CEO in 2014 — a pivot from Ballmer's sales background that preceded Microsoft's AI and Azure resurgence."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHINA QUESTION",
+        "body": "Roughly 90% of iPhones are still assembled in China. Cook spent fifteen years personally managing that relationship — including the 2016 deal that kept Apple services running when Beijing squeezed foreign tech. Keeping Cook as chairman for external affairs is not ceremonial; it preserves the diplomatic channel while Ternus focuses on the product.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~85%",
+                "cc": "CN",
+                "weight": 85
+              },
+              {
+                "label": "India",
+                "value": "~14%",
+                "cc": "IN",
+                "weight": 14
+              },
+              {
+                "label": "Vietnam",
+                "value": "~1%",
+                "cc": "VN",
+                "weight": 1
+              }
+            ],
+            "label": "iPhone assembly by country (approx.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T22:37:31.982Z",
+    "label": "Apple's Succession Pattern",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-20-bacterial-flagellar-motor-solved": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MACHINE",
+        "body": "The bacterial flagellum is a literal rotary motor — a spinning shaft driven by a stator ring embedded in the cell membrane. It turns at up to 100,000 rpm, reverses direction in milliseconds, and is assembled from about 30 distinct proteins. No human engine matches its power-to-size ratio.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The rotor and stator are distinct protein assemblies — the *rotor* spins with the shaft, the *stator* stays anchored to the cell wall and pushes against it. This is the same architecture as an **electric motor**, evolved 3 billion years before humans built one."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUEL",
+        "body": "The motor runs on the proton-motive force — the electrochemical gradient bacteria maintain by pumping protons out of the cell. Protons flowing back down the gradient through the stator deliver the energy. It is the same fuel source mitochondria use to make ATP, rerouted into mechanical torque instead of chemistry."
+      },
+      {
+        "heading": "THE INTELLIGENT DESIGN CLAIM",
+        "body": "The flagellum was the flagship example of 'irreducible complexity' — the argument that its parts are useless in isolation, so it cannot have evolved gradually. Biologists answered by showing that its core subunits are homologous to the type-III secretion system, a bacterial injection apparatus. The motor is a repurposed syringe."
+      },
+      {
+        "heading": "WHY THIS TOOK 50 YEARS",
+        "body": "Seeing the motor work required imaging a membrane-embedded protein complex while it was actively rotating, at near-atomic resolution. Cryo-electron microscopy reached that resolution only in the last decade; earlier crystallography froze the parts but could not capture the conformational cycle that produces torque."
+      },
+      {
+        "heading": "WHAT IT SETTLES",
+        "body": "Some researchers had argued biological motors might require physics beyond the standard electrochemical framework — novel force fields, quantum effects, undiscovered mechanisms. The resolved model shows ordinary proton flow and protein mechanics are sufficient. Biology's most elegant machine obeys the same rules as a steam engine.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ancestral structure did the bacterial flagellum most likely evolve from?",
+            "options": [
+              "A primitive cilium",
+              "The type-III secretion system (a protein injection apparatus)",
+              "ATP synthase",
+              "A ribosomal subunit"
+            ],
+            "correct": 1,
+            "explanation": "The flagellar basal body shares homologous proteins with the type-III secretion system bacteria use to inject toxins into host cells — the motor is a repurposed syringe."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T22:37:55.298Z",
+    "label": "The Bacterial Rotary Motor",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-20-car-t-smoldering-myeloma-prevention": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MYELOMA IS",
+        "body": "Multiple myeloma is a cancer of plasma cells — the antibody factories of the immune system. Malignant plasma cells crowd out the bone marrow, crumbling bones from within and poisoning kidneys with excess protein fragments.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The precursor stage is called *smoldering myeloma* — malignant cells are present but the damage to bones, blood, and kidneys hasn't started yet. Historically, doctors watched and waited."
+          }
+        ]
+      },
+      {
+        "heading": "HOW CAR-T WORKS",
+        "body": "Doctors extract a patient's T-cells, genetically engineer them in a lab to display a receptor that recognizes a specific cancer marker, then reinfuse millions of them. The modified T-cells hunt and destroy any cell carrying that marker.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does CAR-T therapy modify to attack cancer?",
+            "options": [
+              "The patient's own T-cells",
+              "Donor stem cells",
+              "Cancer cells directly",
+              "Bone marrow tissue"
+            ],
+            "correct": 0,
+            "explanation": "CAR-T is autologous — the patient's own immune cells are re-engineered and returned, which is why each dose is custom-manufactured."
+          }
+        ]
+      },
+      {
+        "heading": "THE BCMA TARGET",
+        "body": "B-cell maturation antigen is a protein found almost exclusively on plasma cells. That specificity is why BCMA became the obsession of myeloma researchers — hit it and you hit the cancer without destroying the rest of the immune system."
+      },
+      {
+        "heading": "THE PREVENTION PIVOT",
+        "body": "Oncology has spent a century treating visible tumors. Using a powerful engineered therapy on people who feel healthy — but carry malignant cells — inverts that logic. The same shift happened with statins for cholesterol and antivirals for HIV exposure.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Carvykti",
+                "value": "~$525k",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Yescarta",
+                "value": "~$424k",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kymriah",
+                "value": "~$475k",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "cost of one-time CAR-T infusion"
+          }
+        ]
+      },
+      {
+        "heading": "THE CYTOKINE RISK",
+        "body": "CAR-T's signature danger is cytokine release syndrome — the engineered cells kill so many targets so fast that the immune system floods the bloodstream with signaling molecules, causing fever, organ failure, and sometimes death. Giving this to healthy-feeling patients raises the stakes of every side effect.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A second risk: **T-cell exhaustion**. Engineered cells can persist for years, but so can their off-target effects — including secondary cancers the FDA began flagging in 2024."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T22:38:18.374Z",
+    "label": "CAR-T & Myeloma Prevention",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-20-eu-replaceable-batteries-2027": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BATTERIES GOT GLUED",
+        "body": "Removable batteries required a plastic door, a gasket, and structural reinforcement around the cavity. Sealing the battery with adhesive freed 1-2mm of internal volume — enough for larger cells, thinner phones, and IP68 water resistance. The glue was never about durability; it was about millimeters.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The design shift happened around 2014-2016, when flagship phones universally moved from user-serviceable backs to *unibody* chassis — a transition driven by marketing as much as engineering."
+          }
+        ]
+      },
+      {
+        "heading": "THE BRUSSELS EFFECT",
+        "body": "The EU single market is large enough that manufacturers redesign globally rather than maintain two SKUs. USB-C on iPhones arrived worldwide because the EU mandated it for the EU. Replaceable batteries will follow the same path — Brussels writes a rule, the world gets the product.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do EU product rules typically become global standards?",
+            "options": [
+              "WTO treaties require worldwide harmonization",
+              "Single-market scale makes dual SKUs uneconomic",
+              "US law defers to EU technical standards",
+              "Chinese factories only tool for EU specs"
+            ],
+            "correct": 1,
+            "explanation": "The 'Brussels Effect' works through market size: splitting production lines costs more than redesigning once to the stricter rule."
+          }
+        ]
+      },
+      {
+        "heading": "THE LITHIUM DEGRADATION CURVE",
+        "body": "Lithium-ion cells lose roughly 20% of capacity after 500 full charge cycles — about two years of daily use. After that, a phone that ran 14 hours runs 10. Battery replacement, not processor obsolescence, is what actually ends most phones' useful life."
+      },
+      {
+        "heading": "THE E-WASTE MATH",
+        "body": "The EU discards about 150,000 tonnes of portable batteries annually, most embedded in devices too expensive to repair. Cobalt, lithium, and nickel sit in landfills while new mines open in Congo and Indonesia. Extending device life by two years cuts lifecycle emissions by roughly a third.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "DR Congo",
+                "value": "~70% cobalt",
+                "cc": "CD"
+              },
+              {
+                "label": "Australia",
+                "value": "~52% lithium",
+                "cc": "AU"
+              },
+              {
+                "label": "Indonesia",
+                "value": "~48% nickel",
+                "cc": "ID"
+              },
+              {
+                "label": "China",
+                "value": "~65% refining",
+                "cc": "CN"
+              }
+            ],
+            "label": "battery minerals — where they come from"
+          }
+        ]
+      },
+      {
+        "heading": "THE RIGHT-TO-REPAIR LINEAGE",
+        "body": "Massachusetts passed the first auto right-to-repair law in 2012, forcing carmakers to share diagnostic data with independent shops. The EU's 2019 Ecodesign directive extended the principle to washing machines and TVs. Phones were the holdout — now they're not."
+      },
+      {
+        "heading": "WHAT 'REPLACEABLE' ACTUALLY MEANS",
+        "body": "The regulation defines replaceable as removable with 'commercially available tools' — no proprietary pentalobe screws, no heat guns, no adhesive requiring solvents. An average user with a standard screwdriver must be able to swap the cell. This is a higher bar than Apple's current self-service repair program clears."
+      }
+    ],
+    "generatedAt": "2026-04-20T22:38:48.622Z",
+    "label": "Right to Repair & Battery Design",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-20-gaza-71-billion-recovery-report": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE",
+        "body": "Gaza's $71.4bn damage figure exceeds the entire GDP of the Palestinian territories many times over. For comparison, post-war reconstruction assessments for Syria after a decade of war ran around $250bn — Gaza's 365 km² absorbed roughly a quarter of that cost in under two years.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Syria (decade)",
+                "value": "~$250bn",
+                "weight": 250
+              },
+              {
+                "label": "Gaza (2 yrs)",
+                "value": "$71.4bn",
+                "weight": 71
+              },
+              {
+                "label": "Ukraine (3 yrs)",
+                "value": "~$486bn",
+                "weight": 486
+              },
+              {
+                "label": "Lebanon 2006",
+                "value": "~$3.6bn",
+                "weight": 3.6
+              }
+            ],
+            "label": "post-war recovery estimates"
+          }
+        ]
+      },
+      {
+        "heading": "THE NAKBA ECHO",
+        "body": "The 1948 Nakba displaced roughly 750,000 Palestinians; their descendants number around 6 million today, most still registered as refugees with UNRWA. Gaza was built as a refugee enclave after that expulsion — two-thirds of its pre-war population were already refugees or their descendants before this round of destruction."
+      },
+      {
+        "heading": "WHAT 84% CONTRACTION MEANS",
+        "body": "An economy shrinking 84% in under two years has no modern peacetime precedent. The closest comparisons are the 1994 Rwandan genocide aftermath and the 1945 collapse of industrial Germany. Most of Gaza's productive capacity — farms, fisheries, factories, universities — is physically destroyed, not merely paused.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The World Bank classifies a crisis as *severe* at **10%** contraction. Gaza's **84%** places it outside the charts used for post-conflict recovery modeling."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUBBLE PROBLEM",
+        "body": "Gaza contains an estimated 50 million tonnes of rubble laced with unexploded ordnance, asbestos, and human remains. UN estimates put clearance alone at 14 years with current equipment access. Rubble must be cleared before reconstruction begins — and Israel controls what machinery enters through the crossings."
+      },
+      {
+        "heading": "WHO FUNDS IT",
+        "body": "Historically, Gulf donors (Saudi Arabia, Qatar, UAE) and the EU have footed most Gaza reconstruction bills. After the 2014 war, $5.4bn was pledged at Cairo but only 35% materialized within three years. Donor fatigue compounds with each cycle — rebuilding what is repeatedly destroyed is a political ask few governments sustain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After the 2014 Gaza war, how much of the $5.4bn pledged at the Cairo donor conference actually arrived within three years?",
+            "options": [
+              "About 35%",
+              "About 70%",
+              "Nearly 100%",
+              "Over 120%"
+            ],
+            "correct": 0,
+            "explanation": "Roughly a third materialized on schedule — donor pledges routinely outpace disbursement, especially when reconstruction is seen as temporary before the next cycle."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOVERNANCE QUESTION",
+        "body": "The World Bank and EU require Palestinian governance of reconstruction funds — a standard anti-corruption and legitimacy measure. Trump's 'Gaza Riviera' proposal, which envisioned American clearance and redevelopment without Palestinian authority, is structurally incompatible with how multilateral reconstruction finance works.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PS",
+              "IL",
+              "EG",
+              "JO"
+            ],
+            "label": "the immediate stakeholders"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T22:39:17.099Z",
+    "label": "Gaza Reconstruction Economics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-idf-soldier-lebanon-jesus-statue": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "DEBL AND THE CHRISTIAN SOUTH",
+        "body": "Southern Lebanon is not uniformly Shia. A belt of Maronite and Melkite Catholic villages — Debl, Rmeish, Ain Ebel, Alma al-Shaab — has existed continuously since the Crusader era, predating the modern Lebanese state by centuries. These villages sat inside Israel's 1982–2000 occupation zone and again fall within the current post-ceasefire buffer.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the southern Lebanese Christian belt"
+          }
+        ]
+      },
+      {
+        "heading": "THE CEASEFIRE THAT DIDN'T END THE OCCUPATION",
+        "body": "The November 2024 ceasefire required Israel to withdraw from Lebanese territory within 60 days. That deadline passed; Israel retained five hilltop positions, citing security needs. Debl sits within this holdover zone — formally Lebanese, practically occupied, with no timetable for return."
+      },
+      {
+        "heading": "THE LEGAL FRAME",
+        "body": "Destruction of religious property by an occupying force is specifically prohibited by the Fourth Geneva Convention and the 1954 Hague Convention on cultural property in armed conflict. Enforcement mechanisms are weak, but the categorization matters — these are not ordinary vandalism incidents in international law.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Any destruction by the Occupying Power of real or personal property belonging individually or collectively to private persons... is prohibited.",
+            "speaker": "Fourth Geneva Convention, Article 53",
+            "year": "1949"
+          }
+        ]
+      },
+      {
+        "heading": "THE ROSSING CENTER TALLY",
+        "body": "The Rossing Center, a Jerusalem-based interfaith NGO, has tracked anti-Christian incidents inside Israel since 2023. Its 2025 count of 155 — spitting on clergy, church vandalism, cemetery desecration — marks a sharp rise from pre-war baselines. The documentation comes from Christian sources, not Palestinian or Muslim advocates, which is why Israeli authorities cannot easily dismiss it."
+      },
+      {
+        "heading": "WHY THE STATUE MATTERS STRATEGICALLY",
+        "body": "Lebanon's Maronites have historically been the community most open to accommodation with Israel — the 1982 invasion relied on Maronite militia alliances, and the South Lebanon Army was overwhelmingly Christian. Desecrating Christian sites in occupied villages forfeits the one Lebanese constituency that was ever a potential partner.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **South Lebanon Army**, Israel's proxy from 1978–2000, drew most of its fighters from these same Christian border villages. A generation later, the sledgehammer lands on their saints."
+          }
+        ]
+      },
+      {
+        "heading": "THE TEST",
+        "body": "Military discipline for soldier misconduct in occupied territory is the bright line between an accountable army and an impunity regime. Historically, IDF courts-martial for property destruction in Lebanon and the West Bank have produced suspended sentences or administrative punishments, rarely prison. Debl's mayor is asking whether this case is different.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Lebanese Christian denomination is historically largest and most politically organized?",
+            "options": [
+              "Greek Orthodox",
+              "Maronite Catholic",
+              "Armenian Apostolic",
+              "Melkite Greek Catholic"
+            ],
+            "correct": 1,
+            "explanation": "Maronites, in full communion with Rome since the 12th century, are guaranteed the Lebanese presidency under the 1943 National Pact."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T22:39:46.914Z",
+    "label": "Southern Lebanon & Christian Villages",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-nigeria-north-central-education-budget": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 26% BENCHMARK",
+        "body": "UNESCO recommends countries allocate 15-20% of public expenditure to education; the 26% figure often cited in Nigerian policy debate traces to a misattributed UNESCO target that no such binding standard actually sets. It has nonetheless become the rhetorical yardstick Nigerian civil society uses to shame state budgets.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **26%** number is aspirational, not treaty-bound — but it has hardened into political currency regardless of its contested provenance."
+          }
+        ]
+      },
+      {
+        "heading": "BUDGETED VS RELEASED",
+        "body": "Nigerian state budgets operate in three tiers: approved, released, and utilized. A ministry can be allocated ₦10 billion on paper, receive ₦4 billion in actual cash, and spend ₦3 billion by year-end. The gap between approved and released is where fiscal reality diverges from legislative intent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In Nigerian state budgeting, which figure typically represents the smallest amount?",
+            "options": [
+              "Approved budget",
+              "Released funds",
+              "Utilized spending",
+              "They are usually equal"
+            ],
+            "correct": 2,
+            "explanation": "Utilized spending is almost always lowest — procurement delays, cash rationing, and capital-project underperformance compound the gap from approved down to released down to actually spent."
+          }
+        ]
+      },
+      {
+        "heading": "THE OUT-OF-SCHOOL CRISIS",
+        "body": "Nigeria has roughly 20 million out-of-school children — the largest such population in the world. The burden is concentrated in the North, where insecurity from Boko Haram and bandit groups has closed or destroyed thousands of schools, and where early-marriage norms keep girls home."
+      },
+      {
+        "heading": "WHY NORTH-CENTRAL MATTERS",
+        "body": "The North-central belt — Benue, Nasarawa, Plateau, Kogi, Kwara, Niger — is Nigeria's middle zone, geographically and demographically. It is neither the oil-rich South nor the insurgency-hit Northeast, but it hosts the farmer-herder conflicts that have killed thousands and displaced entire communities, disrupting school attendance at scale.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG"
+            ],
+            "label": "North-central Nigeria"
+          }
+        ]
+      },
+      {
+        "heading": "NO FEDERAL ENFORCEMENT",
+        "body": "Nigeria's 1999 constitution places basic education on the concurrent list — both federal and state governments share jurisdiction, but states control implementation. The Universal Basic Education Act (2004) created a matching-grant mechanism, but states that fail to access their UBEC funds face no meaningful penalty; unclaimed billions sit in federal accounts year after year.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **UBEC** matching-grant model requires states to contribute 50% to unlock federal funds — a structure that punishes the poorest states most, since they lack the counterpart cash to claim what's already allocated to them."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEMOGRAPHIC CLOCK",
+        "body": "Nigeria's population is projected to reach 400 million by 2050, overtaking the United States as the world's third-most populous country. Roughly 60% of Nigerians are under 25. Every year of underfunded schooling compounds a human-capital deficit that shapes whether that demographic wave becomes a dividend or a burden."
+      }
+    ],
+    "generatedAt": "2026-04-20T22:40:14.219Z",
+    "label": "Nigeria's Education Funding Gap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-20-pakistan-hybrid-sukuk-390m": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A SUKUK ACTUALLY IS",
+        "body": "A sukuk is not a bond. A bondholder lends money and collects interest; a sukuk holder owns a fractional share of a real asset — a toll road, a power plant, a building — and collects the income it generates. The distinction matters because riba (interest) is forbidden in Islamic law, but profit from ownership is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arabic word *sukuk* is the plural of *sakk* — a medieval promissory note that entered European languages as *cheque*."
+          }
+        ]
+      },
+      {
+        "heading": "THE HYBRID TRICK",
+        "body": "A hybrid sukuk bundles a Shariah-compliant tranche with a conventional tranche in one deal. This lets an issuer tap two pools of capital — Gulf Islamic funds mandated to avoid interest-bearing debt, and conventional EM bond buyers — without running two separate roadshows.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't a traditional Gulf Islamic fund buy a conventional eurobond?",
+            "options": [
+              "Currency restrictions from the central bank",
+              "Shariah mandates prohibit earning interest (riba)",
+              "Gulf funds only invest domestically",
+              "Conventional bonds have lower yields"
+            ],
+            "correct": 1,
+            "explanation": "Islamic finance forbids riba — interest income — so Shariah-compliant funds need asset-backed structures like sukuk instead of conventional debt."
+          }
+        ]
+      },
+      {
+        "heading": "THE GULF PIVOT",
+        "body": "Pakistan has leaned on Gulf capitals — Riyadh, Abu Dhabi, Doha — for bilateral deposits and oil deferrals through every balance-of-payments crisis since the 1990s. Tapping Gulf Islamic bond markets is the logical extension: the same capital pool, routed through a Shariah wrapper instead of a central-bank hotline.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AE",
+              "SA",
+              "QA"
+            ],
+            "label": "Pakistan's Gulf lifeline"
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF TRAP",
+        "body": "Pakistan is in its 24th IMF programme since 1958 — more than any other country. Each tranche is unlocked by a review confirming fiscal targets were met. A successful sukuk ahead of a review signals market access, which the IMF reads as a positive sign; a failed auction would read as the opposite.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.817084,
+              278.938921,
+              278.846901,
+              279.174143,
+              278.822517,
+              279.2,
+              278.184288,
+              278.387431,
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081
+            ],
+            "periods": [
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE REPAYMENT TREADMILL",
+        "body": "Pakistan raised $390m and repaid $2bn to the UAE in the same week. This is the external-debt treadmill: new borrowing refinances old borrowing, and the country's reserves stay roughly flat while gross flows churn. The headline number is the issuance; the real story is the net position.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Total external debt",
+                "value": "~$131bn",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "FX reserves",
+                "value": "~$12bn",
+                "tone": "neutral"
+              },
+              {
+                "label": "Annual debt service",
+                "value": "~$25bn",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Pakistan external debt snapshot"
+          }
+        ]
+      },
+      {
+        "heading": "THE MALAYSIAN TEMPLATE",
+        "body": "Malaysia pioneered the modern sovereign sukuk market in 2002 and remains the largest issuer globally. Kuala Lumpur's standardised contracts and Shariah board rulings became the template other issuers — Indonesia, Turkey, the UK, now Pakistan — built on. Islamic finance is a $3tn industry today largely because Malaysia wrote the legal plumbing."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-20T22:40:41.502Z",
+    "label": "Sukuk & Islamic Finance",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-20-ram-shortage-ai-capex": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLIGOPOLY",
+        "body": "Samsung, SK Hynix, and Micron produce roughly 95% of the world's DRAM. Four decades of sub-10nm lithography investment and multibillion-dollar fab costs eliminated every other competitor, leaving three companies to allocate global memory supply.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Samsung",
+                "value": "~43%",
+                "cc": "KR",
+                "weight": 43
+              },
+              {
+                "label": "SK Hynix",
+                "value": "~34%",
+                "cc": "KR",
+                "weight": 34
+              },
+              {
+                "label": "Micron",
+                "value": "~23%",
+                "cc": "US",
+                "weight": 23
+              }
+            ],
+            "label": "global DRAM share"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HBM WINS THE WAFER",
+        "body": "High Bandwidth Memory stacks DRAM dies vertically using through-silicon vias, multiplying bandwidth for AI workloads. HBM margins run 5–10x commodity DRAM, so fabs prioritize it. Every wafer allocated to HBM is a wafer not making the DDR5 that phones and laptops need.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The squeeze is structural: **HBM** serves Nvidia and the hyperscalers; **DDR** serves everyone else. When the premium customer can absorb any price, the commodity customer waits."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPEX CYCLE",
+        "body": "DRAM is famously cyclical — fabs take 2–3 years to build, so supply lags demand by the same margin. The last glut (2023) forced cuts; the AI demand surge hit before new capacity came online. Shortages now feed forward until fabs planned in 2024–2025 actually ship wafers.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              24987.57,
+              25326.58,
+              25518.35,
+              25605.47,
+              25713.21,
+              25939.74,
+              26022.79,
+              25884.3,
+              25552.39,
+              25738.61,
+              25338.62,
+              24891.24,
+              24548.69,
+              25075.77,
+              25268.14,
+              25127.64,
+              25201.26,
+              24687.61,
+              24732.73,
+              24701.6,
+              24898.87,
+              24797.34,
+              25012.62,
+              24708.94,
+              24977.04,
+              25329.04,
+              25034.37,
+              24960.04,
+              24992.6,
+              24720.08,
+              25093.68,
+              25020.41,
+              24643.01,
+              24967.25,
+              24956.47,
+              24965.01,
+              24533.58,
+              24380.73,
+              24655.34,
+              24780.42,
+              24425.09,
+              24355.28,
+              23898.15,
+              24188.59,
+              24002.45,
+              24162.98,
+              23586.99,
+              23132.77,
+              22953.38,
+              23740.19,
+              24019.99,
+              24045.53,
+              24192.17,
+              24202.37,
+              24903.17,
+              25082.09,
+              25116.34,
+              25383.72,
+              25842,
+              26204.58,
+              26333,
+              26672.43
+            ],
+            "periods": [
+              "Jan 20",
+              "Jan 21",
+              "Jan 22",
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17"
+            ],
+            "label": "NASDAQ-100",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO LOSES FIRST",
+        "body": "When supply tightens, chipmakers honor long-term contracts with hyperscalers before spot buyers. Smartphone OEMs and PC builders, who buy closer to spot, see price spikes first. Contract DRAM prices rose 20%+ in Q4 2025; consumer device BOMs followed within a quarter."
+      },
+      {
+        "heading": "THE KOREA CONCENTRATION",
+        "body": "Two of the three DRAM makers — and the vast majority of HBM capacity — sit in South Korea, clustered around Icheon and Pyeongtaek. Any disruption on the peninsula, from grid failure to geopolitical crisis, is a global memory supply shock.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KR",
+              "US",
+              "TW",
+              "JP"
+            ],
+            "label": "where the memory is made"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 2030",
+        "body": "SK Group's chairman points to 2030 because that is when the next generation of fabs — announced in 2024–2025 — reach full yield. Until then, AI datacenter buildouts absorb incremental capacity faster than it comes online, keeping consumer allocations tight.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does HBM production squeeze consumer DRAM supply?",
+            "options": [
+              "HBM uses different silicon that can't make DDR",
+              "HBM shares the same fab capacity but earns far higher margins",
+              "Governments mandate HBM production over consumer memory",
+              "HBM requires rare materials that DDR doesn't need"
+            ],
+            "correct": 1,
+            "explanation": "HBM and DDR are made on the same DRAM fabs — when HBM margins are 5–10x higher, fabs reallocate wafers and consumer supply falls."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · NASDAQ · as of 2026-04-17"
+    ],
+    "generatedAt": "2026-04-20T22:41:09.615Z",
+    "label": "DRAM & the AI Memory Squeeze",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-20-south-africa-amnesty-task-team-report": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRC BARGAIN",
+        "body": "The Truth and Reconciliation Commission offered individual amnesty in exchange for full disclosure of politically motivated crimes. Perpetrators who told the full truth walked free; those who refused — or were denied — were supposed to face prosecution. The second half of the deal is what was never delivered.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The TRC was explicitly **conditional amnesty**, not blanket amnesty. Apartheid-era figures who stayed silent, lied, or never applied were meant to be handed to the **National Prosecuting Authority** for trial."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUMBERS",
+        "body": "Over 7,000 people applied for amnesty between 1996 and 2001; roughly 1,500 received it. The remaining ~5,500 — plus the thousands who never applied at all — constituted a docket of prosecutable cases the NPA inherited when the TRC closed.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Applied",
+                "value": "~7,000",
+                "weight": 7000
+              },
+              {
+                "label": "Granted",
+                "value": "~1,500",
+                "weight": 1500,
+                "tone": "favorable"
+              },
+              {
+                "label": "Denied/lapsed",
+                "value": "~5,500",
+                "weight": 5500,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "TRC amnesty applications"
+          }
+        ]
+      },
+      {
+        "heading": "THE MBEKI-ERA FREEZE",
+        "body": "From the early 2000s, TRC-era prosecutions effectively stopped. Lawyers, families, and former NPA prosecutors have since alleged that senior officials under Mbeki's presidency instructed the NPA to stand down on apartheid cases — an arrangement the Task Team report would have formalized in law."
+      },
+      {
+        "heading": "WHY THE SHIELD WAS NEEDED",
+        "body": "South Africa's 1996 Constitution makes executive indemnities reviewable by the courts. An informal freeze can be overturned by a single judge ordering the NPA to prosecute. A constitutional amendment shielding indemnity laws from review would have locked the freeze in permanently — which is why the proposal existed at all.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why would apartheid-era amnesty require a constitutional amendment rather than ordinary legislation?",
+            "options": [
+              "Ordinary laws expire after ten years under South African rules",
+              "The Constitution lets courts strike down laws that conflict with rights protections",
+              "Parliament lacks authority to grant amnesty",
+              "International treaties override domestic statutes"
+            ],
+            "correct": 1,
+            "explanation": "South Africa's Constitutional Court can invalidate any statute — including indemnity laws — that violates rights like access to justice. Only a constitutional amendment is immune."
+          }
+        ]
+      },
+      {
+        "heading": "THE KHAMPEPE COMMISSION",
+        "body": "Commissions of inquiry in South Africa have no prosecutorial power, but they can compel documents and testimony under oath. Their real weapon is the evidentiary record they build — which the NPA, civil society, and private prosecutors can then weaponize in court long after the commission closes."
+      },
+      {
+        "heading": "THE UNFINISHED DOCKET",
+        "body": "Key cases still open include the Cradock Four, the Highgate Hotel massacre, and dozens of Security Branch killings. Families have litigated for decades to force inquests and prosecutions; several recent rulings have explicitly blamed political interference for the delays."
+      }
+    ],
+    "generatedAt": "2026-04-20T22:41:38.493Z",
+    "label": "The TRC's Unfinished Business",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-venezuela-mining-law-corruption": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARCO MINERO",
+        "body": "In 2016 Maduro decreed a 112,000 km² mining zone south of the Orinoco — an area larger than Portugal — open to concessionaires with suspended environmental review. The decree bypassed the National Assembly entirely, and the zone overlaps ancestral lands of the Pemón, Ye'kuana, and Yanomami.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VE",
+              "CO",
+              "BR",
+              "GY"
+            ],
+            "label": "the Arco Minero and its borders"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY MINES",
+        "body": "Control of individual pits is divided among the ELN (Colombia's National Liberation Army), FARC dissidents, Venezuelan sindicatos, and rogue military units. The state does not extract the gold; it taxes the armed groups that do, usually in kind at the pit mouth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Spanish term is *pranato* — the rule of a *pran*, a criminal boss who governs a mine the way a warlord governs a village: taxes, courts, executions."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESOURCE CURSE",
+        "body": "Venezuela has the world's largest proven oil reserves and significant gold deposits, yet GDP per capita collapsed roughly 75% between 2013 and 2021. The pattern is canonical: commodity windfalls hollow out manufacturing, concentrate rents in whoever controls the export choke point, and make the state dependent on a single volatile price.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4505.42,
+              4479.65,
+              4443.43,
+              4541.69,
+              4498.14,
+              4406.69,
+              4498.89,
+              4498.84,
+              4452.09,
+              4512.52,
+              4677.96,
+              4767.73,
+              4667.9,
+              4648.37,
+              4649.49,
+              4601.41,
+              4641.57,
+              4795.94,
+              4704.69,
+              4746.97,
+              4736.29,
+              4735.2,
+              4650.83,
+              4743.12,
+              4831.44,
+              4813,
+              4779.06,
+              4821.21,
+              4777.22,
+              4736.06,
+              4812.92
+            ],
+            "periods": [
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 20"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "HOW DIRTY GOLD LAUNDERS",
+        "body": "Gold is melted, recast, and assigned fresh paperwork in a transit hub — historically Curaçao, Aruba, Turkey, and the UAE. Once refined to LBMA standards in Dubai or Istanbul, the metal is indistinguishable from legitimate supply. Unlike oil, gold carries no isotopic fingerprint that survives smelting.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Turkey",
+                "value": "$900m+ (2018)",
+                "cc": "TR"
+              },
+              {
+                "label": "UAE",
+                "value": "major hub",
+                "cc": "AE"
+              },
+              {
+                "label": "Curaçao",
+                "value": "historic route",
+                "cc": "CW"
+              },
+              {
+                "label": "Uganda",
+                "value": "refining node",
+                "cc": "UG"
+              }
+            ],
+            "label": "Venezuelan gold transit hubs (UN Panel, Reuters reporting)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS PIVOT",
+        "body": "The Trump administration sanctioned Venezuelan gold exports in 2018 after Maduro used bullion to bypass oil sanctions. The January 2026 lifting is part of a broader bet: legal foreign capital will displace the armed networks faster than enforcement ever could. The Iraqi oil-for-food precedent suggests the opposite — legal channels more often coexist with illicit ones than replace them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When Venezuela was cut off from oil markets in 2019, which asset did Maduro increasingly use to pay for imports?",
+            "options": [
+              "Bitcoin reserves",
+              "Gold bullion flown to Turkey and UAE",
+              "Chinese yuan swap lines",
+              "Diamonds from the Arco Minero"
+            ],
+            "correct": 1,
+            "explanation": "Central bank gold — much of it sourced from the Arco Minero — was flown out in chartered cargo planes, exchanged abroad for euros and goods."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-20T22:42:07.341Z",
+    "label": "Arco Minero & Resource Capture",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-warsh-fed-confirmation-hearing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRUCTURE",
+        "body": "The Fed Chair is nominated by the president, confirmed by the Senate, and serves a four-year term that deliberately does not align with the presidential cycle. Governors serve 14-year terms for the same reason — to outlast the administration that appointed them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The staggered terms are the *core* architectural feature: no single president can stack the board in one term."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDEPENDENCE EXISTS",
+        "body": "Governments that control money printing face a permanent temptation: cut rates before elections, deal with inflation after. The Bundesbank model — built by a generation that remembered Weimar hyperinflation — became the template copied into the Fed's post-Volcker posture and the ECB's charter.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany (Buba/ECB)",
+                "value": "very high",
+                "tone": "favorable"
+              },
+              {
+                "label": "United States",
+                "value": "high",
+                "tone": "favorable"
+              },
+              {
+                "label": "Turkey",
+                "value": "low",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Argentina",
+                "value": "very low",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "central bank independence index (higher = more independent)"
+          }
+        ]
+      },
+      {
+        "heading": "THE REMOVAL QUESTION",
+        "body": "The Federal Reserve Act allows the president to remove governors only 'for cause' — meaning malfeasance, not policy disagreement. This statutory protection is what makes Fed independence operational rather than merely customary. A criminal probe reframes a policy disagreement as 'cause.'"
+      },
+      {
+        "heading": "THE NIXON PRECEDENT",
+        "body": "In 1971, Nixon pressured Fed Chair Arthur Burns to keep rates low before the 1972 election. Burns complied. The resulting monetary expansion helped trigger the 1970s stagflation that took Volcker's 20% rates and a deep recession to break.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "I don't want to go out of town quickly. I want to go out like a champion.",
+            "speaker": "Richard Nixon to Arthur Burns, Oval Office tapes",
+            "year": "1971"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONFIRMATION MATH",
+        "body": "Fed nominees need a simple Senate majority. The Banking Committee vote is advisory but politically decisive — a negative committee report has killed nominations before reaching the floor. A single senator cannot block a vote, but can extract concessions by threatening to withhold the quorum the committee needs to report.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What vote threshold does a Fed Chair nominee need in the Senate?",
+            "options": [
+              "Simple majority (51)",
+              "Supermajority (60) to overcome filibuster",
+              "Two-thirds (67) like treaty ratification",
+              "Unanimous consent"
+            ],
+            "correct": 0,
+            "explanation": "The 2013 nuclear option removed the filibuster for most executive-branch nominations, including Fed appointments — only a simple majority is required."
+          }
+        ]
+      },
+      {
+        "heading": "THE SIGNALING EFFECT",
+        "body": "Markets price Fed independence into the long end of the Treasury curve. When independence is perceived as weakening, long-term yields rise as investors demand compensation for future inflation risk — even if short-term rates are being pushed down.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4.3,
+              4.26,
+              4.26,
+              4.24,
+              4.22,
+              4.24,
+              4.26,
+              4.24,
+              4.26,
+              4.29,
+              4.28,
+              4.29,
+              4.21,
+              4.22,
+              4.22,
+              4.16,
+              4.18,
+              4.09,
+              4.04,
+              4.05,
+              4.09,
+              4.08,
+              4.08,
+              4.03,
+              4.04,
+              4.05,
+              4.02,
+              3.97,
+              4.05,
+              4.06,
+              4.09,
+              4.13,
+              4.15,
+              4.12,
+              4.15,
+              4.21,
+              4.27,
+              4.28,
+              4.23,
+              4.2,
+              4.26,
+              4.25,
+              4.39,
+              4.34,
+              4.39,
+              4.33,
+              4.42,
+              4.44,
+              4.35,
+              4.3,
+              4.33,
+              4.31,
+              4.35,
+              4.34,
+              4.33,
+              4.29,
+              4.29,
+              4.31,
+              4.3,
+              4.26,
+              4.29,
+              4.32,
+              4.26
+            ],
+            "periods": [
+              "Jan 20",
+              "Jan 21",
+              "Jan 22",
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17"
+            ],
+            "label": "US 10y Treasury",
+            "unit": "%",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · Board of Governors · as of 2026-04-17"
+    ],
+    "generatedAt": "2026-04-20T22:42:34.231Z",
+    "label": "Fed Independence & Confirmation",
+    "category": "economy",
+    "articleCount": 1
   }
 }
