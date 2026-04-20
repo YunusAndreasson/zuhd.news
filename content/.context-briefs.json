@@ -22444,5 +22444,1327 @@
     "label": "Secrets, Frontends & the Web3 Paradox",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-20-africa-ai-moderation-language-coverage-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE",
+        "body": "Africa is home to roughly 2,000 languages — about a third of all human languages spoken today. Nigeria alone has over 500. The continent's linguistic density is unmatched; its digital representation is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Of those ~2,000 languages, only **4** — typically Swahili, Hausa, Yoruba, Amharic — are handled consistently by frontier models. The rest are what researchers call **low-resource languages**: too little digital text to train on."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DATA IS THE CONSTRAINT",
+        "body": "Large language models learn from text scraped off the internet. English has trillions of tokens available. Wolof, Tigrinya, Luganda, or Kinyarwanda have a few million at best — often orders of magnitude below the threshold where models learn reliable grammar, let alone cultural nuance."
+      },
+      {
+        "heading": "THE MODERATION MECHANIC",
+        "body": "Platforms moderate at scale using classifiers that score text for hate speech, incitement, or graphic content. A classifier trained mostly on English mislabels or ignores posts in languages it was never shown. The result is uneven enforcement — strict in English, absent in Amharic.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "English",
+                "value": "~3.5tn tokens",
+                "weight": 3500,
+                "tone": "favorable"
+              },
+              {
+                "label": "Swahili",
+                "value": "~500m",
+                "weight": 0.5
+              },
+              {
+                "label": "Hausa",
+                "value": "~100m",
+                "weight": 0.1
+              },
+              {
+                "label": "Wolof",
+                "value": "<10m",
+                "weight": 0.01,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "training data by language (rough order of magnitude)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ETHIOPIA PRECEDENT",
+        "body": "During the Tigray war (2020–2022), Facebook was sued for allegedly amplifying violent content in Amharic and Oromo it could not moderate. Internal whistleblower documents showed the platform had a fraction of the classifiers for Ethiopian languages that it had for English — in a country of 120 million.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ET",
+              "KE",
+              "NG",
+              "ZA",
+              "SN"
+            ],
+            "label": "moderation gap hotspots"
+          }
+        ]
+      },
+      {
+        "heading": "THE ECONOMIC LOGIC",
+        "body": "Platforms invest in language coverage roughly in proportion to ad revenue from that market. African ad markets are small relative to user counts — which means engineering investment lags user growth by years. The people most exposed to unmoderated incitement are the least commercially valuable to the platform.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many of Africa's ~2,000 languages are handled consistently by major AI systems?",
+            "options": [
+              "About 4",
+              "About 50",
+              "About 200",
+              "Nearly all major ones"
+            ],
+            "correct": 0,
+            "explanation": "A 2025 study found only 4 African languages receive consistent handling across major AI systems — the remaining ~1,996 sit in the long tail of low-resource languages."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T08:29:25.066Z",
+    "label": "AI & African Languages",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-20-effects-of-prucalopride-succinate-on-postoperative-bowel-mot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROBLEM",
+        "body": "After abdominal surgery, the gut goes temporarily silent. Peristalsis halts for 2-5 days even when nothing is mechanically obstructed. Patients can't eat, hospital stays lengthen, and complications rise. This is postoperative ileus, and it affects nearly every major abdominal operation."
+      },
+      {
+        "heading": "WHY THE GUT SHUTS DOWN",
+        "body": "Surgical handling of the bowel triggers an inflammatory cascade in the muscle layer. Macrophages release cytokines that paralyze smooth muscle. Sympathetic reflexes from incision pain add a second brake. The colon is slowest to recover — often two days behind the small intestine.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The colon's lag is why clinicians watch for the first passage of flatus — a crude but reliable marker that *inflammatory paralysis* has lifted and normal **migrating motor complexes** have resumed."
+          }
+        ]
+      },
+      {
+        "heading": "THE SEROTONIN LEVER",
+        "body": "About 95% of the body's serotonin lives in the gut, not the brain. Enterochromaffin cells release it in response to luminal stretch, activating 5-HT4 receptors on enteric neurons that drive peristalsis. Drugs that selectively agonize 5-HT4 can restart a stalled bowel without the cardiac risks that killed earlier prokinetics."
+      },
+      {
+        "heading": "WHY PRUCALOPRIDE, NOT CISAPRIDE",
+        "body": "Cisapride — the first 5-HT4 agonist — was pulled from most markets around 2000 after causing fatal arrhythmias by also blocking hERG potassium channels in the heart. Prucalopride was engineered for selectivity: strong 5-HT4 affinity, negligible hERG binding. Same lever, no QT prolongation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why was cisapride, the first major 5-HT4 agonist prokinetic, withdrawn?",
+            "options": [
+              "It caused fatal cardiac arrhythmias via hERG channel blockade",
+              "It was shown to be no better than placebo",
+              "It caused severe liver toxicity",
+              "Its patent expired and manufacturing stopped"
+            ],
+            "correct": 0,
+            "explanation": "Cisapride blocked cardiac hERG potassium channels, prolonging QT intervals and triggering torsades de pointes. Prucalopride was designed to avoid this off-target effect."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DAY 5, NOT DAY 3",
+        "body": "The small intestine recovers motility within 24 hours regardless of drug. The stomach takes 24-48 hours. The colon — with its longer segments, slower intrinsic rhythm, and heavier inflammatory burden — is the rate-limiting organ. Differences between prokinetics only show up once colonic transit becomes the bottleneck."
+      },
+      {
+        "heading": "THE INFLAMMATION CONNECTION",
+        "body": "5-HT4 agonists don't just push muscle — they also dampen macrophage activation in the gut wall. This dual effect explains why the trial saw lower inflammatory markers alongside faster transit. Whether the anti-inflammatory action drives the motility benefit or merely accompanies it is the open mechanistic question."
+      }
+    ],
+    "generatedAt": "2026-04-20T08:29:52.657Z",
+    "label": "Postoperative Ileus & 5-HT4 Agonists",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-20-hormuz-twenty-ships-april-18-shipping-data": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASELINE",
+        "body": "Hormuz normally handles 80-100 tanker transits per day at full throughput. Twenty in a single day is not recovery — it is a trickle that signals the blockade is selective rather than absolute.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              54,
+              54,
+              72,
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3
+            ],
+            "periods": [
+              "Feb 20",
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY IRANIAN CARGO STILL MOVES",
+        "body": "A naval blockade that stops Iranian tankers entirely is legally an act of war against Iran. Allowing limited Iranian exports — while throttling volume — lets the blockading power claim it is regulating traffic, not waging siege. The distinction matters under the law of armed conflict.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term is **pacific blockade** — coercion short of war. The US Civil War blockade of the Confederacy was the last time a major power ran one at this scale."
+          }
+        ]
+      },
+      {
+        "heading": "THE KPLER METHOD",
+        "body": "Kpler and similar firms combine AIS ship transponder data, satellite imagery, and port records to reconstruct tanker movements. When ships switch off transponders — Iranian vessels routinely do — satellite SAR imagery fills the gap. The data is commercial but has become the de facto public record for sanctions enforcement.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do sanctioned tankers switch off AIS transponders?",
+            "options": [
+              "AIS is required only in territorial waters",
+              "To avoid regulatory tracking by sanctions enforcers",
+              "To save fuel on long voyages",
+              "AIS interferes with navigation radar"
+            ],
+            "correct": 1,
+            "explanation": "AIS broadcasts ship identity and position continuously. 'Going dark' is the first tactic of any sanctioned fleet, though satellite SAR now closes much of that gap."
+          }
+        ]
+      },
+      {
+        "heading": "THE UAE REROUTING",
+        "body": "The Habshan-Fujairah pipeline carries up to 1.5 million barrels per day from Abu Dhabi's fields to the Gulf of Oman, bypassing Hormuz entirely. Saudi Arabia's East-West Pipeline adds another 5 million bbl/day capacity. Together they can reroute roughly a third of Gulf exports — the rest has no alternative.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "AE",
+              "OM",
+              "SA"
+            ],
+            "label": "Hormuz and its bypass routes"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE SIGNAL",
+        "body": "Oil markets price not just current flows but the option value of future disruption. Brent above $120 reflects traders pricing a continued partial blockade plus tail risk of full closure — not the 20 ships that crossed on April 18.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              67.68,
+              66.72,
+              65.46,
+              68.16,
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28
+            ],
+            "periods": [
+              "Jan 20",
+              "Jan 21",
+              "Jan 22",
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR LESSON",
+        "body": "From 1984 to 1988, Iran and Iraq hit over 400 ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. Disruption is easier to threaten than to sustain; the current blockade is already testing that threshold."
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-12",
+      "FRED · EIA · as of 2026-04-13"
+    ],
+    "generatedAt": "2026-04-20T08:30:21.207Z",
+    "label": "Hormuz Under Partial Blockade",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-20-iran-pakistan-fm-ceasefire-mediation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PAKISTAN",
+        "body": "Pakistan is the only Muslim-majority nuclear power, shares a 900-km border with Iran, and maintains deep security ties with Saudi Arabia and the US simultaneously. No other state holds all three cards — which is why mediation roles keep landing in Islamabad despite its domestic turbulence.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "SA",
+              "TR",
+              "QA",
+              "US"
+            ],
+            "label": "the shuttle circuit"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2023 PRECEDENT",
+        "body": "In January 2024, Iran struck alleged Jaish al-Adl positions inside Pakistani Balochistan; Pakistan struck back within 48 hours hitting Baloch separatists in Iranian Sistan. The crisis was defused in a week through Gulf back-channels — the same playbook now being reused in reverse, with Pakistan as broker instead of belligerent.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lesson from 2024: both capitals prefer *managed* escalation to open war. The red lines are narrow and well-understood."
+          }
+        ]
+      },
+      {
+        "heading": "THE OIC TRADITION",
+        "body": "The Organisation of Islamic Cooperation, founded in 1969 after the al-Aqsa arson, has mediated intra-Muslim disputes for decades — Iran-Iraq during the 1980s war, Bosnia, the Rohingya file. It rarely produces settlements itself, but provides diplomatic cover for bilateral shuttles like Sharif's current consultations.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Shehbaz Sharif",
+                "role": "Pakistani Prime Minister",
+                "years": "2024–",
+                "cc": "PK"
+              },
+              {
+                "name": "Abbas Araghchi",
+                "role": "Iranian Foreign Minister",
+                "years": "2024–",
+                "cc": "IR"
+              },
+              {
+                "name": "Mohammed bin Salman",
+                "role": "Saudi Crown Prince",
+                "years": "2017–",
+                "cc": "SA"
+              },
+              {
+                "name": "Recep Tayyip Erdoğan",
+                "role": "Turkish President",
+                "years": "2014–",
+                "cc": "TR"
+              }
+            ],
+            "label": "the consulting capitals"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SAUDI MATTERS NOW",
+        "body": "The 2023 Beijing-brokered Saudi-Iran normalization ended a seven-year diplomatic freeze. Riyadh's willingness to talk to Tehran — unthinkable a decade ago when Saudi clerics routinely denounced Shi'a Iran — is what makes a Sunni-led mediation coalition possible at all.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country brokered the 2023 Saudi-Iran normalization deal?",
+            "options": [
+              "United States",
+              "China",
+              "Oman",
+              "Qatar"
+            ],
+            "correct": 1,
+            "explanation": "China brokered the March 2023 Beijing agreement — a landmark moment signaling Gulf powers hedging away from exclusive US security reliance."
+          }
+        ]
+      },
+      {
+        "heading": "THE CEASEFIRE-VIOLATION PLAYBOOK",
+        "body": "Accusing the adversary of ceasefire violations while still negotiating is standard tradecraft — it preserves leverage, signals domestic audiences that concessions aren't unilateral, and builds a paper record for when talks collapse. Araghchi's framing follows the Kissinger-era Paris template almost line for line."
+      },
+      {
+        "heading": "THE HORMUZ BACKDROP",
+        "body": "Any settlement must address shipping. Tanker transits through Hormuz remain far below normal, and Brent is trading well above the $95 threshold where Western central banks start to worry about stagflation. The economic cost of no-deal is mounting on every party at the table.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              54,
+              54,
+              72,
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3
+            ],
+            "periods": [
+              "Feb 20",
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-12"
+    ],
+    "generatedAt": "2026-04-20T08:30:51.080Z",
+    "label": "Pakistan as Muslim-World Mediator",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-khabarovsk-uav-pcb-production-russia-dispersal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PCBs ARE THE CHOKEPOINT",
+        "body": "A drone is mostly a flying circuit board. The airframe is cheap foam or plastic; the expensive, sanctionable parts are the flight controller, the RF transceiver, and the motor ESCs — all surface-mount components on a multilayer PCB. Control the PCB line and you control the drone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **SMT line** — surface-mount technology — is what places microscopic components onto a board at thousands per hour. Without it, you are soldering by hand and producing dozens a day, not thousands."
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS WORKAROUND",
+        "body": "Post-2022 export controls targeted Western chips reaching Russian defense plants. Parallel imports through Central Asia and the UAE kept components flowing, but at markups and with supply risk. Building the PCB population line domestically removes one layer of that dependency — though the bare chips placed on the board still come from abroad."
+      },
+      {
+        "heading": "WHY KHABAROVSK",
+        "body": "Khabarovsk sits 30 km from the Chinese border and 8,300 km from Moscow — across nine time zones. Soviet planners dispersed defense industry east of the Urals after 1941 for exactly this reason: distance from the front is distance from the bomber. Ukrainian long-range drones can now reach Tatarstan; reaching the Pacific coast is another problem entirely.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "CN",
+              "KP",
+              "JP"
+            ],
+            "label": "Russia's Far East defense cluster"
+          }
+        ]
+      },
+      {
+        "heading": "THE SHAHED PRECEDENT",
+        "body": "Russia's Alabuga plant in Tatarstan, built with Iranian assistance from 2023, scaled Shahed-136 production from imported kits to domestic manufacture of roughly 6,000 units per year. Khabarovsk follows the same template on a different platform: import the design, localize the bill of materials, disperse the geography."
+      },
+      {
+        "heading": "THE ATTRITION MATH",
+        "body": "Veles and Soyuz are FPV-class drones — single-use, $400–$1,000 each. At tens of thousands per month, one plant outputs more airframes annually than Russia's entire pre-war cruise missile stockpile. Drone warfare rewards the side that industrializes cheap mass, not the side with the best unit.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ukraine",
+                "value": "~200k",
+                "weight": 200,
+                "tone": "neutral",
+                "cc": "UA"
+              },
+              {
+                "label": "Russia",
+                "value": "~150k",
+                "weight": 150,
+                "tone": "neutral",
+                "cc": "RU"
+              },
+              {
+                "label": "US (all mil)",
+                "value": "~5k",
+                "weight": 5,
+                "tone": "neutral",
+                "cc": "US"
+              }
+            ],
+            "label": "monthly FPV output, rough estimates"
+          }
+        ]
+      },
+      {
+        "heading": "THE FEEDBACK LOOP",
+        "body": "The decisive advantage is not plant capacity but iteration speed. Front-line units report what jammers are defeating them; engineers push firmware and hardware revisions within weeks. This cycle — field to factory to field — is why a 2022 drone and a 2026 drone share a name but almost no components.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the main reason drone designs now iterate in weeks rather than years?",
+            "options": [
+              "Cheaper 3D printing of airframes",
+              "Direct front-line feedback loops to manufacturers",
+              "AI-generated circuit designs",
+              "Commercial chip shortages forcing redesigns"
+            ],
+            "correct": 1,
+            "explanation": "Ukrainian and Russian operators report jammer and tactic changes directly to factories, compressing the traditional military R&D cycle from years to weeks."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T08:31:21.631Z",
+    "label": "Drone Supply Chains & Industrial Dispersal",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-20-meloni-italy-march-coalition-crack": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE POSTWAR BARGAIN",
+        "body": "Italy's postwar constitution (Article 11) 'repudiates war as an instrument of offense.' NATO membership since 1949 and US bases on Italian soil were squared with this clause by treating collective defense as non-offensive — a legal fiction every Italian government has maintained.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Italy repudiates war as an instrument of offense against the liberty of other peoples and as a means for the settlement of international disputes.",
+            "speaker": "Italian Constitution, Article 11",
+            "year": "1948"
+          }
+        ]
+      },
+      {
+        "heading": "THE BASES",
+        "body": "Aviano hosts US F-16s and nuclear gravity bombs under NATO sharing. Sigonella in Sicily is the largest US drone hub in the Mediterranean. Naples houses the US Sixth Fleet. Italy is geographically central to any Middle East operation — which makes not being informed a deliberate signal.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IT",
+              "US",
+              "IL",
+              "IR"
+            ],
+            "label": "the Atlantic corridor to Iran"
+          }
+        ]
+      },
+      {
+        "heading": "THE REFERENDUM MECHANIC",
+        "body": "Italy's *referendum abrogativo* lets citizens repeal an existing law if turnout exceeds 50%. It was designed in 1948 as a check on parliament. Governments routinely lose the vote but win by depressing turnout — a 'vote no by staying home' strategy that has killed most referenda since 2011.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **quorum trap** is the real weapon: a government that cannot win a referendum on merit wins by telling supporters to *skip the polls*, collapsing turnout below 50%."
+          }
+        ]
+      },
+      {
+        "heading": "THE COALITION MATH",
+        "body": "Meloni's Fratelli d'Italia governs with Salvini's Lega and Forza Italia. Lega's base is Russia-sympathetic and Euro-skeptical; Forza Italia is Atlanticist; Fratelli d'Italia sits between. A foreign-policy shock that exposes dependence on Washington strains all three axes at once.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Giorgia Meloni",
+                "role": "Prime Minister, Fratelli d'Italia",
+                "years": "2022–",
+                "cc": "IT"
+              },
+              {
+                "name": "Matteo Salvini",
+                "role": "Deputy PM, Lega",
+                "years": "2022–",
+                "cc": "IT"
+              },
+              {
+                "name": "Antonio Tajani",
+                "role": "Foreign Minister, Forza Italia",
+                "years": "2022–",
+                "cc": "IT"
+              },
+              {
+                "name": "Guido Crosetto",
+                "role": "Defense Minister",
+                "years": "2022–",
+                "cc": "IT"
+              }
+            ],
+            "label": "the coalition"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "In 2003, Berlusconi backed the Iraq invasion against 70% public opposition. Italian troops deployed to Nasiriyah; 19 died in a 2003 bombing. The political cost accrued slowly but decisively — Berlusconi lost the 2006 election partly on the war. Meloni's strategists remember this.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Italians opposed the 2003 Iraq invasion at its peak?",
+            "options": [
+              "About 30%",
+              "About 50%",
+              "About 70%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 70% of Italians opposed the Iraq war — one of the highest rates in NATO — yet Berlusconi committed troops anyway, a decision that shaped his 2006 defeat."
+          }
+        ]
+      },
+      {
+        "heading": "THE ATLANTICIST DEFAULT",
+        "body": "Since 1949, no Italian government has survived an open break with Washington. The Craxi-Reagan Sigonella standoff (1985) came closest and was defused within 48 hours. Being told about a strike *after* the fact — not consulted before — is the version of exclusion Italian governments have historically treated as a crisis."
+      }
+    ],
+    "generatedAt": "2026-04-20T08:31:54.064Z",
+    "label": "Italy & the Atlantic Alignment",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-philippines-us-balikatan-2026-iran-distraction": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NAME",
+        "body": "Balikatan means 'shoulder-to-shoulder' in Tagalog. The annual US-Philippines exercise began in 1991 under the Mutual Defense Treaty of 1951, which commits each side to respond to an armed attack on the other in the Pacific.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The treaty's trigger language — *'armed attack in the Pacific area'* — has never been invoked, and Washington has deliberately kept ambiguous whether it covers Philippine vessels in disputed waters."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-WAR DOCTRINE",
+        "body": "Since the 1990s, US force planning assumed the ability to fight two major regional conflicts simultaneously. The 2018 National Defense Strategy quietly downgraded this to 'one war, deter another.' Running Iran operations while surging into Luzon tests whether the downgraded posture still holds.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did the US formally drop the two-war standard from its defense strategy?",
+            "options": [
+              "1993 Bottom-Up Review",
+              "2012 Defense Strategic Guidance",
+              "2018 National Defense Strategy",
+              "It was never formally dropped"
+            ],
+            "correct": 2,
+            "explanation": "The 2018 NDS under Mattis shifted to prioritizing one peer conflict (China or Russia) while merely deterring a second — a deliberate narrowing from the post-Cold War doctrine."
+          }
+        ]
+      },
+      {
+        "heading": "JAPAN'S ARTICLE 9 DRIFT",
+        "body": "Japan's 1947 constitution renounces war and forbids 'war potential.' Firing cruise missiles from foreign soil near contested waters would have been unthinkable a decade ago. Tokyo now justifies such deployments as 'collective self-defense' — a 2015 reinterpretation that never passed constitutional amendment.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Aspiring sincerely to an international peace based on justice and order, the Japanese people forever renounce war as a sovereign right of the nation.",
+            "speaker": "Constitution of Japan, Article 9",
+            "year": "1947"
+          }
+        ]
+      },
+      {
+        "heading": "THE FIRST ISLAND CHAIN",
+        "body": "Luzon sits at the geographic hinge of the 'first island chain' — the arc from Japan through Taiwan to the Philippines that bottles Chinese naval access to the open Pacific. Missiles fired from northern Luzon can range the Taiwan Strait and the Bashi Channel, the deepwater gap PLA Navy submarines use to reach the Pacific.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP",
+              "TW",
+              "PH",
+              "CN"
+            ],
+            "label": "the first island chain"
+          }
+        ]
+      },
+      {
+        "heading": "THE EDCA BASES",
+        "body": "The 2014 Enhanced Defense Cooperation Agreement lets US forces rotate through Philippine bases without a permanent garrison — a workaround to the 1987 Philippine constitution's ban on foreign military bases. Marcos Jr. expanded EDCA sites from 5 to 9 in 2023, with three of the new sites facing Taiwan.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2014",
+                "value": "5,500",
+                "weight": 5500
+              },
+              {
+                "label": "2019",
+                "value": "7,500",
+                "weight": 7500
+              },
+              {
+                "label": "2023",
+                "value": "17,600",
+                "weight": 17600
+              },
+              {
+                "label": "2026",
+                "value": "17,000",
+                "weight": 17000
+              }
+            ],
+            "label": "Balikatan scale over time"
+          }
+        ]
+      },
+      {
+        "heading": "THE DISTRACTION CALCULUS",
+        "body": "Strategists since Sun Tzu have noted that concentrated adversaries benefit when a rival fights elsewhere. Beijing's 1962 war with India came during the Cuban Missile Crisis. Russia seized Crimea during Obama's Syria deliberations. The 'window of distraction' is a recurring feature of great-power timing, not an anomaly."
+      }
+    ],
+    "generatedAt": "2026-04-20T08:32:24.708Z",
+    "label": "Balikatan & the Two-War Problem",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-twinc-inter-chromosomal-genome-prediction-nature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PACKAGING PROBLEM",
+        "body": "Two meters of DNA fit inside a nucleus six micrometers across. The folding is not random — loops, domains, and compartments determine which genes a cell can read. Sequence alone does not specify function; geometry does.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The compression ratio is roughly **400,000 to 1** — equivalent to packing 40 km of thread into a tennis ball without tangling it into uselessness."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT HI-C MEASURES",
+        "body": "Hi-C crosslinks DNA segments that are physically near each other in 3D, then sequences the pairs. The output is a contact map: a matrix showing which parts of the genome touch which others. Most contacts are within a chromosome; inter-chromosomal contacts are rarer and noisier."
+      },
+      {
+        "heading": "THE CIS-TRANS ASYMMETRY",
+        "body": "Contacts within a single chromosome (cis) are abundant and well-studied. Contacts between different chromosomes (trans) are ~100x rarer in the data and were long dismissed as noise. But trans contacts cluster at transcription factories — hubs where co-regulated genes meet.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why have inter-chromosomal (trans) contacts been historically understudied?",
+            "options": [
+              "They don't exist in mammalian cells",
+              "They are ~100x rarer than intra-chromosomal contacts and hard to distinguish from noise",
+              "They only occur during cell division",
+              "Hi-C cannot detect them at all"
+            ],
+            "correct": 1,
+            "explanation": "Trans contacts are real but sparse — the low signal-to-noise ratio made them easy to discard as artifact until deep-learning methods could extract the pattern."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SEQUENCE-TO-STRUCTURE IS HARD",
+        "body": "DNA sequence is one-dimensional; 3D folding emerges from protein binding, chromatin state, and cellular context. Predicting structure from sequence alone is the genome's version of the protein-folding problem — and solving it means you can infer geometry for any cell type without running Hi-C."
+      },
+      {
+        "heading": "THE VARIANT INTERPRETATION GAP",
+        "body": "Genome-wide association studies have found thousands of disease-linked variants sitting in non-coding DNA. Most have no obvious function — until you know which distant gene they contact in 3D space. A variant on chromosome 8 can regulate a gene on chromosome 14 through a trans contact invisible in linear sequence."
+      }
+    ],
+    "generatedAt": "2026-04-20T08:32:47.437Z",
+    "label": "3D Genome Architecture",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-20-un-escap-asia-pacific-growth-iran-war-spillover": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IMPORT DEPENDENCE",
+        "body": "Asia imports roughly 75% of its crude oil, the highest regional dependence in the world. China, India, Japan, and South Korea alone account for about a third of global oil demand. A Hormuz disruption hits Asian balance sheets harder than Western ones — the oil is physically going there.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Japan",
+                "value": "~99%",
+                "cc": "JP",
+                "weight": 99
+              },
+              {
+                "label": "South Korea",
+                "value": "~97%",
+                "cc": "KR",
+                "weight": 97
+              },
+              {
+                "label": "India",
+                "value": "~87%",
+                "cc": "IN",
+                "weight": 87
+              },
+              {
+                "label": "China",
+                "value": "~72%",
+                "cc": "CN",
+                "weight": 72
+              }
+            ],
+            "label": "crude import dependence"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSMISSION MECHANISM",
+        "body": "Oil shocks hit Asia through three channels at once: import bills widen current-account deficits, fuel subsidies blow up fiscal budgets, and pass-through inflation forces central banks to tighten into already-slowing growth. Stagflation is the textbook outcome.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              67.68,
+              66.72,
+              65.46,
+              68.16,
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28
+            ],
+            "periods": [
+              "Jan 20",
+              "Jan 21",
+              "Jan 22",
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE BUFFER PROBLEM",
+        "body": "After COVID stimulus and the 2022-23 food-and-fuel shock, most Asian emerging markets entered 2026 with debt-to-GDP ratios 10-15 points higher than pre-pandemic. Pakistan, Sri Lanka, and Bangladesh have effectively no fiscal room left; Indonesia and the Philippines have some but not much.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "ESCAP's phrase *fiscal buffers already depleted* is diplomatic code: the usual response to an external shock — **subsidize fuel, cushion consumers, borrow the difference** — is no longer available to most of the region."
+          }
+        ]
+      },
+      {
+        "heading": "THE FREIGHT SIDE",
+        "body": "Roughly 30% of global container traffic passes through the Malacca Strait alone, most of it bound for or leaving Asian ports. Red Sea diversions around Cape of Good Hope already added 10-14 days to Asia-Europe routes; a Hormuz escalation layers tanker-war risk premiums on top of that.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "PK",
+              "IN"
+            ],
+            "label": "the northern Indian Ocean corridor"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 RHYME",
+        "body": "The OPEC embargo quadrupled oil prices in six months and pushed Japan — then Asia's only industrialized economy — into its first post-war recession. Asia responded with strategic petroleum reserves, nuclear buildout (Japan, Korea), and decades of energy-efficiency policy. The dependence never went away; it just got managed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global oil demand do China, India, Japan, and South Korea together account for?",
+            "options": [
+              "About 15%",
+              "About a third",
+              "About half",
+              "About two-thirds"
+            ],
+            "correct": 1,
+            "explanation": "The four largest Asian importers consume roughly 33 million barrels a day out of ~100 million global — about a third of world demand."
+          }
+        ]
+      },
+      {
+        "heading": "ESCAP'S ROLE",
+        "body": "The UN Economic and Social Commission for Asia and the Pacific, founded in 1947 and headquartered in Bangkok, is the UN's oldest regional commission. Its forecasts carry weight because member states — 53 of them, from Turkey to the Pacific — submit underlying data directly, giving ESCAP visibility into fiscal positions that IMF Article IV reports lag by months."
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-13"
+    ],
+    "generatedAt": "2026-04-20T08:33:17.323Z",
+    "label": "Asia-Pacific & Oil Shock Transmission",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-20-zamfara-protection-guards-political-violence-nigeria": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSTITUTIONAL PROBLEM",
+        "body": "Nigeria's 1999 Constitution gives the federal government exclusive authority over the police and armed forces. States cannot legally raise their own armed units — yet nearly every region has, under names like 'vigilantes,' 'protection guards,' or 'security networks.' The workaround exists because federal policing has collapsed in rural areas.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "These outfits operate in a legal gray zone: states fund and arm them, but call them *civilian volunteers* to sidestep the constitutional ban on **state police**."
+          }
+        ]
+      },
+      {
+        "heading": "THE BANDITRY BELT",
+        "body": "Zamfara sits in Nigeria's northwest, where armed groups — locally called *bandits* — have displaced over a million people since 2011. They kidnap for ransom, raid villages, and tax farmers. The Nigerian military has rotated through operations for a decade without clearing them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "BF",
+              "ML",
+              "TD"
+            ],
+            "label": "the Sahel banditry belt",
+            "caption": "Zamfara sits on the southern edge of a cross-border arms economy"
+          }
+        ]
+      },
+      {
+        "heading": "THE AMOTEKUN PRECEDENT",
+        "body": "In 2020, six southwestern states jointly launched Amotekun — a Yoruba-language 'leopard' security network — over federal objections. Abuja called it illegal; the states kept it running. The political lesson was that the federal government cannot stop a determined governor from arming men, only argue about it afterward.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do Nigerian states create their own security outfits despite the constitutional ban?",
+            "options": [
+              "Federal police are underfunded and absent in rural areas",
+              "The constitution was amended in 2020",
+              "Governors have a legal right to a personal militia",
+              "It is cheaper than paying federal police"
+            ],
+            "correct": 0,
+            "explanation": "The Nigeria Police Force is centrally controlled and chronically under-deployed in rural states, creating a vacuum governors fill with locally-recruited units."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPTURE RISK",
+        "body": "Militias raised to fight insurgents tend to drift toward whoever pays them. In Colombia, the AUC was formed against FARC and ended up running drug routes. In Iraq, Shi'a Popular Mobilization Forces fought ISIS and became a parallel political machine. Armed men on a governor's payroll rarely stay in the box they were recruited for."
+      },
+      {
+        "heading": "THE POLITICAL WEAPON",
+        "body": "Zamfara's 2027 election cycle has already begun. A governor with 3,000 armed men loyal to him personally — not to the state, not to a federal chain of command — can intimidate opposition organizers, journalists, and teachers posting on social media. The teacher beating is not a deviation from the Guards' function; it is a signal of it."
+      }
+    ],
+    "generatedAt": "2026-04-20T08:33:43.679Z",
+    "label": "State Militias in Nigeria",
+    "category": "politics",
+    "articleCount": 1
   }
 }
