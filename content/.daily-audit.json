@@ -1,28 +1,29 @@
 {
-  "date": "2026-04-19",
+  "date": "2026-04-20",
   "metrics": {
-    "articles": { "value": 33, "detail": "5 cycles, avg 7/cycle" },
-    "freshness": { "median": 1.3, "p90": 1.6, "max": 1.6, "target": 1.0, "met": false },
-    "categories": { "politics": 17, "economy": 10, "science": 5, "tech": 1 },
+    "articles": { "value": 52, "detail": "5 cycles, avg 10.4/cycle" },
+    "freshness": { "median": 0.3, "p90": 0.7, "max": 0.7, "target": 1.0, "met": true },
+    "categories": { "politics": 19, "economy": 13, "science": 9, "tech": 11 },
     "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 11, "EU": 4, "AM": 8, "AS": 6, "AF": 2, "OC": 1 } },
-    "sciTech": { "ratio": 18, "target": 25, "met": false },
-    "topSourceShare": { "source": "Dawn", "pct": 18, "target": 20, "met": true },
-    "uniqueSources": 40,
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "ME": 14, "AM": 14, "EU": 12, "AS": 7, "AF": 5 } },
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 17, "target": 20, "met": true },
+    "uniqueSources": 53,
     "duplicates": 0,
-    "avgCycleDuration": 1563
+    "avgCycleDuration": 1505
   },
-  "experiment": "Active: 2026-04-19-prefilter-7d (day 1 of 3, evaluates 2026-04-22). Guardrail alert: avg publish count today is 7/cycle, below the 8/cycle minimum guardrail — monitor tomorrow to determine if the 7-day dedup window is causing over-removal of novel tech/science stories.",
-  "weakestArea": "Tech collapsed to 1 article today (target ≥ 4/day) despite a selector floor of 3/cycle, dragging sci+tech ratio to 18% vs 25% target. This is the sharpest miss; likely a thin Sunday tech feed but could also reflect the new 7-day prefilter over-removing recently-covered tech stories.",
+  "experiment": "Active experiment 2026-04-19-prefilter-7d (7-day dedup lookback) is in day 2 of 3. evaluateAfter is 2026-04-22. Guardrail status: publish count recovered to 10.4/cycle (above 8/cycle minimum), 0 published duplicates. Experiment running cleanly — no early action needed.",
+  "weakestArea": "Dawn accounts for 17.3% of today's output (9/52 articles) — within the 20% cap but elevated. Pakistan's dense news cycle is the driver; this is a watch item, not a violation. No metric is formally below target today.",
   "watching": [
-    "Gaza/West Bank: 11 ME articles dominated the day — IDF operations and humanitarian corridor negotiations remain the lead story cluster.",
-    "India-Pakistan: spike in AS coverage — monitor for military escalation or diplomatic channel openings.",
-    "US trade war: tariff impact articles appearing across economy category — supply chain disruption narratives building."
+    "US-China tariff escalation continues to generate multi-source economy stories from American and Asian outlets.",
+    "Gaza and West Bank dynamics sustaining the high ME share (14 articles, 27% of output) — ceasefire/humanitarian corridor negotiations remain the lead cluster.",
+    "Strait of Hormuz traffic running ~87% below its 90-day baseline per chokepoints data (as of Apr 12) — a major unresolved geopolitical signal worth tracking editorially.",
+    "India-Pakistan tension threads running through Dawn and Hindustan Times coverage — worth monitoring for escalation."
   ],
   "coverageGaps": [
-    "Africa thin at 2 articles — no sub-Saharan political or economic coverage today.",
-    "Tech nearly absent (1 article) — no AI, semiconductor, or platform policy coverage despite active global stories.",
-    "Latin America missing — AM count is US-centric; no Brazil, Argentina, or regional politics."
+    "Zero Oceania (OC) coverage today despite active news cycles in Australia and Pacific island states.",
+    "Central Asia essentially absent — only India/Pakistan AS sources represented; Kazakhstan, Uzbekistan, and Central Asian politics missing.",
+    "Latin America thin despite AM=14 — most Americas stories are likely US-centric; dedicated LatAm sources need more selection weight."
   ],
-  "context": "Today is day 1 of the prefilter-7d experiment. The 7-day dedup window is designed to catch stories covered 2-3 days ago that keep resurfacing in the selector; however, avg publish count fell to 7/cycle vs 9.43 baseline, just below the 8/cycle guardrail. Tech's collapse from 7 yesterday to 1 today is plausibly a Sunday feed artifact, but the combination of low publish count and missing tech warrants close monitoring on 2026-04-20 and 2026-04-21 before the scheduled 2026-04-22 evaluation."
+  "context": "Strong recovery from yesterday's thin output (33 articles, tech collapsed to 1). Today's 52 articles with 0 duplicates and full category floor compliance suggests the 7-day prefilter experiment is not causing over-removal — yesterday's low count was likely a Sunday feed artifact. Dawn's 17.3% single-day share is notable but within target; the 7-day quality trend shows Dawn averaging 8% of weekly output, confirming today as a local spike rather than structural drift."
 }
