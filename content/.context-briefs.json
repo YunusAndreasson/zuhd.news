@@ -21306,5 +21306,1143 @@
     "label": "Naval Seizures & the Hormuz Blockade",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-20-green-geopolymer-cement-slag-durability-study": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CARBON PROBLEM",
+        "body": "Cement is the single largest industrial CO2 source — roughly 8% of global emissions, more than aviation and shipping combined. Two-thirds of those emissions come from chemistry, not energy: heating limestone to make clinker releases CO2 from the rock itself, a reaction no clean fuel can avoid.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The unavoidable emission is called *process CO2* — baked into the **calcination** reaction CaCO₃ → CaO + CO₂. Even a zero-carbon kiln still emits it."
+          }
+        ]
+      },
+      {
+        "heading": "HOW PORTLAND WORKS",
+        "body": "Portland cement is made by roasting limestone and clay at 1450°C to form clinker, then grinding it with gypsum. When mixed with water, calcium silicates hydrate into the interlocking crystals that give concrete its strength. The chemistry has been essentially unchanged since Joseph Aspdin patented it in 1824."
+      },
+      {
+        "heading": "THE GEOPOLYMER ALTERNATIVE",
+        "body": "Geopolymer cement skips the kiln entirely. An alkaline solution dissolves aluminosilicate waste — typically blast-furnace slag or fly ash — and the dissolved species repolymerize into a rigid aluminosilicate network. No clinker, no calcination, up to 80% less CO2 per ton.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does geopolymer cement emit far less CO2 than Portland cement?",
+            "options": [
+              "It uses renewable electricity for the kiln",
+              "It skips the calcination of limestone entirely",
+              "It sequesters CO2 during curing",
+              "It uses less water per ton"
+            ],
+            "correct": 1,
+            "explanation": "Most of Portland's CO2 comes from limestone decomposing into lime and CO2. Geopolymers use pre-existing aluminosilicate waste, so that reaction never happens."
+          }
+        ]
+      },
+      {
+        "heading": "THE ACTIVATOR PROBLEM",
+        "body": "Standard geopolymers use sodium hydroxide or sodium silicate (waterglass) as activators — caustic, corrosive, and dangerous to handle on a job site. The field has chased milder activators for decades; sodium carbonate (washing soda) is far safer but historically gave weaker, slower-setting binders."
+      },
+      {
+        "heading": "WHY SLAG MATTERS",
+        "body": "Ground granulated blast-furnace slag is a byproduct of steelmaking — roughly 400 million tons produced annually. It is already a partial Portland substitute in standard concrete, but as a geopolymer precursor it delivers the full calcium content needed for strength development, which pure fly ash lacks."
+      },
+      {
+        "heading": "THE CODE BOTTLENECK",
+        "body": "Building codes worldwide specify Portland cement by chemistry, not by performance. ASTM C150 in the US, EN 197 in Europe — both define cement as a clinker-based product. A geopolymer that outperforms Portland still cannot be sold as structural cement in most jurisdictions without separate approval, which can take a decade per formulation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Portland",
+                "value": "~900",
+                "tone": "unfavorable",
+                "weight": 900
+              },
+              {
+                "label": "Portland + 30% slag",
+                "value": "~650",
+                "tone": "neutral",
+                "weight": 650
+              },
+              {
+                "label": "Slag geopolymer",
+                "value": "~200",
+                "tone": "favorable",
+                "weight": 200
+              }
+            ],
+            "label": "cement CO2 intensity (kg CO2 per ton)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T04:26:44.606Z",
+    "label": "Geopolymer Cement",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-20-iran-warns-us-significantly-greater-costs-ceasefire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL DEAL",
+        "body": "The 2015 JCPOA capped Iran's uranium enrichment at 3.67% and its stockpile at 300kg, in exchange for sanctions relief. Trump withdrew the US in 2018, reimposing sanctions despite Iran's verified compliance. Every subsequent round of talks starts from that broken precedent — Iran's baseline distrust is a policy input, not a mood.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *snapback* — the mechanism allowing any JCPOA party to unilaterally restore UN sanctions. It expires in October 2025, which is why the **current window** matters more than the headlines suggest."
+          }
+        ]
+      },
+      {
+        "heading": "THE PARALLEL STATE",
+        "body": "Iran has an elected government (president, parliament) and an unelected one (Supreme Leader, Guardian Council, IRGC). The constitution gives the unelected layer veto power. The foreign minister can negotiate; only Khamenei can deliver. US negotiators often mistake the president's signature for the state's commitment.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Ali Khamenei",
+                "role": "Supreme Leader, final authority",
+                "years": "1989–present",
+                "cc": "IR"
+              },
+              {
+                "name": "Masoud Pezeshkian",
+                "role": "Elected president",
+                "years": "2024–present",
+                "cc": "IR"
+              },
+              {
+                "name": "Abbas Araghchi",
+                "role": "Foreign minister, lead negotiator",
+                "years": "2024–present",
+                "cc": "IR"
+              },
+              {
+                "name": "Hossein Salami",
+                "role": "IRGC commander",
+                "years": "2019–present",
+                "cc": "IR"
+              }
+            ],
+            "label": "who actually decides"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ISLAMABAD",
+        "body": "Pakistan is one of the few Muslim-majority states with working channels to both Washington and Tehran, a nuclear arsenal of its own, and a Shia minority large enough to give Iran diplomatic traction. It has hosted back-channel Iran-Saudi talks before. Oman plays this role on the Gulf side; Pakistan plays it on the eastern flank.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "PK",
+              "OM",
+              "SA",
+              "AE"
+            ],
+            "label": "the mediators' geography"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ LEVERAGE",
+        "body": "Roughly 21 million barrels of oil transit the Strait daily — about 21% of global consumption. Iran's coastline runs the entire northern edge and the deepest shipping channel hugs the Iranian side. 'Significantly greater costs' is not rhetoric; it is a reference to insurance premiums, tanker reroutes, and the 1987-88 tanker war template.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              67.68,
+              66.72,
+              65.46,
+              68.16,
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28
+            ],
+            "periods": [
+              "Jan 20",
+              "Jan 21",
+              "Jan 22",
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE MAXIMALIST DEMAND",
+        "body": "Trump's position — zero enrichment, not capped enrichment — would require Iran to dismantle a program it has invested four decades and tens of billions into, and which its constitution treats as a sovereign right. No Iranian government, elected or unelected, can sign that and survive. Negotiators know this; the demand is a pressure tactic, not a terminal offer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What enrichment level did the 2015 JCPOA permit Iran?",
+            "options": [
+              "0% — no enrichment allowed",
+              "3.67% — reactor-grade only",
+              "20% — medical isotope grade",
+              "90% — weapons grade"
+            ],
+            "correct": 1,
+            "explanation": "The JCPOA capped enrichment at 3.67% (reactor fuel grade). Weapons-grade is ~90%; Iran has since enriched to 60%, a post-withdrawal escalation."
+          }
+        ]
+      },
+      {
+        "heading": "THE CEASEFIRE CLOCK",
+        "body": "Iran-Israel hostilities are paused under a ceasefire whose architecture depends on continued US-Iran dialogue. If talks collapse, the ceasefire loses its scaffolding. Historical pattern: ceasefires without a political track decay within weeks, because both sides lose the incentive structure that made pausing cheaper than fighting."
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-13"
+    ],
+    "generatedAt": "2026-04-20T04:27:16.680Z",
+    "label": "Iran-US Nuclear Diplomacy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-kelp-defi-292-million-exploit-mechanism": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A BRIDGE ACTUALLY IS",
+        "body": "A cross-chain bridge locks a token on chain A and mints a synthetic twin on chain B. The twin is only as trustworthy as whoever controls the minting key. If that key is one signature, one compromise mints infinite supply.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **1-of-1 multisig** — a multisig in name only. A real multisig requires *m-of-n* signatures; a single-signer bridge is a custodian with extra steps."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RESTAKING AMPLIFIES",
+        "body": "Restaking lets staked ETH secure multiple protocols simultaneously — the same collateral backs many promises. When the underlying token is compromised, every protocol that accepted it as collateral inherits the hole at once.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does restaking let a single unit of staked ETH do?",
+            "options": [
+              "Earn yield from one validator only",
+              "Secure multiple protocols simultaneously",
+              "Convert automatically to stablecoins",
+              "Bypass Ethereum's slashing rules"
+            ],
+            "correct": 1,
+            "explanation": "Restaking (popularized by EigenLayer) lets the same staked ETH be pledged as security across multiple services — which also means one exploit propagates across all of them."
+          }
+        ]
+      },
+      {
+        "heading": "THE AAVE TRAP",
+        "body": "Aave is a lending protocol: deposit collateral, borrow other assets. The attacker deposited worthless minted rsETH, borrowed real ETH and stablecoins, and walked. Aave is left holding synthetic collateral no buyer will touch — the loss sits on honest depositors."
+      },
+      {
+        "heading": "THE BRIDGE HACK LINEAGE",
+        "body": "Ronin ($625M, 2022), Wormhole ($325M, 2022), Nomad ($190M, 2022), Poly Network ($611M, 2021). Every year the largest DeFi losses are bridges. The pattern is structural: bridges concentrate value and signing authority, making them the highest-EV target in crypto.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ronin",
+                "value": "$625M",
+                "weight": 625
+              },
+              {
+                "label": "Poly Network",
+                "value": "$611M",
+                "weight": 611
+              },
+              {
+                "label": "Wormhole",
+                "value": "$325M",
+                "weight": 325
+              },
+              {
+                "label": "Kelp",
+                "value": "$292M",
+                "weight": 292
+              },
+              {
+                "label": "Nomad",
+                "value": "$190M",
+                "weight": 190
+              }
+            ],
+            "label": "largest bridge exploits"
+          }
+        ]
+      },
+      {
+        "heading": "THE IRREVERSIBILITY PROBLEM",
+        "body": "Traditional finance reverses fraudulent transfers through chargebacks, court orders, or wire recalls. On a blockchain, settlement is final by design. The same property that makes crypto censorship-resistant makes theft irreversible — the only recovery path is negotiation with the attacker.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              2078.05,
+              2053.14,
+              2151.5,
+              2155.68,
+              2168.26,
+              2059.33,
+              1991.9,
+              1992.77,
+              1983.18,
+              2023.82,
+              2104.88,
+              2139.06,
+              2056.89,
+              2053.61,
+              2064.99,
+              2109.01,
+              2107.83,
+              2241.82,
+              2190.48,
+              2188.97,
+              2245.05,
+              2285.47,
+              2192.16,
+              2371.86,
+              2323.22,
+              2359.68,
+              2348.7,
+              2421.01,
+              2350.94,
+              2264.81,
+              2282.01
+            ],
+            "periods": [
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 20"
+            ],
+            "label": "Ethereum",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-20T04:27:40.683Z",
+    "label": "Bridge Exploits & Restaking Risk",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-20-merz-germany-eu-industrial-ai-regulation-rollback": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RISK TIERS",
+        "body": "The EU AI Act sorts systems into four buckets: unacceptable (banned), high-risk (heavy compliance), limited-risk (transparency only), minimal-risk (free). Industrial AI — anything touching safety-critical machinery, worker monitoring, or infrastructure — defaults to high-risk. That triggers conformity assessments, technical documentation, human oversight, and post-market monitoring obligations that European manufacturers argue their US and Chinese competitors do not face.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The compliance burden sits heaviest on **high-risk** systems: every model needs a CE-mark-equivalent assessment before deployment, plus a *Fundamental Rights Impact Assessment* for public-sector use."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDUSTRIAL AI IS DIFFERENT",
+        "body": "Predictive maintenance models read vibration, temperature, and current sensors to flag failing bearings weeks before they break. Factory robots use vision models to pick parts from bins. These are narrow, deterministic, and auditable — nothing like a general-purpose chatbot. Industry argues the Act was written for consumer-facing generative AI and sweeps in mature industrial tools by accident."
+      },
+      {
+        "heading": "THE BRUSSELS EFFECT IN REVERSE",
+        "body": "The EU bet that its regulatory stringency would set global standards — as GDPR did for privacy. But AI compute and talent are concentrating in the US and China, and European firms are warning that compliance costs are pushing model development offshore. Merz's carve-out push is an admission that the Brussels Effect only works when Europe remains the market you cannot afford to skip.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~70%",
+                "cc": "US",
+                "weight": 70,
+                "tone": "favorable"
+              },
+              {
+                "label": "China",
+                "value": "~20%",
+                "cc": "CN",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "EU combined",
+                "value": "~5%",
+                "cc": "EU",
+                "weight": 5,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "AI compute capacity (2025 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "HANNOVER MESSE AS SIGNAL",
+        "body": "Hannover Messe is the world's largest industrial trade fair — the annual showcase for Germany's Mittelstand machine-tool champions like Siemens, Bosch, and Trumpf. A chancellor picking this stage to announce a regulatory rollback is deliberate: the audience is the industrial base that built Germany's export surplus, and the message is that Berlin will defend them in Brussels.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "FR",
+              "IT",
+              "NL",
+              "BE"
+            ],
+            "label": "EU industrial core",
+            "caption": "Germany coordinates carve-outs with these manufacturing economies"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUADRUPLING TARGET",
+        "body": "Germany's plan to 4x AI capacity by 2030 means data centers, GPU clusters, and power. A single hyperscale AI data center draws 100-300 MW — equivalent to a small city. Germany's industrial electricity already costs 2-3x US levels post-Nord Stream, which is why the compute buildout is as much an energy policy question as a tech one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which EU regulation served as the template for the 'Brussels Effect' — where EU rules become de facto global standards?",
+            "options": [
+              "GDPR (data privacy, 2018)",
+              "MiFID II (financial markets, 2018)",
+              "REACH (chemicals, 2007)",
+              "The Services Directive (2006)"
+            ],
+            "correct": 0,
+            "explanation": "GDPR forced global firms to rebuild privacy systems to EU standards because fragmenting compliance by region was costlier than adopting EU rules worldwide."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T04:28:10.295Z",
+    "label": "The EU AI Act & Industrial Carve-outs",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-20-pakistan-kp-farmers-indus-water-wheat-crisis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 1960 BARGAIN",
+        "body": "The treaty, brokered by the World Bank after nine years of negotiation, gave India the three eastern rivers (Ravi, Beas, Sutlej) and Pakistan the three western ones (Indus, Jhelum, Chenab). It survived three wars and the 1971 partition of Bangladesh — the only major India-Pakistan agreement that never broke.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Jawaharlal Nehru",
+                "role": "Indian Prime Minister",
+                "years": "1947–1964",
+                "cc": "IN"
+              },
+              {
+                "name": "Ayub Khan",
+                "role": "Pakistani President",
+                "years": "1958–1969",
+                "cc": "PK"
+              },
+              {
+                "name": "Eugene Black",
+                "role": "World Bank President",
+                "years": "1949–1963",
+                "cc": "US"
+              }
+            ],
+            "label": "the signatories"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF DEPENDENCE",
+        "body": "Pakistan's agriculture draws roughly 80% of its irrigation from the Indus basin. The headwaters sit in Indian-administered Kashmir and Tibet — meaning the water Pakistan eats and drinks originates upstream of a hostile border.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "CN",
+              "AF"
+            ],
+            "label": "the Indus basin"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KP IS MOST EXPOSED",
+        "body": "Khyber Pakhtunkhwa sits at Pakistan's northwestern edge, closest to the Indian diversion points. Unlike Punjab's vast canal network with storage buffers, KP's wheat belt relies on direct run-of-river flows. When upstream releases drop, KP feels it first — within a single growing cycle.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              208.3816845,
+              227.4307704166667,
+              205.2260548983333,
+              183.2256341666667,
+              175.5104662666666,
+              188.5052165740741,
+              197.3719458333333,
+              185.7347870824562,
+              185.7943505,
+              190.6296420634921,
+              190.1026421105263,
+              179.6065420634921,
+              174.8167426587301,
+              196.8410714285714,
+              173.1947634816666,
+              165.2666224637681,
+              159.3079408380954,
+              155.1151385317461,
+              157.39233125,
+              169.2032881647058,
+              165.6266704583334,
+              169.2505145833334,
+              174.7524918912281,
+              193.8771220833334
+            ],
+            "periods": [
+              "Apr 2024",
+              "May 2024",
+              "Jun 2024",
+              "Jul 2024",
+              "Aug 2024",
+              "Sep 2024",
+              "Oct 2024",
+              "Nov 2024",
+              "Dec 2024",
+              "Jan 2025",
+              "Feb 2025",
+              "Mar 2025",
+              "Apr 2025",
+              "May 2025",
+              "Jun 2025",
+              "Jul 2025",
+              "Aug 2025",
+              "Sep 2025",
+              "Oct 2025",
+              "Nov 2025",
+              "Dec 2025",
+              "Jan 2026",
+              "Feb 2026",
+              "Mar 2026"
+            ],
+            "label": "Wheat",
+            "unit": "$/mt",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "TARBELA'S DOUBLE DUTY",
+        "body": "Tarbela on the Indus is the world's largest earth-filled dam by volume. It generates roughly 16% of Pakistan's electricity and regulates irrigation for 90,000 square kilometers of farmland. Reduced inflows hit power and food simultaneously — one asset, two crises."
+      },
+      {
+        "heading": "THE LEGAL FLOOR",
+        "body": "The Permanent Court of Arbitration ruled in 2023 that the treaty cannot be unilaterally suspended — its dispute resolution clauses survive even when one party walks away. India's 'freeze' is therefore a political act, not a legal termination. But legal bindingness does not move water; enforcement has no mechanism beyond diplomatic pressure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The treaty's Article XII(4) states it remains in force *until terminated by a duly ratified treaty concluded for that purpose between the two Governments* — a clause India has never triggered."
+          }
+        ]
+      },
+      {
+        "heading": "THE WEAPONIZATION PRECEDENT",
+        "body": "Water has been used as leverage before — Turkey's Atatürk Dam squeezes Syria and Iraq on the Euphrates, Ethiopia's GERD alarms Egypt on the Nile, Israel controls West Bank aquifers. Upper riparians almost always win the physical fight; lower riparians win only when an outside power enforces the treaty.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these treaties gave the downstream country a binding share of river flows enforceable by an outside power?",
+            "options": [
+              "Nile Waters Agreement (Egypt-Sudan)",
+              "Indus Waters Treaty (India-Pakistan)",
+              "Euphrates protocols (Turkey-Syria-Iraq)",
+              "Jordan River (Israel-Jordan)"
+            ],
+            "correct": 1,
+            "explanation": "The Indus treaty is the rare case with a World Bank guarantor and binding arbitration — which is why Pakistan is pressing the Bank now."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · IMF · as of 2026-03-01"
+    ],
+    "generatedAt": "2026-04-20T04:28:40.367Z",
+    "label": "The Indus Waters Treaty",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-20-south-africa-abb-kusile-immunity-deal-challenge": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATUTE",
+        "body": "Section 105A of South Africa's Criminal Procedure Act lets prosecutors strike plea-and-sentence agreements without trial. It was designed for ordinary cases; its use to extinguish corporate criminal liability for state capture is what critics contest.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is a *plea-and-sentence agreement* — not a US-style **deferred prosecution agreement**, but functionally similar: money in exchange for no trial, no discovery, no testimony."
+          }
+        ]
+      },
+      {
+        "heading": "KUSILE",
+        "body": "Kusile is one of the world's largest coal plants — 4,800 MW, budgeted at R80bn in 2008, now past R160bn and still not fully operational. The overruns became the signature artifact of Eskom-era state capture: every contractor tier padded, every milestone paid, nothing finished on time.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Kusile (ZA)",
+                "value": "~R160bn",
+                "tone": "unfavorable",
+                "cc": "ZA"
+              },
+              {
+                "label": "Medupi (ZA)",
+                "value": "~R145bn",
+                "tone": "unfavorable",
+                "cc": "ZA"
+              },
+              {
+                "label": "Hinkley C (UK)",
+                "value": "£46bn",
+                "cc": "GB"
+              }
+            ],
+            "label": "Kusile vs peer megaprojects"
+          }
+        ]
+      },
+      {
+        "heading": "THE DOUBLE-JEOPARDY HOOK",
+        "body": "ABB pleaded guilty in 2022 under the US Foreign Corrupt Practices Act for the same Kusile conduct, paying $315m. The South African settlement leans on that prior conviction — the argument being that a second prosecution would be duplicative. Critics call it a jurisdictional loophole: the company pays the US, the crime happened in South Africa, and South Africans get a fraction of the restitution."
+      },
+      {
+        "heading": "STATE CAPTURE",
+        "body": "The Zondo Commission (2018–2022) documented how a network around the Gupta family and Jacob Zuma's presidency captured Eskom, Transnet, and other state firms. Its final report named ABB's Kusile contracts specifically — kickbacks routed through intermediaries linked to Gupta associates. The NPA was established to prosecute these findings; settlements without trial test whether that mandate still binds.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Matshela Koko",
+                "role": "Eskom CEO (acting)",
+                "years": "2016–2018",
+                "cc": "ZA"
+              },
+              {
+                "name": "Jacob Zuma",
+                "role": "SA President",
+                "years": "2009–2018",
+                "cc": "ZA"
+              },
+              {
+                "name": "Raymond Zondo",
+                "role": "State Capture Commission chair",
+                "years": "2018–2022",
+                "cc": "ZA"
+              }
+            ],
+            "label": "the Kusile cast"
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDIVIDUAL DEFENDANTS FIGHT CORPORATE DEALS",
+        "body": "When a company settles, prosecutors lose the incentive to press related individual cases — the headline conviction is already booked. Koko's challenge is structural: without ABB standing trial, the documentary evidence and witness testimony that would implicate or exonerate individuals never surfaces in court. The deal protects the company and, incidentally, buries the record.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under what law did ABB plead guilty in the US for the Kusile conduct?",
+            "options": [
+              "Foreign Corrupt Practices Act",
+              "Sarbanes-Oxley Act",
+              "RICO",
+              "Dodd-Frank"
+            ],
+            "correct": 0,
+            "explanation": "The FCPA (1977) criminalizes bribery of foreign officials by US-listed firms — ABB's NYSE listing gave DOJ jurisdiction over conduct in South Africa."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T04:29:12.249Z",
+    "label": "State Capture & Prosecution Deals",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-uae-us-financial-lifeline-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PEG",
+        "body": "The UAE dirham has been pegged to the US dollar at 3.6725 since 1997. Defending that peg requires the central bank to stand ready to sell dollars for dirhams at that rate — which means it needs a dollar stockpile large enough to absorb any run.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A peg is not a policy preference — it is a *standing obligation* to convert on demand. When reserves run low, the peg breaks. This is why dollar access is existential for the **CBUAE**, not optional."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A FED SWAP LINE IS",
+        "body": "The Fed lends dollars to a foreign central bank in exchange for that bank's own currency at the market rate, with a promise to reverse the trade later. It is not a loan in the conventional sense — it is a temporary expansion of the global dollar supply, routed through a trusted counterparty.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In a Fed currency swap, what does the foreign central bank give the Fed in exchange for dollars?",
+            "options": [
+              "Gold reserves held at the New York Fed",
+              "US Treasury securities as collateral",
+              "Its own currency at the prevailing spot rate",
+              "A sovereign guarantee from its finance ministry"
+            ],
+            "correct": 2,
+            "explanation": "The foreign central bank posts its own currency — the Fed holds it until the swap unwinds, when both sides return what they borrowed at the original rate."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2008 PRECEDENT",
+        "body": "During the global financial crisis, the Fed opened swap lines with 14 central banks, peaking at $583 billion outstanding. Five counterparties — the ECB, Bank of England, Bank of Japan, Swiss National Bank, and Bank of Canada — later made their lines permanent. Everyone else has to ask each time.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "ECB, BoE, BoJ, SNB, BoC",
+                "value": "Standing",
+                "tone": "favorable"
+              },
+              {
+                "label": "Mexico, Brazil, Korea, Singapore",
+                "value": "2008, 2020 only",
+                "tone": "neutral"
+              },
+              {
+                "label": "UAE, Gulf states",
+                "value": "Never extended",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Fed swap access tiers"
+          }
+        ]
+      },
+      {
+        "heading": "WHY WAR DRAINS RESERVES",
+        "body": "Wars trigger two simultaneous dollar demands: residents convert local savings to dollars and move them abroad, and foreign investors repatriate capital home. Both flows hit the central bank's reserve window at once. If the peg holds, reserves fall fast; if reserves fall too far, the peg breaks.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "IR",
+              "SA",
+              "QA",
+              "OM",
+              "KW",
+              "BH"
+            ],
+            "label": "the Gulf under war risk",
+            "caption": "2,800 missiles have struck the UAE since the war began"
+          }
+        ]
+      },
+      {
+        "heading": "THE POLITICS OF ACCESS",
+        "body": "Fed swap lines are not neutral infrastructure — they are a tool of US foreign policy. Washington extended them to Brazil and Mexico in 2020 but not to Turkey, despite similar dollar stress. Granting the UAE a line would signal the US still treats Abu Dhabi as a frontline ally against Iran, regardless of the petrodollar-diversification rhetoric."
+      },
+      {
+        "heading": "THE ALTERNATIVE",
+        "body": "Without a Fed line, the UAE has roughly $220 billion in foreign reserves plus ADIA's $1+ trillion sovereign wealth fund to defend the peg. That is vast, but sovereign wealth assets are illiquid and politically sensitive to liquidate at crisis speed. A swap line buys dollars without touching the national patrimony."
+      }
+    ],
+    "generatedAt": "2026-04-20T04:29:40.713Z",
+    "label": "Fed Swap Lines & the Dirham Peg",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-20-uk-pm-to-face-grilling-from-mps-today-over-mandelson-scandal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VETTING SYSTEM",
+        "body": "UK security clearances run through UKSV (United Kingdom Security Vetting), which conducts Developed Vetting — the highest tier — involving financial checks, interviews with referees, and review of foreign contacts. For ambassadorial roles, DV clearance is standard; failing it normally ends the appointment.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The relevant tier is **Developed Vetting (DV)** — required for sustained access to TOP SECRET material and roles with significant foreign exposure."
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERRULE POWER",
+        "body": "The Cabinet Office's vetting guidance permits ministers to override an adverse recommendation. The power exists because vetting officers assess risk, not suitability — elected ministers are meant to take political responsibility for the final call. In practice, it is almost never used for senior diplomatic posts; most flagged candidates withdraw quietly."
+      },
+      {
+        "heading": "THE ACCOUNTABILITY CHAIN",
+        "body": "Ministerial appointments to ambassadorships go through the Foreign Secretary, who recommends to the Prime Minister, who advises the monarch. A vetting overrule at the Foreign Office level does not automatically reach Downing Street — which is the gap Starmer is now standing in.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Keir Starmer",
+                "role": "Prime Minister",
+                "years": "2024–",
+                "cc": "GB"
+              },
+              {
+                "name": "Peter Mandelson",
+                "role": "Ambassador to US",
+                "years": "2024–2025",
+                "cc": "GB"
+              },
+              {
+                "name": "Olly Robbins",
+                "role": "Former FCO Perm Sec",
+                "years": "2022–2024",
+                "cc": "GB"
+              }
+            ],
+            "label": "the chain on this appointment"
+          }
+        ]
+      },
+      {
+        "heading": "THE CARRINGTON DOCTRINE",
+        "body": "British convention since 1982 holds that ministers resign for departmental failures on their watch, even without personal fault — Lord Carrington quit as Foreign Secretary over the Falklands invasion despite no personal blame. The doctrine has eroded sharply since the Blair years; Starmer's defence that he 'did not know' would have been career-ending forty years ago."
+      },
+      {
+        "heading": "THE SELECT COMMITTEE WEAPON",
+        "body": "Parliamentary select committees can compel testimony from former civil servants under oath. When a sitting PM's account diverges from a former permanent secretary's sworn evidence, the committee transcript becomes the document opposition parties, media, and future inquiries cite for years. This is how 'I wasn't told' becomes 'I misled Parliament.'",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the strongest sanction a UK parliamentary select committee can deploy against a witness?",
+            "options": [
+              "Criminal prosecution for perjury",
+              "A finding of contempt of Parliament",
+              "Immediate removal from office",
+              "A binding order to resign"
+            ],
+            "correct": 1,
+            "explanation": "Select committees cannot prosecute or remove, but a contempt finding — historically rare — carries severe reputational weight and can trigger a Commons vote."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T04:30:05.711Z",
+    "label": "UK Security Vetting & Ministerial Appointments",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-us-caribbean-drug-boat-strike-180-killed": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO LEGAL REGIMES",
+        "body": "Law enforcement at sea requires warning, boarding, and arrest — lethal force only in self-defense. Armed-conflict rules allow killing on sight based on status, not conduct. Which regime applies is the whole question: drug traffickers have historically been criminals, not combatants.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift is from *status-based* interdiction to *status-based targeting* — treating a suspected smuggler the way a uniformed soldier would be treated in war."
+          }
+        ]
+      },
+      {
+        "heading": "THE COAST GUARD TRADITION",
+        "body": "For a century, US drug interdiction at sea was a Coast Guard mission under Title 14 — hail, board, search, arrest. Roughly 30,000 vessels have been boarded under the 1980s Caribbean campaigns without sinking them. The legal architecture assumed suspects had rights, including the right not to be summarily killed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "VE",
+              "CO",
+              "TT",
+              "DO"
+            ],
+            "label": "the Caribbean interdiction theater"
+          }
+        ]
+      },
+      {
+        "heading": "THE UNLAWFUL COMBATANT FRAME",
+        "body": "The Bush administration's post-2001 innovation was designating non-state actors as combatants without the Geneva protections afforded to soldiers. Applying the same frame to cartels converts a criminal justice problem into a military targeting problem — and erases the suspect's right to surrender."
+      },
+      {
+        "heading": "POSSE COMITATUS",
+        "body": "The 1878 Posse Comitatus Act bars the US military from domestic law enforcement. The Coast Guard is exempted by statute; the Navy and Marines are not. Running strikes through Southern Command rather than the Coast Guard reclassifies the action as warfare — which is how the law is satisfied on paper.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Whoever, except in cases and under circumstances expressly authorized by the Constitution or Act of Congress, willfully uses any part of the Army or the Air Force as a posse comitatus... shall be fined under this title or imprisoned not more than two years.",
+            "speaker": "18 U.S.C. § 1385",
+            "year": "1878"
+          }
+        ]
+      },
+      {
+        "heading": "THE EVIDENCE PROBLEM",
+        "body": "A boarded vessel produces evidence — bales of cocaine, manifests, witnesses, a trial. A sunken vessel produces a Pentagon statement. The shift from interdiction to strike also eliminates the mechanism by which the government used to prove the targets were guilty.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Before this campaign, what was the typical US response to a suspected drug-running vessel in the Caribbean?",
+            "options": [
+              "Airstrike from a Navy patrol",
+              "Coast Guard boarding and arrest",
+              "Referral to the country of origin",
+              "Electronic jamming until the vessel stalls"
+            ],
+            "correct": 1,
+            "explanation": "Coast Guard boardings under Title 14 were the standard — tens of thousands of vessels were stopped, searched, and their crews prosecuted in US federal courts."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT RISK",
+        "body": "Once a state establishes that it may kill civilians at sea on suspicion alone, other states cite the precedent. Russia, China, and Iran have all invoked US counterterrorism legal theories to justify their own strikes — from Grozny to Xinjiang to Syria. Legal innovations travel."
+      }
+    ],
+    "generatedAt": "2026-04-20T04:30:34.538Z",
+    "label": "Lethal Force at Sea",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-vercel-breach-crypto-api-keys-web3": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CENTRALIZATION PARADOX",
+        "body": "Decentralized finance protocols run on blockchains no single party controls — but users reach them through websites hosted on a handful of platforms. Vercel, Cloudflare, and AWS S3 host the frontends for most major DeFi apps. The backend is trustless; the front door is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **frontend risk**: a protocol can be mathematically sound while its *interface* — the JavaScript served to the user's browser — is swapped out by whoever controls the hosting."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AN API KEY ACTUALLY IS",
+        "body": "An API key is a long secret string that authenticates a caller to a service. Unlike a password, it usually grants programmatic access without a second factor, and a single leaked key can be replayed from anywhere until it is rotated. In crypto systems, keys often authorize RPC calls, oracle feeds, or admin endpoints with real financial consequences.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes leaked API keys more dangerous than leaked passwords?",
+            "options": [
+              "They are harder to change",
+              "They typically lack a second factor and are replayable",
+              "They are stored on the blockchain",
+              "They grant root access to the server"
+            ],
+            "correct": 1,
+            "explanation": "API keys authenticate machine-to-machine calls, so they are designed to work without MFA — anyone holding the string can replay requests until it's rotated."
+          }
+        ]
+      },
+      {
+        "heading": "THE SUPPLY-CHAIN VECTOR",
+        "body": "The breach did not hit Vercel directly — it came through an AI vendor with access to Vercel's systems. This is the pattern of every major breach since SolarWinds (2020) and Okta (2022): the target is too hard, so attackers compromise a trusted third party that already has credentials. Each integration is a new door.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SolarWinds",
+                "value": "18,000 orgs",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Okta 2022",
+                "value": "366 tenants",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "MOVEit 2023",
+                "value": "2,700+ orgs",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Snowflake 2024",
+                "value": "165 orgs",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "third-party breach blast radius"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FRONTEND SWAPS ARE LETHAL IN DEFI",
+        "body": "If an attacker can modify the JavaScript served to users, they can replace the wallet-connection prompt with one that signs a malicious transaction. The user sees a familiar site and clicks Approve. The 2022 Curve Finance DNS hijack drained $570,000 this way; the 2023 Balancer frontend attack took $238,000. The contract was never touched — only the page that asked users to sign."
+      },
+      {
+        "heading": "THE BREACHFORUMS ECONOMY",
+        "body": "BreachForums is the successor to RaidForums, seized by the FBI in 2022 and its founder arrested. A new BreachForums appeared within weeks, was seized again in 2023, and reopened again. The pattern is structural: takedowns disrupt but do not destroy, because the market for stolen data is larger than any single venue. A $2M asking price for source code is a negotiating position, not a clearing price."
+      },
+      {
+        "heading": "THE ROTATION PROBLEM",
+        "body": "Once keys leak, every dependent system must rotate them — which means redeploying code, updating secrets managers, and coordinating across teams that may not know which keys they use. The average time-to-rotate after a major leak is measured in weeks. Attackers only need hours."
+      }
+    ],
+    "generatedAt": "2026-04-20T04:31:04.275Z",
+    "label": "Secrets, Frontends & the Web3 Paradox",
+    "category": "tech",
+    "articleCount": 1
   }
 }
