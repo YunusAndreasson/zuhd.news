@@ -23766,5 +23766,1278 @@
     "label": "State Militias in Nigeria",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-20-approximately-300-000-children-missed-during-year-s-2nd-nati": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ENDGAME PROBLEM",
+        "body": "Polio has been eradicated everywhere except Pakistan and Afghanistan. Wild poliovirus type 2 was declared eradicated in 2015, type 3 in 2019. Only type 1 remains, and it circulates in a corridor straddling the Durand Line.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the last endemic reservoir"
+          }
+        ]
+      },
+      {
+        "heading": "WHY TWO DROPS AREN'T ENOUGH",
+        "body": "The oral polio vaccine needs multiple doses to confer immunity — typically four or more in high-transmission settings, versus two or three in low-transmission countries. Malnutrition and concurrent gut infections reduce each dose's effectiveness, which is why Pakistan runs national campaigns several times a year rather than relying on routine immunization.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The vaccine is delivered as drops on the tongue — *not* an injection — because oral doses generate gut immunity that blocks person-to-person transmission, which injected vaccines cannot do."
+          }
+        ]
+      },
+      {
+        "heading": "THE BIN LADEN LEGACY",
+        "body": "In 2011 the CIA ran a fake hepatitis vaccination campaign in Abbottabad as cover to collect DNA from Bin Laden's compound. When the ruse was exposed, the Pakistani Taliban banned polio teams from tribal areas and declared vaccinators spies. Over 100 polio workers and police guards have been killed since."
+      },
+      {
+        "heading": "THE REFUSAL PROBLEM",
+        "body": "Beyond security, vaccine refusal runs on rumors that drops cause infertility or contain pork derivatives — a campaign seeded in northern Nigeria in 2003 that spread across the Muslim world and set eradication back a decade. In Pakistan, refusals now cluster in specific communities where local clerics have not publicly endorsed the campaign.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does polio persist in Pakistan and Afghanistan but nowhere else?",
+            "options": [
+              "The virus has mutated to resist vaccines",
+              "Cold-chain failures in hot climates",
+              "Security no-go zones and vaccine refusal blocking herd immunity",
+              "Lack of funding from WHO"
+            ],
+            "correct": 2,
+            "explanation": "The vaccine works and is free — the gap is access and acceptance in specific districts where teams cannot enter or families refuse drops."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MAY MATTERS",
+        "body": "Poliovirus spreads fecal-orally and survives best in warm, wet conditions. Transmission peaks from May through September across South Asia, tracking the pre-monsoon heat and monsoon flooding that contaminate water supplies. Missing a campaign in April means unvaccinated children enter peak season unprotected."
+      },
+      {
+        "heading": "THE GENETIC TRAIL",
+        "body": "Every poliovirus sample is sequenced. Genetic fingerprinting has shown that outbreaks in Gaza, Malawi, Mozambique, and parts of Africa in recent years traced back to strains circulating in Pakistan. As long as the Pakistan-Afghanistan reservoir exists, every country that eliminated polio remains one imported case away from a new outbreak."
+      }
+    ],
+    "generatedAt": "2026-04-20T12:21:13.559Z",
+    "label": "Polio's Last Two Countries",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-clarifying-hevc-licensing-fees-royalties-and-why-vendors-kil": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CODEC ECONOMICS",
+        "body": "A video codec is math: a way to compress pixels so a 4K stream fits through a home connection. The math itself is patented in thousands of small pieces, each owned by a different company, university, or research lab.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "HEVC — *High Efficiency Video Coding*, also called **H.265** — roughly halves the bitrate of its predecessor H.264 at the same visual quality. That efficiency is what makes 4K streaming economically viable."
+          }
+        ]
+      },
+      {
+        "heading": "THE PATENT POOL MECHANIC",
+        "body": "Rather than negotiate with each patent holder, device makers pay a single pool that redistributes royalties. H.264 worked because one pool (MPEG LA) covered nearly everyone. HEVC fractured into multiple competing pools, each claiming essential patents, each charging separately.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Access Advance",
+                "value": "$0.40–$2.00",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "MPEG LA",
+                "value": "$0.20",
+                "tone": "neutral"
+              },
+              {
+                "label": "Velos Media",
+                "value": "disbanded 2022",
+                "tone": "neutral"
+              },
+              {
+                "label": "Unpooled patents",
+                "value": "unknown",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "HEVC royalty pools (per device, stacked)"
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "The royalty falls on whoever ships the final device — the laptop OEM, the TV brand, the NAS vendor — not on the chipmaker whose silicon does the actual decoding. This is why Synology, Dell, and HP strip HEVC support while the Intel and AMD chips inside retain the capability.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who pays HEVC royalties when a laptop ships with an Intel chip that can decode H.265?",
+            "options": [
+              "Intel, because the decoder is in their silicon",
+              "The laptop OEM (Dell, HP, etc.) that ships the finished device",
+              "Microsoft, because Windows plays the video",
+              "The end user, via a one-time activation fee"
+            ],
+            "correct": 1,
+            "explanation": "Patent pools license the finished device, not the component. OEMs can disable HEVC support at the firmware level to dodge the per-unit fee."
+          }
+        ]
+      },
+      {
+        "heading": "THE GERMAN INJUNCTION",
+        "body": "Germany's patent courts grant automatic injunctions on infringement — a much stronger remedy than US courts, which usually award damages instead. This makes Munich and Düsseldorf the preferred venues for patent holders worldwide, and a single German ruling can pull products off shelves across the EU."
+      },
+      {
+        "heading": "THE ROYALTY-FREE ALTERNATIVE",
+        "body": "AV1, released in 2018 by the Alliance for Open Media (Google, Netflix, Amazon, Apple, Microsoft), was built specifically to route around HEVC's patent mess. It compresses better than HEVC but needs dedicated hardware decoders — software decoding eats battery — so adoption waits on the device refresh cycle.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Google",
+                "role": "codec R&D (VP9 lineage)",
+                "cc": "US"
+              },
+              {
+                "name": "Netflix",
+                "role": "bandwidth cost driver",
+                "cc": "US"
+              },
+              {
+                "name": "Amazon",
+                "role": "Prime Video distribution",
+                "cc": "US"
+              },
+              {
+                "name": "Mozilla",
+                "role": "open-web advocate",
+                "cc": "US"
+              }
+            ],
+            "label": "Alliance for Open Media founders"
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL RHYME",
+        "body": "The GIF image format was crippled in the 1990s when Unisys started enforcing the LZW compression patent, triggering the 'Burn All GIFs' movement and driving adoption of PNG. Codec history repeats: closed formats accrue fees until an open alternative reaches critical mass, then collapse."
+      }
+    ],
+    "generatedAt": "2026-04-20T12:21:45.417Z",
+    "label": "HEVC Patent Pools",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-20-india-and-south-korea-agree-to-nearly-double-trade-to-50b-by": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUOPOLY",
+        "body": "Three countries build nearly every large commercial ship in the world: China, South Korea, and Japan. Together they account for over 90% of global tonnage. India's share is under 1%, despite a 7,500 km coastline and deep maritime history.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~50%",
+                "cc": "CN",
+                "weight": 50
+              },
+              {
+                "label": "South Korea",
+                "value": "~28%",
+                "cc": "KR",
+                "weight": 28
+              },
+              {
+                "label": "Japan",
+                "value": "~15%",
+                "cc": "JP",
+                "weight": 15
+              },
+              {
+                "label": "India",
+                "value": "<1%",
+                "cc": "IN",
+                "weight": 1
+              }
+            ],
+            "label": "global shipbuilding share (gross tonnage)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KOREA DOMINATES",
+        "body": "Korean yards — Hyundai Heavy, Samsung Heavy, Hanwha Ocean — emerged from Park Chung-hee's 1970s industrial drive that fused state-directed credit with chaebol execution. Ulsan's Hyundai yard became the largest shipbuilding site on earth by scaling faster than any Japanese rival could.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Korean model: **state-backed credit** channeled through **chaebol** conglomerates, with shipbuilding chosen precisely because it absorbed steel, electronics, and heavy machinery outputs in a single export package."
+          }
+        ]
+      },
+      {
+        "heading": "THE GULF HEDGE",
+        "body": "Both economies are acutely exposed to Hormuz. South Korea imports roughly 70% of its crude from the Gulf; India imports closer to 45%. A shipbuilding partnership outside the Gulf's shadow is industrial insurance — capacity that stays productive even when tanker insurance premiums spike.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              54,
+              54,
+              72,
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3
+            ],
+            "periods": [
+              "Feb 20",
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDIA, WHY NOW",
+        "body": "India offers three things Korean yards increasingly lack at home: labor cost (Korean shipyard wages are 4–5x Indian), a demographic pipeline, and a government willing to subsidize. The Maritime India Vision 2030 targets top-10 shipbuilding status, backed by a $2.5bn shipbuilding financial assistance scheme."
+      },
+      {
+        "heading": "THE INDUSTRIAL TOWNSHIP MODEL",
+        "body": "Korean 'industrial townships' replicate the Ulsan formula: a single chaebol anchors a self-contained city — housing, schools, hospitals, supplier parks — around one flagship yard. It is closer to a colonial-era company town than a standard FDI zone, and it is how Korea exports not just capital but its industrial culture.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global shipbuilding tonnage does India currently hold?",
+            "options": [
+              "Under 1%",
+              "Around 5%",
+              "Around 12%",
+              "Around 20%"
+            ],
+            "correct": 0,
+            "explanation": "India holds under 1% of global tonnage despite a 7,500 km coastline — the gap Korean capital is being invited to close."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-12"
+    ],
+    "generatedAt": "2026-04-20T12:22:11.421Z",
+    "label": "Korea-India Shipbuilding",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-20-india-s-core-sector-growth-contracts-0-4-in-march-2026": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE INDEX MEASURES",
+        "body": "India's Index of Eight Core Industries tracks coal, crude oil, natural gas, refinery products, fertilizers, steel, cement, and electricity. Together they weight 40.27% of the broader Index of Industrial Production — so a core contraction almost guarantees IIP weakness a month later.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The eight sectors are *upstream* — they feed everything else. When **cement** and **steel** fall, construction follows; when **electricity** falls, factories have already slowed."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FERTILIZER MATTERS",
+        "body": "India is the world's second-largest fertilizer consumer after China. Urea production depends on natural gas as feedstock; di-ammonium phosphate depends on imported rock phosphate and ammonia. A 24.6% fertilizer collapse in March — just before the kharif sowing season begins in June — threatens the monsoon crop cycle before it starts."
+      },
+      {
+        "heading": "THE IRAN-INDIA OIL LINK",
+        "body": "India imports roughly 85% of its crude. Before 2019 sanctions, Iran was India's third-largest supplier; today Russia dominates, but Gulf crude still moves through Hormuz to Indian refineries at Jamnagar and Paradip. Any Hormuz disruption hits Indian refinery throughput within weeks — which is why crude oil output, refined separately, tracks Gulf tensions.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              54,
+              54,
+              72,
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3
+            ],
+            "periods": [
+              "Feb 20",
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE CHANNEL",
+        "body": "India pays for oil in dollars. When Gulf tensions spike crude, the import bill swells and the rupee weakens — which makes the next barrel more expensive in rupee terms. This feedback loop is why RBI intervenes aggressively during oil shocks, burning reserves to slow the slide.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              93.807259,
+              93.2999,
+              94.28484,
+              94.127654,
+              94.30975,
+              94.8642,
+              94.782475,
+              94.782054,
+              94.352351,
+              93.48465,
+              92.64285,
+              92.97385,
+              92.763649,
+              92.978498,
+              92.978498,
+              92.9636,
+              92.86045,
+              92.283354,
+              92.47006,
+              93.10605,
+              93.10525,
+              94.508943,
+              94.94696,
+              93.165649,
+              93.387156,
+              93.048145,
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407
+            ],
+            "periods": [
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "WHY TWO CONTRACTIONS TRIGGER REVISION",
+        "body": "A single negative print is noise — weather, a plant shutdown, a base effect. Two consecutive contractions signal demand weakness rather than supply friction, and Indian forecasters treat this as the threshold for cutting full-year GDP projections. The RBI's Monetary Policy Committee uses the same rule of thumb."
+      },
+      {
+        "heading": "THE BALANCE-OF-TRADE SQUEEZE",
+        "body": "India runs a structural trade deficit — it imports oil, gold, and electronics; it exports services, generics, and gems. When oil rises and industrial output falls simultaneously, both sides of the trade account deteriorate at once. This is the scenario that forced the 1991 balance-of-payments crisis that triggered India's economic liberalization.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What triggered India's 1991 economic liberalization?",
+            "options": [
+              "A World Bank loan condition",
+              "A balance-of-payments crisis that nearly exhausted forex reserves",
+              "The end of the Soviet Union cutting off rupee-rouble trade",
+              "A Supreme Court ruling on industrial licensing"
+            ],
+            "correct": 1,
+            "explanation": "By mid-1991 India had roughly two weeks of import cover left; the government airlifted gold to the Bank of England as collateral, and Manmohan Singh's reforms followed within weeks."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-12",
+      "Open Exchange Rates · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-20T12:22:39.624Z",
+    "label": "India's Core Sector Index",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-20-iraq-s-militias-are-in-a-struggle-for-survival": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PMF ORIGIN",
+        "body": "The Popular Mobilization Forces were formed in June 2014 after Grand Ayatollah Sistani issued a fatwa calling on Iraqis to fight ISIS as Mosul fell. What began as a volunteer coalition was formalized into a state body in 2016 — a parallel army with its own budget, chain of command, and parliamentary patrons.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2016 **PMF Law** made the *Hashd al-Shaabi* an official arm of the Iraqi state answerable to the Prime Minister — on paper. In practice, the strongest brigades answer to Tehran."
+          }
+        ]
+      },
+      {
+        "heading": "THE AXIS OF RESISTANCE",
+        "body": "Iran's regional network was built over four decades: Hezbollah in Lebanon, Hamas and Islamic Jihad in Gaza, the Houthis in Yemen, and the Iraqi muqawama factions. Since October 2023, Israeli and US strikes have gutted Hezbollah's leadership, degraded Hamas, and killed senior IRGC Quds Force commanders — leaving the Iraqi militias as the axis's last intact armed node.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IQ",
+              "SY",
+              "LB",
+              "YE",
+              "PS"
+            ],
+            "label": "the axis of resistance"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST",
+        "body": "Iraq's militia landscape is not monolithic. A handful of factions dominate, each with distinct leadership, Iranian ties, and willingness to defy Baghdad.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Qais al-Khazali",
+                "role": "Asa'ib Ahl al-Haq leader",
+                "years": "2006–present",
+                "cc": "IQ"
+              },
+              {
+                "name": "Abu Hussein al-Hamidawi",
+                "role": "Kata'ib Hezbollah SG",
+                "years": "2020–present",
+                "cc": "IQ"
+              },
+              {
+                "name": "Akram al-Kaabi",
+                "role": "Harakat Hezbollah al-Nujaba",
+                "years": "2013–present",
+                "cc": "IQ"
+              },
+              {
+                "name": "Mohammed Shia al-Sudani",
+                "role": "Iraqi Prime Minister",
+                "years": "2022–present",
+                "cc": "IQ"
+              }
+            ],
+            "label": "the main muqawama factions"
+          }
+        ]
+      },
+      {
+        "heading": "THE SOLEIMANI PRECEDENT",
+        "body": "In January 2020 a US drone strike at Baghdad airport killed IRGC Quds Force commander Qassem Soleimani and PMF deputy chief Abu Mahdi al-Muhandis — the two men who personally held the Iran-Iraq militia bridge together. Iraq's parliament voted to expel US forces within days; five years on, they are still there. Militia retaliation was loud but calibrated to avoid escalation."
+      },
+      {
+        "heading": "THE MONEY",
+        "body": "The PMF's ~$3 billion annual budget flows from Iraqi state coffers — meaning Iranian-aligned factions are paid by Baghdad to exist. Cutting the budget is political suicide for any PM; the Badr Organization and allied blocs hold decisive votes in parliament. This is the structural reason Sudani cannot simply dissolve factions that attack US troops."
+      },
+      {
+        "heading": "THE INTEGRATION CHOICE",
+        "body": "Every Iraqi militia eventually faces the Hezbollah question: remain an armed non-state actor with leverage, or fold into the state and become bureaucratically domesticated. The IRA chose decommissioning. The FARC chose politics. Hezbollah refused and paid the price in 2024. Iraqi factions are now watching the bill come due.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What triggered the creation of Iraq's Popular Mobilization Forces in 2014?",
+            "options": [
+              "A US request after the Mosul offensive",
+              "A fatwa from Grand Ayatollah Sistani as ISIS advanced",
+              "An Iranian directive from the IRGC Quds Force",
+              "A UN Security Council resolution on Iraqi sovereignty"
+            ],
+            "correct": 1,
+            "explanation": "Sistani's June 2014 fatwa — a rare call to arms from Najaf's quietist Shia authority — mobilized hundreds of thousands of volunteers as the Iraqi army collapsed before ISIS."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T12:23:14.737Z",
+    "label": "Iraq's Militias & the PMF",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-netflix-s-ai-deal-puts-the-global-vfx-workforce-at-risk": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PIPELINE",
+        "body": "A single VFX shot passes through dozens of specialists — rotoscoping, matchmove, compositing, lighting, cleanup. Rotoscoping alone (tracing objects frame-by-frame to separate them from backgrounds) can take a junior artist hours per second of footage. This granular, repetitive labor is exactly what frame-level AI targets first.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term for this hand-tracing is *rotoscoping* — named for the 1917 **Rotoscope** device Max Fleischer patented to trace live-action film for animation. A century later, the same task still anchors the bottom of the VFX pyramid."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE WORK LIVES",
+        "body": "Hollywood designs and supervises; the actual frame-by-frame labor was offshored decades ago to lower-cost hubs. Mumbai, Chennai, and Hyderabad host the largest VFX workforces outside the US, followed by Vancouver, London, and Seoul. Indian studios alone employ well over 30,000 VFX artists servicing global streamers.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "IN",
+              "CA",
+              "GB",
+              "KR",
+              "NZ"
+            ],
+            "label": "the global VFX pipeline"
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSIDY LAYER",
+        "body": "VFX geography is shaped less by talent than by tax credits. British Columbia rebates 35-60% of qualifying labor costs; the UK offers up to 25.5%; India's state-level incentives stack on federal SEZ benefits. Studios route work to whichever jurisdiction's subsidy is richest that quarter — which is why VFX houses boom and bust on policy changes, not creative demand."
+      },
+      {
+        "heading": "THE 2023 PRECEDENT",
+        "body": "The WGA and SAG-AFTRA strikes secured contract language on generative AI — studios cannot use AI to write scripts or replicate an actor's likeness without consent and compensation. But VFX artists are not unionized in most jurisdictions. IATSE covers some US post-production roles; offshore artists have no equivalent shield.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which creative workforce won enforceable AI protections in the 2023 Hollywood strikes?",
+            "options": [
+              "VFX artists",
+              "Screenwriters and actors",
+              "Animators",
+              "All post-production staff"
+            ],
+            "correct": 1,
+            "explanation": "WGA and SAG-AFTRA won contract AI language; VFX, animation, and most post-production workers were not covered by those agreements."
+          }
+        ]
+      },
+      {
+        "heading": "THE ECONOMICS",
+        "body": "A blockbuster VFX shot can cost $20,000–$50,000 when done by hand. Frame-level automation tools compress the labor-heavy stages — roto, cleanup, inpainting — by an order of magnitude. The savings accrue to the studio commissioning the work, not the vendor delivering it, which is why acquisition (not licensing) is the dominant playbook."
+      },
+      {
+        "heading": "THE VERTICAL INTEGRATION PATTERN",
+        "body": "Streamers buying their own tooling mirrors an older pattern: studios once owned theaters until the 1948 Paramount Decrees forced divestiture. Netflix owning the AI that replaces its vendors is the same logic — control the input, capture the margin — now applied to labor rather than distribution."
+      }
+    ],
+    "generatedAt": "2026-04-20T12:23:45.408Z",
+    "label": "VFX Labor & Automation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-20-new-myanmar-administration-releases-ousted-president-win-myi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 2008 CONSTITUTION",
+        "body": "Myanmar's constitution, drafted by the junta itself, reserves 25% of parliamentary seats for serving military officers. Any amendment requires more than 75% approval — giving the Tatmadaw a permanent veto over its own power. The civilian government that took office in 2016 never had the votes to touch it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The military is called the ***Tatmadaw***, literally 'royal armed forces' — a name that casts it as guardian of the state itself, not a servant of civilian authority."
+          }
+        ]
+      },
+      {
+        "heading": "THE ROHINGYA CAMPAIGN",
+        "body": "In 2017, the Tatmadaw drove roughly 750,000 Rohingya Muslims from Rakhine state into Bangladesh, burning villages and killing thousands. The UN called it a textbook case of ethnic cleansing with genocidal intent. Suu Kyi, then civilian leader, defended the military at the International Court of Justice in 2019 — a fact that reshaped global opinion of her.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MM",
+              "BD",
+              "TH",
+              "CN",
+              "IN"
+            ],
+            "label": "Myanmar and its neighbors"
+          }
+        ]
+      },
+      {
+        "heading": "THE COUP'S TRIGGER",
+        "body": "The November 2020 election was a landslide for Suu Kyi's NLD, which won 83% of contested seats. The military-backed USDP collected just 33 of 476. Three months later, citing unproven fraud claims, Min Aung Hlaing seized power on the morning parliament was set to convene — a timing no observer missed."
+      },
+      {
+        "heading": "THE CHARGE SHEET",
+        "body": "Suu Kyi was convicted in closed-door trials on 19 separate charges — walkie-talkie possession, violating COVID rules, corruption, breaching the official secrets act — totaling 27 years. The charges were stacked to ensure she could not contest any future election; Myanmar's constitution bars convicts from the presidency.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the junta stack so many separate convictions against Suu Kyi?",
+            "options": [
+              "To justify the length of her sentence internationally",
+              "To ensure constitutional ineligibility for future office",
+              "To extract a confession through plea bargaining",
+              "To distribute trials across multiple courts"
+            ],
+            "correct": 1,
+            "explanation": "Myanmar's 2008 constitution bars anyone convicted by a court from holding the presidency — one conviction would have sufficed legally, but the volume signals permanence."
+          }
+        ]
+      },
+      {
+        "heading": "THE AMNESTY PLAYBOOK",
+        "body": "Southeast Asian juntas have long used staged pardons to manufacture legitimacy before sham elections. Thailand's generals freed political prisoners before the 2019 vote they then won. The sequence is familiar: coup, trials, constitutional rewrite, amnesty, managed election, civilian facade."
+      },
+      {
+        "heading": "THE CHINA FACTOR",
+        "body": "China shares a 2,100 km border with Myanmar and has invested heavily in pipelines carrying oil and gas from the Bay of Bengal to Yunnan — bypassing the Malacca Strait. Beijing recognized Min Aung Hlaing's government early and has hosted him repeatedly. Western sanctions matter less when the neighbor buying your gas does not care.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~34%",
+                "cc": "CN",
+                "weight": 34
+              },
+              {
+                "label": "Thailand",
+                "value": "~18%",
+                "cc": "TH",
+                "weight": 18
+              },
+              {
+                "label": "Singapore",
+                "value": "~10%",
+                "cc": "SG",
+                "weight": 10
+              },
+              {
+                "label": "India",
+                "value": "~8%",
+                "cc": "IN",
+                "weight": 8
+              }
+            ],
+            "label": "Myanmar's top trading partners"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T12:24:14.403Z",
+    "label": "Myanmar's Tatmadaw State",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-pakistan-engages-ifc-for-investors-in-installation-of-10m-sm": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CIRCULAR DEBT IS",
+        "body": "Pakistan's power sector owes itself money in a chain: distribution companies underbill or fail to collect, so they can't pay generators, who can't pay fuel suppliers, who demand sovereign guarantees. The state backstops the gap. By 2024 the stack exceeded PKR 2.6 trillion — roughly 2.5% of GDP.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Urdu shorthand is *gardishi qarza* — literally **\"revolving debt\"** — and every IMF program since 2008 has named it as the central fiscal bleed."
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE LEAKS",
+        "body": "Losses come from three places: technical (old wires, transformer inefficiency), commercial (theft via hooks on overhead lines, or *kunda* connections), and collection (bills issued but never paid, often to influential consumers). Smart meters attack the second and third; they do nothing for the first."
+      },
+      {
+        "heading": "WHY METERS WORK",
+        "body": "A smart meter reports consumption remotely and detects tampering — a bypassed meter stops matching the transformer's upstream reading. Utilities can disconnect non-payers by software instead of sending a crew to a neighborhood that may chase them off.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.817084,
+              278.938921,
+              278.846901,
+              279.174143,
+              278.822517,
+              279.2,
+              278.184288,
+              278.387431,
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081
+            ],
+            "periods": [
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE IFC ROLE",
+        "body": "The International Finance Corporation is the World Bank's private-sector arm. It doesn't lend to governments — it mobilizes private capital into infrastructure by de-risking deals, taking equity stakes, and syndicating loans. Installing 10 million meters at ~$50 each is roughly a $500M project, too large for Pakistan's banks alone.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "IBRD",
+                "role": "Loans to middle-income states"
+              },
+              {
+                "name": "IDA",
+                "role": "Grants to poorest countries"
+              },
+              {
+                "name": "IFC",
+                "role": "Private-sector investment"
+              },
+              {
+                "name": "MIGA",
+                "role": "Political risk insurance"
+              },
+              {
+                "name": "ICSID",
+                "role": "Investor-state arbitration"
+              }
+            ],
+            "label": "World Bank Group's five arms"
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS IN THE END",
+        "body": "Privatized metering shifts capex off the state's balance sheet, but the operator recovers costs through tariffs or a capacity charge embedded in the bill. Honest payers — the ones already metered — subsidize the infrastructure that catches the ones who weren't. This is the recurring pattern in Pakistan's energy reforms: the compliant middle bears the adjustment.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Pakistan's electricity is lost to theft and unbilled consumption?",
+            "options": [
+              "Around 5%",
+              "Around 17%",
+              "Around 35%",
+              "Around 50%"
+            ],
+            "correct": 1,
+            "explanation": "Aggregate technical and commercial losses across Pakistan's distribution companies run near 17% — triple the level of well-run utilities."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-20T12:24:44.475Z",
+    "label": "Circular Debt & Smart Meters",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-20-revealed-scientists-tell-colombia-fossil-fuel-transition-sum": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BRIDGE FUEL CLAIM",
+        "body": "Natural gas emits roughly half the CO2 of coal when burned for electricity. For two decades this arithmetic justified gas as a transition fuel — dirty enough to phase out eventually, clean enough to replace coal now.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The catch: *burned* gas is cleaner than coal, but **unburned** methane leaking from wells and pipelines is ~80x more potent than CO2 over 20 years. A leak rate above ~3% erases the coal advantage entirely."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COLOMBIA HOSTS THIS",
+        "body": "Colombia under Petro became the first major oil-producing country to stop issuing new exploration licenses (2022). Hosting a transition summit outside UN channels is a deliberate end-run around COP processes that petrostates have repeatedly watered down.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO",
+              "VE",
+              "BR",
+              "EC"
+            ],
+            "label": "South America's oil producers",
+            "caption": "Colombia's neighbors all depend heavily on hydrocarbon exports"
+          }
+        ]
+      },
+      {
+        "heading": "WHY UN CLIMATE TALKS STALL",
+        "body": "COP decisions require consensus — any single country can block text. COP28 in Dubai (2023) was the first to name fossil fuels at all; COP29 in Baku (2024) failed to extend that language. Petrostates and gas-dependent developing nations form a reliable blocking coalition.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What voting rule governs UN climate summit decisions?",
+            "options": [
+              "Simple majority of attending nations",
+              "Two-thirds supermajority",
+              "Consensus — any country can block",
+              "Weighted by emissions share"
+            ],
+            "correct": 2,
+            "explanation": "COP operates by consensus, which is why single petrostates can dilute final text. This is the structural reason 30 years of COPs produced weak fossil language."
+          }
+        ]
+      },
+      {
+        "heading": "THE CARBON BUDGET",
+        "body": "The IPCC estimates roughly 400 gigatonnes of CO2 remain to have a 50% chance of holding warming to 1.5°C. At current ~40 Gt/year emissions, the budget exhausts before 2035. Every new gas field locks in decades of additional emissions past that date.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Coal",
+                "value": "~820 kg",
+                "tone": "unfavorable",
+                "weight": 820
+              },
+              {
+                "label": "Gas",
+                "value": "~490 kg",
+                "tone": "neutral",
+                "weight": 490
+              },
+              {
+                "label": "Solar",
+                "value": "~45 kg",
+                "tone": "favorable",
+                "weight": 45
+              },
+              {
+                "label": "Wind",
+                "value": "~11 kg",
+                "tone": "favorable",
+                "weight": 11
+              }
+            ],
+            "label": "CO2 per MWh electricity"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRANDED ASSET PROBLEM",
+        "body": "A gas plant built today has a 30-40 year operating life. If climate policy tightens mid-life, the plant becomes uneconomic before its debt is paid off. The IEA estimates $1-4 trillion of fossil infrastructure could be stranded under aggressive decarbonization — which is why industry lobbies hard against bridge-fuel phaseouts."
+      }
+    ],
+    "generatedAt": "2026-04-20T12:25:12.035Z",
+    "label": "The Bridge Fuel Debate",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-20-russia-arrests-german-woman-in-alleged-bomb-plot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INSTITUTIONAL LINEAGE",
+        "body": "The FSB is the domestic successor to the KGB's Second Chief Directorate — counterintelligence and internal security. The foreign intelligence arm (SVR) and military intelligence (GRU) split off separately in 1991. The FSB retained the Lubyanka building, the archives, and most of the personnel.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "FSB",
+                "role": "domestic security, counterintelligence",
+                "years": "1995–",
+                "cc": "RU"
+              },
+              {
+                "name": "SVR",
+                "role": "foreign civilian intelligence",
+                "years": "1991–",
+                "cc": "RU"
+              },
+              {
+                "name": "GRU",
+                "role": "military intelligence, sabotage",
+                "years": "1918–",
+                "cc": "RU"
+              }
+            ],
+            "label": "the three Soviet successors"
+          }
+        ]
+      },
+      {
+        "heading": "THE SHOWCASE ARREST",
+        "body": "Soviet and Russian security services have long used publicly announced foreign spy arrests as domestic signaling. The pattern predates the Cold War — Stalin's show trials of the 1930s established that captured foreign agents serve a political function distinct from any intelligence value.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Russian term is *shpionomaniya* — **spy mania** — a deliberate cultivation of foreign-threat narratives to justify internal controls."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CENTRAL ASIAN INTERMEDIARIES",
+        "body": "Millions of Central Asian labor migrants move between their home countries and Russia visa-free under CIS agreements. The churn makes recruitment and cover stories plausible, and the intermediaries blur attribution — an operation run through Dushanbe or Bishkek is harder to tie cleanly to Kyiv or Berlin.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA",
+              "DE",
+              "KZ",
+              "UZ",
+              "TJ",
+              "KG"
+            ],
+            "label": "the claimed recruitment corridor"
+          }
+        ]
+      },
+      {
+        "heading": "GERMANY'S DELICATE POSITION",
+        "body": "Germany is Ukraine's second-largest military backer after the US but has historically maintained deeper commercial ties to Russia than any other G7 state — Nord Stream, Wandel durch Handel, decades of Ostpolitik. Espionage allegations against German citizens land in that tension."
+      },
+      {
+        "heading": "LIFE SENTENCES UNDER ARTICLE 275",
+        "body": "Russia's treason statute was expanded in 2022 to cover 'switching to the enemy's side' during armed conflict, with penalties up to life imprisonment. Conviction rates in Russian terrorism and treason cases exceed 99%; the trial is procedural, not adversarial.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Russian treason and terrorism prosecutions end in conviction?",
+            "options": [
+              "Around 75%",
+              "Around 90%",
+              "Over 99%"
+            ],
+            "correct": 2,
+            "explanation": "Russian courts convict in over 99% of such cases — a legacy of the Soviet procuracy system where the prosecutor's case is rarely contested."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-20T12:25:38.564Z",
+    "label": "The FSB & Spy Narratives",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-we-might-finally-know-how-to-use-quantum-computers-to-boost": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROMISE",
+        "body": "Quantum computers can, in principle, manipulate exponentially large vectors using only a handful of qubits. A 50-qubit register encodes a vector with roughly a quadrillion entries — which is why ML, built on giant matrix operations, looked like quantum's killer app.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pitch: handle a **2^n-dimensional** vector with just *n* qubits. Linear algebra at exponential compression."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEMORY BOTTLENECK",
+        "body": "To exploit that compression, you first have to load classical data into quantum states. A device called QRAM (quantum random-access memory) was supposed to do this in logarithmic time, but building one at useful scale has never been demonstrated. Loading N data points the naive way takes N steps — erasing any quantum speedup before the algorithm even starts."
+      },
+      {
+        "heading": "THE DEQUANTIZATION SHOCK",
+        "body": "In 2018, then-undergraduate Ewin Tang showed that the flagship quantum recommendation algorithm could be matched by a clever classical one. A cascade of 'dequantization' results followed, collapsing most claimed ML speedups. The field has been hunting for genuinely quantum-hard ML problems ever since.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What killed most early claims of quantum speedups for machine learning?",
+            "options": [
+              "Qubit decoherence made runs too short",
+              "Classical algorithms were found that matched them",
+              "Export controls blocked access to hardware",
+              "Training data was too noisy for quantum gates"
+            ],
+            "correct": 1,
+            "explanation": "Tang's 2018 dequantization result and its successors showed classical methods could match the quantum recommendation algorithm, triggering a wave of similar results."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STREAMING HELPS",
+        "body": "Streaming processes each data point as it arrives, then discards it. This sidesteps QRAM entirely — you never need to hold the full dataset in superposition. The tradeoff is that the algorithm must be restructured so each pass extracts a useful quantum statistic before the state collapses."
+      },
+      {
+        "heading": "THE OPEN QUESTION",
+        "body": "Every quantum ML result now faces the same test: can a classical algorithm, given the same streaming access, do the job too? Until that question is answered, a speedup on paper is provisional. The history of the field is that classical methods keep catching up."
+      },
+      {
+        "heading": "WHY MILLIONS OF QUBITS",
+        "body": "Today's largest quantum processors hold around a thousand noisy qubits. Useful ML workloads, with error correction, need millions. Streaming reduces the memory demand but not the gate-count demand — the hardware gap remains the dominant constraint."
+      }
+    ],
+    "generatedAt": "2026-04-20T12:26:03.007Z",
+    "label": "Quantum Machine Learning",
+    "category": "science",
+    "articleCount": 1
   }
 }
