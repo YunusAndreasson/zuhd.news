@@ -28152,5 +28152,1363 @@
     "label": "HIV Prevention & the Adherence Problem",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-20-argentina-glaciers-law-reform-one-million": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PERIGLACIAL ZONE",
+        "body": "A glacier is the visible ice, but the periglacial zone is the frozen ground around and beneath it — rock glaciers, permafrost, and ice-cemented debris that store and slowly release water. In arid Andean ranges, this hidden reservoir often holds more water than the glacier itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2010 law protected both the *glaciar* and the *ambiente periglacial* — a distinction mining companies have long argued is too broad. The reform narrows it to ice visible from the surface."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ANDES MATTER",
+        "body": "Mendoza and San Juan are rain-shadow deserts; annual rainfall is under 250mm. Almost all freshwater for vineyards, olive groves, and cities comes from Andean meltwater delivered through a handful of rivers. When the snowpack and glaciers shrink, there is no backup aquifer.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AR",
+              "CL"
+            ],
+            "label": "the Andean water shed",
+            "caption": "Mendoza and San Juan sit in the rain shadow east of the Andes"
+          }
+        ]
+      },
+      {
+        "heading": "THE LITHIUM TRIANGLE",
+        "body": "Argentina, Chile, and Bolivia hold roughly 55% of the world's known lithium reserves in high-altitude salt flats. Extraction is water-intensive: producing one ton of lithium carbonate from brine requires evaporating around 2 million liters of water in regions where water is already the binding constraint.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bolivia",
+                "value": "~23 mt",
+                "cc": "BO",
+                "weight": 23
+              },
+              {
+                "label": "Argentina",
+                "value": "~22 mt",
+                "cc": "AR",
+                "weight": 22
+              },
+              {
+                "label": "Chile",
+                "value": "~11 mt",
+                "cc": "CL",
+                "weight": 11
+              }
+            ],
+            "label": "Lithium triangle reserves"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2010 LAW",
+        "body": "Passed after a presidential veto was overridden by Congress, Argentina's Ley de Glaciares was one of the world's strictest — banning mining, oil, and gas activity on or near any glacier or periglacial feature. It forced a national inventory, which identified over 16,000 glaciers, many sitting directly above planned mine sites.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why was Argentina's 2010 Glacier Law considered unusually strict globally?",
+            "options": [
+              "It banned all mining within 100km of any glacier",
+              "It protected periglacial zones, not just visible ice",
+              "It gave glaciers legal personhood",
+              "It required mining firms to fund glacier restoration"
+            ],
+            "correct": 1,
+            "explanation": "Protecting the frozen ground around glaciers — not just the ice itself — put vast Andean mining concessions off-limits."
+          }
+        ]
+      },
+      {
+        "heading": "THE MILEI DOCTRINE",
+        "body": "Milei's government treats environmental regulation primarily as a drag on foreign investment. The RIGI regime offers 30-year tax and currency stability to large projects, and the glacier reform fits the same logic: remove constraints that deter capital, let courts and markets sort the rest."
+      }
+    ],
+    "generatedAt": "2026-04-21T08:25:54.913Z",
+    "label": "Glaciers & Andean Water",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-20-india-stranded-offshore-wind-zero-turbines": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TARIFF GAP",
+        "body": "Onshore solar in India clears auctions at roughly ₹2.5/kWh. Offshore wind needs ₹6–8/kWh to recover capex on turbines, subsea cables, and monopile foundations. No private developer bids when the market only pays a third of cost.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The instrument meant to bridge this is **viability gap funding** — a capital subsidy that lets developers bid a lower tariff without eating the loss. India approved ₹7,453 crore in VGF for 1 GW in 2024; the math still didn't close."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OFFSHORE COSTS WHAT IT COSTS",
+        "body": "A single offshore turbine weighs 1,000+ tons and sits on a foundation driven 40m into the seabed. Installation vessels charge $200,000+ per day. Subsea export cables run $1–2 million per kilometer. None of this scales down — a 100 MW project pays nearly the fixed costs of a 1 GW project."
+      },
+      {
+        "heading": "THE SUPPLY CHAIN MOAT",
+        "body": "Denmark, Germany, the UK, and China built offshore wind industries over 20 years — ports deep enough for jack-up vessels, yards that fabricate monopiles, trained marine crews. India has none of this domestically. Every component and vessel must be imported, inflating costs above European benchmarks.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "39 GW",
+                "cc": "CN",
+                "weight": 39
+              },
+              {
+                "label": "UK",
+                "value": "15 GW",
+                "cc": "GB",
+                "weight": 15
+              },
+              {
+                "label": "Germany",
+                "value": "9 GW",
+                "cc": "DE",
+                "weight": 9
+              },
+              {
+                "label": "India",
+                "value": "0 GW",
+                "cc": "IN",
+                "weight": 0.01,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "installed offshore wind capacity"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHIC CONSTRAINT",
+        "body": "India's best offshore wind zones sit off Gujarat and Tamil Nadu. The Gujarat zones face the Arabian Sea monsoon — 4 months where installation vessels cannot operate safely. European North Sea projects work 9 months a year; Indian projects get 7 at best, stretching construction timelines and interest costs."
+      },
+      {
+        "heading": "WHY THE UK IS INVOLVED",
+        "body": "The UK built out 15 GW of offshore wind through Contracts for Difference — a mechanism where the state guarantees a strike price and pays the gap when market prices fall below it. Indian power markets have no equivalent instrument. The February 2026 trustforce is trying to transplant the CfD model, but the fiscal commitment that made it work in the UK has no Indian analogue.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What mechanism let the UK scale offshore wind from zero to 15 GW?",
+            "options": [
+              "Carbon tax on coal generators",
+              "Contracts for Difference guaranteeing a strike price",
+              "Direct state ownership of wind farms",
+              "Import tariffs on foreign turbines"
+            ],
+            "correct": 1,
+            "explanation": "CfDs shifted price risk from developers to the state, making projects bankable at tariffs the wholesale market alone wouldn't support."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-21T08:26:23.471Z",
+    "label": "Offshore Wind Economics",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-20-israel-yellow-line-lebanon-iran-ceasefire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BLUE LINE",
+        "body": "The UN drew the Blue Line in 2000 as a withdrawal benchmark after Israel's 22-year occupation of southern Lebanon ended. It was never a border — just a line certifying Israeli withdrawal under Security Council Resolution 425. A 'Yellow Line' inside Lebanese territory inverts that logic: Israel marking a zone where it, not the Lebanese state, decides who may enter.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "LB",
+              "SY"
+            ],
+            "label": "the southern Lebanon theatre"
+          }
+        ]
+      },
+      {
+        "heading": "RESOLUTION 1701",
+        "body": "The 2006 ceasefire that ended the Israel-Hezbollah war created a buffer south of the Litani River, patrolled by UNIFIL and the Lebanese Armed Forces, from which Hezbollah was to withdraw heavy weapons. Enforcement was always partial; the current fighting is, in part, the unraveling of that arrangement.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The zone runs from the **Blue Line** north to the **Litani River** — roughly 30km deep. Hezbollah's heaviest weapons were supposed to sit north of the Litani. They did not."
+          }
+        ]
+      },
+      {
+        "heading": "FREE-FIRE ZONES, A HISTORY",
+        "body": "The term comes from Vietnam — areas where US forces could engage any target without prior clearance. International humanitarian law does not recognize 'free-fire zones': the obligation to distinguish combatants from civilians applies everywhere, regardless of what a belligerent declares a zone to be.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where did the military term 'free-fire zone' originate?",
+            "options": [
+              "French Algeria, 1950s",
+              "US operations in Vietnam",
+              "Soviet Afghanistan",
+              "British Malaya"
+            ],
+            "correct": 1,
+            "explanation": "US command in Vietnam designated areas where any person could be engaged without clearance — a doctrine international law rejects as incompatible with civilian protection."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1982 PRECEDENT",
+        "body": "Israel invaded Lebanon in 1982 to expel the PLO and established a 'security zone' in the south that lasted 18 years. It was administered via a proxy militia, the South Lebanon Army, and produced Hezbollah as the resistance movement that eventually forced the 2000 withdrawal. Buffer zones tend to create the adversary they were meant to contain.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Menachem Begin",
+                "role": "Israeli Prime Minister",
+                "years": "1977–1983",
+                "cc": "IL"
+              },
+              {
+                "name": "Ariel Sharon",
+                "role": "Defense Minister",
+                "years": "1981–1983",
+                "cc": "IL"
+              },
+              {
+                "name": "Bashir Gemayel",
+                "role": "Phalangist, Lebanese president-elect",
+                "years": "1982",
+                "cc": "LB"
+              }
+            ],
+            "label": "architects of the 1982 invasion"
+          }
+        ]
+      },
+      {
+        "heading": "THE CEASEFIRE ARITHMETIC",
+        "body": "A ceasefire without a political track is a pause, not a settlement. The 1949 Arab-Israeli armistices were meant to last months; they structured the region for a quarter-century. The question for any Iran-Israel pause is whether negotiators convert the truce into terms before the military clock runs out.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              9,
+              13,
+              12,
+              11,
+              10,
+              7,
+              3,
+              4,
+              14,
+              9,
+              27,
+              48,
+              26
+            ],
+            "periods": [
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 7",
+              "Apr 9",
+              "Apr 13",
+              "Apr 15",
+              "Apr 18",
+              "Apr 21"
+            ],
+            "label": "Iran surrender uranium by April 30?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "9%"
+              },
+              {
+                "atIndex": 12,
+                "label": "26%"
+              }
+            ],
+            "link": "https://polymarket.com/event/iran-agrees-to-surrender-enriched-uranium-stockpile-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN",
+        "body": "Pakistan has hosted US-Iran backchannels before — most notably during the 1979-80 hostage crisis and periodically since. It borders Iran, maintains diplomatic relations with both Tehran and Washington, and its military has a long-standing relationship with the Gulf states funding any eventual reconstruction. Islamabad is a venue of convenience, not alignment.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "AF"
+            ],
+            "label": "Pakistan's Iran frontier"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-04-21"
+    ],
+    "generatedAt": "2026-04-21T08:26:54.220Z",
+    "label": "Buffer Zones & the Blue Line",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-20-italian-postal-service-gdpr-fine-privacy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAWFUL BASIS RULE",
+        "body": "GDPR Article 6 requires one of six grounds before personal data can be processed: consent, contract, legal obligation, vital interest, public task, or legitimate interest. Sharing customer records with third-party sellers because it's commercially convenient is none of them. Most GDPR fines turn on this single article.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Italian regulator calls this *base giuridica* — literally 'juridical base.' Without one, every downstream use of the data is unlawful, regardless of how carefully it's stored or whether anyone was harmed."
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE GARANTE IS",
+        "body": "The Garante per la protezione dei dati personali was founded in 1997, a full year before most EU peers. It is one of 27 national data protection authorities that enforce GDPR — the regulation sets the rules, but each member state's authority investigates and fines."
+      },
+      {
+        "heading": "WHY STATE-OWNED IS HARDER",
+        "body": "GDPR applies equally to public and private entities, but fining a state-owned operator means the state is fining itself. Regulators across the EU have historically pulled punches on public bodies — the Garante's willingness to impose a record fine on Poste Italiane is the news, not the amount.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Meta (Ireland)",
+                "value": "€1.2bn",
+                "cc": "IE",
+                "weight": 1200
+              },
+              {
+                "label": "Amazon (Lux)",
+                "value": "€746m",
+                "cc": "LU",
+                "weight": 746
+              },
+              {
+                "label": "TikTok (Ireland)",
+                "value": "€345m",
+                "cc": "IE",
+                "weight": 345
+              },
+              {
+                "label": "Poste Italiane",
+                "value": "€12.5m",
+                "cc": "IT",
+                "weight": 12.5
+              }
+            ],
+            "label": "notable GDPR fines"
+          }
+        ]
+      },
+      {
+        "heading": "THE CEILING",
+        "body": "GDPR caps fines at the greater of €20 million or 4% of global annual turnover. Poste Italiane's 2024 revenue was around €12 billion, meaning the theoretical ceiling was roughly €480 million. A €12.5M fine is a fraction of one percent — a signal, not a punishment."
+      },
+      {
+        "heading": "WHY POSTAL DATA IS SENSITIVE",
+        "body": "Poste Italiane is not just a mail carrier. It runs Italy's largest retail bank by branch count, the Postepay payments network, an insurance arm, and a mobile operator. A single customer record can contain address, income, medical insurance claims, and financial history — the richest data set any Italian private entity holds.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under GDPR, what is the maximum fine for a serious violation?",
+            "options": [
+              "€20m or 4% of global turnover, whichever is higher",
+              "€10m flat per incident",
+              "1% of the offending product's revenue",
+              "€100m ceiling set by Brussels"
+            ],
+            "correct": 0,
+            "explanation": "GDPR Article 83 sets the ceiling at the greater of €20m or 4% of worldwide annual turnover — which is why fines against Big Tech can reach the billions."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT PATTERN",
+        "body": "GDPR fines rarely come from a single complaint. They come from pattern investigations — regulators subpoena processing records, map the data flows, and find the missing lawful basis. The violation is usually years old by the time it's punished; Poste's sharing practices predate the fine by most of a decade."
+      }
+    ],
+    "generatedAt": "2026-04-21T08:27:21.017Z",
+    "label": "GDPR & the Garante",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-20-pakistan-repays-2bn-uae-external-financing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ROLLOVER MECHANIC",
+        "body": "Gulf deposits at the State Bank of Pakistan are counted as foreign exchange reserves but are not free money — they are short-term liabilities, typically 12 months, that must be repaid or rolled over. A repayment followed by a fresh deposit of the same size is cosmetically neutral but politically loaded: each rollover is a discretionary favor Riyadh or Abu Dhabi can withhold.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is a **SAFE deposit** — Saudi/Gulf bilateral placements counted in gross reserves but excluded from *net* reserves by the IMF's reserve adequacy metric."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE IMF DEMANDS THEM",
+        "body": "Every IMF program for Pakistan since 2019 has been conditional on bilateral financing commitments from Saudi Arabia, the UAE, and China being secured in writing before the Board approves a disbursement. The Fund will not lend into a financing gap; the Gulf states effectively underwrite IMF credibility on Pakistan.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "$5bn",
+                "cc": "SA",
+                "weight": 5
+              },
+              {
+                "label": "China",
+                "value": "$4bn",
+                "cc": "CN",
+                "weight": 4
+              },
+              {
+                "label": "UAE",
+                "value": "$2bn",
+                "cc": "AE",
+                "weight": 2
+              }
+            ],
+            "label": "Pakistan bilateral deposits at SBP"
+          }
+        ]
+      },
+      {
+        "heading": "WHY RESERVES ARE SO THIN",
+        "body": "Pakistan's import cover has repeatedly fallen below two months — the IMF's conventional danger threshold is three. With reserves barely above $10bn against monthly imports near $5bn, a single missed rollover can trigger a currency crisis within weeks. This is why each Gulf repayment is treated as front-page news.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.938921,
+              278.846901,
+              279.174143,
+              278.822517,
+              279.2,
+              278.184288,
+              278.387431,
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876
+            ],
+            "periods": [
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE IT CREATES",
+        "body": "Bilateral deposits come with implicit strings: diplomatic alignment, troop commitments, labor quotas for Gulf construction, and occasionally asset concessions. The 2023 SIFC — Special Investment Facilitation Council — was created partly to channel Gulf sovereign wealth into Pakistani agriculture, mining, and IT in exchange for the financing lifeline.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "SA",
+              "AE",
+              "CN",
+              "QA"
+            ],
+            "label": "Islamabad's creditor geography"
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL PATTERN",
+        "body": "Saudi Arabia deposited $2bn in the SBP in 1998 after Pakistan's nuclear tests triggered Western sanctions. The UAE and Saudi Arabia have each bailed Pakistan out in 2008, 2014, 2018, 2019, and 2022. The deposits are rarely called in — but the option to call them, and the certainty of needing them again, is the leverage itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the IMF require bilateral Gulf deposits before approving Pakistan programs?",
+            "options": [
+              "The Fund cannot lend into an unfinanced gap",
+              "Gulf states have veto power on the IMF Board",
+              "Pakistan's constitution requires it",
+              "IMF rules ban direct lending to nuclear states"
+            ],
+            "correct": 0,
+            "explanation": "The IMF's policy of 'no lending into arrears' means every program must be fully financed upfront — Gulf deposits close the gap between IMF disbursements and Pakistan's funding needs."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-21"
+    ],
+    "generatedAt": "2026-04-21T08:27:53.030Z",
+    "label": "Gulf Bilateral Lending & Reserves",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-21-arbitrum-freezes-71m-kelp-dao-north-korea-exploit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IMMUTABILITY MYTH",
+        "body": "Bitcoin's founding promise was that code is law — transactions could not be reversed by any authority. Modern L2s like Arbitrum quietly abandoned this. A Security Council of 12 signers can freeze funds, upgrade contracts, and censor transactions with a 9-of-12 vote.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **admin keys** — multi-signature wallets with privileged access. Ethereum maximalists call chains with them *trainingwheels*; Vitalik's own framework rates L2s from Stage 0 (full admin control) to Stage 2 (truly trustless)."
+          }
+        ]
+      },
+      {
+        "heading": "WHO LAZARUS IS",
+        "body": "Lazarus Group is a unit within North Korea's Reconnaissance General Bureau, the DPRK's foreign intelligence service. Crypto theft is not a side hustle — UN monitors estimate it funds roughly half the country's missile program.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ronin Bridge",
+                "value": "$625M",
+                "weight": 625
+              },
+              {
+                "label": "Bybit",
+                "value": "$1.5bn",
+                "weight": 1500
+              },
+              {
+                "label": "Kelp/Stargate",
+                "value": "$292M",
+                "weight": 292
+              },
+              {
+                "label": "Harmony",
+                "value": "$100M",
+                "weight": 100
+              }
+            ],
+            "label": "Lazarus crypto heists"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A BRIDGE DOES",
+        "body": "LayerZero is a cross-chain messaging protocol: it lets a token on Ethereum be represented on Arbitrum, Solana, or dozens of other chains. The protocol locks the original and mints a wrapper. If the locked pool is drained, every wrapper becomes an unbacked IOU."
+      },
+      {
+        "heading": "WHY BRIDGES GET HIT",
+        "body": "Bridges concentrate value in a single smart contract that must accept deposits from one chain and release them on another. Chainalysis has tracked more stolen crypto from bridges than from exchanges every year since 2021 — the attack surface is a single contract holding billions.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How much crypto has Lazarus Group stolen in total since 2017, per UN estimates?",
+            "options": [
+              "~$500M",
+              "~$3bn",
+              "~$6bn",
+              "~$15bn"
+            ],
+            "correct": 2,
+            "explanation": "UN Panel of Experts reports put cumulative Lazarus crypto theft above $6bn — roughly half the DPRK's missile-program budget."
+          }
+        ]
+      },
+      {
+        "heading": "THE FREEZE PROBLEM",
+        "body": "Freezing stolen funds requires the thief to hold them on a chain with governance recourse. Lazarus typically moves funds through Tornado Cash or cross-chain swaps within hours. The $71M frozen here is the portion that didn't move fast enough — the $221M that did is likely unrecoverable.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The laundering pattern is called **peel chain** — splitting a large sum into thousands of smaller transfers across mixers, privacy coins like *Monero*, and OTC desks in jurisdictions without sanctions enforcement."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIABILITY GAP",
+        "body": "When a bridge drains, two parties blame each other: the application (Kelp) claims the infrastructure (LayerZero) failed; the infrastructure claims the application misconfigured it. There is no insurer of last resort in DeFi — no FDIC, no central bank discount window. Losses sit where they fall."
+      }
+    ],
+    "generatedAt": "2026-04-21T08:28:24.139Z",
+    "label": "Blockchain Governance & State Hackers",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-21-israel-somaliland-envoy-somalia-sovereignty": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNRECOGNIZED STATE",
+        "body": "Somaliland declared independence from Somalia in 1991 after the Siad Barre regime collapsed. It has held its own elections, issued its own currency, and maintained its own borders for over three decades — yet no UN member state formally recognizes it. It is the world's most functional unrecognized country.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Somaliland's territory maps onto the old **British Somaliland Protectorate** (1884–1960), which united with Italian Somaliland for just five days of independence before merging into the Somali Republic. The 1991 secession was, in its own telling, a *dissolution* of that union — not a new breakaway."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE COLONIAL BORDER MATTERS",
+        "body": "The African Union's founding principle — inherited from the 1964 OAU Cairo Declaration — is that colonial-era borders are inviolable. Recognizing Somaliland would set a precedent for every separatist movement on the continent, from Cabinda to Ambazonia to Western Sahara. This is why even sympathetic African states refuse to move first."
+      },
+      {
+        "heading": "THE STRAIT",
+        "body": "Bab el-Mandeb is the 30-km strait between Yemen and Djibouti where the Red Sea meets the Gulf of Aden. Roughly 12% of global seaborne trade and 30% of container traffic passes through it en route to the Suez Canal. Somaliland's 850-km coastline sits directly on the southern approach.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SO",
+              "ET",
+              "DJ",
+              "YE",
+              "ER",
+              "SA"
+            ],
+            "label": "the Bab el-Mandeb rim"
+          },
+          {
+            "type": "trend",
+            "values": [
+              6,
+              11,
+              6,
+              7,
+              5,
+              9,
+              7,
+              3,
+              5,
+              4,
+              7,
+              2,
+              5,
+              5,
+              3,
+              10,
+              6,
+              4,
+              4,
+              5,
+              7,
+              4,
+              2,
+              9,
+              2,
+              5,
+              9,
+              3,
+              2,
+              6,
+              1,
+              4,
+              7,
+              5,
+              6,
+              8,
+              7,
+              3,
+              5,
+              6,
+              3,
+              1,
+              7,
+              6,
+              3,
+              4,
+              4,
+              10,
+              6,
+              5,
+              5
+            ],
+            "periods": [
+              "Feb 21",
+              "Feb 22",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12"
+            ],
+            "label": "Bab-el-Mandeb containers",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE BERBERA PORT",
+        "body": "Somaliland's deepwater port at Berbera was a Soviet naval base in the 1970s, then a US facility during the Cold War, then fell dormant. DP World signed a 30-year concession in 2016 and rebuilt it; Ethiopia — landlocked since Eritrea's 1993 independence — took a 19% stake for sea access. The port is now the prize that foreign recognition buys."
+      },
+      {
+        "heading": "ISRAEL'S RED SEA DOCTRINE",
+        "body": "Israel has pursued alliances with the non-Arab periphery of the Middle East since Ben-Gurion's 1950s \"Alliance of the Periphery\" — Turkey, Iran under the Shah, Ethiopia. A foothold on the Horn of Africa completes the arc south of the Bab el-Mandeb, opposite Houthi-controlled Yemen that has disrupted Red Sea shipping since 2023.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country became landlocked in 1993 and now depends on Somaliland's Berbera port for sea access?",
+            "options": [
+              "Ethiopia",
+              "Uganda",
+              "South Sudan",
+              "Chad"
+            ],
+            "correct": 0,
+            "explanation": "Eritrea's independence from Ethiopia in 1993 cut Ethiopia — now 120+ million people — off from the Red Sea, making Berbera its shortest route to the ocean."
+          }
+        ]
+      },
+      {
+        "heading": "THE OIC's STRUCTURAL WEAKNESS",
+        "body": "The Organisation of Islamic Cooperation has 57 member states but no enforcement mechanism — no standing forces, no sanctions regime, no binding jurisdiction. Its resolutions require consensus, which means a single dissenting member (often a Gulf state with competing interests) blocks action. This is why Iran's call for censure is unlikely to produce one."
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-12"
+    ],
+    "generatedAt": "2026-04-21T08:28:52.706Z",
+    "label": "Somaliland & the Bab el-Mandeb",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-21-kp-pakistan-thalassaemia-pre-marriage-screening": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISEASE",
+        "body": "Thalassaemia is an inherited blood disorder where the body produces defective haemoglobin. Severe (beta-major) forms require lifetime blood transfusions every 3-4 weeks and iron-chelation therapy; untreated, children rarely survive past age 10.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name comes from Greek *thalassa* (sea) — first described in Mediterranean populations where the trait reached high frequency because **carriers resist malaria**, the same evolutionary bargain behind sickle-cell in Africa."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN",
+        "body": "Pakistan has one of the world's highest thalassaemia burdens — roughly 6-8% of the population are carriers, and an estimated 5,000-9,000 affected children are born each year. The driver is not genetics alone but marriage structure.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pakistan",
+                "value": "~6-8%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iran",
+                "value": "~4%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Cyprus",
+                "value": "~15%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Global avg",
+                "value": "~1.5%",
+                "tone": "favorable"
+              }
+            ],
+            "label": "carrier rate, rough estimates"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSANGUINITY FACTOR",
+        "body": "Roughly 60-65% of marriages in Pakistan are between cousins — among the highest rates in the world. When both parents carry a recessive gene, each child has a 1-in-4 chance of the severe form. Cousin marriage concentrates that risk across generations in the same family line."
+      },
+      {
+        "heading": "THE CYPRUS MODEL",
+        "body": "Cyprus faced the same burden in the 1970s and made pre-marriage screening mandatory, with Orthodox Church cooperation refusing to marry untested couples. Within two decades, new births of thalassaemia-major children dropped to near zero. Iran replicated the model in 1997 with similar results.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What reduced new thalassaemia-major births in Cyprus to near zero?",
+            "options": [
+              "A cure for the disease",
+              "Mandatory pre-marriage carrier screening",
+              "Ban on cousin marriage",
+              "Mass gene therapy"
+            ],
+            "correct": 1,
+            "explanation": "Mandatory screening identified carrier couples before marriage; most then made informed reproductive choices. No cure exists — prevention is the only lever."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCREENING ECONOMICS",
+        "body": "High-performance liquid chromatography (HPLC) is the gold-standard test but needs specialized machines and trained technicians. A complete blood count (CBC) costs a fraction and catches most carriers through red-cell indices — missing some, but at 1% of the price. The KP debate is whether cheaper-and-imperfect beats expensive-and-absent."
+      },
+      {
+        "heading": "THE UNFUNDED-LAW PATTERN",
+        "body": "Pakistan's provinces routinely pass public-health mandates without allocating the budget to enforce them. The 2009 thalassaemia act, the 2013 tobacco controls, the 2017 mental health law — each exists on paper; each is under-resourced in practice. Law without fiscal backing signals intent, not capability."
+      }
+    ],
+    "generatedAt": "2026-04-21T08:29:18.755Z",
+    "label": "Thalassaemia & Consanguinity",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-21-primark-abf-demerge-fashion-chain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISCOUNT",
+        "body": "Markets systematically value diversified conglomerates below the sum of their parts. Investors want pure exposure to one sector; a fashion chain bolted to a sugar refinery gets priced as neither. The gap typically runs 10-20% and is the single most common trigger for break-ups.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phenomenon has a name: the **conglomerate discount**. Its mirror image is the *pure-play premium* — what a demerged unit fetches once investors can own it cleanly."
+          }
+        ]
+      },
+      {
+        "heading": "THE ITCHY BROTHERS ERA",
+        "body": "The 1960s conglomerate boom — ITT, Gulf+Western, Litton — argued that professional management could run anything. By the 1980s corporate raiders like Carl Icahn proved the opposite: break-up values routinely exceeded market caps, and leveraged buyouts harvested the difference."
+      },
+      {
+        "heading": "THE WESTON DYNASTY",
+        "body": "ABF is controlled by Wittington Investments, the holding vehicle of the Weston family — Canadian-British grocers who also own Fortnum & Mason and once controlled Loblaw. Family-controlled conglomerates resist demergers longer than public ones because the holding structure itself concentrates dynastic power.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Garfield Weston",
+                "role": "ABF founder",
+                "years": "1935",
+                "cc": "CA"
+              },
+              {
+                "name": "George Weston",
+                "role": "ABF chairman",
+                "years": "2021–present",
+                "cc": "GB"
+              },
+              {
+                "name": "Galen Weston",
+                "role": "late retail heir",
+                "years": "1940–2021",
+                "cc": "CA"
+              }
+            ],
+            "label": "the Weston holdings"
+          }
+        ]
+      },
+      {
+        "heading": "HOW A DEMERGER WORKS",
+        "body": "Shareholders receive proportional stakes in both resulting companies — no cash changes hands, no new capital is raised. The mechanism is tax-efficient under UK rules if structured correctly, which is why it beats an outright sale when the parent wants to avoid crystallising capital gains."
+      },
+      {
+        "heading": "THE PRIMARK ANOMALY",
+        "body": "Fast-fashion peers Inditex (Zara) and H&M trade on double-digit earnings multiples; Primark's implied multiple inside ABF is closer to single digits. The gap exists even though Primark out-grows both on store count and has no e-commerce discounting drag.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Inditex",
+                "value": "€160bn",
+                "cc": "ES",
+                "weight": 160
+              },
+              {
+                "label": "H&M",
+                "value": "€25bn",
+                "cc": "SE",
+                "weight": 25
+              },
+              {
+                "label": "ABF",
+                "value": "£17bn",
+                "cc": "GB",
+                "weight": 20
+              }
+            ],
+            "label": "fast-fashion parent market caps"
+          }
+        ]
+      },
+      {
+        "heading": "THE BRITISH PRECEDENT",
+        "body": "The FTSE has a long history of conglomerate break-ups unlocking value: ICI split into ICI and Zeneca (1993), Hanson into four separate companies (1996), GSK hived off Haleon (2022). Each demerger underperformed expectations in year one and outperformed over five.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What typically happens to combined market cap one year after a FTSE conglomerate demerger?",
+            "options": [
+              "It roughly doubles immediately",
+              "It slightly underperforms the index",
+              "It trades in line with the pre-split parent",
+              "It falls by half as overhead disappears"
+            ],
+            "correct": 1,
+            "explanation": "Year-one performance is usually flat to modestly negative as dis-synergies and dual listing costs hit; the re-rating typically takes 2-5 years to materialise."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-21T08:29:57.871Z",
+    "label": "The Conglomerate Discount",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-21-ripple-xrp-ledger-quantum-proof-2028": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EXPOSURE",
+        "body": "Every blockchain transaction reveals the sender's public key on-chain. That key, combined with Shor's algorithm on a sufficiently large quantum computer, lets an attacker derive the private key and spend the coins.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why **address reuse** is the core risk: a one-time-use address exposes its public key only when spent, giving attackers a narrow window. A reused address is exposed indefinitely."
+          }
+        ]
+      },
+      {
+        "heading": "THE ALGORITHM",
+        "body": "Shor's algorithm (1994) factors large numbers and solves discrete logarithms exponentially faster than any classical method. Elliptic curve cryptography — used by Bitcoin, Ethereum, and XRP to derive addresses from private keys — collapses under it. Classical brute-force would take longer than the age of the universe; Shor turns it into hours."
+      },
+      {
+        "heading": "HARVEST NOW, DECRYPT LATER",
+        "body": "Blockchains make this threat worse than normal encryption: the entire ledger is public and permanent. An attacker does not need to intercept anything — they can download the chain today and wait. Every exposed public key is a time capsule.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are blockchains especially vulnerable to future quantum attack?",
+            "options": [
+              "Transactions are encrypted with weak ciphers",
+              "The full history is public and permanent, so past keys can be attacked later",
+              "Mining hardware is easy to hijack",
+              "Wallet software uses outdated libraries"
+            ],
+            "correct": 1,
+            "explanation": "Public chains are adversarial archives — every historical public key sits in public view, waiting for a quantum computer that can break it."
+          }
+        ]
+      },
+      {
+        "heading": "THE NIST STANDARDS",
+        "body": "In 2024 NIST finalized three post-quantum standards based on lattice problems and hash functions — mathematical structures believed to resist both classical and quantum attack. Migrating a blockchain to these schemes requires coordinated protocol upgrades across every node, wallet, and exchange.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "XRP Ledger",
+                "value": "2028 plan",
+                "tone": "favorable"
+              },
+              {
+                "label": "Ethereum",
+                "value": "research",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bitcoin",
+                "value": "no plan",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "major chains' quantum posture"
+          }
+        ]
+      },
+      {
+        "heading": "THE BITCOIN PROBLEM",
+        "body": "Roughly a quarter of all Bitcoin sits in addresses whose public keys are already exposed on-chain — including Satoshi's estimated one million coins. Even if Bitcoin adopts post-quantum signatures tomorrow, those coins cannot be protected retroactively unless their owners move them, and Satoshi's never will."
+      },
+      {
+        "heading": "THE TIMELINE GAP",
+        "body": "Google's Q-Day estimate of around 2029 and Ripple's 2028 target leave almost no margin. Protocol upgrades on decentralized networks typically take years — Ethereum's merge to proof-of-stake was planned for 2017 and shipped in 2022. The harder problem is not the cryptography; it is the coordination."
+      }
+    ],
+    "generatedAt": "2026-04-21T08:30:24.007Z",
+    "label": "Post-Quantum Crypto & Blockchains",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-21-trump-attacks-us-media-iran-war-coverage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT BDA ACTUALLY IS",
+        "body": "Bomb Damage Assessment is a formal intelligence process combining satellite imagery, signals intercepts, and human sources to judge what a strike destroyed. It takes days to weeks — not hours — because craters lie about what happened underground.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Pentagon distinguishes three phases: **Phase 1** (physical damage), **Phase 2** (functional damage — can the target still operate?), and **Phase 3** (target system assessment — did the campaign achieve its strategic objective?). Presidents usually speak before Phase 2 completes."
+          }
+        ]
+      },
+      {
+        "heading": "THE FORDOW PROBLEM",
+        "body": "Iran's Fordow enrichment site sits roughly 80-90 meters beneath a mountain near Qom. The GBU-57 Massive Ordnance Penetrator, the largest US bunker-buster, is rated to penetrate around 60 meters of earth or 20 meters of concrete. Multiple strikes on the same aimpoint can extend that, but the geometry is not forgiving."
+      },
+      {
+        "heading": "WHY URANIUM SURVIVES BOMBS",
+        "body": "Enriched uranium hexafluoride is stored in steel cylinders that can be moved in hours. Unlike reactors or centrifuge halls, the stockpile itself is compact and portable. Destroying the enrichment infrastructure does not destroy the material already enriched — and IAEA inspectors had logged roughly 400kg of 60%-enriched uranium before the strikes.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              9,
+              13,
+              12,
+              11,
+              10,
+              7,
+              3,
+              4,
+              14,
+              9,
+              27,
+              48,
+              26
+            ],
+            "periods": [
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 7",
+              "Apr 9",
+              "Apr 13",
+              "Apr 15",
+              "Apr 18",
+              "Apr 21"
+            ],
+            "label": "Iran surrender uranium by April 30?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "9%"
+              },
+              {
+                "atIndex": 12,
+                "label": "26%"
+              }
+            ],
+            "link": "https://polymarket.com/event/iran-agrees-to-surrender-enriched-uranium-stockpile-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE FIRST AMENDMENT FLOOR",
+        "body": "New York Times v. Sullivan (1964) set the constitutional rule: a public official suing for defamation must prove the statement was made with 'actual malice' — knowledge of falsity or reckless disregard for truth. The doctrine exists specifically to protect coverage that a president finds unflattering.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Congress shall make no law respecting an establishment of religion, or prohibiting the free exercise thereof; or abridging the freedom of speech, or of the press",
+            "speaker": "US Constitution, First Amendment",
+            "year": "1791"
+          }
+        ]
+      },
+      {
+        "heading": "THE PATTERN",
+        "body": "Lyndon Johnson's 'credibility gap' entered the lexicon after Pentagon claims about Vietnam progress collided with reporting from the field. Every war since has produced a version of the same fight: the administration's damage assessment versus the press corps reconstructing one from satellite images and leaks.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Lyndon Johnson",
+                "role": "President, Vietnam escalation",
+                "years": "1963–1969",
+                "cc": "US"
+              },
+              {
+                "name": "Richard Nixon",
+                "role": "President, Pentagon Papers fight",
+                "years": "1969–1974",
+                "cc": "US"
+              },
+              {
+                "name": "George W. Bush",
+                "role": "President, Iraq WMD claims",
+                "years": "2001–2009",
+                "cc": "US"
+              },
+              {
+                "name": "Donald Trump",
+                "role": "President, 'enemy of the people'",
+                "years": "2017–2021, 2025–",
+                "cc": "US"
+              }
+            ],
+            "label": "presidents vs the press in wartime"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRESIDENTS OVERCLAIM",
+        "body": "Strike announcements are made in hours; BDA arrives in weeks. The political incentive is to define the story before the intelligence community can complicate it. Once 'total obliteration' is the frame, any later walk-back looks like retreat rather than new information.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does 'actual malice' mean in US defamation law for public officials?",
+            "options": [
+              "The statement was made with hatred or ill-will",
+              "The statement was knowingly false or made with reckless disregard for truth",
+              "The statement caused measurable financial harm",
+              "The statement was published without a right-of-reply"
+            ],
+            "correct": 1,
+            "explanation": "Sullivan (1964) defined actual malice narrowly — not emotional animus, but knowledge of falsity or reckless disregard. This high bar is what protects aggressive war reporting."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-04-21"
+    ],
+    "generatedAt": "2026-04-21T08:30:55.944Z",
+    "label": "Bomb Damage Assessment & Press Freedom",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-21-us-restricts-intel-sharing-south-korea-nuclear": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ALLIANCE'S INTEL ASYMMETRY",
+        "body": "South Korea has world-class signals intelligence on the peninsula but limited overhead reconnaissance. The US provides the satellite layer — imagery of DPRK missile sites, movement at nuclear facilities, thermal signatures at reactors. Seoul's picture of the North is built on American eyes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the structural reason a US intelligence cutoff stings: Seoul loses not a *supplement* but the **overhead layer** its analysts have built entire target folders around."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KUSONG MATTERS",
+        "body": "DPRK's known enrichment runs at Yongbyon, disclosed to Siegfried Hecker in 2010. A second covert site was long suspected — Kangson, near Pyongyang, was named by analysts years ago. Naming Kusong publicly extends the map: the program is not one facility but a distributed network, harder to bomb and harder to negotiate away.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KP",
+              "KR",
+              "CN",
+              "JP"
+            ],
+            "label": "the peninsula and its neighbors"
+          }
+        ]
+      },
+      {
+        "heading": "THE CENTRIFUGE LOGIC",
+        "body": "Gas centrifuges spin uranium hexafluoride at supersonic speeds; the slightly heavier U-238 drifts outward, leaving U-235 enriched toward the center. Cascades of thousands of centrifuges can be hidden in ordinary industrial buildings — no reactor, no plume, no thermal signature large enough to be unmistakable from orbit. This is why enrichment sites are the hardest nuclear facilities to find."
+      },
+      {
+        "heading": "THE AGREED FRAMEWORK AND ITS COLLAPSE",
+        "body": "In 1994, DPRK froze its plutonium program in exchange for light-water reactors and fuel oil. The deal held until 2002, when US intelligence accused Pyongyang of a covert uranium enrichment program — a charge DPRK first denied, then effectively confirmed. The framework collapsed; the first nuclear test came in 2006.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did North Korea conduct its first nuclear weapons test?",
+            "options": [
+              "1994",
+              "2002",
+              "2006",
+              "2011"
+            ],
+            "correct": 2,
+            "explanation": "DPRK tested in October 2006, four years after the Agreed Framework collapsed over the covert enrichment program."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WASHINGTON WOULD CUT A TREATY ALLY",
+        "body": "Intelligence sharing is leverage. When an ally's public statements diverge from Washington's preferred framing — or when a new administration in Seoul wants dialogue with Pyongyang that Washington opposes — narrowing the intelligence pipe is a quiet pressure tool. It happened with France in 1966, with New Zealand in 1985, and periodically with Israel over Iran files."
+      },
+      {
+        "heading": "THE STOCKPILE MATH",
+        "body": "DPRK is estimated to hold 50 kg of separated plutonium and a growing but uncertain uranium stockpile — roughly 50 warheads' worth of fissile material by most Western estimates, with capacity to produce six to twelve warheads a year. Every additional enrichment site raises the ceiling on that rate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USA",
+                "value": "~3,700",
+                "weight": 3700,
+                "cc": "US"
+              },
+              {
+                "label": "Russia",
+                "value": "~4,300",
+                "weight": 4300,
+                "cc": "RU"
+              },
+              {
+                "label": "China",
+                "value": "~500",
+                "weight": 500,
+                "cc": "CN"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~170",
+                "weight": 170,
+                "cc": "PK"
+              },
+              {
+                "label": "India",
+                "value": "~170",
+                "weight": 170,
+                "cc": "IN"
+              },
+              {
+                "label": "North Korea",
+                "value": "~50",
+                "weight": 50,
+                "cc": "KP"
+              }
+            ],
+            "label": "estimated warhead inventories"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-21T08:31:30.380Z",
+    "label": "US–ROK Intel Sharing & DPRK Enrichment",
+    "category": "politics",
+    "articleCount": 1
   }
 }

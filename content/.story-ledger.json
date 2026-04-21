@@ -2,13 +2,207 @@
   "version": 1,
   "stories": [
     {
+      "id": "pakistan-repays-2bn-uae-reserves",
+      "label": "Pakistan repays $2bn to UAE amid ongoing external financing pressures",
+      "firstSeen": "2026-04-21T04:03:59.004Z",
+      "lastCovered": "2026-04-21T08:09:29.557Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-04-20-pakistan-repays-2bn-uae-reserves",
+        "2026-04-20-pakistan-repays-2bn-uae-external-financing"
+      ],
+      "eventUri": null,
+      "summary": "Islamabad repays a $2bn UAE bilateral deposit while still under IMF-monitored external pressure. Lead with the mechanics: Gulf deposits have been Pakistan's shadow reserves for a decade — repaying rather than rolling them over signals either Abu Dhabi's patience wore thin, or Islamabad chose to protect the relationship at the cost of reserves. Either way, the cushion is thinner going into the Iran-war fuel shock.",
+      "conceptUris": []
+    },
+    {
+      "id": "israel-somaliland-envoy-somalia-sovereignty",
+      "label": "Iran denounces Israeli violation of Somalia's sovereignty",
+      "firstSeen": "2026-04-21T08:09:29.557Z",
+      "lastCovered": "2026-04-21T08:09:29.557Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-israel-somaliland-envoy-somalia-sovereignty"
+      ],
+      "eventUri": null,
+      "summary": "Israel appointed a diplomatic envoy to Somaliland — the breakaway region Mogadishu claims as its own — and Iran's foreign ministry is calling it a violation of Somali territorial integrity under the UN Charter. Lead with the diplomatic mechanism: recognition of Somaliland would fracture Somalia and hand Israel a Red Sea foothold near Bab el-Mandeb. Fills the Horn-of-Africa and Muslim-world gap. Structural why: chokepoint geopolitics around the Gulf of Aden.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Somaliland",
+        "http://en.wikipedia.org/wiki/Somalia",
+        "http://en.wikipedia.org/wiki/Charter_of_the_United_Nations",
+        "http://en.wikipedia.org/wiki/Territorial_integrity"
+      ]
+    },
+    {
+      "id": "israel-yellow-line-lebanon-iran-ceasefire",
+      "label": "U.S.-Iran ceasefire set to expire with talks in limbo; Israel's Gaza-style 'Yellow Line' in Lebanon",
+      "firstSeen": "2026-04-21T08:09:29.557Z",
+      "lastCovered": "2026-04-21T08:09:29.557Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-20-israel-yellow-line-lebanon-iran-ceasefire"
+      ],
+      "eventUri": null,
+      "summary": "Drop Site's ground reporting documents Israel imposing a Gaza-style 'Yellow Line' zone inside southern Lebanon — a unilateral demarcation turning occupied territory into a free-fire buffer — while US-Iran ceasefire talks stall. Lead with the Yellow Line: a template exported from Gaza to Lebanon means the Gaza operational playbook is now Israel's standard procedure for neighboring countries. Name the victims: Lebanese villagers displaced by fiat.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-restricts-intel-sharing-south-korea-nuclear",
+      "label": "US partially restricts intelligence sharing with South Korea after nuclear disclosure row",
+      "firstSeen": "2026-04-21T08:09:29.557Z",
+      "lastCovered": "2026-04-21T08:09:29.557Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-us-restricts-intel-sharing-south-korea-nuclear"
+      ],
+      "eventUri": "eng-11586795",
+      "summary": "Washington cut off portions of its intelligence stream to Seoul after South Korea's unification minister Chung Dong-young publicly disclosed sensitive details about North Korea's Kusong enrichment site. Lead with the consequence: a US treaty ally just lost intel access for saying out loud what Washington wanted kept quiet. The mechanism shows how classification operates as diplomatic leverage — and how the North Korean nuclear program is actively growing while allies are muzzled about it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/South_Korea",
+        "http://en.wikipedia.org/wiki/North_Korea",
+        "http://en.wikipedia.org/wiki/Chung_Dong-young",
+        "http://en.wikipedia.org/wiki/Kusong",
+        "http://en.wikipedia.org/wiki/Ministry_of_Unification",
+        "http://en.wikipedia.org/wiki/Enriched_uranium",
+        "http://en.wikipedia.org/wiki/Seoul"
+      ]
+    },
+    {
+      "id": "primark-abf-demerge-fashion-chain",
+      "label": "Primark owner ABF confirms plan to demerge fashion chain",
+      "firstSeen": "2026-04-21T08:09:29.557Z",
+      "lastCovered": "2026-04-21T08:09:29.557Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-primark-abf-demerge-fashion-chain"
+      ],
+      "eventUri": "eng-11586964",
+      "summary": "Associated British Foods is breaking up a 65-year conglomerate structure, spinning Primark (fast fashion) out from sugar/Twinings/food (steady cash). Lead with the thesis: conglomerates built during globalization's expansion phase are being dismantled now that capital rewards focus over diversification. For the reader: Primark standalone on the FTSE 100 is a bet that discount fashion — with all its supply-chain labor and textile-waste exposure — can survive without a food business subsidizing it.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Primark",
+        "http://en.wikipedia.org/wiki/Associated_British_Foods",
+        "http://en.wikipedia.org/wiki/Shareholder",
+        "http://en.wikipedia.org/wiki/Demerger",
+        "http://en.wikipedia.org/wiki/FTSE_100_Index",
+        "http://en.wikipedia.org/wiki/Retail",
+        "http://en.wikipedia.org/wiki/Wittington_Investments",
+        "http://en.wikipedia.org/wiki/Twinings"
+      ]
+    },
+    {
+      "id": "argentina-glaciers-law-reform-one-million",
+      "label": "One million defend Argentina's glaciers after law reform",
+      "firstSeen": "2026-04-21T08:09:29.557Z",
+      "lastCovered": "2026-04-21T08:09:29.557Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-20-argentina-glaciers-law-reform-one-million"
+      ],
+      "eventUri": null,
+      "summary": "More than a million Argentines signed onto legal challenges to defend the 2010 Glacier Law after Milei's government gutted environmental protections to unlock Andean mining concessions. Lead with the mechanism: the Glacier Law protects periglacial zones critical to Andean meltwater — weakening it converts water-security infrastructure into lithium and gold mines. Name the actors: foreign mining consortia stand to benefit; downstream farmers in Mendoza and San Juan bear the water cost. Fills Latin America gap.",
+      "conceptUris": []
+    },
+    {
+      "id": "india-stranded-offshore-wind-zero-turbines",
+      "label": "Long coastlines, zero turbines: India's stranded offshore wind",
+      "firstSeen": "2026-04-21T08:09:29.557Z",
+      "lastCovered": "2026-04-21T08:09:29.557Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-20-india-stranded-offshore-wind-zero-turbines"
+      ],
+      "eventUri": null,
+      "summary": "India has 7,500 km of coastline, a 30 GW offshore wind target, and zero operating offshore turbines. Lead with the gap: viability-gap funding delays, unresolved seabed leasing, and fisher-community protests have stalled every project past auction. Mechanism: offshore wind economics only work when tariffs are high enough to amortize turbine capex — and India's solar-priced market won't bear them. For the reader: the structural reason renewables are not advancing evenly across the Global South.",
+      "conceptUris": []
+    },
+    {
+      "id": "ripple-xrp-ledger-quantum-proof-2028",
+      "label": "Ripple wants the XRP Ledger to be quantum-proof by 2028. Here is its plan",
+      "firstSeen": "2026-04-21T08:09:29.557Z",
+      "lastCovered": "2026-04-21T08:09:29.557Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-ripple-xrp-ledger-quantum-proof-2028"
+      ],
+      "eventUri": "eng-11585778",
+      "summary": "Ripple is migrating the XRP Ledger to post-quantum cryptography by 2028 — the first major public blockchain with a formal quantum-resistance roadmap. Lead with the threat model: ECDSA signatures protecting every Bitcoin and Ethereum wallet become forgeable the moment Shor's algorithm runs on a cryptographically-relevant quantum computer. NIST already standardized replacement algorithms (ML-DSA, SLH-DSA) in 2024; Ripple is the first ledger to commit to a migration schedule. For the reader: public-key cryptography has a deprecation deadline.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Quantum_computing",
+        "http://en.wikipedia.org/wiki/Blockchain",
+        "http://en.wikipedia.org/wiki/Ripple_(payment_protocol)",
+        "http://en.wikipedia.org/wiki/Public-key_cryptography",
+        "http://en.wikipedia.org/wiki/Digital_asset"
+      ]
+    },
+    {
+      "id": "italian-postal-service-gdpr-fine-privacy",
+      "label": "Italian regulator fines national postal service orgs $15 million for data privacy violations",
+      "firstSeen": "2026-04-21T08:09:29.557Z",
+      "lastCovered": "2026-04-21T08:09:29.557Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-20-italian-postal-service-gdpr-fine-privacy"
+      ],
+      "eventUri": null,
+      "summary": "Italy's data protection authority fined Poste Italiane and BancoPosta €13.5M for passing customer data to insurance and financial-product cross-sellers without lawful basis. Lead with the mechanism: GDPR enforcement against a state-owned operator shows the law bites public-sector data monetization, not just Big Tech. For the reader: the surveillance infrastructure inside legacy institutions is larger than the one inside the platforms people actually complain about — and GDPR is now being used to dismantle it piece by piece.",
+      "conceptUris": []
+    },
+    {
+      "id": "kp-pakistan-thalassaemia-pre-marriage-screening",
+      "label": "KP govt urged to simplify pre-marriage thalassaemia screening",
+      "firstSeen": "2026-04-21T08:09:29.557Z",
+      "lastCovered": "2026-04-21T08:09:29.557Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-kp-pakistan-thalassaemia-pre-marriage-screening"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan carries one of the world's highest thalassaemia-carrier rates (5-7% in KP); public-health experts are pressing the Khyber Pakhtunkhwa government to replace the clunky pre-marriage HPLC screening regime with a simpler, subsidized model and free chorionic villus sampling. Lead with the genetics-meets-governance mechanism: a single recessive-disease screening gate integrated into the marriage-registration process could halve new beta-thalassaemia births within a generation. Reader angle: public-health engineering as applied ethics, not abstract policy.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Thalassemia",
+        "http://en.wikipedia.org/wiki/High-performance_liquid_chromatography",
+        "http://en.wikipedia.org/wiki/Khyber_Pakhtunkhwa",
+        "http://en.wikipedia.org/wiki/Public_health"
+      ]
+    },
+    {
       "id": "japan-scraps-weapons-export-limits",
       "label": "Japan Scraps Most Weapons Export Limits in Boost to Arms Sector",
       "firstSeen": "2026-04-21T04:03:59.004Z",
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-japan-scraps-weapons-export-limits"
@@ -29,7 +223,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-20-dalai-lama-succession-china-tibet"
@@ -45,7 +239,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-manipur-shutdowns-child-deaths-convoy"
@@ -65,7 +259,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-20-australia-japan-mogami-frigate-deal"
@@ -75,29 +269,13 @@
       "conceptUris": []
     },
     {
-      "id": "pakistan-repays-2bn-uae-reserves",
-      "label": "Pakistan repays $2bn to UAE amid ongoing external financing pressures",
-      "firstSeen": "2026-04-21T04:03:59.004Z",
-      "lastCovered": "2026-04-21T04:03:59.004Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-pakistan-repays-2bn-uae-reserves"
-      ],
-      "eventUri": null,
-      "summary": "Islamabad repays a $2bn UAE bilateral deposit while still under IMF-monitored external pressure. Lead with the mechanics: Gulf deposits have been Pakistan's shadow reserves for a decade — repaying rather than rolling them over signals either Abu Dhabi's patience wore thin, or Islamabad chose to protect the relationship at the cost of reserves. Either way, the cushion is thinner going into the Iran-war fuel shock.",
-      "conceptUris": []
-    },
-    {
       "id": "pentagon-cancels-troubled-space-program",
       "label": "Pentagon pulls the plug on one of the military's most troubled space programs",
       "firstSeen": "2026-04-21T04:03:59.004Z",
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-pentagon-cancels-troubled-space-program"
@@ -116,7 +294,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-20-renewables-overtake-coal-2025"
@@ -132,7 +310,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-tenofovir-implant-hiv-prevention-south-africa"
@@ -153,7 +331,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-20-crypto-290m-theft-north-korea"
@@ -169,7 +347,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-20-vercel-security-breach"
@@ -185,7 +363,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-20-italy-fines-poste-italiane-privacy"
@@ -201,7 +379,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-20-psx-plunges-over-3-000-points-during-intraday-trade"
@@ -217,7 +395,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "developing",
       "articles": [
         "2026-04-20-pakistan-raises-390m-through-inaugural-hybrid-sukuk-issuance",
@@ -234,7 +412,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-idf-soldier-lebanon-jesus-statue"
@@ -258,7 +436,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-gaza-71-billion-recovery-report"
@@ -281,7 +459,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-venezuela-mining-law-corruption"
@@ -297,7 +475,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-south-africa-amnesty-task-team-report"
@@ -313,7 +491,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-warsh-fed-confirmation-hearing"
@@ -335,7 +513,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-nigeria-north-central-education-budget"
@@ -351,7 +529,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-car-t-smoldering-myeloma-prevention"
@@ -367,7 +545,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-bacterial-flagellar-motor-solved"
@@ -383,7 +561,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-apple-ternus-succeeds-cook"
@@ -399,7 +577,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-eu-replaceable-batteries-2027"
@@ -415,7 +593,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-ram-shortage-ai-capex"
@@ -431,7 +609,7 @@
       "lastCovered": "2026-04-20T17:12:27.972Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-04-20-pakistan-repays-2bn-to-uae-amid-ongoing-external-financing-p"
@@ -447,7 +625,7 @@
       "lastCovered": "2026-04-20T17:12:27.972Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-govt-forsees-economic-slowdown-during-current-next-fiscal-ye"
@@ -463,7 +641,7 @@
       "lastCovered": "2026-04-20T17:12:27.972Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-seven-eu-nations-call-for-european-sanctions-against-israel"
@@ -479,7 +657,7 @@
       "lastCovered": "2026-04-20T17:12:27.972Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-court-fines-al-bawaba-news-owner-over-le3-mn-for-underpaying"
@@ -495,7 +673,7 @@
       "lastCovered": "2026-04-20T17:12:27.972Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-fbi-director-patel-sues-atlantic-in-250-million-defamation-c"
@@ -520,7 +698,7 @@
       "lastCovered": "2026-04-20T17:12:27.972Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-ukrainian-drone-attack-on-russia-s-tuapse-port-kills-one"
@@ -545,7 +723,7 @@
       "lastCovered": "2026-04-20T17:12:27.972Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-mining-china-s-little-red-book-for-open-source-gold"
@@ -561,7 +739,7 @@
       "lastCovered": "2026-04-20T17:12:27.972Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-what-physical-life-force-turns-biology-s-wheels"
@@ -577,7 +755,7 @@
       "lastCovered": "2026-04-20T17:12:27.972Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-interview-christopher-borgert-on-an-infamous-glyphosate-pape"
@@ -593,7 +771,7 @@
       "lastCovered": "2026-04-20T17:12:27.972Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-forbes-prediction-market-gamefies-story-about-mass-shooting"
@@ -609,7 +787,7 @@
       "lastCovered": "2026-04-20T17:12:27.972Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-peter-thiel-is-building-a-parallel-justice-system-powered-by"
@@ -625,7 +803,7 @@
       "lastCovered": "2026-04-20T17:12:27.972Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-elon-musk-summoned-by-french-prosecutors-amid-ongoing-x-prob"
@@ -644,13 +822,35 @@
       ]
     },
     {
+      "id": "layerzero-kelp-lazarus-dprk-attribution",
+      "label": "LayerZero blames Kelp's setup for $290 million exploit, attributes it to North Korea's Lazarus",
+      "firstSeen": "2026-04-20T08:04:18.199Z",
+      "lastCovered": "2026-04-21T08:09:29.557Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 2,
+      "arc": "developing",
+      "articles": [
+        "2026-04-20-layerzero-kelp-lazarus-dprk-attribution",
+        "2026-04-21-arbitrum-freezes-71m-kelp-dao-north-korea-exploit"
+      ],
+      "eventUri": "eng-11583783",
+      "summary": "LayerZero blames Kelp's 1-of-1 verifier setup for the $290 million exploit and attributes the attack to DPRK's Lazarus Group — the same unit behind Ronin and Atomic Wallet. Lead with the attribution: state-backed North Korean hackers now account for the majority of DeFi theft, funding Pyongyang's sanctions-evasion. The developer takeaway: 1-of-1 multisig/verifier setups are being systematically hunted.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Decentralized_autonomous_organization",
+        "http://en.wikipedia.org/wiki/Kelp",
+        "http://en.wikipedia.org/wiki/Bridge",
+        "http://en.wikipedia.org/wiki/Security_hacker"
+      ]
+    },
+    {
       "id": "russia-arrests-german-woman-in-alleged-bomb-plot",
       "label": "Russia arrests German woman in alleged bomb plot",
       "firstSeen": "2026-04-20T12:03:21.577Z",
       "lastCovered": "2026-04-20T12:03:21.577Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-russia-arrests-german-woman-in-alleged-bomb-plot"
@@ -675,7 +875,7 @@
       "lastCovered": "2026-04-20T12:03:21.577Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-india-and-south-korea-agree-to-nearly-double-trade-to-50b-by"
@@ -700,7 +900,7 @@
       "lastCovered": "2026-04-20T12:03:21.577Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-new-myanmar-administration-releases-ousted-president-win-myi"
@@ -716,7 +916,7 @@
       "lastCovered": "2026-04-20T12:03:21.577Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-iraq-s-militias-are-in-a-struggle-for-survival"
@@ -732,7 +932,7 @@
       "lastCovered": "2026-04-20T12:03:21.577Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-approximately-300-000-children-missed-during-year-s-2nd-nati"
@@ -748,7 +948,7 @@
       "lastCovered": "2026-04-20T12:03:21.577Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-india-s-core-sector-growth-contracts-0-4-in-march-2026"
@@ -773,7 +973,7 @@
       "lastCovered": "2026-04-20T12:03:21.577Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-pakistan-engages-ifc-for-investors-in-installation-of-10m-sm"
@@ -789,7 +989,7 @@
       "lastCovered": "2026-04-20T12:03:21.577Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-we-might-finally-know-how-to-use-quantum-computers-to-boost"
@@ -805,7 +1005,7 @@
       "lastCovered": "2026-04-20T12:03:21.577Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-revealed-scientists-tell-colombia-fossil-fuel-transition-sum"
@@ -821,7 +1021,7 @@
       "lastCovered": "2026-04-20T12:03:21.577Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-clarifying-hevc-licensing-fees-royalties-and-why-vendors-kil"
@@ -837,7 +1037,7 @@
       "lastCovered": "2026-04-20T12:03:21.577Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-netflix-s-ai-deal-puts-the-global-vfx-workforce-at-risk"
@@ -853,7 +1053,7 @@
       "lastCovered": "2026-04-20T12:03:21.577Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-18-why-japan-has-such-good-railways"
@@ -869,7 +1069,7 @@
       "lastCovered": "2026-04-19T22:04:44.556Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-19-us-seizes-iranian-cargo-ship-iran-rejects-talks"
@@ -887,13 +1087,38 @@
       ]
     },
     {
+      "id": "uae-us-financial-lifeline-iran-war",
+      "label": "UAE turns to US for financial lifeline as Iran war shows no end: Report",
+      "firstSeen": "2026-04-20T04:03:12.704Z",
+      "lastCovered": "2026-04-21T08:09:29.557Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 1,
+      "arc": "developing",
+      "articles": [
+        "2026-04-20-uae-us-financial-lifeline-iran-war",
+        "2026-04-21-trump-attacks-us-media-iran-war-coverage"
+      ],
+      "eventUri": "eng-11583205",
+      "summary": "The UAE is quietly negotiating a US financial backstop for a Gulf-wide dollar liquidity crunch if the Iran war deepens — per WSJ. Lead with what a backstop actually covers: central-bank swap lines, banking sanctions relief, or reinsurance for Emirati exposures. The story reveals that the Gulf's 'we'll stay out of it' posture is collapsing into open dependence on Washington — which is the price Abu Dhabi pays for hosting the conflict's economic spillover.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Enriched_uranium",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Nuclear_program_of_Iran",
+        "http://en.wikipedia.org/wiki/Truth_Social"
+      ]
+    },
+    {
       "id": "philippines-us-balikatan-2026-iran-distraction",
       "label": "PH, US open Balikatan 2026 drills",
       "firstSeen": "2026-04-20T08:04:18.199Z",
       "lastCovered": "2026-04-20T08:04:18.199Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-philippines-us-balikatan-2026-iran-distraction"
@@ -918,7 +1143,7 @@
       "lastCovered": "2026-04-20T08:04:18.199Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-hormuz-australia-sea-lanes-capacity-squeeze"
@@ -934,7 +1159,7 @@
       "lastCovered": "2026-04-20T08:04:18.199Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-iran-pakistan-fm-ceasefire-mediation"
@@ -950,7 +1175,7 @@
       "lastCovered": "2026-04-20T08:04:18.199Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-meloni-italy-march-coalition-crack"
@@ -966,7 +1191,7 @@
       "lastCovered": "2026-04-20T08:04:18.199Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-zamfara-protection-guards-political-violence-nigeria"
@@ -982,7 +1207,7 @@
       "lastCovered": "2026-04-20T08:04:18.199Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-un-escap-asia-pacific-growth-iran-war-spillover"
@@ -998,7 +1223,7 @@
       "lastCovered": "2026-04-20T08:04:18.199Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-hormuz-twenty-ships-april-18-shipping-data"
@@ -1023,7 +1248,7 @@
       "lastCovered": "2026-04-20T08:04:18.199Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-khabarovsk-uav-pcb-production-russia-dispersal"
@@ -1033,29 +1258,13 @@
       "conceptUris": []
     },
     {
-      "id": "layerzero-kelp-lazarus-dprk-attribution",
-      "label": "LayerZero blames Kelp's setup for $290 million exploit, attributes it to North Korea's Lazarus",
-      "firstSeen": "2026-04-20T08:04:18.199Z",
-      "lastCovered": "2026-04-20T08:04:18.199Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-layerzero-kelp-lazarus-dprk-attribution"
-      ],
-      "eventUri": "eng-11583783",
-      "summary": "LayerZero blames Kelp's 1-of-1 verifier setup for the $290 million exploit and attributes the attack to DPRK's Lazarus Group — the same unit behind Ronin and Atomic Wallet. Lead with the attribution: state-backed North Korean hackers now account for the majority of DeFi theft, funding Pyongyang's sanctions-evasion. The developer takeaway: 1-of-1 multisig/verifier setups are being systematically hunted.",
-      "conceptUris": []
-    },
-    {
       "id": "africa-ai-moderation-language-coverage-gap",
       "label": "Africa has 2,000 languages. AI content moderation knows fewer than 20",
       "firstSeen": "2026-04-20T08:04:18.199Z",
       "lastCovered": "2026-04-20T08:04:18.199Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-africa-ai-moderation-language-coverage-gap"
@@ -1071,7 +1280,7 @@
       "lastCovered": "2026-04-20T08:04:18.199Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-opus-4-7-token-overhead-benchmark"
@@ -1087,7 +1296,7 @@
       "lastCovered": "2026-04-20T08:04:18.199Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-twinc-inter-chromosomal-genome-prediction-nature"
@@ -1103,7 +1312,7 @@
       "lastCovered": "2026-04-20T08:04:18.199Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-effects-of-prucalopride-succinate-on-postoperative-bowel-mot"
@@ -1119,7 +1328,7 @@
       "lastCovered": "2026-04-19T22:04:44.556Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-19-tehran-strait-of-hormuz-never-cede-control"
@@ -1135,7 +1344,7 @@
       "lastCovered": "2026-04-19T17:07:38.464Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-19-trump-us-iran-pakistan-talks-round-two"
@@ -1160,7 +1369,7 @@
       "lastCovered": "2026-04-19T17:07:38.464Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-19-spain-eu-israel-association-agreement"
@@ -1185,7 +1394,7 @@
       "lastCovered": "2026-04-19T08:05:54.934Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-17-hormuz-economic-pain-ras-laffan-fertilizer-helium",
@@ -1193,351 +1402,6 @@
       ],
       "eventUri": null,
       "summary": "At the IMF spring meetings, Saudi Finance Minister al-Jadaan warned markets are 'too optimistic' about Hormuz reopening: seaborne trade won't approach prewar levels until end of June, and Ras Laffan LNG components could take four years to replace. Iran declared the Strait 'completely open' ahead of US talks in Pakistan; oil prices tumbled — but insurance premiums, shipping reroutes, and LNG contract repricing from the closure period will take months to unwind. Combined arc: the physical supply-chain damage outlasts any diplomatic timeline.",
-      "conceptUris": []
-    },
-    {
-      "id": "south-africa-abb-kusile-immunity-deal-challenge",
-      "label": "Matshela Koko challenges R2.5bn 'immunity' deal with Kusile contractor ABB as corruption charges loom",
-      "firstSeen": "2026-04-20T04:03:12.704Z",
-      "lastCovered": "2026-04-20T04:03:12.704Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-south-africa-abb-kusile-immunity-deal-challenge"
-      ],
-      "eventUri": null,
-      "summary": "South Africa's NPA let Swiss multinational ABB settle Kusile power-station corruption for R2.5bn instead of prosecuting — a former Eskom executive now facing charges is challenging the deal as two-tier justice. Lead with the mechanism: individuals get trials, multinationals buy 'punitive reparations.' The story reveals a precedent that effectively immunises corporate bribery across emerging markets when the state needs the money more than the conviction.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-warns-us-significantly-greater-costs-ceasefire",
-      "label": "Trump's Erratic Behavior May Tank Negotiations, Iran Says, Warning of 'Significantly Greater Costs' to the U.S. if War Resumes",
-      "firstSeen": "2026-04-20T04:03:12.704Z",
-      "lastCovered": "2026-04-20T04:03:12.704Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-iran-warns-us-significantly-greater-costs-ceasefire"
-      ],
-      "eventUri": null,
-      "summary": "A senior Iranian official tells Drop Site that if Trump resumes bombing, Tehran will sever diplomatic channels entirely and shift to a war footing — the April 22 ceasefire expiry is the hinge. Lead with the direct warning and what 'significantly greater costs' means operationally: Strait of Hormuz, Gulf bases, and the UAE financial exposure currently being hedged. Context continues yesterday's Iran war coverage without duplicating the talks-rejection angle.",
-      "conceptUris": []
-    },
-    {
-      "id": "uae-us-financial-lifeline-iran-war",
-      "label": "UAE turns to US for financial lifeline as Iran war shows no end: Report",
-      "firstSeen": "2026-04-20T04:03:12.704Z",
-      "lastCovered": "2026-04-20T04:03:12.704Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-uae-us-financial-lifeline-iran-war"
-      ],
-      "eventUri": "eng-11583205",
-      "summary": "The UAE is quietly negotiating a US financial backstop for a Gulf-wide dollar liquidity crunch if the Iran war deepens — per WSJ. Lead with what a backstop actually covers: central-bank swap lines, banking sanctions relief, or reinsurance for Emirati exposures. The story reveals that the Gulf's 'we'll stay out of it' posture is collapsing into open dependence on Washington — which is the price Abu Dhabi pays for hosting the conflict's economic spillover.",
-      "conceptUris": []
-    },
-    {
-      "id": "kelp-defi-292-million-exploit-mechanism",
-      "label": "The $292 million Kelp crypto exploit: how it happened, and what it means for DeFi",
-      "firstSeen": "2026-04-20T04:03:12.704Z",
-      "lastCovered": "2026-04-20T04:03:12.704Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-kelp-defi-292-million-exploit-mechanism"
-      ],
-      "eventUri": "eng-11581456",
-      "summary": "A single collateral-accounting bug let an attacker drain $292M from Kelp — and Ledger's CTO says 2026 is on track to be the worst year ever for DeFi hacks. Lead with the mechanism: the bug class (restaking collateral revaluation) and why it's spreading across protocols that copy each other's code. The structural story is that DeFi's composability — the feature — is now the attack surface, and no audit regime can keep pace.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-caribbean-drug-boat-strike-180-killed",
-      "label": "U.S. Military Strikes a Boat in the Caribbean, Killing 3",
-      "firstSeen": "2026-04-20T04:03:12.704Z",
-      "lastCovered": "2026-04-20T04:03:12.704Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-us-caribbean-drug-boat-strike-180-killed"
-      ],
-      "eventUri": "eng-11583311",
-      "summary": "The US military's maritime drug-strike campaign has now killed at least 180 people in Latin American waters since September — an extrajudicial kill rate disguised as counter-narcotics. Lead with the 180 figure and the legal theory: the administration is applying armed-conflict rules to civilian vessels in peacetime international waters. Two US embassy staff died in a related Mexico raid the same weekend — name both incidents together to show the campaign's widening footprint.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-kp-farmers-indus-water-wheat-crisis",
-      "label": "Water worries grip KP farmers amid Indus Treaty concerns",
-      "firstSeen": "2026-04-20T04:03:12.704Z",
-      "lastCovered": "2026-04-20T04:03:12.704Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-pakistan-kp-farmers-indus-water-wheat-crisis"
-      ],
-      "eventUri": null,
-      "summary": "Khyber Pakhtunkhwa farmers face a wheat failure as reduced Indus flows threaten Tarbela and Mangla — reservoirs that do double duty for irrigation and electricity. Lead with the hydrology: what India's Indus Waters Treaty posture actually changes in cubic meters per second, and what that means for a wheat crop feeding 240 million people. The structural story is food-and-power coupling — when river flow drops, both the field and the grid go dark at the same time.",
-      "conceptUris": []
-    },
-    {
-      "id": "green-geopolymer-cement-slag-durability-study",
-      "label": "A comparative analysis of the effects of green blended activators on the durability and mechanical performance of slag-based geopolymer cement",
-      "firstSeen": "2026-04-20T04:03:12.704Z",
-      "lastCovered": "2026-04-20T04:03:12.704Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-green-geopolymer-cement-slag-durability-study"
-      ],
-      "eventUri": null,
-      "summary": "Portland cement is 8% of global CO2; this Scientific Reports paper tests slag-based geopolymer binders activated by blended alkalis and finds durability and strength comparable to Portland — using industrial waste slag as the precursor. Lead with the carbon arithmetic: if geopolymer cement scales, the building sector's climate math changes meaningfully. The reader is a technically literate non-materials-scientist — explain aluminosilicate activation in one clean sentence, then focus on why this hasn't scaled yet (supply chain, standards, not chemistry).",
-      "conceptUris": []
-    },
-    {
-      "id": "merz-germany-eu-industrial-ai-regulation-rollback",
-      "label": "Germany's Merz says industrial AI needs less stringent EU regulation",
-      "firstSeen": "2026-04-20T04:03:12.704Z",
-      "lastCovered": "2026-04-20T04:03:12.704Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-merz-germany-eu-industrial-ai-regulation-rollback"
-      ],
-      "eventUri": null,
-      "summary": "Germany's chancellor used the Hannover Messe stage to publicly call for exempting industrial AI from the EU AI Act — the first major G7 leader to demand rollback of Europe's signature tech regulation. Lead with what 'industrial AI' would carve out: predictive maintenance, robotics control, factory-floor models — a category that now covers most of what AI actually does in German manufacturing. The political story is that the EU's regulatory moat is being breached from inside, by its largest economy.",
-      "conceptUris": []
-    },
-    {
-      "id": "vercel-breach-crypto-api-keys-web3",
-      "label": "Hack at Vercel sends crypto developers scrambling to lock down API keys",
-      "firstSeen": "2026-04-20T04:03:12.704Z",
-      "lastCovered": "2026-04-20T04:03:12.704Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-vercel-breach-crypto-api-keys-web3"
-      ],
-      "eventUri": "eng-11582898",
-      "summary": "A breach at Vercel exposed env-var secrets for Web3 teams including Solana DEX Orca that host wallet UIs there — a single platform compromise radiating across dozens of crypto frontends. Lead with the concentration risk: Vercel, Cloudflare, and AWS host the UI layer for most of DeFi, so 'decentralized' protocols have centralised deployment surfaces. Pair-context with the Kelp exploit — both are the same week, different layers of the same stack.",
-      "conceptUris": []
-    },
-    {
-      "id": "uk-pm-to-face-grilling-from-mps-today-over-mandelson-scandal",
-      "label": "UK PM to face grilling from MPs today over Mandelson scandal",
-      "firstSeen": "2026-04-20T04:03:12.704Z",
-      "lastCovered": "2026-04-20T04:03:12.704Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-uk-pm-to-face-grilling-from-mps-today-over-mandelson-scandal"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for politics floor] * Starmer faces fresh calls to quit after it was revealed ex-envoy to US failed vetting process in late 2024\n\n* Ministers support embattled premier, say he was unaware of clearance status at the time\n\n* Opposition leaders have called for premier to step down\n\nLONDON: Embattled UK Prime Minister Keir",
-      "conceptUris": []
-    },
-    {
-      "id": "us-energy-chief-gas-3-dollar-iran-war",
-      "label": "US Energy Chief Says Gas May Not Dip Below $3 Until Next Year",
-      "firstSeen": "2026-04-19T22:04:44.556Z",
-      "lastCovered": "2026-04-19T22:04:44.556Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-19-us-energy-chief-gas-3-dollar-iran-war"
-      ],
-      "eventUri": "eng-11582515",
-      "summary": "Energy Secretary Chris Wright contradicted Treasury Secretary Bessent's 'relief by summer' pledge, tying any gasoline decline to 'resolution' of the US-Israeli war with Iran. Lead with the internal cabinet contradiction — that's the signal, not the number. Mechanism: the Strait of Hormuz disruption is now being openly priced into US pump forecasts, directly linking the war to the most politically visible consumer metric.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_States_Secretary_of_Energy",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Gasoline",
-        "http://en.wikipedia.org/wiki/Israel"
-      ]
-    },
-    {
-      "id": "turkiye-fidan-israel-security-land-pretext",
-      "label": "Turkiye's FM Fidan says Israel using security as a pretext to acquire 'more land'",
-      "firstSeen": "2026-04-19T22:04:44.556Z",
-      "lastCovered": "2026-04-19T22:04:44.556Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-19-turkiye-fidan-israel-security-land-pretext"
-      ],
-      "eventUri": "eng-11580324",
-      "summary": "Turkiye's foreign minister publicly accused Netanyahu's government at the Antalya Diplomacy Forum of using 'security' as cover for territorial expansion. Lead with Fidan's framing: 'Israel is not after its own security. Israel is after more land.' Why it matters: a NATO member foreign minister is asserting that Israeli security rhetoric is a land-grab pretext, a position rarely stated that bluntly by a Western-aligned capital.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Turkey",
-        "http://en.wikipedia.org/wiki/Hakan_Fidan",
-        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
-        "http://en.wikipedia.org/wiki/Iran"
-      ]
-    },
-    {
-      "id": "israel-lebanon-full-force-truce-katz",
-      "label": "Israel says to use 'full force' in Lebanon despite truce if soldiers face threat",
-      "firstSeen": "2026-04-19T22:04:44.556Z",
-      "lastCovered": "2026-04-19T22:04:44.556Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-19-israel-lebanon-full-force-truce-katz"
-      ],
-      "eventUri": "eng-11582461",
-      "summary": "Israeli Defence Minister Katz publicly authorised 'full force' operations in Lebanon during the ceasefire, including demolishing any structures deemed booby-trapped. Lead with the policy — the truce is being openly redefined on Israel's unilateral terms. The mechanism: ceasefires that permit expansive self-defence carve-outs cease to function as ceasefires; this mirrors the pattern named by Fidan in our other story today.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Lebanon",
-        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Israel_Katz"
-      ]
-    },
-    {
-      "id": "bulgaria-progressive-coalition-exit-poll",
-      "label": "Progressive Bulgaria leads exit poll with 39.2%",
-      "firstSeen": "2026-04-19T22:04:44.556Z",
-      "lastCovered": "2026-04-19T22:04:44.556Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-19-bulgaria-progressive-coalition-exit-poll"
-      ],
-      "eventUri": "rus-2053639",
-      "summary": "A new anti-corruption Progressive Bulgaria coalition is winning a snap parliamentary election with 39.2%, pushing GERB (Borisov's establishment party) into second. Lead with the margin and the anti-corruption mandate — this is an EU/NATO frontier state signalling it wants to clean house, in a region normally framed as drifting toward Moscow. Mechanism: snap elections triggered by collapsed governments are becoming routine across the EU periphery.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Bulgaria",
-        "http://en.wikipedia.org/wiki/European_Union",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Corruption",
-        "http://en.wikipedia.org/wiki/Boyko_Borisov"
-      ]
-    },
-    {
-      "id": "russia-ai-sovereignty-vpn-crackdown",
-      "label": "AI warfare triggers Putin, as Kremlin moves to dismantle the last pieces of Russian internet",
-      "firstSeen": "2026-04-19T22:04:44.556Z",
-      "lastCovered": "2026-04-19T22:04:44.556Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-18-russia-ai-sovereignty-vpn-crackdown",
-        "2026-04-18-ai-warfare-triggers-putin-as-kremlin-moves-to-dismantle-the"
-      ],
-      "eventUri": null,
-      "summary": "The Kremlin is escalating a coordinated campaign — VPN crackdowns, deeper Telegram throttling, and a fresh 'national AI' announcement — to sever Russia from the open internet. Lead with the simultaneity: Putin is pursuing AI sovereignty and public-internet destruction in the same breath. Mechanism: legitimising state AI while outlawing uncensored access lets the regime claim technological modernity without information pluralism. The reader, technically literate, will recognise this as the Chinese-model playbook being imported.",
-      "conceptUris": []
-    },
-    {
-      "id": "waltz-iran-power-plants-war-crime",
-      "label": "US diplomat says attacks on Iranian power plants will not be war crime",
-      "firstSeen": "2026-04-19T17:07:38.464Z",
-      "lastCovered": "2026-04-19T17:07:38.464Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-19-waltz-iran-power-plants-war-crime"
-      ],
-      "eventUri": null,
-      "summary": "US UN envoy Michael Waltz publicly argues that strikes on Iranian power plants would not constitute war crimes — a legal stance that pre-authorizes targeting civilian electricity infrastructure in ongoing negotiations. Lead with the precedent: the same logic was used to justify power-grid strikes in Iraq 1991 and Serbia 1999, both later cited by ICRC and HRW as causing disproportionate civilian harm. Accountability angle: a sitting US official is narrating the legal cover for future attacks in the middle of a ceasefire track. Note this is a single-source TASS story — writer should corroborate Waltz's exact wording before publishing.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-us-talks-progress-uranium-rejection-stalemate",
-      "label": "Iran war: Tehran says 'progress' made in talks with US",
-      "firstSeen": "2026-04-19T08:05:54.934Z",
-      "lastCovered": "2026-04-19T08:05:54.934Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-19-iran-us-talks-progress-uranium-rejection-stalemate"
-      ],
-      "eventUri": "eng-11581588",
-      "summary": "Iranian Parliament Speaker Ghalibaf claims 'progress' in US talks while Deputy FM Khatibzadeh publicly rejects Trump's demand that Tehran hand over enriched uranium. Lead with the gap: the 'progress' Iran cites excludes the one concession Washington says is non-negotiable. Frame as a stalemate dressed as momentum. Compare sentiment across IL/DE/IN sources — divergence 0.33 shows coverage is already splitting. Relevant for readers tracking what a durable Iran-US deal would actually require.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Mohammad_Bagher_Ghalibaf",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "india-summons-iran-ambassador-hormuz-tanker-fire",
-      "label": "India summons Iran ambassador after gunboats fire on Indian-flagged tankers in Hormuz",
-      "firstSeen": "2026-04-18T22:05:16.355Z",
-      "lastCovered": "2026-04-18T22:05:16.355Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-18-india-summons-iran-ambassador-hormuz-tanker-fire"
-      ],
-      "eventUri": "eng-11580884",
-      "summary": "India's MEA summoned Iran's ambassador after Iranian gunboats fired on two Indian-flagged ships in the Strait of Hormuz. Lead with the diplomatic break — India has spent the war as one of Tehran's quietest defenders, buying discounted crude and resisting US pressure; firing on its tankers shifts that calculus. The mechanism: how Iran's tactical pressure on Hormuz shipping costs it its most important non-aligned partner.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/New_Delhi",
-        "http://en.wikipedia.org/wiki/Ministry_of_External_Affairs_(India)",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Petroleum"
-      ]
-    },
-    {
-      "id": "hungary-magyar-orban-eu-climate-energy-shift",
-      "label": "Q&A: What Magyar's defeat of Orbán in Hungary means for climate and energy",
-      "firstSeen": "2026-04-18T22:05:16.355Z",
-      "lastCovered": "2026-04-18T22:05:16.355Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-17-hungary-magyar-orban-eu-climate-energy-shift"
-      ],
-      "eventUri": null,
-      "summary": "Péter Magyar's landslide over Viktor Orbán removes one of the EU's most reliable veto players on climate legislation. Lead with what changes inside the European Council: 15 years of Hungarian blocking of bloc-wide climate finance, gas-pipeline reviews, and Russia-energy decoupling now end. The mechanism to highlight is unanimity politics — a single national election can unblock years of stalled EU policy. Note Hungary's lingering Paks II nuclear deal with Rosatom and what Magyar has signalled about it.",
       "conceptUris": []
     }
   ]
