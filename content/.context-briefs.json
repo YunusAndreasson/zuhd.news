@@ -30822,5 +30822,1091 @@
     "label": "Urals Crude & the Druzhba Pipeline",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-21-ai-clean-room-open-source-copyright-laundering": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CLEAN ROOM PRECEDENT",
+        "body": "In 1982, Compaq reverse-engineered IBM's PC BIOS using two isolated teams: one read the IBM code and wrote a specification, the other implemented it without ever seeing the original. Courts accepted this as non-infringement. The entire PC-compatible industry — and later Phoenix BIOS, ReactOS, and countless Linux drivers — was built on that ruling.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is narrow: the *implementers* must never see the source. If the wall between the two teams leaks, the output is a **derivative work** and infringes."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT COPYLEFT ACTUALLY DOES",
+        "body": "The GPL, written by Richard Stallman in 1989, uses copyright to invert copyright. If you distribute software built on GPL code, you must release your modifications under the same license. It is a viral obligation — not a ban on use, but a condition on distribution. Copyleft works only because the underlying code is copyrighted.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happens to GPL code if its copyright protection is stripped away?",
+            "options": [
+              "Copyleft gets stronger",
+              "Copyleft collapses entirely",
+              "Nothing changes",
+              "It becomes proprietary"
+            ],
+            "correct": 1,
+            "explanation": "Copyleft is enforced through copyright law. No copyright means no legal hook to require downstream projects to stay open — the license becomes unenforceable."
+          }
+        ]
+      },
+      {
+        "heading": "THE DERIVATIVE WORK TEST",
+        "body": "US copyright protects expression, not ideas or functionality. A derivative work copies protected expression; a clean reimplementation of the same function does not. The line between the two is where decades of software copyright litigation has been fought — from Computer Associates v. Altai (1992) to Google v. Oracle (2021)."
+      },
+      {
+        "heading": "THE AI TRAINING QUESTION",
+        "body": "If a model was trained on GPL source, is its output a derivative work of that source? Courts have not decided. The Software Freedom Conservancy argues yes — copilot-style tools that emit recognizable GPL snippets create unlicensed copies. Model makers argue training is transformative fair use and outputs are independent expression.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The contested term is *substantial similarity*. An AI that memorized and regurgitates a function fails the test; one that learned a pattern and generates novel code arguably passes. No appellate court has ruled either way."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAUNDERING THEORY",
+        "body": "If AI reimplementation survives as clean-room output, any copyleft codebase becomes strip-mineable: feed the source to one model, have a second model write a spec, have a third implement from the spec. Each step claims transformation. The GPL's enforcement mechanism — the threat of copyright suit — has nothing to sue over."
+      },
+      {
+        "heading": "WHY 'SATIRE' IS A LEGAL POSTURE",
+        "body": "Declaring a tool satire does not change what it does, but it frames the creators as provocateurs inviting litigation rather than profiteers evading it. The Free Software Foundation has wanted a clean test case on GPL enforceability against AI for years; forced litigation produces precedent that quiet infringement does not."
+      }
+    ],
+    "generatedAt": "2026-04-21T17:33:15.595Z",
+    "label": "Clean Rooms & Copyleft",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-21-china-electricity-carbon-emissions-dataset-2060": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUAL PLEDGE",
+        "body": "Xi Jinping announced at the UN in September 2020 that China would peak CO2 emissions before 2030 and reach carbon neutrality by 2060. The 30-60 framing is now the organizing principle of every Chinese energy and industrial plan.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shorthand is **3060** — *peak by 2030, neutral by 2060*. A neutrality date 40 years out is longer than any Western pledge, but it starts from a much higher emissions base."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HOURLY MATTERS",
+        "body": "An average annual grid carbon figure hides everything that matters. A factory running at 2am in Inner Mongolia draws almost entirely from coal baseload; the same factory at noon in Qinghai may run on solar. Hourly data reveals when — not just where — production is clean."
+      },
+      {
+        "heading": "THE PROVINCIAL SPREAD",
+        "body": "China's grid is not one grid. Coal-heavy northern provinces like Shanxi and Inner Mongolia emit 3-5x the carbon per kWh of hydro-rich Sichuan or Yunnan. Locating a data center or aluminum smelter in the wrong province can double a product's embedded carbon.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Inner Mongolia",
+                "value": "~0.90",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Shanxi",
+                "value": "~0.85",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Guangdong",
+                "value": "~0.50",
+                "tone": "neutral"
+              },
+              {
+                "label": "Sichuan",
+                "value": "~0.15",
+                "tone": "favorable"
+              },
+              {
+                "label": "Yunnan",
+                "value": "~0.12",
+                "tone": "favorable"
+              }
+            ],
+            "label": "grid carbon intensity, rough kgCO2/kWh"
+          }
+        ]
+      },
+      {
+        "heading": "THE CBAM PRESSURE",
+        "body": "The EU's Carbon Border Adjustment Mechanism begins charging importers in 2026 based on the embedded carbon of steel, aluminum, cement, fertilizer, and hydrogen. Chinese exporters without verified low-carbon sourcing face tariffs that can exceed their margins. Provincial-hourly data is the evidence an exporter needs to prove the factory ran clean.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "DE",
+              "FR",
+              "IT",
+              "ES",
+              "PL"
+            ],
+            "label": "the CBAM trade corridor"
+          }
+        ]
+      },
+      {
+        "heading": "THE COAL PARADOX",
+        "body": "China added more coal capacity in 2023-2024 than the rest of the world combined, while also adding more solar and wind than the rest of the world combined. Both are true. Coal is being built as dispatchable backup for a renewables-first grid — the opposite of the Western pattern where renewables supplement coal."
+      },
+      {
+        "heading": "CARBON NEUTRALITY, NOT ZERO",
+        "body": "Neutrality allows residual emissions offset by sinks — forests, soils, carbon capture. China's 2060 target assumes roughly 1-2.5 GtCO2/year of residual emissions absorbed by land-use and engineered removal. Whether those sinks scale is the open question behind every scenario in the dataset.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global new coal capacity did China build in 2023-2024?",
+            "options": [
+              "Roughly 20%",
+              "Roughly 50%",
+              "More than 90%",
+              "Less than 10%"
+            ],
+            "correct": 2,
+            "explanation": "China built over 90% of global new coal capacity in recent years — while simultaneously leading the world in solar and wind additions."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-21T17:34:17.626Z",
+    "label": "China's Grid & Carbon Neutrality",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-21-el-nino-2026-second-warmest-year-climate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OSCILLATION",
+        "body": "El Niño and La Niña are the warm and cool phases of a sloshing pool of water across the equatorial Pacific. Trade winds normally pile warm water in the west near Indonesia; when they weaken, that warm pool spreads east toward South America and releases stored heat to the atmosphere.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The full cycle is called **ENSO** — the *El Niño–Southern Oscillation* — and it is the single largest source of year-to-year variability in global temperature."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT MATTERS MORE THAN TEMPERATURE",
+        "body": "Global average temperature fluctuates year to year with El Niño and volcanic eruptions. The energy imbalance underneath — the rate at which Earth is banking heat — is the real forcing. Temperature is the weather report. The imbalance is the trajectory."
+      },
+      {
+        "heading": "THE STAIRCASE PATTERN",
+        "body": "Record years tend to cluster on El Niño years, then plateau during La Niña, then step up again. 1998, 2016, and 2024 were all super-El Niño records. The staircase keeps climbing because the underlying trend — from accumulated CO₂ — keeps rising regardless of which phase the Pacific is in."
+      },
+      {
+        "heading": "WHAT A SUPER EL NIÑO DOES",
+        "body": "A strong El Niño releases ocean heat that had been buried hundreds of meters deep in the western Pacific. It shifts rainfall east — drought in Indonesia and Australia, floods in Peru and Ecuador — and typically lifts global surface temperatures by 0.1 to 0.2 °C above the baseline trend for 12–18 months.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ID",
+              "AU",
+              "PE",
+              "EC"
+            ],
+            "label": "where ENSO reshuffles rainfall"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1.5 °C THRESHOLD",
+        "body": "The Paris Agreement's 1.5 °C target refers to a multi-decade average, not a single year. 2024 crossed 1.5 °C as an annual figure; scientists expect individual years above that line to become routine before the decadal average does. Missing the target in one El Niño year is not yet missing it permanently — but the gap is closing fast.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The Paris Agreement's 1.5 °C limit refers to what kind of temperature measure?",
+            "options": [
+              "Any single calendar year above 1.5 °C",
+              "A multi-decade average above 1.5 °C",
+              "The hottest day recorded globally",
+              "Ocean surface temperature only"
+            ],
+            "correct": 1,
+            "explanation": "Paris targets a long-run average, which is why one El Niño year above 1.5 °C does not formally breach the threshold."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAG",
+        "body": "El Niño peaks in the Pacific in late autumn but its effect on global surface temperature lags by 3–6 months. A strong event that matures in December 2026 would show up most clearly in the 2027 annual average — which is why forecasters rate 2027, not 2026, the likelier record year."
+      }
+    ],
+    "generatedAt": "2026-04-21T17:34:44.379Z",
+    "label": "El Niño & the Warming Baseline",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-21-hungary-anti-lgbtq-law-eu-court-ruling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TREATY CLAUSE",
+        "body": "Article 2 of the Treaty on European Union lists the values every member state must share: human dignity, freedom, democracy, equality, the rule of law, and respect for human rights including minority rights. It is the EU's constitutional core — the floor beneath which no member may fall.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The Union is founded on the values of respect for human dignity, freedom, democracy, equality, the rule of law and respect for human rights, including the rights of persons belonging to minorities.",
+            "speaker": "Treaty on European Union, Article 2",
+            "year": "2009"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT WAS NEVER USED",
+        "body": "Article 2 states values; Article 7 is the enforcement mechanism — suspension of voting rights — but it requires unanimity among the other member states. Hungary and Poland long shielded each other, making Article 7 politically dead. The Court's move routes around that deadlock entirely, turning a political clause into a judicially enforceable one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the doctrinal shift: Article 2 now has *direct effect* — it can be invoked in court against a member state, not just by the Council in a political procedure."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONDITIONALITY LEVER",
+        "body": "Since 2020, the EU can freeze budget disbursements to member states that breach rule-of-law standards. Roughly €18bn in cohesion and recovery funds for Hungary has been held back — money earmarked for roads, hospitals, and green transition that Budapest cannot access until Brussels is satisfied.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              0.861475,
+              0.861048,
+              0.864936,
+              0.866889,
+              0.866213,
+              0.866288,
+              0.8702,
+              0.872852,
+              0.864019,
+              0.862824,
+              0.866436,
+              0.867943,
+              0.868018,
+              0.868821,
+              0.86648,
+              0.855689,
+              0.857703,
+              0.855318,
+              0.852479,
+              0.852769,
+              0.856529,
+              0.849799,
+              0.847567,
+              0.846973,
+              0.848788,
+              0.849437,
+              0.849545,
+              0.849401,
+              0.850349,
+              0.849214
+            ],
+            "periods": [
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21"
+            ],
+            "label": "Euro",
+            "unit": "EUR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE FIDESZ ARC",
+        "body": "Viktor Orbán's Fidesz party won a two-thirds parliamentary supermajority in 2010 and used it to rewrite the constitution, reshape the judiciary, and consolidate media. The 2021 'child protection' law bundled anti-pedophilia provisions with bans on LGBTQ content in schools and media — a packaging that made opposition politically costly domestically.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Viktor Orbán",
+                "role": "Prime Minister",
+                "years": "2010–2026",
+                "cc": "HU"
+              },
+              {
+                "name": "Péter Magyar",
+                "role": "PM-elect, Tisza party",
+                "years": "2026–",
+                "cc": "HU"
+              },
+              {
+                "name": "Ursula von der Leyen",
+                "role": "European Commission President",
+                "years": "2019–",
+                "cc": "EU"
+              }
+            ],
+            "label": "the Hungarian pivot"
+          }
+        ]
+      },
+      {
+        "heading": "THE ILLIBERAL TEMPLATE",
+        "body": "Orbán coined 'illiberal democracy' in a 2014 speech — elections without liberal constraints like independent courts, free press, and minority protections. The model was copied in Poland under PiS, studied in Turkey, and cited approvingly by US conservatives. A ruling that dismantles its legal foundation in Hungary reverberates well beyond Budapest.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "HU",
+              "PL",
+              "RO",
+              "SK",
+              "AT"
+            ],
+            "label": "the Central European arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT TEST",
+        "body": "Every EU member has laws touching morality, family, religion, or speech. If Article 2 now binds directly, challenges can reach Luxembourg from any direction — Poland's abortion regime, Italy's surrogacy ban, France's laïcité rules. The Court has handed itself a tool whose reach it has not yet defined.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which EU treaty article lists the Union's foundational values like democracy and human rights?",
+            "options": [
+              "Article 2 TEU",
+              "Article 50 TEU",
+              "Article 7 TEU",
+              "Article 101 TFEU"
+            ],
+            "correct": 0,
+            "explanation": "Article 2 TEU sets out the values; Article 7 is the political enforcement mechanism; Article 50 is the exit clause; Article 101 concerns competition."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-21"
+    ],
+    "generatedAt": "2026-04-21T17:35:15.110Z",
+    "label": "Article 2 & the EU's Constitutional Core",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-21-kharge-modi-terrorist-india-election-commission": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MODEL CODE OF CONDUCT",
+        "body": "India's election campaigns are governed by the Model Code of Conduct — a set of rules the Election Commission enforces against personal attacks, communal appeals, and misuse of office. It is not statute; it is a convention parties agreed to in 1968 and now treat as binding because the Commission can bar candidates from campaigning.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Code is enforced through *suasion and sanction* — the Commission cannot jail, but it can silence a candidate for days during the window when silence costs most."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMISSION'S POWERS",
+        "body": "Article 324 of India's constitution gives the Election Commission 'superintendence, direction and control' over elections — language the Supreme Court has read as plenary. It can censure, bar campaigning, cancel candidacies, and in extreme cases postpone polls. No other democracy grants its election body this much latitude.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The superintendence, direction and control of the preparation of the electoral rolls for, and the conduct of, all elections shall be vested in a Commission",
+            "speaker": "Constitution of India, Article 324(1)",
+            "year": "1950"
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO PARTIES",
+        "body": "Congress led India from independence until 1977 and governed for most of the period since. The BJP, founded in 1980 from the Hindu-nationalist Jana Sangh, displaced Congress as the dominant force in 2014. The rhetorical temperature between them reflects a half-century contest over what Indian nationalism means — secular-pluralist or Hindu-majoritarian.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mallikarjun Kharge",
+                "role": "Congress President",
+                "years": "2022–",
+                "cc": "IN"
+              },
+              {
+                "name": "Rahul Gandhi",
+                "role": "Congress parliamentary leader",
+                "years": "2024–",
+                "cc": "IN"
+              },
+              {
+                "name": "Narendra Modi",
+                "role": "Prime Minister",
+                "years": "2014–",
+                "cc": "IN"
+              },
+              {
+                "name": "Amit Shah",
+                "role": "Home Minister, BJP strategist",
+                "years": "2019–",
+                "cc": "IN"
+              }
+            ],
+            "label": "the rival leaderships"
+          }
+        ]
+      },
+      {
+        "heading": "TAMIL NADU AS BATTLEGROUND",
+        "body": "Chennai sits in Tamil Nadu, a state where neither Congress nor BJP has ruled in decades — Dravidian parties (DMK, AIADMK) dominate. National parties campaign there through alliances. Congress's INDIA bloc partners with the DMK; the BJP has struggled to build a southern base, making aggressive rhetoric from either national party a play for headlines more than votes."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The Commission has censured senior leaders from both parties — Modi himself was cleared in 2019 over communal speeches the opposition flagged, and Rahul Gandhi was barred from campaigning in past cycles. Complaints of this kind rarely end in prosecution; they end in a few days of enforced silence and a cycle of news coverage that often helps the accused.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under which constitutional article does India's Election Commission derive its power to regulate campaign conduct?",
+            "options": [
+              "Article 19 (free speech)",
+              "Article 324 (superintendence of elections)",
+              "Article 356 (President's Rule)",
+              "Article 370 (special status)"
+            ],
+            "correct": 1,
+            "explanation": "Article 324 vests 'superintendence, direction and control' of elections in the Commission — the basis for enforcing the Model Code."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-21T17:35:43.861Z",
+    "label": "India's Election Commission & the Model Code",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-21-lebanon-national-roaming-wartime-resilience": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT NATIONAL ROAMING IS",
+        "body": "National roaming lets a subscriber of one domestic carrier connect through a rival carrier's towers when their own network is unavailable. It is the same mechanism that lets your phone work abroad — applied inside one country's borders.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Lebanon's two mobile operators — state-owned **Alfa** and **Touch** — have historically run fully separate networks with zero interconnection at the radio layer. Activating roaming between them is a policy decision, not a technical upgrade."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STATES RESIST IT",
+        "body": "Carriers normally oppose national roaming because it erodes their coverage advantage — the main reason customers pay a premium. Regulators usually mandate it only during emergencies or in rural areas where duplicated infrastructure is wasteful."
+      },
+      {
+        "heading": "THE CAPACITY TRAP",
+        "body": "A tower has finite spectrum and backhaul. Letting a second carrier's users onto it does not add capacity — it divides existing capacity across more users. Roaming solves the coverage-gap problem and the billing problem, but congestion gets worse, not better.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does national roaming between two domestic carriers actually add to a shared tower?",
+            "options": [
+              "More radio capacity",
+              "More backhaul bandwidth",
+              "Nothing — it only redistributes existing capacity",
+              "A backup power supply"
+            ],
+            "correct": 2,
+            "explanation": "Roaming is a billing and authentication arrangement. The physical tower's spectrum and backhaul are unchanged; more users share the same pipe."
+          }
+        ]
+      },
+      {
+        "heading": "LEBANON'S TELECOM STRUCTURE",
+        "body": "Alfa and Touch are both state-owned but managed by separate private operators under management contracts. Revenues flow to the treasury — telecom is one of the Lebanese state's largest income sources, which is why tariffs stayed high even as the currency collapsed."
+      },
+      {
+        "heading": "THE INFRASTRUCTURE BACKDROP",
+        "body": "Lebanon's grid delivers only a few hours of public electricity per day; towers run on diesel generators backed by private fuel supply chains. Every war and fuel shortage since 2019 has shown that the telecom network's real dependency is diesel logistics, not spectrum or silicon.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              89466.57454,
+              89394.446299,
+              89583.213344,
+              89469.242764,
+              89550,
+              89550,
+              89310.854972,
+              89928.915129,
+              89550,
+              89200.86875,
+              89558.895308,
+              89493.758014,
+              89493.758014,
+              89493.758014,
+              89550,
+              89196.1685,
+              89515.636511,
+              89273.651314,
+              89550,
+              89412.594799,
+              89440.07584,
+              89550,
+              89541.400333,
+              89555.635708,
+              89725.230619,
+              89479.178514,
+              89714.210369,
+              89714.210369,
+              89848.110329,
+              89471.453014
+            ],
+            "periods": [
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21"
+            ],
+            "label": "Lebanese pound",
+            "unit": "LBP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE WARTIME PRECEDENT",
+        "body": "Ukraine mandated national roaming within weeks of Russia's 2022 invasion, and it became a template — operators share towers, users stay connected even when their home carrier's sites are destroyed. The model assumes the remaining towers can absorb the load; when they cannot, service degrades uniformly across all carriers.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the theatre",
+            "caption": "Lebanese towers sit within line-of-sight of two active fronts"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-21"
+    ],
+    "generatedAt": "2026-04-21T17:36:10.257Z",
+    "label": "National Roaming & Wartime Telecoms",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-21-nasa-curiosity-mars-organic-molecules-prebiotic": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'ORGANIC' ACTUALLY MEANS",
+        "body": "Organic molecules are carbon-based compounds — they do not require life to form. Meteorites, comets, and interstellar dust clouds all contain them. Finding organics on Mars proves the chemistry exists; it does not prove biology ever did.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: **abiotic** organics form through ordinary chemistry, **biotic** organics come from living cells. Telling them apart requires looking at *which* molecules, in *what* ratios, not just whether carbon is present."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CLAY PRESERVES",
+        "body": "Clay minerals form only in standing liquid water and trap organic molecules between their sheet-like layers, shielding them from radiation and oxidation. This is why Curiosity drills clay-rich sediment — it is the single best preservation medium known in planetary science.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do scientists target clay-rich rocks when searching for ancient Mars biosignatures?",
+            "options": [
+              "Clay forms only in liquid water and shields organics from radiation",
+              "Clay is radioactive and easier to date precisely",
+              "Clay contains carbon naturally",
+              "Clay is softer and easier for rovers to drill"
+            ],
+            "correct": 0,
+            "explanation": "Clay forms in standing water and its layered structure physically shields trapped molecules from cosmic rays and oxidation for billions of years."
+          }
+        ]
+      },
+      {
+        "heading": "THE RADIATION PROBLEM",
+        "body": "Mars has no magnetic field and a thin atmosphere, so cosmic rays penetrate meters into the surface and break apart complex molecules over time. Anything found intact must have been buried deep or locked in protective minerals — which is why drilling, not surface sampling, is the whole game."
+      },
+      {
+        "heading": "HOW RIMFAX AND SAM WORK",
+        "body": "Curiosity's SAM instrument heats rock samples to 900°C and analyzes the gases released with a mass spectrometer, identifying molecules by their atomic weight. It is essentially a chemistry lab the size of a microwave, built to operate at -80°C on another planet."
+      },
+      {
+        "heading": "THE SAMPLE RETURN CANCELLATION",
+        "body": "Mars Sample Return was designed to bring Perseverance's cached tubes to Earth laboratories, where instruments too large to fly could analyze them definitively. Its cancellation means the most sensitive biosignature tests — the ones that could actually distinguish biology from chemistry — will not happen this decade.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Curiosity",
+                "value": "5 cm drill",
+                "cc": "US"
+              },
+              {
+                "label": "Perseverance",
+                "value": "7 cm drill",
+                "cc": "US"
+              },
+              {
+                "label": "Rosalind Franklin",
+                "value": "200 cm drill",
+                "cc": "EU"
+              },
+              {
+                "label": "Zhurong",
+                "value": "surface only",
+                "cc": "CN"
+              }
+            ],
+            "label": "Mars rovers and their drills"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 2 METRES MATTERS",
+        "body": "Cosmic radiation degrades organic molecules to near-zero within the top metre of Martian soil over geologic time. A 2-metre drill reaches material that has been shielded since deposition — the first mission capable of sampling rock whose biosignatures, if any, were never exposed to space radiation at all.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Rosalind Franklin",
+                "role": "DNA pioneer (namesake)",
+                "years": "1920–1958",
+                "cc": "GB"
+              },
+              {
+                "name": "ESA",
+                "role": "Mission lead",
+                "years": "2028 launch",
+                "cc": "EU"
+              },
+              {
+                "name": "Roscosmos",
+                "role": "Original partner, dropped 2022",
+                "cc": "RU"
+              },
+              {
+                "name": "NASA",
+                "role": "Replacement launch partner",
+                "cc": "US"
+              }
+            ],
+            "label": "the ExoMars saga"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-21T17:36:40.328Z",
+    "label": "Mars Organics & the Search for Life",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-21-pacific-boat-strikes-survivors-us-torture-allegations": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL FRAME",
+        "body": "Under international law, narcotics trafficking is a crime, not an armed attack. Suspects at sea are supposed to be boarded, searched, and prosecuted — the Coast Guard interdiction model the US has used since Prohibition. Lethal strikes on suspected smugglers collapse the distinction between law enforcement and war.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *jus in bello* versus *jus ad bellum* — the laws governing conduct in war versus the laws governing when war is permitted. Drug boats fall outside both frames."
+          }
+        ]
+      },
+      {
+        "heading": "THE AUMF QUESTION",
+        "body": "Every post-2001 US military action has rested on the 2001 Authorization for Use of Military Force, which named al-Qaeda and associated forces. Extending it to Latin American cartels requires designating them as terrorist organizations — which the Trump administration did in early 2025, creating a legal bridge from counter-narcotics to counter-terrorism.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What legal instrument has the US stretched to justify strikes on drug boats?",
+            "options": [
+              "A new 2025 congressional authorization",
+              "The 2001 AUMF, via terrorist designations",
+              "A UN Security Council resolution",
+              "The Posse Comitatus Act"
+            ],
+            "correct": 1,
+            "explanation": "No new authorization was passed; the administration designated cartels as terrorist groups to pull them under the 2001 AUMF's umbrella."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE IT HAPPENS",
+        "body": "The eastern Pacific off Ecuador and Colombia is the densest cocaine-trafficking corridor in the world. Small fishing vessels ('go-fast' boats and semi-submersibles) move product from Colombian and Ecuadorian ports toward Central America and Mexico. Fishing fleets and smuggling fleets look identical from above.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EC",
+              "CO",
+              "PA",
+              "MX",
+              "US"
+            ],
+            "label": "the Pacific cocaine corridor"
+          }
+        ]
+      },
+      {
+        "heading": "THE ECUADOR COLLAPSE",
+        "body": "Ecuador used the US dollar as its currency since 2000 and hosted a US air base at Manta until 2009. Under President Noboa, elected in 2023 on a security platform, Ecuador has drawn closer to Washington than at any point since — including a 2024 referendum allowing foreign military presence, reversing a constitutional ban.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Daniel Noboa",
+                "role": "Ecuadorian President",
+                "years": "2023–",
+                "cc": "EC"
+              },
+              {
+                "name": "Rafael Correa",
+                "role": "Prior leftist President",
+                "years": "2007–2017",
+                "cc": "EC"
+              },
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              }
+            ],
+            "label": "the Ecuador-US alignment"
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL RHYME",
+        "body": "The US has struck suspected traffickers at sea before — Reagan's 1986 National Security Decision Directive 221 designated drugs a national security threat — but interdiction meant boarding, not destruction. The current doctrine is closer to the CIA's 2001 shootdown program in Peru, which killed a US missionary and her daughter and was shut down after congressional inquiry."
+      },
+      {
+        "heading": "THE DISAPPEARED-AT-SEA PROBLEM",
+        "body": "Unlike drone strikes on land, strikes at sea leave no crater, no village witnesses, no forensic residue. Bodies sink; debris scatters. Families receive no notification because the state conducting the strike has no obligation to identify victims it treats as combatants. Accountability depends on survivors — and survivors are rare."
+      }
+    ],
+    "generatedAt": "2026-04-21T17:37:10.215Z",
+    "label": "Extrajudicial Strikes at Sea",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-21-trump-whatsapp-diplomacy-iran-truce-expiry": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOCTRINE",
+        "body": "Coercive diplomacy — the threat of force to extract concessions without using it — requires the threatened party to believe the threat is real and the demand is limited. When either condition fails, the threat either triggers escalation or is ignored.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Thomas Schelling called this *the diplomacy of violence* — the power to hurt is bargaining power only when it is held in reserve."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN MEDIATES",
+        "body": "Pakistan shares a 900km border with Iran and is the only Muslim nuclear state with functioning channels to both Tehran and Washington. Islamabad's Iran portfolio runs through the ISI and the foreign ministry simultaneously — a dual track that lets it carry messages Riyadh or Doha cannot.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "AF",
+              "OM",
+              "AE"
+            ],
+            "label": "Pakistan's Iran neighborhood"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1988 PRECEDENT",
+        "body": "Iran accepted the UN ceasefire ending the Iran-Iraq war only after the USS Vincennes shot down Iran Air 655, killing 290 civilians. Khomeini called accepting the ceasefire 'drinking the poisoned chalice.' The lesson Tehran took: concessions under visible military pressure are survivable; concessions under threat alone are regime-ending.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Happy are those who have departed through martyrdom. Happy are those who have lost their lives in this convoy of light. Unhappy am I that I still survive and have drunk the poisoned chalice.",
+            "speaker": "Ayatollah Khomeini, on accepting UN Resolution 598",
+            "year": "1988"
+          }
+        ]
+      },
+      {
+        "heading": "THE NUCLEAR TIMELINE",
+        "body": "Iran's enrichment capacity has expanded through every round of negotiation since 2015. The JCPOA capped enrichment at 3.67%; after US withdrawal in 2018, Iran moved to 60% — a short technical step from weapons-grade 90%. Each breakdown in talks has left Iran closer to the threshold, not further from it."
+      },
+      {
+        "heading": "THE MEDIATOR'S DILEMMA",
+        "body": "A mediator whose principal publicly threatens force during negotiations loses leverage with the other side. Pakistan's team in Islamabad is now negotiating against a deadline its own ally has set — and which the counterparty has no incentive to honor.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which mediator brokered the 2023 Saudi-Iran restoration of ties that bypassed Western channels entirely?",
+            "options": [
+              "Oman",
+              "China",
+              "Qatar",
+              "Switzerland"
+            ],
+            "correct": 1,
+            "explanation": "Beijing hosted the March 2023 deal, signaling that Gulf diplomacy no longer runs exclusively through Washington."
+          }
+        ]
+      },
+      {
+        "heading": "THE ACTORS",
+        "body": "Three figures shape the Wednesday deadline — one setting the ultimatum, one holding the file, one waiting on whether to board the plane.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Ali Khamenei",
+                "role": "Iran Supreme Leader",
+                "years": "1989–",
+                "cc": "IR"
+              },
+              {
+                "name": "Ishaq Dar",
+                "role": "Pakistani Foreign Minister",
+                "years": "2024–",
+                "cc": "PK"
+              }
+            ],
+            "label": "the triangle"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-21T17:37:38.291Z",
+    "label": "Coercive Diplomacy & the Iran File",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-21-uk-electricity-gas-price-decoupling-reform": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MERIT ORDER",
+        "body": "Electricity grids dispatch generators from cheapest to most expensive until demand is met. The last plant needed — the marginal unit — sets the price every generator receives. In Britain, that last plant is almost always gas.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The rule is called **pay-as-clear**: a wind farm bidding £0 still gets paid the gas plant's clearing price. Cheap generators pocket the spread as *inframarginal rent*."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT WAS DESIGNED THIS WAY",
+        "body": "When Britain liberalised electricity in the 1990s, gas was the cheap marginal fuel and renewables were a rounding error. Marginal pricing sent an honest scarcity signal and rewarded efficient dispatch. The logic held until renewables became the majority of installed capacity but still almost never the price-setter.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Gas",
+                "value": "~30%",
+                "weight": 30,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Wind",
+                "value": "~30%",
+                "weight": 30,
+                "tone": "favorable"
+              },
+              {
+                "label": "Nuclear",
+                "value": "~14%",
+                "weight": 14
+              },
+              {
+                "label": "Imports",
+                "value": "~11%",
+                "weight": 11
+              },
+              {
+                "label": "Solar/Other",
+                "value": "~15%",
+                "weight": 15,
+                "tone": "favorable"
+              }
+            ],
+            "label": "UK generation mix (2024, approx)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TTF SHOCK",
+        "body": "European gas prices are set on the Dutch TTF hub. When Russia throttled supply in 2022, TTF spiked roughly tenfold and dragged UK power prices with it — even though the wind kept blowing and the nuclear plants kept running. That divergence between cost and price is what the reform targets.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              9.129581313,
+              10.10962113,
+              10.80662625,
+              10.23979241,
+              12.1938459,
+              11.750812,
+              12.755,
+              13.811,
+              13.757,
+              14.75909611,
+              15.37638294,
+              13.15601031,
+              11.57195747,
+              11.62379688,
+              12.30058745,
+              11.47064619,
+              10.97523233,
+              11.003,
+              10.897,
+              10.355,
+              9.46,
+              11.987,
+              11.19,
+              17.67
+            ],
+            "periods": [
+              "Apr 2024",
+              "May 2024",
+              "Jun 2024",
+              "Jul 2024",
+              "Aug 2024",
+              "Sep 2024",
+              "Oct 2024",
+              "Nov 2024",
+              "Dec 2024",
+              "Jan 2025",
+              "Feb 2025",
+              "Mar 2025",
+              "Apr 2025",
+              "May 2025",
+              "Jun 2025",
+              "Jul 2025",
+              "Aug 2025",
+              "Sep 2025",
+              "Oct 2025",
+              "Nov 2025",
+              "Dec 2025",
+              "Jan 2026",
+              "Feb 2026",
+              "Mar 2026"
+            ],
+            "label": "Natural gas (TTF, Europe)",
+            "unit": "$/MMBtu",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "CONTRACTS FOR DIFFERENCE",
+        "body": "New UK renewables since 2014 already sell under CfDs — the government pays the difference between a fixed strike price and the market price. The new auctions extend this to older wind and solar farms built under the earlier Renewables Obligation scheme, which still collect the full gas-linked wholesale price.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under a Contract for Difference, what happens when wholesale prices rise above the strike price?",
+            "options": [
+              "The generator keeps the upside",
+              "The generator pays the difference back to consumers",
+              "The contract is suspended",
+              "The strike price is reindexed"
+            ],
+            "correct": 1,
+            "explanation": "CfDs are two-way: generators are topped up when prices are low and pay back when prices are high, which is why they stabilise bills in both directions."
+          }
+        ]
+      },
+      {
+        "heading": "THE WINDFALL LOGIC",
+        "body": "The Electricity Generator Levy taxes 'extraordinary' revenues on low-carbon generators above a reference price. Raising it from 45% to 55% claws back inframarginal rent that existed before the generator signed away their gas-linked upside. It is a bridge, not a fix — the structural repair is the 2027 auction."
+      },
+      {
+        "heading": "WHY DECOUPLING IS HARD",
+        "body": "A grid needs a single clearing price to balance supply and demand second-by-second. 'Split markets' — one price for renewables, another for gas — have been proposed across the EU but repeatedly shelved because they distort dispatch and scare off investors. Britain's chosen route, voluntary long-term contracts, sidesteps the market-design question by paying generators to opt out of it."
+      }
+    ],
+    "sources": [
+      "FRED · IMF · as of 2026-03-01"
+    ],
+    "generatedAt": "2026-04-21T17:38:07.861Z",
+    "label": "Marginal Pricing & the Merit Order",
+    "category": "economy",
+    "articleCount": 1
   }
 }
