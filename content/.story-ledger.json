@@ -2,13 +2,241 @@
   "version": 1,
   "stories": [
     {
+      "id": "macron-paris-lebanon-ceasefire-sovereignty-talks",
+      "label": "Macron to press Lebanon ceasefire and sovereignty in Paris talks",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-21T22:06:53.046Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-macron-paris-lebanon-ceasefire-sovereignty-talks"
+      ],
+      "eventUri": "eng-11587805",
+      "summary": "France is hosting Lebanese PM Nawaf Salam in Paris as the US-Iran ceasefire deadline expires Wednesday and Lebanon-Israel talks move to Washington. Lead with the $500m humanitarian gap from Israel's war and Lebanon needing France to shore up sovereignty while its regional patrons (Iran, US) negotiate over its head. Sentiment divergence (0.67) between Jerusalem Post and Anadolu signals the framing fight.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Lebanon",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Hezbollah",
+        "http://en.wikipedia.org/wiki/Emmanuel_Macron",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Nawaf_Salam",
+        "http://en.wikipedia.org/wiki/France",
+        "http://en.wikipedia.org/wiki/President_of_France"
+      ]
+    },
+    {
+      "id": "cherfilus-mccormick-resigns-disaster-aid-embezzlement",
+      "label": "Sheila Cherfilus-McCormick, a Florida Democrat, Resigns From Congress",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-21T22:06:53.046Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-cherfilus-mccormick-resigns-disaster-aid-embezzlement"
+      ],
+      "eventUri": "eng-11585825",
+      "summary": "A sitting congresswoman resigns after being charged with embezzling $5M in federal disaster-aid funds for her own campaign. Lead with the specific mechanism: disaster relief money, meant for constituents hit by hurricanes, laundered into political infrastructure. This is accountability, not partisanship — the House Ethics referral to DOJ, the campaign-finance diversion, and the narrow Democratic margin now one seat tighter.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/Sheila_Cherfilus-McCormick",
+        "http://en.wikipedia.org/wiki/Ethics",
+        "http://en.wikipedia.org/wiki/Florida",
+        "http://en.wikipedia.org/wiki/United_States_House_Committee_on_Ethics",
+        "http://en.wikipedia.org/wiki/United_States_Congress",
+        "http://en.wikipedia.org/wiki/United_States_House_of_Representatives",
+        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)"
+      ]
+    },
+    {
+      "id": "splc-trump-doj-informants-probe-civil-rights",
+      "label": "Southern Poverty Law Center says Trump administration is probing its use of paid informants",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-21T22:06:53.046Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-splc-trump-doj-informants-probe-civil-rights"
+      ],
+      "eventUri": "eng-11588267",
+      "summary": "DOJ has opened a criminal probe into SPLC's decades-old use of paid informants to track hate groups — the organization says it is facing possible charges. Lead with the precedent: a civil-rights monitor that documents white supremacists is now the target of the state it reports on. Frame this as part of a pattern of executive retaliation against entities that collect data about politically aligned movements.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Southern_Poverty_Law_Center",
+        "http://en.wikipedia.org/wiki/Informant",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+        "http://en.wikipedia.org/wiki/Extremism",
+        "http://en.wikipedia.org/wiki/Civil_and_political_rights",
+        "http://en.wikipedia.org/wiki/Bryan_Fair",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer"
+      ]
+    },
+    {
+      "id": "nigeria-phc-accountability-recovery-funding",
+      "label": "Nigerian govt increases PHC funding, recovers N59.9m in accountability drive",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-21T22:06:53.046Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-nigeria-phc-accountability-recovery-funding"
+      ],
+      "eventUri": null,
+      "summary": "Nigeria's primary healthcare agency recovered N59.9m in misappropriated funds and raised per-facility grants from N300k to N500k. Lead with the recovery figure and the fact that a state health bureaucracy audited itself and returned money. Frame this as the rare African governance story where institutions worked — specific, mechanical, evidence-based — in a news diet that usually flattens the continent into crisis.",
+      "conceptUris": []
+    },
+    {
+      "id": "michigan-dems-gaza-protests-electoral-backfire",
+      "label": "Michigan Dems Came Down Hard On Student Protests Against the Gaza Genocide. It Just Blew Up in Their Face.",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-21T22:06:53.046Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-michigan-dems-gaza-protests-electoral-backfire"
+      ],
+      "eventUri": null,
+      "summary": "Michigan Democrats who prosecuted pro-Palestine student protesters are now losing primaries to candidates the protests produced. Lead with the electoral mechanism — specific races, specific margins — showing how a crackdown on campus dissent radicalized a voter bloc the party assumed it owned. This is one of the few investigative pieces tracing a line from police response at Ann Arbor to ballot consequences in 2026.",
+      "conceptUris": []
+    },
+    {
+      "id": "istanbul-hotel-pesticide-deaths-trial-turkey",
+      "label": "Istanbul hotel poisoning deaths go to trial in Turkey",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-21T22:06:53.046Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-istanbul-hotel-pesticide-deaths-trial-turkey"
+      ],
+      "eventUri": "deu-2112131",
+      "summary": "A Hamburg family of four died from bedbug insecticide sprayed in their Istanbul hotel room; the trial of hotel and pest-control staff opens now on negligent homicide charges. Lead with the causal chain — the chemical used, the ventilation absent, the night the children never woke — and use it to sketch a systemic failure in Turkey's unregulated tourism supply chain, where liability gets pushed down to minimum-wage contractors while top hotels keep their star ratings.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Istanbul",
+        "http://en.wikipedia.org/wiki/Insecticide",
+        "http://en.wikipedia.org/wiki/Hamburg",
+        "http://en.wikipedia.org/wiki/Poisoning",
+        "http://en.wikipedia.org/wiki/Court",
+        "http://en.wikipedia.org/wiki/Hotel",
+        "http://en.wikipedia.org/wiki/Negligent_homicide",
+        "http://en.wikipedia.org/wiki/Turkey"
+      ]
+    },
+    {
+      "id": "plastics-home-construction-recycling-lumber",
+      "label": "The new word in home construction could be \"plastics\"",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-21T22:06:53.046Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-plastics-home-construction-recycling-lumber"
+      ],
+      "eventUri": null,
+      "summary": "Recycled-plastic structural components — 3D-printed trusses, extruded framing — are starting to compete with timber on price as US lumber costs stay elevated. Lead with the cost crossover and the lifecycle question: is this carbon-positive diversion of waste plastic, or durable embedded pollution in the walls of millions of homes? The economics are real, but the reader should leave holding the tradeoff.",
+      "conceptUris": []
+    },
+    {
+      "id": "prediction-markets-coinbase-robinhood-growth-strategy",
+      "label": "Prediction markets are the new secret weapon for Coinbase (COIN) and Robinhood (HOOD) growth",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-21T22:06:53.046Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-prediction-markets-coinbase-robinhood-growth-strategy"
+      ],
+      "eventUri": "eng-11584090",
+      "summary": "Coinbase and Robinhood are routing retail traders from volatile crypto into prediction-market contracts on elections, sports, and policy outcomes — new revenue that replaces bitcoin volatility as engagement flatlines. Lead with the revenue mechanics and the regulatory wedge: New York just sued both platforms over these same offerings. The broader story is gamified speculation on political events being normalized as a Wall Street growth story.",
+      "conceptUris": []
+    },
+    {
+      "id": "early-life-oxygen-mesoarchean-biosignatures",
+      "label": "Early life may have breathed oxygen earlier than believed",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-21T22:06:53.046Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-early-life-oxygen-mesoarchean-biosignatures"
+      ],
+      "eventUri": null,
+      "summary": "Microbial enzymes dating to the Mesoarchean — 900 million years before the Great Oxidation Event — may have metabolized oxygen in isolated pockets. Lead with the timeline revision: the assumption that early life was uniformly anaerobic is now in question, and the implications reach from evolutionary biology to how we scan exoplanet atmospheres for biosignatures. Concrete mechanism first, cosmic implication second.",
+      "conceptUris": []
+    },
+    {
+      "id": "life-force-nonequilibrium-thermodynamics-biology",
+      "label": "What Physical 'Life Force' Turns Biology's Wheels?",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-21T22:06:53.046Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-20-life-force-nonequilibrium-thermodynamics-biology"
+      ],
+      "eventUri": null,
+      "summary": "A new class of non-equilibrium thermodynamics experiments is trying to quantify the specific energetic 'push' that separates living matter from dead chemistry. Lead with the measurable quantity researchers are now capturing — entropy production per molecular cycle — and what it would mean if biology is describable by a single physical constant. This is frontier basic science with eventual reach into medicine and AI-based life detection.",
+      "conceptUris": []
+    },
+    {
+      "id": "indonesia-ai-data-centers-water-scarcity",
+      "label": "AI-ready data centers are booming in Indonesia but water woes loom",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-21T22:06:53.046Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-indonesia-ai-data-centers-water-scarcity"
+      ],
+      "eventUri": null,
+      "summary": "Indonesia is becoming Southeast Asia's data-center hub to serve AI workloads — but the cooling water demands are colliding with Jakarta's already severe water stress. Lead with the specific numbers: gigawatts of planned capacity, liters per hour per rack, and the villages already losing well pressure. The systemic point is that AI's infrastructure cost is being exported to Global South grids and aquifers while the compute serves Western users.",
+      "conceptUris": []
+    },
+    {
+      "id": "silo-s3-teaser-turns-back-the-clock-to-a-greener-past",
+      "label": "Silo S3 teaser turns back the clock to a greener past",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-21T22:06:53.046Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-silo-s3-teaser-turns-back-the-clock-to-a-greener-past"
+      ],
+      "eventUri": "eng-11588386",
+      "summary": "[Auto-backfill for tech floor] The critically acclaimed second season of Apple TV's dystopian sci-fi drama Silo ended on one heck of a cliffhanger, with at least one major character's fate unclear. The streamer just released the first teaser for S3, in which events from the first two seasons rewind to give us the briefest glimpse",
+      "conceptUris": []
+    },
+    {
       "id": "pacific-boat-strikes-survivors-us-torture-allegations",
       "label": "Rare Survivors of Pacific Boat Strikes Allege U.S. Forces Kidnapped and Tortured Them",
       "firstSeen": "2026-04-21T17:06:56.366Z",
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-pacific-boat-strikes-survivors-us-torture-allegations"
@@ -24,7 +252,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-hungary-anti-lgbtq-law-eu-court-ruling"
@@ -47,7 +275,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-kharge-modi-terrorist-india-election-commission"
@@ -70,7 +298,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-04-21-trump-whatsapp-diplomacy-iran-truce-expiry",
@@ -95,7 +323,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-uk-electricity-gas-price-decoupling-reform"
@@ -111,7 +339,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-china-electricity-carbon-emissions-dataset-2060"
@@ -127,7 +355,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-nasa-curiosity-mars-organic-molecules-prebiotic"
@@ -149,7 +377,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-el-nino-2026-second-warmest-year-climate"
@@ -165,7 +393,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-sulfur-polymer-antifungal-candida-auris"
@@ -181,7 +409,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-ai-clean-room-open-source-copyright-laundering"
@@ -197,7 +425,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-vercel-breach-ai-tool-supply-chain"
@@ -213,7 +441,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-lebanon-national-roaming-wartime-resilience"
@@ -229,7 +457,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-russia-claims-1700-sq-km-donbas-fortress-belt"
@@ -252,7 +480,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-mandelson-vetting-starmer-pressure-epstein"
@@ -275,7 +503,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-israeli-occupation-quneitra-syria-buffer-zone"
@@ -291,7 +519,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-myanmar-civil-war-global-crisis-hierarchy"
@@ -307,7 +535,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-indonesia-us-overflight-access-non-alignment"
@@ -323,7 +551,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-ukraine-drones-samara-oil-hub-russia-exports"
@@ -345,7 +573,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-bank-of-korea-cbdc-bank-token-skip-stablecoins"
@@ -366,7 +594,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-cuba-crisis-us-pressure-blackouts-intervention"
@@ -382,7 +610,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-a23a-iceberg-disintegrates-antarctica"
@@ -398,7 +626,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-japan-7-7-earthquake-megaquake-advisory-tsunami"
@@ -414,7 +642,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-salmon-cocaine-wastewater-pollution-migration"
@@ -430,7 +658,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-20-f-35-wrong-war-procurement-pacific-drones"
@@ -446,7 +674,7 @@
       "lastCovered": "2026-04-21T08:09:29.557Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-04-20-pakistan-repays-2bn-uae-reserves",
@@ -463,7 +691,7 @@
       "lastCovered": "2026-04-21T08:09:29.557Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-israel-somaliland-envoy-somalia-sovereignty"
@@ -484,7 +712,7 @@
       "lastCovered": "2026-04-21T08:09:29.557Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-israel-yellow-line-lebanon-iran-ceasefire"
@@ -500,7 +728,7 @@
       "lastCovered": "2026-04-21T08:09:29.557Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-us-restricts-intel-sharing-south-korea-nuclear"
@@ -524,7 +752,7 @@
       "lastCovered": "2026-04-21T08:09:29.557Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-primark-abf-demerge-fashion-chain"
@@ -549,7 +777,7 @@
       "lastCovered": "2026-04-21T08:09:29.557Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-argentina-glaciers-law-reform-one-million"
@@ -565,7 +793,7 @@
       "lastCovered": "2026-04-21T08:09:29.557Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-india-stranded-offshore-wind-zero-turbines"
@@ -581,7 +809,7 @@
       "lastCovered": "2026-04-21T08:09:29.557Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-ripple-xrp-ledger-quantum-proof-2028"
@@ -603,7 +831,7 @@
       "lastCovered": "2026-04-21T08:09:29.557Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-20-italian-postal-service-gdpr-fine-privacy"
@@ -619,7 +847,7 @@
       "lastCovered": "2026-04-21T08:09:29.557Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-kp-pakistan-thalassaemia-pre-marriage-screening"
@@ -640,7 +868,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-japan-scraps-weapons-export-limits"
@@ -661,7 +889,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-dalai-lama-succession-china-tibet"
@@ -677,7 +905,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-manipur-shutdowns-child-deaths-convoy"
@@ -697,7 +925,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-australia-japan-mogami-frigate-deal"
@@ -713,7 +941,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-pentagon-cancels-troubled-space-program"
@@ -732,7 +960,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-renewables-overtake-coal-2025"
@@ -748,7 +976,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-tenofovir-implant-hiv-prevention-south-africa"
@@ -769,7 +997,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-crypto-290m-theft-north-korea"
@@ -785,7 +1013,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-vercel-security-breach"
@@ -801,7 +1029,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-italy-fines-poste-italiane-privacy"
@@ -817,7 +1045,7 @@
       "lastCovered": "2026-04-21T04:03:59.004Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-20-psx-plunges-over-3-000-points-during-intraday-trade"
@@ -833,7 +1061,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-20-pakistan-raises-390m-through-inaugural-hybrid-sukuk-issuance",
@@ -850,7 +1078,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-idf-soldier-lebanon-jesus-statue"
@@ -874,7 +1102,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-gaza-71-billion-recovery-report"
@@ -897,7 +1125,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-venezuela-mining-law-corruption"
@@ -913,7 +1141,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-south-africa-amnesty-task-team-report"
@@ -929,7 +1157,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-warsh-fed-confirmation-hearing"
@@ -951,7 +1179,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-nigeria-north-central-education-budget"
@@ -967,7 +1195,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-car-t-smoldering-myeloma-prevention"
@@ -983,7 +1211,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-bacterial-flagellar-motor-solved"
@@ -999,7 +1227,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-apple-ternus-succeeds-cook"
@@ -1015,7 +1243,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-eu-replaceable-batteries-2027"
@@ -1031,7 +1259,7 @@
       "lastCovered": "2026-04-20T22:05:34.330Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-ram-shortage-ai-capex"
@@ -1039,225 +1267,6 @@
       "eventUri": null,
       "summary": "AI datacenter demand has absorbed DRAM and HBM supply to the point where PC and smartphone memory prices are climbing and analysts expect the squeeze to persist multiple years. Lead with the price signal (percentage moves, which SKUs, what consumer devices get more expensive) and the mechanism — three suppliers (Samsung, SK Hynix, Micron) allocated capacity to HBM for Nvidia/AMD accelerators, leaving commodity DRAM short. Structural why: AI capex is reshaping the non-AI hardware economy; device makers in Pakistan, Nigeria, Indonesia pay the bill for GPU buildouts in Virginia.",
       "conceptUris": []
-    },
-    {
-      "id": "pakistan-repays-2bn-to-uae-amid-ongoing-external-financing-p",
-      "label": "Pakistan repays $2bn to UAE amid ongoing external financing pressures",
-      "firstSeen": "2026-04-20T12:03:21.577Z",
-      "lastCovered": "2026-04-20T17:12:27.972Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-20-pakistan-repays-2bn-to-uae-amid-ongoing-external-financing-p"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan repaid a  billion deposit to the UAE amid ongoing external financing pressures. Lead with the squeeze: Islamabad is simultaneously repaying Gulf deposits, raising hybrid Sukuk, and negotiating with the IMF — a liquidity balancing act as Iran war disruption compounds macro stress.",
-      "conceptUris": []
-    },
-    {
-      "id": "govt-forsees-economic-slowdown-during-current-next-fiscal-ye",
-      "label": "Govt forsees economic slowdown during current, next fiscal years due to Middle East war",
-      "firstSeen": "2026-04-20T17:12:27.972Z",
-      "lastCovered": "2026-04-20T17:12:27.972Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-govt-forsees-economic-slowdown-during-current-next-fiscal-ye"
-      ],
-      "eventUri": "eng-11583564",
-      "summary": "Pakistan's own government now forecasts growth drag across this year and next, explicitly attributing it to the Middle East war — 20% development-budget cut, fuel-subsidy squeeze, global supply-chain inflation. Lead with a government publicly pricing in the war's toll on its own population. The mechanism: a low-income economy absorbing cost of a war it didn't start.",
-      "conceptUris": []
-    },
-    {
-      "id": "seven-eu-nations-call-for-european-sanctions-against-israel",
-      "label": "Seven EU nations call for European sanctions against Israel",
-      "firstSeen": "2026-04-20T17:12:27.972Z",
-      "lastCovered": "2026-04-20T17:12:27.972Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-seven-eu-nations-call-for-european-sanctions-against-israel"
-      ],
-      "eventUri": null,
-      "summary": "Seven EU states — including France and Sweden — have formally called for bloc sanctions on Israel ahead of the foreign ministers' meeting. Lead with the named governments: the accountability angle is which European states still refuse. This is continuation-of-injustice coverage: the siege itself is the story, the EU's repeated failure to sanction is the mechanism.",
-      "conceptUris": []
-    },
-    {
-      "id": "court-fines-al-bawaba-news-owner-over-le3-mn-for-underpaying",
-      "label": "Court fines Al-Bawaba News owner over LE3 mn for underpaying journalists",
-      "firstSeen": "2026-04-20T17:12:27.972Z",
-      "lastCovered": "2026-04-20T17:12:27.972Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-court-fines-al-bawaba-news-owner-over-le3-mn-for-underpaying"
-      ],
-      "eventUri": null,
-      "summary": "A Giza court fined Al-Bawaba News owner Abdel Rahim Ali — a former MP and media magnate — over LE3 million for paying journalists below the legal minimum wage. Lead with the precedent: an Egyptian court siding with employees against a politically connected publisher. The mechanism: labor-law enforcement as a rare accountability lever in a press landscape where owners usually win.",
-      "conceptUris": []
-    },
-    {
-      "id": "fbi-director-patel-sues-atlantic-in-250-million-defamation-c",
-      "label": "FBI Director Patel Sues Atlantic in $250 Million Defamation Case",
-      "firstSeen": "2026-04-20T17:12:27.972Z",
-      "lastCovered": "2026-04-20T17:12:27.972Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-fbi-director-patel-sues-atlantic-in-250-million-defamation-c"
-      ],
-      "eventUri": "eng-11583038",
-      "summary": "FBI Director Kash Patel filed a $250 million defamation suit against The Atlantic over a story alleging excess drinking and unexplained absences. Lead with what's unusual: a sitting FBI director personally suing a publication — a direct-from-the-top press-pressure move. The mechanism: SLAPP-style litigation used not to win but to chill future FBI coverage.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Director_of_the_Federal_Bureau_of_Investigation",
-        "http://en.wikipedia.org/wiki/The_Atlantic",
-        "http://en.wikipedia.org/wiki/Kash_Patel",
-        "http://en.wikipedia.org/wiki/Federal_Bureau_of_Investigation",
-        "http://en.wikipedia.org/wiki/Lawsuit",
-        "http://en.wikipedia.org/wiki/Defamation",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Alcoholism"
-      ]
-    },
-    {
-      "id": "ukrainian-drone-attack-on-russia-s-tuapse-port-kills-one",
-      "label": "Ukrainian Drone Attack on Russia's Tuapse Port Kills One",
-      "firstSeen": "2026-04-20T17:12:27.972Z",
-      "lastCovered": "2026-04-20T17:12:27.972Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-ukrainian-drone-attack-on-russia-s-tuapse-port-kills-one"
-      ],
-      "eventUri": "eng-11583420",
-      "summary": "A second Ukrainian drone wave in four days on Tuapse — a major Black Sea oil-export port — killed one worker and ignited the refinery again. Lead with the cadence: repeat strikes on the same energy node mean Kyiv now treats Russian refining capacity as a sustained campaign, not one-off sabotage. Consequence: Urals-grade export volumes and the price Europe's sanctions regime implicitly relies on.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Tuapse",
-        "http://en.wikipedia.org/wiki/Port",
-        "http://en.wikipedia.org/wiki/Black_Sea",
-        "http://en.wikipedia.org/wiki/Krasnodar",
-        "http://en.wikipedia.org/wiki/Oil_refinery"
-      ]
-    },
-    {
-      "id": "mining-china-s-little-red-book-for-open-source-gold",
-      "label": "Mining China’s ‘Little Red Book’ for Open Source Gold",
-      "firstSeen": "2026-04-20T17:12:27.972Z",
-      "lastCovered": "2026-04-20T17:12:27.972Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-mining-china-s-little-red-book-for-open-source-gold"
-      ],
-      "eventUri": null,
-      "summary": "Bellingcat published a practitioner guide to using Xiaohongshu (RedNote) for open-source research inside China — the country that blocks Google, Facebook, and YouTube. Lead with the inversion: the platform Beijing tolerates is now the one researchers mine for verification. The mechanism: what Chinese users post, geotag, and comment on reveals what a censored web otherwise hides.",
-      "conceptUris": []
-    },
-    {
-      "id": "what-physical-life-force-turns-biology-s-wheels",
-      "label": "What Physical ‘Life Force’ Turns Biology’s Wheels?",
-      "firstSeen": "2026-04-20T17:12:27.972Z",
-      "lastCovered": "2026-04-20T17:12:27.972Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-what-physical-life-force-turns-biology-s-wheels"
-      ],
-      "eventUri": null,
-      "summary": "After 50 years of study, the bacterial flagellar motor is finally understood at the mechanistic level. Lead with the duration — half a century of work on a rotary nanomachine that predates human engineering by billions of years. The angle for a technically literate reader: what ion-gradient energy transduction at molecular scale tells us about the physical basis of life.",
-      "conceptUris": []
-    },
-    {
-      "id": "interview-christopher-borgert-on-an-infamous-glyphosate-pape",
-      "label": "Interview: Christopher Borgert on an Infamous Glyphosate Paper",
-      "firstSeen": "2026-04-20T17:12:27.972Z",
-      "lastCovered": "2026-04-20T17:12:27.972Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-interview-christopher-borgert-on-an-infamous-glyphosate-pape"
-      ],
-      "eventUri": null,
-      "summary": "A high-profile glyphosate paper was retracted last fall partly over ghostwriting claims; Undark interviews pharmacologist Christopher Borgert on what the case reveals about toxics research and conflict-of-interest norms. Lead with the retraction's mechanism: ghostwriting detected, not fabricated data — the quieter corruption. Accountability angle: industry-funded science inside peer-reviewed journals.",
-      "conceptUris": []
-    },
-    {
-      "id": "forbes-prediction-market-gamefies-story-about-mass-shooting",
-      "label": "Forbes Prediction Market Gamefies Story About Mass Shooting of 8 Children",
-      "firstSeen": "2026-04-20T17:12:27.972Z",
-      "lastCovered": "2026-04-20T17:12:27.972Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-forbes-prediction-market-gamefies-story-about-mass-shooting"
-      ],
-      "eventUri": null,
-      "summary": "Forbes' prediction-market product ForbesPredict turned a story about the mass shooting of eight children into a betting market. Lead with the juxtaposition: a legacy news brand monetizing attention on dead children via gamified odds. The mechanism: search-traffic collapse pushing publishers toward engagement products that collapse editorial boundaries.",
-      "conceptUris": []
-    },
-    {
-      "id": "peter-thiel-is-building-a-parallel-justice-system-powered-by",
-      "label": "Peter Thiel Is Building a Parallel Justice System — Powered by AI",
-      "firstSeen": "2026-04-20T17:12:27.972Z",
-      "lastCovered": "2026-04-20T17:12:27.972Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-peter-thiel-is-building-a-parallel-justice-system-powered-by"
-      ],
-      "eventUri": null,
-      "summary": "Peter Thiel is funding Objection.ai — a platform that runs private investigations, issues AI-generated 'verdicts,' and enforces accountability outside the courts. Lead with the architecture: a parallel justice system, privately owned, AI-adjudicated. The mechanism: when public institutions lose legitimacy, private capital builds replacements — and the reader's relevant question is who gets targeted first.",
-      "conceptUris": []
-    },
-    {
-      "id": "elon-musk-summoned-by-french-prosecutors-amid-ongoing-x-prob",
-      "label": "Elon Musk summoned by French prosecutors amid ongoing X probe",
-      "firstSeen": "2026-04-20T17:12:27.972Z",
-      "lastCovered": "2026-04-20T17:12:27.972Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-elon-musk-summoned-by-french-prosecutors-amid-ongoing-x-prob"
-      ],
-      "eventUri": "fra-1296804",
-      "summary": "French prosecutors summoned Elon Musk and X CEO Linda Yaccarino for questioning over alleged child sexual abuse material and deepfake sexualised images hosted on X. Lead with the criminal — not civil — nature: a G7 judiciary treating platform moderation failures as potentially prosecutable. The mechanism: France testing whether DSA-era enforcement can reach a platform owner personally.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Elon_Musk",
-        "http://en.wikipedia.org/wiki/Paris",
-        "http://en.wikipedia.org/wiki/Social_network",
-        "http://en.wikipedia.org/wiki/France",
-        "http://en.wikipedia.org/wiki/Child_pornography",
-        "http://en.wikipedia.org/wiki/Chief_executive_officer",
-        "http://fr.wikipedia.org/wiki/Tribunal_judiciaire_de_Paris",
-        "http://en.wikipedia.org/wiki/French_language"
-      ]
     }
   ]
 }
