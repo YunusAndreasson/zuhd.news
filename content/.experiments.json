@@ -1,35 +1,72 @@
 {
   "version": 1,
   "activeExperiment": {
-    "id": "2026-04-19-prefilter-7d",
-    "startDate": "2026-04-19",
-    "evaluateAfter": "2026-04-22",
+    "id": "2026-04-21-multi-source-floors",
+    "startDate": "2026-04-21",
+    "evaluateAfter": "2026-04-24",
     "prNumber": null,
-    "hypothesis": "Widening the prefilter dedup lookback from 48h to 7 days will catch stories the selector would otherwise pick that match articles published 2-3 days ago, eliminating the post-selection dedup cascade that causes backfill filler to fire. Analysis of 40 cycles (Apr 11-19) showed post-selection dedup avg 3.15/cycle with outliers up to 10/cycle (2026-04-19_08:03 had 10 dedups, only 3 articles published after backfill filler). Most late-caught dups are 2-3 days old, beyond the current 48h prefilter window.",
-    "parameter": "Prefilter dedup lookback window (loadDedupContext cutoffMs)",
-    "file": "scripts/prefilter-feed.js",
-    "oldValue": "48h (2 days)",
-    "newValue": "168h (7 days)",
-    "targetMetric": "avg post-selection dedup count per cycle",
-    "targetDirection": "decrease",
+    "hypothesis": "Published multi-source rate is 22% overall (39% politics, 18% economy, 4% science, 6% tech) against an achievable ceiling of ~40% given current feed composition. Science and tech are structurally single-source (specialist outlets don't cluster into Event Registry events), so gains must come from politics and economy. The selector's current guidance ('at least half of politics+economy picks from multiSourceStories when available') is soft and not being enforced — actual politics+economy multi-rate is 31% (26/84) vs the 50% target. Converting the soft guidance to a hard floor (politics ≥ 2, economy ≥ 2 multi-source picks when the feed supplies them) with a 'note why rejected' escape hatch should raise economy multi% meaningfully without padding with weak stories. Token-neutral: prompt change only, no extra NewsAPI calls.",
+    "parameter": "Selector multi-source enforcement in politics+economy",
+    "file": "scripts/select-prompt.md",
+    "oldValue": "Multi-source usage: at least half of politics+economy picks should come from multiSourceStories when available.",
+    "newValue": "Multi-source floors when feed supplies them: politics ≥ 2 multi-source picks, economy ≥ 2 multi-source picks. Note rejected multi-source story in selection summary when dropping below floor.",
+    "targetMetric": "published multi-source rate across politics+economy (sources ≥ 2 in frontmatter)",
+    "targetDirection": "increase",
     "baseline": {
-      "postSelectionDedupAvgPerCycle": 3.15,
-      "postSelectionDedupMax": 10,
-      "backfillFiresAvgPerCycle": 0.9,
-      "backfillFiresMax": 8,
-      "publishMeanPerCycle": 9.43,
-      "publishMin": 3,
-      "cyclesAnalyzed": 40,
-      "windowStart": "2026-04-11",
-      "windowEnd": "2026-04-19"
+      "windowStart": "2026-04-19",
+      "windowEnd": "2026-04-21",
+      "cyclesAnalyzed": 12,
+      "articlesAnalyzed": 125,
+      "overallMultiRate": 0.22,
+      "politicsMultiRate": 0.39,
+      "economyMultiRate": 0.18,
+      "scienceMultiRate": 0.04,
+      "techMultiRate": 0.06,
+      "politicsEconomyMultiRate": 0.31,
+      "feedMultiMedianPerCycle": 9,
+      "feedMultiRangePerCycle": [8, 14]
     },
     "guardrails": {
-      "prefilterOverRemoval": "prefilterTotal should not routinely exceed 15/cycle (signal we're killing genuinely novel stories)",
-      "publishCount": "mean publish count should not drop below 8/cycle",
-      "categoryFloors": "no category floor violation rate increase vs baseline"
-    }
+      "economyArticleQuality": "avg body word count should not drop >15% vs baseline (watch sentences.test.js output and generator quality metrics)",
+      "publishCount": "mean publish count per cycle should not drop below 8",
+      "categoryFloors": "no category floor violation rate increase vs baseline",
+      "multiSourcePadding": "selector summary must note rejected multi-source story if dropping below floor; absence = flag"
+    },
+    "evaluation": "Compute multi-source rate per category from content/articles with date >= 2026-04-21 vs baseline window. Target: politics+economy multi-rate ≥ 0.45 (up from 0.31). Overall multi-rate ≥ 0.28 (up from 0.22)."
   },
   "history": [
+    {
+      "id": "2026-04-19-prefilter-7d",
+      "startDate": "2026-04-19",
+      "evaluateAfter": "2026-04-22",
+      "prNumber": null,
+      "hypothesis": "Widening the prefilter dedup lookback from 48h to 7 days will catch stories the selector would otherwise pick that match articles published 2-3 days ago, eliminating the post-selection dedup cascade that causes backfill filler to fire. Analysis of 40 cycles (Apr 11-19) showed post-selection dedup avg 3.15/cycle with outliers up to 10/cycle (2026-04-19_08:03 had 10 dedups, only 3 articles published after backfill filler). Most late-caught dups are 2-3 days old, beyond the current 48h prefilter window.",
+      "parameter": "Prefilter dedup lookback window (loadDedupContext cutoffMs)",
+      "file": "scripts/prefilter-feed.js",
+      "oldValue": "48h (2 days)",
+      "newValue": "168h (7 days)",
+      "targetMetric": "avg post-selection dedup count per cycle",
+      "targetDirection": "decrease",
+      "baseline": {
+        "postSelectionDedupAvgPerCycle": 3.15,
+        "postSelectionDedupMax": 10,
+        "backfillFiresAvgPerCycle": 0.9,
+        "backfillFiresMax": 8,
+        "publishMeanPerCycle": 9.43,
+        "publishMin": 3,
+        "cyclesAnalyzed": 40,
+        "windowStart": "2026-04-11",
+        "windowEnd": "2026-04-19"
+      },
+      "guardrails": {
+        "prefilterOverRemoval": "prefilterTotal should not routinely exceed 15/cycle (signal we're killing genuinely novel stories)",
+        "publishCount": "mean publish count should not drop below 8/cycle",
+        "categoryFloors": "no category floor violation rate increase vs baseline"
+      },
+      "result": "kept",
+      "evaluatedOn": "2026-04-21",
+      "notes": "Closed one day early after 3 days of live cycles. Post-selection dedup (already-published count) averaged ~2/cycle across 04-20 and 04-21 vs 3.15 baseline — ~35% reduction in target direction. The 04-19 08:03 spike of 10 was pre-change-deployment. Publish count recovered to 10.4/cycle on 04-20 (above the 8 floor) after a wobbly 7/cycle on 04-19 that the 22:00 reflect attributed to Sunday feed thinness, not over-removal. Prefilter total stayed in normal range. Keeping 168h window."
+    },
     {
       "id": "2026-04-16-push-min-coverage",
       "startDate": "2026-04-16",

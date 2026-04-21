@@ -1,29 +1,34 @@
 {
-  "date": "2026-04-20",
+  "date": "2026-04-21",
   "metrics": {
-    "articles": { "value": 52, "detail": "5 cycles, avg 10.4/cycle" },
-    "freshness": { "median": 0.3, "p90": 0.7, "max": 0.7, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 13, "science": 9, "tech": 11 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "ME": 14, "AM": 14, "EU": 12, "AS": 7, "AF": 5 } },
-    "sciTech": { "ratio": 38, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 17, "target": 20, "met": true },
-    "uniqueSources": 53,
+    "articles": { "value": 41, "detail": "5 cycles, avg 8.2/cycle (down from 61/12.2 yesterday)" },
+    "freshness": { "median": 0.0, "p90": 0.0, "max": 0.0, "target": 1.0, "met": true },
+    "categories": { "politics": 19, "economy": 10, "science": 8, "tech": 4 },
+    "multiSource": { "value": 13, "target": 4, "met": true },
+    "regions": {
+      "count": 5,
+      "target": 4,
+      "met": true,
+      "breakdown": { "EU": 9, "AM": 14, "AS": 10, "AF": 3, "ME": 5 }
+    },
+    "sciTech": { "ratio": 29, "target": 25, "met": true },
+    "topSourceShare": { "source": "CoinDesk", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 48,
     "duplicates": 0,
-    "avgCycleDuration": 1505
+    "avgCycleDuration": 1623
   },
-  "experiment": "Active experiment 2026-04-19-prefilter-7d (7-day dedup lookback) is in day 2 of 3. evaluateAfter is 2026-04-22. Guardrail status: publish count recovered to 10.4/cycle (above 8/cycle minimum), 0 published duplicates. Experiment running cleanly — no early action needed.",
-  "weakestArea": "Dawn accounts for 17.3% of today's output (9/52 articles) — within the 20% cap but elevated. Pakistan's dense news cycle is the driver; this is a watch item, not a violation. No metric is formally below target today.",
+  "experiment": "Active: 2026-04-21-multi-source-floors. Evaluates 2026-04-24 — too early to score. First-day signal is encouraging: overall multi-source rate is 13/41 = 31.7% vs 22% baseline, already above the 28% overall target. Politics+economy multi-source share needs per-article frontmatter analysis to verify precisely. Watching for tech displacement as a potential side-effect of harder politics/economy floors.",
+  "weakestArea": "Tech coverage is the clearest concern: only 4 articles today vs 13 yesterday, representing 9.8% of output against a 3/cycle selector floor that should yield ~15. The day-1 multi-source experiment may be displacing tech when the feed is thin — the selector prioritizing politics/economy multi-source fills at the expense of tech minimums. Today's tech feed appears sparse (no Ars Technica, The Verge, or Wired). This bears watching over the next two cycles before the formal experiment evaluation.",
   "watching": [
-    "US-China tariff escalation continues to generate multi-source economy stories from American and Asian outlets.",
-    "Gaza and West Bank dynamics sustaining the high ME share (14 articles, 27% of output) — ceasefire/humanitarian corridor negotiations remain the lead cluster.",
-    "Strait of Hormuz traffic running ~87% below its 90-day baseline per chokepoints data (as of Apr 12) — a major unresolved geopolitical signal worth tracking editorially.",
-    "India-Pakistan tension threads running through Dawn and Hindustan Times coverage — worth monitoring for escalation."
+    "India-Pakistan tensions: strong coverage cluster (Dawn, Hindustan Times, Times of India, The Diplomat) — track for escalation or ceasefire signals",
+    "US tariff regime: Bloomberg + FT + Reuters all on the beat today, ongoing macro volatility story",
+    "Gaza / humanitarian corridors: Drop Site News + Middle East Eye active — watch for UNRWA or aid-route developments",
+    "Ukraine counter-operations: Kyiv Independent + Ukrainska Pravda active today — Kursk/Sumy situation evolving"
   ],
   "coverageGaps": [
-    "Zero Oceania (OC) coverage today despite active news cycles in Australia and Pacific island states.",
-    "Central Asia essentially absent — only India/Pakistan AS sources represented; Kazakhstan, Uzbekistan, and Central Asian politics missing.",
-    "Latin America thin despite AM=14 — most Americas stories are likely US-centric; dedicated LatAm sources need more selection weight."
+    "Oceania (OC) absent for the second consecutive day — no Pacific, Australia, or New Zealand stories",
+    "Tech thin today: no AI policy, no chips/semiconductor story — likely a feed-thinness day but worth flagging",
+    "Latin America underrepresented despite AM count of 14: most Americas articles appear to be US-centric"
   ],
-  "context": "Strong recovery from yesterday's thin output (33 articles, tech collapsed to 1). Today's 52 articles with 0 duplicates and full category floor compliance suggests the 7-day prefilter experiment is not causing over-removal — yesterday's low count was likely a Sunday feed artifact. Dawn's 17.3% single-day share is notable but within target; the 7-day quality trend shows Dawn averaging 8% of weekly output, confirming today as a local spike rather than structural drift."
+  "context": "Today is day 1 of the multi-source-floors experiment, which converts the selector's soft multi-source guidance into hard per-category floors (politics ≥2, economy ≥2 multi-source per cycle). The aggregate multi-source count of 13 is already three times the 4/day target and above the 28% overall experiment goal. The main risk is category composition: with harder politics/economy multi-source fills, tech may lose marginal slots on feed-thin days — today's data (tech=4) suggests this is already happening. If tech drops below the 4/day floor over 2+ consecutive cycles before 2026-04-24, experiment guardrails should be revisited early."
 }
