@@ -27538,5 +27538,619 @@
     "label": "Fed Independence & Confirmation",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-20-psx-plunges-over-3-000-points-during-intraday-trade": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY KARACHI MOVES ON TEHRAN",
+        "body": "Pakistan shares a 909km border with Iran and imports roughly a third of its energy. Any US-Iran escalation threatens both Hormuz shipping — through which Pakistan's crude flows — and the remittance pipeline from Gulf workers that funds the current account.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "AE",
+              "SA",
+              "OM"
+            ],
+            "label": "Pakistan's energy and remittance neighborhood"
+          }
+        ]
+      },
+      {
+        "heading": "THE FOREIGN-FLOW MECHANIC",
+        "body": "The KSE-100 has a small free float dominated by a handful of foreign funds. When geopolitical risk spikes, those funds rebalance out of frontier markets first — Pakistan, Egypt, Nigeria — because position sizes are small enough to exit in a single session. The selling is mechanical, not a verdict on fundamentals.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pakistan sits in the **MSCI Frontier** index, not Emerging Markets — it was demoted in 2021 after liquidity collapsed. Frontier status means a smaller, more skittish foreign investor base."
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF OVERHANG",
+        "body": "Pakistan is in its 24th IMF program — more than any other country. Each tranche is conditioned on fiscal targets that assume stable energy import costs. A Hormuz shock would blow through the oil-price assumption baked into the current Standby Arrangement, forcing renegotiation."
+      },
+      {
+        "heading": "WHY ISLAMABAD HOSTS",
+        "body": "Pakistan is one of the few capitals that maintains working channels with both Washington and Tehran. It shares a border with Iran, hosts a major US embassy, and — critically — is the only Muslim nuclear power. That triangulation makes it a natural venue when direct US-Iran contact is politically impossible for either side.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is the only Muslim-majority state with nuclear weapons?",
+            "options": [
+              "Iran",
+              "Pakistan",
+              "Turkey",
+              "Saudi Arabia"
+            ],
+            "correct": 1,
+            "explanation": "Pakistan tested in 1998 in response to India's tests. Iran's program remains below weapons threshold; Turkey and Saudi Arabia have none."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE LINK",
+        "body": "Equity selloffs in Karachi typically precede rupee pressure by days. Foreign exits convert PKR to USD on the way out, draining the State Bank's thin reserve buffer.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.938921,
+              278.846901,
+              279.174143,
+              278.822517,
+              279.2,
+              278.184288,
+              278.387431,
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876
+            ],
+            "periods": [
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-21"
+    ],
+    "generatedAt": "2026-04-21T04:18:59.276Z",
+    "label": "Pakistan markets & geopolitical risk",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-20-renewables-overtake-coal-2025": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEARNING CURVE",
+        "body": "Solar module prices have fallen roughly 99.6% since 1976 and about 90% in the last decade alone. This follows Swanson's law — each doubling of cumulative shipped capacity cuts cost around 20%. No other energy technology has a learning rate remotely comparable.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is called **Wright's Law** — learning by doing, not breakthrough physics. Every GW installed teaches the next GW how to be cheaper."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COAL STALLED FIRST",
+        "body": "Coal plants have the worst merit-order position in any grid that admits renewables. Solar and wind bid at near-zero marginal cost and displace the most expensive dispatchable generator first. Coal — high fuel cost, slow to ramp — gets squeezed before gas does.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do solar and wind displace coal before gas on modern grids?",
+            "options": [
+              "Coal plants emit more CO2 per MWh",
+              "Solar and wind bid at near-zero marginal cost, pushing out the highest-cost dispatchable generator",
+              "Regulators mandate coal retirement first",
+              "Gas plants run on long-term contracts solar cannot touch"
+            ],
+            "correct": 1,
+            "explanation": "Grids dispatch cheapest first. Coal's high fuel cost puts it at the top of the stack — so intermittent zero-marginal-cost renewables erode coal hours before gas hours."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHINA FACTOR",
+        "body": "China installed more solar in 2024 than the entire United States has ever built. It manufactures roughly 80% of the world's solar modules and dominates every upstream step — polysilicon, wafers, cells. The global energy transition runs through Chinese industrial policy.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~280 GW",
+                "weight": 280
+              },
+              {
+                "label": "United States",
+                "value": "~50 GW",
+                "weight": 50
+              },
+              {
+                "label": "India",
+                "value": "~30 GW",
+                "weight": 30
+              },
+              {
+                "label": "Germany",
+                "value": "~17 GW",
+                "weight": 17
+              }
+            ],
+            "label": "2024 solar additions (GW)"
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERMITTENCY CONSTRAINT",
+        "body": "Solar produces nothing at night and little in winter at high latitudes. The grid still needs dispatchable capacity — gas, hydro, nuclear, or batteries — to cover the gap. Renewables overtaking coal in generation does not mean coal plants are gone; many run fewer hours as backup.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              9445.593636363636,
+              10117.16347826087,
+              9648.167,
+              9385.313043478262,
+              8981.117727272727,
+              9259.128571428571,
+              9533.991304347826,
+              9075.727142857142,
+              8909.907727272726,
+              8976.68043478261,
+              9330.975,
+              9735.823333333334,
+              9172.69590909091,
+              9531.200909090909,
+              9835.068095238095,
+              9770.580434782609,
+              9671.875714285714,
+              9994.773181818182,
+              10739.91826086957,
+              10812.028,
+              11790.96409090909,
+              12986.60681818182,
+              12951.345,
+              12528.70954545455
+            ],
+            "periods": [
+              "Apr 2024",
+              "May 2024",
+              "Jun 2024",
+              "Jul 2024",
+              "Aug 2024",
+              "Sep 2024",
+              "Oct 2024",
+              "Nov 2024",
+              "Dec 2024",
+              "Jan 2025",
+              "Feb 2025",
+              "Mar 2025",
+              "Apr 2025",
+              "May 2025",
+              "Jun 2025",
+              "Jul 2025",
+              "Aug 2025",
+              "Sep 2025",
+              "Oct 2025",
+              "Nov 2025",
+              "Dec 2025",
+              "Jan 2026",
+              "Feb 2026",
+              "Mar 2026"
+            ],
+            "label": "Copper",
+            "unit": "$/mt",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL RHYME",
+        "body": "Coal displaced wood in the 19th century, oil displaced coal in transport in the 20th, and gas displaced coal in Western electricity in the 2010s. Energy transitions typically take 50-75 years. Solar's ascent — from under 1% of global electricity in 2010 to over 7% now — is unusually fast.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Historian **Vaclav Smil** argues transitions are always slower than forecasters expect. Solar is the first serious counter-evidence to his thesis."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · IMF · as of 2026-03-01"
+    ],
+    "generatedAt": "2026-04-21T04:19:26.212Z",
+    "label": "Solar & the Coal Crossover",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-21-japan-scraps-weapons-export-limits": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ARTICLE 9",
+        "body": "Japan's 1947 constitution, drafted under US occupation, contains the most radical anti-war clause ever written into national law. Article 9 renounces war as a sovereign right and prohibits maintaining war potential. No other major power has anything like it.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "the Japanese people forever renounce war as a sovereign right of the nation and the threat or use of force as means of settling international disputes",
+            "speaker": "Constitution of Japan, Article 9"
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE PRINCIPLES",
+        "body": "Prime Minister Sato announced the original arms export ban in 1967: no sales to communist bloc states, no sales to UN-embargoed states, no sales to parties in conflict. In 1976 Miki tightened it to a near-total ban. For half a century, Japan built one of the world's most advanced defense industries that could sell to exactly one customer — its own Self-Defense Forces.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The policy was called the *Three Principles on Arms Exports* — a self-imposed ban, not a treaty obligation. Every loosening since has come by cabinet reinterpretation, not constitutional amendment."
+          }
+        ]
+      },
+      {
+        "heading": "THE REINTERPRETATION GAME",
+        "body": "Japan has maintained one of the world's largest militaries for decades by calling it a Self-Defense Force and interpreting Article 9 to permit defensive capability. Each generation of hardware gets justified as exclusively defensive — until the next generation arrives and the line moves again."
+      },
+      {
+        "heading": "THE TAKAICHI FACTOR",
+        "body": "Sanae Takaichi, a protégé of the slain Shinzo Abe, leads the LDP's hawkish wing. Abe spent his career trying to revise Article 9 outright and failed; his successors have chosen the quieter path of cabinet decisions that accomplish the same ends without a referendum.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Shinzo Abe",
+                "role": "PM, Article 9 revisionist",
+                "years": "2006–07, 2012–20",
+                "cc": "JP"
+              },
+              {
+                "name": "Fumio Kishida",
+                "role": "PM, doubled defense budget",
+                "years": "2021–24",
+                "cc": "JP"
+              },
+              {
+                "name": "Sanae Takaichi",
+                "role": "LDP hawkish wing leader",
+                "years": "2024–",
+                "cc": "JP"
+              }
+            ],
+            "label": "Japan's rearmament architects"
+          }
+        ]
+      },
+      {
+        "heading": "THE REGIONAL CONTEXT",
+        "body": "China's navy is now the world's largest by hull count. North Korea tests ICBMs that overfly Japanese territory. Russia's Pacific Fleet patrols the disputed Kuril Islands. Japan's rearmament is not happening in a vacuum — it is the predictable response to three nuclear-armed neighbors reshaping the regional balance.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP",
+              "CN",
+              "KP",
+              "KR",
+              "RU",
+              "TW"
+            ],
+            "label": "Japan's security horizon"
+          }
+        ]
+      },
+      {
+        "heading": "THE WARTIME CLAUSE",
+        "body": "The new framework permits cabinet-authorized sales to parties actively at war. Previous revisions — 2014 under Abe, 2023 for fighter-component exports — carefully excluded conflict zones. Dropping that firewall is the provision Seoul, Beijing, and Manila are studying most closely.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What year did Japan first impose its Three Principles on Arms Exports?",
+            "options": [
+              "1947, with the constitution",
+              "1960, after the US security treaty",
+              "1967, under PM Sato",
+              "1976, under PM Miki"
+            ],
+            "correct": 2,
+            "explanation": "Sato announced the Three Principles in 1967; Miki tightened them to a near-total ban in 1976. The constitution itself does not mention arms exports."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-21T04:19:56.715Z",
+    "label": "Japan's Arms Export Reversal",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-21-manipur-shutdowns-child-deaths-convoy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VALLEY-HILL DIVIDE",
+        "body": "Manipur's geography maps its politics. The Meitei, mostly Hindu, occupy the central Imphal valley — about 10% of the land but 53% of the population. The Kuki and Naga, mostly Christian, live in the surrounding hills under constitutional protections the valley communities cannot access.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "MM",
+              "BD"
+            ],
+            "label": "Manipur sits on the Myanmar border",
+            "caption": "A sliver of India wedged against Myanmar's Sagaing unrest"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCHEDULED TRIBE TRIGGER",
+        "body": "The current conflict ignited in May 2023 when a court ordered the state to consider granting Meiteis Scheduled Tribe status — which would let them buy land in the hills. Kuki and Naga communities read this as an existential threat to protected territory. Within days, hundreds were dead and 60,000 displaced.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Scheduled Tribe* status under India's constitution grants affirmative action in jobs and education — but crucially also **land rights** in tribal areas that non-STs cannot purchase."
+          }
+        ]
+      },
+      {
+        "heading": "THE BUFFER ZONES",
+        "body": "Since 2023, central paramilitary forces have enforced de facto ethnic partition: Meiteis cannot safely enter Kuki areas, Kukis cannot enter the valley. The national highway connecting Imphal to the rest of India runs through both zones, making every convoy a flashpoint."
+      },
+      {
+        "heading": "WHY JOINT PROTEST IS RARE",
+        "body": "Meitei and Naga civil society organizations have spent three years blaming each other for specific killings, displacements, and arson. A simultaneous shutdown signals that both communities now distrust the state's investigations more than they distrust each other — a shift the central government has worked hard to prevent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What constitutional mechanism governs India's tribal land protections?",
+            "options": [
+              "The Scheduled Tribes list under Article 342",
+              "The Right to Property under Article 300A",
+              "The Directive Principles under Part IV",
+              "The Emergency Powers under Article 352"
+            ],
+            "correct": 0,
+            "explanation": "Article 342 lets the President designate Scheduled Tribes; Schedule 6 and various state laws then restrict land transfer to non-tribals in designated areas."
+          }
+        ]
+      },
+      {
+        "heading": "THE NIA PATTERN",
+        "body": "India's National Investigation Agency was created after the 2008 Mumbai attacks to handle terrorism cases. Handing ethnic-conflict killings to the NIA reframes them as terrorism rather than communal violence — a legal classification that enables harsher charges but bypasses state-level accountability. Opposition lawyers demand judicial inquiries precisely because NIA proceedings are opaque."
+      },
+      {
+        "heading": "THE PRESIDENT'S RULE BACKDROP",
+        "body": "The elected state government collapsed in February 2026 after the BJP chief minister resigned; Manipur has been under direct central rule since. Shutdowns during President's Rule have no local government to negotiate with — they escalate directly to Delhi, which is the point."
+      }
+    ],
+    "generatedAt": "2026-04-21T04:20:25.668Z",
+    "label": "Manipur's Ethnic Fault Line",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-21-pentagon-cancels-troubled-space-program": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL BARGAIN",
+        "body": "GPS was built by the US Air Force in the 1970s as a military targeting system. Reagan opened it to civilian use in 1983 after a Soviet fighter shot down KAL 007, which had strayed into Soviet airspace partly due to navigation error. The civilian world now runs on infrastructure the Pentagon still owns and operates.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The signal is free to users worldwide, but the **31-satellite constellation** is funded entirely by the US taxpayer — roughly **$1.7B/year** in sustainment costs."
+          }
+        ]
+      },
+      {
+        "heading": "WHY REPLACING IT IS HARD",
+        "body": "GPS ground control, called OCX, must simultaneously talk to 1990s-era satellites, current-generation satellites, and next-generation M-code satellites — each with different cryptography, signal structures, and command protocols. Raytheon's contract was to write software that spoke all three dialects without losing a fix anywhere on Earth."
+      },
+      {
+        "heading": "THE NUNN-MCCURDY BREACH",
+        "body": "A 1982 law requires the Pentagon to notify Congress when a program's cost grows more than 25% over baseline, and to cancel it past 50% unless the Secretary of Defense certifies it essential. OCX breached Nunn-McCurdy in 2016 and was recertified. The 2026 cancellation is what that law is supposed to trigger but rarely does.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What triggers automatic cancellation of a US defense program under the Nunn-McCurdy Act?",
+            "options": [
+              "10% cost overrun",
+              "25% schedule slip",
+              "50% cost overrun without SecDef certification",
+              "Any failed operational test"
+            ],
+            "correct": 2,
+            "explanation": "Nunn-McCurdy mandates cancellation above a 50% unit-cost breach unless the Secretary of Defense personally certifies the program essential to national security."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPETITION",
+        "body": "GPS is no longer alone. China's BeiDou reached full global coverage in 2020; Russia's GLONASS has been operational since 1995; Europe's Galileo since 2016. A modern smartphone receives all four constellations simultaneously and picks whichever gives the best fix.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "GPS",
+                "value": "31 sats",
+                "cc": "US",
+                "weight": 31
+              },
+              {
+                "label": "BeiDou",
+                "value": "45 sats",
+                "cc": "CN",
+                "weight": 45
+              },
+              {
+                "label": "GLONASS",
+                "value": "24 sats",
+                "cc": "RU",
+                "weight": 24
+              },
+              {
+                "label": "Galileo",
+                "value": "28 sats",
+                "cc": "EU",
+                "weight": 28
+              }
+            ],
+            "label": "global navigation satellite systems"
+          }
+        ]
+      },
+      {
+        "heading": "THE JAMMING PROBLEM",
+        "body": "GPS signals arriving at Earth are weaker than cosmic background noise — roughly the strength of a car headlight viewed from 20,000 km. A $50 jammer can deny GPS across a city block; a military-grade one can blank a battlefield. M-code, the signal OCX was meant to manage, is the Pentagon's answer: encrypted, higher-power, and resistant to spoofing."
+      },
+      {
+        "heading": "WHAT GETS SAVED, WHAT GETS LOST",
+        "body": "The Pentagon saves the remaining OCX spend but inherits a brittle control system built when Netscape was new. Every day the legacy stations run is a day the M-code satellites orbit overhead carrying capabilities the ground segment cannot fully exploit."
+      }
+    ],
+    "generatedAt": "2026-04-21T04:20:54.340Z",
+    "label": "GPS & Pentagon Procurement",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-21-tenofovir-implant-hiv-prevention-south-africa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ADHERENCE IS THE WHOLE GAME",
+        "body": "Daily oral PrEP is ~99% effective when taken consistently. Real-world effectiveness drops below 50% because people miss doses. Every prevention technology since the condom has run into the same wall: the pill that works in the trial is not the pill that gets taken on Tuesday.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The gap between **efficacy** (does it work under ideal conditions?) and **effectiveness** (does it work in real life?) is where most public-health interventions die."
+          }
+        ]
+      },
+      {
+        "heading": "THE TENOFOVIR FAMILY",
+        "body": "Tenofovir is the backbone of modern HIV treatment and prevention. Tenofovir alafenamide (TAF) is a prodrug — inert until enzymes inside target cells convert it — which lets it deliver higher intracellular drug levels at lower systemic doses. Lower dose means a smaller implant can carry a full year of medication."
+      },
+      {
+        "heading": "WHY SOUTH AFRICA",
+        "body": "South Africa has roughly 8 million people living with HIV — the largest epidemic of any single country. KwaZulu-Natal, where CAPRISA runs its trials, has adult prevalence above 25% in some districts. Any prevention tool proven there is proven under the hardest conditions on earth."
+      },
+      {
+        "heading": "THE IMPLANT PRECEDENT",
+        "body": "Subdermal implants are not new — contraceptive rods like Jadelle and Nexplanon have delivered hormones for years with 99%+ continuation rates. The engineering challenge for HIV is different: antiretrovirals need much higher steady-state concentrations than hormones, and the drug must not crystallize or inflame the tissue around it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did contraceptive implants succeed where daily pills struggled?",
+            "options": [
+              "They are more chemically potent than pills",
+              "They remove the daily adherence decision",
+              "They are cheaper to manufacture",
+              "They have fewer side effects"
+            ],
+            "correct": 1,
+            "explanation": "Implants convert a daily behavioral choice into a single annual one — the same logic now being applied to HIV prevention."
+          }
+        ]
+      },
+      {
+        "heading": "THE GENERICS PRECEDENT",
+        "body": "In the early 2000s, first-line HIV treatment cost $10,000 per patient per year. Indian generic manufacturers, operating before India's 2005 patent law, drove the price below $100. Whether this implant reaches the populations that need it most will depend less on the science than on whether that same pricing dynamic repeats.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Branded, 2000",
+                "value": "$10,000",
+                "tone": "unfavorable",
+                "weight": 10000
+              },
+              {
+                "label": "Indian generic, 2005",
+                "value": "<$100",
+                "tone": "favorable",
+                "weight": 100
+              },
+              {
+                "label": "Current PrEP",
+                "value": "~$60",
+                "tone": "favorable",
+                "weight": 60
+              }
+            ],
+            "label": "annual HIV drug cost, then and now"
+          }
+        ]
+      },
+      {
+        "heading": "THE TISSUE PROBLEM",
+        "body": "The trial flagged tolerability issues at the implant site. Antiretrovirals at high local concentrations can inflame or necrose surrounding tissue — a failure mode that only appears at scale. Resolving this is typically a multi-year reformulation problem, not a quick fix."
+      }
+    ],
+    "generatedAt": "2026-04-21T04:21:24.059Z",
+    "label": "HIV Prevention & the Adherence Problem",
+    "category": "science",
+    "articleCount": 1
   }
 }
