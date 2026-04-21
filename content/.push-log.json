@@ -3275,5 +3275,91 @@
       "skipped": 0,
       "tokens": 15
     }
+  },
+  {
+    "timestamp": "2026-04-21T17:40:03.090Z",
+    "candidateCount": 9,
+    "candidates": [
+      {
+        "slug": "2026-04-21-nasa-curiosity-mars-organic-molecules-prebiotic",
+        "title": "Curiosity Finds 7 Organics in Mars Rock",
+        "category": "science",
+        "eventCoverage": 116,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-21-kharge-modi-terrorist-india-election-commission",
+        "title": "Congress Chief Calls Modi Terrorist",
+        "category": "politics",
+        "eventCoverage": 110,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-21-hungary-anti-lgbtq-law-eu-court-ruling",
+        "title": "EU Court Voids Hungary's LGBTQ Ban",
+        "category": "politics",
+        "eventCoverage": 104,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-21-pacific-boat-strikes-survivors-us-torture-allegations",
+        "title": "US Drones Burn Ecuadorian Fishing Boat",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-21-uk-electricity-gas-price-decoupling-reform",
+        "title": "UK Breaks Gas-Electricity Price Link",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-21-china-electricity-carbon-emissions-dataset-2060",
+        "title": "China Opens Provincial Carbon Grid Data",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-21-el-nino-2026-second-warmest-year-climate",
+        "title": "El Niño Drives 2026 Near-Record Warmth",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-21-ai-clean-room-open-source-copyright-laundering",
+        "title": "AI Tool Strips Copyleft from Open Source",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-21-lebanon-national-roaming-wartime-resilience",
+        "title": "Lebanon Activates Data Roaming Amid War",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-04-21-nasa-curiosity-mars-organic-molecules-prebiotic",
+      "title": "Curiosity Finds 7 Organics in Mars Rock",
+      "category": "science",
+      "body": "Curiosity found 7 Mars organics, 5 never detected before. All survived 3.5bn",
+      "eventCoverage": 116,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "NASA Curiosity rover detects 7 organic molecules in Mars rock, 5 never seen before",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 15
+    }
   }
 ]
