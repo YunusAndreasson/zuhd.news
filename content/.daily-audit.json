@@ -1,34 +1,29 @@
 {
-  "date": "2026-04-21",
+  "date": "2026-04-22",
   "metrics": {
-    "articles": { "value": 41, "detail": "5 cycles, avg 8.2/cycle (down from 61/12.2 yesterday)" },
-    "freshness": { "median": 0.0, "p90": 0.0, "max": 0.0, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 10, "science": 8, "tech": 4 },
-    "multiSource": { "value": 13, "target": 4, "met": true },
-    "regions": {
-      "count": 5,
-      "target": 4,
-      "met": true,
-      "breakdown": { "EU": 9, "AM": 14, "AS": 10, "AF": 3, "ME": 5 }
-    },
-    "sciTech": { "ratio": 29, "target": 25, "met": true },
-    "topSourceShare": { "source": "CoinDesk", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 48,
+    "articles": { "value": 37, "detail": "5 cycles, avg 7/cycle" },
+    "freshness": { "median": null, "p90": null, "max": null, "target": 1.0, "met": null },
+    "categories": { "politics": 18, "economy": 8, "science": 6, "tech": 5 },
+    "multiSource": { "value": 10, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 13, "ME": 7, "EU": 6, "AF": 5, "AS": 4, "OC": 2 } },
+    "sciTech": { "ratio": 30, "target": 25, "met": true },
+    "topSourceShare": { "source": "Premium Times Nigeria", "pct": 11, "target": 20, "met": true },
+    "uniqueSources": 42,
     "duplicates": 0,
-    "avgCycleDuration": 1623
+    "avgCycleDuration": 1422
   },
-  "experiment": "Active: 2026-04-21-multi-source-floors. Evaluates 2026-04-24 — too early to score. First-day signal is encouraging: overall multi-source rate is 13/41 = 31.7% vs 22% baseline, already above the 28% overall target. Politics+economy multi-source share needs per-article frontmatter analysis to verify precisely. Watching for tech displacement as a potential side-effect of harder politics/economy floors.",
-  "weakestArea": "Tech coverage is the clearest concern: only 4 articles today vs 13 yesterday, representing 9.8% of output against a 3/cycle selector floor that should yield ~15. The day-1 multi-source experiment may be displacing tech when the feed is thin — the selector prioritizing politics/economy multi-source fills at the expense of tech minimums. Today's tech feed appears sparse (no Ars Technica, The Verge, or Wired). This bears watching over the next two cycles before the formal experiment evaluation.",
+  "experiment": "Active: 2026-04-21-multi-source-floors. evaluateAfter 2026-04-24 — not yet due. Today's avg 7/cycle is below the 8/cycle publish-count guardrail; day 2 of experiment so likely noise, but flagged for monitoring.",
+  "weakestArea": "Publish throughput at 7 articles/cycle (37 total) is the main concern — it sits below the active experiment's 8/cycle guardrail. Politics also dominates at 49% of output (18/37), compressing space for other categories; science just clears its floor at 6 and tech at 5.",
   "watching": [
-    "India-Pakistan tensions: strong coverage cluster (Dawn, Hindustan Times, Times of India, The Diplomat) — track for escalation or ceasefire signals",
-    "US tariff regime: Bloomberg + FT + Reuters all on the beat today, ongoing macro volatility story",
-    "Gaza / humanitarian corridors: Drop Site News + Middle East Eye active — watch for UNRWA or aid-route developments",
-    "Ukraine counter-operations: Kyiv Independent + Ukrainska Pravda active today — Kursk/Sumy situation evolving"
+    "Avg publish count per cycle (7 today) is below the active experiment's guardrail of 8 — watch whether multi-source floor is constraining selector throughput through 2026-04-24.",
+    "Freshness metrics returning null counts today (count: 0) despite 37 articles published — likely a timestamp comparison issue in the metrics pipeline, not a real freshness problem.",
+    "US tariff / trade-war escalation dominating AM coverage (13 articles); watch for saturation into tomorrow's cycles.",
+    "India-Pakistan tensions persist (Dawn, ThePrint, Hindustan Times, NDTV active) — track for escalation or diplomatic signals."
   ],
   "coverageGaps": [
-    "Oceania (OC) absent for the second consecutive day — no Pacific, Australia, or New Zealand stories",
-    "Tech thin today: no AI policy, no chips/semiconductor story — likely a feed-thinness day but worth flagging",
-    "Latin America underrepresented despite AM count of 14: most Americas articles appear to be US-centric"
+    "Africa sparse beyond Premium Times Nigeria: only 5 articles total, no East or North Africa represented today.",
+    "Southeast Asia thin at 4 articles with Oceania at 2 — Pacific-rim coverage would benefit from adding a Southeast Asia wire source.",
+    "Climate/environment absent today — no Dialogue Earth, Carbon Brief, or similar, which appeared yesterday."
   ],
-  "context": "Today is day 1 of the multi-source-floors experiment, which converts the selector's soft multi-source guidance into hard per-category floors (politics ≥2, economy ≥2 multi-source per cycle). The aggregate multi-source count of 13 is already three times the 4/day target and above the 28% overall experiment goal. The main risk is category composition: with harder politics/economy multi-source fills, tech may lose marginal slots on feed-thin days — today's data (tech=4) suggests this is already happening. If tech drops below the 4/day floor over 2+ consecutive cycles before 2026-04-24, experiment guardrails should be revisited early."
+  "context": "All diversity and quality targets are met today. Multi-source count is strong at 10 (vs 4 target), consistent with the active prompt experiment encouraging harder multi-source floors. The freshness null values appear to be a metrics calculation artifact — actual article publication lag is near-zero given live cycle timestamps. No new experiment warranted today; active experiment runs through 2026-04-24."
 }
