@@ -36164,5 +36164,1155 @@
     "label": "ICC Jurisdiction & the Rome Statute",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-22-discos-found-purchasing-power-outside-national-grid-at-exorb": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MERIT ORDER",
+        "body": "Grid operators rank every power plant by marginal cost — hydro and nuclear first, then coal and gas, then expensive oil-fired peakers last. Dispatching in this order minimizes system cost. Bypassing it is not just inefficient; it inverts the logic that makes a unified grid cheaper than isolated generation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The merit order is why a national grid exists at all: pooling demand lets the *cheapest* generator in the country serve the next marginal kilowatt-hour, not just the cheapest plant near you."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPACITY TRAP",
+        "body": "Pakistan signed dollar-denominated **capacity payments** with independent power producers in the 1994 and 2002 power policies — the state pays whether or not the plant generates. Installed capacity now exceeds peak demand, yet distributors claim shortages. The fixed payments must be made regardless; every idle megawatt raises the per-unit tariff on electricity actually sold.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Capacity payments mean Pakistan pays roughly **$2 billion a year** for electricity it never consumes — a structural cost baked into every bill, denominated in dollars the country does not easily earn."
+          }
+        ]
+      },
+      {
+        "heading": "CIRCULAR DEBT",
+        "body": "Distribution companies (DISCOs) under-collect from consumers, cannot pay generators, who cannot pay fuel suppliers. The resulting IOU chain — Pakistan's 'circular debt' — exceeded PKR 2.6 trillion by 2024. Every off-grid bilateral deal that bypasses cheaper plants inflates this debt further, because the expensive power still gets paid for, eventually, by the Treasury.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.846901,
+              279.174143,
+              278.822517,
+              279.2,
+              278.184288,
+              278.387431,
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895
+            ],
+            "periods": [
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY OFF-GRID LOOKS ATTRACTIVE",
+        "body": "For an individual DISCO, bilateral contracts with specific plants can guarantee supply during load-shedding and sidestep grid operator allocations. The cost passes to consumers through fuel price adjustments; the procurement decision sits with the DISCO. The incentive to cheat the merit order is structural, not individual corruption.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In a merit-order dispatch system, which plant runs last?",
+            "options": [
+              "The oldest plant",
+              "The plant with highest marginal cost",
+              "The plant furthest from demand",
+              "The plant with largest capacity"
+            ],
+            "correct": 1,
+            "explanation": "Merit order dispatches by marginal cost — cheapest first, most expensive peakers only when demand requires them."
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF DIMENSION",
+        "body": "Pakistan's $7bn IMF programme agreed in 2024 makes power sector reform a structural benchmark. Tariff hikes to close the circular debt gap are politically toxic; distribution-company privatisation has stalled for two decades. Finding DISCOs buying outside the merit order is exactly the kind of governance failure the Fund cites when releasing tranches becomes conditional."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-22"
+    ],
+    "generatedAt": "2026-04-22T17:28:51.173Z",
+    "label": "Merit Order & Pakistan's Power Crisis",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-22-google-unveils-8th-gen-tpus-agent-platform-and-workspace-ai": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY TPUS EXIST",
+        "body": "Google built the first TPU in 2015 because running neural networks on general-purpose GPUs was too slow and power-hungry at search scale. A TPU is an ASIC — an application-specific chip — that does matrix multiplication and almost nothing else, trading flexibility for throughput per watt.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tradeoff is stark: a GPU runs any workload; a TPU runs *one kind* of math but runs it **~3-5× more efficiently** at that single task."
+          }
+        ]
+      },
+      {
+        "heading": "THE SYSTOLIC ARRAY",
+        "body": "TPUs use a systolic array — a grid of thousands of multiply-accumulate units where data flows rhythmically between neighbors, like blood through a heart. The architecture dates to a 1978 paper by H.T. Kung at Carnegie Mellon; Google was the first to commercialize it at scale."
+      },
+      {
+        "heading": "WHY SCALE IS THE MOAT",
+        "body": "Training a frontier model requires tens of thousands of accelerators wired together with high-bandwidth interconnect. The bottleneck is rarely the chip itself — it is the network between chips. A million-chip pod is a networking feat as much as a silicon feat.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Google TPU",
+                "value": "~1M chips",
+                "cc": "US",
+                "weight": 1000
+              },
+              {
+                "label": "Nvidia H100/B200",
+                "value": "~4M GPUs",
+                "cc": "US",
+                "weight": 4000,
+                "tone": "favorable"
+              },
+              {
+                "label": "AWS Trainium",
+                "value": "~500k chips",
+                "cc": "US",
+                "weight": 500
+              },
+              {
+                "label": "Huawei Ascend",
+                "value": "~200k chips",
+                "cc": "CN",
+                "weight": 200
+              }
+            ],
+            "label": "frontier accelerator fleets (rough estimates)"
+          }
+        ]
+      },
+      {
+        "heading": "THE AGENT SHIFT",
+        "body": "Classic SaaS sells seats — one login per human. Agents that act across Gmail, Docs, Drive, and Meet collapse that model: the unit of consumption becomes a task, not a seat. Whoever owns the graph of your work owns the surface agents run on.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the primary constraint preventing a single AI agent from acting seamlessly across Gmail, Docs, and Drive today?",
+            "options": [
+              "Model capability is too low",
+              "Lack of a unified permission and data graph across apps",
+              "Insufficient GPU supply",
+              "Regulatory prohibitions on cross-app data"
+            ],
+            "correct": 1,
+            "explanation": "The hard part is the graph — unified identity, permissions, and context across apps. Model capability is largely sufficient; integration is the moat."
+          }
+        ]
+      },
+      {
+        "heading": "THE MICROSOFT FRONT",
+        "body": "Workspace vs. Microsoft 365 is a two-decade trench war. Microsoft has ~400M paid seats; Google has ~300M. Migration tools are the weapon — the switching cost is not the software but the years of email history, shared drives, and calendar links that must move without breaking."
+      },
+      {
+        "heading": "THE CAPEX RACE",
+        "body": "Hyperscalers are spending over $300bn combined on AI infrastructure in 2026. The bet is that whoever has the most compute when agents become useful captures the enterprise workflow layer — a market worth trillions in seat revenue over a decade.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              25518.35,
+              25605.47,
+              25713.21,
+              25939.74,
+              26022.79,
+              25884.3,
+              25552.39,
+              25738.61,
+              25338.62,
+              24891.24,
+              24548.69,
+              25075.77,
+              25268.14,
+              25127.64,
+              25201.26,
+              24687.61,
+              24732.73,
+              24701.6,
+              24898.87,
+              24797.34,
+              25012.62,
+              24708.94,
+              24977.04,
+              25329.04,
+              25034.37,
+              24960.04,
+              24992.6,
+              24720.08,
+              25093.68,
+              25020.41,
+              24643.01,
+              24967.25,
+              24956.47,
+              24965.01,
+              24533.58,
+              24380.73,
+              24655.34,
+              24780.42,
+              24425.09,
+              24355.28,
+              23898.15,
+              24188.59,
+              24002.45,
+              24162.98,
+              23586.99,
+              23132.77,
+              22953.38,
+              23740.19,
+              24019.99,
+              24045.53,
+              24192.17,
+              24202.37,
+              24903.17,
+              25082.09,
+              25116.34,
+              25383.72,
+              25842,
+              26204.58,
+              26333,
+              26672.43,
+              26590.34,
+              26479.47
+            ],
+            "periods": [
+              "Jan 22",
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21"
+            ],
+            "label": "NASDAQ-100",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · NASDAQ · as of 2026-04-21"
+    ],
+    "generatedAt": "2026-04-22T17:29:18.842Z",
+    "label": "TPUs & the Agent Platform",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-22-governor-buys-multi-billion-naira-cars-for-officials-amid-wi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FEDERATION ACCOUNT",
+        "body": "Nigerian states get most of their money not from taxes they collect but from monthly transfers out of the Federation Account — oil revenue pooled in Abuja and distributed via FAAC. Governors receive lump sums with minimal conditionality, which makes discretionary spending on fleets and entourages politically easy and fiscally invisible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is called **FAAC** — the Federation Account Allocation Committee. It meets monthly, divides oil receipts among the three tiers, and leaves governors with *unrestricted* cash."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOVERNOR'S POWERS",
+        "body": "Under Nigeria's 1999 Constitution, state governors control security votes — cash disbursements that require no receipts and no legislative oversight. Combined with appointment power over commissioners, judges' welfare packages, and board seats, the governor is closer to a regional sovereign than an American-style state executive."
+      },
+      {
+        "heading": "THE MPI NUMBER",
+        "body": "The Multidimensional Poverty Index measures more than income — it counts deprivation in health, education, living standards, water, sanitation, and housing. Niger State's 69.1% rate means roughly seven in ten residents are deprived on multiple dimensions simultaneously, not just poor on a single income threshold.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Nigeria's Multidimensional Poverty Index measure?",
+            "options": [
+              "Income below $2.15/day only",
+              "Deprivation across health, education, and living standards",
+              "GDP per capita by state",
+              "Unemployment rate"
+            ],
+            "correct": 1,
+            "explanation": "The MPI counts simultaneous deprivations across multiple dimensions — a household can be income-poor, school-poor, and water-poor at once, and each deprivation is weighted."
+          }
+        ]
+      },
+      {
+        "heading": "THE NAIRA CONTEXT",
+        "body": "Since the 2023 devaluation under Tinubu, the naira has lost more than half its dollar value. A fleet of imported SUVs — nearly all vehicles at this tier are imported — costs roughly three times in naira what it would have pre-float. The optics of billions in naira on cars are sharper precisely because each unit now buys so much less.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1375.26,
+              1383.69,
+              1384.52,
+              1383.46,
+              1378.02388,
+              1378.5,
+              1385.6,
+              1385.089099,
+              1380.03,
+              1381.109739,
+              1378.13,
+              1378.13,
+              1377.8,
+              1379.1,
+              1382.755193,
+              1378.98,
+              1361.72,
+              1359.5,
+              1358.675299,
+              1358.34,
+              1358.85,
+              1351.86,
+              1344.68,
+              1340.88,
+              1342.48,
+              1345.790676,
+              1345.790676,
+              1346.63,
+              1345.47,
+              1348.77
+            ],
+            "periods": [
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE PATRONAGE LOGIC",
+        "body": "Official vehicles in Nigerian politics are not transport — they are status instruments distributed to keep coalitions intact. Judges, legislators, and traditional rulers receiving cars from a governor become stakeholders in his political survival. This is the same logic that drove the 'Ghana-Must-Go' bag era: governance as redistribution among elites, not service delivery."
+      },
+      {
+        "heading": "THE NORTHERN BELT",
+        "body": "Niger State sits in Nigeria's Middle Belt — agricultural, majority-Muslim, and increasingly contested by bandit groups and ISWAP-linked cells. Poverty and insecurity compound: displaced farmers cannot plant, tax bases erode, and state revenue depends ever more on FAAC transfers rather than internal generation.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG"
+            ],
+            "label": "Niger State sits in Nigeria's Middle Belt"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-22"
+    ],
+    "generatedAt": "2026-04-22T17:29:47.628Z",
+    "label": "Nigerian State Finances & Patronage",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-iswap-terrorists-kill-11-in-borno-community-reports-of-nine": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SPLIT",
+        "body": "Islamic State West Africa Province broke from Boko Haram in 2016 after a leadership dispute with Abubakar Shekau. ISWAP rejected Shekau's indiscriminate killing of Muslim civilians as un-Islamic and pledged allegiance to Baghdadi. The split produced two rival jihadist factions competing for the same territory.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrinal wedge was *takfir* — Shekau declared ordinary Muslims apostates and legitimate targets; **ISWAP** rejected this, which is why it now governs villages Boko Haram would have burned."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The insurgency operates across the Lake Chad Basin, where Nigeria, Niger, Chad, and Cameroon meet. Borders are porous, the lake itself has shrunk 90% since the 1960s, and fighters move between countries faster than any single national army can pursue.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "TD",
+              "CM"
+            ],
+            "label": "the Lake Chad Basin"
+          }
+        ]
+      },
+      {
+        "heading": "THE GOVERNANCE MODEL",
+        "body": "ISWAP taxes fishermen, farmers, and traders in areas it controls — issuing receipts, settling disputes, and providing a crude form of order. In parts of Borno and the lake islands, it functions as a shadow state that collects revenue more reliably than Abuja does."
+      },
+      {
+        "heading": "THE STATE ABSENCE",
+        "body": "Askira Uba sits in southern Borno, far from the Maiduguri-centered military response. Nigeria's federal structure means emergency response runs through NEMA, state agencies, and local government — each underfunded, each blaming the others. A village attack can go unreported to Abuja for days.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many Nigerians have been displaced by the Boko Haram/ISWAP insurgency since 2009?",
+            "options": [
+              "Under 500,000",
+              "Around 1 million",
+              "Over 2 million",
+              "Over 5 million"
+            ],
+            "correct": 2,
+            "explanation": "UN estimates put internal displacement above 2 million in the northeast, with millions more affected across the Lake Chad Basin."
+          }
+        ]
+      },
+      {
+        "heading": "THE SIXTEEN-YEAR WAR",
+        "body": "The insurgency began in 2009 with the extrajudicial killing of Boko Haram founder Mohammed Yusuf in police custody. What started as a local grievance against state brutality has outlasted four Nigerian presidents and consumed an estimated $9 billion in military spending. The violence has become structural, not episodic."
+      }
+    ],
+    "generatedAt": "2026-04-22T17:30:13.614Z",
+    "label": "ISWAP & the Lake Chad Insurgency",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-new-court-ruling-blocks-many-of-the-government-s-anti-renewa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATUTE",
+        "body": "The Administrative Procedure Act of 1946 is the constitution of the regulatory state. It forces agencies to explain their reasoning, accept public comment, and act on a factual record — not on political whim.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The APA's core test: agency action must not be *arbitrary and capricious*. Courts read this as a demand for **reasoned decisionmaking** — a record showing the agency considered the relevant facts, not just followed orders."
+          }
+        ]
+      },
+      {
+        "heading": "STATE FARM",
+        "body": "The 1983 Supreme Court ruling in Motor Vehicle Manufacturers v. State Farm set the standard: an agency reversing course must examine the evidence and articulate a rational connection between facts and choice. 'The President told me to' is not a rational connection.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under State Farm, what must an agency show when it reverses a prior rule?",
+            "options": [
+              "That the President ordered the change",
+              "A rational connection between facts in the record and the new policy",
+              "That the new rule has majority public support",
+              "That Congress approved the reversal"
+            ],
+            "correct": 1,
+            "explanation": "State Farm requires reasoned analysis grounded in the administrative record — political direction alone is insufficient under the APA."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AN EXECUTIVE ORDER CAN AND CANNOT DO",
+        "body": "Executive orders direct the executive branch but cannot override statutes. An EO can tell Interior to reconsider renewable permits; it cannot itself satisfy the APA's requirement that Interior justify the outcome with facts and analysis."
+      },
+      {
+        "heading": "THE INJUNCTION SCOPE",
+        "body": "After the 2024 decision narrowing universal injunctions, federal courts increasingly limit relief to named plaintiffs. A trade-group-only injunction means non-member developers still face the blocked rules — and the government can relitigate or appeal without a nationwide freeze."
+      },
+      {
+        "heading": "THE SLOW-WALK LOOPHOLE",
+        "body": "Even when rules fall, agencies retain vast discretion over permit timing, environmental review depth, and information requests. Enforcement by delay is hard to challenge in court because no single decision triggers reviewable final action.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Solar",
+                "value": "~30 GW",
+                "tone": "favorable"
+              },
+              {
+                "label": "Wind",
+                "value": "~8 GW",
+                "tone": "neutral"
+              },
+              {
+                "label": "Natural gas",
+                "value": "~5 GW",
+                "tone": "neutral"
+              },
+              {
+                "label": "Coal",
+                "value": "~0 GW",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "US generation capacity additions, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHEVRON SHIFT",
+        "body": "Loper Bright (2024) ended Chevron deference, meaning courts no longer defer to agency interpretations of ambiguous statutes. This cuts both ways: it constrained Biden-era climate rules and now constrains the current administration's rollback rules with equal force."
+      }
+    ],
+    "generatedAt": "2026-04-22T17:30:40.456Z",
+    "label": "The APA & Executive Power",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-22-physicists-think-they-ve-solved-the-muon-mystery": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MUON",
+        "body": "A muon is a heavier cousin of the electron — same charge, but 207 times the mass. It lives for 2.2 microseconds before decaying. Because it is so much heavier, it couples more strongly to hypothetical new particles, which makes it a sensitive probe of physics beyond the Standard Model.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The muon's mass ratio is why it matters: sensitivity to new physics scales roughly as *mass squared*, giving muons a **~43,000×** advantage over electrons as a probe."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT g-2 MEASURES",
+        "body": "Spin a charged particle in a magnetic field and it precesses. The Dirac equation predicts a gyromagnetic ratio of exactly 2. The real value deviates slightly — the 'anomalous magnetic moment,' or g-2 — because the particle is constantly emitting and reabsorbing virtual particles from the quantum vacuum."
+      },
+      {
+        "heading": "WHY VIRTUAL PARTICLES MATTER",
+        "body": "The quantum vacuum is not empty. Pairs of particles flicker in and out of existence, and the muon interacts with all of them as it precesses. Every known particle contributes a calculable bump to g-2. If an unknown particle exists, it would show up as a discrepancy between theory and experiment."
+      },
+      {
+        "heading": "THE HADRONIC PROBLEM",
+        "body": "Electromagnetic and weak contributions to g-2 can be calculated to extraordinary precision. But hadronic contributions — virtual quarks and gluons — cannot be computed perturbatively because the strong force gets stronger at low energies. This single term has dominated the theoretical uncertainty for twenty years.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is the hadronic contribution to muon g-2 so hard to calculate?",
+            "options": [
+              "The strong force weakens at low energies, making math diverge",
+              "The strong force strengthens at low energies, breaking perturbation theory",
+              "Quarks are too light to simulate",
+              "Gluons do not interact with muons"
+            ],
+            "correct": 1,
+            "explanation": "Asymptotic freedom means QCD is weak at high energies and strong at low energies — the opposite of QED — so standard perturbative expansions fail for low-energy hadronic loops."
+          }
+        ]
+      },
+      {
+        "heading": "LATTICE QCD",
+        "body": "Lattice chromodynamics discretizes spacetime into a grid and solves the strong-force equations numerically on supercomputers. It is the only first-principles method that works in the non-perturbative regime. The Penn State recalculation uses lattice QCD to pin down the hadronic vacuum polarization term that had driven the anomaly."
+      },
+      {
+        "heading": "WHY 'HALF A SIGMA' MATTERS",
+        "body": "In particle physics, a discovery of new physics requires a 5-sigma discrepancy between theory and experiment. The old muon g-2 gap was around 4.2 sigma — tantalizing but not conclusive. Closing it to 0.5 sigma means theory and experiment now agree; the anomaly that inspired a generation of beyond-Standard-Model papers has effectively dissolved."
+      },
+      {
+        "heading": "WHAT SURVIVES",
+        "body": "The Standard Model is now consistent with g-2, but it still cannot explain dark matter, neutrino masses, the matter-antimatter asymmetry, or why gravity is so weak. One door closed; the building still has holes."
+      }
+    ],
+    "generatedAt": "2026-04-22T17:31:06.248Z",
+    "label": "The Muon g-2 Anomaly",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-22-sudan-rights-group-9-detainees-executed-246-held-in-south-ko": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE NUBA ARE",
+        "body": "The Nuba are roughly 50 distinct ethnic groups — speaking dozens of languages — who took refuge in the Nuba Mountains over centuries to escape slave raids from the north. They are predominantly Muslim, with Christian and traditional minorities, and have long been treated by Khartoum as racially African despite sharing the faith of the Arab-identifying center.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The label *Nuba* is a geographic collective, not a single ethnicity — a fact that has repeatedly frustrated attempts by outsiders to negotiate with them as one bloc."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOUTH KORDOFAN IS THE FAULT LINE",
+        "body": "When South Sudan seceded in 2011, the border was drawn north of the Nuba Mountains — leaving a population that had fought alongside the southern SPLA stranded inside Sudan. The SPLM-North insurgency began within weeks of independence and has never ended.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "SS"
+            ],
+            "label": "the Nuba Mountains sit north of the 2011 border"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1990s PRECEDENT",
+        "body": "Under Bashir, Khartoum declared jihad against the Nuba in 1992 and imposed a total blockade — no food, no journalists, no aid — for most of the decade. African Rights and later the UN documented forced relocations to 'peace camps' and mass atrocities that many scholars classify as genocide. The current detentions sit inside that institutional memory."
+      },
+      {
+        "heading": "MILITARY INTELLIGENCE AS A PARALLEL STATE",
+        "body": "Sudan's Military Intelligence Directorate runs detention sites outside the regular prison system, answerable only to the army command. Since the April 2023 war with the RSF began, MI facilities have proliferated — and with the ICRC and UN largely expelled from government-held areas, no independent body verifies who is held, where, or on what charge."
+      },
+      {
+        "heading": "WHY KADUGLI MATTERS",
+        "body": "Kadugli is the South Kordofan state capital and the army's main garrison in the Nuba Mountains. UN peacekeepers (UNMIS) were stationed there in 2011 and documented mass graves before being expelled — a template the current blackout echoes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why were UN peacekeepers expelled from Kadugli in 2011?",
+            "options": [
+              "They documented mass graves after fighting broke out",
+              "Their mandate expired at South Sudan's independence",
+              "South Sudan requested their redeployment",
+              "They were withdrawn over funding disputes"
+            ],
+            "correct": 0,
+            "explanation": "UNMIS staff photographed mass graves near Kadugli in mid-2011; Khartoum terminated the mission shortly after, and no replacement force was permitted."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOCUMENTATION PROBLEM",
+        "body": "With foreign journalists barred and humanitarian access blocked, diaspora-run monitors like the Nuba Mountains Observatory have become the primary evidence trail. Their methodology — named victims, dated incidents, cross-checked with families — is the same approach Syrian Archive pioneered, and the same approach ICC prosecutors have come to rely on when states close the door."
+      }
+    ],
+    "generatedAt": "2026-04-22T17:31:34.796Z",
+    "label": "The Nuba & South Kordofan",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-trump-says-u-s-iran-talks-possible-within-36-to-72-hours-rep": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FATWA POSTURE",
+        "body": "Supreme Leader Khamenei issued a fatwa in the mid-2000s declaring nuclear weapons haram under Islamic law. Iranian diplomats cite it constantly; Western analysts dismiss it as rhetorical cover. The ambiguity is the point — it lets Tehran claim principled restraint while preserving every technical capability short of weaponization.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is called *taqiyya*-compatible by critics and *principled* by supporters — either way, it is **unwritten**, which means it can be revised by the same authority that issued it."
+          }
+        ]
+      },
+      {
+        "heading": "THE 90% THRESHOLD",
+        "body": "Weapons-grade uranium is ~90% U-235. Iran has been enriching to 60% — a level with no civilian use. The jump from 60% to 90% is technically trivial compared to the jump from 3.67% (reactor grade) to 60%. Most of the centrifuge work is already done.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What enrichment level is considered weapons-grade uranium?",
+            "options": [
+              "~20% U-235",
+              "~60% U-235",
+              "~90% U-235",
+              "~99% U-235"
+            ],
+            "correct": 2,
+            "explanation": "Weapons-grade is ~90% U-235. The hardest centrifuge work is getting from natural uranium to 60% — the final jump to 90% is comparatively fast."
+          }
+        ]
+      },
+      {
+        "heading": "THE JCPOA GHOST",
+        "body": "The 2015 nuclear deal capped Iranian enrichment at 3.67% and stockpiles at 300kg for 15 years. Trump withdrew in 2018; Iran responded by exceeding every limit. Any new deal negotiates against a baseline far worse than 2015 — Iran now has knowledge, stockpile, and advanced centrifuges it did not have a decade ago."
+      },
+      {
+        "heading": "WHY ISLAMABAD",
+        "body": "Pakistan is the only Muslim nuclear power, maintains working relations with both Tehran and Washington, and has brokered back-channels before — most famously Kissinger's 1971 opening to China. Its utility is geographic and diplomatic: close enough to Iran to be trusted, distant enough from Washington to provide cover.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "PK",
+              "US"
+            ],
+            "label": "the triangulation"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ LEVERAGE",
+        "body": "Every Iranian negotiator carries the strait in their pocket. Roughly 21% of global oil consumption transits Hormuz; Iran's coastline runs its entire northern edge. The threat need not be executed to move markets — insurance premiums and tanker rates shift on rhetoric alone.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              65.46,
+              68.16,
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 22",
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SURRENDER QUESTION",
+        "body": "Prediction markets price the odds of Iran surrendering its enriched uranium stockpile at single digits. The market reflects a structural truth: a regime that built the program through four decades of sanctions does not dismantle it under a 72-hour ultimatum.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              9,
+              13,
+              12,
+              11,
+              10,
+              7,
+              3,
+              4,
+              14,
+              9,
+              27,
+              48,
+              12,
+              11
+            ],
+            "periods": [
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 7",
+              "Apr 9",
+              "Apr 13",
+              "Apr 15",
+              "Apr 18",
+              "Apr 22",
+              "Apr 22"
+            ],
+            "label": "Iran agrees to surrender enriched…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "9%"
+              },
+              {
+                "atIndex": 13,
+                "label": "11%"
+              }
+            ],
+            "link": "https://polymarket.com/event/iran-agrees-to-surrender-enriched-uranium-stockpile-by",
+            "source": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20",
+      "Polymarket · as of 2026-04-22"
+    ],
+    "generatedAt": "2026-04-22T17:32:02.196Z",
+    "label": "The Iran Nuclear Standoff",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-trump-wants-to-double-production-of-new-nuclear-weapon-cores": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A PIT IS",
+        "body": "A plutonium pit is the grapefruit-sized hollow sphere at the core of every modern warhead. When conventional explosives compress it, the plutonium reaches supercritical density and triggers fission — which in a thermonuclear weapon then ignites the fusion secondary.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pit is the *primary*; the hydrogen-isotope stage it ignites is the *secondary*. Every US warhead since the 1950s has used this **two-stage Teller-Ulam** design."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRODUCTION STOPPED",
+        "body": "The US made pits at Rocky Flats in Colorado until 1989, when an FBI raid found widespread environmental violations — plutonium in the groundwater, illegal incineration, contaminated soil. The plant never reopened. For over 30 years, the US stockpile has run on pits made before the Berlin Wall fell."
+      },
+      {
+        "heading": "THE AGING QUESTION",
+        "body": "Plutonium-239 has a half-life of 24,000 years, but the metal itself self-irradiates and develops microscopic voids over decades. JASON, the Pentagon's scientific advisory group, concluded in 2006 that existing pits remain reliable for at least 85 years — which is why the urgency of new production is a policy choice, not a physics deadline."
+      },
+      {
+        "heading": "THE TWO-SITE STRATEGY",
+        "body": "Los Alamos in New Mexico and the Savannah River Site in South Carolina are being rebuilt to produce 30 pits each per year. The split is deliberate — a single-site failure cannot halt the program — but Savannah River is years behind schedule and billions over budget.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "pit production sites: Los Alamos NM, Savannah River SC"
+          }
+        ]
+      },
+      {
+        "heading": "THE STOCKPILE PARADOX",
+        "body": "The US already holds roughly 3,700 active warheads plus thousands of retired pits warehoused at Pantex in Texas. New production at 60/year adds to an arsenal that New START caps at 1,550 deployed strategic warheads — meaning every new pit made is either a replacement or a hedge against a future treaty collapse."
+      },
+      {
+        "heading": "WHO PAYS THE CLEANUP",
+        "body": "The $400M cleanup cut targets the Office of Environmental Management, which handles Cold War waste at Hanford, Savannah River, and Oak Ridge. Hanford alone holds 56 million gallons of radioactive sludge in aging tanks — the largest environmental liability in US government history, estimated at $500+ billion to remediate.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many plutonium pits does the US already hold in warehoused storage at Pantex, Texas?",
+            "options": [
+              "About 1,500",
+              "About 5,000",
+              "About 15,000",
+              "About 50,000"
+            ],
+            "correct": 2,
+            "explanation": "The Union of Concerned Scientists estimates ~15,000 pits sit unused at Pantex — decades of surplus from the Cold War drawdown."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-22T17:32:31.997Z",
+    "label": "Plutonium Pits & the US Arsenal",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-us-nears-government-bailout-deal-for-spirit-airlines": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ULCC BARGAIN",
+        "body": "Ultra-low-cost carriers unbundle everything — seats, bags, water — and pack planes tighter than legacy carriers. The model works only at high load factors and low fuel prices. When either slips, ULCCs have no premium cabin to cushion the fall.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Spirit's seat pitch runs **28 inches**, versus **31–32** on legacy carriers. The math: more seats per plane means lower cost per seat — but zero margin for a demand shock."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHAPTER 11 RITUAL",
+        "body": "US airlines have used bankruptcy as a balance-sheet tool for forty years — Continental (twice), TWA (three times), United, Delta, American, US Airways. Chapter 11 lets them shed pensions, renegotiate leases, and void labor contracts while still flying. Spirit's second filing in under two years is unusual only in speed, not kind."
+      },
+      {
+        "heading": "WHY WASHINGTON INTERVENES",
+        "body": "Airlines are politically protected because route maps map onto congressional districts. A Spirit collapse means lost service to secondary cities — Myrtle Beach, Kalamazoo, Bristol — where no legacy carrier will replace the frequency. The 2020 CARES Act sent $54 billion to airlines on the same logic.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Post-9/11 (2001)",
+                "value": "$15bn",
+                "weight": 15
+              },
+              {
+                "label": "CARES Act (2020)",
+                "value": "$54bn",
+                "weight": 54
+              },
+              {
+                "label": "Spirit (2026)",
+                "value": "$500mn",
+                "weight": 0.5
+              }
+            ],
+            "label": "US airline bailouts by era"
+          }
+        ]
+      },
+      {
+        "heading": "WARRANTS, NOT LOANS",
+        "body": "An option warrant gives the government the right to buy equity at a fixed strike price later. If Spirit recovers, taxpayers capture upside; if it fails, the warrants are worthless. This is the structure Treasury used on AIG in 2008 and on the Detroit automakers in 2009 — the state as reluctant shareholder."
+      },
+      {
+        "heading": "THE JETBLUE PROBLEM",
+        "body": "JPMorgan's warning is the moral hazard point: once the government rescues one distressed carrier, every distressed carrier has a template. JetBlue posted losses through 2024–25 after a blocked Spirit merger; Frontier's margins are structurally thinner than Spirit's. A $500 million precedent prices the next ask.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which US airline has NEVER filed for Chapter 11 bankruptcy?",
+            "options": [
+              "American Airlines",
+              "Delta Air Lines",
+              "Southwest Airlines",
+              "United Airlines"
+            ],
+            "correct": 2,
+            "explanation": "Southwest has never filed Chapter 11 — the only major US carrier with that record, a product of its fuel-hedging discipline and single-fleet cost structure."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEREGULATION INHERITANCE",
+        "body": "The 1978 Airline Deregulation Act ended federal route and fare controls, letting carriers compete on price. It killed Pan Am, Eastern, and TWA; it also created the hub-and-spoke system and the ULCC niche. Every bailout since has been a partial re-regulation — the state picking which survivors the market was about to cull."
+      }
+    ],
+    "generatedAt": "2026-04-22T17:33:02.167Z",
+    "label": "Airline Bailouts & the ULCC Model",
+    "category": "economy",
+    "articleCount": 1
   }
 }
