@@ -2,13 +2,232 @@
   "version": 1,
   "stories": [
     {
+      "id": "john-ternus-to-become-apple-ceo",
+      "label": "John Ternus to become Apple CEO",
+      "firstSeen": "2026-04-22T08:07:24.411Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-04-20-john-ternus-to-become-apple-ceo"
+      ],
+      "eventUri": null,
+      "summary": "Apple announced Tim Cook will step down as CEO to become executive chairman, with senior VP John Ternus (hardware engineering) becoming CEO. Lead with Ternus's profile: he is an engineer, not an operations or services executive — a signal Apple is prioritizing hardware innovation over the Cook-era optimization playbook, at a moment when the company is late on AI and spatial computing. Not a leadership shuffle story — a strategy-shift story.",
+      "conceptUris": []
+    },
+    {
+      "id": "war-crimes-court-rejects-bid-to-free-philippines-duterte",
+      "label": "War Crimes Court Rejects Bid to Free Philippines' Duterte",
+      "firstSeen": "2026-04-22T12:07:46.349Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-22-war-crimes-court-rejects-bid-to-free-philippines-duterte"
+      ],
+      "eventUri": "eng-11589614",
+      "summary": "The ICC Appeals Chamber upheld jurisdiction over Duterte's crimes-against-humanity case — a binding precedent that a state leaving the Rome Statute does not erase liability for acts committed while a member. Lead with the legal mechanism: Duterte's drug war killed thousands, and the court is now locked in. Reader angle: this is the strongest ICC jurisdictional ruling since the Al-Bashir case, and it complicates every exit-threat from the court (Philippines, Burundi, future Israel/US posturing).",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/International_Criminal_Court",
+        "http://en.wikipedia.org/wiki/Rodrigo_Duterte",
+        "http://en.wikipedia.org/wiki/Philippines",
+        "http://en.wikipedia.org/wiki/Jurisdiction",
+        "http://en.wikipedia.org/wiki/Crimes_against_humanity",
+        "http://en.wikipedia.org/wiki/Manila",
+        "http://en.wikipedia.org/wiki/The_Hague",
+        "http://en.wikipedia.org/wiki/Rome_Statute"
+      ]
+    },
+    {
+      "id": "moderna-continues-bird-flu-vax-study-but-limits-work-in-the",
+      "label": "Moderna continues bird flu vax study, but limits work in the U.S.",
+      "firstSeen": "2026-04-22T12:07:46.349Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-22-moderna-continues-bird-flu-vax-study-but-limits-work-in-the"
+      ],
+      "eventUri": null,
+      "summary": "Moderna is continuing its H5N1 bird-flu mRNA vaccine trial but pulling most of the work out of the United States — a rare public admission that US regulatory and political conditions for mRNA research have deteriorated. Lead with the location shift: a Massachusetts-headquartered company is moving pandemic-prep science offshore. Reader angle: this is what regulatory capture by vaccine-skeptic appointees looks like in operational terms, not rhetoric.",
+      "conceptUris": []
+    },
+    {
+      "id": "enugu-community-petitions-mbah-over-alleged-lease-of-ancestr",
+      "label": "Enugu community petitions Mbah over alleged lease of ancestral land for 99 years",
+      "firstSeen": "2026-04-22T12:07:46.349Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-22-enugu-community-petitions-mbah-over-alleged-lease-of-ancestr"
+      ],
+      "eventUri": null,
+      "summary": "The Anigbiyovo Oyiwode clan of Akpawfu in Enugu state says traditional rulers leased their ancestral land for 99 years without community consent, and has petitioned Governor Peter Mbah. Lead with the land-tenure mechanism: Nigerian customary land is being converted into long leases by chiefs with no community ratification — a pattern repeated across Anambra, Abia, Rivers. Reader angle: this is the quiet dispossession story Western coverage of Africa misses.",
+      "conceptUris": []
+    },
+    {
+      "id": "taiwan-s-president-cancels-trip-to-eswatini-after-three-afri",
+      "label": "Taiwan's president cancels trip to Eswatini after three African countries revoke flight permits",
+      "firstSeen": "2026-04-22T12:07:46.349Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-22-taiwan-s-president-cancels-trip-to-eswatini-after-three-afri"
+      ],
+      "eventUri": "eng-11587678",
+      "summary": "Three African states revoked overflight permits for Taiwan's president Lai Ching-te, forcing cancellation of a visit to Eswatini — Taiwan's last African ally. Lead with the mechanism: Beijing did not block the trip diplomatically, it closed the sky. Reader angle: this is how Chinese influence in Africa now operates — not loan diplomacy but sovereign airspace as a coercive tool. Eswatini is isolated; the diplomatic attrition on Taipei is nearly complete.",
+      "conceptUris": []
+    },
+    {
+      "id": "how-syria-s-revolution-was-misunderstood-by-its-rulers-and-t",
+      "label": "How Syria’s Revolution Was Misunderstood, by Its Rulers and the World",
+      "firstSeen": "2026-04-22T12:07:46.349Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-22-how-syria-s-revolution-was-misunderstood-by-its-rulers-and-t"
+      ],
+      "eventUri": null,
+      "summary": "Five recent books on Syria's uprising show how regime, Islamists, and foreign observers alike erased the civilians who started it — the revolution was first crushed, then misread. Lead with the interpretive failure: Syria's people were treated as sectarian instruments, not political actors. Reader angle: this matters now because Syria's post-Assad transition is being shaped by the same elites who misread the uprising in 2011. A serious, book-grounded piece, not a hot take.",
+      "conceptUris": []
+    },
+    {
+      "id": "germany-vows-to-build-europe-s-strongest-army-by-2039-to-det",
+      "label": "Germany Vows To Build Europe's Strongest Army By 2039 To Deter Russia",
+      "firstSeen": "2026-04-22T12:07:46.349Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-22-germany-vows-to-build-europe-s-strongest-army-by-2039-to-det"
+      ],
+      "eventUri": "deu-2112854",
+      "summary": "Germany sets a 260,000 active-troop floor and pledges Europe's strongest conventional army by 2039 — a 14-year rearmament commitment against Russia. Lead with the number and the timeline: this is Berlin formally abandoning its postwar force-size posture. Why it matters: a militarized German economy reshapes EU fiscal rules, defence-industrial supply chains, and the balance inside NATO. Note the pushback from senior military officials wanting even larger numbers.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Military_strategy",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Bundeswehr",
+        "http://en.wikipedia.org/wiki/NATO",
+        "http://en.wikipedia.org/wiki/Europe",
+        "http://en.wikipedia.org/wiki/Germany",
+        "http://en.wikipedia.org/wiki/Ministry_of_defence",
+        "http://en.wikipedia.org/wiki/Military"
+      ]
+    },
+    {
+      "id": "eu-proposes-further-energy-measures-to-mitigate-iran-war-cri",
+      "label": "EU Proposes Further Energy Measures to Mitigate Iran War Crisis",
+      "firstSeen": "2026-04-22T12:07:46.349Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-22-eu-proposes-further-energy-measures-to-mitigate-iran-war-cri"
+      ],
+      "eventUri": "rus-2056305",
+      "summary": "Brussels is using the Iran war to force an electrification push it could not pass in peacetime: tax power less than oil and gas, optimise jet fuel distribution, accelerate legislative proposals. Lead with the policy laundering — a geopolitical crisis is being converted into a fossil-fuel-exit lever. Why it matters: energy-market structure, not emissions targets, is what actually moves European decarbonisation, and war has done what climate policy could not.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/European_Commission",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Brussels",
+        "http://ru.wikipedia.org/wiki/Санкции_в_связи_с_украинскими_событиями_2014_года",
+        "http://en.wikipedia.org/wiki/TASS",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Euro"
+      ]
+    },
+    {
+      "id": "why-europe-must-disable-russia-s-crypto-ecosystem",
+      "label": "Why Europe must disable Russia’s crypto ecosystem",
+      "firstSeen": "2026-04-22T12:07:46.349Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-22-why-europe-must-disable-russia-s-crypto-ecosystem"
+      ],
+      "eventUri": null,
+      "summary": "CODA's financial-crime correspondent maps how Russian sanctions evasion has migrated to stablecoins routed through UAE and Central Asian OTC desks, and argues Europe's 2022 sanctions bright spot is now corroding. Lead with the mechanism: ruble-to-USDT via Garantex successors is the primary channel, and EU policy has not caught up. Reader angle: this is the sanctions enforcement gap that will define 2026 — not new sanctions, but plugging the crypto-stablecoin side door.",
+      "conceptUris": []
+    },
+    {
+      "id": "doubts-cast-over-pig-farm-methane-credits-in-china",
+      "label": "Doubts cast over pig farm methane credits in China",
+      "firstSeen": "2026-04-22T12:07:46.349Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-doubts-cast-over-pig-farm-methane-credits-in-china"
+      ],
+      "eventUri": null,
+      "summary": "New research finds roughly a third of Chinese pig-farm methane-capture projects issued carbon credits would have gone ahead without the credit revenue — meaning those offsets represent no additionality and corporate buyers got nothing real. Lead with the one-third figure. Reader angle: this is another nail in the voluntary carbon market after the forestry-credit scandals; companies relying on these offsets for Scope 3 claims are exposed.",
+      "conceptUris": []
+    },
+    {
+      "id": "deadly-deepfakes-a-survival-guide-for-the-age-of-algorithmic",
+      "label": "Deadly deepfakes:  A survival guide for the age of algorithmic war",
+      "firstSeen": "2026-04-22T12:07:46.349Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-22-deadly-deepfakes-a-survival-guide-for-the-age-of-algorithmic"
+      ],
+      "eventUri": null,
+      "summary": "Rachel Adams documents how AI-generated fabrications are now routine weapons in Sudan, Gaza, Myanmar, and Ukraine — and how Western platforms provide the distribution and the tooling while Global South civilians bear the cost. Lead with the asymmetry: the harm is concentrated in conflict zones, the liability remains in Silicon Valley. Reader angle: this reframes 'AI safety' as a colonial question, not a Bay Area one.",
+      "conceptUris": []
+    },
+    {
+      "id": "chatgpt-images-2-0",
+      "label": "ChatGPT Images 2.0",
+      "firstSeen": "2026-04-22T12:07:46.349Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-21-chatgpt-images-2-0"
+      ],
+      "eventUri": null,
+      "summary": "OpenAI shipped a second-generation ChatGPT image model; 876 points and 723 comments on Hacker News suggest substantive capability deltas from the community, not marketing. Lead with the specific capability shift developers are noting (text rendering, compositional fidelity) rather than the announcement. Reader angle: a technically literate audience wants the delta and what it breaks — watermarking, provenance, stock imagery markets.",
+      "conceptUris": []
+    },
+    {
       "id": "exclusive-russia-to-halt-kazakhstan-s-oil-flows-to-germany-v",
       "label": "Exclusive: Russia to halt Kazakhstan's oil flows to Germany via Druzhba, sources say",
       "firstSeen": "2026-04-22T08:07:24.411Z",
       "lastCovered": "2026-04-22T08:07:24.411Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-exclusive-russia-to-halt-kazakhstan-s-oil-flows-to-germany-v"
@@ -33,7 +252,7 @@
       "lastCovered": "2026-04-22T08:07:24.411Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-over-30-nations-to-meet-in-london-to-discuss-reopening-the-s"
@@ -58,7 +277,7 @@
       "lastCovered": "2026-04-22T08:07:24.411Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-22-iranian-gunboat-opens-fire-on-container-ship-in-strait-of-ho"
@@ -83,7 +302,7 @@
       "lastCovered": "2026-04-22T08:07:24.411Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-22-a-year-on-india-has-failed-to-substantiate-allegations-again"
@@ -99,7 +318,7 @@
       "lastCovered": "2026-04-22T08:07:24.411Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-21-how-israel-recognized-somaliland"
@@ -115,7 +334,7 @@
       "lastCovered": "2026-04-22T08:07:24.411Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-22-blanket-overflight-indonesia-and-the-law-of-neutrality"
@@ -131,7 +350,7 @@
       "lastCovered": "2026-04-22T08:07:24.411Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-22-coles-adds-20c-to-the-price-of-milk-as-war-in-the-middle-eas"
@@ -147,7 +366,7 @@
       "lastCovered": "2026-04-22T08:07:24.411Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-22-bitcoin-price-climbs-to-77-500-on-trump-ceasefire-extension"
@@ -163,7 +382,7 @@
       "lastCovered": "2026-04-22T08:07:24.411Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-22-a-more-troubling-picture-of-sea-level-rise-comes-into-view"
@@ -179,7 +398,7 @@
       "lastCovered": "2026-04-22T08:07:24.411Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-20-clean-energy-pushes-fossil-fuel-power-into-reverse-for-first"
@@ -195,7 +414,7 @@
       "lastCovered": "2026-04-22T08:07:24.411Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-20-all-phones-sold-in-the-eu-to-have-replaceable-batteries-from"
@@ -205,29 +424,13 @@
       "conceptUris": []
     },
     {
-      "id": "john-ternus-to-become-apple-ceo",
-      "label": "John Ternus to become Apple CEO",
-      "firstSeen": "2026-04-22T08:07:24.411Z",
-      "lastCovered": "2026-04-22T08:07:24.411Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-john-ternus-to-become-apple-ceo"
-      ],
-      "eventUri": null,
-      "summary": "Apple announced Tim Cook will step down as CEO to become executive chairman, with senior VP John Ternus (hardware engineering) becoming CEO. Lead with Ternus's profile: he is an engineer, not an operations or services executive — a signal Apple is prioritizing hardware innovation over the Cook-era optimization playbook, at a moment when the company is late on AI and spatial computing. Not a leadership shuffle story — a strategy-shift story.",
-      "conceptUris": []
-    },
-    {
       "id": "volo-protocol-loses-3-5-million-in-exploit-days-after-kelpda",
       "label": "Volo Protocol loses $3.5 million in exploit days after KelpDAO's breach",
       "firstSeen": "2026-04-22T08:07:24.411Z",
       "lastCovered": "2026-04-22T08:07:24.411Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-22-volo-protocol-loses-3-5-million-in-exploit-days-after-kelpda"
@@ -237,13 +440,30 @@
       "conceptUris": []
     },
     {
+      "id": "life-force-nonequilibrium-thermodynamics-biology",
+      "label": "What Physical 'Life Force' Turns Biology's Wheels?",
+      "firstSeen": "2026-04-21T22:06:53.046Z",
+      "lastCovered": "2026-04-22T12:07:46.349Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 4,
+      "arc": "developing",
+      "articles": [
+        "2026-04-20-life-force-nonequilibrium-thermodynamics-biology",
+        "2026-04-20-what-physical-life-force-turns-biology-s-wheels"
+      ],
+      "eventUri": null,
+      "summary": "A new class of non-equilibrium thermodynamics experiments is trying to quantify the specific energetic 'push' that separates living matter from dead chemistry. Lead with the measurable quantity researchers are now capturing — entropy production per molecular cycle — and what it would mean if biology is describable by a single physical constant. This is frontier basic science with eventual reach into medicine and AI-based life detection.",
+      "conceptUris": []
+    },
+    {
       "id": "iran-un-us-piracy-toska-sea-oman",
       "label": "US action in Sea of Oman 'bears hallmarks of piracy', Iran tells UN",
       "firstSeen": "2026-04-22T04:06:15.299Z",
       "lastCovered": "2026-04-22T04:06:15.299Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-22-iran-un-us-piracy-toska-sea-oman"
@@ -268,7 +488,7 @@
       "lastCovered": "2026-04-22T04:06:15.299Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-pakistan-airspace-ban-india-aviation-may-24"
@@ -293,7 +513,7 @@
       "lastCovered": "2026-04-22T04:06:15.299Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-gaza-students-study-abroad-rafah-closure"
@@ -309,7 +529,7 @@
       "lastCovered": "2026-04-22T04:06:15.299Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-22-pakistan-eurobond-sukuk-bids-borrowing"
@@ -325,7 +545,7 @@
       "lastCovered": "2026-04-22T04:06:15.299Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-asean-economy-hormuz-oil-crisis-iran"
@@ -341,7 +561,7 @@
       "lastCovered": "2026-04-22T04:06:15.299Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-22-metabolism-circadian-clocks-meal-timing"
@@ -357,7 +577,7 @@
       "lastCovered": "2026-04-22T04:06:15.299Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-anthropic-mythos-ai-firefox-zero-days"
@@ -373,7 +593,7 @@
       "lastCovered": "2026-04-22T04:06:15.299Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-22-australia-esafety-roblox-minecraft-fortnite"
@@ -389,7 +609,7 @@
       "lastCovered": "2026-04-22T04:06:15.299Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-21-ofcom-telegram-csam-online-safety-act"
@@ -405,7 +625,7 @@
       "lastCovered": "2026-04-22T04:06:15.299Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-22-entrance-of-apartment-building-collapses-due-to-drone-attack"
@@ -421,7 +641,7 @@
       "lastCovered": "2026-04-22T04:06:15.299Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-22-world-earth-day-2026-history-significance-quotes-and-why-it"
@@ -446,7 +666,7 @@
       "lastCovered": "2026-04-21T22:06:53.046Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-macron-paris-lebanon-ceasefire-sovereignty-talks"
@@ -471,7 +691,7 @@
       "lastCovered": "2026-04-21T22:06:53.046Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-cherfilus-mccormick-resigns-disaster-aid-embezzlement"
@@ -496,7 +716,7 @@
       "lastCovered": "2026-04-21T22:06:53.046Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-splc-trump-doj-informants-probe-civil-rights"
@@ -521,7 +741,7 @@
       "lastCovered": "2026-04-21T22:06:53.046Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-nigeria-phc-accountability-recovery-funding"
@@ -537,7 +757,7 @@
       "lastCovered": "2026-04-21T22:06:53.046Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-michigan-dems-gaza-protests-electoral-backfire"
@@ -553,7 +773,7 @@
       "lastCovered": "2026-04-21T22:06:53.046Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-istanbul-hotel-pesticide-deaths-trial-turkey"
@@ -578,7 +798,7 @@
       "lastCovered": "2026-04-21T22:06:53.046Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-plastics-home-construction-recycling-lumber"
@@ -594,7 +814,7 @@
       "lastCovered": "2026-04-21T22:06:53.046Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-prediction-markets-coinbase-robinhood-growth-strategy"
@@ -610,7 +830,7 @@
       "lastCovered": "2026-04-21T22:06:53.046Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-early-life-oxygen-mesoarchean-biosignatures"
@@ -620,29 +840,13 @@
       "conceptUris": []
     },
     {
-      "id": "life-force-nonequilibrium-thermodynamics-biology",
-      "label": "What Physical 'Life Force' Turns Biology's Wheels?",
-      "firstSeen": "2026-04-21T22:06:53.046Z",
-      "lastCovered": "2026-04-21T22:06:53.046Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 4,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-life-force-nonequilibrium-thermodynamics-biology"
-      ],
-      "eventUri": null,
-      "summary": "A new class of non-equilibrium thermodynamics experiments is trying to quantify the specific energetic 'push' that separates living matter from dead chemistry. Lead with the measurable quantity researchers are now capturing — entropy production per molecular cycle — and what it would mean if biology is describable by a single physical constant. This is frontier basic science with eventual reach into medicine and AI-based life detection.",
-      "conceptUris": []
-    },
-    {
       "id": "indonesia-ai-data-centers-water-scarcity",
       "label": "AI-ready data centers are booming in Indonesia but water woes loom",
       "firstSeen": "2026-04-21T22:06:53.046Z",
       "lastCovered": "2026-04-21T22:06:53.046Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-indonesia-ai-data-centers-water-scarcity"
@@ -658,7 +862,7 @@
       "lastCovered": "2026-04-21T22:06:53.046Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-21-silo-s3-teaser-turns-back-the-clock-to-a-greener-past"
@@ -674,7 +878,7 @@
       "lastCovered": "2026-04-22T04:06:15.299Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-21-indonesia-us-overflight-access-non-alignment",
@@ -691,7 +895,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-pacific-boat-strikes-survivors-us-torture-allegations"
@@ -707,7 +911,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-hungary-anti-lgbtq-law-eu-court-ruling"
@@ -730,7 +934,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-kharge-modi-terrorist-india-election-commission"
@@ -753,7 +957,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-21-trump-whatsapp-diplomacy-iran-truce-expiry",
@@ -778,7 +982,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-uk-electricity-gas-price-decoupling-reform"
@@ -794,7 +998,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-china-electricity-carbon-emissions-dataset-2060"
@@ -810,7 +1014,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-nasa-curiosity-mars-organic-molecules-prebiotic"
@@ -832,7 +1036,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-el-nino-2026-second-warmest-year-climate"
@@ -848,7 +1052,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-sulfur-polymer-antifungal-candida-auris"
@@ -864,7 +1068,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-ai-clean-room-open-source-copyright-laundering"
@@ -880,7 +1084,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-vercel-breach-ai-tool-supply-chain"
@@ -896,7 +1100,7 @@
       "lastCovered": "2026-04-21T17:06:56.366Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-21-lebanon-national-roaming-wartime-resilience"
@@ -912,7 +1116,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-21-russia-claims-1700-sq-km-donbas-fortress-belt"
@@ -935,7 +1139,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-21-mandelson-vetting-starmer-pressure-epstein"
@@ -958,7 +1162,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-21-israeli-occupation-quneitra-syria-buffer-zone"
@@ -974,7 +1178,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-21-myanmar-civil-war-global-crisis-hierarchy"
@@ -990,7 +1194,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-21-ukraine-drones-samara-oil-hub-russia-exports"
@@ -1012,7 +1216,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-21-bank-of-korea-cbdc-bank-token-skip-stablecoins"
@@ -1033,7 +1237,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-21-cuba-crisis-us-pressure-blackouts-intervention"
@@ -1049,7 +1253,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-21-a23a-iceberg-disintegrates-antarctica"
@@ -1065,7 +1269,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-21-japan-7-7-earthquake-megaquake-advisory-tsunami"
@@ -1081,7 +1285,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-salmon-cocaine-wastewater-pollution-migration"
@@ -1097,7 +1301,7 @@
       "lastCovered": "2026-04-21T12:04:52.650Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-20-f-35-wrong-war-procurement-pacific-drones"
@@ -1105,200 +1309,6 @@
       "eventUri": null,
       "summary": "A defense-analyst argument, widely read this week, that the F-35 — a $2 trillion lifetime program — was optimized for a war (penetrating dense Russian integrated air defense) that the Pacific theater won't actually feature. Lead with the procurement mechanism: 20-year platforms lock in yesterday's threat model, and drones plus long-range fires have already moved the frontier. Pair mentally with today's Ukraine drones-vs-refinery story as proof of concept. Frame as accountability for the largest defense program in history.",
       "conceptUris": []
-    },
-    {
-      "id": "pakistan-repays-2bn-uae-reserves",
-      "label": "Pakistan repays $2bn to UAE amid ongoing external financing pressures",
-      "firstSeen": "2026-04-21T04:03:59.004Z",
-      "lastCovered": "2026-04-21T08:09:29.557Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-20-pakistan-repays-2bn-uae-reserves",
-        "2026-04-20-pakistan-repays-2bn-uae-external-financing"
-      ],
-      "eventUri": null,
-      "summary": "Islamabad repays a $2bn UAE bilateral deposit while still under IMF-monitored external pressure. Lead with the mechanics: Gulf deposits have been Pakistan's shadow reserves for a decade — repaying rather than rolling them over signals either Abu Dhabi's patience wore thin, or Islamabad chose to protect the relationship at the cost of reserves. Either way, the cushion is thinner going into the Iran-war fuel shock.",
-      "conceptUris": []
-    },
-    {
-      "id": "israel-somaliland-envoy-somalia-sovereignty",
-      "label": "Iran denounces Israeli violation of Somalia's sovereignty",
-      "firstSeen": "2026-04-21T08:09:29.557Z",
-      "lastCovered": "2026-04-21T08:09:29.557Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-21-israel-somaliland-envoy-somalia-sovereignty"
-      ],
-      "eventUri": null,
-      "summary": "Israel appointed a diplomatic envoy to Somaliland — the breakaway region Mogadishu claims as its own — and Iran's foreign ministry is calling it a violation of Somali territorial integrity under the UN Charter. Lead with the diplomatic mechanism: recognition of Somaliland would fracture Somalia and hand Israel a Red Sea foothold near Bab el-Mandeb. Fills the Horn-of-Africa and Muslim-world gap. Structural why: chokepoint geopolitics around the Gulf of Aden.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Somaliland",
-        "http://en.wikipedia.org/wiki/Somalia",
-        "http://en.wikipedia.org/wiki/Charter_of_the_United_Nations",
-        "http://en.wikipedia.org/wiki/Territorial_integrity"
-      ]
-    },
-    {
-      "id": "israel-yellow-line-lebanon-iran-ceasefire",
-      "label": "U.S.-Iran ceasefire set to expire with talks in limbo; Israel's Gaza-style 'Yellow Line' in Lebanon",
-      "firstSeen": "2026-04-21T08:09:29.557Z",
-      "lastCovered": "2026-04-21T08:09:29.557Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-israel-yellow-line-lebanon-iran-ceasefire"
-      ],
-      "eventUri": null,
-      "summary": "Drop Site's ground reporting documents Israel imposing a Gaza-style 'Yellow Line' zone inside southern Lebanon — a unilateral demarcation turning occupied territory into a free-fire buffer — while US-Iran ceasefire talks stall. Lead with the Yellow Line: a template exported from Gaza to Lebanon means the Gaza operational playbook is now Israel's standard procedure for neighboring countries. Name the victims: Lebanese villagers displaced by fiat.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-restricts-intel-sharing-south-korea-nuclear",
-      "label": "US partially restricts intelligence sharing with South Korea after nuclear disclosure row",
-      "firstSeen": "2026-04-21T08:09:29.557Z",
-      "lastCovered": "2026-04-21T08:09:29.557Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-21-us-restricts-intel-sharing-south-korea-nuclear"
-      ],
-      "eventUri": "eng-11586795",
-      "summary": "Washington cut off portions of its intelligence stream to Seoul after South Korea's unification minister Chung Dong-young publicly disclosed sensitive details about North Korea's Kusong enrichment site. Lead with the consequence: a US treaty ally just lost intel access for saying out loud what Washington wanted kept quiet. The mechanism shows how classification operates as diplomatic leverage — and how the North Korean nuclear program is actively growing while allies are muzzled about it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/North_Korea",
-        "http://en.wikipedia.org/wiki/Chung_Dong-young",
-        "http://en.wikipedia.org/wiki/Kusong",
-        "http://en.wikipedia.org/wiki/Ministry_of_Unification",
-        "http://en.wikipedia.org/wiki/Enriched_uranium",
-        "http://en.wikipedia.org/wiki/Seoul"
-      ]
-    },
-    {
-      "id": "primark-abf-demerge-fashion-chain",
-      "label": "Primark owner ABF confirms plan to demerge fashion chain",
-      "firstSeen": "2026-04-21T08:09:29.557Z",
-      "lastCovered": "2026-04-21T08:09:29.557Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-21-primark-abf-demerge-fashion-chain"
-      ],
-      "eventUri": "eng-11586964",
-      "summary": "Associated British Foods is breaking up a 65-year conglomerate structure, spinning Primark (fast fashion) out from sugar/Twinings/food (steady cash). Lead with the thesis: conglomerates built during globalization's expansion phase are being dismantled now that capital rewards focus over diversification. For the reader: Primark standalone on the FTSE 100 is a bet that discount fashion — with all its supply-chain labor and textile-waste exposure — can survive without a food business subsidizing it.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Primark",
-        "http://en.wikipedia.org/wiki/Associated_British_Foods",
-        "http://en.wikipedia.org/wiki/Shareholder",
-        "http://en.wikipedia.org/wiki/Demerger",
-        "http://en.wikipedia.org/wiki/FTSE_100_Index",
-        "http://en.wikipedia.org/wiki/Retail",
-        "http://en.wikipedia.org/wiki/Wittington_Investments",
-        "http://en.wikipedia.org/wiki/Twinings"
-      ]
-    },
-    {
-      "id": "argentina-glaciers-law-reform-one-million",
-      "label": "One million defend Argentina's glaciers after law reform",
-      "firstSeen": "2026-04-21T08:09:29.557Z",
-      "lastCovered": "2026-04-21T08:09:29.557Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-argentina-glaciers-law-reform-one-million"
-      ],
-      "eventUri": null,
-      "summary": "More than a million Argentines signed onto legal challenges to defend the 2010 Glacier Law after Milei's government gutted environmental protections to unlock Andean mining concessions. Lead with the mechanism: the Glacier Law protects periglacial zones critical to Andean meltwater — weakening it converts water-security infrastructure into lithium and gold mines. Name the actors: foreign mining consortia stand to benefit; downstream farmers in Mendoza and San Juan bear the water cost. Fills Latin America gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-stranded-offshore-wind-zero-turbines",
-      "label": "Long coastlines, zero turbines: India's stranded offshore wind",
-      "firstSeen": "2026-04-21T08:09:29.557Z",
-      "lastCovered": "2026-04-21T08:09:29.557Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-india-stranded-offshore-wind-zero-turbines"
-      ],
-      "eventUri": null,
-      "summary": "India has 7,500 km of coastline, a 30 GW offshore wind target, and zero operating offshore turbines. Lead with the gap: viability-gap funding delays, unresolved seabed leasing, and fisher-community protests have stalled every project past auction. Mechanism: offshore wind economics only work when tariffs are high enough to amortize turbine capex — and India's solar-priced market won't bear them. For the reader: the structural reason renewables are not advancing evenly across the Global South.",
-      "conceptUris": []
-    },
-    {
-      "id": "ripple-xrp-ledger-quantum-proof-2028",
-      "label": "Ripple wants the XRP Ledger to be quantum-proof by 2028. Here is its plan",
-      "firstSeen": "2026-04-21T08:09:29.557Z",
-      "lastCovered": "2026-04-21T08:09:29.557Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-21-ripple-xrp-ledger-quantum-proof-2028"
-      ],
-      "eventUri": "eng-11585778",
-      "summary": "Ripple is migrating the XRP Ledger to post-quantum cryptography by 2028 — the first major public blockchain with a formal quantum-resistance roadmap. Lead with the threat model: ECDSA signatures protecting every Bitcoin and Ethereum wallet become forgeable the moment Shor's algorithm runs on a cryptographically-relevant quantum computer. NIST already standardized replacement algorithms (ML-DSA, SLH-DSA) in 2024; Ripple is the first ledger to commit to a migration schedule. For the reader: public-key cryptography has a deprecation deadline.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Quantum_computing",
-        "http://en.wikipedia.org/wiki/Blockchain",
-        "http://en.wikipedia.org/wiki/Ripple_(payment_protocol)",
-        "http://en.wikipedia.org/wiki/Public-key_cryptography",
-        "http://en.wikipedia.org/wiki/Digital_asset"
-      ]
-    },
-    {
-      "id": "italian-postal-service-gdpr-fine-privacy",
-      "label": "Italian regulator fines national postal service orgs $15 million for data privacy violations",
-      "firstSeen": "2026-04-21T08:09:29.557Z",
-      "lastCovered": "2026-04-21T08:09:29.557Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-20-italian-postal-service-gdpr-fine-privacy"
-      ],
-      "eventUri": null,
-      "summary": "Italy's data protection authority fined Poste Italiane and BancoPosta €13.5M for passing customer data to insurance and financial-product cross-sellers without lawful basis. Lead with the mechanism: GDPR enforcement against a state-owned operator shows the law bites public-sector data monetization, not just Big Tech. For the reader: the surveillance infrastructure inside legacy institutions is larger than the one inside the platforms people actually complain about — and GDPR is now being used to dismantle it piece by piece.",
-      "conceptUris": []
-    },
-    {
-      "id": "kp-pakistan-thalassaemia-pre-marriage-screening",
-      "label": "KP govt urged to simplify pre-marriage thalassaemia screening",
-      "firstSeen": "2026-04-21T08:09:29.557Z",
-      "lastCovered": "2026-04-21T08:09:29.557Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-21-kp-pakistan-thalassaemia-pre-marriage-screening"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan carries one of the world's highest thalassaemia-carrier rates (5-7% in KP); public-health experts are pressing the Khyber Pakhtunkhwa government to replace the clunky pre-marriage HPLC screening regime with a simpler, subsidized model and free chorionic villus sampling. Lead with the genetics-meets-governance mechanism: a single recessive-disease screening gate integrated into the marriage-registration process could halve new beta-thalassaemia births within a generation. Reader angle: public-health engineering as applied ethics, not abstract policy.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Thalassemia",
-        "http://en.wikipedia.org/wiki/High-performance_liquid_chromatography",
-        "http://en.wikipedia.org/wiki/Khyber_Pakhtunkhwa",
-        "http://en.wikipedia.org/wiki/Public_health"
-      ]
     }
   ]
 }
