@@ -124,7 +124,7 @@ concepts:
   - "Russia"
 ---
 
-London — Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. Britain and 4 allies have formally referred Russia to the chemical weapons watchdog for investigation.
+London — Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. [Britain](country:GB) referred [Russia](country:RU) to the chemical weapons watchdog, which has 40 days to open a formal probe.
 </example>
 
 <example>
@@ -141,7 +141,7 @@ sources:
     country: "QA"
 ---
 
-Gaza — 4 of 11 remaining hospitals have gone dark. Israel has blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. WHO warns the health system has passed the point of collapse.
+Gaza — 4 of 11 remaining hospitals have gone dark. [Israel](country:IL) has blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. Generators at Al-Shifa and Nasser hospitals run out within 48 hours, WHO said.
 </example>
 
 <example>
@@ -158,7 +158,7 @@ sources:
     country: "MY"
 ---
 
-Hanoi — 20 million unconnected Vietnamese gained satellite broadband. The radio frequency authority licensed 4 gateway stations and 600,000 Starlink terminals — the first Western carrier cleared for the market. Starlink will compete with state-backed carriers that control terrestrial infrastructure.
+Hanoi — 20 million unconnected Vietnamese gained satellite broadband. The radio frequency authority licensed 4 gateway stations and 600,000 Starlink terminals — the first Western carrier cleared for [Vietnam](country:VN)'s market. State-backed Viettel and Vietnam Posts face a February 2027 decision on matching tariffs.
 </example>
 
 <example>
@@ -175,7 +175,7 @@ sources:
     country: "PK"
 ---
 
-Karachi — SadaPay collapsed after Gulf strikes. Pakistan's fintechs route through AWS Bahrain, offline since drone strikes on March 1 cut service to 3 million users. The outage exposed Gulf cloud infrastructure as a single point of failure for South Asian fintech.
+Karachi — SadaPay collapsed after Gulf strikes. [Pakistan](country:PK)'s fintechs route through AWS Bahrain, offline since drone strikes on March 1 cut service to 3 million users. SadaPay has set no restoration date; 2 rival fintechs remain offline.
 </example>
 
 </examples>

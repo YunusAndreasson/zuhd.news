@@ -306,22 +306,29 @@ async function main() {
     fetchHackerNews(),
   ])
   const MAX_PER_SOURCE = 3
+  // Per-source override — aggregator-style feeds that flood a single category.
+  // Phys.org republishes journal press releases and was landing 29% of science
+  // primaries; The Record (cyber) was landing 19% of tech primaries. Lowering
+  // their cap rebalances toward Nature/Carbon Brief/SciDev and 404/Ars/CODA.
+  const PER_SOURCE_CAP = { 'Phys.org': 1, 'The Record': 1 }
+  const capFor = name => PER_SOURCE_CAP[name] ?? MAX_PER_SOURCE
 
   // Per-source stats for dashboard monitoring
   const sourceStats = SOURCES.map((src, i) => ({
     name: src.name,
     fetched: rssResults[i].length,
-    used: Math.min(rssResults[i].length, MAX_PER_SOURCE),
+    used: Math.min(rssResults[i].length, capFor(src.name)),
     error: rssResults[i].length === 0 && rssResults[i]._error ? rssResults[i]._error : null,
   }))
-  sourceStats.push({ name: 'Hacker News', fetched: hnItems.length, used: Math.min(hnItems.length, MAX_PER_SOURCE), error: hnItems._error || null })
+  sourceStats.push({ name: 'Hacker News', fetched: hnItems.length, used: Math.min(hnItems.length, capFor('Hacker News')), error: hnItems._error || null })
   try { writeFileSync('/tmp/zuhd-feed-source-stats.json', JSON.stringify({ fetchedAt: new Date().toISOString(), sources: sourceStats })) } catch {}
 
   const allItems = [
-    ...rssResults.flatMap(items => items.slice(0, MAX_PER_SOURCE)),
-    ...hnItems.slice(0, MAX_PER_SOURCE),
+    ...rssResults.flatMap((items, i) => items.slice(0, capFor(SOURCES[i].name))),
+    ...hnItems.slice(0, capFor('Hacker News')),
   ]
-  console.error(`Raw items: ${allItems.length} (${allItems.length - Math.min(hnItems.length, MAX_PER_SOURCE)} RSS + ${Math.min(hnItems.length, MAX_PER_SOURCE)} HN)`)
+  const hnUsed = Math.min(hnItems.length, capFor('Hacker News'))
+  console.error(`Raw items: ${allItems.length} (${allItems.length - hnUsed} RSS + ${hnUsed} HN)`)
 
   // Dedup against existing articles
   const existingTitles = getExistingTitles()

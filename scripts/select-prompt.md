@@ -73,7 +73,7 @@ Check these privately before writing the selection file. Do not output this veri
 
 - Category counts meet the floors (`politics:3+ economy:3+ science:2+ tech:3+`).
 - No arc has more than 3 selections.
-- Multi-source usage: at least half of politics+economy picks should come from `multiSourceStories` when available. Do not pad with weak multi-source stories to meet a number.
+- Multi-source floors when feed supplies them: politics ≥ 2 multi-source picks, economy ≥ 2 multi-source picks. Only drop below a floor if *every* available multi-source story in that category is genuinely weaker than the best niche alternative — in the selection summary, note which multi-source story you rejected and why. Do not pad with weak multi-source stories to meet a number.
 - No two selections are about the same company, institution, or event — consolidate into one entry with the richest angle.
 - If science < 2, scan Nature, Quanta, New Scientist, STAT News, SciDev.Net, Carbon Brief again.
 </internal_verification>

@@ -60,5 +60,67 @@
         "economy": 74
       }
     }
+  },
+  {
+    "week": "2026-04-19",
+    "windowDays": 7,
+    "articleCount": 338,
+    "metrics": {
+      "charLengthAvg": 311,
+      "charOver350Pct": 3.8,
+      "wordCountAvg": 46,
+      "wordInRangePct": 81.7,
+      "titleEchoRatePct": 49.1,
+      "passiveHookRatePct": 0.6,
+      "causalClaimHits": 3,
+      "pressEraHits": 4,
+      "hedgeRatePct": 0.3,
+      "acronymViolations": 141,
+      "topAcronymViolators": [
+        [
+          "IR",
+          11
+        ],
+        [
+          "PK",
+          6
+        ],
+        [
+          "ASEAN",
+          5
+        ],
+        [
+          "CEO",
+          4
+        ],
+        [
+          "ICE",
+          4
+        ]
+      ],
+      "countryNullCount": 21,
+      "topOutletSharePct": 13.7,
+      "top3Outlets": [
+        {
+          "name": "Dawn",
+          "count": 27
+        },
+        {
+          "name": "Phys.org",
+          "count": 23
+        },
+        {
+          "name": "Al Jazeera Online",
+          "count": 19
+        }
+      ],
+      "multiSourceRatePct": 21,
+      "categoryBalance": {
+        "tech": 71,
+        "politics": 131,
+        "science": 55,
+        "economy": 81
+      }
+    }
   }
 ]

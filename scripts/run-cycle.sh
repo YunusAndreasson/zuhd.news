@@ -135,7 +135,7 @@ ${TODAY_COVERAGE}
 fi
 FALLBACK_FLAG=""
 [ "$CLAUDE_SELECTOR_MODEL" != "$CLAUDE_MODEL" ] && FALLBACK_FLAG="--fallback-model $CLAUDE_MODEL"
-timeout 1200 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_SELECTOR_MODEL $FALLBACK_FLAG --allowedTools $TOOLS_SELECTOR --max-turns 35 -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+timeout 1200 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_SELECTOR_MODEL $FALLBACK_FLAG --allowedTools $TOOLS_SELECTOR --max-turns 35 --exclude-dynamic-system-prompt-sections -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 SELECT_EXIT=$?
 echo "Selector exit: $SELECT_EXIT — $((SECONDS - T1))s" | tee -a "$LOG_FILE"
 
@@ -186,7 +186,7 @@ echo "" | tee -a "$LOG_FILE"
 echo "--- Stage 2: Writer ---" | tee -a "$LOG_FILE"
 T2=$SECONDS
 WRITE_PROMPT=$(cat scripts/write-prompt.md)
-timeout 1800 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_WRITER --max-turns 60 -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+timeout 1800 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_WRITER --max-turns 60 --exclude-dynamic-system-prompt-sections -p "$WRITE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 WRITE_EXIT=$?
 echo "Writer exit: $WRITE_EXIT — $((SECONDS - T2))s" | tee -a "$LOG_FILE"
 
@@ -243,7 +243,7 @@ $ARTICLE_LIST
 <body-lengths>
 $BODY_LENGTHS
 </body-lengths>"
-  timeout 1800 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_EDITOR --max-turns 50 -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
+  timeout 1800 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_EDITOR --max-turns 50 --exclude-dynamic-system-prompt-sections -p "$CHECK_PROMPT$EDITOR_ADDENDUM" 2>&1 | tee -a "$LOG_FILE"
   EDITOR_EXIT=$?
   echo "Editor exit: $EDITOR_EXIT — $((SECONDS - T3))s" | tee -a "$LOG_FILE"
 

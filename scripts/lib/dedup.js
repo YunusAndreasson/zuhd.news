@@ -50,14 +50,14 @@ export function buildWordSets(slugs) {
   return slugs.map(s => ({ slug: s, words: slugWords(s) }))
 }
 
-/** Check if candidateSlug fuzzy-matches any recent slug (≥60% overlap, ≥3 words). */
+/** Check if candidateSlug fuzzy-matches any recent slug (≥55% overlap, ≥3 words). */
 export function fuzzyMatch(candidateSlug, recentWordSets) {
   const candidateWords = slugWords(candidateSlug)
   if (candidateWords.size === 0) return null
   for (const { slug, words } of recentWordSets) {
     const overlap = [...candidateWords].filter(w => words.has(w)).length
     const ratio = overlap / Math.min(candidateWords.size, words.size)
-    if (ratio >= 0.6 && overlap >= 3) return slug
+    if (ratio >= 0.55 && overlap >= 3) return slug
   }
   return null
 }
