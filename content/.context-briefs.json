@@ -32814,5 +32814,957 @@
     "label": "Informants & Civil Rights Monitoring",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-21-gaza-students-study-abroad-rafah-closure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ONLY LAND EXIT",
+        "body": "Rafah is Gaza's sole crossing not controlled by Israel. Every other border — Erez to the north, Kerem Shalom for goods — routes through Israeli authority. When Rafah closes, Gaza's 2.3 million residents have no land exit at all.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PS",
+              "EG",
+              "IL",
+              "JO"
+            ],
+            "label": "Gaza's sealed perimeter"
+          }
+        ]
+      },
+      {
+        "heading": "WHO CONTROLS THE GATE",
+        "body": "Rafah sits on the Egypt-Gaza border, but since May 2024 Israeli forces have held the Palestinian side (the Philadelphi Corridor). Egypt controls its side independently. Opening the crossing requires both governments to agree — either can veto, neither can unilaterally open it."
+      },
+      {
+        "heading": "THE STUDENT PIPELINE BEFORE",
+        "body": "Before October 2023, roughly 1,000 Gaza students per year left to study abroad — Turkey, Malaysia, Egypt, the Gulf. Scholarships from the OIC, Turkish government, and Qatar funded most placements. That pipeline is now fully closed; students with admission letters and visas in hand cannot reach any consulate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Philadelphi Corridor** — a 14km strip along the Egypt-Gaza border — was meant to be demilitarized under the 1979 Camp David Accords. Israel's 2024 redeployment there is the core reason Rafah has not functioned normally since."
+          }
+        ]
+      },
+      {
+        "heading": "THE HUMANITARIAN-EXCEPTION FRAME",
+        "body": "International humanitarian law under the Fourth Geneva Convention requires occupying powers to permit medical evacuation of the sick and wounded. It does not compel exit for education, work, or family reunification. This asymmetry is why advocacy now focuses on expanding the 'humanitarian exception' category — the only legal hook that has moved the gate open at all.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Fourth Geneva Convention, which exit category does an occupying power have an explicit duty to permit?",
+            "options": [
+              "Medical evacuation of the wounded",
+              "Students with foreign admission letters",
+              "Workers with foreign job offers",
+              "Family reunification across the border"
+            ],
+            "correct": 0,
+            "explanation": "Only medical evacuation carries a direct treaty obligation; other exit categories depend on political discretion, which is why Gaza students have no legal lever."
+          }
+        ]
+      },
+      {
+        "heading": "THE SIEGE PRECEDENT",
+        "body": "Gaza has been under blockade since 2007, when Israel and Egypt closed crossings after Hamas took control. A generation has grown up unable to leave — the median Gazan is under 18 and has never crossed a border. The current closure is not a new regime but the tightest phase of an 18-year-old one."
+      },
+      {
+        "heading": "WHAT SCHOLARSHIPS EXPIRE",
+        "body": "Most international scholarships require enrollment by a fixed academic calendar date. A student admitted for the 2025-26 year who cannot reach campus typically forfeits the award; deferrals are discretionary and rarely granted twice. The closure doesn't just delay education — it erases the specific opportunity the student earned."
+      }
+    ],
+    "generatedAt": "2026-04-22T04:23:39.441Z",
+    "label": "Rafah & Gaza's Exit Regime",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-21-ofcom-telegram-csam-online-safety-act": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REGULATOR",
+        "body": "Ofcom began as a broadcast regulator — television, radio, spectrum licensing. The Online Safety Act of 2023 handed it jurisdiction over global internet platforms overnight, transforming a domestic media watchdog into one of the world's most powerful content regulators.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The jurisdictional leap is unprecedented: Ofcom now regulates any service with **'significant UK users'** regardless of where the company is headquartered — a reach the FCC, for instance, has never claimed over foreign platforms."
+          }
+        ]
+      },
+      {
+        "heading": "THE 10% RULE",
+        "body": "The Act's maximum fine — 10% of global annual revenue or £18 million, whichever is higher — deliberately mirrors the GDPR and EU Digital Services Act penalty structure. The logic is that fines must scale with company size, or trillion-dollar platforms treat them as a cost of doing business.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK OSA",
+                "value": "10%",
+                "weight": 10
+              },
+              {
+                "label": "EU DSA",
+                "value": "6%",
+                "weight": 6
+              },
+              {
+                "label": "EU GDPR",
+                "value": "4%",
+                "weight": 4
+              },
+              {
+                "label": "US FTC",
+                "value": "case-by-case",
+                "weight": 1
+              }
+            ],
+            "label": "max penalty regimes (% of global revenue)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY TELEGRAM IS DIFFERENT",
+        "body": "Unlike Meta or Google, Telegram has no significant advertising business, no public shareholders, and minimal legal presence in Western jurisdictions. For years this let founder Pavel Durov ignore takedown requests entirely — until his August 2024 arrest in Paris over platform-facilitated crimes changed the calculation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did regulators struggle to pressure Telegram for years?",
+            "options": [
+              "It was technically encrypted end-to-end",
+              "It had no ads, no IPO, and no Western legal footprint",
+              "It operated on a decentralized blockchain",
+              "It was protected by Russian sovereign immunity"
+            ],
+            "correct": 1,
+            "explanation": "Telegram's default chats aren't end-to-end encrypted. Its real shield was corporate: no ad revenue to threaten, no shareholders to pressure, no Western office to subpoena."
+          }
+        ]
+      },
+      {
+        "heading": "THE CSAM HASH PIPELINE",
+        "body": "Mainstream platforms scan uploads against databases of known CSAM hashes maintained by NCMEC (US) and the Internet Watch Foundation (UK). The technology — PhotoDNA, developed by Microsoft in 2009 — is free and industry-standard. Refusing to deploy it is a policy choice, not a technical limitation."
+      },
+      {
+        "heading": "THE CANADIAN TRIGGER",
+        "body": "Cross-border CSAM investigations flow through the Five Eyes intelligence-sharing arrangement and NCMEC's CyberTipline, which received 36 million reports in 2023. Evidence gathered by Canadian authorities routinely becomes the predicate for UK, Australian, and US enforcement — a single platform failure generates parallel investigations across jurisdictions.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "CA",
+              "US",
+              "AU",
+              "NZ"
+            ],
+            "label": "Five Eyes CSAM coordination",
+            "caption": "Evidence flows across the intelligence-sharing network; enforcement follows."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENCRYPTION FIGHT AHEAD",
+        "body": "The Online Safety Act contains a dormant clause requiring platforms to scan encrypted messages for CSAM if 'technically feasible.' Signal and WhatsApp have threatened to exit the UK market rather than comply. Ofcom has not yet activated the clause — the Telegram case tests whether the existing powers are sufficient without it."
+      }
+    ],
+    "generatedAt": "2026-04-22T04:24:06.584Z",
+    "label": "Ofcom & the Online Safety Act",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-21-pakistan-airspace-ban-india-aviation-may-24": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SOVEREIGNTY RULE",
+        "body": "The Chicago Convention (1944) established complete and exclusive sovereignty over the airspace above national territory. Unlike territorial waters, there is no right of innocent passage — civilian overflight exists only by bilateral agreement, revocable at any time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The convention's Article 1 enshrines *cuius est solum, eius est usque ad coelum* — **whoever owns the soil owns up to the sky** — a Roman-law principle repurposed for the jet age."
+          }
+        ]
+      },
+      {
+        "heading": "THE PAHALGAM TRIGGER",
+        "body": "The closure traces to the April 2025 Pahalgam attack in Indian-administered Kashmir and the military exchanges that followed. Pakistan shut its airspace to Indian carriers; India reciprocated. What began as a crisis measure has calcified into a structural feature of South Asian aviation."
+      },
+      {
+        "heading": "THE GEOGRAPHY TAX",
+        "body": "Direct routes from Delhi or Mumbai to Europe and the Gulf cut through Pakistani airspace. Without it, Indian carriers detour south over the Arabian Sea, adding 60–90 minutes and roughly 15–20% to fuel burn on long-haul sectors. Crew duty limits force additional stops or larger rosters.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "AF",
+              "IR",
+              "OM",
+              "AE"
+            ],
+            "label": "the rerouting corridor"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2019 PRECEDENT",
+        "body": "Pakistan closed its airspace for nearly five months after the Balakot strikes in February 2019. Indian airlines reported losses exceeding ₹7 billion; Air India alone absorbed roughly half. The closure ended only when Islamabad judged the diplomatic point made — there was no negotiated reopening."
+      },
+      {
+        "heading": "WHO PAYS TWICE",
+        "body": "Pakistan loses the overflight fees — typically $400–$600 per wide-body transit — that Indian carriers would otherwise pay to its civil aviation authority. The calculus is that foregone fees are cheaper than the signal that business-as-usual would send. Both sides accept economic damage as the price of the posture.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does a country collect when foreign airlines cross its airspace?",
+            "options": [
+              "Nothing — airspace transit is free under ICAO",
+              "Overflight fees, typically a few hundred dollars per transit",
+              "A share of the ticket revenue",
+              "A carbon levy set by the UN"
+            ],
+            "correct": 1,
+            "explanation": "ICAO allows states to charge cost-based overflight fees; for busy corridors these sum to hundreds of millions annually."
+          }
+        ]
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Pakistan-registered carriers fly far fewer routes that would benefit from Indian airspace than vice versa. The closure hurts Indian airlines disproportionately — a deliberate feature, not a side effect. This is airspace used as leverage, the aviation equivalent of a chokepoint.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.846901,
+              279.174143,
+              278.822517,
+              279.2,
+              278.184288,
+              278.387431,
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895
+            ],
+            "periods": [
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-22"
+    ],
+    "generatedAt": "2026-04-22T04:24:34.999Z",
+    "label": "Airspace Closures & Aviation Economics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-australia-esafety-roblox-minecraft-fortnite": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MANDATE",
+        "body": "Australia's Online Safety Act 2021 empowers the eSafety Commissioner — the world's first national online-safety regulator, established in 2015 — to issue binding transparency notices. Non-compliance carries civil penalties up to roughly A$782,500 per contravention. The model has since been studied by the UK, Ireland, and the EU as a template.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The office was originally called the **Children's eSafety Commissioner**; the remit expanded to all Australians in 2017, then gained enforcement teeth in 2021."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GAMING, NOT SOCIAL MEDIA",
+        "body": "Regulators chased Facebook and TikTok for a decade while gaming platforms quietly became the dominant children's social network. Roblox alone reports more daily active users under 13 than any traditional social platform. Voice chat, direct messaging, and user-generated worlds make modern games functionally indistinguishable from social media — but they escaped the regulatory frame built for feeds.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Roblox",
+                "value": "~40M",
+                "weight": 40
+              },
+              {
+                "label": "Fortnite",
+                "value": "~15M",
+                "weight": 15
+              },
+              {
+                "label": "Minecraft",
+                "value": "~30M",
+                "weight": 30
+              },
+              {
+                "label": "TikTok",
+                "value": "~10M",
+                "weight": 10
+              }
+            ],
+            "label": "daily active users under 16 (est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GROOMING VECTOR",
+        "body": "Predators exploit a structural feature of children's games: adults and minors share the same rooms, the same voice channels, the same private messages. The FBI's 2023 advisory named Roblox, Discord, and Fortnite specifically as primary grooming platforms. Australia's notice demands platforms disclose what detection systems they actually run, not what their policies promise."
+      },
+      {
+        "heading": "THE US LITIGATION",
+        "body": "The 140 federal lawsuits consolidated against Roblox allege the platform knowingly facilitated child sexual exploitation while marketing itself as safe for young children. State settlements — Louisiana's $23M case is the largest — follow the pattern set against Meta: attorneys general argue that platforms designed addictive, unsafe products for minors, then hid the evidence.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Roblox's daily active users are under 13?",
+            "options": [
+              "About 10%",
+              "About 20%",
+              "About 40%",
+              "About 60%"
+            ],
+            "correct": 2,
+            "explanation": "Roblox's own filings report roughly 40% of its ~80M daily active users are under 13 — a demographic no other major platform concentrates at that scale."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSPARENCY LEVER",
+        "body": "Binding notices don't ban anything. They force platforms to answer, under penalty, specific questions: how many reports did you receive, how fast did you act, what tools detect grooming, how do you verify age. The theory — borrowed from securities law — is that mandatory disclosure changes behavior even without prescriptive rules, because companies will not admit in writing what they are unwilling to fix."
+      },
+      {
+        "heading": "THE AGE-ASSURANCE FRONTIER",
+        "body": "Australia passed a world-first social-media ban for under-16s in late 2024, taking effect in 2026. Gaming platforms were initially excluded from that ban — a carve-out industry lobbied hard for. The current eSafety notices are how the regulator closes that gap without new legislation: extract the data first, then justify the next rule."
+      }
+    ],
+    "generatedAt": "2026-04-22T04:25:03.637Z",
+    "label": "Online Safety Regulation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-22-entrance-of-apartment-building-collapses-due-to-drone-attack": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SYZRAN",
+        "body": "Syzran sits ~800km from the Ukrainian border in Samara oblast, on the Volga. It hosts one of Russia's largest oil refineries and a military aviation school — the city has been on Ukraine's deep-strike target list since 2023, when Kyiv's long-range drone program matured.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU"
+            ],
+            "label": "Kyiv to Syzran: ~1,100km",
+            "caption": "Syzran lies deep in the Volga interior, well beyond short-range drone reach."
+          }
+        ]
+      },
+      {
+        "heading": "THE WEAPON CLASS",
+        "body": "Ukraine's deep-strike drones are not the quadcopter FPVs of the trench war. They are fixed-wing, propeller-driven, 3-4 meter wingspan aircraft — descendants of the Soviet-era Tu-141 reconnaissance drone — flying at 150-200 km/h with 20-50kg warheads. Models like the Liutyi and Bober are built from plywood, foam, and commercial electronics for a few tens of thousands of dollars each.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ukraine's domestic drone industry scaled from near-zero in 2022 to producing thousands of long-range strike drones annually by 2025 — a speed of industrial mobilization unmatched since WWII. The **Liutyi** has a claimed range of 1,000+ km; the cheaper **Bober** (\"Beaver\") covers shorter depths."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AIR DEFENSE STRUGGLES",
+        "body": "Russian air defense was designed around Cold War threats: fast jets, cruise missiles, ballistic trajectories. A 150km/h propeller drone at 500m altitude has a radar signature closer to a bird than a MiG. Pantsir and Tor systems can engage them, but missiles cost millions; drones cost thousands. The exchange ratio favors the attacker indefinitely."
+      },
+      {
+        "heading": "THE DEPTH PROBLEM",
+        "body": "Russia's strategic depth — the reason Napoleon and Hitler both broke on it — is now a liability. Oil refineries, ammunition depots, and airbases were dispersed eastward precisely because the interior was assumed safe. Ukraine's drone campaign has made that assumption obsolete; targets 1,000+ km from the border are now routinely struck."
+      },
+      {
+        "heading": "DUAL-USE GEOGRAPHY",
+        "body": "Syzran's refinery processes ~8.5 million tonnes of crude per year, feeding Russian military logistics. Apartment blocks sit interleaved with industrial infrastructure — a legacy of Soviet urban planning that clustered workers around factories. Precision at 1,000km range is imperfect; civilian collapses are a recurring feature of the campaign.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how far is Syzran from the Ukrainian border?",
+            "options": [
+              "~300 km",
+              "~800 km",
+              "~1,500 km",
+              "~2,500 km"
+            ],
+            "correct": 1,
+            "explanation": "Syzran is ~800km from the nearest Ukrainian-controlled territory — within range of Ukraine's Liutyi-class drones but far beyond frontline artillery or short-range systems."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-22T04:25:32.442Z",
+    "label": "Long-range drones & the Russian interior",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-iran-un-us-piracy-toska-sea-oman": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL THRESHOLD",
+        "body": "Under UNCLOS Article 101, piracy requires acts committed for private ends by a non-state vessel. State-authorized boardings, even contested ones, fall outside the definition — which is why Iran's 'piracy' framing is rhetorical, not legal. The actual dispute is over flag-state sovereignty on the high seas.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: *piracy* is universal-jurisdiction crime any state can suppress; a **state interdiction** without UNSC authorization is a sovereignty dispute between the two governments."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLAG-STATE RULE",
+        "body": "On the high seas, a vessel is subject only to the jurisdiction of the state whose flag it flies. UNCLOS Article 110 lists narrow exceptions — piracy, slave trade, unauthorized broadcasting, statelessness — that permit boarding without consent. Sanctions enforcement is not on that list.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under UNCLOS, which of these lets a warship board a foreign-flagged vessel without consent on the high seas?",
+            "options": [
+              "Suspected sanctions violation",
+              "Suspected piracy",
+              "Carrying oil from a sanctioned state",
+              "Refusing radio contact"
+            ],
+            "correct": 1,
+            "explanation": "UNCLOS Article 110 lists piracy, slave trade, unauthorized broadcasting, and statelessness as the only universal boarding grounds. Sanctions enforcement requires UNSC authorization or flag-state consent."
+          }
+        ]
+      },
+      {
+        "heading": "THE UNSC MECHANISM",
+        "body": "Chapter VII of the UN Charter lets the Security Council authorize interdictions — used against Iraq (Resolution 665, 1990) and North Korea (Resolution 1874, 2009). These create legal cover any member state can act under. Iran's nuclear-era sanctions resolutions expired with the 2015 JCPOA; no active UNSC mandate covers US boardings of Iranian tankers today."
+      },
+      {
+        "heading": "THE SHADOW FLEET",
+        "body": "Sanctioned exporters — Iran, Russia, Venezuela — ship oil through a grey fleet of aging tankers that switch flags mid-voyage, disable AIS transponders, and conduct ship-to-ship transfers in international waters. The Gulf of Oman, just outside Hormuz, has become the preferred transfer zone because it's beyond Iran's territorial waters but before cargo manifests can be verified by destination ports.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "PK"
+            ],
+            "label": "Gulf of Oman transfer zone",
+            "caption": "Ship-to-ship transfers cluster just outside Hormuz, in international waters."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The US seized four Iranian fuel tankers bound for Venezuela in August 2020 under civil forfeiture law — treating the cargo, not the vessels, as the sanctioned asset. The legal workaround: US courts claim jurisdiction over the oil as property of a designated entity, regardless of where the ship flies. Iran had no standing to challenge in US court and lost by default."
+      },
+      {
+        "heading": "THE LEVERAGE LOGIC",
+        "body": "Every seized tanker is both a sanctions victory and a bargaining chip. Releasing cargo has become a recurring gesture in US-Iran backchannels — paired with prisoner swaps, sanctions waivers, or frozen-fund releases. Trump's warning against concessions reflects a school that sees each release as training Tehran to extract reciprocity from enforcement."
+      }
+    ],
+    "generatedAt": "2026-04-22T04:26:01.287Z",
+    "label": "Maritime Interdiction & Sanctions Enforcement",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-metabolism-circadian-clocks-meal-timing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MASTER CLOCK",
+        "body": "The suprachiasmatic nucleus — a cluster of ~20,000 neurons above the optic chiasm — runs the body's central clock, entrained by light hitting the retina. But nearly every tissue has its own local clock that can run independently, and the liver's clock follows food, not light.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The central clock is the *conductor*; peripheral clocks are the *orchestra*. Normally they sync. Eat at 2am and the liver's section starts playing a different score than the brain's."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOLECULAR LOOP",
+        "body": "Inside every cell, the proteins CLOCK and BMAL1 switch on genes called PER and CRY. Those proteins accumulate, then turn their own producers off. The cycle takes ~24 hours — which is why 'circadian' means 'about a day.' This feedback loop was mapped by Hall, Rosbash, and Young, who won the 2017 Nobel for it."
+      },
+      {
+        "heading": "WHY TIMING BEATS COMPOSITION",
+        "body": "Rodents fed identical calories gain dramatically more weight when food is available around the clock versus restricted to their active phase. The macronutrients are the same; only the feeding window changes. This is the finding that made chrono-nutrition a serious field rather than a wellness trend.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In rodent studies, what mattered more for metabolic health?",
+            "options": [
+              "Total calories consumed",
+              "Fat-to-carb ratio",
+              "The time window when food was eaten",
+              "Whether the food was processed"
+            ],
+            "correct": 2,
+            "explanation": "Identical diets produced different outcomes based purely on when the animal could eat — isolating timing as the dominant variable."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIVER AS A SECOND CLOCK",
+        "body": "Roughly 10-15% of liver genes oscillate on a 24-hour cycle, controlling when glucose is released, when fats are synthesized, when bile is produced. When feeding times contradict the brain's light cue, these liver rhythms desynchronize from the master clock — a state called internal circadian misalignment."
+      },
+      {
+        "heading": "THE SHIFT-WORK EVIDENCE",
+        "body": "Long-term night-shift workers show elevated rates of type 2 diabetes, metabolic syndrome, and certain cancers — a pattern robust enough that the WHO classified shift work disrupting circadian rhythm as a probable human carcinogen in 2007. The mechanism is precisely the clock misalignment that meal-timing research targets."
+      },
+      {
+        "heading": "THE HUMAN TRANSLATION PROBLEM",
+        "body": "Mice are nocturnal; their 'active phase' is our night. Mouse metabolism runs ~7x faster than human metabolism. Most compelling time-restricted eating data comes from 12-hour human experiments that don't replicate the extreme 4-8 hour mouse protocols. The biology transfers in principle; the optimal human window is still unknown."
+      }
+    ],
+    "generatedAt": "2026-04-22T04:26:29.861Z",
+    "label": "Circadian Clocks & Metabolism",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-22-pakistan-eurobond-sukuk-bids-borrowing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COUPON TELLS THE STORY",
+        "body": "A 6.975% yield on a 3-year dollar bond is roughly 270 basis points over comparable US Treasuries. That spread is the market's price for Pakistan-specific risk — default probability, IMF program dependence, political stability — stripped of the underlying dollar interest rate.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4.26,
+              4.24,
+              4.22,
+              4.24,
+              4.26,
+              4.24,
+              4.26,
+              4.29,
+              4.28,
+              4.29,
+              4.21,
+              4.22,
+              4.22,
+              4.16,
+              4.18,
+              4.09,
+              4.04,
+              4.05,
+              4.09,
+              4.08,
+              4.08,
+              4.03,
+              4.04,
+              4.05,
+              4.02,
+              3.97,
+              4.05,
+              4.06,
+              4.09,
+              4.13,
+              4.15,
+              4.12,
+              4.15,
+              4.21,
+              4.27,
+              4.28,
+              4.23,
+              4.2,
+              4.26,
+              4.25,
+              4.39,
+              4.34,
+              4.39,
+              4.33,
+              4.42,
+              4.44,
+              4.35,
+              4.3,
+              4.33,
+              4.31,
+              4.35,
+              4.34,
+              4.33,
+              4.29,
+              4.29,
+              4.31,
+              4.3,
+              4.26,
+              4.29,
+              4.32,
+              4.26,
+              4.26
+            ],
+            "periods": [
+              "Jan 22",
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "US 10y Treasury",
+            "unit": "%",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A SUKUK ACTUALLY IS",
+        "body": "A sukuk is not a bond. A bondholder lends money and collects interest; a sukuk holder owns a fractional share of a real asset — a toll road, a power plant, a building — and collects the income it generates. The distinction matters because riba is forbidden in Islamic law, but profit from ownership is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Structurally, sukuk cash flows often *resemble* conventional bonds — but issuance is constrained by what the sovereign can credibly pledge as the underlying asset. That constraint is the whole point: it ties debt to something real."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A MULTI-TRANCHE STACK",
+        "body": "Pakistan is running three parallel mandates — Eurobond, sukuk, rupee-dollar bond — because each taps a different capital pool. Conventional EM funds buy Eurobonds; Gulf Islamic funds mandated to avoid riba buy sukuk; domestic banks holding rupee liquidity buy rupee-dollar instruments. Running them separately lets Islamabad price-discover each pool."
+      },
+      {
+        "heading": "THE DENOMINATION PROBLEM",
+        "body": "Pakistan borrows in both rupees and dollars. Rupee debt can theoretically be inflated away, but that destroys domestic purchasing power. Dollar debt cannot be inflated away at all — a falling rupee makes each dollar of debt more expensive to service, creating a vicious cycle during currency crises.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.846901,
+              279.174143,
+              278.822517,
+              279.2,
+              278.184288,
+              278.387431,
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895
+            ],
+            "periods": [
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF SHADOW",
+        "body": "Pakistan's access to international capital markets is conditional on staying in good standing with the IMF. The Fund's Extended Fund Facility requires quarterly reviews; a failed review would close the market window within days. Underwriters time issuance around these reviews, not around domestic political calendars.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What primarily determines when Pakistan can access international bond markets?",
+            "options": [
+              "Domestic election timing",
+              "IMF program review cycles",
+              "Cricket season scheduling",
+              "State Bank of Pakistan rate decisions"
+            ],
+            "correct": 1,
+            "explanation": "Underwriters price sovereign risk off IMF program status — a successful review opens the window; a failed one closes it."
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY BUYS",
+        "body": "Frontier-market sovereign debt is held by a narrow club: specialist EM funds at BlackRock, PIMCO, Ashmore; Gulf sovereign wealth funds seeking yield; and — increasingly — Chinese policy banks rolling over bilateral exposure into tradeable instruments. Retail investors almost never touch it directly.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China (bilateral)",
+                "value": "~$30bn",
+                "tone": "unfavorable",
+                "cc": "CN"
+              },
+              {
+                "label": "IMF",
+                "value": "~$8bn",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~$5bn deposits",
+                "tone": "favorable",
+                "cc": "SA"
+              },
+              {
+                "label": "Eurobond/sukuk holders",
+                "value": "~$8bn",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Pakistan's main creditor pools"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · Board of Governors · as of 2026-04-20",
+      "Open Exchange Rates · as of 2026-04-22"
+    ],
+    "generatedAt": "2026-04-22T04:26:59.090Z",
+    "label": "Pakistan's Debt Stack",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-22-world-earth-day-2026-history-significance-quotes-and-why-it": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CATALYST",
+        "body": "The 1969 Santa Barbara oil spill — then the largest in US waters — coated 35 miles of California coast and killed thousands of seabirds on national television. Senator Gaylord Nelson proposed a campus teach-in modeled on anti-war protests. The date April 22 was picked because it fell between spring break and final exams, maximizing student turnout.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Nelson's idea was explicitly borrowed from the **anti-Vietnam teach-ins** of 1965 — mass participation as political pedagogy, not just protest."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGISLATIVE BURST",
+        "body": "The first Earth Day catalyzed a bipartisan wave of US environmental law that would be politically unthinkable today: the Clean Air Act (1970), EPA creation (1970), Clean Water Act (1972), Endangered Species Act (1973), and Safe Drinking Water Act (1974). Nixon signed most of them — not out of conviction, but because 20 million marchers made the politics unavoidable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which US environmental agency was created in direct response to the first Earth Day?",
+            "options": [
+              "The Department of the Interior",
+              "The EPA",
+              "The National Park Service",
+              "NOAA"
+            ],
+            "correct": 1,
+            "explanation": "Nixon established the Environmental Protection Agency in December 1970, eight months after the first Earth Day mobilized 20 million Americans."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRAGEDY OF THE COMMONS",
+        "body": "Garrett Hardin's 1968 essay framed environmental decline as a structural problem: resources held in common are systematically overused because each individual captures the benefit of exploitation while the cost is spread across everyone. Climate, fisheries, and atmospheric CO2 are textbook commons — which is why voluntary pledges consistently underperform enforceable treaties."
+      },
+      {
+        "heading": "THE PLASTICS PROBLEM",
+        "body": "Global plastic production has roughly doubled every decade since 1970 — from under 50 million tonnes then to over 400 million tonnes now. Less than 10% has ever been recycled. The rest sits in landfills, burns in incinerators, or fragments into microplastics now found in human blood, placentas, and the deepest ocean trenches."
+      },
+      {
+        "heading": "THE TREATY MECHANICS",
+        "body": "The Global Plastics Treaty — negotiated under UN Environment Programme auspices since 2022 — faces the same fault line as every climate accord: producing states (Saudi Arabia, Russia, Iran, the US petrochemical lobby) want voluntary downstream waste management; most other states want binding production caps. Treaties without production limits tend to become recycling-industry subsidies.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~32%",
+                "cc": "CN",
+                "weight": 32
+              },
+              {
+                "label": "US",
+                "value": "~17%",
+                "cc": "US",
+                "weight": 17
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~6%",
+                "cc": "SA",
+                "weight": 6
+              },
+              {
+                "label": "Germany",
+                "value": "~4%",
+                "cc": "DE",
+                "weight": 4
+              },
+              {
+                "label": "South Korea",
+                "value": "~4%",
+                "cc": "KR",
+                "weight": 4
+              }
+            ],
+            "label": "top plastic-producing states"
+          }
+        ]
+      },
+      {
+        "heading": "THE ISLAMIC FRAME",
+        "body": "The Quran describes humans as khalifa — stewards, not owners — of the earth, and repeatedly warns against fasad fi'l-ard, corruption of the land. Classical Islamic law developed the hima (protected reserve) and harim (buffer zone) as binding legal categories for land conservation, predating the modern national park by over a millennium."
+      }
+    ],
+    "generatedAt": "2026-04-22T04:27:29.575Z",
+    "label": "Earth Day & the Environmental Movement",
+    "category": "science",
+    "articleCount": 1
   }
 }
