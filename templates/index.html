@@ -20,6 +20,11 @@
   <meta name="twitter:image" content="https://zuhd.news/og-image.png">
 </head>
 <body>
+  <aside class="app-banner" hidden data-app-banner>
+    <span class="app-banner-text">Also on <a href="https://apps.apple.com/us/app/zuhd-news/id6760964753" rel="noopener">iPhone</a> and <a href="https://play.google.com/store/apps/details?id=news.zuhd.app" rel="noopener">Android</a>.</span>
+    <button class="app-banner-close" type="button" aria-label="Dismiss">&times;</button>
+  </aside>
+  <script>!function(){var b=document.querySelector('[data-app-banner]');if(!b)return;var k='app-banner-dismissed';try{if(localStorage.getItem(k))return}catch(e){}var u=navigator.userAgent,iOS=/iP(ad|hone|od)/.test(u),Safari=/Safari/.test(u)&&!/CriOS|FxiOS|EdgiOS/.test(u);if(iOS&&Safari)return;b.hidden=!1;b.querySelector('.app-banner-close').addEventListener('click',function(){try{localStorage.setItem(k,'1')}catch(e){}b.remove()})}()</script>
   <header>
     <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
     {{audioBriefing}}

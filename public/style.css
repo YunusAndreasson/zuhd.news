@@ -737,6 +737,47 @@ footer {
   letter-spacing: 0.03em;
 }
 
+/* --- App banner (hidden on iOS Safari; native smart banner shows instead) --- */
+.app-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  font-size: var(--size-sm);
+  color: var(--text-secondary);
+  padding: 0.35rem 0 0.5rem;
+  margin-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--rule);
+}
+
+.app-banner-text {
+  line-height: 1.4;
+}
+
+.app-banner-text a {
+  color: var(--text);
+  text-decoration-color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+.app-banner-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  margin-right: -0.5rem;
+  transition: color 0.15s;
+}
+
+.app-banner-close:hover {
+  color: var(--text);
+}
+
 /* --- Reduced Motion --- */
 @media (prefers-reduced-motion: reduce) {
   .headline-item h2, .category-tab { transition: none; }
