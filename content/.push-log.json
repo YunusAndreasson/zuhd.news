@@ -3540,5 +3540,84 @@
       "skipped": 0,
       "tokens": 15
     }
+  },
+  {
+    "timestamp": "2026-04-22T08:36:27.765Z",
+    "candidateCount": 8,
+    "candidates": [
+      {
+        "slug": "2026-04-21-exclusive-russia-to-halt-kazakhstan-s-oil-flows-to-germany-v",
+        "title": "Russia Halts Kazakh-German Oil",
+        "category": "economy",
+        "eventCoverage": 100,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-21-over-30-nations-to-meet-in-london-to-discuss-reopening-the-s",
+        "title": "30 Nations Plan Hormuz Minesweeping",
+        "category": "politics",
+        "eventCoverage": 71,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-22-iranian-gunboat-opens-fire-on-container-ship-in-strait-of-ho",
+        "title": "IRGC Fires on Hormuz Ship",
+        "category": "politics",
+        "eventCoverage": 71,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-22-a-year-on-india-has-failed-to-substantiate-allegations-again",
+        "title": "India Cites No Pahalgam Proof",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-22-coles-adds-20c-to-the-price-of-milk-as-war-in-the-middle-eas",
+        "title": "Iran War Hits Australian Dairy",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-22-bitcoin-price-climbs-to-77-500-on-trump-ceasefire-extension",
+        "title": "Bitcoin Breaks $77k on Ceasefire",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-22-a-more-troubling-picture-of-sea-level-rise-comes-into-view",
+        "title": "Studies Revise Sea Level Baselines",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-22-volo-protocol-loses-3-5-million-in-exploit-days-after-kelpda",
+        "title": "Volo DeFi Hack Drains $3.5m",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-04-21-exclusive-russia-to-halt-kazakhstan-s-oil-flows-to-germany-v",
+      "title": "Russia Halts Kazakh-German Oil",
+      "category": "economy",
+      "body": "43,000 barrels of Kazakh crude stop May 1. [Russia](country:RU) controls the",
+      "eventCoverage": 100,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Russia blocks Kazakh oil flows to Germany via Druzhba pipeline, sources say",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 15
+    }
   }
 ]
