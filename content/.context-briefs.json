@@ -37314,5 +37314,1079 @@
     "label": "Airline Bailouts & the ULCC Model",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-22-a-powerful-new-qr-code-untangles-math-s-knottiest-knots": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORE PROBLEM",
+        "body": "Knot theory studies closed loops in three-dimensional space. Two knots are equivalent if one can be deformed into the other without cutting. Deciding whether two tangled loops are the same knot is deceptively hard — the question has occupied mathematicians since Lord Kelvin proposed in 1867 that atoms were knots in the ether.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A knot *invariant* is a quantity you compute from a knot diagram that stays the same no matter how the loop is deformed. If two knots have different invariants, they are definitively different. If they share the same invariant, they *might* be the same — the invariant may simply be too weak to tell them apart."
+          }
+        ]
+      },
+      {
+        "heading": "THE LADDER OF INVARIANTS",
+        "body": "Each generation of invariant catches knots the previous one missed. The Alexander polynomial (1928) was the first systematic tool. The Jones polynomial (1984) earned Vaughan Jones the Fields Medal by distinguishing knots Alexander could not. Khovanov homology (1999) refined Jones into a richer structure — but pairs of knots share Khovanov signatures and still resist separation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Alexander",
+                "value": "1928",
+                "tone": "neutral"
+              },
+              {
+                "label": "Jones",
+                "value": "1984",
+                "tone": "neutral"
+              },
+              {
+                "label": "Khovanov",
+                "value": "1999",
+                "tone": "neutral"
+              },
+              {
+                "label": "New invariant",
+                "value": "2026",
+                "tone": "favorable"
+              }
+            ],
+            "label": "invariants by discriminating power"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT'S HARD",
+        "body": "The space of knot diagrams is infinite — any knot has infinitely many equivalent drawings via Reidemeister moves. A good invariant must be computable from any diagram yet return the same answer for all of them. Proving an invariant is well-defined is often harder than defining it."
+      },
+      {
+        "heading": "THE DNA CONNECTION",
+        "body": "DNA inside a cell is a closed loop millions of base pairs long, and replication requires untangling it. Enzymes called topoisomerases cut, pass, and rejoin strands to change the knot type. Knot invariants let biologists classify the substrates and products of these enzymes — telling which topological moves the cell can actually perform.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A single human cell packs roughly **two meters** of DNA into a nucleus ~6 microns across. Topoisomerase inhibitors like *etoposide* and *doxorubicin* — used in chemotherapy — work by trapping the enzyme mid-cut, leaving the DNA knotted and killing the dividing cell."
+          }
+        ]
+      },
+      {
+        "heading": "THE QUANTUM CONNECTION",
+        "body": "Edward Witten showed in 1989 that the Jones polynomial emerges naturally from Chern-Simons quantum field theory — a link between knot topology and physics that nobody had anticipated. Topological quantum computers, now being built by Microsoft and others, encode qubits in the braiding of quasiparticles; the computation literally *is* knot manipulation."
+      },
+      {
+        "heading": "THE KHOVANOV BARRIER",
+        "body": "Khovanov homology is a categorification of the Jones polynomial — it replaces each polynomial coefficient with a vector space, capturing strictly more information. Yet computational experiments found knot pairs with identical Khovanov homology that topologists suspected were distinct. Closing that gap has been an open problem for over two decades.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do mathematicians keep inventing new knot invariants?",
+            "options": [
+              "Older invariants are computationally too slow",
+              "Some distinct knots share the same value under existing invariants",
+              "New invariants are required by the axioms of topology",
+              "Older invariants were proven incorrect"
+            ],
+            "correct": 1,
+            "explanation": "An invariant that can't distinguish two genuinely different knots is said to be incomplete. Each new invariant aims to separate pairs that previous tools collapsed together."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-22T22:35:27.383Z",
+    "label": "Knot Theory & Invariants",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-22-digital-fraud-rings-are-targeting-whish-money-users-in-leban": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COLLAPSE",
+        "body": "Lebanon's banking system froze in October 2019. Banks imposed informal capital controls overnight — depositors could no longer withdraw their dollars, and the lira lost over 98% of its value against the dollar within four years. Savings accumulated over decades evaporated in months.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              89394.446299,
+              89583.213344,
+              89469.242764,
+              89550,
+              89550,
+              89310.854972,
+              89928.915129,
+              89550,
+              89200.86875,
+              89558.895308,
+              89493.758014,
+              89493.758014,
+              89493.758014,
+              89550,
+              89196.1685,
+              89515.636511,
+              89273.651314,
+              89550,
+              89412.594799,
+              89440.07584,
+              89550,
+              89541.400333,
+              89555.635708,
+              89725.230619,
+              89479.178514,
+              89714.210369,
+              89714.210369,
+              89848.110329,
+              89471.453014,
+              89501.323014
+            ],
+            "periods": [
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22"
+            ],
+            "label": "Lebanese pound",
+            "unit": "LBP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "LOLLARS",
+        "body": "Dollars trapped inside Lebanese banks became known as *lollars* — digital dollars that could only be withdrawn in lira at a fraction of their value. A depositor with $100,000 on paper might access perhaps $15,000 in real purchasing power. The term is Lebanese gallows humor for a currency that exists only as a database entry.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The gap between a **lollar** and an actual US dollar banknote — a *fresh dollar* in Beirut slang — became the single most important price in the economy."
+          }
+        ]
+      },
+      {
+        "heading": "THE CASH ECONOMY",
+        "body": "With banks untrusted, Lebanon reverted to physical cash. By 2023 the IMF estimated roughly half of GDP circulated outside the banking system. Salaries paid in envelopes, rent in stacks of hundreds, businesses keeping dollars under mattresses or in safes. This is the vacuum apps like Whish Money filled.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Lebanon's economy was operating in cash outside the banking system by 2023?",
+            "options": [
+              "About 15%",
+              "About 30%",
+              "About 50%",
+              "About 80%"
+            ],
+            "correct": 2,
+            "explanation": "The IMF estimated cash transactions reached roughly half of GDP — an extraordinary figure for a middle-income country, and the substrate that made mobile wallets essential."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NO DEPOSIT INSURANCE",
+        "body": "Lebanon's National Institute for the Guarantee of Deposits exists on paper, but it covers lira deposits up to 75 million — worth about $830 at current rates. Dollar deposits have no coverage at all. Fintech platforms like Whish operate entirely outside this already-hollow framework."
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "Mobile money providers across weak-state contexts — M-Pesa in Kenya, bKash in Bangladesh, Whish in Lebanon — typically operate under central bank licenses that predate social engineering fraud. Rules cover solvency and anti-money-laundering; they rarely require compensation when a user is tricked into authorizing a transfer themselves.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK (bank transfers)",
+                "value": "Mandatory refund",
+                "tone": "favorable"
+              },
+              {
+                "label": "Kenya M-Pesa",
+                "value": "Case-by-case",
+                "tone": "neutral"
+              },
+              {
+                "label": "Lebanon Whish",
+                "value": "No recourse",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "mobile money fraud liability"
+          }
+        ]
+      },
+      {
+        "heading": "WHY WHATSAPP",
+        "body": "Lebanon has one of the world's highest WhatsApp penetration rates — over 90% of smartphone users. When a financial platform's support channel runs on the same app fraudsters use to impersonate it, the attack surface is the entire customer base. There is no out-of-band verification the average user trusts more than the in-band impersonator."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-22"
+    ],
+    "generatedAt": "2026-04-22T22:35:53.419Z",
+    "label": "Lebanon's Shadow Banking",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-22-french-soldier-dies-of-wounds-after-attack-on-un-force-in-le": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MANDATE",
+        "body": "UNIFIL was created by UN Security Council Resolution 425 in March 1978, after Israel's first invasion of Lebanon. Its original task was to confirm Israeli withdrawal and help Lebanon restore authority in the south — a mandate that has been renewed every year for nearly five decades without ever being fulfilled.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mission is *interim* in name only. 1978 was supposed to be months; it is now the **longest-running active UN peacekeeping deployment** in the Middle East."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2006 REWRITE",
+        "body": "After the 34-day war between Israel and Hezbollah, Resolution 1701 expanded UNIFIL from a few thousand observers to roughly 10,000 troops with a mandate to help keep the area south of the Litani River free of armed groups other than the Lebanese army. In practice, Hezbollah never left; UNIFIL patrols around it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY",
+              "FR",
+              "IT"
+            ],
+            "label": "UNIFIL's operating theatre and top troop contributors"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST",
+        "body": "France has anchored UNIFIL since its founding — a legacy of the French Mandate over Lebanon (1920–1943). Italy and France together contribute the bulk of European troops; the overall force is commanded on rotation, currently under an Italian general.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Indonesia",
+                "value": "~1,230",
+                "cc": "ID",
+                "weight": 1230
+              },
+              {
+                "label": "Italy",
+                "value": "~1,070",
+                "cc": "IT",
+                "weight": 1070
+              },
+              {
+                "label": "India",
+                "value": "~900",
+                "cc": "IN",
+                "weight": 900
+              },
+              {
+                "label": "France",
+                "value": "~700",
+                "cc": "FR",
+                "weight": 700
+              },
+              {
+                "label": "Ghana",
+                "value": "~870",
+                "cc": "GH",
+                "weight": 870
+              }
+            ],
+            "label": "top UNIFIL troop contributors"
+          }
+        ]
+      },
+      {
+        "heading": "HEZBOLLAH'S POSTURE",
+        "body": "Hezbollah was born in 1982 in direct response to Israel's invasion and occupation of southern Lebanon. Its founding doctrine treats the south as a resistance zone, not a neutral one — which structurally puts any foreign force, UN or otherwise, in the way of its freedom of movement."
+      },
+      {
+        "heading": "WHY FRANCE IS DIFFERENT",
+        "body": "Macron's public accusation against Hezbollah is a sharp break from UNIFIL's usual posture of diplomatic ambiguity. French troops have been targeted before — most infamously the 1983 Drakkar barracks bombing in Beirut that killed 58 French paratroopers, attributed to a Hezbollah precursor group. For Paris, this history is living memory, not archive.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the 1983 Drakkar bombing?",
+            "options": [
+              "An attack on French UNIFIL troops in southern Lebanon",
+              "A truck bombing of French paratroopers in Beirut",
+              "An Israeli airstrike on a French embassy convoy",
+              "A Syrian artillery strike on a French patrol"
+            ],
+            "correct": 1,
+            "explanation": "The Drakkar bombing hit the French contingent of a separate multinational force in Beirut, not UNIFIL — but it shaped French threat perception of Hezbollah for a generation."
+          }
+        ]
+      },
+      {
+        "heading": "THE RENEWAL CLIFF",
+        "body": "UNIFIL's mandate must be renewed annually by the Security Council. The US under Trump and Israel have both signaled they see the mission as ineffective cover for Hezbollah; France and Italy have been its strongest defenders. An August 2026 non-renewal would end the mission entirely.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              89394.446299,
+              89583.213344,
+              89469.242764,
+              89550,
+              89550,
+              89310.854972,
+              89928.915129,
+              89550,
+              89200.86875,
+              89558.895308,
+              89493.758014,
+              89493.758014,
+              89493.758014,
+              89550,
+              89196.1685,
+              89515.636511,
+              89273.651314,
+              89550,
+              89412.594799,
+              89440.07584,
+              89550,
+              89541.400333,
+              89555.635708,
+              89725.230619,
+              89479.178514,
+              89714.210369,
+              89714.210369,
+              89848.110329,
+              89471.453014,
+              89501.323014
+            ],
+            "periods": [
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22"
+            ],
+            "label": "Lebanese pound",
+            "unit": "LBP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-22"
+    ],
+    "generatedAt": "2026-04-22T22:36:21.019Z",
+    "label": "UNIFIL & Southern Lebanon",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-nepal-s-home-minister-resigns-over-financial-probe-weeks-int": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEN Z UPRISING",
+        "body": "Nepal's 2025 protests began after the government blocked 26 social media platforms. Within days the movement escalated into an anti-corruption revolt that burned the parliament building and forced PM K.P. Sharma Oli to resign. What started as a digital freedom protest became a generational rejection of the political class.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The movement became known as the ***Nepo Kid*** protests — videos contrasting the lavish lifestyles of politicians' children against median incomes of roughly **$1,400/year** went viral and crystallized public rage."
+          }
+        ]
+      },
+      {
+        "heading": "THE MAYOR WHO BECAME PM",
+        "body": "Balendra Shah — known as Balen — is a rapper and structural engineer who won Kathmandu's mayoralty in 2022 as an independent at age 32. When the Gen Z protests toppled the old order, the army and protest leaders settled on him as a consensus caretaker PM. He is the youngest head of government in Nepal's history.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was Balendra Shah's profession before entering politics?",
+            "options": [
+              "Army general",
+              "Rapper and structural engineer",
+              "Supreme Court justice",
+              "Hindu priest"
+            ],
+            "correct": 1,
+            "explanation": "Balen built a following as a battle rapper and trained as a civil engineer — an outsider profile that was central to his appeal against Nepal's entrenched political dynasties."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE HOME MINISTRY MATTERS",
+        "body": "Nepal's Home Ministry controls the police, the Department of Money Laundering Investigation, and internal intelligence. A home minister under a laundering probe is not a peripheral scandal — it is the ministry that would normally investigate itself. Losing it forces the PM to hold the portfolio directly to preserve the probe's credibility."
+      },
+      {
+        "heading": "THE DYNASTIC CAPTURE",
+        "body": "Since the 2008 abolition of the monarchy, power has rotated among three parties — the Nepali Congress and two communist factions (UML and Maoist Centre) — led by the same handful of men: Oli, Prachanda, Deuba. Each cycle produced new coalitions but the same leaders. Gen Z's grievance was not ideology; it was the closed circle itself.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "K.P. Sharma Oli",
+                "role": "UML leader, ex-PM",
+                "years": "2015–16, 2018–21, 2024–25",
+                "cc": "NP"
+              },
+              {
+                "name": "Pushpa Kamal Dahal",
+                "role": "Maoist leader (Prachanda)",
+                "years": "PM 2008, 2016, 2022",
+                "cc": "NP"
+              },
+              {
+                "name": "Sher Bahadur Deuba",
+                "role": "Nepali Congress leader",
+                "years": "PM 5 times since 1995",
+                "cc": "NP"
+              }
+            ],
+            "label": "the old guard Gen Z rejected"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHIC SQUEEZE",
+        "body": "Nepal is landlocked between India and China, with all sea access running through Indian ports. Every government must balance Delhi and Beijing simultaneously — aid, infrastructure loans, open borders for migrant workers. Domestic instability is immediately read in both capitals as an opening.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NP",
+              "IN",
+              "CN"
+            ],
+            "label": "the squeeze"
+          }
+        ]
+      },
+      {
+        "heading": "THE REMITTANCE ECONOMY",
+        "body": "Remittances from Nepali workers abroad — mostly in the Gulf, Malaysia, and India — equal roughly a quarter of GDP, one of the highest ratios in the world. This is the structural backdrop to the anti-corruption rage: a generation works abroad in construction and domestic service to send money home, while the political class in Kathmandu is seen living off that flow.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nepal",
+                "value": "~25%",
+                "weight": 25,
+                "tone": "neutral",
+                "cc": "NP"
+              },
+              {
+                "label": "Lebanon",
+                "value": "~28%",
+                "weight": 28,
+                "cc": "LB"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~8%",
+                "weight": 8,
+                "cc": "PK"
+              },
+              {
+                "label": "Philippines",
+                "value": "~9%",
+                "weight": 9,
+                "cc": "PH"
+              },
+              {
+                "label": "India",
+                "value": "~3%",
+                "weight": 3,
+                "cc": "IN"
+              }
+            ],
+            "label": "remittances as share of GDP"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-22T22:36:51.508Z",
+    "label": "Nepal's anti-corruption government",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-north-korean-hackers-siphon-more-than-12-million-from-crypto": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY NORTH KOREA STEALS CRYPTO",
+        "body": "UN sanctions cut North Korea off from the global banking system. The regime generates hard currency through counterfeiting, arms sales, and — since 2017 — cryptocurrency theft. The UN Panel of Experts estimated DPRK cyber operations funded roughly 40% of the weapons program as of 2023.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Lazarus Group umbrella — run out of the **Reconnaissance General Bureau** — has stolen an estimated **$3B+** in crypto since 2017, making Pyongyang the most prolific state-level crypto thief on record."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHIFT TO PERSONAL DEVICES",
+        "body": "Exchanges hardened after the 2022 Ronin Bridge heist ($625M) and 2024 DMM Bitcoin theft ($305M). Cold storage, multi-sig approvals, and transaction monitoring pushed attackers down the stack — from platforms to the phones in users' pockets, where a single compromised device yields keys directly."
+      },
+      {
+        "heading": "HOW INFOSTEALERS WORK",
+        "body": "Infostealer malware scrapes browser-saved passwords, clipboard contents, session cookies, and wallet seed files from an infected device. Crypto wallets are a prime target because possession of the seed phrase equals possession of the funds — no password reset, no bank intermediary, no reversal."
+      },
+      {
+        "heading": "THE TRANSPARENCY PARADOX",
+        "body": "Every blockchain transaction is public and permanent. Pseudonymous addresses provide privacy, but the transaction graph — who sent what to whom — is visible to everyone. This makes cryptocurrency simultaneously the easiest financial system to use anonymously and the easiest to trace forensically.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              70892.83,
+              70524.51,
+              71309.26,
+              68791.11,
+              66321.02,
+              66321.07,
+              65970.43,
+              66699.27,
+              68231.83,
+              68089.06,
+              66891.66,
+              66939.69,
+              67304.25,
+              68985.53,
+              68864.23,
+              71975.62,
+              71117.08,
+              71770.75,
+              72972.71,
+              73053.89,
+              70756.75,
+              74514.63,
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78551.68
+            ],
+            "periods": [
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 22"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LAUNDERING PIPELINE",
+        "body": "Stolen coins move through mixers (Tornado Cash, sanctioned in 2022), cross-chain bridges, and over-the-counter brokers in jurisdictions with weak KYC. DPRK operators have industrialized this pipeline — the gap between theft and cash-out has compressed from months to weeks.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of DPRK weapons program funding came from cyber operations by 2023, per the UN Panel of Experts?",
+            "options": [
+              "Around 10%",
+              "Around 40%",
+              "Around 75%"
+            ],
+            "correct": 1,
+            "explanation": "The UN Panel estimated cyber theft — primarily crypto — funded roughly 40% of the weapons program, making hacking a core pillar of the regime's military economy."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PHONES ARE SOFT TARGETS",
+        "body": "Mobile wallets sit on devices that users also use to browse, message, and install apps. A single malicious APK, phishing link, or trojanized Telegram client can compromise the keys. Unlike exchange accounts, there is no institution to notice the drain or freeze the transfer."
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-04-22"
+    ],
+    "generatedAt": "2026-04-22T22:37:19.101Z",
+    "label": "DPRK Crypto Theft",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-22-pahalgam-attack-was-major-setback-for-j-k-farooq": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WOUND",
+        "body": "On 22 April 2025, gunmen killed 26 tourists in the Baisaran meadow above Pahalgam — the deadliest attack on civilians in Kashmir since the 2008 Mumbai siege. India attributed it to The Resistance Front, widely assessed as a Lashkar-e-Taiba front organization.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Lashkar-e-Taiba** (LeT) was founded in the late 1980s in Pakistani Punjab and is designated a terrorist group by the UN, US, EU, and India. Pakistan formally banned it in 2002; analysts say it operates through rebranded fronts like *The Resistance Front* and *Jamaat-ud-Dawa*."
+          }
+        ]
+      },
+      {
+        "heading": "OPERATION SINDOOR",
+        "body": "India's May 2025 response — named for the vermilion mark Hindu widows traditionally remove — struck targets across Pakistani Punjab and Pakistan-administered Kashmir. It was the first Indian strike on the Pakistani heartland (not just Azad Kashmir) since the 1971 war."
+      },
+      {
+        "heading": "THE INDUS LEVER",
+        "body": "The 1960 Indus Waters Treaty, brokered by the World Bank, gave Pakistan the three western rivers (Indus, Jhelum, Chenab) and India the three eastern ones. Roughly 80% of Pakistan's irrigated agriculture depends on the western rivers. India suspended its participation in the treaty after Pahalgam — the first such move in 65 years.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "CN",
+              "AF"
+            ],
+            "label": "the Indus basin"
+          }
+        ]
+      },
+      {
+        "heading": "THE ESCALATION LADDER",
+        "body": "India and Pakistan have fought four wars (1947, 1965, 1971, 1999) and several limited engagements. Since both went nuclear in 1998, the doctrine has been calibrated escalation — strikes calibrated to punish without crossing the threshold that triggers nuclear response. Sindoor pushed that ceiling higher than any prior episode.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russia",
+                "value": "~5,580",
+                "cc": "RU",
+                "weight": 5580
+              },
+              {
+                "label": "United States",
+                "value": "~5,044",
+                "cc": "US",
+                "weight": 5044
+              },
+              {
+                "label": "China",
+                "value": "~600",
+                "cc": "CN",
+                "weight": 600
+              },
+              {
+                "label": "India",
+                "value": "~172",
+                "cc": "IN",
+                "weight": 172
+              },
+              {
+                "label": "Pakistan",
+                "value": "~170",
+                "cc": "PK",
+                "weight": 170
+              }
+            ],
+            "label": "estimated nuclear warheads"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KASHMIR",
+        "body": "At Partition in 1947, the princely state of Jammu & Kashmir had a Muslim majority but a Hindu maharaja, who acceded to India under invasion pressure. The UN-mandated plebiscite never happened. The Line of Control froze the dispute in 1949; neither side recognizes it as a border."
+      },
+      {
+        "heading": "THE 2019 INFLECTION",
+        "body": "India revoked Article 370 in August 2019, stripping J&K of its special autonomous status and splitting it into two union territories ruled directly from Delhi. Farooq Abdullah, the former chief minister quoted in this story, was placed under house arrest for months. The constitutional change reframed Kashmir from a disputed territory to an internal administrative matter — a position Pakistan rejects.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did India's August 2019 revocation of Article 370 do to Jammu & Kashmir?",
+            "options": [
+              "Granted it full statehood",
+              "Stripped its special autonomy and split it into two union territories",
+              "Held a UN-supervised plebiscite",
+              "Returned it to Pakistani administration"
+            ],
+            "correct": 1,
+            "explanation": "Article 370 had given J&K its own constitution and autonomy since 1949. Its revocation placed the region under direct rule from Delhi."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-22T22:37:46.275Z",
+    "label": "Pahalgam, Sindoor & the Indus Lever",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-power-struggle-former-scorpions-boss-tells-of-turf-war-over": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRC BARGAIN",
+        "body": "South Africa's Truth and Reconciliation Commission (1996–2002) offered amnesty in exchange for full disclosure of politically motivated crimes. The deal was explicit: confess the act, prove the political motive, walk free. Refuse to apply, or lie, and prosecution was supposed to follow.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bargain was *conditional* amnesty — unique in transitional justice. Chile and Argentina granted blanket amnesties; South Africa required perpetrators to name victims, describe methods, and submit to cross-examination in public hearings."
+          }
+        ]
+      },
+      {
+        "heading": "THE UNFINISHED LIST",
+        "body": "Roughly 300 apartheid-era cases were explicitly handed to the National Prosecuting Authority when the TRC closed — perpetrators who refused amnesty, were denied it, or never applied. Two decades later, fewer than a dozen have gone to trial. Most suspects have since died.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Of the ~300 apartheid-era cases referred by the TRC to prosecutors, roughly how many reached trial in the following 20 years?",
+            "options": [
+              "Around 150",
+              "Around 75",
+              "Fewer than 15",
+              "All were prosecuted"
+            ],
+            "correct": 2,
+            "explanation": "The vast majority stalled. The Khampepe-style inquiries now probing why are the state's first serious attempt to explain the gap."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCORPIONS",
+        "body": "The Directorate of Special Operations — the Scorpions — was an elite prosecutor-led unit that combined investigation and prosecution under one roof, modeled on the US FBI. It pursued senior ANC officials for corruption, which made it politically inconvenient, and was dissolved by parliament in 2009."
+      },
+      {
+        "heading": "THE TURF PROBLEM",
+        "body": "South African law enforcement fractured after 1994 into overlapping units — SAPS detectives, the Scorpions, the NPA's Priority Crimes Litigation Unit. Apartheid-era cases required cross-unit cooperation between bodies whose leaders were competing for budget, headlines, and survival."
+      },
+      {
+        "heading": "THE MBEKI YEARS",
+        "body": "Allegations of political interference cluster around Thabo Mbeki's presidency (1999–2008). Victims' families argue senior ANC figures, some of whom had their own amnesty applications or pre-1994 operational histories, quietly signaled that prosecutions should not proceed. The current judicial inquiry is the first official test of that claim.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Thabo Mbeki",
+                "role": "South African President",
+                "years": "1999–2008",
+                "cc": "ZA"
+              },
+              {
+                "name": "Bulelani Ngcuka",
+                "role": "National Director of Prosecutions",
+                "years": "1998–2004",
+                "cc": "ZA"
+              },
+              {
+                "name": "Vusi Pikoli",
+                "role": "National Director of Prosecutions",
+                "years": "2005–2009",
+                "cc": "ZA"
+              }
+            ],
+            "label": "the cast around the stall"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT STILL MATTERS",
+        "body": "The TRC's legitimacy rested on a promise: amnesty for those who confessed, prosecution for those who didn't. If the second half never arrives, the first half becomes indistinguishable from impunity — and every future transitional-justice bargain is weakened by the precedent."
+      }
+    ],
+    "generatedAt": "2026-04-22T22:38:12.519Z",
+    "label": "TRC & Apartheid Impunity",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-two-iranian-women-in-ice-detention-are-not-in-fact-related-t": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATUTORY HOOK",
+        "body": "Section 237(a)(4)(C) of the Immigration and Nationality Act lets the Secretary of State personally deem a noncitizen deportable if their presence is believed to produce 'potentially serious adverse foreign policy consequences.' No crime, no hearing, no evidence standard — the Secretary's determination is itself the trigger.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clause is known in immigration bar shorthand as the ***foreign policy ground***. It was written in 1990 with Cold War defectors in mind and sat nearly dormant for three decades before recent administrations revived it."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A GREEN CARD ACTUALLY IS",
+        "body": "Lawful Permanent Resident status is a statutory privilege, not a constitutional right. The holder can work, travel, and live indefinitely in the US, but can be stripped of the card and removed through immigration proceedings. Only citizenship — naturalization — is irrevocable absent fraud."
+      },
+      {
+        "heading": "THE DUE PROCESS FLOOR",
+        "body": "The Supreme Court held in Landon v. Plasencia (1982) that returning permanent residents are entitled to due process at the border. But immigration courts sit inside the Executive Branch (the DOJ's EOIR), not the independent judiciary — the judge hearing your case reports up to the same administration seeking your removal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which branch of the US government employs immigration judges?",
+            "options": [
+              "The Judicial Branch, like federal district judges",
+              "An independent Article I court",
+              "The Executive Branch, inside the Department of Justice",
+              "The Department of Homeland Security"
+            ],
+            "correct": 2,
+            "explanation": "Immigration judges are DOJ employees in the Executive Office for Immigration Review — they can be reassigned or fired by the Attorney General."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRANIAN DIASPORA IN AMERICA",
+        "body": "Roughly half a million Iranian-Americans live in the US, with the densest concentration in Los Angeles — 'Tehrangeles' — where a wave arrived after the 1979 revolution. Most are secular, middle-class, and include many who fled the very regime they are now sometimes accused of representing.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~500k",
+                "weight": 500,
+                "cc": "US"
+              },
+              {
+                "label": "Canada",
+                "value": "~210k",
+                "weight": 210,
+                "cc": "CA"
+              },
+              {
+                "label": "Germany",
+                "value": "~200k",
+                "weight": 200,
+                "cc": "DE"
+              },
+              {
+                "label": "UAE",
+                "value": "~500k",
+                "weight": 500,
+                "cc": "AE"
+              },
+              {
+                "label": "Turkey",
+                "value": "~130k",
+                "weight": 130,
+                "cc": "TR"
+              }
+            ],
+            "label": "Iranian diaspora by country"
+          }
+        ]
+      },
+      {
+        "heading": "THE SURNAME PROBLEM",
+        "body": "Persian family names are drawn from a relatively small pool of roots — geographic, tribal, or religious — and a shared surname implies no familial connection. Mistaking two Hamidehs for relatives of a general is the cultural equivalent of assuming every American named Smith is related."
+      },
+      {
+        "heading": "THE 1952 PRECEDENT",
+        "body": "Mass deportation orders driven by ideology rather than conduct are not new. The McCarran-Walter Act of 1952 let the Attorney General deport LPRs for suspected communist sympathies; in Galvan v. Press (1954) the Supreme Court upheld it, holding that immigration is a plenary power of the political branches. That doctrine — that courts defer almost totally to the executive on who may stay — has never been overruled."
+      },
+      {
+        "heading": "DETENTION MEDICAL CARE",
+        "body": "ICE's own 2024 oversight reports documented chronic delays in specialist referrals and medication access at contract detention facilities. Untreated chronic conditions — hypertension, diabetes, blood disorders — are the single largest category of medical grievances filed by detainees, and deaths in ICE custody have repeatedly been traced to missed or delayed care."
+      }
+    ],
+    "generatedAt": "2026-04-22T22:38:42.780Z",
+    "label": "Green Card Revocation & Executive Power",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-us-won-t-dictate-terms-of-free-trade-talks-says-pm-carney": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SUNSET CLAUSE",
+        "body": "USMCA is the first major trade pact with a built-in expiration. Article 34.7 requires a joint review every six years; if all three parties don't agree to extend, the deal terminates after sixteen years. The 2026 review is the first test of this mechanism.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clause was a US demand in 2018 — designed precisely so Washington could **reopen terms periodically** without abrogating the treaty outright."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CANADA IS EXPOSED",
+        "body": "Roughly 75% of Canadian exports go to the United States. No other G7 economy is so dependent on a single trading partner. The asymmetry is the entire negotiating problem: the US can threaten tariffs as leverage; Canada cannot credibly threaten the reverse.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Canada",
+                "value": "~75%",
+                "cc": "CA",
+                "weight": 75,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Mexico",
+                "value": "~80%",
+                "cc": "MX",
+                "weight": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germany",
+                "value": "~10%",
+                "cc": "DE",
+                "weight": 10
+              },
+              {
+                "label": "Japan",
+                "value": "~20%",
+                "cc": "JP",
+                "weight": 20
+              },
+              {
+                "label": "UK",
+                "value": "~16%",
+                "cc": "GB",
+                "weight": 16
+              }
+            ],
+            "label": "export share to the US"
+          }
+        ]
+      },
+      {
+        "heading": "NAFTA TO USMCA",
+        "body": "NAFTA (1994) created a continental free-trade zone with minimal rules-of-origin requirements. USMCA (2020) tightened those rules — autos must now have 75% North American content (up from 62.5%) and 40-45% must be made by workers earning at least $16/hour. The shift was designed to pull manufacturing back from Mexico to the US."
+      },
+      {
+        "heading": "THE CHAPTER 19 FIGHT",
+        "body": "Canada's red line in every renegotiation since 1988 has been binational dispute panels — the mechanism that lets Canadian exporters challenge US anti-dumping duties outside US courts. Washington has tried to kill it three times; Ottawa has held the line each time, because without it Canadian softwood lumber, steel, and dairy would face uncontested US trade remedies."
+      },
+      {
+        "heading": "THE LEVERAGE ASYMMETRY",
+        "body": "The US runs a goods deficit with Canada driven almost entirely by oil — Canada is the largest single supplier of crude to US refineries, especially Midwest ones engineered for heavy Canadian grades. This is Ottawa's one structural card: those refineries cannot quickly switch feedstock.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of US crude oil imports comes from Canada?",
+            "options": [
+              "About 20%",
+              "About 40%",
+              "About 60%",
+              "About 80%"
+            ],
+            "correct": 2,
+            "explanation": "Canada supplies roughly 60% of US crude imports — more than all OPEC countries combined, and the Midwest refinery complex is purpose-built for heavy Canadian grades."
+          }
+        ]
+      },
+      {
+        "heading": "CARNEY'S BACKGROUND",
+        "body": "Mark Carney is the only person to have run two G7 central banks — the Bank of Canada (2008–2013) and the Bank of England (2013–2020). He took the prime ministership in 2025 with a mandate built explicitly around managing the US relationship through the USMCA review.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mark Carney",
+                "role": "Canadian Prime Minister",
+                "years": "2025–",
+                "cc": "CA"
+              },
+              {
+                "name": "Claudia Sheinbaum",
+                "role": "Mexican President",
+                "years": "2024–",
+                "cc": "MX"
+              },
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              }
+            ],
+            "label": "the renegotiation principals"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-22T22:39:11.200Z",
+    "label": "USMCA & the Renegotiation Clock",
+    "category": "economy",
+    "articleCount": 1
   }
 }
