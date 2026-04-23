@@ -46026,5 +46026,1856 @@
     "label": "Rules of Engagement & Hormuz",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-23-african-creators-gig-economy-platform-pay-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHIC RATE CARD",
+        "body": "YouTube, Meta, and TikTok pay advertisers' CPM rates, which vary by viewer country. A thousand views from US audiences can pay $8–$15; the same thousand from Nigeria or Kenya pays $0.50–$2. Creators in Africa producing for African audiences are structurally capped, regardless of quality or effort.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "$8–15",
+                "cc": "US",
+                "weight": 12,
+                "tone": "favorable"
+              },
+              {
+                "label": "UK",
+                "value": "$6–10",
+                "cc": "GB",
+                "weight": 8
+              },
+              {
+                "label": "Brazil",
+                "value": "$1–3",
+                "cc": "BR",
+                "weight": 2
+              },
+              {
+                "label": "Nigeria",
+                "value": "$0.50–2",
+                "cc": "NG",
+                "weight": 1.2,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kenya",
+                "value": "$0.50–2",
+                "cc": "KE",
+                "weight": 1.2,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "typical YouTube CPM by viewer country"
+          }
+        ]
+      },
+      {
+        "heading": "THE MONETIZATION THRESHOLD",
+        "body": "YouTube requires 1,000 subscribers and 4,000 watch-hours before a channel earns anything. TikTok's Creator Fund is unavailable in most African countries outright. The gate itself is a filter — and the filter is set by platform, not by effort."
+      },
+      {
+        "heading": "THE PAYOUT PIPE",
+        "body": "Even eligible creators hit a second wall: payment rails. YouTube pays via AdSense, which requires a bank account that accepts USD wires or a supported payment processor. Large swaths of francophone and lusophone Africa lack either, routing payouts through intermediaries that take 5–15% cuts.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The result: a Lagos creator with a million views may net *less than a tenth* of what the advertiser paid — the rest absorbed by **CPM arbitrage**, platform cut, FX spread, and cash-out fees."
+          }
+        ]
+      },
+      {
+        "heading": "THE LABOR-LAW VACUUM",
+        "body": "Creators are classified as independent contractors everywhere, but most jurisdictions have at least debated minimum protections — portable benefits, algorithmic transparency, deactivation appeals. The EU's Platform Work Directive (2024) is the clearest template. No African country has passed an equivalent.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "KE",
+              "ZA",
+              "GH",
+              "EG",
+              "SN"
+            ],
+            "label": "surveyed markets — zero with digital-worker laws"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIASPORA WORKAROUND",
+        "body": "Successful African creators increasingly produce for diaspora audiences in the US, UK, and Gulf — because the CPM follows the viewer, not the creator. A Nairobi channel that pivots to London-Kenyan viewers can 5x its revenue without changing content quality. This quietly reshapes what stories get told.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What determines how much a YouTube creator earns per thousand views?",
+            "options": [
+              "The creator's country",
+              "The viewer's country",
+              "The video's production cost",
+              "The creator's subscriber count"
+            ],
+            "correct": 1,
+            "explanation": "CPM is set by the advertiser bidding for the viewer's attention — so a creator's earnings track where their audience lives, not where they do."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-23T22:35:33.863Z",
+    "label": "The Creator Economy Pay Gap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-23-india-ai-summit-surveillance-facial-recognition": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL VACUUM",
+        "body": "India has no data protection authority with teeth and no standalone surveillance law. The 2023 Digital Personal Data Protection Act exempts the state from most obligations when processing data for 'sovereignty' or 'public order' — categories the executive defines.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The exemption rests on *Section 17(2)(a)* — a clause so broad that every central agency can self-certify its way out of the law."
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE SYSTEMS WORK",
+        "body": "Modern facial recognition uses convolutional neural networks trained on millions of labeled faces to produce a 128- or 512-dimensional embedding — a vector fingerprint. Matching is a nearest-neighbor search against a gallery. Accuracy collapses on darker skin, on women, and on anyone whose demographics were underrepresented in training data.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do facial recognition systems misidentify darker-skinned faces more often?",
+            "options": [
+              "The cameras physically cannot capture enough light",
+              "Training datasets underrepresent those demographics",
+              "The algorithms have hardcoded racial bias",
+              "The systems work fine — the claim is a myth"
+            ],
+            "correct": 1,
+            "explanation": "NIST's 2019 vendor test found error rates up to 100x higher for some demographics, traced to imbalanced training data, not sensor limits."
+          }
+        ]
+      },
+      {
+        "heading": "THE AFIS PRECEDENT",
+        "body": "India's Automated Facial Recognition System, tendered by the National Crime Records Bureau in 2019, is designed to become the world's largest centralised face database — hooking into passport, driver's license, and CCTV feeds. No parliamentary debate preceded the tender; procurement was the policy."
+      },
+      {
+        "heading": "AADHAAR AS SUBSTRATE",
+        "body": "India already holds biometric records — fingerprints and iris scans — on 1.4 billion people through Aadhaar, the world's largest biometric ID system. Facial recognition layers onto this existing infrastructure. The question is not whether the state can identify someone, but whether it can do so passively, at scale, from a distance.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~1.4bn",
+                "weight": 1400
+              },
+              {
+                "label": "China",
+                "value": "~1.0bn",
+                "weight": 1000
+              },
+              {
+                "label": "Nigeria",
+                "value": "~120m",
+                "weight": 120
+              },
+              {
+                "label": "US",
+                "value": "~170m*",
+                "weight": 170
+              }
+            ],
+            "label": "national biometric coverage"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHINA COMPARISON",
+        "body": "China's Skynet and Sharp Eyes programs deploy an estimated 700 million cameras with integrated face matching. India's camera density is lower, but the legal restraints are weaker — China at least has a 2021 Personal Information Protection Law that nominally binds private operators. India's framework binds neither."
+      },
+      {
+        "heading": "WHY PREDICTIVE POLICING FAILS",
+        "body": "Predictive systems learn from historical arrest data. In any jurisdiction where policing has been uneven across castes, religions, or neighborhoods, the model encodes that unevenness as prediction. The output is mathematically objective and substantively circular — the algorithm arrests where police already arrested."
+      }
+    ],
+    "generatedAt": "2026-04-23T22:35:59.353Z",
+    "label": "Facial Recognition & the Indian State",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-23-israel-katz-green-light-renew-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE JUNE 2025 WAR",
+        "body": "The twelve-day Israel-Iran war opened with Israeli strikes on Natanz and IRGC command nodes and closed when US B-2s struck Fordow's centrifuge halls. The ceasefire Trump announced on June 24 left every underlying dispute — enrichment, sanctions, proxies — unresolved. A 'pause' was never a settlement.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "IR",
+              "US",
+              "PK",
+              "QA"
+            ],
+            "label": "the cast still at the table"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GRID",
+        "body": "Modern air campaigns against hardened nuclear sites follow a sequence: suppress air defenses, then cut the power that runs centrifuges, cooling, and command. Iran's grid is already stressed — summer demand routinely exceeds supply by 15-20 GW — so kinetic strikes compound an existing fragility. This is the Desert Storm playbook: collapse the network before hitting the target.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Centrifuges spin at **60,000+ RPM**. A sudden power cut doesn't just stop enrichment — it can shatter the rotors, damaging the cascade for months. Israel used this logic at Natanz in 2020 and again in June 2025."
+          }
+        ]
+      },
+      {
+        "heading": "WHO AUTHORIZES WHAT",
+        "body": "Israel operates F-35I, F-15I, and F-16I fleets independently — but a strike package deep into Iran needs US tanker tracks, ISR feeds, and airspace deconfliction through CENTCOM. 'Awaiting authorization' is rarely about permission in the formal sense; it is about the enabling infrastructure only Washington controls.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Israel Katz",
+                "role": "Israeli Defense Minister",
+                "years": "2024–",
+                "cc": "IL"
+              },
+              {
+                "name": "Benjamin Netanyahu",
+                "role": "Israeli Prime Minister",
+                "years": "2022–",
+                "cc": "IL"
+              },
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Ali Khamenei",
+                "role": "Iran Supreme Leader",
+                "years": "1989–",
+                "cc": "IR"
+              }
+            ],
+            "label": "the decision chain"
+          }
+        ]
+      },
+      {
+        "heading": "THE PAKISTAN CHANNEL",
+        "body": "Islamabad has mediated Iran-Gulf and Iran-West tracks since the 1980s, leveraging its Shia minority, its Saudi security ties, and its position as the only Muslim nuclear power. The Pakistan-hosted ceasefire talks are not an accident of geography — they reflect a role Pakistan has played quietly for forty years, most notably in the 1988 Iran-Iraq war ending.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              19,
+              28,
+              19,
+              17,
+              7
+            ],
+            "periods": [
+              "Apr 9",
+              "Apr 12",
+              "Apr 22",
+              "Apr 23",
+              "Apr 23"
+            ],
+            "label": "US x Iran permanent peace deal by April…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "19%"
+              },
+              {
+                "atIndex": 4,
+                "label": "7%"
+              }
+            ],
+            "link": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE QURANIC FRAME",
+        "body": "Iran's population is roughly 90% Shia, Israel defines itself as a Jewish state, and the contested terrain includes al-Quds — the third holiest site in Islam. A hadith in Sahih Muslim describes end-times conflict gathered near al-Sham (Greater Syria/the Levant). Regardless of eschatological interpretation, the theological weight is why this conflict mobilizes across the ummah in ways a conventional state rivalry would not."
+      },
+      {
+        "heading": "THE ESCALATION LADDER",
+        "body": "Iran's response options in June were constrained: the symbolic strike on al-Udeid in Qatar was pre-announced to minimize casualties. A renewed war removes that face-saving off-ramp. Hormuz closure, attacks on Gulf energy infrastructure, and activation of what remains of the Axis of Resistance become more likely — not as first choices, but as the steps left after diplomacy is foreclosed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global seaborne oil transits the Strait of Hormuz daily?",
+            "options": [
+              "About 5%",
+              "About 12%",
+              "About 21%",
+              "About 40%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 21 million barrels per day — about 21% of global oil consumption — pass through Hormuz. No alternative route exists for most of it."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-04-23"
+    ],
+    "generatedAt": "2026-04-23T22:36:31.081Z",
+    "label": "Israel, Iran & the US Trigger",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-23-meta-microsoft-layoffs-fund-ai-capex": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CAPEX WAVE",
+        "body": "Four hyperscalers — Meta, Microsoft, Google, Amazon — are on track to spend roughly half a trillion dollars on AI infrastructure in 2025. That exceeds the entire annual capex of the global oil and gas industry at current prices.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Meta",
+                "value": "~$135bn",
+                "weight": 135
+              },
+              {
+                "label": "Microsoft",
+                "value": "~$110bn",
+                "weight": 110
+              },
+              {
+                "label": "Google",
+                "value": "~$95bn",
+                "weight": 95
+              },
+              {
+                "label": "Amazon",
+                "value": "~$125bn",
+                "weight": 125
+              }
+            ],
+            "label": "2025 AI capex guidance"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE MONEY GOES TO NVIDIA",
+        "body": "Most of the capex is not buildings or power — it is GPUs. A single Nvidia H100 costs around $30,000; a GB200 rack costs roughly $3m. Roughly 60 cents of every hyperscaler AI dollar ends up on Nvidia's income statement, which is why one chipmaker briefly became the most valuable company on earth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry calls this the **Jensen tax** — the structural margin Nvidia extracts because CUDA, its software layer, has no serious competitor for training frontier models."
+          }
+        ]
+      },
+      {
+        "heading": "THE LABOR OFFSET",
+        "body": "Depreciation on a data center runs 5–6 years; a software engineer's fully-loaded cost is roughly $400,000 a year. Cutting 8,000 engineers saves about $3bn annually — a rounding error against $135bn of capex, but it improves operating margin exactly where Wall Street measures it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How much of Meta's 2025 AI capex does cutting 8,000 engineers offset?",
+            "options": [
+              "About 2%",
+              "About 10%",
+              "About 25%",
+              "About 40%"
+            ],
+            "correct": 0,
+            "explanation": "~$3bn in salary savings against ~$135bn in capex is roughly 2% — the cuts are about signaling discipline, not funding the buildout."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEPRECIATION CLIFF",
+        "body": "GPUs become obsolete faster than the accounting assumes. Meta and Microsoft depreciate AI servers over 5–6 years, but Nvidia ships a new generation every 12–18 months. If useful life is actually 3 years, reported earnings are overstating profit by tens of billions across the sector."
+      },
+      {
+        "heading": "THE HISTORICAL RHYME",
+        "body": "From 1998 to 2001, telecoms spent roughly $500bn laying fiber on the thesis that internet traffic would double every 100 days. Traffic grew, but far slower — 95% of the fiber sat dark for a decade. The capex was eventually vindicated; the equity holders who funded it were wiped out first.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              25605.47,
+              25713.21,
+              25939.74,
+              26022.79,
+              25884.3,
+              25552.39,
+              25738.61,
+              25338.62,
+              24891.24,
+              24548.69,
+              25075.77,
+              25268.14,
+              25127.64,
+              25201.26,
+              24687.61,
+              24732.73,
+              24701.6,
+              24898.87,
+              24797.34,
+              25012.62,
+              24708.94,
+              24977.04,
+              25329.04,
+              25034.37,
+              24960.04,
+              24992.6,
+              24720.08,
+              25093.68,
+              25020.41,
+              24643.01,
+              24967.25,
+              24956.47,
+              24965.01,
+              24533.58,
+              24380.73,
+              24655.34,
+              24780.42,
+              24425.09,
+              24355.28,
+              23898.15,
+              24188.59,
+              24002.45,
+              24162.98,
+              23586.99,
+              23132.77,
+              22953.38,
+              23740.19,
+              24019.99,
+              24045.53,
+              24192.17,
+              24202.37,
+              24903.17,
+              25082.09,
+              25116.34,
+              25383.72,
+              25842,
+              26204.58,
+              26333,
+              26672.43,
+              26590.34,
+              26479.47,
+              26937.27
+            ],
+            "periods": [
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22"
+            ],
+            "label": "NASDAQ-100",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · NASDAQ · as of 2026-04-22"
+    ],
+    "generatedAt": "2026-04-23T22:36:53.107Z",
+    "label": "AI Capex & the Labor Offset",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-23-muslim-nations-jerusalem-status-quo-joint-statement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE QURANIC SIGNIFICANCE",
+        "body": "Al-Aqsa is named in Surah al-Isra as the destination of the Prophet's night journey. It was the first qibla — the direction Muslims faced in prayer before revelation changed it to Makkah. For Muslims its sanctity is scriptural, not symbolic.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The compound is referred to in classical sources as **al-Haram al-Sharif** — the Noble Sanctuary — encompassing the entire 14-hectare plateau, not just the silver-domed mosque tourists photograph."
+          }
+        ]
+      },
+      {
+        "heading": "THE HASHEMITE CUSTODIANSHIP",
+        "body": "Jordan's Hashemite monarchy has held custodianship of Al-Aqsa and the Dome of the Rock since 1924, when Sharif Hussein of Mecca was recognized as guardian after the Ottoman collapse. The 1994 Israel-Jordan peace treaty formalized it in international law. This is why Amman — not Riyadh, not Cairo — issues the strongest responses to compound violations."
+      },
+      {
+        "heading": "THE STATUS QUO",
+        "body": "After capturing East Jerusalem in 1967, Moshe Dayan made a calculated decision: Israel would control security and access, but the Jordanian-administered Waqf would govern the interior. Non-Muslims could visit but not pray. Dayan feared any change to the compound's religious character would unite the entire Muslim world against Israel — the precise outcome today's joint statements are designed to signal.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "King Abdullah II",
+                "role": "Hashemite custodian of Jerusalem holy sites",
+                "years": "1999–",
+                "cc": "JO"
+              },
+              {
+                "name": "Sheikh Azzam al-Khatib",
+                "role": "Director of the Jerusalem Waqf",
+                "years": "2007–",
+                "cc": "JO"
+              },
+              {
+                "name": "Itamar Ben-Gvir",
+                "role": "Israeli National Security Minister",
+                "years": "2022–",
+                "cc": "IL"
+              }
+            ],
+            "label": "who administers what"
+          }
+        ]
+      },
+      {
+        "heading": "WHY JOINT STATEMENTS, NOT ACTION",
+        "body": "The Organisation of Islamic Cooperation has 57 member states and no standing enforcement mechanism. Joint condemnations function as diplomatic markers — they preserve the legal claim that the status quo is internationally recognized, even when no signatory will impose costs to defend it. The 1969 OIC was itself founded after an Australian arsonist set fire to Al-Aqsa's pulpit; the pattern of declaration-without-action is half a century old.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JO",
+              "SA",
+              "EG",
+              "TR",
+              "PK",
+              "ID",
+              "MY",
+              "QA"
+            ],
+            "label": "the eight signatories"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRAYER LINE",
+        "body": "The operational dispute is whether Jews may pray on the compound, not merely visit. Under the status quo, organized Jewish prayer is forbidden — a position historically held by most Orthodox rabbinical authorities themselves, who consider the Temple Mount too sacred to tread on without ritual purification impossible to perform today. Religious-Zionist factions have spent two decades chipping at this consensus.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the post-1967 status quo at Al-Aqsa, who administers the compound's interior?",
+            "options": [
+              "The Israeli government",
+              "The Jordanian-appointed Waqf",
+              "A joint Israeli-Palestinian council",
+              "The United Nations"
+            ],
+            "correct": 1,
+            "explanation": "Israel controls security and access; the Jordanian Waqf retains interior administration — an arrangement Moshe Dayan set in 1967 to avoid uniting the Muslim world against Israel."
+          }
+        ]
+      },
+      {
+        "heading": "THE ESCHATOLOGICAL WEIGHT",
+        "body": "A hadith in Sahih Muslim describes a future gathering of believers near al-Sham — Greater Syria, of which Jerusalem is the spiritual heart. Regardless of how scholars read the timeline, the political reality is that Al-Aqsa provocations mobilize across borders in a way no other issue does, because the site's significance is theological rather than national."
+      }
+    ],
+    "generatedAt": "2026-04-23T22:37:24.883Z",
+    "label": "Al-Aqsa & the Status Quo",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-23-nepal-gen-z-government-gulf-remittance-crisis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEPENDENCY",
+        "body": "Remittances equal roughly a quarter of Nepal's GDP — one of the highest ratios in the world. The Gulf states and Malaysia send the bulk of it. When Gulf economies cough, Nepali villages catch pneumonia within a single pay cycle.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tonga",
+                "value": "~38%",
+                "weight": 38
+              },
+              {
+                "label": "Tajikistan",
+                "value": "~32%",
+                "weight": 32
+              },
+              {
+                "label": "Nepal",
+                "value": "~25%",
+                "weight": 25,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Lebanon",
+                "value": "~22%",
+                "weight": 22
+              },
+              {
+                "label": "Philippines",
+                "value": "~9%",
+                "weight": 9
+              }
+            ],
+            "label": "remittances as % of GDP"
+          }
+        ]
+      },
+      {
+        "heading": "THE KAFALA SYSTEM",
+        "body": "Most Nepali workers in the Gulf are bound to a single employer through the *kafala* sponsorship system, which ties visa status to the employer. When demand for labor drops, workers cannot switch jobs — they are deported. The shock transmits to Kathmandu through forced returns, not gradual wage declines.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Under **kafala**, the employer holds the worker's legal status. A laid-off Nepali electrician in Doha has roughly *30 days* to find a new sponsor or leave — a structural feature, not a hardship case."
+          }
+        ]
+      },
+      {
+        "heading": "THE CORRIDOR",
+        "body": "Saudi Arabia, Qatar, and the UAE host the largest Nepali labor populations, with Malaysia close behind. The flows are physical: Tribhuvan airport in Kathmandu processes roughly 1,500 outbound labor migrants per day in normal times, mostly young men on two-year contracts.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NP",
+              "SA",
+              "QA",
+              "AE",
+              "KW",
+              "OM",
+              "BH"
+            ],
+            "label": "the labor corridor"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ MATTERS TO KATHMANDU",
+        "body": "Gulf state budgets are oil-funded. When Hormuz tensions disrupt exports, Gulf governments freeze infrastructure projects first — and those projects are where the Nepali workforce concentrates. The transmission from a Strait incident to a Pokhara household runs through a Riyadh capital expenditure committee."
+      },
+      {
+        "heading": "THE GEN-Z REVOLT",
+        "body": "Nepal's September 2025 protests, triggered by a social media ban and elite corruption, toppled the Oli government within days. The movement was leaderless, organized through Discord and TikTok, and demanded technocratic governance. The new government is the first in South Asia born of a Gen-Z uprising — and it inherited a remittance economy it did not design.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Nepal's GDP comes from remittances?",
+            "options": [
+              "About 5%",
+              "About 10%",
+              "About 25%",
+              "About 45%"
+            ],
+            "correct": 2,
+            "explanation": "At ~25% of GDP, Nepal is among the world's most remittance-dependent economies — making any Gulf labor-market shock an immediate fiscal crisis."
+          }
+        ]
+      },
+      {
+        "heading": "THE FISCAL TRAP",
+        "body": "Remittances arrive as household income, not government revenue, so Kathmandu cannot tax the inflow directly. But remittances fund the imports that generate customs duties — Nepal's largest single tax source. A drop in dollars from Doha shows up in the budget two quarters later as a collapse in import VAT."
+      }
+    ],
+    "generatedAt": "2026-04-23T22:37:52.899Z",
+    "label": "Nepal & the Gulf Remittance Lifeline",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-23-oil-brent-98-hormuz-standoff-import-economies": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily in peacetime, about 21% of global consumption.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West Pipeline (5 million bbl/day) and the UAE's Habshan-Fujairah pipeline were built partly as Hormuz hedges. Together they could reroute maybe a third of Gulf exports. The rest has no alternative route.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SA",
+              "AE",
+              "OM",
+              "IR",
+              "QA",
+              "KW"
+            ],
+            "label": "the Gulf export geography"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the mines or missiles themselves — are what close a shipping lane. Once premiums spike, commercial vessels reroute regardless of the physical threat. The financial chokepoint is tighter than the physical one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A Hormuz transit's war-risk premium can swing from *0.05%* of hull value to **0.7%** in days. On a $150M VLCC, that is the difference between a $75,000 fee and a **$1.05M** fee per voyage."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              68.16,
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "WHO FEELS IT FIRST",
+        "body": "Import-dependent economies with thin FX reserves absorb oil shocks fastest. A $20 move in Brent shifts billions in monthly import bills, forcing central banks to defend currencies while fuel subsidies balloon. The rich world hedges; frontier economies bleed.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Japan",
+                "value": "~99%",
+                "cc": "JP",
+                "weight": 99
+              },
+              {
+                "label": "South Korea",
+                "value": "~97%",
+                "cc": "KR",
+                "weight": 97
+              },
+              {
+                "label": "India",
+                "value": "~87%",
+                "cc": "IN",
+                "weight": 87
+              },
+              {
+                "label": "Pakistan",
+                "value": "~85%",
+                "cc": "PK",
+                "weight": 85
+              },
+              {
+                "label": "Turkey",
+                "value": "~93%",
+                "cc": "TR",
+                "weight": 93
+              }
+            ],
+            "label": "oil import dependence"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage or impose conditions. Iran signed UNCLOS in 1982 but never ratified it, and has long argued Hormuz is governed by its own domestic law, not the convention.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How much of global oil consumption passes through Hormuz in peacetime?",
+            "options": [
+              "About 5%",
+              "About 21%",
+              "About 40%",
+              "About 60%"
+            ],
+            "correct": 1,
+            "explanation": "Roughly 21 million barrels per day transit Hormuz — about 21% of global consumption and the single largest oil chokepoint on Earth."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19",
+      "FRED · EIA · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-23T22:38:20.944Z",
+    "label": "Oil & the Hormuz Shock",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-23-openai-gpt-5-5-agentic-double-api-price": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A TOKEN IS",
+        "body": "A token is roughly three-quarters of an English word — the atomic unit models read and write. Pricing per million tokens lets providers charge for compute proportional to work done, the way electricity is sold per kWh rather than per appliance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A million output tokens is roughly **750,000 words** — about the length of the King James Bible, or eight full novels."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OUTPUT COSTS MORE THAN INPUT",
+        "body": "Reading a prompt is parallel — the model ingests all tokens at once. Generating output is serial — each token depends on the one before it, forcing the GPU to run the full network for every word produced. Output tokens typically cost 3-5x more than input tokens for this reason."
+      },
+      {
+        "heading": "THE PRICING TRAJECTORY",
+        "body": "Frontier model prices have moved in opposite directions depending on tier. Commodity inference has collapsed — GPT-3.5 at launch was $20/M output; equivalent capability now costs pennies. But top-tier models keep getting more expensive as they add reasoning, tool use, and agentic chains that burn far more compute per query.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "GPT-4 (2023)",
+                "value": "$60",
+                "weight": 60
+              },
+              {
+                "label": "GPT-4o (2024)",
+                "value": "$15",
+                "weight": 15
+              },
+              {
+                "label": "GPT-5 (2025)",
+                "value": "$15",
+                "weight": 15
+              },
+              {
+                "label": "GPT-5.5 (2026)",
+                "value": "$30",
+                "weight": 30
+              },
+              {
+                "label": "GPT-5.5 Pro",
+                "value": "$180",
+                "weight": 180
+              }
+            ],
+            "label": "output price per million tokens at launch"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AGENTIC MEANS FOR COST",
+        "body": "An agentic model doesn't answer once — it plans, calls tools, reads results, retries, and iterates. A single user task can consume hundreds of thousands of tokens of internal reasoning before the final output. This is why per-token prices rise even as per-query usefulness rises faster."
+      },
+      {
+        "heading": "THE CAPEX BEHIND THE PRICE",
+        "body": "Training a frontier model now costs $1-5 billion in compute alone. Inference clusters cost billions more. OpenAI, Anthropic, and Google are collectively spending over $300 billion on datacenter buildout through 2027 — the price per token ultimately has to amortize this.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              25605.47,
+              25713.21,
+              25939.74,
+              26022.79,
+              25884.3,
+              25552.39,
+              25738.61,
+              25338.62,
+              24891.24,
+              24548.69,
+              25075.77,
+              25268.14,
+              25127.64,
+              25201.26,
+              24687.61,
+              24732.73,
+              24701.6,
+              24898.87,
+              24797.34,
+              25012.62,
+              24708.94,
+              24977.04,
+              25329.04,
+              25034.37,
+              24960.04,
+              24992.6,
+              24720.08,
+              25093.68,
+              25020.41,
+              24643.01,
+              24967.25,
+              24956.47,
+              24965.01,
+              24533.58,
+              24380.73,
+              24655.34,
+              24780.42,
+              24425.09,
+              24355.28,
+              23898.15,
+              24188.59,
+              24002.45,
+              24162.98,
+              23586.99,
+              23132.77,
+              22953.38,
+              23740.19,
+              24019.99,
+              24045.53,
+              24192.17,
+              24202.37,
+              24903.17,
+              25082.09,
+              25116.34,
+              25383.72,
+              25842,
+              26204.58,
+              26333,
+              26672.43,
+              26590.34,
+              26479.47,
+              26937.27
+            ],
+            "periods": [
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22"
+            ],
+            "label": "NASDAQ-100",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "API-ONLY LAUNCHES",
+        "body": "Releasing through the API first — no ChatGPT access, no free tier — filters users to developers and enterprises who can absorb the price and who provide valuable feedback on agentic failure modes. Consumer access comes later, usually at a lower tier with rate limits.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do frontier labs often launch new models API-only before adding them to chat products?",
+            "options": [
+              "API users pay per token, so costs scale with usage",
+              "Regulations require a developer-only beta period",
+              "Chat interfaces cannot render long outputs",
+              "API users cannot share screenshots publicly"
+            ],
+            "correct": 0,
+            "explanation": "Flat-rate chat subscriptions cap revenue per user; metered API billing recovers compute costs directly and filters to sophisticated users during the shakeout period."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · NASDAQ · as of 2026-04-22"
+    ],
+    "generatedAt": "2026-04-23T22:38:46.499Z",
+    "label": "Frontier Model Economics",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-23-philippines-coral-submarine-groundwater-pollution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HIDDEN PIPE",
+        "body": "Rainwater seeps into soil, picks up fertilizer nitrates, septic leakage, and industrial solvents, then flows seaward through porous rock beneath the coastline. This submarine groundwater discharge bypasses every river monitoring station and wastewater plant on land.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The flow is invisible from the surface — there is no outfall, no plume, no smell. Scientists only confirmed its global scale in the **2010s** using radium isotope tracers that distinguish groundwater from seawater."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CORAL IS UNUSUALLY VULNERABLE",
+        "body": "Reef-building corals host symbiotic algae that depend on nutrient-poor water. Nitrogen and phosphorus from sewage fertilize faster-growing algae that overgrow the coral, while freshwater lowers salinity and stresses the polyps. The same pollution that feeds a farm field kills a reef."
+      },
+      {
+        "heading": "THE CORAL TRIANGLE",
+        "body": "The Philippines sits inside the Coral Triangle — a region spanning Indonesia, Malaysia, Papua New Guinea, the Solomons, Timor-Leste and the Philippines that holds 76% of the world's coral species and more reef fish than anywhere else on Earth.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PH",
+              "ID",
+              "MY",
+              "PG",
+              "SB",
+              "TL"
+            ],
+            "label": "the Coral Triangle"
+          }
+        ]
+      },
+      {
+        "heading": "THE SANITATION GAP",
+        "body": "Only about 30% of Philippine wastewater is treated before discharge. The rest enters septic tanks, open drains, or directly into waterways. In Metro Manila alone, roughly 15 million people generate sewage faster than the system can absorb it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Singapore",
+                "value": "~100%",
+                "tone": "favorable",
+                "cc": "SG",
+                "weight": 100
+              },
+              {
+                "label": "South Korea",
+                "value": "~93%",
+                "tone": "favorable",
+                "cc": "KR",
+                "weight": 93
+              },
+              {
+                "label": "Malaysia",
+                "value": "~60%",
+                "cc": "MY",
+                "weight": 60
+              },
+              {
+                "label": "Philippines",
+                "value": "~30%",
+                "tone": "unfavorable",
+                "cc": "PH",
+                "weight": 30
+              },
+              {
+                "label": "Indonesia",
+                "value": "~14%",
+                "tone": "unfavorable",
+                "cc": "ID",
+                "weight": 14
+              }
+            ],
+            "label": "wastewater treated before discharge"
+          }
+        ]
+      },
+      {
+        "heading": "RED TIDE AS SYMPTOM",
+        "body": "Harmful algal blooms — the 'red tide' that shuts down shellfish harvests — are driven by the same nutrient overload that kills reefs. When phytoplankton die and decompose, they strip oxygen from the water, creating dead zones where nothing survives.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes submarine groundwater discharge especially hard to regulate?",
+            "options": [
+              "It flows underground and bypasses surface monitoring",
+              "It only occurs during typhoon season",
+              "It comes from international waters",
+              "It is chemically identical to seawater"
+            ],
+            "correct": 0,
+            "explanation": "Because the pollution enters the ocean through porous rock below the coastline, there is no outfall to monitor and no single polluter to fine."
+          }
+        ]
+      },
+      {
+        "heading": "THE BAJAU INHERITANCE",
+        "body": "The Sama-Bajau, seafaring Muslim communities of the southern Philippines and Sulu archipelago, have lived off these reefs for centuries. Reef collapse is not just ecological — it erases the economic base of coastal peoples who have no other trade and often no citizenship papers to fall back on."
+      }
+    ],
+    "generatedAt": "2026-04-23T22:39:12.281Z",
+    "label": "Submarine Groundwater Discharge",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-23-south-africa-green-drop-wastewater-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE GREEN DROP MEASURES",
+        "body": "South Africa's Green Drop is an audit of every municipal wastewater treatment works — scoring effluent quality, sludge handling, staff qualifications, and asset condition. A score below 31% triggers 'critical' status. It is one of the few national infrastructure audits anywhere that publishes plant-by-plant results.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The companion **Blue Drop** audits drinking water; **No Drop** audits non-revenue water (leaks and theft). Together they form the most granular water-utility transparency regime on the continent."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WASTEWATER FAILS FIRST",
+        "body": "Treatment plants are the least visible piece of water infrastructure. A burst pipe floods a street within hours; a failing aerator just dumps untreated sewage into a river downstream. Political incentives reward fixing the visible, not the smelly.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of South Africa's 848 municipal wastewater plants were rated functional in the 2025 Green Drop Report?",
+            "options": [
+              "About 8%",
+              "About 25%",
+              "About half",
+              "About 70%"
+            ],
+            "correct": 0,
+            "explanation": "66 of 848 systems were functional — under 8%, down from 118 in the prior audit cycle."
+          }
+        ]
+      },
+      {
+        "heading": "THE JUKSKEI PROBLEM",
+        "body": "The Jukskei River runs through Johannesburg's northern suburbs and feeds into the Crocodile, then the Limpopo — meaning South African sewage failures become Botswana's and Mozambique's downstream water-quality problems. Wastewater is a transboundary issue dressed as a municipal one.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "BW",
+              "MZ",
+              "ZW"
+            ],
+            "label": "the Limpopo basin"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOLERA THRESHOLD",
+        "body": "When raw sewage enters surface water used for drinking or bathing, cholera and typhoid become probability questions, not possibilities. Hammanskraal saw 31 deaths in a 2023 outbreak traced directly to a non-functioning treatment works north of Pretoria. The Green Drop scores predicted it years earlier."
+      },
+      {
+        "heading": "WHY ENFORCEMENT IS HARD",
+        "body": "The water department can prosecute a municipality for non-compliance — but the municipality is the only entity that can fix the plant. Fining a bankrupt municipality further depletes the budget that would pay for repairs. This is the regulatory paradox of public infrastructure: the violator and the only possible remediator are the same entity."
+      },
+      {
+        "heading": "THE CAPEX-OPEX TRAP",
+        "body": "Donor financing and national grants build treatment plants; municipalities are supposed to fund operations from tariffs. When tariff collection collapses — South Africa's municipal arrears exceed R350 billion — the plants run until something breaks, then sit idle. The buildings are new; the operating budgets never existed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **CapEx–OpEx mismatch** that haunts development finance globally: capital is easy to raise for ribbon-cutting, *recurrent* operating costs are nobody's grant priority."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-23T22:39:39.029Z",
+    "label": "Wastewater & State Capacity",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-23-township-blocks-water-nuclear-ai-datacenter": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY DATACENTERS DRINK",
+        "body": "Modern AI datacenters use evaporative cooling: water is sprayed across heat exchangers and lost to the atmosphere. A single hyperscale facility can consume as much water as a town of 30,000 people — and unlike municipal use, almost none of it returns to the watershed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *consumptive use* — water that evaporates rather than cycling back. Training a large model can consume **hundreds of thousands of liters** in cooling alone, separate from the power plant's own water draw."
+          }
+        ]
+      },
+      {
+        "heading": "THE ZONING LEVER",
+        "body": "US townships have near-absolute authority over land use and water allocation within their borders, a power rooted in Euclid v. Ambler Realty (1926). A federal contractor cannot override a local moratorium; it can only sue, negotiate, or relocate. This is why hyperscalers increasingly court small jurisdictions with tax incentives before siting decisions leak."
+      },
+      {
+        "heading": "THE LOS ALAMOS CONNECTION",
+        "body": "Los Alamos National Laboratory was built in 1943 to design the first atomic bomb and still runs the US nuclear stockpile stewardship program. Its computing needs are classified, but the lab operates some of the most powerful supercomputers in the world for weapons simulation — the modeling that replaced live underground testing after 1992.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the US nuclear weapons program need massive computing power?",
+            "options": [
+              "To design new warhead types",
+              "To simulate weapons reliability without live testing",
+              "To coordinate launch command systems",
+              "To encrypt communications between silos"
+            ],
+            "correct": 1,
+            "explanation": "After the 1992 testing moratorium, the US shifted to Stockpile Stewardship — using supercomputer simulations to verify aging warheads still work without detonating them."
+          }
+        ]
+      },
+      {
+        "heading": "HIGH-VALUE TARGET",
+        "body": "The attorney's phrase is a term of art. Facilities tied to nuclear weapons infrastructure fall under Department of Energy security protocols and become potential targets in any great-power conflict. A township hosting such a site inherits risk without controlling it — no local zoning board can approve or refuse the targeting calculus."
+      },
+      {
+        "heading": "THE GREAT LAKES PARADOX",
+        "body": "Michigan sits on 20% of the world's surface freshwater, yet the Great Lakes Compact (2008) restricts diversions outside the basin and gives local governments veto power over large withdrawals. Abundance at the watershed scale does not translate to unlimited extraction at the parcel scale — a lesson Phoenix and Las Vegas learned earlier with groundwater."
+      },
+      {
+        "heading": "THE MORATORIUM PATTERN",
+        "body": "Since 2023, dozens of US localities — from Chandler, Arizona to Peculiar, Missouri — have paused or rejected datacenter projects over water and power. The veto is rarely environmental alone; it is political. Residents see hyperscalers extracting infrastructure while contributing little to the property tax base after negotiated abatements."
+      }
+    ],
+    "generatedAt": "2026-04-23T22:40:06.543Z",
+    "label": "Datacenter Water & Local Veto",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-23-us-military-seizes-iran-oil-tanker-indian-ocean": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SHADOW FLEET",
+        "body": "Iran moves sanctioned oil through a fleet of roughly 300 aging tankers that disable their AIS transponders, reflag mid-voyage, and conduct ship-to-ship transfers in the open ocean. The vessels are typically owned through shell companies in jurisdictions with minimal disclosure — Marshall Islands, St. Kitts, San Marino.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *dark fleet* — tankers running with transponders off to obscure origin, destination, and cargo. Roughly **10%** of the global tanker fleet now operates this way, up from near zero a decade ago."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL BASIS",
+        "body": "US seizures of Iranian oil rely on civil forfeiture under the International Emergency Economic Powers Act. The government sues the cargo itself — in rem jurisdiction — arguing the oil is the proceeds of sanctions violations. The ship's owner must appear in US court to contest, which most shell companies will not do.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under US civil forfeiture, who is the defendant when oil is seized from a sanctioned tanker?",
+            "options": [
+              "The ship's captain",
+              "The cargo itself",
+              "The flag state",
+              "Iran's oil ministry"
+            ],
+            "correct": 1,
+            "explanation": "In rem forfeiture treats the property as the defendant — the case is literally styled 'United States v. [the oil].' This bypasses the need to establish personal jurisdiction over foreign owners."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHINA CHANNEL",
+        "body": "Roughly 90% of Iran's crude exports go to China, much of it labeled as Malaysian or Omani origin after ship-to-ship transfers near Singapore or in the Gulf of Oman. Independent Chinese refineries — teapots, concentrated in Shandong — are the primary buyers. State-owned majors avoid the trade to protect dollar access."
+      },
+      {
+        "heading": "THE INDIAN OCEAN PIVOT",
+        "body": "Seizing tankers 2,000km from Hormuz signals a shift. Historical interdictions happened in the Gulf itself, where Iran could retaliate with fast-boat swarms. Open-ocean seizures push the contest into water where US carrier groups dominate and Iran has no practical reach.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "PK",
+              "IN",
+              "CN"
+            ],
+            "label": "the route east",
+            "caption": "Hormuz to Chinese refineries via the Indian Ocean"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1988 ECHO",
+        "body": "Operation Praying Mantis in April 1988 sank half the Iranian navy in a single day after the USS Samuel B. Roberts struck an Iranian mine. The lesson Tehran drew was not to stop harassing shipping but to shift toward asymmetric tools — proxies, fast boats, mines — that avoid direct naval engagement with the US."
+      },
+      {
+        "heading": "THE PRICE FLOOR",
+        "body": "Seizures remove physical barrels from the market but rarely move Brent more than a dollar or two. The shadow fleet has enough slack to reroute; buyers have enough alternative suppliers. The real pressure is on Iran's revenue per barrel — discounts to Chinese buyers now run $10-15 below Brent.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              68.16,
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-23T22:40:35.408Z",
+    "label": "Iran's Shadow Fleet & Tanker Seizures",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-23-us-sanctions-cambodian-senator-scam-compounds": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COMPOUND MODEL",
+        "body": "Scam compounds are industrial-scale fraud factories — guarded buildings where thousands of trafficked workers, often lured by fake job ads, are forced to run romance-investment scams on victims abroad. The business grew out of shuttered Chinese-run casinos in Cambodia and Myanmar after COVID border closures killed gambling tourism.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KH",
+              "MM",
+              "LA",
+              "TH",
+              "VN"
+            ],
+            "label": "where the compounds cluster",
+            "caption": "Southeast Asia's Mekong corridor hosts most known compounds"
+          }
+        ]
+      },
+      {
+        "heading": "PIG BUTCHERING",
+        "body": "The Chinese term is sha zhu pan — 'fattening the pig before slaughter.' Operators build weeks of rapport with a target on dating apps or WhatsApp, then introduce a fake crypto investment platform. Small withdrawals succeed to build trust; when the victim commits serious money, the platform vanishes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The FBI estimated Americans lost **$5.6 billion** to crypto investment fraud in 2023 alone — more than any other cybercrime category. The scale is driven by the compound model's ability to run *thousands* of conversations in parallel."
+          }
+        ]
+      },
+      {
+        "heading": "HOW OFAC SANCTIONS WORK",
+        "body": "The Office of Foreign Assets Control can freeze any assets touching the US financial system and bar Americans from any transaction with the target. Because nearly all dollar-clearing flows through US correspondent banks, an OFAC designation effectively cuts the target off from the global banking system — not just American banks.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What gives OFAC sanctions their global reach beyond US borders?",
+            "options": [
+              "A UN Security Council mandate requires compliance",
+              "Nearly all US dollar transactions clear through US banks",
+              "Interpol enforces OFAC designations worldwide",
+              "Foreign banks voluntarily agreed by treaty"
+            ],
+            "correct": 1,
+            "explanation": "Dollar clearing runs through US correspondent banks, so any foreign bank that wants dollar access must honor OFAC — giving one country's sanctions list near-global effect."
+          }
+        ]
+      },
+      {
+        "heading": "THE BNP PARIBAS LESSON",
+        "body": "In 2014, BNP Paribas paid $8.9 billion for processing dollar transactions with sanctioned entities. The message to global banks was unambiguous: screen every dollar payment against OFAC's SDN list, or pay. This is why a single senator's name on the list can isolate him from institutions his own government still recognizes."
+      },
+      {
+        "heading": "THE JURISDICTION GAP",
+        "body": "Cambodian law enforcement has rarely moved against compound operators, many of whom are politically connected or provide tax revenue to border provinces. UN estimates put compound-related fraud earnings across Southeast Asia at tens of billions annually — comparable to several countries' national budgets. The sanction targets someone the host state is unlikely to prosecute.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SE Asia scam comp.",
+                "value": "~$40bn/yr",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Cambodia budget",
+                "value": "~$9bn/yr"
+              },
+              {
+                "label": "Laos budget",
+                "value": "~$4bn/yr"
+              }
+            ],
+            "label": "compound fraud earnings vs regional budgets"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A SENATOR IS NOVEL",
+        "body": "OFAC routinely targets traffickers, cartel figures, and oligarchs. Designating a sitting legislator of an allied-adjacent country is an escalation — it signals Treasury has concluded the political system itself is the enabling infrastructure, not a few rogue operators within it."
+      }
+    ],
+    "generatedAt": "2026-04-23T22:41:05.529Z",
+    "label": "Scam Compounds & OFAC",
+    "category": "politics",
+    "articleCount": 1
   }
 }
