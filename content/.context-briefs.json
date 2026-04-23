@@ -40215,5 +40215,2140 @@
     "label": "Samsung & Korean Labor",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-21-chatgpt-images-2-0": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT PROVENANCE MEANS",
+        "body": "Content provenance is cryptographic metadata embedded in a file that records who made it, with what tool, and whether it was edited. The dominant standard is C2PA — the Coalition for Content Provenance and Authenticity — founded in 2021 by Adobe, Microsoft, the BBC, and others. Without it, an AI-generated image is indistinguishable from a camera photo at the file level.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "C2PA signs the content with a **manifest** — a tamper-evident chain of edits bound to the pixels. Strip the manifest and you strip the proof; the image itself carries no intrinsic signal."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WATERMARKS LEAK",
+        "body": "Invisible watermarks — statistical patterns embedded in pixels — degrade under screenshot, re-compression, cropping, or a second pass through another model. A 2023 University of Maryland study broke every major image watermark with off-the-shelf tools. Metadata tags like C2PA are strippable by design: open the file in any editor that doesn't preserve the manifest and the signature is gone.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What survives best when an AI image is screenshotted and re-uploaded?",
+            "options": [
+              "Invisible pixel watermarks",
+              "C2PA metadata manifest",
+              "Neither — both are routinely destroyed",
+              "EXIF camera data"
+            ],
+            "correct": 2,
+            "explanation": "Screenshots strip metadata entirely and re-encode pixels, which degrades statistical watermarks below detection thresholds. This is why provenance-at-source is fragile."
+          }
+        ]
+      },
+      {
+        "heading": "THE PUBLIC-FIGURE PROBLEM",
+        "body": "Earlier image models refused to render named politicians and celebrities. The restriction was never technical — it was policy applied at the prompt layer. Lift the policy and the same base model produces photorealistic heads of state immediately. Deepfake fraud losses hit $200M in Q1 2025 alone per Resemble AI's tracker; most incidents involved public figures being faked for investment scams or political disinformation."
+      },
+      {
+        "heading": "THE PAYWALL PATTERN",
+        "body": "Gating safety features behind a paid tier is a familiar pattern: Meta's two-factor authentication was briefly locked to Verified subscribers in 2023; X's blue checkmarks, once a verification signal, became a paid cosmetic. When provenance becomes a premium feature, the default output of a frontier image model is unsigned — and unsigned is what propagates on social platforms.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Google Imagen",
+                "value": "SynthID, all tiers",
+                "tone": "favorable"
+              },
+              {
+                "label": "Adobe Firefly",
+                "value": "C2PA, all tiers",
+                "tone": "favorable"
+              },
+              {
+                "label": "Midjourney",
+                "value": "none",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "ChatGPT Images 2.0",
+                "value": "paid only",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "who currently ships provenance by default"
+          }
+        ]
+      },
+      {
+        "heading": "THE EU DEADLINE",
+        "body": "The EU AI Act requires detectable marking of AI-generated content from August 2026. The US has no federal equivalent; enforcement patchwork runs through state election-integrity laws and the FTC's deceptive-practices authority. A model shipped in April 2026 without default provenance has roughly four months before it is non-compliant in the EU — and indefinitely compliant in the US."
+      },
+      {
+        "heading": "THE DETECTION ARMS RACE",
+        "body": "Post-hoc deepfake detectors — classifiers trained to spot AI artifacts — degrade with every model generation. A detector trained on 2024 diffusion output misses 2026 outputs at rates above 40% in independent benchmarks. This is why the industry pivoted to provenance-at-source: detecting fakes after the fact is losing ground faster than defenders can retrain."
+      }
+    ],
+    "generatedAt": "2026-04-23T08:30:38.717Z",
+    "label": "Content Provenance & Deepfakes",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-21-china-s-bird-tourism-boom-sparks-calls-for-regulation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A BIRD HIDE IS",
+        "body": "A hide is a camouflaged blind — often a hut beside a baited pond — that lets photographers sit meters from wild birds without flushing them. Operators stock the pond with live fish or mealworms; the birds learn the site and return daily.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The practice industrialized in the UK and Finland decades ago around *raptor hides* and *bear hides*, where paying photographers fund conservation. The Chinese variant compresses that model into backyard ponds run for **rural income**, not research."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BAITING DISTORTS SCIENCE",
+        "body": "Bird population surveys rely on distribution data — where species are seen, in what numbers, across seasons. Baited ponds pull birds off their natural ranges and concentrate them at artificial hotspots, creating phantom abundance in census data and hiding real declines elsewhere."
+      },
+      {
+        "heading": "THE DISEASE VECTOR",
+        "body": "Concentrating wild waterfowl at small ponds is the textbook recipe for avian influenza amplification. H5N1 spreads through shared water and feces; a single infected migrant can seed an outbreak that then radiates along flyways to poultry farms and, occasionally, mammals.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do wetlands concentrate avian flu risk more than forests?",
+            "options": [
+              "Waterfowl shed virus in feces that persists in shared water",
+              "Forest birds are genetically resistant to H5N1",
+              "Wetlands are warmer than forests year-round"
+            ],
+            "correct": 0,
+            "explanation": "H5N1 transmits efficiently through fecal contamination of shared water — which is why duck ponds and rice paddies are classic amplification sites."
+          }
+        ]
+      },
+      {
+        "heading": "THE EAST ASIAN FLYWAY",
+        "body": "China sits on the East Asian-Australasian Flyway, used by 50 million migratory waterbirds annually. Eight of its species are critically endangered. A disease event at a popular hide in Jiangsu or Yunnan can ride the flyway to Siberia in spring and Australia by autumn.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "CN",
+              "KR",
+              "JP",
+              "PH",
+              "ID",
+              "AU"
+            ],
+            "label": "East Asian-Australasian Flyway"
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "China's Wildlife Protection Law covers hunting and trade but says little about non-consumptive uses like baiting for photography. Provincial forestry bureaus issue hide permits inconsistently; there is no national registry, no disease-monitoring requirement, and no cap on density."
+      }
+    ],
+    "generatedAt": "2026-04-23T08:31:03.397Z",
+    "label": "Bird Hides & Wildlife Tourism",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-21-framework-laptop-13-pro": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SOLDERING WON",
+        "body": "Soldering a GPU directly to the motherboard shaves millimeters of thickness, reduces signal latency at high frequencies, and lets manufacturers capture the upgrade cycle — if you can't swap the GPU, you buy a new laptop.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *planned obsolescence by integration* — the chip isn't broken, it's just **inseparable** from parts that will be."
+          }
+        ]
+      },
+      {
+        "heading": "THE SIGNAL INTEGRITY PROBLEM",
+        "body": "Modern GPUs communicate over PCIe lanes running at 16 GT/s or higher. Every connector adds impedance discontinuity, reflection, and insertion loss. Socketed graphics means engineering the socket to preserve signal integrity that a soldered joint gets for free."
+      },
+      {
+        "heading": "THE EU RULE",
+        "body": "The EU's Ecodesign for Sustainable Products Regulation, finalized in 2024, requires smartphones and tablets to offer replaceable batteries and spare parts for seven years. The 2026 expansion pulls laptops into scope — including repairability scoring that penalizes soldered components.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "FR",
+              "IT",
+              "ES",
+              "NL",
+              "PL",
+              "BE",
+              "SE"
+            ],
+            "label": "jurisdictions enforcing the 2026 rule"
+          }
+        ]
+      },
+      {
+        "heading": "THE BRUSSELS EFFECT",
+        "body": "EU product regulation routinely becomes global standard because manufacturers find it cheaper to build one compliant SKU than two. GDPR reshaped privacy law worldwide; USB-C became Apple's charging port after the EU mandated it. Laptop repairability is the next test of the pattern.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "GDPR (2018)",
+                "value": "privacy"
+              },
+              {
+                "label": "USB-C (2024)",
+                "value": "charging"
+              },
+              {
+                "label": "Ecodesign (2026)",
+                "value": "repair"
+              }
+            ],
+            "label": "EU rules that went global"
+          }
+        ]
+      },
+      {
+        "heading": "THE REPAIR ECONOMICS",
+        "body": "A 2021 European Commission study found extending laptop lifespan by one year would cut EU ICT emissions by roughly 1.6 million tonnes CO2 annually. The bottleneck is not consumer willingness — surveys show majorities prefer repair — but component availability and price. Modular design attacks both.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of a laptop's lifetime carbon footprint comes from manufacturing, not electricity use?",
+            "options": [
+              "About 20%",
+              "About 50%",
+              "About 75%",
+              "About 95%"
+            ],
+            "correct": 2,
+            "explanation": "For laptops, manufacturing typically accounts for 70-80% of lifetime emissions — which is why extending device life dwarfs efficiency gains from newer chips."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-23T08:31:27.540Z",
+    "label": "Modular Laptops & Right-to-Repair",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-21-how-israel-recognized-somaliland": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNRECOGNIZED STATE",
+        "body": "Somaliland declared independence in 1991 after the collapse of Siad Barre's regime, reverting to the borders of the 1960 British Somaliland Protectorate that existed for five days before merging with Italian Somalia. It has held peaceful elections, printed its own currency, and controlled its territory for over three decades — yet no UN member state recognized it until December 2025.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The five-day window of sovereign existence in June 1960 is the legal hook: Somaliland argues it is not *seceding* but **dissolving a voluntary union** it entered as an already-recognized state."
+          }
+        ]
+      },
+      {
+        "heading": "THE AU DOCTRINE",
+        "body": "The African Union's founding charter enshrined uti possidetis — colonial borders are inviolable, full stop. The fear was that recognizing any secession would unravel the continent, where almost every border was drawn in European capitals. This is why South Sudan (2011) required Khartoum's consent and Eritrea (1993) required Ethiopia's; Somaliland had neither.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which breakaway African state achieved UN recognition WITHOUT consent from the parent country?",
+            "options": [
+              "South Sudan",
+              "Eritrea",
+              "Somaliland",
+              "None of them"
+            ],
+            "correct": 3,
+            "explanation": "Every African secession recognized since 1963 required the parent state's agreement. Somaliland's 2025 recognition by Israel is the first bilateral recognition in defiance of that doctrine."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Somaliland's coast runs along the Gulf of Aden, directly opposite Yemen and flanking the approach to Bab-el-Mandeb — the chokepoint through which roughly 12 percent of seaborne trade passes. The port of Berbera, upgraded by DP World, sits 250 km from the strait.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SO",
+              "ET",
+              "DJ",
+              "YE",
+              "ER",
+              "EG"
+            ],
+            "label": "the Gulf of Aden theater"
+          },
+          {
+            "type": "trend",
+            "values": [
+              6,
+              7,
+              5,
+              9,
+              7,
+              3,
+              5,
+              4,
+              7,
+              2,
+              5,
+              5,
+              3,
+              10,
+              6,
+              4,
+              4,
+              5,
+              7,
+              4,
+              2,
+              9,
+              2,
+              5,
+              9,
+              3,
+              2,
+              6,
+              1,
+              4,
+              7,
+              5,
+              6,
+              8,
+              7,
+              3,
+              5,
+              6,
+              3,
+              1,
+              7,
+              6,
+              3,
+              4,
+              4,
+              10,
+              6,
+              5,
+              5,
+              7,
+              5,
+              10,
+              7,
+              2,
+              4,
+              7
+            ],
+            "periods": [
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Bab-el-Mandeb containers",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT PROBLEM",
+        "body": "Unilateral recognition is rare because it is contagious. Kosovo's 2008 declaration split the West from Russia and China and is still unrecognized by five EU members who fear their own separatist regions. Taiwan has formal ties with only 12 states. Recognition is less about the applicant's qualifications than about what each recognizer's peers will tolerate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Kosovo",
+                "value": "~100 states"
+              },
+              {
+                "label": "Taiwan",
+                "value": "12 states"
+              },
+              {
+                "label": "Somaliland",
+                "value": "1 state"
+              },
+              {
+                "label": "N. Cyprus",
+                "value": "1 state (Turkey)"
+              },
+              {
+                "label": "Abkhazia",
+                "value": "5 states"
+              }
+            ],
+            "label": "de facto states & their recognizers"
+          }
+        ]
+      },
+      {
+        "heading": "THE ISRAEL CALCULUS",
+        "body": "Israel has courted Horn of Africa states since the 1950s under David Ben-Gurion's 'periphery doctrine' — building ties with non-Arab states (Iran under the Shah, Ethiopia, Turkey) to outflank hostile Arab neighbors. A foothold opposite Yemen, where the Houthis have disrupted Red Sea shipping since 2023, extends that logic into the 2020s."
+      },
+      {
+        "heading": "WHY CAIRO CARES",
+        "body": "Egypt's entire economy depends on Suez traffic, which requires Bab-el-Mandeb to stay open. Any military presence on the southern Red Sea — Israeli, Emirati, Turkish, or otherwise — shifts the balance of who controls access to Suez's southern approach. Cairo has historically treated the Red Sea as an Egyptian lake; it is rapidly becoming a contested one.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah el-Sisi",
+                "role": "Egyptian President",
+                "years": "2014–",
+                "cc": "EG"
+              },
+              {
+                "name": "Gideon Saar",
+                "role": "Israeli Foreign Minister",
+                "years": "2024–",
+                "cc": "IL"
+              },
+              {
+                "name": "Hassan Sheikh Mohamud",
+                "role": "Somali President",
+                "years": "2022–",
+                "cc": "SO"
+              },
+              {
+                "name": "Muse Bihi Abdi",
+                "role": "Somaliland President",
+                "years": "2017–",
+                "cc": "SO"
+              }
+            ],
+            "label": "the Red Sea cast"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-23T08:32:00.103Z",
+    "label": "Somaliland & Recognition Politics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-africa-s-malaria-fight-needs-stronger-local-research": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARASITE",
+        "body": "Malaria is caused by Plasmodium parasites transmitted by female Anopheles mosquitoes. Of five species that infect humans, Plasmodium falciparum is the deadliest — responsible for nearly all malaria deaths in Africa and uniquely capable of sequestering in brain capillaries to cause cerebral malaria.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*P. falciparum* kills by cytoadherence — infected red cells stick to blood vessel walls, evading the spleen. This is why cerebral and placental malaria are *falciparum* diseases, not *vivax* ones."
+          }
+        ]
+      },
+      {
+        "heading": "THE BURDEN MAP",
+        "body": "Africa carries roughly 95% of global malaria deaths. Four countries — Nigeria, DRC, Uganda, and Mozambique — account for nearly half. The parasite's range tracks the Anopheles gambiae mosquito, whose habitat is sub-Saharan and whose biting preference is uniquely human.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "CD",
+              "UG",
+              "MZ",
+              "TZ",
+              "BF"
+            ],
+            "label": "highest-burden malaria states"
+          }
+        ]
+      },
+      {
+        "heading": "THE RESISTANCE CLOCK",
+        "body": "Every frontline malaria drug has eventually failed. Chloroquine, introduced in the 1940s, lost efficacy in East Africa by the 1980s. Sulfadoxine-pyrimethamine followed within a decade. Artemisinin-based combinations are now the last line — and partial resistance has emerged in Rwanda, Uganda, and Eritrea since 2019."
+      },
+      {
+        "heading": "WHY LOCAL SURVEILLANCE MATTERS",
+        "body": "Resistance mutations appear first where drug pressure is highest, then spread. Detecting a resistant strain requires genotyping parasites from clinical samples within weeks, not months. Shipping blood to European labs costs time the patient does not have and the continent cannot spare.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where did artemisinin resistance first emerge globally?",
+            "options": [
+              "Western Cambodia",
+              "Nigeria",
+              "Democratic Republic of Congo",
+              "India"
+            ],
+            "correct": 0,
+            "explanation": "Artemisinin resistance was first documented in western Cambodia in 2008 — the same region where chloroquine and mefloquine resistance also originated, a pattern linked to counterfeit drug markets."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUNDING GEOMETRY",
+        "body": "The Global Fund, PMI (US President's Malaria Initiative), and Gates Foundation together finance most malaria R&D. Grants flow to consortia headquartered in London, Baltimore, and Seattle, with African institutions typically as implementation partners rather than principal investigators. The intellectual property and publication credit follow the money."
+      },
+      {
+        "heading": "THE VACCINE BREAKTHROUGH",
+        "body": "RTS,S (Mosquirix), approved by WHO in 2021, was the first malaria vaccine — developed over 30 years by GSK with PATH and Gates funding. R21/Matrix-M, developed at Oxford and manufactured by the Serum Institute of India, followed in 2023 with higher efficacy and lower cost. Neither was led by an African research institution."
+      }
+    ],
+    "generatedAt": "2026-04-23T08:32:25.547Z",
+    "label": "Malaria & Research Sovereignty",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-22-deadly-deepfakes-a-survival-guide-for-the-age-of-algorithmic": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GENERATOR-DETECTOR GAP",
+        "body": "Deepfakes are built on generative adversarial networks: one model creates fakes, another tries to catch them, and they train against each other. By design, the generator always pulls ahead — every detector becomes training data for the next generation of fakes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is called the *adversarial equilibrium problem*: detection is a **permanently losing game** against generation trained on the detector itself."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPUTE CONCENTRATION",
+        "body": "Roughly 80% of advanced AI training compute sits in US and Chinese data centers. The frontier models capable of producing photorealistic conflict footage require clusters that exist in only a handful of places — but the outputs can be streamed anywhere in seconds.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~55%",
+                "cc": "US",
+                "weight": 55
+              },
+              {
+                "label": "China",
+                "value": "~25%",
+                "cc": "CN",
+                "weight": 25
+              },
+              {
+                "label": "EU",
+                "value": "~10%",
+                "cc": "EU",
+                "weight": 10
+              },
+              {
+                "label": "Rest of world",
+                "value": "~10%",
+                "weight": 10
+              }
+            ],
+            "label": "advanced AI compute share"
+          }
+        ]
+      },
+      {
+        "heading": "THE LIAR'S DIVIDEND",
+        "body": "Legal scholars Bobby Chesney and Danielle Citron named this in 2018: once deepfakes are plausible, real footage can be dismissed as fake. The information environment degrades symmetrically — genuine war crimes become deniable alongside the fabricated ones."
+      },
+      {
+        "heading": "WHY WATERMARKS DON'T WORK",
+        "body": "C2PA and similar standards embed cryptographic provenance into media at capture or generation. But watermarks can be stripped by re-encoding, screenshotting, or running the image through a second model. Provenance is opt-in for honest actors and trivially defeatable for hostile ones.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the easiest way to strip a C2PA content-provenance watermark from an image?",
+            "options": [
+              "Decrypt it with the publisher's private key",
+              "Screenshot it or re-save it through another tool",
+              "Run it through a specialized cracking algorithm",
+              "File a takedown request with the platform"
+            ],
+            "correct": 1,
+            "explanation": "Provenance metadata lives in file headers — any re-encoding or screenshot discards it entirely, no cryptography required."
+          }
+        ]
+      },
+      {
+        "heading": "THE MODERATION ASYMMETRY",
+        "body": "Platforms staff trust-and-safety teams heavily for English and Mandarin content, thinly for Arabic, Swahili, Pashto, or Amharic. A deepfake aimed at a Sudanese audience faces a fraction of the review a comparable English-language fake receives — which is precisely why conflict zones in the global South are the frontline."
+      },
+      {
+        "heading": "THE SPEED MISMATCH",
+        "body": "A credible deepfake spreads across platforms in minutes. Forensic debunking takes hours or days, requires reverse image searches, metadata analysis, and often geolocation work. By the time a fact-check publishes, the fake has completed its political job.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Researchers call this the *first-mover advantage* in information warfare: the first frame seen is the one that shapes belief, and corrections reach only a **fraction** of the original audience."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-23T08:32:52.176Z",
+    "label": "Deepfakes & Detection Asymmetry",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-22-drones-attack-russia-s-syzran": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SYZRAN MATTERS",
+        "body": "Samara Oblast hosts three major refineries — Novokuybyshevsk, Kuybyshev, and Syzran — that together process a significant share of Russian crude flowing west. Syzran feeds blended product into the Druzhba pipeline's southern branch, the artery that still supplies Hungary and Slovakia.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU"
+            ],
+            "label": "1,000 km from the border",
+            "caption": "Syzran sits deep in the Volga industrial belt, near the outer edge of long-range drone reach"
+          }
+        ]
+      },
+      {
+        "heading": "THE RANGE REVOLUTION",
+        "body": "Early war drones reached a few hundred kilometers. Ukraine's long-range platforms — the Liutyi, the AN-196, and fiber-tethered variants — now routinely cross 1,000 km. The shift is less about new airframes than cheaper navigation: commercial GPS, terrain-matching software, and jet engines salvaged from sport aircraft.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key unlock is **range-per-dollar**: a strike drone now costs roughly *$50,000* against refinery assets worth hundreds of millions. The exchange ratio — not the tonnage — is what makes the campaign sustainable."
+          }
+        ]
+      },
+      {
+        "heading": "WHY REFINERIES ARE FRAGILE",
+        "body": "A refinery is not a single target but a chain of distillation columns, catalytic crackers, and hydrotreaters. Damage to any one unit can idle downstream capacity for months because the specialized steel alloys and foreign-made control systems are under sanction. Russia cannot easily import replacements from the original European and Japanese suppliers."
+      },
+      {
+        "heading": "THE DRUZHBA LINK",
+        "body": "Druzhba — Russian for 'friendship' — is the world's longest oil pipeline, built by the Soviets in 1964 to bind Warsaw Pact economies to Moscow's crude. Its southern branch still carries exempted Russian oil to Hungary and Slovakia under EU sanctions carveouts. Strikes on feeder refineries squeeze that flow without directly hitting the pipeline.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Viktor Orbán",
+                "role": "Hungarian Prime Minister",
+                "years": "2010–",
+                "cc": "HU"
+              },
+              {
+                "name": "Robert Fico",
+                "role": "Slovak Prime Minister",
+                "years": "2023–",
+                "cc": "SK"
+              }
+            ],
+            "label": "the Druzhba southern-branch customers"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE SIGNAL",
+        "body": "Refinery strikes affect Russia's domestic fuel market before they affect global crude. Russia exports crude but imports finished products like gasoline from its own refineries. Outages trigger domestic price caps and export bans — the government chooses between queues at Russian pumps and revenue from foreign buyers.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              68.16,
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS GEOMETRY",
+        "body": "The G7 price cap on Russian crude was set at $60/barrel in 2022 to keep oil flowing while capping Kremlin revenue. Every successful refinery strike tightens Russia's balance of payments at the margin — less refined product to sell, more reliance on cut-price crude sales to India and China.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Russia import gasoline despite being the world's third-largest oil producer?",
+            "options": [
+              "Domestic demand exceeds crude output",
+              "Refining capacity is the bottleneck, not crude",
+              "Sanctions block Russian gasoline exports",
+              "Russian refineries only produce diesel"
+            ],
+            "correct": 1,
+            "explanation": "Russia produces far more crude than it refines. Refinery outages from drone strikes force imports of finished fuels — even though the underlying crude is abundant."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-23T08:33:21.792Z",
+    "label": "Russia's refinery depth problem",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-the-insight-take-does-kinahan-s-arrest-mark-a-new-chapter": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GREY LIST MECHANISM",
+        "body": "The Financial Action Task Force — a Paris-based intergovernmental body created by the G7 in 1989 — publishes a public list of jurisdictions with strategic deficiencies in anti-money-laundering controls. Grey-listing is not a sanction; it is a signal. Correspondent banks read it and quietly raise compliance costs on every wire that touches the listed jurisdiction.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The IMF estimated a grey-listed country loses roughly **7.6% of GDP in capital inflows** on average. The penalty is not legal — it is the *de-risking* behavior of Western banks that do not want to explain the relationship to their own regulators."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DUBAI BECAME THE HUB",
+        "body": "The UAE combined zero income tax, gold-souk cash liquidity, a real-estate market that accepted anonymous corporate buyers, and geographic position between Europe, Africa, and South Asia. For two decades this made Dubai the preferred retirement city for sanctioned oligarchs, Balkan cartel leadership, and sanctions-evading traders. FATF grey-listing in March 2022 forced a recalibration.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "IE",
+              "ES",
+              "MA",
+              "CO"
+            ],
+            "label": "the Kinahan geography",
+            "caption": "Dubai HQ, Irish origin, Spanish logistics, Moroccan hash, Colombian cocaine"
+          }
+        ]
+      },
+      {
+        "heading": "THE BOUNTY AS DIPLOMATIC TOOL",
+        "body": "US State Department Narcotics Rewards and Transnational Organized Crime Rewards programs offer cash for information leading to arrest. The bounty rarely produces a walk-in informant; its real function is diplomatic pressure — a public price tag that embarrasses host governments every time the fugitive is photographed at a fight card or a horse race.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Kinahan family",
+                "value": "$5M each",
+                "weight": 5
+              },
+              {
+                "label": "Semion Mogilevich",
+                "value": "$5M",
+                "weight": 5
+              },
+              {
+                "label": "Ismael Zambada",
+                "value": "$15M",
+                "weight": 15
+              },
+              {
+                "label": "Rafael Caro Quintero",
+                "value": "$20M",
+                "weight": 20
+              }
+            ],
+            "label": "standing US bounties on OC/narco figures"
+          }
+        ]
+      },
+      {
+        "heading": "THE HYDRA PROBLEM",
+        "body": "Transnational organized-crime networks are federations, not corporations. Removing a principal severs some relationships but redistributes others. The Medellín cartel fractured into the Norte del Valle and then into dozens of BACRIM groups after Escobar. The Sicilian Mafia survived the arrest of Riina in 1993. Networks that survived their founders usually had already separated logistics from leadership.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After Pablo Escobar's 1993 death, what happened to Colombian cocaine exports?",
+            "options": [
+              "They collapsed for a decade",
+              "They rose as smaller cartels filled the vacuum",
+              "They shifted entirely to Mexican cartels overnight"
+            ],
+            "correct": 1,
+            "explanation": "Exports rose through the late 1990s as the Cali and Norte del Valle cartels absorbed Medellín's routes — the market survived the brand."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2022 INFLECTION",
+        "body": "Treasury's OFAC sanctioned the Kinahan Organised Crime Group in April 2022, freezing US-reachable assets and criminalizing any dollar-denominated transaction that touched the network. Combined with simultaneous FATF grey-listing of the UAE, the cost of continued protection rose sharply. Grey-list exit in 2024 did not undo the sanctions — it raised the diplomatic price of being seen to shelter a sanctioned target."
+      },
+      {
+        "heading": "THE IRISH ORIGIN",
+        "body": "The Kinahan-Hutch feud, which has killed roughly two dozen people in Dublin and Spain since 2015, began as a local Dublin rivalry that scaled into a transnational operation. The trajectory — street gang to European wholesaler to Dubai-headquartered brand — mirrors the ’Ndrangheta's path from Calabrian villages to running most of Europe's cocaine imports. Geography of origin rarely constrains scale of operation."
+      }
+    ],
+    "generatedAt": "2026-04-23T08:33:57.886Z",
+    "label": "FATF Grey Lists & Safe Havens",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-23-a-toll-on-malacca-strait-puts-indonesia-s-own-legal-foundati": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GRAND BARGAIN",
+        "body": "UNCLOS was a trade. Archipelagic states like Indonesia and the Philippines got to draw straight baselines around their outermost islands and claim everything inside as sovereign waters. In exchange, they accepted a non-suspendable right of transit passage through the straits used for international navigation that sit inside those waters.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Before 1982, the three-mile territorial sea would have left vast stretches of sea *between* Indonesia's islands as high seas. The archipelagic doctrine converted roughly **3 million km²** of water into Indonesian sovereign territory — the single largest maritime sovereignty grant in modern legal history."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TOLL BREAKS THE DEAL",
+        "body": "UNCLOS Article 42 lets strait states regulate safety, pollution, and fishing — but Article 26 forbids charging foreign ships for mere passage. A toll is the one thing the treaty explicitly rules out. The logic is that the archipelagic grant is already the coastal state's compensation; charging again would be double payment.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "No charge may be levied upon foreign ships by reason only of their passage through the territorial sea.",
+            "speaker": "UNCLOS, Article 26"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOKEPOINT ITSELF",
+        "body": "Malacca carries roughly a quarter of global seaborne trade and the majority of China's crude oil imports. At its narrowest, near Singapore's Phillip Channel, the navigable lane is under 3 km wide. No realistic alternative exists — the Sunda and Lombok straits are deeper and longer detours that add days and fuel to every voyage.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              243,
+              239,
+              232,
+              240,
+              228,
+              224,
+              234,
+              232,
+              218,
+              241,
+              222,
+              236,
+              231,
+              232,
+              216,
+              217,
+              221,
+              210,
+              223,
+              216,
+              218,
+              190,
+              210,
+              208,
+              226,
+              217,
+              188,
+              199,
+              185,
+              220,
+              199,
+              205,
+              212,
+              183,
+              203,
+              218,
+              223,
+              190,
+              202,
+              218,
+              224,
+              211,
+              212,
+              223,
+              196,
+              224,
+              229,
+              224,
+              205,
+              242,
+              213,
+              219,
+              239,
+              202,
+              202,
+              207
+            ],
+            "periods": [
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Malacca Strait transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE RECIPROCITY TRAP",
+        "body": "International maritime law runs on reciprocity. If Jakarta treats the Malacca passage as a revenue asset, Beijing can treat the nine-dash-line waters the same way, and Delhi can reread the Andaman and Nicobar approaches. Indonesia's overlapping disputes in the Natuna Sea depend on the very UNCLOS framework a toll would undermine.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ID",
+              "MY",
+              "SG",
+              "CN",
+              "IN"
+            ],
+            "label": "who uses the strait, who could retaliate"
+          }
+        ]
+      },
+      {
+        "heading": "THE MALACCA DILEMMA",
+        "body": "Hu Jintao coined the phrase in 2003 to describe China's vulnerability: a single naval blockade at Malacca could strangle the Chinese economy. Two decades of Belt and Road pipelines, the Kyaukpyu port in Myanmar, and the China-Pakistan Economic Corridor through Gwadar were all built to reduce that dependence — and none have succeeded at scale."
+      },
+      {
+        "heading": "WHAT INDONESIA ACTUALLY CAN DO",
+        "body": "UNCLOS permits cost-recovery charges for specific services — pilotage, traffic separation schemes, pollution response. Singapore and Malaysia fund the Cooperative Mechanism this way. A toll badged as a pollution or safety fee is the legal workaround; a flat transit charge is not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under UNCLOS, when can a strait state charge foreign vessels passing through?",
+            "options": [
+              "Never — passage is always free",
+              "Only for specific services rendered, like pilotage or pollution response",
+              "Whenever the strait is inside territorial waters",
+              "Only during wartime"
+            ],
+            "correct": 1,
+            "explanation": "Article 26 bars charges for passage itself, but Article 42 permits fees tied to specific services — the narrow channel Indonesia must thread."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-23T08:34:28.512Z",
+    "label": "Archipelagic Sovereignty & Straits Passage",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-23-elon-musk-plans-to-use-intel-s-14a-for-terafab-ai-chips": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A FOUNDRY IS",
+        "body": "A foundry manufactures chips designed by other companies. TSMC pioneered the pure-play model in 1987: no designs of its own, just fabrication for fabless customers like Apple, Nvidia, and AMD. Intel historically refused this model — it designed and manufactured only its own chips. Intel Foundry Services, launched in 2021, is the reversal.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: a *fabless* designer like Nvidia owns no factories, while an *IDM* (integrated device manufacturer) like legacy Intel did both. TSMC's **pure-play** model is why it now fabs ~90% of the world's leading-edge logic."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 14A MEANS",
+        "body": "The 'A' stands for angstrom — one-tenth of a nanometer. 14A is Intel's 1.4nm-equivalent node, the generation after 18A. Node names stopped reflecting literal transistor dimensions around the 10nm era; they are now marketing labels for a performance-and-density tier. What matters is whether the node's power, performance, and yield match or beat TSMC's equivalent (N2, then A14).",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "TSMC",
+                "value": "~90%",
+                "cc": "TW",
+                "weight": 90,
+                "tone": "neutral"
+              },
+              {
+                "label": "Samsung",
+                "value": "~8%",
+                "cc": "KR",
+                "weight": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Intel",
+                "value": "~2%",
+                "cc": "US",
+                "weight": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "leading-edge logic foundry share"
+          }
+        ]
+      },
+      {
+        "heading": "HIGH-NA EUV",
+        "body": "Each new node requires etching thinner features into silicon using extreme ultraviolet light. Intel bet on High-NA EUV machines from ASML — each costs roughly $380 million and Intel received the first production unit in 2024. TSMC delayed its High-NA adoption, betting it could extend standard EUV further. Intel's 14A is the node where that gamble pays off or doesn't.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which company manufactures the EUV lithography machines that every leading-edge foundry depends on?",
+            "options": [
+              "ASML (Netherlands)",
+              "Nikon (Japan)",
+              "Applied Materials (US)",
+              "Canon (Japan)"
+            ],
+            "correct": 0,
+            "explanation": "ASML is the sole global supplier of EUV lithography. Export controls on ASML machines to China are the single most powerful lever the US has in the chip war."
+          }
+        ]
+      },
+      {
+        "heading": "THE ANCHOR CUSTOMER PROBLEM",
+        "body": "A foundry node is economical only at volume — a single leading-edge fab costs $20–30 billion to build. Without a committed high-volume customer, the fab runs under capacity and loses money per wafer. TSMC secured Apple as its anchor for every node since 2014. Intel Foundry has struggled to land one; a Tesla AI-chip order at volume is precisely the commitment the 14A business case needed."
+      },
+      {
+        "heading": "THE CHIPS ACT LEVERAGE",
+        "body": "The 2022 CHIPS and Science Act committed $52 billion in subsidies to re-shore semiconductor manufacturing. Intel received the largest direct award — roughly $8.5 billion in grants plus $11 billion in loans — explicitly tied to expanding domestic advanced-node capacity. A marquee US customer for 14A is the political validation the subsidies were designed to produce.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "TW",
+              "KR",
+              "NL",
+              "JP"
+            ],
+            "label": "the leading-edge semiconductor supply chain",
+            "caption": "Design in US; fab in Taiwan/Korea; lithography from the Netherlands; materials from Japan."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AI CHIPS ARE DIFFERENT",
+        "body": "Training frontier AI models requires tens of thousands of accelerators wired into a single fabric. Performance-per-watt matters more than unit cost because power is the binding constraint at datacenter scale. This favors the most advanced node available — and justifies paying the leading-edge premium that older chip categories cannot."
+      }
+    ],
+    "generatedAt": "2026-04-23T08:34:59.977Z",
+    "label": "Foundry Economics & Process Nodes",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-23-india-s-activity-up-in-april-despite-war-shock-flash-pmis-sh": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A PMI ACTUALLY MEASURES",
+        "body": "A Purchasing Managers' Index surveys procurement officers on whether orders, output, employment, and inventories are up, down, or flat versus last month. The 50 line is the diffusion threshold — above means more firms expanding than contracting, not that the economy grew by some percentage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "PMIs are a *diffusion index*, not a growth rate. A reading of **55.9** means expansion is broad-based across firms; it does not mean GDP is growing 5.9%."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BUFFER STOCKS SIGNAL FEAR, NOT STRENGTH",
+        "body": "When firms stockpile inputs ahead of feared shortages, PMI input-inventory subindices surge and headline readings rise mechanically. The same buildup becomes a drag six months later when firms draw down stocks instead of reordering. Rising PMIs during supply shocks often flatter the near term and cannibalize the next quarter."
+      },
+      {
+        "heading": "THE DIVERGENCE",
+        "body": "India imports over 80% of its crude and roughly half its natural gas. France imports nearly all of its gas and sits inside the European grid that prices off TTF. Yet April shows India expanding and France contracting — the difference is proximity to the gas shock, not to the oil shock.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "55.9",
+                "tone": "favorable",
+                "cc": "IN",
+                "weight": 55.9
+              },
+              {
+                "label": "France",
+                "value": "47.6",
+                "tone": "unfavorable",
+                "cc": "FR",
+                "weight": 47.6
+              }
+            ],
+            "label": "April flash composite PMIs"
+          },
+          {
+            "type": "trend",
+            "values": [
+              9.129581313,
+              10.10962113,
+              10.80662625,
+              10.23979241,
+              12.1938459,
+              11.750812,
+              12.755,
+              13.811,
+              13.757,
+              14.75909611,
+              15.37638294,
+              13.15601031,
+              11.57195747,
+              11.62379688,
+              12.30058745,
+              11.47064619,
+              10.97523233,
+              11.003,
+              10.897,
+              10.355,
+              9.46,
+              11.987,
+              11.19,
+              17.67
+            ],
+            "periods": [
+              "Apr 2024",
+              "May 2024",
+              "Jun 2024",
+              "Jul 2024",
+              "Aug 2024",
+              "Sep 2024",
+              "Oct 2024",
+              "Nov 2024",
+              "Dec 2024",
+              "Jan 2025",
+              "Feb 2025",
+              "Mar 2025",
+              "Apr 2025",
+              "May 2025",
+              "Jun 2025",
+              "Jul 2025",
+              "Aug 2025",
+              "Sep 2025",
+              "Oct 2025",
+              "Nov 2025",
+              "Dec 2025",
+              "Jan 2026",
+              "Feb 2026",
+              "Mar 2026"
+            ],
+            "label": "Natural gas (TTF, Europe)",
+            "unit": "$/MMBtu",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE RBI HELD",
+        "body": "The Reserve Bank of India's mandate is flexible inflation targeting — 4% with a ±2% band. A supply-driven oil shock raises headline inflation but destroys demand; cutting rates would amplify inflation, hiking would deepen the demand hit. Central banks facing stagflationary shocks almost always pause first and let the data resolve the ambiguity."
+      },
+      {
+        "heading": "THE 1973 TEMPLATE",
+        "body": "After the OPEC embargo, central banks that hiked aggressively (Bundesbank) contained inflation but tolerated recession; those that accommodated (Fed under Burns) got a decade of stagflation. The RBI's hold is a bet that this shock is transitory — a judgment that looked wise in 1991 and catastrophic in 1979.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do central banks typically pause rather than act when an oil shock hits?",
+            "options": [
+              "Oil shocks raise inflation but kill demand — rate moves cut one way help, the other way hurt",
+              "Central bank charters forbid responding to commodity shocks",
+              "Oil prices always revert within weeks, so action is unnecessary"
+            ],
+            "correct": 0,
+            "explanation": "Supply shocks are stagflationary: hiking deepens the demand hit, cutting amplifies inflation. The pause buys time to see which force dominates."
+          }
+        ]
+      },
+      {
+        "heading": "INDIA'S STRUCTURAL BUFFER",
+        "body": "India negotiated discounted Russian crude since 2022 and routes a growing share of imports through rupee-settled trades that bypass the dollar system. When Hormuz tightens, India's refiners have more alternative supply — Urals via the Arctic and Pacific routes — than European buyers constrained by sanctions compliance.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              94.127654,
+              94.30975,
+              94.8642,
+              94.782475,
+              94.782054,
+              94.352351,
+              93.48465,
+              92.64285,
+              92.97385,
+              92.763649,
+              92.978498,
+              92.978498,
+              92.9636,
+              92.86045,
+              92.283354,
+              92.47006,
+              93.10605,
+              93.10525,
+              94.508943,
+              94.94696,
+              93.165649,
+              93.387156,
+              93.048145,
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.120461
+            ],
+            "periods": [
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · IMF · as of 2026-03-01",
+      "Open Exchange Rates · as of 2026-04-23"
+    ],
+    "generatedAt": "2026-04-23T08:35:31.078Z",
+    "label": "PMIs & War-Shock Divergence",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-23-iran-ramps-up-attacks-on-ships-in-the-strait-of-hormuz-after": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The Strait of Hormuz sits between Iran and Oman, not Iran and any Arab Gulf state. Iran's coastline runs the entire northern edge, and the deepest shipping channel hugs the Iranian side — which is why IRGC fast boats can intercept tankers within minutes of a command from Bandar Abbas.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "SA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Gulf's northern edge",
+            "caption": "Iran's coast dominates the strait's deep channel"
+          }
+        ]
+      },
+      {
+        "heading": "THE IRGC NAVY",
+        "body": "Iran runs two parallel navies. The regular Artesh navy handles blue-water operations; the Islamic Revolutionary Guard Corps Navy operates the swarming small-boat fleet that conducts seizures. The IRGC reports directly to the Supreme Leader, not the president — which means a ceasefire signed by the foreign ministry does not automatically bind the force doing the boarding.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The split matters: the **IRGC Navy** answers to Khamenei through a separate chain of command, so diplomatic agreements and tactical operations can diverge for days or weeks."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf during the Tanker War. Oil prices spiked briefly but markets adapted — vessels were reflagged under US and Kuwaiti flags and escorted by warships in Operation Earnest Will. The lesson planners took: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many commercial ships were attacked during the 1984–88 Tanker War?",
+            "options": [
+              "About 50",
+              "About 150",
+              "Over 400",
+              "Over 1,000"
+            ],
+            "correct": 2,
+            "explanation": "Iran and Iraq attacked more than 400 vessels over four years — yet global oil supply was never sustainably cut."
+          }
+        ]
+      },
+      {
+        "heading": "SEIZURE AS LEVERAGE",
+        "body": "Iran has used ship seizures as bargaining chips for decades — the 2007 capture of 15 Royal Navy sailors, the 2019 seizure of the Stena Impero after Britain detained an Iranian tanker at Gibraltar, the 2023 boarding of the Advantage Sweet. Ships are easier to grab than territory, harder to ignore than rhetoric, and can be released when the trade is right.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage or impose conditions. Iran signed UNCLOS in 1982 but never ratified it, and has long argued Hormuz is governed by its own domestic maritime law, not the convention."
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the seizures themselves — are what close a shipping lane. Once underwriters designate waters as high-risk, premiums can jump 10x within days. Commercial operators reroute regardless of how many ships are actually taken; the financial chokepoint tightens faster than the physical one.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              68.16,
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19",
+      "FRED · EIA · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-23T08:35:58.436Z",
+    "label": "Hormuz Seizures & Maritime Coercion",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-23-sainsbury-s-says-impact-of-iran-war-may-lead-to-drop-in-prof": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRANSMISSION CHAIN",
+        "body": "A war in the Gulf becomes a UK profit warning through three links: Brent spikes, shipping insurance and bunker fuel rise, then discretionary spending contracts as household energy bills climb. Supermarkets sit at the end of that chain — they absorb input costs before they can pass them on, and they sell to consumers who cut back on premium lines first.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              68.16,
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY SHIPPING MATTERS TO A GROCER",
+        "body": "Roughly half of what a British supermarket sells — fresh produce, canned goods, clothing, general merchandise — arrives by sea. Red Sea diversions around the Cape add 10-14 days and thousands of dollars per container. The cost lands on the importer first, the retailer second, the shopper last.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              6,
+              7,
+              5,
+              9,
+              7,
+              3,
+              5,
+              4,
+              7,
+              2,
+              5,
+              5,
+              3,
+              10,
+              6,
+              4,
+              4,
+              5,
+              7,
+              4,
+              2,
+              9,
+              2,
+              5,
+              9,
+              3,
+              2,
+              6,
+              1,
+              4,
+              7,
+              5,
+              6,
+              8,
+              7,
+              3,
+              5,
+              6,
+              3,
+              1,
+              7,
+              6,
+              3,
+              4,
+              4,
+              10,
+              6,
+              5,
+              5,
+              7,
+              5,
+              10,
+              7,
+              2,
+              4,
+              7
+            ],
+            "periods": [
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Bab-el-Mandeb containers",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "THE DUOPOLY ARITHMETIC",
+        "body": "Tesco and Sainsbury's together hold roughly 43% of UK grocery sales. Net margins sit near 3-4% — thinner than almost any other sector. A £55m hit on Sainsbury's is small against £32bn of revenue but large against ~£700m of operating profit. Grocery is a volume business that breaks on small cost shocks.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tesco",
+                "value": "~28%",
+                "weight": 28
+              },
+              {
+                "label": "Sainsbury's",
+                "value": "~15%",
+                "weight": 15
+              },
+              {
+                "label": "Asda",
+                "value": "~13%",
+                "weight": 13
+              },
+              {
+                "label": "Aldi",
+                "value": "~10%",
+                "weight": 10
+              },
+              {
+                "label": "Morrisons",
+                "value": "~9%",
+                "weight": 9
+              }
+            ],
+            "label": "UK grocery market share"
+          }
+        ]
+      },
+      {
+        "heading": "WH SMITH AND THE TRAVEL TRADE",
+        "body": "WH Smith restructured around airports and train stations after its high-street business shrank — roughly 85% of revenue now comes from travel retail. That makes it a pure play on passenger volumes: when Gulf airspace closures or fuel-driven ticket prices dampen flying, the till goes quiet within weeks.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The old WH Smith was a stationer on the British high street. The new one is a *captive-audience* retailer in departure lounges — profitable because travelers pay airport prices, fragile because that revenue evaporates the moment flights don't."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 PRECEDENT",
+        "body": "The Yom Kippur war and the Arab oil embargo quadrupled crude prices within months. UK inflation ran at 24% by 1975. Sainsbury's responded with own-label value ranges and tighter shelf discipline — the playbook modern grocers still use when input costs spike. The industry learned that in a shock, shoppers trade down rather than stop shopping.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which part of a UK supermarket's P&L typically cracks first during an oil shock?",
+            "options": [
+              "Wage costs — staff demand immediate raises",
+              "Transport and packaging — fuel and plastic track crude within weeks",
+              "Rent — landlords reprice leases to inflation",
+              "Tax — fuel duty rises automatically"
+            ],
+            "correct": 1,
+            "explanation": "Logistics fuel and oil-derived packaging (plastics, films) move with Brent on a short lag; wages, rents, and duties adjust on annual or policy cycles."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20",
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-23T08:36:27.900Z",
+    "label": "War shocks & the UK grocer",
+    "category": "economy",
+    "articleCount": 1
   }
 }
