@@ -42350,5 +42350,1933 @@
     "label": "War shocks & the UK grocer",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-22-ai-anthropomorphism-rights-advocacy-feminist-critique": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ELIZA EFFECT",
+        "body": "In 1966, MIT's Joseph Weizenbaum built ELIZA — a chatbot that parroted users' statements back as questions, mimicking a Rogerian therapist. His own secretary asked him to leave the room so she could talk to it privately. Weizenbaum spent the rest of his career warning that humans project understanding onto any system that imitates conversation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Weizenbaum called this the ***ELIZA effect***: the tendency to attribute comprehension, empathy, and moral standing to systems that merely pattern-match language. It is a feature of the human mind, not the machine."
+          }
+        ]
+      },
+      {
+        "heading": "THE DESIGN CHOICE",
+        "body": "Nothing forces a language model to say 'I think' or 'I feel.' These are training and interface decisions — first-person pronouns, hesitation tokens, apologetic phrasing, simulated uncertainty. Each choice pulls the user deeper into treating the system as an interlocutor rather than a tool.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these anthropomorphic cues is a deliberate design choice, not a technical necessity?",
+            "options": [
+              "The model using 'I' to refer to itself",
+              "The model taking time to generate a response",
+              "The model running on GPUs",
+              "The model having a fixed context window"
+            ],
+            "correct": 0,
+            "explanation": "First-person framing is a training and prompting decision. The model could equally be tuned to say 'this system outputs…' — the persona is built, not emergent."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSENT PROBLEM",
+        "body": "Meaningful consent requires knowing what you're agreeing to. When an AI presents as a sympathetic human, users disclose information — medical symptoms, legal trouble, intimate relationships — that they would withhold from a database form. The disclosure is shaped by the persona, not the underlying data pipeline."
+      },
+      {
+        "heading": "THE LIABILITY GAP",
+        "body": "When a chatbot gives harmful advice, liability is contested across the developer, the deployer, the training-data licensor, and the user who prompted it. No jurisdiction has definitively assigned responsibility for AI outputs; the EU AI Act (2024) imposes transparency duties but stops short of naming a liable party for conversational harms.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU",
+                "value": "Disclosure rule",
+                "tone": "favorable",
+                "cc": "EU"
+              },
+              {
+                "label": "US",
+                "value": "No federal rule",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "China",
+                "value": "Label AI output",
+                "tone": "favorable",
+                "cc": "CN"
+              },
+              {
+                "label": "UK",
+                "value": "Sector guidance",
+                "tone": "neutral",
+                "cc": "GB"
+              }
+            ],
+            "label": "AI regulation postures on anthropomorphism"
+          }
+        ]
+      },
+      {
+        "heading": "THE FEMINIST CRITIQUE",
+        "body": "Scholars including Kate Crawford and Safiya Noble have argued that anthropomorphic AI — especially voice assistants defaulted to feminine personas — trains users to expect patient, servile, emotionally available labor from entities coded as women. The UNESCO report 'I'd Blush If I Could' (2019) documented how Siri, Alexa, and Cortana responded to sexual harassment with flirtation rather than refusal."
+      },
+      {
+        "heading": "THE PROPOSAL",
+        "body": "'Anthropomorphism by design' regulation would require AI systems to actively signal non-human status — no first-person emotional claims, mandatory interruption disclosures, prohibited persona features. The precedent is the FTC's rules against deceptive endorsements: you cannot pretend to be what you are not when commerce is at stake."
+      }
+    ],
+    "generatedAt": "2026-04-23T12:28:34.701Z",
+    "label": "Anthropomorphism & AI Accountability",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-22-bengal-murshidabad-polling-eve-tmc-cpim-clash": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MURSHIDABAD MATTERS",
+        "body": "Murshidabad is roughly 66% Muslim — the highest Muslim share of any district in West Bengal. It was the capital of Bengal under Nawab Siraj-ud-Daulah until the British defeated him at Plassey in 1757, the battle that effectively began two centuries of colonial rule in India.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Battle of Plassey** (1757) was less a battle than a betrayal — Mir Jafar's defection handed Bengal to the East India Company, making Murshidabad the first Indian capital to fall to European power."
+          }
+        ]
+      },
+      {
+        "heading": "BENGAL'S LEFT-TO-MAMATA ARC",
+        "body": "Bengal was governed by the Communist Party (Marxist) for 34 consecutive years — 1977 to 2011 — the longest democratically elected communist government in history. Mamata Banerjee's Trinamool broke that streak and has held the state since. The BJP has never won Bengal.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mamata Banerjee",
+                "role": "TMC chief, CM",
+                "years": "2011–",
+                "cc": "IN"
+              },
+              {
+                "name": "Jyoti Basu",
+                "role": "CPI(M), longest-serving CM",
+                "years": "1977–2000",
+                "cc": "IN"
+              },
+              {
+                "name": "Buddhadeb Bhattacharjee",
+                "role": "CPI(M), last Left CM",
+                "years": "2000–2011",
+                "cc": "IN"
+              }
+            ],
+            "label": "who runs what in Bengal"
+          }
+        ]
+      },
+      {
+        "heading": "THE PARTITION SHADOW",
+        "body": "Bengal was split in 1947 along religious lines — East Bengal became East Pakistan, then Bangladesh in 1971. West Bengal absorbed millions of Hindu refugees; Muslim-majority districts like Murshidabad sit along a border that was drawn in six weeks by a British lawyer who had never visited India."
+      },
+      {
+        "heading": "WHY POLL-EVE CLASHES ARE STRUCTURAL",
+        "body": "Bengal's political culture runs on booth-level cadre networks — party workers who mobilize voters, monitor polling stations, and historically police the queues. When two parties command rival cadre in the same Muslim-majority pocket, the overnight before polling is when physical control of booths is contested.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which party governed West Bengal for 34 consecutive years before Mamata Banerjee?",
+            "options": [
+              "Indian National Congress",
+              "Communist Party of India (Marxist)",
+              "Bharatiya Janata Party",
+              "Trinamool Congress"
+            ],
+            "correct": 1,
+            "explanation": "The CPI(M)-led Left Front ran Bengal from 1977 to 2011 — the longest democratically elected communist government anywhere in the world."
+          }
+        ]
+      },
+      {
+        "heading": "THE VOTER-ROLL FIGHT",
+        "body": "India's election commission periodically purges rolls of duplicates, deceased voters, and migrants. Opposition parties across states routinely allege the purges disproportionately hit their demographics — Muslims, migrants, the urban poor — because these groups are harder to re-register. 9.1 million is roughly 12% of Bengal's electorate.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD"
+            ],
+            "label": "Bengal sits on the Bangladesh border",
+            "caption": "Murshidabad is 20 km from Bangladesh at its nearest point"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-23T12:29:00.682Z",
+    "label": "Bengal & Murshidabad",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-22-russia-crypto-ecosystem-sanctions-evasion-europe": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STABLECOIN PIPELINE",
+        "body": "Tether (USDT) on the Tron blockchain has become the workhorse of sanctions evasion. Settlement is final in minutes, fees are under a dollar, and the issuer sits in the British Virgin Islands outside direct EU jurisdiction. For a sanctioned Russian entity, a USDT wallet replaces a correspondent bank.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Roughly **half** of all on-chain stablecoin volume runs on *Tron*, not Ethereum — chosen specifically because fees are cents and the network has no meaningful compliance layer at the protocol level."
+          }
+        ]
+      },
+      {
+        "heading": "THE GARANTEX PLAYBOOK",
+        "body": "Garantex operated from Moscow City's Federation Tower from 2019 until US Treasury sanctions and an EU freeze in March 2025. It processed over $96 billion in volume across its lifetime, much of it for darknet markets, ransomware crews, and sanctioned Russian entities. When it closed, operators migrated to Grinex within weeks — same staff, same clients, new shell."
+      },
+      {
+        "heading": "WHY EXCHANGES DON'T DIE",
+        "body": "Sanctioning a crypto exchange is not like sanctioning a bank. A bank needs SWIFT, correspondent accounts, and physical branches — remove those and it collapses. An exchange needs a domain, a hot wallet, and a Telegram channel. The marginal cost of resurrection is near zero, which is why the same operators reappear under new names.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happened to Garantex's user balances when the EU froze the exchange in March 2025?",
+            "options": [
+              "Users were reimbursed through an EU compensation fund",
+              "Balances were migrated to successor platform Grinex",
+              "Funds were seized and transferred to Ukraine reconstruction",
+              "Accounts remained frozen indefinitely pending court review"
+            ],
+            "correct": 1,
+            "explanation": "Operators migrated user balances to Grinex within weeks, preserving the client base while the sanctioned shell was abandoned."
+          }
+        ]
+      },
+      {
+        "heading": "THE DESIGNATION GAP",
+        "body": "EU sanctions target legal entities and named individuals. A crypto exchange is often neither — it is a domain, a set of wallet addresses, and a handful of pseudonymous operators. Until the EU sanctions specific wallet clusters and the natural persons behind them, each shutdown just reboots the same operation under a new legal wrapper.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US OFAC",
+                "value": "wallets + ops",
+                "tone": "favorable"
+              },
+              {
+                "label": "UK OFSI",
+                "value": "wallets listed",
+                "tone": "favorable"
+              },
+              {
+                "label": "EU",
+                "value": "entities only",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "US vs EU crypto sanctions approach"
+          }
+        ]
+      },
+      {
+        "heading": "THE RUBLE-STABLECOIN BRIDGE",
+        "body": "A sanctioned Russian oligarch cannot wire dollars, but can deposit rubles with a Russian OTC desk, receive USDT in a self-custody wallet, and cash out anywhere that accepts stablecoins. The bridge between the ruble and the dollar now runs through a stablecoin issued in the Caribbean — not through New York correspondent banks.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              80.997208,
+              81.37717,
+              81.419507,
+              81.419507,
+              81.684883,
+              81.292923,
+              81.300025,
+              80.300679,
+              80.186545,
+              80.332725,
+              80.325737,
+              80.409851,
+              80.188632,
+              78.425742,
+              78.552067,
+              77.620679,
+              77.111135,
+              77.104548,
+              77.405049,
+              76.169531,
+              75.375678,
+              75.496169,
+              76.374389,
+              76.231514,
+              76.231514,
+              76.231514,
+              76.231376,
+              74.947786,
+              75.123411,
+              75.100327
+            ],
+            "periods": [
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23"
+            ],
+            "label": "Russian ruble",
+            "unit": "RUB / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CYBERATTACK NARRATIVE",
+        "body": "Russian-linked exchanges routinely blame Western intelligence for outages and losses. The claim is usually unverifiable and serves a purpose: it casts the operator as a patriotic victim rather than a sanctions target, preserving client trust during the migration to a successor platform."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-23"
+    ],
+    "generatedAt": "2026-04-23T12:29:28.297Z",
+    "label": "Russia's Crypto Evasion Ecosystem",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-22-vietnam-nuclear-plant-2031-ninh-thuan-villagers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 2016 SHELVING",
+        "body": "Vietnam approved Ninh Thuan in 2009 with Russian and Japanese partners, then shelved it in 2016 after Fukushima, cost overruns, and a debt ceiling that could not absorb a $18bn reactor program. The pause lasted nearly a decade before Hanoi revived it in late 2024.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The original plan paired a **Rosatom** reactor at Phuoc Dinh with a **Japanese** reactor at Vinh Hai — twin sites, twin vendors, classic hedge against single-supplier dependence."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ROSATOM DOMINATES EXPORTS",
+        "body": "Russia's state nuclear firm builds reactors on a build-own-operate basis and bundles in fuel supply, operator training, and state-backed financing at rates no Western vendor matches. Roughly two-thirds of reactors under construction outside China and India involve Rosatom.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Rosatom",
+                "value": "~20 units",
+                "weight": 20,
+                "tone": "neutral",
+                "cc": "RU"
+              },
+              {
+                "label": "China (CNNC/CGN)",
+                "value": "~5 units",
+                "weight": 5,
+                "cc": "CN"
+              },
+              {
+                "label": "KEPCO",
+                "value": "~4 units",
+                "weight": 4,
+                "cc": "KR"
+              },
+              {
+                "label": "Westinghouse",
+                "value": "~2 units",
+                "weight": 2,
+                "cc": "US"
+              },
+              {
+                "label": "EDF/Framatome",
+                "value": "~2 units",
+                "weight": 2,
+                "cc": "FR"
+              }
+            ],
+            "label": "reactor exports under construction (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATOR PROBLEM",
+        "body": "The IAEA requires an independent nuclear regulator operational years before fuel load — to license the site, vet the design, inspect construction, and certify operators. Vietnam starting construction toward 2031 without one in place inverts the standard sequence."
+      },
+      {
+        "heading": "THE DISPLACEMENT PATTERN",
+        "body": "Large infrastructure in Vietnam has long used eminent domain with modest compensation and slow resettlement — farmers moved first, promised housing and jobs that arrive years late. The Ninh Thuan villages sat under a relocation notice from 2009 to 2016, then had it lifted, and now face it again.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VN"
+            ],
+            "label": "Ninh Thuan, south-central coast",
+            "caption": "coastal site chosen for seawater cooling and grid proximity"
+          }
+        ]
+      },
+      {
+        "heading": "WHY VIETNAM NEEDS BASELOAD",
+        "body": "Electricity demand has grown roughly 10% a year for a decade, driven by FDI-heavy manufacturing — Samsung, Intel, Foxconn. Coal is politically constrained by climate commitments, hydro is tapped out, and solar saturates the midday grid. Nuclear is the baseload option left.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is currently the world's largest exporter of nuclear reactor technology by units under construction abroad?",
+            "options": [
+              "United States",
+              "France",
+              "Russia",
+              "South Korea"
+            ],
+            "correct": 2,
+            "explanation": "Rosatom's state-backed financing and build-own-operate model make Russia the dominant reactor exporter, with roughly 20 units under construction outside its borders."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-23T12:29:57.291Z",
+    "label": "Vietnam's Nuclear Restart",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-23-btc-perpetual-futures-rally-pentagon-inflation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PERP MECHANISM",
+        "body": "Perpetual futures have no expiry. A funding rate — paid every eight hours between longs and shorts — tethers the contract to spot. When longs crowd in, funding spikes, and late entrants pay the earlier ones just to hold the position.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Perps were proposed by economist Robert Shiller in 1993 for real estate. Nobody used them until **BitMEX** adapted the design for Bitcoin in 2016 — now the most traded instrument in crypto."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PERP-LED RALLIES BREAK",
+        "body": "When price rises on futures faster than spot, the basis widens and funding turns expensive. Any dip triggers forced liquidations of leveraged longs, which sell into a thin spot book. The rally unwinds faster than it built.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              70524.51,
+              71309.26,
+              68791.11,
+              66321.02,
+              66321.07,
+              65970.43,
+              66699.27,
+              68231.83,
+              68089.06,
+              66891.66,
+              66939.69,
+              67304.25,
+              68985.53,
+              68864.23,
+              71975.62,
+              71117.08,
+              71770.75,
+              72972.71,
+              73053.89,
+              70756.75,
+              74514.63,
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              77765.9
+            ],
+            "periods": [
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 23"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE OIL-INFLATION PASSTHROUGH",
+        "body": "Crude feeds into gasoline, diesel, freight, petrochemicals, fertilizer. A sustained $15-20 move in WTI adds roughly half a percentage point to headline CPI within two to three months — enough to keep the Fed from cutting.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              60.7,
+              60.46,
+              62.04,
+              62.75,
+              64.77,
+              64.5,
+              61.6,
+              62.62,
+              64.56,
+              62.9,
+              63.77,
+              64.53,
+              64.2,
+              64.8,
+              63.08,
+              63.05,
+              62.53,
+              65.33,
+              66.66,
+              66.69,
+              66.36,
+              65.62,
+              65.3,
+              65.1,
+              66.96,
+              71.13,
+              74.48,
+              74.58,
+              80.88,
+              90.77,
+              94.65,
+              83.71,
+              86.8,
+              95.61,
+              98.48,
+              93.39,
+              96.01,
+              96.12,
+              96.11,
+              98.71,
+              89.33,
+              93.18,
+              91.51,
+              96.18,
+              101.26,
+              104.69,
+              102.86,
+              101.9,
+              113.23,
+              114.01,
+              114.58,
+              96.17,
+              99.62,
+              98.34,
+              100.72,
+              93.07,
+              93.04,
+              96.46,
+              85.91,
+              91.06
+            ],
+            "periods": [
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "WTI crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "WHY REAL YIELDS KILL BITCOIN",
+        "body": "Bitcoin pays no coupon. When real Treasury yields are positive, the opportunity cost of holding a zero-yield asset is measurable; when negative, scarce assets absorb the flight from cash. The Fed's pause is the variable that matters most to crypto.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4.24,
+              4.22,
+              4.24,
+              4.26,
+              4.24,
+              4.26,
+              4.29,
+              4.28,
+              4.29,
+              4.21,
+              4.22,
+              4.22,
+              4.16,
+              4.18,
+              4.09,
+              4.04,
+              4.05,
+              4.09,
+              4.08,
+              4.08,
+              4.03,
+              4.04,
+              4.05,
+              4.02,
+              3.97,
+              4.05,
+              4.06,
+              4.09,
+              4.13,
+              4.15,
+              4.12,
+              4.15,
+              4.21,
+              4.27,
+              4.28,
+              4.23,
+              4.2,
+              4.26,
+              4.25,
+              4.39,
+              4.34,
+              4.39,
+              4.33,
+              4.42,
+              4.44,
+              4.35,
+              4.3,
+              4.33,
+              4.31,
+              4.35,
+              4.34,
+              4.33,
+              4.29,
+              4.29,
+              4.31,
+              4.3,
+              4.26,
+              4.29,
+              4.32,
+              4.26,
+              4.26,
+              4.3
+            ],
+            "periods": [
+              "Jan 23",
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21"
+            ],
+            "label": "US 10y Treasury",
+            "unit": "%",
+            "highlight": "last",
+            "source": 2
+          }
+        ]
+      },
+      {
+        "heading": "MINE-CLEARING IS SLOW BY DESIGN",
+        "body": "A mine costs thousands; clearing costs millions and weeks. Contact mines anchor to the seabed; influence mines read magnetic and acoustic signatures and fire at a distance. Currents drift them off their charted positions, so sweep lanes must be re-run.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              62,
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 3
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's war-risk premiums — not the mines themselves — close a shipping lane. Once underwriters reprice the strait, tankers reroute or refuse the voyage regardless of how many mines remain. The financial chokepoint is tighter than the physical one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What most directly halts tanker traffic through a mined strait?",
+            "options": [
+              "The number of mines still in the water",
+              "A spike in Lloyd's war-risk insurance premiums",
+              "US Navy escort availability",
+              "OPEC production quotas"
+            ],
+            "correct": 1,
+            "explanation": "Commercial shipping is driven by insurability. Once war-risk premiums spike, voyages become uneconomic long before the lane is physically impassable."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-04-23",
+      "FRED · EIA · as of 2026-04-20",
+      "FRED · Board of Governors · as of 2026-04-21",
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-23T12:30:25.215Z",
+    "label": "Perps, Oil & the Fed Put",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-23-chile-mining-tailings-reprocessing-transition-minerals": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT TAILINGS ARE",
+        "body": "Tailings are the slurry left after ore is crushed and the target metal extracted. Historically treated as waste, they still contain whatever the original process wasn't tuned to recover — often 0.1–0.3% copper, trace cobalt, and rare earths that 20th-century metallurgy ignored.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A century ago miners chased *high-grade* ore and discarded the rest. Today's EV demand makes yesterday's **waste** economic — if you can extract it without the water and energy cost of fresh mining."
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER CONSTRAINT",
+        "body": "The Atacama is the driest non-polar desert on earth. Chilean copper mining already consumes more water per ton than any major producer, and reprocessing tailings is itself water-intensive — the same slurry has to be re-slurried. Desalination plants on the Pacific coast now pump seawater hundreds of kilometers inland, at enormous energy cost.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CL",
+              "PE",
+              "BO",
+              "AR"
+            ],
+            "label": "the lithium triangle & Atacama basin"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHILE MATTERS",
+        "body": "Chile produces roughly a quarter of the world's copper and sits on the largest lithium reserves on earth. As the energy transition shifts demand from hydrocarbons to metals, Atacama becomes to the 21st century what the Gulf was to the 20th — a geographic chokepoint for the inputs that power everything.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Chile",
+                "value": "~24%",
+                "weight": 24,
+                "cc": "CL",
+                "tone": "favorable"
+              },
+              {
+                "label": "Peru",
+                "value": "~10%",
+                "weight": 10,
+                "cc": "PE"
+              },
+              {
+                "label": "DRC",
+                "value": "~10%",
+                "weight": 10,
+                "cc": "CD"
+              },
+              {
+                "label": "China",
+                "value": "~8%",
+                "weight": 8,
+                "cc": "CN"
+              },
+              {
+                "label": "US",
+                "value": "~5%",
+                "weight": 5,
+                "cc": "US"
+              }
+            ],
+            "label": "share of global copper mine output"
+          },
+          {
+            "type": "trend",
+            "values": [
+              9445.593636363636,
+              10117.16347826087,
+              9648.167,
+              9385.313043478262,
+              8981.117727272727,
+              9259.128571428571,
+              9533.991304347826,
+              9075.727142857142,
+              8909.907727272726,
+              8976.68043478261,
+              9330.975,
+              9735.823333333334,
+              9172.69590909091,
+              9531.200909090909,
+              9835.068095238095,
+              9770.580434782609,
+              9671.875714285714,
+              9994.773181818182,
+              10739.91826086957,
+              10812.028,
+              11790.96409090909,
+              12986.60681818182,
+              12951.345,
+              12528.70954545455
+            ],
+            "periods": [
+              "Apr 2024",
+              "May 2024",
+              "Jun 2024",
+              "Jul 2024",
+              "Aug 2024",
+              "Sep 2024",
+              "Oct 2024",
+              "Nov 2024",
+              "Dec 2024",
+              "Jan 2025",
+              "Feb 2025",
+              "Mar 2025",
+              "Apr 2025",
+              "May 2025",
+              "Jun 2025",
+              "Jul 2025",
+              "Aug 2025",
+              "Sep 2025",
+              "Oct 2025",
+              "Nov 2025",
+              "Dec 2025",
+              "Jan 2026",
+              "Feb 2026",
+              "Mar 2026"
+            ],
+            "label": "Copper",
+            "unit": "$/mt",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE OWNERSHIP QUESTION",
+        "body": "Mining law in most jurisdictions defines ownership of ore in the ground and metal at the smelter — but not the slurry in between. When tailings were valueless, nobody argued. Now that a pile can hold hundreds of millions of dollars in cobalt, the original concessionaire, the state, and the community living downstream all have plausible claims — and no settled law to adjudicate them."
+      },
+      {
+        "heading": "THE DAM FAILURE RISK",
+        "body": "Tailings dams are the most dangerous structures in mining. Brazil's 2019 Brumadinho collapse killed 270 people when a Vale dam liquefied and buried the valley below. Reprocessing disturbs stored slurry — potentially useful if it drains and stabilizes the pile, potentially catastrophic if it doesn't.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many people died when Brazil's Brumadinho tailings dam collapsed in 2019?",
+            "options": [
+              "About 30",
+              "About 270",
+              "About 1,500",
+              "About 5,000"
+            ],
+            "correct": 1,
+            "explanation": "The Vale-owned dam failure at Brumadinho killed 270 and became the mining industry's deadliest modern disaster, reshaping global tailings regulation."
+          }
+        ]
+      },
+      {
+        "heading": "THE CIRCULAR ECONOMY PITCH",
+        "body": "Reprocessing tailings is the purest form of circular mining: no new pit, no new overburden, the environmental damage already done. If the metallurgy and water math work, it is the rare extractive activity that leaves the landscape cleaner than it found it — the old pile, responsibly reprocessed, becomes a smaller, more stable one."
+      }
+    ],
+    "sources": [
+      "FRED · IMF · as of 2026-03-01"
+    ],
+    "generatedAt": "2026-04-23T12:30:53.458Z",
+    "label": "Mine Tailings & Transition Minerals",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-23-duterte-icc-confirms-crimes-against-humanity-trial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COURT'S JURISDICTION",
+        "body": "The ICC prosecutes individuals, not states, for genocide, crimes against humanity, war crimes, and aggression. It is a court of last resort — it only acts when national courts are unwilling or unable to prosecute, a principle called complementarity.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is called **complementarity**: the ICC defers to domestic courts when they function, and steps in only when they don't. Duterte's case cleared that bar because Philippine prosecutors never charged him."
+          }
+        ]
+      },
+      {
+        "heading": "THE WITHDRAWAL LOOPHOLE",
+        "body": "Duterte pulled the Philippines out of the Rome Statute in 2019, effective 2019. But the ICC retained jurisdiction over crimes committed while the country was still a member — from 2011, when Manila joined, through the withdrawal date. The drug war began in 2016, squarely inside that window.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can the ICC try Duterte despite the Philippines leaving the court?",
+            "options": [
+              "The UN Security Council referred the case",
+              "Jurisdiction covers crimes committed while a member",
+              "The Philippines rejoined in 2024",
+              "Crimes against humanity have no jurisdictional limits"
+            ],
+            "correct": 1,
+            "explanation": "Withdrawal is prospective — the ICC keeps jurisdiction over acts committed during membership, which for the Philippines ran 2011–2019."
+          }
+        ]
+      },
+      {
+        "heading": "THE DAVAO PRECEDENT",
+        "body": "Duterte was mayor of Davao City for over two decades before the presidency. Human rights groups documented the 'Davao Death Squad' — vigilante killings of suspected criminals — from the 1990s onward. The ICC judges cite this continuity: the presidential drug war was not improvisation, it was the Davao model scaled to a nation of 110 million."
+      },
+      {
+        "heading": "THE BODY COUNT GAP",
+        "body": "Philippine police acknowledge roughly 6,000 killed in anti-drug operations. Rights monitors count up to 30,000, including killings by unidentified gunmen — the hallmark of plausible-deniability vigilantism. The gap between the two figures is the accounting the trial will force into the open.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "PH police count",
+                "value": "~6,000",
+                "tone": "neutral"
+              },
+              {
+                "label": "Rights groups",
+                "value": "~30,000",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "drug-war death tolls, 2016–2022"
+          }
+        ]
+      },
+      {
+        "heading": "CRIMES AGAINST HUMANITY",
+        "body": "The charge requires a 'widespread or systematic attack directed against a civilian population' pursuant to state or organizational policy. Individual murders do not qualify; a policy that produces thousands does. The ICC's finding that Duterte 'developed and implemented' the policy is the legal core of the case."
+      },
+      {
+        "heading": "THE SITTING-LEADER PRECEDENT",
+        "body": "The ICC has indicted sitting or former heads of state before — Omar al-Bashir of Sudan, Uhuru Kenyatta of Kenya, Vladimir Putin of Russia — but convictions are rare. Most cases stall on state non-cooperation. Duterte's surrender to the court in 2025 made him one of the few former leaders to actually face trial at The Hague."
+      }
+    ],
+    "generatedAt": "2026-04-23T12:31:19.325Z",
+    "label": "The ICC & Duterte's Drug War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-23-edtech-funding-collapse-global-south-k12": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PANDEMIC BUBBLE",
+        "body": "Global edtech venture funding hit $16.7 billion in 2021, more than triple the 2019 level. Investors assumed remote learning was a permanent behavior change. It was not — usage collapsed within months of school reopenings, but the capital had already been deployed at peak valuations.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Byju's, India's flagship edtech, was valued at **$22 billion** in 2022. By 2024 its lenders marked it at **near zero** — one of the largest valuation collapses in startup history."
+          }
+        ]
+      },
+      {
+        "heading": "WHY K-12 IS THE HARDEST BUSINESS",
+        "body": "Children don't pay; parents pay reluctantly; governments pay slowly. Customer acquisition cost is high because the decision-maker is not the user, retention depends on measurable learning outcomes that take years to prove, and the willingness-to-pay in low-income markets is structurally capped. Adult upskilling, by contrast, ties directly to wages.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are investors pivoting from K-12 edtech to AI workforce training?",
+            "options": [
+              "K-12 demand has fallen globally",
+              "Adults pay directly and tie spending to wage gains",
+              "Regulators have banned K-12 platforms",
+              "AI cannot teach children"
+            ],
+            "correct": 1,
+            "explanation": "Workforce learners are the buyer and the user, and they measure ROI in salary increases — making willingness-to-pay far higher than parent-mediated K-12 spend."
+          }
+        ]
+      },
+      {
+        "heading": "THE ABANDONED INFRASTRUCTURE PROBLEM",
+        "body": "When an edtech platform shuts down, the loss is not just an app. Teacher training, content libraries, assessment data, and device deployments — often funded by donors or state contracts — become stranded assets. Schools that restructured around the platform must rebuild offline workflows from scratch.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BR",
+              "MX",
+              "NG",
+              "KE",
+              "ZA"
+            ],
+            "label": "K-12 edtech's largest paying markets",
+            "caption": "India, Brazil, and Nigeria together hosted the bulk of Global South subscriber growth"
+          }
+        ]
+      },
+      {
+        "heading": "THE DONOR-TO-VC GAP",
+        "body": "For two decades, education in low-income countries was financed by donors — World Bank, Gates Foundation, DFID — with grant horizons of 5-10 years. Venture capital arrived in the 2010s promising scale, but with 7-year fund cycles and exit pressure. When exits failed to materialize, the capital left faster than donor money ever would have.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2019",
+                "value": "$7.0bn",
+                "weight": 7
+              },
+              {
+                "label": "2020",
+                "value": "$16.1bn",
+                "weight": 16.1
+              },
+              {
+                "label": "2021",
+                "value": "$20.8bn",
+                "weight": 20.8,
+                "tone": "favorable"
+              },
+              {
+                "label": "2022",
+                "value": "$10.6bn",
+                "weight": 10.6
+              },
+              {
+                "label": "2023",
+                "value": "$3.0bn",
+                "weight": 3,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2024",
+                "value": "$2.4bn",
+                "weight": 2.4,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Edtech VC funding by year"
+          }
+        ]
+      },
+      {
+        "heading": "WHO PICKS UP THE CHECK",
+        "body": "Three candidates, none satisfactory. State governments in India and Brazil have the mandate but lack the procurement speed to absorb collapsing platforms mid-academic-year. Donors have shifted to climate and health. Telecom operators have the distribution but no pedagogical capacity — they can deliver bandwidth, not curriculum."
+      },
+      {
+        "heading": "THE LEARNING-LOSS BACKDROP",
+        "body": "UNESCO estimates pandemic school closures cost a generation roughly $17 trillion in lifetime earnings, concentrated in low-income countries. Edtech was sold partly as the remediation tool. Its collapse means the remediation infrastructure is being dismantled before the loss has been recovered."
+      }
+    ],
+    "generatedAt": "2026-04-23T12:31:49.148Z",
+    "label": "Edtech & the Funding Cliff",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-23-israel-destruction-southern-lebanon-anatomy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUFFER DOCTRINE",
+        "body": "Israel has sought a depopulated buffer in southern Lebanon since 1978's Operation Litani. The logic is geographic: Katyusha and now precision rockets fired from south of the Litani River can reach Galilee settlements in under a minute. Clearing the zone of population is the prerequisite for clearing it of launchers.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the Litani buffer",
+            "caption": "Southern Lebanon sits between the Litani River and the Israeli border"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1982 PRECEDENT",
+        "body": "Israel's 1982 invasion reached Beirut and expelled the PLO, but the occupation of southern Lebanon lasted until 2000 — 18 years that birthed Hezbollah out of the Shia villages the IDF was trying to pacify. Every subsequent operation has recreated the same dilemma: clearing the south strengthens whoever organizes the survivors.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The South Lebanon Army, Israel's local proxy militia, collapsed within days of the 2000 withdrawal. Its officers fled north; its rank-and-file were tried in Lebanese courts. **Proxy forces rarely outlive their patron's presence.**"
+          }
+        ]
+      },
+      {
+        "heading": "RESOLUTION 1701",
+        "body": "The UN resolution that ended the 2006 war required Hezbollah to withdraw north of the Litani and the Lebanese Army plus UNIFIL to deploy south of it. Neither fully happened. The resolution has been invoked by Israel as legal cover for every subsequent operation framed as enforcement of a ceasefire that was never enforced.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What river does UN Resolution 1701 designate as the line Hezbollah forces must withdraw north of?",
+            "options": [
+              "The Jordan",
+              "The Litani",
+              "The Orontes",
+              "The Awali"
+            ],
+            "correct": 1,
+            "explanation": "The Litani runs roughly 30 km north of the Israeli border — the buffer zone Israel has sought since 1978."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEMOGRAPHIC WEAPON",
+        "body": "Displacing one-fifth of a country's population is not collateral; it is the mechanism. Lebanon's confessional system allocates power by sect, so concentrated Shia displacement from the south reshapes electoral math, municipal control, and the state's capacity to host the displaced in Sunni and Christian areas already strained by Syrian refugees."
+      },
+      {
+        "heading": "THE RETURN PROBLEM",
+        "body": "Forced evacuation orders that outlast a ceasefire convert temporary displacement into permanent demographic change. The 1948 Palestinian villages Israel cleared were never resettled by their inhabitants; the pattern — clear under fire, then block return under administrative order — is older than the current war.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Nabih Berri",
+                "role": "Parliament Speaker, Amal leader",
+                "years": "1992–present",
+                "cc": "LB"
+              },
+              {
+                "name": "Naim Qassem",
+                "role": "Hezbollah Secretary-General",
+                "years": "2024–present",
+                "cc": "LB"
+              },
+              {
+                "name": "Benjamin Netanyahu",
+                "role": "Israeli Prime Minister",
+                "years": "2022–present",
+                "cc": "IL"
+              },
+              {
+                "name": "Joseph Aoun",
+                "role": "Lebanese President",
+                "years": "2025–present",
+                "cc": "LB"
+              }
+            ],
+            "label": "the southern Lebanese cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE ECONOMIC FLOOR",
+        "body": "Lebanon's economy collapsed in 2019; the lira lost 98% of its value, banks froze deposits, and remittances became the state's real currency. A million newly displaced cannot be absorbed by a state that cannot pay its own teachers. Reconstruction financing, historically from Gulf states, is conditional on political outcomes Beirut cannot deliver.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              89583.213344,
+              89469.242764,
+              89550,
+              89550,
+              89310.854972,
+              89928.915129,
+              89550,
+              89200.86875,
+              89558.895308,
+              89493.758014,
+              89493.758014,
+              89493.758014,
+              89550,
+              89196.1685,
+              89515.636511,
+              89273.651314,
+              89550,
+              89412.594799,
+              89440.07584,
+              89550,
+              89541.400333,
+              89555.635708,
+              89725.230619,
+              89479.178514,
+              89714.210369,
+              89714.210369,
+              89848.110329,
+              89471.453014,
+              89501.323014,
+              89873.297866
+            ],
+            "periods": [
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23"
+            ],
+            "label": "Lebanese pound",
+            "unit": "LBP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-23"
+    ],
+    "generatedAt": "2026-04-23T12:32:19.115Z",
+    "label": "Southern Lebanon & the Litani Line",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-23-khairpur-drone-strike-4-killed-shos-suspended": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE JURISDICTIONAL VOID",
+        "body": "Pakistan has no public legal framework governing domestic drone operations by state agencies. When a drone kills civilians, there is no registry to consult, no chain of custody to subpoena, and no statutory duty to disclose the operator. The silence is the system.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The relevant statute would be the **Pakistan Army Act 1952** or the **Anti-Terrorism Act 1997** — neither contemplates armed UAVs, so operations fall into an *extra-legal* grey zone by default."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SHOs GET SUSPENDED",
+        "body": "The Station House Officer is the lowest-ranking commander with a public name attached to a jurisdiction. When a strike happens and the actual operator is classified, suspending the SHO performs accountability without naming the agency responsible. It is the administrative equivalent of closing the file.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Inspector General",
+                "role": "heads provincial police",
+                "cc": "PK"
+              },
+              {
+                "name": "Deputy IG",
+                "role": "commands a range or zone",
+                "cc": "PK"
+              },
+              {
+                "name": "SSP/SP",
+                "role": "runs a district",
+                "cc": "PK"
+              },
+              {
+                "name": "SHO",
+                "role": "commands a single thana",
+                "cc": "PK"
+              }
+            ],
+            "label": "Pakistan's police command chain"
+          }
+        ]
+      },
+      {
+        "heading": "SINDH'S SECURITY GEOGRAPHY",
+        "body": "Khairpur sits in northern Sindh, near the Balochistan border and the Indus corridor that Pakistani security forces describe as a transit route for militants moving between Balochistan, southern Punjab, and Karachi. The area has seen both TTP and Baloch insurgent activity, and operations there routinely involve federal agencies the provincial government cannot command.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF",
+              "IR",
+              "IN"
+            ],
+            "label": "Sindh's security neighborhood"
+          }
+        ]
+      },
+      {
+        "heading": "THE CIVIL-MILITARY LINE",
+        "body": "Under Pakistan's constitution, law and order is a provincial subject, but counterterrorism operations are effectively run by the Inter-Services Intelligence and military intelligence. A provincial probe committee can summon police officers; it cannot compel testimony from federal security agencies. This is why investigations into strikes like this almost never identify operators.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under Pakistan's constitution, which level of government holds primary responsibility for police and public order?",
+            "options": [
+              "The federal government in Islamabad",
+              "The provincial governments",
+              "The military under Article 245",
+              "Shared jointly between federal and provincial"
+            ],
+            "correct": 1,
+            "explanation": "Police and public order are provincial subjects under the Constitution, which is why accountability defaults to provincial officials even when federal agencies run the actual operation."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGIONAL PATTERN",
+        "body": "Domestic drone strikes with unnamed operators have become a recurring feature of South Asian counterinsurgency — in Pakistan's tribal belt, in India's northeast, in Myanmar's Rakhine. The common thread is a security apparatus with drone capability and a legal framework that predates it. The technology outran the law.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrinal term is *signature strikes* — targeting based on behavioral patterns rather than identified individuals — which the US pioneered in Waziristan between **2004–2014** and which regional militaries have since adapted for their own borders."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-23T12:32:45.448Z",
+    "label": "Drone strikes in Sindh",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-23-niger-benin-diplomatic-reset-wadagni": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LANDLOCKED PROBLEM",
+        "body": "Niger has no coastline. Its cotton, uranium, and fuel imports move overland — historically through Cotonou, 1,000 km south. When the border closed in July 2023, Niger lost its shortest Atlantic route and Benin lost roughly a third of its port throughput.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NE",
+              "BJ",
+              "BF",
+              "ML",
+              "NG",
+              "TG"
+            ],
+            "label": "Niger's routes to the sea"
+          }
+        ]
+      },
+      {
+        "heading": "THE COUP BELT",
+        "body": "Between 2020 and 2023, military juntas seized power in Mali, Burkina Faso, Guinea, and Niger — a contiguous band across the Sahel. All four expelled French troops, pivoted toward Russian security partners, and began drafting exits from colonial-era monetary and trade arrangements.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Assimi Goïta",
+                "role": "Mali junta leader",
+                "years": "2021–",
+                "cc": "ML"
+              },
+              {
+                "name": "Ibrahim Traoré",
+                "role": "Burkina Faso junta leader",
+                "years": "2022–",
+                "cc": "BF"
+              },
+              {
+                "name": "Abdourahamane Tchiani",
+                "role": "Niger junta leader",
+                "years": "2023–",
+                "cc": "NE"
+              }
+            ],
+            "label": "the Sahel juntas"
+          }
+        ]
+      },
+      {
+        "heading": "THE ECOWAS RUPTURE",
+        "body": "After Niger's July 2023 coup, ECOWAS threatened military intervention and imposed sweeping sanctions. The threat never materialized. In January 2024, Mali, Burkina Faso, and Niger announced withdrawal from ECOWAS and formed the Alliance of Sahel States — the bloc's first permanent exits in 50 years."
+      },
+      {
+        "heading": "WHY BENIN MATTERS",
+        "body": "Cotonou's port handled most of landlocked Niger's imports for decades. When Niger rerouted through Togo's Lomé and Burkina Faso's overland corridors, Benin's customs revenue collapsed. Wadagni, a former finance minister, inherits a fiscal hole that only reopening changes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Wadagni is a technocrat — ex-**Deloitte**, Benin's finance minister 2016–2026 — not a career politician. His mandate reads as pragmatism over the *Françafrique* posture his predecessor Patrice Talon maintained."
+          }
+        ]
+      },
+      {
+        "heading": "THE FRANCE QUESTION",
+        "body": "Niger's junta expelled the French ambassador and 1,500 French troops in late 2023, ending a security arrangement that dated to independence in 1960. Benin still hosts French military cooperation. Any reset must navigate whether Cotonou can be a neutral conduit or is seen by Niamey as a French proxy."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "West Africa has seen this before. After Mali's 2012 coup, ECOWAS sanctions closed borders; regional trade rerouted through Senegal and Guinea, and the economic damage pushed both sides back to the table within months. Borders close fast in the Sahel; they reopen when the cost of keeping them shut exceeds the politics of opening them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which bloc did Mali, Burkina Faso, and Niger form after leaving ECOWAS in 2024?",
+            "options": [
+              "Alliance of Sahel States",
+              "African Continental Free Trade Area",
+              "G5 Sahel",
+              "Economic Union of West Africa"
+            ],
+            "correct": 0,
+            "explanation": "The Alliance of Sahel States (AES) was formalized in January 2024 as a mutual-defense and economic bloc among the three junta-led states."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-23T12:33:13.646Z",
+    "label": "Niger–Benin & the Sahel coup belt",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-23-us-military-bitcoin-node-power-projection-china": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A NODE ACTUALLY DOES",
+        "body": "A Bitcoin node stores the full blockchain, validates every transaction against consensus rules, and relays valid blocks to peers. Nodes do not mine — they enforce. If miners produce an invalid block, nodes reject it regardless of how much hashpower backed it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: **miners** propose blocks, **nodes** decide whether to accept them. Sovereignty in Bitcoin lives with the node operators, not the hashrate."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUMBERS",
+        "body": "Roughly 15,000-20,000 publicly reachable nodes exist worldwide, with tens of thousands more running behind firewalls. The US, Germany, and France host the largest shares. Adding one node changes nothing about consensus — but it gives the operator an independent, unmediated view of every transaction and block.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~29%",
+                "cc": "US",
+                "weight": 29
+              },
+              {
+                "label": "Germany",
+                "value": "~14%",
+                "cc": "DE",
+                "weight": 14
+              },
+              {
+                "label": "France",
+                "value": "~4%",
+                "cc": "FR",
+                "weight": 4
+              },
+              {
+                "label": "Netherlands",
+                "value": "~4%",
+                "cc": "NL",
+                "weight": 4
+              },
+              {
+                "label": "China",
+                "value": "~2%",
+                "cc": "CN",
+                "weight": 2
+              }
+            ],
+            "label": "reachable Bitcoin nodes by country"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'POWER PROJECTION'",
+        "body": "Bitcoin is censorship-resistant money that routes around state-controlled banking rails. For a Pentagon thinking about a Taiwan scenario, a network that keeps working when SWIFT is cut — and that Beijing cannot shut down — is a strategic asset. Running a node is the cheapest way to have a seat at a table that nobody formally owns."
+      },
+      {
+        "heading": "CHINA'S AMBIVALENCE",
+        "body": "Beijing banned Bitcoin mining in 2021 and outlawed crypto trading, but Chinese-controlled pools still produce a large share of global hashrate through offshore operations. The ban hollowed out domestic node counts while leaving mining influence intact — the opposite of what a sovereignty-minded state would choose."
+      },
+      {
+        "heading": "THE GOVERNANCE VACUUM",
+        "body": "No treaty, no statute, and no international body governs who may run a Bitcoin node. The network was designed to be permissionless, which means a central bank, a cartel, and a combatant command all participate on identical terms. Paparo's testimony is the first public acknowledgment that a US military command has joined.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does adding a Bitcoin node give its operator that running a wallet does not?",
+            "options": [
+              "The ability to mine new bitcoin",
+              "An independent, unmediated view of every transaction and block",
+              "A vote on protocol changes proportional to stake",
+              "Authority to freeze suspicious transactions"
+            ],
+            "correct": 1,
+            "explanation": "Nodes validate and relay — they don't mine, don't vote by stake, and cannot freeze transactions. What they gain is sovereign visibility into the network."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The NSA published the SHA-256 hash function in 2001 — the same algorithm Satoshi later chose to secure Bitcoin. US government involvement in the cryptographic substrate of Bitcoin predates Bitcoin itself; running a node is a much smaller step than the foundations already laid."
+      }
+    ],
+    "generatedAt": "2026-04-23T12:33:39.381Z",
+    "label": "Bitcoin Nodes & State Participation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-23-us-missile-stockpiles-depleted-iran-war-rebuild": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRODUCTION BOTTLENECK",
+        "body": "A Patriot PAC-3 interceptor takes roughly 24 months to build from order to delivery. Lockheed Martin's Camden, Arkansas plant produces about 550 per year at full capacity. You cannot surge missile production the way you surge ammunition — each unit contains bespoke seekers, solid rocket motors, and guidance electronics with single-source suppliers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The constraint isn't money — it's **solid rocket motor** capacity. Aerojet Rocketdyne (now L3Harris) and Northrop Grumman are the only two US producers, and their lines were sized for Cold War drawdown, not sustained peer conflict."
+          }
+        ]
+      },
+      {
+        "heading": "THE TOMAHAWK MATH",
+        "body": "A Block V Tomahawk costs about $2 million and takes roughly two years to produce. Raytheon's Tucson line builds about 70 per month at surge. Firing 850 in 39 days means expending roughly a year's production in under six weeks — a burn rate the industrial base was never designed to sustain.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tomahawk",
+                "value": "$2M · 24mo",
+                "weight": 24
+              },
+              {
+                "label": "Patriot PAC-3",
+                "value": "$4M · 24mo",
+                "weight": 24
+              },
+              {
+                "label": "JASSM-ER",
+                "value": "$1.5M · 18mo",
+                "weight": 18
+              },
+              {
+                "label": "SM-6",
+                "value": "$4.3M · 30mo",
+                "weight": 30
+              }
+            ],
+            "label": "key US munitions: cost & rebuild time"
+          }
+        ]
+      },
+      {
+        "heading": "THE ALLY QUEUE",
+        "body": "Foreign Military Sales contracts for Patriots, HIMARS, and Tomahawks were already backlogged before this war — Taiwan, Poland, Saudi Arabia, and Ukraine all waiting years for deliveries. Every missile fired at Iranian targets is one not arriving in Taipei or Warsaw. The Pentagon's triage is now a diplomatic instrument.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TW",
+              "PL",
+              "SA",
+              "UA",
+              "JP",
+              "KR"
+            ],
+            "label": "countries with backlogged US munition orders"
+          }
+        ]
+      },
+      {
+        "heading": "THE ARSENAL OF DEMOCRACY MYTH",
+        "body": "In 1943 the US built 86,000 aircraft in a year. The industrial base that made that possible — dozens of prime contractors, deep machine-tool supply chains, surge-trained workforces — was consolidated away after the Cold War. Today five primes produce nearly all major munitions, and most subcomponents have one qualified supplier.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many US prime contractors built military aircraft at the end of WWII versus today?",
+            "options": [
+              "About 10 then, 5 today",
+              "About 20 then, 10 today",
+              "About 30 then, 5 today",
+              "About 50 then, 15 today"
+            ],
+            "correct": 2,
+            "explanation": "Post-Cold War consolidation — driven by the 1993 'Last Supper' Pentagon meeting — collapsed roughly 30 aerospace primes into five: Lockheed, Boeing, Northrop, Raytheon, General Dynamics."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 PRECEDENT",
+        "body": "During the Yom Kippur War, Israel burned through munitions so fast that Operation Nickel Grass stripped US and NATO stockpiles in Europe to resupply it. The Pentagon spent the next decade rebuilding. The lesson that intense conventional wars deplete arsenals faster than industry can replace them was learned, then unlearned."
+      },
+      {
+        "heading": "WHY 3-5 YEARS IS OPTIMISTIC",
+        "body": "Rebuild estimates assume supplier lines restart smoothly, rare-earth magnets and specialty chips remain available, and no competing demand arrives from another theater. A Taiwan contingency during the rebuild window would force choices no war plan currently models.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              51,
+              54,
+              62,
+              62,
+              61,
+              60,
+              68,
+              67,
+              55,
+              50,
+              57,
+              53,
+              58,
+              61,
+              28,
+              35,
+              30,
+              30,
+              33,
+              35,
+              30,
+              32,
+              31,
+              34,
+              36,
+              31,
+              28,
+              31,
+              31
+            ],
+            "periods": [
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 23"
+            ],
+            "label": "US invade Iran before 2027?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "51%"
+              },
+              {
+                "atIndex": 28,
+                "label": "31%"
+              }
+            ],
+            "link": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-04-23"
+    ],
+    "generatedAt": "2026-04-23T12:34:10.992Z",
+    "label": "Munitions Industrial Base",
+    "category": "economy",
+    "articleCount": 1
   }
 }
