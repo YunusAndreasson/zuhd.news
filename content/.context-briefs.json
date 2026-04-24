@@ -50165,5 +50165,1143 @@
     "label": "Pakistan's Debt Stack",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-24-amoc-atlantic-circulation-tipping-point": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ENGINE",
+        "body": "Warm, salty surface water flows north from the tropics, cools near Greenland and Iceland, grows dense, and sinks. That sinking pulls more warm water behind it. The Atlantic Meridional Overturning Circulation is this conveyor — heat moving north on the surface, cold water returning south at depth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The system runs on **density**, not wind. Cold plus salty equals heavy; heavy water sinks; sinking drives the loop. Break the density contrast and the engine stalls."
+          }
+        ]
+      },
+      {
+        "heading": "THE SALT PROBLEM",
+        "body": "Greenland's ice sheet is losing roughly 270 billion tonnes of freshwater per year. That meltwater dilutes the North Atlantic's surface salinity, making it less dense. Less dense water does not sink. Less sinking means a slower conveyor — and a slower conveyor transports less salt north, further reducing density. The feedback is what makes a tipping point possible."
+      },
+      {
+        "heading": "THE YOUNGER DRYAS PRECEDENT",
+        "body": "Roughly 12,900 years ago, a massive pulse of meltwater from a North American glacial lake flooded the Atlantic. Within decades, temperatures in Greenland dropped by 10°C and Europe plunged back into near-glacial cold for about 1,200 years. The paleoclimate record is why scientists take AMOC collapse seriously — it has happened before, and it happened fast."
+      },
+      {
+        "heading": "WHAT EUROPE LOSES",
+        "body": "AMOC delivers roughly the thermal equivalent of a million nuclear power plants to the North Atlantic. It is why Edinburgh (56°N) has mild winters while Moscow (55°N) is frozen solid, and why palm trees grow in Cornwall at the latitude of Labrador. A collapse would not mean gradual cooling — it would mean European winters resembling Canadian ones within a generation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "London and which city sit at roughly the same latitude?",
+            "options": [
+              "Madrid",
+              "Rome",
+              "Calgary",
+              "New York"
+            ],
+            "correct": 2,
+            "explanation": "London is at 51°N — the same as Calgary. AMOC warmth is why one has mild drizzle and the other has −30°C winters."
+          }
+        ]
+      },
+      {
+        "heading": "THE SAHEL CONNECTION",
+        "body": "A weaker AMOC shifts the Intertropical Convergence Zone — the tropical rain belt — southward. Paleoclimate records show that past AMOC slowdowns coincided with catastrophic droughts across the Sahel and West African monsoon failure. The circulation that warms Europe also waters Nigeria and Senegal.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SN",
+              "ML",
+              "BF",
+              "NE",
+              "NG",
+              "TD",
+              "SD"
+            ],
+            "label": "the Sahel belt"
+          }
+        ]
+      },
+      {
+        "heading": "THE DISPUTE",
+        "body": "The IPCC considers a full 21st-century collapse unlikely but cannot rule it out. Some 2023–2024 papers using salinity records argue the tipping point could arrive as early as mid-century; others using ocean models see continued weakening without collapse. The disagreement is about model confidence, not about whether the system is slowing — that part is settled."
+      }
+    ],
+    "generatedAt": "2026-04-24T12:20:10.769Z",
+    "label": "AMOC & Ocean Circulation",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-24-china-s-deepseek-rolls-out-a-long-anticipated-update-of-its": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OPEN-WEIGHTS STRATEGY",
+        "body": "DeepSeek releases model weights under permissive licenses — anyone can download, fine-tune, and self-host. This is the opposite of OpenAI and Anthropic, whose frontier models are accessible only via API. Open weights turn a model into infrastructure; closed weights keep it a service.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The strategic logic: if a Chinese lab cannot out-spend US hyperscalers, it can **commoditize** the layer they monetize. Every open-source release erodes the pricing power of *closed* frontier labs."
+          }
+        ]
+      },
+      {
+        "heading": "THE MIXTURE-OF-EXPERTS TRICK",
+        "body": "A 1.6-trillion-parameter model does not activate all parameters per token. Mixture-of-Experts architectures route each token to a small subset — often 30-40 billion active parameters — giving the capacity of a huge model at the inference cost of a small one. This is how DeepSeek undercuts US pricing without matching US compute budgets."
+      },
+      {
+        "heading": "THE EXPORT CONTROL GAP",
+        "body": "October 2022 US controls banned exports of Nvidia's top AI chips (H100, later H200, B200) to China. Nvidia designed cut-down variants (H800, H20) to stay under the threshold; those were banned in 2023 and 2025. Huawei's Ascend 910C is China's domestic answer — slower per chip, but available in volume.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nvidia B200",
+                "value": "~2250 TFLOPs",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Nvidia H100",
+                "value": "~990 TFLOPs",
+                "cc": "US"
+              },
+              {
+                "label": "Huawei 910C",
+                "value": "~780 TFLOPs",
+                "cc": "CN"
+              },
+              {
+                "label": "Nvidia H20",
+                "value": "~150 TFLOPs",
+                "tone": "unfavorable",
+                "cc": "US"
+              }
+            ],
+            "label": "AI training chips, rough peak FP16"
+          }
+        ]
+      },
+      {
+        "heading": "THE COST COLLAPSE",
+        "body": "DeepSeek's V3, released late 2024, claimed a $6M training run — roughly a fiftieth of what GPT-4-class models were rumored to cost. The number is contested (it excludes prior research compute), but the direction is real: algorithmic efficiency is compounding faster than hardware is scaling.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does open-sourcing a frontier model hurt closed-model labs more than it hurts DeepSeek?",
+            "options": [
+              "DeepSeek earns most revenue from cloud services, not API calls",
+              "Open-weight models are banned from commercial use",
+              "DeepSeek is subsidized by the Chinese state",
+              "Open models always outperform closed ones"
+            ],
+            "correct": 0,
+            "explanation": "Closed labs like OpenAI monetize per-token API access; open weights let anyone self-host, collapsing that pricing power. DeepSeek's parent is a quant hedge fund — the lab is not its revenue engine."
+          }
+        ]
+      },
+      {
+        "heading": "THE HEDGE FUND ORIGIN",
+        "body": "DeepSeek was spun out of High-Flyer, a Chinese quantitative hedge fund that built a 10,000-GPU cluster for trading before pivoting to AI research in 2023. It is not a typical venture-funded startup — there is no pressure to monetize the model itself, which is why giving it away is viable."
+      },
+      {
+        "heading": "WHY BENCHMARKS MISLEAD",
+        "body": "Coding benchmarks like HumanEval and SWE-bench are public, which means frontier labs optimize against them directly. A model that 'matches GPT-class' on benchmarks may still lag on the long-tail reasoning, tool-use, and reliability that define real deployments. Benchmark parity is a floor, not a ceiling."
+      }
+    ],
+    "generatedAt": "2026-04-24T12:20:39.572Z",
+    "label": "DeepSeek & the Open-Source Frontier",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-24-duterte-icc-trial-confirmed-drug-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE JURISDICTION TRICK",
+        "body": "The Rome Statute lets the ICC prosecute crimes committed while a state was a member — even if the state later withdraws. Duterte took the Philippines out in 2019, but the court retained authority over killings between 2011 (when Manila joined) and March 2019 (when withdrawal took effect).",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why Duterte's defense strategy of *ratione temporis* — arguing the court lost jurisdiction at withdrawal — failed. The **Rome Statute Article 127** explicitly preserves pending matters."
+          }
+        ]
+      },
+      {
+        "heading": "THE BODY COUNT",
+        "body": "Philippine police reported about 6,200 deaths in official anti-drug operations from 2016 to 2022. Human rights groups, counting vigilante killings the government disclaimed, put the real figure at 12,000 to 30,000. The gap between the two numbers is itself the case against him — the ICC charges rest on a policy of tolerated extrajudicial killing, not just documented raids.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the lowest officially-acknowledged death toll from Duterte's drug war?",
+            "options": [
+              "About 600",
+              "About 6,200",
+              "About 30,000",
+              "About 80,000"
+            ],
+            "correct": 1,
+            "explanation": "Philippine National Police records ~6,200 killed in sanctioned operations; rights groups estimate the true toll including vigilante killings is several times higher."
+          }
+        ]
+      },
+      {
+        "heading": "THE DAVAO BLUEPRINT",
+        "body": "Before the presidency, Duterte spent two decades as mayor of Davao City, where the 'Davao Death Squad' was linked to over 1,400 killings of suspected criminals and street children. The 2016 national campaign was an explicit scaling of that model — he ran on it, openly."
+      },
+      {
+        "heading": "WHY THE ICC RARELY REACHES HEADS OF STATE",
+        "body": "The court has indicted sitting or former leaders before — Bashir of Sudan, Gaddafi, Putin — but almost none have seen trial. Duterte is unusual: his own successor's government allowed his arrest and transfer. Most heads of state are shielded by the state itself.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Omar al-Bashir",
+                "role": "Sudanese President",
+                "years": "1989–2019",
+                "cc": "SD"
+              },
+              {
+                "name": "Muammar Gaddafi",
+                "role": "Libyan leader",
+                "years": "1969–2011",
+                "cc": "LY"
+              },
+              {
+                "name": "Laurent Gbagbo",
+                "role": "Ivorian President",
+                "years": "2000–2011",
+                "cc": "CI"
+              },
+              {
+                "name": "Vladimir Putin",
+                "role": "Russian President",
+                "years": "2000–present",
+                "cc": "RU"
+              },
+              {
+                "name": "Rodrigo Duterte",
+                "role": "Philippine President",
+                "years": "2016–2022",
+                "cc": "PH"
+              }
+            ],
+            "label": "former heads of state indicted by the ICC"
+          }
+        ]
+      },
+      {
+        "heading": "THE MARCOS FACTOR",
+        "body": "Duterte's surrender was possible because the Marcos-Duterte political alliance collapsed after 2024. The same Marcos family once shielded by martial-law immunity now permits a former ally to face The Hague — a reminder that international justice usually arrives through domestic political fracture, not international pressure."
+      },
+      {
+        "heading": "CRIMES AGAINST HUMANITY, DEFINED",
+        "body": "The legal threshold is a 'widespread or systematic attack directed against a civilian population' pursuant to a state or organizational policy. Individual murders are domestic crimes; a policy of murders is a crime against humanity. The ICC's task is proving the pattern, not any single killing."
+      }
+    ],
+    "generatedAt": "2026-04-24T12:21:08.792Z",
+    "label": "The ICC & Duterte's Drug War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-24-iran-crude-99-per-barrel-war-premium": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE PREMIUM IS",
+        "body": "Oil futures price in the probability of supply disruption, not just current supply and demand. When traders assign a nonzero chance that a chokepoint closes, every barrel globally gets more expensive — even barrels that never pass near the threatened strait.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Analysts decompose crude into a **fundamentals price** (supply, demand, inventories) and a **risk premium** (geopolitical probability weighting). The premium can swing $10–20/bbl in days while fundamentals barely move."
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ WEIGHT",
+        "body": "Roughly 21 million barrels per day transit the Strait of Hormuz — about a fifth of global oil consumption. The shipping lanes are just 3 km wide each, hugging the Iranian coast. No alternate route exists for most Gulf producers at anywhere near the same volume.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked more than 400 commercial ships in the Gulf. Prices spiked but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain."
+      },
+      {
+        "heading": "WHY IRANIAN CRUDE IS DISCOUNTED",
+        "body": "Sanctioned Iranian barrels usually trade $10–15 below Brent because buyers — primarily Chinese independent refiners — demand compensation for sanctions risk, shadow-fleet logistics, and payment workarounds. When Iranian crude approaches Brent, the discount is collapsing because the marginal buyer thinks sanctions enforcement is weakening.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY PAYS",
+        "body": "The US imports almost no Persian Gulf oil — shale made it a net exporter. But oil is priced on a single global market, so a Hormuz scare raises pump prices everywhere. Treaty allies face the sharpest squeeze.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Philippines",
+                "value": "~98%",
+                "cc": "PH",
+                "weight": 98
+              },
+              {
+                "label": "Japan",
+                "value": "~90%",
+                "cc": "JP",
+                "weight": 90
+              },
+              {
+                "label": "South Korea",
+                "value": "~70%",
+                "cc": "KR",
+                "weight": 70
+              },
+              {
+                "label": "United States",
+                "value": "~0%",
+                "cc": "US",
+                "weight": 1
+              }
+            ],
+            "label": "Gulf oil dependence"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not missiles — are what actually close a shipping lane. Once underwriters reclassify a waterway, commercial vessels reroute regardless of whether any ship has been hit. The financial chokepoint tightens before the physical one does.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What most directly determines whether tankers keep transiting a contested strait?",
+            "options": [
+              "Number of warships present",
+              "Lloyd's war-risk insurance premiums",
+              "UN Security Council resolutions",
+              "Oil price level"
+            ],
+            "correct": 1,
+            "explanation": "Marine insurers set war-risk rates daily. When premiums spike past a threshold, charters become uneconomic and ships reroute — even if the strait is physically open."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19",
+      "FRED · EIA · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-24T12:21:36.766Z",
+    "label": "The War-Risk Premium",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-24-pakistan-plastic-epr-karachi-informal-recyclers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT EPR ACTUALLY DOES",
+        "body": "Extended Producer Responsibility shifts the cost of end-of-life waste from municipalities to the companies that put packaging on the market. Producers either pay a per-tonne fee into a collection fund or must demonstrate they recovered an equivalent weight. The mechanism is borrowed from Germany's 1991 Packaging Ordinance, which cut packaging waste by a third within a decade.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The core idea: **internalize the externality**. If making a plastic bottle is cheap only because disposal is someone else's problem, force the producer to pay the disposal cost — and watch them redesign the bottle."
+          }
+        ]
+      },
+      {
+        "heading": "THE INVISIBLE WORKFORCE",
+        "body": "Roughly 40,000 pickers — many of them Afghan refugees, Pashtun migrants, and children — do the actual work of recovering plastic in Karachi. They sort at dumpsites, sell to middlemen called kabaris, and collectively process more material than any formal facility in the country. No contracts, no protective gear, no legal recognition.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pakistan",
+                "value": "~85%",
+                "cc": "PK"
+              },
+              {
+                "label": "India",
+                "value": "~70%",
+                "cc": "IN"
+              },
+              {
+                "label": "Brazil",
+                "value": "~90%",
+                "cc": "BR"
+              },
+              {
+                "label": "Germany",
+                "value": "<5%",
+                "cc": "DE"
+              }
+            ],
+            "label": "informal share of plastic recycling"
+          }
+        ]
+      },
+      {
+        "heading": "THE INDIA PRECEDENT",
+        "body": "India's 2022 Plastic Waste Management Rules introduced EPR targets for producers and brand owners. A 2024 audit by the Centre for Science and Environment found 59% of registered producers missed their recovery targets in the first two cycles. Enforcement fell to state pollution control boards that were already understaffed — the targets existed on paper but penalties rarely landed."
+      },
+      {
+        "heading": "WHY FORMALIZATION IS HARD",
+        "body": "Pickers earn more in the informal economy than most formal recycling jobs would pay, because middlemen compete for their output and pay cash daily. Formal systems require IDs, bank accounts, and fixed hours — all barriers for migrants without documents. Bogotá and Belo Horizonte are the rare cities that integrated pickers into municipal contracts; both took over a decade of organized cooperative bargaining.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country's EPR system most successfully integrated informal waste pickers into the formal recycling economy?",
+            "options": [
+              "Germany, via the Green Dot system",
+              "Brazil, via picker cooperatives recognized by federal decree",
+              "China, via state-owned collection enterprises",
+              "Japan, via municipal buy-back centers"
+            ],
+            "correct": 1,
+            "explanation": "Brazil's 2010 National Solid Waste Policy legally recognized catador cooperatives as priority contractors for municipal recycling — the template cited in picker organizing worldwide."
+          }
+        ]
+      },
+      {
+        "heading": "THE FREE-RIDER PROBLEM",
+        "body": "EPR only works if every producer pays. When enforcement is weak, compliant companies subsidize the rest — raising their costs while cheaters keep market share. This is why EPR laws succeed in jurisdictions with strong regulatory capacity and fail in those without. The law's text is the easy part; the audit trail is where it lives or dies."
+      }
+    ],
+    "generatedAt": "2026-04-24T12:22:10.051Z",
+    "label": "Extended Producer Responsibility",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-24-russia-fsb-roskomnadzor-bomb-plot-ukraine": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ROSKOMNADZOR IS",
+        "body": "Roskomnadzor — the Federal Service for Supervision of Communications — is Russia's internet censor. It maintains the blacklist of blocked sites, enforces the 2019 'sovereign internet' law requiring ISPs to install deep-packet inspection boxes, and throttles or blocks foreign platforms. After February 2022 it blocked Facebook, Instagram, and most Western news sites within weeks.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The agency is the civilian face of Russia's information control; the **FSB** is the coercive one. A plot against Roskomnadzor leadership attacks the bureaucratic machine, not the intelligence apparatus."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TELEGRAM",
+        "body": "Telegram is the dominant messaging app in both Russia and Ukraine — roughly 80% penetration in each. Its channels carry everything from military recruitment to front-line reporting. Russian authorities repeatedly claim Ukrainian intelligence uses it to recruit disaffected Russians for sabotage; Ukrainian services acknowledge running influence operations there. The same app both sides use to talk is the app both sides use to recruit.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why hasn't Russia blocked Telegram, unlike other foreign platforms?",
+            "options": [
+              "Telegram's founder cooperates with the FSB",
+              "Russian officials, military, and pro-war bloggers depend on it themselves",
+              "It is hosted on Russian servers",
+              "A 2018-2020 blocking attempt failed and was reversed"
+            ],
+            "correct": 3,
+            "explanation": "Roskomnadzor tried to block Telegram from 2018 to 2020 and failed — the app rerouted around blocks while collateral damage hit other services. The climbdown is why Telegram still runs freely in Russia."
+          }
+        ]
+      },
+      {
+        "heading": "THE FSB'S DUAL ROLE",
+        "body": "The Federal Security Service is both Russia's domestic intelligence agency and the primary successor to the KGB's Second Chief Directorate. It investigates terrorism, runs counterintelligence, and — since 2003 — controls the border guards. Announcing a foiled plot serves two purposes at once: demonstrating competence and justifying expanded surveillance powers.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Alexander Bortnikov",
+                "role": "FSB Director",
+                "years": "2008–present",
+                "cc": "RU"
+              },
+              {
+                "name": "Andrei Lipov",
+                "role": "Roskomnadzor head",
+                "years": "2020–present",
+                "cc": "RU"
+              },
+              {
+                "name": "Sergei Naryshkin",
+                "role": "SVR foreign intel chief",
+                "years": "2016–present",
+                "cc": "RU"
+              }
+            ],
+            "label": "Russia's security architecture"
+          }
+        ]
+      },
+      {
+        "heading": "THE RECRUITMENT PATTERN",
+        "body": "Since 2022, Russia has announced dozens of foiled sabotage and assassination plots attributed to Ukrainian handlers recruiting Russian citizens online. The targets have included military commissariats, railway signal boxes, defense industry executives, and pro-war bloggers. Recruits are typically young, financially stressed, and contacted through Telegram offers of payment for 'small tasks' that escalate."
+      },
+      {
+        "heading": "THE CHARGE",
+        "body": "Russia's terrorism statute (Article 205 of the Criminal Code) carries up to life imprisonment, with a 15-year minimum for organized acts. Since 2022, prosecutors have used it aggressively for sabotage cases that would historically have been charged as vandalism or weapons offenses. Convictions in these cases run above 99%.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Under 2022 amendments, 'discrediting the armed forces' and 'state treason' were also broadened — treason now covers 'providing assistance' to a foreign state deemed hostile, a standard vague enough to catch a Telegram message."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PUBLICIZE",
+        "body": "Foiled-plot announcements are a recurring feature of wartime Russian media. They reinforce the narrative that Ukraine — not Russia — is the aggressor, justify continued mobilization, and give the FSB budgetary leverage. Soviet-era precedent runs deep: the KGB regularly surfaced 'foiled Western plots' at moments of political need, a pattern Russian security services have preserved."
+      }
+    ],
+    "generatedAt": "2026-04-24T12:22:43.036Z",
+    "label": "Roskomnadzor & the Russian Security State",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-24-ryanair-abandons-berlin-germany-aviation-fees": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ULTRA-LOW-COST MODEL",
+        "body": "Ryanair's margin per passenger is roughly €10. Airport fees, fuel taxes, and handling charges of similar magnitude can flip a route from profitable to unprofitable. This is why Ryanair threats to abandon bases are not bluffs — the economics genuinely do not survive a fee hike.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ryanair's fleet is essentially **stateless capital**: aircraft redeploy across bases in weeks, not years. Legacy carriers anchored to hub-and-spoke networks cannot move this fast — which is why governments discount ultra-low-cost threats and then regret it."
+          }
+        ]
+      },
+      {
+        "heading": "THE GERMAN AVIATION TAX",
+        "body": "Germany introduced a domestic ticket tax in 2011 and raised it again in 2024 — short-haul departures now carry roughly €15 in state levies alone. Layered on top of Berlin Brandenburg's airport charges, Germany became one of Europe's most expensive places to operate a narrow-body aircraft.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "~€15",
+                "tone": "unfavorable",
+                "cc": "DE"
+              },
+              {
+                "label": "UK",
+                "value": "~£13",
+                "tone": "neutral",
+                "cc": "GB"
+              },
+              {
+                "label": "Sweden",
+                "value": "€0 (abolished)",
+                "tone": "favorable",
+                "cc": "SE"
+              },
+              {
+                "label": "Ireland",
+                "value": "€0",
+                "tone": "favorable",
+                "cc": "IE"
+              },
+              {
+                "label": "Spain",
+                "value": "€0",
+                "tone": "favorable",
+                "cc": "ES"
+              }
+            ],
+            "label": "short-haul departure taxes in Europe"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SWEDEN, WHY NOW",
+        "body": "Sweden abolished its aviation tax in July 2025 after a center-right coalition argued it had cost regional airports their viability. Within months, Ryanair announced new Swedish bases. The policy reversal demonstrated the modern lesson: aviation taxes are easy to impose and politically expensive to keep.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "SE",
+              "AL",
+              "IE"
+            ],
+            "label": "the Ryanair redeployment"
+          }
+        ]
+      },
+      {
+        "heading": "BERLIN BRANDENBURG'S DEBT PROBLEM",
+        "body": "BER opened in 2020, nine years late and at triple its original budget — roughly €7 billion. The airport services that debt through passenger fees, which is why Berlin cannot easily cut charges to retain carriers the way Budapest or Bucharest can.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Berlin Brandenburg Airport's fees rise so sharply after 2019?",
+            "options": [
+              "Germany raised VAT on aviation services",
+              "The airport services €7bn in construction debt through passenger charges",
+              "EU emissions trading costs passed through to fees",
+              "Lufthansa demanded premium handling slots"
+            ],
+            "correct": 1,
+            "explanation": "BER opened at triple its original budget in 2020 after a nine-year delay; the resulting debt load is amortized through per-passenger fees, leaving little room to discount for carriers."
+          }
+        ]
+      },
+      {
+        "heading": "ALBANIA AS LOW-COST FRONTIER",
+        "body": "Tirana International abolished landing fees for Ryanair in 2024 to seed a new base. The strategy mirrors how Ireland, Poland, and Hungary built their budget-carrier ecosystems two decades ago — subsidize the airline to subsidize tourism inflows. The real product being sold is not the flight; it is the passenger's wallet on arrival."
+      }
+    ],
+    "generatedAt": "2026-04-24T12:23:12.484Z",
+    "label": "Aviation Taxes & Hub Mobility",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-24-saildrone-spectre-navy-unmanned-warship-dual-use": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUAL-USE PIVOT",
+        "body": "Saildrone began in 2012 as an ocean-science company — wind-powered drones mapping seabeds and tracking fisheries for NOAA. The pivot to armed platforms follows a pattern: sensor companies monetize defense contracts because civilian oceanography budgets cannot sustain the engineering. The hull that counted tuna now carries Hellfire missiles.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *dual-use* — technology developed for civilian markets but adaptable to military ends. Export controls treat dual-use goods under a separate regime (**EAR** in the US, **Wassenaar Arrangement** internationally) precisely because the line between sensor buoy and reconnaissance asset is drawn by software, not steel."
+          }
+        ]
+      },
+      {
+        "heading": "THE HELLSCAPE DOCTRINE",
+        "body": "In 2023, then-INDOPACOM commander Adm. Samuel Paparo told reporters the US plan for a Taiwan Strait invasion was to turn the waterway into an 'unmanned hellscape' — thousands of cheap drones buying time for conventional forces. Spectre is a platform in that doctrine: attritable, networkable, and cheaper to lose than a destroyer."
+      },
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "A Flight III Arleigh Burke destroyer costs roughly $2.2 billion and carries 329 sailors. An unmanned surface vessel in the Navy's competition targets $25-50 million per hull and zero crew. The strategic math: lose ten USVs before you lose one destroyer, and you are still ahead on dollars and untouched on casualties.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ford carrier",
+                "value": "$13bn",
+                "weight": 13000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Burke DDG",
+                "value": "$2.2bn",
+                "weight": 2200,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "LCS",
+                "value": "$500m",
+                "weight": 500,
+                "tone": "neutral"
+              },
+              {
+                "label": "Spectre USV",
+                "value": "~$40m",
+                "weight": 40,
+                "tone": "favorable"
+              }
+            ],
+            "label": "surface combatants, rough unit cost"
+          }
+        ]
+      },
+      {
+        "heading": "THE AUTONOMY THRESHOLD",
+        "body": "Pentagon directive 3000.09 (2012, updated 2023) requires a human to authorize the use of lethal force by autonomous systems. The policy is written around decision architecture, not hull type — an unmanned ship firing a missile still needs a human in the loop somewhere. The unresolved question is how far 'somewhere' can be from the target before the loop breaks.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under current Pentagon policy, what must happen before an armed unmanned vessel can fire on a target?",
+            "options": [
+              "The vessel's onboard AI must classify the target with >99% confidence",
+              "A human operator must authorize the engagement",
+              "The vessel must receive approval from two separate AI systems",
+              "International law requires no such constraint"
+            ],
+            "correct": 1,
+            "explanation": "DoD Directive 3000.09 requires 'appropriate levels of human judgment' over the use of force — interpreted as a human authorizing each lethal engagement."
+          }
+        ]
+      },
+      {
+        "heading": "THE UKRAINE PROOF",
+        "body": "Ukraine's Magura and Sea Baby USVs sank or damaged roughly a third of Russia's Black Sea Fleet without Ukraine possessing a conventional navy. The cost per drone was under $250,000; the Russian ships lost cost hundreds of millions each. This is the operational case study every Western navy is now building around."
+      }
+    ],
+    "generatedAt": "2026-04-24T12:23:41.625Z",
+    "label": "Unmanned Surface Warships",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-24-un-gaza-demining-541-million-unexploded-ordnance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUD RATE",
+        "body": "Modern munitions fail to detonate at rates between 10% and 30% depending on fuze type, impact surface, and storage age. Soft ground, sand, and collapsed concrete — all abundant in Gaza — cushion impact and raise the dud rate sharply. Every bomb dropped leaves a probabilistic tail of buried ordnance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A **dud** is not inert — it is an armed weapon whose fuze failed on impact but may arm on movement. Demining crews treat every UXO as *live until proven otherwise*."
+          }
+        ]
+      },
+      {
+        "heading": "WHY URBAN CLEARANCE IS HARDER",
+        "body": "Open-field demining uses metal detectors and mechanical flails. Urban rubble defeats both: rebar masks metal signatures and collapsed slabs cannot be flailed. Each suspected item must be hand-excavated, often from beneath multiple stories of pancaked concrete. The pace drops from hectares per day to square meters per day."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Laos remains the most-bombed country per capita in history — US sorties dropped more tonnage on it from 1964-1973 than on Germany and Japan combined in WWII. Sixty years later, roughly a third of the country is still contaminated and clearance continues. UXO outlasts the war that produced it by generations.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Laos",
+                "value": "60+ yrs ongoing"
+              },
+              {
+                "label": "Cambodia",
+                "value": "45+ yrs ongoing"
+              },
+              {
+                "label": "Vietnam",
+                "value": "50+ yrs ongoing"
+              },
+              {
+                "label": "Bosnia",
+                "value": "30 yrs ongoing"
+              },
+              {
+                "label": "Kuwait",
+                "value": "~10 yrs"
+              }
+            ],
+            "label": "UXO clearance timelines after conflict"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHILDREN PROBLEM",
+        "body": "UXO casualties skew heavily toward children everywhere they appear — small, curious, drawn to unusual metal objects that resemble toys or tools. In post-conflict Cambodia and Laos, children account for roughly half of UXO deaths decades after fighting ended. Gaza's demographics — nearly half the population under 18 — amplify this baseline.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of post-conflict UXO casualties are typically children?",
+            "options": [
+              "Around 10%",
+              "Around 25%",
+              "Around 50%",
+              "Under 5%"
+            ],
+            "correct": 2,
+            "explanation": "Globally, children make up roughly half of UXO casualties long after conflicts end — they are smaller, more curious, and often mistake ordnance for scrap or toys."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUNDING GAP",
+        "body": "UNMAS operates on voluntary donor contributions, not assessed UN dues. Historically, demining budgets run 10-20% of what surveys call for; the $541M ask will compete with reconstruction, food aid, and medical pledges in the same donor rooms. Clearance that is not funded simply does not happen — the ordnance waits."
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "Gaza sits within the land the Quran describes in Surah al-Isra as blessed — the territory surrounding al-Aqsa. Classical tafsir by Ibn Kathir and al-Qurtubi extends this blessing to the whole of al-Sham, including Palestine. The contamination of this soil with explosive remnants is, for Muslims, not merely an engineering problem but a desecration of sanctified land.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PS",
+              "IL",
+              "JO",
+              "LB",
+              "SY",
+              "EG"
+            ],
+            "label": "al-Sham & the blessed land"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-24T12:24:14.330Z",
+    "label": "Unexploded Ordnance in Gaza",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-24-us-pentagon-spain-nato-iran-war-punishment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TREATY HAS NO EXIT",
+        "body": "The 1949 Washington Treaty has 14 articles. None provide for suspension or expulsion of a member. Article 13 lets a country leave voluntarily with one year's notice — that is the only membership-exit mechanism in the text.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Any Party may cease to be a Party one year after its notice of denunciation has been given to the Government of the United States of America.",
+            "speaker": "North Atlantic Treaty, Article 13",
+            "year": "1949"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BASES ARE THE REAL LEVERAGE",
+        "body": "Spain hosts the US Naval Station at Rota and Morón Air Base. Both operate under a bilateral Defense Cooperation Agreement, not the NATO treaty. Spain can deny basing rights for a specific operation — as it did during the 2003 Iraq War for some missions — without leaving the alliance. The Pentagon conflating the two is the pressure.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ES",
+              "US",
+              "MA",
+              "PT"
+            ],
+            "label": "Rota and Morón: the western Mediterranean anchor"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2% FLOOR",
+        "body": "NATO members pledged in 2014 to spend 2% of GDP on defense by 2024. Spain is the alliance's lowest spender, at roughly 1.3% — a chronic grievance in Washington that predates Trump and long predates Iran.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Poland",
+                "value": "4.1%",
+                "cc": "PL",
+                "weight": 4.1,
+                "tone": "favorable"
+              },
+              {
+                "label": "United States",
+                "value": "3.4%",
+                "cc": "US",
+                "weight": 3.4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": "2.1%",
+                "cc": "DE",
+                "weight": 2.1,
+                "tone": "neutral"
+              },
+              {
+                "label": "France",
+                "value": "2.0%",
+                "cc": "FR",
+                "weight": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Spain",
+                "value": "1.3%",
+                "cc": "ES",
+                "weight": 1.3,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "NATO defense spending (% of GDP)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1986 REFERENDUM",
+        "body": "Spain joined NATO in 1982 under a center-right government. A 1986 referendum — passed narrowly — conditioned continued membership on three terms: no integration into the military command structure, no nuclear weapons on Spanish soil, and reduction of the US military presence. Spain only joined the integrated command in 1999. The posture of **conditional membership** is thirteen years older than full integration.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The referendum's three conditions were the price Felipe González's Socialists paid to keep Spain in the alliance against their own party's prior opposition — a **conditional Atlanticism** that still shapes Madrid's room to say no."
+          }
+        ]
+      },
+      {
+        "heading": "THE FALKLANDS ANALOGUE",
+        "body": "Washington's pressure on a NATO ally over an out-of-area war has a precedent: during the 1982 Falklands War, the Reagan administration initially tried to stay neutral between the UK and Argentina before tilting decisively to London. Alliance solidarity on wars outside the treaty area has always been negotiated, not automatic.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which clause of the NATO treaty covers military operations outside member territory?",
+            "options": [
+              "Article 5 (collective defense)",
+              "Article 4 (consultation)",
+              "No article — out-of-area action is not treaty-mandated",
+              "Article 6 (territorial scope)"
+            ],
+            "correct": 2,
+            "explanation": "Article 6 actually limits collective defense to attacks within the North Atlantic area. Out-of-area coalitions like Afghanistan or a potential Iran war are ad hoc — members can opt out without treaty violation."
+          }
+        ]
+      },
+      {
+        "heading": "THE JULY 7 MEETING",
+        "body": "NATO's decision to hold its next summit in Turkey is itself load-bearing. Ankara has refused to join sanctions against Iran, hosts dialogue channels with Tehran, and controls the Bosphorus — the chokepoint through which Russian Black Sea trade flows. The venue signals whose red lines the alliance cannot ignore."
+      }
+    ],
+    "generatedAt": "2026-04-24T12:24:44.326Z",
+    "label": "NATO: the expulsion question",
+    "category": "politics",
+    "articleCount": 1
   }
 }
