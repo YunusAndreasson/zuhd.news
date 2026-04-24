@@ -51303,5 +51303,1514 @@
     "label": "NATO: the expulsion question",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-24-ai-compute-crunch-economy-electricity-gpu-scarcity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SUBSIDY",
+        "body": "For years AI inference and training were priced below marginal cost. Venture capital and hyperscaler balance sheets absorbed the gap to win market share — a classic Amazon-Uber playbook where unit economics are deferred until the competition thins.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern has a name in strategy literature: **blitzscaling**. Growth is funded by investor capital until the market tips, then prices normalize upward. What changed in 2026 is that *physical inputs* — not rivals — set the ceiling."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GPUS ARE SCARCE",
+        "body": "Advanced GPUs depend on TSMC's CoWoS advanced packaging — not the silicon itself but the interposers that stack memory next to logic. CoWoS capacity takes 18-24 months to build and cannot be substituted. TSMC is the sole volume supplier.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "TSMC",
+                "value": "~85%",
+                "tone": "neutral",
+                "cc": "TW",
+                "weight": 85
+              },
+              {
+                "label": "Samsung",
+                "value": "~8%",
+                "cc": "KR",
+                "weight": 8
+              },
+              {
+                "label": "Intel",
+                "value": "~5%",
+                "cc": "US",
+                "weight": 5
+              },
+              {
+                "label": "Others",
+                "value": "~2%",
+                "weight": 2
+              }
+            ],
+            "label": "Advanced packaging capacity share"
+          }
+        ]
+      },
+      {
+        "heading": "THE ELECTRICITY CONSTRAINT",
+        "body": "A single hyperscale AI datacenter draws 500MW to 1GW — the load of a mid-sized city. US grid interconnection queues now stretch 4-7 years. The binding constraint is no longer chips but transformers, transmission lines, and substation capacity that utilities stopped expanding in the 1990s.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              9445.593636363636,
+              10117.16347826087,
+              9648.167,
+              9385.313043478262,
+              8981.117727272727,
+              9259.128571428571,
+              9533.991304347826,
+              9075.727142857142,
+              8909.907727272726,
+              8976.68043478261,
+              9330.975,
+              9735.823333333334,
+              9172.69590909091,
+              9531.200909090909,
+              9835.068095238095,
+              9770.580434782609,
+              9671.875714285714,
+              9994.773181818182,
+              10739.91826086957,
+              10812.028,
+              11790.96409090909,
+              12986.60681818182,
+              12951.345,
+              12528.70954545455
+            ],
+            "periods": [
+              "Apr 2024",
+              "May 2024",
+              "Jun 2024",
+              "Jul 2024",
+              "Aug 2024",
+              "Sep 2024",
+              "Oct 2024",
+              "Nov 2024",
+              "Dec 2024",
+              "Jan 2025",
+              "Feb 2025",
+              "Mar 2025",
+              "Apr 2025",
+              "May 2025",
+              "Jun 2025",
+              "Jul 2025",
+              "Aug 2025",
+              "Sep 2025",
+              "Oct 2025",
+              "Nov 2025",
+              "Dec 2025",
+              "Jan 2026",
+              "Feb 2026",
+              "Mar 2026"
+            ],
+            "label": "Copper",
+            "unit": "$/mt",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY TOWNS PUSH BACK",
+        "body": "Datacenters consume water for evaporative cooling — millions of gallons per day per site — and pay industrial electricity rates that can raise residential bills when utilities socialize transmission upgrades. The local cost-benefit is lopsided: few jobs, heavy infrastructure load.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much water does a large hyperscale datacenter consume per day?",
+            "options": [
+              "A few thousand gallons",
+              "Around 100,000 gallons",
+              "1-5 million gallons",
+              "Over 50 million gallons"
+            ],
+            "correct": 2,
+            "explanation": "Evaporative cooling at a single large AI datacenter typically consumes 1-5 million gallons daily — comparable to a town of 10,000-50,000 people."
+          }
+        ]
+      },
+      {
+        "heading": "THE APPLE SQUEEZE",
+        "body": "Apple has been TSMC's largest customer for a decade, reserving leading-node capacity years ahead. When Nvidia, AMD, and hyperscalers bid for the same wafers, even Apple's contracts get stretched. This is new — for the smartphone era, TSMC's roadmap effectively *was* Apple's roadmap."
+      },
+      {
+        "heading": "THE HISTORICAL RHYME",
+        "body": "The 1970s oil shock ended the era of cheap energy that had subsidized postwar industrial growth. Economists call this kind of break an input-cost regime change: a technology built on an implicit assumption of cheap X suddenly has to price X properly. AI is meeting its regime change thirty years sooner than electricity did."
+      }
+    ],
+    "sources": [
+      "FRED · IMF · as of 2026-03-01"
+    ],
+    "generatedAt": "2026-04-24T17:29:49.072Z",
+    "label": "The AI Compute Crunch",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-24-bellingcat-iran-police-infrastructure-80-stations": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL LINE",
+        "body": "Under the Geneva Conventions' Additional Protocol I, police forces are civilian unless formally incorporated into armed forces. Striking police stations as a class — rather than identified combatant units — sits on the wrong side of the distinction principle that underpins the entire law of armed conflict.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal test is *direct participation in hostilities* — not uniform, not institutional affiliation. A traffic officer in Qom is not a combatant because Iran is at war."
+          }
+        ]
+      },
+      {
+        "heading": "THE DECAPITATION DOCTRINE",
+        "body": "Striking a state's coercive apparatus to trigger internal collapse is an old theory with a poor record. Israel tried it against Hezbollah in 2006, the US against the Baath Party in 2003, NATO against Gaddafi's security services in 2011. In each case the formal state broke; what replaced it was not the population 'taking their destiny' but warlords, militias, and decade-long civil wars."
+      },
+      {
+        "heading": "THE IRAQ PRECEDENT",
+        "body": "Coalition Provisional Authority Order Number 2 (2003) dissolved the Iraqi army, police, and intelligence services overnight. Roughly 400,000 armed men lost their salaries and kept their weapons. The insurgency that followed killed more Iraqis in the next decade than Saddam had in twenty years. The lesson planners drew — and apparently forgot — was that dismantling a state's security floor does not produce democracy; it produces a vacuum.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After the 2003 dissolution of Iraqi security forces, how many armed, trained men were left unemployed overnight?",
+            "options": [
+              "~50,000",
+              "~150,000",
+              "~400,000",
+              "~1,000,000"
+            ],
+            "correct": 2,
+            "explanation": "CPA Order 2 disbanded roughly 400,000 soldiers, police, and intelligence officers — most kept their weapons and formed the core of the insurgency."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT POLICE ACTUALLY DO",
+        "body": "In any functioning state, police are the thin layer between ordinary crime and chaos — traffic, domestic disputes, theft, drug interdiction, crowd control. Iran has roughly 260,000 police across a country of 90 million. Removing 30 stations in concentrated strikes does not topple a regime; it degrades the service most felt by ordinary Iranians, which historically accelerates smuggling, tribal feuds, and narco-corridors, not revolution."
+      },
+      {
+        "heading": "THE REGIME-CHANGE DISCLAIMER",
+        "body": "'Conditions for Iranians to take their destiny' is the same grammar used before Iraq (2003), Libya (2011), and Syria (2011–). In each case the sponsoring power named no successor government, committed no occupation force, and planned no reconstruction. The phrase is a liability shield — it commits the attacker to the destruction and the population to the aftermath.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IQ",
+              "LY",
+              "SY",
+              "AF",
+              "IR"
+            ],
+            "label": "states whose security apparatus was broken without a named successor"
+          }
+        ]
+      },
+      {
+        "heading": "THE IRANIAN STATE'S DEPTH",
+        "body": "Iran is not a security-thin state. The IRGC (190,000), Basij (mobilizable to millions), Artesh regular army (350,000), and MOIS intelligence service operate in parallel to the police — each with its own command, payroll, and recruiting base. Degrading the police leaves the coercive core untouched and concentrates power further with the IRGC, the actor least inclined toward accommodation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Police (NAJA)",
+                "value": "~260,000"
+              },
+              {
+                "label": "Artesh (army)",
+                "value": "~350,000"
+              },
+              {
+                "label": "IRGC",
+                "value": "~190,000"
+              },
+              {
+                "label": "Basij mobilizable",
+                "value": "millions"
+              }
+            ],
+            "label": "Iran's parallel coercive institutions"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-24T17:30:20.113Z",
+    "label": "Targeting Civilian Infrastructure",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-24-china-strict-control-fossil-fuels-earth-day": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PLEDGE",
+        "body": "Xi Jinping announced in September 2020 that China would peak carbon emissions before 2030 and reach carbon neutrality before 2060. The framework is called 'dual carbon' — shuangtan — and it is now the organizing principle of Chinese industrial policy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The policy is referred to internally as **shuangtan** (双碳), literally *double carbon*. The 2030 peak is binding; the 2060 neutrality target is aspirational but codified."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GUIDING OPINIONS MATTER",
+        "body": "A 'guiding opinion' from the State Council and Central Committee is formally non-binding, but in the Chinese administrative system it functions as a signal of mandatory direction. Provincial officials whose promotions depend on meeting central benchmarks treat them as instructions, not suggestions."
+      },
+      {
+        "heading": "THE CADRE EVALUATION LEVER",
+        "body": "Adding provincial emissions and coal consumption to the cadre evaluation system is the real mechanism. Chinese governance runs on a tournament model — officials compete for promotion against quantified targets. What gets measured gets done; what gets added to the evaluation rubric becomes a career-defining metric overnight."
+      },
+      {
+        "heading": "THE COAL PARADOX",
+        "body": "China burns more coal than the rest of the world combined — roughly 56% of global consumption — yet also installs more solar and wind capacity than the rest of the world combined. Both facts are true simultaneously. The dual-carbon regime is an attempt to bend the first curve down while the second continues climbing.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~56%",
+                "weight": 56,
+                "tone": "unfavorable",
+                "cc": "CN"
+              },
+              {
+                "label": "India",
+                "value": "~12%",
+                "weight": 12,
+                "cc": "IN"
+              },
+              {
+                "label": "United States",
+                "value": "~6%",
+                "weight": 6,
+                "cc": "US"
+              },
+              {
+                "label": "Rest of world",
+                "value": "~26%",
+                "weight": 26
+              }
+            ],
+            "label": "coal consumption share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE 14TH FIVE-YEAR PLAN CONTEXT",
+        "body": "The current plan (2021–2025) set dual control targets on energy intensity and total energy consumption. The 2026 document refines this to dual control on carbon intensity and absolute emissions — a subtle but large shift, because it decouples growth from emissions in the official metric for the first time."
+      },
+      {
+        "heading": "WHY EARTH DAY",
+        "body": "Timing is messaging. Releasing fossil-fuel controls on April 22 — Earth Day — signals China is claiming the climate-leadership narrative at a moment when US federal climate policy is retreating. Beijing has learned that climate diplomacy is soft power that costs less than it returns.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "China's dual carbon targets commit to peak emissions by which year?",
+            "options": [
+              "2025",
+              "2030",
+              "2040",
+              "2050"
+            ],
+            "correct": 1,
+            "explanation": "Xi pledged in 2020 that emissions would peak before 2030 and reach net zero before 2060 — the 'dual carbon' framework."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-24T17:30:47.681Z",
+    "label": "China's Dual Carbon Targets",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-24-doj-drops-powell-probe-warsh-fed-chair": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DESIGN",
+        "body": "The Federal Reserve Act of 1913 placed the central bank outside the executive branch. The President appoints the chair to a four-year term but cannot remove them except for cause — defined as malfeasance, not policy disagreement. The structure was hardened after a century of political manipulation of monetary policy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The statutory phrase is **\"for cause\"** — a narrow legal standard meaning misconduct, not a policy dispute. Every Fed chair fight eventually circles back to whether a given allegation clears that bar."
+          }
+        ]
+      },
+      {
+        "heading": "THE RENOVATION ANGLE",
+        "body": "The $2.5 billion renovation of the Fed's Eccles Building became the pretext for a criminal probe of Powell. Attacking a chair through procurement or building-cost investigations is a recurring pattern — when removing for policy is blocked by law, opponents look for conduct that might plausibly clear the 'for cause' bar.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Federal Reserve Act, when can a sitting Fed Chair be removed by the President?",
+            "options": [
+              "At will, like a cabinet secretary",
+              "Only for cause — malfeasance, not policy disagreement",
+              "By a two-thirds Senate vote",
+              "Never, until the four-year term expires"
+            ],
+            "correct": 1,
+            "explanation": "The 'for cause' standard is the statutory firewall — a policy disagreement alone is not grounds for removal."
+          }
+        ]
+      },
+      {
+        "heading": "THE LBJ PRECEDENT",
+        "body": "In 1965, Lyndon Johnson summoned Fed Chair William McChesney Martin to his Texas ranch and physically intimidated him into easing policy. Martin partially capitulated, contributing to the inflation of the 1970s. It became the textbook case for why soft pressure can damage independence as badly as formal removal."
+      },
+      {
+        "heading": "WHO IS WARSH",
+        "body": "Kevin Warsh served as a Fed Governor from 2006 to 2011 — the youngest ever appointed, and the Fed's point man during the 2008 financial crisis. He was a Morgan Stanley banker before the Fed and a hawk on inflation after. He was the runner-up to Powell in 2018.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Jerome Powell",
+                "role": "Outgoing Fed Chair",
+                "years": "2018–2026",
+                "cc": "US"
+              },
+              {
+                "name": "Kevin Warsh",
+                "role": "Incoming nominee",
+                "years": "2026–",
+                "cc": "US"
+              },
+              {
+                "name": "William M. Martin",
+                "role": "Longest-serving chair",
+                "years": "1951–1970",
+                "cc": "US"
+              },
+              {
+                "name": "Paul Volcker",
+                "role": "Broke 1970s inflation",
+                "years": "1979–1987",
+                "cc": "US"
+              }
+            ],
+            "label": "the succession"
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET SIGNAL",
+        "body": "Markets price Fed independence through the long end of the curve. If investors believe a chair will tolerate higher inflation under political pressure, they demand higher yields on 10- and 30-year Treasuries — the so-called 'inflation risk premium.' A confirmation that is seen as credible on independence keeps the term premium contained.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4.22,
+              4.24,
+              4.26,
+              4.24,
+              4.26,
+              4.29,
+              4.28,
+              4.29,
+              4.21,
+              4.22,
+              4.22,
+              4.16,
+              4.18,
+              4.09,
+              4.04,
+              4.05,
+              4.09,
+              4.08,
+              4.08,
+              4.03,
+              4.04,
+              4.05,
+              4.02,
+              3.97,
+              4.05,
+              4.06,
+              4.09,
+              4.13,
+              4.15,
+              4.12,
+              4.15,
+              4.21,
+              4.27,
+              4.28,
+              4.23,
+              4.2,
+              4.26,
+              4.25,
+              4.39,
+              4.34,
+              4.39,
+              4.33,
+              4.42,
+              4.44,
+              4.35,
+              4.3,
+              4.33,
+              4.31,
+              4.35,
+              4.34,
+              4.33,
+              4.29,
+              4.29,
+              4.31,
+              4.3,
+              4.26,
+              4.29,
+              4.32,
+              4.26,
+              4.26,
+              4.3,
+              4.3
+            ],
+            "periods": [
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22"
+            ],
+            "label": "US 10y Treasury",
+            "unit": "%",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CONFIRMATION PATH",
+        "body": "Fed Chair nominees need simple-majority Senate confirmation. The Banking Committee holds hearings first, then reports to the floor. Tillis's block was procedural leverage at the committee stage — a single senator can slow but not permanently stop a nomination once the probe that justified the hold collapses.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              95,
+              95,
+              95,
+              95,
+              95,
+              96,
+              95,
+              95,
+              96,
+              97,
+              97,
+              96,
+              96,
+              95,
+              94,
+              95,
+              94,
+              94,
+              95,
+              94,
+              94,
+              94,
+              94,
+              94,
+              98
+            ],
+            "periods": [
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 6",
+              "Apr 7",
+              "Apr 9",
+              "Apr 13",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 24"
+            ],
+            "label": "Kevin Warsh be confirmed as Fed Chair?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "95%"
+              },
+              {
+                "atIndex": 24,
+                "label": "98%"
+              }
+            ],
+            "link": "https://polymarket.com/event/who-will-be-confirmed-as-fed-chair",
+            "source": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · Board of Governors · as of 2026-04-22",
+      "Polymarket · as of 2026-04-24"
+    ],
+    "generatedAt": "2026-04-24T17:31:15.957Z",
+    "label": "Fed Chair Succession",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-24-egypt-budget-energy-subsidies-exports-shift": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INTEREST TRAP",
+        "body": "When interest payments consume half the budget, every pound of new tax revenue goes to past creditors, not present citizens. Egypt is not unique — Sri Lanka, Ghana, and Zambia hit the same wall before defaulting. The threshold where debt service crowds out basic services is roughly 30% of revenue; Egypt is well past it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Egypt",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "cc": "EG"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~45%",
+                "tone": "unfavorable",
+                "cc": "PK"
+              },
+              {
+                "label": "Nigeria",
+                "value": "~30%",
+                "tone": "unfavorable",
+                "cc": "NG"
+              },
+              {
+                "label": "Turkey",
+                "value": "~15%",
+                "cc": "TR"
+              }
+            ],
+            "label": "interest as share of budget"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSTITUTIONAL FLOOR",
+        "body": "Egypt's 2014 constitution mandates health spending at 3% of GDP, education at 4%, and higher education at 2% — numbers deliberately set high by a post-Morsi drafting committee to lock in social provision. Successive budgets have ignored these floors; the constitutional court has never enforced them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "At **1.72% of GDP** on health, Egypt spends barely *a quarter* of its constitutional mandate. The gap is not austerity drift — it is routine non-compliance with the country's founding document."
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSIDY PIVOT",
+        "body": "Shifting subsidies from fuel consumers to export firms is an IMF-favored move: it cuts regressive support (richer households burn more fuel) and redirects scarce foreign currency toward earning more of it. The politics are harder than the economics — fuel price hikes hit visibly and immediately, export rebates reward a narrow industrial base."
+      },
+      {
+        "heading": "THE DOLLAR SHORTAGE",
+        "body": "Egypt's fiscal crisis is really a foreign currency crisis. Wheat, fuel, and medicine are imported in dollars; tax revenue comes in depreciating pounds. Every devaluation — and the pound has lost over two-thirds of its value since 2022 — makes the same dollar-denominated interest bill heavier in local terms.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              52.694725,
+              52.642155,
+              52.642155,
+              52.893,
+              54.4449,
+              54.5301,
+              53.5224,
+              54.2408,
+              54.334939,
+              54.334939,
+              54.390408,
+              54.2427,
+              54.6838,
+              53.2548,
+              53.0913,
+              53.108563,
+              53.108563,
+              53.3639,
+              53.1356,
+              52.4198,
+              51.9627,
+              51.7698,
+              51.884157,
+              51.884157,
+              51.884157,
+              51.970698,
+              51.9993,
+              51.7463,
+              52.0118,
+              52.6203
+            ],
+            "periods": [
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24"
+            ],
+            "label": "Egyptian pound",
+            "unit": "EGP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SUEZ DEPENDENCY",
+        "body": "Canal fees are Egypt's largest single dollar earner after remittances. Red Sea disruption since late 2023 cut transit volumes by more than half, knocking billions off the annual take. A budget built on the assumption of restored traffic is a budget one Houthi missile away from revision.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              33,
+              44,
+              45,
+              47,
+              34,
+              34,
+              37,
+              50,
+              42,
+              37,
+              34,
+              49,
+              35,
+              38,
+              36,
+              50,
+              35,
+              37,
+              22,
+              47,
+              31,
+              38,
+              43,
+              41,
+              25,
+              35,
+              47,
+              35,
+              39,
+              46,
+              33,
+              37,
+              38,
+              34,
+              34,
+              41,
+              48,
+              42,
+              29,
+              50,
+              45,
+              33,
+              37,
+              40,
+              31,
+              43,
+              45,
+              41,
+              38,
+              34,
+              39,
+              36,
+              34,
+              31,
+              41
+            ],
+            "periods": [
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Suez Canal transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "THE GULF BACKSTOP",
+        "body": "The February 2024 Ras El-Hekma deal — a $35bn UAE investment in a Mediterranean coastal development — bought Cairo time, not solvency. Gulf capital has propped up Egypt through every crisis since Nasser; the price is progressively deeper strategic alignment with Abu Dhabi and Riyadh.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Egypt's 2024 lifeline came from a single UAE coastal development deal?",
+            "options": [
+              "$8bn — Ras El-Hekma",
+              "$15bn — New Alamein",
+              "$35bn — Ras El-Hekma",
+              "$50bn — Sharm expansion"
+            ],
+            "correct": 2,
+            "explanation": "The Ras El-Hekma deal brought in $35bn from the UAE — Egypt's largest single foreign investment ever, and the reason its 2024 default was postponed."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-24",
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-24T17:31:46.999Z",
+    "label": "Egypt's Fiscal Squeeze",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-24-iran-pakistan-araghchi-islamabad-ceasefire-talks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ISLAMABAD",
+        "body": "Pakistan is the only Muslim-majority nuclear state, shares a 900km border with Iran, and maintains deep security ties with Washington and Riyadh. It is the rare capital where an Iranian foreign minister and a US envoy can both land without political cost at home.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "SA",
+              "US"
+            ],
+            "label": "the mediation geometry"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1971 PRECEDENT",
+        "body": "Pakistan brokered the secret US-China opening in 1971. Kissinger flew to Beijing from Islamabad on a Pakistan International Airlines flight, with Pakistani officials providing diplomatic cover. Islamabad's position between hostile powers has made it a back-channel broker for over fifty years.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "From which capital did Kissinger secretly fly to Beijing in 1971 to open US-China relations?",
+            "options": [
+              "Tehran",
+              "Islamabad",
+              "Kabul",
+              "Ankara"
+            ],
+            "correct": 1,
+            "explanation": "Pakistan provided the diplomatic cover and the aircraft; Kissinger flew PIA from Islamabad, feigning illness in Pakistan to mask the trip."
+          }
+        ]
+      },
+      {
+        "heading": "THE PAKISTAN-IRAN BORDER",
+        "body": "The 909km frontier crosses Balochistan — a province split between the two states by British colonial cartography in 1871. Baloch insurgents operate on both sides, and each capital has accused the other of sheltering militants. The border is a shared vulnerability, which is why neither wants the other destabilized."
+      },
+      {
+        "heading": "THE BRENT THRESHOLD",
+        "body": "Brent above $100 tips advanced economies toward stagflation — the level at which central banks are forced to choose between fighting inflation and supporting growth. At $107 the Fed's room to cut has collapsed, which is why Washington wants Hormuz reopened even more than Tehran wants sanctions lifted.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ LEVERAGE",
+        "body": "Roughly a fifth of global oil and a third of seaborne LNG normally transit Hormuz. Iran cannot sink a modern navy, but it can close the strait with mines, small boats, and anti-ship missiles launched from its own coast. The asymmetry is the whole point: disruption is cheap, clearing is slow.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              55,
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "THE NUCLEAR UMBRELLA QUESTION",
+        "body": "Saudi Arabia funded Pakistan's nuclear program in the 1970s-80s. The unspoken expectation — never confirmed, never denied — is that Islamabad would extend a nuclear umbrella if Riyadh faced an existential threat. That same ambiguity now hovers over Iran-Pakistan talks: Tehran knows Islamabad's deterrent has Gulf strings attached.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Western analysts call this the ***Islamic bomb*** question. Islamabad has never clarified the arrangement — the ambiguity itself is the policy."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20",
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-24T17:32:13.030Z",
+    "label": "Pakistan as Mediator",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-24-meloni-nato-unity-trump-iran-war-rift": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EXPULSION QUESTION",
+        "body": "The North Atlantic Treaty contains no expulsion clause. A member can leave under Article 13 with one year's notice, but no mechanism exists to remove one. This was deliberate — the 1949 drafters wanted the alliance to be harder to shrink than to leave, so that pressure could not be used to purge dissenters.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The treaty is only **14 articles long**. What is not in it — no expulsion, no majority vote, no enforcement body — is as structural as what is."
+          }
+        ]
+      },
+      {
+        "heading": "ARTICLE 5 VS ARTICLE 42.7",
+        "body": "Article 5 is NATO's mutual defense clause — an attack on one is an attack on all. Article 42.7 is its EU counterpart from the Lisbon Treaty (2009), obliging member states to aid a fellow EU country under armed aggression. The EU version is stronger on paper: it has no 'as it deems necessary' escape hatch that Article 5 carries.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "NATO Art. 5",
+                "value": "invoked 1x (2001)"
+              },
+              {
+                "label": "EU Art. 42.7",
+                "value": "invoked 1x (2015)"
+              }
+            ],
+            "label": "the two mutual-defense clauses"
+          }
+        ]
+      },
+      {
+        "heading": "THE PARIS PRECEDENT",
+        "body": "France invoked Article 42.7 after the November 2015 Bataclan attacks — the clause's only activation. Paris chose it over NATO's Article 5 deliberately: it wanted bilateral support from EU partners without pulling in the US or triggering a treaty-bound collective response. Every 42.7 response was negotiated country-by-country.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did France invoke EU Article 42.7 instead of NATO Article 5 after the 2015 Paris attacks?",
+            "options": [
+              "Article 5 requires a state actor as aggressor",
+              "To keep the response European and bilateral, not US-led",
+              "NATO was already engaged elsewhere",
+              "France was not yet a full NATO member"
+            ],
+            "correct": 1,
+            "explanation": "42.7 let Paris request help à la carte from EU partners without triggering a treaty-bound, US-anchored collective response."
+          }
+        ]
+      },
+      {
+        "heading": "AIRSPACE IS SOVEREIGN",
+        "body": "NATO allies typically grant blanket overflight clearances through bilateral agreements — but these are revocable at any time. When Turkey denied US overflight for the 2003 Iraq invasion, the 4th Infantry Division rerouted by sea and arrived weeks late. Spain's Rota naval base operates under a bilateral treaty giving Madrid veto power over launched operations."
+      },
+      {
+        "heading": "THE HEDGING PATTERN",
+        "body": "When a middle power faces pressure from competing great powers, it does not pick a side — it builds leverage with both. Spain pursuing Chinese raw material deals while hosting US bases is textbook hedging: generate enough value for each side that neither can afford to punish you.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ES",
+              "FR",
+              "IT",
+              "BE"
+            ],
+            "label": "the European core pushing the 42.7 simulation"
+          }
+        ]
+      },
+      {
+        "heading": "THE BUDGET CLUB",
+        "body": "NATO's 2% of GDP defense-spending target has become the political cudgel Washington uses against reluctant allies. Spain has chronically ranked near the bottom. But the treaty contains no spending obligation — the 2% figure was a 2014 Wales summit 'commitment,' not a treaty article.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Poland",
+                "value": "4.1%",
+                "tone": "favorable",
+                "cc": "PL",
+                "weight": 4.1
+              },
+              {
+                "label": "United States",
+                "value": "3.4%",
+                "cc": "US",
+                "weight": 3.4
+              },
+              {
+                "label": "Germany",
+                "value": "2.1%",
+                "cc": "DE",
+                "weight": 2.1
+              },
+              {
+                "label": "Italy",
+                "value": "1.5%",
+                "cc": "IT",
+                "weight": 1.5
+              },
+              {
+                "label": "Spain",
+                "value": "1.3%",
+                "tone": "unfavorable",
+                "cc": "ES",
+                "weight": 1.3
+              }
+            ],
+            "label": "2024 NATO defense spending (% GDP)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-24T17:32:46.697Z",
+    "label": "NATO mechanics & Article 42.7",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-24-rbi-paytm-payments-bank-license-cancelled": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A PAYMENTS BANK IS",
+        "body": "A payments bank can accept deposits up to ₹2 lakh per customer and issue debit cards, but it cannot lend. The RBI created the category in 2014 to push financial inclusion — get unbanked Indians onto digital rails without the credit risk of full banking.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The structural tradeoff: **no lending** means no interest-margin income. Payments banks survive on fees, float, and cross-sell — which is why most of the 11 originally licensed have shut, merged, or run at a loss."
+          }
+        ]
+      },
+      {
+        "heading": "THE RELATED-PARTY PROBLEM",
+        "body": "Paytm Payments Bank was 49% owned by founder Vijay Shekhar Sharma; the Paytm app (One97 Communications) was the dominant customer. When the same person controls both the bank and its largest client, deposits can fund the parent's operations in ways that evade disclosure. Indian banking law forbids this precisely because it collapsed Global Trust Bank in 2004 and Yes Bank in 2020.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does banking law separate a bank from its largest customer?",
+            "options": [
+              "To prevent market monopolies",
+              "To stop depositor money funding insider ventures without disclosure",
+              "To enforce tax compliance",
+              "To comply with WTO financial services rules"
+            ],
+            "correct": 1,
+            "explanation": "Related-party lending lets insiders route depositor funds to their own businesses, hiding risk until the bank collapses — the pattern behind Global Trust (2004) and Yes Bank (2020)."
+          }
+        ]
+      },
+      {
+        "heading": "THE KYC MECHANICS",
+        "body": "Know-your-customer rules require banks to verify identity, source of funds, and beneficial ownership for each account. RBI inspections found Paytm onboarding millions of accounts with shared PANs, unverified documents, and dormant wallets that money moved through. This is the architecture regulators watch for in money-laundering cases, not mere paperwork sloppiness."
+      },
+      {
+        "heading": "THE BANKING REGULATION ACT",
+        "body": "Section 22 of the 1949 Act gives the RBI sole authority to license banks; Section 36 lets it cancel that license for public interest or depositor protection. Once cancelled, the bank cannot accept deposits — but existing depositors remain protected by the Deposit Insurance Corporation up to ₹5 lakh per account.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Global Trust",
+                "value": "2004, merged",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Yes Bank",
+                "value": "2020, rescued",
+                "tone": "neutral"
+              },
+              {
+                "label": "PMC Bank",
+                "value": "2021, merged",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Paytm PB",
+                "value": "2026, wound up",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "India's major bank collapses"
+          }
+        ]
+      },
+      {
+        "heading": "THE EIGHT-YEAR ARC",
+        "body": "RBI first flagged Paytm in 2018 for data-sharing with Chinese shareholders. It barred new customer onboarding in 2022, then froze all deposit activity in January 2024. License cancellation is the terminal step — regulators generally exhaust every remediation pathway before revoking, because revocation forces a winding-up the courts then supervise.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              94.30975,
+              94.8642,
+              94.782475,
+              94.782054,
+              94.352351,
+              93.48465,
+              92.64285,
+              92.97385,
+              92.763649,
+              92.978498,
+              92.978498,
+              92.9636,
+              92.86045,
+              92.283354,
+              92.47006,
+              93.10605,
+              93.10525,
+              94.508943,
+              94.94696,
+              93.165649,
+              93.387156,
+              93.048145,
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.120461,
+              94.261853
+            ],
+            "periods": [
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE FINTECH LESSON",
+        "body": "Paytm pioneered Indian digital payments and at peak was valued above $20B. Its collapse is not a technology failure — the UPI rails it helped build still process 15 billion transactions a month. It is a governance failure: the founder treated a regulated bank as an extension of a tech startup, and the regulator eventually drew the line."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-24"
+    ],
+    "generatedAt": "2026-04-24T17:33:16.459Z",
+    "label": "Payments Banks & RBI Enforcement",
+    "category": "economy",
+    "articleCount": 1
   }
 }
