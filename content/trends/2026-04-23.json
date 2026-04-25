@@ -1,6 +1,6 @@
 {
-  "fetchedAt": "2026-04-22T22:34:57.884Z",
-  "asOf": "2026-04-22",
+  "fetchedAt": "2026-04-23T22:35:01.653Z",
+  "asOf": "2026-04-23",
   "indicators": [
     {
       "id": "brent",
@@ -30,7 +30,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "FRED · EIA",
       "values": [
-        65.46,
         68.16,
         67.7,
         70.28,
@@ -93,7 +92,6 @@
         103.4
       ],
       "periods": [
-        "Jan 22",
         "Jan 23",
         "Jan 26",
         "Jan 27",
@@ -176,7 +174,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "FRED · EIA",
       "values": [
-        59.24,
         60.7,
         60.46,
         62.04,
@@ -239,7 +236,6 @@
         91.06
       ],
       "periods": [
-        "Jan 22",
         "Jan 23",
         "Jan 26",
         "Jan 27",
@@ -324,7 +320,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "FRED · EIA",
       "values": [
-        8.42,
         30.72,
         25.01,
         17.19,
@@ -387,7 +382,6 @@
         2.81
       ],
       "periods": [
-        "Jan 22",
         "Jan 23",
         "Jan 26",
         "Jan 27",
@@ -698,7 +692,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "FRED · Board of Governors",
       "values": [
-        4.26,
         4.24,
         4.22,
         4.24,
@@ -760,10 +753,10 @@
         4.32,
         4.26,
         4.26,
+        4.3,
         4.3
       ],
       "periods": [
-        "Jan 22",
         "Jan 23",
         "Jan 26",
         "Jan 27",
@@ -825,9 +818,10 @@
         "Apr 16",
         "Apr 17",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21"
+      "asOf": "2026-04-22"
     },
     {
       "id": "vix",
@@ -850,7 +844,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "FRED · CBOE",
       "values": [
-        15.64,
         16.09,
         16.15,
         16.35,
@@ -912,10 +905,10 @@
         17.94,
         17.48,
         18.87,
-        19.5
+        19.5,
+        18.92
       ],
       "periods": [
-        "Jan 22",
         "Jan 23",
         "Jan 26",
         "Jan 27",
@@ -977,9 +970,10 @@
         "Apr 16",
         "Apr 17",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21"
+      "asOf": "2026-04-22"
     },
     {
       "id": "sp500",
@@ -1003,7 +997,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "FRED · S&P",
       "values": [
-        6913.35,
         6915.61,
         6950.23,
         6978.6,
@@ -1064,10 +1057,10 @@
         7041.28,
         7126.06,
         7109.14,
-        7064.01
+        7064.01,
+        7137.9
       ],
       "periods": [
-        "Jan 22",
         "Jan 23",
         "Jan 26",
         "Jan 27",
@@ -1128,9 +1121,10 @@
         "Apr 16",
         "Apr 17",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21"
+      "asOf": "2026-04-22"
     },
     {
       "id": "nasdaq100",
@@ -1157,7 +1151,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "FRED · NASDAQ",
       "values": [
-        25518.35,
         25605.47,
         25713.21,
         25939.74,
@@ -1218,10 +1211,10 @@
         26333,
         26672.43,
         26590.34,
-        26479.47
+        26479.47,
+        26937.27
       ],
       "periods": [
-        "Jan 22",
         "Jan 23",
         "Jan 26",
         "Jan 27",
@@ -1282,9 +1275,10 @@
         "Apr 16",
         "Apr 17",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21"
+      "asOf": "2026-04-22"
     },
     {
       "id": "us-gas-retail",
@@ -1437,7 +1431,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        278.846901,
         279.174143,
         278.822517,
         279.2,
@@ -1466,10 +1459,10 @@
         279.298672,
         279.757081,
         278.536876,
-        279.179895
+        279.179895,
+        279.736501
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -1498,9 +1491,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-ngn",
@@ -1523,7 +1517,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        1375.26,
         1383.69,
         1384.52,
         1383.46,
@@ -1552,10 +1545,10 @@
         1345.790676,
         1346.63,
         1345.47,
-        1348.77
+        1348.77,
+        1351.09
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -1584,9 +1577,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-egp",
@@ -1608,7 +1602,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        52.5849,
         52.5322,
         52.694725,
         52.642155,
@@ -1637,10 +1630,10 @@
         51.884157,
         51.970698,
         51.9993,
-        51.7463
+        51.7463,
+        52.0118
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -1669,9 +1662,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-try",
@@ -1694,7 +1688,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        44.344199,
         44.359699,
         44.4623,
         44.433398,
@@ -1723,10 +1716,10 @@
         44.844405,
         44.870503,
         44.889801,
-        44.914199
+        44.914199,
+        44.924198
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -1755,9 +1748,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-bdt",
@@ -1779,7 +1773,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        122.472853,
         122.789598,
         122.564346,
         122.71271,
@@ -1808,10 +1801,10 @@
         123.155981,
         123.357642,
         122.580609,
-        122.859886
+        122.859886,
+        123.120944
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -1840,9 +1833,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-idr",
@@ -1863,7 +1857,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        16889.027294,
         16911,
         16931.95,
         16990.8,
@@ -1892,10 +1885,10 @@
         17140,
         17171.403531,
         17141.082458,
-        17180.328876
+        17180.328876,
+        17298.023696
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -1924,9 +1917,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-lbp",
@@ -1947,7 +1941,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        89394.446299,
         89583.213344,
         89469.242764,
         89550,
@@ -1976,10 +1969,10 @@
         89714.210369,
         89848.110329,
         89471.453014,
-        89501.323014
+        89501.323014,
+        89873.297866
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -2008,9 +2001,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-cny",
@@ -2036,7 +2030,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        6.8927,
         6.9015,
         6.9115,
         6.9119,
@@ -2065,10 +2058,10 @@
         6.8177,
         6.8192,
         6.8157,
-        6.8235
+        6.8235,
+        6.8327
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -2097,9 +2090,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-inr",
@@ -2125,7 +2119,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        94.28484,
         94.127654,
         94.30975,
         94.8642,
@@ -2154,10 +2147,10 @@
         92.60245,
         92.782407,
         93.348804,
-        93.775164
+        93.775164,
+        94.120461
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -2186,9 +2179,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-brl",
@@ -2213,7 +2207,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        5.2336,
         5.238,
         5.2364,
         5.255,
@@ -2242,10 +2235,10 @@
         4.979194,
         5.0193,
         4.9539,
-        5.0104
+        5.0104,
+        4.9872
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -2274,9 +2267,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-mxn",
@@ -2302,7 +2296,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        17.734778,
         17.779964,
         17.91845,
         18.1211,
@@ -2331,10 +2324,10 @@
         17.311101,
         17.341558,
         17.31295,
-        17.320129
+        17.320129,
+        17.370605
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -2363,9 +2356,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-eur",
@@ -2397,7 +2391,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        0.861048,
         0.864936,
         0.866889,
         0.866213,
@@ -2426,10 +2419,10 @@
         0.849401,
         0.850349,
         0.849214,
-        0.851902
+        0.851902,
+        0.855018
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -2458,9 +2451,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-jpy",
@@ -2485,7 +2479,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        158.7094,
         159.39116667,
         159.725,
         160.299,
@@ -2514,10 +2507,10 @@
         158.63,
         158.8855,
         158.9865,
-        159.3964
+        159.3964,
+        159.54668182
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -2546,9 +2539,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-rub",
@@ -2574,7 +2568,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        80.500715,
         80.997208,
         81.37717,
         81.419507,
@@ -2603,10 +2596,10 @@
         76.231514,
         76.231376,
         74.947786,
-        75.123411
+        75.123411,
+        75.100327
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -2635,9 +2628,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "fx-zar",
@@ -2662,7 +2656,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Open Exchange Rates",
       "values": [
-        16.91625,
         16.991335,
         17.090436,
         17.12,
@@ -2691,10 +2684,10 @@
         16.3162,
         16.3754,
         16.384099,
-        16.4976
+        16.4976,
+        16.531786
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -2723,9 +2716,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22"
+        "Apr 22",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "portwatch-hormuz-tanker",
@@ -2751,7 +2745,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "IMF PortWatch",
       "values": [
-        72,
         62,
         55,
         58,
@@ -2810,7 +2803,6 @@
         2
       ],
       "periods": [
-        "Feb 22",
         "Feb 23",
         "Feb 24",
         "Feb 25",
@@ -2894,7 +2886,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "IMF PortWatch",
       "values": [
-        11,
         6,
         7,
         5,
@@ -2953,7 +2944,6 @@
         7
       ],
       "periods": [
-        "Feb 22",
         "Feb 23",
         "Feb 24",
         "Feb 25",
@@ -3036,7 +3026,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "IMF PortWatch",
       "values": [
-        35,
         39,
         33,
         44,
@@ -3095,7 +3084,6 @@
         41
       ],
       "periods": [
-        "Feb 22",
         "Feb 23",
         "Feb 24",
         "Feb 25",
@@ -3177,7 +3165,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "IMF PortWatch",
       "values": [
-        43,
         30,
         31,
         30,
@@ -3236,7 +3223,6 @@
         36
       ],
       "periods": [
-        "Feb 22",
         "Feb 23",
         "Feb 24",
         "Feb 25",
@@ -3319,7 +3305,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "IMF PortWatch",
       "values": [
-        234,
         243,
         239,
         232,
@@ -3378,7 +3363,6 @@
         207
       ],
       "periods": [
-        "Feb 22",
         "Feb 23",
         "Feb 24",
         "Feb 25",
@@ -3462,7 +3446,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "IMF PortWatch",
       "values": [
-        205,
         219,
         206,
         172,
@@ -3521,7 +3504,6 @@
         253
       ],
       "periods": [
-        "Feb 22",
         "Feb 23",
         "Feb 24",
         "Feb 25",
@@ -3602,7 +3584,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "IMF PortWatch",
       "values": [
-        185,
         173,
         192,
         178,
@@ -3661,7 +3642,6 @@
         172
       ],
       "periods": [
-        "Feb 22",
         "Feb 23",
         "Feb 24",
         "Feb 25",
@@ -3742,7 +3722,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "IMF PortWatch",
       "values": [
-        139,
         159,
         151,
         140,
@@ -3801,7 +3780,6 @@
         122
       ],
       "periods": [
-        "Feb 22",
         "Feb 23",
         "Feb 24",
         "Feb 25",
@@ -3862,11 +3840,11 @@
       "asOf": "2026-04-19"
     },
     {
-      "id": "poly-iran-x-israelus-conflict-ends-by-may-15-562-372-",
-      "label": "Iran x Israel/US conflict ends by May 15?",
+      "id": "poly-iran-x-israelus-conflict-ends-by-april-7-346",
+      "label": "Iran x Israel/US conflict ends by April 7?",
       "unit": "%",
       "source": "polymarket",
-      "seriesId": "iran-x-israelus-conflict-ends-by-may-15-562-372-916-721-496",
+      "seriesId": "iran-x-israelus-conflict-ends-by-april-7-346",
       "cadence": "daily",
       "topicTags": [
         "prediction",
@@ -3878,38 +3856,28 @@
       "defaultHighlight": "last",
       "sourceLabel": "Polymarket",
       "values": [
-        49,
-        57,
-        60,
-        55,
-        51,
-        47,
-        44,
-        40,
+        20,
+        18,
+        14,
+        9,
+        6,
+        4,
+        4,
+        7,
+        5,
+        1,
+        1,
+        1,
+        1,
         40,
         46,
-        51,
-        42,
-        28,
-        33,
-        33,
-        75,
-        68,
-        74,
-        78,
-        66,
-        85,
-        92,
-        92,
-        85,
-        85,
-        96,
+        79,
+        89,
+        100,
         100,
         100
       ],
       "periods": [
-        "Mar 23",
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -3923,71 +3891,49 @@
         "Apr 4",
         "Apr 6",
         "Apr 7",
-        "Apr 8",
         "Apr 9",
-        "Apr 10",
-        "Apr 11",
         "Apr 13",
         "Apr 15",
-        "Apr 16",
-        "Apr 17",
-        "Apr 19",
-        "Apr 20",
-        "Apr 21",
+        "Apr 18",
         "Apr 22",
-        "Apr 22"
+        "Apr 23",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22",
+      "asOf": "2026-04-23",
       "marketUrl": "https://polymarket.com/event/iran-x-israelus-conflict-ends-by",
       "outcomeLabel": "Yes"
     },
     {
-      "id": "poly-will-roberto-snchez-palomino-win-the-2026-peruvi",
-      "label": "Roberto Sánchez Palomino win the 2026…",
+      "id": "poly-us-x-iran-permanent-peace-deal-by-april-30-2026-",
+      "label": "US x Iran permanent peace deal by April…",
       "unit": "%",
       "source": "polymarket",
-      "seriesId": "will-roberto-snchez-palomino-win-the-2026-peruvian-presidential-election",
+      "seriesId": "us-x-iran-permanent-peace-deal-by-april-30-2026-925",
       "cadence": "daily",
       "topicTags": [
         "prediction",
         "polymarket",
         "odds",
-        "election"
+        "iran"
       ],
       "defaultHighlight": "last",
       "sourceLabel": "Polymarket",
       "values": [
-        4,
-        6,
-        6,
-        14,
-        16,
+        19,
+        28,
+        19,
         17,
-        12,
-        10,
-        8,
-        8,
-        23,
-        23,
-        23
+        7
       ],
       "periods": [
-        "Mar 23",
-        "Mar 24",
-        "Mar 25",
-        "Mar 26",
-        "Mar 27",
-        "Mar 28",
-        "Mar 29",
-        "Mar 31",
-        "Apr 2",
         "Apr 9",
-        "Apr 19",
+        "Apr 12",
         "Apr 22",
-        "Apr 22"
+        "Apr 23",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22",
-      "marketUrl": "https://polymarket.com/event/peru-presidential-election-winner",
+      "asOf": "2026-04-23",
+      "marketUrl": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by",
       "outcomeLabel": "Yes"
     },
     {
@@ -4006,7 +3952,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Polymarket",
       "values": [
-        94,
         95,
         95,
         95,
@@ -4027,13 +3972,13 @@
         94,
         94,
         95,
+        94,
         94,
         94,
         94,
         94
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -4057,10 +4002,60 @@
         "Apr 20",
         "Apr 21",
         "Apr 22",
-        "Apr 22"
+        "Apr 23",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22",
+      "asOf": "2026-04-23",
       "marketUrl": "https://polymarket.com/event/who-will-be-confirmed-as-fed-chair",
+      "outcomeLabel": "Yes"
+    },
+    {
+      "id": "poly-will-roberto-snchez-palomino-win-the-2026-peruvi",
+      "label": "Roberto Sánchez Palomino win the 2026…",
+      "unit": "%",
+      "source": "polymarket",
+      "seriesId": "will-roberto-snchez-palomino-win-the-2026-peruvian-presidential-election",
+      "cadence": "daily",
+      "topicTags": [
+        "prediction",
+        "polymarket",
+        "odds",
+        "election"
+      ],
+      "defaultHighlight": "last",
+      "sourceLabel": "Polymarket",
+      "values": [
+        6,
+        6,
+        14,
+        16,
+        17,
+        12,
+        10,
+        8,
+        8,
+        23,
+        23,
+        23,
+        25
+      ],
+      "periods": [
+        "Mar 24",
+        "Mar 25",
+        "Mar 26",
+        "Mar 27",
+        "Mar 28",
+        "Mar 29",
+        "Mar 31",
+        "Apr 2",
+        "Apr 9",
+        "Apr 19",
+        "Apr 22",
+        "Apr 23",
+        "Apr 23"
+      ],
+      "asOf": "2026-04-23",
+      "marketUrl": "https://polymarket.com/event/peru-presidential-election-winner",
       "outcomeLabel": "Yes"
     },
     {
@@ -4079,7 +4074,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "Polymarket",
       "values": [
-        59,
         51,
         54,
         62,
@@ -4107,10 +4101,10 @@
         36,
         31,
         28,
-        30
+        31,
+        32
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -4138,61 +4132,11 @@
         "Apr 20",
         "Apr 21",
         "Apr 22",
-        "Apr 22"
+        "Apr 23",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22",
+      "asOf": "2026-04-23",
       "marketUrl": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
-      "outcomeLabel": "Yes"
-    },
-    {
-      "id": "poly-iran-agrees-to-surrender-enriched-uranium-stockp",
-      "label": "Iran agrees to surrender enriched…",
-      "unit": "%",
-      "source": "polymarket",
-      "seriesId": "iran-agrees-to-surrender-enriched-uranium-stockpile-by-april-30-2026",
-      "cadence": "daily",
-      "topicTags": [
-        "prediction",
-        "polymarket",
-        "odds",
-        "iran"
-      ],
-      "defaultHighlight": "last",
-      "sourceLabel": "Polymarket",
-      "values": [
-        9,
-        13,
-        12,
-        11,
-        10,
-        7,
-        3,
-        4,
-        14,
-        9,
-        27,
-        48,
-        12,
-        12
-      ],
-      "periods": [
-        "Mar 28",
-        "Mar 29",
-        "Mar 30",
-        "Mar 31",
-        "Apr 1",
-        "Apr 2",
-        "Apr 3",
-        "Apr 7",
-        "Apr 9",
-        "Apr 13",
-        "Apr 15",
-        "Apr 18",
-        "Apr 22",
-        "Apr 22"
-      ],
-      "asOf": "2026-04-22",
-      "marketUrl": "https://polymarket.com/event/iran-agrees-to-surrender-enriched-uranium-stockpile-by",
       "outcomeLabel": "Yes"
     },
     {
@@ -4220,7 +4164,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "CoinGecko",
       "values": [
-        70892.83,
         70524.51,
         71309.26,
         68791.11,
@@ -4250,10 +4193,10 @@
         73856.06,
         75874.55,
         76350.25,
-        78551.68
+        78194.78,
+        78246.23
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -4283,9 +4226,10 @@
         "Apr 20",
         "Apr 21",
         "Apr 22",
-        "Apr 22"
+        "Apr 23",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "eth",
@@ -4312,7 +4256,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "CoinGecko",
       "values": [
-        2151.5,
         2155.68,
         2168.26,
         2059.33,
@@ -4342,10 +4285,10 @@
         2264.81,
         2315.02,
         2327.51,
-        2397.9
+        2377.93,
+        2333.38
       ],
       "periods": [
-        "Mar 24",
         "Mar 25",
         "Mar 26",
         "Mar 27",
@@ -4375,9 +4318,10 @@
         "Apr 20",
         "Apr 21",
         "Apr 22",
-        "Apr 22"
+        "Apr 23",
+        "Apr 23"
       ],
-      "asOf": "2026-04-22"
+      "asOf": "2026-04-23"
     },
     {
       "id": "paxg",
@@ -4402,7 +4346,6 @@
       "defaultHighlight": "last",
       "sourceLabel": "CoinGecko · PAXG (gold-backed)",
       "values": [
-        4443.43,
         4541.69,
         4498.14,
         4406.69,
@@ -4432,7 +4375,176 @@
         4736.06,
         4807.83,
         4729.84,
-        4723.87
+        4714.79,
+        4685.89
+      ],
+      "periods": [
+        "Mar 25",
+        "Mar 26",
+        "Mar 27",
+        "Mar 28",
+        "Mar 29",
+        "Mar 30",
+        "Mar 31",
+        "Apr 1",
+        "Apr 2",
+        "Apr 3",
+        "Apr 4",
+        "Apr 5",
+        "Apr 6",
+        "Apr 7",
+        "Apr 8",
+        "Apr 9",
+        "Apr 10",
+        "Apr 11",
+        "Apr 12",
+        "Apr 13",
+        "Apr 14",
+        "Apr 15",
+        "Apr 16",
+        "Apr 17",
+        "Apr 18",
+        "Apr 19",
+        "Apr 20",
+        "Apr 21",
+        "Apr 22",
+        "Apr 23",
+        "Apr 23"
+      ],
+      "asOf": "2026-04-23"
+    },
+    {
+      "id": "xmr",
+      "label": "Monero",
+      "unit": "$",
+      "source": "crypto",
+      "seriesId": "monero",
+      "cadence": "daily",
+      "topicTags": [
+        "monero",
+        "xmr",
+        "privacy coin",
+        "ransomware",
+        "darknet",
+        "sanctions evasion",
+        "ddos payment",
+        "anonymity",
+        "delisting"
+      ],
+      "countryTags": [],
+      "defaultHighlight": "last",
+      "sourceLabel": "CoinGecko",
+      "values": [
+        340.21,
+        340.54,
+        327.78,
+        325.14,
+        330.18,
+        326.74,
+        321.31,
+        333.58,
+        336.51,
+        325.91,
+        315.86,
+        325.38,
+        331,
+        325.82,
+        345.05,
+        324.43,
+        347.38,
+        343.91,
+        338.55,
+        335.3,
+        346.7,
+        344.38,
+        345.99,
+        343.4,
+        348.24,
+        349.81,
+        347.8,
+        353.64,
+        385.07,
+        367.27,
+        375.62
+      ],
+      "periods": [
+        "Mar 25",
+        "Mar 26",
+        "Mar 27",
+        "Mar 28",
+        "Mar 29",
+        "Mar 30",
+        "Mar 31",
+        "Apr 1",
+        "Apr 2",
+        "Apr 3",
+        "Apr 4",
+        "Apr 5",
+        "Apr 6",
+        "Apr 7",
+        "Apr 8",
+        "Apr 9",
+        "Apr 10",
+        "Apr 11",
+        "Apr 12",
+        "Apr 13",
+        "Apr 14",
+        "Apr 15",
+        "Apr 16",
+        "Apr 17",
+        "Apr 18",
+        "Apr 19",
+        "Apr 20",
+        "Apr 21",
+        "Apr 22",
+        "Apr 23",
+        "Apr 23"
+      ],
+      "asOf": "2026-04-23"
+    },
+    {
+      "id": "wiki-iran",
+      "label": "Iran — Wikipedia views",
+      "unit": "views/day",
+      "source": "wikipedia",
+      "seriesId": "Iran",
+      "cadence": "daily",
+      "topicTags": [
+        "iran"
+      ],
+      "defaultHighlight": "max",
+      "sourceLabel": "Wikipedia pageviews",
+      "values": [
+        49294,
+        48496,
+        47321,
+        41845,
+        38957,
+        41851,
+        43853,
+        39754,
+        41289,
+        42559,
+        41034,
+        38799,
+        39026,
+        45533,
+        89945,
+        68648,
+        41459,
+        31057,
+        28311,
+        32662,
+        31489,
+        27378,
+        26083,
+        22220,
+        23002,
+        20644,
+        21191,
+        21686,
+        24922,
+        23103
       ],
       "periods": [
         "Mar 24",
@@ -4464,89 +4576,10 @@
         "Apr 19",
         "Apr 20",
         "Apr 21",
-        "Apr 22",
         "Apr 22"
       ],
-      "asOf": "2026-04-22"
-    },
-    {
-      "id": "wiki-iran",
-      "label": "Iran — Wikipedia views",
-      "unit": "views/day",
-      "source": "wikipedia",
-      "seriesId": "Iran",
-      "cadence": "daily",
-      "topicTags": [
-        "iran"
-      ],
-      "defaultHighlight": "max",
-      "sourceLabel": "Wikipedia pageviews",
-      "values": [
-        56161,
-        49294,
-        48496,
-        47321,
-        41845,
-        38957,
-        41851,
-        43853,
-        39754,
-        41289,
-        42559,
-        41034,
-        38799,
-        39026,
-        45533,
-        89945,
-        68648,
-        41459,
-        31057,
-        28311,
-        32662,
-        31489,
-        27378,
-        26083,
-        22220,
-        23002,
-        20644,
-        21191,
-        21686,
-        24922
-      ],
-      "periods": [
-        "Mar 23",
-        "Mar 24",
-        "Mar 25",
-        "Mar 26",
-        "Mar 27",
-        "Mar 28",
-        "Mar 29",
-        "Mar 30",
-        "Mar 31",
-        "Apr 1",
-        "Apr 2",
-        "Apr 3",
-        "Apr 4",
-        "Apr 5",
-        "Apr 6",
-        "Apr 7",
-        "Apr 8",
-        "Apr 9",
-        "Apr 10",
-        "Apr 11",
-        "Apr 12",
-        "Apr 13",
-        "Apr 14",
-        "Apr 15",
-        "Apr 16",
-        "Apr 17",
-        "Apr 18",
-        "Apr 19",
-        "Apr 20",
-        "Apr 21"
-      ],
-      "asOf": "2026-04-21",
-      "_corpusCount": 58
+      "asOf": "2026-04-22",
+      "_corpusCount": 59
     },
     {
       "id": "wiki-strait-of-hormuz",
@@ -4561,7 +4594,6 @@
       "defaultHighlight": "max",
       "sourceLabel": "Wikipedia pageviews",
       "values": [
-        70561,
         54333,
         61937,
         63437,
@@ -4590,10 +4622,10 @@
         53789,
         41751,
         30719,
-        22824
+        22824,
+        22683
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -4622,10 +4654,11 @@
         "Apr 18",
         "Apr 19",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21",
-      "_corpusCount": 40
+      "asOf": "2026-04-22",
+      "_corpusCount": 39
     },
     {
       "id": "wiki-donald-trump",
@@ -4640,7 +4673,6 @@
       "defaultHighlight": "max",
       "sourceLabel": "Wikipedia pageviews",
       "values": [
-        75163,
         70284,
         66108,
         65078,
@@ -4669,10 +4701,10 @@
         50956,
         49035,
         53583,
-        59125
+        59125,
+        60488
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -4701,89 +4733,11 @@
         "Apr 18",
         "Apr 19",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21",
-      "_corpusCount": 40
-    },
-    {
-      "id": "wiki-united-states",
-      "label": "United States — Wikipedia views",
-      "unit": "views/day",
-      "source": "wikipedia",
-      "seriesId": "United_States",
-      "cadence": "daily",
-      "topicTags": [
-        "united states"
-      ],
-      "defaultHighlight": "max",
-      "sourceLabel": "Wikipedia pageviews",
-      "values": [
-        53067,
-        50208,
-        50320,
-        51462,
-        51547,
-        38787,
-        40107,
-        48245,
-        48148,
-        50019,
-        47305,
-        43024,
-        36877,
-        38484,
-        42787,
-        47238,
-        46896,
-        47835,
-        45618,
-        38363,
-        42602,
-        54089,
-        54479,
-        51542,
-        54939,
-        56100,
-        35447,
-        37610,
-        51296,
-        59439
-      ],
-      "periods": [
-        "Mar 23",
-        "Mar 24",
-        "Mar 25",
-        "Mar 26",
-        "Mar 27",
-        "Mar 28",
-        "Mar 29",
-        "Mar 30",
-        "Mar 31",
-        "Apr 1",
-        "Apr 2",
-        "Apr 3",
-        "Apr 4",
-        "Apr 5",
-        "Apr 6",
-        "Apr 7",
-        "Apr 8",
-        "Apr 9",
-        "Apr 10",
-        "Apr 11",
-        "Apr 12",
-        "Apr 13",
-        "Apr 14",
-        "Apr 15",
-        "Apr 16",
-        "Apr 17",
-        "Apr 18",
-        "Apr 19",
-        "Apr 20",
-        "Apr 21"
-      ],
-      "asOf": "2026-04-21",
-      "_corpusCount": 25
+      "asOf": "2026-04-22",
+      "_corpusCount": 36
     },
     {
       "id": "wiki-pakistan",
@@ -4798,7 +4752,6 @@
       "defaultHighlight": "max",
       "sourceLabel": "Wikipedia pageviews",
       "values": [
-        19140,
         16393,
         19094,
         14749,
@@ -4827,10 +4780,10 @@
         12081,
         13733,
         13903,
-        16604
+        16604,
+        13169
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -4859,10 +4812,90 @@
         "Apr 18",
         "Apr 19",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21",
+      "asOf": "2026-04-22",
       "_corpusCount": 25
+    },
+    {
+      "id": "wiki-united-states",
+      "label": "United States — Wikipedia views",
+      "unit": "views/day",
+      "source": "wikipedia",
+      "seriesId": "United_States",
+      "cadence": "daily",
+      "topicTags": [
+        "united states"
+      ],
+      "defaultHighlight": "max",
+      "sourceLabel": "Wikipedia pageviews",
+      "values": [
+        50208,
+        50320,
+        51462,
+        51547,
+        38787,
+        40107,
+        48245,
+        48148,
+        50019,
+        47305,
+        43024,
+        36877,
+        38484,
+        42787,
+        47238,
+        46896,
+        47835,
+        45618,
+        38363,
+        42602,
+        54089,
+        54479,
+        51542,
+        54939,
+        56100,
+        35447,
+        37610,
+        51296,
+        59439,
+        53790
+      ],
+      "periods": [
+        "Mar 24",
+        "Mar 25",
+        "Mar 26",
+        "Mar 27",
+        "Mar 28",
+        "Mar 29",
+        "Mar 30",
+        "Mar 31",
+        "Apr 1",
+        "Apr 2",
+        "Apr 3",
+        "Apr 4",
+        "Apr 5",
+        "Apr 6",
+        "Apr 7",
+        "Apr 8",
+        "Apr 9",
+        "Apr 10",
+        "Apr 11",
+        "Apr 12",
+        "Apr 13",
+        "Apr 14",
+        "Apr 15",
+        "Apr 16",
+        "Apr 17",
+        "Apr 18",
+        "Apr 19",
+        "Apr 20",
+        "Apr 21",
+        "Apr 22"
+      ],
+      "asOf": "2026-04-22",
+      "_corpusCount": 24
     },
     {
       "id": "wiki-israel",
@@ -4877,7 +4910,6 @@
       "defaultHighlight": "max",
       "sourceLabel": "Wikipedia pageviews",
       "values": [
-        31314,
         27241,
         26237,
         25107,
@@ -4906,10 +4938,10 @@
         15345,
         16030,
         17686,
-        20081
+        20081,
+        17327
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -4938,10 +4970,11 @@
         "Apr 18",
         "Apr 19",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21",
-      "_corpusCount": 23
+      "asOf": "2026-04-22",
+      "_corpusCount": 21
     },
     {
       "id": "wiki-russia",
@@ -4956,7 +4989,6 @@
       "defaultHighlight": "max",
       "sourceLabel": "Wikipedia pageviews",
       "values": [
-        17290,
         14034,
         14429,
         13833,
@@ -4985,10 +5017,10 @@
         12153,
         12542,
         13915,
-        16739
+        16739,
+        13216
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -5017,10 +5049,11 @@
         "Apr 18",
         "Apr 19",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21",
-      "_corpusCount": 20
+      "asOf": "2026-04-22",
+      "_corpusCount": 21
     },
     {
       "id": "wiki-india",
@@ -5035,7 +5068,6 @@
       "defaultHighlight": "max",
       "sourceLabel": "Wikipedia pageviews",
       "values": [
-        38791,
         39457,
         38894,
         38875,
@@ -5064,10 +5096,10 @@
         25256,
         23753,
         25820,
-        28985
+        28985,
+        31482
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -5096,89 +5128,11 @@
         "Apr 18",
         "Apr 19",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21",
+      "asOf": "2026-04-22",
       "_corpusCount": 17
-    },
-    {
-      "id": "wiki-lebanon",
-      "label": "Lebanon — Wikipedia views",
-      "unit": "views/day",
-      "source": "wikipedia",
-      "seriesId": "Lebanon",
-      "cadence": "daily",
-      "topicTags": [
-        "lebanon"
-      ],
-      "defaultHighlight": "max",
-      "sourceLabel": "Wikipedia pageviews",
-      "values": [
-        15457,
-        17510,
-        16245,
-        14542,
-        12317,
-        12897,
-        12681,
-        12719,
-        13219,
-        12062,
-        9946,
-        10899,
-        10007,
-        10351,
-        11092,
-        11648,
-        55682,
-        96579,
-        46877,
-        25761,
-        21793,
-        18775,
-        18698,
-        16791,
-        23689,
-        23521,
-        15678,
-        12006,
-        13656,
-        12564
-      ],
-      "periods": [
-        "Mar 23",
-        "Mar 24",
-        "Mar 25",
-        "Mar 26",
-        "Mar 27",
-        "Mar 28",
-        "Mar 29",
-        "Mar 30",
-        "Mar 31",
-        "Apr 1",
-        "Apr 2",
-        "Apr 3",
-        "Apr 4",
-        "Apr 5",
-        "Apr 6",
-        "Apr 7",
-        "Apr 8",
-        "Apr 9",
-        "Apr 10",
-        "Apr 11",
-        "Apr 12",
-        "Apr 13",
-        "Apr 14",
-        "Apr 15",
-        "Apr 16",
-        "Apr 17",
-        "Apr 18",
-        "Apr 19",
-        "Apr 20",
-        "Apr 21"
-      ],
-      "asOf": "2026-04-21",
-      "_corpusCount": 16
     },
     {
       "id": "wiki-artificial-intelligence",
@@ -5193,7 +5147,6 @@
       "defaultHighlight": "max",
       "sourceLabel": "Wikipedia pageviews",
       "values": [
-        34284,
         86792,
         33747,
         32173,
@@ -5222,10 +5175,10 @@
         24304,
         24189,
         27607,
-        24623
+        24623,
+        26694
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -5254,10 +5207,90 @@
         "Apr 18",
         "Apr 19",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21",
-      "_corpusCount": 14
+      "asOf": "2026-04-22",
+      "_corpusCount": 17
+    },
+    {
+      "id": "wiki-lebanon",
+      "label": "Lebanon — Wikipedia views",
+      "unit": "views/day",
+      "source": "wikipedia",
+      "seriesId": "Lebanon",
+      "cadence": "daily",
+      "topicTags": [
+        "lebanon"
+      ],
+      "defaultHighlight": "max",
+      "sourceLabel": "Wikipedia pageviews",
+      "values": [
+        17510,
+        16245,
+        14542,
+        12317,
+        12897,
+        12681,
+        12719,
+        13219,
+        12062,
+        9946,
+        10899,
+        10007,
+        10351,
+        11092,
+        11648,
+        55682,
+        96579,
+        46877,
+        25761,
+        21793,
+        18775,
+        18698,
+        16791,
+        23689,
+        23521,
+        15678,
+        12006,
+        13656,
+        12564,
+        11097
+      ],
+      "periods": [
+        "Mar 24",
+        "Mar 25",
+        "Mar 26",
+        "Mar 27",
+        "Mar 28",
+        "Mar 29",
+        "Mar 30",
+        "Mar 31",
+        "Apr 1",
+        "Apr 2",
+        "Apr 3",
+        "Apr 4",
+        "Apr 5",
+        "Apr 6",
+        "Apr 7",
+        "Apr 8",
+        "Apr 9",
+        "Apr 10",
+        "Apr 11",
+        "Apr 12",
+        "Apr 13",
+        "Apr 14",
+        "Apr 15",
+        "Apr 16",
+        "Apr 17",
+        "Apr 18",
+        "Apr 19",
+        "Apr 20",
+        "Apr 21",
+        "Apr 22"
+      ],
+      "asOf": "2026-04-22",
+      "_corpusCount": 15
     },
     {
       "id": "wiki-european-union",
@@ -5272,7 +5305,6 @@
       "defaultHighlight": "max",
       "sourceLabel": "Wikipedia pageviews",
       "values": [
-        9602,
         8944,
         8551,
         8407,
@@ -5301,10 +5333,10 @@
         8441,
         9604,
         10549,
-        11436
+        11436,
+        9811
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -5333,9 +5365,10 @@
         "Apr 18",
         "Apr 19",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21",
+      "asOf": "2026-04-22",
       "_corpusCount": 12
     },
     {
@@ -5351,7 +5384,6 @@
       "defaultHighlight": "max",
       "sourceLabel": "Wikipedia pageviews",
       "values": [
-        19725,
         17693,
         17312,
         17019,
@@ -5380,10 +5412,10 @@
         15383,
         15548,
         17276,
-        19749
+        19749,
+        17501
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -5412,57 +5444,57 @@
         "Apr 18",
         "Apr 19",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21",
+      "asOf": "2026-04-22",
       "_corpusCount": 11
     },
     {
-      "id": "wiki-nigeria",
-      "label": "Nigeria — Wikipedia views",
+      "id": "wiki-petroleum",
+      "label": "Petroleum — Wikipedia views",
       "unit": "views/day",
       "source": "wikipedia",
-      "seriesId": "Nigeria",
+      "seriesId": "Petroleum",
       "cadence": "daily",
       "topicTags": [
-        "nigeria"
+        "petroleum"
       ],
       "defaultHighlight": "max",
       "sourceLabel": "Wikipedia pageviews",
       "values": [
-        8521,
-        7393,
-        7404,
-        6720,
-        6756,
-        6094,
-        6772,
-        7277,
-        7132,
-        6860,
-        6494,
-        7365,
-        6166,
-        6004,
-        6568,
-        7276,
-        6424,
-        6622,
-        6418,
-        6268,
-        6681,
-        7155,
-        7225,
-        7272,
-        7245,
-        7740,
-        6061,
-        6290,
-        7225,
-        7844
+        4288,
+        4144,
+        4065,
+        3948,
+        3201,
+        3271,
+        3980,
+        3819,
+        3207,
+        3483,
+        3490,
+        2806,
+        2775,
+        3153,
+        3188,
+        3586,
+        3119,
+        2652,
+        2335,
+        2608,
+        3104,
+        3315,
+        2873,
+        2858,
+        2986,
+        2737,
+        2525,
+        2654,
+        2742,
+        2569
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -5491,57 +5523,57 @@
         "Apr 18",
         "Apr 19",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21",
+      "asOf": "2026-04-22",
       "_corpusCount": 10
     },
     {
-      "id": "wiki-hezbollah",
-      "label": "Hezbollah — Wikipedia views",
+      "id": "wiki-ukraine",
+      "label": "Ukraine — Wikipedia views",
       "unit": "views/day",
       "source": "wikipedia",
-      "seriesId": "Hezbollah",
+      "seriesId": "Ukraine",
       "cadence": "daily",
       "topicTags": [
-        "hezbollah"
+        "ukraine"
       ],
       "defaultHighlight": "max",
       "sourceLabel": "Wikipedia pageviews",
       "values": [
-        10993,
-        11395,
-        11929,
-        11815,
-        9995,
-        11066,
-        10608,
-        10424,
-        10391,
-        9180,
-        7614,
-        8559,
-        7026,
-        7055,
-        7558,
-        9808,
-        23684,
-        39533,
-        23021,
-        14306,
-        12079,
-        13796,
-        19862,
-        15566,
-        15978,
-        18996,
-        10924,
-        8087,
-        7493,
-        7539
+        10338,
+        9815,
+        9759,
+        8653,
+        9685,
+        9914,
+        9102,
+        8342,
+        9020,
+        8604,
+        25444,
+        29474,
+        23493,
+        22582,
+        11063,
+        8546,
+        7950,
+        9018,
+        7866,
+        8422,
+        8712,
+        8864,
+        8521,
+        8798,
+        12899,
+        8424,
+        9314,
+        9099,
+        12074,
+        16175
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -5570,57 +5602,57 @@
         "Apr 18",
         "Apr 19",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21",
+      "asOf": "2026-04-22",
       "_corpusCount": 9
     },
     {
-      "id": "wiki-islamabad",
-      "label": "Islamabad — Wikipedia views",
+      "id": "wiki-australia",
+      "label": "Australia — Wikipedia views",
       "unit": "views/day",
       "source": "wikipedia",
-      "seriesId": "Islamabad",
+      "seriesId": "Australia",
       "cadence": "daily",
       "topicTags": [
-        "islamabad"
+        "australia"
       ],
       "defaultHighlight": "max",
       "sourceLabel": "Wikipedia pageviews",
       "values": [
-        3013,
-        3228,
-        2898,
-        2362,
-        2149,
-        2361,
-        3111,
-        2839,
-        2329,
-        1961,
-        1885,
-        2617,
-        2267,
-        1988,
-        2265,
-        2869,
-        7978,
-        5637,
-        10171,
-        15953,
-        11094,
-        5954,
-        4600,
-        3201,
-        2992,
-        3143,
-        2528,
-        4018,
-        4925,
-        5963
+        15149,
+        14500,
+        14216,
+        14045,
+        12428,
+        13083,
+        14820,
+        14514,
+        14467,
+        13269,
+        14656,
+        12092,
+        12273,
+        13682,
+        13498,
+        13658,
+        13473,
+        12966,
+        12072,
+        12718,
+        14162,
+        14095,
+        13839,
+        15376,
+        14509,
+        11663,
+        13087,
+        14050,
+        16293,
+        14711
       ],
       "periods": [
-        "Mar 23",
         "Mar 24",
         "Mar 25",
         "Mar 26",
@@ -5649,10 +5681,143 @@
         "Apr 18",
         "Apr 19",
         "Apr 20",
-        "Apr 21"
+        "Apr 21",
+        "Apr 22"
       ],
-      "asOf": "2026-04-21",
+      "asOf": "2026-04-22",
       "_corpusCount": 8
+    },
+    {
+      "id": "stocks:META",
+      "label": "Meta Platforms, Inc.",
+      "unit": "$",
+      "source": "stocks",
+      "seriesId": "META",
+      "cadence": "daily",
+      "topicTags": [
+        "meta platforms",
+        "meta"
+      ],
+      "defaultHighlight": "last",
+      "sourceLabel": "Yahoo Finance · NMS",
+      "values": [
+        592.92,
+        594.89,
+        547.54,
+        525.72,
+        536.38,
+        572.13,
+        579.23,
+        574.46,
+        573.02,
+        575.05,
+        612.42,
+        628.39,
+        629.86,
+        634.53,
+        662.49,
+        671.58,
+        676.87,
+        688.55,
+        670.91,
+        668.84,
+        674.72,
+        659.15
+      ],
+      "periods": [
+        "Mar 24",
+        "Mar 25",
+        "Mar 26",
+        "Mar 27",
+        "Mar 30",
+        "Mar 31",
+        "Apr 1",
+        "Apr 2",
+        "Apr 6",
+        "Apr 7",
+        "Apr 8",
+        "Apr 9",
+        "Apr 10",
+        "Apr 13",
+        "Apr 14",
+        "Apr 15",
+        "Apr 16",
+        "Apr 17",
+        "Apr 20",
+        "Apr 21",
+        "Apr 22",
+        "Apr 23"
+      ],
+      "asOf": "2026-04-23",
+      "latest": 659.15,
+      "previous": 674.72,
+      "points": 22
+    },
+    {
+      "id": "stocks:MSFT",
+      "label": "Microsoft Corporation",
+      "unit": "$",
+      "source": "stocks",
+      "seriesId": "MSFT",
+      "cadence": "daily",
+      "topicTags": [
+        "microsoft",
+        "msft"
+      ],
+      "defaultHighlight": "last",
+      "sourceLabel": "Yahoo Finance · NMS",
+      "values": [
+        372.74,
+        371.04,
+        365.97,
+        356.77,
+        358.96,
+        370.17,
+        369.37,
+        373.46,
+        372.88,
+        372.29,
+        374.33,
+        373.07,
+        370.87,
+        384.37,
+        393.11,
+        411.22,
+        420.26,
+        422.79,
+        418.07,
+        424.16,
+        432.92,
+        415.75
+      ],
+      "periods": [
+        "Mar 24",
+        "Mar 25",
+        "Mar 26",
+        "Mar 27",
+        "Mar 30",
+        "Mar 31",
+        "Apr 1",
+        "Apr 2",
+        "Apr 6",
+        "Apr 7",
+        "Apr 8",
+        "Apr 9",
+        "Apr 10",
+        "Apr 13",
+        "Apr 14",
+        "Apr 15",
+        "Apr 16",
+        "Apr 17",
+        "Apr 20",
+        "Apr 21",
+        "Apr 22",
+        "Apr 23"
+      ],
+      "asOf": "2026-04-23",
+      "latest": 415.75,
+      "previous": 432.92,
+      "points": 22
     }
   ]
 }
