@@ -41,6 +41,10 @@ const COUNTRY_DISPLAY_NAMES: Record<string, string> = {
   Macedonia: 'North Macedonia',
   eSwatini: 'Eswatini',
 
+  // Cartographic shortenings — match the conventions used by Google Maps
+  // and most national atlases so labels read naturally on the globe.
+  'United States of America': 'United States',
+
   // Natural Earth abbreviations → full names
   'S. Sudan': 'South Sudan',
   'Bosnia and Herz.': 'Bosnia and Herzegovina',
@@ -57,4 +61,28 @@ const COUNTRY_DISPLAY_NAMES: Record<string, string> = {
 export function displayCountryName(name: string | null): string | null {
   if (!name) return null;
   return COUNTRY_DISPLAY_NAMES[name] ?? name;
+}
+
+/**
+ * Splits a country label into 1–2 lines for map rendering. Mirrors the
+ * convention used by Google Maps and Natural Earth atlases: long names
+ * wrap at the word boundary closest to the middle so the result reads
+ * as two roughly balanced lines (e.g. "Bosnia and / Herzegovina"). One
+ * line is returned untouched when the name fits within `maxChars`.
+ */
+export function wrapCountryLabel(name: string, maxChars = 14): string[] {
+  if (name.length <= maxChars) return [name];
+  const middle = name.length / 2;
+  let bestSpace = -1;
+  let bestDist = Infinity;
+  for (let i = 0; i < name.length; i++) {
+    if (name[i] !== ' ') continue;
+    const dist = Math.abs(i - middle);
+    if (dist < bestDist) {
+      bestDist = dist;
+      bestSpace = i;
+    }
+  }
+  if (bestSpace === -1) return [name];
+  return [name.slice(0, bestSpace), name.slice(bestSpace + 1)];
 }
