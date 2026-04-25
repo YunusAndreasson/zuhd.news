@@ -40,12 +40,12 @@ import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
 import { useContextBrief } from '../hooks/useContextBrief';
 import { useHeatmap } from '../hooks/useHeatmap';
+import { usePendingNotification } from '../hooks/usePendingNotification';
 import { useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
+import { useZoomCycle } from '../hooks/useZoomCycle';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
-import { usePendingNotification } from './_hooks/usePendingNotification';
-import { useZoomCycle } from './_hooks/useZoomCycle';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
 

@@ -1,12 +1,12 @@
 import type { Article, Category } from '@shared/types';
 import { useEffect } from 'react';
-import { CATEGORIES } from '../../constants/theme';
+import { CATEGORIES } from '../constants/theme';
 import {
   clearBriefing as clearPendingBriefing,
   clear as clearPendingSlug,
   getBriefing as getPendingBriefing,
   get as getPendingSlug,
-} from '../../lib/pending-notification';
+} from '../lib/pending-notification';
 
 type GroupedArticles = Record<Category, Article[]>;
 

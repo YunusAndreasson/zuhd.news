@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { hapticTick } from '../../lib/haptics';
+import { hapticTick } from '../lib/haptics';
 
 interface ZoomLevel {
   label: string;
