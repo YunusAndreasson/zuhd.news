@@ -1,5 +1,6 @@
-import { Platform, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
+import { IS_IOS } from '../constants/platform';
 import { LAYOUT } from '../constants/theme';
 
 // FullWindowOverlay is iOS-only (renders a no-op View on Android). On Android
@@ -8,7 +9,7 @@ import { LAYOUT } from '../constants/theme';
 // renders behind those siblings. pointerEvents="box-none" keeps taps passing
 // through the empty region when no sheet is mounted.
 export function SheetContainer({ children }: { children?: React.ReactNode }): React.ReactNode {
-  if (Platform.OS === 'ios') return <FullWindowOverlay>{children}</FullWindowOverlay>;
+  if (IS_IOS) return <FullWindowOverlay>{children}</FullWindowOverlay>;
   return (
     <View style={styles.androidOverlay} pointerEvents="box-none">
       {children}

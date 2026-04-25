@@ -1,14 +1,13 @@
 import type { ContextBrief } from '@shared/types';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { API_BASE } from '../constants/theme';
-import { GALLERY_BRIEF } from '../lib/__dev__/gallery-brief';
 import { fetchJson } from '../lib/fetchJson';
 import { isContextBrief, parseArticleBlocks } from '../lib/validate';
 
-// Dev override — when true and __DEV__, every CONTEXT button returns the
-// hand-crafted gallery brief instead of fetching the real one. Flip to false
-// (or delete this block + the gallery-brief import) when finished evaluating.
-const USE_DEV_GALLERY = __DEV__ && true;
+// Dev override — when true (__DEV__), every CONTEXT button returns the
+// hand-crafted gallery brief instead of fetching the real one. The import is
+// dynamic so Metro tree-shakes the 436-line fixture from production bundles.
+const USE_DEV_GALLERY = typeof __DEV__ !== 'undefined' && __DEV__;
 
 /** Sanitize optional block fields on the brief and each timeline entry so
  *  downstream renderers never see malformed / unknown-type blocks from the
@@ -52,6 +51,7 @@ export function useContextBrief(): ContextBriefState {
     inflightRef.current?.abort();
 
     if (USE_DEV_GALLERY) {
+      const { GALLERY_BRIEF } = await import('../lib/__dev__/gallery-brief');
       setBrief(GALLERY_BRIEF);
       setLoading(false);
       return;
