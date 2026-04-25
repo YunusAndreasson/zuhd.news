@@ -292,6 +292,10 @@ function init(data) {
         updateSelection();
         if (desktop) openArticle(true);
         break;
+      case 'u':
+        e.preventDefault();
+        if (state.artIdx >= 0) toggleSourceModal();
+        break;
       case 'o':
         e.preventDefault();
         if (state.artIdx >= 0) toggleSourceModal();
