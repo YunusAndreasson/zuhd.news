@@ -58954,5 +58954,880 @@
     "label": "The Complexome",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-24-renewables-overtake-coal-global-electricity-crossover": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CROSSOVER",
+        "body": "Coal generated more of the world's electricity than any other source for over a century — since the 1880s when Edison's Pearl Street station first burned it. The 2025 crossover ends that era. Renewables (wind, solar, hydro) now generate more terawatt-hours globally than coal does.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1882",
+                "label": "Edison's Pearl Street coal plant"
+              },
+              {
+                "year": "1954",
+                "label": "First commercial nuclear (Obninsk)"
+              },
+              {
+                "year": "1991",
+                "label": "First grid-scale wind farms"
+              },
+              {
+                "year": "2015",
+                "label": "Solar undercuts coal on cost"
+              },
+              {
+                "year": "2025",
+                "label": "Renewables overtake coal",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "coal's century at the top"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOLAR WON ON COST",
+        "body": "Solar module prices fell roughly 99% between 1980 and 2025 — Wright's Law in action: every doubling of cumulative production cut costs ~20%. Coal plants have no such learning curve; a tonne of coal in 2025 burns the same way it did in 1925.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The crossover is structural, not cyclical. **Levelized cost of electricity** (LCOE) for new utility-scale solar is now below the *operating cost* of many existing coal plants — meaning it is cheaper to build new solar than to keep burning coal you already paid for."
+          }
+        ]
+      },
+      {
+        "heading": "THE EU'S TAX PROBLEM",
+        "body": "EU electricity is taxed more heavily than gasoline in many member states — a legacy of postwar fiscal design when electricity was a luxury and petrol was a strategic input. Cutting those taxes requires unanimous approval across 27 capitals, the highest bar in EU law, reserved for treaty-level fiscal matters."
+      },
+      {
+        "heading": "WHO STILL BURNS COAL",
+        "body": "The global average masks sharp divergence. China and India together burn roughly two-thirds of the world's coal; both are also the largest renewables builders. The OECD has been retiring coal capacity since 2015 while Asian capacity grew through 2024.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 56,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": 13,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USA",
+                "value": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Indonesia",
+                "value": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Japan",
+                "value": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "South Africa",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Rest of world",
+                "value": 12,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global coal consumption share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE GAS TRAP",
+        "body": "European gas prices remain 3-4x pre-2022 levels because the continent replaced Russian pipeline gas with seaborne LNG — a global, dollar-priced market that competes with Asian buyers. Renewables displace coal cheaply; replacing gas requires storage and grid upgrades that take a decade.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              9.129581313,
+              10.10962113,
+              10.80662625,
+              10.23979241,
+              12.1938459,
+              11.750812,
+              12.755,
+              13.811,
+              13.757,
+              14.75909611,
+              15.37638294,
+              13.15601031,
+              11.57195747,
+              11.62379688,
+              12.30058745,
+              11.47064619,
+              10.97523233,
+              11.003,
+              10.897,
+              10.355,
+              9.46,
+              11.987,
+              11.19,
+              17.67
+            ],
+            "periods": [
+              "Apr 2024",
+              "May 2024",
+              "Jun 2024",
+              "Jul 2024",
+              "Aug 2024",
+              "Sep 2024",
+              "Oct 2024",
+              "Nov 2024",
+              "Dec 2024",
+              "Jan 2025",
+              "Feb 2025",
+              "Mar 2025",
+              "Apr 2025",
+              "May 2025",
+              "Jun 2025",
+              "Jul 2025",
+              "Aug 2025",
+              "Sep 2025",
+              "Oct 2025",
+              "Nov 2025",
+              "Dec 2025",
+              "Jan 2026",
+              "Feb 2026",
+              "Mar 2026"
+            ],
+            "label": "Natural gas (TTF, Europe)",
+            "unit": "$/MMBtu",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CARBON ARITHMETIC",
+        "body": "Coal emits roughly twice the CO₂ per kilowatt-hour as gas, and ~50x more than wind or solar over their lifecycle. The crossover means global power-sector emissions likely peaked in 2024 — a milestone the IPCC's 1.5°C pathway required by 2025.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much of global CO₂ emissions come from electricity generation?",
+            "options": [
+              "About 10%",
+              "About 25%",
+              "About 40%",
+              "About 60%"
+            ],
+            "correct": 2,
+            "explanation": "Power generation produces roughly 40% of global energy-related CO₂ — which is why decarbonizing electricity matters more than any other single sector."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · IMF · as of 2026-03-01"
+    ],
+    "generatedAt": "2026-04-25T22:36:28.252Z",
+    "label": "The Coal Crossover",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-25-anthropic-s-new-mythos-ai-is-exposing-the-hidden-cracks-in-c": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COMPOSABILITY PROBLEM",
+        "body": "DeFi protocols are called money legos — each one calls into others through smart contracts. A lending pool deposits into a yield aggregator that routes through a DEX that prices off an oracle. The composition is the feature; it is also the attack surface.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **composability**. Every external call is a trust assumption — and every trust assumption is a potential exploit chain."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AUDITS MISS THINGS",
+        "body": "Human auditors read one contract at a time, tracing logic over days. A mid-size DeFi protocol can have 5,000+ lines of Solidity calling into a dozen external contracts. The exploit usually lives in the seam between contracts — a rounding error in one becomes a draining vector when amplified by another's flash-loan logic.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where do most DeFi exploits actually live?",
+            "options": [
+              "A single contract bug, caught in audit",
+              "The interaction between multiple contracts",
+              "The blockchain's underlying consensus layer",
+              "Frontend website vulnerabilities"
+            ],
+            "correct": 1,
+            "explanation": "Most large DeFi losses come from chained interactions — flash loans, oracle manipulation, reentrancy across protocols — not bugs visible in any single contract."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLASH LOAN PRIMITIVE",
+        "body": "A flash loan lets anyone borrow millions of dollars with no collateral, provided they repay within the same transaction. It exists because Ethereum transactions are atomic — if repayment fails, the entire transaction reverts. This makes capital-intensive attacks free to attempt and only profitable if they work."
+      },
+      {
+        "heading": "THE BRIDGE TARGET",
+        "body": "Bridges concentrate value in a single contract that accepts deposits on one chain and releases tokens on another. Chainalysis has tracked more stolen crypto from bridges than from exchanges every year since 2021 — the attack surface is one contract holding billions.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ronin Bridge",
+                "value": "$625M",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Poly Network",
+                "value": "$611M",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "BNB Bridge",
+                "value": "$586M",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Wormhole",
+                "value": "$326M",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nomad Bridge",
+                "value": "$190M",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "largest DeFi/bridge exploits"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AI FITS THIS PROBLEM",
+        "body": "Symbolic execution and fuzzing tools have existed for a decade but require expert tuning per contract. Large language models can read across many contracts at once and reason about state transitions in natural language — closer to how human security researchers think, but at machine scale and without fatigue."
+      },
+      {
+        "heading": "THE ECONOMIC GATE",
+        "body": "Audits from top firms cost $50k–$500k and take weeks. Most small protocols ship unaudited or with cursory reviews; they are where the majority of exploits happen. Continuous AI auditing changes the unit economics — the question is whether insurers and DAOs make it the new minimum bar."
+      }
+    ],
+    "generatedAt": "2026-04-25T22:36:55.169Z",
+    "label": "DeFi Composability & Audit",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-25-artificial-chemotaxis-nanomotors-drug-delivery-nature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CHEMOTAXIS IS",
+        "body": "Chemotaxis is how single cells navigate chemical gradients — bacteria swim toward sugar, immune cells crawl toward inflammation. The cell doesn't 'see' the source; it samples concentration over time and biases its random walk uphill.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "E. coli executes this with a *run-and-tumble* strategy: swim straight when concentration is rising, tumble randomly when it's falling. The bias is statistical, not directional — yet it works."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SWIMMING IS HARD AT THIS SCALE",
+        "body": "At micron scales, water behaves like honey. The Reynolds number is so low that inertia vanishes — a nanomotor that stops propelling stops moving within its own body length. Purcell's 1977 'scallop theorem' proved that any reciprocal motion (open-close-open) produces zero net displacement in this regime."
+      },
+      {
+        "heading": "THE FUEL PROBLEM",
+        "body": "Most lab nanomotors run on hydrogen peroxide — toxic in blood. Building motors that harvest glucose, urea, or magnetic fields instead is the central engineering frontier. Each fuel source trades speed for biocompatibility."
+      },
+      {
+        "heading": "WHY TUMORS ARE THE TARGET",
+        "body": "Solid tumors leak a chemical signature: low pH, high lactate, hypoxia, elevated H2O2. That gradient is precisely what a chemotactic motor can climb. The same leakiness — disorganized vasculature with ~400nm gaps — is why nanoparticle drug delivery targets tumors at all (the EPR effect)."
+      },
+      {
+        "heading": "THE COLLECTIVE BEHAVIOR PROBLEM",
+        "body": "One motor accomplishes nothing therapeutically — you need swarms. But swarms in confined geometry interact hydrodynamically, clumping or scattering in ways single-particle physics doesn't predict. This is why a standardized framework matters: without one, every lab measures swimming differently.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't a nanomotor propel itself by simply flapping a tail back and forth?",
+            "options": [
+              "The tail would break at that scale",
+              "Reciprocal motion produces zero net displacement at low Reynolds number",
+              "Water molecules are too large relative to the tail",
+              "Brownian motion overwhelms any directed force"
+            ],
+            "correct": 1,
+            "explanation": "Purcell's scallop theorem: in a viscosity-dominated regime, any motion that retraces itself yields zero displacement. Bacteria use rotating helical flagella precisely because rotation isn't reciprocal."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Magnetically-guided iron-oxide particles for cancer hyperthermia were approved in Europe in 2010 (NanoTherm). They don't swim — they're dragged by external fields — but they established that engineered nanoparticles can be cleared, dosed, and regulated. Active swimmers are the next regulatory frontier."
+      }
+    ],
+    "generatedAt": "2026-04-25T22:37:20.533Z",
+    "label": "Artificial Chemotaxis",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-25-blackrock-ibit-bitcoin-options-deribit-parity-hedge": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY DERIBIT MATTERED",
+        "body": "Deribit, founded in Amsterdam in 2016 and now domiciled in Panama, has carried the overwhelming majority of bitcoin options open interest for nearly a decade. Until recently, any institution wanting to hedge bitcoin exposure with options had to route through an offshore venue with no US regulator behind it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Deribit's dominance was a quirk of regulation, not technology — US venues simply could not list **physically-settled** crypto options at scale."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AN ETF OPTION ACTUALLY IS",
+        "body": "An IBIT option is a contract on shares of a spot-bitcoin ETF, cleared by the Options Clearing Corporation and traded on US exchanges. The underlying is the fund, not bitcoin directly — but because the fund holds actual bitcoin in custody, the option's price tracks bitcoin's price one-for-one minus fund fees."
+      },
+      {
+        "heading": "WHY OPEN INTEREST MATTERS",
+        "body": "Open interest is the number of contracts outstanding — every long matched by a short. It measures committed capital, not daily churn. When IBIT options open interest reaches parity with Deribit, it means institutional hedgers have built positions onshore that they would previously have had to build offshore."
+      },
+      {
+        "heading": "THE MACRO HEDGE",
+        "body": "For pension funds, endowments, and insurers, offshore venues are effectively off-limits — custody, counterparty, and regulatory rules forbid it. An OCC-cleared option on a SEC-registered ETF is the first instrument that lets these pools hedge or express a bitcoin view without breaching mandate.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              68791.11,
+              66321.02,
+              66321.07,
+              65970.43,
+              66699.27,
+              68231.83,
+              68089.06,
+              66891.66,
+              66939.69,
+              67304.25,
+              68985.53,
+              68864.23,
+              71975.62,
+              71117.08,
+              71770.75,
+              72972.71,
+              73053.89,
+              70756.75,
+              74514.63,
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77636.81
+            ],
+            "periods": [
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 25"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CALL SKEW",
+        "body": "When open interest concentrates in out-of-the-money calls (strikes above spot), it signals upside positioning — buyers paying premium for the right to buy higher. The opposite pattern, put-heavy open interest, signals hedging against decline. The shape of the options book is often a cleaner read on positioning than spot price itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does heavy open interest in out-of-the-money call options typically signal?",
+            "options": [
+              "Investors hedging against a price crash",
+              "Investors positioning for upside",
+              "Forced selling by leveraged longs",
+              "A market that has stopped trading"
+            ],
+            "correct": 1,
+            "explanation": "OTM calls pay off only if price rises above the strike — concentrated buying of them means market participants are paying premium for upside exposure."
+          }
+        ]
+      },
+      {
+        "heading": "THE ONSHORE PIVOT",
+        "body": "Bitcoin's first decade was defined by offshore infrastructure — Mt. Gox in Tokyo, Bitfinex in the BVI, Binance nowhere in particular, Deribit in Panama. The migration of derivatives volume to OCC-cleared, SEC-supervised venues marks the asset's transition from a parallel financial system to a sleeve inside the existing one."
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-04-25"
+    ],
+    "generatedAt": "2026-04-25T22:37:45.675Z",
+    "label": "Onshore Crypto Derivatives",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-25-israel-kills-two-wounds-six-palestinians-in-latest-string-of": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NAKBA AS ORIGIN",
+        "body": "In 1948, Zionist militias expelled over 750,000 Palestinians from their homes — the Nakba. Many fled to Gaza, which became one of the most densely populated places on earth: 2.3 million people in 365 square kilometers. The families being struck today are overwhelmingly descendants of those 1948 refugees, displaced again within the same strip of land.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "What Israel calls its War of Independence, Palestinians call the **Nakba** — *the catastrophe*. The 1950 Law of Return granted any Jew worldwide automatic Israeli citizenship; the refugees expelled in 1948 and their descendants have no right to return to villages now inside Israel."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOCKADE ARITHMETIC",
+        "body": "Gaza has been under Israeli land, sea, and air blockade since 2007. Calorie counts for permitted food imports were calculated by Israeli authorities in 2008 to keep Gaza on what an advisor described as a 'diet' — not starvation, but managed deprivation. Every concrete bag, fuel truck, and medical shipment requires Israeli permission.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "EG",
+              "JO",
+              "LB"
+            ],
+            "label": "Gaza & the Levant",
+            "markers": [
+              {
+                "lat": 31.5017,
+                "lng": 34.4668,
+                "label": "Gaza City"
+              },
+              {
+                "lat": 31.3547,
+                "lng": 34.3088,
+                "label": "Rafah crossing"
+              },
+              {
+                "lat": 31.5497,
+                "lng": 34.5333,
+                "label": "Erez crossing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A CEASEFIRE ACTUALLY IS",
+        "body": "International humanitarian law distinguishes a ceasefire (a halt in fighting) from an armistice (a formal end to war) from a peace treaty (a settlement of underlying disputes). A ceasefire without an enforcement body — UN observers, third-party guarantors, monitoring mission — is essentially an honor system. The 2006 Lebanon-Israel ceasefire used UNIFIL as a tripwire; Gaza's October 2025 deal has no equivalent."
+      },
+      {
+        "heading": "THE CASUALTY COUNTING",
+        "body": "The figure of 72,585 comes from Gaza's Health Ministry, which since 2023 has been independently corroborated by Lancet studies, Airwaves, and Israeli intelligence leaks. The Lancet in 2024 estimated indirect deaths — from disease, starvation, and collapsed healthcare — could push the true toll several times higher than the direct count.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does international humanitarian law classify deliberate attacks on schools sheltering civilians during an active ceasefire?",
+            "options": [
+              "A permitted military action if militants are suspected nearby",
+              "A grave breach of the Fourth Geneva Convention",
+              "A matter for domestic courts only",
+              "Legal if announced in advance"
+            ],
+            "correct": 1,
+            "explanation": "The Fourth Geneva Convention (1949) categorizes attacks on civilians and protected sites like schools as grave breaches — war crimes carrying universal jurisdiction regardless of any ceasefire's terms."
+          }
+        ]
+      },
+      {
+        "heading": "THE QURANIC LAND",
+        "body": "Surah al-Isra opens with the night journey from the Sacred Mosque in Makkah to al-Aqsa, 'whose precincts We have blessed.' Classical tafsir — Ibn Kathir, al-Qurtubi — read the blessing as extending to the surrounding land, the broader Levant including Gaza. For Muslims, the geography is not incidental to the news; it is the substrate the news sits on."
+      }
+    ],
+    "generatedAt": "2026-04-25T22:38:14.872Z",
+    "label": "Gaza & the Ceasefire Without Enforcement",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-25-lungdxformer-a-transformer-cnn-hybrid-model-with-dynamic-spa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY LUNG NODULES ARE HARD",
+        "body": "A nodule is any rounded opacity under 3 cm on a CT scan. Most are benign — old infections, scar tissue, granulomas — but a small fraction are early cancer. Radiologists routinely flag nodules as 'indeterminate' because the imaging features overlap; the resolution of follow-up is months of repeat scans, biopsies, or watchful waiting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clinical category that matters is *indeterminate* — neither clearly benign nor clearly malignant. It's the bucket where missed cancers hide and where unnecessary biopsies originate."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A CNN SEES",
+        "body": "Convolutional neural networks scan an image with small filters that detect local patterns — edges, textures, shapes — then stack those into higher-level features. They excel at the texture of a nodule's margin but struggle to relate one region of a scan to another distant region.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does a convolutional neural network's filter primarily capture in a medical image?",
+            "options": [
+              "Global relationships between distant regions",
+              "Local patterns like edges and textures",
+              "The patient's clinical history",
+              "Statistical priors from the training set"
+            ],
+            "correct": 1,
+            "explanation": "CNNs slide small filters across the image, capturing local patterns. Their weakness is long-range context — which is exactly what transformers add."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A TRANSFORMER ADDS",
+        "body": "Transformers use self-attention: every patch of the image can directly weigh every other patch. This long-range context is why hybrid CNN-transformer architectures have overtaken pure CNNs on most medical-imaging benchmarks since 2021 — the CNN reads texture, the transformer reads composition."
+      },
+      {
+        "heading": "WHY HEAT MAPS MATTER",
+        "body": "A 97% number means nothing to a radiologist who cannot see why the model decided. Saliency heat maps highlight the pixels that drove the classification, letting the clinician check whether the model focused on the nodule itself or on an artifact — a rib shadow, a vessel, the edge of the scanner field. Without explainability, regulators will not approve.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The field calls this *explainable AI* — and for FDA clearance of a diagnostic, it's no longer optional. A black-box classifier with 97% accuracy is a research result; a heat-mapped one is a candidate medical device."
+          }
+        ]
+      },
+      {
+        "heading": "RETROSPECTIVE VS PROSPECTIVE",
+        "body": "This model was trained and tested on archived scans with known outcomes. Real-world deployment is harder: scanner models differ, protocols differ, patient populations differ. Most medical-AI papers that report >95% accuracy lose 10-20 points when validated prospectively at a new hospital — a pattern so consistent it has a name, dataset shift."
+      },
+      {
+        "heading": "THE SCREENING TRADEOFF",
+        "body": "The US National Lung Screening Trial showed CT screening cuts lung-cancer mortality by 20% in high-risk smokers, but at the cost of false positives in roughly a quarter of scans. Every false positive triggers follow-up imaging, anxiety, and sometimes biopsy. A model that reliably reclassifies indeterminate nodules is valuable not because it finds more cancers, but because it avoids unnecessary procedures."
+      }
+    ],
+    "generatedAt": "2026-04-25T22:38:43.265Z",
+    "label": "CNN-Transformer Hybrids in Radiology",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-25-orban-fidesz-defeat-tisza-supermajority-hungary": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW ORBÁN BUILT THE SYSTEM",
+        "body": "After winning a two-thirds supermajority in 2010, Fidesz rewrote Hungary's constitution, redrew electoral districts to favor rural Fidesz voters, and consolidated nearly all private media into a single pro-government foundation. By 2018, an estimated 80% of Hungarian media was controlled by Fidesz-aligned owners.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "Fidesz wins 2/3 supermajority",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "New constitution adopted"
+              },
+              {
+                "year": "2014",
+                "label": "Second supermajority"
+              },
+              {
+                "year": "2018",
+                "label": "Third supermajority"
+              },
+              {
+                "year": "2022",
+                "label": "Fourth supermajority despite united opposition"
+              },
+              {
+                "year": "2026",
+                "label": "Tisza wins 141 seats"
+              }
+            ],
+            "label": "Fidesz era"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A SUPERMAJORITY MATTERS",
+        "body": "Hungary's constitution — the Fundamental Law Fidesz wrote in 2011 — can only be amended with two-thirds of parliament. The same threshold appoints constitutional judges, the prosecutor general, and the head of the state audit office. Below 133 seats, a government can pass laws but cannot dismantle Orbán's institutional architecture. Tisza's 141 clears the line by eight seats.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The magic number is **133 of 199** — anything below it leaves the *kétharmad* (two-thirds) safeguards Orbán built untouchable."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TISZA, NOT THE OLD OPPOSITION",
+        "body": "Hungary's traditional opposition — socialists, greens, liberals — failed repeatedly against Fidesz across four elections. Péter Magyar is a former Fidesz insider whose ex-wife served as Orbán's justice minister. He split from the system and built Tisza as a center-right alternative, letting voters reject Orbán without voting for parties they had already rejected.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Viktor Orbán",
+                "role": "Fidesz leader, outgoing PM",
+                "years": "2010–2026",
+                "cc": "HU"
+              },
+              {
+                "name": "Péter Magyar",
+                "role": "Tisza founder, incoming PM",
+                "years": "2026–",
+                "cc": "HU"
+              },
+              {
+                "name": "Judit Varga",
+                "role": "former justice minister, Magyar's ex-wife",
+                "years": "2019–2023",
+                "cc": "HU"
+              }
+            ],
+            "label": "the principals"
+          }
+        ]
+      },
+      {
+        "heading": "THE EU FUNDING LEVER",
+        "body": "Hungary receives roughly 4-5% of its GDP from EU cohesion funds — one of the highest ratios in the bloc. Brussels froze billions over rule-of-law concerns, creating a paradox: Orbán's nationalist posture depended on EU money to fund domestic patronage networks. The new government inherits the task of unlocking those funds, which requires the rule-of-law reforms that will dismantle parts of the system Fidesz built."
+      },
+      {
+        "heading": "THE RUSSIA QUESTION",
+        "body": "Orbán was the EU's most consistent obstacle to Ukraine aid and Russia sanctions, blocking or diluting packages that required unanimity. He maintained Russian gas contracts, hosted Putin in 2024, and refused weapons transit to Ukraine. A Tisza government realigns Hungary with the EU consensus on Russia — removing Moscow's most useful veto inside the bloc.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Hungarian gas imports came from Russia at the time of Orbán's exit?",
+            "options": [
+              "Roughly 20%",
+              "Roughly 50%",
+              "Over 80%",
+              "None — Hungary phased out Russian gas in 2022"
+            ],
+            "correct": 2,
+            "explanation": "Hungary remained one of the most Russia-dependent gas markets in the EU, importing over 80% from Russia via the TurkStream pipeline through 2025."
+          }
+        ]
+      },
+      {
+        "heading": "THE 16-YEAR PATTERN",
+        "body": "Orbán won four consecutive supermajorities (2010, 2014, 2018, 2022) — an electoral feat unmatched in post-communist Europe. The system he built was designed to be unbeatable through institutional means: gerrymandered districts, captured media, a weakened constitutional court. That a defector from inside Fidesz broke it is the lesson autocrats elsewhere will study most carefully."
+      }
+    ],
+    "generatedAt": "2026-04-25T22:39:16.545Z",
+    "label": "Orbán's System & Its Collapse",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-25-russian-forces-pound-ukraine-s-dnipro-other-areas-killing-10": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOUBLE-TAP",
+        "body": "Striking the same target twice — first the building, then the rescuers who arrive — is a deliberate tactic, not coincidence. Russia used it systematically in Syria from 2015, where Physicians for Human Rights documented hundreds of attacks on hospitals and first responders. The International Humanitarian Law treats it as a war crime: the second strike has no military rationale beyond killing the people running toward the wounded.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has a name in Russian military writing: *udar po spasatelyam* — strike on rescuers. It exhausts emergency services and terrorizes civilians into not helping their neighbors."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DNIPRO",
+        "body": "Dnipro sits 200km from the front line in Zaporizhzhia and is Ukraine's fourth-largest city, home to the Pivdenmash plant that built Soviet ICBMs and now produces Ukrainian missiles. It is also the main medical evacuation hub for wounded soldiers — every major Ukrainian military hospital chain runs through the city.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "BY",
+              "MD",
+              "RO",
+              "PL"
+            ],
+            "label": "Dnipro relative to the front",
+            "markers": [
+              {
+                "lat": 48.4647,
+                "lng": 35.0462,
+                "label": "Dnipro"
+              },
+              {
+                "lat": 47.8388,
+                "lng": 35.1396,
+                "label": "Zaporizhzhia front"
+              },
+              {
+                "lat": 50.4501,
+                "lng": 30.5234,
+                "label": "Kyiv"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HUNGARY VETO",
+        "body": "EU sanctions require unanimity from all 27 member states. Hungary under Orbán used this rule for three years to slow, water down, or block every major Russia package — extracting concessions on Lukoil pipeline carve-outs and frozen-asset distribution in exchange for letting votes proceed. The Tisza government's October arrival removed that veto for the first time since 2022.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-02",
+                "label": "Package 1 (post-invasion)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-06",
+                "label": "Oil price cap framework"
+              },
+              {
+                "year": "2023-06",
+                "label": "Package 11 — anti-circumvention"
+              },
+              {
+                "year": "2024-06",
+                "label": "Package 14 — LNG transshipment ban"
+              },
+              {
+                "year": "2025-07",
+                "label": "Package 18 — lower oil cap"
+              },
+              {
+                "year": "2026-04",
+                "label": "Package 20 — Hungary clears veto"
+              }
+            ],
+            "label": "EU Russia sanctions cycle"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AZERBAIJAN",
+        "body": "Azerbaijan is a Turkic, majority-Shia state that supplies roughly 5% of EU gas via the Southern Gas Corridor and quietly sells Bayraktar-compatible munitions to Ukraine while maintaining open relations with Moscow. Zelenskyy's Baku trip is about gas re-export deals — Ukraine wants Azerbaijani molecules flowing through reversed pipelines after Russian transit ended in January 2025.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "$118bn",
+                "cc": "US",
+                "weight": 118,
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": "$28bn",
+                "cc": "DE",
+                "weight": 28,
+                "tone": "favorable"
+              },
+              {
+                "label": "UK",
+                "value": "$15bn",
+                "cc": "GB",
+                "weight": 15,
+                "tone": "favorable"
+              },
+              {
+                "label": "Azerbaijan",
+                "value": "energy/arms",
+                "cc": "AZ",
+                "weight": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Hungary",
+                "value": "$0 / vetoes",
+                "cc": "HU",
+                "weight": 0.1,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Ukraine's wartime partners by 2025 aid disbursed"
+          }
+        ]
+      },
+      {
+        "heading": "THE FROZEN ASSETS QUESTION",
+        "body": "Roughly €210bn of Russian central bank assets are immobilized in European clearinghouses, mostly Belgium's Euroclear. The 20th package debate centers on whether to use the principal — not just the interest — to fund Ukraine. Doing so would set a precedent that other reserve currencies could follow, which is why China and Saudi Arabia watch this closely: every sovereign wealth fund holding euros is a potential hostage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where is the bulk of frozen Russian central bank reserves held?",
+            "options": [
+              "US Federal Reserve, New York",
+              "Bank of England, London",
+              "Euroclear, Brussels",
+              "Swiss National Bank, Bern"
+            ],
+            "correct": 2,
+            "explanation": "Euroclear, the Belgian securities depository, holds roughly €190bn of the immobilized Russian assets — making Belgium the central battleground for any seizure decision."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-25T22:39:53.162Z",
+    "label": "Double-Tap Strikes & the Sanctions Veto",
+    "category": "politics",
+    "articleCount": 1
   }
 }
