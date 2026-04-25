@@ -525,6 +525,86 @@ if [ "${START_HOUR:-$HOUR_UTC}" = "04" ]; then
     git pull --rebase origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git pull --rebase failed (likely a mobile/backend file overlap — investigate)" | tee -a "$LOG_FILE"
     git push origin master 2>&1 | tee -a "$LOG_FILE" || echo "WARNING: git push failed" | tee -a "$LOG_FILE"
     npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true 2>&1 | tee -a "$LOG_FILE"
+    DEPLOY_EXIT=$?
+
+    # Stage 4b: Daily briefing push notification — fires once per day after
+    # the audio is live. Body is a Claude-crafted topic line ("Hormuz $106 ·
+    # BJP defects · DeepSeek V4 ships") so the reader learns what's in the
+    # briefing without needing to open the app first. Idempotent via the
+    # /api/push 7-day dedup keyed on the synthetic slug `briefing-${date}`.
+    if [ "$DEPLOY_EXIT" -eq 0 ] && [ -n "$PUSH_SECRET" ]; then
+      BRIEFING_DATE=$(date -u +%Y-%m-%d)
+      # Top stories for the topic line — read straight from the ledger so
+      # we don't need a second LLM pass to rank. Same filter the briefing
+      # generator uses (importance >= 6 || arc breaking/developing), top 5.
+      BRIEFING_TOP=$(node -e "
+        const fs = require('fs');
+        try {
+          const ledger = JSON.parse(fs.readFileSync('content/.story-ledger.json','utf8'));
+          const top = (ledger.stories || [])
+            .filter(s => s.importance >= 6 || s.arc === 'breaking' || s.arc === 'developing')
+            .sort((a, b) => (b.importance || 0) - (a.importance || 0))
+            .slice(0, 5)
+            .map(s => ({ label: s.label, category: s.category, arc: s.arc }));
+          process.stdout.write(JSON.stringify(top));
+        } catch (e) { process.stderr.write('briefing-top failed: ' + e.message + '\n'); }
+      " 2>>"$LOG_FILE")
+      if [ -n "$BRIEFING_TOP" ] && [ "$BRIEFING_TOP" != "[]" ]; then
+        BRIEFING_BODY=$(timeout 30 claude $CLAUDE_FLAGS --model $CLAUDE_MODEL --effort medium --tools "" -p "Write ONE push notification body announcing today's daily news briefing audio is ready.
+
+Format: 2 or 3 short topic phrases separated by ' · ' (middle-dot, U+00B7). The reader should be able to scan it in two seconds.
+
+Examples:
+- Hormuz \$106 · BJP defects in Punjab · El Niño by May
+- Russia hits Dnipro · NATO arms shipment · DeepSeek V4 ships
+- Sudan IMF stalls · Lebanon beekeeping · DOJ death penalty
+
+Rules:
+- 2 or 3 phrases, each 2-5 words
+- Middle-dot separator with single spaces around it
+- Prefer concrete subjects + active outcome over abstract topics
+- Drop articles (the, a, an) and auxiliary verbs (is, are, was)
+- Digits for all numbers
+- 30-65 chars total
+- No period at the end
+
+Output ONLY the line, nothing else.
+
+Top stories from today's briefing:
+$BRIEFING_TOP" 2>/dev/null | head -1 | tr -d '\n')
+        if [ -n "$BRIEFING_BODY" ]; then
+          BRIEFING_PUSH_JSON=$(BODY="$BRIEFING_BODY" DATE="$BRIEFING_DATE" node -e "
+            const body = (process.env.BODY || '').trim();
+            const date = process.env.DATE;
+            if (!body) process.exit(2);
+            process.stdout.write(JSON.stringify({
+              articles: [{
+                slug: 'briefing-' + date,
+                title: \"Today's Briefing\",
+                body,
+                channelId: 'briefing',
+                priority: 'normal',
+                data: { kind: 'briefing', date }
+              }]
+            }));
+          " 2>>"$LOG_FILE")
+          if [ -n "$BRIEFING_PUSH_JSON" ]; then
+            echo "Pushing daily briefing: $BRIEFING_PUSH_JSON" | tee -a "$LOG_FILE"
+            curl -s -X POST "https://zuhd.news/api/push" \
+              -H "Authorization: Bearer $PUSH_SECRET" \
+              -H "Content-Type: application/json" \
+              -d "$BRIEFING_PUSH_JSON" 2>&1 | tee -a "$LOG_FILE"
+            echo "" | tee -a "$LOG_FILE"
+          else
+            echo "⚠ Briefing push payload assembly failed — skipping" | tee -a "$LOG_FILE"
+          fi
+        else
+          echo "⚠ Empty briefing-body from Claude — skipping push" | tee -a "$LOG_FILE"
+        fi
+      else
+        echo "Briefing push skipped: no top stories in ledger" | tee -a "$LOG_FILE"
+      fi
+    fi
   fi
 else
   echo "" | tee -a "$LOG_FILE"

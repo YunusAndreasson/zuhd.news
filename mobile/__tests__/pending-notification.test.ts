@@ -1,7 +1,17 @@
-import { clear, get, set } from '../lib/pending-notification';
+import {
+  clear,
+  clearBriefing,
+  get,
+  getBriefing,
+  set,
+  setBriefing,
+} from '../lib/pending-notification';
 
 describe('pending-notification', () => {
-  afterEach(() => clear());
+  afterEach(() => {
+    clear();
+    clearBriefing();
+  });
 
   it('defaults to null', () => {
     expect(get()).toBeNull();
@@ -22,5 +32,26 @@ describe('pending-notification', () => {
     set('first');
     set('second');
     expect(get()).toBe('second');
+  });
+
+  it('briefing intent defaults to false', () => {
+    expect(getBriefing()).toBe(false);
+  });
+
+  it('briefing intent set/clear toggles', () => {
+    setBriefing();
+    expect(getBriefing()).toBe(true);
+    clearBriefing();
+    expect(getBriefing()).toBe(false);
+  });
+
+  it('briefing and slug intents are independent', () => {
+    set('slug');
+    setBriefing();
+    expect(get()).toBe('slug');
+    expect(getBriefing()).toBe(true);
+    clear();
+    expect(get()).toBeNull();
+    expect(getBriefing()).toBe(true);
   });
 });

@@ -375,7 +375,13 @@ export default function HomeScreen() {
     if (!loading) SplashScreen.hideAsync();
   }, [loading]);
 
-  usePendingNotification(loading, grouped, handleSelectArticle);
+  usePendingNotification(
+    loading,
+    grouped,
+    handleSelectArticle,
+    briefingPlayer.toggle,
+    !!(briefing?.available && briefing.date),
+  );
 
   if (loading) return null;
 

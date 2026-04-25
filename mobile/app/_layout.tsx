@@ -14,7 +14,10 @@ import { DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
 import { enableNotifications, registerPushToken } from '../lib/notifications';
-import { set as setPendingSlug } from '../lib/pending-notification';
+import {
+  setBriefing as setPendingBriefing,
+  set as setPendingSlug,
+} from '../lib/pending-notification';
 import { getPreferences, savePreferences } from '../lib/storage';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
@@ -60,8 +63,14 @@ export default function RootLayout() {
   useEffect(() => {
     registerBackgroundTask();
     const sub = Notifications.addNotificationResponseReceivedListener((response) => {
-      const slug = response.notification.request.content.data?.slug;
-      if (typeof slug === 'string') setPendingSlug(slug);
+      const data = response.notification.request.content.data;
+      // Daily-briefing pushes carry `kind: 'briefing'` — they have no article
+      // slug, so route them to the briefing player rather than the article view.
+      if (data?.kind === 'briefing') {
+        setPendingBriefing();
+        return;
+      }
+      if (typeof data?.slug === 'string') setPendingSlug(data.slug);
     });
 
     // Fallback: force-hide the splash if fonts/feed stall so the user sees
