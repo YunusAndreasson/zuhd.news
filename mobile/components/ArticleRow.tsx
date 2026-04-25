@@ -1,8 +1,8 @@
+import type { Category } from '@shared/types';
 import { memo, useCallback, useMemo } from 'react';
 import { SPACING, titleFontScale } from '../constants/theme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { displayLocation } from '../lib/place-names';
-import type { Category } from '../types';
 import { Box, Pressable, Text } from './primitives';
 
 interface ArticleRowProps {

@@ -1,8 +1,8 @@
+import type { Indicator } from '@shared/types';
 import { useEffect, useMemo, useState } from 'react';
 import { API_BASE } from '../constants/theme';
 import { fetchJson } from '../lib/fetchJson';
 import { isTrendsSnapshot } from '../lib/validate';
-import type { Indicator } from '../types';
 
 /** Fetches `/api/trends.json` once at mount. Returns a map keyed by indicator
  *  id for O(1) EntitySheet lookups. Graceful degrade: any failure leaves the

@@ -1,8 +1,8 @@
+import type { Chokepoint } from '@shared/types';
 import { useEffect, useState } from 'react';
 import { API_BASE } from '../constants/theme';
 import { fetchJson } from '../lib/fetchJson';
 import { isChokepointSnapshot } from '../lib/validate';
-import type { Chokepoint } from '../types';
 
 /** Fetches the ambient chokepoint snapshot once at mount. Graceful degrade:
  *  any failure (network, malformed payload, missing endpoint) leaves the

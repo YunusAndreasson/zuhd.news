@@ -1,9 +1,14 @@
 import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
+import {
+  getRanking,
+  METRICS,
+  type MetricKey,
+  type RankingEntry,
+} from '@shared/countries/country-ranking';
 import { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import { type FlatList, Text as RNText, StyleSheet, View } from 'react-native';
 import { FLAG, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import { getRanking, METRICS, type MetricKey, type RankingEntry } from '../lib/country-ranking';
 import { useOpenLink } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
 import { Pressable, Text } from './primitives';

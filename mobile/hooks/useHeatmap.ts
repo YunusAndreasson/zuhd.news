@@ -1,9 +1,9 @@
+import type { HeatmapPoint } from '@shared/types';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
 import { fetchJson } from '../lib/fetchJson';
 import { createJsonCache } from '../lib/json-cache';
 import { type HeatmapResponse, isHeatmapResponse } from '../lib/validate';
-import type { HeatmapPoint } from '../types';
 import { useAppResume } from './useAppResume';
 
 const heatmapCache = createJsonCache<HeatmapResponse>('zuhd-heatmap.json', isHeatmapResponse);

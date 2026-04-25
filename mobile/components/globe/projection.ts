@@ -5,8 +5,8 @@
  * per-frame projection.
  */
 
+import { COUNTRY_OVERRIDES } from '@shared/globe/coordinates';
 import { geoCircle, geoContains } from 'd3-geo';
-import { COUNTRY_OVERRIDES } from './coordinates';
 import { countries, countryAreas, countryBboxes } from './shared';
 
 // ── Astronomical / time constants ──────────────────────────────────────────
@@ -22,10 +22,18 @@ export const DECAY_LAMBDA = Math.LN2 / 18;
 
 // ── Zoom / clip thresholds ─────────────────────────────────────────────────
 
-/** Islamic-geography overlay fade range. Appears once camera passes the
- *  adaptive default (25°), fully visible at the tightest (8°) framing. */
-export const PLACES_APPEAR_CLIP = 22;
-export const PLACES_FULL_CLIP = 8;
+/** Cheap zoom-gated layers (neighbour labels, water-feature labels) fade
+ *  in from clip=30°. At small-country 1× (clip ≈ 25°) the reader gets a
+ *  faint "whisper" of geographic context without needing to tap the zoom
+ *  pill. Full opacity at 10°. */
+export const PLACES_APPEAR_CLIP = 30;
+export const PLACES_FULL_CLIP = 10;
+
+/** Heavy rivers-path projection fade range — gated tighter than the cheap
+ *  layers so the ~9k-vertex projection only kicks in once the user actually
+ *  taps zoom. Keeps small-country 1× stories free of the settle-frame spike
+ *  a rivers projection would cause. Visible from 22° → 10°. */
+export const RIVERS_APPEAR_CLIP = 22;
 
 // ── Reference locations ────────────────────────────────────────────────────
 
@@ -161,11 +169,16 @@ export function findCountry(
 // ── Clip-angle math ────────────────────────────────────────────────────────
 
 /** Clip angle for a country's spherical area — smaller countries get tighter
- *  clip (more zoom). Below 0.002 sr → 25°; above 0.03 sr → 90°; linear between. */
+ *  clip (more zoom). Below 0.002 sr → 25°; above 0.03 sr → 70°; linear between.
+ *  The 70° cap (was 90°) keeps the 1×→2× camera step feeling like a zoom
+ *  instead of a warp on large countries (Russia, Canada, Brazil): delta drops
+ *  from 6× to ~3.9× tighter at the cost of slightly less "this nation is
+ *  vast" framing. Also reduces per-frame land/country vertex draws at 1× for
+ *  big countries (clipCircle keeps fewer points after the test). */
 export function clipAngleForArea(area: number): number {
   if (area < 0.002) return 25;
-  if (area < 0.03) return 25 + ((area - 0.002) / (0.03 - 0.002)) * 65;
-  return 90;
+  if (area < 0.03) return 25 + ((area - 0.002) / (0.03 - 0.002)) * 45;
+  return 70;
 }
 
 /** Clip angle for a named country (lookup `countryAreas`, fall back to 1 sr). */

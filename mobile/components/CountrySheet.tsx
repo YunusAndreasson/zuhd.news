@@ -3,13 +3,13 @@ import {
   type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
+import { getMetricValue, getRanking, type MetricKey } from '@shared/countries/country-ranking';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
-import { getMetricValue, getRanking, type MetricKey } from '../lib/country-ranking';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { CountryRankingView } from './CountryRankingView';
 import type { TapResult } from './globe/MiniGlobe';
@@ -48,15 +48,58 @@ const MORE_METRICS: { key: MetricKey; label: string }[] = [
 
 const GOLD_RANK_THRESHOLD = 5;
 
+// Percentile strip: thin rule + dot whose horizontal position reflects the
+// country's place in the full ranking. "Better" (lower rank number) = dot
+// further right, with the left half of the rule filled from 0 → dot. Uses
+// the dome accent for top-N ranks to match the rank-column typography.
+const STRIP_WIDTH = 44;
+const STRIP_DOT_SIZE = 4;
+const STRIP_HEIGHT = 10;
+const STRIP_RULE_HEIGHT = 2;
+
+function PercentileStrip({
+  rank,
+  total,
+  isTop,
+}: {
+  rank: number | null;
+  total: number;
+  isTop: boolean;
+}) {
+  const { colors } = useTheme();
+  if (rank == null || total < 2) return <View style={styles.strip} />;
+  const percentile = Math.max(0, Math.min(1, (total - rank) / (total - 1)));
+  const dotLeft = percentile * STRIP_WIDTH - STRIP_DOT_SIZE / 2;
+  const dotColor = isTop ? colors.dome : colors.textEmphasis;
+  // Rule + fill share `textSecondary` as the hue and differ only by
+  // opacity — the base reads as "unfilled %" and the fill as "achieved %",
+  // mirroring a progress bar. `colors.rule` was too faint here (tuned for
+  // row dividers, not load-bearing chrome).
+  return (
+    <View style={styles.strip}>
+      <View style={[styles.stripRule, { backgroundColor: colors.textSecondary }]} />
+      <View
+        style={[
+          styles.stripFill,
+          { width: percentile * STRIP_WIDTH, backgroundColor: colors.textSecondary },
+        ]}
+      />
+      <View style={[styles.stripDot, { left: dotLeft, backgroundColor: dotColor }]} />
+    </View>
+  );
+}
+
 function MoreRow({
   label,
   value,
   rank,
+  total,
   onPress,
 }: {
   label: string;
   value: string | null;
   rank: number | null;
+  total: number;
   onPress: () => void;
 }) {
   const { colors, font, typography } = useTheme();
@@ -77,14 +120,15 @@ function MoreRow({
       onPress={onPress}
       style={[styles.moreRow, { borderBottomColor: colors.rule }]}
       accessibilityRole="button"
-      accessibilityLabel={`${label}: ${value}${rank ? `, ranked ${rank}` : ''}`}
+      accessibilityLabel={`${label}: ${value}${rank ? `, ranked ${rank} of ${total}` : ''}`}
     >
       <RNText style={[styles.rankCol, rankStyle]}>{hasRank ? `#${rank}` : ''}</RNText>
-      <Text variant="labelSm" style={styles.moreLabel}>
+      <PercentileStrip rank={rank} total={total} isTop={isTopRank} />
+      <Text variant="labelSm" style={styles.moreLabel} numberOfLines={1}>
         {label}
       </Text>
       <View style={styles.moreRight}>
-        <Text variant="caption" tone="default" style={styles.value}>
+        <Text variant="caption" tone="default" style={styles.value} numberOfLines={1}>
           {value}
         </Text>
         <Icon name="chevron-forward" size="sm" tone="secondary" />
@@ -158,21 +202,28 @@ export const CountrySheet = memo(function CountrySheet({
 
   const rankFor = useMemo(() => {
     const targetName = country?.countryName;
-    if (!targetName) return () => null;
-    return (metric: MetricKey): number | null => {
+    if (!targetName) return () => ({ rank: null as number | null, total: 0 });
+    return (metric: MetricKey): { rank: number | null; total: number } => {
       const entries = getRanking(metric);
       const idx = entries.findIndex((e) => e.name === targetName);
-      return idx >= 0 ? idx + 1 : null;
+      return { rank: idx >= 0 ? idx + 1 : null, total: entries.length };
     };
   }, [country?.countryName]);
 
   const rankedRows = useMemo(() => {
     if (!country?.data) return [];
-    const rows: { key: MetricKey; label: string; value: string; rank: number | null }[] = [];
+    const rows: {
+      key: MetricKey;
+      label: string;
+      value: string;
+      rank: number | null;
+      total: number;
+    }[] = [];
     for (const m of MORE_METRICS) {
       const value = getMetricValue(country.countryName ?? '', country.data, m.key);
       if (value == null) continue;
-      rows.push({ key: m.key, label: m.label, value, rank: rankFor(m.key) });
+      const { rank, total } = rankFor(m.key);
+      rows.push({ key: m.key, label: m.label, value, rank, total });
     }
     rows.sort((a, b) => {
       if (a.rank == null && b.rank == null) return 0;
@@ -207,7 +258,10 @@ export const CountrySheet = memo(function CountrySheet({
         <BottomSheetScrollView
           contentContainerStyle={[
             sheetStyles.content,
-            { paddingBottom: bottomInset + SPACING.xxl },
+            {
+              paddingBottom: bottomInset + SPACING.xxl,
+              paddingHorizontal: SPACING.sm,
+            },
           ]}
         >
           {country?.data && (
@@ -221,6 +275,7 @@ export const CountrySheet = memo(function CountrySheet({
                   label={r.label}
                   value={r.value}
                   rank={r.rank}
+                  total={r.total}
                   onPress={() => setActiveRanking(r.key)}
                 />
               ))}
@@ -259,7 +314,7 @@ const styles = StyleSheet.create({
   rankCol: {
     width: 34,
     textAlign: 'right',
-    marginRight: SPACING.md,
+    marginRight: SPACING.sm,
     fontVariant: ['tabular-nums'],
   },
   moreLabel: {
@@ -269,6 +324,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.md,
+  },
+  strip: {
+    width: STRIP_WIDTH,
+    height: STRIP_HEIGHT,
+    justifyContent: 'center',
+    marginRight: SPACING.md,
+  },
+  stripRule: {
+    height: STRIP_RULE_HEIGHT,
+    opacity: 0.3,
+  },
+  stripFill: {
+    position: 'absolute',
+    left: 0,
+    height: STRIP_RULE_HEIGHT,
+    opacity: 1,
+  },
+  stripDot: {
+    position: 'absolute',
+    top: (STRIP_HEIGHT - STRIP_DOT_SIZE) / 2,
+    width: STRIP_DOT_SIZE,
+    height: STRIP_DOT_SIZE,
+    borderRadius: STRIP_DOT_SIZE / 2,
   },
   value: {
     fontVariant: ['oldstyle-nums'],

@@ -11,12 +11,14 @@
     "paths": {
       "expo-modules-core": [
         "./node_modules/expo/node_modules/expo-modules-core"
-      ]
+      ],
+      "@shared/*": ["../shared/*"]
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "../shared/**/*.ts",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
   ]

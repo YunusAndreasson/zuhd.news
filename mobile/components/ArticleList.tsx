@@ -1,3 +1,4 @@
+import type { Article, Chokepoint, Entity, HeatmapPoint } from '@shared/types';
 import {
   memo,
   useCallback,
@@ -30,7 +31,6 @@ import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
 import { hapticNotification, hapticTick } from '../lib/haptics';
 import { maybeRequestReview } from '../lib/store-review';
-import type { Article, Chokepoint, Entity, HeatmapPoint } from '../types';
 import { ArticlePage } from './ArticlePage';
 import { EmptyState } from './EmptyState';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';

@@ -1,3 +1,5 @@
+import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
+import { displayNameFromCode, topojsonNameFromCode } from '@shared/countries/iso';
 import { Canvas, Circle, Group, Path, Skia, type SkPath } from '@shopify/react-native-skia';
 import { geoCentroid, geoEquirectangular, geoPath } from 'd3-geo';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
@@ -10,15 +12,29 @@ import {
   View,
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import { runOnJS, useDerivedValue, useSharedValue, withTiming } from 'react-native-reanimated';
-import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
+import Animated, {
+  runOnJS,
+  type SharedValue,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 import { EASING, FLAG, OPACITY, PRESSED_STYLE, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import { hapticImpact } from '../../lib/haptics';
-import { displayNameFromCode, topojsonNameFromCode } from '../../lib/iso-country';
-import { bordersMesh, countries, createSkiaPathContext, land } from '../globe/shared';
+import { createSkiaPathContext } from '../globe/shared';
 import { Text } from '../primitives';
+import {
+  bordersMeshHiRes,
+  CAPITALS_BY_ISO2,
+  countriesHiRes,
+  lakesHiRes,
+  landHiRes,
+  riversHiRes,
+  SEAS,
+} from './locations-geo';
 import { SourceCaption } from './SourceCaption';
 import { type BlockVariant, blockContainerStyle } from './shared';
 
@@ -33,6 +49,72 @@ const focusPadFor = (w: number) =>
   Math.max(FOCUS_PAD_MIN, Math.round(Math.max(0, w) * FOCUS_PAD_FRACTION));
 const MAX_LNG_SPAN_FOR_MAP = 120;
 const WORLD_CLIP_ASPECT = 2.0;
+// Vertical headroom for the map canvas. The raw aspect-true height keeps
+// the bbox undistorted but leaves horizontally-oriented selections (e.g.
+// Kazakhstan, Russia, or a multi-country band across the Mediterranean)
+// short enough that a country zoom hits sy before sx and can't magnify
+// much. Floor the height at 75% of the width so every selection gets a
+// near-portrait canvas with extra vertical slack that translates directly
+// into additional zoom-in scale. Cap raised to 900 so tall selections
+// (Chile, Norway) aren't clipped.
+const MIN_MAP_HEIGHT_RATIO = 0.75;
+const MAX_MAP_HEIGHT = 900;
+// Label box width. Wide enough for ~20 characters of labelXs ("Bosnia and
+// Herzegovina", "Central African Republic"); longer names clip with
+// numberOfLines={1}. Centered on the centroid via `left: cx - LABEL_WIDTH/2`.
+const LABEL_WIDTH = 160;
+
+// Collision-avoidance tuning for packedLabels. Char-width factors are rough
+// empirical estimates of how many pixels a glyph takes at ~11pt in each
+// variant — small-caps country labels are letter-spaced and run wider per
+// char; regular + italic water/capital are tighter. Used only to estimate
+// label bbox for overlap detection; labels still render at their true size.
+const LABEL_CHAR_WIDTH = { country: 7.5, capital: 5.8, water: 5.6 } as const;
+const LABEL_MIN_W = 20;
+const LABEL_BBOX_PAD = 3;
+const LABEL_OFFSET = 8;
+
+type LabelKind = 'country' | 'capital' | 'water';
+type LabelAnchor = 'center' | 'above' | 'below' | 'right' | 'left';
+
+interface PackedLabel {
+  key: string;
+  text: string;
+  kind: LabelKind;
+  /** Pre-zoom point the label "belongs to" — the anchor that the worklet
+   *  translates to follow as the Skia group zooms. */
+  anchorX: number;
+  anchorY: number;
+  /** Center position of the label at scale 1 (anchor + chosen anchor offset). */
+  cx: number;
+  cy: number;
+}
+
+const anchorSequence = (kind: LabelKind): LabelAnchor[] =>
+  kind === 'capital'
+    ? ['below', 'right', 'left', 'above']
+    : ['center', 'above', 'below', 'right', 'left'];
+
+function anchorCenter(
+  anchorX: number,
+  anchorY: number,
+  w: number,
+  h: number,
+  anchor: LabelAnchor,
+): { cx: number; cy: number } {
+  switch (anchor) {
+    case 'center':
+      return { cx: anchorX, cy: anchorY };
+    case 'above':
+      return { cx: anchorX, cy: anchorY - (h / 2 + LABEL_OFFSET) };
+    case 'below':
+      return { cx: anchorX, cy: anchorY + (h / 2 + LABEL_OFFSET) };
+    case 'right':
+      return { cx: anchorX + (w / 2 + LABEL_OFFSET), cy: anchorY };
+    case 'left':
+      return { cx: anchorX - (w / 2 + LABEL_OFFSET), cy: anchorY };
+  }
+}
 
 const SPHERE = { type: 'Sphere' } as const;
 
@@ -51,7 +133,139 @@ function fitWorldProjection(
 
 const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
 
-type Feature = (typeof countries.features)[number];
+/** Pick a screen-space label point for a river. Finds the longest
+ *  constituent LineString and returns the midpoint of the longest *run* of
+ *  consecutive vertices that project inside the selected country bbox — so
+ *  a river that passes through the country gets its label placed on the
+ *  visible segment, not at the planar centroid (often miles offshore). */
+function riverLabelPointIn(
+  f: GeoJSON.Feature,
+  projection: (lngLat: [number, number]) => [number, number] | null,
+  bx0: number,
+  by0: number,
+  bx1: number,
+  by1: number,
+): [number, number] | null {
+  const geom = f.geometry;
+  if (!geom) return null;
+  const lines: GeoJSON.Position[][] =
+    geom.type === 'LineString'
+      ? [geom.coordinates]
+      : geom.type === 'MultiLineString'
+        ? geom.coordinates
+        : [];
+  let bestMid: [number, number] | null = null;
+  let bestRunLen = 0;
+  for (const line of lines) {
+    const projected: [number, number][] = [];
+    for (const pos of line) {
+      const lng = pos[0];
+      const lat = pos[1];
+      if (lng == null || lat == null) continue;
+      const p = projection([lng, lat]);
+      if (!p) continue;
+      projected.push([p[0], p[1]]);
+    }
+    // Find the longest run of consecutive in-bbox vertices, then take its
+    // midpoint. Falls through to the overall midpoint when nothing crosses.
+    let runStart = -1;
+    let runBestStart = -1;
+    let runBestLen = 0;
+    for (let i = 0; i < projected.length; i++) {
+      const pt = projected[i];
+      if (!pt) continue;
+      const [x, y] = pt;
+      const inside = x >= bx0 && x <= bx1 && y >= by0 && y <= by1;
+      if (inside) {
+        if (runStart < 0) runStart = i;
+        const curLen = i - runStart + 1;
+        if (curLen > runBestLen) {
+          runBestLen = curLen;
+          runBestStart = runStart;
+        }
+      } else {
+        runStart = -1;
+      }
+    }
+    if (runBestLen > bestRunLen && runBestStart >= 0) {
+      bestRunLen = runBestLen;
+      const mid = projected[runBestStart + Math.floor(runBestLen / 2)];
+      if (mid) bestMid = [mid[0], mid[1]];
+    }
+  }
+  return bestMid;
+}
+
+type Feature = (typeof countriesHiRes.features)[number];
+
+/** Label that stays glued to a projected point during the zoom animation.
+ *  Math mirrors the Skia `Group transform={[tx, ty, scale]}` — for a projected
+ *  anchor (anchorX, anchorY), the screen position after the group transform
+ *  is `(tx + anchorX*scale, ty + anchorY*scale)`. We apply only the translate
+ *  (never the scale), so text stays the same visual size while the paths
+ *  underneath grow. (cx, cy) is the label's final center at scale 1 — when
+ *  the packer picks an off-center anchor (e.g. "right") the label sits
+ *  offset from the anchor point, and that offset is preserved through zoom
+ *  because it's baked into the absolute left/top, not the worklet. */
+const MapLabel = memo(function MapLabel({
+  text,
+  anchorX,
+  anchorY,
+  cx,
+  cy,
+  kind,
+  animScale,
+  animTx,
+  animTy,
+}: {
+  text: string;
+  anchorX: number;
+  anchorY: number;
+  cx: number;
+  cy: number;
+  /** Visual role — country (small caps, emphasis), capital (caption,
+   *  emphasis, marker-adjacent), or water (italic sectionHeading, shown
+   *  only when zoomed). All use textEmphasis for contrast. */
+  kind: LabelKind;
+  animScale: SharedValue<number>;
+  animTx: SharedValue<number>;
+  animTy: SharedValue<number>;
+}) {
+  const { colors, typography } = useTheme();
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateX: animTx.value + anchorX * (animScale.value - 1) },
+      { translateY: animTy.value + anchorY * (animScale.value - 1) },
+    ],
+  }));
+  const variant =
+    kind === 'country' ? 'labelXs' : kind === 'capital' ? 'caption' : 'sectionHeading';
+  // Capital + water variants natively render at sizeSm (13pt); scale them
+  // down to sizeXs so all map labels share the same ~11pt footprint and
+  // adjacent city/river/sea names don't overlap each other on a tight
+  // country zoom. Country labels already sit at labelXs natively.
+  const scale = kind === 'country' ? undefined : typography.sizeXs / typography.sizeSm;
+  const halfH = typography.sizeXs * 0.7;
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[
+        styles.countryLabelWrap,
+        { left: cx - LABEL_WIDTH / 2, top: cy - halfH },
+        animatedStyle,
+      ]}
+    >
+      <Text
+        variant={variant}
+        scale={scale}
+        style={[styles.countryLabel, { color: colors.textEmphasis, textShadowColor: colors.bg }]}
+        numberOfLines={1}
+      >
+        {text}
+      </Text>
+    </Animated.View>
+  );
+});
 
 interface LocationsBlockProps {
   codes: string[];
@@ -82,7 +296,7 @@ export const LocationsBlock = memo(function LocationsBlock({
     return codes.map((code) => {
       const name = topojsonNameFromCode(code);
       const feature = name
-        ? (countries.features.find(
+        ? (countriesHiRes.features.find(
             (f) => (f.properties as { name?: string } | undefined)?.name === name,
           ) ?? null)
         : null;
@@ -136,8 +350,9 @@ export const LocationsBlock = memo(function LocationsBlock({
       const degreesPerPixel = lngSpan > 0 ? lngSpan / availableW : 1;
       const computed = latSpan / degreesPerPixel + 2 * pad;
       if (!Number.isFinite(computed) || computed <= 0) return fallback;
+      const floor = width * MIN_MAP_HEIGHT_RATIO;
       return {
-        height: Math.round(Math.max(1, Math.min(600, computed))),
+        height: Math.round(Math.max(1, Math.min(MAX_MAP_HEIGHT, Math.max(floor, computed)))),
         showMap: true,
       };
     } catch {
@@ -176,6 +391,8 @@ export const LocationsBlock = memo(function LocationsBlock({
       return {
         landPath: null as SkPath | null,
         borderPath: null as SkPath | null,
+        lakesPath: null as SkPath | null,
+        riversPath: null as SkPath | null,
         highlightedFillPath: null as SkPath | null,
         selectedFillPath: null as SkPath | null,
       };
@@ -185,11 +402,27 @@ export const LocationsBlock = memo(function LocationsBlock({
 
     const landPath = Skia.Path.Make();
     ctx.setPath(landPath);
-    pg(land);
+    pg(landHiRes);
 
     const borderPath = Skia.Path.Make();
     ctx.setPath(borderPath);
-    pg(bordersMesh);
+    pg(bordersMeshHiRes);
+
+    const lakesPath = Skia.Path.Make();
+    ctx.setPath(lakesPath);
+    pg(lakesHiRes);
+
+    // Rivers — only draw major ones (scalerank ≤ 5). At world/continent
+    // zoom levels the finer ranks become visual noise without adding
+    // information, and the dropped rank is what NE intends for this scale.
+    const riversPath = Skia.Path.Make();
+    ctx.setPath(riversPath);
+    const majorRivers: GeoJSON.Feature<GeoJSON.LineString | GeoJSON.MultiLineString>[] =
+      riversHiRes.features.filter((f) => {
+        const rank = (f.properties as { scalerank?: number } | undefined)?.scalerank;
+        return typeof rank === 'number' && rank <= 5;
+      });
+    pg({ type: 'FeatureCollection', features: majorRivers } as never);
 
     let highlightedFillPath: SkPath | null = null;
     if (highlightedFeatures.length > 0) {
@@ -206,7 +439,14 @@ export const LocationsBlock = memo(function LocationsBlock({
       pg(selectedFeature);
       selectedFillPath = p;
     }
-    return { landPath, borderPath, highlightedFillPath, selectedFillPath };
+    return {
+      landPath,
+      borderPath,
+      lakesPath,
+      riversPath,
+      highlightedFillPath,
+      selectedFillPath,
+    };
   }, [projection, highlightedFeatures, selectedFeature, width, height]);
 
   const selectedCentroid = useMemo(() => {
@@ -220,6 +460,214 @@ export const LocationsBlock = memo(function LocationsBlock({
     }
   }, [selectedFeature, projection]);
 
+  // Highlighted-country labels — one RN Text per centroid, positioned in the
+  // unzoomed projection. Names come straight from the TopoJSON feature
+  // properties (Natural Earth canonical names), matching what the countries
+  // dataset itself uses for lookups. Rendered outside the Skia Group; each
+  // label tracks the zoom via its own worklet (CountryLabel) so the names
+  // stay glued to their countries when a chip is tapped.
+  const highlightedLabels = useMemo(() => {
+    if (highlightedFeatures.length === 0) return [];
+    return highlightedFeatures
+      .map((f) => {
+        const name = (f.properties as { name?: string } | undefined)?.name;
+        if (!name) return null;
+        try {
+          const c = geoCentroid(f) as [number, number];
+          const p = projection(c);
+          if (!p) return null;
+          return { name, x: p[0], y: p[1] };
+        } catch {
+          return null;
+        }
+      })
+      .filter((v): v is { name: string; x: number; y: number } => v != null);
+  }, [highlightedFeatures, projection]);
+
+  // Capital cities for each highlighted country — marker + label. Lookup is
+  // ISO-2 → precomputed {name, lat, lng} (NE 50m populated places, filtered
+  // to admin-0 capitals at build time). Projected once; the marker rides
+  // inside the Skia Group so it zooms with the country, the label rides
+  // outside with a zoom-tracking worklet.
+  const capitalMarkers = useMemo(() => {
+    if (width <= 0 || height <= 0) return [];
+    return resolved
+      .map((r) => {
+        const cap = CAPITALS_BY_ISO2[r.code];
+        if (!cap) return null;
+        const p = projection([cap.lng, cap.lat]);
+        if (!p || !Number.isFinite(p[0]) || !Number.isFinite(p[1])) return null;
+        if (p[0] < 0 || p[0] > width || p[1] < 0 || p[1] > height) return null;
+        return { name: cap.name, x: p[0], y: p[1], code: r.code };
+      })
+      .filter((v): v is { name: string; x: number; y: number; code: string } => v != null);
+  }, [resolved, projection, width, height]);
+
+  // Named rivers, lakes, and seas to label — only populated when a country
+  // is selected (zoomed-in view). In the fit-all view, water features draw
+  // as shapes only; their names would clutter the map without a clear
+  // focus. Label positions live in pre-zoom projected coords so the
+  // `MapLabel` transform worklet can ride them to screen.
+  const waterLabels = useMemo(() => {
+    if (selectedIdx == null || !selectedFeature || width <= 0 || height <= 0) {
+      return [] as { key: string; name: string; x: number; y: number; kind: 'water' }[];
+    }
+    const pg = geoPath(projection);
+    let bounds: [[number, number], [number, number]];
+    try {
+      bounds = pg.bounds(selectedFeature as never);
+    } catch {
+      return [];
+    }
+    const [[bx0, by0], [bx1, by1]] = bounds;
+    if (!Number.isFinite(bx0) || !Number.isFinite(by1)) return [];
+    const inBounds = (x: number, y: number, pad = 0) =>
+      x >= bx0 - pad && x <= bx1 + pad && y >= by0 - pad && y <= by1 + pad;
+
+    const out: { key: string; name: string; x: number; y: number; kind: 'water' }[] = [];
+
+    // Lakes: centroid inside the bbox.
+    for (const f of lakesHiRes.features) {
+      const name = (f.properties as { name?: string } | undefined)?.name;
+      if (!name) continue;
+      let cx: number;
+      let cy: number;
+      try {
+        [cx, cy] = pg.centroid(f as never);
+      } catch {
+        continue;
+      }
+      if (!Number.isFinite(cx) || !Number.isFinite(cy)) continue;
+      if (!inBounds(cx, cy)) continue;
+      out.push({ key: `lake-${name}-${out.length}`, name, x: cx, y: cy, kind: 'water' });
+    }
+
+    // Rivers: project the longest constituent line; if the midpoint of any
+    // contiguous in-bbox run lands inside the bbox, label there. Falls back
+    // to the line midpoint when nothing crosses cleanly.
+    for (const f of riversHiRes.features) {
+      const props = f.properties as { name?: string; scalerank?: number } | undefined;
+      const name = props?.name;
+      const rank = props?.scalerank;
+      if (!name || typeof rank !== 'number' || rank > 5) continue;
+      const labelPt = riverLabelPointIn(f, projection, bx0, by0, bx1, by1);
+      if (!labelPt) continue;
+      out.push({
+        key: `river-${name}-${out.length}`,
+        name,
+        x: labelPt[0],
+        y: labelPt[1],
+        kind: 'water',
+      });
+    }
+
+    // Seas, bays, gulfs: centroid within a padded bbox (seas sit outside
+    // land, so we inflate by 40% of the shorter side to catch adjacent
+    // bodies like the Persian Gulf when zoomed to Kuwait).
+    const padX = Math.max(40, (bx1 - bx0) * 0.4);
+    const padY = Math.max(40, (by1 - by0) * 0.4);
+    for (const s of SEAS) {
+      const p = projection([s.lng, s.lat]);
+      if (!p) continue;
+      const [x, y] = p;
+      if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+      if (x < bx0 - padX || x > bx1 + padX || y < by0 - padY || y > by1 + padY) continue;
+      // Clamp into the actual canvas so off-canvas seas don't render
+      // labels that end up over land on the opposite side of the map.
+      if (x < 0 || x > width || y < 0 || y > height) continue;
+      out.push({ key: `sea-${s.name}-${out.length}`, name: s.name, x, y, kind: 'water' });
+    }
+
+    return out;
+  }, [selectedIdx, selectedFeature, projection, width, height]);
+
+  // Collision-aware label packer. Runs once per label-set change and picks
+  // a non-overlapping screen anchor per label in priority order:
+  //   country > capital > water (in collection order: lakes → rivers → seas)
+  // For each candidate we try a short sequence of anchor positions (center,
+  // above, below, right, left) and accept the first one whose bbox fits
+  // inside the canvas and doesn't intersect an already-placed label.
+  // Labels that can't be placed anywhere are dropped — hiding the least
+  // important name is preferable to stacking two names on top of each
+  // other. Computed in the pre-zoom projection: labels all ride the same
+  // translate worklet at runtime, so pre-zoom collisions imply on-screen
+  // collisions at every zoom level (labels spread apart as zoom increases,
+  // so 1x is the worst case).
+  const packedLabels = useMemo(() => {
+    if (width <= 0 || height <= 0) return [] as PackedLabel[];
+    const labelH = typography.sizeXs * 1.4;
+    const estWidth = (text: string, kind: LabelKind) =>
+      Math.min(LABEL_WIDTH, Math.max(LABEL_MIN_W, text.length * LABEL_CHAR_WIDTH[kind]));
+
+    type Cand = { key: string; text: string; kind: LabelKind; x: number; y: number; w: number };
+    const candidates: Cand[] = [];
+    for (const l of highlightedLabels) {
+      candidates.push({
+        key: `country-${l.name}`,
+        text: l.name,
+        kind: 'country',
+        x: l.x,
+        y: l.y,
+        w: estWidth(l.name, 'country'),
+      });
+    }
+    for (const c of capitalMarkers) {
+      candidates.push({
+        key: `cap-label-${c.code}`,
+        text: c.name,
+        kind: 'capital',
+        x: c.x,
+        y: c.y,
+        w: estWidth(c.name, 'capital'),
+      });
+    }
+    for (const wl of waterLabels) {
+      candidates.push({
+        key: wl.key,
+        text: wl.name,
+        kind: 'water',
+        x: wl.x,
+        y: wl.y,
+        w: estWidth(wl.name, 'water'),
+      });
+    }
+
+    type Box = { x0: number; y0: number; x1: number; y1: number };
+    const placed: (PackedLabel & { box: Box })[] = [];
+    for (const cand of candidates) {
+      for (const a of anchorSequence(cand.kind)) {
+        const { cx, cy } = anchorCenter(cand.x, cand.y, cand.w, labelH, a);
+        const box: Box = {
+          x0: cx - cand.w / 2 - LABEL_BBOX_PAD,
+          x1: cx + cand.w / 2 + LABEL_BBOX_PAD,
+          y0: cy - labelH / 2 - LABEL_BBOX_PAD,
+          y1: cy + labelH / 2 + LABEL_BBOX_PAD,
+        };
+        if (cx < 0 || cx > width || cy < 0 || cy > height) continue;
+        let collides = false;
+        for (const p of placed) {
+          if (box.x0 < p.box.x1 && box.x1 > p.box.x0 && box.y0 < p.box.y1 && box.y1 > p.box.y0) {
+            collides = true;
+            break;
+          }
+        }
+        if (collides) continue;
+        placed.push({
+          key: cand.key,
+          text: cand.text,
+          kind: cand.kind,
+          anchorX: cand.x,
+          anchorY: cand.y,
+          cx,
+          cy,
+          box,
+        });
+        break;
+      }
+    }
+    return placed.map(({ box: _box, ...rest }) => rest);
+  }, [highlightedLabels, capitalMarkers, waterLabels, width, height, typography.sizeXs]);
+
   const { targetScale, targetTx, targetTy } = useMemo(() => {
     if (!selectedFeature || width <= 0 || height <= 0) {
       return { targetScale: 1, targetTx: 0, targetTy: 0 };
@@ -232,10 +680,17 @@ export const LocationsBlock = memo(function LocationsBlock({
       if (!Number.isFinite(bw) || !Number.isFinite(bh) || bw <= 0 || bh <= 0) {
         return { targetScale: 1, targetTx: 0, targetTy: 0 };
       }
-      const margin = focusPadFor(width) * 2;
+      // Half the base focus padding — the initial fitExtent already gave
+      // the map a comfortable margin, so the zoom-in just needs enough
+      // slack to keep the selected country off the frame edge, not another
+      // full pad. Previously doubled the pad then squared it in the usable
+      // formula, which left ~32% of the viewport as blank padding.
+      const margin = Math.max(8, focusPadFor(width) * 0.5);
       const sx = Math.max(0, width - margin * 2) / bw;
       const sy = Math.max(0, height - margin * 2) / bh;
-      const s = Math.max(1.2, Math.min(8, Math.min(sx, sy)));
+      // Cap bumped 8 → 12 so very small countries (Kuwait, Bahrain, Qatar)
+      // zoom in enough to actually dominate the viewport.
+      const s = Math.max(1.2, Math.min(12, Math.min(sx, sy)));
       const cx = (x0 + x1) / 2;
       const cy = (y0 + y1) / 2;
       return {
@@ -274,9 +729,24 @@ export const LocationsBlock = memo(function LocationsBlock({
     pulse.value = 0;
     pulse.value = withTiming(1, { duration: 500 });
   }, [selectedIdx, pulse]);
+
   const pulseR = useDerivedValue(() => (6 + pulse.value * 26) * inverseScale.value);
   const pulseStrokeWidth = useDerivedValue(() => 1.5 * inverseScale.value);
   const pulseOpacity = useDerivedValue(() => 0.6 * (1 - pulse.value));
+
+  // Rivers at 1.5px core + 3px halo visual weight regardless of zoom.
+  // Halo is a bg-colored stroke drawn underneath the core, giving every
+  // river a high-contrast edge against the selected country's accent
+  // fill — otherwise thin rivers like the Ganges dissolve into warm
+  // background colors. Capital markers stay at 3px.
+  const riverStrokeWidth = useDerivedValue(() =>
+    Math.max(StyleSheet.hairlineWidth, 1.5 * inverseScale.value),
+  );
+  const riverHaloStrokeWidth = useDerivedValue(() =>
+    Math.max(StyleSheet.hairlineWidth, 3.0 * inverseScale.value),
+  );
+  const capitalR = useDerivedValue(() => 3 * inverseScale.value);
+  const capitalStrokeWidth = useDerivedValue(() => 1.25 * inverseScale.value);
 
   const toggleSelection = useCallback((idx: number) => {
     hapticImpact();
@@ -310,10 +780,7 @@ export const LocationsBlock = memo(function LocationsBlock({
   if (!showMap) return null;
 
   return (
-    <View
-      style={blockContainerStyle[isContext ? 'context' : 'article']}
-      onLayout={(e) => setWidth(e.nativeEvent.layout.width)}
-    >
+    <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
       {label ? (
         <Text variant="labelXs" style={[styles.label, { lineHeight: typography.sizeXs * 1.1 }]}>
           {label}
@@ -383,6 +850,54 @@ export const LocationsBlock = memo(function LocationsBlock({
                       />
                     </>
                   ) : null}
+                  {/* Rivers — muted secondary at 1x so they read as
+                      background geography, not foreground lines. When a
+                      country is selected (zoomed) we pop to textEmphasis +
+                      bg halo so they stay legible over the accent fill. */}
+                  {paths.riversPath ? (
+                    <>
+                      {selectedFeature ? (
+                        <Path
+                          path={paths.riversPath}
+                          color={colors.bg}
+                          opacity={0.75}
+                          style="stroke"
+                          strokeWidth={riverHaloStrokeWidth}
+                        />
+                      ) : null}
+                      <Path
+                        path={paths.riversPath}
+                        color={selectedFeature ? colors.textEmphasis : colors.textSecondary}
+                        opacity={selectedFeature ? 0.8 : 0.45}
+                        style="stroke"
+                        strokeWidth={riverStrokeWidth}
+                      />
+                    </>
+                  ) : null}
+                  {/* Lakes on top — painted with bg so they "punch through"
+                      land tint, highlight, and selected fill alike. A lake
+                      reads as water regardless of which country owns it.
+                      Drawn after rivers so a river flowing into the lake
+                      doesn't draw a line across the lake's interior. */}
+                  {paths.lakesPath ? (
+                    <Path path={paths.lakesPath} color={colors.bg} style="fill" />
+                  ) : null}
+                  {/* Capital markers for each highlighted country — small
+                      accent dot with a bg-colored ring so the marker reads
+                      whether it sits over land, lake, or accent fill. */}
+                  {capitalMarkers.map((cap) => (
+                    <Group key={`cap-${cap.code}`}>
+                      <Circle
+                        cx={cap.x}
+                        cy={cap.y}
+                        r={capitalR}
+                        color={colors.bg}
+                        style="stroke"
+                        strokeWidth={capitalStrokeWidth}
+                      />
+                      <Circle cx={cap.x} cy={cap.y} r={capitalR} color={colors.accent} />
+                    </Group>
+                  ))}
                   {selectedCentroid ? (
                     <Circle
                       cx={selectedCentroid.x}
@@ -396,6 +911,24 @@ export const LocationsBlock = memo(function LocationsBlock({
                   ) : null}
                 </Group>
               </Canvas>
+            ) : null}
+            {packedLabels.length > 0 ? (
+              <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+                {packedLabels.map((l) => (
+                  <MapLabel
+                    key={l.key}
+                    text={l.text}
+                    anchorX={l.anchorX}
+                    anchorY={l.anchorY}
+                    cx={l.cx}
+                    cy={l.cy}
+                    kind={l.kind}
+                    animScale={animScale}
+                    animTx={animTx}
+                    animTy={animTy}
+                  />
+                ))}
+              </View>
             ) : null}
           </View>
         </GestureDetector>
@@ -462,6 +995,18 @@ const styles = StyleSheet.create({
     position: 'relative',
     overflow: 'hidden',
     borderRadius: RADIUS.handle,
+  },
+  countryLabelWrap: {
+    position: 'absolute',
+    width: LABEL_WIDTH,
+  },
+  countryLabel: {
+    width: LABEL_WIDTH,
+    textAlign: 'center',
+    // Bg-colored shadow on all four sides fakes a text halo — keeps labels
+    // readable whether they land on sea, land tint, or accent fill.
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 3,
   },
   chipRow: {
     flexDirection: 'row',

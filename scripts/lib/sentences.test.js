@@ -84,6 +84,34 @@ test('no previously-bad file silently becomes valid', () => {
     // Rescued by fix 1 (lookahead allows `[` after a period):
     '2026-04-19-hormuz-reopen-economic-aftermath-insurance-shipping.md.bad',
     '2026-04-19-iran-us-talks-progress-uranium-rejection-stalemate.md.bad',
+    // Rescued by splitter modernization (\p{Lu} with /u flag) — these
+    // all parse as 2–3 sentences now; their .bad status predates the
+    // fix and stems from frontmatter/content issues unrelated to count.
+    '2026-03-22-australia-fuel-crisis-warning-ignored-nine-months.md.bad',
+    '2026-03-22-brazil-new-climate-plan-paris-agreement-ambition.md.bad',
+    '2026-03-22-china-ai-harvest-forecast-food-security-advantage.md.bad',
+    '2026-03-22-china-stockpiles-critical-resources-energy-security.md.bad',
+    '2026-03-22-cuba-second-blackout-week-oil-blockade.md.bad',
+    '2026-03-22-edison-edf-algeria-gas-iran-war-energy-shift.md.bad',
+    '2026-03-22-fpga-3dfx-voodoo-recreation-modern-tools.md.bad',
+    '2026-03-22-icc-khan-cleared-misconduct-israel-warrants-backdrop.md.bad',
+    '2026-03-22-imran-khan-attacks-judiciary-prison-eid-statement.md.bad',
+    '2026-03-22-iran-strikes-dimona-nuclear-site-tit-for-tat-escalation.md.bad',
+    '2026-03-22-kenya-amnesty-citizens-fighting-russia-ukraine.md.bad',
+    '2026-03-22-le-pen-far-right-setbacks-french-municipal-elections.md.bad',
+    '2026-03-22-musk-liable-twitter-shareholders-fraud-44bn.md.bad',
+    '2026-03-22-nigeria-land-cattle-identity-deadly-conflict.md.bad',
+    '2026-03-22-pakistan-luxury-fuel-levy-wartime-austerity.md.bad',
+    '2026-03-22-pakistan-psl-no-spectators-wartime-austerity.md.bad',
+    '2026-03-22-pakistan-tops-global-terrorism-index-1139-deaths.md.bad',
+    '2026-03-22-russia-diabetes-epidemic-warning-health-crisis.md.bad',
+    '2026-03-22-saudi-expels-iranian-diplomats-gulf-last-warnings.md.bad',
+    '2026-03-22-sri-lanka-fuel-prices-25-percent-iran-war.md.bad',
+    '2026-03-22-sudan-hospital-attack-64-killed-darfur-health-system.md.bad',
+    '2026-03-22-trans-saharan-gas-pipeline-niger-advances-europe.md.bad',
+    '2026-03-22-trump-48-hour-hormuz-ultimatum-iran-power-plants.md.bad',
+    '2026-03-22-ubuntu-sudo-password-asterisks-46-year-change.md.bad',
+    '2026-04-04-nigeria-wike-threatens-shoot-journalist-okinbaloye-press-freedom.md.bad',
   ])
   const surprises = []
   for (const f of bads) {

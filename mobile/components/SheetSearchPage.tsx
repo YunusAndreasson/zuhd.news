@@ -1,11 +1,11 @@
 import { BottomSheetFlatList, BottomSheetTextInput } from '@gorhom/bottom-sheet';
+import type { Article, Category } from '@shared/types';
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, Pressable, StyleSheet, View } from 'react-native';
 import type { TextInput } from 'react-native-gesture-handler';
 import { IS_ANDROID } from '../constants/platform';
 import { CATEGORIES, HIT_SLOP, LAYOUT, PRESSED_STYLE, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import type { Article, Category } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
 import { Icon, Text } from './primitives';

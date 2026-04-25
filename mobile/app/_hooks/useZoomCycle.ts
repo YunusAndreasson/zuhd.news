@@ -14,8 +14,8 @@ interface ZoomLevel {
  *  clip: 90 preset would be identical to 1× for most articles. */
 const ZOOM_LEVELS: ZoomLevel[] = [
   { label: '1× zoom', clip: null },
-  { label: '2× zoom', clip: 15 },
-  { label: '3× zoom', clip: 8 },
+  { label: '2× zoom', clip: 18 },
+  { label: '3× zoom', clip: 10 },
 ];
 
 const DEFAULT_INDEX = 0;

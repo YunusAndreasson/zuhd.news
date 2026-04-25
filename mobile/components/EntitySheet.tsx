@@ -3,12 +3,12 @@ import {
   type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
+import type { Article, Category, Entity, Indicator } from '@shared/types';
 import { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, CATEGORIES, SPACING, staggerDelay } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import type { Article, Category, Entity, Indicator } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { SourceCaption } from './blocks/SourceCaption';
 import { TrendBlock } from './blocks/TrendBlock';

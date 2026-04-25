@@ -3,6 +3,7 @@ import {
   type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
+import type { Article, Category } from '@shared/types';
 import Constants from 'expo-constants';
 import * as StoreReview from 'expo-store-review';
 import { memo, useCallback, useEffect, useState } from 'react';
@@ -31,7 +32,6 @@ import { useSheetNavigation } from '../hooks/useSheetNavigation';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { type PreferencesApi, usePreferences, useTheme } from '../hooks/useTheme';
 import { hapticTick } from '../lib/haptics';
-import type { Article, Category } from '../types';
 import { Icon, Pressable, Text } from './primitives';
 import { SheetAboutPage } from './SheetAboutPage';
 import { SheetBookmarksPage } from './SheetBookmarksPage';
