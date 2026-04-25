@@ -209,9 +209,11 @@ const CHOKEPOINT_DISRUPTED_DELTA = 0.15;
 const CHOKEPOINT_SATURATION_DELTA = 0.3;
 
 // Vertical advance between baselines of a wrapped country label. Tuned for
-// 14px Source Sans 3 Regular — enough air to read both lines as a stack
-// without the descenders touching the next ascenders.
-const LABEL_LINE_HEIGHT = 16;
+// 12pt Source Sans 3 SemiBold (countryFont) — enough air to read both lines
+// as a stack without the descenders touching the next ascenders. Was 16
+// when the country label rendered at 14pt; shrunk to track the smaller
+// secondary-tier font.
+const LABEL_LINE_HEIGHT = 14;
 // Halo stroke width for primary-tier labels (focused country, chokepoint).
 // 2.4 reads as a soft cushion behind the glyphs without becoming a visible
 // plate; 3+ starts to feel like a solid background rectangle at 14px text.
@@ -226,6 +228,11 @@ const LABEL_HALO_OPACITY_DARK = 0.55;
 // never becomes an opaque plate.
 const LABEL_HALO_OPACITY_LIGHT_STRONG = 0.85;
 const LABEL_HALO_OPACITY_DARK_STRONG = 0.7;
+// Secondary tier — softer halo for the demoted country label so its smaller
+// 12pt text doesn't punch above its hierarchy slot. The dot/location label
+// now carries the primary-tier halo.
+const LABEL_HALO_OPACITY_LIGHT_SOFT = 0.5;
+const LABEL_HALO_OPACITY_DARK_SOFT = 0.4;
 
 /** Widest line in `lines`, measured by font width when loaded; otherwise
  *  approximated at `fallbackChar` pixels per character so first-paint
@@ -620,12 +627,19 @@ export const MiniGlobe = memo(function MiniGlobe({
   const cy = height * 0.75;
   const labelFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 14);
   const subFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 11);
+  // Country label is the secondary tier — same family, one step smaller than
+  // the focused dot label so the *location* (where the news happened) reads
+  // as primary and the *country* reads as supporting context. Same asset =
+  // shared font cache, no extra load cost.
+  const countryFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 12);
   // Fonts mirrored into refs so callReproject (a useCallback with `[]` deps,
   // stable closure) can measure text width for label-collision detection.
   // The fonts load asynchronously, so the ref pointer can flip from null to
   // the loaded font mid-session — each frame reads the current value.
   const labelFontRef = useRef(labelFont);
   labelFontRef.current = labelFont;
+  const countryFontRef = useRef(countryFont);
+  countryFontRef.current = countryFont;
   const subFontRef = useRef(subFont);
   subFontRef.current = subFont;
 
@@ -1298,11 +1312,13 @@ export const MiniGlobe = memo(function MiniGlobe({
       // it anchors to the story location; country label is secondary.
       if (countryLabel && dotLabel) {
         const lfont = labelFontRef.current;
+        const cfont = countryFontRef.current;
         const sfont = subFontRef.current;
-        // Text widths — fall back to char-count approximation (7px per char
-        // for labelFont, 5px for subFont) before fonts finish loading. The
-        // country label is multi-line (1–2 rows): use the widest row.
-        const cWidth = measureLines(countryLabel.lines, lfont, 7);
+        // Text widths — fall back to char-count approximation (6px per char
+        // for countryFont 12pt, 7px for labelFont 14pt, 5px for subFont)
+        // before fonts finish loading. Country label is multi-line (1–2
+        // rows): use the widest row.
+        const cWidth = measureLines(countryLabel.lines, cfont, 6);
         const dWidth = lfont ? lfont.getTextWidth(dotLabel.text) : dotLabel.text.length * 7;
         const sWidth = dotLabel.sub
           ? sfont
@@ -1310,11 +1326,12 @@ export const MiniGlobe = memo(function MiniGlobe({
             : dotLabel.sub.length * 5
           : 0;
         // Country label AABB — centered on x, first baseline at y, each
-        // additional line stacks LABEL_LINE_HEIGHT below.
+        // additional line stacks LABEL_LINE_HEIGHT below. Ascender ≈ 10 for
+        // 12pt SemiBold (was 12 when this label rendered at 14pt).
         const cX0 = countryLabel.x - cWidth / 2;
         const cX1 = cX0 + cWidth;
-        const cY0 = countryLabel.y - 12; // ascender of first line
-        const cY1 = countryLabel.y + (countryLabel.lines.length - 1) * LABEL_LINE_HEIGHT + 4;
+        const cY0 = countryLabel.y - 10;
+        const cY1 = countryLabel.y + (countryLabel.lines.length - 1) * LABEL_LINE_HEIGHT + 3;
         // Dot label block AABB — dot label at (dot.x + 6, dot.y + 4), sub
         // offset another 14px down. Covers both rows.
         const dX0 = dotLabel.x + 6;
@@ -1340,16 +1357,17 @@ export const MiniGlobe = memo(function MiniGlobe({
       let keptWaters = waterLabels;
       if (neighborLabels.length > 0 || waterLabels.length > 0) {
         const lfont = labelFontRef.current;
+        const cfont = countryFontRef.current;
         const sfont = subFontRef.current;
         const occupied: { x0: number; y0: number; x1: number; y1: number }[] = [];
         const pad = 2;
         if (countryLabel) {
-          const w = measureLines(countryLabel.lines, lfont, 7);
+          const w = measureLines(countryLabel.lines, cfont, 6);
           occupied.push({
             x0: countryLabel.x - w / 2 - pad,
             x1: countryLabel.x + w / 2 + pad,
-            y0: countryLabel.y - 12,
-            y1: countryLabel.y + (countryLabel.lines.length - 1) * LABEL_LINE_HEIGHT + 4,
+            y0: countryLabel.y - 10,
+            y1: countryLabel.y + (countryLabel.lines.length - 1) * LABEL_LINE_HEIGHT + 3,
           });
         }
         if (dotLabel) {
@@ -2255,11 +2273,11 @@ export const MiniGlobe = memo(function MiniGlobe({
           stack reads as a balanced block. The state's `(x, y)` is the
           baseline of the FIRST line; subsequent lines stack at LABEL_LINE_HEIGHT. */}
       {state.countryLabel &&
-        labelFont &&
+        countryFont &&
         (() => {
           const cl = state.countryLabel;
           return cl.lines.map((line, i) => {
-            const tx = cl.x - labelFont.getTextWidth(line) / 2;
+            const tx = cl.x - countryFont.getTextWidth(line) / 2;
             const ty = cl.y + i * LABEL_LINE_HEIGHT;
             return (
               <HaloLabel
@@ -2267,35 +2285,42 @@ export const MiniGlobe = memo(function MiniGlobe({
                 x={tx}
                 y={ty}
                 text={line}
-                font={labelFont}
+                font={countryFont}
                 color={colors.textEmphasis}
                 haloColor={colors.bg}
-                opacity={light ? 0.95 : 0.9}
-                haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK}
+                opacity={light ? 0.85 : 0.8}
+                haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT_SOFT : LABEL_HALO_OPACITY_DARK_SOFT}
               />
             );
           });
         })()}
 
-      {/* Dot label — location · local time */}
+      {/* Dot label — location · local time. Primary tier: the *location*
+          where the news happened is the most important text on the globe,
+          so it carries a halo and the heavier 14pt SemiBold weight while
+          the country label below sits at the secondary 12pt tier. */}
       {state.dotLabel && labelFont && (
         <>
-          <SkiaText
+          <HaloLabel
             x={state.dotLabel.x + 6}
             y={state.dotLabel.y + 4}
             text={state.dotLabel.text}
             font={labelFont}
             color={colors.textEmphasis}
-            opacity={light ? 0.65 : 0.8}
+            haloColor={colors.bg}
+            opacity={light ? 0.95 : 0.95}
+            haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK}
           />
           {state.dotLabel.sub && subFont && (
-            <SkiaText
+            <HaloLabel
               x={state.dotLabel.x + 6}
               y={state.dotLabel.y + 18}
               text={state.dotLabel.sub}
               font={subFont}
               color={colors.textEmphasis}
-              opacity={light ? 0.45 : 0.55}
+              haloColor={colors.bg}
+              opacity={light ? 0.7 : 0.75}
+              haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT_SOFT : LABEL_HALO_OPACITY_DARK_SOFT}
             />
           )}
         </>
