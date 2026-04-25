@@ -6,6 +6,7 @@
   font-style: normal;
   font-weight: 200 900;
   font-display: optional;
+  size-adjust: 95%;
   src: url('/fonts/source-sans-3-var.woff2') format('woff2');
 }
 @font-face {
@@ -13,6 +14,7 @@
   font-style: italic;
   font-weight: 200 900;
   font-display: optional;
+  size-adjust: 95%;
   src: url('/fonts/source-sans-3-var-italic.woff2') format('woff2');
 }
 
@@ -75,12 +77,12 @@
   --text-emphasis: light-dark(#000, #fafafa);
   --text-secondary: light-dark(#555, #a3a3a3);
   --text-dim: light-dark(#777, #7a7a7a);
-  --bg: light-dark(#fff, #141414);
+  --bg: light-dark(#fff, #080808);
   --bg-soft: light-dark(#fafafa, #1a1a1a);
   --accent: light-dark(#444, #999);
   --dome: #c9a84c;          /* sole accent color — matches mobile */
-  --rule: light-dark(#ddd, #2a2a2a);
-  --rule-soft: light-dark(#eee, #222);
+  --rule: light-dark(#e8e8e8, #181818);
+  --rule-soft: light-dark(#f2f2f2, #111);
 
   --measure: 80ch;
   --measure-reading: 65ch;
@@ -112,37 +114,6 @@
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
-.t-dek {
-  font-size: var(--size-h3);
-  font-weight: var(--weight-light);
-  line-height: var(--leading-heading);
-  color: var(--text-secondary);
-  text-wrap: balance;
-}
-.t-lead {
-  font-size: var(--size-base);
-  font-weight: var(--weight-semibold);
-  line-height: var(--leading-body);
-  font-variant-numeric: oldstyle-nums proportional-nums;
-}
-.t-pullquote {
-  font-size: var(--size-h3);
-  font-weight: var(--weight-light);
-  font-style: italic;
-  line-height: var(--leading-heading);
-  color: var(--text);
-  border-left: 2px solid var(--rule);
-  padding-left: var(--space-sm);
-  margin: var(--space-md) 0;
-}
-.t-byline {
-  font-size: var(--size-sm);
-  font-weight: var(--weight-regular);
-  color: var(--text-secondary);
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.05em;
-}
 .t-caption {
   font-size: var(--size-sm);
   font-weight: var(--weight-regular);
@@ -150,7 +121,7 @@
   line-height: var(--leading-heading);
   font-variant-numeric: oldstyle-nums proportional-nums;
 }
-.t-label, .label {
+.label {
   font-size: var(--size-xs);
   font-weight: var(--weight-semibold);
   color: var(--text-secondary);
@@ -167,7 +138,7 @@
    editorial polish (FT/Bloomberg dateline convention). */
 .article-dateline {
   font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1, "smcp" 1;
+  font-feature-settings: "case" 1;
   letter-spacing: 0.08em;
   font-weight: var(--weight-semibold);
   color: var(--text);
@@ -175,7 +146,6 @@
 }
 .t-tabular {
   font-variant-numeric: lining-nums tabular-nums;
-  font-feature-settings: "lnum" 1, "tnum" 1;
 }
 .t-data-numeral {
   font-size: var(--size-d1);
@@ -196,8 +166,7 @@
 html {
   font-size: 100%;
   color-scheme: light dark;
-  -webkit-text-size-adjust: 100%;
-  hanging-punctuation: first;
+  text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -241,8 +210,8 @@ p { margin-bottom: var(--space-sm); }
 strong { font-weight: 700; }
 em { font-style: italic; }
 time { font-feature-settings: "zero" 1; }
-sup { font-size: 0.75em; font-variant-position: super; font-feature-settings: "sups" 1; }
-sub { font-size: 0.75em; font-variant-position: sub; font-feature-settings: "subs" 1; }
+sup { font-size: 0.75em; font-variant-position: super; }
+sub { font-size: 0.75em; font-variant-position: sub; }
 
 a {
   color: var(--text);
@@ -309,6 +278,7 @@ footer {
   margin-top: auto;
   padding: var(--space-sm) 0;
   border-top: 1px solid var(--rule);
+  contain: layout style;
 
   .update-status {
     font-size: var(--size-xs);
@@ -438,10 +408,7 @@ footer {
   top: 0;
   z-index: 1;
   background: var(--bg);
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.15s;
-
-  &.scrolled { border-bottom-color: var(--rule); }
+  contain: layout style;
 }
 
 .category-tab {
@@ -479,6 +446,12 @@ footer {
   contain-intrinsic-size: auto 2.5rem;
   position: relative;
 
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
   &:active > h2 {
     opacity: 0.5;
     transition: opacity 0s;
@@ -515,9 +488,11 @@ footer {
   hyphens: auto;
   text-wrap: pretty;
   content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
+  contain-intrinsic-size: auto 100vh;
   font-variant-ligatures: common-ligatures contextual;
   font-variant-numeric: oldstyle-nums proportional-nums;
+  font-size: clamp(1.375rem, 0.4vw + 1.2rem, 1.5rem);
+  line-height: 1.6;
 
   .s {
     display: block;
@@ -527,22 +502,11 @@ footer {
   }
 }
 
-.end-source {
-  font-size: var(--size-sm);
-  color: var(--text-secondary);
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.05em;
-  margin-top: var(--space-sm);
-  margin-bottom: 0;
-}
-
 /* --- Article Expand (mobile accordion) --- */
 .article-expand {
   padding-top: var(--space-xs);
   animation: expand-in 200ms ease;
   flex-basis: 100%;
-  will-change: opacity, transform;
 }
 
 @keyframes expand-in {
@@ -579,7 +543,7 @@ footer {
 /* --- Mobile --- */
 @media (max-width: 640px) {
   body {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     padding: var(--space-sm);
     padding-top: var(--space-md);
     padding-bottom: var(--space-sm);
@@ -594,6 +558,15 @@ footer {
     mask-image: linear-gradient(to right, #000 80%, transparent);
     padding-right: 3.5rem;
     gap: 1.25rem;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: sticky;
+      right: 0;
+      width: 1.25rem;
+      flex-shrink: 0;
+    }
   }
 
   .category-tab { padding: 0.5rem 0; }
@@ -684,6 +657,7 @@ footer {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: var(--rule) transparent;
+    scrollbar-gutter: stable;
     padding-right: 0.5rem;
     padding-bottom: var(--space-md);
     mask-image: linear-gradient(to bottom, #000 calc(100% - 2rem), transparent);
@@ -739,7 +713,9 @@ footer {
     margin-bottom: var(--space-md);
 
     h2 {
-      font-size: var(--size-h2);
+      font-size: clamp(2rem, 2.5vw + 1.5rem, 3rem);
+      font-weight: 700;
+      line-height: 1.08;
       font-weight: 700;
       line-height: var(--leading-heading);
       text-wrap: balance;
@@ -882,33 +858,6 @@ footer {
 }
 .context-body .context-heading:first-child { margin-top: 0; }
 .context-body p { margin: 0 0 0.3em 0; }
-.context-body hr.context-divider {
-  border: none;
-  border-top: 1px solid var(--rule);
-  margin: 1em 0 0.8em 0;
-}
-.context-body .context-verse-line {
-  margin: 0 0 0.2em 0;
-  font-style: italic;
-}
-
-/* --- Progressive Disclosure: Concepts --- */
-.article-concepts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35em;
-  margin-top: 0.8em;
-}
-.concept-tag {
-  font-size: var(--size-xs);
-  color: var(--text-secondary);
-  border: 1px solid var(--rule);
-  border-radius: 2px;
-  padding: 0.1em 0.45em;
-  font-variant-caps: all-small-caps;
-  letter-spacing: 0.03em;
-}
-
 /* --- App banner (hidden on iOS Safari; native smart banner shows instead) --- */
 .app-banner {
   display: flex;
@@ -1019,7 +968,7 @@ body.article-page-body::before {
   font-size: var(--size-xs);
   color: var(--text-secondary);
   font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1, "smcp" 1;
+  font-feature-settings: "case" 1;
   letter-spacing: 0.14em;
   font-weight: var(--weight-semibold);
   text-decoration: none;
@@ -1035,8 +984,8 @@ body.article-page-body::before {
    per line — the sweet spot for sustained on-screen reading — regardless
    of how the body type scales between mobile and wide viewports. */
 .article-page-main {
-  font-size: clamp(1.3125rem, 0.4vw + 1.2rem, 1.4375rem);
-  line-height: 1.6;
+  font-size: clamp(1.5rem, 0.45vw + 1.35rem, 1.75rem);
+  line-height: 1.65;
   max-width: 64ch;
   margin: 0 auto;
   padding: var(--space-lg) var(--space-md);
@@ -1078,7 +1027,7 @@ body.article-page-body::before {
   color: var(--text-secondary);
   font-size: var(--size-xs);
   font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1, "smcp" 1;
+  font-feature-settings: "case" 1;
   letter-spacing: 0.14em;
   font-weight: var(--weight-semibold);
   margin: 0 0 var(--space-md);
@@ -1127,7 +1076,7 @@ body.article-page-body::before {
 
 @media (min-width: 641px) {
   .article-title {
-    font-size: clamp(2.625rem, 3vw + 1.5rem, 4.5rem);
+    font-size: clamp(3.75rem, 4vw + 2rem, 6.5rem);
     margin-bottom: clamp(1rem, 0.5vw + 0.75rem, 1.5rem);
   }
 }
@@ -1149,9 +1098,9 @@ body.article-page-body::before {
    wide step + brighter colour does the visual separation; horizontal
    margins stay flush with body so the column reads as a single column. */
 .article-page-main .article-body > p:first-of-type {
-  font-size: clamp(1.625rem, 0.8vw + 1.4rem, 2.125rem);
+  font-size: clamp(2.125rem, 1vw + 1.8rem, 3rem);
   font-weight: var(--weight-regular);
-  line-height: 1.4;
+  line-height: 1.35;
   color: var(--text-emphasis);
   margin-bottom: var(--space-lg);
   letter-spacing: -0.012em;
@@ -1185,9 +1134,9 @@ body.article-page-body::before {
 }
 
 .article-page-main .article-body h2 {
-  font-size: clamp(1.625rem, 0.6vw + 1.4rem, 2rem);
+  font-size: clamp(2rem, 0.7vw + 1.7rem, 2.5rem);
   font-weight: var(--weight-semibold);
-  line-height: 1.2;
+  line-height: 1.15;
   letter-spacing: -0.014em;
   color: var(--text-emphasis);
   margin-top: var(--space-xl);
@@ -1195,9 +1144,9 @@ body.article-page-body::before {
 }
 
 .article-page-main .article-body h3 {
-  font-size: clamp(1.375rem, 0.4vw + 1.25rem, 1.625rem);
+  font-size: clamp(1.75rem, 0.5vw + 1.55rem, 2.125rem);
   font-weight: var(--weight-semibold);
-  line-height: 1.25;
+  line-height: 1.2;
   letter-spacing: -0.008em;
   color: var(--text-emphasis);
   margin-top: var(--space-lg);
@@ -1211,7 +1160,7 @@ body.article-page-body::before {
   margin: var(--space-lg) 0;
   padding: var(--space-xs) 0 var(--space-xs) var(--space-md);
   border-left: 2px solid var(--dome);
-  font-size: var(--size-h3);
+  font-size: clamp(1.375rem, 0.35vw + 1.25rem, 1.625rem);
   font-weight: var(--weight-light);
   font-style: italic;
   line-height: 1.4;
@@ -1223,11 +1172,12 @@ body.article-page-body::before {
 .article-page-main .article-body blockquote p + p { margin-top: var(--space-sm); }
 .article-page-main .article-body blockquote .s { display: inline; margin-bottom: 0; }
 
-/* Sources disclosure — subtle hairline separator and quieter alignment. */
-.article-page-main .article-sources {
-  margin-top: var(--space-lg);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--rule-soft);
+/* Subtle sources line — dimmed, small, no interactivity */
+.article-sources-flat {
+  font-size: var(--size-xs);
+  color: var(--text-dim);
+  margin-top: var(--space-sm);
+  line-height: 1.4;
 }
 
 .article-pagination {
@@ -1255,7 +1205,7 @@ body.article-page-body::before {
 
 .article-pagination-label {
   font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1, "smcp" 1;
+  font-feature-settings: "case" 1;
   letter-spacing: 0.14em;
   font-size: var(--size-xs);
   font-weight: var(--weight-semibold);
@@ -1264,7 +1214,7 @@ body.article-page-body::before {
 
 .article-pagination-title {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1317,7 +1267,7 @@ body.article-page-body::before {
   font-size: var(--size-xs);
   color: var(--text-dim);
   font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1, "smcp" 1;
+  font-feature-settings: "case" 1;
   letter-spacing: 0.1em;
 }
 
@@ -1337,7 +1287,7 @@ body.article-page-body::before {
     padding-bottom: var(--space-md);
   }
   .article-title {
-    font-size: calc(var(--size-h1) * 1.05);
+    font-size: calc(var(--size-h1) * 1.25);
   }
   .article-pagination {
     grid-template-columns: 1fr;
@@ -1349,7 +1299,7 @@ body.article-page-body::before {
   .article-pagination-next .article-pagination-label::after { content: ' →'; }
   .article-pagination-title { font-size: var(--size-base); }
   .article-page-main .article-body > p:first-of-type {
-    font-size: var(--size-base);
+    font-size: var(--size-h3);
   }
 }
 
@@ -1405,6 +1355,7 @@ body.archetype-page-body .article-page-header {
   gap: var(--space-xs) var(--space-sm);
   border-bottom: 1px solid var(--rule);
   padding-bottom: var(--space-md);
+  contain: layout style;
 }
 
 .country-header .label:first-child { grid-area: region; }
@@ -1627,6 +1578,7 @@ body.archetype-page-body .article-page-header {
   gap: var(--space-xs);
   padding-bottom: var(--space-md);
   border-bottom: 1px solid var(--rule);
+  contain: layout style;
 }
 
 .entity-label {
@@ -1978,16 +1930,33 @@ body.archetype-page-body .article-page-header {
   font: inherit;
   font-size: 1.5rem;
   line-height: 1;
-  color: var(--text-secondary);
+  color: var(--rule);
   cursor: pointer;
-  padding: 0.25rem 0.625rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 999px;
-  transition: color var(--dur-fast), background var(--dur-fast);
+  font-size: 1.1rem;
+  outline: none;
+  transition: color var(--dur-fast);
+
+  &:hover { color: var(--text-dim); }
 }
 
 .island-sheet-close:hover {
   color: var(--text);
   background: var(--bg-soft);
+}
+
+/* --- Source modal --- */
+.source-modal {
+  max-width: 64rem;
+  width: calc(100vw - 2rem);
+}
+.source-modal .context-body {
+  columns: 2;
+  column-gap: var(--space-lg);
+  column-rule: 1px solid var(--rule-soft);
+
+  h2, h3, p { break-inside: avoid; }
 }
 
 .island-sheet-inner {
@@ -2162,21 +2131,23 @@ body.archetype-page-body .article-page-header {
   text-decoration-color: var(--accent, #c9a84c);
 }
 
-/* --- Ambient starfield ---
-   Subtle universe behind everything. The SVG data URI is generated at
-   build time from a fixed-seed PRNG (see scripts/build.js) and exposed
-   as the `--starfield` custom property. Tiles at 1200px so the eye
-   never catches a seam at typical viewport widths. Sits at z-index -2,
-   below the globe (-1), above body's background fill. */
-body::after {
-  content: "";
+/* --- Spacefield (stars + Mars) ---
+   Canvas-rendered starfield with depth layers, subtle twinkling, and a
+   small procedural Mars. Replaces the old static SVG starfield. The
+   island auto-mounts on every page, sitting at z-index -2 below the
+   ambient globe (-1). Opacity crossfades on color-scheme changes. */
+.spacefield-root {
   position: fixed;
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  background: var(--starfield) repeat 0 0 / 1200px 1200px;
   opacity: light-dark(0, 0.85);
   transition: opacity 0.6s ease;
+}
+.spacefield-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 /* --- Ambient globe ---
@@ -2205,13 +2176,13 @@ body::after {
   pointer-events: none;
   z-index: -1;
   opacity: 0.2;
+  mix-blend-mode: screen;
   mask-image: radial-gradient(circle at 35% 35%, #000 0%, #000 32%, transparent 88%);
   contain: layout paint;
-  will-change: opacity;
 }
 
 @media (prefers-color-scheme: dark) {
-  .ambient-globe-root { opacity: 0.32; }
+  .ambient-globe-root { opacity: 0.1; }
 }
 
 @media (max-width: 720px) {
@@ -2233,6 +2204,21 @@ body::after {
   width: 100%;
   height: 100%;
   display: block;
+}
+/* Atmospheric glow ring — static radial gradient painted once behind the
+   cobe canvas. No filter means zero per-frame cost (unlike drop-shadow on
+   a continuously redrawn WebGL surface). The container's mask-image
+   naturally clips it to the visible crescent. */
+.ambient-globe-root::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%,
+    transparent 36%,
+    rgba(100, 145, 215, 0.1) 40%,
+    rgba(100, 145, 215, 0.05) 45%,
+    transparent 50%);
+  pointer-events: none;
 }
 
 /* --- Globe pulsar ---
@@ -2287,13 +2273,13 @@ body::after {
 }
 
 .globe-pulsar-ring {
-  width: 6px;
-  height: 6px;
-  margin: -3px 0 0 -3px;
-  border: 1.5px solid rgba(255, 255, 255, 0.9);
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
   background: transparent;
   animation: globe-pulsar-ring 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
-  /* keep the ring perfectly centered as it scales */
   transform-origin: center center;
 }
 
@@ -2303,18 +2289,12 @@ body::after {
 
 @keyframes globe-pulsar-ring {
   0% {
-    width: 6px;
-    height: 6px;
-    margin: -3px 0 0 -3px;
+    transform: scale(0.167);
     opacity: 0.85;
-    border-width: 2px;
   }
   100% {
-    width: 36px;
-    height: 36px;
-    margin: -18px 0 0 -18px;
+    transform: scale(1);
     opacity: 0;
-    border-width: 0.5px;
   }
 }
 

@@ -1073,10 +1073,13 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      // Qibla + source arcs — only compute when near a settled position.
-      // During mid-scroll these arcs are invisible behind the transitioning
-      // globe, so skip interpolation steps. Smoothstep fade creates a natural
-      // breathing rhythm instead of mechanical linear ramps.
+      // Qibla + source arcs — paths projected every frame (cheap: ≤57 point
+      // projections), but rendered with a smoothstep opacity fade. The fade
+      // is load-bearing UX, not perf: arcs anchor to settledIndex, which
+      // flips at frac=0.5, so without the fade they'd visibly snap to a
+      // new origin mid-swipe. Fading to 0 across the central swipe band
+      // hides the jump. Skia skips 0-alpha draws on the GPU side, so the
+      // wasted projection cost is JS-thread only and small.
       let arcOpacity: number;
       if (frac < ARC_WINDOW) {
         const t = frac / ARC_WINDOW; // 0→1 as we scroll away

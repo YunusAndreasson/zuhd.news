@@ -66,7 +66,7 @@ export const DARK_COLORS = {
   rule: '#2e2e2e',
   textEmphasis: '#FAFAFA',
   dome: '#c9a84c', // Dome of the Rock gold — the only color in the app
-  sheetBg: '#27272A',
+  sheetBg: '#161619',
   pillBg: 'rgba(50,50,50,0.7)',
   atmosphere: '#334455',
   shadow: 'rgba(0,0,0,0.6)',

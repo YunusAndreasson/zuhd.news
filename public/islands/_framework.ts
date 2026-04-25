@@ -8,16 +8,12 @@
 // Each feature island is tree-shaken separately, so the user only pays
 // for what they interact with — the homepage loads none of this.
 
-import { h, render, Fragment, type ComponentChildren, type VNode } from 'preact'
+import { h, render, type VNode } from 'preact'
 import {
   useEffect,
-  useMemo,
   useRef,
   useState,
-  useCallback,
-  useLayoutEffect,
 } from 'preact/hooks'
-import { signal, computed, effect, type Signal } from '@preact/signals'
 import htm from 'htm'
 
 /** htm tagged-template bound to preact.h — tree-builds without a compiler. */
@@ -41,24 +37,6 @@ export const mountIsland = <P extends Record<string, unknown>>(
   return () => render(null, container)
 }
 
-/** Hook that tracks whether the element is within the viewport (first entry). */
-export const useInView = (ref: { current: HTMLElement | null }, options?: IntersectionObserverInit) => {
-  const [inView, setInView] = useState(false)
-  useEffect(() => {
-    const node = ref.current
-    if (!node) return
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry?.isIntersecting) {
-        setInView(true)
-        observer.disconnect()
-      }
-    }, options)
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [ref, options])
-  return inView
-}
-
 /** Close a <dialog popover> when the user taps outside the dialog body. */
 export const useDialogOutsideClose = (dialogRef: { current: HTMLDialogElement | null }) => {
   useEffect(() => {
@@ -75,17 +53,8 @@ export const useDialogOutsideClose = (dialogRef: { current: HTMLDialogElement | 
 export {
   h,
   render,
-  Fragment,
   useEffect,
-  useMemo,
   useRef,
   useState,
-  useCallback,
-  useLayoutEffect,
-  signal,
-  computed,
-  effect,
-  type Signal,
-  type ComponentChildren,
   type VNode,
 }

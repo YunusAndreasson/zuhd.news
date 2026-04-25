@@ -17,6 +17,28 @@ function init(data) {
   const announcer = document.getElementById('announcer');
   const isStaticPage = viewEl.hasAttribute('data-page');
 
+  // --- Source modal ---
+  const sourceModal = document.createElement('dialog')
+  sourceModal.className = 'island-sheet source-modal'
+  sourceModal.innerHTML = `<form method="dialog" class="island-sheet-close-form"><button class="island-sheet-close" aria-label="Close">&times;</button></form><div class="island-sheet-inner source-modal-inner"></div>`
+  document.body.appendChild(sourceModal)
+  sourceModal.addEventListener('click', (e) => { if (e.target === sourceModal) sourceModal.close() })
+
+  const toggleSourceModal = () => {
+    if (sourceModal.open) { sourceModal.close(); return }
+    const a = currentArticle()
+    if (!a) return
+    const inner = sourceModal.querySelector('.source-modal-inner')
+    let html = ''
+    if (a.threadId && contexts?.[a.threadId]) {
+      html += `<div class="context-body">${contexts[a.threadId]}</div>`
+    } else {
+      html += '<p class="island-sheet-loading">No context for this article.</p>'
+    }
+    inner.innerHTML = html
+    sourceModal.showModal()
+  }
+
   const statusEl = document.querySelector('footer .update-status');
   const updateStatus = () => {
     const ts = window.__lastCycle;
@@ -155,8 +177,8 @@ function init(data) {
   };
 
   const contextBlock = (article) => {
-    if (!article.threadId || !contexts?.[article.threadId]) return '';
-    return `<details class="article-context"><summary class="context-label">Background</summary><div class="context-body">${contexts[article.threadId]}</div></details>`;
+    // Context is now shown via the o-key modal instead of inline <details>
+    return '';
   };
 
   const openArticle = (userInitiated = false) => {
@@ -177,10 +199,7 @@ function init(data) {
     document.dispatchEvent(new CustomEvent('zuhd:globe-focus', { detail: focusDetail }));
 
     if (isDesktop()) {
-      viewInner.innerHTML = `<div class="article-view-header"><h2>${esc(article.title)}</h2></div><div class="article-body">${article.bodyHtml}</div>${contextBlock(article)}`;
-      viewInner.classList.remove('fade-in');
-      void viewInner.offsetWidth;
-      viewInner.classList.add('fade-in');
+      viewInner.innerHTML = `<div class="article-view-header"><h2>${esc(article.title)}</h2></div><div class="article-body">${article.bodyHtml}</div>`;
       viewEl.hidden = false;
       viewEl.scrollTop = 0;
       document.title = article.title + ' — zuhd.news';
@@ -195,7 +214,7 @@ function init(data) {
 
     const expand = document.createElement('div');
     expand.className = 'article-expand';
-    expand.innerHTML = `<div class="article-body">${article.bodyHtml}</div>${contextBlock(article)}`;
+    expand.innerHTML = `<div class="article-body">${article.bodyHtml}</div>`;
 
     const item = listEl.children[state.artIdx];
     item?.append(expand);
@@ -274,22 +293,9 @@ function init(data) {
         if (desktop) openArticle(true);
         break;
       case 'o':
-        if (state.artIdx >= 0) {
-          const a = currentArticle();
-          const url = a.sources && a.sources[0] && a.sources[0].url;
-          if (url) window.open(url, '_blank', 'noopener');
-        }
+        e.preventDefault();
+        if (state.artIdx >= 0) toggleSourceModal();
         break;
-      case 's': {
-        const det = (desktop ? viewInner : listEl)?.querySelector('.article-sources');
-        if (det) det.open = !det.open;
-        break;
-      }
-      case 'c': {
-        const ctx = (desktop ? viewInner : listEl)?.querySelector('.article-context');
-        if (ctx) ctx.open = !ctx.open;
-        break;
-      }
       case 'Enter':
         if (!desktop) { e.preventDefault(); openArticle(true); }
         break;

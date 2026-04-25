@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, existsSync, rmSync, statSync } from 'fs'
+import { transformSync } from 'esbuild'
 import { join, basename } from 'path'
 import { createHash } from 'crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
@@ -16,42 +17,7 @@ const TEMPLATES_DIR = join(ROOT, 'templates')
 
 const CATEGORY_ORDER = ['politics', 'economy', 'science', 'tech']
 
-// Build a subtle dark-mode starfield as an inline SVG data URI. The
-// fixed-seed xorshift makes the output byte-identical across rebuilds
-// (clean diffs, stable screenshots). Two tiers — dense dust + sparse
-// highlights — give the field depth without reading as ornament. Star
-// sizes and opacities follow the eye's natural perception of stars
-// (most dim, a few bright) rather than uniform variance.
-const buildStarfieldDataUri = () => {
-  let s = 0xC0DE_FACE
-  const rand = () => {
-    s ^= s << 13; s ^= s >>> 17; s ^= s << 5
-    return (s >>> 0) / 0x100000000
-  }
-  const W = 1200, H = 1200
-  const r2 = (n) => Math.round(n * 100) / 100
-  // Power-law brightness: rand²·range biases toward the dim end so most
-  // stars sit just above the noise floor and a few outliers shine. The
-  // dust tier is many small dim points; the highlight tier is the bright
-  // few that sell the depth.
-  const tiers = [
-    { n: 140, rMin: 0.4, rMax: 0.9, oMin: 0.28, oMax: 0.6  }, // dust
-    { n: 22,  rMin: 0.9, rMax: 1.6, oMin: 0.6,  oMax: 0.92 }, // highlights
-  ]
-  let circles = ''
-  for (const t of tiers) {
-    for (let i = 0; i < t.n; i++) {
-      const cx = r2(rand() * W)
-      const cy = r2(rand() * H)
-      const r  = r2(t.rMin + rand() * rand() * (t.rMax - t.rMin))
-      const op = r2(t.oMin + rand() * rand() * (t.oMax - t.oMin))
-      circles += `<circle cx='${cx}' cy='${cy}' r='${r}' opacity='${op}'/>`
-    }
-  }
-  const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${W} ${H}'><g fill='white'>${circles}</g></svg>`
-  return `url("data:image/svg+xml,${svg.replace(/</g, '%3C').replace(/>/g, '%3E')}")`
-}
-const STARFIELD_URI = buildStarfieldDataUri()
+
 
 // Convert structured timeline array to HTML for web rendering
 const contextToHtml = (timeline) => {
@@ -151,15 +117,11 @@ const buildArticle = (filename) => {
   const sources = Array.isArray(meta.sources) ? meta.sources : []
   const primarySource = sources[0]?.name || ''
 
-  // Source attribution — always use expandable details format
+  // Subtle sources line — just names, no accordion
   let sourcemark = ''
   if (sources.length > 0) {
-    const items = sources.map(s => {
-      const country = s.country ? ` <span class="source-country">${s.country}</span>` : ''
-      const link = s.url ? ` <a href="${s.url}" rel="noopener" target="_blank">&#8599;</a>` : ''
-      return `<li>${s.name}${country}${link}</li>`
-    }).join('')
-    sourcemark = `<details class="article-sources"><summary class="source-count">${sources.length} source${sources.length > 1 ? 's' : ''}</summary><ul>${items}</ul></details>`
+    const names = sources.map(s => s.name).join(', ')
+    sourcemark = `<p class="article-sources-flat">Sources: ${names}</p>`
   }
 
   // `concepts` stays in the parsed article so API consumers (feed.json,
@@ -378,7 +340,7 @@ if (existsSync(audioSrc)) {
     cpSync(join(audioSrc, f), join(DIST_DIR, 'audio', f))
 }
 
-const cssContent = readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8')
+const cssContent = transformSync(readFileSync(join(ROOT, 'public', 'style.css'), 'utf-8'), { loader: 'css', minify: true }).code
 const jsContent = readFileSync(join(ROOT, 'public', 'reader.js'), 'utf-8')
 const headCommon = `<meta charset="utf-8">
   <meta name="color-scheme" content="light dark">
@@ -395,7 +357,7 @@ const headCommon = `<meta charset="utf-8">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
   <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}}]},"eagerness":"moderate"}]}</script>
-  <style>:root{--starfield:${STARFIELD_URI}}${cssContent}</style>`
+  <style>${cssContent}</style>`
 
 const homepageTemplate = readFileSync(join(TEMPLATES_DIR, 'index.html'), 'utf-8')
   .replace('{{headCommon}}', headCommon)

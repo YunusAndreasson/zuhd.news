@@ -44,7 +44,7 @@ export const mount = (container: HTMLElement) => {
   container.classList.add('ambient-globe-root')
 
   const start = () => {
-    const width = container.offsetWidth || 600
+    const width = Math.min(container.offsetWidth || 600, 900)
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
 
     const darkPage = typeof matchMedia === 'function' &&
@@ -94,22 +94,32 @@ export const mount = (container: HTMLElement) => {
       phi: 0,
       theta,
       dark: darkPage ? 1 : 0,
-      diffuse: 1.5,
-      // Softer dots (was 14) — country shapes still legible but no
-      // longer punchy. mapBrightness 7 balances visibility vs subtlety.
+      diffuse: 0,
+      // Softer dots — country shapes still legible but no
+      // longer punchy. mapBrightness 6 balances visibility vs subtlety.
       mapSamples: 24000,
       mapBrightness: 7,
       baseColor: [1, 1, 1],
       // Default marker color — pure white to match the monochrome UI.
       markerColor: [1, 1, 1],
-      glowColor: darkPage ? [0.05, 0.05, 0.06] : [0.94, 0.93, 0.91],
+      glowColor: [0, 0, 0],
       markers: [],
       opacity: 1,
       context: { antialias: false },
     })
 
     let animationId = 0
+    let pageVisible = true
+
+    // Track last render state to skip redundant WebGL draws.
+    let lastPhi = phi
+    let lastTheta = theta
+    let lastHadMarker = false
+
     const tick = () => {
+      animationId = requestAnimationFrame(tick)
+      if (!pageVisible) return
+
       const now = performance.now()
       if (tween) {
         const t = Math.min(1, (now - tween.startTime) / tween.duration)
@@ -118,17 +128,21 @@ export const mount = (container: HTMLElement) => {
         theta = tween.startTheta + (tween.targetTheta - tween.startTheta) * eased
         if (t >= 1) tween = null
       } else if (!focused) {
-        // Idle drift around the equator (only when no article is open).
         phi += IDLE_PHI_PER_FRAME
       }
-      // The cobe canvas marker is invisible (size 0) — it exists only to
-      // register an `id` so cobe positions a CSS anchor we can track. The
-      // visible pulse is rendered by the DOM pulsar element via CSS.
+
+      const hasMarker = activeLocation !== null
+      const changed = phi !== lastPhi || theta !== lastTheta || hasMarker !== lastHadMarker
+      lastPhi = phi
+      lastTheta = theta
+      lastHadMarker = hasMarker
+
+      if (!changed) return
+
       const markers = activeLocation
         ? [{ id: 'focus', location: activeLocation, size: 0 }]
         : []
       globe.update({ phi, theta, markers })
-      animationId = requestAnimationFrame(tick)
     }
     tick()
 
@@ -168,6 +182,11 @@ export const mount = (container: HTMLElement) => {
     }
     document.addEventListener('zuhd:globe-focus', onFocus)
 
+    const onVisibilityChange = () => {
+      pageVisible = document.visibilityState === 'visible'
+    }
+    document.addEventListener('visibilitychange', onVisibilityChange)
+
     // Pick up any focus that was dispatched before this listener attached.
     // reader.js writes the last focus to a window global on every dispatch,
     // so a hash-loaded page (which fires `openArticle` synchronously at boot,
@@ -180,6 +199,7 @@ export const mount = (container: HTMLElement) => {
     return () => {
       cancelAnimationFrame(animationId)
       document.removeEventListener('zuhd:globe-focus', onFocus)
+      document.removeEventListener('visibilitychange', onVisibilityChange)
       pulsar.remove()
       globe.destroy()
     }

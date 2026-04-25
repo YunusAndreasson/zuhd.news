@@ -22,6 +22,9 @@ config.watchFolders = [...(config.watchFolders ?? []), sharedRoot];
 
 config.resolver = {
   ...config.resolver,
+  // App ships iOS + Android only — drop `web` so Metro doesn't probe
+  // `*.web.ts(x)` on every import.
+  platforms: ['ios', 'android', 'native'],
   extraNodeModules: {
     ...(config.resolver?.extraNodeModules ?? {}),
     '@shared': sharedRoot,

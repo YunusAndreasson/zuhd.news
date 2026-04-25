@@ -1,5 +1,5 @@
 import * as Haptics from 'expo-haptics';
-import { Platform } from 'react-native';
+import { IS_ANDROID } from '../constants/platform';
 
 // Three-tier haptic system. Pick the tier that matches the *semantics* of
 // the event, not its loudness — the palette intentionally progresses from
@@ -28,7 +28,7 @@ export function setHapticsEnabled(v: boolean): void {
 
 function fire(android: Haptics.AndroidHaptics, ios: () => Promise<void>) {
   if (!enabled) return;
-  (Platform.OS === 'android' ? Haptics.performAndroidHapticsAsync(android) : ios()).catch(() => {});
+  (IS_ANDROID ? Haptics.performAndroidHapticsAsync(android) : ios()).catch(() => {});
 }
 
 export function hapticTick(): void {

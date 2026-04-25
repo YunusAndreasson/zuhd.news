@@ -1,8 +1,8 @@
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
-import { Platform } from 'react-native';
 import { API_BASE } from '../constants/theme';
+import { IS_ANDROID } from '../constants/platform';
 
 const CHANNEL_ID = 'briefing';
 
@@ -11,7 +11,7 @@ const CHANNEL_ID = 'briefing';
 // ---------------------------------------------------------------------------
 
 async function setupChannel() {
-  if (Platform.OS !== 'android') return;
+  if (!IS_ANDROID) return;
   await Notifications.setNotificationChannelAsync(CHANNEL_ID, {
     name: 'Daily Briefing',
     importance: Notifications.AndroidImportance.DEFAULT,
