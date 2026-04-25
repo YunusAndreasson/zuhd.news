@@ -1,34 +1,33 @@
 {
-  "date": "2026-04-21",
+  "date": "2026-04-23",
   "metrics": {
-    "articles": { "value": 41, "detail": "5 cycles, avg 8.2/cycle (down from 61/12.2 yesterday)" },
-    "freshness": { "median": 0.0, "p90": 0.0, "max": 0.0, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 10, "science": 8, "tech": 4 },
-    "multiSource": { "value": 13, "target": 4, "met": true },
+    "articles": { "value": 45, "detail": "5 cycles completed, avg 9/cycle" },
+    "freshness": { "median": 1.0, "p90": 1.0, "max": 1.0, "target": 1.0, "met": true, "note": "count=2 only — low freshness sample; most articles may lack parseable publish timestamps" },
+    "categories": { "politics": 19, "economy": 14, "science": 5, "tech": 7 },
+    "multiSource": { "value": 8, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "EU": 9, "AM": 14, "AS": 10, "AF": 3, "ME": 5 }
+      "breakdown": { "ME": 14, "AM": 14, "AS": 10, "AF": 3, "EU": 3, "OC": 1 }
     },
-    "sciTech": { "ratio": 29, "target": 25, "met": true },
-    "topSourceShare": { "source": "CoinDesk", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 48,
+    "sciTech": { "ratio": 27, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 11, "target": 20, "met": true },
+    "uniqueSources": 40,
     "duplicates": 0,
-    "avgCycleDuration": 1623
+    "avgCycleDuration": 1560
   },
-  "experiment": "Active: 2026-04-21-multi-source-floors. Evaluates 2026-04-24 — too early to score. First-day signal is encouraging: overall multi-source rate is 13/41 = 31.7% vs 22% baseline, already above the 28% overall target. Politics+economy multi-source share needs per-article frontmatter analysis to verify precisely. Watching for tech displacement as a potential side-effect of harder politics/economy floors.",
-  "weakestArea": "Tech coverage is the clearest concern: only 4 articles today vs 13 yesterday, representing 9.8% of output against a 3/cycle selector floor that should yield ~15. The day-1 multi-source experiment may be displacing tech when the feed is thin — the selector prioritizing politics/economy multi-source fills at the expense of tech minimums. Today's tech feed appears sparse (no Ars Technica, The Verge, or Wired). This bears watching over the next two cycles before the formal experiment evaluation.",
+  "experiment": "Active experiment 2026-04-21-multi-source-floors is mid-run; evaluateAfter is 2026-04-24. Skipping evaluation today. MultiSource count today is 8 (17.8% of 45 articles); baseline overall multi-rate was 22% — will need per-category breakdown tomorrow to assess politics+economy multi-rate against the ≥ 0.45 target.",
+  "weakestArea": "Science is the weakest metric — only 5 articles today (exactly the daily minimum floor of 5), down from 8 yesterday. The selector averaged just 1 science pick per cycle against a floor of 2, and today's science attributions include non-specialist outlets (New Lines Magazine, Daily Maverick), suggesting the selector is reaching to fill the floor rather than selecting strong dedicated science coverage.",
   "watching": [
-    "India-Pakistan tensions: strong coverage cluster (Dawn, Hindustan Times, Times of India, The Diplomat) — track for escalation or ceasefire signals",
-    "US tariff regime: Bloomberg + FT + Reuters all on the beat today, ongoing macro volatility story",
-    "Gaza / humanitarian corridors: Drop Site News + Middle East Eye active — watch for UNRWA or aid-route developments",
-    "Ukraine counter-operations: Kyiv Independent + Ukrainska Pravda active today — Kursk/Sumy situation evolving"
+    "Multi-source experiment 2026-04-21 reaches evaluateAfter tomorrow — pull per-category multi-source breakdown from content/articles to evaluate politics+economy multi-rate vs 0.45 target.",
+    "Science coverage consistency: 5 today vs 8 yesterday — watch whether the selector reliably meets the 2/cycle floor or whether feed-side science supply is structurally thin on weekdays.",
+    "Cycle duration elevated at 1560s (26 min) vs typical ~1320s — not alarming but worth tracking if it trends upward.",
+    "India-Pakistan tensions continue driving heavy AS/ME output — Dawn at 11% today, watch for story saturation tomorrow."
   ],
   "coverageGaps": [
-    "Oceania (OC) absent for the second consecutive day — no Pacific, Australia, or New Zealand stories",
-    "Tech thin today: no AI policy, no chips/semiconductor story — likely a feed-thinness day but worth flagging",
-    "Latin America underrepresented despite AM count of 14: most Americas articles appear to be US-centric"
+    "Europe severely underrepresented — only 3 articles (7% of output) for a major geopolitical bloc with active stories (Ukraine, EU trade policy).",
+    "Oceania at 1 article (Lowy Interpreter only) — Pacific strategic competition and climate stories rarely surface."
   ],
-  "context": "Today is day 1 of the multi-source-floors experiment, which converts the selector's soft multi-source guidance into hard per-category floors (politics ≥2, economy ≥2 multi-source per cycle). The aggregate multi-source count of 13 is already three times the 4/day target and above the 28% overall experiment goal. The main risk is category composition: with harder politics/economy multi-source fills, tech may lose marginal slots on feed-thin days — today's data (tech=4) suggests this is already happening. If tech drops below the 4/day floor over 2+ consecutive cycles before 2026-04-24, experiment guardrails should be revisited early."
+  "context": "Yesterday's metrics were notably stronger (49 articles, 8 science, 13 multi-source, 35% sci-tech), making today's dip in science and overall output visible by comparison. The active multi-source experiment has not triggered guardrail failures — publish count recovered well at 9/cycle (above the 8 floor). The freshness count=2 anomaly is implausible for 45 published articles and likely reflects the same timestamp comparison artifact seen on 2026-04-22; no new experiment warranted while 2026-04-21-multi-source-floors is still running."
 }

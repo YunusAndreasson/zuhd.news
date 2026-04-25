@@ -1,39 +1,37 @@
 ---
-title: "DOJ Drops Fed Chair Probe"
-date: "2026-04-24T15:28:18Z"
-category: "economy"
+title: "DOJ Ends Powell Probe"
+date: "2026-04-24T16:20:24Z"
+category: "politics"
 location: "Washington"
-lat: 38.91
+lat: 38.90
 lng: -77.04
 sources:
-  - name: "USA Today"
-    url: "https://www.usatoday.com/story/money/2026/04/24/jerome-powell-fed-investigation-ends/89771111007/"
+  - name: "CNBC"
+    url: "https://www.cnbc.com/2026/04/24/kalshi-bettors-see-warsh-confirmed-in-may-after-doj-drops-powell-probe.html"
     country: "US"
-    sentiment: 0.22
-  - name: "BBC"
-    url: "https://www.bbc.co.uk/news/articles/cdxd1v0028vo"
+    sentiment: 0.37
+  - name: "Reuters"
+    url: "https://www.reuters.com/business/view-end-powell-probe-relieves-uncertainty-over-fed-succession-plan-2026-04-24/"
     country: "GB"
-    sentiment: -0.18
-  - name: "Yahoo News"
-    url: "https://sg.news.yahoo.com/justice-dept-ends-criminal-probe-152134250.html"
-    country: "SG"
-    sentiment: -0.05
-  - name: "mint"
-    url: "https://www.livemint.com/news/us-justice-department-drops-criminal-probe-of-federal-reserve-chair-jerome-powell-11777042436998.html"
-    country: "IN"
-    sentiment: 0.18
-  - name: "Semafor"
-    url: "https://www.semafor.com/article/04/24/2026/department-of-justice-drops-criminal-probe-into-fed-chair-powell"
-    country: "US"
-eventCoverage: 211
+    sentiment: 0.05
+  - name: "Al Jazeera Online"
+    url: "https://www.aljazeera.com/economy/2026/4/24/us-justice-department-drops-criminal-probe-of-fed-chair-jerome-powell"
+    country: "QA"
+    sentiment: 0
+  - name: "TRT World"
+    url: "https://www.trtworld.com/article/215c3abc52c1"
+    country: "TR"
+    sentiment: -0.15
+    angle: "frames Powell probe dismissal as Trump's effort to pressure Fed chair for faster rate cuts; Pirro as executor"
 concepts:
   - "Jerome Powell"
   - "United States Department of Justice"
   - "Donald Trump"
-  - "Jeanine Pirro"
   - "Kevin Warsh"
   - "Federal Reserve"
-sentimentDivergence: 0.41
+eventCoverage: 290
+sentimentDivergence: 0.32
+entities: []
 ---
 
-Washington — A judge found "essentially zero evidence" against Powell. The Department of Justice dropped its criminal probe of the Federal Reserve chair, clearing a path for Trump's nominee Kevin Warsh to seek Senate confirmation. Powell's term ends May 15; the Department reserved the right to restart the probe.
+Washington — Warsh's path to Fed Chair is now open. [US](country:US) Justice Department ended its probe of Fed renovation costs; a judge found "essentially zero evidence" of wrongdoing, unblocking Sen. Tillis. Powell's term ends May 15; Warsh has pledged rate independence from Trump.
