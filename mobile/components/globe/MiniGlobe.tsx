@@ -618,7 +618,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   const globeRadius = width * 0.9;
   const cx = width / 2;
   const cy = height * 0.75;
-  const labelFont = useFont(require('../../assets/fonts/SourceSans3-Regular.ttf'), 14);
+  const labelFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 14);
   const subFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 11);
   // Fonts mirrored into refs so callReproject (a useCallback with `[]` deps,
   // stable closure) can measure text width for label-collision detection.
@@ -1986,8 +1986,8 @@ export const MiniGlobe = memo(function MiniGlobe({
           path={state.graticulePath}
           color={colors.accent}
           style="stroke"
-          strokeWidth={0.4}
-          opacity={light ? 0.12 : 0.05}
+          strokeWidth={0.5}
+          opacity={light ? 0.15 : 0.08}
         />
       )}
 
@@ -2003,7 +2003,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           path={state.nightPath}
           color={colors.atmosphere}
           style="stroke"
-          strokeWidth={0.5}
+          strokeWidth={0.7}
           opacity={0.12}
         />
       )}
@@ -2070,7 +2070,7 @@ export const MiniGlobe = memo(function MiniGlobe({
               color={ringColor}
               opacity={ringOpacity}
               style="stroke"
-              strokeWidth={1.25}
+              strokeWidth={1.0}
             />
             <Circle
               cx={c.x}
@@ -2142,7 +2142,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           color={colors.accent}
           style="stroke"
           strokeWidth={0.5}
-          opacity={(light ? 0.15 : 0.08) * state.arcOpacity}
+          opacity={(light ? 0.25 : 0.15) * state.arcOpacity}
         />
       )}
 
@@ -2152,7 +2152,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           path={state.qiblaPath}
           color={colors.dome}
           style="stroke"
-          strokeWidth={0.8}
+          strokeWidth={1.0}
           opacity={(light ? 0.2 : 0.12) * state.arcOpacity}
         />
       )}
@@ -2310,7 +2310,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             width={6}
             height={0.8}
             color={colors.accent}
-            opacity={light ? 0.2 : 0.15}
+            opacity={light ? 0.25 : 0.2}
           />
           <Rect
             x={state.northPole.x - 0.4}
@@ -2318,7 +2318,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             width={0.8}
             height={6}
             color={colors.accent}
-            opacity={light ? 0.2 : 0.15}
+            opacity={light ? 0.25 : 0.2}
           />
         </>
       )}
@@ -2330,7 +2330,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             width={6}
             height={0.8}
             color={colors.accent}
-            opacity={light ? 0.2 : 0.15}
+            opacity={light ? 0.25 : 0.2}
           />
           <Rect
             x={state.southPole.x - 0.4}
@@ -2338,7 +2338,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             width={0.8}
             height={6}
             color={colors.accent}
-            opacity={light ? 0.2 : 0.15}
+            opacity={light ? 0.25 : 0.2}
           />
         </>
       )}
