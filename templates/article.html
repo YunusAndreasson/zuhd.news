@@ -1,0 +1,57 @@
+<!-- بسم الله الرحمن الرحيم -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{headCommon}}
+  <link rel="alternate" type="application/atom+xml" title="zuhd.news" href="/feed.xml">
+  <title>{{title}} — zuhd.news</title>
+  <meta name="description" content="{{description}}">
+  <link rel="canonical" href="https://zuhd.news/a/{{slug}}">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="zuhd.news">
+  <meta property="og:title" content="{{titleAttr}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="https://zuhd.news/a/{{slug}}">
+  <meta property="og:image" content="https://zuhd.news/api/og/{{slug}}.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:published_time" content="{{isoDate}}">
+  <meta property="article:section" content="{{category}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zuhd.news/api/og/{{slug}}.png">
+</head>
+<body class="article-page-body">
+  <header class="article-page-header">
+    <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
+    <a href="/" class="article-back-link" aria-label="All stories">All stories</a>
+  </header>
+
+  <main class="article-page-main">
+    <article class="article-standalone">
+      <div class="article-kicker">
+        <time datetime="{{isoDate}}">{{timeAgo}}</time>
+        <span class="category">{{category}}</span>
+      </div>
+      <h1 class="article-title">{{title}}</h1>
+      <div class="article-body">{{bodyHtml}}</div>
+      {{entityStrip}}
+      {{threadBlock}}
+    </article>
+
+    <nav class="article-pagination" aria-label="Article navigation">
+      {{prevLink}}
+      <a class="article-pagination-home" href="/">All stories</a>
+      {{nextLink}}
+    </nav>
+  </main>
+
+  <footer>
+    <span class="update-status"><time datetime="{{isoDate}}">{{dateFormatted}}</time></span>
+    <nav class="footer-links">
+      <a href="/about">about</a> <a href="/contact">contact</a> <a href="/mcp">mcp</a> <a href="/privacy">privacy</a>
+    </nav>
+  </footer>
+  <script type="module" src="/island-loader.js" defer></script>
+</body>
+</html>

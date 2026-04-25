@@ -8,8 +8,43 @@ Minimalist typography-first global news site. Philosophy in `foundation.md`.
 - Smart Brevity format: lead, why it matters, details, what's next, sources
 - English first, global hard news only
 - Categories: politics, economy, science, tech
-- No CMS, no database, no framework — just files and a 145-line SSG
+- No CMS, no database, no framework — content is files + a node SSG (`scripts/build.js`)
 - Content: markdown + YAML frontmatter in `content/articles/`, built to `dist/`
+
+## Web surface
+
+- Homepage (`/`): vim-keybindings, silent refresh, list+reader split-pane
+- Article pages (`/a/{slug}.html` → served extensionless): standalone reader with prev/next, per-article OG meta, inline country-tag links
+- Category pages (`/c/{politics|economy|science|tech}`): chronological list per category
+- Country pages (`/country/{ISO2}`): flag, region, meta line, 26-metric tabular block with percentile strips and rankings, recent coverage list
+- Thread pages (`/s/{id}`): story arc surface — arc label + summary + context timeline + every article in chronological order
+- Entity pages (`/e/{id}`): indicator hero value + inline SVG sparkline + articles that reference the indicator via frontmatter `entities[]`
+- Search (`/search`): client-side MiniSearch over title/concepts/location/body; `?q=` deep-linkable
+- OG images (`/api/og/{slug}.png`): typography + monochrome orthographic map inset, generated build-time via `scripts/lib/og-image.js`
+- Static pages: `/about`, `/contact`, `/sources`, `/privacy`, `/support`, `/mcp`
+- Feeds: `/feed.xml` (Atom), `/sitemap.xml`
+- JSON APIs consumed by mobile: `/api/articles.json`, `/api/feed.json`, `/api/heatmap.json`, `/api/context/{id}.json`, `/api/chokepoints.json`, `/api/trends.json`, `/api/meta.json`, `/api/articles/{category}.json`
+- Search data emitted at build time: `/data/search-docs.json`
+
+## Islands (interactive enhancements)
+
+Interactive features (context viewer, entity sheet, search) load via the islands architecture to keep the homepage framework-free:
+
+- Source: `public/islands/*.ts` — each entry exports `mount(container, props)`; shared utilities in `public/islands/_framework.ts` (Preact + `@preact/signals` + `htm` tagged templates, no compile step needed).
+- Bundler: `scripts/build/islands.js` runs esbuild as part of the SSG, emitting `dist/islands/*.js` ES modules. `@shared/*` imports resolve to `/shared/`.
+- Loader: `public/island-loader.js` — included on every page, listens globally for clicks on `[data-island]` triggers, dynamically imports the matching module on first activation, passes `data-*` attributes as props. Also listens for `zuhd:mount-island` CustomEvents so an island can open another island programmatically without a DOM trigger.
+- Sheet pattern: native `<dialog popover>` with CSS `@starting-style` transitions — no sheet library. Styles under `.island-sheet` in `public/style.css`.
+- Islands shipped: `context-viewer` (~9 KB gz, thread-block button), `search` (~15 KB gz + 460 KB MiniSearch docs, auto-mount on /search via `data-island-auto`), `entity-sheet` (~10 KB gz — indicator header + value/delta + inline SVG sparkline + mentions; opened from an article's entity strip; fetches `/api/entity/{id}.json`).
+
+## Shared datasets (`/shared/`)
+
+Single source of truth for data consumed by both web and mobile:
+- `shared/data/*.json` — Natural Earth TopoJSON (countries, capitals, lakes, rivers, seas)
+- `shared/countries/country-data.ts`, `country-augmented.ts`, `country-ranking.ts` — 145 countries × 26 metrics + percentile-ranking logic
+- `shared/globe/coordinates.ts` — city/source coordinates, timezones, country overrides
+- `shared/types.ts` — Article, ContextBrief, Chokepoint, Entity, TrendsSnapshot types
+
+Mobile imports via `@shared/*` (path-mapped in `mobile/tsconfig.json` + `moduleNameMapper` in jest). Web reads directly via relative paths.
 
 ## Architecture
 

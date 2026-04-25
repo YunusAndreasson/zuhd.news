@@ -5,7 +5,9 @@
   "private": true,
   "description": "News for all humans. Typography-first, minimalist news site.",
   "scripts": {
-    "dev": "node scripts/build.js && npx wrangler pages dev dist",
+    "dev": "SKIP_OG=1 node scripts/watch.js",
+    "dev:once": "SKIP_OG=1 node scripts/build.js && npx wrangler pages dev dist",
+    "dev:og": "node scripts/build.js && npx wrangler pages dev dist",
     "build": "node scripts/build.js",
     "fetch": "node scripts/fetch-news.js",
     "deploy": "npx wrangler pages deploy dist --project-name zuhd-news --branch master --commit-dirty=true",
@@ -16,11 +18,18 @@
   "dependencies": {
     "@google-cloud/text-to-speech": "^6.0.0",
     "@mozilla/readability": "^0.6.0",
+    "@preact/signals": "^2.9.0",
     "@resvg/resvg-js": "^2.6.2",
+    "@resvg/resvg-wasm": "^2.6.2",
+    "cobe": "^2.0.1",
     "d3-geo": "^3.1.1",
+    "esbuild": "^0.28.0",
     "fast-xml-parser": "^5.2.0",
+    "htm": "^3.1.1",
     "js-yaml": "^4.1.1",
     "jsdom": "^29.0.2",
+    "preact": "^10.29.1",
+    "satori": "^0.26.0",
     "topojson-client": "^3.1.0"
   },
   "devDependencies": {

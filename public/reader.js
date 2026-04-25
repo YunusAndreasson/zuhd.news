@@ -162,6 +162,15 @@ function init(data) {
       listEl.children[state.artIdx]?.classList.add('read');
     }
 
+    // Tell the ambient-globe island to rotate to this article's location.
+    // We also stash the latest coords on `window` — if the island isn't
+    // mounted yet (e.g. on first hash-loaded boot), it reads this on mount.
+    const focusDetail = (typeof article.lat === 'number' && typeof article.lng === 'number')
+      ? { lat: article.lat, lng: article.lng }
+      : null;
+    window.__zuhdGlobeLastFocus = focusDetail;
+    document.dispatchEvent(new CustomEvent('zuhd:globe-focus', { detail: focusDetail }));
+
     if (isDesktop()) {
       viewInner.innerHTML = `<div class="article-view-header"><h2>${esc(article.title)}</h2></div><div class="article-body">${article.bodyHtml}</div>${contextBlock(article)}`;
       viewInner.classList.remove('fade-in');

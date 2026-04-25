@@ -1,7 +1,14 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, cpSync, existsSync, rmSync, statSync } from 'fs'
 import { join, basename } from 'path'
+import { createHash } from 'crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
 import { splitSentences as splitBodySentencesShared, ABBREVS } from './lib/sentences.js'
+import { buildOgPng } from './lib/og-image.js'
+import { buildIslands } from './build/islands.js'
+import { buildCountryPages } from './build/country-pages.js'
+import { buildThreadPages } from './build/thread-pages.js'
+import { buildEntityPages } from './build/entity-pages.js'
+import { loadShared } from './build/shared-ts.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const CONTENT_DIR = join(ROOT, 'content', 'articles')
@@ -33,6 +40,16 @@ const smartQuotes = (text) => text
   .replace(/(^|[\s(\[{])'(\S)/gm, '$1\u2018$2')
   .replace(/'/g, '\u2019')
 
+// Pipeline-emitted country tags use the `country:XX` href scheme
+// (e.g. `[Iran](country:IR)`). On the web these rewrite to the new
+// /country/XX pages; mobile keeps the custom scheme via the markdown
+// renderer's URL handler.
+const rewriteLinkHref = (href) => {
+  const m = href.match(/^country:([A-Za-z]{2})$/)
+  if (m) return `/country/${m[1].toUpperCase()}`
+  return href
+}
+
 const markdownToHtml = (md) => {
   const html = smartQuotes(md)
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
@@ -41,7 +58,20 @@ const markdownToHtml = (md) => {
     .replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, text, href) => {
+      const rewritten = rewriteLinkHref(href)
+      const isCountry = rewritten.startsWith('/country/')
+      if (isCountry) {
+        // Country tags are popover triggers: the island-loader intercepts
+        // primary clicks via `data-island` and opens the country-preview
+        // sheet inline. The href stays as a real URL so middle-click /
+        // Cmd-click / right-click still navigate to the full profile, and
+        // the link works without JS.
+        const iso2 = rewritten.replace('/country/', '')
+        return `<a href="${rewritten}" class="country-link" data-island="country-preview" data-iso="${iso2}">${text}</a>`
+      }
+      return `<a href="${rewritten}">${text}</a>`
+    })
     .replace(/^---$/gm, '<hr>')
 
   const result = []
@@ -96,16 +126,31 @@ const buildArticle = (filename) => {
     sourcemark = `<details class="article-sources"><summary class="source-count">${sources.length} source${sources.length > 1 ? 's' : ''}</summary><ul>${items}</ul></details>`
   }
 
-  // Concept tags
+  // `concepts` stays in the parsed article so API consumers (feed.json,
+  // mobile) keep getting the list, but we no longer append a concept-chip
+  // strip to the reader's HTML body.
   const concepts = Array.isArray(meta.concepts) ? meta.concepts : []
-  const conceptsHtml = concepts.length > 0
-    ? `<div class="article-concepts">${concepts.map(c => `<span class="concept-tag">${typeof c === 'object' ? c.label : c}</span>`).join('')}</div>`
-    : ''
+
+  // Wrap a leading `Location — ` prefix in a small-caps dateline. The em
+  // dash is dropped; CSS handles the spacing. We strip the dateline from
+  // the markdown source before HTML rendering (so smartQuotes doesn't
+  // curl our attribute quotes), then inject the styled span back into
+  // the first paragraph of the rendered HTML.
+  const datelineMatch = body.match(/^([^\n—]+?)\s+—\s+/)
+  const strippedBody = datelineMatch ? body.slice(datelineMatch[0].length) : body
+  let renderedHtml = splitSentences(markdownToHtml(strippedBody))
+  if (datelineMatch) {
+    const location = datelineMatch[1].trim()
+    renderedHtml = renderedHtml.replace(
+      /^<p>/,
+      `<p><span class="article-dateline">${location}</span>`,
+    )
+  }
 
   const slug = basename(filename, '.md')
   return {
     slug, meta, body, sources, concepts,
-    bodyHtml: splitSentences(markdownToHtml(body)) + sourcemark + conceptsHtml,
+    bodyHtml: renderedHtml + sourcemark,
     title: smartQuotes(meta.title || 'Untitled'),
     dateFormatted: formatDate(meta.date),
     sourceCount: sources.length,
@@ -142,6 +187,11 @@ const buildHomepage = (sorted, cutoff, homepageTemplate) => {
           sourceCount,
           eventCoverage: meta.eventCoverage ? Number(meta.eventCoverage) : null,
           sentimentDivergence: meta.sentimentDivergence ? Number(meta.sentimentDivergence) : null,
+          // Coordinates so the ambient-globe island can rotate to the
+          // article's location when the reader switches articles.
+          ...(meta.lat != null && meta.lng != null
+            ? { lat: Number(meta.lat), lng: Number(meta.lng) }
+            : {}),
           ...(thread?.threadContext && { threadId: thread.threadId }),
         }
       })
@@ -181,6 +231,96 @@ const buildHomepage = (sorted, cutoff, homepageTemplate) => {
     .replace(/{{fallbackArticleList}}/g, fallbackArticleList)
 }
 
+const escHtmlAttr = (s) => String(s)
+  .replace(/&/g, '&amp;')
+  .replace(/"/g, '&quot;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+
+// Extract a clean OG/meta description from body: first 1-2 sentences, ≤170 chars.
+const buildDescription = (body) => {
+  if (!body) return 'Global news, no noise. Concise world news from 40 sources, curated by AI.'
+  const firstPara = body.trim().split(/\n{2,}/)[0] || body.trim()
+  const plain = firstPara.replace(/[*_`#>]/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim()
+  if (plain.length <= 170) return plain
+  const cut = plain.slice(0, 167)
+  const lastSpace = cut.lastIndexOf(' ')
+  return (lastSpace > 120 ? cut.slice(0, lastSpace) : cut) + '…'
+}
+
+// Background disclosure — matches the homepage reader's plain
+// <details class="article-context"> affordance so /a/{slug} and the
+// in-pane reader render identically.
+const threadBlockHtml = (threadCtx) => {
+  if (!threadCtx) return ''
+  const bodyHtml = contextToHtml(threadCtx)
+  if (!bodyHtml) return ''
+  return `<details class="article-context"><summary class="context-label">Background</summary><div class="context-body">${bodyHtml}</div></details>`
+}
+
+// Entity strip — the reader-facing affordance for an article's
+// frontmatter entities[]. Rendered as <a href="/e/{id}"> so no-JS
+// clients and crawlers still follow through to the full page; the
+// island loader hijacks the click on first tap and opens the entity
+// sheet in place. Only entries whose indicatorId actually corresponds
+// to a trends snapshot get rendered — anything else (e.g. the old
+// `stocks:MRNA` shape we don't ship series for) is silently dropped.
+const entityStripHtml = (entities, indicatorMap) => {
+  if (!Array.isArray(entities) || !entities.length) return ''
+  const rendered = entities
+    .filter((e) => e?.indicatorId && indicatorMap?.has(e.indicatorId))
+    .map((e) => {
+      const ind = indicatorMap.get(e.indicatorId)
+      return `<a class="article-entity-chip" href="/e/${escHtmlAttr(e.indicatorId)}" data-island="entity-sheet" data-id="${escHtmlAttr(e.indicatorId)}"><span class="article-entity-chip-label">${escHtmlAttr(ind.label || e.mention || e.indicatorId)}</span></a>`
+    })
+  if (!rendered.length) return ''
+  return `<aside class="article-entities" aria-label="Related entities"><span class="label article-entities-label">Follows</span>${rendered.join('')}</aside>`
+}
+
+// Relative time-ago label — mirror of mobile/lib/article-utils.formatTimeAgo.
+// Kicker shows this instead of a fixed date so the article header reads
+// the same as mobile ("3h ago") rather than an abstract calendar date.
+const formatTimeAgo = (addedAt) => {
+  const diffMs = Date.now() - addedAt
+  const diffMin = Math.floor(diffMs / 60_000)
+  if (diffMin < 1) return 'now'
+  if (diffMin < 60) return `${diffMin}m ago`
+  const diffHours = Math.floor(diffMin / 60)
+  if (diffHours < 24) return `${diffHours}h ago`
+  const diffDays = Math.floor(diffHours / 24)
+  if (diffDays < 7) return `${diffDays}d ago`
+  return new Date(addedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short' })
+}
+
+const buildArticlePage = (article, prev, next, thread, template, indicatorMap) => {
+  const { slug, meta, body, bodyHtml, title, dateFormatted, addedAt } = article
+  const isoDate = meta.date || new Date(addedAt).toISOString()
+  const category = meta.category || 'politics'
+  const description = buildDescription(body)
+  const timeAgo = formatTimeAgo(addedAt)
+  const prevLink = prev
+    ? `<a class="article-pagination-prev" href="/a/${prev.slug}" rel="prev">← ${escHtmlAttr(prev.title)}</a>`
+    : '<span class="article-pagination-prev"></span>'
+  const nextLink = next
+    ? `<a class="article-pagination-next" href="/a/${next.slug}" rel="next">${escHtmlAttr(next.title)} →</a>`
+    : '<span class="article-pagination-next"></span>'
+
+  return template
+    .replace(/{{slug}}/g, slug)
+    .replace(/{{title}}/g, escHtmlAttr(title))
+    .replace(/{{titleAttr}}/g, escHtmlAttr(title))
+    .replace(/{{description}}/g, escHtmlAttr(description))
+    .replace(/{{category}}/g, category)
+    .replace(/{{dateFormatted}}/g, dateFormatted)
+    .replace(/{{isoDate}}/g, isoDate)
+    .replace(/{{timeAgo}}/g, escHtmlAttr(timeAgo))
+    .replace(/{{bodyHtml}}/g, bodyHtml)
+    .replace(/{{entityStrip}}/g, entityStripHtml(meta.entities, indicatorMap))
+    .replace(/{{threadBlock}}/g, threadBlockHtml(thread?.threadContext))
+    .replace(/{{prevLink}}/g, prevLink)
+    .replace(/{{nextLink}}/g, nextLink)
+}
+
 // Main build
 console.log('Building zuhd.news...')
 
@@ -188,7 +328,12 @@ if (existsSync(DIST_DIR)) rmSync(DIST_DIR, { recursive: true })
 mkdirSync(DIST_DIR, { recursive: true })
 
 if (existsSync(join(ROOT, 'public')))
-  cpSync(join(ROOT, 'public'), DIST_DIR, { recursive: true })
+  cpSync(join(ROOT, 'public'), DIST_DIR, {
+    recursive: true,
+    // Island source files are TypeScript — esbuild emits the runtime
+    // bundles into dist/islands/ separately. Don't ship the sources.
+    filter: (src) => !src.endsWith('.ts'),
+  })
 
 const audioSrc = join(ROOT, 'content', 'audio')
 if (existsSync(audioSrc)) {
@@ -217,6 +362,9 @@ const headCommon = `<meta charset="utf-8">
 const homepageTemplate = readFileSync(join(TEMPLATES_DIR, 'index.html'), 'utf-8')
   .replace('{{headCommon}}', headCommon)
   .replace('{{inlineJS}}', jsContent)
+
+const articleTemplate = readFileSync(join(TEMPLATES_DIR, 'article.html'), 'utf-8')
+  .replace('{{headCommon}}', headCommon)
 
 // Story thread lookup — maps article slugs to their thread info from the ledger
 const ledgerPath = join(ROOT, 'content', '.story-ledger.json')
@@ -399,13 +547,46 @@ if (Object.keys(contextIndex).length > 0) {
   console.log(`  Built: api/context/ (${Object.keys(contextIndex).length} briefs)`)
 }
 
-// Chokepoints snapshot — ambient globe layer on mobile. Missing file is a
-// graceful degrade: the mobile hook treats a 404 as "no layer this run".
+// Chokepoints snapshot — ambient globe layer on mobile, and the data
+// source the web chokepoint-sheet island reads when a reader taps a
+// chokepoint marker. Web enriches the blob with `relatedArticles[]` so
+// the sheet can show matching zuhd coverage without shipping the full
+// article feed client-side. Missing input file is a graceful degrade:
+// mobile + web both treat a 404 as "no layer this run".
 const chokepointsSrc = join(ROOT, 'content', '.chokepoints.json')
 if (existsSync(chokepointsSrc)) {
-  cpSync(chokepointsSrc, join(DIST_DIR, 'api', 'chokepoints.json'))
-  const n = JSON.parse(readFileSync(chokepointsSrc, 'utf8')).chokepoints?.length ?? 0
-  console.log(`  Built: api/chokepoints.json (${n} chokepoints)`)
+  const raw = JSON.parse(readFileSync(chokepointsSrc, 'utf8'))
+  // Match articles against each chokepoint by topicTag. Tag hits against
+  // title + concepts + location; lowercased whole-ish word match. Cheap
+  // enough at 14-day window × 11 chokepoints (~200 × 11 = 2.2k lookups).
+  const normalize = (s) => String(s || '').toLowerCase()
+  const enriched = {
+    ...raw,
+    chokepoints: (raw.chokepoints || []).map((c) => {
+      const tags = (c.topicTags || []).map(normalize)
+      if (!tags.length) return { ...c, relatedArticles: [] }
+      const hits = []
+      for (const a of sorted) {
+        const hay = [
+          a.title,
+          a.meta.location,
+          ...(a.concepts || []).map((x) => (typeof x === 'object' ? x.label : x)),
+        ].map(normalize).join(' ')
+        if (tags.some((t) => hay.includes(t))) {
+          hits.push({
+            slug: a.slug,
+            title: a.title,
+            date: a.meta.date,
+            dateFormatted: a.dateFormatted,
+          })
+          if (hits.length >= 8) break
+        }
+      }
+      return { ...c, relatedArticles: hits }
+    }),
+  }
+  writeFileSync(join(DIST_DIR, 'api', 'chokepoints.json'), JSON.stringify(enriched))
+  console.log(`  Built: api/chokepoints.json (${enriched.chokepoints.length} chokepoints)`)
 }
 
 // Trends snapshot — full indicator catalog with values/periods. Mobile
@@ -505,6 +686,33 @@ writeFileSync(join(DIST_DIR, 'api', 'meta.json'), JSON.stringify({
 }))
 console.log('  Built: api/meta.json')
 
+// Indicator map: id → {label, kind}. Drives the article entity strip
+// so we only surface chips that actually resolve to a /e/{id} page +
+// /api/entity/{id}.json blob. Computed once here; fed to every
+// buildArticlePage() call.
+const indicatorMap = new Map()
+{
+  const today = new Date().toISOString().slice(0, 10)
+  const candidates = [join(ROOT, 'content', 'trends', `${today}.json`)]
+  // Fall back to the most recent snapshot when today's hasn't been
+  // generated yet — identical to what entity-pages.js does internally.
+  const trendsDir = join(ROOT, 'content', 'trends')
+  if (existsSync(trendsDir)) {
+    const names = readdirSync(trendsDir).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort()
+    if (names.length) candidates.push(join(trendsDir, names[names.length - 1]))
+  }
+  for (const p of candidates) {
+    if (!existsSync(p)) continue
+    const trends = JSON.parse(readFileSync(p, 'utf8'))
+    for (const ind of trends.indicators || []) {
+      if (ind?.id && !indicatorMap.has(ind.id)) {
+        indicatorMap.set(ind.id, { label: ind.label, kind: ind.cadence || 'indicator' })
+      }
+    }
+    if (indicatorMap.size) break
+  }
+}
+
 // Homepage and static pages
 const homepage = buildHomepage(sorted, cutoff, homepageTemplate)
   .replace(/{{audioBriefing}}/g, audioBriefingHtml)
@@ -512,7 +720,209 @@ const homepage = buildHomepage(sorted, cutoff, homepageTemplate)
 writeFileSync(join(DIST_DIR, 'index.html'), homepage)
 console.log(`  Built: index.html (${articles.length} articles)`)
 
-for (const page of ['about', 'contact', 'sources', 'privacy', 'support', 'mcp']) {
+// Per-article static pages at /a/{slug}.html — replaces the legacy
+// functions/a/[slug].js runtime redirect with real, crawlable, share-ready
+// HTML. Uses `sorted` so prev/next navigation follows reverse-chronological
+// order (newest → oldest), matching the homepage list semantics.
+
+mkdirSync(join(DIST_DIR, 'a'), { recursive: true })
+for (let i = 0; i < sorted.length; i++) {
+  const article = sorted[i]
+  const prev = sorted[i + 1] ?? null
+  const next = sorted[i - 1] ?? null
+  const thread = threadLookup.get(article.slug) || null
+  const html = buildArticlePage(article, prev, next, thread, articleTemplate, indicatorMap)
+  writeFileSync(join(DIST_DIR, 'a', `${article.slug}.html`), html)
+}
+console.log(`  Built: a/ (${sorted.length} article pages)`)
+
+// Islands: compile public/islands/*.ts via esbuild into dist/islands/*.js.
+// Each island is an ESM entry that reader.js lazy-loads on first
+// activation of its affordance (a <button data-island="..."> click).
+const islandsResult = await buildIslands()
+if (islandsResult.count > 0) {
+  console.log(`  Built: islands/ (${islandsResult.count} entries)`)
+}
+
+// Per-article OG images at /api/og/{slug}.png — typography + monochrome
+// orthographic map inset. Generated at build time; Cloudflare Pages serves
+// the static PNGs from the edge with standard cache headers. OG scrapers
+// (WhatsApp, X, iMessage, Facebook) dereference og:image URLs emitted by
+// article pages and render rich previews with the article's map view.
+//
+// OG rendering dominates the build (~160 s for 852 articles). We cache
+// each PNG outside dist/ keyed by a content hash of the render inputs,
+// so cold builds stay expensive but warm rebuilds (the typical dev loop)
+// are a pure file copy. SKIP_OG=1 bypasses generation entirely — used by
+// `npm run dev` since local previews don't need share cards.
+mkdirSync(join(DIST_DIR, 'api', 'og'), { recursive: true })
+if (process.env.SKIP_OG === '1') {
+  console.log('  Skipped: api/og/ (SKIP_OG=1)')
+} else {
+  const OG_CACHE_DIR = join(ROOT, '.cache', 'og')
+  const OG_VERSION = 'v3' // bump when og-image.js rendering changes
+  mkdirSync(OG_CACHE_DIR, { recursive: true })
+  const ogStart = Date.now()
+  let cached = 0
+  let rendered = 0
+  for (const article of sorted) {
+    const inputs = {
+      v: OG_VERSION,
+      title: article.title,
+      category: article.meta.category || null,
+      date: article.meta.date,
+      location: article.meta.location || null,
+      lat: article.meta.lat != null ? Number(article.meta.lat) : null,
+      lng: article.meta.lng != null ? Number(article.meta.lng) : null,
+    }
+    const key = createHash('sha1').update(JSON.stringify(inputs)).digest('hex')
+    const cachePath = join(OG_CACHE_DIR, `${key}.png`)
+    const dstPath = join(DIST_DIR, 'api', 'og', `${article.slug}.png`)
+    let png
+    if (existsSync(cachePath)) {
+      png = readFileSync(cachePath)
+      cached++
+    } else {
+      png = buildOgPng(inputs, 'light')
+      writeFileSync(cachePath, png)
+      rendered++
+    }
+    writeFileSync(dstPath, png)
+  }
+  console.log(
+    `  Built: api/og/ (${sorted.length} OG images · ${cached} cached + ${rendered} rendered in ${((Date.now() - ogStart) / 1000).toFixed(1)}s)`,
+  )
+}
+
+// Per-category pages at /c/{category}.html — chronological list of
+// every article in the category within the build window. Each category
+// page is a simple archetype: header + headline list, no reader chrome.
+const categoryPageTemplate = `<!-- بسم الله الرحمن الرحيم -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  __HEAD__
+  <link rel="alternate" type="application/atom+xml" title="zuhd.news" href="/feed.xml">
+  <title>__CAT_CAP__ — zuhd.news</title>
+  <meta name="description" content="__DESC__">
+  <link rel="canonical" href="https://zuhd.news/c/__CAT__">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="zuhd.news">
+  <meta property="og:title" content="__CAT_CAP__ — zuhd.news">
+  <meta property="og:description" content="__DESC__">
+  <meta property="og:url" content="https://zuhd.news/c/__CAT__">
+  <meta property="og:image" content="https://zuhd.news/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zuhd.news/og-image.png">
+</head>
+<body class="archetype-page-body">
+  <header class="article-page-header">
+    <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
+    <a href="/" class="article-back-link" aria-label="All stories">All stories</a>
+  </header>
+  <main class="article-page-main">
+    <article class="category-page">
+      <header class="category-page-header">
+        <span class="label">Category</span>
+        <h1 class="t-display category-page-title">__CAT_CAP__</h1>
+        <p class="t-caption">__COUNT__ articles · last __DAYS__ days</p>
+      </header>
+      <ol class="category-article-list">__ROWS__</ol>
+    </article>
+  </main>
+  <footer>
+    <nav class="footer-links">
+      <a href="/about">about</a> <a href="/contact">contact</a> <a href="/mcp">mcp</a> <a href="/privacy">privacy</a>
+    </nav>
+  </footer>
+  <script type="module" src="/island-loader.js" defer></script>
+</body>
+</html>`
+
+const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1)
+mkdirSync(join(DIST_DIR, 'c'), { recursive: true })
+const byCategory = {}
+for (const a of sorted) {
+  const cat = a.meta.category || 'politics'
+  ;(byCategory[cat] ??= []).push(a)
+}
+for (const cat of CATEGORY_ORDER) {
+  const items = byCategory[cat] || []
+  if (items.length === 0) continue
+  const rows = items.map(a => `<li>
+      <a class="category-article-row" href="/a/${a.slug}">
+        <time datetime="${a.meta.date}" class="t-tabular">${a.dateFormatted}</time>
+        <span class="category-article-title">${escHtmlAttr(a.title)}</span>
+        ${a.sources[0]?.name ? `<span class="t-source-host">${escHtmlAttr(a.sources[0].name)}</span>` : ''}
+      </a>
+    </li>`).join('\n')
+  const html = categoryPageTemplate
+    .replace(/__HEAD__/g, headCommon)
+    .replace(/__CAT__/g, cat)
+    .replace(/__CAT_CAP__/g, capitalize(cat))
+    .replace(/__COUNT__/g, String(items.length))
+    .replace(/__DAYS__/g, String(BUILD_WINDOW_DAYS))
+    .replace(/__DESC__/g, escHtmlAttr(`${items.length} ${cat} articles on zuhd.news. Minimalist global news, typography-first.`))
+    .replace(/__ROWS__/g, rows)
+  writeFileSync(join(DIST_DIR, 'c', `${cat}.html`), html)
+}
+console.log(`  Built: c/ (${CATEGORY_ORDER.filter(c => (byCategory[c]||[]).length > 0).length} category pages)`)
+
+// Per-thread pages at /s/{id}.html — the story arc surface. Reader
+// lands here for the ledger, the editor summary, the context timeline,
+// and every article in the thread in chronological order.
+const articlesBySlug = new Map(sorted.map(a => [a.slug, a]))
+const threadResult = buildThreadPages({
+  articlesBySlug,
+  distDir: DIST_DIR,
+  headCommon,
+})
+console.log(`  Built: s/ (${threadResult.count} thread pages)`)
+
+// Per-entity pages at /e/{id}.html — stock/commodity/index/chokepoint.
+// Renders a monochrome inline SVG sparkline + the articles that
+// reference the entity via frontmatter entities[].indicatorId.
+const entityResult = buildEntityPages({
+  sorted,
+  distDir: DIST_DIR,
+  headCommon,
+})
+console.log(`  Built: e/ (${entityResult.count} entity pages)`)
+
+// Per-country pages at /country/{ISO2}.html — country profile (flag,
+// capital, 26 metrics × percentile strip × source attribution) + recent
+// coverage for articles datelined in the country. Reads COUNTRY_DATA,
+// COUNTRY_AUGMENTED, and country-ranking.ts directly from /shared/.
+const countryResult = await buildCountryPages({
+  sorted,
+  distDir: DIST_DIR,
+  templatesDir: TEMPLATES_DIR,
+  headCommon,
+})
+console.log(`  Built: country/ (${countryResult.count} pages)`)
+
+// sitemap.xml covers homepage, static pages, and all article pages.
+// Cloudflare Pages serves /a/{slug}.html at /a/{slug} (extensionless).
+const staticPages = ['about', 'contact', 'privacy', 'mcp']
+const sitemapEntries = [
+  `  <url><loc>https://zuhd.news/</loc><changefreq>hourly</changefreq><priority>1.0</priority></url>`,
+  ...staticPages.map(p => `  <url><loc>https://zuhd.news/${p}</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>`),
+  ...sorted.map(a => `  <url><loc>https://zuhd.news/a/${a.slug}</loc><lastmod>${new Date(a.meta.date || a.addedAt).toISOString()}</lastmod><priority>0.8</priority></url>`),
+  ...(countryResult.codes || []).map(cc => `  <url><loc>https://zuhd.news/country/${cc}</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>`),
+  ...CATEGORY_ORDER.filter(c => (byCategory[c]||[]).length > 0).map(c => `  <url><loc>https://zuhd.news/c/${c}</loc><changefreq>hourly</changefreq><priority>0.7</priority></url>`),
+  ...(threadResult.ids || []).map(id => `  <url><loc>https://zuhd.news/s/${id}</loc><changefreq>daily</changefreq><priority>0.6</priority></url>`),
+  ...(entityResult.ids || []).map(id => `  <url><loc>https://zuhd.news/e/${id}</loc><changefreq>daily</changefreq><priority>0.5</priority></url>`),
+]
+writeFileSync(join(DIST_DIR, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapEntries.join('\n')}
+</urlset>
+`)
+console.log(`  Built: sitemap.xml (${sitemapEntries.length} URLs)`)
+
+for (const page of staticPages) {
   const pagePath = join(ROOT, 'content', `${page}.md`)
   if (!existsSync(pagePath)) continue
   const body = readFileSync(pagePath, 'utf-8')

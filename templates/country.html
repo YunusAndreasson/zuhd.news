@@ -1,0 +1,57 @@
+<!-- بسم الله الرحمن الرحيم -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{headCommon}}
+  <link rel="alternate" type="application/atom+xml" title="zuhd.news" href="/feed.xml">
+  <title>{{name}} — zuhd.news</title>
+  <meta name="description" content="{{description}}">
+  <link rel="canonical" href="https://zuhd.news/country/{{iso2}}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="zuhd.news">
+  <meta property="og:title" content="{{name}} — zuhd.news">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:url" content="https://zuhd.news/country/{{iso2}}">
+  <meta property="og:image" content="https://zuhd.news/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://zuhd.news/og-image.png">
+</head>
+<body class="archetype-page-body">
+  <header class="article-page-header">
+    <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
+    <a href="/" class="article-back-link" aria-label="All stories">All stories</a>
+  </header>
+
+  <main class="article-page-main">
+    <article class="country-page">
+      <div class="country-header">
+        <span class="label">{{region}}</span>
+        <span class="country-flag" aria-hidden="true">{{flag}}</span>
+        <h1 class="t-data-numeral country-name">{{name}}</h1>
+        <span class="label country-iso">{{iso2}}</span>
+        <p class="t-caption country-meta">{{metaLine}}</p>
+      </div>
+
+      <section class="country-metrics">
+        <h2 class="label country-section-title">Metrics</h2>
+        <ol class="metric-list">
+          {{metricRows}}
+        </ol>
+      </section>
+
+      {{coverageSection}}
+    </article>
+  </main>
+
+  <footer>
+    <span class="update-status">Country data: REST Countries · World Bank · OWID</span>
+    <nav class="footer-links">
+      <a href="/about">about</a> <a href="/contact">contact</a> <a href="/mcp">mcp</a> <a href="/privacy">privacy</a>
+    </nav>
+  </footer>
+  <script type="module" src="/island-loader.js" defer></script>
+</body>
+</html>
