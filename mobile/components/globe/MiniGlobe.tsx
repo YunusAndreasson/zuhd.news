@@ -213,9 +213,19 @@ const CHOKEPOINT_SATURATION_DELTA = 0.3;
 // without the descenders touching the next ascenders.
 const LABEL_LINE_HEIGHT = 16;
 // Halo stroke width for primary-tier labels (focused country, chokepoint).
-// Wide enough to read over land tint, borders, and the country highlight
-// glow without bleeding into the glyphs.
-const LABEL_HALO_WIDTH = 3;
+// 2.4 reads as a soft cushion behind the glyphs without becoming a visible
+// plate; 3+ starts to feel like a solid background rectangle at 14px text.
+const LABEL_HALO_WIDTH = 2.4;
+// Unified halo opacity — every haloed label on the globe uses the same pair
+// so the labels read as one material. Slightly lower in dark mode where the
+// bg is already low-contrast against the land tint.
+const LABEL_HALO_OPACITY_LIGHT = 0.7;
+const LABEL_HALO_OPACITY_DARK = 0.55;
+// Disrupted-chokepoint bump — same family, just a touch more presence so the
+// alarm label stays legible over a busy ring. Capped well below 1 so it
+// never becomes an opaque plate.
+const LABEL_HALO_OPACITY_LIGHT_STRONG = 0.85;
+const LABEL_HALO_OPACITY_DARK_STRONG = 0.7;
 
 /** Widest line in `lines`, measured by font width when loaded; otherwise
  *  approximated at `fallbackChar` pixels per character so first-paint
@@ -1437,6 +1447,19 @@ export const MiniGlobe = memo(function MiniGlobe({
   // 16ms overwhelms the JS thread (d3-geo projection + setState can't complete in one frame).
   const lastTimeRef = useSharedValue(0);
   const hasFired = useSharedValue(false);
+  // No-op coalescing — last derived inputs handed to runOnJS. The reaction
+  // tick still fires every 32ms while withTiming animations ease, but if the
+  // resulting (lng, lat, frac, oA, oG) round to the same values as last
+  // frame, skip the JS hop + d3-geo reproject + setState entirely. Epsilons
+  // chosen so any change that would move a pixel or shift a sub-degree of
+  // rotation still passes through.
+  const lastReactSy = useSharedValue(Number.NaN);
+  const lastReactLng = useSharedValue(Number.NaN);
+  const lastReactLat = useSharedValue(Number.NaN);
+  const lastReactFrac = useSharedValue(Number.NaN);
+  const lastReactOA = useSharedValue(Number.NaN);
+  const lastReactOG = useSharedValue(Number.NaN);
+  const lastReactSettled = useSharedValue(-1);
 
   useAnimatedReaction(
     () => ({
@@ -1448,7 +1471,7 @@ export const MiniGlobe = memo(function MiniGlobe({
     ({ sy, oA, oG, len }) => {
       if (len === 0) return;
 
-      const now = Date.now();
+      const now = performance.now();
       if (hasFired.value && now - lastTimeRef.value < 32) return;
       hasFired.value = true;
       lastTimeRef.value = now;
@@ -1522,6 +1545,31 @@ export const MiniGlobe = memo(function MiniGlobe({
       }
 
       const settled = Math.min(Math.round(rawIndex), articleCount - 1);
+
+      // No-op short-circuit — bail when nothing meaningful changed since the
+      // last frame. Skipping when sy is stable handles the steady-state
+      // post-swipe case; checking lng/lat/frac/oA/oG handles the case where
+      // a withTiming animation has settled at its target but the reaction
+      // ticker is still firing. settledIndex change always passes through
+      // (drives country highlight + label swap).
+      if (
+        settled === lastReactSettled.value &&
+        Math.abs(sy - lastReactSy.value) < 0.5 &&
+        Math.abs(lng - lastReactLng.value) < 0.01 &&
+        Math.abs(lat - lastReactLat.value) < 0.01 &&
+        Math.abs(frac - lastReactFrac.value) < 1e-3 &&
+        Math.abs(oA - lastReactOA.value) < 1e-4 &&
+        Math.abs(oG - lastReactOG.value) < 0.01
+      ) {
+        return;
+      }
+      lastReactSy.value = sy;
+      lastReactLng.value = lng;
+      lastReactLat.value = lat;
+      lastReactFrac.value = frac;
+      lastReactOA.value = oA;
+      lastReactOG.value = oG;
+      lastReactSettled.value = settled;
 
       runOnJS(callReproject)(lng, lat, settled, lo, hi, frac, oA, oG);
     },
@@ -2039,7 +2087,15 @@ export const MiniGlobe = memo(function MiniGlobe({
               color={c.disrupted ? colors.accent : colors.textSecondary}
               haloColor={colors.bg}
               opacity={c.disrupted ? 0.9 : 0.55}
-              haloOpacity={c.disrupted ? 1 : 0.75}
+              haloOpacity={
+                c.disrupted
+                  ? light
+                    ? LABEL_HALO_OPACITY_LIGHT_STRONG
+                    : LABEL_HALO_OPACITY_DARK_STRONG
+                  : light
+                    ? LABEL_HALO_OPACITY_LIGHT
+                    : LABEL_HALO_OPACITY_DARK
+              }
             />
           </Group>
         );
@@ -2215,7 +2271,7 @@ export const MiniGlobe = memo(function MiniGlobe({
                 color={colors.textEmphasis}
                 haloColor={colors.bg}
                 opacity={light ? 0.95 : 0.9}
-                haloOpacity={light ? 0.85 : 0.7}
+                haloOpacity={light ? LABEL_HALO_OPACITY_LIGHT : LABEL_HALO_OPACITY_DARK}
               />
             );
           });
