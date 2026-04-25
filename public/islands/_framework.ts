@@ -27,8 +27,8 @@ export const html = htm.bind(h)
  * Mount an island into its container and return a teardown fn.
  *
  * Call pattern from a lazy loader:
- *   import { mount } from '/islands/context-viewer.js'
- *   const dispose = mount(container, { threadId })
+ *   import { mount } from '/islands/entity-sheet.js'
+ *   const dispose = mount(container, { id })
  */
 export type Island<Props> = (props: Props) => VNode
 

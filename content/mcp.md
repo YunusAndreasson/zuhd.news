@@ -40,7 +40,7 @@ In Claude Desktop, Cursor, or any MCP client, add zuhd-news as a remote server w
 
 30 requests per minute. No key required.
 
-For higher limits, email [yunus@edenmind.com](mailto:yunus@edenmind.com) with your use case.
+For higher limits, email [contact@zuhd.news](mailto:contact@zuhd.news) with your use case.
 
 ## Discovery
 

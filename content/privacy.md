@@ -18,4 +18,4 @@ Audio briefings are generated using Google Cloud Text-to-Speech and hosted on zu
 
 ## Contact
 
-Questions about this policy: yunus@edenmind.com
+Questions about this policy: [contact@zuhd.news](mailto:contact@zuhd.news)

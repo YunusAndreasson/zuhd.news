@@ -15,28 +15,33 @@ function init(data) {
   const viewEl = document.querySelector('.article-view');
   const viewInner = viewEl.querySelector('.article-view-inner');
   const announcer = document.getElementById('announcer');
-  const escapeDiv = document.createElement('div');
   const isStaticPage = viewEl.hasAttribute('data-page');
 
-  // Update status in footer
   const statusEl = document.querySelector('footer .update-status');
-  function updateStatus() {
+  const updateStatus = () => {
     const ts = window.__lastCycle;
     if (!ts || !statusEl) return;
-    const now = Date.now(), ago = now - new Date(ts).getTime();
-    const h = Math.floor(ago / 36e5), m = Math.floor((ago % 36e5) / 6e4);
-    const agoStr = h > 0 ? h + 'h ago' : (m < 2 ? 'just now' : m + ' min ago');
-    statusEl.textContent = 'Updated ' + agoStr;
-  }
+    const min = Math.floor((Date.now() - new Date(ts).getTime()) / 60000);
+    const label = min < 1 ? 'just now'
+      : min < 60 ? min + ' min ago'
+      : Math.floor(min / 60) + 'h ago';
+    statusEl.textContent = 'Updated ' + label;
+  };
   updateStatus();
   setInterval(updateStatus, 60000);
 
+  // Reset → set forces an aria-live re-announcement. queueMicrotask
+  // schedules the second write on the next microtask tick — same effect
+  // as the old setTimeout(50) without holding a 50ms timer for every msg.
   const announce = (msg) => {
     announcer.textContent = '';
-    setTimeout(() => { announcer.textContent = msg; }, 50);
+    queueMicrotask(() => { announcer.textContent = msg; });
   };
 
-  const esc = (s) => { escapeDiv.textContent = s; return escapeDiv.innerHTML; };
+  // HTML-escape via a static replacement table — no per-call DOM round-trip,
+  // works during SSR too.
+  const ESC = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ESC[c]);
   const currentList = () => articles[categories[state.catIdx]];
   const currentArticle = () => currentList()[state.artIdx];
 

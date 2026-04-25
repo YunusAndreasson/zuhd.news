@@ -194,12 +194,12 @@ export const buildEntityPages = ({ sorted, distDir, headCommon }) => {
 
     const mentionedSection = mentions.length
       ? `<section class="entity-mentioned">
-          <h2 class="label thread-section-title">Mentioned in · ${mentions.length}</h2>
-          <ol class="thread-article-list">
+          <h2 class="label archive-section-title">Mentioned in · ${mentions.length}</h2>
+          <ol class="archive-article-list">
             ${mentions.slice(0, 30).map((a) => `<li>
-              <a class="thread-article-row" href="/a/${a.slug}">
+              <a class="archive-article-row" href="/a/${a.slug}">
                 <time datetime="${escHtml(a.meta.date)}" class="t-tabular">${escHtml(a.dateFormatted)}</time>
-                <span class="thread-article-title">${escHtml(a.title)}</span>
+                <span class="archive-article-title">${escHtml(a.title)}</span>
                 ${a.sources[0]?.name ? `<span class="t-source-host">${escHtml(a.sources[0].name)}</span>` : ''}
               </a>
             </li>`).join('')}
