@@ -989,68 +989,75 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      // Neighbouring country borders — large mesh, skip during mid-scroll.
-      // Borders are visually imperceptible during fast rotation and this
-      // is one of the heaviest projection operations per frame.
-      let bordersPath: ReturnType<typeof Skia.Path.Make> | null = null;
-      if (nearSettled) {
-        bordersPath = bordersPathRef.current;
-        bordersPath.rewind();
-        skiaCtx.setPath(bordersPath);
-        pg.context(skiaCtx)(bordersMesh);
-      }
+      // Neighbouring country borders — projected every frame so they rotate
+      // with the globe instead of popping at settle. This is the single
+      // heaviest projection on the globe (~3-5ms), but the cost becomes
+      // baseline rather than a settle-frame spike — uniform per-frame work
+      // reads as smoother than gated work that doubles at the boundary.
+      const bordersPath = bordersPathRef.current;
+      bordersPath.rewind();
+      skiaCtx.setPath(bordersPath);
+      pg.context(skiaCtx)(bordersMesh);
 
-      // --- Cosmetic layers: skip during mid-scroll for perf (~15-20% savings).
-      // These are invisible during fast rotation; reproject them only when
-      // near a settled position (same window as arc visibility).
-      let nightPath: ReturnType<typeof Skia.Path.Make> | null = null;
-      let twilightPath: ReturnType<typeof Skia.Path.Make> | null = null;
-      let graticulePath: ReturnType<typeof Skia.Path.Make> | null = null;
+      // --- Always-on cheap layers: project every frame so they stay present
+      // during scroll instead of popping in/out at the nearSettled boundary.
+      // These are visually prominent (night terminator, makkah glow, pole
+      // markers) but cost is small — single circle paths or 1-2 point
+      // projections per frame. The original gating saved ~3-6 frames in the
+      // central window of a fast swipe, but the perceived "things vanishing
+      // as I swipe" cost more in UX than the few-ms savings bought back.
+
+      // Night shadow
+      const [sunLng, sunLat] = getSunPosition();
+      const nightCenter: [number, number] = [sunLng + 180, -sunLat];
+      const nightGeo = nightCircleGen.center(nightCenter).radius(90)();
+      const np = nightPathRef.current;
+      np.rewind();
+      skiaCtx.setPath(np);
+      pg.context(skiaCtx)(nightGeo);
+      const nightPath = np;
+
+      // Low-sun band
+      const tp = twilightPathRef.current;
+      tp.rewind();
+      skiaCtx.setPath(tp);
+      pg.context(skiaCtx)(nightCircleGen.center(nightCenter).radius(96)());
+      const twilightPath = tp;
+
+      // Poles
       let northPole: GlobeState['northPole'] = null;
       let southPole: GlobeState['southPole'] = null;
+      const npp = proj(NORTH_POLE);
+      if (npp) northPole = { x: npp[0], y: npp[1] };
+      const spp = proj(SOUTH_POLE);
+      if (spp) southPole = { x: spp[0], y: spp[1] };
+
+      // Makkah
       let makkah: { x: number; y: number } | null = null;
+      if (geoDistance(MAKKAH.coords, [geoLng, geoLat]) < HALF_PI) {
+        const pt = proj(MAKKAH.coords);
+        if (pt) makkah = { x: pt[0], y: pt[1] };
+      }
+
+      // Equator + polar circles — projected every frame; cost is small
+      // (~650 verts) and the layer is barely visible at α 0.08 anyway.
+      const gp = graticulePathRef.current;
+      gp.rewind();
+      skiaCtx.setPath(gp);
+      pg.context(skiaCtx)(graticuleLines);
+      pg.context(skiaCtx)(ARCTIC_CIRCLE);
+      pg.context(skiaCtx)(ANTARCTIC_CIRCLE);
+      const graticulePath = gp;
+
+      // Dot label — the only remaining nearSettled gate. Two reasons:
+      //   1. Intl.formatLocalTime is the single most expensive call in this
+      //      hot path (full Intl.DateTimeFormat construction + format).
+      //   2. settledIndex flips at frac=0.5, so mid-rotation the label
+      //      would change cities ("Bamako · 12:34" → "Lima · 06:34") —
+      //      more confusing than absent. The label appearing once you've
+      //      committed to an article is correct UX.
       let dotLabel: GlobeState['dotLabel'] = null;
-
       if (nearSettled) {
-        // Night shadow
-        const [sunLng, sunLat] = getSunPosition();
-        const nightCenter: [number, number] = [sunLng + 180, -sunLat];
-        const nightGeo = nightCircleGen.center(nightCenter).radius(90)();
-        const np = nightPathRef.current;
-        np.rewind();
-        skiaCtx.setPath(np);
-        pg.context(skiaCtx)(nightGeo);
-        nightPath = np;
-
-        // Low-sun band
-        const tp = twilightPathRef.current;
-        tp.rewind();
-        skiaCtx.setPath(tp);
-        pg.context(skiaCtx)(nightCircleGen.center(nightCenter).radius(96)());
-        twilightPath = tp;
-
-        // Equator + polar circles
-        const gp = graticulePathRef.current;
-        gp.rewind();
-        skiaCtx.setPath(gp);
-        pg.context(skiaCtx)(graticuleLines);
-        pg.context(skiaCtx)(ARCTIC_CIRCLE);
-        pg.context(skiaCtx)(ANTARCTIC_CIRCLE);
-        graticulePath = gp;
-
-        // Poles
-        const npp = proj(NORTH_POLE);
-        if (npp) northPole = { x: npp[0], y: npp[1] };
-        const spp = proj(SOUTH_POLE);
-        if (spp) southPole = { x: spp[0], y: spp[1] };
-
-        // Makkah
-        if (geoDistance(MAKKAH.coords, [geoLng, geoLat]) < HALF_PI) {
-          const pt = proj(MAKKAH.coords);
-          if (pt) makkah = { x: pt[0], y: pt[1] };
-        }
-
-        // Dot label — only compute when settled (timezone lookup is expensive)
         const settledCountry = cachedCountryRef.current?.properties?.name ?? null;
         if (dot && settledCountry) {
           const article = articlesRef.current[settledIndex];
@@ -1084,7 +1091,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const qiblaP = qiblaPathRef.current;
       qiblaP.rewind();
       let hasQibla = false;
-      if (nearSettled && geo) {
+      if (geo) {
         const storyPt: [number, number] = [geo.lng, geo.lat];
         if (geoDistance(storyPt, MAKKAH.coords) > 0.02) {
           const interp = geoInterpolate(storyPt, MAKKAH.coords);
@@ -1108,7 +1115,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const srcArcs = sourceArcsRef.current;
       srcArcs.rewind();
       let hasSourceArcs = false;
-      if (nearSettled && geo) {
+      if (geo) {
         const storyPt: [number, number] = [geo.lng, geo.lat];
         const article = articlesRef.current[settledIndex];
         if (article?.sources) {
@@ -1137,23 +1144,23 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      // Coverage hotspot glows — skip during mid-scroll (cosmetic)
+      // Coverage hotspot glows — projected every frame so the bright halos
+      // rotate smoothly with the globe instead of popping at the settle
+      // boundary. ≤12 point projections per frame, negligible cost.
       const hotspotGlows: GlobeState['hotspotGlows'] = [];
-      if (nearSettled) {
-        for (const zone of hotspotsRef.current) {
-          const zoneCoords: [number, number] = [zone.lng, zone.lat];
-          if (geoDistance(zoneCoords, [geoLng, geoLat]) < HALF_PI) {
-            const pt = proj(zoneCoords);
-            if (pt)
-              hotspotGlows.push({
-                x: pt[0],
-                y: pt[1],
-                intensity: zone.intensity,
-                recency: zone.recency,
-                labels: zone.labels,
-                countryName: zone.countryName,
-              });
-          }
+      for (const zone of hotspotsRef.current) {
+        const zoneCoords: [number, number] = [zone.lng, zone.lat];
+        if (geoDistance(zoneCoords, [geoLng, geoLat]) < HALF_PI) {
+          const pt = proj(zoneCoords);
+          if (pt)
+            hotspotGlows.push({
+              x: pt[0],
+              y: pt[1],
+              intensity: zone.intensity,
+              recency: zone.recency,
+              labels: zone.labels,
+              countryName: zone.countryName,
+            });
         }
       }
 
