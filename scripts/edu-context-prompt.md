@@ -312,12 +312,15 @@ Augmentations deliver the immersive experience `<vision>` describes. They are te
 
 Two tiers separated by failure mode, not by enthusiasm:
 
-- **Cheap** (locations, compare, actors, prose, quiz, timeline, rank, sankey, treemap) — pure training knowledge. No fetch cost, no fabrication risk if you stay honest about what you know. Use whenever substrate exists.
+- **Always-cheap** (locations, compare, actors, prose, quiz) — pure training knowledge, low fabrication surface. Use whenever substrate exists.
+- **Shape-specific** (timeline, rank, sankey, treemap) — also free token-wise, but each has a SHAPE the body must already match. They're not interchangeable with `compare`: a `compare` of five rows is not a `rank` (rank needs the subject's percentile-position to be the point); a two-bar `compare` is not a `treemap` (treemap needs composition that adds to a whole); a list of dated events under a heading is not a `timeline` (timeline needs a multi-period arc with a turning point). Pick them when the entry's argument *is* that shape — and skip them otherwise. A forced rank/sankey/treemap reads worse than no block at all. **However**: if the shape genuinely fits and you can name the peers/flow-stages/composition-items from training knowledge with values you're confident in, emit it — these are the blocks that make a brief feel rich rather than thin.
 - **Guarded** (chart, multi-chart, quote) — real failure modes. Charts drop silently if the `ref` id is not in the live-indicators list. Quote wording must be canonical, not reconstructed. Canonical text (constitutional clauses, treaty articles, famous on-record speech lines) is the documented exception on the quote side — safe to cite verbatim.
+
+**Fabrication gate for shape-specific blocks.** Before emitting a `rank`, `sankey`, or `treemap`, ask: "Could I name the peers / nodes-and-links / items WITHOUT inventing numbers?" If you'd be guessing values to fill the slots, skip the block — a `compare` of the two or three things you actually know reads better than a `rank` of five things where three values are made up. The reverse trap is also real: do not skip a `sankey` just because it feels novel. Energy mix at source → end-use, refugee origins → host countries, sanctions revenue routed through intermediaries, central-bank reserves by currency composition — these are arcs and flows you know from training. Use the right shape.
 
 ## Pre-flight signal scan
 
-After drafting entries, run this scan. **Every matching signal → attach the block.** Defaulting ON — not rationing — is the whole point. If you find yourself thinking "this signal matches but maybe I shouldn't," you should.
+After drafting entries, run this scan. For *always-cheap* blocks (prose, quiz, locations, compare, actors), every matching signal → attach. For *shape-specific* blocks (timeline, rank, sankey, treemap), every matching signal → attach **only if the fabrication gate above clears** — i.e. you can name the substrate from training knowledge without inventing values. The bias is "default ON when grounded, skip when not"; the failure mode is reaching for `compare` when the actual shape is `rank` or `sankey` because compare feels safer.
 
 | Signal in the entry body | Block |
 |---|---|
