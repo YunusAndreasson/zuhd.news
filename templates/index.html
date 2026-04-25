@@ -24,13 +24,13 @@
     <span class="app-banner-text">Also on <a href="https://apps.apple.com/us/app/zuhd-news/id6760964753" rel="noopener">iPhone</a> and <a href="https://play.google.com/store/apps/details?id=news.zuhd.app" rel="noopener">Android</a>.</span>
     <button class="app-banner-close" type="button" aria-label="Dismiss">&times;</button>
   </aside>
-  <script>!function(){var b=document.querySelector('[data-app-banner]');if(!b)return;var k='app-banner-dismissed';try{if(localStorage.getItem(k))return}catch(e){}var u=navigator.userAgent,iOS=/iP(ad|hone|od)/.test(u),Safari=/Safari/.test(u)&&!/CriOS|FxiOS|EdgiOS/.test(u);if(iOS&&Safari)return;b.hidden=!1;b.querySelector('.app-banner-close').addEventListener('click',function(){try{localStorage.setItem(k,'1')}catch(e){}b.remove()})}()</script>
+  <script>!function(){var k='app-banner-dismissed',b=document.querySelector('[data-app-banner]');if(!b)return;var dismissed=!1;try{dismissed=!!localStorage.getItem(k)}catch(e){}if(dismissed){b.remove();return}var u=navigator.userAgent,iOS=/iP(ad|hone|od)/.test(u),Safari=/Safari/.test(u)&&!/CriOS|FxiOS|EdgiOS/.test(u);if(iOS&&Safari){b.remove();return}b.hidden=!1;document.addEventListener('click',function(e){var t=e.target;if(!t||!t.closest)return;var btn=t.closest('.app-banner-close');if(!btn)return;e.preventDefault();try{localStorage.setItem(k,'1')}catch(e){}var ban=btn.closest('[data-app-banner]');if(ban)ban.remove()},{capture:!0})}()</script>
   <header>
     <a href="/" class="wordmark">zuhd<span class="wordmark-dot">.</span><span class="wordmark-tld">news</span></a>
     {{audioBriefing}}
   </header>
 
-  <main>
+  <main class="split-pane">
     <h1 class="sr-only">zuhd.news — Global news, no noise</h1>
     <nav class="category-strip" role="tablist" aria-label="News categories"></nav>
     <section class="headline-list" role="tabpanel" aria-label="Headlines"></section>

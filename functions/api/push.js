@@ -53,14 +53,22 @@ export async function onRequestPost({ request, env }) {
   // Send pushes in batches
   let totalSent = 0
   for (const article of toPush) {
+    // Per-article channel/priority/data overrides — defaults match the
+    // original breaking-news contract so existing callers don't change.
+    // The daily-briefing push uses channelId: 'briefing' (DEFAULT importance)
+    // and a `data.kind: 'briefing'` so the mobile tap handler can route it
+    // to the briefing player rather than treating it as an article slug.
+    const channelId = article.channelId || 'breaking'
+    const priority = article.priority || 'high'
+    const data = article.data || { slug: article.slug, url: `https://zuhd.news/${article.slug}` }
     const messages = tokens.map(token => ({
       to: token,
       title: article.title,
       body: article.body || article.title,
-      data: { slug: article.slug, url: `https://zuhd.news/${article.slug}` },
+      data,
       sound: 'default',
-      channelId: 'breaking',
-      priority: 'high',
+      channelId,
+      priority,
     }))
 
     // Batch into groups of 100

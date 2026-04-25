@@ -48,7 +48,7 @@ import {
 } from 'react-native-reanimated';
 import { BLACK } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
-import { displayLocation } from '../../lib/place-names';
+import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
 import { getLakeLabels, getMajorRiverFeatureCollection, getRiverLabels, SEAS } from './detail-geo';
 import {
   ANTARCTIC_CIRCLE,
@@ -116,6 +116,50 @@ function Glow({
   );
 }
 
+/** Skia text drawn with an opaque halo for primary-tier labels (focused
+ *  country, chokepoint). Two passes — stroked bg behind the glyphs, then
+ *  the fill — so the label reads over land tint, borders, and the highlight
+ *  glow. Skia's <Text> has no textShadow primitive, hence the manual stroke. */
+function HaloLabel({
+  x,
+  y,
+  text,
+  font,
+  color,
+  haloColor,
+  opacity = 1,
+  haloOpacity = 1,
+  haloWidth = LABEL_HALO_WIDTH,
+}: {
+  x: number;
+  y: number;
+  text: string;
+  font: ReturnType<typeof useFont>;
+  color: string;
+  haloColor: string;
+  opacity?: number;
+  haloOpacity?: number;
+  haloWidth?: number;
+}) {
+  if (!font) return null;
+  return (
+    <>
+      <SkiaText
+        x={x}
+        y={y}
+        text={text}
+        font={font}
+        color={haloColor}
+        opacity={haloOpacity}
+        style="stroke"
+        strokeWidth={haloWidth}
+        strokeJoin="round"
+      />
+      <SkiaText x={x} y={y} text={text} font={font} color={color} opacity={opacity} />
+    </>
+  );
+}
+
 const skiaCtx = createSkiaPathContext();
 const nightCircleGen = geoCircle();
 
@@ -163,6 +207,31 @@ const GHOST_DEDUPE_PX2 = 900; // 30px²
 // glow doesn't keep brightening forever during extreme events.
 const CHOKEPOINT_DISRUPTED_DELTA = 0.15;
 const CHOKEPOINT_SATURATION_DELTA = 0.3;
+
+// Vertical advance between baselines of a wrapped country label. Tuned for
+// 14px Source Sans 3 Regular — enough air to read both lines as a stack
+// without the descenders touching the next ascenders.
+const LABEL_LINE_HEIGHT = 16;
+// Halo stroke width for primary-tier labels (focused country, chokepoint).
+// Wide enough to read over land tint, borders, and the country highlight
+// glow without bleeding into the glyphs.
+const LABEL_HALO_WIDTH = 3;
+
+/** Widest line in `lines`, measured by font width when loaded; otherwise
+ *  approximated at `fallbackChar` pixels per character so first-paint
+ *  collision packing still works before fonts resolve. */
+function measureLines(
+  lines: string[],
+  font: { getTextWidth: (s: string) => number } | null,
+  fallbackChar: number,
+): number {
+  let w = 0;
+  for (const line of lines) {
+    const lw = font ? font.getTextWidth(line) : line.length * fallbackChar;
+    if (lw > w) w = lw;
+  }
+  return w;
+}
 
 export interface TapResult {
   countryName: string;
@@ -228,9 +297,12 @@ interface GlobeState {
   dotLabel: { text: string; sub?: string; x: number; y: number } | null;
   /** Country name anchored near the highlighted country's centroid. Rendered
    *  at every zoom level (including fully zoomed-out) so the reader always
-   *  has geographic context for the article. Null when the centroid falls
-   *  on the globe's far side. */
-  countryLabel: { text: string; x: number; y: number } | null;
+   *  has geographic context for the article. `lines` is normally length 1,
+   *  but wraps to 2 for long names (e.g. "Bosnia and / Herzegovina") — see
+   *  `wrapCountryLabel`. Null when the centroid falls on the globe's far
+   *  side. The anchor `(x, y)` is the baseline of the FIRST line; subsequent
+   *  lines stack below at LINE_HEIGHT spacing. */
+  countryLabel: { lines: string[]; x: number; y: number } | null;
   makkah: { x: number; y: number } | null;
   hotspotGlows: {
     x: number;
@@ -883,7 +955,14 @@ export const MiniGlobe = memo(function MiniGlobe({
       const countryName = cachedCountryRef.current?.properties?.name as string | undefined;
       if (centroid && countryName) {
         const pt = proj(centroid);
-        if (pt) countryLabel = { text: countryName, x: pt[0], y: pt[1] + COUNTRY_LABEL_OFFSET };
+        if (pt) {
+          const display = displayCountryName(countryName) ?? countryName;
+          countryLabel = {
+            lines: wrapCountryLabel(display),
+            x: pt[0],
+            y: pt[1] + COUNTRY_LABEL_OFFSET,
+          };
+        }
       }
 
       // Neighbouring country borders — large mesh, skip during mid-scroll.
@@ -1123,7 +1202,12 @@ export const MiniGlobe = memo(function MiniGlobe({
             if (!coords) continue;
             const pt = proj(coords);
             if (!pt) continue;
-            neighborLabels.push({ name, x: pt[0], y: pt[1], opacity: labelOpacity });
+            // Apply display-name normalization (e.g. "United States of America"
+            // → "United States") so neighbour labels match the focused country
+            // label and read like a real atlas. Single-line for perf — the
+            // collision packer drops long ones rather than wrapping them.
+            const display = displayCountryName(name) ?? name;
+            neighborLabels.push({ name: display, x: pt[0], y: pt[1], opacity: labelOpacity });
           }
           // Lakes — filter to visually-significant size at globe scale
           // (~8000 km² floor = Lake Tanganyika scale). Keeps labels to the
@@ -1206,19 +1290,21 @@ export const MiniGlobe = memo(function MiniGlobe({
         const lfont = labelFontRef.current;
         const sfont = subFontRef.current;
         // Text widths — fall back to char-count approximation (7px per char
-        // for labelFont, 5px for subFont) before fonts finish loading.
-        const cWidth = lfont ? lfont.getTextWidth(countryLabel.text) : countryLabel.text.length * 7;
+        // for labelFont, 5px for subFont) before fonts finish loading. The
+        // country label is multi-line (1–2 rows): use the widest row.
+        const cWidth = measureLines(countryLabel.lines, lfont, 7);
         const dWidth = lfont ? lfont.getTextWidth(dotLabel.text) : dotLabel.text.length * 7;
         const sWidth = dotLabel.sub
           ? sfont
             ? sfont.getTextWidth(dotLabel.sub)
             : dotLabel.sub.length * 5
           : 0;
-        // Country label AABB — centered on x, baseline at y.
+        // Country label AABB — centered on x, first baseline at y, each
+        // additional line stacks LABEL_LINE_HEIGHT below.
         const cX0 = countryLabel.x - cWidth / 2;
         const cX1 = cX0 + cWidth;
-        const cY0 = countryLabel.y - 12; // ascender
-        const cY1 = countryLabel.y + 4; // descender
+        const cY0 = countryLabel.y - 12; // ascender of first line
+        const cY1 = countryLabel.y + (countryLabel.lines.length - 1) * LABEL_LINE_HEIGHT + 4;
         // Dot label block AABB — dot label at (dot.x + 6, dot.y + 4), sub
         // offset another 14px down. Covers both rows.
         const dX0 = dotLabel.x + 6;
@@ -1248,12 +1334,12 @@ export const MiniGlobe = memo(function MiniGlobe({
         const occupied: { x0: number; y0: number; x1: number; y1: number }[] = [];
         const pad = 2;
         if (countryLabel) {
-          const w = lfont ? lfont.getTextWidth(countryLabel.text) : countryLabel.text.length * 7;
+          const w = measureLines(countryLabel.lines, lfont, 7);
           occupied.push({
             x0: countryLabel.x - w / 2 - pad,
             x1: countryLabel.x + w / 2 + pad,
             y0: countryLabel.y - 12,
-            y1: countryLabel.y + 4,
+            y1: countryLabel.y + (countryLabel.lines.length - 1) * LABEL_LINE_HEIGHT + 4,
           });
         }
         if (dotLabel) {
@@ -1945,29 +2031,16 @@ export const MiniGlobe = memo(function MiniGlobe({
               color={ringColor}
               opacity={Math.min(1, ringOpacity + 0.2)}
             />
-            {subFont && (
-              <>
-                <SkiaText
-                  x={labelTx}
-                  y={labelTy}
-                  text={c.label}
-                  font={subFont}
-                  color={colors.bg}
-                  opacity={c.disrupted ? 1 : 0.75}
-                  style="stroke"
-                  strokeWidth={3}
-                  strokeJoin="round"
-                />
-                <SkiaText
-                  x={labelTx}
-                  y={labelTy}
-                  text={c.label}
-                  font={subFont}
-                  color={c.disrupted ? colors.accent : colors.textSecondary}
-                  opacity={c.disrupted ? 0.9 : 0.55}
-                />
-              </>
-            )}
+            <HaloLabel
+              x={labelTx}
+              y={labelTy}
+              text={c.label}
+              font={subFont}
+              color={c.disrupted ? colors.accent : colors.textSecondary}
+              haloColor={colors.bg}
+              opacity={c.disrupted ? 0.9 : 0.55}
+              haloOpacity={c.disrupted ? 1 : 0.75}
+            />
           </Group>
         );
       })}
@@ -2121,37 +2194,32 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Country name — always rendered (every zoom level) when a country is
           highlighted and its centroid is on the visible hemisphere. Anchored
           below the centroid so it stays clear of the city/time dot label.
-          Rendered twice (outer halo in bg + text in emphasis) so it reads
-          over the highlighted country's soft glow without a textShadow
-          primitive, which Skia doesn't support on <Text>. */}
-      {state.countryLabel && labelFont && (
-        <>
-          {/* Halo — opaque bg behind the glyphs so the label reads over
-              land tint, borders, and the highlight glow. Drawn stroked +
-              wider to mimic the textShadow primitive Skia lacks. The `y`
-              already includes the centroid offset + any collision shift
-              away from the dot label; see the AABB check in callReproject. */}
-          <SkiaText
-            x={state.countryLabel.x - labelFont.getTextWidth(state.countryLabel.text) / 2}
-            y={state.countryLabel.y}
-            text={state.countryLabel.text}
-            font={labelFont}
-            color={colors.bg}
-            opacity={light ? 0.85 : 0.7}
-            style="stroke"
-            strokeWidth={3}
-            strokeJoin="round"
-          />
-          <SkiaText
-            x={state.countryLabel.x - labelFont.getTextWidth(state.countryLabel.text) / 2}
-            y={state.countryLabel.y}
-            text={state.countryLabel.text}
-            font={labelFont}
-            color={colors.textEmphasis}
-            opacity={light ? 0.95 : 0.9}
-          />
-        </>
-      )}
+          Long names wrap to two lines (Google Maps convention) — see
+          `wrapCountryLabel`. Each line is centered independently so the
+          stack reads as a balanced block. The state's `(x, y)` is the
+          baseline of the FIRST line; subsequent lines stack at LABEL_LINE_HEIGHT. */}
+      {state.countryLabel &&
+        labelFont &&
+        (() => {
+          const cl = state.countryLabel;
+          return cl.lines.map((line, i) => {
+            const tx = cl.x - labelFont.getTextWidth(line) / 2;
+            const ty = cl.y + i * LABEL_LINE_HEIGHT;
+            return (
+              <HaloLabel
+                key={`country-${i}`}
+                x={tx}
+                y={ty}
+                text={line}
+                font={labelFont}
+                color={colors.textEmphasis}
+                haloColor={colors.bg}
+                opacity={light ? 0.95 : 0.9}
+                haloOpacity={light ? 0.85 : 0.7}
+              />
+            );
+          });
+        })()}
 
       {/* Dot label — location · local time */}
       {state.dotLabel && labelFont && (

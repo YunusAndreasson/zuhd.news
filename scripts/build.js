@@ -6,7 +6,6 @@ import { splitSentences as splitBodySentencesShared, ABBREVS } from './lib/sente
 import { buildOgPng } from './lib/og-image.js'
 import { buildIslands } from './build/islands.js'
 import { buildCountryPages } from './build/country-pages.js'
-import { buildThreadPages } from './build/thread-pages.js'
 import { buildEntityPages } from './build/entity-pages.js'
 import { loadShared } from './build/shared-ts.js'
 
@@ -16,6 +15,43 @@ const DIST_DIR = join(ROOT, 'dist')
 const TEMPLATES_DIR = join(ROOT, 'templates')
 
 const CATEGORY_ORDER = ['politics', 'economy', 'science', 'tech']
+
+// Build a subtle dark-mode starfield as an inline SVG data URI. The
+// fixed-seed xorshift makes the output byte-identical across rebuilds
+// (clean diffs, stable screenshots). Two tiers — dense dust + sparse
+// highlights — give the field depth without reading as ornament. Star
+// sizes and opacities follow the eye's natural perception of stars
+// (most dim, a few bright) rather than uniform variance.
+const buildStarfieldDataUri = () => {
+  let s = 0xC0DE_FACE
+  const rand = () => {
+    s ^= s << 13; s ^= s >>> 17; s ^= s << 5
+    return (s >>> 0) / 0x100000000
+  }
+  const W = 1200, H = 1200
+  const r2 = (n) => Math.round(n * 100) / 100
+  // Power-law brightness: rand²·range biases toward the dim end so most
+  // stars sit just above the noise floor and a few outliers shine. The
+  // dust tier is many small dim points; the highlight tier is the bright
+  // few that sell the depth.
+  const tiers = [
+    { n: 140, rMin: 0.4, rMax: 0.9, oMin: 0.28, oMax: 0.6  }, // dust
+    { n: 22,  rMin: 0.9, rMax: 1.6, oMin: 0.6,  oMax: 0.92 }, // highlights
+  ]
+  let circles = ''
+  for (const t of tiers) {
+    for (let i = 0; i < t.n; i++) {
+      const cx = r2(rand() * W)
+      const cy = r2(rand() * H)
+      const r  = r2(t.rMin + rand() * rand() * (t.rMax - t.rMin))
+      const op = r2(t.oMin + rand() * rand() * (t.oMax - t.oMin))
+      circles += `<circle cx='${cx}' cy='${cy}' r='${r}' opacity='${op}'/>`
+    }
+  }
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 ${W} ${H}'><g fill='white'>${circles}</g></svg>`
+  return `url("data:image/svg+xml,${svg.replace(/</g, '%3C').replace(/>/g, '%3E')}")`
+}
+const STARFIELD_URI = buildStarfieldDataUri()
 
 // Convert structured timeline array to HTML for web rendering
 const contextToHtml = (timeline) => {
@@ -299,10 +335,10 @@ const buildArticlePage = (article, prev, next, thread, template, indicatorMap) =
   const description = buildDescription(body)
   const timeAgo = formatTimeAgo(addedAt)
   const prevLink = prev
-    ? `<a class="article-pagination-prev" href="/a/${prev.slug}" rel="prev">← ${escHtmlAttr(prev.title)}</a>`
+    ? `<a class="article-pagination-prev" href="/a/${prev.slug}" rel="prev"><span class="article-pagination-label">Previous</span><span class="article-pagination-title">${escHtmlAttr(prev.title)}</span></a>`
     : '<span class="article-pagination-prev"></span>'
   const nextLink = next
-    ? `<a class="article-pagination-next" href="/a/${next.slug}" rel="next">${escHtmlAttr(next.title)} →</a>`
+    ? `<a class="article-pagination-next" href="/a/${next.slug}" rel="next"><span class="article-pagination-label">Next</span><span class="article-pagination-title">${escHtmlAttr(next.title)}</span></a>`
     : '<span class="article-pagination-next"></span>'
 
   return template
@@ -350,14 +386,16 @@ const headCommon = `<meta charset="utf-8">
   <meta name="theme-color" content="#fff" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#141414" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="zuhd.news">
   <meta name="apple-itunes-app" content="app-id=6760964753">
-  <link rel="preload" href="/fonts/source-sans-3-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/source-sans-3-var.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/manifest.json">
-  <style>${cssContent}</style>`
+  <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}},{"not":{"href_matches":"/audio/*"}},{"not":{"href_matches":"/feed.xml"}},{"not":{"href_matches":"/sitemap.xml"}},{"not":{"href_matches":"/og-image.png"}}]},"eagerness":"moderate"}]}</script>
+  <style>:root{--starfield:${STARFIELD_URI}}${cssContent}</style>`
 
 const homepageTemplate = readFileSync(join(TEMPLATES_DIR, 'index.html'), 'utf-8')
   .replace('{{headCommon}}', headCommon)
@@ -848,15 +886,41 @@ for (const a of sorted) {
   const cat = a.meta.category || 'politics'
   ;(byCategory[cat] ??= []).push(a)
 }
+// Group rows under a date heading so a 14-day archive scans without the
+// date column repeating on every row. Days come in reverse-chronological
+// order (newest first).
+const formatDayHeading = (iso) => {
+  const d = new Date(iso)
+  const today = new Date()
+  const yest = new Date(Date.now() - 86400000)
+  const sameDay = (a, b) => a.toDateString() === b.toDateString()
+  if (sameDay(d, today)) return 'Today'
+  if (sameDay(d, yest)) return 'Yesterday'
+  return d.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' })
+}
 for (const cat of CATEGORY_ORDER) {
-  const items = byCategory[cat] || []
+  const items = (byCategory[cat] || [])
+    .slice()
+    .sort((a, b) => (b.meta.date || '').localeCompare(a.meta.date || ''))
   if (items.length === 0) continue
-  const rows = items.map(a => `<li>
-      <a class="category-article-row" href="/a/${a.slug}">
-        <time datetime="${a.meta.date}" class="t-tabular">${a.dateFormatted}</time>
-        <span class="category-article-title">${escHtmlAttr(a.title)}</span>
-        ${a.sources[0]?.name ? `<span class="t-source-host">${escHtmlAttr(a.sources[0].name)}</span>` : ''}
-      </a>
+  const groups = []
+  let currentDay = null
+  for (const a of items) {
+    const day = (a.meta.date || '').slice(0, 10)
+    if (day !== currentDay) {
+      currentDay = day
+      groups.push({ day, items: [] })
+    }
+    groups[groups.length - 1].items.push(a)
+  }
+  const rows = groups.map(g => `<li class="category-day-group">
+      <h2 class="category-day-heading"><time datetime="${g.day}">${formatDayHeading(g.day)}</time></h2>
+      <ol class="category-day-list">${g.items.map(a => `<li>
+        <a class="category-article-row" href="/a/${a.slug}">
+          <span class="category-article-title">${escHtmlAttr(a.title)}</span>
+          ${a.sources[0]?.name ? `<span class="t-source-host">${escHtmlAttr(a.sources[0].name)}</span>` : ''}
+        </a>
+      </li>`).join('')}</ol>
     </li>`).join('\n')
   const html = categoryPageTemplate
     .replace(/__HEAD__/g, headCommon)
@@ -869,17 +933,6 @@ for (const cat of CATEGORY_ORDER) {
   writeFileSync(join(DIST_DIR, 'c', `${cat}.html`), html)
 }
 console.log(`  Built: c/ (${CATEGORY_ORDER.filter(c => (byCategory[c]||[]).length > 0).length} category pages)`)
-
-// Per-thread pages at /s/{id}.html — the story arc surface. Reader
-// lands here for the ledger, the editor summary, the context timeline,
-// and every article in the thread in chronological order.
-const articlesBySlug = new Map(sorted.map(a => [a.slug, a]))
-const threadResult = buildThreadPages({
-  articlesBySlug,
-  distDir: DIST_DIR,
-  headCommon,
-})
-console.log(`  Built: s/ (${threadResult.count} thread pages)`)
 
 // Per-entity pages at /e/{id}.html — stock/commodity/index/chokepoint.
 // Renders a monochrome inline SVG sparkline + the articles that
@@ -912,7 +965,6 @@ const sitemapEntries = [
   ...sorted.map(a => `  <url><loc>https://zuhd.news/a/${a.slug}</loc><lastmod>${new Date(a.meta.date || a.addedAt).toISOString()}</lastmod><priority>0.8</priority></url>`),
   ...(countryResult.codes || []).map(cc => `  <url><loc>https://zuhd.news/country/${cc}</loc><changefreq>weekly</changefreq><priority>0.5</priority></url>`),
   ...CATEGORY_ORDER.filter(c => (byCategory[c]||[]).length > 0).map(c => `  <url><loc>https://zuhd.news/c/${c}</loc><changefreq>hourly</changefreq><priority>0.7</priority></url>`),
-  ...(threadResult.ids || []).map(id => `  <url><loc>https://zuhd.news/s/${id}</loc><changefreq>daily</changefreq><priority>0.6</priority></url>`),
   ...(entityResult.ids || []).map(id => `  <url><loc>https://zuhd.news/e/${id}</loc><changefreq>daily</changefreq><priority>0.5</priority></url>`),
 ]
 writeFileSync(join(DIST_DIR, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>

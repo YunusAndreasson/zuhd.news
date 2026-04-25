@@ -24,15 +24,7 @@
     }
   },
   "files": {
-    "includes": [
-      "app/**",
-      "components/**",
-      "constants/**",
-      "hooks/**",
-      "lib/**",
-      "scripts/**",
-      "types.ts"
-    ]
+    "includes": ["app/**", "components/**", "constants/**", "hooks/**", "lib/**", "scripts/**"]
   },
   "formatter": {
     "enabled": true,

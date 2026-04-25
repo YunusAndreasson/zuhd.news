@@ -40,6 +40,19 @@ export const CompareBlock = memo(function CompareBlock({
   const { colors, font } = useTheme();
   const rowPaddingV = variant === 'context' ? SPACING.xs : SPACING.sm;
 
+  // Derive a single legend from the first row that carries labeled segments.
+  // All rows in a segmented compare share the same segment categories (e.g.
+  // "oil / tax / other" across every country); when a row's segments don't
+  // carry labels, the legend simply isn't rendered.
+  const legendSource = rows.find(
+    (r) => r.segments && r.segments.length > 1 && r.segments.some((s) => s.label),
+  );
+  const segmentLegend = legendSource?.segments
+    ? legendSource.segments
+        .filter((s): s is typeof s & { label: string } => !!s.label)
+        .map((s) => ({ label: s.label, color: resolvePillColors(s.tone, colors).bg }))
+    : null;
+
   return (
     <View style={blockContainerStyle[variant]}>
       {label ? (
@@ -47,10 +60,68 @@ export const CompareBlock = memo(function CompareBlock({
           {label}
         </Text>
       ) : null}
+      {segmentLegend && segmentLegend.length > 0 ? (
+        <View style={styles.legendRow}>
+          {segmentLegend.map((l, i) => (
+            <View key={`legend-${l.label}-${i}`} style={styles.legendItem}>
+              <View style={[styles.legendSwatch, { backgroundColor: l.color }]} />
+              <Text variant="labelXs" tone="secondary" numberOfLines={1}>
+                {l.label.toUpperCase()}
+              </Text>
+            </View>
+          ))}
+        </View>
+      ) : null}
       {rows.map((row, i) => {
         const flag = row.cc ? ccToFlag(row.cc) : null;
         const pill = resolvePillColors(row.tone, colors);
         const ruled = i < rows.length - 1;
+        const segments = row.segments && row.segments.length > 1 ? row.segments : null;
+
+        // Segmented rows stack vertically: name + value on a header line, the
+        // bar full-width below. Plain (single-pill) rows stay on one line —
+        // the pill is small enough that the country name has the room.
+        if (segments) {
+          return (
+            <Animated.View
+              key={`${row.label}-${i}`}
+              entering={FadeIn.duration(ANIMATION.normal).delay(staggerDelay(i))}
+              style={[
+                styles.segmentedRow,
+                { paddingVertical: rowPaddingV },
+                ruled && {
+                  borderBottomColor: colors.rule,
+                  borderBottomWidth: StyleSheet.hairlineWidth,
+                },
+              ]}
+            >
+              <View style={styles.segmentedHeader}>
+                <Text variant="body" numberOfLines={1} style={styles.segmentedLabel}>
+                  {flag ? `${flag}  ` : ''}
+                  {row.label}
+                </Text>
+                <Text variant="labelXs" tone="secondary" style={styles.segmentedValue}>
+                  {row.value}
+                </Text>
+              </View>
+              <View style={styles.segmentsBar}>
+                {segments.map((s, sIdx) => {
+                  const seg = resolvePillColors(s.tone, colors);
+                  return (
+                    <View
+                      key={`${row.label}-seg-${sIdx}`}
+                      style={[
+                        styles.segmentCell,
+                        { flexGrow: Math.max(0, s.value), backgroundColor: seg.bg },
+                      ]}
+                    />
+                  );
+                })}
+              </View>
+            </Animated.View>
+          );
+        }
+
         return (
           <Animated.View
             key={`${row.label}-${i}`}
@@ -101,5 +172,50 @@ const styles = StyleSheet.create({
     paddingHorizontal: SPACING.sm,
     paddingVertical: SPACING.xxs,
     borderRadius: RADIUS.pill,
+  },
+  segmentedRow: {
+    // Vertical layout — name + value on top, full-width bar beneath. Lets
+    // any country name fit without truncation while giving the bar the
+    // entire row width to communicate composition.
+  },
+  segmentedHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
+    gap: SPACING.sm,
+    marginBottom: SPACING.xxs,
+  },
+  segmentedLabel: {
+    flex: 1,
+  },
+  segmentedValue: {
+    // Right-aligned by being the second flex sibling without flex:1.
+  },
+  segmentsBar: {
+    flexDirection: 'row',
+    width: '100%',
+    height: 10,
+    borderRadius: RADIUS.pill,
+    overflow: 'hidden',
+  },
+  segmentCell: {
+    height: '100%',
+  },
+  legendRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    columnGap: SPACING.md,
+    rowGap: SPACING.xxs,
+    marginBottom: SPACING.sm,
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.xxs,
+  },
+  legendSwatch: {
+    width: 10,
+    height: 10,
+    borderRadius: 2,
   },
 });

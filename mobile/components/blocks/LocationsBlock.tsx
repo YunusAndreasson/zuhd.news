@@ -1,7 +1,10 @@
 import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
 import { displayNameFromCode, topojsonNameFromCode } from '@shared/countries/iso';
 import { Canvas, Circle, Group, Path, Skia, type SkPath } from '@shopify/react-native-skia';
+import { extent } from 'd3-array';
 import { geoCentroid, geoEquirectangular, geoPath } from 'd3-geo';
+import { scaleSequential } from 'd3-scale';
+import { interpolateBlues } from 'd3-scale-chromatic';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Dimensions,
@@ -274,6 +277,15 @@ interface LocationsBlockProps {
   variant?: BlockVariant;
   sourceLabel?: string;
   onCountryPress?: (payload: { countryName: string; data: CountryData | null }) => void;
+  /** Optional named site markers — port, plant, base, accident site. The
+   *  marker's `cc` is informational; positioning is driven by lat/lng. */
+  markers?: { lat: number; lng: number; label: string }[];
+  /** Optional choropleth — when present, each highlighted country fills
+   *  with a color drawn from a sequential scale over `value`. Keys must
+   *  be a subset of `codes`. */
+  values?: { cc: string; value: number }[];
+  /** Caption for the choropleth scale ("refugees per capita"). */
+  valueLabel?: string;
 }
 
 export const LocationsBlock = memo(function LocationsBlock({
@@ -283,6 +295,9 @@ export const LocationsBlock = memo(function LocationsBlock({
   variant = 'article',
   sourceLabel,
   onCountryPress,
+  markers,
+  values,
+  valueLabel,
 }: LocationsBlockProps) {
   const { colors, typography } = useTheme();
   const isContext = variant === 'context';
@@ -484,6 +499,52 @@ export const LocationsBlock = memo(function LocationsBlock({
       .filter((v): v is { name: string; x: number; y: number } => v != null);
   }, [highlightedFeatures, projection]);
 
+  // Site markers — projected and clamped to canvas. Caller-supplied lat/lng
+  // (a port, a plant, an incident site) becomes a small dot + label inside
+  // the Skia Group, so it zooms with the country and the label tracks via
+  // the same packedLabels collision pipeline used for capitals + countries.
+  const siteMarkers = useMemo(() => {
+    if (!markers || width <= 0 || height <= 0) return [];
+    return markers
+      .map((m, i) => {
+        const p = projection([m.lng, m.lat]);
+        if (!p || !Number.isFinite(p[0]) || !Number.isFinite(p[1])) return null;
+        if (p[0] < 0 || p[0] > width || p[1] < 0 || p[1] > height) return null;
+        return { key: `site-${i}-${m.label}`, label: m.label, x: p[0], y: p[1] };
+      })
+      .filter((v): v is { key: string; label: string; x: number; y: number } => v != null);
+  }, [markers, projection, width, height]);
+
+  // Choropleth resolver — when `values` is provided, each highlighted country
+  // fills with a perceptually-uniform sequential color from d3-scale-chromatic
+  // (Blues). Distinct hues across the value range read as actual data
+  // visualization; a single-hue opacity ramp lost too much resolution at the
+  // low end and felt like a stain rather than a chart.
+  const choropleth = useMemo(() => {
+    if (!values || values.length === 0 || width <= 0 || height <= 0) return null;
+    const nums = values.map((v) => v.value);
+    const [lo, hi] = extent(nums) as [number, number];
+    if (lo == null || hi == null) return null;
+    const domain: [number, number] = lo === hi ? [lo - 1, hi + 1] : [lo, hi];
+    const color = scaleSequential(interpolateBlues).domain(domain);
+    const byCode = new Map<string, { value: number; color: string }>();
+    for (const v of values)
+      byCode.set(v.cc.toUpperCase(), { value: v.value, color: color(v.value) });
+    const ctx = createSkiaPathContext();
+    const pg = geoPath(projection).context(ctx);
+    const fills: { code: string; path: SkPath; color: string; value: number }[] = [];
+    for (const r of resolved) {
+      if (!r.feature) continue;
+      const entry = byCode.get(r.code.toUpperCase());
+      if (!entry) continue;
+      const p = Skia.Path.Make();
+      ctx.setPath(p);
+      pg(r.feature);
+      fills.push({ code: r.code, path: p, color: entry.color, value: entry.value });
+    }
+    return { fills, domain };
+  }, [values, projection, resolved, width, height]);
+
   // Capital cities for each highlighted country — marker + label. Lookup is
   // ISO-2 → precomputed {name, lat, lng} (NE 50m populated places, filtered
   // to admin-0 capitals at build time). Projected once; the marker rides
@@ -611,6 +672,20 @@ export const LocationsBlock = memo(function LocationsBlock({
         w: estWidth(l.name, 'country'),
       });
     }
+    // Site markers are queued BEFORE capitals: the article's actual subject
+    // (port, plant, accident site) must outrank the auxiliary capital label
+    // in the greedy packer. If there's room for only one of them, the
+    // marker is the one that has to survive.
+    for (const s of siteMarkers) {
+      candidates.push({
+        key: s.key,
+        text: s.label,
+        kind: 'capital',
+        x: s.x,
+        y: s.y,
+        w: estWidth(s.label, 'capital'),
+      });
+    }
     for (const c of capitalMarkers) {
       candidates.push({
         key: `cap-label-${c.code}`,
@@ -666,7 +741,15 @@ export const LocationsBlock = memo(function LocationsBlock({
       }
     }
     return placed.map(({ box: _box, ...rest }) => rest);
-  }, [highlightedLabels, capitalMarkers, waterLabels, width, height, typography.sizeXs]);
+  }, [
+    highlightedLabels,
+    capitalMarkers,
+    siteMarkers,
+    waterLabels,
+    width,
+    height,
+    typography.sizeXs,
+  ]);
 
   const { targetScale, targetTx, targetTy } = useMemo(() => {
     if (!selectedFeature || width <= 0 || height <= 0) {
@@ -800,7 +883,39 @@ export const LocationsBlock = memo(function LocationsBlock({
                       style="fill"
                     />
                   ) : null}
-                  {paths.highlightedFillPath ? (
+                  {choropleth ? (
+                    <>
+                      {/* Choropleth: one fill per country at its own value
+                          color from the Blues ramp. When a country is
+                          selected, peers dim to 0.5 to focus attention but
+                          the SELECTED country stays at full opacity so its
+                          choropleth color (its value) remains visible. */}
+                      {choropleth.fills.map((f) => {
+                        const isSelectedCode =
+                          selected?.code != null &&
+                          f.code.toUpperCase() === selected.code.toUpperCase();
+                        const fillOpacity = !selectedFeature ? 0.85 : isSelectedCode ? 0.95 : 0.5;
+                        return (
+                          <Path
+                            key={`choro-${f.code}`}
+                            path={f.path}
+                            color={f.color}
+                            opacity={fillOpacity}
+                            style="fill"
+                          />
+                        );
+                      })}
+                      {paths.highlightedFillPath ? (
+                        <Path
+                          path={paths.highlightedFillPath}
+                          color={colors.textEmphasis}
+                          opacity={0.6}
+                          style="stroke"
+                          strokeWidth={borderStrokeWidth}
+                        />
+                      ) : null}
+                    </>
+                  ) : paths.highlightedFillPath ? (
                     <>
                       <Path
                         path={paths.highlightedFillPath}
@@ -836,12 +951,19 @@ export const LocationsBlock = memo(function LocationsBlock({
                   ) : null}
                   {paths.selectedFillPath ? (
                     <>
-                      <Path
-                        path={paths.selectedFillPath}
-                        color={colors.accent}
-                        opacity={0.7}
-                        style="fill"
-                      />
+                      {/* Skip the accent fill when choropleth is active —
+                          the country's value color (the whole point of the
+                          choropleth) needs to remain visible. The thicker
+                          emphasis stroke + the surrounding-country dim
+                          carry the "selected" signal on their own. */}
+                      {choropleth ? null : (
+                        <Path
+                          path={paths.selectedFillPath}
+                          color={colors.accent}
+                          opacity={0.7}
+                          style="fill"
+                        />
+                      )}
                       <Path
                         path={paths.selectedFillPath}
                         color={colors.textEmphasis}
@@ -898,6 +1020,24 @@ export const LocationsBlock = memo(function LocationsBlock({
                       <Circle cx={cap.x} cy={cap.y} r={capitalR} color={colors.accent} />
                     </Group>
                   ))}
+                  {/* Site markers — caller-defined points (port, plant, base).
+                      Same visual treatment as capitals so the eye recognizes
+                      "this is a notable point" without needing a separate
+                      legend; the difference is the label, which is always
+                      provided by the caller. */}
+                  {siteMarkers.map((s) => (
+                    <Group key={s.key}>
+                      <Circle
+                        cx={s.x}
+                        cy={s.y}
+                        r={capitalR}
+                        color={colors.bg}
+                        style="stroke"
+                        strokeWidth={capitalStrokeWidth}
+                      />
+                      <Circle cx={s.x} cy={s.y} r={capitalR} color={colors.accent} />
+                    </Group>
+                  ))}
                   {selectedCentroid ? (
                     <Circle
                       cx={selectedCentroid.x}
@@ -932,6 +1072,40 @@ export const LocationsBlock = memo(function LocationsBlock({
             ) : null}
           </View>
         </GestureDetector>
+      ) : null}
+
+      {choropleth ? (
+        <View style={styles.choroLegend}>
+          <View style={styles.choroLegendRow}>
+            <Text variant="labelXs" tone="secondary">
+              {choropleth.domain[0].toLocaleString()}
+            </Text>
+            <View style={styles.choroGradient}>
+              {Array.from({ length: 12 }, (_, i) => (
+                <View
+                  key={`grad-${i}`}
+                  style={[
+                    styles.choroSwatch,
+                    { backgroundColor: interpolateBlues(0.05 + (i / 11) * 0.95) },
+                  ]}
+                />
+              ))}
+            </View>
+            <Text variant="labelXs" tone="secondary">
+              {choropleth.domain[1].toLocaleString()}
+            </Text>
+          </View>
+          {valueLabel ? (
+            <Text
+              variant="labelXs"
+              tone="secondary"
+              numberOfLines={2}
+              style={styles.choroLegendCaption}
+            >
+              {valueLabel.toUpperCase()}
+            </Text>
+          ) : null}
+        </View>
       ) : null}
 
       {resolved.length > 0 ? (
@@ -1027,5 +1201,28 @@ const styles = StyleSheet.create({
   },
   caption: {
     marginTop: SPACING.xs,
+  },
+  choroLegend: {
+    marginTop: SPACING.xs,
+    gap: SPACING.xxs,
+  },
+  choroLegendRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.xs,
+  },
+  choroGradient: {
+    flex: 1,
+    flexDirection: 'row',
+    height: 8,
+    borderRadius: 2,
+    overflow: 'hidden',
+  },
+  choroSwatch: {
+    flex: 1,
+    height: '100%',
+  },
+  choroLegendCaption: {
+    textAlign: 'center',
   },
 });

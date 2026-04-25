@@ -19,6 +19,27 @@
 /* --- Reset --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* --- Cross-document view transitions ---
+   Opt every same-origin navigation into the View Transitions API. The
+   default UA cross-fade ties article ↔ home ↔ category navigation
+   together visually instead of hard-cutting. Shared `view-transition-name`s
+   below let the wordmark morph in place across pages.
+   Browsers without support (e.g. Firefox today) silently fall back to
+   instant navigation. */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* --- Modern keyword animation ---
+   Lets `height: auto`, `width: max-content`, etc. participate in
+   transitions so disclosure widgets and panes can animate smoothly
+   without explicit pixel targets. */
+:root { interpolate-size: allow-keywords; }
+
 /* --- Scale ---
    Base: 20px, ratio: 1.25 (Major Third)
    20 / 25 / 31.25 / 39
@@ -260,6 +281,9 @@ header {
   letter-spacing: -0.02em;
   font-variant-numeric: lining-nums;
   transition: font-weight 0.2s ease;
+  /* Shared element across every page — pairs up during cross-document
+     view transitions so the masthead morphs in place instead of fading. */
+  view-transition-name: wordmark;
 
   &:hover { font-weight: 800; }
 }
@@ -267,10 +291,14 @@ header {
 .wordmark-dot,
 .wordmark-tld {
   color: var(--text-secondary);
+  font-weight: 300;
 }
 
-.wordmark-tld {
-  font-weight: 300;
+/* The period sits between bold "zuhd" and light "news" — at 700 the dot
+   reads as a heavy disc; at 300 it's a small punctuation mark again.
+   Slight horizontal trim brings the parts closer without colliding. */
+.wordmark-dot {
+  margin-inline: -0.04em;
 }
 
 /* --- Footer --- */
@@ -597,25 +625,44 @@ footer {
   .briefing-track { display: none; }
 }
 
-/* --- Desktop — split-pane layout --- */
+/* --- Desktop — split-pane layout ---
+   Scoped to the homepage `<main class="split-pane">` so archetype/article
+   pages (which also use `<main>`) keep normal block flow.
+
+   The composition is capped at 110rem and centered. Below that, the
+   layout fills the viewport (minus generous body padding) so wide
+   monitors actually use their screen. Above it, the layout caps and
+   side margins grow — the rail ↔ reader proximity is preserved by
+   capping the right column too, instead of letting `1fr` swallow
+   every extra pixel. Header, main, and footer all use the same cap
+   so the masthead, content, and meta align on a shared axis. */
 @media (min-width: 641px) {
-  body {
+  body:has(.split-pane) {
     max-width: none;
     height: 100dvh;
     overflow: hidden;
-    padding-inline: clamp(2rem, 5vw, 6rem);
-    padding-block: clamp(2rem, 5vh, 6rem);
+    padding-inline: clamp(1.5rem, 4vw, 4.5rem);
+    padding-block: clamp(1.75rem, 4vh, 3.5rem);
   }
 
-  header {
-    margin-bottom: clamp(1.5rem, 5vh, 3rem);
+  body:has(.split-pane) > .app-banner,
+  body:has(.split-pane) > header,
+  body:has(.split-pane) > main.split-pane,
+  body:has(.split-pane) > footer {
+    max-width: 100rem;
+    margin-inline: auto;
+    width: 100%;
   }
 
-  main {
+  body:has(.split-pane) > header {
+    margin-bottom: clamp(1.25rem, 3vh, 2.25rem);
+  }
+
+  main.split-pane {
     display: grid;
-    grid-template-columns: minmax(20rem, 34rem) 1fr;
+    grid-template-columns: minmax(18rem, 28rem) minmax(0, 1fr);
     grid-template-rows: auto 1fr;
-    gap: 0 clamp(3rem, 5vw, 6rem);
+    gap: 0 clamp(2rem, 2.5vw, 2.75rem);
     flex: 1;
     min-height: 0;
     overflow: hidden;
@@ -676,7 +723,7 @@ footer {
   .article-view {
     grid-column: 2;
     grid-row: 1 / -1;
-    max-width: 65ch;
+    max-width: 72ch;
     overflow-y: auto;
     padding-top: 0;
     padding-bottom: var(--space-md);
@@ -772,7 +819,6 @@ footer {
   font-weight: 600;
   list-style: none;
 }
-.source-count::-webkit-details-marker { display: none; }
 .source-count::before {
   content: '\25B8';
   display: inline-block;
@@ -815,7 +861,6 @@ footer {
   font-weight: 600;
   list-style: none;
 }
-.context-label::-webkit-details-marker { display: none; }
 .context-label::before {
   content: '\25B8';
   display: inline-block;
@@ -893,16 +938,24 @@ footer {
   border: none;
   color: var(--text-secondary);
   font-family: inherit;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   line-height: 1;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
-  margin-right: -0.5rem;
+  /* Tap target extends left + top/bottom; no right padding so the
+     × glyph is flush with the banner right edge — the same vertical
+     line the layout's right edge sits on. */
+  padding: 0.5rem 0 0.5rem 0.75rem;
+  margin: 0;
   transition: color 0.15s;
 }
 
 .app-banner-close:hover {
   color: var(--text);
+}
+
+.app-banner-close:focus-visible {
+  outline: 1px solid var(--accent, #c9a84c);
+  outline-offset: 2px;
 }
 
 /* --- Standalone Article Page ---
@@ -916,212 +969,274 @@ body.article-page-body {
   background: var(--bg);
 }
 
+/* --- Reading progress (scroll-driven animation) ---
+   Pure CSS hairline at the very top of the viewport that fills as the
+   reader scrolls the article. Driven by `animation-timeline: scroll(root)`
+   so there is zero JavaScript involved. Browsers without scroll-driven
+   animation support get a static (invisible) bar — no harm done. */
+body.article-page-body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--dome);
+  transform-origin: left center;
+  transform: scaleX(0);
+  z-index: 50;
+  pointer-events: none;
+  animation: reading-progress linear both;
+  animation-timeline: scroll(root);
+}
+
+@keyframes reading-progress {
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.article-page-body::before { display: none; }
+}
+
 .article-page-header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  max-width: 65ch;
+  /* Header sits in 20px text. To line up its width with the article
+     column (which is 64ch of ~22–23px text), match by computed width
+     using a rem-based cap that's wide enough for both. */
+  max-width: 46rem;
   margin: 0 auto;
-  padding: var(--space-md) var(--space-md) 0;
+  padding: var(--space-md) var(--space-md) var(--space-sm);
   gap: var(--space-sm);
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.article-page-header .wordmark {
+  font-size: var(--size-base);
+  letter-spacing: -0.01em;
 }
 
 .article-back-link {
-  font-size: var(--size-sm);
+  font-size: var(--size-xs);
   color: var(--text-secondary);
   font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.05em;
+  font-feature-settings: "case" 1, "smcp" 1;
+  letter-spacing: 0.14em;
+  font-weight: var(--weight-semibold);
   text-decoration: none;
+  transition: color var(--dur-fast);
 }
 
-.article-back-link:hover { color: var(--text); text-decoration: underline; }
+.article-back-link:hover { color: var(--text); }
 
+/* Reading column — single source of truth for the article measure.
+   The font-size is set on the container (not just `.article-body`) so the
+   `ch` unit on `max-width` is computed from the actual reading size, not
+   the inherited 20px from `body`. That keeps the column at ~60–65 chars
+   per line — the sweet spot for sustained on-screen reading — regardless
+   of how the body type scales between mobile and wide viewports. */
 .article-page-main {
-  max-width: 65ch;
+  font-size: clamp(1.3125rem, 0.4vw + 1.2rem, 1.4375rem);
+  line-height: 1.6;
+  max-width: 64ch;
   margin: 0 auto;
   padding: var(--space-lg) var(--space-md);
+}
+
+@media (min-width: 641px) {
+  .article-page-main {
+    padding-top: clamp(4rem, 8vh, 7rem);
+    padding-bottom: clamp(4rem, 8vh, 6rem);
+  }
 }
 
 .article-standalone {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .article-standalone {
+    animation: article-page-reveal 520ms cubic-bezier(0.2, 0, 0, 1) both;
+  }
+  .article-standalone > * { animation: article-page-reveal 520ms cubic-bezier(0.2, 0, 0, 1) both; }
+  .article-standalone > .article-title { animation-delay: 80ms; }
+  .article-standalone > .article-body { animation-delay: 160ms; }
+}
+
+@keyframes article-page-reveal {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Editorial overline + small-caps kicker. CATEGORY · TIME, hairline rule
+   sitting above to mark the start of the article composition. */
 .article-kicker {
   display: flex;
   align-items: baseline;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   flex-wrap: wrap;
   color: var(--text-secondary);
-  font-size: var(--size-sm);
-  font-variant-numeric: lining-nums tabular-nums;
+  font-size: var(--size-xs);
+  font-variant-caps: all-small-caps;
+  font-feature-settings: "case" 1, "smcp" 1;
+  letter-spacing: 0.14em;
+  font-weight: var(--weight-semibold);
+  margin: 0 0 var(--space-md);
+  position: relative;
+}
+
+.article-kicker::before {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--text-secondary);
+  margin-right: var(--space-sm);
+  align-self: center;
 }
 
 .article-kicker .category {
+  display: inline;
   margin: 0;
+  font-size: inherit;
+  color: var(--text);
 }
 
 .article-kicker time {
   font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: 0.1em;
 }
 
-.article-location {
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.05em;
-  color: var(--text-secondary);
-}
-
-.article-location::before {
+.article-kicker > time::before {
   content: '·';
-  margin-right: var(--space-sm);
+  margin-right: var(--space-xs);
   color: var(--rule);
+  font-variant-caps: normal;
+  letter-spacing: 0;
 }
 
 .article-title {
   font-size: var(--size-h1);
-  font-weight: 700;
-  line-height: var(--leading-heading);
-  letter-spacing: -0.01em;
+  font-weight: var(--weight-bold);
+  line-height: 1.02;
+  letter-spacing: -0.024em;
   text-wrap: balance;
   margin: 0 0 var(--space-sm);
+  color: var(--text-emphasis);
 }
 
 @media (min-width: 641px) {
   .article-title {
-    font-size: calc(var(--size-h1) * 1.25); /* ~39px */
+    font-size: clamp(2.625rem, 3vw + 1.5rem, 4.5rem);
+    margin-bottom: clamp(1rem, 0.5vw + 0.75rem, 1.5rem);
   }
 }
 
+/* Body — inherits font-size + line-height from `.article-page-main`
+   (set there so the `ch` measure tracks the actual reading size). Each
+   `.s` sentence-block lives on its own line; the per-sentence rhythm
+   reads as deliberate space rather than tight running prose. */
 .article-page-main .article-body {
-  font-size: var(--size-base);
-  line-height: 1.75;
-  margin-top: var(--space-sm);
+  margin-top: 0;
+}
+
+.article-page-main .article-body .s {
+  margin-bottom: 0.55em;
+}
+
+/* Lead paragraph — the orienting block right after the title. Steps up
+   noticeably from body type so the reader's eye lands here first. The
+   wide step + brighter colour does the visual separation; horizontal
+   margins stay flush with body so the column reads as a single column. */
+.article-page-main .article-body > p:first-of-type {
+  font-size: clamp(1.625rem, 0.8vw + 1.4rem, 2.125rem);
+  font-weight: var(--weight-regular);
+  line-height: 1.4;
+  color: var(--text-emphasis);
+  margin-bottom: var(--space-lg);
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+
+.article-page-main .article-body > p:first-of-type .s {
+  margin-bottom: 0.45em;
+}
+
+/* Dateline — the geographic anchor of the story. Sits as its own line
+   above the lead, treated as a small-caps tag in the primary text colour
+   (not secondary) so it reads as a story anchor, not chrome. */
+.article-page-main .article-body > p:first-of-type .article-dateline {
+  font-size: 0.42em;
+  margin-right: 0;
+  display: block;
+  margin-bottom: 0.85em;
+  color: var(--text);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.2em;
 }
 
 .article-page-main .article-body > p,
 .article-page-main .article-body > h2,
-.article-page-main .article-body > h3 {
-  margin-bottom: var(--space-sm);
+.article-page-main .article-body > h3,
+.article-page-main .article-body > ul,
+.article-page-main .article-body > ol,
+.article-page-main .article-body > blockquote {
+  margin-bottom: var(--space-md);
 }
 
 .article-page-main .article-body h2 {
-  font-size: var(--size-h2);
-  font-weight: 600;
-  line-height: var(--leading-heading);
-  margin-top: var(--space-md);
+  font-size: clamp(1.625rem, 0.6vw + 1.4rem, 2rem);
+  font-weight: var(--weight-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.014em;
+  color: var(--text-emphasis);
+  margin-top: var(--space-xl);
   margin-bottom: var(--space-sm);
 }
 
-.article-thread-block {
-  margin-top: var(--space-md);
+.article-page-main .article-body h3 {
+  font-size: clamp(1.375rem, 0.4vw + 1.25rem, 1.625rem);
+  font-weight: var(--weight-semibold);
+  line-height: 1.25;
+  letter-spacing: -0.008em;
+  color: var(--text-emphasis);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xs);
+}
+
+/* Pull-quote treatment for blockquotes inside an article body. Single
+   accent rule on the leading edge, lighter weight italic, broken out a
+   touch beyond the body measure. */
+.article-page-main .article-body blockquote {
+  margin: var(--space-lg) 0;
+  padding: var(--space-xs) 0 var(--space-xs) var(--space-md);
+  border-left: 2px solid var(--dome);
+  font-size: var(--size-h3);
+  font-weight: var(--weight-light);
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--text-emphasis);
+  text-wrap: balance;
+}
+
+.article-page-main .article-body blockquote p { margin: 0; }
+.article-page-main .article-body blockquote p + p { margin-top: var(--space-sm); }
+.article-page-main .article-body blockquote .s { display: inline; margin-bottom: 0; }
+
+/* Sources disclosure — subtle hairline separator and quieter alignment. */
+.article-page-main .article-sources {
+  margin-top: var(--space-lg);
   padding-top: var(--space-md);
-  border-top: 1px solid var(--rule);
-}
-
-.article-thread-block .context-label {
-  font-size: var(--size-sm);
-  color: var(--text-secondary);
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.05em;
-  display: block;
-  margin-bottom: var(--space-xs);
-}
-
-.article-thread-block .context-body {
-  font-size: var(--size-sm);
-  line-height: 1.7;
-  color: var(--text);
-}
-
-.article-thread-block .context-body p {
-  margin-bottom: var(--space-sm);
-}
-
-.article-thread-block .context-heading {
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.05em;
-  font-weight: 600;
-  color: var(--text-secondary);
-  margin-top: var(--space-sm);
-  margin-bottom: var(--space-xs);
-}
-
-.context-open-sheet {
-  appearance: none;
-  background: none;
-  border: none;
-  font: inherit;
-  font-size: var(--size-sm);
-  color: var(--text-secondary);
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  padding: var(--space-xs) 0;
-  margin-top: var(--space-sm);
   border-top: 1px solid var(--rule-soft);
-  display: block;
-  width: 100%;
-  text-align: left;
-  transition: color var(--dur-fast);
-}
-
-.context-open-sheet::after {
-  content: ' →';
-  color: var(--accent);
-}
-
-.context-open-sheet:hover {
-  color: var(--text);
-}
-
-.thread-block-actions {
-  margin-top: var(--space-sm);
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid var(--rule-soft);
-}
-
-.thread-block-actions .context-open-sheet {
-  margin-top: 0;
-  border-top: none;
-}
-
-.thread-block-link {
-  display: block;
-  padding: var(--space-xs) 0;
-  font-size: var(--size-sm);
-  color: var(--text-secondary);
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.05em;
-  text-decoration: none;
-  border-top: 1px solid var(--rule-soft);
-  transition: color var(--dur-fast);
-}
-
-.thread-block-link::after {
-  content: ' →';
-  color: var(--accent);
-}
-
-.thread-block-link:hover {
-  color: var(--text);
 }
 
 .article-pagination {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: var(--space-sm);
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-lg);
+  row-gap: var(--space-md);
   align-items: start;
-  margin-top: var(--space-lg);
+  margin-top: var(--space-xl);
   padding-top: var(--space-md);
   border-top: 1px solid var(--rule);
   font-size: var(--size-sm);
@@ -1129,42 +1244,86 @@ body.article-page-body {
 }
 
 .article-pagination a {
-  color: var(--text-secondary);
+  color: var(--text);
   text-decoration: none;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+  transition: color var(--dur-fast);
 }
 
-.article-pagination a:hover {
-  color: var(--text);
+.article-pagination-label {
+  font-variant-caps: all-small-caps;
+  font-feature-settings: "case" 1, "smcp" 1;
+  letter-spacing: 0.14em;
+  font-size: var(--size-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--text-secondary);
+}
+
+.article-pagination-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.25;
+  font-size: var(--size-base);
+  font-weight: var(--weight-semibold);
+  letter-spacing: -0.005em;
+  color: var(--text-emphasis);
+  text-wrap: balance;
+}
+
+.article-pagination a:hover .article-pagination-title {
   text-decoration: underline;
   text-decoration-color: var(--accent);
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
 }
 
 .article-pagination-prev { text-align: left; }
+.article-pagination-prev .article-pagination-label::before { content: '← '; }
 .article-pagination-next { text-align: right; }
+.article-pagination-next .article-pagination-label::after { content: ' →'; }
 
 .article-pagination-home {
   font-variant-caps: all-small-caps;
   font-feature-settings: "case" 1;
   letter-spacing: 0.05em;
-  align-self: center;
+  font-size: var(--size-xs);
+  color: var(--text-secondary);
+  text-decoration: none;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--rule-soft);
   white-space: nowrap;
 }
 
+.article-pagination-home:hover { color: var(--text); }
+
 .article-page-body footer {
-  max-width: 65ch;
+  max-width: 46rem;
   margin: 0 auto;
   padding: var(--space-md);
-  padding-top: var(--space-lg);
+  padding-top: var(--space-md);
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: var(--space-sm);
-  border-top: 1px solid var(--rule);
-  font-size: var(--size-sm);
-  color: var(--text-secondary);
+  border-top: 1px solid var(--rule-soft);
+  font-size: var(--size-xs);
+  color: var(--text-dim);
+  font-variant-caps: all-small-caps;
+  font-feature-settings: "case" 1, "smcp" 1;
+  letter-spacing: 0.1em;
 }
+
+.article-page-body footer .footer-links { display: flex; gap: var(--space-md); }
+.article-page-body footer a { color: inherit; text-decoration: none; transition: color var(--dur-fast); }
+.article-page-body footer a:hover { color: var(--text-secondary); }
 
 @media (max-width: 640px) {
   .article-page-header,
@@ -1183,9 +1342,15 @@ body.article-page-body {
   .article-pagination {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
+    margin-top: var(--space-lg);
   }
   .article-pagination-prev,
   .article-pagination-next { text-align: left; }
+  .article-pagination-next .article-pagination-label::after { content: ' →'; }
+  .article-pagination-title { font-size: var(--size-base); }
+  .article-page-main .article-body > p:first-of-type {
+    font-size: var(--size-base);
+  }
 }
 
 /* --- Archetype page (shared base for country/thread/entity/category) ---
@@ -1397,133 +1562,15 @@ body.archetype-page-body .article-page-header {
   font-size: var(--size-xs);
 }
 
-/* --- Thread page (/s/{id}) --- */
-.thread-page {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
-}
-
-.thread-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--rule);
-}
-
-.thread-label {
-  margin: 0;
-  text-wrap: balance;
-}
-
-.thread-summary .t-dek {
-  max-width: var(--measure-reading);
-}
-
-/* Editorial drop cap on the thread summary — only archetype that
-   warrants one. 3 lines tall, 300 weight (elegant, not fanfare). */
-.thread-summary .t-dek::first-letter {
-  font-size: calc(var(--size-base) * 3.5);
-  font-weight: var(--weight-light);
-  float: left;
-  line-height: 0.9;
-  margin: 0.1em var(--space-xs) 0 0;
-  color: var(--text-emphasis);
-}
-
-/* Thread mini-map: static SVG orthographic globe centered on the mean
-   of article locations. Static by design — a frozen snapshot of where
-   the story is happening, no interactivity needed here. */
-.thread-map {
-  margin: var(--space-xl) 0 var(--space-lg);
-  display: flex;
-  justify-content: center;
-}
-.thread-map-svg {
-  width: 100%;
-  max-width: 720px;
-  height: auto;
-}
-.thread-map-ocean {
-  fill: light-dark(#fafafa, #050608);
-  stroke: var(--rule);
-  stroke-width: 0.5;
-}
-.thread-map-land {
-  fill: light-dark(#ececec, #242830);
-}
-.thread-map-borders {
-  fill: none;
-  stroke: var(--rule);
-  stroke-width: 0.5;
-  stroke-linejoin: round;
-}
-.thread-map-pin-halo {
-  fill: var(--accent, #c9a84c);
-  opacity: 0.25;
-}
-.thread-map-pin-dot {
-  fill: var(--accent, #c9a84c);
-  stroke: light-dark(#ffffff, #050608);
-  stroke-width: 1;
-}
-
-.thread-section-title {
+/* --- Article archive list (entity / future archive surfaces) ---
+   Date · title · source row used on entity pages and other archive
+   sections. Tabular date column, ellipsised source on the right. */
+.archive-section-title {
   display: block;
   margin-bottom: var(--space-sm);
 }
 
-.thread-timeline {
-  list-style: none;
-  padding: 0 0 0 var(--space-md);
-  margin: 0 0 0 var(--space-xs);
-  border-left: 1px solid var(--rule);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-}
-
-.thread-timeline-entry {
-  position: relative;
-}
-
-.thread-timeline-entry::before {
-  content: '';
-  position: absolute;
-  left: calc(-1 * var(--space-md) - 4px);
-  top: 0.55em;
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: var(--text-secondary);
-}
-
-.thread-timeline-year {
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.08em;
-  color: var(--text-secondary);
-  font-size: var(--size-xs);
-  font-variant-numeric: lining-nums tabular-nums;
-}
-
-.thread-timeline-heading {
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.05em;
-  font-weight: var(--weight-semibold);
-  margin-top: var(--space-xxs);
-}
-
-.thread-timeline-body {
-  font-size: var(--size-sm);
-  line-height: 1.7;
-  margin-top: var(--space-xxs);
-  max-width: var(--measure-reading);
-}
-
-.thread-article-list {
+.archive-article-list {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -1531,7 +1578,7 @@ body.archetype-page-body .article-page-header {
   flex-direction: column;
 }
 
-.thread-article-row {
+.archive-article-row {
   display: grid;
   grid-template-columns: 7em 1fr 11em;
   align-items: baseline;
@@ -1543,16 +1590,16 @@ body.archetype-page-body .article-page-header {
   transition: color var(--dur-fast);
 }
 
-.thread-article-row:hover { color: var(--text-emphasis); }
+.archive-article-row:hover { color: var(--text-emphasis); }
 
-.thread-article-row time {
+.archive-article-row time {
   color: var(--text-secondary);
   font-size: var(--size-sm);
   font-variant-numeric: lining-nums tabular-nums;
   white-space: nowrap;
 }
 
-.thread-article-row .t-source-host {
+.archive-article-row .t-source-host {
   text-align: right;
   white-space: nowrap;
   overflow: hidden;
@@ -1560,11 +1607,11 @@ body.archetype-page-body .article-page-header {
 }
 
 @media (max-width: 640px) {
-  .thread-article-row {
+  .archive-article-row {
     grid-template-columns: 1fr;
     gap: var(--space-xxs);
   }
-  .thread-article-row .t-source-host { text-align: left; }
+  .archive-article-row .t-source-host { text-align: left; }
 }
 
 /* --- Entity page (/e/{id}) --- */
@@ -1653,6 +1700,29 @@ body.archetype-page-body .article-page-header {
 .category-article-list {
   list-style: none;
   padding: 0;
+  margin: var(--space-md) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.category-day-group { display: block; }
+
+.category-day-heading {
+  font-variant-caps: all-small-caps;
+  font-feature-settings: "case" 1;
+  letter-spacing: 0.06em;
+  font-size: var(--size-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-xs);
+  padding-bottom: var(--space-xxs);
+  border-bottom: 1px solid var(--rule);
+}
+
+.category-day-list {
+  list-style: none;
+  padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -1660,24 +1730,19 @@ body.archetype-page-body .article-page-header {
 
 .category-article-row {
   display: grid;
-  grid-template-columns: 7em 1fr 11em;
+  grid-template-columns: 1fr 11em;
   align-items: baseline;
   gap: var(--space-sm);
-  padding: var(--space-sm) 0;
+  padding: var(--space-xs) 0;
   border-bottom: 1px solid var(--rule-soft);
   text-decoration: none;
   color: var(--text);
   transition: color var(--dur-fast);
 }
 
-.category-article-row:hover { color: var(--text-emphasis); }
+.category-day-list li:last-child .category-article-row { border-bottom: none; }
 
-.category-article-row time {
-  color: var(--text-secondary);
-  font-size: var(--size-sm);
-  font-variant-numeric: lining-nums tabular-nums;
-  white-space: nowrap;
-}
+.category-article-row:hover { color: var(--text-emphasis); }
 
 .category-article-title {
   font-size: var(--size-base);
@@ -1689,6 +1754,8 @@ body.archetype-page-body .article-page-header {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--text-secondary);
+  font-size: var(--size-sm);
 }
 
 @media (max-width: 640px) {
@@ -1700,71 +1767,10 @@ body.archetype-page-body .article-page-header {
   .category-article-row .t-source-host { text-align: left; }
 }
 
-/* --- Search page (/search) --- */
-.search-page {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  max-width: var(--measure-reading);
-}
-
-.search-page-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xxs);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--rule);
-}
-
-.search-island { display: flex; flex-direction: column; gap: var(--space-sm); }
-
-.search-form { margin: 0; }
-
-.search-label {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xxs);
-}
-
-.search-input {
-  appearance: none;
-  background: var(--bg);
-  color: var(--text);
-  font: inherit;
-  font-size: var(--size-h3);
-  border: none;
-  border-bottom: 1px solid var(--rule);
-  padding: var(--space-xs) 0;
-  width: 100%;
-  outline: none;
-  transition: border-color var(--dur-fast);
-  font-variant-numeric: oldstyle-nums proportional-nums;
-}
-
-.search-input::placeholder {
-  color: var(--text-dim);
-  font-weight: var(--weight-light);
-}
-
-.search-input:focus {
-  border-bottom-color: var(--text-secondary);
-}
-
-.search-count {
-  margin-top: var(--space-sm);
-}
-
-.search-empty, .search-hint, .search-error, .search-loading {
-  color: var(--text-secondary);
-  margin: var(--space-sm) 0;
-}
-
 /* Inline country tags in article bodies — open the country-preview
-   sheet. We surface tappability without shouting: a hairline dotted
-   underline (so the link is unmistakably a link, not body text) plus a
-   tiny middle-dot glyph after the name (indicates "preview available"
-   without an obvious cursor-disrupting badge). On hover/focus the dot
-   warms to the accent and the underline solidifies. */
+   sheet. The hairline dotted underline alone signals "interactive"
+   without intruding on body copy; on hover/focus it solidifies into
+   the accent colour. */
 .country-link {
   color: var(--text);
   text-decoration: none;
@@ -1774,28 +1780,11 @@ body.archetype-page-body .article-page-header {
   transition: border-bottom-color var(--dur-fast), border-bottom-style var(--dur-fast);
 }
 
-.country-link::after {
-  content: "·";
-  display: inline-block;
-  margin-left: 0.18em;
-  font-size: 0.88em;
-  vertical-align: 0.05em;
-  color: var(--text-secondary);
-  opacity: 0.5;
-  transition: opacity var(--dur-fast), color var(--dur-fast);
-}
-
 .country-link:hover,
 .country-link:focus-visible {
   border-bottom-color: var(--accent, #c9a84c);
   border-bottom-style: solid;
   outline: none;
-}
-
-.country-link:hover::after,
-.country-link:focus-visible::after {
-  opacity: 1;
-  color: var(--accent, #c9a84c);
 }
 
 /* --- Country preview sheet ---
@@ -1918,7 +1907,7 @@ body.archetype-page-body .article-page-header {
 }
 
 /* --- Island sheets ---
-   Native <dialog> popovers used by context-viewer and entity-sheet.
+   Native <dialog> popovers used by entity-sheet and country-preview.
    Slide-up on mobile, centered on desktop. Zero JS sheet library —
    @starting-style drives the entry animation. */
 .island-sheet {
@@ -2024,425 +2013,6 @@ body.archetype-page-body .article-page-header {
   padding: var(--space-md) 0;
 }
 
-/* Context-sheet header: label + title + category + anchor link to the
-   full thread page. The anchor is a subtle underline link, not a
-   button — mobile's CTA equivalent without the chrome. */
-.context-sheet-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xxs);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--rule);
-  margin-bottom: var(--space-md);
-}
-.context-sheet-meta {
-  color: var(--text-secondary);
-  letter-spacing: 0.08em;
-}
-.context-sheet-thread-link {
-  align-self: start;
-  color: var(--text);
-  text-decoration: underline;
-  text-decoration-color: var(--rule);
-  text-underline-offset: 3px;
-  font-size: var(--size-sm);
-  margin-top: var(--space-xs);
-  transition: text-decoration-color var(--dur-fast);
-}
-.context-sheet-thread-link:hover {
-  text-decoration-color: var(--accent, #c9a84c);
-}
-
-/* --- Block renderers (context-viewer + future inline uses) ---
-   Self-contained vocabulary that any island sheet can compose. Each
-   block is a ~small card with its own label, optional source caption,
-   and tight spacing. The renderers are native Preact components; see
-   public/islands/blocks.ts. */
-
-.block {
-  margin: var(--space-md) 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-}
-
-.block:first-child { margin-top: 0; }
-.block:last-child { margin-bottom: 0; }
-
-.block > .block-label {
-  font-size: var(--size-xs);
-  font-weight: var(--weight-semibold);
-  color: var(--text-secondary);
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.08em;
-}
-
-.block-source {
-  font-size: var(--size-xs);
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.08em;
-  color: var(--text-dim);
-  text-align: right;
-  margin: 0;
-}
-
-.block-prose p {
-  font-size: var(--size-sm);
-  line-height: 1.7;
-  color: var(--text);
-  font-variant-numeric: oldstyle-nums proportional-nums;
-}
-
-.block-quote {
-  display: grid;
-  grid-template-columns: 2px 1fr;
-  gap: var(--space-sm);
-  margin: var(--space-md) 0;
-  padding: 0;
-}
-
-.block-quote::before {
-  content: '';
-  background: var(--dome);
-  border-radius: 1px;
-  grid-column: 1;
-}
-
-.block-quote > * { grid-column: 2; }
-
-.block-quote-text {
-  font-style: italic;
-  font-size: var(--size-base);
-  line-height: var(--leading-body);
-  color: var(--text);
-  margin: 0;
-}
-
-.block-quote-attr {
-  font-size: var(--size-xs);
-  font-style: normal;
-  color: var(--text-secondary);
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.08em;
-}
-
-/* Compare rows */
-.compare-rows {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.compare-row {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-xs) 0;
-  border-bottom: 1px solid var(--rule-soft);
-}
-
-.compare-row:last-child { border-bottom: none; }
-
-.compare-bar {
-  position: absolute;
-  inset: 0;
-  width: var(--fill, 0%);
-  background: color-mix(in srgb, var(--text) 6%, transparent);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.compare-label, .compare-value {
-  position: relative;
-  z-index: 1;
-}
-
-.compare-label { font-size: var(--size-sm); }
-
-.compare-value {
-  font-size: var(--size-sm);
-  font-weight: var(--weight-semibold);
-  white-space: nowrap;
-}
-
-.compare-row[data-tone="favorable"] .compare-value { color: light-dark(#2a6a2a, #7ac97a); }
-.compare-row[data-tone="unfavorable"] .compare-value { color: light-dark(#8a2a2a, #e07070); }
-.compare-row[data-tone="neutral"] .compare-value { color: var(--text); }
-
-.compare-flag { font-size: 0.9em; }
-
-/* Locations row */
-.locations-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-}
-
-.location-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xxs);
-  padding: var(--space-xxs) var(--space-xs);
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  font-size: var(--size-xs);
-  text-decoration: none;
-  color: var(--text);
-  transition: border-color var(--dur-fast), background var(--dur-fast);
-}
-
-.location-chip:hover {
-  border-color: var(--accent);
-  background: var(--bg-soft);
-}
-
-.location-flag { line-height: 1; }
-.location-code {
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.05em;
-  color: var(--text-secondary);
-}
-
-/* Actors rows */
-.actors-rows {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.actor-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto auto;
-  gap: var(--space-sm);
-  padding: var(--space-xs) 0;
-  border-bottom: 1px solid var(--rule-soft);
-  align-items: baseline;
-  font-size: var(--size-sm);
-}
-
-.actor-row:last-child { border-bottom: none; }
-
-.actor-name { font-weight: var(--weight-semibold); }
-.actor-role { color: var(--text-secondary); }
-.actor-years { color: var(--text-dim); white-space: nowrap; }
-.actor-cc {
-  font-size: var(--size-xs);
-  color: var(--text-secondary);
-  text-decoration: none;
-  white-space: nowrap;
-}
-.actor-cc:hover { color: var(--text); }
-
-@media (max-width: 640px) {
-  .actor-row {
-    grid-template-columns: 1fr auto;
-    gap: var(--space-xxs);
-  }
-  .actor-role, .actor-years, .actor-cc { grid-column: 1 / -1; }
-}
-
-/* Trend */
-.block-trend { color: var(--text); }
-
-.block-trend-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.trend-header {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-sm);
-  flex-wrap: wrap;
-}
-
-.trend-value {
-  font-size: var(--size-h3);
-  font-weight: var(--weight-semibold);
-}
-
-.trend-delta {
-  font-size: var(--size-sm);
-  color: var(--text-secondary);
-}
-
-.trend-delta.pos { color: light-dark(#2a6a2a, #7ac97a); }
-.trend-delta.neg { color: light-dark(#8a2a2a, #e07070); }
-
-.trend-chart {
-  width: 100%;
-  height: auto;
-  aspect-ratio: 68 / 14;
-  color: var(--text);
-}
-
-.trend-axis-label {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  fill: currentColor;
-  opacity: 0.55;
-  font-variant-numeric: lining-nums tabular-nums;
-}
-
-/* Quiz */
-.block-quiz {
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  padding: var(--space-sm);
-  background: var(--bg-soft);
-}
-
-.quiz-question {
-  cursor: pointer;
-  font-weight: var(--weight-semibold);
-  font-size: var(--size-sm);
-  list-style: none;
-}
-
-.quiz-question::-webkit-details-marker { display: none; }
-.quiz-question::before {
-  content: '▸';
-  display: inline-block;
-  margin-right: var(--space-xs);
-  transition: transform var(--dur-fast);
-}
-
-.block-quiz[open] .quiz-question::before { transform: rotate(90deg); }
-
-.quiz-options {
-  list-style: none;
-  padding: 0;
-  margin: var(--space-sm) 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xs);
-}
-
-.quiz-option {
-  display: grid;
-  grid-template-columns: 2em 1fr;
-  gap: var(--space-xs);
-  font-size: var(--size-sm);
-  color: var(--text-secondary);
-}
-
-.quiz-option.is-correct { color: var(--text); font-weight: var(--weight-semibold); }
-.quiz-option.is-correct .quiz-marker { color: var(--dome); }
-
-.quiz-marker {
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.05em;
-}
-
-.quiz-explanation {
-  margin-top: var(--space-sm);
-  padding-top: var(--space-sm);
-  border-top: 1px solid var(--rule-soft);
-  font-size: var(--size-sm);
-  line-height: 1.7;
-  color: var(--text);
-}
-
-/* Spanning blocks at the top of a context sheet and entry-embedded blocks. */
-.context-spanning-blocks {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: var(--space-md);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--rule);
-}
-
-.context-entry-blocks {
-  margin-top: var(--space-sm);
-  padding-top: var(--space-sm);
-  border-top: 1px dashed var(--rule-soft);
-}
-
-/* Context timeline within the sheet. */
-.context-timeline {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  border-left: 1px solid var(--rule);
-  padding-left: var(--space-md);
-  margin-left: var(--space-xs);
-}
-
-.context-timeline-entry {
-  position: relative;
-}
-
-.context-timeline-entry::before {
-  content: '';
-  position: absolute;
-  left: calc(-1 * var(--space-md) - 4px);
-  top: 0.5em;
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: var(--text-secondary);
-}
-
-.context-timeline-entry .context-year {
-  font-size: var(--size-xs);
-  font-weight: var(--weight-semibold);
-  color: var(--text-secondary);
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.08em;
-  display: block;
-  margin-bottom: var(--space-xxs);
-  font-variant-numeric: lining-nums tabular-nums;
-}
-
-.context-timeline-entry .context-heading {
-  font-size: var(--size-sm);
-  font-weight: var(--weight-semibold);
-  color: var(--text);
-  font-variant-caps: all-small-caps;
-  font-feature-settings: "case" 1;
-  letter-spacing: 0.05em;
-  margin-bottom: var(--space-xxs);
-}
-
-.context-timeline-entry .context-body {
-  font-size: var(--size-sm);
-  line-height: 1.7;
-  color: var(--text);
-  font-variant-numeric: oldstyle-nums proportional-nums;
-}
-
-.context-sources {
-  margin-top: var(--space-md);
-  padding-top: var(--space-md);
-  border-top: 1px solid var(--rule);
-}
-
-.context-sources ul {
-  list-style: none;
-  padding: 0;
-  margin: var(--space-xs) 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xxs);
-  font-size: var(--size-xs);
-  color: var(--text-secondary);
-}
 
 /* --- Entity strip on article pages --- */
 .article-entities {
@@ -2592,41 +2162,70 @@ body.archetype-page-body .article-page-header {
   text-decoration-color: var(--accent, #c9a84c);
 }
 
+/* --- Ambient starfield ---
+   Subtle universe behind everything. The SVG data URI is generated at
+   build time from a fixed-seed PRNG (see scripts/build.js) and exposed
+   as the `--starfield` custom property. Tiles at 1200px so the eye
+   never catches a seam at typical viewport widths. Sits at z-index -2,
+   below the globe (-1), above body's background fill. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background: var(--starfield) repeat 0 0 / 1200px 1200px;
+  opacity: light-dark(0, 0.85);
+  transition: opacity 0.6s ease;
+}
+
 /* --- Ambient globe ---
-   Atmospheric, bottom-right anchored, non-interactive. The canvas is
-   drawn at a fixed pixel size by cobe; we scale + position it via the
-   host container. Kept behind all text (z-index: -1 relative to body
-   flow, visible above the solid background), heavily dimmed so body
-   copy reads without strain. A soft radial mask fades it toward the
-   viewport edges so it feels like a peek rather than an image. */
+   Atmospheric horizon emerging from the bottom-right corner. Sized
+   relative to the viewport (vmin) so the visible cap scales with the
+   page and never looks dropped-in. The mask is centered on what the
+   viewer actually sees — the upper-left of the globe when ¼ of it
+   sits past the corner — so the fade radiates symmetrically from the
+   middle of the visible region rather than from the sphere's center.
+   Heavily dimmed so it reads as ambient ground, not figure. */
 .ambient-globe-root {
   position: fixed;
-  right: -160px;
-  bottom: -160px;
-  width: 640px;
-  height: 640px;
+  /* Anchor to the right edge of the 100rem layout cap, not the
+     viewport. On wide screens the layout sits centered with side
+     margins; the globe rides the layout's right edge so the corner
+     it emerges from is the corner of the *composition*, not of the
+     monitor. Below the cap the layout fills the viewport, so the
+     `max()` falls back to -22vmin and the original behaviour is
+     unchanged. */
+  right: max(-22vmin, calc((100vw - 100rem) / 2 - 22vmin));
+  bottom: -22vmin;
+  width: 92vmin;
+  height: 92vmin;
+  min-width: 600px;
+  min-height: 600px;
   pointer-events: none;
   z-index: -1;
-  opacity: 0.55;
-  -webkit-mask-image: radial-gradient(circle at 35% 35%, #000 52%, transparent 78%);
-  mask-image: radial-gradient(circle at 35% 35%, #000 52%, transparent 78%);
+  opacity: 0.2;
+  mask-image: radial-gradient(circle at 35% 35%, #000 0%, #000 32%, transparent 88%);
   contain: layout paint;
+  will-change: opacity;
 }
 
 @media (prefers-color-scheme: dark) {
-  .ambient-globe-root { opacity: 0.7; }
+  .ambient-globe-root { opacity: 0.32; }
 }
 
 @media (max-width: 720px) {
   .ambient-globe-root {
-    width: 420px;
-    height: 420px;
-    right: -120px;
-    bottom: -120px;
-    opacity: 0.45;
+    width: 110vmin;
+    height: 110vmin;
+    right: -28vmin;
+    bottom: -22vmin;
+    min-width: 0;
+    min-height: 0;
+    opacity: 0.18;
   }
   @media (prefers-color-scheme: dark) {
-    .ambient-globe-root { opacity: 0.6; }
+    .ambient-globe-root { opacity: 0.28; }
   }
 }
 
@@ -2657,13 +2256,15 @@ body.archetype-page-body .article-page-header {
   height: 0;
   pointer-events: none;
   z-index: 1;
-  /* cobe sets `--cobe-visible-focus: N` on :root when the marker is on
-     the visible hemisphere of the globe; otherwise the variable is
-     removed entirely. The trick: `N` is invalid for `opacity`, which
-     causes the property to fall through to its initial value (1).
-     When the variable is absent, the fallback `0` keeps the pulsar
-     hidden. So the pulsar smoothly fades as the pin rotates behind/
-     in front of the globe. */
+  /* cobe writes the literal token `N` to `--cobe-visible-focus` when the
+     marker is on the visible hemisphere; otherwise the variable is removed.
+     The token `N` is invalid for `opacity`, which makes opacity fall through
+     to its initial value (1) — visible. When the variable is absent, the
+     `var(..., 0)` fallback kicks in and the pulsar hides. So the pulsar
+     fades as the pin rotates behind/in front of the globe.
+     (Don't switch this to `@property <number>` — registered properties
+     substitute the initial-value on invalid tokens, which inverts the
+     behaviour and hides the pulsar permanently.) */
   opacity: var(--cobe-visible-focus, 0);
   transition: opacity 280ms ease;
 }

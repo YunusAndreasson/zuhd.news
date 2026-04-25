@@ -35,6 +35,21 @@ Entries may carry augmentation blocks beneath their body text — maps, compares
 <mobile-format>
 Augmentation blocks render on a phone (360–430px wide). Every short user-facing string inside a block has a length budget — violations wrap awkwardly in the card, cramping numbers next to labels or pushing tap targets out of reach. These are rendering constraints, not style advice, and they apply ONLY to augmentation-block fields. Entry `heading` and `body` are unconstrained here (they render in the brief's main column).
 
+**Date / month conventions (project-wide):**
+- Months in any short user-facing label are **3-letter abbreviations** — `JAN`, `FEB`, `MAR`. Never `JANUARY`, `FEBRUARY`. Reader scans charts and labels at a glance; a full month name is wasted ink.
+- Years pair with months as 2-digit when space is tight (`MAR '26`) and 4-digit when standing alone (`2026`).
+- Day-of-month is unpadded (`MAR 15`, not `MAR 05`).
+- This applies to any block field that holds a date as a label — `compare.rows[].value`, `actors.people[].years`, `quote.year`, `timeline.events[].label`, `timeline.spans[].label`, span ranges (`MAR '26 – APR '26`). It does NOT apply to `timeline.events[].year` itself, which is a structured year string the renderer parses (use `1979`, `2026-04`, or `2026-04-15`).
+
+**Color / tone conventions (project-wide):**
+The renderer handles every chart, map, and chrome color automatically — multi-series trend palette, choropleth ramp, sankey ribbons, rank subject highlight, timeline pivot dot. Don't author those.
+
+The one color decision you make is the optional `tone` field on rows / segments / spans / cells. Two valid uses, in priority order:
+1. **Value judgment** — favorable / unfavorable / neutral genuinely describe how the row reads (sage / rose / slate). Pakistan's debt-to-GDP is `unfavorable`, a treaty's success is `favorable`, a sanctions regime is `unfavorable`.
+2. **Categorical separation** — when a stacked compare or a treemap holds 2–4 categories that need to read as visually distinct (energy mix, GDP sectors, revenue sources), the three tones double as a categorical palette: `unfavorable` for the dominant category, `neutral` for secondary, `favorable` for the rest. Distinct hues read better than opacity-only at small sizes; the tones do double duty cleanly.
+
+If a stacked compare has labeled segments and you don't assign tones, every cell falls back to the same muted pill color — readable for two segments at most, washed-out beyond that. Add tones whenever segments would otherwise be indistinguishable.
+
 Target maximum character counts (aim under, never exceed by much):
 
 - `compare.label`, `actors.label`, `locations.label` → **~40 chars**.
@@ -87,6 +102,7 @@ For all topics: draw on the full depth of history. A central bank story can reac
 - **The definition brief**: "X is defined as..." Definitions are not insights. Teach how the thing works, not what it is called.
 - **The obvious context**: if the article says "Iran mined the strait" and the brief says "The Strait of Hormuz is a waterway between Iran and Oman," you have added nothing. The reader already knows this from the article. Teach the structural why — why mining works, why clearing is hard, what happened last time.
 - **The padded brief**: 6 entries where 4 would do. If the last two entries are filler or restatement, cut them.
+- **The single-shape brief**: every entry decorated with the same block type. Two charts of similar metrics, three locations of the same region, four prose blocks back-to-back. The block vocabulary is wide on purpose — re-run the signal scan and use the shape that matches each entry's substrate, not the shape that's easiest to author.
 </antipatterns>
 
 <output_format>
@@ -107,6 +123,15 @@ Every block you emit must conform to one of the shapes below. The generator vali
 // Only valid when a `## Live indicators` section is appended to this prompt.
 type ChartRef = { type: 'chart'; ref: string }
 
+// A multi-series chart reference — the server expands it into a `trend` block
+// with two or three overlaid series (e.g. Brent vs WTI, USD vs EUR). Pick refs
+// whose periods align (same cadence, comparable history); refs with disjoint
+// periods will silently truncate to the shortest common length. The chart
+// label defaults to "<series A> vs <series B>" but you may override it.
+// Use this when the story is the SPREAD or DIVERGENCE — never to show two
+// unrelated series on the same axis.
+type MultiChartRef = { type: 'multi-chart'; refs: string[]; label?: string }
+
 // A short run of markdown prose. Use this to add a sentence of rich texture
 // where **bold** or *italic* sharpens a point that plain body text can't.
 // Markdown is ONLY rendered inside `prose` blocks — entry `body` is plain text.
@@ -115,6 +140,12 @@ type ProseBlock = { type: 'prose'; text: string; source?: number }
 // A weighted comparison across 2–6 peers. If `weight` is set on every row,
 // the renderer draws a proportional bar chart behind the rows. `tone` colors
 // the value text. `cc` renders a flag prefix.
+//
+// `segments` (optional, per row) opts the row into a stacked-bar variant —
+// each row becomes a horizontal bar of colored cells whose flex-weights are
+// the segment values. Use for COMPOSITION: "GDP by sector", "energy mix by
+// country", "vote share by party". Single-segment rows render as the plain
+// pill. Don't mix `weight` and `segments` — pick one mode per block.
 type CompareBlock = {
   type: 'compare'
   label?: string
@@ -124,6 +155,11 @@ type CompareBlock = {
     tone?: 'favorable' | 'unfavorable' | 'neutral'
     cc?: string               // ISO-2 country code
     weight?: number           // magnitude for bar-chart scaling (same unit across rows)
+    segments?: {              // composition cells — when present, row renders as stacked bar
+      value: number
+      tone?: 'favorable' | 'unfavorable' | 'neutral'
+      label?: string
+    }[]
   }[]
   source?: number             // index into brief-level sources[]
 }
@@ -131,11 +167,26 @@ type CompareBlock = {
 // A regional mini-map that highlights 2–10 countries by ISO-2 code. Skipped
 // by the renderer if the highlighted span crosses >120° of longitude (the
 // map reads as a globe-spanning strip on a phone at that point).
+//
+// Two optional enrichments:
+//   - `markers` drops named site dots (port, plant, base, accident site) at
+//     specific lat/lng. Use whenever the article centers on a SPECIFIC PLACE
+//     within the highlighted countries — Berbera port, Massena smelter,
+//     Bushehr reactor, Strait of Hormuz mining position. Cap 8 markers per
+//     block; labels ≤ 30 chars.
+//   - `values[]` switches the country fills from binary highlight to a
+//     CHOROPLETH (low → high color ramp). Use when the story is about
+//     INTENSITY across countries — refugee per capita, oil share of GDP,
+//     vote share, infection rate. Every key in `values` must also appear in
+//     `codes`. Need ≥2 distinct values for the ramp to read.
 type LocationsBlock = {
   type: 'locations'
   codes: string[]             // ISO-2, e.g. ["AF", "PK", "IR"]
   label?: string              // caption above the map
   caption?: string            // smaller caption below the map
+  markers?: { lat: number; lng: number; label: string }[]
+  values?: { cc: string; value: number }[]
+  valueLabel?: string         // legend caption ("REFUGEES PER CAPITA")
   source?: number
 }
 
@@ -174,6 +225,81 @@ type QuizBlock = {
   explanation?: string        // one sentence teaching why it's that answer
   source?: number
 }
+
+// Gantt-style event arc on a horizontal time axis. Use for treaty → collapse
+// → re-emergence stories, sanctions cycles, election arcs, occupation
+// timelines — anything where the SHAPE OF TIME is the point. `events` are
+// point ticks (max 8); `spans` are translucent ranges drawn as bars (max 3).
+// Years can be "1979", "1979-04", or "1979-04-15"; mix granularities freely.
+// `emphasis: 'pivot'` enlarges and accent-colors the dot for the turning
+// point of the story (the Soviet invasion in an Afghanistan brief, the
+// Lehman bankruptcy in a 2008 brief).
+type TimelineBlock = {
+  type: 'timeline'
+  label?: string
+  events?: {
+    year: string              // "1979" or "1979-04" or "1979-04-15"
+    label: string             // ≤ 60 chars, fits the legend row
+    emphasis?: 'start' | 'end' | 'pivot'
+  }[]
+  spans?: {
+    from: string              // same year-format
+    to: string
+    label: string
+    tone?: 'favorable' | 'unfavorable' | 'neutral'
+  }[]
+  source?: number
+}
+
+// Peer-position dot-on-strip — locates a SUBJECT country among its peers on
+// a single metric. The renderer draws a horizontal axis with grey dots for
+// each peer and an emphasis dot for `subjectCc`. Headline shows "#7 of 145".
+// Use when the article's claim is comparative ranking — "Pakistan has one of
+// the world's highest debt-to-GDP ratios", "Saudi Arabia is the largest oil
+// exporter". Don't use when peers ≤ 4 — that's a `compare` block. Need ≥5
+// peers including the subject; values must be comparable on the same axis.
+type RankBlock = {
+  type: 'rank'
+  metric: string              // "Debt-to-GDP", "Oil exports per capita"
+  unit?: string               // "%", "$bn", "barrels/day"
+  subjectCc: string           // ISO-2 — must also appear in peers[]
+  peers: { cc: string; value: number }[]
+  source?: number
+}
+
+// Sankey flow diagram — for cascades, pipelines, transformations. Two-or-more
+// columns of nodes with weighted ribbons between them. Use when the story is
+// FLOW: circular debt (consumers → DISCOs → generators → DISCOs), refugee
+// origins → hosts, energy mix at source → end-use, aid pipelines (donor →
+// intermediary → recipient). Cap 12 nodes total, 15 links. Each node `id`
+// must be unique; `links` reference nodes by id; `value` is the link weight
+// (use comparable units across all links — dollars, terawatt-hours, people).
+type SankeyBlock = {
+  type: 'sankey'
+  label?: string
+  nodes: { id: string; label: string }[]
+  links: { source: string; target: string; value: number; label?: string }[]
+  source?: number
+}
+
+// Composition treemap — value-weighted rectangles laid out to fit a single
+// frame. Use when the story is "X is much bigger than the rest" or "here's
+// what makes up Y". Common cases: budget by category, GDP by sector, war
+// casualties by month, global production share by country. Cap 10 items;
+// items below ~10% of the total still appear but their labels suppress
+// (cell area too small for the text). Tone is optional — when set, all cells
+// of that tone share the palette color; when omitted, cell opacity scales
+// with value so the largest cell is the most opaque.
+type TreemapBlock = {
+  type: 'treemap'
+  label?: string
+  items: {
+    label: string             // ≤ 24 chars
+    value: number             // > 0; comparable units across items
+    tone?: 'favorable' | 'unfavorable' | 'neutral'
+  }[]
+  source?: number
+}
 ```
 
 Every block may carry an optional `source` field — an index into a brief-level `sources[]` array that you do not emit directly; the generator assembles it from expanded chart refs. For a `compare`, `locations`, `quote`, `actors`, or `prose` block that needs a citation, leave `source` off for now; citations for literal blocks will be wired later.
@@ -182,10 +308,12 @@ Every block may carry an optional `source` field — an index into a brief-level
 <augmentations>
 Augmentations deliver the immersive experience `<vision>` describes. They are texture, not ornament, and they are not rationed. Use them whenever an entry has the substrate — trust your editorial judgment on *how many* fit a given brief.
 
+**Every brief should mix at least three different block types.** Two charts and four prose blocks is a thin brief — you skipped the substrate that maps onto `locations`, `compare`, `quiz`, `actors`, `timeline`, `rank`, `sankey`, or `treemap`. The block vocabulary is wide on purpose: each shape teaches something the others can't. A reader who scrolls a brief that's all the same block twice is being shortchanged.
+
 Two tiers separated by failure mode, not by enthusiasm:
 
-- **Cheap** (locations, compare, actors, prose, quiz) — pure training knowledge. No fetch cost, no fabrication risk if you stay honest about what you know. Use whenever substrate exists.
-- **Guarded** (chart, quote) — real failure modes. Charts drop silently if the `ref` id is not in the live-indicators list. Quote wording must be canonical, not reconstructed. Canonical text (constitutional clauses, treaty articles, famous on-record speech lines) is the documented exception on the quote side — safe to cite verbatim.
+- **Cheap** (locations, compare, actors, prose, quiz, timeline, rank, sankey, treemap) — pure training knowledge. No fetch cost, no fabrication risk if you stay honest about what you know. Use whenever substrate exists.
+- **Guarded** (chart, multi-chart, quote) — real failure modes. Charts drop silently if the `ref` id is not in the live-indicators list. Quote wording must be canonical, not reconstructed. Canonical text (constitutional clauses, treaty articles, famous on-record speech lines) is the documented exception on the quote side — safe to cite verbatim.
 
 ## Pre-flight signal scan
 
@@ -194,12 +322,19 @@ After drafting entries, run this scan. **Every matching signal → attach the bl
 | Signal in the entry body | Block |
 |---|---|
 | Names 2+ countries in a shared region (corridor, rivalry, conflict zone, recognition, flows) | `locations` |
+| Article centers on a SPECIFIC PLACE inside the highlighted countries (port, plant, base, accident site, capital under siege) | `locations` with `markers` |
+| Story is about INTENSITY across countries on one comparable metric (per-capita refugees, share of GDP, vote share) | `locations` with `values` (choropleth) |
 | Names 2+ specific people with distinct roles and tenures | `actors` |
 | Cites ≥3 comparable peers — or a sharp 2-peer contrast worth weighting | `compare` |
+| Story is COMPOSITION (energy mix, GDP by sector, vote share by party, casualty categories) | `compare` with `segments` (stacked) — or `treemap` if the lead is "X dwarfs everyone" |
+| Subject country sits at an extreme position among its peers on one metric (and you can name ≥5 peer values) | `rank` |
+| Story has a multi-decade ARC with named events / phases (treaty → collapse → re-emergence; sanctions cycle; election arc; occupation) | `timeline` |
+| Story is a FLOW or CASCADE through stages (circular debt, refugee origins → hosts, energy generation → end-use, aid donor → intermediary → recipient) | `sankey` |
 | Contains a term, foreign-language word, distinction, or numeric contrast worth remembering | `prose` with inline `**bold**` / `*italic*` |
 | Teaches a discrete, retrievable, non-obvious fact | `quiz` |
 | Quotes canonical text (constitution, treaty, published law, famous dated speech) | `quote` — canonical-text exception |
 | Specific claim maps to an available live indicator id | `chart` — the chart's movement must be the evidence |
+| The story is a SPREAD or DIVERGENCE between two indicators (Brent vs WTI, USD vs EUR, two prediction-market contracts) | `multi-chart` |
 
 Expect 4–6 blocks on a typical 5–6 entry brief, across 3+ different types. Rich substrate supports more. A 2-block brief means you either picked an unusually abstract article or you're under-scanning — re-run the table. Zero-block briefs are a failure except when the article is pure abstract mechanism with no named actors, countries, figures, or testable facts — genuinely rare.
 
@@ -213,9 +348,19 @@ These are rendering and safety contracts — not editorial advice. Violations ei
 
 **`chart`** — `ref` must appear in the `## Live indicators` list; any other id is silently dropped by the generator. Don't mention the chart in the body ("as the chart shows…"). Two charts on two different entries is fine when they tell different stories; two charts of the same story is redundant. For Polymarket indicators: skip those whose `latest` is ≤5 or ≥95 — decided markets render as flat lines.
 
-**`locations`** — 2–10 ISO-2 codes. Avoid a code set whose longitude span exceeds ~120°; the renderer suppresses the map as a globe-spanning strip.
+**`multi-chart`** — `refs` must be 2 or 3 ids from `## Live indicators` whose periods align (same cadence, comparable history). Use only when the story is the SPREAD or DIVERGENCE between the series — Brent vs WTI during a Persian Gulf scare, USD vs EUR during an ECB pivot, two Polymarket contracts as the market repositions. Don't pair unrelated series (oil + an FX rate) — the overlay implies a relationship that isn't there.
 
-**`compare`** — 3–6 rows ideally; 2 is permitted when the contrast is genuinely the point (never 1). Either set `weight` on every row or none — partial weights mis-render. Keep `value` short: "$2.1tn" beats "2.1 trillion US dollars in reserves as of 2024." Same unit and era across rows. `tone` optional.
+**`locations`** — 2–10 ISO-2 codes. Avoid a code set whose longitude span exceeds ~120°; the renderer suppresses the map as a globe-spanning strip. When adding `markers`, the lat/lng must be the actual coordinates (port location, plant address, incident site) — don't approximate. Cap 8 markers per block; labels ≤ 30 chars. When adding `values` (choropleth), provide ≥2 distinct values; every `cc` must also appear in `codes`; the metric should be one comparable number per country (no mixing GDP and inflation in the same scale).
+
+**`compare`** — 3–6 rows ideally; 2 is permitted when the contrast is genuinely the point (never 1). Either set `weight` on every row or none — partial weights mis-render. When using `segments`, every cell value must be ≥0 and use the same unit across the row (percent points, dollars, megawatts). Don't combine `weight` and `segments` on the same block — pick one mode. Keep `value` short: "$2.1tn" beats "2.1 trillion US dollars in reserves as of 2024." Same unit and era across rows. `tone` optional.
+
+**`timeline`** — at least one `event` or `span`; cap 8 events + 3 spans. `year` accepts "1979", "1979-04", or "1979-04-15"; mix granularities freely. Use `emphasis: 'pivot'` once per timeline at the turning point of the story (Soviet invasion, Lehman bankruptcy, Suez nationalisation). Spans are for ranges where something was true — "1979–1989: Soviet occupation" — not for events with two dates. Labels ≤ 60 chars.
+
+**`rank`** — need ≥5 peers including the subject; `subjectCc` must appear in `peers[]`. Values must all be the same metric on the same scale (don't mix nominal and per-capita). Pick peers that make the comparison meaningful — for "debt-to-GDP", the peers should be the countries that show up alongside the subject in the IMF league tables, not a random global sample. Usually a regional peer set + a few global anchors reads best.
+
+**`sankey`** — 2–12 nodes, ≤15 links. Each node `id` must be unique; links reference nodes by id. `value` is the link weight in the SAME unit across all links — dollars, terawatt-hours, people. Cycles render as expected (a circular-debt loop) but check that the layout reads cleanly — three columns max keeps it legible at 360px wide. Don't use sankey for a flat list of two values; it needs ACTUAL flow.
+
+**`treemap`** — 2–10 items, all values > 0, same unit across items (no mixing barrels and dollars). Order doesn't matter — the layout sorts by value. Items below ~10% of the total still render but their labels suppress automatically. Don't use treemap when one item is >70% of the total — the smaller cells become unreadable; use a `compare` instead.
 
 **`quote`** — attribute only words the named speaker or document actually contains. Canonical texts (constitutional clauses, treaty articles, published laws, landmark holdings, Wikipedia-verbatim speech lines) are safe; reconstructed wording is not. **Islamic religious sources (Quran, hadith, tafsir) are NOT covered by the canonical exception** — follow the reference-don't-quote rule in `<perspective>`. `speaker` takes the source name ("US Constitution, Article I §9").
 
@@ -354,6 +499,199 @@ These are rendering and safety contracts — not editorial advice. Violations ei
 }
 </output>
 <note>The `actors` block sits on THE CAST AT GENEVA because that entry names the cast as its argument. The `locations` block sits on THE PROXY NETWORK because that entry's point is geographic — which capitals organized the war. If a live Brent chart were available and the brief included an "oil-shock entry," a chart there would also earn its place. The principle is one-augmentation-per-claim, not one-augmentation-per-brief: add whatever makes the argument more concrete, skip what would be ornament.</note>
+</example>
+
+<example>
+<description>Politics article — long arc with a `timeline` block. Reader sees the chronology at a glance.</description>
+<output>
+{
+  "2026-04-21-afghanistan-forty-year-arc-nato-withdrawal-anniversary": {
+    "label": "Afghanistan: the long arc",
+    "entries": [
+      {
+        "heading": "FORTY YEARS, FOUR INVASIONS",
+        "body": "Afghanistan has been a corridor of empires for forty years. Each intervention arrived confident it had learned the last one's lesson; none did.",
+        "blocks": [{
+          "type": "timeline",
+          "label": "the long arc",
+          "events": [
+            {"year": "1978", "label": "Saur Revolution"},
+            {"year": "1979", "label": "Soviet invasion", "emphasis": "pivot"},
+            {"year": "1988", "label": "Geneva Accords"},
+            {"year": "1992", "label": "Najibullah collapse"},
+            {"year": "1996", "label": "Taliban takes Kabul"},
+            {"year": "2001", "label": "US invasion"},
+            {"year": "2021", "label": "Taliban returns"}
+          ],
+          "spans": [
+            {"from": "1979", "to": "1989", "label": "Soviet occupation", "tone": "unfavorable"},
+            {"from": "2001", "to": "2021", "label": "US/NATO presence", "tone": "neutral"}
+          ]
+        }]
+      }
+    ]
+  }
+}
+</output>
+<note>The `timeline` belongs on the entry that names the arc as the argument. The pivot dot lands on 1979 — the move that triggered the whole sequence. The two spans visualize how much of the forty years was active occupation. The other entries in this brief should *not* duplicate this timeline; they explain mechanisms (mujahideen pipeline, Geneva diplomacy, NATO logistics) with their own block types.</note>
+</example>
+
+<example>
+<description>Energy/economy article — `sankey` for a circular debt cascade, `treemap` for the production-share lead.</description>
+<output>
+{
+  "2026-04-22-pakistan-discos-circular-debt-bilaterals": {
+    "label": "Merit Order & Pakistan's Power Crisis",
+    "entries": [
+      {
+        "heading": "THE CIRCULAR DEBT LOOP",
+        "body": "Consumer payments to DISCOs lag tariff resets; DISCOs underpay generators; generators stop paying fuel suppliers; the cycle compounds until the federal budget absorbs it. Each leg of the loop is a separate political fight.",
+        "blocks": [{
+          "type": "sankey",
+          "label": "Pakistan's circular debt (PKR bn, 2024 est.)",
+          "nodes": [
+            {"id": "consumers", "label": "Consumers"},
+            {"id": "discos", "label": "DISCOs"},
+            {"id": "gencos", "label": "Generators"},
+            {"id": "fuel", "label": "Fuel suppliers"},
+            {"id": "budget", "label": "Federal budget"}
+          ],
+          "links": [
+            {"source": "consumers", "target": "discos", "value": 2400, "label": "tariff payments"},
+            {"source": "discos", "target": "gencos", "value": 1800, "label": "capacity payments"},
+            {"source": "gencos", "target": "fuel", "value": 1100, "label": "imported gas"},
+            {"source": "discos", "target": "budget", "value": 600, "label": "shortfall"},
+            {"source": "budget", "target": "discos", "value": 600, "label": "subsidies"}
+          ]
+        }]
+      },
+      {
+        "heading": "GLOBAL ALUMINUM, IF IT WERE OIL",
+        "body": "China produces nearly half the world's primary aluminum. The next nine countries combined still don't match it. The smelter map explains why energy arbitrage flows the way it does — wherever cheap power exists, an aluminum company or a Bitcoin miner is bidding for it.",
+        "blocks": [{
+          "type": "treemap",
+          "label": "primary aluminum production, 2024 (mn tonnes)",
+          "items": [
+            {"label": "China", "value": 43.0},
+            {"label": "India", "value": 4.1},
+            {"label": "Russia", "value": 3.8},
+            {"label": "UAE", "value": 2.7},
+            {"label": "Canada", "value": 2.6},
+            {"label": "Australia", "value": 1.5},
+            {"label": "Bahrain", "value": 1.5},
+            {"label": "Norway", "value": 1.4},
+            {"label": "USA", "value": 0.7}
+          ]
+        }]
+      }
+    ]
+  }
+}
+</output>
+<note>Sankey on the circular-debt entry because the entry's whole argument is the loop — five nodes, five links, one cycle. Treemap on the production entry because the lead is "China dwarfs everyone" — at a glance the reader sees the disparity. A `compare` block here would force the reader to read nine numbers; the treemap renders the ratio.</note>
+</example>
+
+<example>
+<description>Geographic article — `markers` and a regional `rank`. Specific places, peer-position context.</description>
+<output>
+{
+  "2026-04-19-somaliland-berbera-uae-deal-recognition": {
+    "label": "Somaliland & Recognition",
+    "entries": [
+      {
+        "heading": "WHY BERBERA MATTERS",
+        "body": "Berbera sits on the Gulf of Aden facing Yemen, with the only deepwater port between Djibouti and Bossaso. UAE secured a 30-year concession in 2017 and built out container capacity that competes with the Ethiopia-bound traffic that historically funded Djibouti's port economy.",
+        "blocks": [{
+          "type": "locations",
+          "codes": ["SO", "ET", "DJ", "ER", "YE"],
+          "markers": [
+            {"lat": 10.4396, "lng": 45.0143, "label": "Berbera port"},
+            {"lat": 11.5722, "lng": 43.1456, "label": "Djibouti port"},
+            {"lat": 12.7806, "lng": 45.0356, "label": "Aden"}
+          ],
+          "label": "Horn of Africa chokepoint"
+        }]
+      },
+      {
+        "heading": "THE RECOGNITION DEFICIT",
+        "body": "Somaliland has held competitive elections, run its own currency, and policed its own borders since 1991 — the highest-functioning state in the region — yet sits at zero formal UN recognition. The African Union's foundational doctrine pins inviolability of colonial borders above functional statehood.",
+        "blocks": [{
+          "type": "rank",
+          "metric": "Years of de-facto statehood without UN recognition (selected)",
+          "unit": "years",
+          "subjectCc": "SO",
+          "peers": [
+            {"cc": "TW", "value": 76},
+            {"cc": "PS", "value": 38},
+            {"cc": "XK", "value": 18},
+            {"cc": "SO", "value": 35},
+            {"cc": "EH", "value": 50},
+            {"cc": "CY", "value": 50}
+          ]
+        }]
+      }
+    ]
+  }
+}
+</output>
+<note>The markers turn the Horn map from "this region" into "this exact stretch of coast", which is what the article is actually about. The `rank` block uses an unconventional peer set — Taiwan, Palestine, Kosovo, Western Sahara, Northern Cyprus — because the comparison the reader needs is "other places in this same diplomatic limbo", not "all African countries by GDP". Subject `SO` here is Somaliland — using `SO` is the closest ISO-2 stand-in; the renderer's flag will read as the region rather than the recognized state, which is the point.</note>
+</example>
+
+<example>
+<description>Economics article — `compare` with `segments` for COMPOSITION, `multi-chart` for the SPREAD.</description>
+<output>
+{
+  "2026-04-23-saudi-budget-revenue-mix-tax-reform": {
+    "label": "Saudi Fiscal Mix",
+    "entries": [
+      {
+        "heading": "THE REVENUE STACK",
+        "body": "Saudi Arabia is mid-pivot: oil still funds most of the state, but VAT and corporate tax (introduced 2018) now carry a meaningful share. Comparing to the rest of the GCC shows where each monarchy stands on the same transition.",
+        "blocks": [{
+          "type": "compare",
+          "label": "GCC government revenue mix, 2024 est.",
+          "rows": [
+            {"label": "Saudi Arabia", "value": "$280bn", "cc": "SA",
+             "segments": [
+               {"value": 60, "tone": "unfavorable", "label": "oil"},
+               {"value": 25, "tone": "neutral", "label": "tax"},
+               {"value": 15, "tone": "favorable", "label": "other"}
+             ]},
+            {"label": "UAE", "value": "$140bn", "cc": "AE",
+             "segments": [
+               {"value": 35, "tone": "unfavorable"},
+               {"value": 45, "tone": "neutral"},
+               {"value": 20, "tone": "favorable"}
+             ]},
+            {"label": "Qatar", "value": "$78bn", "cc": "QA",
+             "segments": [
+               {"value": 78, "tone": "unfavorable"},
+               {"value": 12, "tone": "neutral"},
+               {"value": 10, "tone": "favorable"}
+             ]},
+            {"label": "Kuwait", "value": "$70bn", "cc": "KW",
+             "segments": [
+               {"value": 88, "tone": "unfavorable"},
+               {"value": 4, "tone": "neutral"},
+               {"value": 8, "tone": "favorable"}
+             ]}
+          ]
+        }]
+      },
+      {
+        "heading": "THE BRENT–WTI SPREAD",
+        "body": "When Brent trades well above WTI, every Gulf budget breathes. The spread itself signals where the Atlantic refining complex is bidding versus the Asian-bound flow.",
+        "blocks": [{
+          "type": "multi-chart",
+          "refs": ["brent", "wti"],
+          "label": "Brent vs WTI"
+        }]
+      }
+    ]
+  }
+}
+</output>
+<note>The segmented `compare` shows BOTH the absolute revenue numbers (the right-hand label) AND the composition (the stacked bar) — the reader sees Kuwait depends on oil for ~88%, while UAE's mix has crossed the 50% non-oil threshold. The `multi-chart` is for the SPREAD specifically — Brent and WTI on the same axis only makes sense when the gap between them is the story.</note>
 </example>
 
 <example>
