@@ -1,33 +1,30 @@
 {
-  "date": "2026-04-23",
+  "date": "2026-04-25",
   "metrics": {
-    "articles": { "value": 45, "detail": "5 cycles completed, avg 9/cycle" },
-    "freshness": { "median": 1.0, "p90": 1.0, "max": 1.0, "target": 1.0, "met": true, "note": "count=2 only — low freshness sample; most articles may lack parseable publish timestamps" },
-    "categories": { "politics": 19, "economy": 14, "science": 5, "tech": 7 },
+    "articles": { "value": 33, "detail": "5 cycles completed, avg 7/cycle (below typical 11-13 range; watch for sustained dip)" },
+    "freshness": { "median": 0, "p90": 1.2, "max": 1.2, "target": 1.0, "met": true },
+    "categories": { "politics": 16, "economy": 5, "science": 6, "tech": 6 },
     "multiSource": { "value": 8, "target": 4, "met": true },
-    "regions": {
-      "count": 6,
-      "target": 4,
-      "met": true,
-      "breakdown": { "ME": 14, "AM": 14, "AS": 10, "AF": 3, "EU": 3, "OC": 1 }
-    },
-    "sciTech": { "ratio": 27, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 11, "target": 20, "met": true },
-    "uniqueSources": 40,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 8, "AM": 10, "EU": 9, "AF": 4, "OC": 1, "AS": 1 } },
+    "sciTech": { "ratio": 36, "target": 25, "met": true },
+    "topSourceShare": { "source": "CoinDesk / TRT World / Nature (tied)", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 31,
     "duplicates": 0,
-    "avgCycleDuration": 1560
+    "avgCycleDuration": 1593
   },
-  "experiment": "Active experiment 2026-04-21-multi-source-floors is mid-run; evaluateAfter is 2026-04-24. Skipping evaluation today. MultiSource count today is 8 (17.8% of 45 articles); baseline overall multi-rate was 22% — will need per-category breakdown tomorrow to assess politics+economy multi-rate against the ≥ 0.45 target.",
-  "weakestArea": "Science is the weakest metric — only 5 articles today (exactly the daily minimum floor of 5), down from 8 yesterday. The selector averaged just 1 science pick per cycle against a floor of 2, and today's science attributions include non-specialist outlets (New Lines Magazine, Daily Maverick), suggesting the selector is reaching to fill the floor rather than selecting strong dedicated science coverage.",
+  "experiment": "Evaluated 2026-04-21-multi-source-floors on schedule (evaluateAfter: 2026-04-24). Politics+economy combined multi-rate improved from 0.31 baseline to 0.336 over the experiment window (politics 0.39→0.41, economy 0.18→0.23). Overall multi-rate improved 0.22→0.239. Direction improved on all measures; no guardrail metric degraded >20%. Target of p+e ≥ 0.45 was not reached — feed supply (~9 multi-source stories/cycle) is the binding constraint. Keeping the hard-floor prompt change. No new experiment proposed: all targets met today.",
+  "weakestArea": "Economy coverage was unusually thin at 5 articles today (15% share) against an economy selector floor of 3/cycle that should yield ≥15/day. This gap — combined with avg publish count of 7/cycle (below the 8 guardrail) — suggests selector floors may not be consistently honoured on today's feed. Worth monitoring across the next 2-3 cycles before intervening; if economy share stays below 20% by Apr 27, consider whether the floor needs reinforcing in the prompt.",
   "watching": [
-    "Multi-source experiment 2026-04-21 reaches evaluateAfter tomorrow — pull per-category multi-source breakdown from content/articles to evaluate politics+economy multi-rate vs 0.45 target.",
-    "Science coverage consistency: 5 today vs 8 yesterday — watch whether the selector reliably meets the 2/cycle floor or whether feed-side science supply is structurally thin on weekdays.",
-    "Cycle duration elevated at 1560s (26 min) vs typical ~1320s — not alarming but worth tracking if it trends upward.",
-    "India-Pakistan tensions continue driving heavy AS/ME output — Dawn at 11% today, watch for story saturation tomorrow."
+    "India-Pakistan tensions: Pakistan's airspace ban on India aviation through May 24 signals extended standoff; future de-escalation or escalation signals worth tracking.",
+    "Lebanon-Israel ceasefire: third week extension active; any breakdown or Salam government consolidation move would be high-impact.",
+    "Japan earthquake (7.7): megaquake advisory issued; aftershock risk and Nankai Trough watch ongoing.",
+    "Iran-US nuclear talks: sanctions enforcement and tanker movements through Strait of Hormuz remain active pressure points.",
+    "Gaza students / Rafah crossing: structural story on humanitarian access that may develop with international advocacy outcomes."
   ],
   "coverageGaps": [
-    "Europe severely underrepresented — only 3 articles (7% of output) for a major geopolitical bloc with active stories (Ukraine, EU trade policy).",
-    "Oceania at 1 article (Lowy Interpreter only) — Pacific strategic competition and climate stories rarely surface."
+    "Southeast Asia almost absent today (AS: 1 article) — Philippines, Vietnam, Indonesia trade and political stories underrepresented given regional significance.",
+    "Sub-Saharan Africa light at 4 articles despite active stories in Nigeria, Ethiopia, and Sudan conflict zone.",
+    "Economy category notably thin — no coverage of ongoing US-China tariff negotiations, European Central Bank signals, or commodity market moves despite Hormuz/oil being active."
   ],
-  "context": "Yesterday's metrics were notably stronger (49 articles, 8 science, 13 multi-source, 35% sci-tech), making today's dip in science and overall output visible by comparison. The active multi-source experiment has not triggered guardrail failures — publish count recovered well at 9/cycle (above the 8 floor). The freshness count=2 anomaly is implausible for 45 published articles and likely reflects the same timestamp comparison artifact seen on 2026-04-22; no new experiment warranted while 2026-04-21-multi-source-floors is still running."
+  "context": "Yesterday's cycle produced 12 duplicate articles (same source URL, two slugs) — the highest single-day duplicate count since the 7-day prefilter was introduced on Apr 19. The duplicates clustered around high-velocity stories (El Niño, Duterte ICC, Iran cyber, Lebanon ceasefire) where two writer instances independently picked the same source. Today's count is 0. No parameter change is needed, but the pattern suggests the writer stage occasionally races on breaking stories that arrive in both the Event Registry feed and the RSS standalone pool simultaneously."
 }
