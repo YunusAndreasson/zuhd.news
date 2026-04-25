@@ -57192,5 +57192,1503 @@
     "label": "INEC & Electoral Independence",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-25-5g-trials-gilgit-baltistan-pta-cpec-spectrum": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSTITUTIONAL LIMBO",
+        "body": "Gilgit-Baltistan is not a province of Pakistan. It has no representation in the National Assembly, no seat in the Senate, and its residents cannot vote in federal elections. Islamabad administers it directly through the Ministry of Kashmir Affairs — a status unchanged since 1947.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The territory's legal name until 2009 was the **Northern Areas** — a deliberately neutral label reflecting Pakistan's position that final status awaits the unresolved Kashmir plebiscite promised by *UN Resolution 47* in 1948."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SPECTRUM IS SOVEREIGN",
+        "body": "Radio spectrum is a state monopoly everywhere. Governments auction time-limited licenses to use specific frequency bands; the auction is one of the largest non-tax revenue events a state runs. India's 2010 3G auction raised $14.6bn; Pakistan's March 2026 auction covered the four provinces but explicitly excluded Gilgit-Baltistan and Azad Kashmir."
+      },
+      {
+        "heading": "THE FREQUENCY TRADEOFF",
+        "body": "Lower bands (700 MHz, 1800 MHz) travel far and penetrate walls but carry less data. Higher bands (3.5 GHz, mmWave) carry more data but barely cross a city block and need dense towers. Mountain terrain makes the high-band economics brutal — which is why 5G trials in Gilgit-Baltistan are an unusual technical case, not just a political one.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "CN",
+              "AF"
+            ],
+            "label": "the disputed corridor",
+            "markers": [
+              {
+                "lat": 35.9208,
+                "lng": 74.3144,
+                "label": "Gilgit"
+              },
+              {
+                "lat": 35.4264,
+                "lng": 75.05,
+                "label": "Karakoram Highway"
+              },
+              {
+                "lat": 36.7167,
+                "lng": 75.4167,
+                "label": "Khunjerab Pass (CPEC)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CPEC OVERLAY",
+        "body": "The China-Pakistan Economic Corridor enters Pakistan through Gilgit-Baltistan at the Khunjerab Pass — the only land link between the two countries. Beijing has pushed for telecom buildout along the corridor since 2015; Chinese vendors (Huawei, ZTE) supply most of Pakistan's mobile network equipment, which is why Western 5G security concerns hit Islamabad differently than they hit Delhi or London."
+      },
+      {
+        "heading": "THE KASHMIR PARALLEL",
+        "body": "India revoked Jammu & Kashmir's special status in 2019 and imposed the world's longest internet shutdown — 552 days — on the valley. Telecom access in disputed territory is never just about coverage; it is a tool of administrative control that both states use against the populations they claim and the ones they don't.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why was Gilgit-Baltistan excluded from Pakistan's March 2026 spectrum auction?",
+            "options": [
+              "The terrain made 5G technically infeasible",
+              "It has no provincial assembly and is administered separately by Islamabad",
+              "Chinese vendors objected to the licensing terms",
+              "The PTA lacked authority over disputed territories under UN rules"
+            ],
+            "correct": 1,
+            "explanation": "GB's lack of provincial status means its telecom access is governed directly by Islamabad outside the standard provincial auction framework."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-25T17:39:07.770Z",
+    "label": "Gilgit-Baltistan & Spectrum Sovereignty",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-25-bitcoin-40k-bear-case-power-law-statistical-outlier": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE POWER LAW MODEL",
+        "body": "Bitcoin's price has roughly tracked a power-law curve against time since 2010 — log price rising linearly with log days since genesis. The model is empirical, not theoretical: it fits the data, but no one has proven why network adoption should follow this exact shape.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *power law* means the relationship is **multiplicative across orders of magnitude** — every 10× in time corresponds to a fixed multiple in price. Stocks don't behave this way; only network-adoption phenomena (Metcalfe-style) do."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MEAN REVERSION",
+        "body": "When price runs far above the power-law trendline, returns over the next year have historically been weak. When price drops far below it, returns have been strong. The Mean Reversion Index measures this deviation as a percentile of all historical daily closes.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              68791.11,
+              66321.02,
+              66321.07,
+              65970.43,
+              66699.27,
+              68231.83,
+              68089.06,
+              66891.66,
+              66939.69,
+              67304.25,
+              68985.53,
+              68864.23,
+              71975.62,
+              71117.08,
+              71770.75,
+              72972.71,
+              73053.89,
+              70756.75,
+              74514.63,
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77318.88
+            ],
+            "periods": [
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 25"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 0.4TH PERCENTILE",
+        "body": "A close in the 0.4th percentile means only 0.4% of all daily Bitcoin closes have been more extreme to the downside relative to the trendline. In 15 years of trading — roughly 5,500 days — that's about 22 days. Most of those clustered in the 2015 and 2018 cycle bottoms."
+      },
+      {
+        "heading": "THE FOUR-YEAR CYCLE",
+        "body": "Bitcoin's halvings cut new supply in half every ~210,000 blocks (roughly four years). Each cycle has produced a peak 12–18 months post-halving, then a 70–85% drawdown. The 2024 halving puts the model's expected peak window in late 2025 — which the October $126k high satisfied.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2011 cycle",
+                "value": "-93%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2013 cycle",
+                "value": "-85%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2017 cycle",
+                "value": "-84%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2021 cycle",
+                "value": "-77%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "current (so far)",
+                "value": "-40%",
+                "tone": "neutral"
+              }
+            ],
+            "label": "cycle drawdowns from peak"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT'S DIFFERENT THIS CYCLE",
+        "body": "Spot Bitcoin ETFs launched January 2024 created a structural buyer — pension funds, RIAs, sovereign allocations — that didn't exist in prior cycles. The bear case for $40k assumes those flows reverse; the bull case assumes they're sticky because the holders aren't traders.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Bitcoin spot ETFs change about the holder base?",
+            "options": [
+              "Made retail traders the dominant buyer",
+              "Brought in institutional allocators who don't trade short-term",
+              "Eliminated the four-year halving cycle",
+              "Replaced miners as the main source of new supply"
+            ],
+            "correct": 1,
+            "explanation": "ETFs gave pensions, RIAs, and treasuries a regulated wrapper — these allocators rebalance quarterly, not daily, which dampens cycle volatility."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-04-25"
+    ],
+    "generatedAt": "2026-04-25T17:39:33.194Z",
+    "label": "Bitcoin's Power Law",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-25-displaced-lebanese-aitaroun-satellite-images-occupation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE YELLOW LINE",
+        "body": "The Yellow Line is the withdrawal boundary set under the November 2024 ceasefire — Israeli forces pulled back to it but did not leave Lebanese territory. It runs north of the Blue Line (the 2000 UN-demarcated border), creating a de facto buffer zone inside Lebanon where return is forbidden by Israeli fire.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the buffer south of the Litani",
+            "caption": "Yellow Line villages cut from return",
+            "markers": [
+              {
+                "lat": 33.0939,
+                "lng": 35.4356,
+                "label": "Aitaroun"
+              },
+              {
+                "lat": 33.1167,
+                "lng": 35.1333,
+                "label": "Naqoura (UNIFIL HQ)"
+              },
+              {
+                "lat": 33.2192,
+                "lng": 35.5694,
+                "label": "Marjayoun"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RAFAH MODEL",
+        "body": "Katz's reference is operational, not rhetorical. In Rafah through 2024, Israeli engineering units demolished structures within a kilometer of the Egyptian border to create a permanent cleared corridor. Satellite imagery documented roughly 3,500 buildings flattened. Applying that template to southern Lebanon means the buffer is not temporary security architecture — it is permanent depopulation by demolition.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term planners use is **denial terrain** — ground stripped of cover, structures, and inhabitants so it cannot be used by an adversary. Once denial terrain is established, repopulation requires rebuilding everything destroyed."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SATELLITE IMAGERY",
+        "body": "Commercial providers — Planet Labs, Maxar, Airbus — sell sub-meter imagery of any coordinate on Earth for a few hundred dollars per scene. For displaced families barred from return, a $300 image is the only way to know whether a home, an olive grove, or a grandparent's grave still exists. The same imagery underpins the Lebanese research council's demolition count.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Planet SkySat",
+                "value": "~50 cm"
+              },
+              {
+                "label": "Maxar WorldView-3",
+                "value": "~30 cm"
+              },
+              {
+                "label": "Airbus Pléiades",
+                "value": "~50 cm"
+              },
+              {
+                "label": "Sentinel-2 (free)",
+                "value": "10 m"
+              }
+            ],
+            "label": "commercial satellite resolutions"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "South Lebanon has been here before. Israel occupied a self-declared 'security zone' from 1985 until the May 2000 withdrawal — fifteen years of buffer that ended when Hezbollah's attrition campaign made the cost untenable. The villages now barred from return are largely the same villages that were depopulated then.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Israeli invasion, UNIFIL deployed"
+              },
+              {
+                "year": "1982",
+                "label": "invasion to Beirut"
+              },
+              {
+                "year": "1985",
+                "label": "security zone declared",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000",
+                "label": "Israeli withdrawal to Blue Line"
+              },
+              {
+                "year": "2006",
+                "label": "33-day war"
+              },
+              {
+                "year": "2024-11",
+                "label": "ceasefire, Yellow Line drawn"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1985",
+                "to": "2000",
+                "label": "first occupation buffer",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "2024-11",
+                "to": "2026-04",
+                "label": "Yellow Line buffer (ongoing)",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "south Lebanon's buffer cycles"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'NO RETURN' MEANS LEGALLY",
+        "body": "Under the Fourth Geneva Convention, an occupying power may not destroy property except where 'rendered absolutely necessary by military operations,' and may not transfer or block the return of the protected civilian population. Systematic demolition of villages combined with prohibition of return is what international law calls forcible transfer — a war crime under the Rome Statute.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many southern Lebanese villages does the Yellow Line currently bar return to?",
+            "options": [
+              "Around 20",
+              "More than 50",
+              "About 100",
+              "Over 200"
+            ],
+            "correct": 1,
+            "explanation": "More than 50 villages south of the Yellow Line are off-limits to returning residents under threat of Israeli fire, with 142 demolitions logged in the ceasefire's first week alone."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-25T17:40:37.766Z",
+    "label": "The Yellow Line & Buffer Demolitions",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-25-iran-day-57-witkoff-kushner-pakistan-talks-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ISLAMABAD",
+        "body": "Pakistan is one of the few states with working channels to both Tehran and Washington. It shares a 900km border with Iran, hosts the world's second-largest Shia population after Iran itself, and its military maintains decades-old ties with both the IRGC and CENTCOM. No Arab Gulf capital can claim that combination.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "PK",
+              "AF",
+              "SA",
+              "AE"
+            ],
+            "label": "the mediator's geography",
+            "markers": [
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 35.6892,
+                "lng": 51.389,
+                "label": "Tehran"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BROKER PRECEDENT",
+        "body": "Pakistan brokered the 2023 Saudi-Iran rapprochement alongside China, and ran backchannels during the 1979 hostage crisis. Mediation is a recurring Pakistani export — useful leverage for a state that otherwise depends on IMF lifelines and Gulf deposits.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The role works because Pakistan is *needed* by all sides but *threatening* to none — a posture Islamabad calls **strategic depth in diplomacy**, the diplomatic cousin of its older Afghan doctrine."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ MOVES BRENT, NOT WTI",
+        "body": "Brent prices waterborne crude from the Atlantic basin and Middle East; WTI prices landlocked Cushing, Oklahoma. When Hormuz transits collapse, Brent reflects the supply shock immediately while WTI moves only via arbitrage. The spread itself is the war premium.",
+        "blocks": [
+          {
+            "type": "trend",
+            "series": [
+              {
+                "values": [
+                  67.7,
+                  70.28,
+                  70.9,
+                  71,
+                  72.25,
+                  67.72,
+                  70.01,
+                  71.15,
+                  69.87,
+                  70.45,
+                  71.19,
+                  71.01,
+                  71.52,
+                  69.8,
+                  69.96,
+                  70.81,
+                  69.77,
+                  71.78,
+                  73.17,
+                  72.75,
+                  71.9,
+                  71.21,
+                  70.69,
+                  71.66,
+                  71.32,
+                  77.24,
+                  83.28,
+                  81.56,
+                  88.59,
+                  95.74,
+                  94.35,
+                  89.84,
+                  90.98,
+                  102.38,
+                  103.23,
+                  101.04,
+                  108.39,
+                  118.09,
+                  111.05,
+                  118.42,
+                  103.79,
+                  108.42,
+                  109.14,
+                  113.39,
+                  121.47,
+                  121.88,
+                  126.69,
+                  119.56,
+                  127.61,
+                  138.21,
+                  122.11,
+                  119.03,
+                  119.07,
+                  123.28,
+                  118.69,
+                  114.93,
+                  116.63,
+                  98.63,
+                  103.4
+                ],
+                "label": "Brent crude",
+                "highlight": "last"
+              },
+              {
+                "values": [
+                  60.46,
+                  62.04,
+                  62.75,
+                  64.77,
+                  64.5,
+                  61.6,
+                  62.62,
+                  64.56,
+                  62.9,
+                  63.77,
+                  64.53,
+                  64.2,
+                  64.8,
+                  63.08,
+                  63.05,
+                  62.53,
+                  65.33,
+                  66.66,
+                  66.69,
+                  66.36,
+                  65.62,
+                  65.3,
+                  65.1,
+                  66.96,
+                  71.13,
+                  74.48,
+                  74.58,
+                  80.88,
+                  90.77,
+                  94.65,
+                  83.71,
+                  86.8,
+                  95.61,
+                  98.48,
+                  93.39,
+                  96.01,
+                  96.12,
+                  96.11,
+                  98.71,
+                  89.33,
+                  93.18,
+                  91.51,
+                  96.18,
+                  101.26,
+                  104.69,
+                  102.86,
+                  101.9,
+                  113.23,
+                  114.01,
+                  114.58,
+                  96.17,
+                  99.62,
+                  98.34,
+                  100.72,
+                  93.07,
+                  93.04,
+                  96.46,
+                  85.91,
+                  91.06
+                ],
+                "label": "WTI crude",
+                "highlight": "last"
+              }
+            ],
+            "label": "Brent vs WTI — the war premium",
+            "source": 0,
+            "unit": "$/bbl",
+            "periods": [
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil spiked, then markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. Disruption proved easier to threaten than to sustain. The current collapse from 130 to single-digit transits is already deeper than anything the Tanker War produced.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "THE ENVOYS",
+        "body": "Witkoff is a New York real-estate developer turned Trump's primary Middle East negotiator; Kushner ran the 2020 Abraham Accords file. Neither is a career diplomat. Trump's envoy model bypasses State Department channels — which is why a cancelled flight, not a stalled cable, ends the mission.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Steve Witkoff",
+                "role": "Trump Middle East envoy",
+                "cc": "US"
+              },
+              {
+                "name": "Jared Kushner",
+                "role": "Abraham Accords architect",
+                "cc": "US"
+              },
+              {
+                "name": "Abbas Araghchi",
+                "role": "Iranian Foreign Minister",
+                "cc": "IR"
+              },
+              {
+                "name": "Ishaq Dar",
+                "role": "Pakistani Foreign Minister",
+                "cc": "PK"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE QURANIC FRAME",
+        "body": "Sunni-Shia divides shape but do not determine Pakistan-Iran relations. The Quran in Surah al-Hujurat commands believers to make peace between disputing parties — a verse Pakistani diplomats have cited explicitly when explaining the country's mediation posture. The doctrine of sulh (reconciliation) is classical, not modern.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Pakistan most recently mediated which major regional rapprochement?",
+            "options": [
+              "Israel-UAE Abraham Accords (2020)",
+              "Saudi-Iran restoration of ties (2023)",
+              "Turkey-Egypt thaw (2024)",
+              "Qatar-Saudi GCC reconciliation (2021)"
+            ],
+            "correct": 1,
+            "explanation": "Pakistan worked alongside China and Iraq to broker the March 2023 deal restoring Saudi-Iranian diplomatic relations after seven years of rupture."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20",
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-25T17:41:09.290Z",
+    "label": "Iran Talks & the Pakistan Channel",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-25-macron-strait-hormuz-france-totalenergies-fuel": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the chokepoint and its bypasses",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.1,
+                "lng": 56.35,
+                "label": "Fujairah terminal"
+              },
+              {
+                "lat": 26.6,
+                "lng": 50,
+                "label": "Ras Tanura"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY BYPASSES DON'T SUFFICE",
+        "body": "Saudi Arabia's East-West Pipeline (5 mn bbl/day) and the UAE's Habshan-Fujairah line (1.5 mn bbl/day) together reroute maybe a third of Gulf exports. The other two-thirds — Iranian, Iraqi, Kuwaiti, Qatari LNG — have no overland alternative.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              58,
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. The US response was Operation Earnest Will — reflagging Kuwaiti tankers under US colors and escorting them with warships. Insurance markets, not military escorts, ultimately determined which ships sailed.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "We are not going to allow this five-mile-wide strip of water to close down commerce of the world.",
+            "speaker": "Caspar Weinberger, US Defense Secretary",
+            "year": "1987"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE US DECLINED",
+        "body": "Washington spent four decades as the Gulf's underwriter — CENTCOM headquartered in Qatar, the Fifth Fleet in Bahrain, AWACS over Saudi Arabia. A French-led escort with American abstention is the sharpest visible break from that posture since the 1979 Carter Doctrine declared the Gulf a vital US interest.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Carter Doctrine** (Jan 1980) committed the US to use military force against any power attempting to control the Gulf. Forty-six years later, Paris is filling a vacuum Washington built the architecture to occupy."
+          }
+        ]
+      },
+      {
+        "heading": "TOTALENERGIES' EXPOSURE",
+        "body": "TotalEnergies operates the South Pars/North Field gas project with Qatar — the world's largest gas field, exported as LNG through Hormuz. Pouyanne's warning is not abstract: roughly 20% of global LNG transits the strait, and Qatar has no pipeline alternative.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Qatar",
+                "value": "~20% global LNG",
+                "cc": "QA",
+                "tone": "unfavorable",
+                "weight": 77
+              },
+              {
+                "label": "UAE",
+                "value": "~1% (Das Island)",
+                "cc": "AE",
+                "tone": "neutral",
+                "weight": 6
+              },
+              {
+                "label": "others (Bahrain etc.)",
+                "value": "<1%",
+                "cc": "BH",
+                "tone": "favorable",
+                "weight": 2
+              }
+            ],
+            "label": "global LNG export share via Hormuz"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the mines or missiles themselves — close a shipping lane. Once premiums spike past a few percent of hull value, commercial vessels reroute or anchor. The financial chokepoint is tighter than the physical one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ultimately determines whether tankers transit a contested strait?",
+            "options": [
+              "Naval escort availability",
+              "Lloyd's of London war-risk insurance premiums",
+              "UN Security Council resolutions",
+              "Flag-state diplomatic protests"
+            ],
+            "correct": 1,
+            "explanation": "Once war-risk premiums spike past a threshold, commercial shipping reroutes regardless of military escorts — insurance, not navies, governs commercial transit."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-25T17:41:40.459Z",
+    "label": "Hormuz Closed: France Steps In",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-25-makinde-one-party-state-warning-opposition-coalition-2027": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRUCTURAL TILT",
+        "body": "Nigeria's APC governs the federation, most of the 36 states, and both chambers of the National Assembly. Defections from PDP and Labour after the 2023 vote have widened the gap — opposition governors have crossed the aisle rather than fight from outside.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "APC",
+                "value": "23 states",
+                "weight": 23,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "PDP",
+                "value": "10 states",
+                "weight": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Labour",
+                "value": "1 state",
+                "weight": 1,
+                "tone": "favorable"
+              },
+              {
+                "label": "NNPP",
+                "value": "1 state",
+                "weight": 1,
+                "tone": "favorable"
+              },
+              {
+                "label": "APGA",
+                "value": "1 state",
+                "weight": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Nigeria state governorships by party (2026)"
+          }
+        ]
+      },
+      {
+        "heading": "THE FOURTH REPUBLIC PATTERN",
+        "body": "Since the 1999 return to civilian rule, no Nigerian opposition has unseated an incumbent except in 2015 — when Buhari's APC was itself a merger of four parties built specifically to consolidate the anti-PDP vote. Coalition, not single-party challenge, is the only route that has ever worked.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1999",
+                "label": "Obasanjo (PDP) — return to civilian rule",
+                "emphasis": "start"
+              },
+              {
+                "year": "2007",
+                "label": "Yar'Adua (PDP) succeeds Obasanjo"
+              },
+              {
+                "year": "2010",
+                "label": "Jonathan (PDP) on Yar'Adua's death"
+              },
+              {
+                "year": "2013",
+                "label": "APC formed by 4-party merger"
+              },
+              {
+                "year": "2015",
+                "label": "Buhari (APC) defeats Jonathan",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Tinubu (APC) — Obi/Atiku split opposition"
+              },
+              {
+                "year": "2027",
+                "label": "Next general election"
+              }
+            ],
+            "label": "Fourth Republic power transfers"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 2023 SPLIT THE VOTE",
+        "body": "Atiku Abubakar (PDP) and Peter Obi (Labour) together polled more votes than Tinubu, but ran separately. Kwankwaso's NNPP took Kano outright. The opposition had majority sentiment and minority seats — a textbook first-past-the-post failure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Nigeria requires a winner to take a plurality **plus** at least 25% in two-thirds of the 36 states — a federal-character rule that punishes regionally concentrated candidates and rewards a single broad coalition."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST AT IBADAN",
+        "body": "Makinde's convening pulls together the figures who fragmented the 2023 vote. Whether they can subordinate personal ambition to a single ticket is the entire question.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Seyi Makinde",
+                "role": "Oyo governor, PDP",
+                "years": "2019–",
+                "cc": "NG"
+              },
+              {
+                "name": "Atiku Abubakar",
+                "role": "former VP, 6× presidential candidate",
+                "years": "1999–",
+                "cc": "NG"
+              },
+              {
+                "name": "Rabiu Kwankwaso",
+                "role": "NNPP leader, ex-Kano governor",
+                "years": "1999–",
+                "cc": "NG"
+              },
+              {
+                "name": "Peter Obi",
+                "role": "Labour 2023 candidate",
+                "years": "2003–",
+                "cc": "NG"
+              }
+            ],
+            "label": "opposition principals"
+          }
+        ]
+      },
+      {
+        "heading": "THE ADC VEHICLE",
+        "body": "The African Democratic Congress is a small registered party often used as a coalition shell — easier to repurpose an existing ballot line than to register a new one before INEC's deadlines. The 2013 APC merger used the same trick, folding the ACN, CPC, ANPP, and a PDP faction into one symbol.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How was the APC — Nigeria's current ruling party — originally formed?",
+            "options": [
+              "Founded from scratch by Buhari in 2013",
+              "A merger of four opposition parties to unseat the PDP",
+              "A breakaway faction of the PDP",
+              "Renamed from the military-era NRC"
+            ],
+            "correct": 1,
+            "explanation": "The APC was assembled in 2013 from the ACN, CPC, ANPP, and a PDP faction — the only opposition coalition ever to defeat a Nigerian incumbent."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-25T17:42:10.607Z",
+    "label": "Nigeria's One-Party Drift Risk",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-25-palestinians-vote-first-elections-occupation-low-turnout": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 2006 RUPTURE",
+        "body": "Hamas won the last Palestinian legislative election in January 2006 with 74 of 132 seats. The US, EU, and Israel responded by cutting off the resulting government; within 18 months Fatah and Hamas were fighting in Gaza, leaving Hamas in control of the strip and Fatah in the West Bank. No national vote has been held since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1996",
+                "label": "First PA elections — Arafat wins"
+              },
+              {
+                "year": "2005",
+                "label": "Abbas elected PA president"
+              },
+              {
+                "year": "2006-01",
+                "label": "Hamas wins legislative vote",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2007",
+                "label": "Fatah-Hamas split, Gaza takeover"
+              },
+              {
+                "year": "2021",
+                "label": "Abbas cancels scheduled elections"
+              },
+              {
+                "year": "2026-04",
+                "label": "First municipal vote since 2006"
+              }
+            ],
+            "label": "the post-Oslo electoral arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE OSLO ARCHITECTURE",
+        "body": "The 1993 Oslo Accords created the Palestinian Authority as an interim self-government for five years, pending a final-status agreement on borders, refugees, Jerusalem, and settlements. Thirty-three years later, the interim arrangement is still the arrangement. The PA administers civil affairs in Areas A and B of the West Bank — roughly 40% of the territory — while Israel retains security control."
+      },
+      {
+        "heading": "AREA A, B, C",
+        "body": "Oslo II (1995) carved the West Bank into three zones. The PA was supposed to gain control over more land in stages; that transfer never happened.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Area A",
+                "value": "~18%",
+                "tone": "favorable",
+                "segments": [
+                  {
+                    "value": 18,
+                    "tone": "favorable",
+                    "label": "PA civil + security"
+                  }
+                ]
+              },
+              {
+                "label": "Area B",
+                "value": "~22%",
+                "tone": "neutral",
+                "segments": [
+                  {
+                    "value": 22,
+                    "tone": "neutral",
+                    "label": "PA civil, IDF security"
+                  }
+                ]
+              },
+              {
+                "label": "Area C",
+                "value": "~60%",
+                "tone": "unfavorable",
+                "segments": [
+                  {
+                    "value": 60,
+                    "tone": "unfavorable",
+                    "label": "Full Israeli control"
+                  }
+                ]
+              }
+            ],
+            "label": "West Bank governance, by area"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DONORS PUSH MUNICIPAL VOTES",
+        "body": "With the PA's legislative council dissolved since 2018 and no presidential election since 2005, municipal councils are the only level of Palestinian governance that retains any democratic mandate. Western donors — the EU, Norway, the UK — condition aid on visible democratic process, and local elections are the lowest-stakes option Israel will permit.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The PA receives roughly **$1.2bn** annually in donor aid, much of it routed through the *PEGASE* mechanism that bypasses the central treasury and pays salaries directly. Donors hold the salary file; Ramallah holds the politics."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HAMAS IS BARRED",
+        "body": "The PA's electoral law allows the central elections commission to disqualify lists, and Hamas-affiliated candidates have been excluded from West Bank municipal contests since 2017. Israel arrests Hamas-aligned candidates who try to register. The result is a Fatah-only ballot in most councils — which is also why turnout collapses.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of registered Palestinians had voted by midday in the 2026 municipal elections?",
+            "options": [
+              "~12%",
+              "~25%",
+              "~45%",
+              "~60%"
+            ],
+            "correct": 1,
+            "explanation": "24.53% by midday — low even by municipal-election standards, reflecting both Hamas exclusion and disillusionment with the PA after twenty years without a national vote."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF THE VOTE",
+        "body": "The ballot covers 420 West Bank councils plus Deir al-Balah in central Gaza — the only Gazan locality where the PA could organize a vote, and only because it sits in an area where Israeli ground operations have created a temporary administrative vacuum Hamas has not refilled.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PS",
+              "IL",
+              "JO",
+              "EG"
+            ],
+            "label": "the vote's footprint",
+            "markers": [
+              {
+                "lat": 31.4181,
+                "lng": 34.3517,
+                "label": "Deir al-Balah"
+              },
+              {
+                "lat": 31.9038,
+                "lng": 35.2034,
+                "label": "Ramallah (PA seat)"
+              },
+              {
+                "lat": 31.5326,
+                "lng": 35.0998,
+                "label": "Hebron"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-25T17:42:42.586Z",
+    "label": "Palestinian Elections Under Occupation",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-25-pijao-indigenous-cancer-incidence-colombia-health-records": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CANCER REGISTRY IS",
+        "body": "A cancer registry is a population-wide database that records every diagnosed case in a defined geography, with stage, histology, and outcome. Without one, incidence is estimated from hospital admissions — which only counts people who reach a hospital.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The gold standard is a **population-based registry** with active case-finding: registrars visit pathology labs, hospitals, and death records rather than waiting for cases to be reported. Passive registries miss 20–40% of cases."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LOW INCIDENCE IS USUALLY A LIE",
+        "body": "When a population shows cancer rates far below comparable groups, the first hypothesis is undercounting, not protection. People die of cancer without diagnosis, get coded as 'natural causes,' or never reach a facility that reports upward. The 20× gap with peer indigenous groups is the signature of a surveillance hole, not biological resilience."
+      },
+      {
+        "heading": "AGE ADJUSTMENT",
+        "body": "Raw incidence rates mislead when populations have different age structures. Indigenous populations skew young; cancer is a disease of accumulated cellular damage. Age-standardization recalculates rates against a reference population so a young Pijao cohort can be compared to an older European one without the demographic distortion swallowing the signal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do raw cancer incidence rates understate risk in young populations?",
+            "options": [
+              "Young people get less aggressive cancers",
+              "Cancer risk rises sharply with age, so younger populations show fewer cases regardless of underlying risk",
+              "Genetic factors make young populations more resistant",
+              "Diagnostic equipment works less well on younger patients"
+            ],
+            "correct": 1,
+            "explanation": "Cancer incidence roughly doubles every five years after age 50. A population with median age 22 will show low raw rates even if per-age-bracket risk matches a population with median age 45."
+          }
+        ]
+      },
+      {
+        "heading": "THE INDIGENOUS DATA GAP",
+        "body": "Across the Americas, indigenous health data is systematically thin. Identifying ethnicity in medical records is voluntary in most countries; many indigenous patients are recorded as mestizo or unmarked. The result is that the populations most exposed to environmental toxins and least served by health systems are also the least visible in epidemiology.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO",
+              "PE",
+              "EC",
+              "BR",
+              "BO",
+              "VE"
+            ],
+            "label": "Andean and Amazonian indigenous populations",
+            "caption": "Few of these countries maintain ethnicity-disaggregated cancer registries"
+          }
+        ]
+      },
+      {
+        "heading": "THE PIJAO",
+        "body": "The Pijao are an indigenous people of Colombia's Tolima department, in the central Andean valleys. Spanish chroniclers described them as one of the fiercest resistance forces against the conquest; modern Pijao communities number roughly 58,000 across reserves (resguardos) where land rights, health access, and political representation remain contested four centuries later."
+      },
+      {
+        "heading": "WHY A NATIONAL REGISTRY MATTERS",
+        "body": "Without disaggregated data, public health budgets cannot be targeted. A ministry seeing 'low' Pijao cancer rates allocates screening resources elsewhere — reinforcing the invisibility. The study's call for a national registry is upstream of treatment: you cannot fund a screening program for a disease the data says doesn't exist."
+      }
+    ],
+    "generatedAt": "2026-04-25T17:43:10.211Z",
+    "label": "Cancer Registries & Surveillance Bias",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-25-the-complexome-contextualizes-proteomics-data-to-fingerprint": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "FROM GENOME TO COMPLEXOME",
+        "body": "The genome lists genes; the proteome lists proteins; the complexome lists the assemblies — the multi-protein machines cells actually use to do work. Most cellular functions are performed by complexes of 2 to 80 proteins, not by lone molecules.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Roughly **80%** of human proteins function as part of a complex. A protein listed as 'present' in a proteomics readout may still be **non-functional** if its partners are missing — which is why proteomics alone misses disease."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MITOCHONDRIA",
+        "body": "Mitochondria run on five enzyme complexes (I–V) embedded in the inner membrane. They are the most stoichiometrically rigid machines in the cell — Complex I alone has 45 subunits that must assemble in order. A missing or misfolded subunit collapses the whole assembly, which is why mitochondrial disease is the natural first target for complexome diagnostics."
+      },
+      {
+        "heading": "THE STOICHIOMETRY PROBLEM",
+        "body": "A protein's abundance is meaningless in isolation. What matters is its ratio to its partners. Mass spectrometry gives raw abundances; the complexome framework normalizes those against expected ratios across healthy tissues, so a deviation reads as a disrupted assembly rather than noise.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't you diagnose a protein-complex disease from raw protein abundance alone?",
+            "options": [
+              "Mass spectrometers can't detect membrane proteins",
+              "Abundance only matters relative to a complex's other subunits",
+              "Proteins degrade too fast to measure accurately",
+              "Healthy and diseased cells have identical protein levels"
+            ],
+            "correct": 1,
+            "explanation": "A subunit at normal abundance is still pathological if its partners are missing — the complex, not the protein, is the functional unit."
+          }
+        ]
+      },
+      {
+        "heading": "THE REFERENCE ATLAS",
+        "body": "The framework leans on tissue-specific atlases — the Human Protein Atlas, GTEx, and complexome profiling databases built from blue-native gel electrophoresis. A heart and a liver express the same gene at very different levels; without a tissue baseline, every sample looks abnormal."
+      },
+      {
+        "heading": "THE OPEN-NOTEBOOK MODEL",
+        "body": "Releasing the tool as a Python notebook rather than a commercial platform follows a pattern set by Galaxy, Bioconductor, and AlphaFold — diagnostic-grade bioinformatics distributed as code, not a service. It collapses the gap between research labs and clinical genetics units that cannot afford bespoke software contracts."
+      }
+    ],
+    "generatedAt": "2026-04-25T17:43:32.864Z",
+    "label": "The Complexome",
+    "category": "science",
+    "articleCount": 1
   }
 }
