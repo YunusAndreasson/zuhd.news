@@ -39,27 +39,6 @@ const renderMetricRow = (metric, meta, value, rank, total) => {
     </li>`
 }
 
-/** Lightweight country inference from an article's lat/lng using d3-geo
- *  point-in-polygon. Re-uses the countries feature set already loaded by
- *  the OG renderer. */
-const buildLocationIndex = async () => {
-  const { topojsonNameFromCode } = await loadShared('countries/iso.ts')
-  const codeByName = {}
-  // Build inverse map by iterating 2-letter codes; iso.ts exports only
-  // the function, so we derive the table by asking for every 2-letter
-  // combination — not pretty, but the file is small and this is a build
-  // step.
-  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  for (let i = 0; i < letters.length; i++) {
-    for (let j = 0; j < letters.length; j++) {
-      const cc = letters[i] + letters[j]
-      const name = topojsonNameFromCode(cc)
-      if (name) codeByName[name] = cc
-    }
-  }
-  return { codeByName, topojsonNameFromCode }
-}
-
 /** Greedy point-in-country resolver using a naive bbox test against the
  *  topojson features. Fast enough for the few hundred datelined
  *  articles per build. Duplicates the logic in mobile's findCountry()
@@ -88,7 +67,7 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
     { COUNTRY_DATA },
     { COUNTRY_AUGMENTED },
     { METRICS, getMetricValue, getRanking, parseStat },
-    { topojsonNameFromCode },
+    { codeFromTopojsonName },
     { geoContains },
     { feature },
   ] = await Promise.all([
@@ -102,18 +81,6 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
 
   const topo = JSON.parse(readFileSync(join(ROOT, 'shared', 'data', 'countries-110m.json'), 'utf8'))
   const countries = feature(topo, topo.objects.countries)
-
-  // Inverse iso map: country name → ISO2. iso.ts doesn't export it, so we
-  // brute-force all alpha-2 combinations once.
-  const codeByName = {}
-  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-  for (let i = 0; i < letters.length; i++) {
-    for (let j = 0; j < letters.length; j++) {
-      const cc = letters[i] + letters[j]
-      const name = topojsonNameFromCode(cc)
-      if (name) codeByName[name] = cc
-    }
-  }
 
   // Map datelined articles to their containing country (best-effort).
   // Linking lat/lng → country lets country pages surface real coverage.
@@ -139,7 +106,7 @@ export const buildCountryPages = async ({ sorted, distDir, templatesDir, headCom
   const codes = []
   let emitted = 0
   for (const [name, data] of Object.entries(COUNTRY_DATA)) {
-    const iso2 = codeByName[name]
+    const iso2 = codeFromTopojsonName(name)
     if (!iso2) continue // country we can't route
 
     const aug = COUNTRY_AUGMENTED[name] || {}

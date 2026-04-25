@@ -191,6 +191,14 @@ export function topojsonNameFromCode(cc: string): string | undefined {
   return CC_TO_TOPOJSON_NAME[cc.toUpperCase()];
 }
 
+const TOPOJSON_NAME_TO_CC: Record<string, string> = Object.fromEntries(
+  Object.entries(CC_TO_TOPOJSON_NAME).map(([cc, name]) => [name, cc]),
+);
+
+export function codeFromTopojsonName(name: string): string | undefined {
+  return TOPOJSON_NAME_TO_CC[name];
+}
+
 /** Human-facing name (often matches topojson name, but some differ). For the
  *  zuhd feed we just reuse the topojson names — they read naturally enough.
  *  If we later want fully-proper names ("United States" vs "United States of

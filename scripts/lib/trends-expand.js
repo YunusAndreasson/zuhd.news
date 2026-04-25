@@ -59,6 +59,25 @@ ${lines.join('\n')}
 }
 
 /**
+ * Append a source label to the shared sources[] once and return its index.
+ * Idempotent across calls — the brief ends up with one citation per distinct
+ * source even when many blocks point to it.
+ */
+function rememberSource(label, sourceCtx) {
+  let idx = sourceCtx.sourceIndex.get(label)
+  if (idx == null) {
+    sourceCtx.sources.push(label)
+    idx = sourceCtx.sources.length - 1
+    sourceCtx.sourceIndex.set(label, idx)
+  }
+  return idx
+}
+
+function indicatorSourceLabel(indicator) {
+  return indicator.sourceLabel + (indicator.asOf ? ` · as of ${indicator.asOf}` : '')
+}
+
+/**
  * Expand an editor-emitted chart ref into a populated `trend` block (mobile's
  * ArticleBlock shape). Returns null if the ref is unknown or the indicator
  * has no values.
@@ -87,15 +106,7 @@ export function expandChartRef(chartBlock, snapshot, sourceCtx) {
     annotations.push({ atIndex: lastIdx, label: `${indicator.values[lastIdx]}%` })
   }
 
-  // Append sourceLabel to shared sources[] once; reuse index on subsequent
-  // blocks that cite the same source.
-  const label = indicator.sourceLabel + (indicator.asOf ? ` · as of ${indicator.asOf}` : '')
-  let idx = sourceCtx.sourceIndex.get(label)
-  if (idx == null) {
-    sourceCtx.sources.push(label)
-    idx = sourceCtx.sources.length - 1
-    sourceCtx.sourceIndex.set(label, idx)
-  }
+  const idx = rememberSource(indicatorSourceLabel(indicator), sourceCtx)
 
   return {
     type: 'trend',
@@ -108,6 +119,60 @@ export function expandChartRef(chartBlock, snapshot, sourceCtx) {
     ...(indicator.marketUrl ? { link: indicator.marketUrl } : {}),
     source: idx,
   }
+}
+
+/**
+ * Expand a multi-chart ref (`{type:'multi-chart', refs:['brent','wti'], label?}`)
+ * into a single `trend` block carrying a `series` array. Each series mirrors
+ * one indicator. The block uses the FIRST indicator's `periods` and `unit` —
+ * series with mismatched periods get truncated to the common length. The
+ * generator's responsibility is to pick refs whose periods align (e.g. two
+ * daily commodities); refs with disjoint periods will silently render as
+ * truncated series. Returns null if fewer than 2 valid indicators resolve.
+ *
+ * @param {{type:'multi-chart',refs:string[],label?:string}} block
+ * @param {object} snapshot
+ * @param {{sourceIndex: Map<string,number>, sources: string[]}} sourceCtx
+ * @returns {object | null}
+ */
+export function expandMultiChartRef(block, snapshot, sourceCtx) {
+  if (!block || block.type !== 'multi-chart' || !Array.isArray(block.refs)) return null
+  const indicators = block.refs
+    .map((ref) => snapshot?.indicators?.find((i) => i.id === ref))
+    .filter((i) => i && Array.isArray(i.values) && i.values.length >= 2)
+  if (indicators.length < 2) return null
+
+  // Common length = the shortest of the resolved series' values arrays.
+  // Each series gets right-trimmed to that length (so the most recent N
+  // points align across series — typical use is "last 60 days of two
+  // commodities").
+  const commonLen = Math.min(...indicators.map((i) => i.values.length))
+  const periods = indicators[0].periods?.slice(-commonLen)
+  const unit = indicators[0].unit
+  const series = indicators.map((i) => ({
+    values: i.values.slice(-commonLen),
+    label: i.label,
+    highlight: i.defaultHighlight || 'last',
+  }))
+  // Source index — append every distinct source label once, but the trend
+  // block carries only the first source on its `source` field; the on-canvas
+  // stamp covers the most prominent series and the brief's sources[] still
+  // lists all of them for the reader who taps through.
+  const firstIdx = rememberSource(indicatorSourceLabel(indicators[0]), sourceCtx)
+  for (let i = 1; i < indicators.length; i++) {
+    rememberSource(indicatorSourceLabel(indicators[i]), sourceCtx)
+  }
+
+  const label = block.label || indicators.map((i) => i.label).join(' vs ')
+  const out = {
+    type: 'trend',
+    series,
+    label,
+    source: firstIdx,
+  }
+  if (unit) out.unit = unit
+  if (periods && periods.length === commonLen) out.periods = periods
+  return out
 }
 
 /**
@@ -167,6 +232,24 @@ export function buildTimelineWithCharts(entries, snapshot, warn = () => {}) {
             const reason = 'unknown or empty chart ref'
             dropped.push({ type: 'chart', heading, reason, ref: b.ref })
             warn(`dropping unknown/empty chart ref '${b.ref}'`)
+          }
+          continue
+        }
+        if (b.type === 'multi-chart') {
+          if (!snapshot) {
+            const reason = 'no trends snapshot loaded'
+            dropped.push({ type: 'multi-chart', heading, reason })
+            warn(`dropping multi-chart refs ${JSON.stringify(b.refs)} — ${reason}`)
+            continue
+          }
+          const trend = expandMultiChartRef(b, snapshot, sourceCtx)
+          if (trend) {
+            expanded.push(trend)
+            picked.push({ id: (b.refs || []).join('+'), heading })
+          } else {
+            const reason = 'fewer than 2 valid refs resolved'
+            dropped.push({ type: 'multi-chart', heading, reason })
+            warn(`dropping multi-chart refs ${JSON.stringify(b.refs)} — ${reason}`)
           }
           continue
         }

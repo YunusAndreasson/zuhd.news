@@ -1,4 +1,8 @@
+import type { TrendAnnotation, TrendBand, TrendHighlight, TrendSeries } from '@shared/types';
 import { Canvas, Circle, Line, Path, Skia, type SkPath, vec } from '@shopify/react-native-skia';
+import { extent } from 'd3-array';
+import { scaleLinear, scaleLog, scaleTime } from 'd3-scale';
+import { curveMonotoneX, area as d3Area, line as d3Line } from 'd3-shape';
 import { memo, useEffect, useMemo, useState } from 'react';
 import { Dimensions, StyleSheet, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -12,17 +16,15 @@ import {
   withTiming,
 } from 'react-native-reanimated';
 import { ANIMATION, EASING, SPACING } from '../../constants/theme';
-
-const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
-
-import type { ArticleBlock, TrendAnnotation } from '@shared/types';
 import { useTheme } from '../../hooks/useTheme';
+import { formatTickLabel } from '../../lib/date-format';
 import { hapticTick } from '../../lib/haptics';
 import { Pressable, Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
 import type { BlockVariant } from './shared';
 
-type TrendHighlight = Extract<ArticleBlock, { type: 'trend' }>['highlight'];
+const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
+
 type Pt = { x: number; y: number };
 
 const CHART_HEIGHT = { article: 180, context: 148 } as const;
@@ -36,11 +38,14 @@ const CHART_TOP_PAD = LABEL_ROW_HEIGHT + 10;
 const CHART_BOTTOM_PAD = 14;
 const CHART_RIGHT_PAD = 44;
 const CHART_LEFT_PAD = 2;
+const MAX_SERIES = 3;
+const SCRUB_LABEL_W_SINGLE = 96;
+const SCRUB_LABEL_W_MULTI = 132;
+const SCRUB_VALUE_LINE_H = 16;
+const SCRUB_PERIOD_LINE_H = 14;
+const TIME_TICK_COUNT = 4;
 
-const SCRUB_LABEL_W = 96;
-const SCRUB_LABEL_H = 30;
-
-function resolveHighlightIndex(values: number[], mode: TrendHighlight): number {
+function resolveHighlightIndex(values: number[], mode: TrendHighlight | undefined): number {
   if (values.length === 0) return -1;
   switch (mode) {
     case 'first':
@@ -65,38 +70,31 @@ function formatNumber(n: number, unit?: string): string {
   return unit ? `${s}${unit.length === 1 || unit === '%' ? '' : ' '}${unit}` : s;
 }
 
-function buildPolyline(points: Pt[]): SkPath {
-  const path = Skia.Path.Make();
-  const first = points[0];
-  if (!first) return path;
-  path.moveTo(first.x, first.y);
-  for (let i = 1; i < points.length; i++) {
-    const p = points[i];
-    if (p) path.lineTo(p.x, p.y);
+/** Try to interpret each period string as a date. Returns aligned Date array
+ *  if every period parses; otherwise null (caller falls back to index scale).
+ *  Accepts ISO ("2026-04-13"), year ("1979"), and year-month ("2026-04"). */
+function parsePeriodsAsDates(periods: string[] | undefined): Date[] | null {
+  if (!periods || periods.length === 0) return null;
+  const out: Date[] = [];
+  for (const p of periods) {
+    if (/^\d{4}$/.test(p)) {
+      out.push(new Date(`${p}-01-01T00:00:00Z`));
+      continue;
+    }
+    if (/^\d{4}-\d{2}$/.test(p)) {
+      out.push(new Date(`${p}-01T00:00:00Z`));
+      continue;
+    }
+    const d = new Date(p);
+    if (Number.isNaN(d.getTime())) return null;
+    out.push(d);
   }
-  return path;
-}
-
-function buildLinearArea(points: Pt[], baseY: number): SkPath {
-  const area = Skia.Path.Make();
-  if (points.length < 2) return area;
-  const first = points[0];
-  const last = points[points.length - 1];
-  if (!first || !last) return area;
-  area.moveTo(first.x, first.y);
-  for (let i = 1; i < points.length; i++) {
-    const p = points[i];
-    if (p) area.lineTo(p.x, p.y);
-  }
-  area.lineTo(last.x, baseY);
-  area.lineTo(first.x, baseY);
-  area.close();
-  return area;
+  return out;
 }
 
 interface ChartProps {
-  values: number[];
-  points: Pt[];
+  series: TrendSeries[];
+  band?: TrendBand;
   width: number;
   height: number;
   defaultHighlightIdx: number;
@@ -104,11 +102,12 @@ interface ChartProps {
   scrubIdx: SharedValue<number>;
   colors: ReturnType<typeof useTheme>['colors'];
   annotations?: TrendAnnotation[];
+  scale: 'linear' | 'log';
 }
 
 function Chart({
-  values,
-  points,
+  series,
+  band,
   width,
   height,
   defaultHighlightIdx,
@@ -116,22 +115,74 @@ function Chart({
   scrubIdx,
   colors,
   annotations,
+  scale,
 }: ChartProps) {
-  const { polyPath, areaPath, minY, maxY } = useMemo(() => {
-    const min = Math.min(...values);
-    const max = Math.max(...values);
-    const range = max - min || 1;
+  const { seriesPaths, bandPath, points, minY, maxY } = useMemo(() => {
+    const flat: number[] = [];
+    for (const s of series) flat.push(...s.values);
+    if (band) {
+      flat.push(...band.low, ...band.high);
+    }
+    const [eMin, eMax] = extent(flat) as [number, number];
+    const safeMin = eMin ?? 0;
+    const safeMax = eMax ?? 1;
     const innerTop = CHART_TOP_PAD;
     const innerBottom = height - CHART_BOTTOM_PAD;
-    const innerH = innerBottom - innerTop;
-    const yFor = (v: number) => innerTop + (1 - (v - min) / range) * innerH;
+    const yDomain: [number, number] =
+      scale === 'log' && safeMin > 0
+        ? [safeMin, safeMax === safeMin ? safeMin * 10 : safeMax]
+        : [safeMin, safeMax === safeMin ? safeMin + 1 : safeMax];
+    const yScale =
+      scale === 'log' && yDomain[0] > 0
+        ? scaleLog().domain(yDomain).range([innerBottom, innerTop])
+        : scaleLinear().domain(yDomain).range([innerBottom, innerTop]);
+
+    const innerLeft = CHART_LEFT_PAD;
+    const innerRight = width - CHART_RIGHT_PAD;
+    const longest = series.reduce((m, s) => Math.max(m, s.values.length), 0);
+    const xFor = (i: number) =>
+      longest <= 1 ? innerLeft : innerLeft + (i / (longest - 1)) * (innerRight - innerLeft);
+
+    const lineGen = d3Line<{ x: number; y: number }>()
+      .x((d) => d.x)
+      .y((d) => d.y)
+      .curve(curveMonotoneX);
+
+    const seriesPaths: { path: SkPath; color: string }[] = series.map((s, sIdx) => {
+      const pts = s.values.map((v, i) => ({ x: xFor(i), y: yScale(v) }));
+      const d = lineGen(pts) ?? '';
+      const path = Skia.Path.MakeFromSVGString(d) ?? Skia.Path.Make();
+      const color =
+        sIdx === 0 ? colors.textEmphasis : sIdx === 1 ? colors.accent : colors.textSecondary;
+      return { path, color };
+    });
+
+    let bandPath: SkPath | null = null;
+    if (band) {
+      const areaGen = d3Area<{ idx: number; lo: number; hi: number }>()
+        .x((d) => xFor(d.idx))
+        .y0((d) => yScale(d.lo))
+        .y1((d) => yScale(d.hi))
+        .curve(curveMonotoneX);
+      const bandPts = band.low.map((lo, i) => ({ idx: i, lo, hi: band.high[i] ?? lo }));
+      const d = areaGen(bandPts) ?? '';
+      bandPath = Skia.Path.MakeFromSVGString(d) ?? Skia.Path.Make();
+    }
+
+    // Use the FIRST series for scrub dots / data ticks; multi-series scrub
+    // shows all readouts in the readout label, but the crosshair anchors on
+    // the primary series so the highlight dot lands somewhere meaningful.
+    const primary = series[0];
+    const points = (primary?.values ?? []).map((v, i) => ({ x: xFor(i), y: yScale(v) }));
+
     return {
-      polyPath: buildPolyline(points),
-      areaPath: buildLinearArea(points, innerBottom),
-      minY: yFor(min),
-      maxY: yFor(max),
+      seriesPaths,
+      bandPath,
+      points,
+      minY: yScale(safeMin),
+      maxY: yScale(safeMax),
     };
-  }, [values, points, height]);
+  }, [series, band, width, height, scale, colors]);
 
   const chartRightX = width - CHART_RIGHT_PAD;
 
@@ -160,14 +211,16 @@ function Chart({
 
   return (
     <Canvas style={{ width, height }}>
-      <Path
-        path={areaPath}
-        color={colors.textEmphasis}
-        opacity={0.1}
-        style="fill"
-        start={0}
-        end={progress}
-      />
+      {bandPath ? (
+        <Path
+          path={bandPath}
+          color={colors.textEmphasis}
+          opacity={0.07}
+          style="fill"
+          start={0}
+          end={progress}
+        />
+      ) : null}
       <Line
         p1={vec(CHART_LEFT_PAD, maxY)}
         p2={vec(chartRightX, maxY)}
@@ -182,16 +235,19 @@ function Chart({
         opacity={0.35}
         strokeWidth={StyleSheet.hairlineWidth}
       />
-      <Path
-        path={polyPath}
-        style="stroke"
-        strokeWidth={STROKE_WIDTH}
-        strokeJoin="round"
-        strokeCap="round"
-        color={colors.textEmphasis}
-        start={0}
-        end={progress}
-      />
+      {seriesPaths.map((sp, i) => (
+        <Path
+          key={`series-${i}`}
+          path={sp.path}
+          style="stroke"
+          strokeWidth={STROKE_WIDTH}
+          strokeJoin="round"
+          strokeCap="round"
+          color={sp.color}
+          start={0}
+          end={progress}
+        />
+      ))}
       <Line
         p1={crosshairP1}
         p2={crosshairP2}
@@ -230,12 +286,15 @@ function Chart({
 }
 
 interface TrendBlockProps {
-  values: number[];
+  values?: number[];
+  series?: TrendSeries[];
   label: string;
   unit?: string;
   periods?: string[];
   highlight?: TrendHighlight;
   annotations?: TrendAnnotation[];
+  scale?: 'linear' | 'log';
+  band?: TrendBand;
   variant?: BlockVariant;
   onPress?: () => void;
   sourceLabel?: string;
@@ -243,11 +302,14 @@ interface TrendBlockProps {
 
 export const TrendBlock = memo(function TrendBlock({
   values,
+  series,
   label,
   unit,
   periods,
   highlight,
   annotations,
+  scale = 'linear',
+  band,
   variant = 'article',
   onPress,
   sourceLabel,
@@ -257,12 +319,35 @@ export const TrendBlock = memo(function TrendBlock({
   const isContext = variant === 'context';
   const height = isContext ? CHART_HEIGHT.context : CHART_HEIGHT.article;
 
+  // Normalize to an array of series. If `series` is provided, use it (capped
+  // at MAX_SERIES). Otherwise wrap `values` in a single-series array. Empty
+  // result is handled below by short-circuiting the render.
+  const normalizedSeries: TrendSeries[] = useMemo(() => {
+    if (series && series.length > 0) {
+      return series.slice(0, MAX_SERIES);
+    }
+    if (values && values.length > 0) {
+      return [{ values, label, highlight }];
+    }
+    return [];
+  }, [series, values, label, highlight]);
+
+  const primary = normalizedSeries[0];
+  const primaryValues = primary?.values ?? [];
+  const primaryHighlight = primary?.highlight ?? highlight;
+
   const defaultHighlightIdx = useMemo(
-    () => resolveHighlightIndex(values, highlight),
-    [values, highlight],
+    () => resolveHighlightIndex(primaryValues, primaryHighlight),
+    [primaryValues, primaryHighlight],
   );
-  const min = useMemo(() => Math.min(...values), [values]);
-  const max = useMemo(() => Math.max(...values), [values]);
+  const flatExtent = useMemo(() => {
+    const flat: number[] = [];
+    for (const s of normalizedSeries) flat.push(...s.values);
+    if (band) flat.push(...band.low, ...band.high);
+    return extent(flat) as [number, number];
+  }, [normalizedSeries, band]);
+  const min = flatExtent[0] ?? 0;
+  const max = flatExtent[1] ?? 0;
 
   const progress = useSharedValue(reduceMotion ? 1 : 0);
   useEffect(() => {
@@ -272,20 +357,27 @@ export const TrendBlock = memo(function TrendBlock({
 
   const [width, setWidth] = useState(INITIAL_WIDTH_ESTIMATE);
 
+  // Compute primary-series points for hit testing (scrub).
   const points: Pt[] = useMemo(() => {
-    if (width <= 0) return [];
-    const minV = Math.min(...values);
-    const maxV = Math.max(...values);
-    const range = maxV - minV || 1;
-    const innerW = width - CHART_LEFT_PAD - CHART_RIGHT_PAD;
+    if (width <= 0 || primaryValues.length === 0) return [];
     const innerTop = CHART_TOP_PAD;
     const innerBottom = height - CHART_BOTTOM_PAD;
-    const innerH = innerBottom - innerTop;
-    return values.map((v, i) => ({
-      x: CHART_LEFT_PAD + (i / (values.length - 1)) * innerW,
-      y: innerTop + (1 - (v - minV) / range) * innerH,
+    const innerLeft = CHART_LEFT_PAD;
+    const innerRight = width - CHART_RIGHT_PAD;
+    const yDomain: [number, number] =
+      scale === 'log' && min > 0
+        ? [min, max === min ? min * 10 : max]
+        : [min, max === min ? min + 1 : max];
+    const yScale =
+      scale === 'log' && yDomain[0] > 0
+        ? scaleLog().domain(yDomain).range([innerBottom, innerTop])
+        : scaleLinear().domain(yDomain).range([innerBottom, innerTop]);
+    const longest = normalizedSeries.reduce((m, s) => Math.max(m, s.values.length), 0);
+    return primaryValues.map((v, i) => ({
+      x: longest <= 1 ? innerLeft : innerLeft + (i / (longest - 1)) * (innerRight - innerLeft),
+      y: yScale(v),
     }));
-  }, [values, width, height]);
+  }, [primaryValues, normalizedSeries, width, height, scale, min, max]);
 
   const scrubIdx = useSharedValue(-1);
   const [scrubIdxJs, setScrubIdxJs] = useState<number>(-1);
@@ -299,21 +391,51 @@ export const TrendBlock = memo(function TrendBlock({
     },
   );
 
+  // Time-axis ticks: parse periods as dates, use d3-scale-time to pick nice
+  // tick positions, format with d3-scale's auto-formatter.
+  const timeTicks = useMemo(() => {
+    const dates = parsePeriodsAsDates(periods);
+    if (!dates || dates.length < 2 || width <= 0) return null;
+    const innerLeft = CHART_LEFT_PAD;
+    const innerRight = width - CHART_RIGHT_PAD;
+    const xScale = scaleTime()
+      .domain([dates[0] as Date, dates[dates.length - 1] as Date])
+      .range([innerLeft, innerRight]);
+    const ticks = xScale.ticks(TIME_TICK_COUNT);
+    return ticks.map((d) => ({ x: xScale(d), label: formatTickLabel(d, ticks) }));
+  }, [periods, width]);
+
   const scrubInfo = (() => {
     if (scrubIdxJs < 0) return null;
-    const v = values[scrubIdxJs];
+    const v = primaryValues[scrubIdxJs];
     if (v === undefined) return null;
+    // Multi-series readout: stack labels in the value field if more than one.
+    const lines =
+      normalizedSeries.length > 1
+        ? normalizedSeries
+            .map((s) => {
+              const sv = s.values[scrubIdxJs];
+              if (sv === undefined) return null;
+              return `${s.label}: ${formatNumber(sv, unit)}`;
+            })
+            .filter((l): l is string => l !== null)
+            .join('\n')
+        : formatNumber(v, unit);
     return {
       idx: scrubIdxJs,
-      value: formatNumber(v, unit),
+      value: lines,
       period: periods?.[scrubIdxJs] ?? '',
     };
   })();
 
+  // Scrub box dimensions scale with series count — single series fits a tight
+  // 96×30 popover, but multi-series stacks one value line per series and
+  // would clip without a taller box. Width also widens slightly so each
+  // "Series: value" line stays on one line.
+  const scrubW = normalizedSeries.length > 1 ? SCRUB_LABEL_W_MULTI : SCRUB_LABEL_W_SINGLE;
+  const scrubH = SCRUB_PERIOD_LINE_H + SCRUB_VALUE_LINE_H * Math.max(1, normalizedSeries.length);
   const scrubPt = scrubInfo ? points[scrubInfo.idx] : null;
-  const scrubLeft = scrubPt
-    ? Math.max(0, Math.min(width - SCRUB_LABEL_W, scrubPt.x - SCRUB_LABEL_W / 2))
-    : 0;
+  const scrubLeft = scrubPt ? Math.max(0, Math.min(width - scrubW, scrubPt.x - scrubW / 2)) : 0;
 
   const pan = useMemo(() => {
     const pointsX = points.map((p) => p.x);
@@ -357,18 +479,43 @@ export const TrendBlock = memo(function TrendBlock({
   const firstPeriod = periods?.[0];
   const lastPeriod = periods?.[periods.length - 1];
 
-  const highlightValue = values[defaultHighlightIdx];
+  const highlightValue = primaryValues[defaultHighlightIdx];
   const highlightPeriod = periods?.[defaultHighlightIdx];
   const a11yLabel =
     highlightValue !== undefined
       ? `${label}, ${formatNumber(highlightValue, unit)}${highlightPeriod ? ` in ${highlightPeriod}` : ''}, range ${formatNumber(min, unit)} to ${formatNumber(max, unit)}`
       : label;
 
+  if (normalizedSeries.length === 0) return null;
+
+  // Multi-series legend rendered above the chart, below the label. Keeps
+  // the inline color → series mapping discoverable without an axis legend.
+  const legend =
+    normalizedSeries.length > 1
+      ? normalizedSeries.map((s, i) => ({
+          label: s.label,
+          color: i === 0 ? colors.textEmphasis : i === 1 ? colors.accent : colors.textSecondary,
+        }))
+      : null;
+
   const inner = (
     <View style={styles.container}>
       <Text variant="labelXs" numberOfLines={2} style={styles.label}>
         {label}
       </Text>
+
+      {legend ? (
+        <View style={styles.legendRow}>
+          {legend.map((l, i) => (
+            <View key={`${l.label}-${i}`} style={styles.legendItem}>
+              <View style={[styles.legendSwatch, { backgroundColor: l.color }]} />
+              <Text variant="labelXs" tone="secondary" numberOfLines={1}>
+                {l.label}
+              </Text>
+            </View>
+          ))}
+        </View>
+      ) : null}
 
       <GestureDetector gesture={pan}>
         <View
@@ -378,8 +525,8 @@ export const TrendBlock = memo(function TrendBlock({
           {width > 0 ? (
             <>
               <Chart
-                values={values}
-                points={points}
+                series={normalizedSeries}
+                band={band}
                 width={width}
                 height={height}
                 defaultHighlightIdx={defaultHighlightIdx}
@@ -387,6 +534,7 @@ export const TrendBlock = memo(function TrendBlock({
                 scrubIdx={scrubIdx}
                 colors={colors}
                 annotations={annotations}
+                scale={scale}
               />
               {annotations?.map((a, i) => {
                 const pt = points[a.atIndex];
@@ -416,18 +564,15 @@ export const TrendBlock = memo(function TrendBlock({
               {scrubInfo ? (
                 <View
                   pointerEvents="none"
-                  style={[
-                    styles.scrubLabel,
-                    { left: scrubLeft, width: SCRUB_LABEL_W, height: SCRUB_LABEL_H },
-                  ]}
+                  style={[styles.scrubLabel, { left: scrubLeft, width: scrubW, height: scrubH }]}
                 >
-                  {/* Scrub readout value: regular + sizeSm + oldstyle+tabular nums
-                      + emphasis color. No exact variant — caption (regular + sizeSm
-                      + secondary) + tone="emphasis" + fontVariant override. */}
+                  {/* Scrub readout: regular + sizeSm + oldstyle+tabular nums
+                      + emphasis color. No exact variant — caption (regular +
+                      sizeSm + secondary) + tone="emphasis" + fontVariant. */}
                   <Text
                     variant="caption"
                     tone="emphasis"
-                    numberOfLines={1}
+                    numberOfLines={normalizedSeries.length}
                     style={styles.scrubValue}
                   >
                     {scrubInfo.value}
@@ -453,10 +598,27 @@ export const TrendBlock = memo(function TrendBlock({
         </View>
       </GestureDetector>
 
-      {firstPeriod || lastPeriod ? (
+      {timeTicks ? (
+        <View style={styles.timeAxisRow}>
+          {timeTicks.map((t, i) => (
+            <Text
+              key={`tick-${i}`}
+              variant="labelXs"
+              tone="secondary"
+              style={[
+                styles.timeAxisTick,
+                {
+                  left: Math.max(0, Math.min(width - 60, t.x - 30)),
+                },
+                font.regular,
+              ]}
+            >
+              {t.label}
+            </Text>
+          ))}
+        </View>
+      ) : firstPeriod || lastPeriod ? (
         <View style={styles.xAxisRow}>
-          {/* X-axis: regular + sizeXs + trackingCaps + secondary. Borrow labelXs
-              size/color/tracking; override family to regular via font.regular. */}
           <Text variant="labelXs" style={[styles.xAxisLabel, font.regular]}>
             {firstPeriod ? firstPeriod.toUpperCase() : ''}
           </Text>
@@ -465,6 +627,7 @@ export const TrendBlock = memo(function TrendBlock({
           </Text>
         </View>
       ) : null}
+
       {sourceLabel ? <SourceCaption label={sourceLabel} /> : null}
     </View>
   );
@@ -494,6 +657,22 @@ const styles = StyleSheet.create({
   },
   label: {
     marginBottom: SPACING.sm,
+  },
+  legendRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: SPACING.sm,
+    marginBottom: SPACING.xs,
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.xxs,
+  },
+  legendSwatch: {
+    width: 10,
+    height: 2,
+    borderRadius: 1,
   },
   chartWrap: {
     position: 'relative',
@@ -547,5 +726,15 @@ const styles = StyleSheet.create({
   },
   xAxisLabelEnd: {
     textAlign: 'right',
+  },
+  timeAxisRow: {
+    position: 'relative',
+    height: LABEL_ROW_HEIGHT,
+    marginTop: SPACING.xs,
+  },
+  timeAxisTick: {
+    position: 'absolute',
+    width: 60,
+    textAlign: 'center',
   },
 });

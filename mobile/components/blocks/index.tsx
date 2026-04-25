@@ -7,7 +7,11 @@ import { LocationsBlock } from './LocationsBlock';
 import { ProseBlock } from './ProseBlock';
 import { QuizBlock } from './QuizBlock';
 import { QuoteBlock } from './QuoteBlock';
+import { RankBlock } from './RankBlock';
+import { SankeyBlock } from './SankeyBlock';
 import type { BlockVariant } from './shared';
+import { TimelineBlock } from './TimelineBlock';
+import { TreemapBlock } from './TreemapBlock';
 import { TrendBlock } from './TrendBlock';
 
 // Re-export so existing `components/blocks` consumers still get BlockVariant
@@ -81,11 +85,14 @@ export function renderBlocks(blocks: ArticleBlock[], opts: RenderBlocksOptions):
           <TrendBlock
             key={key}
             values={block.values}
+            series={block.series}
             label={block.label}
             unit={block.unit}
             periods={block.periods}
             highlight={block.highlight}
             annotations={block.annotations}
+            scale={block.scale}
+            band={block.band}
             variant={variant}
             sourceLabel={sourceLabel}
             onPress={block.link ? () => opts.openLink(block.link as string) : undefined}
@@ -98,9 +105,56 @@ export function renderBlocks(blocks: ArticleBlock[], opts: RenderBlocksOptions):
             codes={block.codes}
             label={block.label}
             caption={block.caption}
+            markers={block.markers}
+            values={block.values}
+            valueLabel={block.valueLabel}
             variant={variant}
             sourceLabel={sourceLabel}
             onCountryPress={opts.onCountryPress}
+          />
+        );
+      case 'timeline':
+        return (
+          <TimelineBlock
+            key={key}
+            events={block.events}
+            spans={block.spans}
+            label={block.label}
+            variant={variant}
+            sourceLabel={sourceLabel}
+          />
+        );
+      case 'rank':
+        return (
+          <RankBlock
+            key={key}
+            metric={block.metric}
+            unit={block.unit}
+            subjectCc={block.subjectCc}
+            peers={block.peers}
+            variant={variant}
+            sourceLabel={sourceLabel}
+          />
+        );
+      case 'sankey':
+        return (
+          <SankeyBlock
+            key={key}
+            nodes={block.nodes}
+            links={block.links}
+            label={block.label}
+            variant={variant}
+            sourceLabel={sourceLabel}
+          />
+        );
+      case 'treemap':
+        return (
+          <TreemapBlock
+            key={key}
+            items={block.items}
+            label={block.label}
+            variant={variant}
+            sourceLabel={sourceLabel}
           />
         );
       case 'quote':

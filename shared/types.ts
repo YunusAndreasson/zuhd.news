@@ -22,6 +22,11 @@ export interface CompareRow {
   /** Magnitude for rendering a proportional fill behind the row. When present
    *  across rows, the block renders as a light bar chart (max-scaled). */
   weight?: number;
+  /** Composition segments — when present, the row renders as a stacked
+   *  horizontal bar of colored cells in place of the single pill. Magnitudes
+   *  scale within the row width. Use for "energy mix", "GDP by sector",
+   *  "vote share by party". Single-segment rows render as today. */
+  segments?: { value: number; tone?: BlockTone; label?: string }[];
 }
 
 /** A single event marker on a trend chart — vertical hairline + small-caps
@@ -29,6 +34,28 @@ export interface CompareRow {
 export interface TrendAnnotation {
   atIndex: number;
   label: string;
+}
+
+export type TrendHighlight = 'last' | 'first' | 'max' | 'min';
+
+/** One named series on a multi-series trend chart. Each carries its own values
+ *  array (must match the parent block's `periods.length` when periods are set)
+ *  and an inline-legend label. Up to 3 series — beyond that the chart reads
+ *  as noise on a 360px viewport. */
+export interface TrendSeries {
+  values: number[];
+  label: string;
+  highlight?: TrendHighlight;
+}
+
+/** Translucent envelope drawn behind the main series — typically a long-run
+ *  min/max range that lets the reader see whether the latest point is
+ *  historically extreme. `low.length` and `high.length` must match the block's
+ *  `values.length` (or each `series.values.length` for the multi case). */
+export interface TrendBand {
+  low: number[];
+  high: number[];
+  label?: string;
 }
 
 export interface Actor {
@@ -51,20 +78,45 @@ export type ArticleBlock =
   | ({ type: 'compare'; rows: CompareRow[]; label?: string } & BlockSourceRef)
   | ({
       type: 'trend';
-      values: number[];
+      /** Single-series payload. Mutually exclusive with `series`. */
+      values?: number[];
+      /** Multi-series payload (up to 3). When present, takes precedence over
+       *  `values` and the renderer draws one path per series with a small
+       *  inline legend. */
+      series?: TrendSeries[];
       label: string;
       unit?: string;
-      /** Labels per point (e.g. years) — first and last are rendered as axis
-       *  anchors, others are used in accessibility text. */
+      /** Labels per point (e.g. years) — render as the time-axis tick set.
+       *  When present and parseable as dates, a real time scale is used; when
+       *  not, ticks fall back to first/last anchors. */
       periods?: string[];
-      highlight?: 'last' | 'first' | 'max' | 'min';
-      /** Event markers pinned to specific data points. */
+      highlight?: TrendHighlight;
+      /** Event markers pinned to specific data points. Single-series only. */
       annotations?: TrendAnnotation[];
+      /** Y-axis scale. `log` unlocks ranges where linear is unreadable
+       *  (GDP-per-capita-style series). All values must be > 0 for log. */
+      scale?: 'linear' | 'log';
+      /** Translucent historical envelope drawn behind the main series. */
+      band?: TrendBand;
       /** External URL the chart links to (e.g. Polymarket event). The renderer
        *  wires this to onPress so curious readers can verify the source. */
       link?: string;
     } & BlockSourceRef)
-  | ({ type: 'locations'; codes: string[]; label?: string; caption?: string } & BlockSourceRef)
+  | ({
+      type: 'locations';
+      codes: string[];
+      label?: string;
+      caption?: string;
+      /** Optional named site markers (port, plant, base, accident site). The
+       *  renderer drops a small dot + label at the projected lat/lng. */
+      markers?: { lat: number; lng: number; label: string }[];
+      /** Optional choropleth payload — when present, country fill is driven
+       *  by a sequential color scale over `value` instead of the binary
+       *  highlight. `cc` keys must be a subset of `codes`. */
+      values?: { cc: string; value: number }[];
+      /** Caption for the choropleth scale (e.g. "refugees per capita"). */
+      valueLabel?: string;
+    } & BlockSourceRef)
   /** Period quote — editorial texture. Renders as italic body with attribution.
    *  `speaker` names who said it; `source` (here a number, not a string) is an
    *  index into `ContextBrief.sources` for the citation caption. */
@@ -81,6 +133,42 @@ export type ArticleBlock =
       options: string[];
       correct: number;
       explanation?: string;
+    } & BlockSourceRef)
+  /** Gantt-style event arc on a horizontal time axis. `events` are point
+   *  ticks; `spans` are translucent ranges (e.g. "Soviet occupation 1979–89").
+   *  Use for treaty → collapse → re-emergence stories. */
+  | ({
+      type: 'timeline';
+      events?: { year: string; label: string; emphasis?: 'start' | 'end' | 'pivot' }[];
+      spans?: { from: string; to: string; label: string; tone?: BlockTone }[];
+      label?: string;
+    } & BlockSourceRef)
+  /** Peer-position dot-on-strip — locates a subject country among peers on a
+   *  single metric. Renders as a horizontal scale with grey peer dots and an
+   *  accent dot for `subjectCc`. */
+  | ({
+      type: 'rank';
+      metric: string;
+      unit?: string;
+      subjectCc: string;
+      peers: { cc: string; value: number }[];
+    } & BlockSourceRef)
+  /** Sankey flow diagram — for cascades and pipelines (circular debt, energy
+   *  flows, refugee origins → hosts). Layout via d3-sankey, rendered with
+   *  Skia rectangles + Bezier ribbons. Cap 5 nodes per side, 10 links. */
+  | ({
+      type: 'sankey';
+      nodes: { id: string; label: string }[];
+      links: { source: string; target: string; value: number; label?: string }[];
+      label?: string;
+    } & BlockSourceRef)
+  /** Composition-at-a-glance — d3-hierarchy treemap of value-weighted items.
+   *  Use for budget breakdowns, GDP by sector, casualty categories. Cap 10
+   *  items so labels stay legible at 360px. */
+  | ({
+      type: 'treemap';
+      items: { label: string; value: number; tone?: BlockTone }[];
+      label?: string;
     } & BlockSourceRef);
 
 export type BlockType = ArticleBlock['type'];
