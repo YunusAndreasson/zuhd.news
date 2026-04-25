@@ -54774,5 +54774,993 @@
     "label": "Extrajudicial Strikes & War Powers",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-23-community-votes-to-deny-water-to-nuclear-weapons-data-center": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY DATA CENTERS DRINK",
+        "body": "Servers generate heat proportional to power draw. Evaporative cooling — spraying water across coils so it evaporates and carries heat away — is cheaper and more efficient than mechanical chillers. The water is consumed, not recirculated: it leaves as vapor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A typical hyperscale facility consumes **1–5 million gallons per day**. The Los Alamos proposal at 500,000 gal/day is mid-sized — but concentrated in a high-desert basin with no surface water to spare."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOS ALAMOS CONTEXT",
+        "body": "Los Alamos National Laboratory designed the Trinity device and every US nuclear warhead since. It sits on the Pajarito Plateau in northern New Mexico, a semi-arid mesa where water rights have been litigated since the 1908 Winters doctrine established tribal seniority over later federal claims.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "northern New Mexico — Rio Grande basin"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL LEVER",
+        "body": "Under most US state law, municipal utility boards control water allocation within their service territory regardless of the customer's federal status. A township moratorium is not symbolic — without an approved tap, even a national-security facility cannot draw a gallon legally.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who has legal authority to deny water service to a federal nuclear facility within their boundaries?",
+            "options": [
+              "Only the Department of Energy",
+              "The local utility board",
+              "The state governor",
+              "Only a federal court"
+            ],
+            "correct": 1,
+            "explanation": "Water service decisions sit with the local utility under state public-utility law; federal facilities must secure approval like any other customer."
+          }
+        ]
+      },
+      {
+        "heading": "THE AI-NUCLEAR CONVERGENCE",
+        "body": "The 2018 Stockpile Stewardship program shifted warhead reliability testing from underground detonations (banned since 1992) to supercomputer simulation. Modern stockpile work runs on machine-learning surrogates of weapons physics — which is why a weapons lab now needs the same compute footprint as a hyperscaler."
+      },
+      {
+        "heading": "THE WESTERN WATER MATH",
+        "body": "The Colorado and Rio Grande basins have been over-allocated since the 1922 compact divided water that hydrologists later found never existed in the assumed quantities. Every new large user now competes against pre-existing rights — agricultural, tribal, municipal — that legally cannot be cut first.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "This data center",
+                "value": "500k gal",
+                "tone": "unfavorable",
+                "weight": 500
+              },
+              {
+                "label": "1,500 households",
+                "value": "500k gal",
+                "weight": 500
+              },
+              {
+                "label": "Almond farm (40 acres)",
+                "value": "160k gal",
+                "weight": 160
+              },
+              {
+                "label": "Hyperscale AI site",
+                "value": "3M gal",
+                "tone": "unfavorable",
+                "weight": 3000
+              }
+            ],
+            "label": "daily water use, rough equivalents"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-25T08:26:46.713Z",
+    "label": "Data Centers & Water",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-23-energy-subsidies-down-export-subsidies-up-in-new-budget-draf": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLD BARGAIN",
+        "body": "Since Nasser's era, Egyptian regimes have traded cheap bread, fuel, and electricity for political quiescence. The 1977 bread riots — sparked when Sadat tried to lift subsidies under IMF pressure — killed at least 70 people and forced an immediate reversal. Every government since has remembered.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Sadat called them the *intifada al-haramiyya* — the **'thieves' uprising'** — but the army restored subsidies within 48 hours."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ENERGY SUBSIDIES DOMINATED",
+        "body": "Egypt subsidized petroleum products at roughly 6% of GDP at peak — more than it spent on health and education combined. The subsidies were universal, not means-tested, so the wealthiest 20% of households captured a disproportionate share simply by owning more cars and larger homes."
+      },
+      {
+        "heading": "THE INTEREST TRAP",
+        "body": "Egypt's debt-service-to-revenue ratio is among the worst in emerging markets. When nearly half of every pound spent goes to bondholders, the remaining fiscal space cannot fund both subsidies and the constitutional floors for health and education.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Egypt",
+                "value": "~45%",
+                "tone": "unfavorable",
+                "cc": "EG",
+                "weight": 45
+              },
+              {
+                "label": "Pakistan",
+                "value": "~40%",
+                "tone": "unfavorable",
+                "cc": "PK",
+                "weight": 40
+              },
+              {
+                "label": "Brazil",
+                "value": "~22%",
+                "cc": "BR",
+                "weight": 22
+              },
+              {
+                "label": "Turkey",
+                "value": "~14%",
+                "cc": "TR",
+                "weight": 14
+              },
+              {
+                "label": "India",
+                "value": "~25%",
+                "cc": "IN",
+                "weight": 25
+              }
+            ],
+            "label": "interest payments as % of govt spending"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSTITUTIONAL FLOORS",
+        "body": "Egypt's 2014 constitution mandates minimum spending of 3% of GDP on health, 4% on pre-university education, and 2% on higher education. These floors have been missed every single year since the constitution took effect — yet no court has enforced them. Constitutional text without an enforcement mechanism is aspiration, not law."
+      },
+      {
+        "heading": "THE EXPORT-SUBSIDY MODEL",
+        "body": "Shifting from consumer to producer subsidies follows the East Asian playbook: South Korea and Taiwan in the 1960s-70s used export rebates and cheap credit to build industrial capacity. The risk is capture — politically connected firms collect rebates without becoming globally competitive, a pattern that defined Mubarak-era cronyism.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EG",
+              "SA",
+              "AE",
+              "TR"
+            ],
+            "label": "Egypt's top export markets"
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF SHADOW",
+        "body": "Egypt is on its fourth IMF program since 2016, with the current $8bn arrangement signed in March 2024 after the pound was devalued by half overnight. Every IMF program since the 1990s has demanded subsidy reform; every government has complied partially, then backslid when bread queues lengthened.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              52.642155,
+              52.642155,
+              52.893,
+              54.4449,
+              54.5301,
+              53.5224,
+              54.2408,
+              54.334939,
+              54.334939,
+              54.390408,
+              54.2427,
+              54.6838,
+              53.2548,
+              53.0913,
+              53.108563,
+              53.108563,
+              53.3639,
+              53.1356,
+              52.4198,
+              51.9627,
+              51.7698,
+              51.884157,
+              51.884157,
+              51.884157,
+              51.970698,
+              51.9993,
+              51.7463,
+              52.0118,
+              52.6203,
+              52.572404
+            ],
+            "periods": [
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25"
+            ],
+            "label": "Egyptian pound",
+            "unit": "EGP / USD",
+            "highlight": "last",
+            "source": 0
+          },
+          {
+            "type": "quiz",
+            "question": "What triggered Egypt's 1977 bread riots?",
+            "options": [
+              "A bad wheat harvest",
+              "An IMF-backed plan to cut bread subsidies",
+              "A war with Libya",
+              "Sadat's visit to Jerusalem"
+            ],
+            "correct": 1,
+            "explanation": "Sadat's attempt to lift subsidies on bread, sugar, and cooking oil — pushed by the IMF — sparked riots so severe the army intervened and the cuts were reversed in 48 hours."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-25"
+    ],
+    "generatedAt": "2026-04-25T08:27:15.792Z",
+    "label": "Egypt's Subsidy Pivot",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-23-lebanon-s-beekeepers-are-at-breaking-point": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE POLLINATION ECONOMY",
+        "body": "Roughly three out of every four flowering crops depend on animal pollinators, and honeybees do the bulk of the work. The economic value of pollination services globally runs into the hundreds of billions of dollars annually — invisible labor priced only when it disappears.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pollination is the original *ecosystem service* — a term economists coined precisely because markets fail to price what bees do until the **collapse** is already underway."
+          }
+        ]
+      },
+      {
+        "heading": "COLONY COLLAPSE MECHANICS",
+        "body": "A honeybee colony is a superorganism. Lose the queen, and the colony has weeks to raise a new one from a fertilized egg before the workforce ages out. Lose the foragers to pesticide drift or blast concussion, and the brood starves before replacements mature. Hives do not degrade gracefully — they cross thresholds and crash."
+      },
+      {
+        "heading": "THE LEVANT'S APIAN HISTORY",
+        "body": "Beekeeping in the Levant predates the Roman Empire. The land between the Litani and the Jordan is described in scripture as flowing with milk and honey — a literal reference to the wild Apis mellifera syriaca, a subspecies adapted to the region's heat and forage cycles over millennia.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "SY",
+              "IL",
+              "PS",
+              "JO"
+            ],
+            "label": "the historical range of Apis mellifera syriaca"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOUTH LEBANON MATTERS",
+        "body": "South Lebanon's citrus belt — oranges, lemons, clementines around Tyre and Sidon — depends on managed bee colonies for fruit set. When hives collapse, growers either rent replacement colonies at premium rates or accept yield losses of 30-50% on bee-dependent crops.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Almonds",
+                "value": "100%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Citrus",
+                "value": "~30%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Apples",
+                "value": "~90%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Wheat",
+                "value": "0%",
+                "tone": "favorable"
+              }
+            ],
+            "label": "crop dependence on insect pollination"
+          }
+        ]
+      },
+      {
+        "heading": "THE GENERATIONAL BREAK",
+        "body": "Beekeeping is transmitted apprentice-to-master. A keeper learns the local flora's bloom calendar, the subspecies' temperament, the seasonal disease patterns over years. When the next generation emigrates, the knowledge does not transfer through textbooks — it is lost in a single generation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't imported bees easily replace a lost local subspecies?",
+            "options": [
+              "Imported bees can't survive ocean transport",
+              "Local subspecies are adapted to specific forage and climate cycles",
+              "International trade in bees is banned",
+              "Imported bees produce less honey by law"
+            ],
+            "correct": 1,
+            "explanation": "Subspecies like Apis mellifera syriaca evolved over millennia to match local bloom calendars, heat tolerance, and disease pressure — imports often fail in unfamiliar conditions."
+          }
+        ]
+      },
+      {
+        "heading": "WAR AS ECOLOGICAL RUPTURE",
+        "body": "Modern wars do not just kill people; they fragment ecosystems. Vietnam's defoliation, Iraq's burning oil fields, Ukraine's mined farmland — each conflict leaves an ecological footprint that outlasts the ceasefire by decades. Lebanon's apian collapse will be measurable in citrus yields long after the strikes stop."
+      }
+    ],
+    "generatedAt": "2026-04-25T08:27:45.123Z",
+    "label": "Bees, Pollination & War Ecology",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-23-mumbai-fishers-raise-alarm-over-plight-of-45-000-mangroves": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ENGINEERING",
+        "body": "A 100-meter belt of mangroves can reduce wave height by up to 66%. Their aerial roots dissipate wave energy, trap sediment, and accrete soil vertically — the only coastal defense that grows taller as sea levels rise. Concrete seawalls, by contrast, scour the seabed in front of them and require continuous reinforcement.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Mangroves are the rare infrastructure that **appreciates** rather than depreciates — every year they grow stronger, denser, and taller. A seawall begins failing the day it is poured."
+          }
+        ]
+      },
+      {
+        "heading": "THE NURSERY FUNCTION",
+        "body": "Roughly 75% of tropical commercial fish species spend part of their lifecycle in mangrove roots. The submerged root tangles shelter juvenile fish from predators until they are large enough to enter open water. Clear the mangroves and the fishery collapses one generation later — which is why Koli catches are already declining."
+      },
+      {
+        "heading": "THE 2005 PRECEDENT",
+        "body": "On 26 July 2005, Mumbai received 944 mm of rain in 24 hours. The flood killed over 1,000 people. A government inquiry identified the destruction of the Mithi River's mangrove fringe — paved over for the Bandra-Kurla Complex — as a primary reason floodwaters had nowhere to dissipate.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After the 2005 Mumbai floods, what did the official inquiry identify as a primary cause of the disaster's severity?",
+            "options": [
+              "Failure of the city's storm drains",
+              "Destruction of mangroves along the Mithi River",
+              "Unusually high tide coinciding with rainfall",
+              "Collapse of an upstream dam"
+            ],
+            "correct": 1,
+            "explanation": "The Madhav Chitale committee found that mangroves paved over for the Bandra-Kurla Complex had eliminated natural floodwater dissipation."
+          }
+        ]
+      },
+      {
+        "heading": "THE CARBON DENSITY",
+        "body": "Mangroves sequester carbon at roughly 4x the rate of terrestrial tropical forests, storing most of it in waterlogged sediment that prevents decomposition for millennia. A hectare of cleared mangrove releases more CO2 than a hectare of cleared Amazon rainforest."
+      },
+      {
+        "heading": "THE KOLI",
+        "body": "The Koli are Mumbai's indigenous fishing community — the city's name itself derives from Mumbadevi, their patron goddess. They predate the Portuguese arrival in 1534 and the British acquisition in 1661. Each successive wave of land reclamation, from the 18th-century causeways to today's coastal road, has pushed their fishing grounds further out."
+      },
+      {
+        "heading": "THE ASIAN PATTERN",
+        "body": "Southeast Asia has lost roughly 40% of its mangroves since 1980, mostly to shrimp farms, palm plantations, and coastal development. Cyclone Nargis killed 138,000 in Myanmar in 2008; the death toll concentrated in delta zones where mangroves had been cleared for rice paddies decades earlier.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD",
+              "MM",
+              "TH",
+              "ID",
+              "PH",
+              "VN"
+            ],
+            "label": "Asian mangrove belt under pressure"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-25T08:28:12.611Z",
+    "label": "Mangroves & Coastal Defense",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-24-deepseek-v4": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "OPEN WEIGHTS VS OPEN SOURCE",
+        "body": "Open weights means the trained model parameters are downloadable and runnable locally. Open source would also include training data and code. Most 'open' frontier models — Llama, DeepSeek, Qwen — release weights but not the training corpus or full reproducibility chain.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters legally: **open weights** under a permissive license lets anyone fine-tune, deploy, or distill the model, but cannot be reproduced from scratch without the original *training data* and compute."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PARAMETER COUNT ISN'T EVERYTHING",
+        "body": "A 1.6 trillion parameter model likely uses Mixture-of-Experts: only a fraction of parameters activate per token. DeepSeek V3 had 671B total but ~37B active per token. This is how Chinese labs match frontier performance on constrained compute — sparse activation lets you scale capacity without proportional inference cost."
+      },
+      {
+        "heading": "THE EXPORT CONTROL CONTEXT",
+        "body": "Since October 2022, the US has banned export of advanced AI chips (H100, then H200, B200) to China. DeepSeek trained V3 reportedly on H800s — a deliberately hobbled export variant — and earlier-generation hardware. Each new DeepSeek release is implicit evidence that algorithmic efficiency is partially compensating for the chip gap.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "DeepSeek",
+                "value": "open weights",
+                "cc": "CN",
+                "tone": "favorable"
+              },
+              {
+                "label": "Qwen (Alibaba)",
+                "value": "open weights",
+                "cc": "CN",
+                "tone": "favorable"
+              },
+              {
+                "label": "Meta Llama",
+                "value": "open weights",
+                "cc": "US",
+                "tone": "favorable"
+              },
+              {
+                "label": "OpenAI GPT",
+                "value": "closed API",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Anthropic",
+                "value": "closed API",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Google Gemini",
+                "value": "closed API",
+                "cc": "US",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "frontier model release strategies"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONTEXT WINDOW ARMS RACE",
+        "body": "A 1M-token context fits roughly 750,000 words — a long novel, an entire codebase, or thousands of pages of legal documents. The constraint is not storage but attention: standard transformer attention scales quadratically with sequence length. Reaching 1M tokens requires architectural tricks like sliding-window attention, ring attention, or learned compression."
+      },
+      {
+        "heading": "THE STRATEGIC BET",
+        "body": "Releasing frontier weights for free is a deliberate commoditization play. If the best models are open, no closed lab can sustain a premium API business. China's open-weight strategy — pursued by DeepSeek, Alibaba's Qwen, and Moonshot — undercuts the closed-model business models of OpenAI, Anthropic, and Google.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does releasing frontier weights openly hurt closed-API competitors?",
+            "options": [
+              "It exposes their training data",
+              "It commoditizes the model layer, eroding API pricing power",
+              "It violates US export controls",
+              "It reduces inference costs for everyone"
+            ],
+            "correct": 1,
+            "explanation": "If comparable models are free to download and self-host, customers won't pay premium per-token API fees — the closed labs' core revenue model erodes."
+          }
+        ]
+      },
+      {
+        "heading": "WHO CAN ACTUALLY RUN IT",
+        "body": "A 1.6T parameter model in FP8 needs roughly 1.6TB of VRAM to serve at full precision — far beyond any single GPU. Practical deployment requires multi-node clusters with high-bandwidth interconnects, or aggressive quantization that trades quality for fit. 'Open' does not mean 'runnable on a laptop.'"
+      }
+    ],
+    "generatedAt": "2026-04-25T08:28:41.457Z",
+    "label": "Open-Weight Frontier Models",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-24-how-spacex-s-75-billion-ipo-could-drain-the-liquidity-that-s": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SHARED POOL",
+        "body": "Bitcoin, growth tech, and high-multiple IPOs draw from the same marginal dollar — risk-on capital that rotates between assets based on Fed policy, not fundamentals. When one asset class absorbs a flood of new supply, the others bleed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Macro traders call this the **risk-on liquidity pool**: capital that treats Bitcoin, ARK-style growth equity, and unprofitable IPOs as a single asset class because they all rally and crash together on changes in *real yields*."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IPOS DRAIN",
+        "body": "An IPO is a supply shock for risk capital. The float that gets sold absorbs cash that would otherwise chase existing risk assets. A $22B retail tranche means $22B of household brokerage cash redirected — every dollar tied up in SpaceX shares is a dollar not bidding for Bitcoin or Nasdaq names.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Aramco",
+                "value": "$29.4bn",
+                "cc": "SA"
+              },
+              {
+                "label": "Alibaba",
+                "value": "$25.0bn",
+                "cc": "CN"
+              },
+              {
+                "label": "SpaceX (planned)",
+                "value": "$22.0bn",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Visa",
+                "value": "$17.9bn",
+                "cc": "US"
+              },
+              {
+                "label": "Facebook",
+                "value": "$16.0bn",
+                "cc": "US"
+              }
+            ],
+            "label": "largest US IPO raises"
+          }
+        ]
+      },
+      {
+        "heading": "THE COINBASE PRECEDENT",
+        "body": "Coinbase listed on April 14, 2021, at a $86B valuation — the same day Bitcoin printed its cycle top of $64,800. Within six weeks Bitcoin had halved. The listing did not cause the crash, but it marked the moment retail euphoria peaked and marginal buyers ran out.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Coinbase's direct listing in April 2021 coincided with which event?",
+            "options": [
+              "Bitcoin's all-time high before a 50% drawdown",
+              "The launch of the first Bitcoin ETF",
+              "Tesla adding Bitcoin to its balance sheet",
+              "The Mt. Gox creditor distribution"
+            ],
+            "correct": 0,
+            "explanation": "Coinbase listed on April 14, 2021 — the exact day Bitcoin peaked at ~$64,800. A 50% drawdown followed within six weeks as retail buying exhausted itself."
+          }
+        ]
+      },
+      {
+        "heading": "THE VALUATION SIGNAL",
+        "body": "Mega-IPOs cluster near cycle tops because that is when underwriters can extract the highest price. Aramco listed in December 2019 weeks before COVID; Alibaba in September 2014 near a China-equity peak; Facebook in May 2012 below its IPO price for over a year. The IPO window opens widest when liquidity is most stretched."
+      },
+      {
+        "heading": "THE CONSOLIDATION TRAP",
+        "body": "SpaceX's reported financials are distorted by GAAP consolidation of xAI losses through Musk's cross-holdings. The rocket business is profitable; the consolidated entity is not. IPO disclosure (S-1) will force the underlying numbers into public view for the first time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Private companies choose what to disclose; public ones cannot. The **S-1 filing** is the moment every related-party transaction between SpaceX, *xAI*, and Tesla becomes line-item public — and the market prices each one."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-25T08:29:09.611Z",
+    "label": "IPO Liquidity & Risk-On Capital",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-25-h-1b-scare-bill-moved-in-us-cong-to-pause-visa-programme-for": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGIN",
+        "body": "The H-1B was created by the Immigration Act of 1990, replacing the older H-1 category. Congress designed it as a temporary fix for a perceived shortage of US-trained engineers and scientists; the 65,000 annual cap has barely moved in 35 years while the US tech labor force has roughly tripled.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The visa is officially for *specialty occupations* — jobs requiring at least a bachelor's degree in a specific field. In practice, **over 65% of approvals** go to computer-related roles."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOTTERY",
+        "body": "Demand has exceeded supply almost every year since 2004. USCIS now runs a random lottery each March: in FY2024, roughly 780,000 registrations competed for 85,000 slots (65,000 regular plus a 20,000 master's-degree set-aside). The odds of selection have collapsed below 15%."
+      },
+      {
+        "heading": "WHY INDIA DOMINATES",
+        "body": "India supplies roughly 70-72% of H-1B beneficiaries; China is a distant second at around 12%. The concentration is structural — Indian IT services firms (Infosys, TCS, Wipro, Cognizant) built business models around onshore-offshore staffing using H-1B labor, and US universities enroll more Indian graduate students in STEM than from any other country.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~72%",
+                "cc": "IN",
+                "weight": 72
+              },
+              {
+                "label": "China",
+                "value": "~12%",
+                "cc": "CN",
+                "weight": 12
+              },
+              {
+                "label": "Philippines",
+                "value": "~1.5%",
+                "cc": "PH",
+                "weight": 1.5
+              },
+              {
+                "label": "South Korea",
+                "value": "~1.2%",
+                "cc": "KR",
+                "weight": 1.2
+              },
+              {
+                "label": "Canada",
+                "value": "~1%",
+                "cc": "CA",
+                "weight": 1
+              }
+            ],
+            "label": "H-1B beneficiaries by country of birth (FY2023)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GREEN CARD BOTTLENECK",
+        "body": "H-1B is a temporary visa, but it is the main on-ramp to employment-based permanent residency. A 7% per-country cap on green cards means an Indian H-1B worker who files today faces a backlog estimated at 50+ years. This is why the visa functions less like a 6-year work permit and more like an indefinite indenture to the sponsoring employer."
+      },
+      {
+        "heading": "THE WAGE FLOOR FIGHT",
+        "body": "Current law requires H-1B workers be paid the 'prevailing wage' for the role and region, divided into four skill levels. Critics say Level 1 wages — set at the 17th percentile — let employers undercut US workers; defenders say Level 1 reflects entry-level roles. A $200,000 floor would price out roughly 80% of current H-1B jobs, concentrating the program in senior engineering and finance roles.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of current H-1B approvals pay above $200,000?",
+            "options": [
+              "About 5%",
+              "About 20%",
+              "About 50%",
+              "About 75%"
+            ],
+            "correct": 1,
+            "explanation": "USCIS data shows roughly 20% of H-1B positions pay above $200,000 — concentrated at FAANG firms and quant finance. A $200K floor would eliminate most consulting and mid-tier tech roles."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1990s PRECEDENT",
+        "body": "The cap was temporarily raised to 195,000 during the dot-com boom (1999-2003) under bipartisan agreement, then snapped back to 65,000 when the bubble burst. Every serious reform attempt since — McCain-Kennedy 2007, Gang of Eight 2013, RAISE Act 2017 — has died in committee. H-1B is the rare immigration issue where business Republicans, labor Democrats, and immigration restrictionists all hold veto power over each other."
+      }
+    ],
+    "generatedAt": "2026-04-25T08:29:39.625Z",
+    "label": "The H-1B Visa",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-25-israeli-air-strikes-kill-nine-across-gaza": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRUCTURAL FLAW",
+        "body": "A ceasefire is a political commitment, not a legal one. Without a third-party enforcement mechanism — peacekeepers with mandate, sanctions triggers, or binding arbitration — violations carry no automatic cost. The party with overwhelming force can violate at will because the only remedy is the war it just paused.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1949 Korean Armistice worked because the **DMZ** was patrolled by a Military Armistice Commission with neutral observers (Sweden, Switzerland) physically present. Gaza ceasefires have had *no equivalent body* — only mediator goodwill from Doha and Cairo."
+          }
+        ]
+      },
+      {
+        "heading": "THE OCTOBER FRAMEWORK",
+        "body": "The October 2025 ceasefire was brokered by Qatar, Egypt, and the US under a Trump-era framework that traded a phased Israeli withdrawal for hostage releases and Hamas disarmament. It contained no monitoring body with binding authority — only a mediator-led 'consultation mechanism' that requires consensus to act.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Qatar",
+                "role": "Hamas political-bureau host, escrow holder",
+                "cc": "QA"
+              },
+              {
+                "name": "Egypt",
+                "role": "Rafah crossing controller, security backchannel",
+                "cc": "EG"
+              },
+              {
+                "name": "United States",
+                "role": "Israel's principal arms supplier, framework guarantor",
+                "cc": "US"
+              },
+              {
+                "name": "Turkey",
+                "role": "Hamas-aligned diplomatic counterweight",
+                "cc": "TR"
+              }
+            ],
+            "label": "the mediator chain"
+          }
+        ]
+      },
+      {
+        "heading": "THE BODY COUNT MATH",
+        "body": "792 Palestinian deaths in roughly six months of 'ceasefire' is approximately 4 per day — a rate that in any other conflict would itself be reported as an active war. The label 'ceasefire' shapes diplomatic posture more than it shapes facts on the ground."
+      },
+      {
+        "heading": "THE GAZA STRIP",
+        "body": "Gaza is 365 km² — smaller than the city of Detroit — holding roughly 2.3 million people. It has been under Israeli blockade since 2007. Egypt controls the only non-Israeli crossing at Rafah and has kept it largely sealed throughout the war, citing security and refusing to facilitate what it calls forced displacement to Sinai.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "EG",
+              "JO",
+              "LB"
+            ],
+            "label": "the enclosure"
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL ARC",
+        "body": "This is the seventh major Gaza escalation since Israel's 2005 disengagement: 2008-09, 2012, 2014, 2021, 2022, 2023-25, and the post-October phase. Each ended with a ceasefire framed as durable; each collapsed within months or years. The unresolved question — sovereignty, borders, return — is the same one left open by the 1948 Nakba.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What year did Israel withdraw settlers and soldiers from inside the Gaza Strip?",
+            "options": [
+              "1993, after Oslo",
+              "2000, after Camp David",
+              "2005, under Sharon",
+              "2007, after Hamas won elections"
+            ],
+            "correct": 2,
+            "explanation": "Sharon's unilateral disengagement removed 8,000 settlers and the IDF garrison in 2005. The blockade — air, sea, and most land crossings — followed in 2007 after Hamas took control."
+          }
+        ]
+      },
+      {
+        "heading": "THE QURANIC CONNECTION",
+        "body": "The land of Palestine is referenced in Surah al-Isra as the precinct around al-Aqsa, described as blessed. Classical scholars including Ibn Kathir treated al-Sham — historic Greater Syria including Palestine — as a place of recurring trial and significance in Islamic eschatology. For the reader, this is why Gaza mobilizes the ummah in a way comparable conflicts do not."
+      }
+    ],
+    "generatedAt": "2026-04-25T08:30:10.870Z",
+    "label": "Ceasefires Without Enforcement",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-25-major-russian-attack-on-ukraine-kills-four-wounds-dozens": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SHAHED PIPELINE",
+        "body": "Russia's nightly drone barrages rely on the Shahed-136, an Iranian design now mass-produced at the Alabuga special economic zone in Tatarstan. What began as imports in 2022 became a domestic line churning out thousands per month — cheap enough to launch in swarms that exhaust Ukrainian air defenses before the cruise missiles arrive.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tactic is **saturation**: send *Geran-2* drones (the Russian-built Shahed) first to draw interceptor fire, then send the **Kh-101** cruise missiles and **Kinzhal** ballistics through the gaps."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DNIPRO",
+        "body": "Dnipro sits roughly 100 km from the front line on the river that bisects Ukraine. It hosts Pivdenmash — the Soviet-era rocket plant that built the SS-18 ICBM — plus rail junctions feeding the eastern front. Striking Dnipro hits both military logistics and a symbolic Soviet-industrial legacy.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "BY"
+            ],
+            "label": "the strike geography"
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERCEPTOR MATH",
+        "body": "A Shahed costs roughly $50,000 to produce. A Patriot PAC-3 interceptor costs around $4 million. Even when Ukraine shoots down 80% of incoming drones, the cost asymmetry favors the attacker by two orders of magnitude — which is why Zelensky's demands focus on volume of interceptors, not just quality.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Shahed-136",
+                "value": "~$50k",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Iranian Fateh",
+                "value": "~$1m",
+                "tone": "unfavorable",
+                "weight": 1000
+              },
+              {
+                "label": "Patriot PAC-3",
+                "value": "~$4m",
+                "tone": "neutral",
+                "weight": 4000
+              },
+              {
+                "label": "SAMP/T missile",
+                "value": "~$2m",
+                "tone": "neutral",
+                "weight": 2000
+              }
+            ],
+            "label": "cost per shot"
+          }
+        ]
+      },
+      {
+        "heading": "THE ENERGY GRID DOCTRINE",
+        "body": "Russia's strike pattern targets Ukraine's electrical substations and thermal power plants in autumn and winter — a strategy borrowed from the 1999 NATO campaign against Serbia, which used graphite bombs to short-circuit the grid. The goal is not military defeat but civilian exhaustion: cold homes, dark cities, broken morale."
+      },
+      {
+        "heading": "THE EU AIR-DEFENSE BOTTLENECK",
+        "body": "European stockpiles of Patriot, IRIS-T, and SAMP/T interceptors were built for a deterrence posture, not a sustained war. Production lines that made a few dozen interceptors per year are scrambling to triple output. Lockheed and MBDA missile factories cannot ramp faster than 18–24 months, which is why every delivery to Kyiv is a zero-sum draw from someone else's national stockpile.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which European-made system is Ukraine's primary defense against ballistic missiles like the Iskander?",
+            "options": [
+              "IRIS-T SLM",
+              "SAMP/T",
+              "NASAMS",
+              "Skyguard"
+            ],
+            "correct": 1,
+            "explanation": "SAMP/T, jointly built by France and Italy, is the only European system with confirmed ballistic-missile intercept capability comparable to Patriot."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The London Blitz (1940–41) killed roughly 43,000 civilians across eight months but failed to break British war production or political will. Strategic bombing of cities has a poor historical record of forcing capitulation — a lesson Russian planners know but apply anyway, because the alternative is admitting the ground war has stalled."
+      }
+    ],
+    "generatedAt": "2026-04-25T08:30:43.052Z",
+    "label": "Russia's Strike Architecture",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-25-raf-jets-shoot-down-russian-drones-over-ukraine-for-the-firs": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARTICLE 5 LINE",
+        "body": "NATO's collective defense clause triggers only when an attack occurs on the territory of a member state. Drones falling on Polish or Romanian soil have raised consultations under Article 4, but never Article 5. Engaging Russian munitions over Ukraine — non-NATO territory — is a category the treaty does not contemplate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Article 4 requires *consultation* when a member feels its security is threatened. Article 5 requires *response* when an armed attack occurs. The gap between them is where every NATO crisis since 1949 has lived."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT BEING SET",
+        "body": "Until now, NATO aircraft engaged Russian munitions only after they crossed alliance borders — Polish F-16s downed drones over Poland in September 2025. Eurofighters firing 1.5 km inside Ukraine inverts that posture: the alliance is now intercepting weapons before they reach NATO airspace, on the territory of a non-member at war with a nuclear power.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RO",
+              "UA",
+              "MD",
+              "RU",
+              "PL"
+            ],
+            "label": "the engagement zone"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ROMANIA",
+        "body": "The Danube delta border with Ukraine is where Russian Shahed drones aimed at Odesa port infrastructure routinely overshoot or get electronically pushed off course. Debris has fallen on Romanian soil at least a dozen times since 2023. Bucharest has the strongest territorial case for forward defense of any NATO capital.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Romania",
+                "role": "Danube delta, hosts US missile defense",
+                "years": "NATO since 2004",
+                "cc": "RO"
+              },
+              {
+                "name": "Bulgaria",
+                "role": "southern Black Sea coast",
+                "years": "NATO since 2004",
+                "cc": "BG"
+              },
+              {
+                "name": "Turkey",
+                "role": "controls Bosphorus under Montreux",
+                "years": "NATO since 1952",
+                "cc": "TR"
+              }
+            ],
+            "label": "the Black Sea NATO states"
+          }
+        ]
+      },
+      {
+        "heading": "THE EUROFIGHTER",
+        "body": "The Typhoon is a four-nation European fighter (UK, Germany, Italy, Spain) built in the 1990s as a Cold War interceptor. Its primary weapon for drone work is the ASRAAM short-range missile — at roughly $200,000 per shot to kill a $20,000 Shahed, the cost asymmetry is the same problem Israel faces with Iron Dome against rockets."
+      },
+      {
+        "heading": "THE ESCALATION LADDER",
+        "body": "Russian doctrine treats NATO engagement of its assets as an act of war on paper, but the Kremlin has repeatedly absorbed losses without formal response — Wagner deaths in Syria, ship sinkings in the Black Sea, drone losses over Romania. Tolerated incidents accumulate until one becomes the reason; the threshold is political, not legal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which NATO article requires only consultation, not military response?",
+            "options": [
+              "Article 3",
+              "Article 4",
+              "Article 5",
+              "Article 6"
+            ],
+            "correct": 1,
+            "explanation": "Article 4 lets any member call for consultations when its security is threatened. Article 5 is the collective defense trigger; Article 3 covers self-help capacity."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUCLEAR SHADOW",
+        "body": "Russia's 2020 nuclear doctrine permits first use in response to conventional attacks that threaten the existence of the state. The doctrine was loosened in November 2024 to cover attacks by non-nuclear states backed by nuclear ones — language drafted with Ukraine and NATO in mind. Whether direct NATO-Russia kinetic contact qualifies has never been tested."
+      }
+    ],
+    "generatedAt": "2026-04-25T08:31:12.993Z",
+    "label": "NATO Engagement Thresholds",
+    "category": "politics",
+    "articleCount": 1
   }
 }
