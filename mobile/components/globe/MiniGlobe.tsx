@@ -52,7 +52,12 @@ import {
 import { BLACK } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
-import { getLakeLabels, getMajorRiverFeatureCollection, getRiverLabels, SEAS } from './detail-geo';
+import {
+  getLakeLabels,
+  getMajorRiverFeatureCollection,
+  getRiverLabels,
+  getSeas,
+} from './detail-geo';
 import {
   ANTARCTIC_CIRCLE,
   ARCTIC_CIRCLE,
@@ -103,14 +108,7 @@ function useGlowTexture(spec: GlowSpec, color: string) {
   return useTexture(
     <Group>
       {spec.layers.map((l, i) => (
-        <Circle
-          key={i}
-          cx={spec.center}
-          cy={spec.center}
-          r={l.r}
-          color={color}
-          opacity={l.opacity}
-        >
+        <Circle key={i} cx={spec.center} cy={spec.center} r={l.r} color={color} opacity={l.opacity}>
           {l.blur != null && <BlurMask blur={l.blur} style="solid" />}
         </Circle>
       ))}
@@ -126,9 +124,7 @@ function glowAtlas(spec: GlowSpec, points: { x: number; y: number }[]) {
   if (points.length === 0) return null;
   return {
     sprites: points.map(() => spec.srcRect),
-    transforms: points.map((p) =>
-      Skia.RSXform(1, 0, p.x - spec.center, p.y - spec.center),
-    ),
+    transforms: points.map((p) => Skia.RSXform(1, 0, p.x - spec.center, p.y - spec.center)),
   };
 }
 
@@ -1325,7 +1321,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           }
 
           // Seas / bays / gulfs — 54 entries, all relevant at globe scale.
-          for (const sea of SEAS) {
+          for (const sea of getSeas()) {
             const su = sea.unit;
             if (su[0] * camUnitX + su[1] * camUnitY + su[2] * camUnitZ <= 0) continue;
             const pt = proj([sea.lng, sea.lat]);
@@ -1997,14 +1993,8 @@ export const MiniGlobe = memo(function MiniGlobe({
   }, [colors.atmosphere, light]);
 
   // Per-glow Atlas inputs. Single-instance glows pass a one-element array.
-  const ghostAtlas = useMemo(
-    () => glowAtlas(GHOST_GLOW, state.ghostDots),
-    [state.ghostDots],
-  );
-  const dotAtlas = useMemo(
-    () => glowAtlas(DOT_GLOW, state.dot ? [state.dot] : []),
-    [state.dot],
-  );
+  const ghostAtlas = useMemo(() => glowAtlas(GHOST_GLOW, state.ghostDots), [state.ghostDots]);
+  const dotAtlas = useMemo(() => glowAtlas(DOT_GLOW, state.dot ? [state.dot] : []), [state.dot]);
   const makkahAtlas = useMemo(
     () => glowAtlas(MAKKAH_GLOW, state.makkah ? [state.makkah] : []),
     [state.makkah],
@@ -2218,7 +2208,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             color={colors.textEmphasis}
             style="stroke"
             strokeWidth={1.2}
-            opacity={(light ? 0.85 : 0.75) * state.riversOpacity}
+            opacity={(light ? 0.85 : 0.55) * state.riversOpacity}
           />
         </>
       )}
@@ -2268,11 +2258,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Story dot — single Atlas draw against the baked dot texture. */}
       {dotAtlas && (
-        <Atlas
-          image={dotTexture}
-          sprites={dotAtlas.sprites}
-          transforms={dotAtlas.transforms}
-        />
+        <Atlas image={dotTexture} sprites={dotAtlas.sprites} transforms={dotAtlas.transforms} />
       )}
 
       {/* Tap pulse — expanding ring on globe tap */}

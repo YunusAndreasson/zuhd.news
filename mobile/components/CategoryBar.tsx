@@ -155,7 +155,7 @@ export const CategoryBar = memo(function CategoryBar({
           />
         ))}
         <IconButton onPress={onMenuPress} accessibilityLabel="Menu" style={styles.menuButton}>
-          <Icon name="menu" size="sm" />
+          <Icon name="menu" size="md" />
         </IconButton>
         <Animated.View
           style={[styles.progressBar, { backgroundColor: colors.textEmphasis }, trackPos]}

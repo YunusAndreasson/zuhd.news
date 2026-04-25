@@ -242,10 +242,13 @@ export const RADIUS = {
   floating: 14,
 } as const;
 
-/** Icon pixel sizes. Two tiers — anything else is a mistake. */
+/** Icon pixel sizes. Three tiers — anything else is a mistake.
+ *  `lg` is reserved for primary-action icons in mini-players and similar
+ *  surfaces where the play/pause icon needs to read as the focal action. */
 export const ICON = {
   sm: 14,
   md: 20,
+  lg: 26,
 } as const;
 
 /** Flag-emoji pixel sizes. Emoji glyphs don't map to `<Text variant>` sizing

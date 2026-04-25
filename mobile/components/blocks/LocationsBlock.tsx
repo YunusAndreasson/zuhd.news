@@ -30,13 +30,13 @@ import { hapticImpact } from '../../lib/haptics';
 import { createSkiaPathContext } from '../globe/shared';
 import { Text } from '../primitives';
 import {
-  bordersMeshHiRes,
-  CAPITALS_BY_ISO2,
-  countriesHiRes,
-  lakesHiRes,
-  landHiRes,
-  riversHiRes,
-  SEAS,
+  getBordersMeshHiRes,
+  getCapitalsByISO2,
+  getCountriesHiRes,
+  getLakesHiRes,
+  getLandHiRes,
+  getRiversHiRes,
+  getSeas,
 } from './locations-geo';
 import { SourceCaption } from './SourceCaption';
 import { type BlockVariant, blockContainerStyle } from './shared';
@@ -199,7 +199,7 @@ function riverLabelPointIn(
   return bestMid;
 }
 
-type Feature = (typeof countriesHiRes.features)[number];
+type Feature = ReturnType<typeof getCountriesHiRes>['features'][number];
 
 /** Label that stays glued to a projected point during the zoom animation.
  *  Math mirrors the Skia `Group transform={[tx, ty, scale]}` — for a projected
@@ -311,7 +311,7 @@ export const LocationsBlock = memo(function LocationsBlock({
     return codes.map((code) => {
       const name = topojsonNameFromCode(code);
       const feature = name
-        ? (countriesHiRes.features.find(
+        ? (getCountriesHiRes().features.find(
             (f) => (f.properties as { name?: string } | undefined)?.name === name,
           ) ?? null)
         : null;
@@ -417,15 +417,15 @@ export const LocationsBlock = memo(function LocationsBlock({
 
     const landPath = Skia.Path.Make();
     ctx.setPath(landPath);
-    pg(landHiRes);
+    pg(getLandHiRes());
 
     const borderPath = Skia.Path.Make();
     ctx.setPath(borderPath);
-    pg(bordersMeshHiRes);
+    pg(getBordersMeshHiRes());
 
     const lakesPath = Skia.Path.Make();
     ctx.setPath(lakesPath);
-    pg(lakesHiRes);
+    pg(getLakesHiRes());
 
     // Rivers — only draw major ones (scalerank ≤ 5). At world/continent
     // zoom levels the finer ranks become visual noise without adding
@@ -433,7 +433,7 @@ export const LocationsBlock = memo(function LocationsBlock({
     const riversPath = Skia.Path.Make();
     ctx.setPath(riversPath);
     const majorRivers: GeoJSON.Feature<GeoJSON.LineString | GeoJSON.MultiLineString>[] =
-      riversHiRes.features.filter((f) => {
+      getRiversHiRes().features.filter((f) => {
         const rank = (f.properties as { scalerank?: number } | undefined)?.scalerank;
         return typeof rank === 'number' && rank <= 5;
       });
@@ -554,7 +554,7 @@ export const LocationsBlock = memo(function LocationsBlock({
     if (width <= 0 || height <= 0) return [];
     return resolved
       .map((r) => {
-        const cap = CAPITALS_BY_ISO2[r.code];
+        const cap = getCapitalsByISO2()[r.code];
         if (!cap) return null;
         const p = projection([cap.lng, cap.lat]);
         if (!p || !Number.isFinite(p[0]) || !Number.isFinite(p[1])) return null;
@@ -588,7 +588,7 @@ export const LocationsBlock = memo(function LocationsBlock({
     const out: { key: string; name: string; x: number; y: number; kind: 'water' }[] = [];
 
     // Lakes: centroid inside the bbox.
-    for (const f of lakesHiRes.features) {
+    for (const f of getLakesHiRes().features) {
       const name = (f.properties as { name?: string } | undefined)?.name;
       if (!name) continue;
       let cx: number;
@@ -606,7 +606,7 @@ export const LocationsBlock = memo(function LocationsBlock({
     // Rivers: project the longest constituent line; if the midpoint of any
     // contiguous in-bbox run lands inside the bbox, label there. Falls back
     // to the line midpoint when nothing crosses cleanly.
-    for (const f of riversHiRes.features) {
+    for (const f of getRiversHiRes().features) {
       const props = f.properties as { name?: string; scalerank?: number } | undefined;
       const name = props?.name;
       const rank = props?.scalerank;
@@ -627,7 +627,7 @@ export const LocationsBlock = memo(function LocationsBlock({
     // bodies like the Persian Gulf when zoomed to Kuwait).
     const padX = Math.max(40, (bx1 - bx0) * 0.4);
     const padY = Math.max(40, (by1 - by0) * 0.4);
-    for (const s of SEAS) {
+    for (const s of getSeas()) {
       const p = projection([s.lng, s.lat]);
       if (!p) continue;
       const [x, y] = p;

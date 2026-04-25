@@ -1,12 +1,11 @@
-// Zoom-gated extras for MiniGlobe. The underlying 50m JSON is already bundled
-// (LocationsBlock imports it), so this module has zero cold-start cost when
-// MiniGlobe first mounts — the heavy centroid/midpoint precompute runs only
-// on first access via `getLakeLabels()` / `getRiverLabels()`. Triggered
-// from `callReproject` the first time `clipAngle < PLACES_APPEAR_CLIP`,
-// so a reader who never zooms never pays the cost.
+// Zoom-gated extras for MiniGlobe. The underlying 50m JSON loads lazily via
+// the getters in `../blocks/locations-geo`, so a reader who never zooms past
+// `PLACES_APPEAR_CLIP` never pays the JSON.parse + topojson decode cost. The
+// heavy centroid/midpoint precompute below runs once on first access via
+// `getLakeLabels()` / `getRiverLabels()` / `getSeas()`.
 
 import { geoArea, geoCentroid } from 'd3-geo';
-import { lakesHiRes, riversHiRes, SEAS as SEAS_RAW } from '../blocks/locations-geo';
+import { getLakesHiRes, getRiversHiRes, getSeas as getSeasRaw } from '../blocks/locations-geo';
 
 /** Cartesian unit vector on the unit sphere for a (lng, lat) pair. Shared
  *  with `shared.ts` in spirit but duplicated here to avoid a cross-module
@@ -64,7 +63,7 @@ export function getLakeLabels(): LakeLabel[] {
   // Salt Lake, Salton Sea) ship as multiple polygons. Keep the largest one
   // per name so labels are never stacked.
   const bestByName = new Map<string, LakeLabel>();
-  for (const f of lakesHiRes.features) {
+  for (const f of getLakesHiRes().features) {
     const name = (f.properties as { name?: string } | undefined)?.name;
     if (!name) continue;
     try {
@@ -96,7 +95,7 @@ export function getRiverLabels(): RiverLabel[] {
   // would render multiple "Volga" labels stacked along the river. Keep the
   // longest reach per name, label its midpoint.
   const bestByName = new Map<string, { rank: number; line: GeoJSON.Position[] }>();
-  for (const f of riversHiRes.features) {
+  for (const f of getRiversHiRes().features) {
     const props = f.properties as { name?: string; scalerank?: number } | undefined;
     const name = props?.name;
     const rank = props?.scalerank;
@@ -138,7 +137,7 @@ export function getRiverLabels(): RiverLabel[] {
  *  first access so a reader who never zooms pays no cost. */
 export function getMajorRiverFeatureCollection(): GeoJSON.FeatureCollection {
   if (cachedMajorRiverFC) return cachedMajorRiverFC;
-  const features = riversHiRes.features.filter((f) => {
+  const features = getRiversHiRes().features.filter((f) => {
     const rank = (f.properties as { scalerank?: number } | undefined)?.scalerank;
     return typeof rank === 'number' && rank <= 3;
   });
@@ -146,14 +145,20 @@ export function getMajorRiverFeatureCollection(): GeoJSON.FeatureCollection {
   return cachedMajorRiverFC;
 }
 
-/** Precomputed sea labels with unit vectors. SEAS is static JSON so the
- *  (54 × 4 trig ops) precompute runs once at module load — the per-frame
- *  reproject loop in MiniGlobe then does a cheap dot product instead of
- *  calling geoDistance per sea. */
-export const SEAS: SeaLabel[] = SEAS_RAW.map((s) => ({
-  name: s.name,
-  lng: s.lng,
-  lat: s.lat,
-  rank: s.rank,
-  unit: lngLatToUnit(s.lng, s.lat),
-}));
+/** Precomputed sea labels with unit vectors. The (54 × 4 trig ops) precompute
+ *  runs once on first call and caches; the per-frame reproject loop in
+ *  MiniGlobe then does a cheap dot product instead of calling geoDistance
+ *  per sea. Lazy so the underlying 50m sea JSON only loads when zoom-detail
+ *  actually fires. */
+let _seas: SeaLabel[] | null = null;
+export function getSeas(): SeaLabel[] {
+  if (_seas) return _seas;
+  _seas = getSeasRaw().map((s) => ({
+    name: s.name,
+    lng: s.lng,
+    lat: s.lat,
+    rank: s.rank,
+    unit: lngLatToUnit(s.lng, s.lat),
+  }));
+  return _seas;
+}
