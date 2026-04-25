@@ -2,13 +2,217 @@
   "version": 1,
   "stories": [
     {
+      "id": "behind-the-blog-waiting-in-the-apple-store",
+      "label": "Behind the Blog: Waiting in the Apple Store",
+      "firstSeen": "2026-04-24T22:10:12.944Z",
+      "lastCovered": "2026-04-25T04:05:49.638Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-04-24-behind-the-blog-waiting-in-the-apple-store"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for tech floor] This week, we discuss Tim Cook, Meta layoffs, and a very bad ad.",
+      "conceptUris": []
+    },
+    {
+      "id": "sudan-imf-financial-system-bid-burhan",
+      "label": "Sudan Nashra: Sudanese bid to rejoin global financial system unlikely to succeed amid wartime realities",
+      "firstSeen": "2026-04-25T04:05:49.638Z",
+      "lastCovered": "2026-04-25T04:05:49.638Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-23-sudan-imf-financial-system-bid-burhan"
+      ],
+      "eventUri": null,
+      "summary": "Sudan sent a delegation to the IMF/World Bank spring meetings to push for re-entry into the global financial system, standing in for a finance minister barred by US sanctions. The angle: Burhan's government is begging back into a system that the 2021 coup he led with Hemedti pushed Sudan out of, while wartime reality and Khartoum's loss of territorial control make the bid implausible. Lead with the absence of the finance minister and the structural blockers — sanctions, fragmented territory, no reform credibility — that make this a performance, not a path back.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-military-civil-fusion-rebrand",
+      "label": "The Staged Death of China's Military-Civil Fusion",
+      "firstSeen": "2026-04-25T04:05:49.638Z",
+      "lastCovered": "2026-04-25T04:05:49.638Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-24-china-military-civil-fusion-rebrand"
+      ],
+      "eventUri": null,
+      "summary": "Beijing stopped publicly invoking 'military-civil fusion' after it became a flashpoint with Washington, but the underlying program — funneling private-sector tech into the PLA — continues unchanged. The angle: this is rebranding as statecraft. The reader should walk away knowing the policy is alive, what tools (procurement carve-outs, dual-use research mandates) make it work, and why US export controls keyed to the old name miss the substance.",
+      "conceptUris": []
+    },
+    {
+      "id": "cjng-la-jefa-rosalinda-gonzalez-valencia",
+      "label": "The Boss in the Shadows: Rosalinda González Valencia's Role in the CJNG",
+      "firstSeen": "2026-04-25T04:05:49.638Z",
+      "lastCovered": "2026-04-25T04:05:49.638Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-24-cjng-la-jefa-rosalinda-gonzalez-valencia"
+      ],
+      "eventUri": null,
+      "summary": "Rosalinda González Valencia, 'La Jefa,' built CJNG's financial machine — money laundering, real estate fronts, family-cell governance — and was operating long before she married 'El Mencho.' The angle: cartels run on women financiers Mexican prosecutors and US sanctions lists routinely overlook. Lead with the asymmetry: who actually moves the money versus who gets named in the indictments, and why the Trump administration's looming military-strike posture against cartels misreads the org chart.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-strike-pacific-drug-boat-extrajudicial",
+      "label": "US strikes drug trafficking boat in Pacific, two killed — Pentagon",
+      "firstSeen": "2026-04-25T04:05:49.638Z",
+      "lastCovered": "2026-04-25T04:05:49.638Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-25-us-strike-pacific-drug-boat-extrajudicial"
+      ],
+      "eventUri": "rus-2057743",
+      "summary": "SOUTHCOM killed two people on a vessel in the eastern Pacific that the Pentagon says was 'transiting along known narco-trafficking routes' — the latest in a Trump campaign of lethal strikes on suspected drug boats since September that has now killed dozens without trial, charge, or evidence shown. The angle: extrajudicial killing has become routine US military doctrine in Latin American waters with no congressional authorization and no accountability mechanism. Lead with the body count and the legal vacuum — not the Pentagon's framing.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pacific_Ocean",
+        "http://en.wikipedia.org/wiki/Illegal_drug_trade",
+        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
+        "http://en.wikipedia.org/wiki/United_States_Southern_Command",
+        "http://en.wikipedia.org/wiki/The_Pentagon"
+      ]
+    },
+    {
+      "id": "crude-106-hormuz-second-month",
+      "label": "Crude hits $106 as Strait of Hormuz closure enters second month",
+      "firstSeen": "2026-04-25T04:05:49.638Z",
+      "lastCovered": "2026-04-25T04:05:49.638Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-24-crude-106-hormuz-second-month"
+      ],
+      "eventUri": "eng-11598555",
+      "summary": "Brent reached $106.01, up $2.34 in a day and roughly $39 above year-ago levels, as the Hormuz closure persists and a third US carrier strike group arrives in the region. The angle: the war premium is no longer a spike — it's the new floor, and importing economies (Pakistan, India, Egypt) are absorbing it through subsidies and FX pressure. Lead with the YoY delta and the structural shift from 'spike' to 'baseline,' then the downstream pain points in Global South energy importers.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/West_Texas_Intermediate",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Price_of_oil",
+        "http://en.wikipedia.org/wiki/OPEC"
+      ]
+    },
+    {
+      "id": "google-40-billion-anthropic-cloud-concentration",
+      "label": "Google will invest as much as $40 billion in Anthropic",
+      "firstSeen": "2026-04-25T04:05:49.638Z",
+      "lastCovered": "2026-04-25T04:05:49.638Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-24-google-40-billion-anthropic-cloud-concentration"
+      ],
+      "eventUri": "eng-11596236",
+      "summary": "Google commits an initial $10B to Anthropic with up to $40B contingent on milestones — coming days after Amazon's fresh $5B. The angle: two hyperscalers now collectively backstop a single 'independent' AI lab, mirroring Microsoft-OpenAI and concentrating frontier compute in three cloud-equity stacks. Lead with the structural pattern (cloud credits paid as 'investment'), the antitrust implication, and the dependency this creates for any country or firm wanting non-aligned AI capacity.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Anthropic",
+        "http://en.wikipedia.org/wiki/Google",
+        "http://en.wikipedia.org/wiki/Amazon_(company)"
+      ]
+    },
+    {
+      "id": "current-price-of-oil-as-of-april-25-2026-fortune",
+      "label": "Current price of oil as of April 25, 2026 | Fortune",
+      "firstSeen": "2026-04-25T04:05:49.638Z",
+      "lastCovered": "2026-04-25T04:05:49.638Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-24-current-price-of-oil-as-of-april-25-2026-fortune"
+      ],
+      "eventUri": "eng-11598555",
+      "summary": "[Auto-backfill for economy floor] At 9 a.m. Eastern Time today, oil was priced at $106.01 per barrel with Brent serving as the benchmark (we'll explain different benchmarks later in this article). That's a gain of $2.34 compared with yesterday morning and around $39 higher than the price one year ago.\n\nIt's impossible to forecast oi",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/West_Texas_Intermediate",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Price_of_oil",
+        "http://en.wikipedia.org/wiki/Geopolitics",
+        "http://en.wikipedia.org/wiki/OPEC",
+        "http://en.wikipedia.org/wiki/Ceasefire"
+      ]
+    },
+    {
+      "id": "aurka-phb2-signaling-drives-acquired-resistance-to-kras-g12c",
+      "label": "AURKA/PHB2 signaling drives acquired resistance to KRAS G12C inhibitors in KRAS G12C-mutant NSCLC - Cell Death Discovery",
+      "firstSeen": "2026-04-25T04:05:49.638Z",
+      "lastCovered": "2026-04-25T04:05:49.638Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-25-aurka-phb2-signaling-drives-acquired-resistance-to-kras-g12c"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for science floor] We are providing an unedited version of this manuscript to give early access to its findings. Before final publication, the manuscript will undergo further editing. Please note there may be errors present which affect the content, and all legal disclaimers apply.\n\nPatients with non-small cell lung c",
+      "conceptUris": []
+    },
+    {
+      "id": "single-experience-neuroplasticity-brain-rewiring",
+      "label": "A New Type of Neuroplasticity Rewires the Brain After a Single Experience",
+      "firstSeen": "2026-04-24T17:05:17.297Z",
+      "lastCovered": "2026-04-25T04:05:49.638Z",
+      "coverageCount": 2,
+      "category": "science",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-04-24-single-experience-neuroplasticity-brain-rewiring",
+        "2026-04-24-neuroplasticity-single-experience-behavioral-timescale"
+      ],
+      "eventUri": null,
+      "summary": "Classic Hebbian learning — 'neurons that fire together wire together' — cannot explain how a single event can permanently reshape behavior. A new mechanism identifies plasticity that operates on much longer timescales and responds to one-shot experiences. Lead with the phenomenon the old theory failed to explain: trauma and single-trial learning. The reader should grasp that this is a rare case of a textbook model being genuinely revised, not just extended — and the implications reach into why PTSD and single-dose psychedelic therapies seem to produce long-lasting changes.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-optimism-asia-us-regulator-trust-gap",
+      "label": "AI optimism surges in Asia, unlike in the U.S.",
+      "firstSeen": "2026-04-24T17:05:17.297Z",
+      "lastCovered": "2026-04-25T04:05:49.638Z",
+      "coverageCount": 2,
+      "category": "tech",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-04-24-ai-optimism-asia-us-regulator-trust-gap",
+        "2026-04-24-ai-optimism-gap-asia-vs-us-survey"
+      ],
+      "eventUri": null,
+      "summary": "Surveys across Asian economies show sharply higher AI trust and optimism than in the US — and higher trust in regulators to govern it. Lead with the regulator gap, not the hype gap: Americans distrust both AI companies and the agencies meant to constrain them, while Indian, Indonesian, and Vietnamese users distrust neither. The reader should see why global AI deployment is shifting east: the user willingness, the regulatory license, and the growing compute build-out are aligning in places where the US debate barely registers.",
+      "conceptUris": []
+    },
+    {
       "id": "doj-federal-death-penalty-expansion-firing-squads",
       "label": "Justice Department Calls for Expansion of Federal Death Penalty",
       "firstSeen": "2026-04-24T22:10:12.944Z",
       "lastCovered": "2026-04-24T22:10:12.944Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-24-doj-federal-death-penalty-expansion-firing-squads"
@@ -33,7 +237,7 @@
       "lastCovered": "2026-04-24T22:10:12.944Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-24-appeals-court-trump-asylum-ban-illegal-dc-circuit"
@@ -58,7 +262,7 @@
       "lastCovered": "2026-04-24T22:10:12.944Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-24-raghav-chadha-aap-bjp-defection-punjab-2027"
@@ -83,7 +287,7 @@
       "lastCovered": "2026-04-24T22:10:12.944Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-24-china-new-county-wakhan-afghanistan-xinjiang"
@@ -99,7 +303,7 @@
       "lastCovered": "2026-04-24T22:10:12.944Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-24-tether-usdt-freeze-iran-central-bank-sanctions"
@@ -115,7 +319,7 @@
       "lastCovered": "2026-04-24T22:10:12.944Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-24-pakistan-tanker-hijack-somalia-piracy-resurgence"
@@ -131,7 +335,7 @@
       "lastCovered": "2026-04-24T22:10:12.944Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-24-fda-first-gene-therapy-hearing-loss-dual-aav"
@@ -147,7 +351,7 @@
       "lastCovered": "2026-04-24T22:10:12.944Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-24-wmo-el-nino-2026-monsoon-risk-global-south"
@@ -163,7 +367,7 @@
       "lastCovered": "2026-04-24T22:10:12.944Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-23-lebanon-beekeepers-south-bombardment-agriculture"
@@ -179,7 +383,7 @@
       "lastCovered": "2026-04-24T22:10:12.944Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-24-iran-cyber-threat-low-slow-us-officials"
@@ -189,29 +393,13 @@
       "conceptUris": []
     },
     {
-      "id": "behind-the-blog-waiting-in-the-apple-store",
-      "label": "Behind the Blog: Waiting in the Apple Store",
-      "firstSeen": "2026-04-24T22:10:12.944Z",
-      "lastCovered": "2026-04-24T22:10:12.944Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 6,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-behind-the-blog-waiting-in-the-apple-store"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] This week, we discuss Tim Cook, Meta layoffs, and a very bad ad.",
-      "conceptUris": []
-    },
-    {
       "id": "meloni-nato-unity-trump-iran-war-rift",
       "label": "NATO 'Must Remain United', Says Italy PM Meloni",
       "firstSeen": "2026-04-24T17:05:17.297Z",
       "lastCovered": "2026-04-24T17:05:17.297Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-24-meloni-nato-unity-trump-iran-war-rift"
@@ -236,7 +424,7 @@
       "lastCovered": "2026-04-24T17:05:17.297Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-24-doj-drops-powell-probe-warsh-fed-chair"
@@ -259,7 +447,7 @@
       "lastCovered": "2026-04-24T17:05:17.297Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-24-iran-pakistan-araghchi-islamabad-ceasefire-talks"
@@ -283,7 +471,7 @@
       "lastCovered": "2026-04-24T17:05:17.297Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-24-bellingcat-iran-police-infrastructure-80-stations"
@@ -299,7 +487,7 @@
       "lastCovered": "2026-04-24T17:05:17.297Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-24-rbi-paytm-payments-bank-license-cancelled"
@@ -322,7 +510,7 @@
       "lastCovered": "2026-04-24T17:05:17.297Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-24-egypt-budget-energy-subsidies-exports-shift"
@@ -338,7 +526,7 @@
       "lastCovered": "2026-04-24T17:05:17.297Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-24-west-bengal-election-bangladesh-trade-water"
@@ -354,7 +542,7 @@
       "lastCovered": "2026-04-24T17:05:17.297Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-24-china-strict-control-fossil-fuels-earth-day"
@@ -364,29 +552,13 @@
       "conceptUris": []
     },
     {
-      "id": "single-experience-neuroplasticity-brain-rewiring",
-      "label": "A New Type of Neuroplasticity Rewires the Brain After a Single Experience",
-      "firstSeen": "2026-04-24T17:05:17.297Z",
-      "lastCovered": "2026-04-24T17:05:17.297Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-single-experience-neuroplasticity-brain-rewiring"
-      ],
-      "eventUri": null,
-      "summary": "Classic Hebbian learning — 'neurons that fire together wire together' — cannot explain how a single event can permanently reshape behavior. A new mechanism identifies plasticity that operates on much longer timescales and responds to one-shot experiences. Lead with the phenomenon the old theory failed to explain: trauma and single-trial learning. The reader should grasp that this is a rare case of a textbook model being genuinely revised, not just extended — and the implications reach into why PTSD and single-dose psychedelic therapies seem to produce long-lasting changes.",
-      "conceptUris": []
-    },
-    {
       "id": "ai-compute-crunch-economy-electricity-gpu-scarcity",
       "label": "The AI Compute Crunch Is Here (and It's Affecting the Entire Economy)",
       "firstSeen": "2026-04-24T17:05:17.297Z",
       "lastCovered": "2026-04-24T17:05:17.297Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-24-ai-compute-crunch-economy-electricity-gpu-scarcity"
@@ -402,7 +574,7 @@
       "lastCovered": "2026-04-24T17:05:17.297Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-24-norway-social-media-ban-teens-platform-liability"
@@ -412,29 +584,13 @@
       "conceptUris": []
     },
     {
-      "id": "ai-optimism-asia-us-regulator-trust-gap",
-      "label": "AI optimism surges in Asia, unlike in the U.S.",
-      "firstSeen": "2026-04-24T17:05:17.297Z",
-      "lastCovered": "2026-04-24T17:05:17.297Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-ai-optimism-asia-us-regulator-trust-gap"
-      ],
-      "eventUri": null,
-      "summary": "Surveys across Asian economies show sharply higher AI trust and optimism than in the US — and higher trust in regulators to govern it. Lead with the regulator gap, not the hype gap: Americans distrust both AI companies and the agencies meant to constrain them, while Indian, Indonesian, and Vietnamese users distrust neither. The reader should see why global AI deployment is shifting east: the user willingness, the regulatory license, and the growing compute build-out are aligning in places where the US debate barely registers.",
-      "conceptUris": []
-    },
-    {
       "id": "us-pentagon-spain-nato-iran-war-punishment",
       "label": "US mulls expelling Spain from Nato for failing to back war on Iran",
       "firstSeen": "2026-04-24T12:06:07.950Z",
       "lastCovered": "2026-04-24T12:06:07.950Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-24-us-pentagon-spain-nato-iran-war-punishment"
@@ -457,7 +613,7 @@
       "lastCovered": "2026-04-24T12:06:07.950Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-24-russia-fsb-roskomnadzor-bomb-plot-ukraine"
@@ -479,7 +635,7 @@
       "lastCovered": "2026-04-24T12:06:07.950Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-24-duterte-icc-trial-confirmed-drug-war"
@@ -495,7 +651,7 @@
       "lastCovered": "2026-04-24T12:06:07.950Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-24-un-gaza-demining-541-million-unexploded-ordnance"
@@ -511,7 +667,7 @@
       "lastCovered": "2026-04-24T12:06:07.950Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-24-ryanair-abandons-berlin-germany-aviation-fees"
@@ -532,7 +688,7 @@
       "lastCovered": "2026-04-24T12:06:07.950Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-24-iran-crude-99-per-barrel-war-premium"
@@ -548,7 +704,7 @@
       "lastCovered": "2026-04-24T12:06:07.950Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-24-pakistan-plastic-epr-karachi-informal-recyclers"
@@ -564,7 +720,7 @@
       "lastCovered": "2026-04-24T12:06:07.950Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-24-amoc-atlantic-circulation-tipping-point"
@@ -580,7 +736,7 @@
       "lastCovered": "2026-04-24T12:06:07.950Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-24-saildrone-spectre-navy-unmanned-warship-dual-use"
@@ -596,7 +752,7 @@
       "lastCovered": "2026-04-24T12:06:07.950Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-24-delivery-of-hsp70-mrna-via-exosomes-ameliorates-sleep-depriv"
@@ -612,7 +768,7 @@
       "lastCovered": "2026-04-24T12:06:07.950Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-24-china-s-deepseek-rolls-out-a-long-anticipated-update-of-its"
@@ -637,7 +793,7 @@
       "lastCovered": "2026-04-24T08:05:29.915Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-23-us-china-ai-distillation-theft-accusation",
@@ -663,7 +819,7 @@
       "lastCovered": "2026-04-24T08:05:29.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-odesa-residential-drone-strike-elderly-couple-killed"
@@ -688,7 +844,7 @@
       "lastCovered": "2026-04-24T08:05:29.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-nigeria-36-officers-arraigned-tinubu-coup-plot"
@@ -710,7 +866,7 @@
       "lastCovered": "2026-04-24T08:05:29.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-23-aipac-ala-stanford-philadelphia-campaign-funding"
@@ -726,7 +882,7 @@
       "lastCovered": "2026-04-24T08:05:29.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-bannu-domel-abduction-killings-kp-security-vacuum"
@@ -742,7 +898,7 @@
       "lastCovered": "2026-04-24T08:05:29.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-taiwan-domestic-politics-deterrence-vulnerability"
@@ -758,7 +914,7 @@
       "lastCovered": "2026-04-24T08:05:29.915Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-iea-120-bcm-lng-loss-middle-east-war-2030"
@@ -780,7 +936,7 @@
       "lastCovered": "2026-04-24T08:05:29.915Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-morgan-stanley-stablecoin-reserves-portfolio-launch"
@@ -802,7 +958,7 @@
       "lastCovered": "2026-04-24T08:05:29.915Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-sbp-pib-buyback-rs309bn-pakistan-debt-management"
@@ -818,7 +974,7 @@
       "lastCovered": "2026-04-24T08:05:29.915Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-india-ai-welfare-policing-rights-vacuum"
@@ -834,7 +990,7 @@
       "lastCovered": "2026-04-24T08:05:29.915Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-photo-enabled-and-thioamide-directed-c-sp3-h-carboxylation-o"
@@ -850,7 +1006,7 @@
       "lastCovered": "2026-04-24T08:05:29.915Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-muscle-tendon-properties-of-the-female-athlete-a-comparison"
@@ -866,7 +1022,7 @@
       "lastCovered": "2026-04-24T22:10:12.944Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-23-us-military-seizes-iran-oil-tanker-indian-ocean",
@@ -892,7 +1048,7 @@
       "lastCovered": "2026-04-24T04:07:46.035Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-23-japan-core-cpi-boj-oil-shock"
@@ -917,7 +1073,7 @@
       "lastCovered": "2026-04-24T04:07:46.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-lebanon-israel-ceasefire-three-week-extension"
@@ -939,7 +1095,7 @@
       "lastCovered": "2026-04-24T04:07:46.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-lebanon-couple-home-destroyed-satellite"
@@ -961,7 +1117,7 @@
       "lastCovered": "2026-04-24T04:07:46.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-kazakhstan-uav-integration-armed-forces"
@@ -977,7 +1133,7 @@
       "lastCovered": "2026-04-24T04:07:46.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-coupang-breach-us-south-korea-crisis"
@@ -999,7 +1155,7 @@
       "lastCovered": "2026-04-24T04:07:46.035Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-23-douma-egypt-remand-detention-recycle"
@@ -1015,7 +1171,7 @@
       "lastCovered": "2026-04-24T04:07:46.035Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-uk-digital-services-tax-trump-tariff-threat"
@@ -1037,7 +1193,7 @@
       "lastCovered": "2026-04-24T04:07:46.035Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-albanese-gas-export-tax-rejected"
@@ -1059,7 +1215,7 @@
       "lastCovered": "2026-04-24T04:07:46.035Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-mythos-autonomous-ai-agent-safety-threshold"
@@ -1075,7 +1231,7 @@
       "lastCovered": "2026-04-24T04:07:46.035Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-a-new-approach-for-understanding-the-association-between-chr"
@@ -1091,7 +1247,7 @@
       "lastCovered": "2026-04-24T04:07:46.035Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-tnmd-brichos-domain-attenuates-tau-pathology-and-memory-defi"
@@ -1099,256 +1255,6 @@
       "eventUri": null,
       "summary": "[Auto-backfill for science floor] We are providing an unedited version of this manuscript to give early access to its findings. Before final publication, the manuscript will undergo further editing. Please note there may be errors present which affect the content, and all legal disclaimers apply.\n\nThe aberrant aggregation of tau lea",
       "conceptUris": []
-    },
-    {
-      "id": "israel-katz-green-light-renew-iran-war",
-      "label": "Katz says Israel waiting for 'green light' to renew war against Iran",
-      "firstSeen": "2026-04-23T22:05:11.428Z",
-      "lastCovered": "2026-04-23T22:05:11.428Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-israel-katz-green-light-renew-iran-war"
-      ],
-      "eventUri": "eng-11595775",
-      "summary": "Defense Minister Israel Katz publicly stated Israel has 'new targets marked' and is awaiting a US green light to 'return Iran to the Stone Age' — the ceasefire is framed by Tel Aviv as a pause, not an end. Lead with the language: 'Stone Age' is a phrase that names the intended civilian cost. Note sentiment divergence (0.42) between Israeli/US framing and South/Southeast Asian wires — the same statement reads as routine in Tel Aviv and as alarming escalation in Karachi and Singapore.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
-        "http://en.wikipedia.org/wiki/Israel_Katz",
-        "http://en.wikipedia.org/wiki/Ali_Khamenei",
-        "http://en.wikipedia.org/wiki/Iran%E2%80%93Iraq_War"
-      ]
-    },
-    {
-      "id": "muslim-nations-jerusalem-status-quo-joint-statement",
-      "label": "Pakistan, 7 other Muslim nations reject attempts to alter historic, legal status quo in Jerusalem, at its holy sites",
-      "firstSeen": "2026-04-23T22:05:11.428Z",
-      "lastCovered": "2026-04-23T22:05:11.428Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-muslim-nations-jerusalem-status-quo-joint-statement"
-      ],
-      "eventUri": null,
-      "summary": "Foreign ministers of eight Muslim-majority states issued a joint statement rejecting changes to the Jerusalem status quo — notable because it formalizes a collective diplomatic position at a moment when the Iran war has fragmented Arab-Muslim coordination. Lead with the signatories and what the joint framing accomplishes that individual protests did not. Contextualize with ongoing settler incursions at Al-Aqsa and the legal status the statement invokes.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Jerusalem",
-        "http://en.wikipedia.org/wiki/Muslim_world",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Status_quo"
-      ]
-    },
-    {
-      "id": "us-sanctions-cambodian-senator-scam-compounds",
-      "label": "US sanctions Cambodian senator for millions earned through scam compounds",
-      "firstSeen": "2026-04-23T22:05:11.428Z",
-      "lastCovered": "2026-04-23T22:05:11.428Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-us-sanctions-cambodian-senator-scam-compounds"
-      ],
-      "eventUri": null,
-      "summary": "Treasury sanctioned sitting Cambodian Senator Kok An plus 28 others running pig-butchering scam compounds — the first time an elected official is named at this level for the Southeast Asian forced-labor scam industry. Lead with the political rank: the scam economy has graduated from gangland to state-adjacent. Contextualize scale — these compounds run on trafficked workers from Bangladesh, Pakistan, Indonesia, and the consequences reach crypto victims globally.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Cambodia",
-        "http://en.wikipedia.org/wiki/Pig_butchering_scam",
-        "http://en.wikipedia.org/wiki/Office_of_Foreign_Assets_Control"
-      ]
-    },
-    {
-      "id": "nepal-gen-z-government-gulf-remittance-crisis",
-      "label": "Nepal's Remittance Reckoning: The Gen Z Mandate Meets the Gulf Crisis",
-      "firstSeen": "2026-04-23T22:05:11.428Z",
-      "lastCovered": "2026-04-23T22:05:11.428Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-nepal-gen-z-government-gulf-remittance-crisis"
-      ],
-      "eventUri": null,
-      "summary": "Nepal's new Gen-Z-mandated government inherits an economy where remittances from Gulf workers are ~25% of GDP — and the Iran war has disrupted those flows. Lead with the dependency number: a ballot-box mandate for reform collides with an external shock nobody in Kathmandu controls. Shows how Hormuz ripples into South Asian household income, not just oil futures.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nepal",
-        "http://en.wikipedia.org/wiki/Remittance",
-        "http://en.wikipedia.org/wiki/Gulf_Cooperation_Council"
-      ]
-    },
-    {
-      "id": "meta-microsoft-layoffs-fund-ai-capex",
-      "label": "Meta to cut 10% of jobs to 'offset' Mark Zuckerberg's AI spending",
-      "firstSeen": "2026-04-23T22:05:11.428Z",
-      "lastCovered": "2026-04-23T22:05:11.428Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-meta-microsoft-layoffs-fund-ai-capex"
-      ],
-      "eventUri": "eng-11596094",
-      "summary": "Meta will cut 10% of staff and Microsoft opens voluntary retirement to 7% — both framed explicitly as paying for AI capex. Lead with the mechanic: workers are the funding source for datacenter buildouts. The 'productivity' rhetoric is a transfer of wages to infrastructure. Tie to this week's Meta AI spend announcements and the broader pattern of tech layoffs in a profitable sector.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Meta_Platforms",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Layoff",
-        "http://en.wikipedia.org/wiki/Mark_Zuckerberg",
-        "http://en.wikipedia.org/wiki/Data_center"
-      ]
-    },
-    {
-      "id": "oil-brent-98-hormuz-standoff-import-economies",
-      "label": "Oil prices climb 3pc amid standoff",
-      "firstSeen": "2026-04-23T22:05:11.428Z",
-      "lastCovered": "2026-04-23T22:05:11.428Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-oil-brent-98-hormuz-standoff-import-economies"
-      ],
-      "eventUri": "eng-11591252",
-      "summary": "Brent hit $98.48 on Iran-US ceasefire uncertainty — the number is close to the psychologically significant $100 line. Lead with what $100 Brent does to import-dependent economies (Pakistan, Bangladesh, Kenya, Türkiye) before it reaches US gas pumps. Frame as a secondary effect of the tanker seizures story, not the same-day news hook.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Price_of_oil",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz"
-      ]
-    },
-    {
-      "id": "african-creators-gig-economy-platform-pay-gap",
-      "label": "African creators struggle to secure decent income in gig economy",
-      "firstSeen": "2026-04-23T22:05:11.428Z",
-      "lastCovered": "2026-04-23T22:05:11.428Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-african-creators-gig-economy-platform-pay-gap"
-      ],
-      "eventUri": null,
-      "summary": "Africa's creative output is booming on TikTok/YouTube/Instagram but the value captured by African creators is a fraction of what equivalent Western creators earn — the structural reason is platform monetization geography, not talent. Lead with the income gap number and the platform mechanism (ad rates indexed to viewer country). Accountability angle: the same engagement is priced differently based on where the viewer lives.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Gig_economy",
-        "http://en.wikipedia.org/wiki/Creator_economy",
-        "http://en.wikipedia.org/wiki/Africa"
-      ]
-    },
-    {
-      "id": "philippines-coral-submarine-groundwater-pollution",
-      "label": "Underground pollution is threatening the Philippines' corals",
-      "firstSeen": "2026-04-23T22:05:11.428Z",
-      "lastCovered": "2026-04-23T22:05:11.428Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-philippines-coral-submarine-groundwater-pollution"
-      ],
-      "eventUri": null,
-      "summary": "Groundwater laced with nitrogen and wastewater is flowing submarine into Philippine reefs — a mechanism that bypasses every surface-runoff regulation designed to protect coral. Lead with the pathway: the threat is literally underground, invisible to the regulators watching rivers. Teaches a reader about submarine groundwater discharge and why island-nation reef collapse is not just about warming oceans.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Philippines",
-        "http://en.wikipedia.org/wiki/Coral_reef",
-        "http://en.wikipedia.org/wiki/Submarine_groundwater_discharge"
-      ]
-    },
-    {
-      "id": "south-africa-green-drop-wastewater-collapse",
-      "label": "Toxic tide — dangerously polluted waterways in Joburg and throughout SA threaten public health",
-      "firstSeen": "2026-04-23T22:05:11.428Z",
-      "lastCovered": "2026-04-23T22:05:11.428Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-south-africa-green-drop-wastewater-collapse"
-      ],
-      "eventUri": null,
-      "summary": "The latest Green Drop Report shows a systemic collapse in South African wastewater treatment — the number of plants in critical condition has jumped, raw sewage is flowing into the Jukskei and Vaal. Lead with the critical-system count. Accountability angle: the municipalities named in the report are the data the Department of Water and Sanitation already has; the failure is enforcement, not information.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Jukskei_River",
-        "http://en.wikipedia.org/wiki/Wastewater",
-        "http://en.wikipedia.org/wiki/Water_pollution",
-        "http://en.wikipedia.org/wiki/South_Africa"
-      ]
-    },
-    {
-      "id": "openai-gpt-5-5-agentic-double-api-price",
-      "label": "OpenAI Unveils GPT-5.5 to Field Tasks With Limited Instructions",
-      "firstSeen": "2026-04-23T22:05:11.428Z",
-      "lastCovered": "2026-04-23T22:05:11.428Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-openai-gpt-5-5-agentic-double-api-price"
-      ],
-      "eventUri": "eng-11596059",
-      "summary": "GPT-5.5 positions as agentic — capable of long-horizon tasks from minimal prompting — at double the API price of GPT-5. Lead with the price: the capability/cost curve is bending the wrong way for small developers and the Global South. Pair with Meta/Microsoft layoffs story for reader to see the full picture: the compute is getting more expensive AND the workforce funding it is getting smaller.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/OpenAI",
-        "http://en.wikipedia.org/wiki/ChatGPT",
-        "http://en.wikipedia.org/wiki/API",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence"
-      ]
-    },
-    {
-      "id": "township-blocks-water-nuclear-ai-datacenter",
-      "label": "Community Votes to Deny Water to Nuclear Weapons Data Center",
-      "firstSeen": "2026-04-23T22:05:11.428Z",
-      "lastCovered": "2026-04-23T22:05:11.428Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-township-blocks-water-nuclear-ai-datacenter"
-      ],
-      "eventUri": null,
-      "summary": "A township put a 365-day water hold on an AI datacenter being built for nuclear weapons modelling — a rare case of a local vote constraining federal weapons infrastructure. Lead with the water: the binding constraint on American AI expansion is becoming thirst, not chips. Accountability angle: the same water dependencies that chase datacenters around the US Southwest now chase them into rural townships with actual voting power.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Data_center",
-        "http://en.wikipedia.org/wiki/Nuclear_weapon",
-        "http://en.wikipedia.org/wiki/Water_scarcity"
-      ]
-    },
-    {
-      "id": "india-ai-summit-surveillance-facial-recognition",
-      "label": "India's race to adopt AI sparks a deeper question: How can technology respect human rights?",
-      "firstSeen": "2026-04-23T22:05:11.428Z",
-      "lastCovered": "2026-04-23T22:05:11.428Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-india-ai-summit-surveillance-facial-recognition"
-      ],
-      "eventUri": null,
-      "summary": "India's AI Impact Summit celebrated deployment speed; civil society warned that facial recognition and surveillance systems are being rolled out against Muslims, Dalits, and dissenters without legal guardrails. Lead with the specific deployments — not the summit rhetoric. Accountability angle: the same government pitching 'AI for all' at Davos is deploying it against protestors in Delhi.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Facial_recognition_system",
-        "http://en.wikipedia.org/wiki/Mass_surveillance",
-        "http://en.wikipedia.org/wiki/Artificial_intelligence"
-      ]
     }
   ]
 }
