@@ -1,9 +1,9 @@
+import countriesTopo from '@shared/data/countries-110m.json';
 import type { SkPath } from '@shopify/react-native-skia';
 import { type GeoContext, geoArea, geoCentroid } from 'd3-geo';
 import { feature, mesh } from 'topojson-client';
 import { presimplify, simplify } from 'topojson-simplify';
 import type { GeometryCollection, Topology } from 'topojson-specification';
-import countriesTopo from '../../data/countries-110m.json';
 
 interface TopoWithObjects extends Topology {
   objects: Record<string, GeometryCollection>;

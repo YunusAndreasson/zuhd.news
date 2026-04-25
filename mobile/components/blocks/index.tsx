@@ -1,6 +1,6 @@
-import type { CountryData } from '../../constants/country-data';
+import type { CountryData } from '@shared/countries/country-data';
+import type { ArticleBlock } from '@shared/types';
 import type { LinkOpener, MarkdownStyles } from '../../lib/markdown';
-import type { ArticleBlock } from '../../types';
 import { ActorsBlock } from './ActorsBlock';
 import { CompareBlock } from './CompareBlock';
 import { LocationsBlock } from './LocationsBlock';

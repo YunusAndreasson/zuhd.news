@@ -1,3 +1,5 @@
+import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
+import { displayNameFromCode, topojsonNameFromCode } from '@shared/countries/iso';
 import { Canvas, Circle, Group, Path, Skia, type SkPath } from '@shopify/react-native-skia';
 import { geoCentroid, geoEquirectangular, geoPath } from 'd3-geo';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
@@ -18,12 +20,10 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
 import { EASING, FLAG, OPACITY, PRESSED_STYLE, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
 import { hapticImpact } from '../../lib/haptics';
-import { displayNameFromCode, topojsonNameFromCode } from '../../lib/iso-country';
 import { createSkiaPathContext } from '../globe/shared';
 import { Text } from '../primitives';
 import {

@@ -1,9 +1,9 @@
+import type { Category } from '@shared/types';
 import { useCallback, useRef, useSyncExternalStore } from 'react';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, staggerDelay } from '../constants/theme';
 import { getSnapshot, subscribe, toggle } from '../lib/bookmark-store';
 import { hapticNotification } from '../lib/haptics';
-import type { Category } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { EmptyState } from './EmptyState';
 import { SwipeableRow } from './SwipeableRow';

@@ -1,10 +1,10 @@
+import type { CompareRow } from '@shared/types';
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { ANIMATION, BLACK, RADIUS, SPACING, staggerDelay } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
-import type { CompareRow } from '../../types';
 import { Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
 import { type BlockVariant, blockContainerStyle } from './shared';

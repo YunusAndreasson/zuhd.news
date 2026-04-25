@@ -1,3 +1,6 @@
+import { COUNTRY_DATA } from '@shared/countries/country-data';
+import { displayNameFromCode } from '@shared/countries/iso';
+import type { Article, Entity } from '@shared/types';
 import { LinearGradient } from 'expo-linear-gradient';
 import { memo, useCallback, useMemo } from 'react';
 import { type GestureResponderEvent, Pressable, StyleSheet, View } from 'react-native';
@@ -9,15 +12,12 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { COUNTRY_DATA } from '../constants/country-data';
 import { HIT_SLOP, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact, hapticTick } from '../lib/haptics';
-import { displayNameFromCode } from '../lib/iso-country';
 import { COUNTRY_URL_SCHEME, makeMarkdownStyles, renderSentences } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
-import type { Article, Entity } from '../types';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 import { Text } from './primitives';
 

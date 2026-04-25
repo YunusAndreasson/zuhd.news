@@ -1,5 +1,5 @@
-import type { Article } from '../../types';
-import { CITY_COORDS, SOURCE_COORDS } from './coordinates';
+import { CITY_COORDS, SOURCE_COORDS } from '@shared/globe/coordinates';
+import type { Article } from '@shared/types';
 
 export function getCoords(article: Article): [number, number] | null {
   // 1. Frontmatter coordinates (most reliable — currently always present)

@@ -1,4 +1,4 @@
-import { CITY_COORDS, CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from '../components/globe/coordinates';
+import { CITY_COORDS, CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from '@shared/globe/coordinates';
 
 describe('coordinate data integrity', () => {
   it('all CITY_COORDS have valid lat/lng ranges', () => {

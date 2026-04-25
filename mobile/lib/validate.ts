@@ -1,4 +1,3 @@
-import type { Preferences } from '../constants/theme';
 import type {
   Actor,
   Article,
@@ -16,7 +15,8 @@ import type {
   Indicator,
   MetaResponse,
   TrendsSnapshot,
-} from '../types';
+} from '@shared/types';
+import type { Preferences } from '../constants/theme';
 import type { Bookmark } from './bookmark-store';
 
 const isObject = (v: unknown): v is Record<string, unknown> =>

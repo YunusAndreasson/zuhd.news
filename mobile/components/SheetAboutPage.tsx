@@ -1,9 +1,9 @@
+import type { Article } from '@shared/types';
 import { useMemo, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 import { useOpenLink } from '../lib/open-link';
-import type { Article } from '../types';
 import { Pressable, Text } from './primitives';
 
 // Copy lives with the component; the About page is one-of-a-kind and doesn't

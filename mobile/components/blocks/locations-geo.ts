@@ -1,10 +1,10 @@
+import capitalsJson from '@shared/data/capitals-50m.json';
+import countriesHiResTopo from '@shared/data/countries-50m.json';
+import lakesHiResTopo from '@shared/data/lakes-50m.json';
+import riversHiResTopo from '@shared/data/rivers-50m.json';
+import seasJson from '@shared/data/seas-50m.json';
 import { feature, mesh } from 'topojson-client';
 import type { GeometryCollection, Topology } from 'topojson-specification';
-import capitalsJson from '../../data/capitals-50m.json';
-import countriesHiResTopo from '../../data/countries-50m.json';
-import lakesHiResTopo from '../../data/lakes-50m.json';
-import riversHiResTopo from '../../data/rivers-50m.json';
-import seasJson from '../../data/seas-50m.json';
 
 // Higher-resolution (Natural Earth 1:50m) world used by LocationsBlock. The
 // block projects paths once and zooms via a Skia Group transform, so it never

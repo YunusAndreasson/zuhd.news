@@ -15,9 +15,9 @@ import { ANIMATION, EASING, SPACING } from '../../constants/theme';
 
 const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
 
+import type { ArticleBlock, TrendAnnotation } from '@shared/types';
 import { useTheme } from '../../hooks/useTheme';
 import { hapticTick } from '../../lib/haptics';
-import type { ArticleBlock, TrendAnnotation } from '../../types';
 import { Pressable, Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
 import type { BlockVariant } from './shared';

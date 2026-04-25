@@ -3,12 +3,12 @@ import {
   type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
+import type { Article, Category, Chokepoint, CompareRow, VesselField } from '@shared/types';
 import { memo, useMemo } from 'react';
 import { Text as RNText, StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, CATEGORIES, SPACING, staggerDelay } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
-import type { Article, Category, Chokepoint, CompareRow, VesselField } from '../types';
 import { ArticleRow } from './ArticleRow';
 import { CompareBlock } from './blocks/CompareBlock';
 import { SourceCaption } from './blocks/SourceCaption';

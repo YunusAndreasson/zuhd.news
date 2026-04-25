@@ -1,3 +1,6 @@
+import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
+import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from '@shared/globe/coordinates';
+import type { Article, Chokepoint, HeatmapPoint } from '@shared/types';
 import {
   BlurMask,
   Canvas,
@@ -43,12 +46,9 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { COUNTRY_DATA, type CountryData } from '../../constants/country-data';
 import { BLACK } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { displayLocation } from '../../lib/place-names';
-import type { Article, Chokepoint, HeatmapPoint } from '../../types';
-import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from './coordinates';
 import { getLakeLabels, getMajorRiverFeatureCollection, getRiverLabels, SEAS } from './detail-geo';
 import {
   ANTARCTIC_CIRCLE,

@@ -1,3 +1,4 @@
+import type { Article, Category, FeedResponse } from '@shared/types';
 import { startTransition, useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
 import { API_BASE, STALE_THRESHOLD } from '../constants/theme';
 import { flushBookmarks } from '../lib/bookmark-store';
@@ -5,7 +6,6 @@ import { fetchJson } from '../lib/fetchJson';
 import { createJsonCache } from '../lib/json-cache';
 import { getLastSeenAt, saveLastSeenAt } from '../lib/storage';
 import { isFeedResponse, isMetaResponse } from '../lib/validate';
-import type { Article, Category, FeedResponse } from '../types';
 import { useAppResume } from './useAppResume';
 
 const feedCache = createJsonCache<FeedResponse>('zuhd-feed.json', isFeedResponse);

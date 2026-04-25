@@ -1,8 +1,8 @@
+import type { ArticleSource } from '@shared/types';
 import { StyleSheet, View } from 'react-native';
 import { SOURCES } from '../constants/sources';
 import { EDITORIAL, SPACING, type TextTone } from '../constants/theme';
 import { ccToFlag } from '../lib/article-utils';
-import type { ArticleSource } from '../types';
 import { Box, Icon, Pressable, Text } from './primitives';
 
 type Tone = 'favorable' | 'unfavorable' | 'neutral' | null;

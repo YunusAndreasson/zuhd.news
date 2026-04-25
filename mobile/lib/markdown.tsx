@@ -1,3 +1,4 @@
+import type { Entity } from '@shared/types';
 import type { ReactNode } from 'react';
 import { Linking, StyleSheet, Text, type TextStyle } from 'react-native';
 import { ANDROID_TEXT_BASE } from '../constants/platform';
@@ -8,7 +9,6 @@ import {
   MAX_FONT_SCALE,
   type Typography,
 } from '../constants/theme';
-import type { Entity } from '../types';
 
 export type Segment = {
   type: 'text' | 'bold' | 'italic' | 'boldItalic' | 'link' | 'entity';

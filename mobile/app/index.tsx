@@ -3,6 +3,7 @@ import {
   type BottomSheetBackdropProps,
   type BottomSheetModal,
 } from '@gorhom/bottom-sheet';
+import type { Article, ArticleSource, Category, Chokepoint, Entity } from '@shared/types';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -43,7 +44,6 @@ import { useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
-import type { Article, ArticleSource, Category, Chokepoint, Entity } from '../types';
 import { usePendingNotification } from './_hooks/usePendingNotification';
 import { useZoomCycle } from './_hooks/useZoomCycle';
 

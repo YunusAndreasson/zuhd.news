@@ -3,13 +3,13 @@ import {
   type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
+import { getMetricValue, getRanking, type MetricKey } from '@shared/countries/country-ranking';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
-import { getMetricValue, getRanking, type MetricKey } from '../lib/country-ranking';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { CountryRankingView } from './CountryRankingView';
 import type { TapResult } from './globe/MiniGlobe';

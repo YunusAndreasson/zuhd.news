@@ -1,6 +1,6 @@
+import type { Category } from '@shared/types';
 import { Dimensions, StyleSheet, type TextStyle } from 'react-native';
 import { Easing } from 'react-native-reanimated';
-import type { Category } from '../types';
 import { ANDROID_TEXT_BASE } from './platform';
 
 // ---------------------------------------------------------------------------

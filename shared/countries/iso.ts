@@ -11,7 +11,7 @@
  * raw code as text).
  */
 
-const CC_TO_TOPOJSON_NAME: Record<string, string> = {
+export const CC_TO_TOPOJSON_NAME: Record<string, string> = {
   AD: 'Andorra',
   AE: 'United Arab Emirates',
   AF: 'Afghanistan',

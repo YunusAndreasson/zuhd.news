@@ -11,11 +11,11 @@ import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 const TIMELINE_DOT = 7;
 const TIMELINE_LINE = 1.5;
 
-import type { CountryData } from '../constants/country-data';
+import type { CountryData } from '@shared/countries/country-data';
+import type { ContextBrief, TimelineEntry } from '@shared/types';
 import { useTheme } from '../hooks/useTheme';
 import { makeMarkdownStyles } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
-import type { ContextBrief, TimelineEntry } from '../types';
 import { renderBlocks } from './blocks';
 import { Text } from './primitives';
 import { SheetLayout } from './SheetLayout';

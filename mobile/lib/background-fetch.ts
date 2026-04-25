@@ -1,7 +1,7 @@
+import type { FeedResponse } from '@shared/types';
 import * as BackgroundTask from 'expo-background-task';
 import * as TaskManager from 'expo-task-manager';
 import { API_BASE } from '../constants/theme';
-import type { FeedResponse } from '../types';
 import { fetchJson } from './fetchJson';
 import { createJsonCache } from './json-cache';
 import { isFeedResponse, isMetaResponse } from './validate';

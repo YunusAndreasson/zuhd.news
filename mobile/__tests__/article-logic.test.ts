@@ -1,7 +1,7 @@
 import { getCoords } from '../components/globe/storyDots';
 import { ccToFlag, computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { displayLocation } from '../lib/place-names';
-import type { Article } from '../types';
+import type { Article } from '@shared/types';
 
 // Minimal Article factory — only fields used by getCoords/formatTimeAgo/computeFontScale
 function makeArticle(overrides: Partial<Article> = {}): Article {

@@ -5,8 +5,8 @@
  * per-frame projection.
  */
 
+import { COUNTRY_OVERRIDES } from '@shared/globe/coordinates';
 import { geoCircle, geoContains } from 'd3-geo';
-import { COUNTRY_OVERRIDES } from './coordinates';
 import { countries, countryAreas, countryBboxes } from './shared';
 
 // ── Astronomical / time constants ──────────────────────────────────────────

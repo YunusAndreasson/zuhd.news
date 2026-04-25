@@ -1,8 +1,8 @@
+import type { ContextBrief } from '@shared/types';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { API_BASE } from '../constants/theme';
 import { fetchJson } from '../lib/fetchJson';
 import { isContextBrief, parseArticleBlocks } from '../lib/validate';
-import type { ContextBrief } from '../types';
 
 /** Sanitize optional block fields on the brief and each timeline entry so
  *  downstream renderers never see malformed / unknown-type blocks from the

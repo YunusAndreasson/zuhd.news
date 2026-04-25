@@ -1,5 +1,5 @@
+import type { Article, Category } from '@shared/types';
 import { File, Paths } from 'expo-file-system';
-import type { Article, Category } from '../types';
 import { isBookmarkArray } from './validate';
 
 // ---------------------------------------------------------------------------
