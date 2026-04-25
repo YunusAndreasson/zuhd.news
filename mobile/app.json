@@ -4,7 +4,10 @@
     "slug": "zuhd-news",
     "version": "1447.11.10",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": {
+      "light": "./assets/icon-light.png",
+      "dark": "./assets/icon-dark.png"
+    },
     "userInterfaceStyle": "automatic",
     "scheme": "zuhd-news",
     "owner": "edenmind",
@@ -15,7 +18,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
-      "buildNumber": "235",
+      "buildNumber": "236",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
@@ -28,7 +31,7 @@
     "android": {
       "package": "news.zuhd.app",
       "adaptiveIcon": {
-        "backgroundColor": "#141414",
+        "backgroundColor": "#0F0F11",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -69,7 +72,7 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#141414",
+          "backgroundColor": "#0F0F11",
           "image": "./assets/splash-icon.png"
         }
       ],
@@ -82,7 +85,7 @@
         "expo-notifications",
         {
           "icon": "./assets/android-icon-monochrome.png",
-          "color": "#141414"
+          "color": "#0F0F11"
         }
       ]
     ],
