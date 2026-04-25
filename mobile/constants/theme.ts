@@ -59,14 +59,14 @@ export const BLACK = '#000000';
 // ---------------------------------------------------------------------------
 
 export const DARK_COLORS = {
-  bg: '#141414',
+  bg: '#0F0F11',
   text: '#e8e8e8',
   textSecondary: '#999',
   accent: '#b3b3b3',
   rule: '#2e2e2e',
-  textEmphasis: '#ffffff',
+  textEmphasis: '#FAFAFA',
   dome: '#c9a84c', // Dome of the Rock gold — the only color in the app
-  sheetBg: '#1c1c1c',
+  sheetBg: '#18181B',
   pillBg: 'rgba(50,50,50,0.7)',
   atmosphere: '#334455',
   shadow: 'rgba(0,0,0,0.6)',
@@ -101,7 +101,7 @@ export const makeBgAlpha = (bgRgb: [number, number, number]) => (a: number) =>
   `rgba(${bgRgb[0]},${bgRgb[1]},${bgRgb[2]},${a})`;
 
 export const BG_RGB: Record<'dark' | 'light', [number, number, number]> = {
-  dark: [20, 20, 20],
+  dark: [15, 15, 17],
   light: [245, 242, 237],
 };
 
