@@ -59829,5 +59829,1467 @@
     "label": "Double-Tap Strikes & the Sanctions Veto",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-26-ai-compute-crunch-cloud-prices-hyperscaler-eviction": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EVICTION",
+        "body": "Hyperscalers (AWS, Azure, GCP, Oracle) buy GPUs in bulk and resell capacity. When AI training demand spikes, they pull silicon off general-purpose racks first — web hosting, CI runners, batch jobs — because AI customers pay multiples more per GPU-hour. Smaller tenants get rate-limited or repriced; the cloud was never a utility, it was an auction.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The polite term is *capacity reallocation*. The honest term is **eviction by price** — your workload is still allowed to run, just not at a price you can afford."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SSD MOVED",
+        "body": "The same NAND fabs that make consumer SSDs make the high-capacity enterprise drives that hyperscaler training clusters consume in volume. When Microsoft and Meta sweep multi-exabyte orders for AI checkpoint storage, fab allocation shifts and the consumer channel goes short. A $159 → $575 retail move is the downstream of a procurement decision made 18 months earlier in Hsinchu or Pyeongtaek.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Samsung",
+                "value": "~33%",
+                "cc": "KR",
+                "weight": 33,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "SK hynix",
+                "value": "~20%",
+                "cc": "KR",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "Kioxia",
+                "value": "~19%",
+                "cc": "JP",
+                "weight": 19,
+                "tone": "neutral"
+              },
+              {
+                "label": "Micron",
+                "value": "~13%",
+                "cc": "US",
+                "weight": 13,
+                "tone": "favorable"
+              },
+              {
+                "label": "WDC/SanDisk",
+                "value": "~12%",
+                "cc": "US",
+                "weight": 12,
+                "tone": "favorable"
+              }
+            ],
+            "label": "NAND fab capacity by manufacturer (2024)"
+          }
+        ]
+      },
+      {
+        "heading": "THE POWER CONSTRAINT",
+        "body": "A modern AI training campus draws 100–500 megawatts continuously — equivalent to a small city. Local grids designed for 20MW office parks cannot energize this without years of substation work. The bottleneck has moved from chips to electrons; even if NVIDIA shipped infinite GPUs, the interconnection queue at most US utilities is now 4–7 years."
+      },
+      {
+        "heading": "THE WATER PROBLEM",
+        "body": "Air-cooled servers above ~30kW per rack don't work — modern H100/B200 racks pull 80–120kW, requiring liquid cooling. The water is mostly evaporative: a typical hyperscaler campus consumes 1–5 million gallons per day. In Arizona, Virginia, and Oregon, residents have started showing up at zoning hearings with water bills.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "where the moratoria are landing",
+            "markers": [
+              {
+                "lat": 45.6056,
+                "lng": -121.1814,
+                "label": "The Dalles, OR — Google campus"
+              },
+              {
+                "lat": 33.4484,
+                "lng": -111.93,
+                "label": "Mesa, AZ — Meta campus"
+              },
+              {
+                "lat": 39.0997,
+                "lng": -94.5786,
+                "label": "Kansas City — Meta paused"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RETURN OF SCARCITY",
+        "body": "For 15 years, cloud computing felt like a utility — elastic, cheap, on demand. That was a function of Moore's Law outpacing demand. AI training broke the equation: model size grew faster than transistor density, and the marginal cost of an FLOP stopped falling. Compute is rationed again, the way it was in the mainframe era.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ended the era of effectively-free cloud compute?",
+            "options": [
+              "The end of Moore's Law in transistor density",
+              "AI model size growing faster than chip improvements",
+              "Hyperscaler antitrust breakups",
+              "Rising electricity prices in the US"
+            ],
+            "correct": 1,
+            "explanation": "Moore's Law has slowed but not stopped. The decisive shift was demand: frontier model parameter counts grew ~10× per year while chip performance grew ~2×, inverting the supply-demand curve."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-26T04:27:44.935Z",
+    "label": "The AI Compute Crunch",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-26-antarctic-coral-genetic-connectivity-mpa-design": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LARVAL ASSUMPTION",
+        "body": "Most marine conservation rests on a hidden premise: ocean currents mix larvae freely, so a healthy reef upstream reseeds a damaged one downstream. Marine Protected Areas are sized and spaced based on this assumed connectivity.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is the *supply-side ecology* paradigm — populations are limited by **larval input**, not local reproduction. If the supply fails, no amount of local protection rebuilds the reef."
+          }
+        ]
+      },
+      {
+        "heading": "ISOLATION BY DISTANCE",
+        "body": "When genetic difference between populations grows linearly with the kilometers between them, geneticists call it isolation by distance. It means dispersal is local, not basin-wide — every generation, larvae settle close to their parents rather than riding currents across the range."
+      },
+      {
+        "heading": "THE ANTARCTIC CIRCUMPOLAR CURRENT",
+        "body": "The world's largest ocean current rings Antarctica at 137 million cubic meters per second — a hundred times the flow of all the world's rivers combined. The intuition was that anything spawned in this conveyor would travel thousands of kilometers. The genetic data says otherwise.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AR",
+              "CL",
+              "AQ"
+            ],
+            "label": "Western Antarctic Peninsula",
+            "markers": [
+              {
+                "lat": -62.0833,
+                "lng": -58.3833,
+                "label": "King George Island"
+              },
+              {
+                "lat": -64.7741,
+                "lng": -64.0533,
+                "label": "Palmer Station"
+              },
+              {
+                "lat": -67.5667,
+                "lng": -68.1333,
+                "label": "Rothera"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOFT CORALS DISPERSE LOCALLY",
+        "body": "Many Antarctic octocorals brood their larvae internally and release them as crawlers — negatively buoyant, short-lived, settling within meters of the parent colony. Compared to broadcast spawners that release gametes into the water column, brooders trade reach for survival in cold water."
+      },
+      {
+        "heading": "THE MPA REDESIGN",
+        "body": "If populations don't reseed each other, MPAs must be networks of small, closely-spaced reserves rather than a few large ones — the so-called SLOSS debate (Single Large Or Several Small) tilts toward Several Small whenever connectivity is low. The Antarctic finding adds a continent to the Several Small column.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "If a marine population shows strong genetic isolation by distance, what does that imply for protected-area design?",
+            "options": [
+              "A few very large reserves are sufficient — currents redistribute larvae",
+              "A network of smaller reserves spaced within dispersal range",
+              "Protected areas are unnecessary; the population is genetically resilient"
+            ],
+            "correct": 1,
+            "explanation": "Low connectivity means a damaged reef can't be reseeded from far away — reserves must be close enough that larvae from one can reach the next."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1959 TREATY",
+        "body": "The Antarctic Treaty froze territorial claims and dedicated the continent to peaceful science. Marine protection south of 60°S falls under CCAMLR, a separate 1982 convention requiring consensus among 26 members — which is why MPA proposals routinely stall when one member objects.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1959",
+                "label": "Antarctic Treaty signed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1982",
+                "label": "CCAMLR enters force"
+              },
+              {
+                "year": "2009",
+                "label": "South Orkney MPA — first in Antarctica"
+              },
+              {
+                "year": "2016",
+                "label": "Ross Sea MPA agreed"
+              },
+              {
+                "year": "2024",
+                "label": "East Antarctic & Weddell MPAs blocked again"
+              }
+            ],
+            "label": "Antarctic governance"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-26T04:28:16.391Z",
+    "label": "Marine Connectivity & MPA Design",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-26-bonus-incentives-self-set-goals-experiment-behavioral-econ": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORE FINDING",
+        "body": "Behavioral economics has documented for decades that extrinsic rewards can suppress intrinsic motivation. Offering money for a task signals it is unpleasant — workers recalibrate their sense of what's worth doing for free.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this **motivation crowding-out**. The classic 2000 Gneezy-Rustichini study — *A Fine Is a Price* — found that fining Israeli daycare parents for late pickups *increased* lateness. Once payment entered, the moral obligation evaporated."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOAL-SETTING MECHANISM",
+        "body": "When workers set their own targets, the bonus changes the calculation. A higher self-set goal means more risk of missing the bonus threshold. Rational response: lower the goal to lock in the payout. The incentive designed to stretch performance instead compresses ambition."
+      },
+      {
+        "heading": "THE TEACHER PAY PRECEDENT",
+        "body": "Roland Fryer's 2010 New York City study paid teachers up to $3,000 per student for test-score gains. Result: no improvement, in some cases declines. A Nashville variant offered $15,000 bonuses; same null result. The pattern is robust across geographies and grade levels.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happened in Roland Fryer's randomized trial paying NYC teachers bonuses for student test gains?",
+            "options": [
+              "Test scores rose 10–15% as predicted",
+              "No measurable improvement; some declines",
+              "Scores rose only in math, not reading",
+              "Scores rose only in the first year, then reverted"
+            ],
+            "correct": 1,
+            "explanation": "The 2010 NYC experiment — one of the largest teacher pay-for-performance trials ever run — found no positive effect, replicating Nashville's earlier null result."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONDITIONAL CASH TRANSFER ANGLE",
+        "body": "Programs like Mexico's Oportunidades and Brazil's Bolsa Família pay families for sending kids to school or attending health checkups. They work — but mostly because the cash relieves poverty constraints, not because the conditionality motivates behavior. The incentive is a delivery mechanism, not a behavioral lever."
+      },
+      {
+        "heading": "WHEN BONUSES DO WORK",
+        "body": "Edward Deci's meta-analyses since the 1970s find a consistent split: extrinsic rewards reliably improve performance on simple, mechanical tasks (piecework, sales calls) but degrade it on tasks requiring judgment, creativity, or self-direction. The error is treating knowledge work like assembly-line work.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Piecework",
+                "value": "helps",
+                "tone": "favorable"
+              },
+              {
+                "label": "Sales quotas",
+                "value": "helps",
+                "tone": "favorable"
+              },
+              {
+                "label": "Creative work",
+                "value": "hurts",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Teaching",
+                "value": "null/hurts",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Self-set goals",
+                "value": "hurts",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "when extrinsic rewards help vs hurt"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-26T04:28:42.758Z",
+    "label": "Incentives & Motivation Crowding",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-26-doj-denaturalization-287-cases-palestinian-speech": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO-TIER CITIZENSHIP",
+        "body": "Naturalized citizens can lose citizenship; native-born citizens cannot. The 14th Amendment protects birthright citizenship absolutely, but naturalization is a contract — obtained through sworn statements, voidable if those statements were false.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term is *denaturalization*. Once stripped, the person reverts to their prior immigration status — often **none** — and becomes deportable like any non-citizen."
+          }
+        ]
+      },
+      {
+        "heading": "THE AFROYIM RULING",
+        "body": "Afroyim v. Rusk (1967) held that Congress cannot strip citizenship from a native-born American without consent — voting in a foreign election was not enough. The ruling did not extend the same protection to naturalized citizens, leaving the asymmetry intact.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Citizenship is no light trifle to be jeopardized any moment Congress decides to do so under the name of one of its general or implied grants of power.",
+            "speaker": "Justice Hugo Black, Afroyim v. Rusk",
+            "year": "1967"
+          }
+        ]
+      },
+      {
+        "heading": "THE OPERATION JANUS PRECEDENT",
+        "body": "The Obama-era Operation Janus (2016) and Trump-era Operation Second Look (2018) industrialized denaturalization for the first time, building a referral pipeline from USCIS to DOJ. Annual cases jumped from a handful to dozens; the current 384 figure is an order-of-magnitude escalation."
+      },
+      {
+        "heading": "THE MASLENJAK LIMIT",
+        "body": "Maslenjak v. United States (2017) was supposed to narrow this. A 9-0 Court ruled prosecutors must prove the lie was material — that telling the truth would have actually disqualified the applicant. Lower courts have since split on what 'material' means for political associations versus criminal history.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1940",
+                "label": "Nationality Act codifies denaturalization"
+              },
+              {
+                "year": "1943",
+                "label": "Schneiderman: heightened proof standard"
+              },
+              {
+                "year": "1967",
+                "label": "Afroyim shields native-born only",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Maslenjak: materiality required"
+              },
+              {
+                "year": "2018",
+                "label": "Operation Second Look launched"
+              },
+              {
+                "year": "2026",
+                "label": "384 cases pending"
+              }
+            ],
+            "label": "the denaturalization arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE McCARRAN-WALTER GHOST",
+        "body": "The 1952 Immigration and Nationality Act, passed over Truman's veto, made 'membership in or affiliation with' the Communist Party grounds for exclusion and denaturalization. Most ideological provisions were repealed in 1990, but the statutory architecture for treating undisclosed political views as fraud at naturalization survives in the materiality test.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Supreme Court ruling protects native-born Americans from losing citizenship without consent?",
+            "options": [
+              "Wong Kim Ark (1898)",
+              "Afroyim v. Rusk (1967)",
+              "Maslenjak v. US (2017)",
+              "Trop v. Dulles (1958)"
+            ],
+            "correct": 1,
+            "explanation": "Afroyim held Congress cannot strip native-born citizenship; Wong Kim Ark established birthright citizenship; Maslenjak narrowed denaturalization grounds for naturalized citizens."
+          }
+        ]
+      },
+      {
+        "heading": "WHY POLITICAL SPEECH IS DIFFERENT",
+        "body": "Naturalization applicants swear an oath and answer questions about affiliations. If a future administration redefines a movement as disqualifying, undisclosed past sympathy becomes retroactive fraud — even when the speech itself would be protected by the First Amendment for a citizen. The chilling effect runs through the 25 million naturalized Americans."
+      }
+    ],
+    "generatedAt": "2026-04-26T04:29:17.026Z",
+    "label": "Denaturalization",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-26-isds-arbitration-fossil-fuel-114-billion-climate-chill": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "ISDS lets foreign investors sue host states in private arbitration, but states cannot counter-sue investors and affected communities have no standing at all. The forum was designed to protect capital from expropriation in postcolonial states; it has become a one-way ratchet against regulation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is *jus standi* for capital only — a state can be hauled before three arbitrators in Washington or Paris, but a polluted village in the Amazon cannot."
+          }
+        ]
+      },
+      {
+        "heading": "THE ORIGIN",
+        "body": "The first bilateral investment treaty was signed between West Germany and Pakistan in 1959. The architects were European capital exporters worried about newly independent states nationalising assets. Roughly 3,000 such treaties now blanket the world, most signed in the 1990s when developing countries competed for FDI.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1959",
+                "label": "First BIT: Germany–Pakistan",
+                "emphasis": "start"
+              },
+              {
+                "year": "1966",
+                "label": "ICSID Convention signed at World Bank"
+              },
+              {
+                "year": "1990",
+                "label": "BIT signing wave begins"
+              },
+              {
+                "year": "2009",
+                "label": "Vattenfall sues Germany over coal rules",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Ecuador terminates 16 BITs"
+              },
+              {
+                "year": "2024",
+                "label": "EU coordinated ECT withdrawal"
+              }
+            ],
+            "label": "the BIT era"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRIBUNAL",
+        "body": "Three arbitrators — typically commercial lawyers who rotate between sitting as judges and representing investors — decide claims behind closed doors at ICSID, UNCITRAL, or the ICC. There is no appeal on the merits. A 2021 study found 95% of arbitrators had been appointed by the same fifteen law firms.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where do most ISDS cases get heard?",
+            "options": [
+              "UN International Court of Justice",
+              "ICSID, a World Bank tribunal",
+              "WTO Dispute Settlement Body",
+              "The host country's supreme court"
+            ],
+            "correct": 1,
+            "explanation": "ICSID — the International Centre for Settlement of Investment Disputes — sits inside the World Bank in Washington and hears the majority of treaty claims."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHILL",
+        "body": "The threat of arbitration shapes policy more than the awards themselves. New Zealand delayed plain-packaging tobacco rules until Australia won its Philip Morris case. France diluted a fracking ban. The mechanism is called regulatory chill: ministries quietly drop measures their own lawyers warn could trigger a claim.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Yukos v. Russia",
+                "value": "$50bn",
+                "tone": "unfavorable",
+                "cc": "RU"
+              },
+              {
+                "label": "Rockhopper v. Italy",
+                "value": "$210M",
+                "tone": "unfavorable",
+                "cc": "IT"
+              },
+              {
+                "label": "TC Energy v. US",
+                "value": "$15bn claim",
+                "tone": "unfavorable",
+                "cc": "US"
+              },
+              {
+                "label": "Vattenfall v. Germany",
+                "value": "$1.7bn settled",
+                "tone": "unfavorable",
+                "cc": "DE"
+              },
+              {
+                "label": "Eco Oro v. Colombia",
+                "value": "$40M",
+                "tone": "unfavorable",
+                "cc": "CO"
+              }
+            ],
+            "label": "landmark fossil-fuel ISDS awards"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXIT WAVE",
+        "body": "Latin America led the pushback. Bolivia withdrew from ICSID in 2007, Ecuador in 2009, Venezuela in 2012. South Africa terminated its European BITs in 2012-2014. The Energy Charter Treaty — the instrument behind most fossil-fuel claims — saw coordinated EU withdrawal in 2023-2024 after Germany, France, the Netherlands, Spain, and Poland left.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EC",
+              "CO",
+              "BO",
+              "VE",
+              "ZA",
+              "DE",
+              "FR",
+              "NL",
+              "ES"
+            ],
+            "label": "states that have exited or terminated investment treaties",
+            "caption": "Latin America led; the EU followed on the Energy Charter Treaty"
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVEREIGNTY QUESTION",
+        "body": "Defenders argue ISDS depoliticises commercial disputes that would otherwise become diplomatic incidents. Critics note that domestic courts already exist, that foreign investors get rights domestic firms do not, and that the mechanism transfers regulatory sovereignty from elected parliaments to private arbitrators paid by the hour."
+      }
+    ],
+    "generatedAt": "2026-04-26T04:29:51.267Z",
+    "label": "Investor-State Dispute Settlement",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-26-pakistan-auto-localisation-failure-ckd-tariff": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CKD KIT IS",
+        "body": "A Completely Knocked Down kit is a vehicle disassembled to its smallest shipping units — engine, transmission, body panels, wiring harness — that local workers bolt together at destination. Governments charge lower tariffs on CKDs than on finished cars to nudge assembly onshore.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The trick is the gradient: a **CKD** kit lands cheaper than a **CBU** (Completely Built-Up) car, but pricier than a **SKD** (Semi-Knocked Down) kit where major sub-assemblies arrive pre-joined. The tariff staircase is what's supposed to push assemblers up toward real local manufacturing."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOCALISATION LADDER",
+        "body": "Real industrial policy uses CKDs as a starting point, not an endpoint. Year one you import the kit; year three the government raises tariffs on imported parts so the assembler is forced to source locally; year ten you have a domestic supply chain. Skip the tariff escalation and you have permanent screwdriver plants."
+      },
+      {
+        "heading": "THE THAI MODEL",
+        "body": "Thailand reached >80% local content on most passenger vehicles by sequencing tariffs against a deepening vendor base — engines and transmissions came last, after stamping and trim. It now exports more cars than it sells domestically. Pakistan started its first auto policy a decade earlier and never crossed the 50% threshold for new entrants.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Thailand",
+                "value": "~80%",
+                "cc": "TH",
+                "tone": "favorable",
+                "weight": 80
+              },
+              {
+                "label": "India",
+                "value": "~75%",
+                "cc": "IN",
+                "tone": "favorable",
+                "weight": 75
+              },
+              {
+                "label": "Indonesia",
+                "value": "~65%",
+                "cc": "ID",
+                "tone": "neutral",
+                "weight": 65
+              },
+              {
+                "label": "Pakistan (older)",
+                "value": "50-70%",
+                "cc": "PK",
+                "tone": "neutral",
+                "weight": 60
+              },
+              {
+                "label": "Pakistan (new)",
+                "value": "<50%",
+                "cc": "PK",
+                "tone": "unfavorable",
+                "weight": 40
+              }
+            ],
+            "label": "local content in passenger autos (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "THE BIG-3 LEGACY",
+        "body": "For thirty years Pakistan's market was Toyota, Honda, and Suzuki — the Japanese assemblers that built deep vendor networks for tractors and pickups. New entrants like Lucky Motor (Kia) and Hyundai-Nishat were licensed under a 2016 policy meant to break the cartel; instead they leaned on the cheaper CKD route without rebuilding the vendor base."
+      },
+      {
+        "heading": "WHY CKDs DRAIN DOLLARS",
+        "body": "Every CKD kit is paid for in foreign exchange. With the rupee under pressure and reserves thin, $1.47bn of kit imports is roughly two months of remittances — money that could have funded fuel, fertilizer, or debt service. The State Bank periodically restricts auto LCs (letters of credit) for exactly this reason.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.184288,
+              278.387431,
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719
+            ],
+            "periods": [
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE POLICY CLIFF",
+        "body": "Auto policies in Pakistan run in five-year cycles, each one ending with a tense negotiation between assemblers (who want the status quo), vendors (who want hard localisation rules), and the IMF (which usually wants tariffs lowered to broaden the tax base). The June 30 expiry forces a decision none of the three parties is aligned on.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which lever most reliably forces real localisation, rather than just CKD assembly?",
+            "options": [
+              "Lower tariffs on finished imports to pressure assemblers",
+              "Escalating tariffs on imported parts year over year",
+              "Subsidies for new car buyers",
+              "Foreign exchange controls on remittances"
+            ],
+            "correct": 1,
+            "explanation": "Rising parts tariffs make local sourcing cheaper than imports — the mechanism Thailand and India used to climb the ladder."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-26"
+    ],
+    "generatedAt": "2026-04-26T04:30:23.348Z",
+    "label": "CKD Kits & Localisation Policy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-26-pakistan-state-bank-policy-rate-iran-war-trilemma": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRILEMMA",
+        "body": "A central bank cannot simultaneously hold a stable currency, control inflation, and keep rates low when imported oil spikes. Something must give. Pakistan, with thin reserves and an IMF programme overhead, has the least room to choose.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **impossible trinity** in its imported-inflation form: defend the *rupee*, tame prices, or protect growth — pick two."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OIL HITS PAKISTAN HARDEST",
+        "body": "Pakistan imports roughly 80% of its crude and most of its LNG. Every $10 move in Brent translates to roughly $1.5 billion in additional annual import bills — money that must be found in dollars Pakistan does not have.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              67.7,
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 26",
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE PASS-THROUGH",
+        "body": "Imported fuel feeds into transport, electricity tariffs, and fertilizer within weeks. The State Bank's weekly Sensitive Price Index captures this faster than headline CPI — which is why a 14% weekly print forces a meeting response, not a quarterly one.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.184288,
+              278.387431,
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719
+            ],
+            "periods": [
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF CONSTRAINT",
+        "body": "Pakistan is in its 24th IMF programme since 1958 — more than any other country. The current Extended Fund Facility requires positive real interest rates, meaning the policy rate must exceed expected inflation. A demand-driven hike satisfies the Fund; a supply-shock hike crushes the economy without curing the cause.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why must Pakistan raise rates even though the inflation is imported, not domestic?",
+            "options": [
+              "To attract foreign portfolio inflows that defend the rupee",
+              "Because the IMF programme requires positive real rates",
+              "Because higher rates reduce oil consumption",
+              "To signal independence from the finance ministry"
+            ],
+            "correct": 1,
+            "explanation": "IMF programmes pin the policy rate above expected inflation regardless of cause — supply shocks get the same medicine as demand booms."
+          }
+        ]
+      },
+      {
+        "heading": "GULF DEPOSITS, NOT RESERVES",
+        "body": "Saudi Arabia and the UAE keep dollars on deposit at the State Bank that count toward headline reserves but cannot be spent — they are short-term loans, typically 12 months, that must be rolled over. A Gulf war strains the very lenders Pakistan needs to keep the cosmetic reserves figure intact.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi deposit",
+                "value": "$5bn",
+                "tone": "unfavorable",
+                "cc": "SA"
+              },
+              {
+                "label": "UAE deposit",
+                "value": "$3bn",
+                "tone": "unfavorable",
+                "cc": "AE"
+              },
+              {
+                "label": "China SAFE deposit",
+                "value": "$4bn",
+                "tone": "unfavorable",
+                "cc": "CN"
+              },
+              {
+                "label": "Free reserves",
+                "value": "~$3bn",
+                "tone": "neutral",
+                "cc": "PK"
+              }
+            ],
+            "label": "Pakistan reserves composition (approx, 2025)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1990 PRECEDENT",
+        "body": "During the 1990 Gulf War, Pakistan's remittances from the Gulf collapsed as 80,000 workers were repatriated, while oil prices doubled. The rupee depreciated 25% within twelve months and Islamabad signed its 11th IMF programme. The transmission channels — oil, remittances, reserves — are unchanged."
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20",
+      "Open Exchange Rates · as of 2026-04-26"
+    ],
+    "generatedAt": "2026-04-26T04:30:50.743Z",
+    "label": "The Trilemma: Oil, Rupee, IMF",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-26-the-war-against-iran-and-pakistan-s-moment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ISLAMABAD",
+        "body": "Pakistan is the only nuclear-armed Muslim state, shares a 909 km border with Iran, and maintains working military ties with Washington despite decades of friction. No other capital can host both delegations without a third party present. The mediator role is geographic before it is diplomatic.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "AF",
+              "OM",
+              "AE",
+              "SA"
+            ],
+            "label": "the mediation geography",
+            "markers": [
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.2867,
+                "lng": 51.5333,
+                "label": "Doha (alt venue)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECONDITION GAMBIT",
+        "body": "Refusing to attend talks until the other side de-escalates is a classic opening move — it transfers the cost of failure to the party still at the table. Iran used the same posture in the 2003 Paris talks and the 2012 Istanbul round; in both cases the precondition was eventually dropped, but only after extracting a face-saving concession.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *prior conditions*. In diplomatic practice, accepting them sets a precedent that the next round will require even more — which is why the US position has historically been **talks without preconditions**, the formula Kennedy used at Vienna and Obama used on Iran in 2013."
+          }
+        ]
+      },
+      {
+        "heading": "BLOCKADE AS ACT OF WAR",
+        "body": "Under customary international law, a naval blockade is itself an act of war — this is settled doctrine since the 1909 Declaration of London. It is why Kennedy called the 1962 Cuba operation a 'quarantine,' not a blockade. Iran's framing is legally precise: if Hormuz is blockaded, the war has already begun, and negotiating under duress is surrender, not diplomacy."
+      },
+      {
+        "heading": "THE METTERNICH PLAYBOOK",
+        "body": "Klemens von Metternich, Austria's foreign minister at the 1815 Congress of Vienna, established the modern template for a mid-tier power brokering between great powers: host both sides, lower the temperature, extract concessions from each that neither would grant the other directly. Pakistan's army chief is running a version of this playbook with far weaker cards.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Klemens von Metternich",
+                "role": "Austrian foreign minister",
+                "years": "1809–1848",
+                "cc": "AT"
+              },
+              {
+                "name": "Theodore Roosevelt",
+                "role": "brokered Russo-Japanese peace",
+                "years": "1905",
+                "cc": "US"
+              },
+              {
+                "name": "Hafez al-Assad",
+                "role": "brokered Lebanese factions",
+                "years": "1976–1989",
+                "cc": "SY"
+              },
+              {
+                "name": "Recep Tayyip Erdogan",
+                "role": "brokered Russia-Ukraine grain deal",
+                "years": "2022",
+                "cc": "TR"
+              }
+            ],
+            "label": "the brokers, then and now"
+          }
+        ]
+      },
+      {
+        "heading": "THE NON-AGGRESSION ASK",
+        "body": "Iran's demand for a non-aggression guarantee is essentially a request for what North Korea extracted in 1994 and again in 2018 — a written US commitment not to seek regime change. The US has never granted such a guarantee to Iran; the 2015 JCPOA deliberately omitted it, which Tehran's hardliners cited as proof the deal was worthless when Trump exited in 2018.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which agreement included a US written guarantee against military action toward the counterparty?",
+            "options": [
+              "The 2015 JCPOA with Iran",
+              "The 1979 Camp David Accords",
+              "The 1994 Agreed Framework with North Korea",
+              "The 2020 Abraham Accords"
+            ],
+            "correct": 2,
+            "explanation": "The Agreed Framework included a US pledge of 'formal assurances against the threat or use of nuclear weapons' — the closest precedent for what Iran is now demanding."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT HORMUZ IS DOING",
+        "body": "Tanker transits through the strait have collapsed from normal levels to near-zero. The market is pricing the disruption in real time — every day the blockade holds, Brent rises and the diplomatic clock accelerates.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              53,
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 26",
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-26T04:31:25.505Z",
+    "label": "Pakistan as Mediator",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-26-trump-whcd-shooting-washington-hilton-security-breach": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SAME HOTEL",
+        "body": "On March 30, 1981, John Hinckley Jr. shot Reagan as he exited the Washington Hilton's T Street side entrance — chosen because it offered the shortest walk from limo to door. The Secret Service has used that same entrance, now enclosed in a steel canopy nicknamed the 'presidential pit', for every protectee visit since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1865",
+                "label": "Lincoln assassinated, Ford's Theatre"
+              },
+              {
+                "year": "1881",
+                "label": "Garfield shot, DC train station"
+              },
+              {
+                "year": "1901",
+                "label": "McKinley assassinated, Buffalo"
+              },
+              {
+                "year": "1912",
+                "label": "TR shot campaigning, Milwaukee"
+              },
+              {
+                "year": "1963",
+                "label": "JFK assassinated, Dallas"
+              },
+              {
+                "year": "1981",
+                "label": "Reagan shot, Washington Hilton",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Trump shot, Butler PA rally"
+              },
+              {
+                "year": "2026",
+                "label": "Hilton shooting"
+              }
+            ],
+            "label": "attacks on US presidents and nominees"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROTECTIVE BUBBLE",
+        "body": "Secret Service doctrine layers protection in concentric rings: an inner detail of agents within arm's reach, a middle ring of counter-assault and counter-sniper teams, and an outer perimeter run jointly with local police. The 1981 failure was at the outer ring — Hinckley stood with the press line, unscreened. Forty-five years later, screening at hotel checkpoints is still the weakest seam.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The agency's foundational rule after Dallas: **never let the protectee enter an unsecured space**. The 'unsecured space' is where every modern attempt has happened — Reagan on a sidewalk, Ford in a crowd, Trump on an open-air stage."
+          }
+        ]
+      },
+      {
+        "heading": "THE WHCA DINNER",
+        "body": "The White House Correspondents' Association dinner has been held at the Washington Hilton's International Ballroom since 1968 — the only DC ballroom large enough for the 2,600-seat event. The venue choice is logistical, not traditional: there is no comparable room in the District, which is why a known-vulnerable site keeps hosting the highest-value annual gathering of US political and media leadership."
+      },
+      {
+        "heading": "AGENCY UNDER STRAIN",
+        "body": "The Secret Service's protectee list expanded sharply after 2024 — Trump, Vance, their families, plus former presidents and major candidates — without proportional staffing. The July 2024 Butler rally shooting prompted a director's resignation and a House task force report citing 'foreseeable and preventable' failures rooted in chronic understaffing and inter-agency communication gaps.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What year was the US Secret Service formally assigned permanent protection of the president?",
+            "options": [
+              "1865, immediately after Lincoln's assassination",
+              "1901, after McKinley was killed",
+              "1922, by act of Congress",
+              "1963, after JFK"
+            ],
+            "correct": 1,
+            "explanation": "The Service was created in 1865 to fight currency counterfeiting. Permanent presidential protection was added by Congress in 1901 after McKinley's assassination — the third president killed in 36 years."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HOTELS ARE HARD",
+        "body": "A hotel has dozens of entrances, service elevators, kitchen corridors, parking ramps, and rooms above the protectee's path. Locking it down requires either evacuating the entire building (politically impossible at a 2,600-guest gala) or screening every guest, employee, and vendor through a single chokepoint — which creates the very queue an attacker can target.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bunker / WH",
+                "value": "controlled",
+                "tone": "favorable",
+                "weight": 1
+              },
+              {
+                "label": "Stadium rally",
+                "value": "hardenable",
+                "tone": "neutral",
+                "weight": 3
+              },
+              {
+                "label": "Motorcade route",
+                "value": "exposed",
+                "tone": "unfavorable",
+                "weight": 6
+              },
+              {
+                "label": "Hotel ballroom",
+                "value": "porous",
+                "tone": "unfavorable",
+                "weight": 8
+              },
+              {
+                "label": "Open-air rally",
+                "value": "worst case",
+                "tone": "unfavorable",
+                "weight": 10
+              }
+            ],
+            "label": "venue types ranked by protection difficulty"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-26T04:31:59.988Z",
+    "label": "Presidential Protection & the Hilton",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-26-ukraine-an-28-interceptor-drones-shahed-cost-asymmetry": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASYMMETRY PROBLEM",
+        "body": "A Shahed-136 costs Iran roughly $20,000-50,000 to build. A Patriot PAC-3 interceptor costs about $4 million. Shooting down cheap drones with exquisite missiles bankrupts the defender long before it depletes the attacker — the entire economic logic of saturation drone warfare.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Shahed-136",
+                "value": "~$30k",
+                "tone": "neutral",
+                "weight": 30
+              },
+              {
+                "label": "P1-Sun interceptor",
+                "value": "~$5k",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "AIM-9 Sidewinder",
+                "value": "~$450k",
+                "tone": "unfavorable",
+                "weight": 450
+              },
+              {
+                "label": "Patriot PAC-3",
+                "value": "~$4M",
+                "tone": "unfavorable",
+                "weight": 4000
+              }
+            ],
+            "label": "cost per shot, rough order of magnitude"
+          }
+        ]
+      },
+      {
+        "heading": "THE AN-28",
+        "body": "The Antonov An-28 is a Soviet-designed twin-turboprop utility aircraft from the early 1980s — short-takeoff, rugged, originally built for unpaved Siberian airstrips. Hundreds were produced; many still fly as cargo and parachute platforms across the former USSR. Cheap airframes that nobody would risk in contested airspace become viable launch platforms when the payload itself is the weapon."
+      },
+      {
+        "heading": "WHY AIR-LAUNCH MATTERS",
+        "body": "A ground-launched interceptor must climb to the drone's altitude, burning fuel and energy before it can engage. An air-launched interceptor starts already at altitude and speed — vastly extending range and reaction time for the same airframe. The US Navy's air-launched cruise missiles use the same physics."
+      },
+      {
+        "heading": "THE SHAHED PIPELINE",
+        "body": "Iran transferred the Shahed-136 design to Russia in 2022; production now runs out of the Alabuga Special Economic Zone in Tatarstan, scaled to thousands per month. Russia rebadged it the *Geran-2*. Ukraine intercepts the majority of incoming Shaheds nightly — but at exchange ratios that determined who runs out of money first.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Russia's stated goal at Alabuga: **6,000+ Shahed-class drones per year** by 2025. Air defense built around **million-dollar interceptors** cannot scale to that volume — which is precisely the strategic intent."
+          }
+        ]
+      },
+      {
+        "heading": "3D PRINTING THE WAR",
+        "body": "Ukrainian drone production now runs through hundreds of small workshops, many using consumer-grade 3D printers and commercial flight controllers. The supply chain is deliberately decentralized — no single strike can disable it, and iteration cycles measured in weeks outpace traditional defense procurement measured in years.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many FPV and interceptor drones did Ukraine produce in 2024?",
+            "options": [
+              "About 100,000",
+              "About 500,000",
+              "Over 1 million",
+              "Over 4 million"
+            ],
+            "correct": 3,
+            "explanation": "Ukraine produced over 4 million drones in 2024, mostly small FPVs — a volume no Western defense contractor could match, achieved through distributed garage-scale manufacturing."
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL RHYME",
+        "body": "Britain converted civilian aircraft for ASW patrol in WWII; the Soviets bolted rockets onto crop-dusters in Afghanistan; the US flew AC-47 gunships in Vietnam. Improvising weapons platforms from existing aviation inventory is a recurring pattern when industrial capacity can't keep pace with operational demand."
+      }
+    ],
+    "generatedAt": "2026-04-26T04:32:30.997Z",
+    "label": "Cost-asymmetric air defense",
+    "category": "tech",
+    "articleCount": 1
   }
 }

@@ -2,13 +2,194 @@
   "version": 1,
   "stories": [
     {
+      "id": "trump-whcd-shooting-washington-hilton-security-breach",
+      "label": "Trump evacuated from venue of correspondents' dinner",
+      "firstSeen": "2026-04-26T04:05:35.680Z",
+      "lastCovered": "2026-04-26T04:05:35.680Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-26-trump-whcd-shooting-washington-hilton-security-breach"
+      ],
+      "eventUri": "eng-11602031",
+      "summary": "A lone gunman with a shotgun rushed the security checkpoint at the White House Correspondents' Dinner at the Washington Hilton — the same hotel where Reagan was shot in 1981 — minutes after Trump took the stage. Lead with the security failure (gunman reached the cordon before being tackled) and the historical echo of the venue. Avoid sensationalism: report the facts the multi-source panel has confirmed, name the Secret Service action, and note this is the most serious physical breach against a sitting president since Butler 2024. Stakes: the third assassination-adjacent incident in 18 months raises structural questions about Secret Service venue-hardening, not just one shooter's motive.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/White_House",
+        "http://en.wikipedia.org/wiki/United_States_Secret_Service",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/White_House_Correspondents'_Association",
+        "http://en.wikipedia.org/wiki/Ballroom",
+        "http://en.wikipedia.org/wiki/Washington_Hilton",
+        "http://en.wikipedia.org/wiki/Washington_(state)"
+      ]
+    },
+    {
+      "id": "doj-denaturalization-287-cases-palestinian-speech",
+      "label": "The Justice Dept's unprecedented campaign to strip citizenship",
+      "firstSeen": "2026-04-26T04:05:35.680Z",
+      "lastCovered": "2026-04-26T04:05:35.680Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-26-doj-denaturalization-287-cases-palestinian-speech"
+      ],
+      "eventUri": null,
+      "summary": "DOJ has filed denaturalization cases against 287 naturalized US citizens in the first 90 days of 2026 — a pace 9× the historical average — targeting people who became citizens decades ago, often for paperwork errors or political speech reclassified as 'fraud at naturalization.' Lead with the 287 number and the speech-related cases: at least 41 involve Palestinian-solidarity advocacy or pro-Iran commentary now being framed as undisclosed 'foreign sympathies' at the time of oath. The angle: stripping citizenship was a Cold War tool used <10×/year for two decades; it is now being deployed at industrial scale against political opponents who happen to be naturalized. Stakes: this creates a two-tier citizenship system — naturalized citizens become deportable for speech that native-born citizens may freely make.",
+      "conceptUris": []
+    },
+    {
+      "id": "pakistan-auto-localisation-failure-ckd-tariff",
+      "label": "New auto assemblers dodge localisation details",
+      "firstSeen": "2026-04-26T04:05:35.680Z",
+      "lastCovered": "2026-04-26T04:05:35.680Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-26-pakistan-auto-localisation-failure-ckd-tariff"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's new auto assemblers — Kia, Lucky Motor, MG, Hyundai-Nishat — are quietly importing CKD (knock-down) kits at near-CBU rates while booking them as 'localised' to qualify for tariff concessions, according to filings reviewed by Dawn. Lead with the gap: the 2021 Auto Industry Development & Export Policy required 50% localisation by 2026, but actual local content sits below 18% on most models. The angle: this is a textbook industrial-policy failure — Pakistan gave away $1.4B in tariff revenue over four years to subsidise import substitution that never happened, while local parts manufacturers shed 12,000 jobs. Stakes: the State Bank's policy-rate decision next week is being made against a current account where auto imports are again the second-largest line item. Reader take: this is how middle-income countries get stuck — protectionism captured by importers wearing local clothes.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Knock-down_kit",
+        "http://en.wikipedia.org/wiki/Lucky_Motor_Corporation",
+        "http://en.wikipedia.org/wiki/Karachi",
+        "http://en.wikipedia.org/wiki/Sport_utility_vehicle",
+        "http://en.wikipedia.org/wiki/Kia"
+      ]
+    },
+    {
+      "id": "pakistan-state-bank-policy-rate-iran-war-trilemma",
+      "label": "Iran war jitters to influence policy rate decision",
+      "firstSeen": "2026-04-26T04:05:35.680Z",
+      "lastCovered": "2026-04-26T04:05:35.680Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-26-pakistan-state-bank-policy-rate-iran-war-trilemma"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's State Bank meets next week with the policy rate at 11% and inflation back above 7% — driven entirely by oil and LNG imports through Hormuz that have repriced 22% since the Iran war started Day 1. Lead with the trilemma: cut rates to support a stalling economy, hold to defend the rupee against Hormuz-driven import-cost shock, or hike to anchor inflation expectations as Iranian-war refugees push food prices in border districts. The angle: this is what happens when a small open economy gets caught between its monetary independence and a geopolitical shock it can't hedge. Stakes: every 100bp move shifts $1.6B in annual debt-service cost — this decision touches Pakistan's IMF program directly. Differentiates from prior Iran-war coverage by focusing on a structural monetary-policy decision, not the diplomatic track.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Monetary_policy",
+        "http://en.wikipedia.org/wiki/Interest_rate",
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/State_Bank_of_Pakistan",
+        "http://en.wikipedia.org/wiki/Gulf_War"
+      ]
+    },
+    {
+      "id": "isds-arbitration-fossil-fuel-114-billion-climate-chill",
+      "label": "How investor-state arbitration throttles environmental action",
+      "firstSeen": "2026-04-26T04:05:35.680Z",
+      "lastCovered": "2026-04-26T04:05:35.680Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-26-isds-arbitration-fossil-fuel-114-billion-climate-chill"
+      ],
+      "eventUri": null,
+      "summary": "Investor-state dispute settlement (ISDS) tribunals have awarded fossil-fuel companies $114B against governments since 2018 for cancelling licences on climate grounds — and pending claims now exceed $260B, more than the GDP of Bangladesh. Lead with the asymmetry: states can be sued for protecting the environment, but no symmetric mechanism lets affected communities sue investors. The angle: ISDS was designed in the 1960s to protect Western firms from expropriation in newly independent states; today it's a chill mechanism that lets oil majors hold the climate transition hostage. Stakes: Colombia, Honduras, and Ecuador have all paused fossil-fuel-licence revocations after receiving notices of intent — an unelected arbitral system is overriding democratically passed climate laws. The reader connection: this is why the Energy Charter Treaty matters to anyone who wonders why governments keep approving new gas fields.",
+      "conceptUris": []
+    },
+    {
+      "id": "bonus-incentives-self-set-goals-experiment-behavioral-econ",
+      "label": "Bonuses can lower self-set goals and reduce performance, experiment suggests",
+      "firstSeen": "2026-04-26T04:05:35.680Z",
+      "lastCovered": "2026-04-26T04:05:35.680Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-26-bonus-incentives-self-set-goals-experiment-behavioral-econ"
+      ],
+      "eventUri": null,
+      "summary": "A pre-registered field experiment with 2,400 sales workers found that introducing a bonus tied to a quantitative target caused participants to set goals 18% lower than the control group with no bonus — and produce 11% less output. Lead with the counter-intuitive mechanism: the bonus reframed the activity from intrinsic challenge to transactional, and workers anchored on the lowest goal the bonus would still reward. The angle: this is replication-strength evidence against decades of corporate-incentive theory; it doesn't say bonuses don't work, it says targeted bonuses on self-set goals systematically reduce ambition. Stakes: ripples into how governments structure conditional-cash-transfer programs, how schools tie teacher pay to test scores, and how AI labs structure RLHF reward functions — the principle generalises. Reader: a behavioural-econ result with broad institutional implications, told as a clean experiment.",
+      "conceptUris": []
+    },
+    {
+      "id": "antarctic-coral-genetic-connectivity-mpa-design",
+      "label": "Multiscale genetic connectivity, kinship, and demographic history of the Antarctic soft coral Alcyonium antarcticum",
+      "firstSeen": "2026-04-26T04:05:35.680Z",
+      "lastCovered": "2026-04-26T04:05:35.680Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-26-antarctic-coral-genetic-connectivity-mpa-design"
+      ],
+      "eventUri": null,
+      "summary": "Genome sequencing of Alcyonium antarcticum coral colonies along 1,800km of the Western Antarctic Peninsula reveals far less genetic mixing than expected — populations only 200km apart show kinship signatures suggesting limited larval dispersal, with effective population sizes 40% smaller than current density predicts. Lead with the implication: the Antarctic Peninsula is the fastest-warming marine area on Earth, and these slow-growing soft corals are a structural foundation of benthic ecosystems. The angle: low connectivity means localised population collapses won't be repaired by recolonisation from neighbouring sites; once gone, gone. Stakes: this is the first genome-scale connectivity data for an Antarctic foundation species and it directly contradicts the assumption used in Marine Protected Area design that Southern Ocean species are well-mixed. Reader: a quietly important paper that changes how MPAs should be drawn under CCAMLR.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-compute-crunch-cloud-prices-hyperscaler-eviction",
+      "label": "The AI Compute Crunch Is Here (and It's Affecting the Entire Economy)",
+      "firstSeen": "2026-04-26T04:05:35.680Z",
+      "lastCovered": "2026-04-26T04:05:35.680Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-26-ai-compute-crunch-cloud-prices-hyperscaler-eviction"
+      ],
+      "eventUri": null,
+      "summary": "Cloud compute prices for non-AI workloads have risen 31–47% across AWS, Azure, and GCP over Q1 2026 as hyperscalers reroute GPU and even general-purpose capacity to AI training contracts — and small SaaS companies, scientific computing labs, and university grids are getting evicted from regions on weeks of notice. Lead with the eviction notices: this is no longer a 'GPU shortage,' it's the entire compute substrate being repriced because three buyers (OpenAI, Anthropic, xAI) signed multi-year deals exceeding hyperscaler annual capex. The angle: the AI capex boom is not a sector story; it's a power-pricing, real-estate, and small-business cost-of-doing-business story. Stakes: the hidden tax of the AI race is being paid by every business that runs servers — including hospitals, city DMVs, and academic researchers who can't outbid frontier labs.",
+      "conceptUris": []
+    },
+    {
+      "id": "ukraine-an-28-interceptor-drones-shahed-cost-asymmetry",
+      "label": "Ukraine's Drone-Hunting An-28 Turboprop Is Now Launching Interceptor Drones",
+      "firstSeen": "2026-04-26T04:05:35.680Z",
+      "lastCovered": "2026-04-26T04:05:35.680Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-26-ukraine-an-28-interceptor-drones-shahed-cost-asymmetry"
+      ],
+      "eventUri": null,
+      "summary": "Ukraine has converted its 1980s-era Antonov An-28 light turboprops into airborne interceptor-drone launchers, picking up incoming Shahed drones on radar at 4,000m and releasing FPV interceptors that close at 200km/h relative speed. Lead with the cost asymmetry: a Shahed costs Russia $50,000; the Ukrainian interceptor costs $400; the An-28 was already in inventory. The angle: this is a generational shift in air defence — instead of $3M Patriot interactors, Ukraine is using cheap drones launched from cheap aircraft to defeat cheap drones, and the math finally works in the defender's favour. Stakes: every NATO and Gulf air defence is rebuilding around this idea after 18 months of watching Ukraine. The reader sees a piece of military-industrial history made by improvisation under fire, not by a primes' R&D division.",
+      "conceptUris": []
+    },
+    {
+      "id": "the-war-against-iran-and-pakistan-s-moment",
+      "label": "THE WAR AGAINST IRAN AND PAKISTAN'S MOMENT",
+      "firstSeen": "2026-04-26T04:05:35.680Z",
+      "lastCovered": "2026-04-26T04:05:35.680Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-26-the-war-against-iran-and-pakistan-s-moment"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for politics floor] \"There are strategic attacks that have led directly to peace, but these are the minority. Most of them only lead up to the point where their remaining strength is just enough to maintain a defence and wait for peace. Beyond that point the scale turns and the reaction follows with a force that is usu",
+      "conceptUris": []
+    },
+    {
       "id": "orban-fidesz-defeat-tisza-supermajority-hungary",
       "label": "Crushed at the Polls, Hungary's Former Ruling Party Licks Its Wounds",
       "firstSeen": "2026-04-25T22:05:32.263Z",
       "lastCovered": "2026-04-25T22:05:32.263Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-25-orban-fidesz-defeat-tisza-supermajority-hungary"
@@ -24,7 +205,7 @@
       "lastCovered": "2026-04-25T22:05:32.263Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-25-blackrock-ibit-bitcoin-options-deribit-parity-hedge"
@@ -40,7 +221,7 @@
       "lastCovered": "2026-04-25T22:05:32.263Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-25-chernobyl-40-years-rewilding-wildlife-radiation-humans"
@@ -56,7 +237,7 @@
       "lastCovered": "2026-04-25T22:05:32.263Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-25-artificial-chemotaxis-nanomotors-drug-delivery-nature"
@@ -72,7 +253,7 @@
       "lastCovered": "2026-04-25T22:05:32.263Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-25-israel-kills-two-wounds-six-palestinians-in-latest-string-of"
@@ -97,7 +278,7 @@
       "lastCovered": "2026-04-25T22:05:32.263Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-25-russian-forces-pound-ukraine-s-dnipro-other-areas-killing-10"
@@ -122,7 +303,7 @@
       "lastCovered": "2026-04-25T22:05:32.263Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-25-islamabad-administration-allows-public-goods-transport-revis"
@@ -138,7 +319,7 @@
       "lastCovered": "2026-04-25T22:05:32.263Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-25-lungdxformer-a-transformer-cnn-hybrid-model-with-dynamic-spa"
@@ -154,7 +335,7 @@
       "lastCovered": "2026-04-25T22:05:32.263Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-25-anthropic-s-new-mythos-ai-is-exposing-the-hidden-cracks-in-c"
@@ -170,7 +351,7 @@
       "lastCovered": "2026-04-25T17:08:08.903Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-25-palestinians-vote-first-elections-occupation-low-turnout"
@@ -195,7 +376,7 @@
       "lastCovered": "2026-04-25T17:08:08.903Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-25-displaced-lebanese-aitaroun-satellite-images-occupation"
@@ -211,7 +392,7 @@
       "lastCovered": "2026-04-25T17:08:08.903Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-25-makinde-one-party-state-warning-opposition-coalition-2027"
@@ -236,7 +417,7 @@
       "lastCovered": "2026-04-25T17:08:08.903Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-25-macron-strait-hormuz-france-totalenergies-fuel"
@@ -261,7 +442,7 @@
       "lastCovered": "2026-04-25T17:08:08.903Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-25-bitcoin-40k-bear-case-power-law-statistical-outlier"
@@ -277,7 +458,7 @@
       "lastCovered": "2026-04-25T17:08:08.903Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-24-halal-marketplace-responsibility-standards"
@@ -293,7 +474,7 @@
       "lastCovered": "2026-04-25T17:08:08.903Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-25-pijao-indigenous-cancer-incidence-colombia-health-records"
@@ -309,7 +490,7 @@
       "lastCovered": "2026-04-25T17:08:08.903Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-25-5g-trials-gilgit-baltistan-pta-cpec-spectrum"
@@ -325,7 +506,7 @@
       "lastCovered": "2026-04-25T17:08:08.903Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-25-the-complexome-contextualizes-proteomics-data-to-fingerprint"
@@ -341,7 +522,7 @@
       "lastCovered": "2026-04-25T17:08:08.903Z",
       "coverageCount": 3,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-04-24-ai-optimism-asia-vs-west-polling",
@@ -359,7 +540,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-mali-coordinated-attacks-bamako-kati-gao-junta"
@@ -384,7 +565,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-treasury-license-maduro-lawyer-payment-sanctions-carveout"
@@ -408,7 +589,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-wike-cousin-inec-akwa-ibom-2027-electoral-independence"
@@ -424,7 +605,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-hormuz-mine-countermeasure-mcm-iran-us-navy-shortage"
@@ -440,7 +621,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-iran-turkey-customs-posts-overland-sanctions-workaround"
@@ -456,7 +637,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-alshaya-egypt-offshoring-gulf-labor-arbitrage-pipeline"
@@ -472,7 +653,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-ape-cognition-18-year-longitudinal-human-uniqueness"
@@ -488,7 +669,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-glp1-meta-analysis-muscle-loss-body-composition-tirzepatide"
@@ -504,7 +685,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-bitcoin-ecdsa-quantum-shor-p2pk-satoshi-exposure"
@@ -520,7 +701,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-us-border-ai-anduril-palantir-cbp-asymmetric-error-rates"
@@ -536,7 +717,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-india-ai-aadhaar-frt-dpdp-act-algorithmic-governance"
@@ -552,7 +733,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-gpt-5-5-release-frontier-cadence-vs-opus-4-7-deepseek-v4"
@@ -568,7 +749,7 @@
       "lastCovered": "2026-04-25T22:05:32.263Z",
       "coverageCount": 2,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-24-renewables-overtake-coal-europe-energy-plan",
@@ -585,7 +766,7 @@
       "lastCovered": "2026-04-25T12:08:17.591Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-24-current-price-of-oil-as-of-april-25-2026-fortune"
@@ -610,7 +791,7 @@
       "lastCovered": "2026-04-25T08:09:06.080Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-25-major-russian-attack-on-ukraine-kills-four-wounds-dozens"
@@ -635,7 +816,7 @@
       "lastCovered": "2026-04-25T08:09:06.080Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-25-raf-jets-shoot-down-russian-drones-over-ukraine-for-the-firs"
@@ -660,7 +841,7 @@
       "lastCovered": "2026-04-25T08:09:06.080Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-25-israeli-air-strikes-kill-nine-across-gaza"
@@ -676,7 +857,7 @@
       "lastCovered": "2026-04-25T08:09:06.080Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-25-h-1b-scare-bill-moved-in-us-cong-to-pause-visa-programme-for"
@@ -692,7 +873,7 @@
       "lastCovered": "2026-04-25T08:09:06.080Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-how-spacex-s-75-billion-ipo-could-drain-the-liquidity-that-s"
@@ -708,7 +889,7 @@
       "lastCovered": "2026-04-25T08:09:06.080Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-23-alshaya-group-marks-20-years-in-egypt-and-announces-the-gran"
@@ -724,7 +905,7 @@
       "lastCovered": "2026-04-25T08:09:06.080Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-a-new-type-of-neuroplasticity-rewires-the-brain-after-a-sing"
@@ -740,7 +921,7 @@
       "lastCovered": "2026-04-25T08:09:06.080Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-23-lebanon-s-beekeepers-are-at-breaking-point"
@@ -756,7 +937,7 @@
       "lastCovered": "2026-04-25T08:09:06.080Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-23-mumbai-fishers-raise-alarm-over-plight-of-45-000-mangroves"
@@ -772,7 +953,7 @@
       "lastCovered": "2026-04-25T08:09:06.080Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-deepseek-v4"
@@ -788,7 +969,7 @@
       "lastCovered": "2026-04-25T08:09:06.080Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-23-community-votes-to-deny-water-to-nuclear-weapons-data-center"
@@ -804,7 +985,7 @@
       "lastCovered": "2026-04-25T08:09:06.080Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-ai-danger-is-no-longer-a-myth-it-s-called-mythos"
@@ -820,7 +1001,7 @@
       "lastCovered": "2026-04-25T07:55:30.221Z",
       "coverageCount": 3,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-24-iran-cyber-low-slow-post-war-doctrine",
@@ -838,7 +1019,7 @@
       "lastCovered": "2026-04-25T07:55:30.221Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-china-military-civil-fusion-staged-death"
@@ -854,7 +1035,7 @@
       "lastCovered": "2026-04-25T07:55:30.221Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-amnesty-us-human-rights-rollback-report"
@@ -870,7 +1051,7 @@
       "lastCovered": "2026-04-25T07:55:30.221Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-25-uae-dollar-swap-yuan-oil-leverage"
@@ -886,7 +1067,7 @@
       "lastCovered": "2026-04-25T07:55:30.221Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-24-colombia-isds-investor-state-arbitration-exit"
@@ -902,7 +1083,7 @@
       "lastCovered": "2026-04-25T07:55:30.221Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-25-alcoa-jarrah-forest-bauxite-mining-recovery"
@@ -918,7 +1099,7 @@
       "lastCovered": "2026-04-25T07:55:30.221Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-24-china-new-county-wakhan-afghanistan-integration",
@@ -935,7 +1116,7 @@
       "lastCovered": "2026-04-25T04:05:49.638Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-24-behind-the-blog-waiting-in-the-apple-store"
@@ -951,7 +1132,7 @@
       "lastCovered": "2026-04-25T04:05:49.638Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-23-sudan-imf-financial-system-bid-burhan"
@@ -967,7 +1148,7 @@
       "lastCovered": "2026-04-25T04:05:49.638Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-china-military-civil-fusion-rebrand"
@@ -983,7 +1164,7 @@
       "lastCovered": "2026-04-25T04:05:49.638Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-cjng-la-jefa-rosalinda-gonzalez-valencia"
@@ -999,7 +1180,7 @@
       "lastCovered": "2026-04-25T04:05:49.638Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-25-us-strike-pacific-drug-boat-extrajudicial"
@@ -1021,7 +1202,7 @@
       "lastCovered": "2026-04-25T04:05:49.638Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-crude-106-hormuz-second-month"
@@ -1044,7 +1225,7 @@
       "lastCovered": "2026-04-25T04:05:49.638Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-google-40-billion-anthropic-cloud-concentration"
@@ -1064,7 +1245,7 @@
       "lastCovered": "2026-04-25T04:05:49.638Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-25-aurka-phb2-signaling-drives-acquired-resistance-to-kras-g12c"
@@ -1080,7 +1261,7 @@
       "lastCovered": "2026-04-24T22:05:00.199Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-britain-spain-reject-trump-punishment-plans"
@@ -1105,7 +1286,7 @@
       "lastCovered": "2026-04-24T22:05:00.199Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-doj-federal-death-penalty-expansion"
@@ -1130,7 +1311,7 @@
       "lastCovered": "2026-04-24T22:05:00.199Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-asylum-ban-border-illegal-appeals-court"
@@ -1155,7 +1336,7 @@
       "lastCovered": "2026-04-24T22:05:00.199Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-cjng-gonzalez-valencia-matriarch-profile"
@@ -1171,7 +1352,7 @@
       "lastCovered": "2026-04-24T22:05:00.199Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-us-sanctions-iran-shadow-fleet"
@@ -1187,7 +1368,7 @@
       "lastCovered": "2026-04-24T22:05:00.199Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-pakistani-crew-tanker-hijacked-somalia"
@@ -1203,7 +1384,7 @@
       "lastCovered": "2026-04-24T22:05:00.199Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-trump-jones-act-waiver-90-day-extension"
@@ -1219,7 +1400,7 @@
       "lastCovered": "2026-04-24T22:05:00.199Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-el-nino-early-onset-forecast"
@@ -1235,7 +1416,7 @@
       "lastCovered": "2026-04-24T22:05:00.199Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-mumbai-mangrove-dieoff-koli-fishers"
@@ -1251,392 +1432,13 @@
       "lastCovered": "2026-04-24T22:05:00.199Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-24-sportellino-ai-chatbot-italy-migrants"
       ],
       "eventUri": null,
       "summary": "An Italian NGO's chatbot helps migrants navigate the permesso-di-soggiorno maze. Lead with a concrete use case (document checklist, appointment booking). Accountability: the state's opacity is why this tool exists. Dignity: migrants as users of civic tech, not just its subjects.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-pakistan-araghchi-islamabad-ceasefire-talks",
-      "label": "Iran's top diplomat speaks with Pakistani officials about ceasefire",
-      "firstSeen": "2026-04-24T17:05:17.297Z",
-      "lastCovered": "2026-04-25T17:08:08.903Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-24-iran-pakistan-araghchi-islamabad-ceasefire-talks",
-        "2026-04-25-iran-day-57-witkoff-kushner-pakistan-talks-collapse"
-      ],
-      "eventUri": "eng-11598005",
-      "summary": "FM Araghchi's Islamabad visit — with a US logistics/security team reportedly already there — is Pakistan's first public mediator role in the Iran war. Lead with the location, not the ministers: the talks are happening in Islamabad because neither Washington nor Tehran will host the other. The reader should see Pakistan being slotted into a role previously played by Qatar or Oman — the mechanism is a Muslim-world middle power converting nuclear-deterrent credibility into diplomatic leverage at the Hormuz theater.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Islamabad",
-        "http://en.wikipedia.org/wiki/Abbas_Araghchi",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Iran)",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Jared_Kushner"
-      ]
-    },
-    {
-      "id": "egypt-budget-energy-subsidies-exports-shift",
-      "label": "Energy subsidies down, export subsidies up in new budget draft",
-      "firstSeen": "2026-04-24T17:05:17.297Z",
-      "lastCovered": "2026-04-25T08:09:06.080Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-24-egypt-budget-energy-subsidies-exports-shift",
-        "2026-04-23-energy-subsidies-down-export-subsidies-up-in-new-budget-draf"
-      ],
-      "eventUri": null,
-      "summary": "Egypt's draft budget cuts petroleum subsidies while boosting export subsidies — a quiet reallocation from household fuel bills to trade-sector firms. Lead with who pays and who gets paid: the poor subsidize exporters. The reader should see the IMF fingerprint — Cairo is executing the textbook austerity pivot while the Gaza war and debt service squeeze the fiscal space further. Healthcare is the one line item going up, but the direction of travel is unmistakable.",
-      "conceptUris": []
-    },
-    {
-      "id": "single-experience-neuroplasticity-brain-rewiring",
-      "label": "A New Type of Neuroplasticity Rewires the Brain After a Single Experience",
-      "firstSeen": "2026-04-24T17:05:17.297Z",
-      "lastCovered": "2026-04-25T04:05:49.638Z",
-      "coverageCount": 2,
-      "category": "science",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-24-single-experience-neuroplasticity-brain-rewiring",
-        "2026-04-24-neuroplasticity-single-experience-behavioral-timescale"
-      ],
-      "eventUri": null,
-      "summary": "Classic Hebbian learning — 'neurons that fire together wire together' — cannot explain how a single event can permanently reshape behavior. A new mechanism identifies plasticity that operates on much longer timescales and responds to one-shot experiences. Lead with the phenomenon the old theory failed to explain: trauma and single-trial learning. The reader should grasp that this is a rare case of a textbook model being genuinely revised, not just extended — and the implications reach into why PTSD and single-dose psychedelic therapies seem to produce long-lasting changes.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-optimism-asia-us-regulator-trust-gap",
-      "label": "AI optimism surges in Asia, unlike in the U.S.",
-      "firstSeen": "2026-04-24T17:05:17.297Z",
-      "lastCovered": "2026-04-25T04:05:49.638Z",
-      "coverageCount": 2,
-      "category": "tech",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-24-ai-optimism-asia-us-regulator-trust-gap",
-        "2026-04-24-ai-optimism-gap-asia-vs-us-survey"
-      ],
-      "eventUri": null,
-      "summary": "Surveys across Asian economies show sharply higher AI trust and optimism than in the US — and higher trust in regulators to govern it. Lead with the regulator gap, not the hype gap: Americans distrust both AI companies and the agencies meant to constrain them, while Indian, Indonesian, and Vietnamese users distrust neither. The reader should see why global AI deployment is shifting east: the user willingness, the regulatory license, and the growing compute build-out are aligning in places where the US debate barely registers.",
-      "conceptUris": []
-    },
-    {
-      "id": "doj-federal-death-penalty-expansion-firing-squads",
-      "label": "Justice Department Calls for Expansion of Federal Death Penalty",
-      "firstSeen": "2026-04-24T22:10:12.944Z",
-      "lastCovered": "2026-04-24T22:10:12.944Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-doj-federal-death-penalty-expansion-firing-squads"
-      ],
-      "eventUri": "eng-11599105",
-      "summary": "DOJ's new report asks Congress and states to widen the federal death penalty, accelerate executions, and revive firing squads and electrocution — reversing Biden's commutation of 37 federal death-row sentences. The mechanism to highlight: specific policy recommendations (faster appeals, broadened eligibility, alternative methods) that turn a symbolic Trump campaign line into an institutional agenda. Reuters notes Pope Leo condemned capital punishment the same day — the international-moral counterweight belongs in the context, not the lead.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Capital_punishment",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_Justice",
-        "http://en.wikipedia.org/wiki/Execution_by_firing_squad",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Lethal_injection",
-        "http://en.wikipedia.org/wiki/United_States_Attorney_General",
-        "http://en.wikipedia.org/wiki/Capital_punishment_by_the_United_States_federal_government",
-        "http://en.wikipedia.org/wiki/Joe_Biden"
-      ]
-    },
-    {
-      "id": "appeals-court-trump-asylum-ban-illegal-dc-circuit",
-      "label": "Appeals court rules that Trump's asylum ban at the border is illegal",
-      "firstSeen": "2026-04-24T22:10:12.944Z",
-      "lastCovered": "2026-04-24T22:10:12.944Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-appeals-court-trump-asylum-ban-illegal-dc-circuit"
-      ],
-      "eventUri": "eng-11599244",
-      "summary": "A DC Circuit panel ruled Trump's executive order barring migrants who cross the US-Mexico border from seeking asylum exceeded statutory authority — the 1965 Immigration and Nationality Act grants the right regardless of how someone entered. Lead with the specific limit of executive power the court drew; this is the first appellate-level ruling on the order and teed up for Supreme Court review. Reader takeaway: even with DOJ pushing maximalist enforcement (see death-penalty expansion), one branch is still checking another — for now.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Right_of_asylum",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/United_States_Court_of_Appeals_for_the_District_of_Columbia_Circuit",
-        "http://en.wikipedia.org/wiki/Executive_order_(United_States)",
-        "http://en.wikipedia.org/wiki/Immigration",
-        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
-        "http://en.wikipedia.org/wiki/Immigration_and_Nationality_Act_of_1965",
-        "http://en.wikipedia.org/wiki/United_States"
-      ]
-    },
-    {
-      "id": "raghav-chadha-aap-bjp-defection-punjab-2027",
-      "label": "Raghav Chadha Quits AAP, Joins BJP Amid Claims of Six More Rajya Sabha Defectors",
-      "firstSeen": "2026-04-24T22:10:12.944Z",
-      "lastCovered": "2026-04-24T22:10:12.944Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-raghav-chadha-aap-bjp-defection-punjab-2027"
-      ],
-      "eventUri": "eng-11597998",
-      "summary": "AAP's most prominent Rajya Sabha MP — husband to actor Parineeti Chopra and the party's national face — defected to the BJP months before the 2027 Punjab elections, claiming six other AAP MPs will follow. The angle: this is less about Chadha and more about whether the BJP is industrializing defection as a pre-election tool the way it did in Maharashtra and Madhya Pradesh. Lead with the six-MP claim (if confirmed, it collapses AAP's Upper House presence) and what it signals about the 2027 Punjab contest.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Aam_Aadmi_Party",
-        "http://en.wikipedia.org/wiki/Bharatiya_Janata_Party",
-        "http://en.wikipedia.org/wiki/Raghav_Chadha",
-        "http://en.wikipedia.org/wiki/Rajya_Sabha",
-        "http://en.wikipedia.org/wiki/Sandeep_Pathak",
-        "http://en.wikipedia.org/wiki/Ashok_Mittal",
-        "http://en.wikipedia.org/wiki/Punjab,_India",
-        "http://en.wikipedia.org/wiki/Harbhajan_Singh"
-      ]
-    },
-    {
-      "id": "china-new-county-wakhan-afghanistan-xinjiang",
-      "label": "What China's New County Reveals About Its Afghanistan Policy",
-      "firstSeen": "2026-04-24T22:10:12.944Z",
-      "lastCovered": "2026-04-24T22:10:12.944Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-china-new-county-wakhan-afghanistan-xinjiang"
-      ],
-      "eventUri": null,
-      "summary": "Beijing quietly carved a new county in Xinjiang adjacent to the Wakhan Corridor — the sliver of Afghanistan that borders China. The mechanism: administrative redistricting is how Beijing pre-positions infrastructure, border troops, and customs capacity without announcing a policy shift. The reader should understand this as Chinese long-horizon planning for post-US Afghanistan integration and Central Asia corridor expansion, not a Taliban-recognition move. Muslim-world angle: the Wakhan connects Xinjiang to Tajikistan and northern Afghanistan — the geography of the ummah that Western coverage never sees.",
-      "conceptUris": []
-    },
-    {
-      "id": "tether-usdt-freeze-iran-central-bank-sanctions",
-      "label": "Tether's $344 Million USDT Freeze Linked to US 'Economic Fury' Campaign Against Iran",
-      "firstSeen": "2026-04-24T22:10:12.944Z",
-      "lastCovered": "2026-04-24T22:10:12.944Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-tether-usdt-freeze-iran-central-bank-sanctions"
-      ],
-      "eventUri": "eng-11599423",
-      "summary": "Treasury confirmed Tether's $344M USDT freeze targeted wallets linked to the Central Bank of Iran's cross-border flows — the CBI was reportedly using stablecoin rails to route payments around correctional banking sanctions. The mechanism to highlight for technical readers: a private issuer can brick sovereign-state funds on-chain in minutes, a capability no traditional correspondent bank has. This is the first time OFAC has publicly framed a stablecoin issuer as an extension of sanctions enforcement. Follow-on question: what happens to USDT's neutrality narrative in the Global South after this.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-tanker-hijack-somalia-piracy-resurgence",
-      "label": "Pakistan Probes Reported Hijacking of Oil Tanker With Pakistani Crew Near Somalia",
-      "firstSeen": "2026-04-24T22:10:12.944Z",
-      "lastCovered": "2026-04-24T22:10:12.944Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-pakistan-tanker-hijack-somalia-piracy-resurgence"
-      ],
-      "eventUri": null,
-      "summary": "Maritime Affairs Minister Junaid Anwar Chaudhry ordered an inquiry into the reported pirate seizure of a tanker with Pakistani crew off the Somali coast. The angle: Gulf-of-Aden piracy never disappeared — it retreated while navies deployed during the Red Sea Houthi campaign, and is resurging as those assets are pulled to the Iranian theater. Lead with the crew (labour from Karachi and Gwadar on foreign-flagged vessels bear the frontline cost of every maritime conflict) and then the broader pattern: the security dividend of Combined Task Force 151 is visibly eroding.",
-      "conceptUris": []
-    },
-    {
-      "id": "fda-first-gene-therapy-hearing-loss-dual-aav",
-      "label": "FDA Approves First Gene Therapy for Genetic Hearing Loss",
-      "firstSeen": "2026-04-24T22:10:12.944Z",
-      "lastCovered": "2026-04-24T22:10:12.944Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-fda-first-gene-therapy-hearing-loss-dual-aav"
-      ],
-      "eventUri": "eng-11592233",
-      "summary": "Otarmeni (lunsotogene parvec-cwha) is the first FDA-cleared gene therapy that replaces a defective hearing-loss gene via a dual AAV vector — a one-time treatment for patients with mutations in OTOF, a gene responsible for roughly 2-8% of congenital deafness. The technical hook for this reader: dual-AAV is needed because OTOF is too large to fit in a single adeno-associated-virus capsid, a packaging limit that has blocked gene therapy for most large genes. Lead with what the dual-vector approach unlocks for other large-gene disorders (Duchenne, Stargardt) — not just the hearing-loss milestone.",
-      "conceptUris": []
-    },
-    {
-      "id": "wmo-el-nino-2026-monsoon-risk-global-south",
-      "label": "WMO Warns El Niño May Start as Early as Next Month",
-      "firstSeen": "2026-04-24T22:10:12.944Z",
-      "lastCovered": "2026-04-24T22:10:12.944Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-wmo-el-nino-2026-monsoon-risk-global-south"
-      ],
-      "eventUri": null,
-      "summary": "The World Meteorological Organization says an El Niño event could begin from mid-2026, layered on top of an already record-warm ocean baseline. The structural angle: El Niño redistributes rainfall away from South Asia, Southeast Asia, southern Africa, and northeast Brazil — the same regions already stressed by 2024-2025 La Niña drought cycles. Lead with what the reader can't get from a US weather column: monsoon-failure risk for India and Pakistan during the kharif planting window, and Sahel food-security implications. WMO probability numbers go in the body.",
-      "conceptUris": []
-    },
-    {
-      "id": "lebanon-beekeepers-south-bombardment-agriculture",
-      "label": "Lebanon's Beekeepers Are at Breaking Point",
-      "firstSeen": "2026-04-24T22:10:12.944Z",
-      "lastCovered": "2026-04-24T22:10:12.944Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-23-lebanon-beekeepers-south-bombardment-agriculture"
-      ],
-      "eventUri": null,
-      "summary": "South Lebanon's apiaries — already pressed by pesticides, climate shifts, and the 2019 economic collapse — were destroyed by Israeli bombardment. The angle the reader will not find elsewhere: hives in the south were not incidental damage but part of the agricultural estate targeted during 2024-2025 strikes, which remains untallied in ceasefire accounting. Lead with the beekeepers' economics (hives per family, honey as one of the few remaining hard-currency exports) and name the mechanism: destroying pollinators degrades the 2026 citrus and olive harvests across the Litani basin, long after bombs stop. Zuhd lens: occupation's footprint extends past the human dead.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-cyber-threat-low-slow-us-officials",
-      "label": "Iran's Cyber Threat Likely 'Low and Slow,' Not Shock and Awe, US Officials Say",
-      "firstSeen": "2026-04-24T22:10:12.944Z",
-      "lastCovered": "2026-04-24T22:10:12.944Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-iran-cyber-threat-low-slow-us-officials"
-      ],
-      "eventUri": null,
-      "summary": "Former NSA director Haugh and other US officials assess Iran's retaliatory cyber campaign as opportunistic, persistent, and disguised — not a single spectacle event. The technical angle for a developer reader: this means MuddyWater- and APT35-style living-off-the-land intrusions into US water utilities, hospitals, and mid-tier MSSPs, where dwell time and discovery lag are the real payload. Lead with 'the noisy attack you're bracing for is not the one underway' and the defensive pattern: IR teams should be hunting dormant webshells and OT-adjacent pivots, not waiting for a press-release breach.",
-      "conceptUris": []
-    },
-    {
-      "id": "bellingcat-iran-police-infrastructure-ungovernable",
-      "label": "'Make Iran Ungovernable' – Tracking Efforts To Destroy Iran's Police Infrastructure",
-      "firstSeen": "2026-04-24T16:07:46.014Z",
-      "lastCovered": "2026-04-24T19:30:13.582Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-24-bellingcat-iran-police-infrastructure-ungovernable",
-        "2026-04-24-make-iran-ungovernable-tracking-efforts-to-destroy-iran-s-po"
-      ],
-      "eventUri": null,
-      "summary": "Bellingcat OSINT has geolocated at least 80 Iranian police stations and Basij facilities destroyed in the first three weeks of the US-Israel war. Lead with the number and the intent: experts tell Bellingcat that the campaign is explicitly aimed at degrading the regime's 'repressive capacity' — regime destabilization, not just nuclear counter-proliferation. This is the declared war-aim that Washington has not admitted in press conferences.",
-      "conceptUris": []
-    },
-    {
-      "id": "doj-denaturalization-campaign-two-tier-citizenship",
-      "label": "The Justice Dept's unprecedented campaign to strip citizenship",
-      "firstSeen": "2026-04-24T19:30:13.582Z",
-      "lastCovered": "2026-04-24T19:30:13.582Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-doj-denaturalization-campaign-two-tier-citizenship"
-      ],
-      "eventUri": null,
-      "summary": "DOJ is running a denaturalization campaign at unprecedented scale — stripping citizenship from naturalized Americans. Lead with the legal mechanism: the low evidentiary bar for revocation, which historically saw a handful of cases per year, now industrialized. Accountability angle — naturalized citizens are being made legally distinct from native-born, a de facto two-tier citizenship.",
-      "conceptUris": []
-    },
-    {
-      "id": "chromosomes-condense-three-chemical-waves-mitosis",
-      "label": "Chromosomes condense in three timed chemical waves during cell division",
-      "firstSeen": "2026-04-24T19:30:13.582Z",
-      "lastCovered": "2026-04-24T19:30:13.582Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-chromosomes-condense-three-chemical-waves-mitosis"
-      ],
-      "eventUri": null,
-      "summary": "A new study resolves how chromosomes compact during cell division: three sequential waves of histone modification, not one continuous process. Lead with the three-wave mechanism — it overturns the textbook picture of chromatin condensation and opens a window on how mitosis errors seed cancer. Pitch to a technically literate reader as: the state machine of cell division is more discrete than we thought.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-strict-control-fossil-fuels-language-shift",
-      "label": "Q&A: China's leadership calls for 'strict control' of fossil fuels",
-      "firstSeen": "2026-04-24T19:30:13.582Z",
-      "lastCovered": "2026-04-24T19:30:13.582Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-china-strict-control-fossil-fuels-language-shift"
-      ],
-      "eventUri": null,
-      "summary": "China's top leadership published an Earth Day policy document using the phrase 'strict control' of fossil fuels — a marked escalation from the previous 'reasonable control' language. Lead with the language shift: in Chinese policy documents, a single adjective change signals a multi-year direction. For the reader: this reframes how seriously to take Chinese climate rhetoric as a trade/geopolitical signal.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-elections-extreme-heat-wet-bulb-democracy",
-      "label": "Democracy meets extreme heat: India's elections in a warming climate",
-      "firstSeen": "2026-04-24T19:30:13.582Z",
-      "lastCovered": "2026-04-24T19:30:13.582Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-india-elections-extreme-heat-wet-bulb-democracy"
-      ],
-      "eventUri": null,
-      "summary": "India is campaigning through temperatures that make outdoor activity physiologically dangerous — and the political class is in denial. Lead with a wet-bulb number and a named fatality if available. Structural point: the world's largest democracy is discovering that civic rituals (rallies, door-knocking, polling queues) don't scale to 45C. Follow-up to the India election turnout story already in the ledger.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-optimism-asia-us-gap-survey-adoption",
-      "label": "AI optimism surges in Asia, unlike in the U.S.",
-      "firstSeen": "2026-04-24T19:30:13.582Z",
-      "lastCovered": "2026-04-24T19:30:13.582Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-ai-optimism-asia-us-gap-survey-adoption"
-      ],
-      "eventUri": null,
-      "summary": "Large cross-national survey: Asian publics — especially India, Indonesia, China — are markedly more optimistic about AI and more trusting of AI regulators than Americans. Lead with the numeric gap. Structural read: if adoption follows sentiment, the mass-market AI consumer of 2030 lives in Jakarta and Mumbai, not San Francisco — which reshapes product roadmaps and regulatory gravity.",
-      "conceptUris": []
-    },
-    {
-      "id": "cia-deaths-in-mexico-is-trump-playing-with-fire",
-      "label": "CIA deaths in Mexico: Is Trump playing with fire?",
-      "firstSeen": "2026-04-24T19:30:13.582Z",
-      "lastCovered": "2026-04-24T19:30:13.582Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-24-cia-deaths-in-mexico-is-trump-playing-with-fire"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for economy floor] On Sunday, two American and two Mexican officials were reportedly killed in a car crash while returning from a counternarcotics operation in the border state of Chihuahua, Mexico. The pair of Americans were revealed to be CIA officers, raising questions as to the extent of the agency’s activities south of the border. Since returning to office, the Trump administration has exerted significant pressure on Mexican President Claudia Sheinbaum to greenlight U.S. military action against cartels within Mexico. If or when the White House successfully concludes the ongoing Iran War, the fear among foreign policy restrainers is that Trump may launch a forever war close to home.In and of itself, U.S. support for Mexican counternarcotics in the form of intelligence sharing, training, and providing equipment is uncontroversial and has been openly embraced by Sheinbaum and her predecessors. Drug Enforcement Administration (DEA) and FBI agents have assisted Mexican forces for decades, and U.S. intelligence was key to the recent killing of CJNG kingpin Nemesio “El Mencho” Oseguera. In theory, counternarcotics operations are outside the purview of the CIA, which typically supports foreign wars and regime change efforts. But in 2025, the Trump administration designated Mexico’s infamous drug cartels as foreign terrorist organizations, dramatically increasing agency activity within the country; related designations have served as justification for the extrajudicial killing of more than 170 alleged drug traffickers in the Caribbean and Pacific.The circumstances of the two CIA officers’ deaths, moreover, are troubling. Mexican law forbids all foreign agents from operating in the country without authorization from the central government. Many within the governing Morena party have accused Chihuahua’s opposition governor, Maru Campos, of illegally consorting with U.S. intelligence — a plausible charge. Accordingly, Sheinbaum has vowed to determine whether Campos and the CIA violated national security laws, offering little indication as to whether the accident itself would be further investigated. Whatever the precise circumstances of the officers’ deaths, there’s a clear incentive for all parties to downplay the incident, Iran-distracted U.S. officials included.Those who would rather ignore the incident should make no mistake, however: Trump is playing a dangerous game in Mexico. Sunday’s incident showcases the disturbingly realistic possibility that U.S. intelligence officials could eventually fall victim to cartel violence. If or when this occurs, it’s a virtual certainty that hawks in and outside of the administration will lobby for kinetic action south of the border. Prominent Republicans such as Tom Cotton and Lindsey Graham have already been salivating at the prospect of cartel wars in Mexico. Ironically, even perceived America First anti-interventionists such as Marjorie Taylor Greene have argued that strikes against cartels would be a “smarter” use of military force than war with Iran.This view is deeply flawed. Compared to the Iran war, bombing Mexico would be less consequential for the global economy. But the adverse effects on Americans would be far worse. Mexico is home to over 1.6 million U.S. citizens, and more than 10 million Americans visit the country each year. While many in MAGA seem indifferent to the killing of foreign civilians, it’s extremely likely that U.S. expats, tourists and dual citizens would be among the unintended casualties of strikes against cartels. Even worse for the White House, cartel wars stand to unravel Trump’s signature achievement of slashing illegal immigration through the southern border. Military strikes would almost certainly produce a torrent of Mexican refugees fleeing American ordnance for the U.S.-Mexico border. Mexico City could likewise cease immigration enforcement operations against non-Mexican migrants and remove visa restrictions on Cuban, Venezuelan and Haitian visitors. Perhaps most concerning of all, our largest trade partner could opt to close the border to bilateral trade between both countries, accounting for around $1 trillion in 2025.A forever war is, at its core, the pursuit of a nebulous objective against an irregular actor on an open-ended timeline. Tragically, the MAGA fever dream of cartel wars in Mexico fits this description down to the letter. Much like efforts to uproot the Taliban or Hamas, “destroying the cartels” is a nebulous and unrealistic goal for the simple reason that drug traffickers are deeply enmeshed within a domestic population. Organized crime, moreover, is driven by profit as opposed to ideology; takedowns of various cartels or kingpings are unlikely to eliminate markets for illicit services. Since the onset of Mexico’s two-decade drug war in 2006, the country has dismantled around a dozen cartels; killed, arrested and/or extradited hundreds of kingpins; and killed or arrested over 100,000 hitmen. So long as millions of Americans remain committed to poisoning themselves with illicit drugs and Mexican justice continues to suffer high rates of impunity, no amount of bombs will make a meaningful difference in the drug war.The Trump administration would benefit from better signalling of its own achievements as well as those of its Mexican partners. Fentanyl flows through the southern border have fallen 56% since Trump returned to office, with seizures south of the border rising to a record high, according to the Department of Homeland Security. Sheinbaum and her superstar Security Minister Omar Garcia Harfuch have also managed the astonishing feat of neutralizing drug lords like El Mencho while containing subsequent outbreaks of cartel retaliation and infighting. Shockingly, independent estimates have found that Mexico’s homicide rate has fallen at least 15% during Sheinbaum’s first year in office — a first for any administration since the start of the drug war. In February, the White House even went as far as to finally take action against arms trafficking to cartels from the U.S. by seizing thousands of guns bound for Mexico.For both countries’ sakes, MAGA would do well to learn from its failings in Iran and avoid an even worse catastrophe closer to home. ",
       "conceptUris": []
     }
   ]
