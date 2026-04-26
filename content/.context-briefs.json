@@ -61711,5 +61711,517 @@
     "label": "Animal Models & Translational Validity",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-25-10gbe-usb-adapter-consumer-price-point": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 10GBE WAS STUCK",
+        "body": "For two decades 10-gigabit Ethernet lived in datacenters because the PHY chips ran hot, needed dedicated PCIe lanes, and cost more than the switches consumers would plug them into. The economics only broke when a single-chip controller could do the signaling on USB power.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The breakthrough is the **PHY** — the analog layer that hammers bits onto copper at 10 Gb/s. Cramming it into a USB-bus-powered package is the engineering story; the price tag is the consequence."
+          }
+        ]
+      },
+      {
+        "heading": "THE BUS BOTTLENECK",
+        "body": "USB 3.2 Gen 2×2 is a 20 Gbps bus using two lanes of 10 Gbps each. Most laptops ship with plain Gen 2 (10 Gbps single lane), which after USB framing overhead caps real throughput around 7 Gbps. The adapter is faster than the port it plugs into.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USB 3.2 Gen 1",
+                "value": "~4 Gbps",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USB 3.2 Gen 2",
+                "value": "~7 Gbps",
+                "tone": "neutral"
+              },
+              {
+                "label": "USB 3.2 Gen 2×2",
+                "value": "~14 Gbps",
+                "tone": "favorable"
+              },
+              {
+                "label": "USB4 / TB4",
+                "value": "~30 Gbps",
+                "tone": "favorable"
+              }
+            ],
+            "label": "USB generations and real ceilings"
+          }
+        ]
+      },
+      {
+        "heading": "THE CABLE PROBLEM",
+        "body": "10GBASE-T runs on Cat6a copper up to 100m, but plain Cat5e — what most homes were wired with in the 2000s — derates to a few meters at 10 Gb/s before crosstalk eats the signal. Many upgrades fail not at the adapter but at the wall jack.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What's the longest reliable 10GBASE-T run on standard Cat6a copper?",
+            "options": [
+              "10 meters",
+              "30 meters",
+              "100 meters",
+              "300 meters"
+            ],
+            "correct": 2,
+            "explanation": "Cat6a was specifically engineered around the 100m structured-cabling standard so 10GbE could drop into existing enterprise wiring without re-pulling cable."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAST-MILE WALL",
+        "body": "A 10GbE LAN doesn't help if the WAN handoff is a 1 Gbps fiber ONT or a DOCSIS 3.1 cable modem capped near 2 Gbps down. Symmetric multi-gig fiber to the home exists in Korea, Japan, France, Romania, and parts of the US, but is the exception globally."
+      },
+      {
+        "heading": "WHY THUNDERBOLT LOST THE PRICE WAR",
+        "body": "Thunderbolt is an Intel-controlled spec with per-port royalties and certification overhead. USB-IF is open, and Realtek and ASMedia compete head-to-head on controller silicon. Same physical capability, different governance — and governance shows up in the BOM.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the recurring pattern: *open standards with multiple silicon vendors* eventually undercut *proprietary standards with a single licensor*, even when the proprietary version shipped first and worked better. FireWire vs USB 2.0 was the last round of this same fight."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-26T18:00:07.075Z",
+    "label": "10GbE & the home network",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-25-amateur-chatgpt-erdos-problem-solved": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO WAS ERDŐS",
+        "body": "Paul Erdős was a stateless Hungarian mathematician who published roughly 1,500 papers with 500+ collaborators, traveling between universities with his belongings in a suitcase. He left behind hundreds of open problems, often attached to small cash prizes funded from his lecture fees.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "His collaboration graph is so central to the field that mathematicians measure proximity to him by *Erdős number* — your number is one if you co-authored with him, two if you co-authored with someone who did."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THESE PROBLEMS PERSIST",
+        "body": "Erdős problems are famously simple to state and brutal to prove. Many concern combinatorics and number theory — domains where a counterexample can hide in arbitrarily large integers, and where no general machinery exists. Decades of attacks often produce partial results before someone finds the right reframing."
+      },
+      {
+        "heading": "THE TAO SIGNAL",
+        "body": "Terence Tao is a Fields medalist and one of the most prolific working mathematicians; his endorsement of a method carries unusual weight because he has spent years probing where AI tools help and where they hallucinate. When he says the approach was overlooked, that is the field's quality stamp, not the model's.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Paul Erdős",
+                "role": "Hungarian combinatorialist",
+                "years": "1913–1996",
+                "cc": "HU"
+              },
+              {
+                "name": "Terence Tao",
+                "role": "Fields medalist, UCLA",
+                "years": "1975–",
+                "cc": "AU"
+              },
+              {
+                "name": "Liam Price",
+                "role": "amateur, prompt author",
+                "years": "2002–",
+                "cc": "US"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "PROOF VS PEER REVIEW",
+        "body": "A claimed proof is not a proof until referees verify each step. Wiles's first Fermat proof had a gap that took a year to repair; Mochizuki's IUT proof remains contested decades later. The interesting part of this story will be whether the argument survives line-by-line scrutiny."
+      },
+      {
+        "heading": "WHY AMATEURS MATTER NOW",
+        "body": "Mathematics has historically had a low barrier to entry — Ramanujan worked from a clerk's desk in Madras, Andrew Beal was a banker. Language-model assistance lowers it further: the bottleneck shifts from technical fluency to taste in problem selection and prompt phrasing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many open problems did Erdős leave behind, many with cash prizes attached?",
+            "options": [
+              "Around a dozen",
+              "Around 100",
+              "Several hundred",
+              "Tens of thousands"
+            ],
+            "correct": 2,
+            "explanation": "Erdős posed hundreds of open problems across his career, attaching prizes from $25 to several thousand dollars depending on difficulty."
+          }
+        ]
+      },
+      {
+        "heading": "THE GENERALIZATION QUESTION",
+        "body": "The deeper test is whether the method is a one-off trick or a reusable tool. In combinatorics, techniques like the probabilistic method or Szemerédi's regularity lemma earned their place by cracking many problems, not one. A single solved conjecture is news; a generalizable method is a chapter in the textbook."
+      }
+    ],
+    "generatedAt": "2026-04-26T18:00:34.721Z",
+    "label": "Erdős Problems & AI Proof",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-26-alma-quasar-pair-merger-redshift-five-seven": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A QUASAR IS",
+        "body": "A quasar is a supermassive black hole devouring gas so fast that the infalling matter outshines its entire host galaxy. The light comes from the accretion disk, not the black hole itself — friction heats gas to millions of degrees before it crosses the event horizon.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name is a contraction of *quasi-stellar radio source* — when first detected in the 1960s they looked like stars but radiated like galaxies, and nobody could explain how a point source could be so bright."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT REDSHIFT MEANS",
+        "body": "As the universe expands, light traveling across it stretches to longer wavelengths. Redshift 5.7 means the light we see today was emitted when the universe was roughly 1 billion years old — about 7% of its current age. We are looking back, not out.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "At redshift 5.7, roughly how old was the universe when the light we now see was emitted?",
+            "options": [
+              "About 1 billion years",
+              "About 5 billion years",
+              "About 380,000 years",
+              "About 100 million years"
+            ],
+            "correct": 0,
+            "explanation": "Redshift 5.7 corresponds to roughly 1 Gyr after the Big Bang — early enough that galaxy structure was still forming, late enough that stars and black holes already existed."
+          }
+        ]
+      },
+      {
+        "heading": "THE GROWTH PROBLEM",
+        "body": "Standard accretion is capped by the Eddington limit — radiation pressure from infalling matter eventually pushes back hard enough to halt further infall. At that ceiling, a stellar-mass seed cannot grow to a billion solar masses in only a billion years. Yet quasars at z>6 exist with exactly that mass."
+      },
+      {
+        "heading": "WHY MERGERS MATTER",
+        "body": "If two black holes can merge while each is still feeding, the combined object skips the slow Eddington-limited growth phase. Finding pairs already merging at z=5.7 supports the idea that mergers — not solo accretion — built the monsters in galactic cores."
+      },
+      {
+        "heading": "WHAT ALMA SEES",
+        "body": "The Atacama Large Millimeter Array detects cold dust and molecular gas, not visible light. At high redshift, ultraviolet emission from the quasar is stretched into the millimeter band ALMA was built for — which is why a Chilean desert array, not Hubble, finds these objects."
+      },
+      {
+        "heading": "THE PREPRINT CAVEAT",
+        "body": "The result is on arXiv but not yet peer-reviewed. In observational cosmology, dual-AGN claims have a history of being downgraded — gravitational lensing or chance alignments can mimic a true pair. Confirmation typically requires independent spectroscopy of both components."
+      }
+    ],
+    "generatedAt": "2026-04-26T18:00:57.984Z",
+    "label": "Quasars & the Early Universe",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-26-art-basel-qatar-neoroyal-gulf-patronage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MODEL",
+        "body": "Neoroyal patronage fuses sovereign wealth, museum-building, and diplomacy into one instrument. The art institution is not a side project of the state — it is an arm of foreign policy, designed to convert oil rents into soft power that outlasts the oil.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Scholars distinguish *neoroyal* patronage from classical royal patronage by its **scale** and **strategic intent**: not personal taste, but state-tier branding measured against London, Paris, and New York."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The template is older than the Gulf. The Medici bankrolled Florence's Renaissance to legitimize commercial wealth as cultural authority; Louis XIV built Versailles as a stage for absolutism; the Rockefellers founded MoMA to launder Gilded Age fortunes into civic prestige. Patronage has always been politics by other means."
+      },
+      {
+        "heading": "THE GULF BUILDOUT",
+        "body": "Each Gulf capital staked a different claim: Abu Dhabi rented the Louvre name, Doha hired Jean Nouvel for the National Museum and acquired record-breaking trophies via Sheikha al-Mayassa, Riyadh launched the Diriyah Biennale and AlUla, Sharjah ran the longest-standing biennial.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sheikha al-Mayassa Al Thani",
+                "role": "Qatar Museums chair",
+                "years": "2006–",
+                "cc": "QA"
+              },
+              {
+                "name": "Mohamed Al Mubarak",
+                "role": "DCT Abu Dhabi chair",
+                "years": "2018–",
+                "cc": "AE"
+              },
+              {
+                "name": "Bader bin Farhan Al Saud",
+                "role": "Saudi Culture Minister",
+                "years": "2018–",
+                "cc": "SA"
+              },
+              {
+                "name": "Hoor Al Qasimi",
+                "role": "Sharjah Art Foundation president",
+                "years": "2003–",
+                "cc": "AE"
+              }
+            ],
+            "label": "the chief patrons"
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "QA",
+              "AE",
+              "SA",
+              "BH",
+              "KW",
+              "OM"
+            ],
+            "label": "the Gulf cultural map",
+            "markers": [
+              {
+                "lat": 25.2854,
+                "lng": 51.531,
+                "label": "Doha — Museum of Islamic Art"
+              },
+              {
+                "lat": 24.5333,
+                "lng": 54.3984,
+                "label": "Saadiyat — Louvre Abu Dhabi"
+              },
+              {
+                "lat": 26.609,
+                "lng": 37.9152,
+                "label": "AlUla"
+              },
+              {
+                "lat": 25.3573,
+                "lng": 55.3911,
+                "label": "Sharjah Art Foundation"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "The capital comes from sovereign wealth funds — QIA, ADIA/Mubadala, PIF — whose combined assets dwarf every Western museum endowment. A single Doha acquisition can exceed the entire annual purchasing budget of the Met.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Abu Dhabi (ADIA)",
+                "value": "~$1.0tn",
+                "cc": "AE",
+                "weight": 1000
+              },
+              {
+                "label": "Saudi (PIF)",
+                "value": "~$925bn",
+                "cc": "SA",
+                "weight": 925
+              },
+              {
+                "label": "Kuwait (KIA)",
+                "value": "~$1.0tn",
+                "cc": "KW",
+                "weight": 1000
+              },
+              {
+                "label": "Qatar (QIA)",
+                "value": "~$526bn",
+                "cc": "QA",
+                "weight": 526
+              },
+              {
+                "label": "Met endowment",
+                "value": "~$4bn",
+                "cc": "US",
+                "weight": 4
+              }
+            ],
+            "label": "sovereign wealth funds across the Gulf"
+          }
+        ]
+      },
+      {
+        "heading": "THE ARTIST'S DILEMMA",
+        "body": "Gulf institutions offer fees, fabrication budgets, and global visibility no Western kunsthalle can match — in exchange for unwritten redlines on the Prophet's image, royal critique, LGBT themes, and the Israel–Palestine question. Artists rarely sign anything; they self-edit. Boycott campaigns frame this as soft censorship; participants frame it as the price of working at scale.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which institutional model did Abu Dhabi pioneer that other Gulf capitals have studied closely?",
+            "options": [
+              "Long-term loan and naming-rights deal with the Louvre",
+              "Outright purchase of a Western museum's collection",
+              "Joint UNESCO trusteeship of regional heritage",
+              "Private foundation modeled on the Getty Trust"
+            ],
+            "correct": 0,
+            "explanation": "The 2007 France–UAE intergovernmental accord licensed the Louvre name for 30 years and rotating loans for 10 — a state-to-state cultural lease, not a purchase."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NOW",
+        "body": "Vision 2030, Qatar National Vision 2030, and UAE Centennial 2071 all treat post-oil legitimacy as the central problem. Cultural infrastructure is the most visible bet on what replaces hydrocarbons as the source of state authority — visible to citizens, to neighbors, and to capitals whose recognition still matters."
+      }
+    ],
+    "generatedAt": "2026-04-26T18:01:34.236Z",
+    "label": "Neoroyal Patronage in the Gulf",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-26-hormuz-mine-laying-third-carrier-pakistan-delegation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CARRIER STRIKE GROUP ACTUALLY IS",
+        "body": "A Nimitz or Ford-class carrier never sails alone. The strike group bundles 1 carrier, 1-2 guided-missile cruisers, 2-3 destroyers, and usually a fast-attack submarine. The carrier carries the airpower; the escorts carry the missiles and the air defense.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 846 vertical-launch tubes cited in the article are **Mk 41 VLS cells** on the escorts — each cell can hold a Tomahawk cruise missile, an SM-6 interceptor, or an ASROC anti-submarine rocket. The carrier itself launches no missiles."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STACKING IS RARE",
+        "body": "A deployed carrier needs roughly 2 more in the cycle behind it — 1 working up, 1 in maintenance. The US has 11 carriers total. Putting 3 in a single theater pulls the global rotation thin and signals that Washington has decided one region outranks every other commitment.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Total hulls",
+                "value": "11",
+                "weight": 11
+              },
+              {
+                "label": "Typically deployed",
+                "value": "3-4",
+                "weight": 4
+              },
+              {
+                "label": "In CENTCOM now",
+                "value": "3",
+                "weight": 3
+              },
+              {
+                "label": "Peer (China)",
+                "value": "3",
+                "weight": 3
+              }
+            ],
+            "label": "US carrier fleet, 2026"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2003 PRECEDENT",
+        "body": "The last triple-carrier CENTCOM stack preceded the invasion of Iraq by weeks. Carriers in that posture are not deterrence theater — they are the air wing for a sustained strike campaign. The signal Tehran reads is operational, not diplomatic.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "6 carriers — Desert Storm",
+                "emphasis": "start"
+              },
+              {
+                "year": "2003",
+                "label": "5 carriers — Iraq invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Lincoln surge — Iran tensions"
+              },
+              {
+                "year": "2024",
+                "label": "Eisenhower + Roosevelt — Houthi campaign"
+              },
+              {
+                "year": "2026",
+                "label": "Bush + Lincoln + Ford"
+              }
+            ],
+            "label": "US carrier stacks in CENTCOM"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ GEOMETRY",
+        "body": "CENTCOM's water is narrow. The Persian Gulf is 56km wide at its choke and ringed by Iranian anti-ship missile batteries with ranges that cover the entire basin. Carriers operating inside Hormuz are within reach of shore-launched ballistic and cruise missiles; outside, they cede strike range against inland Iranian targets.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "BH",
+              "QA",
+              "KW",
+              "IQ"
+            ],
+            "label": "the basin",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.2,
+                "lng": 50.6,
+                "label": "NAVCENT HQ, Bahrain"
+              },
+              {
+                "lat": 25.117,
+                "lng": 51.317,
+                "label": "Al Udeid, Qatar"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ASYMMETRIC ANSWER",
+        "body": "Iran's doctrine since the Tanker War assumes it cannot win a fleet engagement. The IRGC Navy is built around swarms of fast attack craft, anti-ship cruise missiles, midget submarines, and naval mines — designed to make the cost of operating a carrier in the Gulf prohibitive rather than to sink one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What weapon has historically been the IRGC Navy's most effective tool against US warships in the Gulf?",
+            "options": [
+              "Anti-ship ballistic missiles",
+              "Naval mines",
+              "Submarine torpedoes",
+              "Coastal artillery"
+            ],
+            "correct": 1,
+            "explanation": "In 1988 the USS Samuel B. Roberts struck an Iranian mine and nearly sank — the incident triggered Operation Praying Mantis, the largest US naval engagement since WWII."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-26T18:02:06.661Z",
+    "label": "Carrier Stacking & CENTCOM",
+    "category": "politics",
+    "articleCount": 1
   }
 }
