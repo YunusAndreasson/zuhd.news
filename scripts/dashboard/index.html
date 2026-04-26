@@ -139,6 +139,13 @@
   </section>
 
   <section>
+    <h3>reader value score (per production cycle)</h3>
+    <div id="rvs-summary" class="stat-row"></div>
+    <div id="chart-rvs"></div>
+    <div id="rvs-cluster-means" style="margin-top: 0.5rem; font-size: var(--size-xs); color: var(--text-secondary);"></div>
+  </section>
+
+  <section>
     <h3>brief block adoption (last 14 days)</h3>
     <div id="block-adoption-summary" class="stat-row"></div>
     <div id="block-adoption-bars"></div>
@@ -522,6 +529,33 @@ async function loadPipeline() {
   if (ops) renderOperations(ops)
 }
 
+function renderRvsTrend(rvs) {
+  const summaryEl = document.getElementById('rvs-summary')
+  const chartEl = document.getElementById('chart-rvs')
+  const clusterEl = document.getElementById('rvs-cluster-means')
+  if (!rvs || rvs.empty) {
+    summaryEl.innerHTML = `<span class="empty">${rvs?.hint || 'available after the next production cycle'}</span>`
+    chartEl.innerHTML = ''
+    clusterEl.innerHTML = ''
+    return
+  }
+  const s = rvs.summary
+  summaryEl.innerHTML = `
+    <div class="stat"><span class="stat-value">${s.latest.rvs.toFixed(1)}</span><span class="stat-label">latest cycle</span></div>
+    ${s.meanLast20 != null ? `<div class="stat"><span class="stat-value">${s.meanLast20.toFixed(1)}</span><span class="stat-label">mean last 20</span></div>` : ''}
+    <div class="stat"><span class="stat-value">${s.cycleCount}</span><span class="stat-label">cycles tracked</span></div>
+  `
+  const data = rvs.series.map((r) => ({
+    label: `${r.cycleId.slice(5, 10)} ${r.cycleHour}`,
+    value: r.rvs,
+  }))
+  renderLineChart(chartEl, data, 'value', { labelFn: (d) => d.label, unit: '' })
+  if (s.clusterMeansLast20) {
+    const c = s.clusterMeansLast20
+    clusterEl.innerHTML = `cluster means (last 20): picking ${c.picking.toFixed(0)} · writing ${c.writing.toFixed(0)} · briefing ${c.briefing.toFixed(0)} · sourcing ${c.sourcing.toFixed(0)} · coverage ${c.coverage.toFixed(0)}`
+  }
+}
+
 function renderBlockAdoption(blocks) {
   const summaryEl = document.getElementById('block-adoption-summary')
   const t = blocks.recentTiers
@@ -850,9 +884,10 @@ function renderFunnelTrend(cycles) {
 
 // ── Quality Tab ───────────────────────────────────────────────
 async function loadQuality() {
-  const [q, blocks] = await Promise.all([api('/api/quality'), api('/api/blocks')])
+  const [q, blocks, rvs] = await Promise.all([api('/api/quality'), api('/api/blocks'), api('/api/rvs-trend')])
   if (!q) return
   if (blocks && !blocks.empty) renderBlockAdoption(blocks)
+  renderRvsTrend(rvs)
 
   // Categories
   if (q.categories) {

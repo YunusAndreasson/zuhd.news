@@ -490,6 +490,13 @@ $ARTICLE_TEXT" 2>/dev/null)
       # Commit push log
       git add content/.push-log.json 2>/dev/null
       git diff --cached --quiet content/.push-log.json || git commit -m "Push log $(date -u +%Y-%m-%dT%H:%M)" 2>&1 | tee -a "$LOG_FILE"
+
+      # Stage 3c: Production RVS — score this cycle's output against the
+      # autoresearch rubric (deterministic clusters only, zero token cost),
+      # append to content/.rvs-trend.json. Fail-soft: never blocks the cycle.
+      timeout 60 node scripts/score-production-cycle.js 2>&1 | tee -a "$LOG_FILE"
+      git add content/.rvs-trend.json 2>/dev/null
+      git diff --cached --quiet content/.rvs-trend.json || git commit -m "RVS trend $(date -u +%Y-%m-%dT%H:%M)" 2>&1 | tee -a "$LOG_FILE"
     fi
   else
     echo "Build failed — skipping deploy" | tee -a "$LOG_FILE"

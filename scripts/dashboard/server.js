@@ -699,6 +699,34 @@ function handleBlocks() {
   })
 }
 
+// ── Production-cycle RVS trend ──────────────────────────────────────
+
+function handleRvsTrend() {
+  return cached('rvsTrend', 60_000, () => {
+    const path = join(ROOT, 'content', '.rvs-trend.json')
+    if (!existsSync(path)) return { empty: true, hint: 'available after the next production cycle (script: score-production-cycle.js)' }
+    let trend = []
+    try { trend = JSON.parse(readFileSync(path, 'utf-8')) } catch { return { empty: true, error: 'parse error' } }
+    if (trend.length === 0) return { empty: true }
+    const recent = trend.slice(-50) // last ~50 cycles ≈ 10 days
+    const last = trend[trend.length - 1]
+    const avg = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length
+    const summary = {
+      latest: last,
+      meanLast20: trend.length >= 5 ? +avg(trend.slice(-20).map((r) => r.rvs)).toFixed(2) : null,
+      clusterMeansLast20: trend.length >= 5 ? {
+        picking: +avg(trend.slice(-20).map((r) => r.clusters.picking)).toFixed(2),
+        writing: +avg(trend.slice(-20).map((r) => r.clusters.writing)).toFixed(2),
+        briefing: +avg(trend.slice(-20).map((r) => r.clusters.briefing)).toFixed(2),
+        sourcing: +avg(trend.slice(-20).map((r) => r.clusters.sourcing)).toFixed(2),
+        coverage: +avg(trend.slice(-20).map((r) => r.clusters.coverage)).toFixed(2),
+      } : null,
+      cycleCount: trend.length,
+    }
+    return { series: recent, summary }
+  })
+}
+
 // ── Editorial Data ──────────────────────────────────────────────────
 
 function handleReach() {
@@ -922,6 +950,7 @@ const server = createServer((req, res) => {
   if (path === '/api/feed-health') return sendJSON(res, handleFeedHealth())
   if (path === '/api/operations') return sendJSON(res, handleOperations())
   if (path === '/api/blocks') return sendJSON(res, handleBlocks())
+  if (path === '/api/rvs-trend') return sendJSON(res, handleRvsTrend())
   if (path === '/api/media') return sendJSON(res, handleMedia())
   if (path === '/api/experiment') return sendJSON(res, handleExperiment())
   if (path === '/api/reach') return sendJSON(res, handleReach())
