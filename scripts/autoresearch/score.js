@@ -42,6 +42,32 @@ export async function scoreReplay({ worktree, newArticles, cycle, cycleDir, skip
   const briefing = await scoreBriefing(briefs, { skipJudges })
   const picking = await scorePicking(worktree, articles, cycle, { skipJudges })
 
+  // Per-article rollup — actionable form of the metric. For each article
+  // we attach the deterministic clusters that scope down (writing, sourcing,
+  // coverage, briefing). Picking is a cycle-level judge so it doesn't split
+  // per article.
+  const perArticle = articles.map((a) => {
+    const w = writing.detail?.perArticle?.[a.slug]
+    const s = sourcing.detail?.perArticle?.[a.slug]
+    const c = coverage.detail?.perArticle?.[a.slug]
+    const b = briefs[a.slug]
+    return {
+      slug: a.slug,
+      title: a.title,
+      category: a.category,
+      sourceCount: a.sourceNames.length,
+      hasBrief: !!b,
+      blockCount: b ? (b.timeline || []).reduce((n, e) => n + (e.blocks?.length || 0), 0) : 0,
+      writing: w ?? null,
+      sourcing: s ?? null,
+      coverage: c ?? null,
+    }
+  })
+
+  // Replay drift — how far the replay's publish count is from production's
+  // for this cycle's snapshot. Surfaces stale-snapshot dedup distortions.
+  const drift = computeReplayDrift(cycle.id, articles.length)
+
   const clusters = {
     picking: picking.score,
     writing: writing.score,
@@ -64,6 +90,8 @@ export async function scoreReplay({ worktree, newArticles, cycle, cycleDir, skip
     guardrailFailures: guardrails,
     articleCount: articles.length,
     briefCount: Object.keys(briefs).length,
+    perArticle,
+    replayDrift: drift,
   }
 }
 
@@ -139,65 +167,85 @@ function checkGuardrails(articles, briefs) {
 function scoreWriting(articles) {
   if (articles.length === 0) return { score: 0, detail: { reason: 'no articles' } }
   const visibleLen = (s) => s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').length
-  const lens = articles.map((a) => visibleLen(a.body))
-  const words = articles.map((a) => a.body.split(/\s+/).filter(Boolean).length)
   const hookOf = (b) => b.replace(/^[^—]+—\s*/, '').split(/\.\s+/)[0] || ''
 
-  const charInRange = lens.filter((l) => l <= 350).length / articles.length
-  const wordInRange = words.filter((w) => w >= 35 && w <= 60).length / articles.length
-
-  // Voice penalties (rates 0–1)
-  const passive = articles.filter((a) =>
-    /^[A-Z][\w\s',.-]{0,40}\s+(was|were)\s+\w+(ed|en)\b/.test(hookOf(a.body)),
-  ).length / articles.length
-  const hedge = articles.filter((a) =>
-    /\b(could\s+reshape|may\s+signal|is\s+poised\s+to|raising\s+questions|significant(ly)?|amid)\b/i.test(a.body),
-  ).length / articles.length
-  const pressEra = articles.filter((a) =>
-    /\b(at\s+press\s+time|this\s+(morning|afternoon|evening|week))\b/i.test(a.body),
-  ).length / articles.length
-  const titleEcho = articles.filter((a) => {
-    const tw = new Set(a.title.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((w) => w.length > 2))
-    const hw = hookOf(a.body).toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((w) => w.length > 2)
-    if (tw.size === 0 || hw.length === 0) return false
-    return hw.filter((w) => tw.has(w)).length / tw.size >= 0.5
-  }).length / articles.length
-
-  // Compose: brevity (50pts) + voice (50pts).
+  const perArticle = {}
+  for (const a of articles) {
+    const len = visibleLen(a.body)
+    const wc = a.body.split(/\s+/).filter(Boolean).length
+    const hook = hookOf(a.body)
+    const flags = {
+      charInRange: len <= 350,
+      wordInRange: wc >= 35 && wc <= 60,
+      passive: /^[A-Z][\w\s',.-]{0,40}\s+(was|were)\s+\w+(ed|en)\b/.test(hook),
+      hedge: /\b(could\s+reshape|may\s+signal|is\s+poised\s+to|raising\s+questions|significant(ly)?|amid)\b/i.test(a.body),
+      pressEra: /\b(at\s+press\s+time|this\s+(morning|afternoon|evening|week))\b/i.test(a.body),
+      titleEcho: (() => {
+        const tw = new Set(a.title.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((w) => w.length > 2))
+        const hw = hook.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter((w) => w.length > 2)
+        if (tw.size === 0 || hw.length === 0) return false
+        return hw.filter((w) => tw.has(w)).length / tw.size >= 0.5
+      })(),
+    }
+    const brevPts = ((flags.charInRange ? 1 : 0) + (flags.wordInRange ? 1 : 0)) / 2 * 50
+    const voicePenalty = (flags.passive + flags.hedge + flags.pressEra + flags.titleEcho) / 2
+    const voicePts = (1 - clamp01(voicePenalty)) * 50
+    perArticle[a.slug] = { score: brevPts + voicePts, charLen: len, wordCount: wc, ...flags }
+  }
+  const charInRange = articles.filter((a) => perArticle[a.slug].charInRange).length / articles.length
+  const wordInRange = articles.filter((a) => perArticle[a.slug].wordInRange).length / articles.length
+  const passive = articles.filter((a) => perArticle[a.slug].passive).length / articles.length
+  const hedge = articles.filter((a) => perArticle[a.slug].hedge).length / articles.length
+  const pressEra = articles.filter((a) => perArticle[a.slug].pressEra).length / articles.length
+  const titleEcho = articles.filter((a) => perArticle[a.slug].titleEcho).length / articles.length
   const brevity = ((charInRange + wordInRange) / 2) * 50
   const voice = (1 - clamp01((passive + hedge + pressEra + titleEcho) / 2)) * 50
   const score = brevity + voice
-  return { score, detail: { brevity, voice, charInRange, wordInRange, passive, hedge, pressEra, titleEcho } }
+  return { score, detail: { brevity, voice, charInRange, wordInRange, passive, hedge, pressEra, titleEcho, perArticle } }
 }
 
 // ── Sourcing cluster: multi-source + diversity ────────────────────────────
 
 function scoreSourcing(articles) {
   if (articles.length === 0) return { score: 0, detail: { reason: 'no articles' } }
-  const multi = articles.filter((a) => a.sourceNames.length >= 2).length / articles.length
   const all = articles.flatMap((a) => a.sourceNames)
   const tally = new Map()
   for (const n of all) tally.set(n, (tally.get(n) || 0) + 1)
   const top3 = [...tally.values()].sort((a, b) => b - a).slice(0, 3).reduce((a, b) => a + b, 0)
   const top3Share = all.length ? top3 / all.length : 0
+
+  // Per-article sourcing score: multi-source weight (60) + diversity weight
+  // (40 if no source appears in this article that's also in the cycle's
+  // top-3 concentration set; 0 otherwise — concentrated outlets penalize).
+  const top3Outlets = new Set([...tally.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([n]) => n))
+  const perArticle = {}
+  for (const a of articles) {
+    const isMulti = a.sourceNames.length >= 2
+    const isFromTop3 = a.sourceNames.some((n) => top3Outlets.has(n))
+    const score = (isMulti ? 60 : 0) + (isFromTop3 ? 0 : 40)
+    perArticle[a.slug] = { score, sourceCount: a.sourceNames.length, isMulti, isFromTop3, sources: a.sourceNames }
+  }
+  const multi = articles.filter((a) => perArticle[a.slug].isMulti).length / articles.length
   const score = multi * 60 + (1 - top3Share) * 40
-  return { score, detail: { multiSourceRate: multi, top3Share, uniqueOutlets: tally.size } }
+  return { score, detail: { multiSourceRate: multi, top3Share, uniqueOutlets: tally.size, perArticle } }
 }
 
 // ── Coverage cluster: freshness + regional KL ─────────────────────────────
 
 function scoreCoverage(articles) {
   if (articles.length === 0) return { score: 0, detail: { reason: 'no articles' } }
-  // Freshness: median age between sourcePubDate and pubDate (days)
-  const ages = articles
-    .map((a) => {
-      const src = Date.parse(a.sourcePubDate)
-      const pub = Date.parse(a.pubDate)
-      if (isNaN(src) || isNaN(pub)) return null
-      return Math.max(0, (pub - src) / 86400_000)
-    })
-    .filter((x) => x !== null)
-    .sort((a, b) => a - b)
+  // Per-article freshness + region attribution
+  const perArticle = {}
+  const ages = []
+  for (const a of articles) {
+    const src = Date.parse(a.sourcePubDate)
+    const pub = Date.parse(a.pubDate)
+    const ageDays = !isNaN(src) && !isNaN(pub) ? Math.max(0, (pub - src) / 86400_000) : null
+    if (ageDays !== null) ages.push(ageDays)
+    const region = locationToRegion(a.location, a.sourceCountries)
+    perArticle[a.slug] = { ageDays, region, freshness: ageDays !== null ? 1 / (1 + ageDays) : null }
+  }
+  ages.sort((a, b) => a - b)
   const medianAge = ages.length ? ages[Math.floor(ages.length / 2)] : 0
   const freshness = 1 / (1 + medianAge) // 1 if same-day, ~0.5 at 1d, ~0.25 at 3d
 
@@ -215,7 +263,7 @@ function scoreCoverage(articles) {
   const ummahMet = ummahShare >= TARGET_BALANCE.ummahFloor ? 1 : ummahShare / TARGET_BALANCE.ummahFloor
 
   const score = freshness * 40 + regionFit * 30 + ummahMet * 30
-  return { score, detail: { medianAgeDays: medianAge, freshness, klRegion, regionFit, ummahShare, ummahMet, observedRegions } }
+  return { score, detail: { medianAgeDays: medianAge, freshness, klRegion, regionFit, ummahShare, ummahMet, observedRegions, perArticle } }
 }
 
 // ── Briefing cluster: weighted block density × entropy × (1 − fabrication) ─
@@ -265,13 +313,22 @@ async function scoreBriefing(briefs, { skipJudges = false } = {}) {
   const sample = skipJudges ? [] : shapeBlocks.slice(0, 12)
   let fabrications = 0
   let judged = 0
+  const judgements = []
   for (const item of sample) {
     try {
       const flag = await fabricationJudge(item, briefs[item.slug])
       judged++
       if (flag.fabricated) fabrications++
-    } catch {
-      // judge failure: skip; do not penalize
+      judgements.push({
+        slug: item.slug,
+        entry: item.entry,
+        blockType: item.block.type,
+        fabricated: flag.fabricated,
+        confidence: flag.confidence,
+        reason: flag.reason,
+      })
+    } catch (err) {
+      judgements.push({ slug: item.slug, entry: item.entry, blockType: item.block.type, error: err.message })
     }
   }
   const fabricationRate = judged > 0 ? fabrications / judged : 0
@@ -291,6 +348,7 @@ async function scoreBriefing(briefs, { skipJudges = false } = {}) {
       fabricationRate,
       fabricationsJudged: judged,
       typeCounts: allTypeCounts,
+      judgements,
     },
   }
 }
@@ -386,6 +444,36 @@ function parseJudgeJson(out) {
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────
+
+// Replay drift — compare the replayed cycle's publish count against the
+// production cycle's actual publish count. Stale-snapshot dedup distortions
+// (dedup-selection.js running against the current `.last-cycle.json`) often
+// drop articles that "would have" been published in the original cycle, so
+// any replay metric of an old snapshot needs this caveat surfaced.
+function computeReplayDrift(cycleId, replayCount) {
+  // cycleId: "2026-04-22T22-02"  →  log file: "logs/cycle-2026-04-22_2202.log"
+  const m = cycleId.match(/^(\d{4}-\d{2}-\d{2})T(\d{2})-(\d{2})$/)
+  if (!m) return { available: false, reason: 'cycle id not parseable' }
+  const logName = `logs/cycle-${m[1]}_${m[2]}${m[3]}.log`
+  const logPath = join(REPO_ROOT, logName)
+  let actualCount = null
+  try {
+    const log = readFileSync(logPath, 'utf-8')
+    const pub = log.match(/^Published:\s+(\d+)/m)
+    if (pub) actualCount = parseInt(pub[1], 10)
+  } catch {
+    return { available: false, reason: 'log not found', logPath: logName }
+  }
+  if (actualCount === null) return { available: false, reason: 'no Published line in log', logPath: logName }
+  const ratio = actualCount > 0 ? replayCount / actualCount : null
+  return {
+    available: true,
+    replayPublishCount: replayCount,
+    actualPublishCount: actualCount,
+    ratio,
+    interpretable: ratio !== null && ratio >= 0.7,
+  }
+}
 
 function tally(arr) {
   const o = {}
