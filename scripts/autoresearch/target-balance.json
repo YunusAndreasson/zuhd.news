@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "description": "Target regional and category mix for the Coverage cluster. KL divergence between observed and target is the penalty. Edit weights to reshape what 'good coverage' means without changing scorer code. Regions follow the 6-region geohash in scripts/compute-metrics.js: ME (Middle East), AS (Asia ex-ME), AF (Africa), EU (Europe), AM (Americas), OC (Oceania), GL (global).",
+  "regions": {
+    "ME": 0.25,
+    "AS": 0.25,
+    "AF": 0.10,
+    "EU": 0.15,
+    "AM": 0.15,
+    "OC": 0.02,
+    "GL": 0.08
+  },
+  "categories": {
+    "politics": 0.35,
+    "economy": 0.30,
+    "science": 0.18,
+    "tech": 0.17
+  },
+  "ummahWeightedRegions": ["ME", "AS", "AF"],
+  "ummahFloor": 0.5
+}
