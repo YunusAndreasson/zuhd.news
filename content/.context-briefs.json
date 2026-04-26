@@ -61291,5 +61291,425 @@
     "label": "Cost-asymmetric air defense",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-26-glaucoma-multimodal-ai-oct-visual-field-screening": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SILENT THIEF",
+        "body": "Glaucoma destroys retinal ganglion cells from the periphery inward. By the time a patient notices symptoms, 40% of the optic nerve fibers are typically already dead — and they do not regenerate. This is why screening matters more than treatment.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Glaucoma is the world's leading cause of *irreversible* blindness — distinct from cataracts, which are reversible with surgery. An estimated **80 million** people have it globally; roughly half do not know."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT OCT ACTUALLY MEASURES",
+        "body": "Optical coherence tomography fires near-infrared light into the retina and measures back-scattered echoes — the same principle as ultrasound, but with light. It resolves retinal layers at micron scale, letting clinicians watch the retinal nerve fiber layer thin year over year before any vision is lost."
+      },
+      {
+        "heading": "THE THREE-INPUT PROBLEM",
+        "body": "No single test catches glaucoma reliably. OCT shows structural damage. Visual field tests (perimetry) show functional loss. Fundus photos show optic disc cupping. Each modality misses cases the others catch — which is why fusing them outperforms any one input.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "OCT",
+                "value": "structure",
+                "tone": "neutral"
+              },
+              {
+                "label": "Visual field",
+                "value": "function",
+                "tone": "neutral"
+              },
+              {
+                "label": "Fundus photo",
+                "value": "morphology",
+                "tone": "neutral"
+              }
+            ],
+            "label": "what each modality sees"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 0.998 IS SUSPICIOUS",
+        "body": "AUC scores above 0.99 on small single-center datasets almost always collapse on external validation. Models learn dataset-specific artifacts — scanner make, patient demographics, image preprocessing — that do not generalize. The 582-eye sample is too narrow to claim clinical readiness.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do medical AI models that score near-perfect on internal data often fail in deployment?",
+            "options": [
+              "The models are mathematically flawed",
+              "They learn site-specific artifacts rather than disease features",
+              "Doctors disagree with the predictions",
+              "Patients refuse the screening"
+            ],
+            "correct": 1,
+            "explanation": "This is called shortcut learning — the model picks up scanner brand or center-specific image quirks that correlate with diagnosis in the training set but do not transfer."
+          }
+        ]
+      },
+      {
+        "heading": "THE NEURODEGENERATION LINK",
+        "body": "The retina is brain tissue — developmentally an outpouching of the central nervous system. Thinning of the retinal nerve fiber layer correlates with Alzheimer's, Parkinson's, and multiple sclerosis. The eye is becoming a window into neurodegenerative disease years before cognitive symptoms appear."
+      },
+      {
+        "heading": "THE SCREENING ECONOMICS",
+        "body": "A glaucoma specialist visit costs $200-400 and requires referral. An OCT scan plus AI inference can run under $20 at a pharmacy or optometrist. If the model holds up on diverse cohorts, the bottleneck shifts from specialist supply to scanner deployment — the same pattern that transformed diabetic retinopathy screening in India and Thailand."
+      }
+    ],
+    "generatedAt": "2026-04-26T08:21:33.549Z",
+    "label": "Glaucoma & Multimodal Screening",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-26-india-new-zealand-fta-dairy-20-billion-investment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY DAIRY IS ALWAYS EXCLUDED",
+        "body": "India is the world's largest milk producer, but output comes from roughly 80 million smallholder households averaging 2-3 cows each. Dairy is not an industry there — it is a rural livelihood floor. Any FTA that opens it threatens votes in every state simultaneously.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "New Zealand's **Fonterra** alone produces more milk than all of Pakistan. A single Kiwi co-op against *80 million* Indian households is the asymmetry every negotiator runs into."
+          }
+        ]
+      },
+      {
+        "heading": "THE NEW ZEALAND MODEL",
+        "body": "New Zealand deregulated agriculture in 1984, eliminating subsidies overnight. Farms consolidated, productivity soared, and dairy became 25% of merchandise exports. The country now exports ~95% of its milk production — the highest ratio of any major producer.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "New Zealand",
+                "value": "~95% exported",
+                "cc": "NZ",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ireland",
+                "value": "~85%",
+                "cc": "IE",
+                "tone": "neutral"
+              },
+              {
+                "label": "Netherlands",
+                "value": "~65%",
+                "cc": "NL",
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "~17%",
+                "cc": "US",
+                "tone": "favorable"
+              },
+              {
+                "label": "India",
+                "value": "<1%",
+                "cc": "IN",
+                "tone": "favorable"
+              }
+            ],
+            "label": "dairy export dependence"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2014 GHOST",
+        "body": "This deal has been stuck for over a decade. Negotiations launched in 2010, stalled in 2015 over dairy, and India's 2019 walkout from RCEP — the Asia-Pacific trade pact — was driven by the same dairy fear. Wellington's concession on dairy is what unlocked New Delhi.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "FTA talks launched"
+              },
+              {
+                "year": "2015",
+                "label": "talks stall over dairy"
+              },
+              {
+                "year": "2019",
+                "label": "India exits RCEP",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "talks restart"
+              },
+              {
+                "year": "2026",
+                "label": "deal signed"
+              }
+            ],
+            "label": "the long road"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'OPEN 95%' ACTUALLY MEANS",
+        "body": "FTAs measure access by tariff lines, not trade value. Excluding dairy, beef, and a sensitive-agriculture list still leaves 95%+ of customs codes open — but those exclusions can represent the majority of what the partner actually wants to sell. Read the exclusion list, not the headline number."
+      },
+      {
+        "heading": "THE INDO-PACIFIC ANGLE",
+        "body": "New Zealand is part of Five Eyes and AUKUS-adjacent diplomacy; India anchors the Quad. The trade deal is small in dollar terms — $5bn target is rounding error against India's $1.2tn trade — but it tightens an Indo-Pacific bloc Beijing watches carefully.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "NZ",
+              "AU",
+              "CN"
+            ],
+            "label": "the Quad-adjacent geometry"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "India guards dairy harder than almost any other sector. Test the why.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does India protect dairy so fiercely in trade deals?",
+            "options": [
+              "Religious dietary rules limit foreign milk",
+              "~80 million smallholder households depend on it",
+              "Indian dairy fails Western safety standards",
+              "WTO rules forbid dairy liberalization"
+            ],
+            "correct": 1,
+            "explanation": "Dairy in India is a rural livelihood floor for tens of millions of small households, not an industry — opening it is electorally radioactive."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-26T08:22:00.860Z",
+    "label": "India's Dairy Wall",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-26-iran-turkey-araghchi-fidan-ceasefire-call-sunni-perimeter": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MUSCAT FIRST",
+        "body": "Oman has been the back-channel of choice between Tehran and Washington since the early 2010s. Sultan Qaboos hosted the secret talks in 2012-2013 that produced the JCPOA framework; his successor Haitham has kept the role. Muscat's neutrality is doctrinal — Ibadi Islam, neither Sunni nor Shia, gives Oman a confessional posture no other Gulf capital can copy.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW",
+              "TR"
+            ],
+            "label": "Iran's diplomatic perimeter",
+            "markers": [
+              {
+                "lat": 23.5859,
+                "lng": 58.4059,
+                "label": "Muscat — back-channel"
+              },
+              {
+                "lat": 35.6892,
+                "lng": 51.389,
+                "label": "Tehran"
+              },
+              {
+                "lat": 39.9334,
+                "lng": 32.8597,
+                "label": "Ankara"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SUNNI PERIMETER",
+        "body": "Iran's Gulf diplomacy is shaped by a confessional geography it cannot change: it is a Shia state ringed by Sunni-majority Arab monarchies plus Sunni-majority Turkey to the north. Every regional opening — Beijing-brokered Saudi détente in 2023, the Turkey channel now — is an attempt to manage that perimeter without conceding the revolutionary identity at home.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "Sunni ~85%",
+                "cc": "SA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Turkey",
+                "value": "Sunni ~80%",
+                "cc": "TR",
+                "tone": "neutral"
+              },
+              {
+                "label": "UAE",
+                "value": "Sunni ~80%",
+                "cc": "AE",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Qatar",
+                "value": "Sunni ~70%",
+                "cc": "QA",
+                "tone": "neutral"
+              },
+              {
+                "label": "Iraq",
+                "value": "Shia ~60%",
+                "cc": "IQ",
+                "tone": "favorable"
+              },
+              {
+                "label": "Bahrain",
+                "value": "Shia ~60%",
+                "cc": "BH",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Iran's neighbors by Sunni/Shia majority"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BRIEF ANKARA",
+        "body": "Turkey is the one regional power that talks to everyone — Iran, Israel, Russia, the Gulf, NATO. It hosts the Incirlik airbase and runs an independent Syria policy. A Turkish foreign minister briefed early gets to shape European and NATO readouts before Washington's version dominates the wire.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Fidan ran **MIT** — Turkey's intelligence service — for over a decade before becoming foreign minister. He personally managed the Iran, Hamas, and Damascus files. Calling *him* is not a courtesy; it is a request for an experienced interlocutor."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARAGHCHI FILE",
+        "body": "Araghchi led Iran's technical team through every round of nuclear talks from 2013 onward. He knows the JCPOA's text line by line and has working relationships with European and Omani counterparts that predate the current crisis — institutional memory that Khamenei trusts to negotiate without conceding too much."
+      },
+      {
+        "heading": "WHAT 'BRIEFING' MEANS",
+        "body": "In Iranian diplomatic practice, a briefing call to a non-aligned power serves three functions: lock in that power's public framing, create a witness against later US backtracking, and signal to domestic hardliners that any concessions have multilateral cover. The act of calling is itself part of the negotiating posture.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Oman play the Iran-US back-channel role rather than Qatar or the UAE?",
+            "options": [
+              "Oman is the only Gulf state with no US military base",
+              "Oman's Ibadi Islam is neither Sunni nor Shia, giving it confessional neutrality",
+              "Oman shares a land border with Iran",
+              "Oman is the largest Gulf economy"
+            ],
+            "correct": 1,
+            "explanation": "Ibadi Islam, the dominant tradition in Oman, is a third branch separate from Sunni and Shia — a doctrinal neutrality that lets Muscat host both Tehran and Washington without confessional baggage."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-26T08:22:32.369Z",
+    "label": "Iran's Sunni Perimeter Diplomacy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-26-rat-hypertension-diabetes-diet-models-preclinical-validity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY RATS",
+        "body": "Rodents share roughly 90% of their genome with humans, breed in 21 days, and cost a few dollars per animal. No other system gives researchers a vertebrate with a mammalian cardiovascular system on a timescale and budget that lets a single PhD student run a full study.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The standard induction recipe is a *high-fat, high-sucrose* (HFHS) diet — sometimes called the **'cafeteria diet'** — designed to mimic Western eating patterns in a few months."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSLATION GAP",
+        "body": "Roughly 90% of drugs that work in rodent models fail in human trials. The gap is widest in metabolic and cardiovascular disease, where rat physiology compensates for insults that would derail a human — kidneys excrete sodium more aggressively, and rodent insulin sensitivity is harder to break than the human equivalent."
+      },
+      {
+        "heading": "THE ADAPTATION PROBLEM",
+        "body": "Chronic dietary insults trigger compensatory mechanisms. Rats fed high salt for months upregulate renal sodium excretion and vascular nitric oxide pathways; the blood pressure that spiked at week 8 normalizes by week 32. The model studies the adaptation, not the disease."
+      },
+      {
+        "heading": "WHY DIET-ONLY FAILS",
+        "body": "Human hypertension and Type 2 diabetes emerge over decades from diet plus genetics plus stress plus aging. Compressing that into 16 weeks of one variable misses the multifactorial cascade. Robust models combine diet with a genetic predisposition (Zucker rats, SHR strain) or a chemical insult (low-dose streptozotocin for beta-cell stress).",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "HFHS diet only",
+                "value": "unreliable",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Zucker fatty rat",
+                "value": "genetic leptin defect",
+                "tone": "neutral"
+              },
+              {
+                "label": "SHR strain",
+                "value": "spontaneous HTN",
+                "tone": "neutral"
+              },
+              {
+                "label": "STZ + diet",
+                "value": "chemical β-cell ablation",
+                "tone": "favorable"
+              },
+              {
+                "label": "db/db mouse",
+                "value": "leptin receptor KO",
+                "tone": "favorable"
+              }
+            ],
+            "label": "common rodent models for metabolic disease"
+          }
+        ]
+      },
+      {
+        "heading": "THE REPRODUCIBILITY CRISIS",
+        "body": "A 2015 review found that fewer than 25% of high-impact preclinical findings replicated when independent labs repeated them. Diet composition, vendor strain drift, cage stress, and circadian feeding windows all shift outcomes — variables rarely reported in methods sections.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what fraction of drugs that show efficacy in rodent models go on to succeed in human clinical trials?",
+            "options": [
+              "About 50%",
+              "About 25%",
+              "About 10%",
+              "About 1%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 90% of preclinical-validated candidates fail in humans — most in Phase II for lack of efficacy, exposing the translation gap."
+          }
+        ]
+      },
+      {
+        "heading": "THE 3R PRESSURE",
+        "body": "Replacement, Reduction, Refinement — the ethical framework adopted across EU and increasingly US labs — pushes researchers toward fewer animals and shorter studies. The irony: shorter studies miss the adaptation window where rat physiology diverges most from human disease progression."
+      }
+    ],
+    "generatedAt": "2026-04-26T08:23:00.140Z",
+    "label": "Animal Models & Translational Validity",
+    "category": "science",
+    "articleCount": 1
   }
 }
