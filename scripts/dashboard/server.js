@@ -727,6 +727,75 @@ function handleRvsTrend() {
   })
 }
 
+// ── Autoresearch session history ────────────────────────────────────
+
+function handleAutoresearch() {
+  return cached('autoresearch', 60_000, () => {
+    const dir = join(ROOT, 'content', '.autoresearch-history')
+    if (!existsSync(dir)) return { empty: true, hint: 'no autoresearch sessions persisted yet — runs on session end via summarize-session.js' }
+    const files = readdirSync(dir).filter((f) => f.endsWith('.jsonl')).sort().reverse()
+    if (files.length === 0) return { empty: true }
+
+    const sessions = []
+    for (const f of files.slice(0, 30)) {
+      const sessionId = f.replace(/\.jsonl$/, '')
+      try {
+        const lines = readFileSync(join(dir, f), 'utf-8').trim().split('\n').filter(Boolean)
+        const records = lines.map((l) => JSON.parse(l))
+        const baseline = records.find((r) => r.kind === 'baseline')
+        const replays = records.filter((r) => r.kind === 'replay')
+        const accepted = replays.filter((r) => r.decision === 'accept')
+        const rejected = replays.filter((r) => r.decision !== 'accept')
+        const startedAt = baseline?.ts ?? records[0]?.ts ?? null
+        const finishedAt = records[records.length - 1]?.ts ?? null
+        const bestRvs = replays.length > 0
+          ? Math.max(...replays.map((r) => r.rvs ?? -Infinity))
+          : (baseline?.rvs ?? null)
+        sessions.push({
+          sessionId,
+          startedAt,
+          finishedAt,
+          baselineRvs: baseline?.rvs ?? null,
+          baselineClusters: baseline?.clusters ?? null,
+          bestRvs,
+          delta: bestRvs != null && baseline?.rvs != null ? +(bestRvs - baseline.rvs).toFixed(2) : null,
+          iterCount: replays.length,
+          acceptedCount: accepted.length,
+          rejectedCount: rejected.length,
+          accepted: accepted.map((r) => ({
+            iter: r.iter,
+            rvs: r.rvs,
+            delta: r.delta,
+            file: r.diff?.file,
+            targetCluster: r.diff?.targetCluster,
+            rationale: r.diff?.rationale,
+          })),
+          rejected: rejected.map((r) => ({
+            iter: r.iter,
+            rvs: r.rvs,
+            delta: r.delta,
+            decision: r.decision,
+            file: r.diff?.file,
+            targetCluster: r.diff?.targetCluster,
+            rationale: r.diff?.rationale?.slice(0, 200),
+          })),
+        })
+      } catch (err) {
+        sessions.push({ sessionId, error: err.message })
+      }
+    }
+
+    return {
+      sessions,
+      summary: {
+        sessionCount: sessions.length,
+        totalIters: sessions.reduce((s, x) => s + (x.iterCount || 0), 0),
+        totalAccepted: sessions.reduce((s, x) => s + (x.acceptedCount || 0), 0),
+      },
+    }
+  })
+}
+
 // ── Editorial Data ──────────────────────────────────────────────────
 
 function handleReach() {
@@ -951,6 +1020,7 @@ const server = createServer((req, res) => {
   if (path === '/api/operations') return sendJSON(res, handleOperations())
   if (path === '/api/blocks') return sendJSON(res, handleBlocks())
   if (path === '/api/rvs-trend') return sendJSON(res, handleRvsTrend())
+  if (path === '/api/autoresearch') return sendJSON(res, handleAutoresearch())
   if (path === '/api/media') return sendJSON(res, handleMedia())
   if (path === '/api/experiment') return sendJSON(res, handleExperiment())
   if (path === '/api/reach') return sendJSON(res, handleReach())

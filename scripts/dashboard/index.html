@@ -18,6 +18,7 @@
   <button class="tab-btn" role="tab" aria-selected="false" data-tab="quality">quality</button>
   <button class="tab-btn" role="tab" aria-selected="false" data-tab="logs">logs</button>
   <button class="tab-btn" role="tab" aria-selected="false" data-tab="experiment">experiment<span class="exp-tab-dot" id="exp-tab-dot" hidden></span></button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-tab="autoresearch">autoresearch</button>
   <button class="tab-btn" role="tab" aria-selected="false" data-tab="editorial">editorial</button>
   <button class="tab-btn" role="tab" aria-selected="false" data-tab="status">status</button>
 </nav>
@@ -214,6 +215,22 @@
 
 </div>
 
+<!-- ── Autoresearch ───────────────────────────────────────────── -->
+<div class="tab-panel" id="panel-autoresearch">
+
+  <section>
+    <h3>session totals</h3>
+    <div id="ar-totals" class="stat-row"></div>
+  </section>
+
+  <section>
+    <h3>session history</h3>
+    <div id="ar-sessions"></div>
+    <div id="ar-empty" class="empty" hidden>no autoresearch sessions yet — run /autoresearch and the persisted history will appear here</div>
+  </section>
+
+</div>
+
 <!-- ── Editorial ─────────────────────────────────────────────── -->
 <div class="tab-panel" id="panel-editorial">
 
@@ -258,7 +275,7 @@
 // ── Tabs ──────────────────────────────────────────────────────
 const tabs = document.querySelectorAll('.tab-btn')
 const panels = document.querySelectorAll('.tab-panel')
-const tabLoaders = { pipeline: loadPipeline, quality: loadQuality, logs: loadLogs, experiment: loadExperiment, editorial: loadEditorial, status: loadStatus }
+const tabLoaders = { pipeline: loadPipeline, quality: loadQuality, logs: loadLogs, experiment: loadExperiment, autoresearch: loadAutoresearch, editorial: loadEditorial, status: loadStatus }
 let activeTab = 'pipeline'
 
 tabs.forEach(btn => {
@@ -1301,6 +1318,69 @@ function auditTarget(label, value, detail, met, target) {
 function regionBreakdown(breakdown) {
   if (!breakdown) return null
   return Object.entries(breakdown).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k}\u00a0${v}`).join(' ')
+}
+
+// ── Autoresearch Tab ──────────────────────────────────────────
+async function loadAutoresearch() {
+  const data = await api('/api/autoresearch')
+  const totalsEl = document.getElementById('ar-totals')
+  const sessionsEl = document.getElementById('ar-sessions')
+  const emptyEl = document.getElementById('ar-empty')
+  if (!data || data.empty) {
+    totalsEl.innerHTML = ''
+    sessionsEl.innerHTML = ''
+    emptyEl.hidden = false
+    if (data?.hint) emptyEl.textContent = data.hint
+    return
+  }
+  emptyEl.hidden = true
+
+  const s = data.summary
+  totalsEl.innerHTML = `
+    <div class="stat"><span class="stat-value">${s.sessionCount}</span><span class="stat-label">sessions</span></div>
+    <div class="stat"><span class="stat-value">${s.totalIters}</span><span class="stat-label">total iterations</span></div>
+    <div class="stat"><span class="stat-value">${s.totalAccepted}</span><span class="stat-label">accepted diffs</span></div>
+  `
+
+  const rows = data.sessions.map((sess) => {
+    if (sess.error) {
+      return `<tr><td>${escapeHTML(sess.sessionId)}</td><td colspan="6" style="color:var(--red)">parse error: ${escapeHTML(sess.error)}</td></tr>`
+    }
+    const baseline = sess.baselineRvs?.toFixed(1) ?? '—'
+    const best = sess.bestRvs?.toFixed(1) ?? '—'
+    const delta = sess.delta != null
+      ? `<span style="color:${sess.delta > 0 ? 'var(--green, #4a9a4a)' : sess.delta < 0 ? 'var(--red)' : 'inherit'}">${sess.delta > 0 ? '+' : ''}${sess.delta.toFixed(1)}</span>`
+      : '—'
+    const started = sess.startedAt ? new Date(sess.startedAt).toISOString().slice(0, 16).replace('T', ' ') : '—'
+    const acceptedDetail = sess.accepted.length > 0
+      ? sess.accepted.map((a) => `<div style="font-size:var(--size-xs);margin-top:0.25rem"><strong>iter ${a.iter}</strong> Δ${a.delta > 0 ? '+' : ''}${a.delta?.toFixed(2)} → <code>${escapeHTML(a.file)}</code> (${escapeHTML(a.targetCluster)})<br><span style="color:var(--text-secondary)">${escapeHTML(a.rationale?.slice(0, 200) || '')}</span></div>`).join('')
+      : '<span class="empty" style="font-size:var(--size-xs)">no accepted diffs</span>'
+    return `
+      <tr>
+        <td><code>${escapeHTML(sess.sessionId)}</code><br><span style="font-size:var(--size-xs);color:var(--text-secondary)">${started}</span></td>
+        <td>${baseline}</td>
+        <td>${best}</td>
+        <td>${delta}</td>
+        <td>${sess.iterCount}</td>
+        <td><span style="color:${sess.acceptedCount > 0 ? 'inherit' : 'var(--text-secondary)'}">${sess.acceptedCount}</span> / ${sess.rejectedCount}</td>
+        <td>${acceptedDetail}</td>
+      </tr>
+    `
+  }).join('')
+
+  sessionsEl.innerHTML = `
+    <table class="trend-table">
+      <thead>
+        <tr><th>session</th><th>baseline</th><th>best</th><th>Δ</th><th>iters</th><th>acc / rej</th><th>accepted diffs</th></tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `
+}
+
+function escapeHTML(s) {
+  if (s == null) return ''
+  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
 }
 
 // ── Experiment Tab ────────────────────────────────────────────

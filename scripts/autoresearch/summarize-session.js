@@ -2,8 +2,9 @@
 // Read the session's runs.jsonl + per-iter diffs, write a human-review summary
 // at /tmp/zuhd-autoresearch/<session>/session-<id>.md ranked by Δ-RVS.
 
-import { existsSync, readdirSync, readFileSync, writeFileSync } from 'fs'
-import { join } from 'path'
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'fs'
+import { dirname, join } from 'path'
+import { fileURLToPath } from 'url'
 
 const argv = process.argv.slice(2)
 function flag(name) {
@@ -107,3 +108,16 @@ lines.push('')
 const outPath = join(SESSION_DIR, `session-${sessionId}.md`)
 writeFileSync(outPath, lines.join('\n'))
 console.log(`Summary written: ${outPath}`)
+
+// Persist runs.jsonl + summary into the repo so the dashboard sees session
+// history beyond the lifetime of /tmp. Skips if the repo path looks wrong.
+try {
+  const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
+  const HISTORY_DIR = join(REPO_ROOT, 'content', '.autoresearch-history')
+  mkdirSync(HISTORY_DIR, { recursive: true })
+  writeFileSync(join(HISTORY_DIR, `${sessionId}.jsonl`), readFileSync(RUNS_LOG, 'utf-8'))
+  writeFileSync(join(HISTORY_DIR, `${sessionId}.md`), lines.join('\n'))
+  console.log(`History persisted: content/.autoresearch-history/${sessionId}.{jsonl,md}`)
+} catch (err) {
+  console.warn(`History persistence skipped: ${err.message}`)
+}
