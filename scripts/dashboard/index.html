@@ -77,6 +77,23 @@
   </section>
 
   <section>
+    <h3>NewsAPI tokens per cycle</h3>
+    <div id="ops-tokens-summary" class="stat-row"></div>
+    <div id="chart-newsapi-tokens"></div>
+  </section>
+
+  <section>
+    <h3>trends pick rate</h3>
+    <div id="ops-trends-summary" class="stat-row"></div>
+    <div id="chart-trends-pick"></div>
+  </section>
+
+  <section>
+    <h3>backfill activity</h3>
+    <div id="ops-backfill-summary"></div>
+  </section>
+
+  <section>
     <h3>audio briefing</h3>
     <div id="briefing-info"></div>
   </section>
@@ -119,6 +136,15 @@
   <section>
     <h3>articles per day</h3>
     <div id="chart-articles-day"></div>
+  </section>
+
+  <section>
+    <h3>brief block adoption (last 14 days)</h3>
+    <div id="block-adoption-summary" class="stat-row"></div>
+    <div id="block-adoption-bars"></div>
+    <div style="margin-top: 0.75rem; font-size: var(--size-xs); color: var(--text-secondary);">
+      Shape-specific = timeline / rank / sankey / treemap. Cheap = prose / quiz / locations / compare / actors / quote. Charts = trend / chart / multi-chart.
+    </div>
   </section>
 
   <section>
@@ -473,7 +499,7 @@ let overviewData = null
 let cyclesData = null
 
 async function loadPipeline() {
-  const [overview, cycles, feedHealth, media] = await Promise.all([api('/api/overview'), api('/api/cycles'), api('/api/feed-health'), api('/api/media')])
+  const [overview, cycles, feedHealth, media, ops] = await Promise.all([api('/api/overview'), api('/api/cycles'), api('/api/feed-health'), api('/api/media'), api('/api/operations')])
   overviewData = overview
   cyclesData = cycles
   if (overview) renderOverview(overview)
@@ -493,6 +519,55 @@ async function loadPipeline() {
     const lastCompleted = cycles.find(c => c.completed)
     if (lastCompleted) renderFunnel(document.getElementById('funnel'), lastCompleted.funnel)
   }
+  if (ops) renderOperations(ops)
+}
+
+function renderBlockAdoption(blocks) {
+  const summaryEl = document.getElementById('block-adoption-summary')
+  const t = blocks.recentTiers
+  const total = t.shape + t.cheap + t.charts + t.other || 1
+  const shapePct = (t.shape / total * 100).toFixed(0)
+  summaryEl.innerHTML = `
+    <div class="stat"><span class="stat-value">${t.shape}</span><span class="stat-label">shape-specific blocks</span></div>
+    <div class="stat"><span class="stat-value">${t.cheap}</span><span class="stat-label">cheap blocks</span></div>
+    <div class="stat"><span class="stat-value">${t.charts}</span><span class="stat-label">chart blocks</span></div>
+    <div class="stat"><span class="stat-value">${shapePct}%</span><span class="stat-label">share-specific share</span></div>
+  `
+  // Per-type bar list — recent 14 days only
+  const types = Object.entries(blocks.recentTypes).sort((a, b) => b[1] - a[1])
+  const items = types.map(([type, count]) => ({ label: type, value: count, display: String(count) }))
+  renderBars(document.getElementById('block-adoption-bars'), items)
+}
+
+function renderOperations(ops) {
+  // NewsAPI tokens — line chart over the last ~35 cycles
+  const tokenSummary = document.getElementById('ops-tokens-summary')
+  tokenSummary.innerHTML = `
+    <div class="stat"><span class="stat-value">${ops.summary.tokenSum}</span><span class="stat-label">tokens last ${ops.summary.cycles} cycles</span></div>
+    <div class="stat"><span class="stat-value">${ops.summary.tokenAvg}</span><span class="stat-label">per cycle (avg)</span></div>
+  `
+  const tokenData = ops.series.map((c) => ({ label: `${c.date?.slice(5)} ${c.hour}`, value: c.tokens || 0 }))
+  renderLineChart(document.getElementById('chart-newsapi-tokens'), tokenData, 'value', { labelFn: (d) => d.label, unit: '' })
+
+  // Trends pick rate — line chart of picked / offered per cycle
+  const trendSummary = document.getElementById('ops-trends-summary')
+  trendSummary.innerHTML = `
+    <div class="stat"><span class="stat-value">${(ops.summary.trendsPickRate * 100).toFixed(0)}%</span><span class="stat-label">pick rate (rolling)</span></div>
+  `
+  const trendData = ops.series.map((c) => ({
+    label: `${c.date?.slice(5)} ${c.hour}`,
+    value: c.trendsOffered ? Math.round((c.trendsPicked || 0) / c.trendsOffered * 100) : 0,
+  }))
+  renderLineChart(document.getElementById('chart-trends-pick'), trendData, 'value', { labelFn: (d) => d.label, unit: '%' })
+
+  // Backfill — count of cycles that fired and that failed
+  const bfEl = document.getElementById('ops-backfill-summary')
+  bfEl.innerHTML = `
+    <div class="stat-row">
+      <div class="stat"><span class="stat-value">${ops.summary.backfillFireCount}</span><span class="stat-label">cycles needed backfill</span></div>
+      <div class="stat"><span class="stat-value" style="color:${ops.summary.backfillFailCount > 0 ? 'var(--amber)' : 'inherit'}">${ops.summary.backfillFailCount}</span><span class="stat-label">cycles backfill failed</span></div>
+    </div>
+  `
 }
 
 function renderFeedHealth(data) {
@@ -775,8 +850,9 @@ function renderFunnelTrend(cycles) {
 
 // ── Quality Tab ───────────────────────────────────────────────
 async function loadQuality() {
-  const q = await api('/api/quality')
+  const [q, blocks] = await Promise.all([api('/api/quality'), api('/api/blocks')])
   if (!q) return
+  if (blocks && !blocks.empty) renderBlockAdoption(blocks)
 
   // Categories
   if (q.categories) {

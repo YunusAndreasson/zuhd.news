@@ -49,6 +49,11 @@ function parseCycleLog(filepath) {
   const dedupSel = content.match(/Deduped selection: (\d+) → (\d+)/)
   const newArticles = content.match(/Found (\d+) new\/modified articles/)
 
+  // NewsAPI token usage + backfill operational signals
+  const newsApiTokens = content.match(/NewsAPI tokens this cycle:\s*~?(\d+)/)
+  const backfillFires = [...content.matchAll(/Backfill: added (\d+) stories/g)]
+  const backfillFailed = /Backfill: no viable candidates found/.test(content)
+
   // Funnel block
   const funnelFeed = content.match(/^Feed:\s+(.+)$/m)
   const funnelSel = content.match(/^Selected:\s+(\d+)/m)
@@ -86,6 +91,9 @@ function parseCycleLog(filepath) {
     dedupBefore: dedupSel ? parseInt(dedupSel[1]) : null,
     dedupAfter: dedupSel ? parseInt(dedupSel[2]) : null,
     articlesWritten: newArticles ? parseInt(newArticles[1]) : null,
+    newsApiTokens: newsApiTokens ? parseInt(newsApiTokens[1]) : null,
+    backfillAdded: backfillFires.reduce((sum, m) => sum + parseInt(m[1]), 0),
+    backfillFailed,
     funnel: {
       feed: funnelFeed ? funnelFeed[1] : null,
       selected: funnelSel ? parseInt(funnelSel[1]) : 0,
@@ -589,6 +597,108 @@ function handleFeedHealth() {
   })
 }
 
+// ── Operations (NewsAPI tokens, trends pick rate, backfill) ─────────
+
+function handleOperations() {
+  return cached('operations', 120_000, () => {
+    // Last 35 cycles ≈ 7 days at 5 cycles/day
+    const cycles = getAllCycles().slice(0, 35).reverse() // chronological
+    const series = cycles.map((c) => ({
+      filename: c.filename,
+      date: c.date,
+      hour: c.scheduledHour,
+      tokens: c.newsApiTokens,
+      trendsOffered: c.stages.trends?.offered ?? null,
+      trendsPicked: c.stages.trends?.picked ?? null,
+      trendsArticles: c.stages.trends?.articles ?? null,
+      backfillAdded: c.backfillAdded || 0,
+      backfillFailed: c.backfillFailed || false,
+      published: c.funnel?.published ?? 0,
+    }))
+    const tokenSum = series.reduce((s, c) => s + (c.tokens || 0), 0)
+    const tokenAvg = series.length ? Math.round(tokenSum / series.filter((c) => c.tokens != null).length) : 0
+    const pickedSum = series.reduce((s, c) => s + (c.trendsPicked || 0), 0)
+    const offeredSum = series.reduce((s, c) => s + (c.trendsOffered || 0), 0)
+    const trendsPickRate = offeredSum > 0 ? pickedSum / offeredSum : 0
+    return {
+      series,
+      summary: {
+        cycles: series.length,
+        tokenSum,
+        tokenAvg,
+        trendsPickRate,
+        backfillFireCount: series.filter((c) => c.backfillAdded > 0).length,
+        backfillFailCount: series.filter((c) => c.backfillFailed).length,
+      },
+    }
+  })
+}
+
+// ── Block-type adoption from context briefs ─────────────────────────
+
+function handleBlocks() {
+  return cached('blocks', 300_000, () => {
+    const briefsPath = join(ROOT, 'content', '.context-briefs.json')
+    if (!existsSync(briefsPath)) return { empty: true }
+    const briefs = JSON.parse(readFileSync(briefsPath, 'utf-8'))
+    const SHAPE_SPECIFIC = new Set(['timeline', 'rank', 'sankey', 'treemap'])
+    const ALWAYS_CHEAP = new Set(['prose', 'quiz', 'locations', 'compare', 'actors', 'quote'])
+
+    // Per-day adoption: derive date from slug prefix (slugs start with YYYY-MM-DD-)
+    const byDay = {}
+    for (const [slug, brief] of Object.entries(briefs)) {
+      const m = slug.match(/^(\d{4}-\d{2}-\d{2})/)
+      if (!m) continue
+      const day = m[1]
+      if (!byDay[day]) byDay[day] = { day, briefs: 0, entries: 0, blocks: 0, types: {} }
+      const d = byDay[day]
+      d.briefs++
+      for (const e of brief.timeline || []) {
+        d.entries++
+        for (const b of e.blocks || []) {
+          d.blocks++
+          d.types[b.type] = (d.types[b.type] || 0) + 1
+        }
+      }
+    }
+    const days = Object.values(byDay).sort((a, b) => a.day.localeCompare(b.day))
+    // Last 14 days
+    const recent = days.slice(-14)
+
+    // Aggregate type counts across all-time + last-14-day
+    const allTypes = {}
+    for (const [, b] of Object.entries(briefs)) {
+      for (const e of b.timeline || []) for (const blk of e.blocks || []) {
+        allTypes[blk.type] = (allTypes[blk.type] || 0) + 1
+      }
+    }
+    const recentTypes = {}
+    for (const d of recent) {
+      for (const [t, n] of Object.entries(d.types)) recentTypes[t] = (recentTypes[t] || 0) + n
+    }
+
+    const tierTotals = (counts) => {
+      let shape = 0, cheap = 0, charts = 0, other = 0
+      for (const [t, n] of Object.entries(counts)) {
+        if (SHAPE_SPECIFIC.has(t)) shape += n
+        else if (ALWAYS_CHEAP.has(t)) cheap += n
+        else if (['trend', 'chart', 'multi-chart'].includes(t)) charts += n
+        else other += n
+      }
+      return { shape, cheap, charts, other }
+    }
+
+    return {
+      totalBriefs: Object.keys(briefs).length,
+      allTypes,
+      recentTypes,
+      allTiers: tierTotals(allTypes),
+      recentTiers: tierTotals(recentTypes),
+      recent: recent.map((d) => ({ ...d, tiers: tierTotals(d.types) })),
+    }
+  })
+}
+
 // ── Editorial Data ──────────────────────────────────────────────────
 
 function handleReach() {
@@ -810,6 +920,8 @@ const server = createServer((req, res) => {
   if (path === '/api/writing-quality') return sendJSON(res, handleWritingQuality())
   if (path === '/api/editorial') return sendJSON(res, handleEditorial())
   if (path === '/api/feed-health') return sendJSON(res, handleFeedHealth())
+  if (path === '/api/operations') return sendJSON(res, handleOperations())
+  if (path === '/api/blocks') return sendJSON(res, handleBlocks())
   if (path === '/api/media') return sendJSON(res, handleMedia())
   if (path === '/api/experiment') return sendJSON(res, handleExperiment())
   if (path === '/api/reach') return sendJSON(res, handleReach())
