@@ -131,6 +131,7 @@ export function renderBlocks(blocks: ArticleBlock[], opts: RenderBlocksOptions):
             metric={block.metric}
             unit={block.unit}
             subjectCc={block.subjectCc}
+            subjectLabel={block.subjectLabel}
             peers={block.peers}
             variant={variant}
             sourceLabel={sourceLabel}

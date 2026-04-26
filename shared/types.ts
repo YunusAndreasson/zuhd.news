@@ -143,15 +143,18 @@ export type ArticleBlock =
       spans?: { from: string; to: string; label: string; tone?: BlockTone }[];
       label?: string;
     } & BlockSourceRef)
-  /** Peer-position dot-on-strip — locates a subject country among peers on a
-   *  single metric. Renders as a horizontal scale with grey peer dots and an
-   *  accent dot for `subjectCc`. */
+  /** Peer-position dot-on-strip — locates a subject among peers on a single
+   *  metric. Country mode keys peers by ISO-2 (`cc` + `subjectCc`) and shows a
+   *  flag in the subject label; non-country mode keys peers by free-text
+   *  `label` (cases, companies, indicators) and shows that label as-is.
+   *  Provide exactly one of `subjectCc` / `subjectLabel`. */
   | ({
       type: 'rank';
       metric: string;
       unit?: string;
-      subjectCc: string;
-      peers: { cc: string; value: number }[];
+      subjectCc?: string;
+      subjectLabel?: string;
+      peers: { cc?: string; label?: string; value: number }[];
     } & BlockSourceRef)
   /** Sankey flow diagram — for cascades and pipelines (circular debt, energy
    *  flows, refugee origins → hosts). Layout via d3-sankey, rendered with

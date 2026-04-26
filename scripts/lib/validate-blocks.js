@@ -305,30 +305,41 @@ export function parseArticleBlock(v) {
       if (typeof v.metric !== 'string' || v.metric.length === 0) {
         return { block: null, reason: 'rank.metric must be non-empty string' }
       }
-      if (typeof v.subjectCc !== 'string' || v.subjectCc.length === 0) {
-        return { block: null, reason: 'rank.subjectCc must be non-empty string' }
+      const hasSubjectCc = typeof v.subjectCc === 'string' && v.subjectCc.length > 0
+      const hasSubjectLabel = typeof v.subjectLabel === 'string' && v.subjectLabel.length > 0
+      if (!hasSubjectCc && !hasSubjectLabel) {
+        return { block: null, reason: 'rank needs subjectCc (country) or subjectLabel (non-country)' }
       }
       if (!Array.isArray(v.peers)) return { block: null, reason: 'rank.peers must be array' }
       const peers = v.peers.filter(
         (p) =>
           isObject(p) &&
-          typeof p.cc === 'string' &&
           typeof p.value === 'number' &&
-          Number.isFinite(p.value),
+          Number.isFinite(p.value) &&
+          ((typeof p.cc === 'string' && p.cc.length > 0) ||
+            (typeof p.label === 'string' && p.label.length > 0)),
       )
       if (peers.length < 5) return { block: null, reason: 'rank needs ≥5 peers (incl. subject)' }
-      const subjectInPeers = peers.some(
-        (p) => p.cc.toUpperCase() === v.subjectCc.toUpperCase(),
+      const subjectInPeers = peers.some((p) =>
+        hasSubjectCc
+          ? typeof p.cc === 'string' && p.cc.toUpperCase() === v.subjectCc.toUpperCase()
+          : typeof p.label === 'string' && p.label === v.subjectLabel,
       )
       if (!subjectInPeers) {
-        return { block: null, reason: 'rank.subjectCc not present among peers' }
+        return { block: null, reason: 'rank subject not present among peers' }
       }
       const block = {
         type: 'rank',
         metric: v.metric,
-        subjectCc: v.subjectCc,
-        peers: peers.map((p) => ({ cc: p.cc, value: p.value })),
+        peers: peers.map((p) => {
+          const out = { value: p.value }
+          if (typeof p.cc === 'string' && p.cc.length > 0) out.cc = p.cc
+          if (typeof p.label === 'string' && p.label.length > 0) out.label = p.label
+          return out
+        }),
       }
+      if (hasSubjectCc) block.subjectCc = v.subjectCc
+      if (hasSubjectLabel) block.subjectLabel = v.subjectLabel
       if (typeof v.unit === 'string') block.unit = v.unit
       return { block: applySourceRef(block, v) }
     }

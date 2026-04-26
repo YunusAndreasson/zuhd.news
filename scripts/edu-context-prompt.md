@@ -251,19 +251,22 @@ type TimelineBlock = {
   source?: number
 }
 
-// Peer-position dot-on-strip — locates a SUBJECT country among its peers on
-// a single metric. The renderer draws a horizontal axis with grey dots for
-// each peer and an emphasis dot for `subjectCc`. Headline shows "#7 of 145".
-// Use when the article's claim is comparative ranking — "Pakistan has one of
-// the world's highest debt-to-GDP ratios", "Saudi Arabia is the largest oil
-// exporter". Don't use when peers ≤ 4 — that's a `compare` block. Need ≥5
-// peers including the subject; values must be comparable on the same axis.
+// Peer-position dot-on-strip — locates a SUBJECT among its peers on a single
+// metric. Two modes: country (peers keyed by ISO-2 `cc`, subject by `subjectCc`,
+// flag rendered) and non-country (peers keyed by free-text `label`, subject by
+// `subjectLabel`, label rendered). Use the non-country mode for cases,
+// companies, indicators, or any ranking where the subject isn't a country —
+// e.g. largest ISDS awards, hyperscaler GPU capacity, central-bank policy
+// rates. Don't use when peers ≤ 4 — that's a `compare` block. Need ≥5 peers
+// including the subject; values must be comparable on the same axis.
 type RankBlock = {
   type: 'rank'
-  metric: string              // "Debt-to-GDP", "Oil exports per capita"
-  unit?: string               // "%", "$bn", "barrels/day"
-  subjectCc: string           // ISO-2 — must also appear in peers[]
-  peers: { cc: string; value: number }[]
+  metric: string              // "Debt-to-GDP", "Award amount", "GPU capacity"
+  unit?: string               // "%", "$bn", "MW"
+  // Provide exactly ONE of these — and the matching key on each peer:
+  subjectCc?: string          // ISO-2; peers use { cc, value }
+  subjectLabel?: string       // free-text; peers use { label, value }
+  peers: { cc?: string; label?: string; value: number }[]
   source?: number
 }
 
@@ -330,7 +333,7 @@ After drafting entries, run this scan. For *always-cheap* blocks (prose, quiz, l
 | Names 2+ specific people with distinct roles and tenures | `actors` |
 | Cites ≥3 comparable peers — or a sharp 2-peer contrast worth weighting | `compare` |
 | Story is COMPOSITION (energy mix, GDP by sector, vote share by party, casualty categories) | `compare` with `segments` (stacked) — or `treemap` if the lead is "X dwarfs everyone" |
-| Subject country sits at an extreme position among its peers on one metric (and you can name ≥5 peer values) | `rank` |
+| Subject (country, case, company, indicator) sits at an extreme position among ≥5 peers on one metric, with values you can name | `rank` (country mode via `subjectCc`, non-country via `subjectLabel`) |
 | Story has a multi-decade ARC with named events / phases (treaty → collapse → re-emergence; sanctions cycle; election arc; occupation) | `timeline` |
 | Story is a FLOW or CASCADE through stages (circular debt, refugee origins → hosts, energy generation → end-use, aid donor → intermediary → recipient) | `sankey` |
 | Contains a term, foreign-language word, distinction, or numeric contrast worth remembering | `prose` with inline `**bold**` / `*italic*` |

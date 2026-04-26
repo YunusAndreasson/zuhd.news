@@ -20,14 +20,16 @@ const SUBJECT_DOT_R = 6;
 const AXIS_TICK_LEN = 4;
 
 interface Peer {
-  cc: string;
+  cc?: string;
+  label?: string;
   value: number;
 }
 
 interface RankBlockProps {
   metric: string;
   unit?: string;
-  subjectCc: string;
+  subjectCc?: string;
+  subjectLabel?: string;
   peers: Peer[];
   variant?: BlockVariant;
   sourceLabel?: string;
@@ -42,6 +44,7 @@ export const RankBlock = memo(function RankBlock({
   metric,
   unit,
   subjectCc,
+  subjectLabel,
   peers,
   variant = 'article',
   sourceLabel,
@@ -53,15 +56,22 @@ export const RankBlock = memo(function RankBlock({
   const cleanPeers = useMemo(
     () =>
       peers.filter(
-        (p): p is Peer => typeof p?.value === 'number' && Number.isFinite(p.value) && !!p.cc,
+        (p): p is Peer =>
+          typeof p?.value === 'number' && Number.isFinite(p.value) && (!!p.cc || !!p.label),
       ),
     [peers],
   );
 
-  const subject = useMemo(
-    () => cleanPeers.find((p) => p.cc.toUpperCase() === subjectCc.toUpperCase()) ?? null,
-    [cleanPeers, subjectCc],
-  );
+  const subject = useMemo(() => {
+    if (subjectCc) {
+      const cc = subjectCc.toUpperCase();
+      return cleanPeers.find((p) => p.cc?.toUpperCase() === cc) ?? null;
+    }
+    if (subjectLabel) {
+      return cleanPeers.find((p) => p.label === subjectLabel) ?? null;
+    }
+    return null;
+  }, [cleanPeers, subjectCc, subjectLabel]);
 
   const { scale, lo, hi, rank, total } = useMemo(() => {
     if (cleanPeers.length === 0 || width <= 0) {
@@ -142,7 +152,7 @@ export const RankBlock = memo(function RankBlock({
               const isSubject = subject != null && p === subject;
               return isSubject ? null : (
                 <Circle
-                  key={`peer-${p.cc}-${i}`}
+                  key={`peer-${p.cc ?? p.label}-${i}`}
                   cx={x}
                   cy={axisY}
                   r={PEER_DOT_R}
@@ -208,7 +218,7 @@ export const RankBlock = memo(function RankBlock({
                     numberOfLines={1}
                     style={styles.subjectLabelText}
                   >
-                    {`${ccToFlag(subject.cc)} ${displayNameFromCode(subject.cc) ?? subject.cc.toUpperCase()} · ${formatVal(subject.value, unit)}`}
+                    {`${subject.cc ? `${ccToFlag(subject.cc)} ${displayNameFromCode(subject.cc) ?? subject.cc.toUpperCase()}` : (subject.label ?? '')} · ${formatVal(subject.value, unit)}`}
                   </Text>
                 </View>
               );
