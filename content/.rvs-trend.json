@@ -1,0 +1,41 @@
+[
+  {
+    "ts": "2026-04-26T20:54:18.206Z",
+    "cycleId": "2026-04-26T20-54",
+    "cycleHour": "20",
+    "rvs": 62.81,
+    "clusters": {
+      "picking": 60,
+      "writing": 90,
+      "briefing": 66.37,
+      "sourcing": 25.33,
+      "coverage": 64.89
+    },
+    "articleCount": 5,
+    "briefCount": 5,
+    "guardrailFailures": [
+      "publish count 5 below floor 8",
+      "category politics below floor 3 (got 2)",
+      "category economy below floor 3 (got 0)",
+      "category science below floor 2 (got 1)"
+    ]
+  },
+  {
+    "ts": "2026-04-26T22:42:32.134Z",
+    "cycleId": "2026-04-26T22-42",
+    "cycleHour": "22",
+    "rvs": 69.43,
+    "clusters": {
+      "picking": 60,
+      "writing": 85.42,
+      "briefing": 74.17,
+      "sourcing": 49.09,
+      "coverage": 80.97
+    },
+    "articleCount": 12,
+    "briefCount": 12,
+    "guardrailFailures": [
+      "category tech below floor 2 (got 1)"
+    ]
+  }
+]
