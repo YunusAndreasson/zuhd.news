@@ -1,30 +1,35 @@
 {
-  "date": "2026-04-25",
+  "date": "2026-04-26",
   "metrics": {
-    "articles": { "value": 33, "detail": "5 cycles completed, avg 7/cycle (below typical 11-13 range; watch for sustained dip)" },
-    "freshness": { "median": 0, "p90": 1.2, "max": 1.2, "target": 1.0, "met": true },
-    "categories": { "politics": 16, "economy": 5, "science": 6, "tech": 6 },
+    "articles": { "value": 29, "detail": "4 cycles, avg 7/cycle" },
+    "freshness": { "median": 1.2, "p90": 1.4, "max": 1.4, "target": 1.0, "met": false },
+    "categories": { "politics": 11, "economy": 7, "science": 8, "tech": 3 },
     "multiSource": { "value": 8, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 8, "AM": 10, "EU": 9, "AF": 4, "OC": 1, "AS": 1 } },
-    "sciTech": { "ratio": 36, "target": 25, "met": true },
-    "topSourceShare": { "source": "CoinDesk / TRT World / Nature (tied)", "pct": 12, "target": 20, "met": true },
-    "uniqueSources": 31,
+    "regions": {
+      "count": 6,
+      "target": 4,
+      "met": true,
+      "breakdown": { "AM": 8, "GL": 1, "ME": 10, "EU": 7, "AS": 2, "AF": 1 }
+    },
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn", "pct": 17, "target": 20, "met": true },
+    "uniqueSources": 30,
     "duplicates": 0,
-    "avgCycleDuration": 1593
+    "avgCycleDuration": 1232
   },
-  "experiment": "Evaluated 2026-04-21-multi-source-floors on schedule (evaluateAfter: 2026-04-24). Politics+economy combined multi-rate improved from 0.31 baseline to 0.336 over the experiment window (politics 0.39→0.41, economy 0.18→0.23). Overall multi-rate improved 0.22→0.239. Direction improved on all measures; no guardrail metric degraded >20%. Target of p+e ≥ 0.45 was not reached — feed supply (~9 multi-source stories/cycle) is the binding constraint. Keeping the hard-floor prompt change. No new experiment proposed: all targets met today.",
-  "weakestArea": "Economy coverage was unusually thin at 5 articles today (15% share) against an economy selector floor of 3/cycle that should yield ≥15/day. This gap — combined with avg publish count of 7/cycle (below the 8 guardrail) — suggests selector floors may not be consistently honoured on today's feed. Worth monitoring across the next 2-3 cycles before intervening; if economy share stays below 20% by Apr 27, consider whether the floor needs reinforcing in the prompt.",
+  "experiment": "Proposing: reduce standalone article cap 25→22 to address freshness median of 1.2 (target ≤1.0). Standalone articles (NewsAPI non-event picks) are typically older; trimming the cap shifts the mix toward fresher event-based stories. Token-neutral — fewer candidates passed to the selector.",
+  "weakestArea": "Freshness median at 1.2 days is the primary miss: standalone articles from NewsAPI typically arrive 1.2–1.4 days after original publication. Only 7 of 29 articles have measurable source pub-date timestamps, so the true distribution is likely wider. Tech is also below its daily target (3 vs ≥4) but this appears to be a feed supply issue rather than a selector-floor failure — sources today were limited to 404 Media, Hacker News, and The War Zone.",
   "watching": [
-    "India-Pakistan tensions: Pakistan's airspace ban on India aviation through May 24 signals extended standoff; future de-escalation or escalation signals worth tracking.",
-    "Lebanon-Israel ceasefire: third week extension active; any breakdown or Salam government consolidation move would be high-impact.",
-    "Japan earthquake (7.7): megaquake advisory issued; aftershock risk and Nankai Trough watch ongoing.",
-    "Iran-US nuclear talks: sanctions enforcement and tanker movements through Strait of Hormuz remain active pressure points.",
-    "Gaza students / Rafah crossing: structural story on humanitarian access that may develop with international advocacy outcomes."
+    "India–Pakistan tensions: Dawn dominates today with 5 articles plus four Indian outlets (ABP Live, Zee News, NDTV, India Today) — a dense cluster signalling escalating bilateral story.",
+    "Middle East: 10 ME-region articles across Al Jazeera, The New Arab, TRT World, Mehr News Agency, Times of Israel — multiple threads active simultaneously.",
+    "Iran: Mehr News Agency contributing 2 articles today; track for any escalation signal against backdrop of nuclear talks.",
+    "Ukraine–Russia: European coverage (7 EU articles) with TASS and RT alongside Ukrinform/DW — information-environment divergence warrants editorial attention."
   ],
   "coverageGaps": [
-    "Southeast Asia almost absent today (AS: 1 article) — Philippines, Vietnam, Indonesia trade and political stories underrepresented given regional significance.",
-    "Sub-Saharan Africa light at 4 articles despite active stories in Nigeria, Ethiopia, and Sudan conflict zone.",
-    "Economy category notably thin — no coverage of ongoing US-China tariff negotiations, European Central Bank signals, or commodity market moves despite Hormuz/oil being active."
+    "Tech underrepresented today (3 vs ≥4 target) — feed supply thin; no Ars Technica, The Decoder, or WIRED stories surfaced in today's cycles.",
+    "Africa near-absent (1 article, Premium Times Nigeria only) despite active stories in Sudan, Ethiopia, and West Africa.",
+    "Oceania entirely absent; no Australian or Pacific coverage in any cycle today.",
+    "Southeast Asia still light (AS: 2 articles) — Philippines, Vietnam, Indonesia underrepresented as flagged yesterday."
   ],
-  "context": "Yesterday's cycle produced 12 duplicate articles (same source URL, two slugs) — the highest single-day duplicate count since the 7-day prefilter was introduced on Apr 19. The duplicates clustered around high-velocity stories (El Niño, Duterte ICC, Iran cyber, Lebanon ceasefire) where two writer instances independently picked the same source. Today's count is 0. No parameter change is needed, but the pattern suggests the writer stage occasionally races on breaking stories that arrive in both the Event Registry feed and the RSS standalone pool simultaneously."
+  "context": "Dawn at 17% of today's output (5 of 29 articles) is within the 20% source cap but approaching the ceiling. If the India–Pakistan story cluster intensifies tomorrow, Dawn concentration could breach the cap. The cycle count dropped to 4 today (vs the typical 5); the 12:00 or 17:00 UTC cycle may have been skipped or failed silently — worth checking systemd logs if the publish count remains below 10/day through tomorrow."
 }
