@@ -13,13 +13,13 @@ const TIMELINE_LINE = 1.5;
 
 import type { CountryData } from '@shared/countries/country-data';
 import type { ContextBrief, TimelineEntry } from '@shared/types';
+import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { makeMarkdownStyles } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
 import { renderBlocks } from './blocks';
 import { Text } from './primitives';
 import { SheetLayout } from './SheetLayout';
-import { useMaxSheetHeight } from './SheetPrimitives';
 
 interface ContextSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
@@ -43,7 +43,7 @@ export const ContextSheet = memo(function ContextSheet({
   onCountryPress,
 }: ContextSheetProps) {
   const { colors, font, typography, sheetStyles } = useTheme();
-  const MAX_SHEET_HEIGHT = useMaxSheetHeight();
+  const snapProps = useSheetSnaps(false);
 
   const timeline = brief?.timeline ?? [];
   // Only show the big title for genuine multi-article threads. For single-
@@ -151,9 +151,7 @@ export const ContextSheet = memo(function ContextSheet({
   return (
     <SheetLayout
       sheetRef={sheetRef}
-      {...(hasContent
-        ? { enableDynamicSizing: true, maxDynamicContentSize: MAX_SHEET_HEIGHT }
-        : { snapPoints: loadingSnap, enableDynamicSizing: false })}
+      {...(hasContent ? snapProps : { snapPoints: loadingSnap, enableDynamicSizing: false })}
       renderBackdrop={renderBackdrop}
       onDismiss={onDismiss}
     >

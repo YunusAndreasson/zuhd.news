@@ -8,10 +8,10 @@ import { memo, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
+import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { Text } from './primitives';
 import { SheetLayout } from './SheetLayout';
-import { useMaxSheetHeight } from './SheetPrimitives';
 import { SourceRow } from './SourceRow';
 
 interface SourcesSheetProps {
@@ -33,7 +33,7 @@ export const SourcesSheet = memo(function SourcesSheet({
   onDismiss,
 }: SourcesSheetProps) {
   const { sheetStyles, textVariants } = useTheme();
-  const MAX_SHEET_HEIGHT = useMaxSheetHeight();
+  const snapProps = useSheetSnaps(false);
 
   const [expandedSource, setExpandedSource] = useState<number | null>(null);
 
@@ -44,8 +44,7 @@ export const SourcesSheet = memo(function SourcesSheet({
   return (
     <SheetLayout
       sheetRef={sheetRef}
-      enableDynamicSizing
-      maxDynamicContentSize={MAX_SHEET_HEIGHT}
+      {...snapProps}
       renderBackdrop={renderBackdrop}
       onDismiss={onDismiss}
     >

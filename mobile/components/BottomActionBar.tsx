@@ -3,8 +3,8 @@ import { RADIUS, SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { Pressable, Text } from './primitives';
 
-// Tighter pills — visible footprint ~22pt tall (vs ~32pt) so the globe has
-// more room. Tap target stays ≥48pt thanks to the inflated hitSlop below.
+// Compact pills — small visible footprint so the globe has more room.
+// Tap target stays ≥48pt thanks to the inflated hitSlop below.
 const PILL_HIT_SLOP = 16;
 
 interface BottomActionBarProps {
@@ -21,10 +21,12 @@ function ActionPill({
   label,
   onPress,
   accessibilityLabel,
+  accessibilityHint,
 }: {
   label: string;
   onPress: () => void;
   accessibilityLabel: string;
+  accessibilityHint?: string;
 }) {
   const { colors } = useTheme();
   // Spring press via the primitive; haptic handled by each callsite's
@@ -38,10 +40,9 @@ function ActionPill({
       style={[styles.actionPill, { backgroundColor: colors.pillBg }]}
       accessibilityRole="button"
       accessibilityLabel={accessibilityLabel}
+      accessibilityHint={accessibilityHint}
     >
-      <Text variant="labelXs" tone="emphasis">
-        {label}
-      </Text>
+      <Text variant="labelSm">{label}</Text>
     </Pressable>
   );
 }
@@ -74,7 +75,8 @@ export function BottomActionBar({
         <ActionPill
           label={zoomLabel}
           onPress={onZoomPress}
-          accessibilityLabel={`Globe zoom ${zoomLabel}. Tap to cycle.`}
+          accessibilityLabel={`Globe zoom, ${zoomLabel}`}
+          accessibilityHint="Cycles through zoom levels"
         />
         <ActionPill label="share" onPress={onSharePress} accessibilityLabel="Share article" />
         <ActionPill

@@ -1,7 +1,6 @@
-import { StyleSheet, useWindowDimensions, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 import { IS_IOS } from '../constants/platform';
-import { LAYOUT } from '../constants/theme';
 
 // FullWindowOverlay is iOS-only (renders a no-op View on Android). On Android
 // we wrap in an absolute-fill View with a zIndex that beats the Toast
@@ -23,7 +22,3 @@ const styles = StyleSheet.create({
     zIndex: 1000,
   },
 });
-
-export function useMaxSheetHeight(): number {
-  return useWindowDimensions().height * LAYOUT.sheetMaxFraction;
-}

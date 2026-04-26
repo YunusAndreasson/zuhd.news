@@ -8,13 +8,13 @@ import { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, CATEGORIES, SPACING, staggerDelay } from '../constants/theme';
+import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { ArticleRow } from './ArticleRow';
 import { SourceCaption } from './blocks/SourceCaption';
 import { TrendBlock } from './blocks/TrendBlock';
 import { Text } from './primitives';
 import { SheetLayout } from './SheetLayout';
-import { useMaxSheetHeight } from './SheetPrimitives';
 
 interface EntitySheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
@@ -98,7 +98,7 @@ export const EntitySheet = memo(function EntitySheet({
   onArticlePress,
 }: EntitySheetProps) {
   const { sheetStyles } = useTheme();
-  const MAX_SHEET_HEIGHT = useMaxSheetHeight();
+  const snapProps = useSheetSnaps(false);
 
   const related = useMemo(
     () => (indicator ? findRelatedArticles(indicator, articles) : []),
@@ -116,8 +116,7 @@ export const EntitySheet = memo(function EntitySheet({
   return (
     <SheetLayout
       sheetRef={sheetRef}
-      enableDynamicSizing
-      maxDynamicContentSize={MAX_SHEET_HEIGHT}
+      {...snapProps}
       renderBackdrop={renderBackdrop}
       onDismiss={onDismiss}
       handleTitle={handleTitle}

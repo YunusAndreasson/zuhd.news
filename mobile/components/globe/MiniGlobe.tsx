@@ -667,13 +667,22 @@ export const MiniGlobe = memo(function MiniGlobe({
   const globeRadius = width * 0.9;
   const cx = width / 2;
   const cy = height * 0.75;
+  // Cartographic typography:
+  //   - Dot label  → SemiBold mixed case + halo. The *only* Title-Case label
+  //     on the globe; intentionally non-atlas-style because it's the editorial
+  //     marker, not a place name. The reader's eye finds "where the news
+  //     happened" by spotting the one label that doesn't look atlas-like.
+  //   - Country labels (focused + neighbours) → True small caps. Standard
+  //     atlas convention for political features. Same family (SourceSans3SC).
+  //   - Water labels (lakes, rivers, seas) and chokepoints → Italic mixed
+  //     case. Standard atlas convention for hydrography and named passages.
+  //   - subFont (SemiBold 11) stays for the dot-label sub (HH:MM time) since
+  //     that line is part of the dot-label editorial marker, not atlas chrome.
   const labelFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 14);
   const subFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 11);
-  // Country label is the secondary tier — same family, one step smaller than
-  // the focused dot label so the *location* (where the news happened) reads
-  // as primary and the *country* reads as supporting context. Same asset =
-  // shared font cache, no extra load cost.
-  const countryFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 12);
+  const countryFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 12);
+  const neighborFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 11);
+  const waterFont = useFont(require('../../assets/fonts/SourceSans3-Italic.ttf'), 11);
   // Fonts mirrored into refs so callReproject (a useCallback with `[]` deps,
   // stable closure) can measure text width for label-collision detection.
   // The fonts load asynchronously, so the ref pointer can flip from null to
@@ -684,6 +693,10 @@ export const MiniGlobe = memo(function MiniGlobe({
   countryFontRef.current = countryFont;
   const subFontRef = useRef(subFont);
   subFontRef.current = subFont;
+  const neighborFontRef = useRef(neighborFont);
+  neighborFontRef.current = neighborFont;
+  const waterFontRef = useRef(waterFont);
+  waterFontRef.current = waterFont;
 
   // Precompute per-article: coords + country feature + names (before useState so initializer can use it)
   const articleGeo = useMemo(() => {
@@ -919,6 +932,15 @@ export const MiniGlobe = memo(function MiniGlobe({
       // call supplying these values is already eased, so no extra shaping.
       const clipAngle = rawClip + (overrideAngleVal - rawClip) * overrideActiveVal;
       const projScale = r / Math.sin((clipAngle * Math.PI) / 180);
+      // Cull cone for labels and ambient markers. d3-geo's `.clipAngle` only
+      // clips path generation, not direct point projection — so without an
+      // explicit cone test, a chokepoint or neighbour label on the visible
+      // hemisphere but beyond the zoom cone projects to coordinates well
+      // outside the disk (projScale = r / sin(clipAngle) blows up as
+      // clipAngle shrinks). Reject everything past clipRad so labels can't
+      // float in the "sky" outside the globe.
+      const clipRad = (clipAngle * Math.PI) / 180;
+      const clipCos = Math.cos(clipRad);
 
       const proj = projRef.current;
       // precision(0) globally — skip adaptive resampling. At globe scale
@@ -1195,7 +1217,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const hotspotGlows: GlobeState['hotspotGlows'] = [];
       for (const zone of hotspotsRef.current) {
         const zoneCoords: [number, number] = [zone.lng, zone.lat];
-        if (geoDistance(zoneCoords, [geoLng, geoLat]) < HALF_PI) {
+        if (geoDistance(zoneCoords, [geoLng, geoLat]) < clipRad) {
           const pt = proj(zoneCoords);
           if (pt)
             hotspotGlows.push({
@@ -1227,7 +1249,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       const chokepointMarks: GlobeState['chokepoints'] = [];
       const cameraCoords: [number, number] = [geoLng, geoLat];
       for (const cp of chokepointsRef.current) {
-        if (geoDistance(cp.coords, cameraCoords) >= HALF_PI) continue;
+        if (geoDistance(cp.coords, cameraCoords) >= clipRad) continue;
         const pt = proj(cp.coords);
         if (!pt) continue;
         chokepointMarks.push({
@@ -1273,7 +1295,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             if (!name || name === settledName) continue;
             const unit = countryCentroidUnits[i];
             if (!unit) continue;
-            if (unit[0] * camUnitX + unit[1] * camUnitY + unit[2] * camUnitZ <= 0) continue;
+            if (unit[0] * camUnitX + unit[1] * camUnitY + unit[2] * camUnitZ <= clipCos) continue;
             const coords = countryCentroidPoints[i];
             if (!coords) continue;
             const pt = proj(coords);
@@ -1293,7 +1315,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           for (const lake of getLakeLabels()) {
             if (lake.area < LAKE_MIN_AREA) continue;
             const lu = lake.unit;
-            if (lu[0] * camUnitX + lu[1] * camUnitY + lu[2] * camUnitZ <= 0) continue;
+            if (lu[0] * camUnitX + lu[1] * camUnitY + lu[2] * camUnitZ <= clipCos) continue;
             const pt = proj(lake.coords);
             if (!pt) continue;
             waterLabels.push({
@@ -1308,7 +1330,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           // Rivers — rank ≤ 3 filter already applied at precompute time.
           for (const river of getRiverLabels()) {
             const ru = river.unit;
-            if (ru[0] * camUnitX + ru[1] * camUnitY + ru[2] * camUnitZ <= 0) continue;
+            if (ru[0] * camUnitX + ru[1] * camUnitY + ru[2] * camUnitZ <= clipCos) continue;
             const pt = proj(river.coords);
             if (!pt) continue;
             waterLabels.push({
@@ -1323,7 +1345,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           // Seas / bays / gulfs — 54 entries, all relevant at globe scale.
           for (const sea of getSeas()) {
             const su = sea.unit;
-            if (su[0] * camUnitX + su[1] * camUnitY + su[2] * camUnitZ <= 0) continue;
+            if (su[0] * camUnitX + su[1] * camUnitY + su[2] * camUnitZ <= clipCos) continue;
             const pt = proj([sea.lng, sea.lat]);
             if (!pt) continue;
             waterLabels.push({
@@ -1411,6 +1433,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         const lfont = labelFontRef.current;
         const cfont = countryFontRef.current;
         const sfont = subFontRef.current;
+        const nfont = neighborFontRef.current;
+        const wfont = waterFontRef.current;
         const occupied: { x0: number; y0: number; x1: number; y1: number }[] = [];
         const pad = 2;
         if (countryLabel) {
@@ -1439,7 +1463,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
         const nkept: GlobeState['neighborLabels'] = [];
         for (const n of neighborLabels) {
-          const w = sfont ? sfont.getTextWidth(n.name) : n.name.length * 5;
+          const w = nfont ? nfont.getTextWidth(n.name) : n.name.length * 5;
           const x0 = n.x - w / 2 - pad;
           const x1 = n.x + w / 2 + pad;
           const y0 = n.y - 10;
@@ -1460,7 +1484,7 @@ export const MiniGlobe = memo(function MiniGlobe({
 
         const wkept: GlobeState['waterLabels'] = [];
         for (const w of waterLabels) {
-          const tw = sfont ? sfont.getTextWidth(w.name) : w.name.length * 5;
+          const tw = wfont ? wfont.getTextWidth(w.name) : w.name.length * 5;
           // River labels render 7px above their coord (see render side),
           // everything else at its coord.
           const yc = w.kind === 'river' ? w.y - 7 : w.y;
@@ -2121,8 +2145,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         // Label centering uses getTextWidth when the font has loaded;
         // before that we fall back to a char-count approximation so the
         // first frame doesn't misplace the text.
-        const labelTx = subFont
-          ? c.x - subFont.getTextWidth(c.label) / 2
+        const labelTx = waterFont
+          ? c.x - waterFont.getTextWidth(c.label) / 2
           : c.x - c.label.length * 2.5;
         const labelTy = c.y + 20;
         return (
@@ -2161,7 +2185,7 @@ export const MiniGlobe = memo(function MiniGlobe({
               x={labelTx}
               y={labelTy}
               text={c.label}
-              font={subFont}
+              font={waterFont}
               color={c.disrupted ? colors.accent : colors.textSecondary}
               haloColor={colors.bg}
               opacity={c.disrupted ? 0.9 : 0.55}
@@ -2267,17 +2291,18 @@ export const MiniGlobe = memo(function MiniGlobe({
       </Circle>
 
       {/* Water-feature labels — named lakes (major only), major rivers,
-          seas/bays/gulfs. Drawn lightest of the three label tiers so the
-          visual hierarchy reads: focused country > neighbours > waters.
+          seas/bays/gulfs. Italic per atlas convention (hydrography). Drawn
+          lightest of the three label tiers so the visual hierarchy reads:
+          focused country > neighbours > waters.
           Halo deliberately removed: stroked-text rasterization dominated
           the settled-frame budget (path widening + stroke pass per
           glyph × ~50 labels). textSecondary at high opacity reads
           cleanly against bg and the 20% land tint; river strokes only
           cross labels briefly and the collision packer already keeps
           labels off the densest overlaps. */}
-      {subFont &&
+      {waterFont &&
         state.waterLabels.map((w, i) => {
-          const tx = w.x - subFont.getTextWidth(w.name) / 2;
+          const tx = w.x - waterFont.getTextWidth(w.name) / 2;
           // River labels land directly on the river line — nudge them up
           // by ~7px (one x-height) so the label sits just above the line
           // rather than bisecting it. Lakes and seas stay at their centroid.
@@ -2288,7 +2313,7 @@ export const MiniGlobe = memo(function MiniGlobe({
               x={tx}
               y={ty}
               text={w.name}
-              font={subFont}
+              font={waterFont}
               color={colors.textSecondary}
               opacity={(light ? 0.95 : 0.9) * w.opacity}
             />
@@ -2296,23 +2321,23 @@ export const MiniGlobe = memo(function MiniGlobe({
         })}
 
       {/* Neighbour country labels — emerge at 2x zoom, fade toward full
-          opacity as zoom tightens. Drawn with subFont (smaller than the
-          focused country's labelFont) so visual hierarchy reads: the
-          highlighted country = primary text; neighbours = secondary.
+          opacity as zoom tightens. Small caps per atlas convention; one
+          step smaller than the focused country so the hierarchy reads:
+          highlighted country = primary, neighbours = secondary.
           Rendered BEFORE the highlighted country label so the focused
           country's name draws on top if they collide. Halo removed for
           the same perf reason as water labels; the text tier is quiet
           enough that a slight opacity bump restores readability. */}
-      {subFont &&
+      {neighborFont &&
         state.neighborLabels.map((n) => {
-          const tx = n.x - subFont.getTextWidth(n.name) / 2;
+          const tx = n.x - neighborFont.getTextWidth(n.name) / 2;
           return (
             <SkiaText
               key={n.name}
               x={tx}
               y={n.y}
               text={n.name}
-              font={subFont}
+              font={neighborFont}
               color={colors.textSecondary}
               opacity={(light ? 0.85 : 0.7) * n.opacity}
             />

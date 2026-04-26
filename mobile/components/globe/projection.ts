@@ -23,10 +23,13 @@ export const DECAY_LAMBDA = Math.LN2 / 18;
 // ── Zoom / clip thresholds ─────────────────────────────────────────────────
 
 /** Cheap zoom-gated layers (neighbour labels, water-feature labels) fade
- *  in from clip=30°. At small-country 1× (clip ≈ 25°) the reader gets a
- *  faint "whisper" of geographic context without needing to tap the zoom
- *  pill. Full opacity at 10°. */
-export const PLACES_APPEAR_CLIP = 30;
+ *  in from clip=25°. Set at the natural floor of `clipAngleForArea` (small
+ *  countries cap at 25°) so the default 1× framing is *consistent* across
+ *  all articles — never shows neighbour/water labels regardless of country
+ *  size. The zoom pill (level 1 = clip 18°, level 2 = clip 10°) is the
+ *  single, predictable gesture that reveals atlas context. Full opacity
+ *  at 10°. */
+export const PLACES_APPEAR_CLIP = 25;
 export const PLACES_FULL_CLIP = 10;
 
 /** Heavy rivers-path projection fade range — gated tighter than the cheap

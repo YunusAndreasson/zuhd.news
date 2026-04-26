@@ -8,6 +8,7 @@ import { memo, useMemo } from 'react';
 import { Text as RNText, StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, CATEGORIES, SPACING, staggerDelay } from '../constants/theme';
+import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import { ArticleRow } from './ArticleRow';
 import { CompareBlock } from './blocks/CompareBlock';
@@ -15,7 +16,6 @@ import { SourceCaption } from './blocks/SourceCaption';
 import { TrendBlock } from './blocks/TrendBlock';
 import { Text } from './primitives';
 import { SheetLayout } from './SheetLayout';
-import { useMaxSheetHeight } from './SheetPrimitives';
 
 interface ChokepointSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
@@ -79,7 +79,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
   onArticlePress,
 }: ChokepointSheetProps) {
   const { colors, font, sheetStyles } = useTheme();
-  const MAX_SHEET_HEIGHT = useMaxSheetHeight();
+  const snapProps = useSheetSnaps(false);
 
   const related = useMemo(
     () => (chokepoint ? findRelatedArticles(chokepoint, articles) : []),
@@ -119,8 +119,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
   return (
     <SheetLayout
       sheetRef={sheetRef}
-      enableDynamicSizing
-      maxDynamicContentSize={MAX_SHEET_HEIGHT}
+      {...snapProps}
       renderBackdrop={renderBackdrop}
       onDismiss={onDismiss}
       handleTitle={chokepoint?.name}
