@@ -29,13 +29,15 @@ const PROPOSER_PROMPT = readFileSync(
   'utf-8',
 )
 
+// Variable surface for offline-replay autoresearch. Knobs that govern the
+// production fetch (scripts/fetch-news-api.js) are NOT here — replays use
+// frozen feed snapshots, so any diff there is a no-op for our scoring loop.
 const VARIABLE_SURFACE = [
   'scripts/select-prompt.md',
   'scripts/write-prompt.md',
   'scripts/check-prompt.md',
   'scripts/edu-context-prompt.md',
   'scripts/lib/dedup.js',
-  'scripts/fetch-news-api.js',
 ]
 
 const runs = existsSync(runsPath)

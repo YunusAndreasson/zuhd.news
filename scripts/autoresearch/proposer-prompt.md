@@ -24,9 +24,8 @@ Return ONE diff that:
 | `scripts/check-prompt.md` | Style-fix rules; acronym whitelist |
 | `scripts/edu-context-prompt.md` | Signal scan table; fabrication gate; pre-flight rules; per-block-type technical rules |
 | `scripts/lib/dedup.js` | `CATEGORY_FLOORS` only |
-| `scripts/fetch-news-api.js` | Numeric constants `eventsCount`, `minArticlesInEvent`, `MAX_PER_SOURCE`, `MAX_BODY` |
 
-Any change outside this surface is **rejected automatically**. Do not propose schema, validator, or build-logic changes — those go through human review.
+Any change outside this surface is **rejected automatically**. Do not propose schema, validator, or build-logic changes — those go through human review. Note: production fetch knobs (`scripts/fetch-news-api.js`) are intentionally excluded — replays run against frozen feed snapshots, so changes there are no-ops for scoring.
 
 ## Output format
 

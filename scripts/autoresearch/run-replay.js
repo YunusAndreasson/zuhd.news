@@ -39,15 +39,17 @@ const sessionId = flag('session') || `s-${Date.now()}`
 const iterId = flag('iter') || '0'
 const evalPath = flag('eval') || join(REPO_ROOT, 'scripts/autoresearch/eval-set.json')
 const cycleFilter = flag('cycle') // run only one cycle from the eval set
+const maxCycles = flag('max-cycles') ? parseInt(flag('max-cycles'), 10) : null
 const diffPath = flag('diff')
 const skipStages = (flag('skip-stages') || '').split(',').filter(Boolean)
 const keepWorktree = argv.includes('--keep-worktree')
 const noJudges = argv.includes('--no-judges')
 
 const evalSet = JSON.parse(readFileSync(evalPath, 'utf-8'))
-const cycles = cycleFilter
+let cycles = cycleFilter
   ? evalSet.cycles.filter((c) => c.id === cycleFilter)
   : evalSet.cycles
+if (maxCycles !== null && maxCycles > 0) cycles = cycles.slice(0, maxCycles)
 if (cycles.length === 0) {
   console.error(`No cycles matched ${cycleFilter || '(all)'}`)
   process.exit(2)

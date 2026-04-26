@@ -30,6 +30,7 @@ const sessionId = flag('session', `s-${new Date().toISOString().slice(0, 16).rep
 const maxIters = parseInt(flag('max-iters', '8'), 10)
 const maxWallMin = parseInt(flag('max-wall', '180'), 10)
 const cycleFilter = flag('cycle', null)
+const maxCycles = flag('max-cycles', null)
 const evalPath = flag('eval', join(REPO_ROOT, 'scripts/autoresearch/eval-set.json'))
 const noJudges = argv.includes('--no-judges')
 const force = argv.includes('--force')
@@ -71,8 +72,21 @@ if (!baselineRes || !baselineRes.aggregate) {
   process.exit(2)
 }
 let bestRvs = baselineRes.aggregate.rvs
-console.log(`Baseline RVS: ${bestRvs.toFixed(2)}`)
-appendRun({ iter: 0, kind: 'baseline', rvs: bestRvs, clusters: baselineRes.aggregate.clusters, decision: 'baseline', diff: null })
+const baselineGuardrails = new Set(baselineRes.aggregate.guardrailFailures || [])
+if (baselineGuardrails.size > 0) {
+  console.log(`Baseline RVS: ${bestRvs.toFixed(2)}  (note: ${baselineGuardrails.size} pre-existing guardrail failure(s) — will not penalize iters for these)`)
+} else {
+  console.log(`Baseline RVS: ${bestRvs.toFixed(2)}`)
+}
+appendRun({
+  iter: 0,
+  kind: 'baseline',
+  rvs: bestRvs,
+  clusters: baselineRes.aggregate.clusters,
+  guardrailFailures: [...baselineGuardrails],
+  decision: 'baseline',
+  diff: null,
+})
 
 // --- Loop ---
 
@@ -117,7 +131,13 @@ for (let iter = 1; iter <= maxIters; iter++) {
   }
 
   const rvs = res.aggregate.rvs
-  const guardrailFailed = res.aggregate.guardrailFailures.length > 0
+  // Baseline-relative guardrails: only penalize the iter for failures the
+  // diff introduced or worsened. Failures already present at baseline are
+  // not the diff's fault.
+  const newFailures = (res.aggregate.guardrailFailures || []).filter(
+    (f) => !baselineGuardrails.has(f),
+  )
+  const guardrailFailed = newFailures.length > 0
   let decision
   if (guardrailFailed) {
     decision = 'reject-guardrail'
@@ -131,7 +151,7 @@ for (let iter = 1; iter <= maxIters; iter++) {
     decision = 'reject-no-improvement'
     consecutiveRejects++
   }
-  console.log(`  RVS=${rvs.toFixed(2)}  decision=${decision}${guardrailFailed ? `  guardrails=${res.aggregate.guardrailFailures.length}` : ''}`)
+  console.log(`  RVS=${rvs.toFixed(2)}  decision=${decision}${guardrailFailed ? `  newGuardrails=${newFailures.length}: ${newFailures.join('; ')}` : ''}`)
 
   appendRun({
     iter,
@@ -141,6 +161,7 @@ for (let iter = 1; iter <= maxIters; iter++) {
     delta: rvs - baselineRes.aggregate.rvs,
     clusters: res.aggregate.clusters,
     guardrailFailures: res.aggregate.guardrailFailures,
+    newGuardrailFailures: newFailures,
     decision,
   })
 }
@@ -166,6 +187,7 @@ function runReplay(iter, diffPath) {
     '--eval', evalPath,
   ]
   if (cycleFilter) args.push('--cycle', cycleFilter)
+  if (maxCycles) args.push('--max-cycles', maxCycles)
   if (diffPath) args.push('--diff', diffPath)
   if (noJudges) args.push('--no-judges')
   const res = spawnSync('node', args, { stdio: 'inherit' })
@@ -193,14 +215,13 @@ function proposeDiff() {
   for (const k of ['rationale', 'targetCluster', 'file', 'oldString', 'newString']) {
     if (typeof diff[k] !== 'string' || diff[k].length === 0) throw new Error(`diff missing field: ${k}`)
   }
-  // Validate target file is in the variable surface
+  // Validate target file is in the variable surface (must match propose.js)
   const allowed = [
     'scripts/select-prompt.md',
     'scripts/write-prompt.md',
     'scripts/check-prompt.md',
     'scripts/edu-context-prompt.md',
     'scripts/lib/dedup.js',
-    'scripts/fetch-news-api.js',
   ]
   if (!allowed.includes(diff.file)) throw new Error(`diff targets disallowed file: ${diff.file}`)
   return diff
