@@ -70947,5 +70947,1686 @@
     "label": "The Clearance Revenues & Oslo's Fiscal Trap",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-27-aave-300m-defi-rescue-kelp-exploit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "NO LENDER OF LAST RESORT",
+        "body": "Traditional banking has the FDIC for depositors and the Fed's discount window for solvent banks short on liquidity. DeFi has neither. When a protocol takes a loss it cannot cover, depositors absorb it pro-rata — unless someone volunteers to pay.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1907 Panic ended only when **J.P. Morgan personally** locked bankers in his library until they pooled capital to stop the run. The Fed was created in 1913 specifically so the rescue of last resort would not depend on one rich man's evening."
+          }
+        ]
+      },
+      {
+        "heading": "THE BRIDGE PROBLEM",
+        "body": "Cross-chain bridges hold real assets on one chain and mint synthetic claims on another. The synthetic is only worth the underlying if the bridge's keys are secure. Bridges are the most-attacked surface in crypto — Ronin lost $625M, Wormhole $325M, Nomad $190M — because compromising the keys mints unbacked tokens that drain the destination chain.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ronin",
+                "value": "$625M",
+                "tone": "unfavorable",
+                "weight": 625
+              },
+              {
+                "label": "Poly Network",
+                "value": "$611M",
+                "tone": "unfavorable",
+                "weight": 611
+              },
+              {
+                "label": "BNB Bridge",
+                "value": "$586M",
+                "tone": "unfavorable",
+                "weight": 586
+              },
+              {
+                "label": "Wormhole",
+                "value": "$325M",
+                "tone": "unfavorable",
+                "weight": 325
+              },
+              {
+                "label": "Nomad",
+                "value": "$190M",
+                "tone": "unfavorable",
+                "weight": 190
+              }
+            ],
+            "label": "largest bridge exploits to date"
+          }
+        ]
+      },
+      {
+        "heading": "HOW CONTAGION WORKS",
+        "body": "Aave accepts a token as collateral. A bridge minting that token is exploited, flooding markets with unbacked supply. The collateral's price holds briefly on Aave's oracle while attackers borrow against it, then collapses — leaving the protocol with bad debt the borrower will never repay."
+      },
+      {
+        "heading": "THE GOVERNANCE LAG",
+        "body": "Aave's treasury cannot just write a check. Any disbursement requires a token-holder vote, typically a 3-day discussion plus a 3-day on-chain vote. The exploit happens in seconds; the rescue takes a week. This is the structural cost of decentralization.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't Aave instantly tap its treasury to cover a shortfall?",
+            "options": [
+              "The treasury is held by a third-party custodian",
+              "Disbursements require a token-holder governance vote",
+              "Smart contracts cannot move funds without an oracle update",
+              "US regulators have frozen the treasury"
+            ],
+            "correct": 1,
+            "explanation": "AAVE token-holders must vote on any treasury action, which typically takes about a week between proposal and execution."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARBITRUM SECURITY COUNCIL",
+        "body": "Most L2s, including Arbitrum, retain a multisig 'Security Council' that can pause contracts or freeze funds during emergencies. The trade-off the ecosystem accepts: a small group of trusted humans can override the code to prevent disaster — but that same group could, in theory, refuse to release funds or seize them. Aave's request to Arbitrum is a public test of that trust."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "After 2016's DAO hack drained $60M, Ethereum hard-forked the chain to reverse the theft — splitting the network and birthing Ethereum Classic. The lesson the industry took: voluntary consortium rescues, even imperfect ones, are preferable to rewriting history.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016-06",
+                "label": "The DAO hack: $60M drained",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016-07",
+                "label": "Ethereum hard-forks to reverse"
+              },
+              {
+                "year": "2022-02",
+                "label": "Wormhole: Jump Trading covers $325M"
+              },
+              {
+                "year": "2022-03",
+                "label": "Ronin: Sky Mavis raises $150M"
+              },
+              {
+                "year": "2023-03",
+                "label": "Euler exploit: attacker returns funds"
+              },
+              {
+                "year": "2026-04",
+                "label": "Aave: $303M consortium pledged"
+              }
+            ],
+            "label": "DeFi's rescue precedents"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T22:33:53.228Z",
+    "label": "DeFi's Missing Backstop",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-27-acip-hepatitis-b-birth-dose-projected-deaths": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY AT BIRTH",
+        "body": "Hepatitis B transmits vertically — an infected mother passes it to the newborn during delivery. The window to intervene is hours, not days. A vaccine dose plus immunoglobulin within 12 hours of birth blocks roughly 90% of perinatal transmission; wait a week and the virus has already established chronic infection.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clinical term is *perinatal transmission* — exposure during the birth process itself, distinct from *horizontal* spread later in life through blood or sex."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHRONIC IS THE WHOLE GAME",
+        "body": "An adult who catches hepatitis B usually clears it; fewer than 5% become chronic carriers. An infected newborn is the inverse: roughly 90% become chronic. Of those, 25% die prematurely from cirrhosis or liver cancer. The birth dose exists because the infant immune system loses this fight almost every time."
+      },
+      {
+        "heading": "THE 1991 DECISION",
+        "body": "Before universal birth-dose policy, the US screened only mothers known to be high-risk. It missed too many — a third of perinatal infections came from mothers with no flagged risk factor or whose status was never tested. The 1991 ACIP recommendation moved to universal coverage precisely because targeted screening had failed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the US move from risk-based screening to universal birth-dose vaccination in 1991?",
+            "options": [
+              "Vaccine cost dropped sharply",
+              "Targeted screening missed too many infected mothers",
+              "A new vaccine technology became available",
+              "International pressure from the WHO"
+            ],
+            "correct": 1,
+            "explanation": "Roughly one-third of perinatal infections came from mothers whose risk status was unknown or untested — universal coverage closed that gap."
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACIP IS",
+        "body": "The Advisory Committee on Immunization Practices is a 15-member federal panel whose recommendations determine which vaccines insurers must cover without copay under the ACA, what the Vaccines for Children program distributes free, and what schools require. A vote to drop a recommendation cascades through the entire access system, not just clinical guidance."
+      },
+      {
+        "heading": "THE GLOBAL CONTEXT",
+        "body": "The WHO recommends universal birth-dose hepatitis B vaccination; 113 countries follow it. Taiwan was the first to adopt it nationally in 1984 and saw childhood liver cancer rates fall by roughly 70% within a generation — one of the cleanest cause-and-effect results in vaccine history."
+      }
+    ],
+    "generatedAt": "2026-04-27T22:34:16.787Z",
+    "label": "Hepatitis B & the Birth Dose",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-27-assad-cousin-najib-trial-damascus-daraa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SPARK",
+        "body": "In March 2011, security forces in Daraa detained roughly 15 schoolboys for spraying anti-regime graffiti. They were tortured for weeks. When their families came to plead for their release, Atef Najib — Bashar al-Assad's maternal cousin and the city's political security chief — reportedly told them to forget their sons and have new ones. The protests that followed became the Syrian uprising.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 13-year-old whose tortured body was returned to his family — **Hamza al-Khatib** — became the uprising's first icon. His name carried the revolution before any political program did."
+          }
+        ]
+      },
+      {
+        "heading": "THE MUKHABARAT ARCHITECTURE",
+        "body": "Assad-era Syria ran on four overlapping intelligence services — Military Intelligence, Air Force Intelligence, General Security, and Political Security — each reporting directly to the presidency, each with its own detention network, each empowered to arrest without judicial oversight. Overlap was the design: no single branch could become a coup threat, and citizens could never be sure which service was watching.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Military Intelligence",
+                "role": "army-linked, regime core",
+                "cc": "SY"
+              },
+              {
+                "name": "Air Force Intelligence",
+                "role": "Assad family's traditional fief",
+                "cc": "SY"
+              },
+              {
+                "name": "General Security",
+                "role": "interior ministry, broadest reach",
+                "cc": "SY"
+              },
+              {
+                "name": "Political Security",
+                "role": "dissent and opposition surveillance",
+                "cc": "SY"
+              }
+            ],
+            "label": "the four branches"
+          }
+        ]
+      },
+      {
+        "heading": "THE ALAWITE INNER CIRCLE",
+        "body": "The Assad regime concentrated security command in the Alawite minority — roughly 10 percent of Syria's population — and within that, in extended family. Najib was Anisa Makhlouf's nephew; the Makhloufs and Assads filled the senior intelligence and Republican Guard posts for four decades. The trial of a cousin is therefore not symbolic — it is the first prosecution of the regime's bloodline."
+      },
+      {
+        "heading": "DARAA, THE HAWRAN PLAIN",
+        "body": "Daraa sits on Syria's southern border with Jordan, in the agricultural Hawran plain — historically Sunni, tribal, and economically marginalized under decades of drought and Damascus-centric investment. That the uprising began here, not in Aleppo or Homs, surprised the regime; the Hawran's tribal networks extend across the Jordanian border, and grievances spread faster than the security services could contain them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SY",
+              "JO",
+              "LB",
+              "IL",
+              "IQ"
+            ],
+            "label": "the southern flashpoint",
+            "markers": [
+              {
+                "lat": 32.6189,
+                "lng": 36.1058,
+                "label": "Daraa"
+              },
+              {
+                "lat": 33.5138,
+                "lng": 36.2765,
+                "label": "Damascus"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "TRANSITIONAL JUSTICE, NO PRECEDENT",
+        "body": "Post-conflict states have tried three models: South Africa's truth commission with conditional amnesty, Rwanda's gacaca community courts processing hundreds of thousands of cases, and Iraq's de-Baathification by administrative purge. Each has known failures — amnesty alienates victims, gacaca produced uneven verdicts, de-Baathification gutted the state. Syria, with tens of thousands of Mukhabarat officers and over 100,000 documented disappearances, has chosen none of these yet.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the families of the detained Daraa schoolboys reportedly hear from Atef Najib in 2011?",
+            "options": [
+              "A promise to investigate within 48 hours",
+              "To forget their sons and have new ones",
+              "That the boys had already been transferred to Damascus",
+              "An offer of compensation in exchange for silence"
+            ],
+            "correct": 1,
+            "explanation": "The reported insult — said to fathers begging for tortured children — became the moment Daraa's tribal networks turned irreversibly against the regime."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAESAR FILES",
+        "body": "In 2013, a Syrian military photographer codenamed Caesar defected with roughly 55,000 images of detainees who had died in custody — emaciated bodies numbered like inventory. The archive, authenticated by forensic experts, is the most extensive photographic record of state torture since the Nazi camps and forms the documentary backbone for any Mukhabarat prosecution to come."
+      }
+    ],
+    "generatedAt": "2026-04-27T22:34:50.842Z",
+    "label": "Daraa & the Syrian Mukhabarat",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-bitcoin-rally-fatigue-bearish-indicators": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COINBASE PREMIUM",
+        "body": "Coinbase is the largest US-regulated spot exchange; Binance dominates offshore. When Coinbase prints higher than Binance for the same Bitcoin, US institutions are bidding harder than the rest of the world. When the premium flips negative, the marginal US buyer has stepped back.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The premium is a *flow* indicator, not a *price* indicator — it shows **who** is buying, not how much Bitcoin is worth."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WHALES MATTER MORE HERE",
+        "body": "Bitcoin ownership is extremely concentrated: roughly 2% of addresses hold over 90% of the supply. A single Bitfinex wallet holding 79,000 BTC controls more coin than most countries' strategic reserves hold in gold equivalent. When that wallet sits at peak exposure, its rebalancing decisions move the market on their own."
+      },
+      {
+        "heading": "THE ABSORPTION RATIO",
+        "body": "Miners produce roughly 450 new BTC per day. For prices to rise, net new demand — primarily ETF inflows and corporate treasuries — must exceed that issuance. When the absorption ratio collapses from multiples of issuance toward 1x, prices stop rising even before they fall.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              66321.07,
+              65970.43,
+              66699.27,
+              68231.83,
+              68089.06,
+              66891.66,
+              66939.69,
+              67304.25,
+              68985.53,
+              68864.23,
+              71975.62,
+              71117.08,
+              71770.75,
+              72972.71,
+              73053.89,
+              70756.75,
+              74514.63,
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              76863.08
+            ],
+            "periods": [
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 27"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE OVERHANG",
+        "body": "Most Bitcoin trading volume is perpetual futures, not spot. When funding rates stay positive for weeks, longs are paying shorts to keep positions open — a crowded trade. Pullbacks in this regime tend to cascade through liquidations rather than orderly selling.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does a sustained NEGATIVE Coinbase premium typically signal?",
+            "options": [
+              "US institutional demand is weakening relative to offshore",
+              "Bitcoin's underlying network is being attacked",
+              "Coinbase is losing market share to competitors",
+              "The Federal Reserve is cutting interest rates"
+            ],
+            "correct": 0,
+            "explanation": "The premium tracks WHERE buying is concentrated. Negative means offshore (Binance, Bitfinex) is bidding harder than US regulated venues — institutional caution."
+          }
+        ]
+      },
+      {
+        "heading": "THE MACRO BACKDROP",
+        "body": "Bitcoin pays no yield. When real Treasury yields are high, the opportunity cost of holding a zero-coupon asset is measurable, and capital rotates back to bonds. The 10-year real yield is the single best macro predictor of crypto risk appetite.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4.24,
+              4.26,
+              4.24,
+              4.26,
+              4.29,
+              4.28,
+              4.29,
+              4.21,
+              4.22,
+              4.22,
+              4.16,
+              4.18,
+              4.09,
+              4.04,
+              4.05,
+              4.09,
+              4.08,
+              4.08,
+              4.03,
+              4.04,
+              4.05,
+              4.02,
+              3.97,
+              4.05,
+              4.06,
+              4.09,
+              4.13,
+              4.15,
+              4.12,
+              4.15,
+              4.21,
+              4.27,
+              4.28,
+              4.23,
+              4.2,
+              4.26,
+              4.25,
+              4.39,
+              4.34,
+              4.39,
+              4.33,
+              4.42,
+              4.44,
+              4.35,
+              4.3,
+              4.33,
+              4.31,
+              4.35,
+              4.34,
+              4.33,
+              4.29,
+              4.29,
+              4.31,
+              4.3,
+              4.26,
+              4.29,
+              4.32,
+              4.26,
+              4.26,
+              4.3,
+              4.3,
+              4.34,
+              4.31
+            ],
+            "periods": [
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24"
+            ],
+            "label": "US 10y Treasury",
+            "unit": "%",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-04-27",
+      "FRED · Board of Governors · as of 2026-04-24"
+    ],
+    "generatedAt": "2026-04-27T22:35:14.025Z",
+    "label": "Bitcoin Demand Signals",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-27-eu-dma-android-default-ai-assistant": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A GATEKEEPER IS",
+        "body": "The DMA designates a small set of platforms as 'gatekeepers' based on size thresholds: €7.5bn EU turnover, 45 million monthly EU users, and a 'core platform service' like an OS, app store, or search engine. Designation triggers obligations no other firm faces.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Alphabet",
+                "role": "Search, Android, Chrome, YouTube",
+                "cc": "US"
+              },
+              {
+                "name": "Apple",
+                "role": "iOS, App Store, Safari",
+                "cc": "US"
+              },
+              {
+                "name": "Meta",
+                "role": "Facebook, Instagram, WhatsApp",
+                "cc": "US"
+              },
+              {
+                "name": "Amazon",
+                "role": "Marketplace, advertising",
+                "cc": "US"
+              },
+              {
+                "name": "Microsoft",
+                "role": "Windows, LinkedIn",
+                "cc": "US"
+              },
+              {
+                "name": "ByteDance",
+                "role": "TikTok",
+                "cc": "CN"
+              }
+            ],
+            "label": "the designated gatekeepers"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HOTWORDS MATTER",
+        "body": "On Android, only Google Assistant (now Gemini) can wake from a locked screen, listen continuously for trigger phrases, and read on-screen context across apps. Rivals run as foreground apps, killed when the screen locks. The privilege is not a feature — it is access to the OS event loop.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *privileged system intent* — Android reserves certain broadcasts (screen-on, hotword-detected, accessibility-service) for apps signed with the platform key. Third-party assistants live one ring out from the kernel; the gatekeeper sits inside it."
+          }
+        ]
+      },
+      {
+        "heading": "THE 10% HAMMER",
+        "body": "DMA fines scale to 10% of global annual turnover, 20% for repeat offenses. For Alphabet's ~$350bn revenue, a single violation can cost $35bn — larger than any GDPR fine ever issued. Brussels designed the cap to make compliance cheaper than defiance.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Google DMA cap",
+                "value": "~$35bn",
+                "tone": "unfavorable",
+                "weight": 35
+              },
+              {
+                "label": "Google Shopping (2017)",
+                "value": "$2.7bn",
+                "tone": "neutral",
+                "weight": 2.7
+              },
+              {
+                "label": "Meta GDPR (2023)",
+                "value": "$1.3bn",
+                "tone": "neutral",
+                "weight": 1.3
+              },
+              {
+                "label": "Apple App Store (2024)",
+                "value": "$2.0bn",
+                "tone": "neutral",
+                "weight": 2
+              }
+            ],
+            "label": "max DMA fine vs notable EU penalties"
+          }
+        ]
+      },
+      {
+        "heading": "THE INTEROPERABILITY DOCTRINE",
+        "body": "DMA Article 6(7) requires gatekeepers to grant rivals 'effective interoperability' with hardware and OS features. This goes further than US antitrust, which historically forbids only active exclusion. The EU mandates active sharing — a positive duty, not just a negative restraint.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does DMA Article 6(7) require gatekeepers to do for rivals?",
+            "options": [
+              "Stop blocking competitors from app stores",
+              "Actively share OS and hardware interfaces",
+              "Pay a licensing fee to smaller firms",
+              "Open-source their core platform code"
+            ],
+            "correct": 1,
+            "explanation": "Article 6(7) imposes a positive duty of effective interoperability — sharing access, not merely refraining from exclusion."
+          }
+        ]
+      },
+      {
+        "heading": "THE BRUSSELS EFFECT",
+        "body": "When the EU sets a compliance regime that costs more to fragment than to apply globally, firms tend to roll out the EU version everywhere. GDPR did this to privacy notices; DMA is doing it to platform architecture. The 450-million-person market sets the floor for what's technically possible elsewhere.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1995",
+                "label": "Data Protection Directive"
+              },
+              {
+                "year": "2016",
+                "label": "GDPR adopted"
+              },
+              {
+                "year": "2018",
+                "label": "GDPR enforcement begins"
+              },
+              {
+                "year": "2022",
+                "label": "DMA + DSA adopted",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "DMA enforcement begins"
+              },
+              {
+                "year": "2026-07",
+                "label": "Gemini interop deadline"
+              }
+            ],
+            "label": "EU tech regulation arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T22:35:43.947Z",
+    "label": "The Digital Markets Act",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-27-gaza-deir-al-balah-first-election-since-2005": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAST VOTE",
+        "body": "The 2006 legislative elections — the last Palestinian national vote — were won by Hamas with 44% to Fatah's 41%. The US, EU, and Israel had pushed for the election expecting a Fatah win; when Hamas took the legislature, the same powers imposed sanctions and froze tax transfers. The lesson absorbed by every faction since: elections only count if the right side wins.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1996",
+                "label": "First PLC elections (Fatah dominant)"
+              },
+              {
+                "year": "2005",
+                "label": "Last municipal elections in Gaza"
+              },
+              {
+                "year": "2006",
+                "label": "Hamas wins PLC majority",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2007",
+                "label": "Hamas-Fatah split; Gaza/WB divide"
+              },
+              {
+                "year": "2021",
+                "label": "Abbas cancels scheduled elections"
+              },
+              {
+                "year": "2026",
+                "label": "Deir al-Balah municipal vote"
+              }
+            ],
+            "label": "Palestinian electoral arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE OSLO ARCHITECTURE",
+        "body": "The Palestinian Authority was created by the Oslo Accords (1993-95) as an interim self-government body — explicitly time-limited to five years pending final-status negotiations. Thirty years later, the interim is the structure. The PA has municipal authority but no sovereignty over borders, airspace, water, or the population registry.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The PA collects taxes through Israel under the **Paris Protocol** — Israel withholds VAT and customs on PA-bound goods, then transfers them monthly. These *clearance revenues* are roughly **65%** of PA budget, and Israel has frozen them repeatedly as leverage."
+          }
+        ]
+      },
+      {
+        "heading": "WHO CONTROLS WHAT",
+        "body": "Gaza's electricity comes primarily from Israeli grid feeds and a single Gaza power plant that runs on Israeli-supplied fuel. Water comes from the coastal aquifer (over-pumped, brackish) plus Israeli Mekorot pipelines. The crossings — Erez, Kerem Shalom, Rafah — are controlled by Israel and Egypt. A municipal council elected inside this envelope governs garbage collection and street repair, not statehood.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PS",
+              "IL",
+              "EG",
+              "JO"
+            ],
+            "label": "Gaza's controlled perimeter",
+            "markers": [
+              {
+                "lat": 31.5489,
+                "lng": 34.4781,
+                "label": "Erez crossing"
+              },
+              {
+                "lat": 31.2167,
+                "lng": 34.2667,
+                "label": "Kerem Shalom"
+              },
+              {
+                "lat": 31.2483,
+                "lng": 34.2447,
+                "label": "Rafah crossing"
+              },
+              {
+                "lat": 31.4181,
+                "lng": 34.3517,
+                "label": "Deir al-Balah"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGITIMACY DEFICIT",
+        "body": "Mahmoud Abbas's four-year term as PA president expired in 2009. He has remained in office for seventeen years past the constitutional limit, citing the impossibility of holding elections under occupation. Polls consistently show majority Palestinian support for his resignation. The municipal vote in Deir al-Balah is the first ballot most Gazans under 35 have ever cast."
+      },
+      {
+        "heading": "THE 22.7% NUMBER",
+        "body": "Turnout that low in a high-stakes vote signals either fear, fatigue, or boycott. Hamas did not field slates and discouraged participation; many Gazans live displaced from their registered municipalities; nine UN tents cannot replace the polling infrastructure of a functioning state. The number is a measure of conditions, not enthusiasm.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When was the last time Gaza held any kind of election before this week's vote?",
+            "options": [
+              "2012 — after Hamas consolidated control",
+              "2005 — Palestinian municipal elections",
+              "2006 — the legislative election Hamas won",
+              "1996 — first PLC elections under Oslo"
+            ],
+            "correct": 1,
+            "explanation": "The 2005 municipal elections were the last Gaza-wide vote. The 2006 legislative election was Palestine-wide, not Gaza-only, and Hamas's takeover in 2007 ended electoral politics entirely until now."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "Palestine — al-ard al-mubaraka, the blessed land — is named in Surah al-Isra as the territory around al-Aqsa whose precincts Allah has blessed. Classical scholars including Ibn Kathir read this geography as inseparable from the broader region of al-Sham. For the Muslim reader, a municipal vote in Deir al-Balah is a small civic act on land whose significance in Islamic tradition vastly exceeds the boundaries of any administrative council."
+      }
+    ],
+    "generatedAt": "2026-04-27T22:36:20.495Z",
+    "label": "Palestinian Elections & the 2005 Freeze",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-merz-iran-peace-process-european-rift": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT IN NUMBERS",
+        "body": "Hormuz normally carries 80-100 tanker transits a day moving roughly 21 million barrels — about a fifth of global oil consumption. A collapse to single digits is not a slowdown; it is a closure that war-risk insurance pricing has already enforced regardless of what mines remain.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY MERZ BREAKS WITH WASHINGTON",
+        "body": "Germany's strategic memory of Iraq 2003 is institutional. Schröder refused to join; the refusal defined a generation of German foreign policy as distinct from Atlanticist reflex. Merz, a CDU Atlanticist by instinct, invoking that comparison signals the rift is structural, not personal.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "German strategic culture distinguishes *Bündnistreue* — alliance loyalty — from automatic military alignment. Merz is asserting the former while denying the latter."
+          }
+        ]
+      },
+      {
+        "heading": "THE SEQUENCING DISPUTE",
+        "body": "Tehran's offer — peace deal first, nuclear concessions second — inverts the standard non-proliferation template (verify, then normalize). Rubio's rejection follows the JCPOA-era logic: leverage evaporates the moment sanctions lift, so concessions must come before relief.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the JCPOA's core sequencing principle that Rubio is restating?",
+            "options": [
+              "Sanctions relief preceded verification",
+              "Verification of nuclear limits preceded sanctions relief",
+              "Both happened simultaneously on signing day",
+              "Iran controlled the timeline unilaterally"
+            ],
+            "correct": 1,
+            "explanation": "The 2015 deal required IAEA verification of nuclear rollback before economic sanctions were lifted — Tehran's current proposal would reverse that order."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST AT THE TABLE",
+        "body": "The diplomatic geometry is unusual: a German chancellor publicly dissenting, an Iranian foreign minister flying to Moscow, a US secretary of state holding the line, and a US president offering personal diplomacy via phone. Each node has a distinct interest.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Friedrich Merz",
+                "role": "German Chancellor",
+                "years": "2025–",
+                "cc": "DE"
+              },
+              {
+                "name": "Marco Rubio",
+                "role": "US Secretary of State",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Abbas Araghchi",
+                "role": "Iranian Foreign Minister",
+                "years": "2024–",
+                "cc": "IR"
+              },
+              {
+                "name": "Vladimir Putin",
+                "role": "Russian President",
+                "years": "2000–2008, 2012–",
+                "cc": "RU"
+              }
+            ],
+            "label": "the four capitals"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRAIT'S GEOGRAPHY",
+        "body": "Hormuz sits between Iran and Oman. The deepest channels hug the Iranian coast; the shipping lanes are 3 km wide each. Saudi and Emirati bypass pipelines could reroute roughly a third of Gulf exports — the rest has no alternative route to tidewater.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.1167,
+                "lng": 56.3333,
+                "label": "Fujairah (UAE bypass)"
+              },
+              {
+                "lat": 21.4858,
+                "lng": 39.1925,
+                "label": "Yanbu (Saudi bypass)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RUSSIA HEDGE",
+        "body": "Iran's pivot to Moscow in moments of Western pressure is now reflexive — Shahed drones flowed to Russia for Ukraine; Russian air defense and economic backstops flow back. The 2025 strategic partnership treaty formalized what was already operational.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              70.28,
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19",
+      "FRED · EIA · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-27T22:36:50.495Z",
+    "label": "Hormuz & European Strategic Autonomy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-open-source-package-million-downloads-credential-theft": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRUST CHAIN",
+        "body": "Modern software is assembled from thousands of third-party packages, each pulling in dozens more. A single compromised dependency anywhere in that tree executes with the same privileges as your own code. There is no sandbox by default.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A typical Node.js project pulls in **1,000+ transitive dependencies** from authors the developer has never heard of. Trust is not verified — it is *inherited* through the dependency graph."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LEGITIMATE PACKAGE IS THE ATTACK",
+        "body": "Typosquatting — registering 'reqeusts' to catch typos for 'requests' — is the old technique. The new technique is hijacking the real package: steal the maintainer's signing key or compromise their CI pipeline, then publish a poisoned version under their genuine name. Every existing user auto-updates into the trap."
+      },
+      {
+        "heading": "THE GITHUB ACTIONS PIVOT",
+        "body": "GitHub Actions runs CI/CD jobs in ephemeral cloud VMs with access to repository secrets — npm tokens, AWS keys, signing certificates. A flaw that lets one workflow read another's secrets effectively hands attackers the keys to every project that runs on the same infrastructure."
+      },
+      {
+        "heading": "THE SOLARWINDS PRECEDENT",
+        "body": "In 2020, attackers compromised SolarWinds' build server and inserted a backdoor into Orion updates signed with the real corporate certificate. 18,000 organizations — including the US Treasury, State, and Homeland Security — installed the malicious update. The lesson: signing proves origin, not safety.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020-12",
+                "label": "SolarWinds Orion backdoor",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021-04",
+                "label": "Codecov bash uploader"
+              },
+              {
+                "year": "2021-12",
+                "label": "Log4Shell zero-day"
+              },
+              {
+                "year": "2024-03",
+                "label": "XZ Utils backdoor (caught)"
+              },
+              {
+                "year": "2025",
+                "label": "npm chalk/debug hijacks"
+              }
+            ],
+            "label": "major supply chain compromises"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ROTATION IS NON-NEGOTIABLE",
+        "body": "Once credentials touch a compromised runner, they must be assumed exfiltrated and used. Attackers exfiltrate first, exploit later — sometimes months later, after the incident is forgotten. Rotation invalidates whatever they captured; auditing logs alone does not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After running a poisoned CI build that may have leaked AWS keys, what's the right response?",
+            "options": [
+              "Audit CloudTrail logs and rotate only if suspicious activity appears",
+              "Rotate immediately — assume the keys are already in attacker hands",
+              "Restrict the keys to specific IPs and keep monitoring",
+              "Re-run the build with the clean version to overwrite the leak"
+            ],
+            "correct": 1,
+            "explanation": "Exfiltration leaves no reliable trace at the runner. Once a secret touches a compromised process, it must be treated as already stolen — rotate, don't audit-and-wait."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURAL FIX",
+        "body": "Reproducible builds, hardware-backed signing keys, and SLSA provenance attestations let downstream users verify that a published artifact actually came from the claimed source code. Adoption is uneven; most package registries still trust whoever holds the upload token."
+      }
+    ],
+    "generatedAt": "2026-04-27T22:37:18.568Z",
+    "label": "Software Supply Chain Attacks",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-27-pakistan-afghanistan-ceasefire-cross-border-attacks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DURAND LINE",
+        "body": "The 2,640-km border was drawn in 1893 by British colonial administrator Mortimer Durand, slicing through Pashtun tribal lands. Afghanistan has never formally recognized it — every Kabul government, from monarchy to Taliban, has rejected it as a colonial imposition.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "PK",
+              "TJ",
+              "IR",
+              "CN"
+            ],
+            "label": "the contested frontier",
+            "markers": [
+              {
+                "lat": 34.8742,
+                "lng": 71.1456,
+                "label": "Khyber Pass"
+              },
+              {
+                "lat": 34.876,
+                "lng": 71.568,
+                "label": "Asadabad"
+              },
+              {
+                "lat": 32.306,
+                "lng": 69.448,
+                "label": "South Waziristan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE TTP IS",
+        "body": "Tehreek-e-Taliban Pakistan formed in 2007 as a coalition of Pakistani Pashtun militants modeled on the Afghan Taliban but with a different target: the Pakistani state. They share ideology and ethnic ties with the Afghan Taliban, but operationally they are distinct.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Afghan Taliban call themselves the **Islamic Emirate**; the Pakistani group calls itself **Tehreek-e-Taliban Pakistan** — the *Pakistani Taliban Movement*. Same ideology, different state target."
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTUARY PROBLEM",
+        "body": "For two decades Pakistan accused Afghanistan of harboring TTP fighters in Kunar and Nangarhar — the same charge the US made about al-Qaeda before 2001. After 2021, the Afghan Taliban inherited the territory and the accusation. Kabul denies harboring; Islamabad's strikes say otherwise."
+      },
+      {
+        "heading": "THE PASHTUN BELT",
+        "body": "Roughly 50 million Pashtuns live in the contiguous belt straddling the Durand Line — about 15 million in Afghanistan, 35 million in Pakistan. The line cuts through tribes whose families and grazing lands sit on both sides. Border control as Westphalian states understand it has never functioned here."
+      },
+      {
+        "heading": "WHY CHINA BROKERED",
+        "body": "Beijing has $62 billion committed to the China-Pakistan Economic Corridor and growing mining interests in Afghanistan. Repeated TTP attacks have killed Chinese engineers in Pakistan; instability on the Afghan side threatens Mes Aynak copper. China is the only outside power with leverage on both governments simultaneously.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which power brokered the March 2026 Pakistan-Afghanistan ceasefire?",
+            "options": [
+              "The United States",
+              "Saudi Arabia",
+              "China",
+              "Qatar"
+            ],
+            "correct": 2,
+            "explanation": "China brokered the ceasefire, leveraging its CPEC investments in Pakistan and mining interests in Afghanistan — the only outside power with concurrent influence on both."
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL RHYME",
+        "body": "Pakistan supported the Afghan Taliban through the 1990s as strategic depth against India. After 2001 it played both sides — hosting US logistics while sheltering Taliban leadership in Quetta. The current crisis is partly the bill arriving for that two-decade hedge.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1893",
+                "label": "Durand Line drawn"
+              },
+              {
+                "year": "1947",
+                "label": "Pakistan independence; Afghanistan rejects border"
+              },
+              {
+                "year": "1979",
+                "label": "Soviet invasion; Pakistan hosts mujahideen"
+              },
+              {
+                "year": "1996",
+                "label": "Taliban takes Kabul with ISI support"
+              },
+              {
+                "year": "2007",
+                "label": "TTP forms"
+              },
+              {
+                "year": "2021",
+                "label": "Taliban returns to Kabul",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026-03",
+                "label": "China brokers ceasefire"
+              }
+            ],
+            "label": "the Afghan-Pakistan arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T22:37:47.062Z",
+    "label": "The Durand Line & TTP Sanctuary",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-pm20d1-microglia-alzheimer-pathway": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE AMYLOID HYPOTHESIS",
+        "body": "For thirty years, Alzheimer's research bet on a single idea: sticky amyloid-beta plaques accumulate between neurons, trigger inflammation, and kill cells. Drugs that targeted the plaques directly — solanezumab, bapineuzumab, gantenerumab — failed clinical trials repeatedly through the 2010s.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Amyloid-beta isolated from plaques"
+              },
+              {
+                "year": "1991",
+                "label": "Hardy & Higgins amyloid hypothesis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "Bapineuzumab Phase 3 fails"
+              },
+              {
+                "year": "2016",
+                "label": "Solanezumab Phase 3 fails"
+              },
+              {
+                "year": "2021",
+                "label": "Aduhelm controversial approval"
+              },
+              {
+                "year": "2023",
+                "label": "Lecanemab approved — modest effect"
+              }
+            ],
+            "label": "the long failure"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MICROGLIA ACTUALLY DO",
+        "body": "Microglia are the brain's resident immune cells — about 10% of all brain cells. They patrol continuously, extending and retracting processes every few minutes, sampling the extracellular space. When they detect debris or pathogens, they engulf and digest it. They are the brain's professional janitors."
+      },
+      {
+        "heading": "THE LIPID SIGNAL",
+        "body": "Microglia don't randomly find plaques. They are summoned by N-acyl amino acids — lipid messengers released by stressed neurons that bind microglial receptors and direct them to damage sites. Without the signal, microglia drift past plaques without engaging.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "PM20D1 is the enzyme that **cleaves** these lipid signals into their active form. It's the molecular siren that tells microglia *where to go*."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ANTIBODIES FAILED THE TARGET",
+        "body": "For a decade, researchers tried to block PM20D1 with antibodies — large protein molecules that bind extracellular targets. But PM20D1 acts inside vesicles and at membrane interfaces where antibodies cannot reach. The drug class was wrong for the biology."
+      },
+      {
+        "heading": "THE MOUSE-TO-HUMAN GAP",
+        "body": "Mouse Alzheimer models accumulate plaques on accelerated timelines under genetic forcing. Roughly 99% of Alzheimer drugs that work in mice fail in humans — the disease in people involves decades of vascular, metabolic, and inflammatory damage that the models do not capture.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what fraction of Alzheimer drugs that succeed in mouse models go on to fail in human trials?",
+            "options": [
+              "About half",
+              "Around 80%",
+              "Over 99%"
+            ],
+            "correct": 2,
+            "explanation": "The translational failure rate in Alzheimer's is among the worst in medicine — over 99% of mouse-validated candidates fail human Phase 2 or 3."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOOD-BRAIN BARRIER",
+        "body": "Even if a small molecule activates PM20D1 perfectly in a dish, it must cross the blood-brain barrier — a tight junction of endothelial cells that excludes roughly 98% of small-molecule drugs and nearly all large biologics. This is why CNS drug development costs more and fails more than any other therapeutic area."
+      }
+    ],
+    "generatedAt": "2026-04-27T22:38:12.994Z",
+    "label": "Microglia & Amyloid Clearance",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-27-scotus-location-data-broker-warrant": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOCTRINE",
+        "body": "For nearly fifty years, the Fourth Amendment did not protect information you voluntarily shared with a third party. Bank records (US v. Miller, 1976), phone numbers dialed (Smith v. Maryland, 1979) — once you handed data to someone else, you had no reasonable expectation of privacy in it. This is the third-party doctrine.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine was built for an era when *third party* meant your bank teller or telephone operator — not an ad-tech SDK silently logging your GPS coordinates 1,400 times a day."
+          }
+        ]
+      },
+      {
+        "heading": "THE CARPENTER CRACK",
+        "body": "In Carpenter v. United States (2018), the Court ruled 5-4 that police need a warrant to obtain 127 days of cell-site location records from a carrier. Roberts wrote that location data is so revealing — tracing 'familial, political, professional, religious, and sexual associations' — that the third-party doctrine cannot mechanically apply.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "When the Government tracks the location of a cell phone it achieves near perfect surveillance, as if it had attached an ankle monitor to the phone's user.",
+            "speaker": "Chief Justice Roberts, Carpenter v. United States",
+            "year": "2018"
+          }
+        ]
+      },
+      {
+        "heading": "THE BROKER LOOPHOLE",
+        "body": "Carpenter covered carriers, not apps. Data brokers buy precise GPS pings from weather, prayer, and game apps via the ad-tech bidstream, then sell the resulting bundles to anyone with a purchase order — including ICE, CBP, the FBI, and the Defense Intelligence Agency. The legal theory: a purchase is not a search.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "ICE",
+                "role": "used Venntel to track migrants",
+                "cc": "US"
+              },
+              {
+                "name": "CBP",
+                "role": "bought Babel Street feeds",
+                "cc": "US"
+              },
+              {
+                "name": "DIA",
+                "role": "told Congress it buys US-person data",
+                "cc": "US"
+              },
+              {
+                "name": "IRS-CI",
+                "role": "piloted Venntel for tax cases",
+                "cc": "US"
+              }
+            ],
+            "label": "agencies that bought broker location data"
+          }
+        ]
+      },
+      {
+        "heading": "GEOFENCE WARRANTS",
+        "body": "A geofence warrant asks Google (or another platform) for every device that crossed a defined polygon during a defined window. The Fifth Circuit ruled them categorically unconstitutional in 2024; the Fourth Circuit upheld them. That circuit split is what brought the question to the Supreme Court.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes a geofence warrant constitutionally unusual under traditional Fourth Amendment doctrine?",
+            "options": [
+              "It targets a place and time, not a named suspect",
+              "It requires probable cause",
+              "It must be signed by a federal judge",
+              "It expires after 30 days"
+            ],
+            "correct": 0,
+            "explanation": "Traditional warrants particularize a person or thing to be seized. Geofence warrants reverse the logic — they identify suspects by who was present, which critics argue is a general warrant the Fourth Amendment was written to forbid."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOSAIC THEORY",
+        "body": "Individual data points may be innocuous — one GPS ping, one license plate scan. Aggregated over weeks, they reveal mosques attended, doctors visited, lovers met, protests joined. Justice Sotomayor named this in her US v. Jones (2012) concurrence; it is the doctrinal seed Carpenter grew from."
+      },
+      {
+        "heading": "WHY IT MATTERS NOW",
+        "body": "Closing the broker loophole would force federal agents to obtain warrants for the same location data they currently buy with appropriated funds. Congress tried this with the Fourth Amendment Is Not For Sale Act in 2024 and failed. A Supreme Court ruling would impose what legislation could not."
+      }
+    ],
+    "generatedAt": "2026-04-27T22:38:42.384Z",
+    "label": "The Third-Party Doctrine",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-27-western-union-stablecoin-bypass-swift": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGACY RAIL",
+        "body": "International wires move through correspondent banking — a chain of banks that each hold accounts with the next, passing messages over SWIFT and settling balances at the end of the day. Each hop adds fees, compliance checks, and a cutoff window aligned to New York business hours.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "SWIFT is **only a messaging network** — it moves instructions, not money. Actual settlement happens through *nostro/vostro* accounts the correspondent banks hold for each other."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WEEKENDS MATTER",
+        "body": "Fedwire and most central-bank settlement systems close evenings and weekends. A wire sent Friday afternoon in New York typically clears Monday in the receiving country. Stablecoins settle on public blockchains that never close, which is the structural advantage Western Union is buying."
+      },
+      {
+        "heading": "THE REMITTANCE MARKET",
+        "body": "Global remittances run roughly $700bn a year, with the World Bank's measured average cost around 6.4%. The corridor most exposed is small-ticket cross-border to lower-income countries — exactly the corridor Western Union built its 170-year-old network on.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "$125bn",
+                "cc": "IN",
+                "weight": 125
+              },
+              {
+                "label": "Mexico",
+                "value": "$67bn",
+                "cc": "MX",
+                "weight": 67
+              },
+              {
+                "label": "China",
+                "value": "$50bn",
+                "cc": "CN",
+                "weight": 50
+              },
+              {
+                "label": "Philippines",
+                "value": "$39bn",
+                "cc": "PH",
+                "weight": 39
+              },
+              {
+                "label": "Pakistan",
+                "value": "$27bn",
+                "cc": "PK",
+                "weight": 27
+              },
+              {
+                "label": "Egypt",
+                "value": "$24bn",
+                "cc": "EG",
+                "weight": 24
+              }
+            ],
+            "label": "top remittance recipients (USD bn, 2023)"
+          }
+        ]
+      },
+      {
+        "heading": "THE RESERVE MECHANIC",
+        "body": "A regulated dollar stablecoin holds reserves — typically short-dated US Treasuries and bank deposits — equal to tokens outstanding. The issuer earns the yield on those reserves. At current Treasury rates this is the most profitable part of the business; the payment rail is a customer-acquisition funnel for the float."
+      },
+      {
+        "heading": "WHY SOLANA",
+        "body": "Settlement finality on Solana is roughly 400 milliseconds, with fees typically under a cent. Ethereum mainnet costs more and confirms in tens of seconds. For a remittance flow priced against Western Union's existing per-transaction fee, the chain choice is essentially a unit-economics decision.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SWIFT wire",
+                "value": "1–3 days",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ethereum L1",
+                "value": "~12 sec",
+                "tone": "neutral"
+              },
+              {
+                "label": "Solana",
+                "value": "~0.4 sec",
+                "tone": "favorable"
+              }
+            ],
+            "label": "settlement characteristics"
+          }
+        ]
+      },
+      {
+        "heading": "THE GENIUS ACT",
+        "body": "The 2025 GENIUS Act gave US-issued payment stablecoins a federal charter framework: 1:1 reserves in cash and short Treasuries, monthly attestations, and bankruptcy priority for token-holders. Before the law, no major correspondent bank could touch the rails on compliance grounds. The law is what made this launch legal at scale.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What backs a fully-reserved US payment stablecoin under the GENIUS Act?",
+            "options": [
+              "The issuer's corporate balance sheet",
+              "Cash and short-dated US Treasuries held 1:1",
+              "FDIC deposit insurance up to $250k",
+              "A pool of crypto collateral over-collateralized 150%"
+            ],
+            "correct": 1,
+            "explanation": "GENIUS requires 1:1 reserves in cash and short Treasuries, with monthly attestations — distinct from FDIC-insured deposits or crypto-collateralized models."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T22:39:10.168Z",
+    "label": "Stablecoins vs Correspondent Banking",
+    "category": "economy",
+    "articleCount": 1
   }
 }

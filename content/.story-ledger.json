@@ -2,13 +2,232 @@
   "version": 1,
   "stories": [
     {
+      "id": "merz-iran-peace-process-european-rift",
+      "label": "Merz derides 'humiliating' US peace process with Iran as European rift widens",
+      "firstSeen": "2026-04-27T22:07:55.888Z",
+      "lastCovered": "2026-04-27T22:07:55.888Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-merz-iran-peace-process-european-rift"
+      ],
+      "eventUri": "eng-11604614",
+      "summary": "German Chancellor Merz publicly called Trump's Iran peace process 'humiliating' for Washington — Tehran is dictating terms while Rubio rejects an Iranian Strait of Hormuz proposal. Lead with the transatlantic split: Berlin saying out loud what European capitals have been hinting since the strikes. The reader needs the structural why — Europe is hedging because the US has tied its credibility to a war it cannot end on its terms. Continues the Iran-talks arc covered yesterday from the Drop Site angle.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Friedrich_Merz",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Chancellor_of_Germany",
+        "http://en.wikipedia.org/wiki/Germany",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Afghanistan",
+        "http://en.wikipedia.org/wiki/Iraq"
+      ]
+    },
+    {
+      "id": "pakistan-afghanistan-ceasefire-cross-border-attacks",
+      "label": "Ceasefire at risk as Pakistan and Afghanistan report cross-border attacks",
+      "firstSeen": "2026-04-27T22:07:55.888Z",
+      "lastCovered": "2026-04-27T22:07:55.888Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-pakistan-afghanistan-ceasefire-cross-border-attacks"
+      ],
+      "eventUri": "eng-11605433",
+      "summary": "Pakistan and Afghanistan each report cross-border attacks within weeks of the Doha-brokered ceasefire — Islamabad blames TTP sanctuary in Kunar, Kabul accuses Pakistan of strikes inside Afghan territory. Lead with the structural reason the truce was always brittle: the Taliban cannot, or will not, evict the TTP, and Pakistan will not stop hitting back. Reader is watching how Pakistan absorbs another front while its economy is still convalescing.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Afghanistan",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Kunar_Province",
+        "http://en.wikipedia.org/wiki/Taliban",
+        "http://en.wikipedia.org/wiki/Kabul",
+        "http://en.wikipedia.org/wiki/Pakistani_Taliban",
+        "http://en.wikipedia.org/wiki/Pakistan_Armed_Forces",
+        "http://en.wikipedia.org/wiki/Islamabad"
+      ]
+    },
+    {
+      "id": "gaza-deir-al-balah-first-election-since-2005",
+      "label": "Gaza's Deir Al-Balah Holds First Election Since 2005",
+      "firstSeen": "2026-04-27T22:07:55.888Z",
+      "lastCovered": "2026-04-27T22:07:55.888Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-gaza-deir-al-balah-first-election-since-2005"
+      ],
+      "eventUri": null,
+      "summary": "Deir al-Balah held the first municipal election in Gaza since 2005 — turnout, mechanics, the Hamas-Fatah handling, and what it signals about post-war governance after a year of total siege. Lead with the act itself: Palestinians voting in Gaza for the first time in 21 years, in a city that has been bombed for most of the past two. Frame against the West Bank strike covered yesterday — both pieces of the same political reawakening.",
+      "conceptUris": []
+    },
+    {
+      "id": "assad-cousin-najib-trial-damascus-daraa",
+      "label": "Assad's Cousin Stands Trial in Damascus for Crackdown That Sparked Syria's Uprising",
+      "firstSeen": "2026-04-27T22:07:55.888Z",
+      "lastCovered": "2026-04-27T22:07:55.888Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-assad-cousin-najib-trial-damascus-daraa"
+      ],
+      "eventUri": null,
+      "summary": "Atef Najib — the Assad cousin whose Daraa torture order in 2011 lit the Syrian uprising — is on trial in a post-Assad Damascus court. Lead with the precedent: this is the first senior regime figure tried inside Syria, not in Europe under universal jurisdiction. Reader needs the mechanism of accountability, the evidentiary basis, and what it signals about how the new Syrian state intends to handle the Mukhabarat archive without collapsing into vendetta.",
+      "conceptUris": []
+    },
+    {
+      "id": "western-union-stablecoin-bypass-swift",
+      "label": "Western Union gears up stablecoin launch to settle global transactions without SWIFT",
+      "firstSeen": "2026-04-27T22:07:55.888Z",
+      "lastCovered": "2026-04-27T22:07:55.888Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-western-union-stablecoin-bypass-swift"
+      ],
+      "eventUri": "eng-11603840",
+      "summary": "Western Union's CEO confirmed the company will launch a USD stablecoin to settle global remittances outside SWIFT. Lead with the scale: WU moves $300B/year across 200 countries — if even a fraction shifts to on-chain settlement, it is the largest live test yet of stablecoins as correspondent-banking replacement. Reader needs the why: SWIFT correspondent fees and US sanctions friction make stablecoin rails attractive precisely in the corridors WU dominates (Mexico, Philippines, Egypt, Pakistan).",
+      "conceptUris": []
+    },
+    {
+      "id": "aave-300m-defi-rescue-kelp-exploit",
+      "label": "Who's pledging to Aave's $300 million DeFi recovery effort after massive Kelp DAO exploit",
+      "firstSeen": "2026-04-27T22:07:55.888Z",
+      "lastCovered": "2026-04-27T22:07:55.888Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-aave-300m-defi-rescue-kelp-exploit"
+      ],
+      "eventUri": "eng-11605733",
+      "summary": "Industry leaders are pledging $300M to backstop Aave users hit by the Kelp DAO exploit. Lead with the structure: there is no FDIC for DeFi, so private rescue consortiums are the de facto deposit insurance. Reader needs to understand that this socializes losses to whoever wants the protocol to survive — which is the antithesis of trustless finance. Note who is paying and what political leverage they buy in the process.",
+      "conceptUris": []
+    },
+    {
+      "id": "bitcoin-rally-fatigue-bearish-indicators",
+      "label": "Bitcoin signals flash caution as conference kicks off and momentum fades",
+      "firstSeen": "2026-04-27T22:07:55.888Z",
+      "lastCovered": "2026-04-27T22:07:55.888Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-bitcoin-rally-fatigue-bearish-indicators"
+      ],
+      "eventUri": null,
+      "summary": "Whale-to-exchange flows, funding rates, and Bitfinex/Binance perp basis are turning bearish into the Bitcoin Conference week — the first time since the Iran-war selloff. Lead with the indicators, not the price: the reader is technical and wants the on-chain mechanism, not vibes. Pair with last week's oil/Iran-war correlation note as the structural backdrop.",
+      "conceptUris": []
+    },
+    {
+      "id": "acip-hepatitis-b-birth-dose-projected-deaths",
+      "label": "New U.S. recommendation on hepatitis B vaccine will have dire consequences, studies project",
+      "firstSeen": "2026-04-27T22:07:55.888Z",
+      "lastCovered": "2026-04-27T22:07:55.888Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-acip-hepatitis-b-birth-dose-projected-deaths"
+      ],
+      "eventUri": "eng-11605304",
+      "summary": "ACIP's revised hep B vaccination schedule — delaying or skipping the birth dose — will, per JAMA modeling, cause hundreds of preventable infant infections and a measurable rise in chronic hepatitis B and liver cancer deaths. Lead with the projected human cost, then the mechanism: HBV transmits perinatally, the birth dose is the only intervention that interrupts it, and the new ACIP composition is what changed, not the science. Continues the NSF-firing arc covered yesterday — same pattern, different agency.",
+      "conceptUris": []
+    },
+    {
+      "id": "pm20d1-microglia-alzheimer-pathway",
+      "label": "The PM20D1-OLE pathway induces microglia rewiring to ameliorate Alzheimer's disease",
+      "firstSeen": "2026-04-27T22:07:55.888Z",
+      "lastCovered": "2026-04-27T22:07:55.888Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-pm20d1-microglia-alzheimer-pathway"
+      ],
+      "eventUri": null,
+      "summary": "Researchers identify a pathway — PM20D1 cleaving lipid OLE — that reprograms microglia to clear amyloid-beta in mouse Alzheimer models. Lead with the mechanism, not the cure-claim: microglia are the brain's immune cells, and the past decade of failed Alzheimer drugs has shifted the field from killing plaques directly to fixing the cells that should be eating them. Reader is technical; explain why this target is novel and what's missing before it becomes a drug.",
+      "conceptUris": []
+    },
+    {
+      "id": "open-source-package-million-downloads-credential-theft",
+      "label": "Open source package with 1 million monthly downloads stole user credentials",
+      "firstSeen": "2026-04-27T22:07:55.888Z",
+      "lastCovered": "2026-04-27T22:07:55.888Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-open-source-package-million-downloads-credential-theft"
+      ],
+      "eventUri": null,
+      "summary": "A widely used open-source package — 1M monthly downloads — was modified to harvest Docker/CLI/API credentials from developer machines. Lead with the supply-chain mechanism: the package wasn't typo-squatted, it was the legitimate package compromised after maintainer takeover. Reader uses pip and Docker daily; the takeaway is which credential stores were exfiltrated and what the verification gap was. Continues the supply-chain arc from last month's npm worm.",
+      "conceptUris": []
+    },
+    {
+      "id": "eu-dma-android-default-ai-assistant",
+      "label": "Europe could force Google to open Android to other AI assistants",
+      "firstSeen": "2026-04-27T22:07:55.888Z",
+      "lastCovered": "2026-04-27T22:07:55.888Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-eu-dma-android-default-ai-assistant"
+      ],
+      "eventUri": "eng-11605753",
+      "summary": "European Commission is preparing to designate Gemini's Android integration a DMA gatekeeper service, which would force Google to allow Claude, ChatGPT, and others to be set as the default assistant on Android. Lead with the mechanism: this is the same DMA tool that broke browser/search defaults; assistants are the new search box. Reader needs to see how the DMA is now the world's de facto AI competition law since the US has none.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Google",
+        "http://en.wikipedia.org/wiki/Android_(operating_system)",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/European_Commission",
+        "http://en.wikipedia.org/wiki/European_Union",
+        "http://en.wikipedia.org/wiki/Email",
+        "http://en.wikipedia.org/wiki/Brussels",
+        "http://en.wikipedia.org/wiki/Operating_system"
+      ]
+    },
+    {
+      "id": "scotus-location-data-broker-warrant",
+      "label": "Supreme Court signals location data searches should require a warrant",
+      "firstSeen": "2026-04-27T22:07:55.888Z",
+      "lastCovered": "2026-04-27T22:07:55.888Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-scotus-location-data-broker-warrant"
+      ],
+      "eventUri": null,
+      "summary": "SCOTUS oral arguments suggest a majority is ready to extend Carpenter — warrants required not just for cell-site records but for the location data brokers sell to police. Lead with the precedent shift: if the ruling lands as signaled, the geofence-warrant and 'we bought it from a broker so the Fourth Amendment doesn't apply' workarounds end. Reader needs the mechanism — which justices, which questions, and why ICE and the FBI are watching this closer than any case this term.",
+      "conceptUris": []
+    },
+    {
       "id": "microsoft-and-openai-s-open-relationship-is-now-official",
       "label": "Microsoft and OpenAI's open relationship is now official",
       "firstSeen": "2026-04-27T17:09:06.032Z",
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-microsoft-and-openai-s-open-relationship-is-now-official"
@@ -29,7 +248,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-claire-s-closes-all-154-stores-as-it-collapses-into-administ"
@@ -49,7 +268,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-meta-seeking-energy-from-space-for-earth-bound-datacenters"
@@ -69,7 +288,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-shell-strikes-12bn-deal-for-canadian-gas-giant"
@@ -90,7 +309,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-canada-s-carney-announces-a-sovereign-wealth-fund"
@@ -110,7 +329,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-the-west-bank-on-strike"
@@ -130,7 +349,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-as-trump-s-narrative-on-negotiations-flails-iran-is-setting"
@@ -150,7 +369,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-drone-kills-man-near-zaporizhzhia-nuclear-power-plant-iaea-s"
@@ -171,7 +390,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-national-science-board-eviscerated-trump-admin-fires-all-22"
@@ -191,7 +410,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-physicists-discover-the-most-complex-forms-of-ice-yet"
@@ -211,7 +430,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-government-hacking-tools-are-now-in-criminals-hands-with-lor"
@@ -231,7 +450,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-study-finds-a-third-of-new-websites-are-ai-generated"
@@ -251,7 +470,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-disinformation-campaign-targeted-tibetan-parliament-in-exile"
@@ -272,7 +491,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-china-blocks-meta-manus-ai-acquisition-unwind"
@@ -297,7 +516,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-kashmir-darul-uloom-seminary-uapa-ban-shopian"
@@ -322,7 +541,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-us-three-carrier-strike-groups-centcom-iran"
@@ -338,7 +557,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-nigeria-iswap-boko-haram-abuja-attack-plan"
@@ -354,7 +573,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-pakistan-china-mou-desalination-agri-tea"
@@ -370,7 +589,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-eu-20th-sanctions-russia-crypto-defi-ban"
@@ -386,7 +605,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-bitcoin-oil-surge-iran-war-correlation-selloff"
@@ -402,7 +621,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-worldcoin-world-id-tinder-zoom-docusign-partners"
@@ -418,7 +637,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-legacy-nft-bust-molyneux-54-million-players"
@@ -434,7 +653,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-openai-qualcomm-mediatek-luxshare-smartphone-chips-2028"
@@ -459,7 +678,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-intellia-crispr-hereditary-angioedema-phase-3"
@@ -475,7 +694,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-arctic-continent-200mya-dinosaur-rise-cooling"
@@ -491,7 +710,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-esa-vega-c-sentinel-1c-launch-cost-disclosure"
@@ -507,7 +726,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-china-warns-eu-over-proposed-made-in-europe-law"
@@ -530,7 +749,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-india-s-sun-pharma-to-buy-us-listed-organon-in-11-75-billion"
@@ -553,7 +772,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-taiwan-court-hands-down-jail-terms-in-tsmc-trade-secrets-cas"
@@ -576,7 +795,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-iran-shahid-rajaee-port-blast-bandar-abbas"
@@ -592,7 +811,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-myanmar-junta-president-language-normalisation"
@@ -608,7 +827,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-hormuz-blockade-fertilizer-food-production-russia"
@@ -624,7 +843,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-nft-rally-wash-trading-shrinking-user-base"
@@ -640,7 +859,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-eprodisate-alpha-synuclein-condensation-parkinson"
@@ -656,7 +875,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-south-africa-water-infrastructure-municipal-collapse"
@@ -672,7 +891,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-cosmological-principle-homogeneity-hubble-tension"
@@ -688,7 +907,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-openai-smartphone-agent-os-apple-samsung"
@@ -711,7 +930,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-26-friendster-30k-domain-trademark-resale"
@@ -727,7 +946,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-grnn-mc-soil-borehole-geotechnical-ml"
@@ -743,7 +962,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-iran-hormuz-first-nuclear-later-peace-proposal-us"
@@ -768,7 +987,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-us-narco-boat-strike-185-toll-pacific"
@@ -784,7 +1003,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-china-antelope-reef-south-china-sea-island-building"
@@ -800,7 +1019,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-chad-communal-clash-water-42-dead-sahel"
@@ -816,7 +1035,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-oil-rises-us-iran-talks-stall-brent-107"
@@ -832,7 +1051,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-pakistan-hiv-global-fund-inspection-syringes"
@@ -848,7 +1067,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-pakistan-fixes-prices-35-essential-drugs-shortage"
@@ -864,7 +1083,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-sarcopenia-cancer-notch-sdc2-muscle-vesicles"
@@ -880,7 +1099,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-us-immigration-sanctuary-law-mapping-study"
@@ -896,7 +1115,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-25-10-gbe-usb-adapter-commodity-low-power-phy"
@@ -912,7 +1131,7 @@
       "lastCovered": "2026-04-26T17:44:51.106Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-26-hormuz-mine-laying-third-carrier-pakistan-delegation",
@@ -929,7 +1148,7 @@
       "lastCovered": "2026-04-26T08:07:38.473Z",
       "coverageCount": 4,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "ongoing",
       "articles": [
         "2026-04-24-ai-optimism-asia-vs-west-polling",
@@ -948,7 +1167,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 4,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "ongoing",
       "articles": [
         "2026-04-26-noaa-deep-sea-golden-orb-egg-casing-alaska-seafloor",
@@ -967,7 +1186,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-25-ai-us-border-racial-bias-accountability",
@@ -984,7 +1203,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-russian-defence-minister-visits-north-korea"
@@ -1009,7 +1228,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-netanyahu-s-biggest-rivals-join-forces-for-israel-s-next-ele"
@@ -1034,7 +1253,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-new-ira-behind-car-bomb-explosion-outside-northern-irish-pol"
@@ -1059,7 +1278,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-iranian-fm-araghchi-back-in-pakistan-after-oman-visit-to-hea"
@@ -1084,7 +1303,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-renal-denervation-attenuates-cardiac-fibrosis-and-improves-l"
@@ -1100,7 +1319,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-pakistan-notifies-6-land-routes-for-transportation-of-goods"
@@ -1116,7 +1335,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-doctor-wife-of-acting-u-s-attorney-general-appointed-to-nih"
@@ -1132,7 +1351,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-waltersmith-plans-for-condensate-refinery-industrial-park-ho"
@@ -1148,7 +1367,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-russia-egypt-interested-in-expanding-freight-turnover-mariti"
@@ -1164,7 +1383,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-death-toll-from-israeli-attacks-on-lebanon-exceeds-2-500-hea"
@@ -1180,7 +1399,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-the-fake-disease-that-fooled-the-internet-and-what-it-says-a"
@@ -1196,7 +1415,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-the-west-forgot-how-to-make-things-now-it-s-forgetting-how-t"
@@ -1204,118 +1423,6 @@
       "eventUri": null,
       "summary": "A widely-shared essay argues the West's deindustrialisation is now repeating in software — knowledge of low-level systems, compilers, and infrastructure is concentrating in fewer hands as juniors learn against AI scaffolds. Lead with the parallel and what's actually evidenced. Stakes: a brittleness argument — if the chain-of-custody for the software stack thins out, who fixes it when the AI mis-suggests?",
       "conceptUris": []
-    },
-    {
-      "id": "alma-quasar-pair-merger-redshift-five-seven",
-      "label": "Two blazing quasars caught waltzing into a merger",
-      "firstSeen": "2026-04-26T17:44:51.106Z",
-      "lastCovered": "2026-04-26T17:44:51.106Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-26-alma-quasar-pair-merger-redshift-five-seven"
-      ],
-      "eventUri": null,
-      "summary": "ALMA confirmed a close quasar pair (J2037–4537) in merging galaxies at redshift 5.7 — light from when the universe was under a billion years old. Only the second confirmed z>5 quasar pair ever found. Lead with the rarity and the implication: supermassive black-hole mergers in the early universe are observable, which constrains models of how the first galaxies grew their cores.",
-      "conceptUris": []
-    },
-    {
-      "id": "amateur-chatgpt-erdos-problem-solved",
-      "label": "Amateur armed with ChatGPT solves an Erdős problem",
-      "firstSeen": "2026-04-26T17:44:51.106Z",
-      "lastCovered": "2026-04-26T17:44:51.106Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-25-amateur-chatgpt-erdos-problem-solved"
-      ],
-      "eventUri": null,
-      "summary": "An amateur, working with ChatGPT, cracked a 60-year-old Erdős problem. Lead with the mechanism — which problem, what the LLM contributed (search? proof verification? conjecture generation?), and what the Fields-medal community is saying. The angle for our reader: this is the first credible datapoint that LLMs can extend the frontier of pure math, not just regurgitate known proofs.",
-      "conceptUris": []
-    },
-    {
-      "id": "trump-whcd-shooting-washington-hilton-security-breach",
-      "label": "Trump evacuated from venue of correspondents' dinner",
-      "firstSeen": "2026-04-26T04:05:35.680Z",
-      "lastCovered": "2026-04-26T08:07:38.473Z",
-      "coverageCount": 3,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-26-trump-whcd-shooting-washington-hilton-security-breach",
-        "2026-04-26-who-is-cole-allen-the-suspect-linked-to-trump-s-press-gala-s",
-        "2026-04-26-video-shooting-in-wh-correspondents-dinner-in-washington"
-      ],
-      "eventUri": "eng-11602031",
-      "summary": "A lone gunman with a shotgun rushed the security checkpoint at the White House Correspondents' Dinner at the Washington Hilton — the same hotel where Reagan was shot in 1981 — minutes after Trump took the stage. Suspect identified as Cole Tomas Allen of Torrance, CA. Lead with the security failure and the historical echo of the venue. Stakes: the third assassination-adjacent incident in 18 months raises structural questions about Secret Service venue-hardening.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/White_House",
-        "http://en.wikipedia.org/wiki/United_States_Secret_Service",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/White_House_Correspondents'_Association",
-        "http://en.wikipedia.org/wiki/Washington_Hilton"
-      ]
-    },
-    {
-      "id": "doj-denaturalization-287-cases-palestinian-speech",
-      "label": "The Justice Dept's unprecedented campaign to strip citizenship",
-      "firstSeen": "2026-04-26T04:05:35.680Z",
-      "lastCovered": "2026-04-26T04:05:35.680Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-26-doj-denaturalization-287-cases-palestinian-speech"
-      ],
-      "eventUri": null,
-      "summary": "DOJ has filed denaturalization cases against 287 naturalized US citizens in the first 90 days of 2026 — a pace 9× the historical average — with at least 41 cases involving Palestinian-solidarity advocacy. Stakes: stripping citizenship was a Cold War tool used <10×/year for two decades; it is now being deployed at industrial scale against political opponents who happen to be naturalized, creating a two-tier citizenship system.",
-      "conceptUris": []
-    },
-    {
-      "id": "orban-fidesz-defeat-tisza-supermajority-hungary",
-      "label": "Crushed at the Polls, Hungary's Former Ruling Party Licks Its Wounds",
-      "firstSeen": "2026-04-25T22:05:32.263Z",
-      "lastCovered": "2026-04-25T22:05:32.263Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-25-orban-fidesz-defeat-tisza-supermajority-hungary"
-      ],
-      "eventUri": "eng-11601729",
-      "summary": "Orbán is stepping down from parliament after Tisza, led by ex-Fidesz insider Péter Magyar, took a two-thirds supermajority in the 199-seat assembly. Lead with the supermajority — the threshold to rewrite Hungary's constitution — not the resignation. Stakes: Orbán built the EU's most prominent illiberal model and lost it to a defector who ran on the same machine he engineered.",
-      "conceptUris": []
-    },
-    {
-      "id": "palestinians-vote-first-elections-occupation-low-turnout",
-      "label": "Palestinians vote in first elections since Israel's invasion of Gaza",
-      "firstSeen": "2026-04-25T17:08:08.903Z",
-      "lastCovered": "2026-04-25T17:08:08.903Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-25-palestinians-vote-first-elections-occupation-low-turnout"
-      ],
-      "eventUri": "eng-11599158",
-      "summary": "First Palestinian local vote since the invasion of Gaza, held under occupation in the West Bank and what remains of Gaza after years of bombardment. Local councils, no Hamas, low turnout. Elections without sovereignty — frame via the Al Jazeera angle. Name Fatah's role and the absence of Gaza-wide participation. Sentiment divergence is 0.64 — flag the gap between Israeli-allied wire framing and Palestinian/Arab framing.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/West_Bank",
-        "http://en.wikipedia.org/wiki/Palestinians",
-        "http://en.wikipedia.org/wiki/Gaza_Strip",
-        "http://en.wikipedia.org/wiki/Hamas",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Fatah"
-      ]
     }
   ]
 }
