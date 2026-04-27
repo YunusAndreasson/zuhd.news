@@ -1,35 +1,34 @@
 {
-  "date": "2026-04-26",
+  "date": "2026-04-27",
   "metrics": {
-    "articles": { "value": 29, "detail": "4 cycles, avg 7/cycle" },
-    "freshness": { "median": 1.2, "p90": 1.4, "max": 1.4, "target": 1.0, "met": false },
-    "categories": { "politics": 11, "economy": 7, "science": 8, "tech": 3 },
-    "multiSource": { "value": 8, "target": 4, "met": true },
+    "articles": { "value": 59, "detail": "5 cycles completed, avg 10/cycle" },
+    "freshness": { "median": 0, "p90": 0.3, "max": 0.3, "target": 1.0, "met": true },
+    "categories": { "politics": 19, "economy": 16, "science": 13, "tech": 11 },
+    "multiSource": { "value": 13, "target": 4, "met": true },
     "regions": {
-      "count": 6,
+      "count": 5,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 8, "GL": 1, "ME": 10, "EU": 7, "AS": 2, "AF": 1 }
+      "breakdown": { "AM": 22, "EU": 16, "ME": 12, "AS": 6, "AF": 3, "OC": 0 }
     },
-    "sciTech": { "ratio": 38, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 17, "target": 20, "met": true },
-    "uniqueSources": 30,
+    "sciTech": { "ratio": 41, "target": 25, "met": true },
+    "topSourceShare": { "source": "CoinDesk", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 47,
     "duplicates": 0,
-    "avgCycleDuration": 1232
+    "avgCycleDuration": 1958
   },
-  "experiment": "Proposing: reduce standalone article cap 25→22 to address freshness median of 1.2 (target ≤1.0). Standalone articles (NewsAPI non-event picks) are typically older; trimming the cap shifts the mix toward fresher event-based stories. Token-neutral — fewer candidates passed to the selector.",
-  "weakestArea": "Freshness median at 1.2 days is the primary miss: standalone articles from NewsAPI typically arrive 1.2–1.4 days after original publication. Only 7 of 29 articles have measurable source pub-date timestamps, so the true distribution is likely wider. Tech is also below its daily target (3 vs ≥4) but this appears to be a feed supply issue rather than a selector-floor failure — sources today were limited to 404 Media, Hacker News, and The War Zone.",
+  "experiment": "Active experiment 2026-04-26-standalone-cap-22 (standalone cap 25→22, targeting freshness) is on day 2 of 3 — evaluation holds until 2026-04-29. Today's freshness median (0.0) is well below the 1.2 baseline, early signal positive. No new experiment proposed while one is in flight.",
+  "weakestArea": "Regions diversity passes its count target (5 of 4) but the distribution is skewed: Americas accounts for 37% of coverage (22/59), Europe 27%, Middle East 20%, Asia 10%, Africa 5%, and Oceania has zero articles today. The target metric is met on count, but geographic balance is the most exposed gap if source mix drifts.",
   "watching": [
-    "India–Pakistan tensions: Dawn dominates today with 5 articles plus four Indian outlets (ABP Live, Zee News, NDTV, India Today) — a dense cluster signalling escalating bilateral story.",
-    "Middle East: 10 ME-region articles across Al Jazeera, The New Arab, TRT World, Mehr News Agency, Times of Israel — multiple threads active simultaneously.",
-    "Iran: Mehr News Agency contributing 2 articles today; track for any escalation signal against backdrop of nuclear talks.",
-    "Ukraine–Russia: European coverage (7 EU articles) with TASS and RT alongside Ukrinform/DW — information-environment divergence warrants editorial attention."
+    "Pakistan–India tensions: Dawn (4 articles) and multiple South Asian outlets tracking military and diplomatic developments — continued cluster expected.",
+    "Gaza and Lebanon: Drop Site News, Middle East Eye, TRT World each contributing; ME region at 20% of daily output.",
+    "Ukraine: TASS and Ukrainska Pravda both represented today — dual-source balance worth preserving as frontline reporting diverges.",
+    "CoinDesk cluster (6 articles, 10% of output): crypto/DeFi stories grouping in economy/tech — watch that this doesn't crowd out other economy sources next cycle."
   ],
   "coverageGaps": [
-    "Tech underrepresented today (3 vs ≥4 target) — feed supply thin; no Ars Technica, The Decoder, or WIRED stories surfaced in today's cycles.",
-    "Africa near-absent (1 article, Premium Times Nigeria only) despite active stories in Sudan, Ethiopia, and West Africa.",
-    "Oceania entirely absent; no Australian or Pacific coverage in any cycle today.",
-    "Southeast Asia still light (AS: 2 articles) — Philippines, Vietnam, Indonesia underrepresented as flagged yesterday."
+    "Oceania (OC): zero articles today — Australian and Pacific stories absent from the feed.",
+    "Southeast Asia underrepresented: only 6 AS articles total, with most originating from India/Pakistan rather than ASEAN countries.",
+    "Sub-Saharan Africa thin: 3 articles, all from Daily Maverick and Premium Times — West and East Africa not surfaced today."
   ],
-  "context": "Dawn at 17% of today's output (5 of 29 articles) is within the 20% source cap but approaching the ceiling. If the India–Pakistan story cluster intensifies tomorrow, Dawn concentration could breach the cap. The cycle count dropped to 4 today (vs the typical 5); the 12:00 or 17:00 UTC cycle may have been skipped or failed silently — worth checking systemd logs if the publish count remains below 10/day through tomorrow."
+  "context": "Freshness is exceptionally clean today (median 0 days), likely reflecting the standalone-cap experiment pushing the feed toward fresher event-based picks. Cycle duration rose to 1958s average (vs ~1232s yesterday) — within normal variance but worth watching if it sustains above ~1800s. The multi-source floor experiment from 2026-04-21 continues to hold: today's multi-source count of 13 is well above the 4-article target."
 }
