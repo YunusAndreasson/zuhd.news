@@ -65872,5 +65872,1578 @@
     "label": "Extrajudicial Strikes & the Laws of War",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-27-china-warns-eu-over-proposed-made-in-europe-law": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOCTRINE SHIFT",
+        "body": "The EU spent four decades evangelizing open markets and non-discrimination at the WTO. The Made-in-Europe law is a formal break: it conditions market access on local hiring and forced technology transfer — exactly the practices Brussels spent the 2000s suing Beijing over.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The EU now imports the playbook it once called *protectionism* — local-content quotas and **forced tech transfer** — from the country it accused of running it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 50% LOCAL CONTENT",
+        "body": "Local-content requirements are the oldest tool in industrial policy. They force a foreign investor to build supply chains, train workers, and locate IP onshore — turning a factory into an ecosystem. The number (50%, 60%, 75%) is always political; the mechanism is always the same.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US IRA (EV credit)",
+                "value": "~50% NA content",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "India PLI (electronics)",
+                "value": "~25% domestic",
+                "tone": "neutral",
+                "cc": "IN"
+              },
+              {
+                "label": "Indonesia (nickel)",
+                "value": "100% onshore smelting",
+                "tone": "unfavorable",
+                "cc": "ID"
+              },
+              {
+                "label": "EU proposal",
+                "value": "50% workforce + IP",
+                "tone": "neutral",
+                "cc": "EU"
+              }
+            ],
+            "label": "local-content thresholds, selected regimes"
+          }
+        ]
+      },
+      {
+        "heading": "THE TECHNOLOGY-TRANSFER MIRROR",
+        "body": "China's WTO accession in 2001 was conditioned on phasing out forced JV requirements. Beijing did, formally — but informal pressure on foreign firms to share IP continued for two decades, and the EU's 2018 case at the WTO targeted exactly this practice. The new law writes the same demand into European statute.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2001",
+                "label": "China joins WTO; ends formal JV mandate"
+              },
+              {
+                "year": "2018",
+                "label": "EU files WTO case on forced tech transfer",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "EU launches EV anti-subsidy probe"
+              },
+              {
+                "year": "2024",
+                "label": "EU imposes tariffs on Chinese EVs"
+              },
+              {
+                "year": "2026",
+                "label": "Made-in-Europe law tabled"
+              }
+            ],
+            "label": "the IP-transfer arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE EV TRADE BALANCE",
+        "body": "China exported roughly $13bn of EVs to the EU in 2024; the reverse flow is under $2bn. Brussels is not protecting a competitive industry — it is trying to build one before the window closes. The law is the IRA's European cousin, with EU characteristics."
+      },
+      {
+        "heading": "WHO HAS LEVERAGE",
+        "body": "China processes 70%+ of the world's lithium, cobalt, and rare earths. Any EU battery built under the new law still depends on Chinese refining. This is why Beijing's threats are credible — the supply chain runs upstream of the assembly line.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 85,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malaysia",
+                "value": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Estonia",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Japan",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": 4,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global rare earth refining capacity, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "Local-content rules have a long track record — and a mixed one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country's local-content rules most successfully forced foreign IP transfer in the 21st century?",
+            "options": [
+              "Brazil's auto Inovar-Auto regime",
+              "China's pre-WTO joint-venture mandates",
+              "Indonesia's nickel export ban",
+              "India's PLI electronics scheme"
+            ],
+            "correct": 1,
+            "explanation": "China's 1990s JV requirement — foreign automakers had to partner 50/50 with a domestic firm — is the canonical case study. The EU is now copying the structure."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T08:30:22.153Z",
+    "label": "Local-Content Rules & EU Industrial Policy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-cosmological-principle-homogeneity-hubble-tension": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FOUNDING ASSUMPTION",
+        "body": "Modern cosmology rests on one axiom: at large enough scales, the universe looks the same in every direction (isotropy) and from every location (homogeneity). This is the cosmological principle — not a measurement, but a simplification that makes Einstein's equations solvable.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The principle is **methodological**, not empirical. Einstein adopted it in 1917 because the field equations of general relativity have no closed-form solution for an arbitrary matter distribution — only for a *perfectly smooth* one."
+          }
+        ]
+      },
+      {
+        "heading": "THE METRIC",
+        "body": "The Friedmann–Lemaître–Robertson–Walker metric is the geometry that drops out when you assume homogeneity and isotropy. Every number in mainstream cosmology — the age of the universe, the expansion rate, dark energy's share of the cosmic budget — is a parameter fit inside this metric."
+      },
+      {
+        "heading": "THE HUBBLE TENSION",
+        "body": "Two methods of measuring the expansion rate disagree by about 9%. The cosmic microwave background (early universe) gives ~67 km/s/Mpc. Cepheid-calibrated supernovae (late universe) give ~73. The discrepancy has held for a decade and grown more statistically significant as data improved.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "CMB (Planck)",
+                "value": "67.4 km/s/Mpc",
+                "tone": "neutral"
+              },
+              {
+                "label": "SH0ES (supernovae)",
+                "value": "73.0 km/s/Mpc",
+                "tone": "neutral"
+              },
+              {
+                "label": "TRGB (red giants)",
+                "value": "69.8 km/s/Mpc",
+                "tone": "neutral"
+              },
+              {
+                "label": "gravitational waves",
+                "value": "68.0 km/s/Mpc",
+                "tone": "neutral"
+              }
+            ],
+            "label": "the two measurements that won't agree"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT LUMPINESS WOULD MEAN",
+        "body": "If the universe is significantly inhomogeneous on the scales we observe — voids and filaments that don't average out — then fitting a smooth FLRW metric to clumpy data introduces systematic bias. Apparent acceleration could be a fitting artifact rather than evidence of dark energy. This is the 'backreaction' hypothesis, long marginal, now revisited.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cosmos is observably lumpy at scales up to ~300 megaparsecs — the **Sloan Great Wall** spans ~430 Mpc. The question is whether this lumpiness *averages out* by the time you zoom out to the full observable universe, or whether it biases every cosmological measurement made through it."
+          }
+        ]
+      },
+      {
+        "heading": "DARK ENERGY AS PLACEHOLDER",
+        "body": "Dark energy was inferred in 1998 from supernovae appearing dimmer — and thus farther — than a decelerating universe predicted. It now accounts for ~68% of the cosmic energy budget despite having no known particle, no laboratory detection, and no theoretical value within 120 orders of magnitude of what quantum field theory predicts.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is dark energy considered the largest unsolved problem in physics?",
+            "options": [
+              "It has never been directly detected, only inferred from cosmic expansion",
+              "Quantum field theory predicts a value ~10^120 times larger than observed",
+              "Both of the above",
+              "It violates conservation of energy"
+            ],
+            "correct": 2,
+            "explanation": "Dark energy is inferred from supernova dimming, never measured directly, and the theoretical prediction differs from observation by ~120 orders of magnitude — the worst prediction in physics."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Cosmology has rebuilt its foundations before. The steady-state model dominated until the 1965 discovery of the cosmic microwave background killed it overnight. Inflation replaced earlier Big Bang models in the 1980s to fix the horizon and flatness problems. The field has a habit of revising what looked like settled axioms when the data forces it."
+      }
+    ],
+    "generatedAt": "2026-04-27T08:30:51.439Z",
+    "label": "The Cosmological Principle",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-27-eprodisate-alpha-synuclein-condensation-parkinson": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LIQUID PHASE OF LIFE",
+        "body": "Cells separate proteins not just with membranes but with droplets — biomolecular condensates that form by liquid-liquid phase separation, like oil beads in vinegar. Discovered only in 2009, these droplets organize roughly a third of cellular biochemistry and have rewritten how biologists think about cell interiors.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift was conceptual: a *condensate* is not an organelle with a wall but a **demixed phase** — same solvent, different concentration, held together by weak multivalent contacts."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DROPLETS GO BAD",
+        "body": "Liquid condensates can age. Repeated contacts between disordered protein regions slowly stiffen the droplet from a fluid into a gel and finally into solid amyloid fibrils. The same physics that lets a cell organize itself becomes the physics of neurodegeneration when the maturation runs away."
+      },
+      {
+        "heading": "ALPHA-SYNUCLEIN",
+        "body": "A small, intrinsically disordered protein concentrated at synaptic terminals. Mutations and overexpression cause familial Parkinson's; aggregated alpha-synuclein is the defining component of Lewy bodies, the inclusions Friedrich Lewy first described in 1912 in the brains of Parkinson's patients."
+      },
+      {
+        "heading": "THE SEED HYPOTHESIS",
+        "body": "Once a single misfolded alpha-synuclein fibril forms, it templates neighboring monomers to misfold the same way. The pathology spreads neuron-to-neuron in a stereotyped pattern — Braak staging — that mirrors the clinical progression from sleep disturbance to motor symptoms to dementia.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What cellular inclusion, named for its 1912 discoverer, is the pathological hallmark of Parkinson's disease?",
+            "options": [
+              "Lewy bodies",
+              "Pick bodies",
+              "Negri bodies",
+              "Mallory bodies"
+            ],
+            "correct": 0,
+            "explanation": "Friedrich Lewy described the alpha-synuclein-rich inclusions in 1912, decades before the protein itself was identified."
+          }
+        ]
+      },
+      {
+        "heading": "EPRODISATE'S FIRST LIFE",
+        "body": "Eprodisate is a small sulfonated molecule originally developed for AA amyloidosis, a kidney complication of chronic inflammation. It was designed to bind glycosaminoglycans and block serum amyloid A from aggregating in the kidney — a mechanism that turns out to share physics with synuclein condensate maturation."
+      },
+      {
+        "heading": "DRUG REPURPOSING",
+        "body": "Bringing a brand-new molecule to market costs roughly $2 billion and takes 10–15 years. Repurposing a drug with existing safety data can compress that to 3–5 years at a fraction of the cost — which is why findings like this one, on a compound already studied in humans, move faster than the underlying biology suggests."
+      }
+    ],
+    "generatedAt": "2026-04-27T08:31:18.116Z",
+    "label": "Phase Separation & Parkinson's",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-27-grnn-mc-soil-borehole-geotechnical-ml": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SAMPLING PROBLEM",
+        "body": "A borehole is a pencil-thin core through ground that varies wildly over meters. Engineers drill a handful per site and interpolate everything between. The space between boreholes is where buildings settle unevenly, tunnels flood, and embankments fail.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *stratigraphic uncertainty* — not whether a layer exists, but **where its boundaries actually lie** between the points you sampled."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1970s BASELINE",
+        "body": "Standard practice still relies on kriging and hand-drawn cross-sections codified in the 1960s-70s. Kriging assumes spatial correlation follows a smooth statistical function — fine for ore grades, awkward for sharp clay-to-sand contacts where the geology actually steps."
+      },
+      {
+        "heading": "WHY UNCERTAINTY MATTERS MORE THAN ACCURACY",
+        "body": "A model that's wrong but knows it's wrong is safer than a model that's slightly more accurate but overconfident. Geotechnical design uses partial safety factors — engineers add margin proportional to how unsure they are. Underestimating uncertainty is how foundations fail."
+      },
+      {
+        "heading": "WHY RANDOM FORESTS FIT",
+        "body": "Random forests average hundreds of decision trees, each trained on a random data subset. They handle the non-smooth, categorical nature of soil layers (this is clay OR sand, not a gradient) better than methods that assume continuity — which is exactly where kriging breaks down.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has kriging dominated geotechnical interpolation for fifty years despite its known limits?",
+            "options": [
+              "It produces a built-in uncertainty estimate at every point",
+              "It's faster to compute than alternatives",
+              "It was the only method codified in engineering standards",
+              "It handles sharp geological boundaries well"
+            ],
+            "correct": 0,
+            "explanation": "Kriging's killer feature is the kriging variance — a per-point uncertainty number that engineers can plug directly into safety-factor calculations. ML models historically lacked this."
+          }
+        ]
+      },
+      {
+        "heading": "THE VALIDATION GAP",
+        "body": "Engineering codes (Eurocode 7, ASCE standards) require methods with decades of failure-case calibration. A model that beats kriging on a test dataset still has to survive case histories — collapses, settlements, near-misses — before any regulator lets it into routine design. That pipeline takes 10-20 years."
+      }
+    ],
+    "generatedAt": "2026-04-27T08:31:40.781Z",
+    "label": "Borehole Profiling & Soil Uncertainty",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-27-hormuz-blockade-fertilizer-food-production-russia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HIDDEN CARGO",
+        "body": "Hormuz is famous for oil, but the Gulf is also the world's largest exporter of urea and ammonia. Qatar, Saudi Arabia, and Oman convert cheap stranded gas into nitrogen fertilizer — roughly a fifth of globally traded urea loads at Gulf ports.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "QA",
+              "SA",
+              "OM",
+              "AE",
+              "IR",
+              "BH",
+              "KW"
+            ],
+            "label": "Gulf fertilizer export hubs",
+            "markers": [
+              {
+                "lat": 25.8859,
+                "lng": 51.531,
+                "label": "Ras Laffan (Qatar urea)"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 50.0167,
+                "label": "Jubail (Saudi ammonia)"
+              },
+              {
+                "lat": 22.5333,
+                "lng": 59.5167,
+                "label": "Sur (Oman urea)"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HABER-BOSCH AXIOM",
+        "body": "Synthetic nitrogen fertilizer is made by fixing atmospheric nitrogen with hydrogen — and the cheapest hydrogen comes from natural gas. Roughly half of all the nitrogen in human bodies today passed through a Haber-Bosch plant. No gas, no fertilizer, no harvest.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Haber-Bosch process** consumes about *1-2% of all global energy* and feeds an estimated *4 billion people* who would otherwise not exist."
+          }
+        ]
+      },
+      {
+        "heading": "THE PLANTING WINDOW",
+        "body": "Fertilizer is uniquely time-sensitive. Wheat needs nitrogen at sowing and again at tillering; rice needs it at transplanting. A shipment delayed by six weeks isn't just late — it misses the agronomic window entirely, and that season's yield collapses regardless of when supply resumes."
+      },
+      {
+        "heading": "THE 2022 PRECEDENT",
+        "body": "When Russia's invasion of Ukraine cut Black Sea fertilizer exports, urea prices tripled within months. African and South Asian smallholders — who buy fertilizer one bag at a time — simply applied less. The harvest gap showed up a year later as food-price inflation across importing nations.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              208.3816845,
+              227.4307704166667,
+              205.2260548983333,
+              183.2256341666667,
+              175.5104662666666,
+              188.5052165740741,
+              197.3719458333333,
+              185.7347870824562,
+              185.7943505,
+              190.6296420634921,
+              190.1026421105263,
+              179.6065420634921,
+              174.8167426587301,
+              196.8410714285714,
+              173.1947634816666,
+              165.2666224637681,
+              159.3079408380954,
+              155.1151385317461,
+              157.39233125,
+              169.2032881647058,
+              165.6266704583334,
+              169.2505145833334,
+              174.7524918912281,
+              193.8771220833334
+            ],
+            "periods": [
+              "Apr 2024",
+              "May 2024",
+              "Jun 2024",
+              "Jul 2024",
+              "Aug 2024",
+              "Sep 2024",
+              "Oct 2024",
+              "Nov 2024",
+              "Dec 2024",
+              "Jan 2025",
+              "Feb 2025",
+              "Mar 2025",
+              "Apr 2025",
+              "May 2025",
+              "Jun 2025",
+              "Jul 2025",
+              "Aug 2025",
+              "Sep 2025",
+              "Oct 2025",
+              "Nov 2025",
+              "Dec 2025",
+              "Jan 2026",
+              "Feb 2026",
+              "Mar 2026"
+            ],
+            "label": "Wheat",
+            "unit": "$/mt",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY EATS THE LOSS",
+        "body": "Rich-country farmers hedge fertilizer costs and pass them through. Subsistence farmers in Bangladesh, Nigeria, and Pakistan absorb the price shock by under-applying — yields drop 20-40% on under-fertilized plots. The food-security cost of a Hormuz shock lands hardest on countries that import none of the fertilizer directly.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nigeria",
+                "value": "~63%",
+                "cc": "NG",
+                "weight": 63,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~37%",
+                "cc": "PK",
+                "weight": 37,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~31%",
+                "cc": "BD",
+                "weight": 31,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "~28%",
+                "cc": "EG",
+                "weight": 28,
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": "~16%",
+                "cc": "IN",
+                "weight": 16,
+                "tone": "neutral"
+              }
+            ],
+            "label": "share of population in food-insecure households"
+          }
+        ]
+      },
+      {
+        "heading": "WHY RUSSIA RAISES IT",
+        "body": "Russia is itself the world's largest fertilizer exporter. A Gulf supply shock would re-route global demand toward Russian urea and potash — sanctioned for finance but exempted for food security under UN carve-outs. Moscow's warnings about Hormuz are not neutral observation; they describe a market its own producers would inherit.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is the world's largest exporter of nitrogen fertilizer?",
+            "options": [
+              "Saudi Arabia",
+              "Russia",
+              "China",
+              "United States"
+            ],
+            "correct": 1,
+            "explanation": "Russia exports more urea and ammonium nitrate than any other country — a position built on cheap domestic gas and Soviet-era plant capacity."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · IMF · as of 2026-03-01"
+    ],
+    "generatedAt": "2026-04-27T08:32:22.436Z",
+    "label": "Fertilizer & the Hormuz Chokepoint",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-27-india-s-sun-pharma-to-buy-us-listed-organon-in-11-75-billion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GENERICS SUPERPOWER",
+        "body": "India supplies roughly 20% of the world's generic drugs by volume and 40% of US generics specifically. The industry was built on a 1970 Patents Act that recognized only process patents, not product patents — letting Indian firms reverse-engineer any molecule legally for three decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1970 law was repealed in 2005 to comply with **TRIPS** (the WTO intellectual-property treaty), but by then India's generics base was unassailable — the manufacturing scale, regulatory know-how, and *Hatch-Waxman* filing expertise were already entrenched."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A BIOSIMILAR ACTUALLY IS",
+        "body": "Small-molecule drugs (aspirin, statins) are chemically identical across manufacturers — a generic is a copy. Biologics are proteins grown in living cells; no two batches are ever truly identical. A biosimilar is therefore not a copy but a clinically equivalent version, requiring its own trials and a separate regulatory pathway.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't a biologic drug have a true generic version like aspirin does?",
+            "options": [
+              "Patent law forbids it",
+              "Biologics are grown in living cells, so batches are never chemically identical",
+              "The FDA has not approved any generic biologics",
+              "Biologics are too expensive to copy"
+            ],
+            "correct": 1,
+            "explanation": "Biologics are large proteins produced by genetically modified cells; minor variations in folding and glycosylation are unavoidable, so the regulatory category is biosimilar, not generic."
+          }
+        ]
+      },
+      {
+        "heading": "THE ORGANON SPINOFF",
+        "body": "Organon was spun out of Merck & Co. in 2021 as a women's-health and established-brands vehicle — Merck's way of offloading slow-growth, off-patent products (Nexplanon, Follistim) to focus its remaining capital on oncology and vaccines. Sun Pharma is buying what Merck no longer wanted to operate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "J&J",
+                "value": "$88bn",
+                "cc": "US",
+                "weight": 88
+              },
+              {
+                "label": "Roche",
+                "value": "$67bn",
+                "cc": "CH",
+                "weight": 67
+              },
+              {
+                "label": "Merck & Co.",
+                "value": "$64bn",
+                "cc": "US",
+                "weight": 64
+              },
+              {
+                "label": "Pfizer",
+                "value": "$58bn",
+                "cc": "US",
+                "weight": 58
+              },
+              {
+                "label": "Sun Pharma",
+                "value": "$5.4bn",
+                "cc": "IN",
+                "weight": 5.4
+              },
+              {
+                "label": "Organon",
+                "value": "$6.2bn",
+                "cc": "US",
+                "weight": 6.2
+              }
+            ],
+            "label": "global pharma — top by revenue, 2024 ($bn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEBT MATH",
+        "body": "The headline price is $11.75bn but Sun Pharma is also assuming $8.6bn of Organon's debt — Merck loaded the spinoff with leverage at separation, a common tactic to extract cash before letting the entity go. Sun Pharma's effective enterprise-value outlay approaches $20bn against its own ~$5bn revenue base."
+      },
+      {
+        "heading": "THE OUTBOUND M&A SHIFT",
+        "body": "Indian pharma's last decade was defined by US regulators (the FDA) hammering Indian plants over manufacturing quality — Sun Pharma's Halol facility was under import alert for years. Buying a US-listed company with FDA-cleared facilities is a regulatory shortcut as much as a growth play.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              94.782054,
+              94.352351,
+              93.48465,
+              92.64285,
+              92.97385,
+              92.763649,
+              92.978498,
+              92.978498,
+              92.9636,
+              92.86045,
+              92.283354,
+              92.47006,
+              93.10605,
+              93.10525,
+              94.508943,
+              94.94696,
+              93.165649,
+              93.387156,
+              93.048145,
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338
+            ],
+            "periods": [
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE BIOSIMILAR PRIZE",
+        "body": "Roughly $200bn of biologic drugs lose patent protection between 2025 and 2030 — Humira, Stelara, Eylea, Keytruda eventually. Whoever owns biosimilar manufacturing capacity at that moment captures share of a market that took twenty years to build."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-27"
+    ],
+    "generatedAt": "2026-04-27T08:32:52.551Z",
+    "label": "India Pharma & Biosimilars",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-27-iran-shahid-rajaee-port-blast-bandar-abbas": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT WITHIN THE CHOKEPOINT",
+        "body": "Shahid Rajaee handles roughly 70% of Iran's container traffic and over half its non-oil trade. It sits 20km west of Bandar Abbas on the Iranian side of Hormuz — the same coastline whose naval positioning dominates the strait.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "SA"
+            ],
+            "label": "Iran's southern maritime spine",
+            "markers": [
+              {
+                "lat": 27.1167,
+                "lng": 56.0667,
+                "label": "Shahid Rajaee port"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2667,
+                "label": "Bandar Abbas"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY ONE PORT MATTERS SO MUCH",
+        "body": "Sanctions pushed Iran to concentrate trade through facilities that could be insulated from Western financial exposure. Shahid Rajaee — state-owned, sanctioned by the US Treasury since 2020 for IRGC links — became the single node through which the bulk of containerized imports flow.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The port operator was sanctioned for handling shipments tied to the **IRGC**'s logistics network — the same body that runs Iran's ballistic missile program."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2020 STUXNET SEQUEL",
+        "body": "In May 2020, a cyberattack — widely attributed to Israel — disrupted Shahid Rajaee's logistics systems for days, jamming truck queues miles deep. It was the first publicly known retaliation in cyberspace against Iranian critical infrastructure since Stuxnet."
+      },
+      {
+        "heading": "PORTS AS SOFT TARGETS",
+        "body": "Modern container ports stack thousands of tonnes of mixed cargo — fuels, chemicals, fertilizers — in dense rows. Beirut's August 2020 blast (2,750 tonnes of ammonium nitrate) showed how a single ignition in a poorly segregated yard scales into a city-leveling event.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What caused the August 2020 Beirut port explosion that killed over 200 people?",
+            "options": [
+              "A fuel tanker collision",
+              "Ammonium nitrate stored unsafely for years",
+              "An Israeli airstrike",
+              "A natural gas pipeline rupture"
+            ],
+            "correct": 1,
+            "explanation": "2,750 tonnes of ammonium nitrate, confiscated from a derelict ship in 2013, sat in Warehouse 12 until a welding spark ignited it."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSIT EXPOSURE",
+        "body": "Hormuz tanker traffic is already running at a fraction of normal levels through April. A damaged Shahid Rajaee compounds the squeeze — non-oil imports that would ordinarily land here must reroute to Bandar Imam Khomeini in the upper Gulf, doubling inland haulage to Tehran.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-27T08:33:17.611Z",
+    "label": "Shahid Rajaee & Iran's Maritime Lifeline",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-myanmar-junta-president-language-normalisation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COUP",
+        "body": "On 1 February 2021, the Tatmadaw detained Aung San Suu Kyi hours before the newly elected parliament was to convene. The military's own election commission had certified the November 2020 vote; the coup justification — fraud — was rejected by every credible observer.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1962",
+                "label": "Ne Win coup ends parliamentary democracy"
+              },
+              {
+                "year": "1988",
+                "label": "8888 Uprising crushed"
+              },
+              {
+                "year": "1990",
+                "label": "NLD wins election; junta voids result"
+              },
+              {
+                "year": "2008",
+                "label": "Military-drafted constitution"
+              },
+              {
+                "year": "2011",
+                "label": "Quasi-civilian transition begins"
+              },
+              {
+                "year": "2015",
+                "label": "NLD wins landslide"
+              },
+              {
+                "year": "2021",
+                "label": "Min Aung Hlaing seizes power",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Myanmar's military arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE TITLE LAUNDERING",
+        "body": "Min Aung Hlaing was Commander-in-Chief when he seized power. He has since cycled through self-conferred titles — Chairman of the State Administration Council, then Prime Minister (2023), then acting President (2024). Each rebrand is designed to be picked up uncritically by foreign desks under deadline pressure."
+      },
+      {
+        "heading": "WHY WORDS MATTER",
+        "body": "International law has no formal recognition test for governments — recognition is a political act by other states. In its absence, *de facto* legitimacy accrues through repetition: every wire dispatch that calls a usurper 'president' without qualifier shifts the Overton window of what counts as a government.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *normative cascade* — when a contested label, repeated often enough in authoritative sources, becomes the default. Reuters style guides historically required 'self-declared' or 'junta-appointed' for unrecognized leaders; **erosion of that hedge** is the Lowy critique."
+          }
+        ]
+      },
+      {
+        "heading": "THE RECOGNITION VACUUM",
+        "body": "ASEAN suspended Myanmar from leaders' summits in 2021 — an unprecedented step for the consensus-bound bloc. The UN General Assembly's credentials committee has deferred the question for four consecutive years, leaving Myanmar's seat held by an NLD-aligned ambassador. No major democracy has accredited a junta envoy.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "ASEAN (official)",
+                "value": "not invited",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UN credentials",
+                "value": "deferred",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China, Russia",
+                "value": "engaged",
+                "tone": "neutral"
+              },
+              {
+                "label": "India, Thailand",
+                "value": "de facto",
+                "tone": "neutral"
+              },
+              {
+                "label": "US, EU, UK",
+                "value": "sanctioned",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "how the world refers to Min Aung Hlaing"
+          }
+        ]
+      },
+      {
+        "heading": "THE CIVIL WAR THE TITLE OBSCURES",
+        "body": "Calling Min Aung Hlaing 'president' implies he governs Myanmar. He does not. The National Unity Government (NUG), formed by ousted NLD lawmakers, and an alliance of ethnic armed organizations control over half the country's territory by most independent estimates. The junta holds the major cities and the Bamar heartland; the periphery is contested or lost.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MM",
+              "TH",
+              "CN",
+              "IN",
+              "BD",
+              "LA"
+            ],
+            "label": "Myanmar and its neighbors",
+            "caption": "Refugee flows run to Thailand and Bangladesh; arms flow from China"
+          }
+        ]
+      },
+      {
+        "heading": "THE ROHINGYA PRECEDENT",
+        "body": "Min Aung Hlaing personally commanded the 2017 operations in Rakhine that drove ~750,000 Rohingya into Bangladesh — actions the UN fact-finding mission said warranted prosecution for genocide. The ICC has an active investigation; the ICJ is hearing The Gambia's genocide case against Myanmar. 'President' is the title of a man under international criminal scrutiny.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which court is hearing the genocide case against Myanmar over the Rohingya?",
+            "options": [
+              "International Criminal Court (ICC)",
+              "International Court of Justice (ICJ)",
+              "UN Human Rights Council",
+              "Permanent Court of Arbitration"
+            ],
+            "correct": 1,
+            "explanation": "The Gambia filed at the ICJ in 2019 under the Genocide Convention; the ICC's parallel investigation focuses on individual criminal responsibility for deportation across the Bangladesh border."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T08:33:53.965Z",
+    "label": "Naming Power: How Press Labels Confer Legitimacy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-nft-rally-wash-trading-shrinking-user-base": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN NFT ACTUALLY IS",
+        "body": "A non-fungible token is a pointer on a blockchain to a piece of metadata — usually a URL where the image lives. The image itself almost never sits on-chain. Buy an NFT and you own a cryptographically signed receipt, not the file.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: when the hosting service goes down, the *token* persists but the **artwork** can vanish. Several major collections have already had images go dark when their IPFS pinning lapsed."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WASH TRADING WORKS HERE",
+        "body": "On a traditional exchange, wash trading — selling to yourself to fake volume — is illegal and detectable through KYC. On NFT marketplaces, a single person can control unlimited pseudonymous wallets and trade between them at any price. The blockchain records it as legitimate volume.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is wash trading harder to police on NFT marketplaces than on stock exchanges?",
+            "options": [
+              "Blockchains hide transaction data from regulators",
+              "Wallets are pseudonymous, so one person can control many",
+              "NFT trades happen too fast for surveillance systems",
+              "SEC has no jurisdiction over digital art"
+            ],
+            "correct": 1,
+            "explanation": "Anyone can spin up unlimited wallets without identity verification, then trade an NFT between them to manufacture volume the chain records as real."
+          }
+        ]
+      },
+      {
+        "heading": "THE INCENTIVE TO FAKE",
+        "body": "Some marketplaces paid token rewards proportional to trading volume — LooksRare and Blur most prominently. This turned wash trading into a paid activity: trade an NFT against yourself, collect the platform's reward token, repeat. Studies estimated 80%+ of LooksRare's early volume was wash."
+      },
+      {
+        "heading": "FLOOR PRICE, EXPLAINED",
+        "body": "The 'floor' is the cheapest listed item in a collection — the headline number traders quote. It's also the easiest number to manipulate: a single high-priced sale between colluding wallets resets perceptions while the actual bid side stays empty.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bored Ape YC",
+                "value": "~150 → ~12 ETH",
+                "tone": "unfavorable",
+                "weight": 150
+              },
+              {
+                "label": "CryptoPunks",
+                "value": "~125 → ~40 ETH",
+                "tone": "neutral",
+                "weight": 125
+              },
+              {
+                "label": "Azuki",
+                "value": "~30 → ~3 ETH",
+                "tone": "unfavorable",
+                "weight": 30
+              },
+              {
+                "label": "Doodles",
+                "value": "~22 → ~0.5 ETH",
+                "tone": "unfavorable",
+                "weight": 22
+              }
+            ],
+            "label": "Blue-chip NFT floors at peak vs now (ETH)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ETH MOVES THE FLOOR",
+        "body": "NFT floors are denominated in ether, not dollars. When ETH rallies, the dollar value of a 10 ETH floor rises mechanically — without anyone buying. Holders see 'gains' that are pure currency translation; the underlying NFT market may be flat or falling.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1992.77,
+              1983.18,
+              2023.82,
+              2104.88,
+              2139.06,
+              2056.89,
+              2053.61,
+              2064.99,
+              2109.01,
+              2107.83,
+              2241.82,
+              2190.48,
+              2188.97,
+              2245.05,
+              2285.47,
+              2192.16,
+              2371.86,
+              2323.22,
+              2359.68,
+              2348.7,
+              2421.01,
+              2350.94,
+              2264.81,
+              2315.02,
+              2327.51,
+              2377.93,
+              2330.83,
+              2315.51,
+              2319.15,
+              2369.74,
+              2311.77
+            ],
+            "periods": [
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 27"
+            ],
+            "label": "Ethereum",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LIQUIDITY TRAP",
+        "body": "Unlike fungible tokens, every NFT is unique — there's no order book aggregating bids. To exit, you need a specific buyer for your specific item at your specific price. In a thin market, the listed floor and the achievable sale price diverge sharply; the quoted number is aspirational."
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-04-27"
+    ],
+    "generatedAt": "2026-04-27T08:34:22.980Z",
+    "label": "NFTs & Wash Trading",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-27-openai-smartphone-agent-os-apple-samsung": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISTRIBUTION LAYER",
+        "body": "Apple and Google take 15-30% on every in-app purchase routed through their stores. The app icon grid is not a UX choice — it is a toll booth. Anything that bypasses app launches bypasses the toll.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Android",
+                "value": "~71%",
+                "cc": "US",
+                "weight": 71,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "iOS",
+                "value": "~28%",
+                "cc": "US",
+                "weight": 28,
+                "tone": "neutral"
+              },
+              {
+                "label": "Other",
+                "value": "~1%",
+                "weight": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "smartphone OS market share, 2025"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRIOR ATTEMPTS FAILED",
+        "body": "Rabbit's R1 (2024) and Humane's AI Pin (2024) both promised agent-first hardware and both collapsed within a year. The pattern: latency that broke conversation flow, batteries that died by lunch, and a cold-start problem — no developer ecosystem because no users, no users because no apps.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2024-01",
+                "label": "Rabbit R1 launches at CES"
+              },
+              {
+                "year": "2024-04",
+                "label": "Humane AI Pin ships"
+              },
+              {
+                "year": "2024-06",
+                "label": "Humane reviews pan device",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025-02",
+                "label": "Humane sells to HP, discontinues Pin"
+              },
+              {
+                "year": "2028",
+                "label": "OpenAI device target"
+              }
+            ],
+            "label": "the agent-hardware graveyard"
+          }
+        ]
+      },
+      {
+        "heading": "THE SILICON CHOICE",
+        "body": "Qualcomm's Snapdragon dominates premium Android; MediaTek owns mid-range and increasingly the on-device AI segment with its Dimensate NPU line. Choosing MediaTek over Qualcomm signals a cost-conscious bill of materials and a willingness to run inference locally rather than route everything to the cloud.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "On-device inference matters because every cloud round-trip adds **200-400ms** — fatal for an agent that's supposed to feel like conversation. The *neural processing unit* (NPU) is the chip block that makes local LLM inference viable on a battery."
+          }
+        ]
+      },
+      {
+        "heading": "THE INTEGRATION MOAT",
+        "body": "Apple's advantage is not the iPhone — it is the iPhone plus iMessage plus AirPods plus Watch plus Mac, all sharing keychains and clipboards and handoff. A standalone agent phone competes with a single device against a fifteen-year integration stack.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Apple's revenue comes from Services (App Store, iCloud, Apple Pay, etc.)?",
+            "options": [
+              "~10%",
+              "~25%",
+              "~50%",
+              "~70%"
+            ],
+            "correct": 1,
+            "explanation": "Services hit ~25% of Apple revenue in FY2024 — the fastest-growing segment and the one most threatened by an agent that bypasses the App Store."
+          }
+        ]
+      },
+      {
+        "heading": "THE JONY IVE FACTOR",
+        "body": "OpenAI acquired Jony Ive's hardware startup io for $6.5bn in 2025 — the largest acqui-hire in tech history. Ive designed every iconic Apple product from the iMac to the iPhone. The bet is that agent-first hardware needs a new physical form factor, not a phone with a different OS.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sam Altman",
+                "role": "OpenAI CEO",
+                "cc": "US"
+              },
+              {
+                "name": "Jony Ive",
+                "role": "Chief design officer, io",
+                "years": "2025–",
+                "cc": "GB"
+              },
+              {
+                "name": "Tang Tan",
+                "role": "Ex-Apple iPhone hardware lead",
+                "cc": "US"
+              },
+              {
+                "name": "Evans Hankey",
+                "role": "Ex-Apple VP of design",
+                "cc": "US"
+              }
+            ],
+            "label": "the OpenAI hardware bench"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T08:34:51.686Z",
+    "label": "Agent-Native Phones",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-27-south-africa-water-infrastructure-municipal-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSTITUTIONAL RIGHT",
+        "body": "Section 27 of South Africa's 1996 constitution guarantees access to sufficient water as a justiciable right. The Constitutional Court's 2009 Mazibuko ruling clarified that the state must take 'reasonable measures' progressively — but cannot be forced to deliver a specific volume. The right exists; the enforcement mechanism is weak.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2009 ruling set the free basic water allocation at **25 litres per person per day** — roughly a two-minute shower. The WHO considers **50–100 litres** the minimum for basic health."
+          }
+        ]
+      },
+      {
+        "heading": "THE APARTHEID INHERITANCE",
+        "body": "The 1950s-era networks were built to serve white municipalities; black townships received minimal infrastructure. Post-1994, the ANC government extended pipes to townships but rarely replaced the original network. Most pipes are now 60-80 years old, well past their 50-year design life.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "ZW",
+              "BW",
+              "MZ",
+              "NA",
+              "LS",
+              "SZ"
+            ],
+            "label": "Southern Africa",
+            "caption": "Limpopo borders Zimbabwe, Botswana, and Mozambique"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLUE DROP AUDIT",
+        "body": "South Africa's Department of Water and Sanitation runs the world's most rigorous public water-quality audit. The 2023 Blue Drop report rated 277 of 958 systems at critical risk — meaning failure is imminent or ongoing. The audit was suspended from 2014 to 2022 precisely because results were politically toxic."
+      },
+      {
+        "heading": "THE MUNICIPAL REVENUE TRAP",
+        "body": "Water tariffs are set below cost recovery to keep services 'affordable.' Non-payment runs at 40-60% in many townships — a legacy of apartheid-era boycotts that never fully reversed. Municipalities cannot fund maintenance from operations and depend on the national equitable share, which has shrunk in real terms since 2018.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "South Africa",
+                "value": "~47%",
+                "cc": "ZA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Brazil",
+                "value": "~37%",
+                "cc": "BR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germany",
+                "value": "~5%",
+                "cc": "DE",
+                "tone": "favorable"
+              },
+              {
+                "label": "Japan",
+                "value": "~3%",
+                "cc": "JP",
+                "tone": "favorable"
+              },
+              {
+                "label": "Singapore",
+                "value": "~5%",
+                "cc": "SG",
+                "tone": "favorable"
+              }
+            ],
+            "label": "non-revenue water (% lost to leaks, theft, unbilled)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER ECONOMY",
+        "body": "When pipes fail, municipalities contract private water tankers to deliver to communities. The 'tanker mafia' — a network of politically connected suppliers — has become a fixed cost in some districts, creating a perverse incentive against repairs. Investigative reporting has documented councillors with stakes in tanker companies.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does fixing pipes face structural resistance in some South African municipalities?",
+            "options": [
+              "Repair parts are unavailable due to sanctions",
+              "Politically connected officials profit from tanker contracts that exist only while pipes fail",
+              "The constitution prohibits using municipal funds for infrastructure",
+              "Repairs require national-level approval that takes years"
+            ],
+            "correct": 1,
+            "explanation": "The 'tanker mafia' creates a constituency that benefits from continued failure — councillors with stakes in tanker companies have a direct financial interest against pipe repair."
+          }
+        ]
+      },
+      {
+        "heading": "THE DAY ZERO PRECEDENT",
+        "body": "Cape Town came within 90 days of running dry in 2018 — the first major city in modern history to face that prospect. The crisis was averted by a 50% consumption cut imposed through punitive tariffs and public shaming. The lesson other South African cities took: behavioral demand management is faster than infrastructure repair, but only buys time."
+      }
+    ],
+    "generatedAt": "2026-04-27T08:35:22.680Z",
+    "label": "South Africa's Water Crisis",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-27-taiwan-court-hands-down-jail-terms-in-tsmc-trade-secrets-cas": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SILICON SHIELD DOCTRINE",
+        "body": "Taiwan's chip dominance is its security policy. The logic: any military action against Taiwan that damages TSMC's fabs would crater the global economy and the attacker's own electronics supply chain. Semiconductor concentration is not a vulnerability — it is the deterrent.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase **silicon shield** entered Taiwanese strategic vocabulary in the early 2000s; today TSMC alone produces over **90%** of the world's most advanced logic chips."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TRADE SECRETS, NOT PATENTS",
+        "body": "Cutting-edge process recipes — the exact temperatures, gas flows, and timings inside an EUV chamber — are kept as trade secrets, not patented. A patent requires public disclosure; a trade secret loses all protection the moment it leaks. This is why an engineer walking out with a hard drive does damage no patent system can undo."
+      },
+      {
+        "heading": "THE NATIONAL SECURITY ACT",
+        "body": "Taiwan amended its National Security Act in 2022 to create the offense of 'economic espionage' — leaking core technology to China, Hong Kong, Macau, or hostile foreign forces. Maximum sentence: 12 years. Before 2022, the same theft was prosecuted under ordinary commercial law with sentences typically under 2 years.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Taiwan",
+                "value": "12 yr max",
+                "cc": "TW",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "South Korea",
+                "value": "15 yr max",
+                "cc": "KR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Japan",
+                "value": "10 yr max",
+                "cc": "JP",
+                "tone": "neutral"
+              },
+              {
+                "label": "United States",
+                "value": "15 yr max",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "7 yr max",
+                "cc": "CN",
+                "tone": "favorable"
+              }
+            ],
+            "label": "who treats chip IP as a state asset"
+          }
+        ]
+      },
+      {
+        "heading": "THE FOUNDRY GEOGRAPHY",
+        "body": "Advanced logic fabrication is concentrated in a corridor running from Hsinchu through Tainan, with Samsung and SK Hynix in South Korea, and Tokyo Electron's tool factories scattered across Japan. The whole stack — design tools, lithography, etch, deposition — fits inside a 2,000-km arc.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TW",
+              "KR",
+              "JP",
+              "CN"
+            ],
+            "label": "the East Asian fab corridor",
+            "markers": [
+              {
+                "lat": 24.7736,
+                "lng": 120.9897,
+                "label": "Hsinchu Science Park"
+              },
+              {
+                "lat": 23,
+                "lng": 120.22,
+                "label": "TSMC Fab 18 (Tainan)"
+              },
+              {
+                "lat": 37.2411,
+                "lng": 127.0786,
+                "label": "Samsung Hwaseong"
+              },
+              {
+                "lat": 35.6762,
+                "lng": 139.6503,
+                "label": "Tokyo Electron HQ"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TOOLMAKER PROBLEM",
+        "body": "TSMC fabs the chips, but the machines that do the fabricating come from a tiny club: ASML (Netherlands) for lithography, Tokyo Electron and Applied Materials for everything else. A toolmaker's local engineers see process recipes during installation and maintenance — which is why a Tokyo Electron subsidiary, not a competing fab, ended up at the center of this case."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "In 2023, Taiwan jailed former TSMC engineers who had defected to China's SMIC carrying 2nm research. Korea has prosecuted Samsung engineers caught attempting to replicate fab blueprints in Xi'an. The pattern is consistent: every major chip jurisdiction now treats engineer poaching as espionage, not headhunting.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are advanced chip process recipes kept as trade secrets rather than patented?",
+            "options": [
+              "Patents are too expensive for chipmakers",
+              "Patents require public disclosure of the recipe",
+              "Trade secrets last longer than patents",
+              "Patents don't apply to manufacturing processes"
+            ],
+            "correct": 1,
+            "explanation": "A patent grants a 20-year monopoly in exchange for publishing how the invention works. For a fab recipe, that disclosure is the asset itself — once published, any rival reading the patent can replicate it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T08:35:54.215Z",
+    "label": "Taiwan's Silicon Shield",
+    "category": "politics",
+    "articleCount": 1
   }
 }
