@@ -68951,5 +68951,2001 @@
     "label": "Iris Biometrics & Proof-of-Personhood",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-27-as-trump-s-narrative-on-negotiations-flails-iran-is-setting": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The Strait of Hormuz is 33 km wide at its narrowest point, with shipping lanes only 3 km wide in each direction. Iran's coastline runs the entire northern edge; the deepwater channel hugs the Iranian side, which is why Iranian naval positioning matters disproportionately to any other Gulf state.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2833,
+                "label": "Bandar Abbas (IRGC navy)"
+              },
+              {
+                "lat": 26.2041,
+                "lng": 56.2477,
+                "label": "Khasab (Omani enclave)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS THREAT BITES",
+        "body": "Roughly a fifth of global oil — and a third of seaborne LNG — moves through Hormuz. There is no pipeline workaround at scale: Saudi Arabia's East-West line and the UAE's Habshan-Fujairah line together bypass perhaps 40% of normal Hormuz throughput, and only if both run at maximum.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL POSTURE",
+        "body": "Under UNCLOS Article 38, vessels enjoy a right of *transit passage* through international straits — coastal states cannot suspend it. Iran signed UNCLOS in 1982 but never ratified, and maintains that Hormuz is governed by Iranian domestic law, not the convention. The legal ambiguity is itself the leverage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction between **transit passage** (UNCLOS, non-suspendable) and **innocent passage** (older customary law, suspendable for security) is the entire legal fight. Iran wants the latter regime; every importing nation wants the former."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial vessels in the Gulf. Oil prices spiked but markets adapted: tankers reflagged under US and Kuwaiti colors and sailed under naval escort. The lesson planners took on both sides — disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins"
+              },
+              {
+                "year": "1987",
+                "label": "Operation Earnest Will (US escorts)"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Iran threatens closure over sanctions"
+              },
+              {
+                "year": "2019",
+                "label": "Limpet mine attacks on tankers"
+              },
+              {
+                "year": "2024",
+                "label": "Tanker seizures resume"
+              }
+            ],
+            "label": "Iran's Hormuz playbook"
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERCEPTOR MATH",
+        "body": "Each THAAD interceptor costs ~$12 million; each SM-3 Block IIA ~$28 million. Iran's ballistic and cruise inventory is estimated in the low thousands. The Tehran calculation — that the US magazine empties before the Iranian one does — is not posturing; it is arithmetic the Pentagon has internally acknowledged.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Shahed-136 drone",
+                "value": "~$50k",
+                "tone": "favorable",
+                "cc": "IR"
+              },
+              {
+                "label": "Patriot PAC-3",
+                "value": "~$4M",
+                "tone": "unfavorable",
+                "cc": "US"
+              },
+              {
+                "label": "THAAD interceptor",
+                "value": "~$12M",
+                "tone": "unfavorable",
+                "cc": "US"
+              },
+              {
+                "label": "SM-3 Block IIA",
+                "value": "~$28M",
+                "tone": "unfavorable",
+                "cc": "US"
+              }
+            ],
+            "label": "cost-exchange ratio (per unit)"
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET'S READ",
+        "body": "Prediction markets price the probability of any Trump-era closure announcement, not actual closure. The premium is small but persistent — a tail risk the market never fully discounts because the cost of being wrong is asymmetric.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global seaborne oil transits the Strait of Hormuz?",
+            "options": [
+              "About 5%",
+              "About 12%",
+              "About 20%",
+              "About 35%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 20% of global oil consumption — and about 30% of seaborne crude — moves through Hormuz daily."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-27T17:38:18.889Z",
+    "label": "Hormuz as Bargaining Chip",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-canada-s-carney-announces-a-sovereign-wealth-fund": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NORWAY MODEL",
+        "body": "Norway's Government Pension Fund Global, founded in 1990, channels North Sea oil revenue into global equities and bonds. It owns roughly 1.5% of every listed company on Earth and operates under a strict 3% annual withdrawal rule that insulates the fund from political raids.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Norwegian rule is called the *handlingsregel* — the **fiscal action rule** — and it is enforced by parliament, not the fund itself. The fund holds the assets; the legislature owns the discipline."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COUNTRIES BUILD THEM",
+        "body": "Sovereign wealth funds exist for three reasons: to sterilize commodity windfalls so they don't inflate the domestic currency (Norway, Gulf states), to recycle trade surpluses into foreign assets (China, Singapore), or to save for a post-resource future (Kuwait, Abu Dhabi). Canada's stated rationale — buffering against tariff shocks — is unusual.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Norway (GPFG)",
+                "value": "$1.7tn",
+                "cc": "NO",
+                "weight": 1700
+              },
+              {
+                "label": "China (CIC)",
+                "value": "$1.3tn",
+                "cc": "CN",
+                "weight": 1300
+              },
+              {
+                "label": "Abu Dhabi (ADIA)",
+                "value": "$1.1tn",
+                "cc": "AE",
+                "weight": 1100
+              },
+              {
+                "label": "Saudi Arabia (PIF)",
+                "value": "$925bn",
+                "cc": "SA",
+                "weight": 925
+              },
+              {
+                "label": "Kuwait (KIA)",
+                "value": "$800bn",
+                "cc": "KW",
+                "weight": 800
+              },
+              {
+                "label": "Canada (new)",
+                "value": "$18bn",
+                "cc": "CA",
+                "weight": 18
+              }
+            ],
+            "label": "largest sovereign wealth funds (AUM, 2025)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ALBERTA PRECEDENT",
+        "body": "Canada has tried this before at the provincial level. Alberta's Heritage Savings Trust Fund was created in 1976 by Peter Lougheed to save oil royalties. Successive governments raided it for general revenue; today it holds roughly C$25bn — the same size as Carney's federal launch — despite Alberta producing trillions in oil wealth over five decades."
+      },
+      {
+        "heading": "THE TARIFF VULNERABILITY",
+        "body": "Roughly 75% of Canadian exports go to the United States. No other G7 economy is this dependent on a single trading partner. When Washington raises tariffs, Canadian GDP contracts within quarters — there is no diversified buyer base to absorb the shock.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Canadian exports go to the United States?",
+            "options": [
+              "About 40%",
+              "About 55%",
+              "About 75%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "Around three-quarters of Canadian exports head south, making Canada uniquely exposed among G7 economies to US trade policy."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUNDING QUESTION",
+        "body": "Norway's fund is fed by oil royalties the state already collects. China's is fed by foreign exchange reserves accumulated through trade surpluses. A country that runs a current account deficit — as Canada does — has no natural inflow to seed a wealth fund. The C$25bn must come from borrowing, asset sales, or new taxes."
+      },
+      {
+        "heading": "THE CUSMA CLOCK",
+        "body": "The Canada-US-Mexico Agreement, signed in 2018, contains a sunset clause requiring review every six years. The 2026 review is the first real test: if any party withholds consent, the agreement terminates in 2036. This is the leverage Washington is using to demand renegotiation rather than a routine extension."
+      }
+    ],
+    "generatedAt": "2026-04-27T17:38:47.161Z",
+    "label": "Sovereign Wealth Funds",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-claire-s-closes-all-154-stores-as-it-collapses-into-administrat": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUSINESS MODEL",
+        "body": "Claire's built a 70-year empire on a simple loop: cheap costume jewelry and accessories priced under £10, ear-piercing services that brought tweens through the door, and high-traffic mall locations that converted footfall into impulse purchases. The model required two things — physical foot traffic and a price point above what discount competitors could match.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Claire's pierced an estimated **100 million** ears since 1978 — for a generation of girls in the US and UK, the chain was where childhood rites of passage happened."
+          }
+        ]
+      },
+      {
+        "heading": "THE ULTRA-FAST CHALLENGER",
+        "body": "Shein and Temu collapsed the price floor mall retailers depended on. Shipping a £2 hair clip directly from a Guangzhou warehouse to a UK doorstep undercuts any retailer paying for high-street rent, store staff, and UK-warehoused inventory. The de minimis customs threshold — packages under £135 entering the UK duty-free — made the math work.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Claire's (mall)",
+                "value": "~£0.40 margin",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Shein (direct)",
+                "value": "~£1.20 margin",
+                "tone": "favorable"
+              },
+              {
+                "label": "Temu (direct)",
+                "value": "~£1.10 margin",
+                "tone": "favorable"
+              }
+            ],
+            "label": "unit economics on a £3 hair accessory"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ADMINISTRATION ACTUALLY MEANS",
+        "body": "UK administration is a court-supervised process where an insolvency practitioner — here, Kroll — takes control of a company to either rescue it or sell its assets. Unlike US Chapter 11, administration usually ends in liquidation or a partial sale; the original entity rarely emerges intact. Claire's entered administration twice within 12 months, a pattern called 'phoenixing' when the brand survives but the debts don't."
+      },
+      {
+        "heading": "THE CONCESSION SURVIVAL",
+        "body": "The 356 Asda concessions remain open because they operate under a different commercial structure: Claire's pays Asda a percentage of sales rather than fixed rent, so the unit economics flex with revenue. When a standalone store's £80,000 annual rent stops being covered by foot traffic, it closes; a concession paying 15% of whatever it sells never goes underwater the same way."
+      },
+      {
+        "heading": "THE HIGH-STREET PATTERN",
+        "body": "Claire's joins Wilko (2023), Paperchase (2023), and Body Shop UK (2024) on the list of mid-market chains that survived 2008 and Covid but not the post-2022 squeeze of energy costs, business rates, and direct-from-China competition. The casualties cluster at one price point: too cheap to charge for experience, too expensive to beat Shein on price.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2018",
+                "label": "Toys R Us UK"
+              },
+              {
+                "year": "2020",
+                "label": "Debenhams (242 years old)"
+              },
+              {
+                "year": "2022",
+                "label": "Joules"
+              },
+              {
+                "year": "2023",
+                "label": "Wilko (400 stores)"
+              },
+              {
+                "year": "2024",
+                "label": "Body Shop UK",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025",
+                "label": "Claire's (1st administration)"
+              },
+              {
+                "year": "2026",
+                "label": "Claire's (final closure)"
+              }
+            ],
+            "label": "UK high-street collapses, recent"
+          }
+        ]
+      },
+      {
+        "heading": "WHO BUYS WHAT'S LEFT",
+        "body": "In UK retail collapses, brand IP routinely sells for pennies on the pound to buyers who keep the name and the website but shed the stores and staff. Wilko's brand was bought by The Range, Debenhams' by Boohoo, Body Shop UK's by Aurea — none re-opened the physical estate. The 'unnamed buyer' negotiating with Claire's landlords is almost certainly pursuing this playbook.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What typically happens to a UK retailer's brand after administration?",
+            "options": [
+              "The original company restructures and reopens stores",
+              "An online-only buyer purchases the brand and shutters the physical estate",
+              "Landlords convert it into a new chain under the same name",
+              "The government underwrites a rescue to preserve jobs"
+            ],
+            "correct": 1,
+            "explanation": "Brand IP is the only asset worth buying — Wilko, Debenhams, and Body Shop UK all live on as websites without their store networks."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T17:39:21.920Z",
+    "label": "Mall Retail & the Shein Squeeze",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-27-disinformation-campaign-targeted-tibetan-parliament-in-exile": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SPAMOUFLAGE IS",
+        "body": "Spamouflage (also called Dragonbridge) is a coordinated inauthentic-behavior network active since 2017, attributed by Meta and Google's Mandiant to Chinese state actors. It operates thousands of fake accounts across Facebook, X, YouTube, and TikTok, mostly pushing pro-Beijing narratives in dozens of languages.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name comes from its early signature: drowning critical hashtags in **spam** to **camouflage** authentic dissent. Modern operations are more sophisticated — AI-generated avatars, deepfake news anchors, fabricated 'leaked' documents."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOVERNMENT-IN-EXILE",
+        "body": "The Central Tibetan Administration sits in Dharamsala, northern India, where the 14th Dalai Lama fled after the failed 1959 uprising against Chinese rule. It runs schools, courts, and a 45-seat parliament elected by the global Tibetan diaspora — roughly 150,000 people scattered across India, Nepal, North America, and Europe."
+      },
+      {
+        "heading": "THE TAIWAN PLAYBOOK",
+        "body": "The same network blanketed Taiwan's 2024 presidential election with deepfakes of candidates and fabricated polls showing the Beijing-friendly KMT surging. The DPP won anyway. The Tibetan election is the same template applied to a target with a fraction of Taiwan's defensive infrastructure.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "TW",
+              "IN",
+              "NP",
+              "BT"
+            ],
+            "label": "the Tibet question",
+            "markers": [
+              {
+                "lat": 32.219,
+                "lng": 76.323,
+                "label": "Dharamsala (CTA seat)"
+              },
+              {
+                "lat": 29.652,
+                "lng": 91.172,
+                "label": "Lhasa"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIASPORAS ARE SOFT TARGETS",
+        "body": "A sovereign state has a cybersecurity agency, platform liaison teams, and the diplomatic weight to demand takedowns. A diaspora community has volunteers, encrypted group chats, and no one to call when a foreign network floods their election with fake candidates."
+      },
+      {
+        "heading": "THE ATTRIBUTION CHAIN",
+        "body": "The Digital Forensic Research Lab (DFRLab), part of the Atlantic Council, traces operations through technical fingerprints — posting times aligned to Beijing working hours, account-creation batches, shared infrastructure across 'unrelated' personas. Attribution to a state actor requires patterns no individual operation reveals.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which signal most reliably distinguishes a state-run influence network from organic activity?",
+            "options": [
+              "Posts in broken English or non-native phrasing",
+              "Coordinated posting times across hundreds of 'unrelated' accounts",
+              "Use of emoji and slang inconsistent with the claimed user age",
+              "Heavy use of hashtags trending in the target country"
+            ],
+            "correct": 1,
+            "explanation": "Coordinated timing across accounts that claim to be independent is the clearest fingerprint of central control — individuals don't post in synchronized bursts."
+          }
+        ]
+      },
+      {
+        "heading": "THE DALAI LAMA SUCCESSION",
+        "body": "The 14th Dalai Lama is 90. Beijing has prepared its own succession process — invoking a Qing-era Golden Urn lottery — to install a state-approved successor, while Dharamsala maintains the traditional reincarnation search. Disinformation against Tibetan institutions is preparation for the legitimacy battle that follows his death."
+      }
+    ],
+    "generatedAt": "2026-04-27T17:39:54.248Z",
+    "label": "Spamouflage & Diaspora Targeting",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-27-drone-kills-man-near-zaporizhzhia-nuclear-power-plant-iaea-s": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY OFF-SITE POWER MATTERS",
+        "body": "A reactor shut down still generates decay heat for years. Cooling pumps need electricity. If the grid fails and backup diesels fail, fuel rods overheat within hours — this is the exact sequence that destroyed Fukushima Daiichi in 2011, where the reactors had already SCRAMmed before the meltdown began.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *station blackout* — loss of all AC power, on-site and off-site. Every commercial reactor design assumes it will not last more than 72 hours. Zaporizhzhia has had **15 such events** since 2022."
+          }
+        ]
+      },
+      {
+        "heading": "THE GENEVA CONVENTIONS GAP",
+        "body": "Additional Protocol I (1977) prohibits attacks on works containing dangerous forces — dams, dikes, and nuclear stations — even if they are military objectives. The protocol carves out an exception when the installation provides electric power in regular, significant, and direct support of military operations, which is the legal hook each side uses to justify strikes the other calls war crimes."
+      },
+      {
+        "heading": "WHAT MAKES ZAPORIZHZHIA DIFFERENT",
+        "body": "Six VVER-1000 reactors, the largest nuclear plant in Europe, sitting on the front line of an active war. No precedent exists. The IAEA's seven pillars of nuclear safety — physical integrity, functioning systems, staff capacity, off-site power, logistics, monitoring, communications — have been violated continuously since Russian forces seized the site in March 2022.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "BY",
+              "MD",
+              "RO",
+              "PL"
+            ],
+            "label": "the plant and its predecessor",
+            "markers": [
+              {
+                "lat": 47.5119,
+                "lng": 34.5856,
+                "label": "Zaporizhzhia NPP"
+              },
+              {
+                "lat": 51.3892,
+                "lng": 30.0992,
+                "label": "Chernobyl"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE STAFFING SQUEEZE",
+        "body": "Reactors are run by certified operators trained for years on a specific plant. Most pre-war Ukrainian staff have left or refused to sign Russian contracts; the remaining crew works under armed guard. A nuclear operator distracted by occupation is a different risk profile than the one regulators designed the plant around."
+      },
+      {
+        "heading": "THE CHERNOBYL COMPARISON",
+        "body": "Chernobyl's 1986 accident contaminated land across Belarus, Ukraine, and into Scandinavia within days. Modern VVER reactors have containment domes that the RBMK at Chernobyl lacked, but containment is designed for internal accidents, not artillery or drone strikes from outside.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What single failure at Fukushima Daiichi caused the 2011 meltdowns?",
+            "options": [
+              "The earthquake damaged the reactor cores directly",
+              "Loss of cooling after backup generators flooded",
+              "A hydrogen explosion inside the reactor vessel",
+              "Operator error during the tsunami response"
+            ],
+            "correct": 1,
+            "explanation": "The reactors shut down safely on the earthquake. The tsunami flooded the diesel generators, cutting cooling power — decay heat then melted the cores over the next three days."
+          }
+        ]
+      },
+      {
+        "heading": "THE TIMELINE",
+        "body": "Russian forces took the plant in the first week of the war and have held it since. Each shelling incident, blackout, and staff dispute has been logged by IAEA inspectors stationed on-site since September 2022 — the first time in the agency's history that monitors have been embedded in an active war zone.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-03",
+                "label": "Russian forces seize plant",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-09",
+                "label": "IAEA mission permanently stationed"
+              },
+              {
+                "year": "2022-09",
+                "label": "All six reactors in cold shutdown"
+              },
+              {
+                "year": "2023-06",
+                "label": "Kakhovka dam destroyed, cooling water risk"
+              },
+              {
+                "year": "2024",
+                "label": "Drone strike on reactor dome"
+              },
+              {
+                "year": "2026-04",
+                "label": "Worker killed in drone strike"
+              }
+            ],
+            "label": "Zaporizhzhia under occupation"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T17:40:27.723Z",
+    "label": "Zaporizhzhia & Nuclear Site Risk",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-27-government-hacking-tools-are-now-in-criminals-hands-with-lor": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MARKET",
+        "body": "Governments buy zero-day exploits and intrusion tools from a small set of contractors — Trenchant, NSO, Hacking Team, Candiru, Intellexa. The buyers are intelligence services and law enforcement; the sellers are private firms that pay researchers six and seven figures per working exploit.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "NSO Group",
+                "value": "Pegasus",
+                "cc": "IL"
+              },
+              {
+                "label": "Candiru",
+                "value": "DevilsTongue",
+                "cc": "IL"
+              },
+              {
+                "label": "Intellexa",
+                "value": "Predator",
+                "cc": "GR"
+              },
+              {
+                "label": "Trenchant",
+                "value": "exploit kits",
+                "cc": "US"
+              },
+              {
+                "label": "Hacking Team",
+                "value": "RCS (defunct)",
+                "cc": "IT"
+              }
+            ],
+            "label": "known commercial spyware vendors"
+          }
+        ]
+      },
+      {
+        "heading": "WHY LEAKAGE IS INEVITABLE",
+        "body": "An exploit is a file. Once written, it can be copied infinitely at zero cost and runs identically in any hand. There is no DRM on a working zero-day — the same property that makes it valuable to a state agency makes it valuable to a criminal gang the moment it slips the perimeter."
+      },
+      {
+        "heading": "THE SHADOW BROKERS PRECEDENT",
+        "body": "In 2016 a group calling itself the Shadow Brokers leaked a cache of NSA tools, including the EternalBlue exploit. Within months EternalBlue powered WannaCry and NotPetya, causing more than ten billion dollars in global damage. The lesson: a single leak from a state arsenal can rewrite the threat landscape within weeks.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016-08",
+                "label": "Shadow Brokers first dump"
+              },
+              {
+                "year": "2017-04",
+                "label": "EternalBlue released",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017-05",
+                "label": "WannaCry hits 200k+ machines"
+              },
+              {
+                "year": "2017-06",
+                "label": "NotPetya — $10bn+ damages"
+              }
+            ],
+            "label": "from leak to global ransomware"
+          }
+        ]
+      },
+      {
+        "heading": "LAWFUL INTERCEPT, IN THEORY",
+        "body": "Lawful interception is the doctrine that telecoms and platforms must, on a court order, hand over communications. Western tooling was built around this idea — targeted, warranted, auditable. Modern exploit kits inherit none of those guardrails: they leave no log on the target device and no record at the vendor once delivered."
+      },
+      {
+        "heading": "THE CRIMINAL ARBITRAGE",
+        "body": "A nation-state pays millions for a zero-day to surveil a handful of targets. A ransomware crew running the same exploit against ten thousand corporate networks at fifty thousand dollars each clears the same revenue in a quarter. The economic gravity pulls every leaked tool toward criminal use.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **dual-use**: the same code is a *lawful intercept tool* in one hand and a *cybercrime weapon* in the other — the bytes do not change."
+          }
+        ]
+      },
+      {
+        "heading": "THE INSIDER PROBLEM",
+        "body": "Every major exploit leak in the last decade — Shadow Brokers, Vault 7, Hacking Team — traced back to an insider, not an outside breach. The contractor model concentrates the most dangerous code in small teams of cleared engineers; one disgruntled or bribed employee is the entire failure mode.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which exploit leak caused the most documented global damage?",
+            "options": [
+              "Vault 7 (CIA tools, 2017)",
+              "Shadow Brokers / EternalBlue (NSA, 2016–17)",
+              "Hacking Team breach (2015)",
+              "Pegasus Project disclosures (2021)"
+            ],
+            "correct": 1,
+            "explanation": "EternalBlue, leaked by the Shadow Brokers, powered WannaCry and NotPetya — over $10bn in damages, more than all other leaks combined."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T17:40:58.419Z",
+    "label": "Lawful Intercept & Exploit Leakage",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-27-meta-seeking-energy-from-space-for-earth-bound-datacenters": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IDEA IS OLD",
+        "body": "Isaac Asimov sketched orbital solar in a 1941 short story. Peter Glaser patented the concept in 1973 — kilometer-scale satellites in geostationary orbit, beaming power to Earth via microwave. NASA studied it seriously after the 1973 oil shock, then shelved it when launch costs refused to fall.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1941",
+                "label": "Asimov's 'Reason' imagines orbital power"
+              },
+              {
+                "year": "1968",
+                "label": "Peter Glaser proposes SBSP"
+              },
+              {
+                "year": "1979",
+                "label": "NASA/DOE reference design"
+              },
+              {
+                "year": "2007",
+                "label": "Pentagon NSSO study"
+              },
+              {
+                "year": "2023",
+                "label": "Caltech beams 200mW to Earth",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2028",
+                "label": "Overview Energy demo planned"
+              }
+            ],
+            "label": "space solar's long arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ORBIT BEATS GROUND",
+        "body": "A panel in geostationary orbit sees the sun ~99% of the time at full intensity — no night, no clouds, no atmospheric absorption. Ground solar in a good desert site averages ~25% capacity factor. The orbital advantage is roughly 4-8x per panel, which is what tempts the math even with launch costs.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Orbital solar",
+                "value": "~99%",
+                "tone": "favorable",
+                "weight": 99
+              },
+              {
+                "label": "Nuclear",
+                "value": "~92%",
+                "weight": 92
+              },
+              {
+                "label": "Onshore wind",
+                "value": "~35%",
+                "weight": 35
+              },
+              {
+                "label": "Desert solar",
+                "value": "~25%",
+                "weight": 25
+              },
+              {
+                "label": "Rooftop solar",
+                "value": "~15%",
+                "weight": 15
+              }
+            ],
+            "label": "capacity factor by source"
+          }
+        ]
+      },
+      {
+        "heading": "THE BEAM PROBLEM",
+        "body": "Power comes down as a microwave beam to a kilometer-wide rectifying antenna — a rectenna. The beam density at the ground is below sunlight intensity by design, but the receiver footprint is enormous and the pointing tolerance is tight. A misaimed gigawatt beam is not a weapon, but it is a regulatory nightmare.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The receiver is called a **rectenna** — a rectifying antenna that converts microwave radiation back to DC. Caltech's 2023 MAPLE experiment beamed *200 milliwatts* from orbit to a Pasadena rooftop. A useful plant needs to scale that by ten orders of magnitude."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAUNCH ECONOMICS",
+        "body": "A gigawatt-scale orbital plant masses thousands of tonnes. At Falcon Heavy prices (~$1,500/kg to GEO transfer), that's tens of billions before the panels generate a watt. Starship's promised cadence — if delivered — drops the floor below $200/kg, which is the threshold below which orbital solar pencils out against ground alternatives."
+      },
+      {
+        "heading": "WHY META IS HERE",
+        "body": "AI training campuses need 500MW-1GW of firm power on multi-year horizons. US grid interconnection queues now exceed 5 years in PJM and ERCOT. Hyperscalers have already turned to gas plants, restarted nuclear (Three Mile Island for Microsoft), and small modular reactors. Orbital solar is a 2030s bet — but the queue is what makes a 2030s bet rational today.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              25939.74,
+              26022.79,
+              25884.3,
+              25552.39,
+              25738.61,
+              25338.62,
+              24891.24,
+              24548.69,
+              25075.77,
+              25268.14,
+              25127.64,
+              25201.26,
+              24687.61,
+              24732.73,
+              24701.6,
+              24898.87,
+              24797.34,
+              25012.62,
+              24708.94,
+              24977.04,
+              25329.04,
+              25034.37,
+              24960.04,
+              24992.6,
+              24720.08,
+              25093.68,
+              25020.41,
+              24643.01,
+              24967.25,
+              24956.47,
+              24965.01,
+              24533.58,
+              24380.73,
+              24655.34,
+              24780.42,
+              24425.09,
+              24355.28,
+              23898.15,
+              24188.59,
+              24002.45,
+              24162.98,
+              23586.99,
+              23132.77,
+              22953.38,
+              23740.19,
+              24019.99,
+              24045.53,
+              24192.17,
+              24202.37,
+              24903.17,
+              25082.09,
+              25116.34,
+              25383.72,
+              25842,
+              26204.58,
+              26333,
+              26672.43,
+              26590.34,
+              26479.47,
+              26937.27,
+              26782.62,
+              27303.67
+            ],
+            "periods": [
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24"
+            ],
+            "label": "NASDAQ-100",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "Space-based solar's core engineering challenge isn't generation — silicon panels work fine in vacuum — it's transmission.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does a space-based solar plant get power to Earth?",
+            "options": [
+              "Tethered superconducting cable from orbit",
+              "Microwave beam to a ground rectenna",
+              "Laser to photovoltaic receiver array",
+              "Chemical battery payloads dropped on parachutes"
+            ],
+            "correct": 1,
+            "explanation": "Microwave beaming to a kilometer-scale rectenna is the canonical design since Glaser's 1968 patent — lasers are studied but atmospheric absorption is worse."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · NASDAQ · as of 2026-04-24"
+    ],
+    "generatedAt": "2026-04-27T17:41:32.329Z",
+    "label": "Space-Based Solar Power",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-27-microsoft-and-openai-s-open-relationship-is-now-official": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL BARGAIN",
+        "body": "Microsoft invested $13bn into OpenAI in stages from 2019, structured not as equity in the nonprofit parent but as a claim on profits from the for-profit subsidiary capped at a multiple of investment. In return, Microsoft got exclusive cloud rights and a revenue-share on OpenAI's products.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arrangement was deliberately exotic: Microsoft holds no board seat, no voting equity, just a *capped profit interest* — uncommon enough that the SEC had no template for disclosing it."
+          }
+        ]
+      },
+      {
+        "heading": "THE AGI CLAUSE",
+        "body": "OpenAI's charter contained a self-destruct: if the board declared that artificial general intelligence had been achieved, Microsoft's license to the technology would terminate. The clause was meant to protect humanity from a single corporation owning a transformative system — but it also gave OpenAI's board a unilateral lever to walk away from the most valuable contract in tech."
+      },
+      {
+        "heading": "WHY EXCLUSIVITY BROKE",
+        "body": "Training a frontier model now requires more GPUs than any single hyperscaler can supply on the timeline labs need. Microsoft could not pour enough Azure capacity into OpenAI fast enough; Anthropic on AWS and Google's TPU stack were pulling ahead on raw compute. Compute scarcity, not strategy, dissolved the cloud lock-in.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Microsoft",
+                "value": "~$80bn",
+                "cc": "US",
+                "weight": 80
+              },
+              {
+                "label": "Amazon",
+                "value": "~$75bn",
+                "cc": "US",
+                "weight": 75
+              },
+              {
+                "label": "Google",
+                "value": "~$60bn",
+                "cc": "US",
+                "weight": 60
+              },
+              {
+                "label": "Meta",
+                "value": "~$45bn",
+                "cc": "US",
+                "weight": 45
+              }
+            ],
+            "label": "hyperscaler AI capex, 2025 (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE-CORNER MARKET",
+        "body": "Frontier AI has consolidated to three labs paired with three clouds: OpenAI/Microsoft, Anthropic/Amazon, Gemini/Google. The new arrangement breaks the pairing — OpenAI workloads now flow to AWS as well, meaning Amazon hosts both of the leading non-Google labs.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "openai",
+                "label": "OpenAI"
+              },
+              {
+                "id": "anthropic",
+                "label": "Anthropic"
+              },
+              {
+                "id": "gemini",
+                "label": "Google DeepMind"
+              },
+              {
+                "id": "azure",
+                "label": "Azure"
+              },
+              {
+                "id": "aws",
+                "label": "AWS"
+              },
+              {
+                "id": "gcp",
+                "label": "Google Cloud"
+              }
+            ],
+            "links": [
+              {
+                "source": "openai",
+                "target": "azure",
+                "value": 60
+              },
+              {
+                "source": "openai",
+                "target": "aws",
+                "value": 50
+              },
+              {
+                "source": "anthropic",
+                "target": "aws",
+                "value": 80
+              },
+              {
+                "source": "anthropic",
+                "target": "gcp",
+                "value": 20
+              },
+              {
+                "source": "gemini",
+                "target": "gcp",
+                "value": 100
+              }
+            ],
+            "label": "frontier AI: labs → clouds (post-deal)"
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY SHADOW",
+        "body": "The FTC opened a probe into the Microsoft–OpenAI relationship in 2024 under the theory that Microsoft's compute exclusivity plus profit share constituted a de facto acquisition without merger review. Loosening exclusivity is partly a defensive move — a non-exclusive partner is harder to characterize as a hidden parent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was unusual about Microsoft's $13bn stake in OpenAI?",
+            "options": [
+              "It made Microsoft the majority shareholder",
+              "It was a capped profit interest, not equity",
+              "It included a board seat with veto rights",
+              "It was structured as a convertible loan"
+            ],
+            "correct": 1,
+            "explanation": "Microsoft's claim is on a multiple of profits from the for-profit subsidiary — no equity, no board seat. The structure is what let regulators argue it might be a de facto acquisition."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MICROSOFT KEEPS",
+        "body": "The deal preserves Microsoft's IP license through a defined model generation and its first-refusal rights on certain workloads. What it gives up is the AGI escape clause and exclusivity — both of which had become liabilities as OpenAI's compute appetite outgrew Azure and as regulators circled the bundling."
+      }
+    ],
+    "generatedAt": "2026-04-27T17:42:03.292Z",
+    "label": "The Microsoft–OpenAI Pact",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-27-national-science-board-eviscerated-trump-admin-fires-all-22": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE BOARD IS",
+        "body": "Created by the 1950 National Science Foundation Act, the 24-member National Science Board sets NSF policy, approves every major facility and grant above the statutory threshold, and reports to Congress on the state of US science. Members are presidentially appointed for staggered six-year terms — staggered specifically so no single president can replace the whole board.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The staggered-term design is the same insulation logic used for the **Federal Reserve Board** and the **FCC** — independence by overlapping tenure, not by statute alone."
+          }
+        ]
+      },
+      {
+        "heading": "THE STAGGER, BROKEN",
+        "body": "Truman signed the first appointments in 1950. In 75 years, no president had ever dismissed the board en bloc — individual resignations and term expirations were the only turnover mechanism. Friday's action collapses that norm in a single executive stroke."
+      },
+      {
+        "heading": "WHY THE $100M THRESHOLD MATTERS",
+        "body": "The board's approval is required for NSF awards above $100 million — the tier that funds telescopes, Antarctic stations, supercomputers, and ocean research vessels. Without a quorum, this pipeline freezes: no new IceCube, no new ALMA, no next-generation Green Bank.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Vera Rubin Obs.",
+                "value": "$680m",
+                "cc": "CL"
+              },
+              {
+                "label": "IceCube",
+                "value": "$279m",
+                "cc": "AQ"
+              },
+              {
+                "label": "ALMA (US share)",
+                "value": "$499m",
+                "cc": "CL"
+              },
+              {
+                "label": "NEON",
+                "value": "$434m",
+                "cc": "US"
+              },
+              {
+                "label": "Antarctic stations",
+                "value": "$355m/yr",
+                "cc": "AQ"
+              }
+            ],
+            "label": "NSF flagship facilities approved by the board"
+          }
+        ]
+      },
+      {
+        "heading": "THE 55% CUT IN CONTEXT",
+        "body": "NSF's FY2025 appropriation was roughly $9bn — about 0.13% of federal spending. A 55% cut would drop it below its 2003 nominal level, before adjusting for inflation. The agency funds roughly a quarter of all federally supported basic research at US universities.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "NIH",
+                "value": 45,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "NSF",
+                "value": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "DOE Office of Science",
+                "value": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "NASA science",
+                "value": 7,
+                "tone": "favorable"
+              },
+              {
+                "label": "USDA",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 6,
+                "tone": "favorable"
+              }
+            ],
+            "label": "US federal basic-research funding by agency (2024 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE BUSH DOCTRINE",
+        "body": "Vannevar Bush's 1945 report Science, the Endless Frontier argued that basic research — curiosity-driven, no immediate application — must be federally funded because no private firm captures enough of the spillover to justify the cost. NSF was built to operationalize that argument. Eighty years of US technological dominance, from the transistor to GPS to mRNA, traces to grants made under that premise.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Scientific progress on a broad front results from the free play of free intellects, working on subjects of their own choice, in the manner dictated by their curiosity for exploration of the unknown.",
+            "speaker": "Vannevar Bush, Science, the Endless Frontier",
+            "year": "1945"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIRECTOR QUESTION",
+        "body": "By statute, the NSF Director is a presidential appointee confirmed by the Senate, and every director since 1950 has held a doctorate in a STEM field. Nominating a director without scientific credentials is not illegal — the statute requires no degree — but it breaks a 75-year norm that Senate science committees have historically enforced informally.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which agency funds the largest share of US federal basic research?",
+            "options": [
+              "National Science Foundation",
+              "National Institutes of Health",
+              "Department of Defense",
+              "Department of Energy"
+            ],
+            "correct": 1,
+            "explanation": "NIH funds roughly half of federal basic research, mostly biomedical. NSF funds about a quarter, but covers nearly all non-medical fields — math, physics, computer science, geosciences."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T17:42:36.133Z",
+    "label": "The National Science Board",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-27-physicists-discover-the-most-complex-forms-of-ice-yet": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ICE FLOATS",
+        "body": "Ice Ih — the everyday phase — is one of very few solids less dense than its own liquid. Hydrogen bonds force water molecules into an open hexagonal lattice with empty space inside. If ice sank, lakes would freeze from the bottom up and aquatic life as we know it would not exist.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The hexagonal lattice is why snowflakes have **six-fold symmetry** — every snowflake inherits the geometry of *ice Ih*."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A PHASE IS",
+        "body": "A phase is a region of a material with uniform structure. For water, pressure and temperature decide which arrangement of hydrogen bonds is most stable. Cross a phase boundary and the lattice rearranges, sometimes violently — the same H2O molecules, a different solid."
+      },
+      {
+        "heading": "THE EXOTIC ZOO",
+        "body": "Ice VII forms above 3 GPa and exists naturally inside diamond inclusions from Earth's mantle. Ice X, above ~70 GPa, has hydrogen atoms shared symmetrically between oxygens — no longer molecular water at all. Superionic ice, predicted in the interiors of Neptune and Uranus, is solid oxygen lattice with hydrogen flowing through it like a liquid metal."
+      },
+      {
+        "heading": "WHY NEW PHASES KEEP APPEARING",
+        "body": "Most ice phases were found by squeezing water in diamond anvil cells and watching the diffraction pattern change. Each decade brings better pressure cells, faster X-ray sources, and computational searches that suggest where to look. The catalogue is not converging because the search space — pressure, temperature, cooling rate, isotope — is enormous.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many distinct crystalline phases of ice have been confirmed?",
+            "options": [
+              "3",
+              "around 20",
+              "around 100"
+            ],
+            "correct": 1,
+            "explanation": "Roughly 20 crystalline phases plus several amorphous forms; ordinary ice is just phase Ih."
+          }
+        ]
+      },
+      {
+        "heading": "ICE INSIDE PLANETS",
+        "body": "The inner mantles of Uranus and Neptune are thought to be largely water under pressures that would produce superionic ice. This is why ice physics is also planetary physics: knowing which phase is stable at which depth determines a planet's magnetic field, internal heat flow, and bulk composition."
+      }
+    ],
+    "generatedAt": "2026-04-27T17:42:58.997Z",
+    "label": "The Phases of Ice",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-27-shell-strikes-12bn-deal-for-canadian-gas-giant": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MONTNEY",
+        "body": "The Montney Formation is a Triassic-age shale stretching across British Columbia and Alberta. It holds an estimated 449 trillion cubic feet of recoverable gas — one of the largest unconventional gas plays on Earth, rivaling the Marcellus in the US.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CA",
+              "US"
+            ],
+            "label": "the Montney basin",
+            "markers": [
+              {
+                "lat": 56,
+                "lng": -122,
+                "label": "Montney Formation"
+              },
+              {
+                "lat": 54.315,
+                "lng": -130.3208,
+                "label": "LNG Canada (Kitimat)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY GAS, WHY NOW",
+        "body": "For a decade, supermajors trimmed upstream spending under shareholder pressure to return cash and pivot to renewables. The thesis has flipped: AI datacenter buildout and Asian LNG demand make gas a 20-year asset class again. Shell, BP, and Equinor are all unwinding their net-zero pivots.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              17.19,
+              9.34,
+              10.25,
+              7.18,
+              4.4,
+              4.11,
+              6.88,
+              5.28,
+              4.37,
+              3.25,
+              3.18,
+              3.25,
+              3.43,
+              3.24,
+              3.13,
+              2.98,
+              3.09,
+              3.15,
+              3.13,
+              2.99,
+              3.02,
+              2.94,
+              2.99,
+              2.99,
+              3.1,
+              2.87,
+              2.9,
+              3.1,
+              3.25,
+              3.08,
+              3.15,
+              3.27,
+              3.2,
+              3.03,
+              3.14,
+              3.12,
+              3.21,
+              3.04,
+              2.94,
+              2.9,
+              2.94,
+              2.99,
+              2.99,
+              2.88,
+              2.88,
+              2.99,
+              2.86,
+              3.04,
+              3.01,
+              2.78,
+              2.78,
+              2.64,
+              2.79,
+              2.79,
+              2.78,
+              2.78,
+              2.71,
+              2.81
+            ],
+            "periods": [
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Natural gas (Henry Hub)",
+            "unit": "$/MMBtu",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LNG ARBITRAGE",
+        "body": "Henry Hub gas trades around $3/MMBtu in North America. The same gas lands in Asia at $12-15/MMBtu after liquefaction and shipping. The spread is what funds every LNG export terminal — and what makes Canadian Montney gas piped to Kitimat for Asian export so valuable.",
+        "blocks": [
+          {
+            "type": "trend",
+            "series": [
+              {
+                "values": [
+                  3.14,
+                  3.12,
+                  3.21,
+                  3.04,
+                  2.94,
+                  2.9,
+                  2.94,
+                  2.99,
+                  2.99,
+                  2.88,
+                  2.88,
+                  2.99,
+                  2.86,
+                  3.04,
+                  3.01,
+                  2.78,
+                  2.78,
+                  2.64,
+                  2.79,
+                  2.79,
+                  2.78,
+                  2.78,
+                  2.71,
+                  2.81
+                ],
+                "label": "Natural gas (Henry Hub)",
+                "highlight": "last"
+              },
+              {
+                "values": [
+                  9.129581313,
+                  10.10962113,
+                  10.80662625,
+                  10.23979241,
+                  12.1938459,
+                  11.750812,
+                  12.755,
+                  13.811,
+                  13.757,
+                  14.75909611,
+                  15.37638294,
+                  13.15601031,
+                  11.57195747,
+                  11.62379688,
+                  12.30058745,
+                  11.47064619,
+                  10.97523233,
+                  11.003,
+                  10.897,
+                  10.355,
+                  9.46,
+                  11.987,
+                  11.19,
+                  17.67
+                ],
+                "label": "Natural gas (TTF, Europe)",
+                "highlight": "last"
+              }
+            ],
+            "label": "Henry Hub vs European TTF",
+            "source": 0,
+            "unit": "$/MMBtu",
+            "periods": [
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RESERVE REPLACEMENT PROBLEM",
+        "body": "Oil majors must replace produced reserves each year or watch their inventory decay. Shell's organic discoveries have lagged production for years. A $13.6bn acquisition that adds 2 billion barrels of oil-equivalent is the brute-force solution — buy what you can no longer find.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Reserve replacement ratio above **100%** means a company is finding more than it produces. Shell's RRR has hovered near *60-70%* through the 2020s — the kind of gap that forces an acquisition cycle."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2015 ECHO",
+        "body": "Shell's last deal of this size was its $70bn takeover of BG Group in 2015 — also a gas-and-LNG bet, made just before oil collapsed to $30. BG gave Shell its Australian and Brazilian LNG portfolio, which became the most profitable part of the company by the 2020s. Whether ARC plays the same role depends on Asian demand holding.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Shell's 2015 BG Group acquisition primarily add?",
+            "options": [
+              "African oil exploration blocks",
+              "Global LNG export capacity",
+              "US shale oil acreage",
+              "North Sea platforms"
+            ],
+            "correct": 1,
+            "explanation": "BG was the world's third-largest LNG trader; the deal vaulted Shell to global LNG leadership and is the template for the ARC acquisition."
+          }
+        ]
+      },
+      {
+        "heading": "THE DATACENTER THESIS",
+        "body": "Hyperscaler power demand is forecast to roughly double by 2030. Renewables alone cannot deliver firm 24/7 power at that scale on that timeline. Gas turbines — already the marginal grid resource in most US markets — become the swing supply for the AI buildout, and the gas itself has to come from somewhere.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Microsoft",
+                "value": "~30 TWh",
+                "weight": 30
+              },
+              {
+                "label": "Google",
+                "value": "~25 TWh",
+                "weight": 25
+              },
+              {
+                "label": "Meta",
+                "value": "~20 TWh",
+                "weight": 20
+              },
+              {
+                "label": "Amazon",
+                "value": "~40 TWh",
+                "weight": 40
+              }
+            ],
+            "label": "AI hyperscaler annual power demand (TWh, est.)"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20",
+      "FRED · IMF · as of 2026-03-01"
+    ],
+    "generatedAt": "2026-04-27T17:43:29.669Z",
+    "label": "Montney Gas & the Majors' Pivot",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-27-study-finds-a-third-of-new-websites-are-ai-generated": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FEEDBACK LOOP",
+        "body": "Large language models are trained on web text. When that web text is itself increasingly LLM output, the next generation of models trains on its predecessors' exhaust. Researchers call this recursive contamination — the corpus and the model converge on each other.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name is **model collapse**: a 2023 Oxford/Cambridge paper showed that models trained on synthetic data lose the *tails* of the distribution first — rare facts, minority dialects, unusual phrasings — then collapse toward a bland statistical mean."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TAILS DIE FIRST",
+        "body": "Sampling from a model is biased toward high-probability tokens. Train on those samples, and low-frequency knowledge — the long tail of human writing — gets pruned each generation. After a few cycles, the model can no longer reproduce concepts that were rare but real in the original data."
+      },
+      {
+        "heading": "THE SEO INCENTIVE",
+        "body": "Google's algorithm rewards freshness, keyword coverage, and depth. Generating a thousand competent pages with an LLM costs pennies; writing them costs salaries. Until detection improves or rankings penalize synthetic content, the economics push every marginal publisher toward generation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Human writers",
+                "value": "~$200,000",
+                "tone": "unfavorable",
+                "weight": 200000
+              },
+              {
+                "label": "Freelance content mill",
+                "value": "~$15,000",
+                "tone": "neutral",
+                "weight": 15000
+              },
+              {
+                "label": "GPT-4-class API",
+                "value": "~$50",
+                "tone": "favorable",
+                "weight": 50
+              }
+            ],
+            "label": "cost to publish 1,000 articles"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMON CRAWL PROBLEM",
+        "body": "Common Crawl — the open web scrape behind most foundation models — does not distinguish human from synthetic text. Every monthly crawl since 2023 contains a rising fraction of LLM output that the next training run will treat as ground truth.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              27804,
+              24105,
+              124201,
+              29163,
+              27568,
+              24731,
+              23122,
+              22098,
+              24622,
+              25313,
+              26067,
+              29407,
+              23397,
+              26115,
+              29883,
+              25191,
+              27000,
+              30650,
+              31341,
+              32926,
+              29392,
+              24304,
+              24189,
+              27607,
+              24623,
+              26694,
+              29212,
+              26978,
+              26577,
+              24041
+            ],
+            "periods": [
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26"
+            ],
+            "label": "Artificial intelligence — Wikipedia views",
+            "unit": "views/day",
+            "highlight": "max",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE DETECTION ARMS RACE",
+        "body": "Statistical detectors (perplexity, burstiness) work on early models but fail on newer ones tuned to mimic human variance. Watermarking biases token selection so generated text carries an invisible signature — but only works if every major lab opts in, and none have committed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does training a model on its own output cause quality to degrade?",
+            "options": [
+              "The model forgets its training",
+              "Sampling biases toward common tokens, so rare knowledge is lost each generation",
+              "Synthetic text contains hidden errors humans cannot see",
+              "Copyright restrictions limit reuse"
+            ],
+            "correct": 1,
+            "explanation": "Each generation samples from the high-probability mass of the prior model, pruning the long tail of rare-but-real facts and phrasings. Researchers call this model collapse."
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL ECHO",
+        "body": "In the 1990s, search engines were gamed by keyword-stuffed doorway pages until Google's PageRank used link structure as a human-curation signal. The synthetic-web era breaks that signal too — AI-generated sites link to each other, manufacturing the authority graph PageRank was designed to measure."
+      }
+    ],
+    "sources": [
+      "Wikipedia pageviews · as of 2026-04-26"
+    ],
+    "generatedAt": "2026-04-27T17:43:59.361Z",
+    "label": "Synthetic Web & Model Collapse",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-27-the-west-bank-on-strike": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OSLO MECHANIC",
+        "body": "Under the 1994 Paris Protocol, Israel collects customs duties, VAT, and income tax on goods entering the West Bank and Gaza on the Palestinian Authority's behalf, then transfers the receipts monthly. These 'clearance revenues' fund roughly two-thirds of the PA's budget — meaning Israel holds the tap on the Palestinian state it negotiated with.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arrangement was meant to be **interim** — five years, pending final-status talks. Thirty-two years later, it is the permanent fiscal architecture of occupation."
+          }
+        ]
+      },
+      {
+        "heading": "THE WITHHOLDING WEAPON",
+        "body": "Israel has withheld clearance revenues repeatedly — after the PA joined the ICC in 2015, after stipends to prisoners' families became a Knesset issue, and continuously since October 2023. Each freeze pushes the PA closer to insolvency without formally dissolving it, which suits both Israeli right-wing politics and the donors who would otherwise have to fund a collapsed authority.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "Paris Protocol signed",
+                "emphasis": "start"
+              },
+              {
+                "year": "2002",
+                "label": "Second Intifada freeze"
+              },
+              {
+                "year": "2011",
+                "label": "UNESCO membership freeze"
+              },
+              {
+                "year": "2015",
+                "label": "ICC accession freeze"
+              },
+              {
+                "year": "2019",
+                "label": "Prisoner stipend deduction"
+              },
+              {
+                "year": "2023-10",
+                "label": "Post-Oct 7 freeze",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "freeze cycles"
+          }
+        ]
+      },
+      {
+        "heading": "THE SALARY COLLAPSE",
+        "body": "The PA employs roughly 140,000 civil servants — teachers, doctors, police — across the West Bank and Gaza. Pre-2023, salaries averaged around $1,000/month. The flat $670 figure represents partial payments stretched across categories; many workers go months without a check entirely. Civil servant salaries are the single largest cash inflow into the West Bank economy.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Clearance revenue",
+                "value": "~65%",
+                "tone": "unfavorable",
+                "weight": 65
+              },
+              {
+                "label": "Domestic tax",
+                "value": "~20%",
+                "tone": "neutral",
+                "weight": 20
+              },
+              {
+                "label": "Foreign aid",
+                "value": "~15%",
+                "tone": "favorable",
+                "weight": 15
+              }
+            ],
+            "label": "PA budget composition (pre-freeze, % of revenue)"
+          }
+        ]
+      },
+      {
+        "heading": "THE BANKING CHOKEPOINT",
+        "body": "Palestinian banks settle in shekels through Israeli correspondent banks. When those correspondent relationships are threatened — Israel's finance minister periodically floats revoking the indemnity that protects them — the entire West Bank payment system seizes. There is no Palestinian central bank with a sovereign currency to fall back on.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which currency does the Palestinian Authority use as legal tender?",
+            "options": [
+              "The Palestinian dinar",
+              "The Israeli shekel",
+              "The Jordanian dinar",
+              "A basket of all three"
+            ],
+            "correct": 1,
+            "explanation": "The Paris Protocol bars the PA from issuing its own currency. The shekel is the de facto currency, which is why Israeli banking decisions are existential for Ramallah."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF AREA C",
+        "body": "Oslo II divided the West Bank into Areas A (PA civil + security control), B (PA civil, Israeli security), and C (full Israeli control). Area C is 60% of the territory and contains nearly all the agricultural land, water aquifers, and contiguous space. The PA governs islands; Israel governs the sea between them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "JO",
+              "EG",
+              "LB",
+              "SY"
+            ],
+            "label": "the Palestinian fiscal perimeter",
+            "markers": [
+              {
+                "lat": 31.9038,
+                "lng": 35.2034,
+                "label": "Ramallah (PA seat)"
+              },
+              {
+                "lat": 31.7683,
+                "lng": 35.2137,
+                "label": "Jerusalem"
+              },
+              {
+                "lat": 31.5326,
+                "lng": 35.0998,
+                "label": "Hebron"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DONOR DILEMMA",
+        "body": "The EU, Norway, and Gulf states have historically backstopped PA salaries when Israel froze transfers. But donors face a trap: replacing withheld revenue rewards the freeze, while letting the PA collapse means Israel must directly administer 3 million Palestinians — the scenario every Israeli government since 1967 has worked to avoid."
+      }
+    ],
+    "generatedAt": "2026-04-27T17:44:31.488Z",
+    "label": "The Clearance Revenues & Oslo's Fiscal Trap",
+    "category": "politics",
+    "articleCount": 1
   }
 }

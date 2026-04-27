@@ -2,13 +2,277 @@
   "version": 1,
   "stories": [
     {
+      "id": "microsoft-and-openai-s-open-relationship-is-now-official",
+      "label": "Microsoft and OpenAI's open relationship is now official",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-microsoft-and-openai-s-open-relationship-is-now-official"
+      ],
+      "eventUri": "eng-11605082",
+      "summary": "Microsoft and OpenAI rewrote their pact: no more cloud exclusivity, AGI clause gone, Microsoft keeps a stake until 2032. Lead with what changed mechanically — OpenAI is now free to spend with Google/Oracle/AWS, and the AGI escape hatch that once threatened Microsoft's IP rights is dead. The reader needs to understand this as a Microsoft concession to keep OpenAI capex-funded, not a partnership 'deepening.'",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Microsoft",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Cloud_computing"
+      ]
+    },
+    {
+      "id": "claire-s-closes-all-154-stores-as-it-collapses-into-administ",
+      "label": "Claire's closes all 154 stores as it collapses into administration",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-claire-s-closes-all-154-stores-as-it-collapses-into-administ"
+      ],
+      "eventUri": "eng-11605448",
+      "summary": "All 154 UK and Ireland Claire's stores stopped trading after a second administration in a year — a high-street chain that survived 50 years killed in 12 months. Lead with the speed: second insolvency in a year, Kroll closing every door, ~2,000 jobs. The structural angle is the squeeze on mall-anchored teen-accessory retail under Gen Z's online and ultra-fast-fashion habits. Tie to the broader UK high-street collapse the reader has been tracking.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Claire's",
+        "http://en.wikipedia.org/wiki/Ireland"
+      ]
+    },
+    {
+      "id": "meta-seeking-energy-from-space-for-earth-bound-datacenters",
+      "label": "Meta seeking energy from space for earth-bound datacenters",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-meta-seeking-energy-from-space-for-earth-bound-datacenters"
+      ],
+      "eventUri": "eng-11604552",
+      "summary": "Meta is contracting space-based solar (orbital arrays beaming microwaves down) plus 100-hour battery storage to feed AI datacenters. Lead with the absurdity-as-signal: Facebook's parent now treats terrestrial grid capacity as the binding constraint on AI, not chips. The mechanism to highlight is that hyperscaler power demand has outrun what utilities can permit and build, so capex is fleeing into experimental physics. Place this against the wider pattern of nuclear PPAs and gas turbines being bought by AI firms.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Meta_Platforms",
+        "http://en.wikipedia.org/wiki/Data_center",
+        "http://en.wikipedia.org/wiki/Solar_energy"
+      ]
+    },
+    {
+      "id": "shell-strikes-12bn-deal-for-canadian-gas-giant",
+      "label": "Shell strikes £12bn deal for Canadian gas giant",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-shell-strikes-12bn-deal-for-canadian-gas-giant"
+      ],
+      "eventUri": "eng-11604875",
+      "summary": "Shell's £12bn purchase of ARC Resources is its biggest acquisition since BG Group, locking in a Montney Formation gas position with LNG export optionality. Lead with strategy: this is a bet that the gas-as-AI-power-source thesis sticks for at least 15 years and that LNG Canada Phase 2 ships to Asia. The reader should see this against Shell's pivot away from renewables under Wael Sawan — supermajors are now consolidating long-cycle North American gas while smaller producers exit.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Shell_plc",
+        "http://en.wikipedia.org/wiki/ARC_Resources",
+        "http://en.wikipedia.org/wiki/Montney_Formation",
+        "http://en.wikipedia.org/wiki/Canada"
+      ]
+    },
+    {
+      "id": "canada-s-carney-announces-a-sovereign-wealth-fund",
+      "label": "Canada's Carney announces a sovereign wealth fund",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-canada-s-carney-announces-a-sovereign-wealth-fund"
+      ],
+      "eventUri": "eng-11604954",
+      "summary": "Carney is launching an C$18bn government investment fund — Canada's first — aimed at major domestic infrastructure as Ottawa hedges against Trump tariffs and US capital dependence. Lead with the why: this is a former central banker explicitly building a Norwegian/Singaporean-style state-capital pool because private markets won't finance the trade-war-resilient infrastructure he wants. The reader needs to see this as a structural break from Canada's laissez-faire posture, driven by the US-Canada relationship rupture.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Canada",
+        "http://en.wikipedia.org/wiki/Mark_Carney",
+        "http://en.wikipedia.org/wiki/Sovereign_wealth_fund"
+      ]
+    },
+    {
+      "id": "the-west-bank-on-strike",
+      "label": "The West Bank on Strike",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-the-west-bank-on-strike"
+      ],
+      "eventUri": null,
+      "summary": "While world attention sits on Gaza, Israel has been throttling West Bank life through tax-revenue withholding, settler violence, and movement restrictions — Palestinians responded with a general strike. Lead with what's being withheld: Israel collects Palestinian tax revenue under Oslo and is freezing transfers, starving the PA of salaries for teachers, doctors, security forces. The reader should see this as deliberate institutional collapse — quiet annexation by suffocation, not headline-making airstrikes. Name the mechanism, name the actors.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/West_Bank",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Palestinian_National_Authority"
+      ]
+    },
+    {
+      "id": "as-trump-s-narrative-on-negotiations-flails-iran-is-setting",
+      "label": "As Trump's Narrative on Negotiations Flails, Iran Is Setting Its Own Terms for Ending the War",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-as-trump-s-narrative-on-negotiations-flails-iran-is-setting"
+      ],
+      "eventUri": null,
+      "summary": "Trump keeps publicly claiming Iran is capitulating; Tehran is privately running a different theory — that 'munitions, markets, midterms' are pressuring Washington, not them. Lead with the three-Ms framing as Iran's actual war doctrine: prolong the conflict until US air-defense interceptor stockpiles thin, oil-price pain bites domestic politics, and the 2026 midterms force Trump to settle. The reader needs the mechanism — this is why Iran rejected the latest US offer and why the war won't end on Trump's timeline.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Iran%E2%80%93United_States_relations"
+      ]
+    },
+    {
+      "id": "drone-kills-man-near-zaporizhzhia-nuclear-power-plant-iaea-s",
+      "label": "Drone kills man near Zaporizhzhia Nuclear Power Plant, IAEA says",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-drone-kills-man-near-zaporizhzhia-nuclear-power-plant-iaea-s"
+      ],
+      "eventUri": "rus-2058272",
+      "summary": "An IAEA-confirmed drone strike killed a worker near the Russian-controlled Zaporizhzhia plant — the first reported nuclear-site fatality of the war. Lead with the IAEA's confirmation (no 'both sides claim' equivocation) and what it means: the implicit no-strike norm around the largest nuclear plant in Europe has just been breached. The reader needs the structural stake — this isn't about who fired the drone, it's that the war's nuclear-safety guardrails are visibly eroding while the plant is occupied.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Zaporizhzhia_Nuclear_Power_Plant",
+        "http://en.wikipedia.org/wiki/International_Atomic_Energy_Agency",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Russia"
+      ]
+    },
+    {
+      "id": "national-science-board-eviscerated-trump-admin-fires-all-22",
+      "label": "National Science Board eviscerated; Trump admin fires all 22 members",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-national-science-board-eviscerated-trump-admin-fires-all-22"
+      ],
+      "eventUri": "eng-11601804",
+      "summary": "All 22 members of the National Science Board — the body that has overseen the NSF since Truman signed it into law in 1950 — were fired by terse email Friday with no explanation. Lead with the precedent: this is the first wholesale dismissal in the board's 75-year history, removing the statutory firewall between political appointees and federal grant-making. The reader needs the mechanism: NSB sets NSF priorities and approves >$100M grants, so an empty board means either paralysis or unilateral political control over US basic research funding. Pair with broader ongoing science-governance erosion.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/National_Science_Board",
+        "http://en.wikipedia.org/wiki/National_Science_Foundation",
+        "http://en.wikipedia.org/wiki/Donald_Trump"
+      ]
+    },
+    {
+      "id": "physicists-discover-the-most-complex-forms-of-ice-yet",
+      "label": "Physicists Discover the Most Complex Forms of Ice Yet",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-physicists-discover-the-most-complex-forms-of-ice-yet"
+      ],
+      "eventUri": null,
+      "summary": "Physicists keep finding new crystalline phases of ice — simulations now suggest dozens more remain undiscovered, each with distinct lattice geometry and properties. Lead with the count: nearly 20 known ice phases, and the new ones are 'plastic' phases where molecules rotate freely while staying in lattice positions. The reader is intellectually serious — explain why this matters for planetary science (icy moon interiors), materials science, and our basic intuition that water is a 'simple' molecule. Avoid the trap of treating this as quirky-science; it's foundational chemistry.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ice",
+        "http://en.wikipedia.org/wiki/Crystal_structure",
+        "http://en.wikipedia.org/wiki/Phase_(matter)"
+      ]
+    },
+    {
+      "id": "government-hacking-tools-are-now-in-criminals-hands-with-lor",
+      "label": "Government Hacking Tools Are Now in Criminals' Hands",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-government-hacking-tools-are-now-in-criminals-hands-with-lor"
+      ],
+      "eventUri": null,
+      "summary": "Powerful commercial spyware tools sold to governments — the kind used against journalists and dissidents — have leaked to ordinary criminals. Lead with the supply-chain mechanism: a 'trusted vendor' (one of the big lawful-intercept firms) lost control of its toolkit, and now extortion crews and stalkers are running nation-state-grade implants. The reader needs to see this as the predictable failure mode of the lawful-intercept industry — once a zero-day-and-implant kit exists, leakage from the customer or vendor side is just a matter of time. Connect to the broader NSO/Pegasus accountability gap.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Spyware",
+        "http://en.wikipedia.org/wiki/Lawful_interception",
+        "http://en.wikipedia.org/wiki/Cybercrime"
+      ]
+    },
+    {
+      "id": "study-finds-a-third-of-new-websites-are-ai-generated",
+      "label": "Study Finds A Third of New Websites Are AI-Generated",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-study-finds-a-third-of-new-websites-are-ai-generated"
+      ],
+      "eventUri": null,
+      "summary": "A new study finds roughly one-third of websites created in the last year are AI-generated, and the resulting text skews aggressively positive — the open web is being flooded with synthetic, sentiment-flattened content. Lead with the number and the tone: 33% AI-authored, with measurable positivity drift. Mechanism: cheap LLM content farms target SEO surfaces and crowd out human authorship; tone bias comes from RLHF-trained refusal of negative framing. The reader should see this as model collapse plus an information-environment shift — search and training data are both degrading.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Large_language_model",
+        "http://en.wikipedia.org/wiki/Search_engine_optimization",
+        "http://en.wikipedia.org/wiki/Generative_artificial_intelligence"
+      ]
+    },
+    {
+      "id": "disinformation-campaign-targeted-tibetan-parliament-in-exile",
+      "label": "Disinformation campaign targeted Tibetan parliament-in-exile elections",
+      "firstSeen": "2026-04-27T17:09:06.032Z",
+      "lastCovered": "2026-04-27T17:09:06.032Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-disinformation-campaign-targeted-tibetan-parliament-in-exile"
+      ],
+      "eventUri": null,
+      "summary": "DFRLab attributes a Spamouflage operation — the long-running Beijing-linked influence network — to a coordinated push against the Tibetan parliament-in-exile's elections, targeting candidates with fake content across platforms. Lead with attribution: this is named, evidenced state-linked interference in a stateless community's internal democratic process. Mechanism: AI-generated personas, cross-platform amplification, and language-tailored content aimed at Tibetan diaspora voters. The reader needs to see Spamouflage as a persistent infrastructure that gets re-pointed at whoever Beijing wants to destabilize, from Taiwan to Tibetans abroad.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tibet",
+        "http://en.wikipedia.org/wiki/Disinformation",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Central_Tibetan_Administration"
+      ]
+    },
+    {
       "id": "china-blocks-meta-manus-ai-acquisition-unwind",
       "label": "China blocks Meta's $2 billion acquisition of AI startup Manus",
       "firstSeen": "2026-04-27T12:06:03.837Z",
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-china-blocks-meta-manus-ai-acquisition-unwind"
@@ -33,7 +297,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-kashmir-darul-uloom-seminary-uapa-ban-shopian"
@@ -58,7 +322,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-us-three-carrier-strike-groups-centcom-iran"
@@ -74,7 +338,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-nigeria-iswap-boko-haram-abuja-attack-plan"
@@ -90,7 +354,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-pakistan-china-mou-desalination-agri-tea"
@@ -106,7 +370,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-eu-20th-sanctions-russia-crypto-defi-ban"
@@ -122,7 +386,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-bitcoin-oil-surge-iran-war-correlation-selloff"
@@ -138,7 +402,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-worldcoin-world-id-tinder-zoom-docusign-partners"
@@ -154,7 +418,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-legacy-nft-bust-molyneux-54-million-players"
@@ -170,7 +434,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-openai-qualcomm-mediatek-luxshare-smartphone-chips-2028"
@@ -195,7 +459,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-intellia-crispr-hereditary-angioedema-phase-3"
@@ -211,7 +475,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-arctic-continent-200mya-dinosaur-rise-cooling"
@@ -227,7 +491,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-esa-vega-c-sentinel-1c-launch-cost-disclosure"
@@ -243,7 +507,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-china-warns-eu-over-proposed-made-in-europe-law"
@@ -266,7 +530,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-india-s-sun-pharma-to-buy-us-listed-organon-in-11-75-billion"
@@ -289,7 +553,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-taiwan-court-hands-down-jail-terms-in-tsmc-trade-secrets-cas"
@@ -312,7 +576,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-iran-shahid-rajaee-port-blast-bandar-abbas"
@@ -328,7 +592,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-myanmar-junta-president-language-normalisation"
@@ -344,7 +608,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-hormuz-blockade-fertilizer-food-production-russia"
@@ -360,7 +624,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-nft-rally-wash-trading-shrinking-user-base"
@@ -376,7 +640,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-eprodisate-alpha-synuclein-condensation-parkinson"
@@ -392,7 +656,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-south-africa-water-infrastructure-municipal-collapse"
@@ -408,7 +672,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-cosmological-principle-homogeneity-hubble-tension"
@@ -424,7 +688,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-openai-smartphone-agent-os-apple-samsung"
@@ -447,7 +711,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-26-friendster-30k-domain-trademark-resale"
@@ -463,7 +727,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-grnn-mc-soil-borehole-geotechnical-ml"
@@ -479,7 +743,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-iran-hormuz-first-nuclear-later-peace-proposal-us"
@@ -504,7 +768,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-us-narco-boat-strike-185-toll-pacific"
@@ -520,7 +784,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-china-antelope-reef-south-china-sea-island-building"
@@ -536,7 +800,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-chad-communal-clash-water-42-dead-sahel"
@@ -552,7 +816,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-oil-rises-us-iran-talks-stall-brent-107"
@@ -568,7 +832,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-pakistan-hiv-global-fund-inspection-syringes"
@@ -584,7 +848,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-pakistan-fixes-prices-35-essential-drugs-shortage"
@@ -600,7 +864,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-sarcopenia-cancer-notch-sdc2-muscle-vesicles"
@@ -616,7 +880,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-us-immigration-sanctuary-law-mapping-study"
@@ -632,7 +896,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-25-10-gbe-usb-adapter-commodity-low-power-phy"
@@ -648,7 +912,7 @@
       "lastCovered": "2026-04-26T17:44:51.106Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "developing",
       "articles": [
         "2026-04-26-hormuz-mine-laying-third-carrier-pakistan-delegation",
@@ -665,7 +929,7 @@
       "lastCovered": "2026-04-26T08:07:38.473Z",
       "coverageCount": 4,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "ongoing",
       "articles": [
         "2026-04-24-ai-optimism-asia-vs-west-polling",
@@ -684,7 +948,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 4,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "ongoing",
       "articles": [
         "2026-04-26-noaa-deep-sea-golden-orb-egg-casing-alaska-seafloor",
@@ -703,7 +967,7 @@
       "lastCovered": "2026-04-27T04:10:36.439Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-25-ai-us-border-racial-bias-accountability",
@@ -720,7 +984,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-26-russian-defence-minister-visits-north-korea"
@@ -745,7 +1009,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-26-netanyahu-s-biggest-rivals-join-forces-for-israel-s-next-ele"
@@ -770,7 +1034,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-26-new-ira-behind-car-bomb-explosion-outside-northern-irish-pol"
@@ -795,7 +1059,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-26-iranian-fm-araghchi-back-in-pakistan-after-oman-visit-to-hea"
@@ -820,7 +1084,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-26-renal-denervation-attenuates-cardiac-fibrosis-and-improves-l"
@@ -836,7 +1100,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-26-pakistan-notifies-6-land-routes-for-transportation-of-goods"
@@ -852,7 +1116,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-26-doctor-wife-of-acting-u-s-attorney-general-appointed-to-nih"
@@ -868,7 +1132,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-26-waltersmith-plans-for-condensate-refinery-industrial-park-ho"
@@ -884,7 +1148,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-26-russia-egypt-interested-in-expanding-freight-turnover-mariti"
@@ -900,7 +1164,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-26-death-toll-from-israeli-attacks-on-lebanon-exceeds-2-500-hea"
@@ -916,7 +1180,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-26-the-fake-disease-that-fooled-the-internet-and-what-it-says-a"
@@ -932,7 +1196,7 @@
       "lastCovered": "2026-04-26T22:08:22.783Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-26-the-west-forgot-how-to-make-things-now-it-s-forgetting-how-t"
@@ -948,7 +1212,7 @@
       "lastCovered": "2026-04-26T17:44:51.106Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-alma-quasar-pair-merger-redshift-five-seven"
@@ -964,7 +1228,7 @@
       "lastCovered": "2026-04-26T17:44:51.106Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-25-amateur-chatgpt-erdos-problem-solved"
@@ -980,7 +1244,7 @@
       "lastCovered": "2026-04-26T08:07:38.473Z",
       "coverageCount": 3,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-26-trump-whcd-shooting-washington-hilton-security-breach",
@@ -1005,7 +1269,7 @@
       "lastCovered": "2026-04-26T04:05:35.680Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-doj-denaturalization-287-cases-palestinian-speech"
@@ -1021,7 +1285,7 @@
       "lastCovered": "2026-04-25T22:05:32.263Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-25-orban-fidesz-defeat-tisza-supermajority-hungary"
@@ -1037,7 +1301,7 @@
       "lastCovered": "2026-04-25T17:08:08.903Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-25-palestinians-vote-first-elections-occupation-low-turnout"
@@ -1052,122 +1316,6 @@
         "http://en.wikipedia.org/wiki/Israel",
         "http://en.wikipedia.org/wiki/Fatah"
       ]
-    },
-    {
-      "id": "iran-turkey-araghchi-fidan-ceasefire-call-sunni-perimeter",
-      "label": "Iran FM briefs Turkey on ceasefire developments",
-      "firstSeen": "2026-04-26T08:07:38.473Z",
-      "lastCovered": "2026-04-26T08:07:38.473Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-26-iran-turkey-araghchi-fidan-ceasefire-call-sunni-perimeter"
-      ],
-      "eventUri": null,
-      "summary": "FM Araghchi called Turkish counterpart Hakan Fidan to coordinate on ceasefire status — Turkey is now the second non-belligerent Iran is briefing alongside Pakistan. The angle: Tehran is building a Sunni-state diplomatic perimeter (Ankara, Islamabad, Muscat) precisely because Arab Gulf capitals stayed neutral or facilitated the strikes.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Turkey",
-        "http://en.wikipedia.org/wiki/Abbas_Araghchi",
-        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Iran)"
-      ]
-    },
-    {
-      "id": "quad-india-japan-australia-functional-integration-china",
-      "label": "The Quad Isn't Dead. It's Just Moved Out of the Spotlight.",
-      "firstSeen": "2026-04-26T08:07:38.473Z",
-      "lastCovered": "2026-04-26T08:07:38.473Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-26-quad-india-japan-australia-functional-integration-china"
-      ],
-      "eventUri": null,
-      "summary": "The Quad (US, Japan, India, Australia) has stopped doing leader-level summits but quietly accelerated working-group output on undersea cables, critical minerals, and maritime domain awareness. The angle: visibility was a bargaining chip — Trump-era Washington traded summit theatre for deeper functional integration that doesn't trigger Beijing reactively.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-new-zealand-fta-dairy-20-billion-investment",
-      "label": "India-New Zealand To Sign FTA On April 27, May Bring $20 Billion Investment Over 15 Years",
-      "firstSeen": "2026-04-26T08:07:38.473Z",
-      "lastCovered": "2026-04-26T08:07:38.473Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-26-india-new-zealand-fta-dairy-20-billion-investment"
-      ],
-      "eventUri": "eng-11598749",
-      "summary": "India and New Zealand sign an FTA April 27 projected to mobilize $20B in investment over 15 years, capping a decade of stalled negotiations that broke open after Delhi conceded ground on dairy access. The angle: dairy was the deal-breaker since 2014 — India's pivot away from China-dependent supply chains is actually being paid for in domestic concessions.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/New_Zealand",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Free_trade_agreement",
-        "http://en.wikipedia.org/wiki/Tariff"
-      ]
-    },
-    {
-      "id": "iran-oman-muscat-gulf-economic-back-channel-post-war",
-      "label": "Iran committed to strengthening trust with southern neighbors",
-      "firstSeen": "2026-04-26T08:07:38.473Z",
-      "lastCovered": "2026-04-26T08:07:38.473Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-26-iran-oman-muscat-gulf-economic-back-channel-post-war"
-      ],
-      "eventUri": null,
-      "summary": "Iran's FM Araghchi makes Muscat his first regional stop after the US-Iran ceasefire, signaling Tehran sees Oman — not Riyadh or Abu Dhabi — as its post-war Gulf economic gateway. Oman has historically been the back-channel for Iranian sanctions workarounds. This visit elevates that role openly.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Muscat",
-        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Iran)",
-        "http://en.wikipedia.org/wiki/Persian_Gulf",
-        "http://en.wikipedia.org/wiki/Oman"
-      ]
-    },
-    {
-      "id": "glaucoma-multimodal-ai-oct-visual-field-screening",
-      "label": "Multiple attention based deep multimodal fusion network for glaucoma and neurodegenerative disease diagnosis",
-      "firstSeen": "2026-04-26T08:07:38.473Z",
-      "lastCovered": "2026-04-26T08:07:38.473Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-26-glaucoma-multimodal-ai-oct-visual-field-screening"
-      ],
-      "eventUri": null,
-      "summary": "A multimodal attention network combining OCT scans with visual-field tests beats single-modality models for early glaucoma detection. Glaucoma is the leading cause of irreversible blindness globally, and OCT machines are now in 70%+ of mid-tier ophthalmology clinics — the bottleneck is interpretation. Lead with what this means for primary-care eye screening in low-resource settings (Pakistan, Nigeria, Bangladesh) where specialists are scarce.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Optical_coherence_tomography",
-        "http://en.wikipedia.org/wiki/Neurodegenerative_disease",
-        "http://en.wikipedia.org/wiki/Glaucoma"
-      ]
-    },
-    {
-      "id": "displaced-lebanese-aitaroun-satellite-images-occupation",
-      "label": "Displaced Lebanese Pool Money to Buy Satellite Images to See What Remains of their Homes",
-      "firstSeen": "2026-04-25T17:08:08.903Z",
-      "lastCovered": "2026-04-25T17:08:08.903Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-25-displaced-lebanese-aitaroun-satellite-images-occupation"
-      ],
-      "eventUri": null,
-      "summary": "Displaced families from Aitaroun in southern Lebanon are pooling cash to buy commercial satellite imagery — because Israel has barred return and they need to see what is left of their houses. The dignity (karāmah) angle is built in — name the families, the village, the cost of an image, and what they found. Occupation extends past the bombing into the bureaucratic denial of even seeing one's land.",
-      "conceptUris": []
     }
   ]
 }
