@@ -63993,5 +63993,1884 @@
     "label": "Condensate Refining & Nigeria's Fuel Paradox",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-25-10-gbe-usb-adapter-commodity-low-power-phy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PHY PROBLEM",
+        "body": "Ethernet's physical layer — the PHY chip — is what actually drives signals down a copper cable. 10GBASE-T PHYs were historically power-hungry (5-10W) and expensive because pushing 10 gigabits through twisted-pair copper requires aggressive digital signal processing to cancel echo and crosstalk."
+      },
+      {
+        "heading": "WHY IT TOOK SO LONG",
+        "body": "10GBASE-T was ratified in 2006. It took nearly two decades to reach consumer pricing because the silicon process node had to shrink enough — and DSP techniques mature enough — to make the PHY both cheap and cool enough to sit inside a USB dongle without a fan.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The standard is **IEEE 802.3an-2006**. The lag between ratification and commodity pricing is a recurring pattern — *gigabit ethernet* shipped in 1999 but didn't become standard on consumer motherboards until around 2005."
+          }
+        ]
+      },
+      {
+        "heading": "THE USB BOTTLENECK",
+        "body": "USB 3.2 Gen 2x2 uses two lanes at 10Gbps each for a 20Gbps theoretical ceiling, but protocol overhead and host-controller limits typically cap real throughput at 14-16Gbps. Single-lane Gen 2 (10Gbps raw) cannot deliver a full 10GbE link after framing overhead — hence the 6-7Gbps real-world ceiling on most laptops.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USB 3.2 Gen 1",
+                "value": "~4 Gbps real",
+                "weight": 4
+              },
+              {
+                "label": "USB 3.2 Gen 2",
+                "value": "~7 Gbps real",
+                "weight": 7
+              },
+              {
+                "label": "USB 3.2 Gen 2x2",
+                "value": "~14 Gbps real",
+                "weight": 14
+              },
+              {
+                "label": "USB4 / TB4",
+                "value": "~32 Gbps real",
+                "weight": 32
+              }
+            ],
+            "label": "USB generations vs ethernet payload"
+          }
+        ]
+      },
+      {
+        "heading": "THE HOMELAB ECONOMICS",
+        "body": "A managed 10GbE switch still costs $300-500. A pair of $80 adapters and a Cat6a cable creates a direct point-to-point link between a workstation and a NAS — bypassing the switch entirely. This is how datacenter speeds reach hobbyists: not through cheaper switches, but through cheaper endpoints that don't need one."
+      },
+      {
+        "heading": "THE HEAT TRADEOFF",
+        "body": "Even modern 10GBASE-T PHYs dissipate 2-3W. In a passively-cooled USB dongle that means the case gets hot enough to throttle under sustained transfers. The spec sheet number assumes a 30-second burst; the real sustained throughput on a long file copy is often 30-40% lower.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did 10GbE take nearly 20 years to reach consumer pricing?",
+            "options": [
+              "The IEEE standard was finalized late",
+              "Copper PHY silicon needed smaller process nodes to be cheap and cool enough",
+              "Fiber optic alternatives were cheaper for years",
+              "Consumer demand only emerged recently"
+            ],
+            "correct": 1,
+            "explanation": "The standard shipped in 2006; the holdup was making the power-hungry DSP-heavy PHY chip cheap and cool enough for a passive dongle."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T04:43:12.769Z",
+    "label": "10-Gigabit Ethernet, Commoditized",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-25-ai-us-border-racial-bias-cbp-one-accountability": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SHIFT",
+        "body": "Border enforcement used to happen at the border. Algorithmic pre-screening moves the decision upstream — to the moment a migrant books a flight, applies for an ESTA, or opens an app like CBP One — turning the physical crossing into the last step of a process already decided by software.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *virtual border* — enforcement projected outward through data partnerships with airlines, foreign governments, and biometric vendors, often before the traveler knows they have been screened."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AI ENTRENCHES BIAS",
+        "body": "A model trained on historical enforcement data learns historical enforcement patterns. If past officers stopped Latino travelers at higher rates, the model encodes that as signal — then launders the bias as math. The output looks neutral; the input was not."
+      },
+      {
+        "heading": "THE DUE PROCESS GAP",
+        "body": "Under US immigration law, non-citizens at the border have minimal procedural rights — no right to counsel, limited right to a hearing, and no right to see the evidence used against them. An algorithmic denial is functionally unappealable because the underlying score is classified as law enforcement sensitive.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What right do non-citizens have when denied entry at a US port of entry?",
+            "options": [
+              "Right to a lawyer at government expense",
+              "Right to see the evidence used against them",
+              "Right to an immigration judge before removal",
+              "None of the above in most cases"
+            ],
+            "correct": 3,
+            "explanation": "Expedited removal under INA §235 allows CBP officers to deny entry and order removal without a hearing, lawyer, or evidentiary disclosure."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT MARKET",
+        "body": "US and Israeli border-tech vendors — Palantir, Anduril, Elbit, NSO-adjacent firms — sell the same surveillance stack to Gulf states, the EU's Frontex, and South Asian governments. A model trained on the US-Mexico border ends up screening Rohingya at the Bangladesh frontier or Sudanese arrivals in the Gulf.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "MX",
+              "AE",
+              "SA",
+              "GB",
+              "DE",
+              "IN",
+              "BD"
+            ],
+            "label": "export footprint of US/Israeli border-AI vendors"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Racial profiling in US immigration is older than the algorithms. The 1882 Chinese Exclusion Act was the first federal law to bar a group by ethnicity; Operation Wetback (1954) deported over a million people, many US citizens, on the basis of appearance. The legal infrastructure that allows opaque border decisions was built long before the models were trained on it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1882",
+                "label": "Chinese Exclusion Act"
+              },
+              {
+                "year": "1924",
+                "label": "Johnson-Reed national-origin quotas"
+              },
+              {
+                "year": "1954",
+                "label": "Operation Wetback"
+              },
+              {
+                "year": "1996",
+                "label": "IIRIRA — expedited removal",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2001",
+                "label": "USA PATRIOT Act expands data sharing"
+              },
+              {
+                "year": "2020",
+                "label": "CBP One app launches"
+              }
+            ],
+            "label": "the legal scaffolding"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T04:43:39.445Z",
+    "label": "Algorithmic Border Control",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-25-golden-orb-alaska-deep-sea-egg-casing-id": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNMAPPED MAJORITY",
+        "body": "More than 80% of the ocean floor remains unmapped at high resolution. We have better topographic data for the surface of Mars and the Moon than for the seabed of our own planet.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The ocean covers **71%** of Earth's surface, yet only about **26%** has been mapped to modern resolution under the Seabed 2030 initiative."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRESSURE PROBLEM",
+        "body": "At 3,300 meters, pressure exceeds 330 atmospheres — the equivalent of a small car pressing on every square centimeter. Most cameras, samplers, and submersibles are not built to operate there, which is why deep-sea biology lags surface biology by roughly a century."
+      },
+      {
+        "heading": "WHY DNA OFTEN FAILS",
+        "body": "Environmental DNA matching only works if a relative has already been sequenced and uploaded to a reference database. For deep-sea taxa, most lineages have never been collected, named, or sequenced — so a clean DNA read returns no match because the comparison library is empty.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did 3 years of DNA analysis fail to identify the golden orb?",
+            "options": [
+              "The DNA was too degraded by seawater to sequence",
+              "No close relatives existed in any reference database to match against",
+              "Egg casings don't contain DNA",
+              "The lab used the wrong sequencing technology"
+            ],
+            "correct": 1,
+            "explanation": "DNA matching is comparison-based — without a sequenced relative in the reference library, even a perfect read returns no identification."
+          }
+        ]
+      },
+      {
+        "heading": "THE ZONES",
+        "body": "Below 1,000m sunlight disappears entirely (the bathypelagic zone). Below 4,000m the abyssal zone begins — flat, cold, and home to creatures that have evolved in isolation for tens of millions of years. The Alaska find sits squarely in the deep bathypelagic.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Epipelagic",
+                "value": "0–200m",
+                "tone": "favorable"
+              },
+              {
+                "label": "Mesopelagic",
+                "value": "200–1,000m",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bathypelagic",
+                "value": "1,000–4,000m",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Abyssal",
+                "value": "4,000–6,000m",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Hadal",
+                "value": "6,000m+",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "ocean depth zones"
+          }
+        ]
+      },
+      {
+        "heading": "THE DISCOVERY RATE",
+        "body": "Roughly 2,000 new marine species are formally described every year, and biologists estimate the deep ocean still hides between one and ten million undescribed species. Every major deep-sea expedition since the 1872 HMS Challenger voyage has returned with organisms unknown to science."
+      }
+    ],
+    "generatedAt": "2026-04-27T04:44:03.545Z",
+    "label": "The Deep Sea & What We Don't Know",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-27-chad-communal-clash-water-42-dead-sahel": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRUCTURAL DRIVER",
+        "body": "The Sahel — the semi-arid belt between the Sahara and the savanna — has warmed roughly 1.5× the global average since 1950. Rainfall is more erratic, the dry season longer. Conflicts that look ethnic or communal are usually downstream of a shrinking water table.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TD",
+              "SD",
+              "NE",
+              "ML",
+              "BF",
+              "NG",
+              "CM"
+            ],
+            "label": "the Sahel belt",
+            "markers": [
+              {
+                "lat": 15,
+                "lng": 22,
+                "label": "Wadi Fira"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "FARMER VS HERDER",
+        "body": "Across the Sahel, settled farmers and nomadic pastoralists have shared land for centuries through customary agreements: herders move animals through fields after harvest, fertilizing the soil; farmers grant water access in exchange. Climate stress and population growth have collapsed those bargains.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In Chad, herders are predominantly **Arab and Fulani** Muslims; many farmers are **Zaghawa** or **Masalit**. What begins as a water dispute can rapidly inherit ethnic and religious overlays — the Darfur war next door followed exactly this pattern."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE STATE IS ABSENT",
+        "body": "Wadi Fira sits in eastern Chad, hundreds of kilometers from N'Djamena, with no paved road network and minimal gendarmerie presence. Communal disputes are adjudicated by traditional chiefs whose authority has been eroded by decades of war and displacement. There is no functioning court to appeal to."
+      },
+      {
+        "heading": "THE DARFUR SPILLOVER",
+        "body": "Eastern Chad hosts more than 700,000 Sudanese refugees from the Darfur war that reignited in 2023. The same Arab-Masalit fault lines run through both sides of the border. Weapons, fighters, and grievances cross freely.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2003",
+                "label": "Darfur genocide begins"
+              },
+              {
+                "year": "2010",
+                "label": "Chad-Sudan rapprochement"
+              },
+              {
+                "year": "2021",
+                "label": "Déby killed; son takes power",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Sudan war reignites; refugees flood east Chad"
+              },
+              {
+                "year": "2026",
+                "label": "Wadi Fira clash"
+              }
+            ],
+            "label": "the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "The International Crisis Group's count of 1,000+ deaths from communal water and grazing disputes from 2021 to 2024 understates the toll — most incidents in remote Sahel districts are never reported to any outside body. The 42 dead at Wadi Fira is one data point in a continent-wide pattern.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the main driver of recurring communal violence across the Sahel?",
+            "options": [
+              "Religious extremism between Muslim and Christian communities",
+              "Competition over water and grazing land amid climate stress",
+              "Ethnic rivalry inherited from colonial border-drawing",
+              "Foreign jihadist recruitment from the Middle East"
+            ],
+            "correct": 1,
+            "explanation": "While ethnic and religious overlays exist, the proximate trigger of most lethal Sahel clashes is competition over shrinking water and pasture — climate stress acting on customary land-sharing arrangements that no longer hold."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T04:44:30.748Z",
+    "label": "Sahel Water Conflict",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-china-antelope-reef-south-china-sea-island-building": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NINE-DASH LINE",
+        "body": "Beijing's claim traces a U-shaped boundary inherited from a 1947 Republic of China map, sweeping in roughly 90% of the South China Sea — within 50 nautical miles of the Philippine, Vietnamese, and Malaysian coasts. The line was never coordinates, just dashes on a map; that ambiguity is the feature, not the bug.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "PH",
+              "VN",
+              "MY",
+              "BN",
+              "TW",
+              "ID"
+            ],
+            "label": "the contested basin",
+            "markers": [
+              {
+                "lat": 16.45,
+                "lng": 112.633,
+                "label": "Antelope Reef (Paracels)"
+              },
+              {
+                "lat": 9.583,
+                "lng": 115.833,
+                "label": "Mischief Reef"
+              },
+              {
+                "lat": 15.183,
+                "lng": 116.7,
+                "label": "Scarborough Shoal"
+              },
+              {
+                "lat": 10.7,
+                "lng": 114.366,
+                "label": "Fiery Cross Reef"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2016 HAGUE RULING",
+        "body": "A UNCLOS arbitral tribunal ruled unanimously that China's historic-rights claim has no legal basis under the convention Beijing itself ratified in 1996. China refused to participate, refused to recognize the ruling, and called it 'a piece of waste paper.' Ten years on, no enforcement mechanism has emerged — UNCLOS has no navy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tribunal also ruled that *no* feature in the Spratlys generates a 200-nm exclusive economic zone — they are all rocks or low-tide elevations. China's island-building cannot upgrade their legal status: **artificial enhancement does not create maritime entitlement** under UNCLOS Article 60(8)."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ROCKS MATTER",
+        "body": "UNCLOS distinguishes islands (generate a 200-nm EEZ), rocks (12-nm territorial sea only), and low-tide elevations (no maritime zone at all). A reef that pokes above water at high tide is worth millions of square kilometers more than one that doesn't — which is why dredging sand onto a submerged feature is a legal as well as physical act."
+      },
+      {
+        "heading": "THE BUILD-OUT TO DATE",
+        "body": "Since 2013, China has created roughly 3,200 acres of artificial land across seven Spratly features — runways at Fiery Cross, Subi, and Mischief reefs long enough to land bombers, hardened hangars, radar arrays, anti-ship missile batteries. Antelope Reef sits in the Paracels, the northern archipelago Vietnam also claims; building there extends the pattern north.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Fiery Cross",
+                "value": "~700 ac",
+                "tone": "unfavorable",
+                "cc": "CN",
+                "weight": 700
+              },
+              {
+                "label": "Mischief",
+                "value": "~1,380 ac",
+                "tone": "unfavorable",
+                "cc": "CN",
+                "weight": 1380
+              },
+              {
+                "label": "Subi",
+                "value": "~976 ac",
+                "tone": "unfavorable",
+                "cc": "CN",
+                "weight": 976
+              },
+              {
+                "label": "All Vietnamese",
+                "value": "~120 ac",
+                "tone": "neutral",
+                "cc": "VN",
+                "weight": 120
+              },
+              {
+                "label": "All Philippine",
+                "value": "~14 ac",
+                "tone": "favorable",
+                "cc": "PH",
+                "weight": 14
+              }
+            ],
+            "label": "land reclaimed in the Spratlys (acres, AMTI est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRADE STAKES",
+        "body": "Roughly $3.4 trillion in trade transits the South China Sea annually — about a third of global shipping by value. Most of China's own oil imports pass through, which is the strategic paradox: the same sea lanes Beijing seeks to control are the ones it most depends on remaining open.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              228,
+              224,
+              234,
+              232,
+              218,
+              241,
+              222,
+              236,
+              231,
+              232,
+              216,
+              217,
+              221,
+              210,
+              223,
+              216,
+              218,
+              190,
+              210,
+              208,
+              226,
+              217,
+              188,
+              199,
+              185,
+              220,
+              199,
+              205,
+              212,
+              183,
+              203,
+              218,
+              223,
+              190,
+              202,
+              218,
+              224,
+              211,
+              212,
+              223,
+              196,
+              224,
+              229,
+              224,
+              205,
+              242,
+              213,
+              219,
+              239,
+              202,
+              202,
+              207
+            ],
+            "periods": [
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Malacca Strait transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "The Hague tribunal's 2016 finding turned on a specific UNCLOS provision.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the 2016 tribunal rule about features in the Spratly Islands?",
+            "options": [
+              "They all belong to the Philippines",
+              "None of them generate a 200-nm exclusive economic zone",
+              "China has historic rights to fish there",
+              "Artificial islands count as natural islands if large enough"
+            ],
+            "correct": 1,
+            "explanation": "The tribunal ruled every Spratly feature is either a rock (12-nm territorial sea only) or a low-tide elevation (no maritime zone) — gutting the EEZ claims that motivated the dredging."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-27T04:45:03.020Z",
+    "label": "South China Sea & the Nine-Dash Line",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-iran-hormuz-first-nuclear-later-peace-proposal-us": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SEQUENCING GAME",
+        "body": "In any negotiation between adversaries, the order of concessions matters as much as their content. Whoever moves first reveals their reservation price and loses leverage. Iran's offer to lift the Hormuz blockade before agreeing on enrichment limits is a classic attempt to flip the sequence Washington prefers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Diplomats call this *issue linkage* — bundling unrelated leverage points into one negotiation so each side has something the other wants to unbundle first."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN MEDIATES",
+        "body": "Pakistan shares a 900km border with Iran, hosts a Shia minority of ~20 million, and depends on Iranian gas and electricity for Balochistan. It is also a Sunni-majority nuclear state with deep US security ties — the rare actor trusted enough by both Tehran and Washington to carry messages without being seen as either's proxy.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "PK",
+              "OM",
+              "AE",
+              "SA",
+              "US"
+            ],
+            "label": "the back-channel triangle",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 35.6892,
+                "lng": 51.389,
+                "label": "Tehran"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ LEVERAGE",
+        "body": "Roughly 21 million barrels of oil pass through Hormuz daily — about 21% of global consumption. Iran's coastline runs the entire northern edge of the strait; the deepest shipping channel hugs the Iranian side. This geographic asymmetry is what makes Hormuz a usable bargaining chip rather than an empty threat.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE JCPOA SHADOW",
+        "body": "The 2015 nuclear deal capped Iran's uranium enrichment at 3.67% and limited stockpiles to 300kg. Trump withdrew the US in 2018; Iran responded by enriching to 60% — a short technical step from weapons-grade 90%. Every current proposal is implicitly measured against what the JCPOA achieved and what its collapse cost.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "Natanz facility revealed"
+              },
+              {
+                "year": "2015",
+                "label": "JCPOA signed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "US withdrawal"
+              },
+              {
+                "year": "2020",
+                "label": "Soleimani killed"
+              },
+              {
+                "year": "2022",
+                "label": "Iran enriches to 60%"
+              },
+              {
+                "year": "2025",
+                "label": "Israeli strikes on Natanz"
+              },
+              {
+                "year": "2026",
+                "label": "Hormuz mining"
+              }
+            ],
+            "label": "the nuclear file"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'NOT ENOUGH' MEANS",
+        "body": "Washington's red line on enrichment has hardened since 2018. Where the JCPOA accepted limited civilian enrichment, current US demands aim for zero — the so-called Libyan model. Iran rejects this because Gaddafi gave up his program in 2003 and was killed eight years later; the precedent is impossible to forget.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Iran reject the 'Libyan model' for nuclear disarmament?",
+            "options": [
+              "It requires too much intrusive inspection",
+              "Gaddafi gave up his program in 2003 and was overthrown in 2011",
+              "It would cost too much to dismantle existing facilities",
+              "Russia opposes the framework"
+            ],
+            "correct": 1,
+            "explanation": "Gaddafi dismantled Libya's WMD program under Western guarantees, then was killed by NATO-backed rebels eight years later. The precedent shapes every Iranian calculation about disarmament."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT FOR PARTIAL DEALS",
+        "body": "Cold War arms control rarely solved everything at once. SALT I froze missile counts but left warheads untouched; the INF Treaty banned medium-range missiles but ignored shorter ones. Partial agreements work when each side's irreducible demand is met — the question is whether Hormuz-for-ceasefire is that minimum, or just a stalling tactic."
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-27T04:45:35.698Z",
+    "label": "Sequencing & the Iran Nuclear File",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-oil-rises-us-iran-talks-stall-brent-107": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BRENT IS THE BENCHMARK",
+        "body": "Brent is a blend of crudes from four North Sea fields, but its price sets contracts globally because it is light, sweet, and waterborne — meaning it can physically move to any refinery. Two-thirds of internationally traded oil is priced off Brent, including most Gulf exports.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Saudi Arabia, Iran, and Iraq all sell to Asia at *Brent-linked* formulas with a regional differential — when Brent moves, every barrel from the Gulf reprices within hours."
+          }
+        ]
+      },
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Gulf and its two bypass outlets",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.605,
+                "lng": 55.2625,
+                "label": "Fujairah (UAE bypass terminus)"
+              },
+              {
+                "lat": 21.4858,
+                "lng": 39.1925,
+                "label": "Yanbu (Saudi pipeline outlet)"
+              }
+            ]
+          },
+          {
+            "type": "trend",
+            "values": [
+              53,
+              44,
+              7,
+              2,
+              2,
+              0,
+              1,
+              0,
+              2,
+              1,
+              6,
+              1,
+              1,
+              3,
+              3,
+              1,
+              5,
+              0,
+              1,
+              0,
+              1,
+              3,
+              0,
+              0,
+              2,
+              1,
+              1,
+              0,
+              0,
+              0,
+              2,
+              12,
+              2,
+              0,
+              2,
+              4,
+              2,
+              7,
+              1,
+              3,
+              0,
+              4,
+              1,
+              5,
+              3,
+              4,
+              3,
+              4,
+              3,
+              4,
+              16,
+              2
+            ],
+            "periods": [
+              "Feb 27",
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Hormuz tanker transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. Disruption proved easier to threaten than to sustain across years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1980",
+                "label": "Iran-Iraq war begins"
+              },
+              {
+                "year": "1984",
+                "label": "Tanker War phase opens",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1987",
+                "label": "Operation Earnest Will (US escorts)"
+              },
+              {
+                "year": "1988",
+                "label": "Operation Praying Mantis"
+              },
+              {
+                "year": "1988-08",
+                "label": "Ceasefire"
+              }
+            ],
+            "label": "Gulf shipping under fire"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BYPASSES DON'T SAVE THE MARKET",
+        "body": "Saudi Arabia's East-West Pipeline (5 mb/d) and the UAE's Habshan-Fujairah line (1.5 mb/d) together can reroute roughly a third of Gulf exports. Iran, Iraq, Kuwait, Qatar, and Bahrain have no overland alternative — their barrels move through Hormuz or not at all.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Iraq",
+                "value": "~100% via Hormuz",
+                "cc": "IQ",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kuwait",
+                "value": "~100%",
+                "cc": "KW",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Qatar",
+                "value": "~100% (LNG)",
+                "cc": "QA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iran",
+                "value": "~95%",
+                "cc": "IR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~88% (rest via Yanbu)",
+                "cc": "SA",
+                "tone": "neutral"
+              },
+              {
+                "label": "UAE",
+                "value": "~65% (rest via Fujairah)",
+                "cc": "AE",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Gulf exports: Hormuz dependence"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE IEA ACTUALLY DOES",
+        "body": "The International Energy Agency was created in 1974 after the OPEC embargo to coordinate strategic petroleum reserve releases among consuming nations. Its 31 members hold roughly 1.2 billion barrels in emergency stocks — about 60 days of net imports — that can be released collectively to break a price spike.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why was the IEA founded in 1974?",
+            "options": [
+              "To coordinate consumer-nation responses to the 1973 OPEC oil embargo",
+              "To regulate global emissions from fossil fuel production",
+              "To manage the privatization of European national oil companies",
+              "To replace OPEC after its 1973 collapse"
+            ],
+            "correct": 0,
+            "explanation": "The IEA emerged from the OECD as a counterweight to OPEC — its core function was, and remains, coordinating strategic stock releases when supply is disrupted."
+          }
+        ]
+      },
+      {
+        "heading": "THE BRENT–WTI SPREAD",
+        "body": "When a Gulf-specific shock hits, Brent decouples from WTI — the US benchmark, which prices landlocked North American crude. The widening spread is the cleanest market signal that the disruption is geographic rather than a global demand shift.",
+        "blocks": [
+          {
+            "type": "trend",
+            "series": [
+              {
+                "values": [
+                  70.28,
+                  70.9,
+                  71,
+                  72.25,
+                  67.72,
+                  70.01,
+                  71.15,
+                  69.87,
+                  70.45,
+                  71.19,
+                  71.01,
+                  71.52,
+                  69.8,
+                  69.96,
+                  70.81,
+                  69.77,
+                  71.78,
+                  73.17,
+                  72.75,
+                  71.9,
+                  71.21,
+                  70.69,
+                  71.66,
+                  71.32,
+                  77.24,
+                  83.28,
+                  81.56,
+                  88.59,
+                  95.74,
+                  94.35,
+                  89.84,
+                  90.98,
+                  102.38,
+                  103.23,
+                  101.04,
+                  108.39,
+                  118.09,
+                  111.05,
+                  118.42,
+                  103.79,
+                  108.42,
+                  109.14,
+                  113.39,
+                  121.47,
+                  121.88,
+                  126.69,
+                  119.56,
+                  127.61,
+                  138.21,
+                  122.11,
+                  119.03,
+                  119.07,
+                  123.28,
+                  118.69,
+                  114.93,
+                  116.63,
+                  98.63,
+                  103.4
+                ],
+                "label": "Brent crude",
+                "highlight": "last"
+              },
+              {
+                "values": [
+                  62.04,
+                  62.75,
+                  64.77,
+                  64.5,
+                  61.6,
+                  62.62,
+                  64.56,
+                  62.9,
+                  63.77,
+                  64.53,
+                  64.2,
+                  64.8,
+                  63.08,
+                  63.05,
+                  62.53,
+                  65.33,
+                  66.66,
+                  66.69,
+                  66.36,
+                  65.62,
+                  65.3,
+                  65.1,
+                  66.96,
+                  71.13,
+                  74.48,
+                  74.58,
+                  80.88,
+                  90.77,
+                  94.65,
+                  83.71,
+                  86.8,
+                  95.61,
+                  98.48,
+                  93.39,
+                  96.01,
+                  96.12,
+                  96.11,
+                  98.71,
+                  89.33,
+                  93.18,
+                  91.51,
+                  96.18,
+                  101.26,
+                  104.69,
+                  102.86,
+                  101.9,
+                  113.23,
+                  114.01,
+                  114.58,
+                  96.17,
+                  99.62,
+                  98.34,
+                  100.72,
+                  93.07,
+                  93.04,
+                  96.46,
+                  85.91,
+                  91.06
+                ],
+                "label": "WTI crude",
+                "highlight": "last"
+              }
+            ],
+            "label": "Brent vs WTI",
+            "source": 1,
+            "unit": "$/bbl",
+            "periods": [
+              "Jan 27",
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19",
+      "FRED · EIA · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-27T04:46:14.851Z",
+    "label": "Oil Price Formation in a Hormuz Crisis",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-27-pakistan-fixes-prices-35-essential-drugs-shortage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "When a government caps a drug's price below its production cost, manufacturers don't lose money — they exit. The drug doesn't get cheaper; it disappears from pharmacies, then reappears on the black market at multiples of the capped price.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this a **shortage equilibrium**: the official price is low, but the *effective* price — capped price plus search cost plus bribe — is higher than a free market would have produced."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CANCER DRUGS FIRST",
+        "body": "Oncology, transplant, and haemophilia drugs share a structural feature: small patient populations, complex manufacturing, and no generic substitutes. When a multinational withdraws, there is no domestic manufacturer waiting to fill the gap. The shelf simply empties."
+      },
+      {
+        "heading": "THE 2-YEAR FREEZE",
+        "body": "Pakistan's Drug Regulatory Authority (DRAP) sets ceiling prices under the Drug Act. Between 2023 and 2025, rupee depreciation cut import margins to negative — a vial costing $40 to land sold at a capped price worth $25. Manufacturers filed for price relief; cabinet approval stalled.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.387431,
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752
+            ],
+            "periods": [
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 1984 PRECEDENT",
+        "body": "India faced the same crunch in the 1970s under its Drugs Price Control Order. Multinationals withdrew specialty drugs; domestic generics filled volume but not the high-complexity tier. The lesson Pakistan did not learn: price controls work for off-patent generics, not for patented or biologic therapies.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~$50bn output",
+                "cc": "IN",
+                "tone": "favorable"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~$3.5bn",
+                "cc": "BD",
+                "tone": "neutral"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~$3.2bn",
+                "cc": "PK",
+                "tone": "neutral"
+              },
+              {
+                "label": "Sri Lanka",
+                "value": "~$0.2bn",
+                "cc": "LK",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "pharma manufacturing capacity"
+          }
+        ]
+      },
+      {
+        "heading": "WHO BEARS THE COST",
+        "body": "Pakistan's out-of-pocket health spending is roughly 55% of total health expenditure — among the highest in the region. When essential drugs vanish from regulated pharmacies, families either pay smuggled prices, switch to substandard alternatives, or stop treatment. Cancer regimens interrupted mid-cycle lose most of their efficacy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Pakistan's health spending comes directly out of patients' pockets?",
+            "options": [
+              "About 20%",
+              "About 35%",
+              "About 55%",
+              "About 75%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 55% — one of the highest ratios in South Asia. There is no meaningful public insurance backstop, so drug shortages translate directly into household financial shocks."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-27"
+    ],
+    "generatedAt": "2026-04-27T04:46:39.289Z",
+    "label": "Drug Price Controls & Shortages",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-27-pakistan-hiv-global-fund-inspection-syringes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "HIV transmits efficiently through shared needles because the virus survives in the residual blood inside a syringe barrel for hours. A single reused needle in a clinic can seed dozens of infections before anyone notices a pattern.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The risk per needle-stick exposure to HIV-positive blood is roughly *0.3%* — low per event, but **catastrophic at scale** when one syringe serves dozens of patients across a day."
+          }
+        ]
+      },
+      {
+        "heading": "THE PAKISTANI PATTERN",
+        "body": "Pakistan has had recurring pediatric HIV outbreaks — Larkana 2019 infected over 900 children, Ratodero traced to a single doctor reusing syringes. The pattern is not random: unlicensed quack clinics, intravenous drips marketed as cure-alls, and informal blood transfusions at small private hospitals.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016",
+                "label": "Kot Imrana cluster (Punjab)"
+              },
+              {
+                "year": "2019",
+                "label": "Larkana/Ratodero outbreak — 900+ children",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Chiniot cluster"
+              },
+              {
+                "year": "2026",
+                "label": "Taunsa — 300 children"
+              }
+            ],
+            "label": "Pakistan's pediatric HIV outbreaks"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AUTO-DISABLE SYRINGES EXIST",
+        "body": "WHO has recommended auto-disable (AD) syringes — which lock after one use — for all therapeutic injections since 2015. They cost roughly two cents more than reusable syringes. Pakistan passed a law mandating AD syringes in 2018; enforcement at the district level has been the gap."
+      },
+      {
+        "heading": "THE GLOBAL FUND LEVERAGE",
+        "body": "The Global Fund is the largest external financier of Pakistan's HIV, TB, and malaria programs — roughly $900M committed across cycles. Inspections are not symbolic: failed grant reviews have suspended disbursements to other recipient countries (Cambodia 2010, Mali 2011), forcing health ministries to restructure procurement and oversight.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "HIV/AIDS",
+                "value": "~$280M",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Tuberculosis",
+                "value": "~$420M",
+                "tone": "neutral"
+              },
+              {
+                "label": "Malaria",
+                "value": "~$200M",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Global Fund disbursements to Pakistan (cumulative, by disease)"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURAL ROOT",
+        "body": "Out-of-pocket health spending in Pakistan covers roughly 55% of all medical costs — among the highest in South Asia. Patients seek out the cheapest provider, which is typically an unregulated practitioner who reuses equipment to keep margins workable. The outbreak is a symptom of the financing model.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of injections given in Pakistan's informal sector are estimated to use reused syringes?",
+            "options": [
+              "Under 5%",
+              "Around 15%",
+              "Roughly half",
+              "Over 90%"
+            ],
+            "correct": 2,
+            "explanation": "WHO surveys in the 2010s found roughly half of therapeutic injections in South Asian informal-sector clinics involved unsafe syringe practices — the structural baseline behind every outbreak."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE BACKDROP",
+        "body": "Imported medical consumables — including AD syringes — are priced in dollars. Each rupee depreciation raises the landed cost of compliance, widening the gap between the cheap reusable syringe and the safe one.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.387431,
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752
+            ],
+            "periods": [
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-27"
+    ],
+    "generatedAt": "2026-04-27T04:47:08.971Z",
+    "label": "Syringe Reuse & HIV Outbreaks",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-27-sarcopenia-cancer-notch-sdc2-muscle-vesicles": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "MUSCLE IS NOT JUST MEAT",
+        "body": "Skeletal muscle is the largest endocrine organ in the body. Contracting muscle releases hundreds of signaling molecules — myokines — into the bloodstream that act on the brain, liver, fat, bone, and immune system. The body in motion is chemically different from the body at rest.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term **myokine** was coined in 2003 by Bente Pedersen to describe muscle-secreted cytokines. Before that, muscle was treated as a passive consumer of glucose — not a *secretory organ* shaping systemic physiology."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT SARCOPENIA IS",
+        "body": "Sarcopenia is the age-related loss of muscle mass and function. Healthy adults lose roughly 3-8% of muscle per decade after age 30, accelerating after 60. It is not weakness from disuse — it is a structural change in muscle fiber composition, mitochondrial density, and stem-cell capacity."
+      },
+      {
+        "heading": "EXTRACELLULAR VESICLES",
+        "body": "Cells package proteins, RNA, and lipids into tiny membrane-bound bubbles and release them into circulation. These vesicles are absorbed by distant cells, transferring their cargo. The discovery that muscle uses this channel to talk to tumors reframes muscle as an active anti-cancer organ, not a bystander.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much muscle mass does a healthy adult lose per decade after age 30?",
+            "options": [
+              "Less than 1%",
+              "3-8%",
+              "15-20%",
+              "About 30%"
+            ],
+            "correct": 1,
+            "explanation": "Loss accelerates after 60 and is driven by fiber-type shifts and stem-cell decline, not just inactivity — which is why exercise slows but does not fully reverse it."
+          }
+        ]
+      },
+      {
+        "heading": "THE NOTCH PATHWAY",
+        "body": "NOTCH is one of the oldest signaling systems in animal biology, conserved from fruit flies to humans. It governs cell-fate decisions: whether a stem cell stays a stem cell, whether tissue regenerates, whether a tumor's neighbors cooperate or resist. Most cancers hijack or suppress it."
+      },
+      {
+        "heading": "WHY EXERCISE-ONCOLOGY IS NEW",
+        "body": "For most of medical history, cancer patients were told to rest. Randomized trials starting in the 2000s showed exercise during chemotherapy reduces recurrence in breast and colon cancer by 30-40% — an effect size rivaling many drugs. The mechanism was unclear; muscle-derived vesicles are now a leading candidate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Colon Health and Life-Long Exercise Change (**CHALLENGE**) trial, published 2025, was the first large RCT to show structured exercise after colon-cancer surgery cuts recurrence — moving exercise from *adjunct* to *intervention*."
+          }
+        ]
+      },
+      {
+        "heading": "PRECLINICAL MEANS MOUSE",
+        "body": "\"Preclinical\" almost always means rodent models. Mouse muscle physiology shares core machinery with human muscle, but the failure rate translating mouse cancer findings to humans exceeds 90%. The pathway is plausible; the human trial is the test that matters."
+      }
+    ],
+    "generatedAt": "2026-04-27T04:47:35.325Z",
+    "label": "Muscle as an Endocrine Organ",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-27-us-immigration-sanctuary-law-mapping-study": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SANCTUARY ACTUALLY MEANS",
+        "body": "Sanctuary laws don't shield migrants from federal immigration enforcement — states can't do that. They limit how local police and jails cooperate with ICE: refusing detainer requests, barring status inquiries during routine policing, declining to share custody data.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal hook is the *anti-commandeering doctrine* — the federal government cannot compel state officers to enforce federal law, established in **Printz v. United States** (1997)."
+          }
+        ]
+      },
+      {
+        "heading": "PREEMPTION, INVERTED",
+        "body": "Preemption is when a higher level of government overrides a lower one. Traditionally states preempted cities on commerce or labor. Punitive preemption is the new variant: red states forbidding blue cities from passing sanctuary policies, sometimes with personal liability for mayors who defy the ban."
+      },
+      {
+        "heading": "THE IDEOLOGY FINDING",
+        "body": "The striking result of the mapping study: a state's partisan lean predicts its immigration laws better than its actual immigrant population. Texas border counties and Iowa farm towns produce similar policy outputs because the legislature is the variable, not the demographics on the ground.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which factor most reliably predicts whether a US state passes sanctuary or anti-sanctuary laws?",
+            "options": [
+              "Share of foreign-born residents",
+              "Proximity to the southern border",
+              "State legislature's partisan ideology",
+              "Unemployment rate"
+            ],
+            "correct": 2,
+            "explanation": "The 2000–2021 dataset shows ideology dominates — demographic exposure to immigration matters far less than who controls the statehouse."
+          }
+        ]
+      },
+      {
+        "heading": "THE 287(g) PIPELINE",
+        "body": "Section 287(g) of the 1996 immigration act lets ICE deputize local sheriffs to perform federal immigration functions. Sanctuary laws sever this pipeline; anti-sanctuary laws mandate participation. The same statute creates both poles of the fight."
+      },
+      {
+        "heading": "THE PROPOSITION 187 PRECEDENT",
+        "body": "California's 1994 ballot measure barred undocumented residents from public services and required teachers and doctors to report them. Federal courts struck most of it down, but it reshaped state politics for a generation — and created the template both sides still use today.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "California Prop 187 passes, mostly struck down"
+              },
+              {
+                "year": "1996",
+                "label": "IIRIRA creates Section 287(g)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1997",
+                "label": "Printz: anti-commandeering doctrine"
+              },
+              {
+                "year": "2010",
+                "label": "Arizona SB 1070 'show me your papers'"
+              },
+              {
+                "year": "2017",
+                "label": "Texas SB 4 bans sanctuary cities"
+              },
+              {
+                "year": "2021",
+                "label": "21-year mapping dataset closes"
+              }
+            ],
+            "label": "the modern sanctuary arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FEDERAL LEVER IS LIMITED",
+        "body": "Washington can withhold certain grants from sanctuary jurisdictions but cannot compel cooperation. The Trump administration's first-term attempt to strip Byrne JAG funding from sanctuary cities lost in multiple circuits. The constitutional architecture pushes the fight back down to the states."
+      }
+    ],
+    "generatedAt": "2026-04-27T04:48:02.007Z",
+    "label": "Sanctuary Laws & Preemption",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-27-us-narco-boat-strike-185-toll-pacific": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL DISTINCTION",
+        "body": "Law enforcement requires probable cause, due process, and proportional force — suspects are arrested, not killed. Armed conflict permits lethal targeting of combatants without trial. Which framework applies determines whether a strike is a crime or an act of war.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Trump administration calls cartels *unlawful combatants* in a *non-international armed conflict* — language borrowed from the **post-9/11 Guantánamo legal architecture**, now applied to drug traffickers."
+          }
+        ]
+      },
+      {
+        "heading": "THE COAST GUARD PRECEDENT",
+        "body": "For four decades, the US interdicted drug boats in the Pacific and Caribbean by Coast Guard boarding — vessels were stopped, crews arrested, contraband seized, suspects tried in federal court. Roughly 2,000 such interdictions per year produced thousands of prosecutions. The new policy replaces capture with destruction."
+      },
+      {
+        "heading": "THE POSSE COMITATUS LINE",
+        "body": "The 1878 Posse Comitatus Act bars the US military from domestic law enforcement. International waters are the workaround: outside US territory, the military operates without the statute's restrictions, but the targets are still civilians under international law unless an armed conflict has been formally invoked."
+      },
+      {
+        "heading": "WHO DECIDES WHAT IS A WAR",
+        "body": "Under the US Constitution, Congress declares war. Under the 1973 War Powers Resolution, the president must notify Congress within 48 hours of introducing forces into hostilities and withdraw within 60 days absent authorization. No AUMF covers cartels; the administration's claim of armed conflict has not been tested in any court.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The Congress shall have Power... To declare War, grant Letters of Marque and Reprisal, and make Rules concerning Captures on Land and Water",
+            "speaker": "US Constitution, Article I §8"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXTRAJUDICIAL KILLING DOCTRINE",
+        "body": "Under the International Covenant on Civil and Political Rights, which the US ratified in 1992, killing a person outside armed conflict without judicial process is an extrajudicial execution. The UN Special Rapporteur has applied this framework to US drone strikes on alleged terrorists; the legal architecture for narco strikes is even thinner.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under international law, when is lethal force against a civilian vessel lawful without trial?",
+            "options": [
+              "When the vessel is suspected of smuggling illegal goods",
+              "Only during a formally recognized armed conflict, against combatants",
+              "Whenever the vessel is in international waters",
+              "When the executive branch designates the crew as terrorists"
+            ],
+            "correct": 1,
+            "explanation": "Outside armed conflict, lethal force against civilians requires imminent threat to life — smuggling alone does not meet that threshold under the ICCPR."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT RISK",
+        "body": "Once a state asserts authority to kill suspected criminals at sea without trial, other states acquire the same template. Russia has used similar reasoning in the Black Sea; China asserts comparable authority over fishing vessels in the South China Sea. The legal frame a superpower normalizes becomes the frame used against it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "MX",
+              "CO",
+              "EC",
+              "PE"
+            ],
+            "label": "the Pacific narco corridor",
+            "caption": "strikes concentrated off Colombia and Ecuador's Pacific coasts"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-27T04:48:30.268Z",
+    "label": "Extrajudicial Strikes & the Laws of War",
+    "category": "politics",
+    "articleCount": 1
   }
 }
