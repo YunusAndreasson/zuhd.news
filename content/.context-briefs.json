@@ -72628,5 +72628,1410 @@
     "label": "Stablecoins vs Correspondent Banking",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-27-lebanon-deadliest-day-since-ceasefire-civilian-strikes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE CEASEFIRE ACTUALLY SAYS",
+        "body": "The November 2024 deal gave Hezbollah 60 days to withdraw fighters and weapons north of the Litani River, while Israel was to pull back across the Blue Line. The Lebanese Army would deploy into the vacated south alongside UNIFIL. Almost none of the timelines held; Israel retained five 'strategic points' inside Lebanese territory past every deadline.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the south Lebanon buffer",
+            "markers": [
+              {
+                "lat": 33.2719,
+                "lng": 35.4031,
+                "label": "Litani River mouth"
+              },
+              {
+                "lat": 33.1206,
+                "lng": 35.4319,
+                "label": "Bint Jbeil"
+              },
+              {
+                "lat": 33.0931,
+                "lng": 35.1453,
+                "label": "Blue Line"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1701 INHERITANCE",
+        "body": "UN Resolution 1701 ended the 2006 war on similar terms: Hezbollah disarms south of the Litani, Israel withdraws, UNIFIL monitors. It was never enforced. The November 2024 ceasefire is essentially 1701 rewritten with a US-French monitoring mechanism instead of UNIFIL — the same architecture that failed for eighteen years.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Litani is roughly **30 km** north of the Israeli border. The strip between the river and the Blue Line is what every south Lebanon arrangement since 1978 has tried — and failed — to demilitarize."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CIVILIAN TOLLS RECUR HERE",
+        "body": "South Lebanon's villages sit on a geography that has been buffer zone, occupation zone, and battleground continuously since 1978. Hezbollah's military infrastructure is dispersed through civilian terrain by design — homes, garages, orchards. Strikes on suspected weapons sites and strikes on civilian dwellings become the same coordinates.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Israel's first invasion (Litani Operation)"
+              },
+              {
+                "year": "1982",
+                "label": "Israel reaches Beirut"
+              },
+              {
+                "year": "2000",
+                "label": "Israeli withdrawal after 18 years"
+              },
+              {
+                "year": "2006",
+                "label": "July War; UN 1701",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-11",
+                "label": "November ceasefire"
+              },
+              {
+                "year": "2026-04",
+                "label": "Deadliest day since ceasefire"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1982",
+                "to": "2000",
+                "label": "Israeli occupation",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "south Lebanon's recurring war"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BRAZIL CARES",
+        "body": "Lebanon's diaspora in Brazil — roughly 7 million people of Lebanese descent — is larger than Lebanon's domestic population of about 5.5 million. Most descend from Christian and Shia migrants who left during Ottoman conscription drives and the 1975-1990 civil war. Every south Lebanon casualty list includes dual nationals.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Brazil",
+                "value": "~7m",
+                "cc": "BR",
+                "weight": 7
+              },
+              {
+                "label": "Lebanon",
+                "value": "~5.5m",
+                "cc": "LB",
+                "weight": 5.5
+              },
+              {
+                "label": "Argentina",
+                "value": "~1.5m",
+                "cc": "AR",
+                "weight": 1.5
+              },
+              {
+                "label": "USA",
+                "value": "~500k",
+                "cc": "US",
+                "weight": 0.5
+              },
+              {
+                "label": "France",
+                "value": "~250k",
+                "cc": "FR",
+                "weight": 0.25
+              }
+            ],
+            "label": "Lebanese diaspora vs homeland"
+          }
+        ]
+      },
+      {
+        "heading": "THE SPOILER LOGIC",
+        "body": "Ceasefires that lack disarmament timelines incentivize both sides to test the edges. Israel demonstrates that strikes carry no cost; Hezbollah demonstrates it has not been disarmed. The IRA decommissioning took 8 years after Good Friday — armed groups disarm only when politics delivers more than fighting does. Lebanon's politics delivers neither.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long after the Good Friday Agreement did the IRA fully decommission its weapons?",
+            "options": [
+              "Immediately, as the agreement required",
+              "About 2 years",
+              "About 8 years",
+              "They never fully decommissioned"
+            ],
+            "correct": 2,
+            "explanation": "The IRA completed decommissioning in 2005 — 7 years after the 1998 agreement — only after sustained political concessions and independent verification."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-28T04:28:25.603Z",
+    "label": "The November Ceasefire & South Lebanon",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-28-afghanistan-taliban-mineral-concessions-extraction-terms": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRILLION-DOLLAR MYTH",
+        "body": "The $1 trillion figure traces to a 2010 US Geological Survey estimate of in-ground reserves — lithium, copper, iron, rare earths, cobalt. In-ground value is not extractable value. Without roads, rail, power, water, and processing capacity, ore in the Hindu Kush is worth a fraction of ore at a port.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "CN",
+              "IR",
+              "PK",
+              "TJ",
+              "UZ",
+              "TM"
+            ],
+            "label": "Afghanistan and its mineral buyers",
+            "markers": [
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              },
+              {
+                "lat": 35.2227,
+                "lng": 68.7,
+                "label": "Aynak copper"
+              },
+              {
+                "lat": 34.65,
+                "lng": 67.05,
+                "label": "Hajigak iron ore"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE EXTRACTION-TERMS LADDER",
+        "body": "Mining contracts sit on a spectrum. At one end: raw ore export at spot price, no processing, low royalties. At the other: domestic smelting requirements, equity stakes for the state, training mandates, technology transfer. Where a country sits on this ladder reflects its leverage — not its geology.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Indonesia",
+                "value": "smelter mandate",
+                "cc": "ID",
+                "tone": "favorable"
+              },
+              {
+                "label": "Chile",
+                "value": "33% royalty",
+                "cc": "CL",
+                "tone": "favorable"
+              },
+              {
+                "label": "DR Congo",
+                "value": "raw cobalt export",
+                "cc": "CD",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Afghanistan",
+                "value": "raw, low royalty",
+                "cc": "AF",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "contract terms across mineral exporters"
+          }
+        ]
+      },
+      {
+        "heading": "THE INDONESIA PRECEDENT",
+        "body": "In 2014 Jakarta banned raw nickel ore exports outright. Chinese smelters had two choices: build processing plants in Indonesia or lose access. They built. Indonesia now controls roughly half of global refined nickel — a transformation that required state capacity, not just resources.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Indonesia's leverage came from being a *price-setter* in nickel, not a price-taker. Afghanistan's lithium share is too small to coerce buyers — the **Lithium Triangle** of Chile, Argentina, and Bolivia holds over half of global reserves."
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS DISCOUNT",
+        "body": "Sanctioned states sell at a discount because their buyer pool shrinks. Russian oil trades at $15-25 below Brent. Iranian crude trades wider still. The same logic applies to minerals: only buyers willing to absorb sanctions risk show up, and they price that risk into the contract.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do sanctioned exporters typically accept worse contract terms than peers?",
+            "options": [
+              "Their minerals are lower quality",
+              "Their buyer pool shrinks, eliminating competitive bidding",
+              "International law caps their royalty rates",
+              "They lack physical infrastructure to ship"
+            ],
+            "correct": 1,
+            "explanation": "Sanctions don't degrade the ore — they shrink the auction. Fewer bidders means each buyer can dictate terms the seller would otherwise refuse."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESOURCE CURSE",
+        "body": "Countries rich in extractable minerals consistently underperform resource-poor peers on growth, governance, and conflict. The mechanism: resource revenue accrues to whoever controls the mine, not the broader economy, so capturing the state becomes more valuable than building it. Afghanistan's history of warlord-controlled mining predates the Taliban by decades.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "Aynak copper deal with China (MCC)"
+              },
+              {
+                "year": "2010",
+                "label": "USGS publishes $1tn estimate",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Hajigak iron ore awarded to Indian consortium"
+              },
+              {
+                "year": "2021",
+                "label": "Taliban returns; Western contracts freeze"
+              },
+              {
+                "year": "2023",
+                "label": "$6.5bn in new mining deals signed"
+              },
+              {
+                "year": "2026",
+                "label": "Lithium and REE concessions to CN, IR, TR"
+              }
+            ],
+            "label": "Afghanistan's mineral arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA, IRAN, TURKEY",
+        "body": "The buyers are precisely the states with the least to lose from US sanctions exposure. China already operates the dormant Aynak copper concession from 2007. Iran shares a 900km border and operates outside the dollar system. Turkey has hedged its sanctions posture for a decade. The cast is the cast that shows up everywhere sanctions push Western capital out."
+      }
+    ],
+    "generatedAt": "2026-04-28T04:29:01.751Z",
+    "label": "Resource Curse & Extraction Terms",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-asu-atomic-ai-modules-faculty-lecture-ip": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TEACHER EXCEPTION",
+        "body": "US copyright law's work-for-hire doctrine assigns employer ownership of work created within employment scope. But a long-standing 'teacher exception' — rooted in academic custom predating the 1976 Copyright Act — held that lectures, books, and course materials belonged to the professor, not the university. The exception was never codified; it survives by tradition and contract.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1976 Act technically *abolished* the teacher exception by omission — courts have split on whether it survives, leaving the question to **faculty handbooks** and union contracts."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RECORDINGS CHANGED EVERYTHING",
+        "body": "A live lecture is ephemeral; a recording is a fixed, reproducible asset. When universities pivoted to recorded instruction during COVID, most updated IP policies to claim ownership of recordings as 'institutional works' — a category broader than work-for-hire. The professor still owns the ideas; the university owns the file.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under US copyright law, when does a lecture become protected?",
+            "options": [
+              "When delivered orally to students",
+              "When 'fixed in a tangible medium' — written, recorded, or transcribed",
+              "When the university registers it",
+              "When the professor publishes notes"
+            ],
+            "correct": 1,
+            "explanation": "Copyright attaches at fixation, not creation. An unrecorded lecture is unprotected; the moment it's recorded, ownership becomes the contested question."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOOC PRECEDENT",
+        "body": "When Coursera and edX launched in 2012, Stanford, MIT, and Harvard quietly negotiated revenue-sharing agreements with star faculty whose courses drew millions of enrollments. The contracts treated lectures as licensed content, not work-for-hire. ASU's atomic-modules approach skips that negotiation entirely — the precedent it sets is that a university can repackage faculty output without consent."
+      },
+      {
+        "heading": "WHAT 'ATOMIC' MEANS",
+        "body": "AI training pipelines prefer short, self-contained chunks: a 90-second clip explaining one concept, tagged and embeddable. A 75-minute lecture is too long to retrieve; a hundred atomic modules are searchable inventory. The economic value shifts from the lecture to the chunked corpus — and the corpus is what the university now claims to own."
+      },
+      {
+        "heading": "THE COMPENSATION GAP",
+        "body": "Faculty salaries assume teaching, research, and service. They do not assume that recorded lectures will be productized into a separate revenue stream. When Westlaw and LexisNexis built searchable databases from court opinions in the 1980s, judges weren't paid royalties — opinions were public domain. Faculty lectures are not. That distinction is what makes ASU's posture legally fragile and politically combustible."
+      }
+    ],
+    "generatedAt": "2026-04-28T04:29:24.649Z",
+    "label": "Faculty IP & Work-for-Hire",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-28-australia-tech-levy-news-bargaining-code-replacement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 2021 PRECEDENT",
+        "body": "Australia's News Media Bargaining Code was the first law worldwide forcing platforms to pay publishers. Facebook briefly blanked all Australian news pages in February 2021 — including government health and emergency services pages — before backing down and signing deals.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The week-long blackout earned a name: the **Facebook News Ban**. It demonstrated platform leverage but also drew the regulatory backlash that shaped every copycat law since."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A LEVY, NOT A CODE",
+        "body": "The 2021 code let platforms avoid designation by cutting voluntary deals. Meta announced in 2024 it would not renew those deals. A revenue tax flips the default: pay publishers or pay the treasury. Platforms cannot exit by simply refusing to negotiate.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Anthony Albanese",
+                "role": "Australian PM",
+                "years": "2022–",
+                "cc": "AU"
+              },
+              {
+                "name": "Michelle Rowland",
+                "role": "Communications Minister",
+                "years": "2022–",
+                "cc": "AU"
+              },
+              {
+                "name": "Mark Zuckerberg",
+                "role": "Meta CEO",
+                "years": "2004–",
+                "cc": "US"
+              },
+              {
+                "name": "Sundar Pichai",
+                "role": "Google/Alphabet CEO",
+                "years": "2015–",
+                "cc": "US"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE COPYCAT WAVE",
+        "body": "Canada's Online News Act (2023) triggered Meta to block news for Canadians entirely — a block still in place. France, Germany, and Spain pursued versions through EU copyright law. Each jurisdiction tests whether platforms will concede or withdraw.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Australia",
+                "value": "2021 code, 2026 levy",
+                "cc": "AU",
+                "tone": "neutral"
+              },
+              {
+                "label": "Canada",
+                "value": "Meta blocked",
+                "cc": "CA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "France",
+                "value": "EU copyright deals",
+                "cc": "FR",
+                "tone": "favorable"
+              },
+              {
+                "label": "Spain",
+                "value": "Google News exit '14",
+                "cc": "ES",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "news payment regimes"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURAL ASYMMETRY",
+        "body": "Australian newsrooms shed roughly 5,000 jobs in the decade to 2020 as classified and display ad revenue migrated to Google and Meta. The bargaining code's premise: platforms captured value journalism produced. The counter-argument: platforms drive traffic publishers monetize. Both are partly true."
+      },
+      {
+        "heading": "THE TIKTOK ADDITION",
+        "body": "The 2021 code targeted Google and Meta. TikTok was added in 2026 because short-form video now carries a meaningful share of news consumption among under-30s. The levy treats news distribution as the trigger, regardless of platform format.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Meta do when Canada passed its 2023 news payment law?",
+            "options": [
+              "Signed deals with Canadian publishers",
+              "Blocked all news links for Canadian users",
+              "Paid the levy without comment",
+              "Sued the Canadian government"
+            ],
+            "correct": 1,
+            "explanation": "Meta blocked news links on Facebook and Instagram for Canadian users rather than pay — a block still in effect, demonstrating that platforms will exit news rather than concede on principle."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-28T04:29:55.978Z",
+    "label": "Tech Levies & News Bargaining",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-kyrgyzstan-japarov-tashiev-split-consolidation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THREE REVOLUTIONS, ONE PATTERN",
+        "body": "Kyrgyzstan is the only Central Asian state to have overthrown its president by street protest — three times. Each Tulip-style uprising replaced one strongman with another who promised reform and consolidated power instead.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2005",
+                "label": "Tulip Revolution ousts Akayev"
+              },
+              {
+                "year": "2010",
+                "label": "April Revolution ousts Bakiyev"
+              },
+              {
+                "year": "2020",
+                "label": "October unrest brings Japarov from prison to presidency",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Referendum restores presidential system"
+              },
+              {
+                "year": "2026-02",
+                "label": "Tashiyev dismissed"
+              }
+            ],
+            "label": "Bishkek's revolutions"
+          }
+        ]
+      },
+      {
+        "heading": "FROM PRISON TO PRESIDENT",
+        "body": "Japarov was serving an 11-year sentence for hostage-taking when October 2020 protesters stormed the prison and freed him. Within weeks he was acting president. The path — prisoner to head of state in under a month — has no parallel in post-Soviet politics.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bloc that pulled him out was **Mekenchil**, a nationalist party Tashiyev led. The two men's careers fused on the night of the prison break — which is why this dismissal reads less like a cabinet reshuffle and more like a divorce."
+          }
+        ]
+      },
+      {
+        "heading": "THE GKNB",
+        "body": "Tashiyev ran the State Committee for National Security — the GKNB, successor to the Soviet KGB. In Central Asia these agencies don't just collect intelligence; they run anti-corruption prosecutions, control border services, and decide which oligarchs lose assets. Whoever holds the GKNB holds the leash."
+      },
+      {
+        "heading": "THE TANDEM PROBLEM",
+        "body": "Post-Soviet co-rule arrangements are unstable. Putin–Medvedev ended with Putin returning. Nazarbayev's handover to Tokayev collapsed in the 2022 Kazakh unrest. Tandems work until the junior partner builds an independent base — at which point the senior either absorbs or expels him.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Putin & Medvedev",
+                "role": "rotated 2008–2012",
+                "years": "2008–2012",
+                "cc": "RU"
+              },
+              {
+                "name": "Nazarbayev & Tokayev",
+                "role": "Elbasy handover",
+                "years": "2019–2022",
+                "cc": "KZ"
+              },
+              {
+                "name": "Japarov & Tashiyev",
+                "role": "co-rule since prison break",
+                "years": "2020–2026",
+                "cc": "KG"
+              }
+            ],
+            "label": "post-Soviet tandems"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEIGHBORHOOD",
+        "body": "Kyrgyzstan sits between Kazakhstan, Uzbekistan, Tajikistan, and China's Xinjiang. It hosts a Russian airbase at Kant, a Chinese-financed rail project, and a US-aligned mining sector — Bishkek's foreign policy is a hedging exercise on every axis.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KG",
+              "KZ",
+              "UZ",
+              "TJ",
+              "CN"
+            ],
+            "label": "the Fergana neighborhood"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 2027 MATTERS",
+        "body": "Japarov's referendum-rewritten constitution allows two five-year terms. 2027 is his first re-election test. Removing Tashiyev now — two years out — gives the GKNB time to be staffed with loyalists before the campaign apparatus turns on.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Japarov's 2021 constitutional referendum change?",
+            "options": [
+              "Restored a strong presidential system after a decade of parliamentarism",
+              "Abolished the presidency in favor of a prime minister",
+              "Created a two-chamber legislature",
+              "Banned former presidents from prosecution"
+            ],
+            "correct": 0,
+            "explanation": "The 2010 constitution had made Kyrgyzstan Central Asia's only parliamentary republic. Japarov's referendum reversed that, concentrating power back in the presidency."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-28T04:30:27.337Z",
+    "label": "Kyrgyzstan's Tandem Politics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-28-mexico-cjng-el-mencho-successor-arrest": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RISE OF CJNG",
+        "body": "The Jalisco New Generation Cartel emerged around 2009 as a splinter from the Sinaloa-aligned Milenio Cartel. Within a decade it rivaled Sinaloa as Mexico's most powerful trafficking organization, with presence reported in most Mexican states and distribution networks across five continents.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "CJNG's signature was *vertical integration* — controlling product from Andean coca and Asian fentanyl precursors through to US street distribution, rather than acting as a transit middleman."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SUCCESSION FRAGMENTS",
+        "body": "Cartels are not corporations with org charts; they are coalitions of regional plaza bosses bound by a charismatic leader's reputation for violence and reliable payment. When the leader dies, the coalition's unity dies with him. The 1989 arrest of Guadalajara Cartel chief Félix Gallardo split his network into the Tijuana, Sinaloa, and Juárez cartels — the structural template for every Mexican succession since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1989",
+                "label": "Félix Gallardo arrested; Guadalajara Cartel splits",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1993",
+                "label": "Pablo Acosta killed; Juárez Cartel restructures"
+              },
+              {
+                "year": "2009",
+                "label": "Beltrán Leyva killed; faction war erupts"
+              },
+              {
+                "year": "2013",
+                "label": "Z-40 captured; Zetas fragment"
+              },
+              {
+                "year": "2014",
+                "label": "Chapo recaptured (escapes 2015)"
+              },
+              {
+                "year": "2026",
+                "label": "El Mencho dies; CJNG enters succession"
+              }
+            ],
+            "label": "Mexican cartel succession shocks"
+          }
+        ]
+      },
+      {
+        "heading": "THE PACIFIC ROUTES",
+        "body": "Nayarit and Jalisco sit on the Pacific corridor that channels methamphetamine precursors from Asian ports through Manzanillo and Lázaro Cárdenas, then north to the US border. Whoever controls these plazas controls the chemical supply chain that has displaced cocaine as CJNG's main revenue source.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MX",
+              "US",
+              "GT"
+            ],
+            "label": "Pacific meth corridor",
+            "markers": [
+              {
+                "lat": 21.5083,
+                "lng": -104.8945,
+                "label": "Nayarit (capture site)"
+              },
+              {
+                "lat": 19.0543,
+                "lng": -104.3158,
+                "label": "Manzanillo port"
+              },
+              {
+                "lat": 17.9583,
+                "lng": -102.2,
+                "label": "Lázaro Cárdenas port"
+              },
+              {
+                "lat": 20.6597,
+                "lng": -103.3496,
+                "label": "Guadalajara (CJNG HQ)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE KINGPIN STRATEGY",
+        "body": "US and Mexican policy since the 1990s has targeted top leaders for capture or killing — the so-called kingpin strategy. The empirical record is mixed: leaders fall, but homicide rates in their territories typically rise as lieutenants war over succession. The arrest disrupts operations; it rarely shrinks the trade."
+      },
+      {
+        "heading": "THE BOUNTY ECONOMY",
+        "body": "The US State Department's Narcotics Rewards Program has paid over $135M since 1986 for information leading to traffickers. A $5M bounty on a regional successor signals where Washington ranks the threat — El Mencho himself carried a $10M bounty, the same tier as Chapo Guzmán at his peak.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What typically happens to homicide rates in a region after a top cartel leader is captured?",
+            "options": [
+              "They fall as the cartel weakens",
+              "They rise as lieutenants war over succession",
+              "They stay flat — local violence is unrelated to leadership"
+            ],
+            "correct": 1,
+            "explanation": "Studies of Mexico's kingpin strategy consistently find short-term homicide spikes in the captured leader's territory as rivals and internal factions fight to inherit the plaza."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-28T04:30:56.673Z",
+    "label": "CJNG & Cartel Succession",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-28-nasa-artemis-iii-2027-slip-starship-dependency": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THIS IS HARDER THAN APOLLO",
+        "body": "Apollo used a single Saturn V to send a small lander to the Moon. Artemis uses a giant Starship that's too heavy to reach the Moon on one tank — it must launch, then be refueled in low Earth orbit by a fleet of additional Starships before it can leave for the Moon.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Apollo's lunar module weighed **15 tonnes**. Starship's lunar variant is roughly **100+ tonnes** dry — an order of magnitude heavier, which is why orbital refueling went from optional to mandatory."
+          }
+        ]
+      },
+      {
+        "heading": "THE REFUELING PROBLEM",
+        "body": "Cryogenic propellant — liquid methane and oxygen near -180°C — boils off in sunlight and sloshes unpredictably in microgravity. Transferring it between two docked spacecraft has never been demonstrated at scale. Estimates suggest a single Artemis mission needs 8 to 16 tanker launches in rapid succession before boil-off defeats the effort."
+      },
+      {
+        "heading": "THE TWO LANDERS",
+        "body": "NASA hedged by funding two competing landers — SpaceX's Starship HLS for Artemis III and Blue Origin's Blue Moon for Artemis V. Both require orbital refueling. Both are years behind. The hedge didn't produce redundancy; it produced parallel delays."
+      },
+      {
+        "heading": "THE CHINA TIMELINE",
+        "body": "China's lunar program is methodical: Chang'e robotic landers since 2013, sample return in 2020, far-side sample return in 2024. The crewed Long March 10 and Lanyue lander target 2030 — using a conventional architecture with no refueling required.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1969",
+                "label": "Apollo 11 lands"
+              },
+              {
+                "year": "1972",
+                "label": "Apollo 17 — last humans on Moon",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "China's Chang'e 3 robotic landing"
+              },
+              {
+                "year": "2024",
+                "label": "Chang'e 6 far-side sample return"
+              },
+              {
+                "year": "2026",
+                "label": "Artemis II crewed flyby (planned)"
+              },
+              {
+                "year": "2028",
+                "label": "Artemis III landing (revised)"
+              },
+              {
+                "year": "2030",
+                "label": "China crewed lunar landing (planned)"
+              }
+            ],
+            "label": "the new space race"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GAP MATTERS",
+        "body": "No human has left low Earth orbit since 1972. The institutional knowledge of crewed deep-space operations — how to manage radiation, consumables, communication delays — has eroded across two generations of engineers. Both NASA and China are rebuilding capability that was once routine.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many years has it been since a human last walked on the Moon?",
+            "options": [
+              "About 30 years",
+              "About 40 years",
+              "Over 50 years",
+              "Over 70 years"
+            ],
+            "correct": 2,
+            "explanation": "Apollo 17's Eugene Cernan and Harrison Schmitt left the lunar surface in December 1972 — over five decades ago."
+          }
+        ]
+      },
+      {
+        "heading": "THE BUDGET ARITHMETIC",
+        "body": "Apollo consumed roughly 4% of the federal budget at peak. NASA today runs at about 0.4% — one-tenth the share — while attempting a more complex architecture with commercial partners on fixed-price contracts. The schedule slips are partly engineering, partly the math of doing more with less."
+      }
+    ],
+    "generatedAt": "2026-04-28T04:31:23.961Z",
+    "label": "Artemis & the Refueling Gap",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-28-pro-se-ai-litigants-hallucinated-citations-court-burden": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT PRO SE MEANS",
+        "body": "Pro se — Latin for 'for oneself' — is the right to represent yourself in court without a lawyer. Federal law (28 USC §1654) guarantees it, but judges have long observed that pro se litigants lose at dramatically higher rates than represented parties.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The constitutional floor is *Faretta v. California* (1975) for criminal defendants; civil pro se rights flow from statute, not the Sixth Amendment. The right to self-represent is not a right to competent self-representation."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HALLUCINATIONS HAPPEN",
+        "body": "Large language models are trained to produce plausible-sounding text, not factual citations. When asked for a supporting case, they generate something that looks like a real citation — correct reporter format, plausible court, plausible year — but the case may not exist. The model has no database of real opinions to check against.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do AI models invent fake legal citations that look real?",
+            "options": [
+              "They were trained on fake cases by mistake",
+              "They predict plausible text, not retrieve verified facts",
+              "Court records are not in their training data",
+              "They mistranslate foreign legal databases"
+            ],
+            "correct": 1,
+            "explanation": "LLMs generate the most statistically likely next tokens. A citation 'shape' is easy to mimic; the underlying case existing is a separate question the model cannot verify."
+          }
+        ]
+      },
+      {
+        "heading": "THE MATA PRECEDENT",
+        "body": "In Mata v. Avianca (SDNY 2023), two attorneys submitted a ChatGPT-drafted brief citing six fabricated cases. Judge Castel sanctioned them $5,000 and required notification to every judge falsely named as authoring the invented opinions. It became the canonical warning case — and the rate of AI filings still climbed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-11",
+                "label": "ChatGPT public release",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-06",
+                "label": "Mata v. Avianca sanctions"
+              },
+              {
+                "year": "2024",
+                "label": "First state bar AI guidance"
+              },
+              {
+                "year": "2026",
+                "label": "18% of pro se complaints AI-drafted"
+              }
+            ],
+            "label": "AI filings hit the courts"
+          }
+        ]
+      },
+      {
+        "heading": "THE VERIFICATION BURDEN",
+        "body": "Federal judges and clerks now spend uncompensated time running citations through Westlaw or PACER to verify the cited case exists, says what the brief claims, and was decided as alleged. The burden falls hardest on overworked districts where pro se filings already dominate the civil docket.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2022",
+                "value": "11%",
+                "weight": 11,
+                "tone": "neutral"
+              },
+              {
+                "label": "2025",
+                "value": "16.8%",
+                "weight": 16.8,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "AI-drafted (2026)",
+                "value": "~18%",
+                "weight": 18,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "share of federal civil cases with a pro se party"
+          }
+        ]
+      },
+      {
+        "heading": "THE ACCESS TRADEOFF",
+        "body": "AI lowers the cost of drafting a complaint to nearly zero. For someone who could never afford a lawyer, that is a genuine expansion of access to courts. For the courts themselves, it is a flood of filings whose factual and legal claims must be verified by hand, with the worst-quality work indistinguishable from the merely inexperienced."
+      },
+      {
+        "heading": "RULE 11 AND ITS LIMITS",
+        "body": "Federal Rule of Civil Procedure 11 requires that filings be grounded in fact and warranted by law, with sanctions for violations. But Rule 11 was designed for represented parties, and courts have historically been lenient with pro se filers. Sanctioning a self-represented litigant who cannot pay accomplishes little; the deterrent that works on lawyers does not work on the public."
+      }
+    ],
+    "generatedAt": "2026-04-28T04:31:53.099Z",
+    "label": "Pro Se Litigants & AI Hallucinations",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-28-russia-google-bailiff-fines-560-million-enforcement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASTREINTE MECHANISM",
+        "body": "Russian courts use a French-derived legal instrument called an astreinte — a recurring penalty that compounds daily until compliance. Unlike fixed fines, it has no statutory ceiling, which is how a content-moderation dispute scales into nine-figure judgments.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The penalty doubles weekly: 100,000 rubles becomes 200,000, then 400,000. Within months the figure exceeds any plausible fine — *by design*, to coerce compliance from a defendant who has already left the jurisdiction."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GOOGLE LEFT BUT DIDN'T LEAVE",
+        "body": "Google shut its Russian subsidiary in 2022 after bailiffs first seized accounts, filing for bankruptcy locally. But YouTube continued operating for Russian users, and the legal entity's frozen assets — bank accounts, ad revenue receivables, server hardware — remained reachable by Russian courts even as the parent company withdrew operationally."
+      },
+      {
+        "heading": "THE COMPOUNDING LADDER",
+        "body": "The $561M figure represents 62 separate enforcement proceedings, each one a different YouTube channel — mostly Russian state media like RT and Tsargrad — that Google blocked after Western sanctions. Every blocked channel is its own astreinte clock, running in parallel.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Initial 2020 fines",
+                "value": "~$15M",
+                "tone": "neutral"
+              },
+              {
+                "label": "Feb 2026",
+                "value": "$347M",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Apr 2026",
+                "value": "$561M",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Google's Russian penalty escalation"
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT THEATER",
+        "body": "Russia cannot reach Google's offshore assets — US courts will not enforce a Russian judgment against speech the First Amendment protects. The seizures function domestically: a signal to Russian users that the state acted, and a precedent banks like Sberbank cite when freezing Western firms' rubles.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can Russian courts seize $561M from Google despite Google exiting Russia in 2022?",
+            "options": [
+              "Google still operates a Moscow office under a different name",
+              "Frozen accounts and receivables of the Russian subsidiary remained in-country",
+              "International treaties require Google to comply with Russian judgments",
+              "Google chose to pay to avoid criminal charges against staff"
+            ],
+            "correct": 1,
+            "explanation": "Google's Russian legal entity filed for bankruptcy but its in-country assets — bank balances, ad receivables — stayed reachable by domestic bailiffs even after operations ceased."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "This is now the largest sustained extraction from a Western tech firm by a sanctioned state. China extracted $2.8B from Alibaba in 2021 — but that was a domestic regulator disciplining a domestic firm. Russia is doing it across a closed border, to a company that no longer operates there."
+      }
+    ],
+    "generatedAt": "2026-04-28T04:32:19.313Z",
+    "label": "Russian Asset Seizure & Astreinte Fines",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-swift-trademark-voice-likeness-deepfake-defense": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COPYRIGHT GAP",
+        "body": "US copyright protects fixed expression — a specific recording, a specific performance. It does not protect a voice itself. If an AI model trains on a singer's catalog and generates a new song in their style, the original recordings were not copied; a new fixation was created. The statute Congress wrote in 1976 did not contemplate this.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Copyright protects the *recording*, not the *voice*. Trademark protects *source identifiers* — the thing consumers use to recognize who made something. A voice as brand is a trademark argument, not a copyright one."
+          }
+        ]
+      },
+      {
+        "heading": "THE BETTE MIDLER PRECEDENT",
+        "body": "In Midler v. Ford (1988), Ford hired a sound-alike singer to mimic Bette Midler for a commercial after Midler refused. The Ninth Circuit ruled this violated her right of publicity — a state-law tort, not federal IP. Right of publicity remains a patchwork: California protects it robustly, Tennessee passed an ELVIS Act in 2024, Florida barely recognizes it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "California",
+                "value": "Strong + post-mortem",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Tennessee",
+                "value": "ELVIS Act 2024",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "New York",
+                "value": "Statute since 2020",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "Florida",
+                "value": "Limited",
+                "tone": "unfavorable",
+                "cc": "US"
+              },
+              {
+                "label": "No federal law",
+                "value": "50-state patchwork",
+                "tone": "unfavorable",
+                "cc": "US"
+              }
+            ],
+            "label": "Right of publicity by US state"
+          }
+        ]
+      },
+      {
+        "heading": "WHY TRADEMARK IS UNUSUAL HERE",
+        "body": "Trademark protects source identifiers — logos, names, packaging — that tell consumers who made a product. Registering a voice as a trademark requires proving the voice itself functions as a brand identifier in commerce. The USPTO has registered sounds (NBC chimes, MGM lion roar) but never the timbre of a living person's speaking or singing voice."
+      },
+      {
+        "heading": "THE TOM WAITS CASE",
+        "body": "Tom Waits won $2.6 million from Frito-Lay in 1992 for a Doritos ad using a sound-alike. The court applied Lanham Act false-endorsement doctrine — implying Waits endorsed the product. Swift's filing tests whether that doctrine, born in the era of human imitators, extends to AI models trained on a catalog without consent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which legal theory has historically protected celebrities from voice imitation in ads?",
+            "options": [
+              "Federal copyright",
+              "Right of publicity + Lanham Act false endorsement",
+              "Patent law",
+              "First Amendment fair use"
+            ],
+            "correct": 1,
+            "explanation": "Voice itself is not copyrightable. Celebrities have won via state right-of-publicity torts and federal Lanham Act claims for implied endorsement."
+          }
+        ]
+      },
+      {
+        "heading": "THE NO FAKES ACT",
+        "body": "A bipartisan federal bill — the NO FAKES Act — would create the first federal right against AI-generated voice and likeness replicas. It has bounced through committee since 2023 without passage. Until it clears, artists are litigating in a legal vacuum where each circuit court can reach a different answer."
+      }
+    ],
+    "generatedAt": "2026-04-28T04:32:45.950Z",
+    "label": "Voice, Likeness & IP Law",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-28-tolashe-state-nanny-daughter-salary-south-africa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HANDBOOK",
+        "body": "South Africa's Ministerial Handbook is the binding rulebook governing what ministers can claim from the state — official residences, vehicles, security, domestic staff at designated seats only. It was tightened in 2019 after a decade of Zuma-era abuses, and explicitly bars state-funded household help at private homes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The handbook distinguishes a **designated ministerial seat** (Pretoria, Cape Town) from a private residence. State-paid domestic staff are permitted only at the former."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EAST LONDON MATTERS",
+        "body": "Tolashe's home is in East London, Eastern Cape — not a designated seat. Routing a state aide's salary to a private household in a non-seat location is the specific line the handbook draws; the geography is the violation, not just the family transfer."
+      },
+      {
+        "heading": "THE PAYROLL TRICK",
+        "body": "The mechanism — putting a household worker on a department payslip and redirecting the funds — is a recurring South African accountability pattern. The Public Protector's office has flagged similar arrangements across multiple administrations; the structure hides private benefit inside a legitimate payroll line.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which South African body is constitutionally empowered to investigate misuse of state resources by ministers?",
+            "options": [
+              "The Public Protector",
+              "The Reserve Bank",
+              "The National Prosecuting Authority",
+              "The Auditor-General"
+            ],
+            "correct": 0,
+            "explanation": "The Public Protector is a Chapter 9 institution created by the 1996 Constitution specifically to investigate improper conduct by state organs and officials."
+          }
+        ]
+      },
+      {
+        "heading": "THE ZONDO SHADOW",
+        "body": "The Zondo Commission (2018–2022) documented how state capture under Zuma worked through exactly these small-scale payroll and procurement arrangements scaled across departments. Its findings reset the political cost of being caught — what was once routine is now resignation-grade.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sisisi Tolashe",
+                "role": "Social Development Minister",
+                "years": "2024–",
+                "cc": "ZA"
+              },
+              {
+                "name": "Kholeka Gcaleka",
+                "role": "Public Protector",
+                "years": "2024–",
+                "cc": "ZA"
+              },
+              {
+                "name": "Raymond Zondo",
+                "role": "Chief Justice, led state-capture inquiry",
+                "years": "2022–",
+                "cc": "ZA"
+              }
+            ],
+            "label": "the accountability cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE GNU CONSTRAINT",
+        "body": "Since the 2024 election, the ANC governs in a Government of National Unity with the DA, which campaigned on clean governance. Each ANC scandal now carries coalition risk the party did not face during its three decades of single-party rule — the DA can extract concessions or trigger reshuffles in ways the opposition never could before.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              17.203776,
+              16.87433,
+              16.832833,
+              16.950535,
+              16.97286,
+              16.909999,
+              16.982263,
+              16.872915,
+              16.457476,
+              16.4261,
+              16.38864,
+              16.3875,
+              16.41806,
+              16.59285,
+              16.3955,
+              16.33375,
+              16.362705,
+              16.410661,
+              16.3162,
+              16.3162,
+              16.3162,
+              16.3754,
+              16.384099,
+              16.4976,
+              16.637866,
+              16.508621,
+              16.53436,
+              16.53436,
+              16.495858,
+              16.542735
+            ],
+            "periods": [
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28"
+            ],
+            "label": "South African rand",
+            "unit": "ZAR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-28"
+    ],
+    "generatedAt": "2026-04-28T04:33:12.735Z",
+    "label": "The Ministerial Handbook & SA Patronage",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-28-trump-rejects-iran-war-proposal-kushner-pakistan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SEQUENCING PROBLEM",
+        "body": "Every nuclear negotiation hinges on what comes first. Iran wants sanctions relief and security guarantees before constraining enrichment; the US wants enrichment caps before relief. Whoever moves first carries the risk that the other walks away after pocketing the concession.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In game theory this is a classic **commitment problem** — both sides prefer a deal to no deal, but neither can credibly promise to follow through once the other has moved."
+          }
+        ]
+      },
+      {
+        "heading": "THE JCPOA PRECEDENT",
+        "body": "The 2015 deal solved sequencing by phasing: Iran shipped out enriched uranium and disabled centrifuges in exchange for staged sanctions relief, verified by IAEA inspectors at each step. Trump withdrew in 2018, demonstrating that even phased deals collapse if a successor administration repudiates them — a memory that now shapes Tehran's reluctance to move first.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "Natanz facility revealed"
+              },
+              {
+                "year": "2010",
+                "label": "Stuxnet sabotage"
+              },
+              {
+                "year": "2015",
+                "label": "JCPOA signed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Trump withdraws"
+              },
+              {
+                "year": "2020",
+                "label": "Soleimani killed"
+              },
+              {
+                "year": "2025",
+                "label": "Israeli strikes on facilities"
+              }
+            ],
+            "label": "the nuclear file"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN BROKERS",
+        "body": "Pakistan shares a 900km border with Iran, hosts the only Sunni-majority nuclear arsenal, and maintains working relations with Tehran, Riyadh, and Washington simultaneously. Islamabad has brokered Saudi-Iran de-escalation before — a role that depends on its peculiar position as a Sunni state with a 15-20% Shia population that cannot afford sectarian war on its western border.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "PK",
+              "AF",
+              "SA",
+              "AE",
+              "OM"
+            ],
+            "label": "Pakistan's neighborhood",
+            "markers": [
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 35.6892,
+                "lng": 51.389,
+                "label": "Tehran"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ENRICHMENT THRESHOLD",
+        "body": "Weapons-grade uranium is 90% U-235; reactor fuel is 3-5%; medical isotopes need ~20%. Iran has enriched to 60% — a level with no civilian justification but technically below weapons-grade. The jump from 60% to 90% takes weeks, not years; this is why the US treats enrichment caps as the central constraint and why Iran treats them as its last bargaining chip.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What enrichment level does Iran currently produce that has no civilian justification?",
+            "options": [
+              "20% U-235",
+              "60% U-235",
+              "90% U-235",
+              "3.67% U-235"
+            ],
+            "correct": 1,
+            "explanation": "60% has no civilian use — it sits above medical-isotope needs (~20%) but below weapons-grade (90%), making it a deliberate signal of breakout capability."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENVOY SIGNAL",
+        "body": "Cancelling an envoy visit mid-mediation is a calibrated diplomatic punishment — it does not break the channel but registers displeasure. Kushner's role as a personal envoy rather than a State Department official means the cancellation is reversible without bureaucratic friction; the same informality that lets Trump deploy him also lets Trump withdraw him without process.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              60,
+              68,
+              67,
+              55,
+              50,
+              57,
+              53,
+              58,
+              61,
+              28,
+              35,
+              30,
+              30,
+              33,
+              35,
+              30,
+              32,
+              31,
+              34,
+              36,
+              31,
+              28,
+              31,
+              33,
+              32,
+              34,
+              34,
+              34,
+              34
+            ],
+            "periods": [
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 28"
+            ],
+            "label": "US invade Iran before 2027?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "60%"
+              },
+              {
+                "atIndex": 28,
+                "label": "34%"
+              }
+            ],
+            "link": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-04-28"
+    ],
+    "generatedAt": "2026-04-28T04:33:40.749Z",
+    "label": "US-Iran Negotiation Sequencing",
+    "category": "politics",
+    "articleCount": 1
   }
 }
