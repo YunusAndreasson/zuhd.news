@@ -74033,5 +74033,1745 @@
     "label": "US-Iran Negotiation Sequencing",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-27-civic-trust-ai-public-management-latam": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARITA HEIST",
+        "body": "In early 2024, a finance employee at Arup's Hong Kong office wired $25 million after a video call with what appeared to be the company's CFO and several colleagues. Every face on the call was a deepfake. The fraud is the canonical case study because it required no technical breach — only synthesized faces convincing enough to override a trained professional's skepticism.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The attack vector wasn't the *technology*; it was **plausibility at scale**. Generating one convincing fake video of a CFO used to require a studio. Now it requires a laptop and ten seconds of public footage."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIAR'S DIVIDEND",
+        "body": "Legal scholars Bobby Chesney and Danielle Citron coined this term in 2018: as deepfakes proliferate, genuine recordings of misconduct can be dismissed as fakes. The harm is not just that lies become believable — it is that truths become deniable. Authoritarian leaders caught on tape gain a pre-built escape hatch."
+      },
+      {
+        "heading": "WHY DETECTION LOSES",
+        "body": "Deepfake detection is a generative adversarial problem. Each new detector trains the next generation of fakes to evade it. The defender must catch every attack; the attacker only needs one that works. This is the same asymmetry that makes spam filters a permanent arms race rather than a solved problem."
+      },
+      {
+        "heading": "THE TRUST SUBSTRATE",
+        "body": "Democratic governance assumes citizens share a baseline factual reality — that a video of an official saying X is evidence the official said X. Print, radio, and television each had forgery costs high enough to preserve this assumption. Generative AI collapses those costs to near zero, removing a substrate that institutions never had to defend before.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Print (1500s)",
+                "value": "weeks, skilled press",
+                "tone": "favorable"
+              },
+              {
+                "label": "Photo (1850s)",
+                "value": "darkroom, hours",
+                "tone": "favorable"
+              },
+              {
+                "label": "Audio (1980s)",
+                "value": "studio, days",
+                "tone": "neutral"
+              },
+              {
+                "label": "Video (2000s)",
+                "value": "VFX team, weeks",
+                "tone": "neutral"
+              },
+              {
+                "label": "Generative AI",
+                "value": "laptop, minutes",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "forgery cost across media eras"
+          }
+        ]
+      },
+      {
+        "heading": "THE LATIN AMERICAN STAKES",
+        "body": "Public trust in government across Latin America runs at roughly 30% — among the lowest of any region in OECD surveys. Governments deploying AI for welfare eligibility, policing, or healthcare triage in this environment inherit the trust deficit; an algorithmic error reads as confirmation of state malice rather than implementation bug.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of citizens in Latin America say they trust their national government?",
+            "options": [
+              "About 60%",
+              "About 45%",
+              "About 30%",
+              "About 15%"
+            ],
+            "correct": 2,
+            "explanation": "OECD's Trust Survey puts the regional average around 30%, well below the OECD mean of ~40% — a thin substrate on which to layer opaque AI decisions."
+          }
+        ]
+      },
+      {
+        "heading": "THE PROVENANCE FIX",
+        "body": "The C2PA standard (Adobe, Microsoft, BBC, others) cryptographically signs media at the moment of capture, so a downstream viewer can verify it has not been altered. The catch: provenance only certifies authentic content. It cannot prove a fake is fake — it can only prove a real thing is real, which is the opposite problem from the one most people think deepfakes pose."
+      }
+    ],
+    "generatedAt": "2026-04-28T08:33:33.550Z",
+    "label": "Deepfakes & Civic Trust",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-27-egypt-landmark-hotel-discrimination-women-ruling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNMARRIED WOMAN PROBLEM",
+        "body": "Egyptian hotels have long refused rooms to unmarried Egyptian women traveling alone, citing informal 'morality' policies that have no statutory basis. The practice is custom enforced as if it were law — tolerated by tourism authorities for decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Foreign women face no such bar. The refusal applies specifically to *Egyptian* women without a male guardian or marriage certificate — a *de facto* mahram requirement imposed by hoteliers, not by Egyptian statute or by classical fiqh on hotel accommodation."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2011 LAW",
+        "body": "Article 161 bis of Egypt's penal code, added after the 2011 revolution, criminalizes discrimination on the basis of sex, origin, language, religion, or creed. For over a decade it sat largely unused — prosecutors brought almost no cases, and no hotel had ever been convicted under it."
+      },
+      {
+        "heading": "THE CONSTITUTIONAL BACKDROP",
+        "body": "Egypt's 2014 constitution, Article 11, commits the state to achieving equality between women and men. But constitutional equality clauses across the Arab world routinely coexist with personal-status laws derived from a conservative reading of fiqh that limit women's autonomy in travel, marriage, and guardianship.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "lifted 2019",
+                "cc": "SA",
+                "tone": "favorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "informal hotel bar",
+                "cc": "EG",
+                "tone": "neutral"
+              },
+              {
+                "label": "Iran",
+                "value": "passport req. spouse",
+                "cc": "IR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Qatar",
+                "value": "guardian for some",
+                "cc": "QA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Tunisia",
+                "value": "none since 1956",
+                "cc": "TN",
+                "tone": "favorable"
+              }
+            ],
+            "label": "women's solo-travel barriers, MENA"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IN ABSENTIA MATTERS",
+        "body": "Egyptian criminal procedure allows conviction in absentia, but the defendant retains an automatic right to a full retrial upon surrender or arrest. The one-year sentence is real but provisional — the appeal is not a formality, it restarts the case from scratch."
+      },
+      {
+        "heading": "THE PRECEDENT MECHANIC",
+        "body": "Egypt is a civil-law system, not common law — there is no formal stare decisis. But a first conviction under a dormant statute reshapes prosecutorial behavior: police take complaints, prosecutors file charges, and hotels adjust policy to avoid being the second test case. The signal travels even without binding precedent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a first conviction matter so much in a civil-law system without binding precedent?",
+            "options": [
+              "It binds future judges to the same ruling",
+              "It shifts prosecutorial and institutional behavior even without binding force",
+              "It amends the underlying statute automatically",
+              "It triggers automatic constitutional review"
+            ],
+            "correct": 1,
+            "explanation": "Civil-law systems lack stare decisis, but a first successful prosecution under a dormant law signals to police, prosecutors, and regulated industries that the statute is now live."
+          }
+        ]
+      },
+      {
+        "heading": "THE JOURNALIST AS PLAINTIFF",
+        "body": "Across the Arab world, dormant rights statutes have most often been activated by journalists and lawyers who can absorb the social cost of being the first complainant. Tunisia's 2017 violence-against-women law, Morocco's 2018 Hakkaoui law, and Jordan's 2021 harassment amendments all moved from text to enforcement through individual test cases brought by women in public-facing professions."
+      }
+    ],
+    "generatedAt": "2026-04-28T08:34:02.511Z",
+    "label": "Egypt's Anti-Discrimination Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-27-soyuz-5-kazakhstan-space-power": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BAIKONUR EXISTS WHERE IT DOES",
+        "body": "Rockets launch eastward to borrow Earth's rotation; the closer to the equator, the bigger the free velocity boost. Baikonur sits at 46°N — far from ideal — but Soviet planners picked it in 1955 for secrecy and rail access, not physics. Kazakhstan inherited the world's largest spaceport by accident of Soviet collapse.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KZ",
+              "RU",
+              "UZ",
+              "TM",
+              "CN"
+            ],
+            "label": "Russia's launch geography",
+            "markers": [
+              {
+                "lat": 45.965,
+                "lng": 63.305,
+                "label": "Baikonur Cosmodrome"
+              },
+              {
+                "lat": 62.927,
+                "lng": 40.575,
+                "label": "Plesetsk (RU backup)"
+              },
+              {
+                "lat": 51.884,
+                "lng": 128.334,
+                "label": "Vostochny (RU new)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LEASE",
+        "body": "After 1991 Russia found its premier launch site in a foreign country. The 1994 lease — extended to 2050 — pays Kazakhstan roughly $115m/year plus environmental damages from spent rocket stages falling on Kazakh steppe. Baikonur the city is administered as if it were Russian territory.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arrangement is unique in international law: a sovereign state leases a *city plus 6,717 km²* to another power, complete with Russian rubles, Russian schools, and Russian police — inside Kazakhstan."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOYUZ-5 MATTERS",
+        "body": "Soyuz-5 (Irtysh) is Russia's first new medium-lift rocket since the Soviet era, designed to replace the Ukrainian-built Zenit that Russia lost access to in 2014. It launches from a refurbished Zenit pad at Baikonur — one Kazakhstan now has equity in via the joint Baiterek venture, not just rent."
+      },
+      {
+        "heading": "RUSSIA'S LAUNCH ISOLATION",
+        "body": "After February 2022, Roscosmos lost OneWeb, ExoMars, and Soyuz launches from French Guiana. Western commercial payloads vanished. SpaceX captured the freed market. Russia's remaining launch customers are domestic, Iranian, and increasingly dependent on Kazakh goodwill at Baikonur.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "158 launches",
+                "cc": "US",
+                "weight": 158,
+                "tone": "favorable"
+              },
+              {
+                "label": "China",
+                "value": "68 launches",
+                "cc": "CN",
+                "weight": 68,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": "17 launches",
+                "cc": "RU",
+                "weight": 17,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "5 launches",
+                "cc": "IN",
+                "weight": 5,
+                "tone": "neutral"
+              }
+            ],
+            "label": "orbital launches, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE INVERSION",
+        "body": "For thirty years the rent flowed one way and the dependency was Kazakh — Baikonur jobs, technology transfer, prestige. Sanctions inverted it. Russia now has nowhere else to launch crewed missions to the ISS or heavy commercial payloads at scale; Vostochny in the Far East remains under-built and over-budget.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country's space program is most dependent on a foreign-soil launch facility today?",
+            "options": [
+              "United States — Cape Canaveral",
+              "China — Wenchang",
+              "Russia — Baikonur in Kazakhstan",
+              "India — Sriharikota"
+            ],
+            "correct": 2,
+            "explanation": "All other major space powers launch from sovereign territory. Russia's flagship cosmodrome sits in a country it once ruled — and now must negotiate with."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-28T08:34:32.765Z",
+    "label": "Baikonur & the Space Lease",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-28-beijing-isolating-taiwan-lai-ching-te": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ONE-CHINA TRAP",
+        "body": "Beijing requires every state that recognizes the PRC to break formal ties with Taipei. The result: countries must choose, and almost all choose the larger market. Taiwan held 22 formal partners in 2016; it has 12 today.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1971",
+                "label": "UN Resolution 2758 transfers China seat to PRC",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1979",
+                "label": "US switches recognition to Beijing"
+              },
+              {
+                "year": "2016",
+                "label": "Tsai elected; Beijing ends diplomatic truce"
+              },
+              {
+                "year": "2018",
+                "label": "Panama, Dominican Republic, El Salvador switch"
+              },
+              {
+                "year": "2023",
+                "label": "Honduras switches"
+              },
+              {
+                "year": "2024",
+                "label": "Nauru switches after Lai's election"
+              }
+            ],
+            "label": "Taiwan's diplomatic attrition"
+          }
+        ]
+      },
+      {
+        "heading": "THE TWELVE",
+        "body": "Taiwan's remaining formal partners are mostly small Pacific, Caribbean, and Central American states plus the Holy See. Each switch shrinks the practical meaning of Taiwanese statehood — fewer embassies issuing visas, fewer votes in UN agencies that still admit observers.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TW",
+              "PY",
+              "GT",
+              "BZ",
+              "HT",
+              "VC",
+              "LC",
+              "KN",
+              "MH",
+              "PW",
+              "TV",
+              "SZ",
+              "VA"
+            ],
+            "label": "Taiwan's 12 remaining formal allies",
+            "caption": "Pacific microstates, Caribbean, Central America, Holy See, Eswatini"
+          }
+        ]
+      },
+      {
+        "heading": "AIRSPACE AS LEVERAGE",
+        "body": "Under ICAO rules, overflight requires the underlying state's permission. Most Taiwanese presidential trips to Latin America transit US airspace as 'stopovers' — Beijing protests but cannot block. Denying transit through third-country airspace is a newer escalation that exploits Beijing's economic leverage over those states.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The diplomatic term is **transit diplomacy** — Taiwanese presidents use 'refueling stops' in friendly capitals to hold meetings that would otherwise require formal recognition. Each blocked transit narrows that workaround."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRAIT IS BUSY",
+        "body": "Whatever the diplomatic temperature, the Taiwan Strait remains one of the world's most-trafficked waterways. Roughly 40% of global container traffic passes through it; any kinetic move would freeze a chunk of the world economy within days.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              218,
+              188,
+              206,
+              172,
+              199,
+              217,
+              195,
+              193,
+              238,
+              218,
+              236,
+              264,
+              216,
+              218,
+              236,
+              239,
+              233,
+              253,
+              256,
+              232,
+              211,
+              229,
+              236,
+              221,
+              232,
+              238,
+              191,
+              231,
+              259,
+              221,
+              205,
+              219,
+              227,
+              201,
+              224,
+              212,
+              242,
+              219,
+              225,
+              241,
+              242,
+              256,
+              231,
+              252,
+              229,
+              256,
+              240,
+              217,
+              199,
+              209,
+              253
+            ],
+            "periods": [
+              "Feb 28",
+              "Mar 1",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 7",
+              "Mar 8",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 14",
+              "Mar 15",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 21",
+              "Mar 22",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 28",
+              "Mar 29",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19"
+            ],
+            "label": "Taiwan Strait transits",
+            "unit": "ships/day",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SEMICONDUCTOR SHIELD",
+        "body": "TSMC alone produces over 90% of the world's most advanced chips. This 'silicon shield' is why Washington's Taiwan policy survives administration changes — a Chinese blockade would halt iPhone, Nvidia, and AMD production within a quarter.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of the world's most advanced (sub-7nm) chips does TSMC produce?",
+            "options": [
+              "About 30%",
+              "About 60%",
+              "Over 90%",
+              "Roughly half"
+            ],
+            "correct": 2,
+            "explanation": "TSMC fabs in Hsinchu and Tainan produce more than 90% of leading-edge logic chips — the core of the 'silicon shield' deterrent."
+          }
+        ]
+      },
+      {
+        "heading": "THE DISTRACTION DIVIDEND",
+        "body": "Beijing has long calibrated Taiwan pressure to US bandwidth. The 1995-96 Strait Crisis came as Washington was managing Bosnia; the 2022 Pelosi-visit drills came amid the Ukraine war's first year. Iran consuming Pentagon attention now follows the same pattern."
+      }
+    ],
+    "sources": [
+      "IMF PortWatch · as of 2026-04-19"
+    ],
+    "generatedAt": "2026-04-28T08:35:02.137Z",
+    "label": "Taiwan's Diplomatic Isolation",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-28-boj-hawkish-split-vote-ueda-yen": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LOST DECADES",
+        "body": "Japan's policy rate has been at or near zero since 1999. An entire generation of traders, borrowers, and savers has never priced money the way the rest of the world does. The BOJ raising to even 1% would be the tightest policy Japan has run since the asset bubble burst in 1991.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1989",
+                "label": "Asset bubble peak; rate at 6%"
+              },
+              {
+                "year": "1991",
+                "label": "Bubble bursts",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1999",
+                "label": "Zero interest-rate policy begins"
+              },
+              {
+                "year": "2013",
+                "label": "Kuroda launches QQE"
+              },
+              {
+                "year": "2016",
+                "label": "Negative rates introduced"
+              },
+              {
+                "year": "2024",
+                "label": "Negative rates ended"
+              },
+              {
+                "year": "2026",
+                "label": "Rate at 0.75%"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1999",
+                "to": "2024",
+                "label": "Zero or negative rates",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "BOJ policy rate, the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE CARRY TRADE",
+        "body": "Borrow yen at near-zero, convert to dollars, buy US Treasuries yielding 4%+. Pocket the spread. This trade has financed everything from emerging-market debt to Silicon Valley venture capital for two decades. When the yen strengthens or the gap narrows, positions unwind violently — August 2024 saw a 12% Nikkei crash in two days as carry trades imploded.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **uncovered interest rate parity** — the theory says currencies should adjust so the carry profit disappears. In practice, the *yen* has defied this for decades, which is why the trade keeps working until it suddenly doesn't."
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERVENTION FLOOR",
+        "body": "Japan's Ministry of Finance — not the BOJ — controls currency intervention. The MOF spent roughly $62bn defending the yen in 2024 when it crossed 160 against the dollar. The 159 level is psychologically loaded: traders watch it as the trigger zone where Tokyo sells dollars from its $1.2tn reserve stack."
+      },
+      {
+        "heading": "WHY A SPLIT VOTE MATTERS",
+        "body": "BOJ decisions are usually unanimous — Japanese institutional culture favors consensus. A 6-3 split is the most hawkish dissent since Ueda took over in 2023. Markets read split votes as forward guidance: the dissenters today are usually the majority within two meetings.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the BOJ's policy rate from 2016 to 2024?",
+            "options": [
+              "0.25% — a low but positive floor",
+              "Zero — the classic ZIRP setting",
+              "Negative 0.1% — charging banks to park reserves",
+              "Negative 0.5% — the eurozone benchmark"
+            ],
+            "correct": 2,
+            "explanation": "The BOJ charged commercial banks 0.1% on excess reserves to push them to lend, a regime that ended only in March 2024."
+          }
+        ]
+      },
+      {
+        "heading": "THE INFLATION PUZZLE",
+        "body": "Japan finally has the inflation it spent 30 years trying to manufacture — core CPI has run above the 2% target since 2022. But wages haven't kept pace, so real household income is falling. The BOJ is in the unusual position of fighting inflation that arrived too late to be celebrated.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              159.8475,
+              158.58518182,
+              158.715,
+              159.4945,
+              159.65998825,
+              159.654,
+              159.777375,
+              159.6947,
+              158.72326471,
+              158.65375,
+              159.09083333,
+              159.24505122,
+              159.24505122,
+              159.681625,
+              159.2235,
+              158.80333333,
+              158.8185,
+              159.2075,
+              158.64504456,
+              158.73055866,
+              158.63,
+              158.8855,
+              158.9865,
+              159.3964,
+              159.76253049,
+              159.3556875,
+              159.36496265,
+              159.375,
+              159.22516667,
+              159.0765
+            ],
+            "periods": [
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28"
+            ],
+            "label": "Japanese yen",
+            "unit": "JPY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-28"
+    ],
+    "generatedAt": "2026-04-28T08:35:31.146Z",
+    "label": "BOJ & the Yen Carry Trade",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-el-salvador-ai-hype-public-healthcare": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A REGULATORY SANDBOX IS",
+        "body": "A sandbox is a legal carve-out where a government suspends normal rules so firms can deploy untested products on real users. The UK's FCA pioneered the model in 2016 for fintech; it has since spread to AI, biotech, and crypto. The bargain is faster innovation in exchange for weaker consumer recourse.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The defining feature: liability shifts from the deploying firm to the *user* or *the state*, since normal product-safety law is partially suspended."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SMALL STATES BID",
+        "body": "El Salvador has 6.3 million people and a GDP near $35bn — too small to matter as a market, large enough to serve as a live testbed. Bukele used the same logic with bitcoin in 2021: trade regulatory permissiveness for foreign capital and reputational positioning that larger economies cannot offer.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bitcoin legal tender",
+                "value": "2021",
+                "tone": "neutral"
+              },
+              {
+                "label": "CZ crypto advisor",
+                "value": "2024",
+                "tone": "neutral"
+              },
+              {
+                "label": "Google $500m office",
+                "value": "2025",
+                "tone": "neutral"
+              },
+              {
+                "label": "xAI deployment",
+                "value": "2026",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Bukele's signature 'sandbox' deals"
+          }
+        ]
+      },
+      {
+        "heading": "THE LIABILITY GAP",
+        "body": "In rich-country health systems, an AI diagnostic error routes through medical malpractice law, FDA device approval, and hospital insurance. In a sandbox, those layers are partially suspended. When a triage model misclassifies a stroke as indigestion, who pays the family is a question the contracts rarely answer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In most AI regulatory sandboxes, who legally bears the cost when a deployed tool causes patient harm?",
+            "options": [
+              "The vendor, under standard product liability",
+              "The host government, as the licensing authority",
+              "The patient, with limited recourse against either party",
+              "Split equally between vendor and government by treaty"
+            ],
+            "correct": 2,
+            "explanation": "Sandbox frameworks typically suspend or cap normal liability rules to attract vendors — recourse for end users is the variable that gets traded away."
+          }
+        ]
+      },
+      {
+        "heading": "THE BITCOIN PRECEDENT",
+        "body": "El Salvador made bitcoin legal tender in September 2021. By 2024 the IMF made unwinding the policy a condition of a $1.4bn loan: bitcoin acceptance was rolled back from mandatory to voluntary. The sandbox attracted attention but not the foreign investment promised; the state-built Chivo wallet had documented theft and outage problems that ordinary users absorbed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021-06",
+                "label": "Bitcoin Law passed"
+              },
+              {
+                "year": "2021-09",
+                "label": "Legal tender takes effect",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Chivo wallet theft reports"
+              },
+              {
+                "year": "2024-12",
+                "label": "IMF rollback condition"
+              },
+              {
+                "year": "2025-01",
+                "label": "Acceptance made voluntary"
+              }
+            ],
+            "label": "the bitcoin sandbox arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HOSPITALS ARE THE HARDEST CASE",
+        "body": "Schools and call centers can absorb AI errors with low downside — a wrong essay grade, a misrouted complaint. Clinical settings cannot. A diagnostic model trained on US or European patient data underperforms on populations it was not trained on; rural Salvadoran patients with different disease prevalence and presentation patterns are exactly the distribution-shift case AI systems handle worst."
+      }
+    ],
+    "generatedAt": "2026-04-28T08:36:04.212Z",
+    "label": "AI Sandboxes & Public Services",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-28-fossil-fuel-non-proliferation-treaty-talks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SUPPLY-SIDE GAP",
+        "body": "Every climate treaty since Rio 1992 has targeted emissions — the demand side. None has capped extraction. A country can sign Paris and simultaneously expand oil drilling without violating any commitment, because the treaty regime regulates burning, not pumping.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The asymmetry is structural: **demand-side** rules let producers externalize the cap onto consumers. **Supply-side** rules force producers to leave reserves in the ground — which is why no major exporter has ever signed one."
+          }
+        ]
+      },
+      {
+        "heading": "THE NPT ANALOGY",
+        "body": "The 1968 Nuclear Non-Proliferation Treaty froze the nuclear club at five states and bound them to disarm in exchange for non-nuclear states forgoing weapons. The fossil fuel framing borrows the bargain: producers wind down, non-producers commit not to develop new reserves, and a just-transition fund compensates the asymmetry.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Each of the Parties to the Treaty undertakes to pursue negotiations in good faith on effective measures relating to cessation of the nuclear arms race at an early date and to nuclear disarmament.",
+            "speaker": "NPT, Article VI",
+            "year": "1968"
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS NOT AT THE TABLE",
+        "body": "The three states absent from Bogotá produce roughly 40% of global oil. Without them, any extraction cap is a unilateral disarmament by smaller producers — economically painful, climatically marginal. The treaty's leverage depends entirely on whether their absence becomes diplomatically costly.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "USA",
+                "value": 13.2,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": 9,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Russia",
+                "value": 9.5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Canada",
+                "value": 4.9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Iraq",
+                "value": 4.3,
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": 4.2,
+                "tone": "neutral"
+              },
+              {
+                "label": "UAE",
+                "value": 3.4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Iran",
+                "value": 3.3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Brazil",
+                "value": 3.4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Kuwait",
+                "value": 2.6,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global oil production share, 2024 (mb/d)"
+          }
+        ]
+      },
+      {
+        "heading": "THE COLOMBIA PIVOT",
+        "body": "Petro's government is the first major oil producer to actively champion supply restriction — Colombia stopped issuing new exploration licenses in 2022 despite oil being roughly a third of export earnings. The political cost is real, which is why other producers watch the experiment closely.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO",
+              "DK",
+              "FR",
+              "IE",
+              "NZ",
+              "CR",
+              "VU",
+              "TV"
+            ],
+            "label": "states backing the fossil fuel treaty initiative",
+            "caption": "early endorsers — mostly small island and post-extraction economies"
+          }
+        ]
+      },
+      {
+        "heading": "THE CARBON BUDGET MATH",
+        "body": "The IPCC's 1.5°C carbon budget — roughly 400 GtCO2 remaining as of 2020 — is already smaller than the emissions embedded in proven fossil fuel reserves currently on company balance sheets. Honoring Paris requires stranding assets that are already booked as economic value.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of proven fossil fuel reserves must stay in the ground to meet 1.5°C?",
+            "options": [
+              "About a quarter",
+              "About half",
+              "Roughly 60% of oil and gas, 90% of coal",
+              "Less than 10%"
+            ],
+            "correct": 2,
+            "explanation": "Welsby et al. (2021, Nature) found nearly 60% of oil and fossil methane gas, and 90% of coal, must be unextracted by 2050 for a 50% chance of 1.5°C."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT THAT WORKED",
+        "body": "The Montreal Protocol (1987) phased out ozone-depleting substances by targeting production, not just use. It worked because the affected industry was concentrated, substitutes existed, and a multilateral fund compensated developing economies. Fossil fuels fail the first test — extraction is the global economy's largest single industry — which is why the analogy is harder than it looks."
+      }
+    ],
+    "generatedAt": "2026-04-28T08:36:38.427Z",
+    "label": "Fossil Fuel Non-Proliferation",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-28-google-15bn-ai-data-centre-visakhapatnam": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY POWER IS THE BOTTLENECK",
+        "body": "Modern AI data centres are not bound by land, fibre, or chips — they are bound by megawatts. A single hyperscale campus now draws as much electricity as a mid-sized city, and the grid connection date, not the construction schedule, sets when it opens.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry shorthand has shifted from *square feet* to **gigawatts**. A 6.5 GW target is roughly the peak demand of Singapore."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ANDHRA, NOT BENGALURU",
+        "body": "India's traditional tech hubs sit on stressed grids and saturated land markets. Andhra Pradesh offers coastal land, a deepwater port at Visakhapatnam for equipment imports, and — critically — surplus thermal and renewable capacity the southern grid can route without congestion charges.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "India's data-centre coast",
+            "markers": [
+              {
+                "lat": 17.6868,
+                "lng": 83.2185,
+                "label": "Visakhapatnam"
+              },
+              {
+                "lat": 12.9716,
+                "lng": 77.5946,
+                "label": "Bengaluru"
+              },
+              {
+                "lat": 17.385,
+                "lng": 78.4867,
+                "label": "Hyderabad"
+              },
+              {
+                "lat": 13.0827,
+                "lng": 80.2707,
+                "label": "Chennai"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSIDY ARITHMETIC",
+        "body": "State governments compete with land grants, stamp-duty waivers, and discounted power tariffs. The economic case rests on indirect tax revenue and white-collar employment downstream — direct jobs at a hyperscale site number only in the low thousands once construction ends.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Google (AP)",
+                "value": "$15bn",
+                "cc": "IN",
+                "weight": 15
+              },
+              {
+                "label": "Microsoft (TG, MH)",
+                "value": "$3bn",
+                "cc": "IN",
+                "weight": 3
+              },
+              {
+                "label": "AWS (MH)",
+                "value": "$8.3bn",
+                "cc": "IN",
+                "weight": 8.3
+              },
+              {
+                "label": "Adani-EdgeConneX",
+                "value": "$2bn",
+                "cc": "IN",
+                "weight": 2
+              }
+            ],
+            "label": "announced India hyperscaler commitments"
+          }
+        ]
+      },
+      {
+        "heading": "THE COOLING CONSTRAINT",
+        "body": "AI training racks dissipate 50–100 kW each — five times denser than traditional cloud servers. Air cooling fails above ~30 kW; the new generation requires liquid cooling, which means continuous high-quality water or closed-loop refrigerant systems. Coastal sites near desalination capacity have a structural advantage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much water does a large AI data centre consume per day?",
+            "options": [
+              "Comparable to a single household",
+              "Comparable to a small town (~1–5 million litres)",
+              "Comparable to a major city's daily use",
+              "None — modern centres are fully closed-loop"
+            ],
+            "correct": 1,
+            "explanation": "A typical hyperscale campus evaporates 1–5 million litres daily through cooling towers — a key reason siting decisions hinge on water rights."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVEREIGNTY ANGLE",
+        "body": "India's 2023 Digital Personal Data Protection Act and its draft data-localisation rules push critical workloads onshore. For Google, a domestic AI hub serves both market access and regulatory hedging — Indian government and BFSI clients increasingly require data to remain within national borders.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift parallels China's 2017 Cybersecurity Law and the EU's *Schrems II* ruling — three of the world's largest digital markets now require, in effect, **regional cloud sovereignty**."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-28T08:37:07.437Z",
+    "label": "Hyperscaler Data Centres & Power",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-iran-crisis-pakistan-prominence-india-silence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY OF THE RELATIONSHIP",
+        "body": "Pakistan and Iran share a 909km border across Balochistan — the only land frontier Iran has with a Sunni-majority nuclear state. Quetta to Zahedan is closer than Quetta to Karachi. Smuggling, pilgrimage, and Baloch insurgency have flowed across this line for a century, giving Islamabad operational familiarity with Tehran no Gulf capital can match.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "AF",
+              "SA",
+              "AE",
+              "OM"
+            ],
+            "label": "the Pakistan-Iran corridor",
+            "markers": [
+              {
+                "lat": 25.0289,
+                "lng": 61.4583,
+                "label": "Gwadar port"
+              },
+              {
+                "lat": 25.2919,
+                "lng": 60.6431,
+                "label": "Chabahar port"
+              },
+              {
+                "lat": 29.4969,
+                "lng": 60.8628,
+                "label": "Zahedan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GULF HEDGE",
+        "body": "Pakistan is the only Muslim nuclear power and the only South Asian state with deep military ties to Saudi Arabia and the UAE — Pakistani officers have trained Saudi forces since the 1960s, and Riyadh bankrolled Pakistan's nuclear program in the late 1970s. This Gulf credibility, paired with a working channel to Tehran, is the structural asset India lacks.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pakistan",
+                "value": "Tehran + Gulf + US",
+                "cc": "PK",
+                "tone": "favorable"
+              },
+              {
+                "label": "India",
+                "value": "Tehran + US only",
+                "cc": "IN",
+                "tone": "neutral"
+              },
+              {
+                "label": "Turkey",
+                "value": "Tehran + US",
+                "cc": "TR",
+                "tone": "neutral"
+              },
+              {
+                "label": "Qatar",
+                "value": "Tehran + US",
+                "cc": "QA",
+                "tone": "neutral"
+              },
+              {
+                "label": "Oman",
+                "value": "Tehran + Gulf + US",
+                "cc": "OM",
+                "tone": "favorable"
+              }
+            ],
+            "label": "who can talk to whom in the Iran file"
+          }
+        ]
+      },
+      {
+        "heading": "INDIA'S OIL EXPOSURE",
+        "body": "India was Iran's second-largest oil customer before the 2018 US sanctions snapback forced imports to zero. Delhi accepted that loss rather than risk secondary sanctions on its banks — a posture that bought goodwill in Washington but forfeited the leverage that comes from being a buyer Tehran needs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Chabahar port investment was India's workaround — a way to maintain Iran *access* without Iran *trade*. But access without commerce is **diplomatic infrastructure without a payload**."
+          }
+        ]
+      },
+      {
+        "heading": "THE OMAN PRECEDENT",
+        "body": "Every recent US-Iran breakthrough — the 2013 nuclear talks, the 2023 prisoner swap, the 2024 de-escalation channel — ran through Muscat. Small, neutral, trusted by both sides. Pakistan stepping into a similar role is unusual: it is neither small nor neutral, but the combination of Iran-border geography and Gulf military ties produces the same dual-credibility profile.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country has hosted the most US-Iran backchannel talks since 2013?",
+            "options": [
+              "Switzerland",
+              "Oman",
+              "Qatar",
+              "Turkey"
+            ],
+            "correct": 1,
+            "explanation": "Muscat's neutrality and discreet diplomatic culture made it the default venue; Sultan Qaboos personally cultivated the channel from the 1990s onward."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST OF SILENCE",
+        "body": "India's official position on the Iran crisis has been near-total silence — no condemnation, no mediation offer, no public call for de-escalation. This is consistent with Delhi's strategic-autonomy doctrine, but in practice it cedes the diplomatic terrain to Islamabad on a file where Indian interests (oil prices, diaspora in the Gulf, Chabahar) are arguably larger than Pakistan's.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-28T08:37:37.520Z",
+    "label": "Pakistan, Iran & Mediation Leverage",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-28-msf-israel-weaponising-water-gaza": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COASTAL AQUIFER",
+        "body": "Gaza sits atop a single shallow aquifer that recharges from rainfall on the eastern hills — most of which now falls inside Israel and is captured before it reaches the strip. Even before 2023, over 96% of Gaza's groundwater was undrinkable by WHO standards: salinity from seawater intrusion and nitrates from sewage that had nowhere to go.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The aquifer is a *transboundary* resource, but Israel's **Mekorot** national water company controls the upstream catchment and the desalination intake — Gaza receives whatever flows downhill or is sold across the meter."
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE PIPES",
+        "body": "Before October 2023, Gaza got water from three sources: the depleted aquifer (~80%), three Mekorot pipelines from Israel (~13%), and small desalination plants powered by the strip's single power station and diesel generators (~7%). Cutting electricity and fuel collapses the latter two simultaneously — desalination and pumping both stop.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Coastal aquifer",
+                "value": "~80%",
+                "weight": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Mekorot pipelines",
+                "value": "~13%",
+                "weight": 13,
+                "tone": "neutral"
+              },
+              {
+                "label": "Desalination",
+                "value": "~7%",
+                "weight": 7,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Gaza pre-war water sources"
+          }
+        ]
+      },
+      {
+        "heading": "GENEVA CONVENTION IV",
+        "body": "Article 54 of Additional Protocol I prohibits attacking, destroying, or rendering useless objects indispensable to civilian survival — explicitly naming drinking water installations and supplies. The ICRC's commentary lists this among the rules that admit no military-necessity exception. Cutting water to a besieged population is not a gray area in the laws of war.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "It is prohibited to attack, destroy, remove or render useless objects indispensable to the survival of the civilian population, such as foodstuffs, agricultural areas, crops, livestock, drinking water installations and supplies and irrigation works.",
+            "speaker": "Additional Protocol I to the Geneva Conventions, Article 54(2)",
+            "year": "1977"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOLERA THRESHOLD",
+        "body": "Public health literature is precise on this: below 15 liters per person per day, diarrheal disease outbreaks become near-certain in dense populations. UN figures put current Gaza supply at roughly 3–5 liters per person where trucks reach at all. Cholera, hepatitis A, and shigella spread through the same fecal-oral route the absent sanitation cannot interrupt.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the WHO's minimum daily water requirement per person to prevent disease outbreaks in emergencies?",
+            "options": [
+              "3 liters",
+              "15 liters",
+              "50 liters",
+              "100 liters"
+            ],
+            "correct": 1,
+            "explanation": "WHO guidelines set 15 L/person/day as the floor for survival plus basic hygiene; below it, outbreaks of diarrheal disease become near-inevitable in dense settings."
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL PATTERN",
+        "body": "Water has been a lever in this conflict since the 1967 occupation, when Military Order 158 required Palestinian permits for any new water infrastructure in the West Bank and Gaza — permits rarely granted. The 1995 Oslo II accords codified an asymmetric split: Israel retained ~80% of the mountain aquifer's yield, Palestinians ~20%, with the arrangement meant to last five years pending final-status talks that never came.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1967",
+                "label": "Military Order 158: permits required",
+                "emphasis": "start"
+              },
+              {
+                "year": "1982",
+                "label": "Mekorot absorbs Palestinian water utilities"
+              },
+              {
+                "year": "1995",
+                "label": "Oslo II: 80/20 aquifer split"
+              },
+              {
+                "year": "2007",
+                "label": "Gaza blockade begins"
+              },
+              {
+                "year": "2023",
+                "label": "Total siege; water cut",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "water control over the occupied territories"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "The Quran in Surah al-Isra describes the land around al-Aqsa as the land Allah blessed — a phrase classical mufassirun including Ibn Kathir interpret as encompassing the broader region of al-Sham, of which Palestine is the southern reach. Hadith collections describe this land's springs and wells in terms of barakah; the deliberate destruction of its water carries a weight beyond infrastructure damage."
+      }
+    ],
+    "generatedAt": "2026-04-28T08:38:13.799Z",
+    "label": "Water as a Weapon in Gaza",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-28-ondo-finance-proxy-voting-tokenized-equities": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A TOKENIZED STOCK ACTUALLY IS",
+        "body": "A tokenized equity is a blockchain token whose issuer promises it tracks a real share held in custody. The token moves on-chain; the underlying share sits with a custodian. Until now, the economic exposure transferred but the shareholder rights — voting, dividends, disclosures — stayed behind with the custodian.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *wrapped security*: the token is a **claim on a claim**, not the share itself."
+          }
+        ]
+      },
+      {
+        "heading": "WHY VOTING IS THE HARD PART",
+        "body": "Corporate voting in the US runs through a 1970s-era plumbing: brokers hold shares in street name at DTC, Broadridge distributes ballots to beneficial owners, votes flow back up the chain. A token holder is invisible to this system unless someone bridges the wallet to the proxy infrastructure."
+      },
+      {
+        "heading": "WHO BROADRIDGE IS",
+        "body": "Broadridge processes over 80% of US shareholder communications and proxy votes — a near-monopoly spun out of ADP in 2007. When Broadridge maps wallet addresses to ballots, tokenized shares inherit the same voting rail Vanguard and BlackRock use.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Broadridge",
+                "value": "~80%",
+                "tone": "unfavorable",
+                "weight": 80
+              },
+              {
+                "label": "Mediant",
+                "value": "~10%",
+                "tone": "neutral",
+                "weight": 10
+              },
+              {
+                "label": "Other",
+                "value": "~10%",
+                "tone": "favorable",
+                "weight": 10
+              }
+            ],
+            "label": "US proxy voting market share"
+          }
+        ]
+      },
+      {
+        "heading": "THE SEC GAP",
+        "body": "The SEC has not ruled that a governance-enabled token is the same legal instrument as the underlying share. Until it does, tokenized equities live in a gray zone: they look like shares, vote like shares, but a court has never tested whether a token holder has standing in a shareholder lawsuit."
+      },
+      {
+        "heading": "WHY THIS MATTERS",
+        "body": "Public equity has been the dominant asset class for a century precisely because it bundles cash flow rights with control rights. Stripping voting from tokenized versions kept them a curiosity. Reattaching it is the step that makes on-chain equity a real substitute for the brokerage account.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of US shareholder proxy votes does Broadridge process?",
+            "options": [
+              "About 30%",
+              "About 50%",
+              "About 80%",
+              "About 95%"
+            ],
+            "correct": 2,
+            "explanation": "Broadridge handles roughly 80% of US proxy votes — a near-monopoly that makes it the natural bridge between tokenized shares and the legacy voting system."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-28T08:38:36.711Z",
+    "label": "Tokenized Equities & Proxy Voting",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-russia-china-energy-supplies-80bn-2025": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FORCED REORIENTATION",
+        "body": "Before 2022, roughly half of Russia's oil and most of its piped gas went to Europe. Sanctions and the Nord Stream sabotage closed that market within eighteen months. China and India absorbed the displaced barrels — but only at steep discounts, because Moscow had nowhere else to send them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Russian Urals crude has traded at a **$10–20/bbl discount** to Brent since 2022 — the price of having one buyer instead of many."
+          }
+        ]
+      },
+      {
+        "heading": "THE INFRASTRUCTURE ASYMMETRY",
+        "body": "Pipelines built for Europe cannot be redirected to Asia. The ESPO pipeline to China carries roughly 1.6 million barrels per day; Power of Siberia carries gas at a fraction of what Nord Stream once moved. Tankers can reroute crude, but stranded gas fields in western Siberia have no eastern outlet.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nord Stream 1+2",
+                "value": "110 bcm/yr",
+                "tone": "unfavorable",
+                "weight": 110
+              },
+              {
+                "label": "Power of Siberia",
+                "value": "38 bcm/yr",
+                "tone": "neutral",
+                "weight": 38
+              },
+              {
+                "label": "Power of Siberia 2 (proposed)",
+                "value": "50 bcm/yr",
+                "tone": "favorable",
+                "weight": 50
+              }
+            ],
+            "label": "Russian gas pipeline capacity"
+          }
+        ]
+      },
+      {
+        "heading": "YUAN SETTLEMENT",
+        "body": "Sanctions cut Russian banks from SWIFT dollar clearing in 2022. Bilateral Russia-China trade now settles overwhelmingly in yuan and rubles — by some estimates over 90%. This is the largest real-world test of de-dollarization, but it locks Russia into a currency Beijing controls.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Russia-China trade is now settled in yuan and rubles rather than dollars?",
+            "options": [
+              "Around 30%",
+              "Around 60%",
+              "Over 90%",
+              "Still mostly dollars"
+            ],
+            "correct": 2,
+            "explanation": "By 2024 over 90% of bilateral trade settled in national currencies — a structural shift Beijing accepted because it strengthens yuan internationalization."
+          }
+        ]
+      },
+      {
+        "heading": "THE MONOPSONY PROBLEM",
+        "body": "When one buyer accounts for a third of your trade and you have no alternatives, the buyer sets the price. China negotiates Russian crude and gas contracts knowing Moscow's only other option is to leave the molecules in the ground. The Power of Siberia 2 pipeline has stalled for years over exactly this — Beijing demands prices Gazprom calls unviable.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "CN",
+              "KZ",
+              "MN",
+              "IN"
+            ],
+            "label": "Russia's eastern energy corridor",
+            "markers": [
+              {
+                "lat": 53.7,
+                "lng": 127.5,
+                "label": "Power of Siberia entry"
+              },
+              {
+                "lat": 50,
+                "lng": 127.5,
+                "label": "Skovorodino (ESPO hub)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL ECHO",
+        "body": "In the 1960s Sino-Soviet split, Moscow was the senior partner and Beijing the supplicant. Sixty years later the relationship has inverted: Russia is the resource appendage, China the industrial core. Russian strategists have written about this fear since the 1990s; the war in Ukraine forced them to accept it anyway.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1950",
+                "label": "Sino-Soviet Treaty of Friendship"
+              },
+              {
+                "year": "1960",
+                "label": "Sino-Soviet split begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1969",
+                "label": "Border clashes at Zhenbao Island"
+              },
+              {
+                "year": "1989",
+                "label": "Gorbachev visits Beijing, normalization"
+              },
+              {
+                "year": "2014",
+                "label": "Power of Siberia signed after Crimea"
+              },
+              {
+                "year": "2022",
+                "label": "'No limits' partnership declared"
+              }
+            ],
+            "label": "Russia–China relationship arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-28T08:39:06.360Z",
+    "label": "Russia's Pivot East",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-title-x-family-planning-overhaul-birth-rates": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 1970 BARGAIN",
+        "body": "Title X passed in 1970 with overwhelming bipartisan support — Richard Nixon signed it, declaring no American woman should be denied access to family planning because she could not afford it. George H.W. Bush, then a Texas congressman, was so identified with the cause that colleagues nicknamed him 'Rubbers.'",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The original statute explicitly bars funds from being used 'in programs where abortion is a method of family planning' — a firewall that has held through every administration since."
+          }
+        ]
+      },
+      {
+        "heading": "WHO IT SERVES",
+        "body": "Title X funds about 3,000 clinics nationwide, serving roughly 3 million people a year. Two-thirds of patients live below the federal poverty line; nearly half are uninsured. For many, the Title X clinic is their only point of contact with the medical system.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Contraception",
+                "value": "~85%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "STI testing",
+                "value": "~60%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Cancer screening",
+                "value": "~25%",
+                "tone": "favorable"
+              },
+              {
+                "label": "Pregnancy testing",
+                "value": "~20%",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Title X patients by service received (annual)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRONATALIST TURN",
+        "body": "Pronatalism — government policy aimed at raising birth rates — has a long and uncomfortable history. Romania under Ceausescu banned contraception and abortion in 1966 to reverse demographic decline; the resulting orphanage crisis became a generational trauma. Hungary under Orban offers tax exemptions for mothers of four. The instruments differ; the premise is shared: the state has an interest in how many children women bear."
+      },
+      {
+        "heading": "THE FERTILITY ARITHMETIC",
+        "body": "The US total fertility rate fell to 1.62 in 2023 — well below the 2.1 replacement rate. But contraception access is a weak lever for raising it: countries with the most restrictive contraception policies (Poland, Italy) have lower fertility than countries with universal access (France, Sweden). The drivers are housing costs, childcare, and labor-market structure, not contraceptive availability.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Total fertility rate, 2023",
+            "peers": [
+              {
+                "value": 1.79,
+                "cc": "FR"
+              },
+              {
+                "value": 1.62,
+                "cc": "US"
+              },
+              {
+                "value": 1.46,
+                "cc": "DE"
+              },
+              {
+                "value": 1.2,
+                "cc": "JP"
+              },
+              {
+                "value": 1.2,
+                "cc": "IT"
+              },
+              {
+                "value": 1.16,
+                "cc": "PL"
+              },
+              {
+                "value": 0.72,
+                "cc": "KR"
+              }
+            ],
+            "subjectCc": "US",
+            "unit": "births/woman"
+          }
+        ]
+      },
+      {
+        "heading": "THE GAG RULE PRECEDENT",
+        "body": "The first Trump administration imposed a 'gag rule' in 2019 that barred Title X clinics from referring patients for abortion. Planned Parenthood — which had served 40% of Title X patients — withdrew rather than comply. Hundreds of clinics closed or lost funding; an estimated 1.6 million patients lost access. Biden reversed the rule in 2021. The infrastructure never fully recovered."
+      },
+      {
+        "heading": "THE QUIET FACT",
+        "body": "Roughly half of US pregnancies are unintended. Title X clinics avert an estimated 1 million unintended pregnancies a year — and by extension, roughly 300,000 abortions. Narrowing the program toward birth-rate goals would, on the historical evidence, increase the abortion rate, not decrease it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of US pregnancies are classified as unintended?",
+            "options": [
+              "About 15%",
+              "About 30%",
+              "About 50%",
+              "About 70%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly half of US pregnancies are unintended — one of the highest rates in the developed world, and the gap Title X was designed to close."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-28T08:39:34.956Z",
+    "label": "Title X & Family Planning",
+    "category": "science",
+    "articleCount": 1
   }
 }

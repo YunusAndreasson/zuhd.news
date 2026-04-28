@@ -2,13 +2,243 @@
   "version": 1,
   "stories": [
     {
+      "id": "google-15bn-ai-data-centre-visakhapatnam",
+      "label": "Chandrababu Naidu lays foundation for Google's ₹1.35 lakh crore AI data centre in Visakhapatnam",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-28-google-15bn-ai-data-centre-visakhapatnam"
+      ],
+      "eventUri": "eng-11603151",
+      "summary": "Google is committing roughly $15 billion (₹1.35 lakh crore) to a single AI data centre in Andhra Pradesh — its largest outside the US. Lead with the scale and the state-level deal: Naidu personally laid the foundation, signaling that Indian states are now the unit of competition for hyperscaler capex. Mechanism: power, water, and tax concessions from a single state secure US AI infrastructure abroad. Stakes: India becomes a frontline AI build-out site rather than just a services back office.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Visakhapatnam",
+        "http://en.wikipedia.org/wiki/Google",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Data_center",
+        "http://en.wikipedia.org/wiki/N._Chandrababu_Naidu",
+        "http://en.wikipedia.org/wiki/Andhra_Pradesh"
+      ]
+    },
+    {
+      "id": "boj-hawkish-split-vote-ueda-yen",
+      "label": "BOJ's Split Vote on Rates Marks Most Hawkish Divide of Ueda Era",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-28-boj-hawkish-split-vote-ueda-yen"
+      ],
+      "eventUri": "eng-11606648",
+      "summary": "Three of nine BOJ board members voted to hike — the sharpest hawkish split since Ueda took over. The yen rallied, bitcoin and Asian risk assets fell. Lead with the dissent count: a Japanese rate path that diverges from the Fed reorders global carry trades and pressures every emerging-market currency funded in cheap yen. Why it matters: Japan's monetary policy is the hidden plumbing of global liquidity, and a hawkish tilt in Tokyo while oil spikes on the Hormuz standoff compounds tightening pressure on import-dependent economies, including Pakistan and Egypt.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Bank_of_Japan",
+        "http://en.wikipedia.org/wiki/Inflation",
+        "http://en.wikipedia.org/wiki/Japanese_yen",
+        "http://en.wikipedia.org/wiki/Central_bank",
+        "http://en.wikipedia.org/wiki/Interest_rate",
+        "http://en.wikipedia.org/wiki/Japan"
+      ]
+    },
+    {
+      "id": "msf-israel-weaponising-water-gaza",
+      "label": "Israel Using Water Access as 'Weapon' in Gaza, Says MSF",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-28-msf-israel-weaponising-water-gaza"
+      ],
+      "eventUri": "eng-11607000",
+      "summary": "MSF documents that Gaza's drinking-water supply has collapsed to a fraction of survival minimums, and accuses Israel of weaponising water as collective punishment. Lead with the per-capita liter figure MSF cites versus WHO emergency thresholds — the mechanism is destruction of pumping stations and fuel denial, not scarcity. Stakes: dehydration, cholera risk, and infant mortality in a population already under siege; an aid agency naming a state actor in this language is itself the news. Frame as continuation of injustice — siege water policy is the development.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Médecins_Sans_Frontières",
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Gaza_City",
+        "http://en.wikipedia.org/wiki/Palestinians",
+        "http://en.wikipedia.org/wiki/Gaza_Strip",
+        "http://en.wikipedia.org/wiki/Water"
+      ]
+    },
+    {
+      "id": "russia-china-energy-supplies-80bn-2025",
+      "label": "Russian energy supplies to China reach almost $80 bln in 2025  --  ambassador",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-28-russia-china-energy-supplies-80bn-2025"
+      ],
+      "eventUri": null,
+      "summary": "Russia's ambassador to Beijing puts 2025 energy exports to China at ~$80bn — oil, gas, coal, and growing nuclear. Lead with the dollar figure and what it replaces: pre-war, much of this oil flowed to Europe. Mechanism: pipelines and yuan-settled long-term contracts have rewired Eurasian energy flows around sanctions. Stakes for the reader: this is the structural counterweight to the EU's 20th sanctions package — Russia's revenue base is no longer Europe-dependent, which makes Western leverage over Moscow's war economy progressively weaker. Note source provenance (Russian state news + ambassador's claim).",
+      "conceptUris": []
+    },
+    {
+      "id": "ondo-finance-proxy-voting-tokenized-equities",
+      "label": "RWA news: Ondo Finance adds proxy voting for holders of its $700 million tokenized equities",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-28-ondo-finance-proxy-voting-tokenized-equities"
+      ],
+      "eventUri": null,
+      "summary": "Ondo Finance, a tokenized-equity platform with $700M AUM, added proxy voting via Broadridge — meaning on-chain holders of tokenized US stocks can now vote in shareholder meetings. Lead with the mechanism: this is the first time real-world asset (RWA) tokens have had governance rights pass through to the underlying corporate equity. Stakes: it closes the last functional gap between a tokenized share and a real share, which strengthens the case for moving public-equity settlement on-chain — and complicates regulators who have argued tokens are not 'real' equity. Reader will want the technical plumbing: how Broadridge maps wallet addresses to ballots.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-crisis-pakistan-prominence-india-silence",
+      "label": "Iran Crisis: Pakistan's Prominence and India's Strategic Silence",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-28-iran-crisis-pakistan-prominence-india-silence"
+      ],
+      "eventUri": null,
+      "summary": "As the Iran war reshuffles regional roles, Pakistan has become a visible mediator while India — Tehran's largest oil customer historically — has gone strategically silent. Lead with the contrast: Islamabad hosting Kushner-track diplomacy while Delhi avoids public position-taking. Mechanism: Pakistan's twin-track relations with Tehran and Riyadh give it leverage India can't match while bound to US tech and defense ties. Stakes: a recalibration of Muslim-world diplomatic capital — Pakistan punching above its economic weight, India ceding influence over Chabahar and Iranian energy. Continues the Trump–Iran arc covered earlier; this is the South Asia angle.",
+      "conceptUris": []
+    },
+    {
+      "id": "beijing-isolating-taiwan-lai-ching-te",
+      "label": "Beijing intensifies diplomatic isolation of Taiwan's president",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-28-beijing-isolating-taiwan-lai-ching-te"
+      ],
+      "eventUri": null,
+      "summary": "Beijing is using the Iran war's distraction to escalate diplomatic pressure on Lai Ching-te — pressuring third countries to deny transit, downgrading semi-official channels, and squeezing Taipei's remaining 12 formal partners. Lead with what's measurably new: which transits or visits got blocked this month. Mechanism: when US attention is consumed elsewhere, the cost of coercive diplomacy against Taipei drops. Stakes: each diplomatic foothold lost narrows Taiwan's room to operate as a de facto state — the path to coercion runs through isolation, not invasion.",
+      "conceptUris": []
+    },
+    {
+      "id": "egypt-landmark-hotel-discrimination-women-ruling",
+      "label": "In landmark ruling, hotel manager sentenced for discrimination against women after refusing single-room booking",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-egypt-landmark-hotel-discrimination-women-ruling"
+      ],
+      "eventUri": null,
+      "summary": "An Egyptian court convicted a hotel manager for refusing a single woman's booking — the first criminal precedent applying Egypt's anti-discrimination provisions to gender-based service refusal. Lead with the precedent: Egyptian courts have rarely punished private-sector gender discrimination, so a sentenced manager is structurally significant. Mechanism: the ruling reads existing law as covering hospitality services. Stakes: women travelling alone in Egypt have lacked legal recourse against widespread refusal practices; this verdict — if it survives appeal — gives them one. Frame as accountability for everyday ẓulm.",
+      "conceptUris": []
+    },
+    {
+      "id": "fossil-fuel-non-proliferation-treaty-talks",
+      "label": "Nations to kick off world-first fossil fuel exit talks",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-28-fossil-fuel-non-proliferation-treaty-talks"
+      ],
+      "eventUri": null,
+      "summary": "A coalition of states begins the first formal multilateral talks aimed at a treaty mechanism for phasing out fossil fuel production — not just consumption. Lead with what makes this different from every COP outcome: this targets supply, the half of the equation oil-producing states have always blocked. Mechanism: a 'Fossil Fuel Non-Proliferation Treaty' framework modeled on nuclear arms control. Stakes: even a partial agreement reorders the political economy of oil; absence of major producers (Saudi, Russia, US) tells the reader exactly how far this goes. Watch which Muslim-world states sign on — Pakistan, Bangladesh, Indonesia are climate-vulnerable but energy-dependent.",
+      "conceptUris": []
+    },
+    {
+      "id": "title-x-family-planning-overhaul-birth-rates",
+      "label": "Amid Falling Birth Rates, Federal Family Planning Is Overhauled",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-28-title-x-family-planning-overhaul-birth-rates"
+      ],
+      "eventUri": null,
+      "summary": "The Trump administration is restructuring Title X — the federal family-planning program serving ~3M low-income Americans — while invoking falling birth rates as justification. Lead with the contradiction: Title X funds contraception and screening, not births, so framing its overhaul as pronatalist policy redefines what the program is for. Mechanism: grant criteria rewritten to favor 'fertility-supportive' clinics, defunding clinics offering full reproductive services. Stakes: poor and rural women lose contraception access; STD screening capacity drops. Reader gets a clear case of policy means decoupled from stated ends.",
+      "conceptUris": []
+    },
+    {
+      "id": "soyuz-5-kazakhstan-space-power",
+      "label": "The Soyuz-5 Will Transform Kazakhstan into a New Space Power",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-soyuz-5-kazakhstan-space-power"
+      ],
+      "eventUri": null,
+      "summary": "Soyuz-5, the new medium-lift rocket developed jointly by Russia and Kazakhstan, gives Astana — for the first time — equity in launch capability rather than just renting out Baikonur. Lead with the structural shift: Kazakhstan moves from landlord to co-operator. Mechanism: shared IP and a Kazakh-built launch pad ('Baiterek') give it leverage over fees, payloads, and orbital slots. Stakes: a Central Asian state becoming a credible commercial-launch competitor to SpaceX/ESA in mid-payload reshapes Eurasian space geopolitics — and Russia's deepening reliance on Kazakhstan after losing Western partners. Tech reader gets the rocket specs and launch cadence.",
+      "conceptUris": []
+    },
+    {
+      "id": "el-salvador-ai-hype-public-healthcare",
+      "label": "AI hype narrative reaches the public healthcare system in El Salvador",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-28-el-salvador-ai-hype-public-healthcare"
+      ],
+      "eventUri": null,
+      "summary": "Bukele's government is rolling AI tools into El Salvador's underfunded public hospitals — diagnostics, triage, records — without published validation, procurement transparency, or clinical-error pathways. Lead with the gap between the hype and the audit: no published accuracy figures, no vendor disclosure. Mechanism: a presidential AI office bypassing health-ministry procurement. Stakes: a low-resource public health system becomes a live test environment for tools whose failure modes get borne by the poorest patients — the inverse of the OECD AI-deployment playbook. Reader sees how AI 'modernization' lands in a Global South context.",
+      "conceptUris": []
+    },
+    {
+      "id": "civic-trust-ai-public-management-latam",
+      "label": "The challenge of civic trust as AI plays a bigger role in public management",
+      "firstSeen": "2026-04-28T08:04:45.882Z",
+      "lastCovered": "2026-04-28T08:04:45.882Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-27-civic-trust-ai-public-management-latam"
+      ],
+      "eventUri": null,
+      "summary": "Latin American governments are deploying AI for benefits eligibility, fraud detection, and tax — and surveys show civic trust dropping when citizens learn an algorithm denied their claim. Lead with the trust delta: the same decision is more accepted when made by a human reviewer than an AI. Mechanism: lack of explainability + no appeal channel + datasets trained on biased historical decisions. Stakes: AI public-administration tools risk hollowing out the legitimacy of the welfare state itself — citizens stop applying. Pair this against the El Salvador healthcare piece for a regional pattern: AI deployed faster than its accountability scaffolding.",
+      "conceptUris": []
+    },
+    {
       "id": "mexico-cjng-el-mencho-successor-arrest",
       "label": "Mexico arrests potential successor to drug kingpin 'El Mencho'",
       "firstSeen": "2026-04-28T04:06:27.200Z",
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-28-mexico-cjng-el-mencho-successor-arrest"
@@ -32,7 +262,7 @@
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-28-trump-rejects-iran-war-proposal-kushner-pakistan"
@@ -55,7 +285,7 @@
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-27-lebanon-deadliest-day-since-ceasefire-civilian-strikes"
@@ -71,7 +301,7 @@
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-28-kyrgyzstan-japarov-tashiev-split-consolidation"
@@ -87,7 +317,7 @@
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-28-tolashe-state-nanny-daughter-salary-south-africa"
@@ -103,7 +333,7 @@
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-28-afghanistan-taliban-mineral-concessions-extraction-terms"
@@ -119,7 +349,7 @@
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-28-australia-tech-levy-news-bargaining-code-replacement"
@@ -141,7 +371,7 @@
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-28-russia-google-bailiff-fines-560-million-enforcement"
@@ -157,7 +387,7 @@
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-28-nasa-artemis-iii-2027-slip-starship-dependency"
@@ -173,7 +403,7 @@
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-28-climate-services-smallholder-farmer-advisory-translation"
@@ -189,7 +419,7 @@
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-28-asu-atomic-ai-modules-faculty-lecture-ip"
@@ -205,7 +435,7 @@
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-28-pro-se-ai-litigants-hallucinated-citations-court-burden"
@@ -221,7 +451,7 @@
       "lastCovered": "2026-04-28T04:06:27.200Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-28-swift-trademark-voice-likeness-deepfake-defense"
@@ -237,7 +467,7 @@
       "lastCovered": "2026-04-27T22:07:55.888Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-merz-iran-peace-process-european-rift"
@@ -262,7 +492,7 @@
       "lastCovered": "2026-04-27T22:07:55.888Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-pakistan-afghanistan-ceasefire-cross-border-attacks"
@@ -287,7 +517,7 @@
       "lastCovered": "2026-04-27T22:07:55.888Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-gaza-deir-al-balah-first-election-since-2005"
@@ -303,7 +533,7 @@
       "lastCovered": "2026-04-27T22:07:55.888Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-assad-cousin-najib-trial-damascus-daraa"
@@ -319,7 +549,7 @@
       "lastCovered": "2026-04-27T22:07:55.888Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-western-union-stablecoin-bypass-swift"
@@ -335,7 +565,7 @@
       "lastCovered": "2026-04-27T22:07:55.888Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-aave-300m-defi-rescue-kelp-exploit"
@@ -351,7 +581,7 @@
       "lastCovered": "2026-04-27T22:07:55.888Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-bitcoin-rally-fatigue-bearish-indicators"
@@ -367,7 +597,7 @@
       "lastCovered": "2026-04-27T22:07:55.888Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-acip-hepatitis-b-birth-dose-projected-deaths"
@@ -383,7 +613,7 @@
       "lastCovered": "2026-04-27T22:07:55.888Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-pm20d1-microglia-alzheimer-pathway"
@@ -399,7 +629,7 @@
       "lastCovered": "2026-04-27T22:07:55.888Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-open-source-package-million-downloads-credential-theft"
@@ -415,7 +645,7 @@
       "lastCovered": "2026-04-27T22:07:55.888Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-eu-dma-android-default-ai-assistant"
@@ -440,7 +670,7 @@
       "lastCovered": "2026-04-27T22:07:55.888Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-27-scotus-location-data-broker-warrant"
@@ -456,7 +686,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-microsoft-and-openai-s-open-relationship-is-now-official"
@@ -477,7 +707,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-claire-s-closes-all-154-stores-as-it-collapses-into-administ"
@@ -497,7 +727,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-meta-seeking-energy-from-space-for-earth-bound-datacenters"
@@ -517,7 +747,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-shell-strikes-12bn-deal-for-canadian-gas-giant"
@@ -538,7 +768,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-canada-s-carney-announces-a-sovereign-wealth-fund"
@@ -558,7 +788,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-the-west-bank-on-strike"
@@ -578,7 +808,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-as-trump-s-narrative-on-negotiations-flails-iran-is-setting"
@@ -598,7 +828,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-drone-kills-man-near-zaporizhzhia-nuclear-power-plant-iaea-s"
@@ -619,7 +849,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-national-science-board-eviscerated-trump-admin-fires-all-22"
@@ -639,7 +869,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-physicists-discover-the-most-complex-forms-of-ice-yet"
@@ -659,7 +889,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-government-hacking-tools-are-now-in-criminals-hands-with-lor"
@@ -679,7 +909,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-study-finds-a-third-of-new-websites-are-ai-generated"
@@ -699,7 +929,7 @@
       "lastCovered": "2026-04-27T17:09:06.032Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-27-disinformation-campaign-targeted-tibetan-parliament-in-exile"
@@ -720,7 +950,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-china-blocks-meta-manus-ai-acquisition-unwind"
@@ -745,7 +975,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-kashmir-darul-uloom-seminary-uapa-ban-shopian"
@@ -770,7 +1000,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-us-three-carrier-strike-groups-centcom-iran"
@@ -786,7 +1016,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-nigeria-iswap-boko-haram-abuja-attack-plan"
@@ -802,7 +1032,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-pakistan-china-mou-desalination-agri-tea"
@@ -818,7 +1048,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-eu-20th-sanctions-russia-crypto-defi-ban"
@@ -834,7 +1064,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-bitcoin-oil-surge-iran-war-correlation-selloff"
@@ -850,7 +1080,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-worldcoin-world-id-tinder-zoom-docusign-partners"
@@ -866,7 +1096,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-legacy-nft-bust-molyneux-54-million-players"
@@ -882,7 +1112,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-openai-qualcomm-mediatek-luxshare-smartphone-chips-2028"
@@ -907,7 +1137,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-intellia-crispr-hereditary-angioedema-phase-3"
@@ -923,7 +1153,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-arctic-continent-200mya-dinosaur-rise-cooling"
@@ -939,7 +1169,7 @@
       "lastCovered": "2026-04-27T12:06:03.837Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-27-esa-vega-c-sentinel-1c-launch-cost-disclosure"
@@ -955,7 +1185,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-27-china-warns-eu-over-proposed-made-in-europe-law"
@@ -978,7 +1208,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-27-india-s-sun-pharma-to-buy-us-listed-organon-in-11-75-billion"
@@ -1001,7 +1231,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-27-taiwan-court-hands-down-jail-terms-in-tsmc-trade-secrets-cas"
@@ -1024,7 +1254,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-27-iran-shahid-rajaee-port-blast-bandar-abbas"
@@ -1040,7 +1270,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-27-myanmar-junta-president-language-normalisation"
@@ -1056,7 +1286,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-27-hormuz-blockade-fertilizer-food-production-russia"
@@ -1072,7 +1302,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-27-nft-rally-wash-trading-shrinking-user-base"
@@ -1088,7 +1318,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-27-eprodisate-alpha-synuclein-condensation-parkinson"
@@ -1104,7 +1334,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-27-south-africa-water-infrastructure-municipal-collapse"
@@ -1120,7 +1350,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-27-cosmological-principle-homogeneity-hubble-tension"
@@ -1136,7 +1366,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-27-openai-smartphone-agent-os-apple-samsung"
@@ -1159,7 +1389,7 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-26-friendster-30k-domain-trademark-resale"
@@ -1175,218 +1405,13 @@
       "lastCovered": "2026-04-27T08:07:30.630Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-27-grnn-mc-soil-borehole-geotechnical-ml"
       ],
       "eventUri": null,
       "summary": "Researchers compare a Generalised Regression Neural Network with Monte Carlo sampling against random forest for inferring subsurface soil profiles from sparse borehole data. Lead with the practical stake: foundation engineering, tunnelling, and seismic-risk modelling all depend on between-borehole interpolation, and that's still done by interpolation rules from the 1970s. Mechanism: GRNN-MC quantifies uncertainty per stratum where RF only outputs class probabilities, which matters when the cost of being wrong is a collapsed retaining wall. Frame for a technically literate reader curious why ML hasn't already eaten geotech.",
-      "conceptUris": []
-    },
-    {
-      "id": "iran-hormuz-first-nuclear-later-peace-proposal-us",
-      "label": "First Open Hormuz, Nuclear Talks Later: Inside Iran's New Peace Proposal To US",
-      "firstSeen": "2026-04-27T04:10:36.439Z",
-      "lastCovered": "2026-04-27T04:10:36.439Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-27-iran-hormuz-first-nuclear-later-peace-proposal-us"
-      ],
-      "eventUri": "eng-11603697",
-      "summary": "Tehran's new offer to Washington — reopen Hormuz first, defer nuclear talks — flips the prior sequencing the US insisted on. Lead with the swap mechanism: Iran is treating the blockade as a bargaining chip, which validates that the closure is a strategic instrument and not just a wartime side-effect. Continuation of the post-ceasefire shuttle (Araghchi in Muscat, Ankara, Islamabad, Moscow). Note Pakistan's mediating role per Axios. Sentiment divergence (0.20) reflects Bloomberg framing this as Iranian concession vs MEE/News18 as a US climbdown.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Axios_(website)",
-        "http://en.wikipedia.org/wiki/Pakistan",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Blockade",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Ceasefire"
-      ]
-    },
-    {
-      "id": "us-narco-boat-strike-185-toll-pacific",
-      "label": "US strike kills three on alleged narco boat as campaign death toll hits 185",
-      "firstSeen": "2026-04-27T04:10:36.439Z",
-      "lastCovered": "2026-04-27T04:10:36.439Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-27-us-narco-boat-strike-185-toll-pacific"
-      ],
-      "eventUri": "eng-11600322",
-      "summary": "The Pentagon's extrajudicial strike campaign in the Eastern Pacific has now killed 185 people on small boats labelled 'narco' with no court process and no public evidence. Lead with the cumulative toll, named where possible, and the legal mechanism — what authority is the US claiming to kill in international waters? Accountability angle: this is a normalisation of lethal force outside armed-conflict frameworks, with named victims who never get a hearing. Stakes for the reader: the precedent extends to anyone the executive labels a trafficker.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-antelope-reef-south-china-sea-island-building",
-      "label": "China is remaking the South China Sea with a return to island-building",
-      "firstSeen": "2026-04-27T04:10:36.439Z",
-      "lastCovered": "2026-04-27T04:10:36.439Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-27-china-antelope-reef-south-china-sea-island-building"
-      ],
-      "eventUri": null,
-      "summary": "Beijing's new outpost at Antelope Reef revives island-building after a years-long pause — confers no legal title but expands de-facto control over disputed waters. Lead with the reef-by-reef logic: what UNCLOS says vs what concrete and dredging actually deliver. Stakes for the reader: this sets up the next Quad/ASEAN flashpoint and tests whether the 2016 Hague ruling has any operational meaning a decade on.",
-      "conceptUris": []
-    },
-    {
-      "id": "chad-communal-clash-water-42-dead-sahel",
-      "label": "Communal clash in eastern Chad kill at least 42",
-      "firstSeen": "2026-04-27T04:10:36.439Z",
-      "lastCovered": "2026-04-27T04:10:36.439Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-27-chad-communal-clash-water-42-dead-sahel"
-      ],
-      "eventUri": null,
-      "summary": "More than 40 killed in a Chad communal clash that began as a dispute over a single water point in the eastern region. Lead with the trigger — a water source — and the structural pattern: water-stress conflicts across the Sahel are the climate-security tip showing up as 'communal violence' in agency wires. Africa coverage is a flagged gap; this is the consequence story, not a diplomatic readout. Note TASS framing — corroborate with AFP wire detail in writer stage.",
-      "conceptUris": []
-    },
-    {
-      "id": "oil-rises-us-iran-talks-stall-brent-107",
-      "label": "Oil rises as US-Iran peace talks stall",
-      "firstSeen": "2026-04-27T04:10:36.439Z",
-      "lastCovered": "2026-04-27T04:10:36.439Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-27-oil-rises-us-iran-talks-stall-brent-107"
-      ],
-      "eventUri": null,
-      "summary": "Brent up 2.2% to $107.70 and WTI up 2.1% to $96.40 as the second round of US-Iran talks slipped. Lead with the price move and what it costs the global South — fuel-importing economies (Pakistan, Egypt, Bangladesh, Kenya) absorb a Hormuz risk premium they didn't price in. Pair with the Hormuz proposal story to show the same event from the macro side: the blockade is now a permanent line item in the global oil curve.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-hiv-global-fund-inspection-syringes",
-      "label": "Global Fund team may come to inspect 'HIV mishandling'",
-      "firstSeen": "2026-04-27T04:10:36.439Z",
-      "lastCovered": "2026-04-27T04:10:36.439Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-27-pakistan-hiv-global-fund-inspection-syringes"
-      ],
-      "eventUri": null,
-      "summary": "The Global Fund — a major external donor to Pakistan's HIV programme — is preparing to inspect Islamabad's response after a surge in HIV cases tied to unsafe injection practices and reused syringes. Lead with the donor-conditionality mechanism: what Pakistan stands to lose financially if GF rates the response inadequate, and how that maps onto recent outbreaks (Larkana, Sargodha). Stakes: a public-health failure becomes a fiscal one when concessional health financing is on the line.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-fixes-prices-35-essential-drugs-shortage",
-      "label": "After long wait, Centre fixes prices of 35 new essential drugs",
-      "firstSeen": "2026-04-27T04:10:36.439Z",
-      "lastCovered": "2026-04-27T04:10:36.439Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-27-pakistan-fixes-prices-35-essential-drugs-shortage"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's federal government finally fixed retail prices for 35 essential medicines, with 45 more in the queue, after months of shortages that left patients rationing or substituting drugs. Lead with the substance: which classes (cardiac, oncology, paediatric) had been missing and at what cost. Mechanism: price-fixation delays + currency depreciation had pushed manufacturers to withdraw molecules entirely. Stakes for the reader: this is what 'pharma economy under IMF austerity' looks like at the patient level.",
-      "conceptUris": []
-    },
-    {
-      "id": "sarcopenia-cancer-notch-sdc2-muscle-vesicles",
-      "label": "Sarcopenia promotes tumorigenesis by disrupting NOTCH-SDC2-regulated biogenesis of muscle-derived extracellular vesicles",
-      "firstSeen": "2026-04-27T04:10:36.439Z",
-      "lastCovered": "2026-04-27T04:10:36.439Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-27-sarcopenia-cancer-notch-sdc2-muscle-vesicles"
-      ],
-      "eventUri": null,
-      "summary": "Age-related muscle loss (sarcopenia) doesn't just correlate with cancer — it actively drives tumorigenesis by disrupting NOTCH-SDC2 signalling that controls extracellular vesicles muscles release. Lead with the causal flip: muscle isn't a passive marker of frailty, it's an endocrine organ whose decline has a defined molecular pathway to cancer risk. Stakes: reframes resistance training and muscle-mass interventions in older adults as anti-cancer (not just anti-frailty) measures. Caveat the model carefully — preclinical, mechanistic.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-immigration-sanctuary-law-mapping-study",
-      "label": "Novel study maps changes in US immigration policy landscape since 9/11",
-      "firstSeen": "2026-04-27T04:10:36.439Z",
-      "lastCovered": "2026-04-27T04:10:36.439Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-27-us-immigration-sanctuary-law-mapping-study"
-      ],
-      "eventUri": null,
-      "summary": "A new dataset maps every state and local sanctuary / anti-sanctuary law passed in the US between 2000 and 2021. Lead with the structural finding: 'punitive preemption' — conservative states using state-level law to override liberal cities — has become the dominant mechanism, and ideology of state vs federal government predicts legislation more strongly than demographics. Stakes for the reader: the data shows immigration enforcement is now primarily a sub-national power struggle, not a federal one.",
-      "conceptUris": []
-    },
-    {
-      "id": "10-gbe-usb-adapter-commodity-low-power-phy",
-      "label": "New 10 GbE USB adapters are cooler, smaller, cheaper",
-      "firstSeen": "2026-04-27T04:10:36.439Z",
-      "lastCovered": "2026-04-27T04:10:36.439Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-25-10-gbe-usb-adapter-commodity-low-power-phy"
-      ],
-      "eventUri": null,
-      "summary": "10 gigabit ethernet over USB just became commodity hardware — sub-$80, fanless, palm-sized adapters using new low-power PHY silicon. Lead with the threshold: 10GbE has been datacenter-only for 15 years; this puts it on any laptop. Stakes for the reader: home-lab, prosumer NAS, and small-office networks can now skip the switch upgrade cycle. The structural angle: silicon scaling that was promised in 2018 finally arrived after the post-pandemic chip glut. Tech-tiebreaker source preference (Hacker News).",
-      "conceptUris": []
-    },
-    {
-      "id": "hormuz-mine-laying-third-carrier-pakistan-delegation",
-      "label": "U.S. Efforts To Prevent Iranian Mine Laying In Strait Of Hormuz Underway",
-      "firstSeen": "2026-04-26T17:44:51.106Z",
-      "lastCovered": "2026-04-26T17:44:51.106Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-26-hormuz-mine-laying-third-carrier-pakistan-delegation",
-        "2026-04-26-carrier-tracker-as-of-april-26-2026"
-      ],
-      "eventUri": null,
-      "summary": "A third U.S. carrier strike group has arrived in CENTCOM — first time three carriers have stacked in the region in over two decades — while a U.S. delegation flies to Islamabad to restart talks. Lead with the mechanism: Washington is bracketing Iran with naval mass while leaning on Pakistan as the diplomatic pressure valve. The reader needs the structural picture, not just a deployment readout.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-optimism-asia-vs-west-polling",
-      "label": "AI optimism surges in Asia, unlike in the U.S.",
-      "firstSeen": "2026-04-24T22:05:00.199Z",
-      "lastCovered": "2026-04-26T08:07:38.473Z",
-      "coverageCount": 4,
-      "category": "tech",
-      "importance": 1,
-      "arc": "ongoing",
-      "articles": [
-        "2026-04-24-ai-optimism-asia-vs-west-polling",
-        "2026-04-24-ai-optimism-asia-vs-us-survey",
-        "2026-04-24-ai-optimism-asia-vs-us-sentiment-gap-mobility",
-        "2026-04-26-ai-optimism-asia-indonesia-india-us-divergence"
-      ],
-      "eventUri": null,
-      "summary": "Polling shows sharply higher AI optimism in India, Indonesia, Philippines, Kenya than in US/EU. Lead with the spread. Structural angle: countries where AI is leapfrog infrastructure vs countries where it's seen as a job/creative threat. Implications for regulation, investment, and deployment velocity.",
       "conceptUris": []
     }
   ]
