@@ -1,34 +1,33 @@
 {
-  "date": "2026-04-27",
+  "date": "2026-04-28",
   "metrics": {
-    "articles": { "value": 59, "detail": "5 cycles completed, avg 10/cycle" },
-    "freshness": { "median": 0, "p90": 0.3, "max": 0.3, "target": 1.0, "met": true },
-    "categories": { "politics": 19, "economy": 16, "science": 13, "tech": 11 },
+    "articles": { "value": 49, "detail": "5 cycles, avg 10/cycle" },
+    "freshness": { "median": 0.2, "p90": 0.6, "max": 0.6, "target": 1.0, "met": true },
+    "categories": { "politics": 16, "economy": 16, "science": 8, "tech": 9 },
     "multiSource": { "value": 13, "target": 4, "met": true },
     "regions": {
-      "count": 5,
+      "count": 6,
       "target": 4,
       "met": true,
-      "breakdown": { "AM": 22, "EU": 16, "ME": 12, "AS": 6, "AF": 3, "OC": 0 }
+      "breakdown": { "AM": 18, "EU": 10, "ME": 9, "AS": 7, "AF": 4, "OC": 1 }
     },
-    "sciTech": { "ratio": 41, "target": 25, "met": true },
-    "topSourceShare": { "source": "CoinDesk", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 47,
+    "sciTech": { "ratio": 35, "target": 25, "met": true },
+    "topSourceShare": { "source": "TRT World", "pct": 8, "target": 20, "met": true },
+    "uniqueSources": 52,
     "duplicates": 0,
-    "avgCycleDuration": 1958
+    "avgCycleDuration": 1803
   },
-  "experiment": "Active experiment 2026-04-26-standalone-cap-22 (standalone cap 25→22, targeting freshness) is on day 2 of 3 — evaluation holds until 2026-04-29. Today's freshness median (0.0) is well below the 1.2 baseline, early signal positive. No new experiment proposed while one is in flight.",
-  "weakestArea": "Regions diversity passes its count target (5 of 4) but the distribution is skewed: Americas accounts for 37% of coverage (22/59), Europe 27%, Middle East 20%, Asia 10%, Africa 5%, and Oceania has zero articles today. The target metric is met on count, but geographic balance is the most exposed gap if source mix drifts.",
+  "experiment": "Active: 2026-04-26-standalone-cap-22 (standalone cap 25→22 targeting freshness). evaluateAfter is 2026-04-29 — not yet due. Experiment guardrails all clear: avg 10/cycle (≥8), multiSource 13 (≥4), sciTech 35% (≥25%). Freshness median at 0.2 (baseline 1.2) is tracking strongly in target direction.",
+  "weakestArea": "Oceania coverage is the thinnest dimension at 1 article today (and 0 yesterday), representing just 2% of output against no formal target. Americas (AM) dominates at 37% of articles, driven by heavy India and US political-economy coverage. No target is breached, but OC underrepresentation is a recurring geographic gap.",
   "watching": [
-    "Pakistan–India tensions: Dawn (4 articles) and multiple South Asian outlets tracking military and diplomatic developments — continued cluster expected.",
-    "Gaza and Lebanon: Drop Site News, Middle East Eye, TRT World each contributing; ME region at 20% of daily output.",
-    "Ukraine: TASS and Ukrainska Pravda both represented today — dual-source balance worth preserving as frontline reporting diverges.",
-    "CoinDesk cluster (6 articles, 10% of output): crypto/DeFi stories grouping in economy/tech — watch that this doesn't crowd out other economy sources next cycle."
+    "India political-economy coverage clustered across 8 Indian sources today — worth monitoring for source-concentration drift if this persists into future cycles.",
+    "ME at 9 articles is healthy; Gulf and Palestinian coverage distributed across Al Jazeera, TRT World, New Lines, and Middle East Eye.",
+    "CoinDesk ran 6/64 articles yesterday (9.4% of output) — still under the 20% cap but worth watching if crypto news spikes again."
   ],
   "coverageGaps": [
-    "Oceania (OC): zero articles today — Australian and Pacific stories absent from the feed.",
-    "Southeast Asia underrepresented: only 6 AS articles total, with most originating from India/Pakistan rather than ASEAN countries.",
-    "Sub-Saharan Africa thin: 3 articles, all from Daily Maverick and Premium Times — West and East Africa not surfaced today."
+    "Oceania: 1 article today, 0 yesterday — Pacific Island nations, Australia climate policy, and Southeast Asia underrepresented.",
+    "Latin America: Americas count (18) is high but concentrated in US/Canada; Central and South America rarely appear as primary subjects.",
+    "Sub-Saharan Africa beyond Nigeria and South Africa: AF count is 4 but Daily Maverick and Premium Times dominate; East Africa and Sahel absent today."
   ],
-  "context": "Freshness is exceptionally clean today (median 0 days), likely reflecting the standalone-cap experiment pushing the feed toward fresher event-based picks. Cycle duration rose to 1958s average (vs ~1232s yesterday) — within normal variance but worth watching if it sustains above ~1800s. The multi-source floor experiment from 2026-04-21 continues to hold: today's multi-source count of 13 is well above the 4-article target."
+  "context": "Freshness is exceptionally strong at median 0.2 days — the standalone-cap experiment appears to be working, with the feed pulling fresher material since the cap dropped from 25 to 22. Sci-tech at 35% is healthy though below yesterday's 42%; the dip is within normal daily variance given 49 articles across 5 completed cycles. Cycle duration averaged 1803s (~30 min), slightly elevated versus the ~22-minute historical typical, driven by heavier writer (633s) and editor (671s) loads."
 }
