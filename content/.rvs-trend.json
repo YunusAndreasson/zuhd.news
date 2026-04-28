@@ -169,5 +169,21 @@
     "guardrailFailures": [
       "category tech below floor 2 (got 1)"
     ]
+  },
+  {
+    "ts": "2026-04-28T17:46:18.307Z",
+    "cycleId": "2026-04-28T17-46",
+    "cycleHour": "17",
+    "rvs": 66.09,
+    "clusters": {
+      "picking": 60,
+      "writing": 82.69,
+      "briefing": 76.7,
+      "sourcing": 45.85,
+      "coverage": 62.25
+    },
+    "articleCount": 13,
+    "briefCount": 13,
+    "guardrailFailures": []
   }
 ]
