@@ -79551,5 +79551,658 @@
     "label": "Biometric Identity & World ID",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-28-bangladesh-rooppur-rosatom-fuel-loading": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ROSATOM PACKAGE",
+        "body": "Rosatom does not just sell reactors — it sells a 60-year relationship. The standard contract bundles construction financing, fresh fuel supply, operator training, and spent-fuel repatriation back to Russia. The host country gets a power plant; Russia gets six decades of locked-in revenue and political leverage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **BOO** — *build-own-operate* — and Rosatom is the only vendor that offers it at sovereign scale. Western competitors sell the reactor and walk away."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FUEL IS THE LEASH",
+        "body": "VVER reactors run on Russian-spec hexagonal fuel assemblies that no Western fabricator currently produces at commercial scale. Westinghouse has spent a decade certifying a substitute for Ukraine's Soviet-era reactors. Until that supply chain matures, every VVER customer's lights stay on at Moscow's discretion."
+      },
+      {
+        "heading": "THE FINANCING TRICK",
+        "body": "The $11.9 billion is structured as Russian state credit at concessional rates, repayable over 28 years after the plant comes online. Bangladesh pays nothing up front; Rosatom books the project as a sovereign receivable; the Kremlin treats nuclear export financing the way Beijing treats Belt and Road — as state-priced infrastructure diplomacy.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Turkey (Akkuyu)",
+                "value": "$25bn / 4 units",
+                "cc": "TR"
+              },
+              {
+                "label": "Egypt (El Dabaa)",
+                "value": "$30bn / 4 units",
+                "cc": "EG"
+              },
+              {
+                "label": "Bangladesh (Rooppur)",
+                "value": "$12bn / 2 units",
+                "cc": "BD"
+              },
+              {
+                "label": "India (Kudankulam)",
+                "value": "$10bn / 6 units",
+                "cc": "IN"
+              },
+              {
+                "label": "Hungary (Paks II)",
+                "value": "$13bn / 2 units",
+                "cc": "HU"
+              }
+            ],
+            "label": "Rosatom's foreign reactor pipeline"
+          }
+        ]
+      },
+      {
+        "heading": "THE IMPORT-DEPENDENCE CONTEXT",
+        "body": "Bangladesh imports roughly 95% of its primary energy — mostly LNG and refined products priced in dollars. The 2022 forex crunch forced rolling blackouts when Dhaka could not pay cargo invoices. A nuclear plant trades dollar-denominated LNG bills for ruble-denominated fuel rods — different exposure, but not independence.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              123.318032,
+              122.637857,
+              122.977226,
+              122.722754,
+              122.428639,
+              122.428639,
+              122.428639,
+              122.428639,
+              123.424512,
+              122.815368,
+              122.694344,
+              122.811949,
+              122.671685,
+              122.671685,
+              122.856284,
+              122.939116,
+              122.972287,
+              122.940458,
+              122.936715,
+              123.155981,
+              123.155981,
+              123.357642,
+              122.580609,
+              122.859886,
+              122.710528,
+              122.673159,
+              122.673159,
+              122.499457,
+              122.499457,
+              123.321541
+            ],
+            "periods": [
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28"
+            ],
+            "label": "Bangladesh taka",
+            "unit": "BDT / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE WASTE QUESTION",
+        "body": "Spent nuclear fuel stays radiologically dangerous for tens of thousands of years. Bangladesh has no geological repository, no reprocessing plant, and no realistic path to building either. The Rosatom contract solves this by sending the spent fuel back to Russia — a clause that quietly makes Russia the permanent custodian of Bangladesh's nuclear afterlife.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does almost every Rosatom export contract include spent-fuel repatriation?",
+            "options": [
+              "Russian regulators require it for proliferation reasons",
+              "Host countries usually lack the geology and capital for long-term storage",
+              "It is cheaper than reprocessing the fuel locally",
+              "International law forbids storing foreign-origin spent fuel domestically"
+            ],
+            "correct": 1,
+            "explanation": "Deep geological repositories cost tens of billions and require specific bedrock; only a handful of countries have begun building them. Repatriation lets the host skip the problem entirely — and binds them to Russia for 60+ years."
+          }
+        ]
+      },
+      {
+        "heading": "THE VVER LINEAGE",
+        "body": "The VVER-1200 at Rooppur is a Generation III+ pressurized water reactor descended from the Soviet VVER-440 program of the 1970s. The same core design now operates in Russia, Belarus, China, India, Iran, and Turkey, with units under construction in Egypt and Hungary — making Rosatom the most-deployed reactor exporter of the post-Fukushima era.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "BY",
+              "CN",
+              "IN",
+              "IR",
+              "TR",
+              "EG",
+              "HU",
+              "BD"
+            ],
+            "label": "where VVER reactors run or are being built",
+            "caption": "one reactor family, nine national grids"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-28"
+    ],
+    "generatedAt": "2026-04-28T22:23:36.189Z",
+    "label": "Russia's Nuclear Export Model",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-comey-second-indictment-seashell-instagram-doj": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOCTRINE",
+        "body": "The First Amendment protects almost all speech about public figures, including hostile and offensive speech. The narrow exception is a 'true threat' — a statement a reasonable person would understand as a serious expression of intent to commit violence.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The governing case is *Virginia v. Black* (2003): a true threat requires the speaker to **mean to communicate** a serious intent of violence — not merely to utter words a listener finds menacing."
+          }
+        ]
+      },
+      {
+        "heading": "THE MENS REA FIGHT",
+        "body": "In Counterman v. Colorado (2023), the Supreme Court raised the bar: prosecutors must show the speaker was at least reckless about whether their words would be taken as a threat. Pure objective-listener tests are no longer enough.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After Counterman v. Colorado (2023), what must prosecutors prove about a defendant's state of mind in a true-threat case?",
+            "options": [
+              "Nothing — only how a reasonable listener would perceive the words",
+              "At least recklessness about whether the words would be taken as a threat",
+              "Specific intent to actually carry out the violence",
+              "That the target subjectively felt afraid"
+            ],
+            "correct": 1,
+            "explanation": "Counterman held that the First Amendment requires at least a reckless mental state — the speaker must consciously disregard a substantial risk that the statement would be viewed as threatening."
+          }
+        ]
+      },
+      {
+        "heading": "THE 8647 CODE",
+        "body": "In American restaurant slang, '86' means to remove an item or eject a customer. '8647' reads as '86 the 47th' — i.e., remove Trump, the 47th president. Whether a coded reference qualifies as a 'true threat' depends on whether the speaker knew the code and meant it as one."
+      },
+      {
+        "heading": "THE DISMISSAL PRECEDENT",
+        "body": "A federal judge dismissed the first Comey indictment in November on grounds tied to the special counsel's appointment authority — an echo of Judge Cannon's 2024 dismissal of the Trump documents case against Jack Smith. Re-indictment is permitted, but the underlying separation-of-powers question keeps surfacing."
+      },
+      {
+        "heading": "VENUE MATTERS",
+        "body": "The case is filed in the Eastern District of North Carolina, where Comey owns property. Federal prosecutors choose venue from any district where an element of the offense occurred; the choice shapes the jury pool, the bench, and the Fourth Circuit appellate path that any conviction would travel.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "venue: EDNC, not DC",
+            "markers": [
+              {
+                "lat": 35.5308,
+                "lng": -77.0522,
+                "label": "EDNC (Greenville)"
+              },
+              {
+                "lat": 38.8951,
+                "lng": -77.0364,
+                "label": "DOJ HQ, Washington"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PROSECUTORIAL ASYMMETRY",
+        "body": "DOJ policy traditionally requires that charges be brought only when admissible evidence is likely to result in conviction. A second indictment after a dismissal, on a novel speech theory, against a former FBI director who publicly feuded with the sitting president, tests whether that policy still constrains charging decisions or has become discretionary."
+      }
+    ],
+    "generatedAt": "2026-04-28T22:24:01.616Z",
+    "label": "True Threats & the First Amendment",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-28-investigating-the-potential-of-ulva-rigida-extracts-as-a-nat": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SIRT1 ACTUALLY DOES",
+        "body": "SIRT1 is a sirtuin — an enzyme that strips acetyl groups off proteins using NAD+ as fuel. By deacetylating transcription factors and histones, it shifts cells toward stress resistance, mitochondrial biogenesis, and DNA repair. It is the molecular handle behind most 'longevity gene' headlines.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The sirtuins were named after the yeast gene **Sir2** (*silent information regulator 2*), where caloric restriction first traced its lifespan effect in the 1990s. SIRT1 is the closest mammalian analog."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RESVERATROL IS THE BENCHMARK",
+        "body": "Resveratrol — a polyphenol from grape skins — became the reference SIRT1 activator after a 2003 Sinclair lab paper showed it extended yeast lifespan. Two decades of human trials produced thin clinical results, but it remains the comparator every new sirtuin candidate is measured against."
+      },
+      {
+        "heading": "THE TYROSINASE TARGET",
+        "body": "Tyrosinase is the rate-limiting enzyme that converts tyrosine into melanin. Inhibit it and pigmentation drops. The global cosmetic depigmentation market is built on this single enzyme — kojic acid, arbutin, hydroquinone, and now marine-algal extracts all bind the same copper-active site.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does tyrosinase do in human skin?",
+            "options": [
+              "Breaks down collagen as skin ages",
+              "Catalyzes the first step of melanin synthesis",
+              "Repairs UV damage to keratinocytes",
+              "Stimulates vitamin D production"
+            ],
+            "correct": 1,
+            "explanation": "Tyrosinase oxidizes tyrosine to dopaquinone — the committed step in melanin biosynthesis. Every major skin-lightening agent targets this enzyme."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ULVA",
+        "body": "Ulva rigida — green sea lettuce — grows fast in nutrient-loaded coastal water, often as a nuisance bloom that suffocates fisheries. It is rich in sulfated polysaccharides (ulvans) found nowhere on land. Turning a problem species into a cosmetic feedstock is a textbook bioprospecting move.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TH",
+              "VN",
+              "PH",
+              "ID",
+              "MY"
+            ],
+            "label": "Gulf of Thailand — Ulva habitat",
+            "markers": [
+              {
+                "lat": 13.1119,
+                "lng": 99.9395,
+                "label": "Phetchaburi coast"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1.0 mg/mL THRESHOLD",
+        "body": "Cosmetic ingredient screens use the standard MTT or neutral-red assay against keratinocytes or fibroblasts. Surviving 1.0 mg/mL with viability above ~80% is the conventional cutoff for advancing a botanical extract into formulation work. It is a screening hurdle, not a safety guarantee — chronic exposure and sensitization come later."
+      },
+      {
+        "heading": "FROM PAPER TO SHELF",
+        "body": "A single Scientific Reports finding sits at TRL 3 — proof of concept in vitro. The road to a shelved cream runs through standardized extraction, stability testing, in vivo skin studies, and EU INCI registration. Most promising natural-product papers never finish that climb; the ones that do take 5–10 years."
+      }
+    ],
+    "generatedAt": "2026-04-28T22:24:30.773Z",
+    "label": "Marine Bioprospecting & SIRT1",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-28-spacex-musk-compensation-mars-data-centers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SUPER-VOTING SHARES EXIST",
+        "body": "Dual-class structures give founders voting control disproportionate to their economic stake. Google's 2004 IPO normalized the model in tech: Class B shares carry 10 votes; Class A carry one. The justification is that founders need protection from quarterly market pressure to pursue long-horizon bets.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *super-voting stock* — economic ownership and *voting power* are deliberately decoupled, so a founder holding 15% of equity can still control 60%+ of votes."
+          }
+        ]
+      },
+      {
+        "heading": "THE TESLA PRECEDENT",
+        "body": "Tesla's 2018 Musk pay package — $56 billion in performance-vesting options tied to market-cap and operational milestones — was voided by a Delaware court in 2024 on conflicted-board grounds. The ruling pushed Tesla to reincorporate in Texas, and reset the template for how founder mega-grants get structured and litigated.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Musk (Tesla '18)",
+                "value": "$56bn",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Musk (Tesla '24)",
+                "value": "~$1tn",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iger (Disney)",
+                "value": "$66m",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Cook (Apple)",
+                "value": "$63m",
+                "cc": "US",
+                "tone": "neutral"
+              }
+            ],
+            "label": "largest founder pay packages, ratified or proposed"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRIVATE COMPANIES CAN DO THIS",
+        "body": "SpaceX is private. There is no public shareholder vote, no proxy statement, no SEC disclosure of executive compensation. The board approves; the cap table reshuffles. The same grant at a public company would face activist suits, ISS recommendations, and Say-on-Pay votes."
+      },
+      {
+        "heading": "THE TENDER-OFFER VALUATION",
+        "body": "SpaceX rarely raises primary capital from venture rounds anymore — it sells employee shares to outside investors via tender offers. Each tender re-prices the company. The June 28 offering at $1.75T extends a sequence: $350bn (Dec 2024), ~$400bn (mid-2025). Valuations move on Starship cadence and Starlink ARPU, not on profits."
+      },
+      {
+        "heading": "WHY MARS, ECONOMICALLY",
+        "body": "A self-sustaining Mars settlement has no near-term revenue model. The grant binds Musk to a goal that pays nothing for decades. Tying compensation to it is either visionary alignment or a way to lock in voting control under a milestone shareholders cannot meaningfully police.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Musk receive when SpaceX hits a $7.5T valuation AND establishes a Mars settlement?",
+            "options": [
+              "$200bn cash bonus",
+              "200 million super-voting shares",
+              "A 25% equity stake in a Mars subsidiary",
+              "Royalties on Starship launches"
+            ],
+            "correct": 1,
+            "explanation": "The grant is voting power, not cash — it consolidates Musk's control over SpaceX governance regardless of how diluted his economic stake becomes."
+          }
+        ]
+      },
+      {
+        "heading": "THE xAI ENTANGLEMENT",
+        "body": "SpaceX has invested in xAI; Tesla shareholders voted on an xAI investment; Musk controls all three. Related-party transactions between entities a single person controls are the highest-scrutiny item in any IPO filing. An S-1 would force every cross-investment, every shared employee, every Starlink-for-xAI compute swap onto the public record."
+      }
+    ],
+    "generatedAt": "2026-04-28T22:25:02.189Z",
+    "label": "Founder Pay & Dual-Class Control",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-sub-saharan-africa-ai-electricity-bandwidth-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ELECTRICITY BASELINE",
+        "body": "Roughly 600 million people in Sub-Saharan Africa lack access to electricity — about half the regional population. The IEA's tracking shows that since 2013, the absolute number without power has barely moved: new connections are roughly cancelled out by population growth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The metric that matters is **net electrification** — connections added minus population growth. Sub-Saharan Africa is the only region on Earth where this has been *negative* in multiple recent years."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GRIDS DON'T REACH",
+        "body": "Centralized grids assume dense load centers and creditworthy off-takers. Across rural Africa, neither holds: settlements are dispersed, household consumption is tiny, and utilities cannot recover the capex on long low-voltage runs. The economics that built the American or European grid in the 20th century simply do not pencil out.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "ET",
+              "CD",
+              "TZ",
+              "UG",
+              "MZ",
+              "MG",
+              "NE",
+              "BF",
+              "ML"
+            ],
+            "label": "largest electricity-access deficits",
+            "caption": "ten countries account for ~75% of the unconnected population"
+          }
+        ]
+      },
+      {
+        "heading": "THE BANDWIDTH TAX",
+        "body": "The UN Broadband Commission's affordability benchmark is 2% of monthly income for 1GB of mobile data. In much of Sub-Saharan Africa, 1GB still costs 5–10% of average monthly income; in some markets it exceeds 20%. AI tools — which stream tokens continuously and demand persistent connections — multiply that cost.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "DRC",
+                "value": "~17%",
+                "cc": "CD",
+                "tone": "unfavorable",
+                "weight": 17
+              },
+              {
+                "label": "Chad",
+                "value": "~13%",
+                "cc": "TD",
+                "tone": "unfavorable",
+                "weight": 13
+              },
+              {
+                "label": "Nigeria",
+                "value": "~5%",
+                "cc": "NG",
+                "tone": "unfavorable",
+                "weight": 5
+              },
+              {
+                "label": "Kenya",
+                "value": "~3%",
+                "cc": "KE",
+                "tone": "neutral",
+                "weight": 3
+              },
+              {
+                "label": "India",
+                "value": "~0.4%",
+                "cc": "IN",
+                "tone": "favorable",
+                "weight": 0.4
+              },
+              {
+                "label": "USA",
+                "value": "~0.1%",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 0.1
+              }
+            ],
+            "label": "1GB mobile data as % of monthly GNI per capita"
+          }
+        ]
+      },
+      {
+        "heading": "THE LANGUAGE BARRIER",
+        "body": "Frontier AI models are trained overwhelmingly on English and a handful of European and East Asian languages. Swahili, Hausa, Amharic, Yoruba, and Zulu — collectively spoken by hundreds of millions — sit in the long tail of training data. A user with reliable power and bandwidth still receives a degraded model if they prompt in their first language."
+      },
+      {
+        "heading": "THE COMPUTE GEOGRAPHY",
+        "body": "There is no hyperscale data center south of the Sahara at parity with those in Northern Virginia, Dublin, or Singapore. Every query routed from Lagos or Nairobi travels to Europe or South Africa and back, adding latency on top of the bandwidth cost. The continent generating the data does not host the compute that processes it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of the world's hyperscale data center capacity sits in Sub-Saharan Africa?",
+            "options": [
+              "Under 1%",
+              "About 5%",
+              "About 10%",
+              "About 15%"
+            ],
+            "correct": 0,
+            "explanation": "Sub-Saharan Africa hosts well under 1% of global hyperscale capacity, concentrated almost entirely in South Africa. Home to ~14% of humanity, it processes a fraction of a percent of global cloud workloads."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPOUNDING GAP",
+        "body": "Each layer — power, bandwidth, language, compute — would be a barrier on its own. Stacked, they multiply: a user needs all four to use AI productively, and the failure of any one collapses the chain. Previous technology waves (mobile money, leapfrog telecom) succeeded precisely because they required only one layer to work."
+      }
+    ],
+    "generatedAt": "2026-04-28T22:25:32.177Z",
+    "label": "Africa's AI Access Gap",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-28-uk-ambassador-special-relationship-israel-leaked": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHERE THE PHRASE COMES FROM",
+        "body": "Churchill coined 'special relationship' in his 1946 Fulton, Missouri speech — the same address that introduced 'iron curtain.' It was aspirational, not descriptive: postwar Britain was bankrupt, and Churchill was lobbying a wary America to stay engaged in Europe.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Neither the sure prevention of war, nor the continuous rise of world organisation will be gained without what I have called the fraternal association of the English-speaking peoples.",
+            "speaker": "Winston Churchill, Fulton speech",
+            "year": "1946"
+          }
+        ]
+      },
+      {
+        "heading": "THE NUCLEAR TETHER",
+        "body": "The 1958 US-UK Mutual Defence Agreement gives Britain access to American warhead designs and Trident missile bodies that no other ally receives. The UK's nuclear deterrent is technically sovereign but operationally dependent on Aldermaston-Los Alamos data exchange and King's Bay servicing — a relationship no other NATO state has.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Britain leases its **Trident II D5** missiles from a common pool at King's Bay, Georgia. The warheads are British; the delivery system is shared US property."
+          }
+        ]
+      },
+      {
+        "heading": "THE ISRAEL TIER",
+        "body": "The US-Israel relationship runs on a different track: a 10-year Memorandum of Understanding ($38bn, 2019-2028) plus annual emergency supplementals, qualitative military edge guaranteed in US law since 2008, and intelligence sharing that survives administration changes. No other ally receives a statutory commitment to military superiority over its neighbors.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Israel",
+                "value": "$3.8bn/yr",
+                "cc": "IL",
+                "weight": 3.8,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "$1.3bn/yr",
+                "cc": "EG",
+                "weight": 1.3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Jordan",
+                "value": "$425m/yr",
+                "cc": "JO",
+                "weight": 0.425,
+                "tone": "neutral"
+              },
+              {
+                "label": "UK",
+                "value": "$0 (peer)",
+                "cc": "GB",
+                "weight": 0.05,
+                "tone": "favorable"
+              }
+            ],
+            "label": "top US military aid recipients (FY2024)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIPLOMATS DON'T SAY THIS OUT LOUD",
+        "body": "The Vienna Convention on Diplomatic Relations (1961) protects ambassadors from prosecution but not from recall. Candid private remarks that contradict the host government's preferred framing — here, that the UK is America's first partner — are a routine cause of quiet replacement.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What typically happens to an ambassador whose private remarks embarrass the host government?",
+            "options": [
+              "Expelled as persona non grata",
+              "Quietly recalled by their own government",
+              "Prosecuted under the host's laws",
+              "Stripped of diplomatic immunity"
+            ],
+            "correct": 1,
+            "explanation": "PNG declarations are reserved for serious offenses; the standard response to political embarrassment is a discreet recall by the sending state."
+          }
+        ]
+      },
+      {
+        "heading": "LABOUR'S LEADERSHIP MECHANICS",
+        "body": "Unlike US parties, UK Labour can replace a sitting prime minister mid-term without an election. A challenger needs nominations from 20% of Labour MPs to trigger a contest; the parliamentary party and members then vote. Blair, Brown, and Corbyn all faced or survived versions of this process.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Tony Blair",
+                "role": "resigned under pressure",
+                "years": "1997–2007",
+                "cc": "GB"
+              },
+              {
+                "name": "Gordon Brown",
+                "role": "lost general election",
+                "years": "2007–2010",
+                "cc": "GB"
+              },
+              {
+                "name": "Keir Starmer",
+                "role": "current PM",
+                "years": "2024–",
+                "cc": "GB"
+              }
+            ],
+            "label": "Labour PMs and how they left"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-28T22:26:02.568Z",
+    "label": "The Special Relationship",
+    "category": "politics",
+    "articleCount": 1
   }
 }
